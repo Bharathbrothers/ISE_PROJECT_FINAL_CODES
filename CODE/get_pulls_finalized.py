@@ -12,7 +12,7 @@ repo_pulls = pd.read_csv('total_pulls.csv')
 #print(data.describe())
 
 uname = "Bharathbrothers"
-token = "6eb9643ba09cea0ca71abcfd88b81aea3f5a65d1"
+token = "##add your token here"
 
 #username = users_data['username']
 reponame = repo_pulls['repo_name']
