@@ -1,0 +1,50 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/lmdb/pulls/5,5,"Revert ""assert result of mdb_page_search in mdb_cursor_init""","This reverts commit 74eb0c5b853129d8b3008fd835d7a9110a34cf82.
+
+@ncloudioj After stepping through a variant of the crasher.c program you wrote, I realized that `mdb_page_search()` intentionally returns `MDB_NOTFOUND` when `mc->mc_db->md_root` is `P_INVALID` because the tree is empty. So we can't assert in `mdb_cursor_init()` if `mdb_page_search()` returns that value, because then we'd always fail to write the first key/value pair to a database.
+
+Moreover, `mdb_cursor_put()` sets `rc` to `MDB_NO_ROOT` if `mc->mc_db->md_root` is `P_INVALID`. Which means that this can't be the cause of the crash, which occurs when `insert_key` and `insert_data` (and hence `rc`) is `MDB_NOTFOUND` in all the minidumps I've examined. And that can't happen when `rc` is `MDB_NO_ROOT`.
+",mykmelez,305455,2019-06-21T21:39:29Z,COLLABORATOR,True,1,2,1,Fork of LMDB/lmdb for changes to support use in Mozilla projects.,C,861b80106321a3b7cde318547a00210235c6499f,"Revert ""assert result of mdb_page_search in mdb_cursor_init""
+
+This reverts commit 74eb0c5b853129d8b3008fd835d7a9110a34cf82."
+1,https://api.github.com/repos/mozilla/lmdb/pulls/4,4,return result code from mdb_cursor_init; observe it in mdb_put,"@ncloudioj While investigating crasher [bug 1538541](https://bugzilla.mozilla.org/show_bug.cgi?id=1538541), I noticed that `mdb_put` calls `mdb_cursor_init`, which doesn't return a result code.
+
+But `mdb_cursor_init` calls `mdb_page_search`, which can fail. And a stack trace from one of the crashes shows that the null pointer that gets dereferenced, causing the crash, is already null after `mdb_put` calls `mdb_cursor_init`, before it calls `mdb_cursor_put`; and there's no code in `mdb_cursor_put` that sets it before `mdb_cursor_put` tries to dereference it; which means that the crash is guaranteed to occur as soon as `mdb_cursor_init` returns in `mdb_put`.
+
+It still isn't clear to me why the pointer is null, nor why `mdb_cursor_init` doesn't return a result code. But it occurs to me that `mdb_page_search` might be failing, and thus we might be able to avoid the crashes—even if we haven't resolved the underlying failure—by returning a result code from `mdb_cursor_init` when `mdb_page_search` fails, then checking that code in `mdb_put` before calling `mdb_cursor_put`.
+
+That's what this patch does, and it works so far in my testing of lmdb-rs and kvstore. I haven't yet tried the rkv tests, nor tests for other components in Firefox. But I thought I'd open a PR for it to get early feedback from you.
+
+(I also have a version of the patch that makes all `mdb_cursor_init` callers respect the result of that function, but that patch is failing a kvstore test with `MDB_NOTFOUND`; so clearly it's ok for `mdb_page_search` to fail with `MDB_NOTFOUND` sometimes. I'd need to do more research to determine in which other callers to `mdb_cursor_init` it's appropriate to check its result code.)
+",mykmelez,305455,2019-06-12T00:37:25Z,COLLABORATOR,True,2,1,1,Fork of LMDB/lmdb for changes to support use in Mozilla projects.,C,2ef03378f8b7c19985627602a044aef52f25c86d,return rc from mdb_cursor_init; observe it in mdb_put
+2,https://api.github.com/repos/mozilla/lmdb/pulls/4,4,return result code from mdb_cursor_init; observe it in mdb_put,"@ncloudioj While investigating crasher [bug 1538541](https://bugzilla.mozilla.org/show_bug.cgi?id=1538541), I noticed that `mdb_put` calls `mdb_cursor_init`, which doesn't return a result code.
+
+But `mdb_cursor_init` calls `mdb_page_search`, which can fail. And a stack trace from one of the crashes shows that the null pointer that gets dereferenced, causing the crash, is already null after `mdb_put` calls `mdb_cursor_init`, before it calls `mdb_cursor_put`; and there's no code in `mdb_cursor_put` that sets it before `mdb_cursor_put` tries to dereference it; which means that the crash is guaranteed to occur as soon as `mdb_cursor_init` returns in `mdb_put`.
+
+It still isn't clear to me why the pointer is null, nor why `mdb_cursor_init` doesn't return a result code. But it occurs to me that `mdb_page_search` might be failing, and thus we might be able to avoid the crashes—even if we haven't resolved the underlying failure—by returning a result code from `mdb_cursor_init` when `mdb_page_search` fails, then checking that code in `mdb_put` before calling `mdb_cursor_put`.
+
+That's what this patch does, and it works so far in my testing of lmdb-rs and kvstore. I haven't yet tried the rkv tests, nor tests for other components in Firefox. But I thought I'd open a PR for it to get early feedback from you.
+
+(I also have a version of the patch that makes all `mdb_cursor_init` callers respect the result of that function, but that patch is failing a kvstore test with `MDB_NOTFOUND`; so clearly it's ok for `mdb_page_search` to fail with `MDB_NOTFOUND` sometimes. I'd need to do more research to determine in which other callers to `mdb_cursor_init` it's appropriate to check its result code.)
+",mykmelez,305455,2019-06-12T00:37:25Z,COLLABORATOR,True,2,1,1,Fork of LMDB/lmdb for changes to support use in Mozilla projects.,C,065c21af4c4a7dc94722260ae5abc7e4cfceaed6,"Revert ""return rc from mdb_cursor_init; observe it in mdb_put""
+
+This reverts commit 2ef03378f8b7c19985627602a044aef52f25c86d."
+3,https://api.github.com/repos/mozilla/lmdb/pulls/4,4,return result code from mdb_cursor_init; observe it in mdb_put,"@ncloudioj While investigating crasher [bug 1538541](https://bugzilla.mozilla.org/show_bug.cgi?id=1538541), I noticed that `mdb_put` calls `mdb_cursor_init`, which doesn't return a result code.
+
+But `mdb_cursor_init` calls `mdb_page_search`, which can fail. And a stack trace from one of the crashes shows that the null pointer that gets dereferenced, causing the crash, is already null after `mdb_put` calls `mdb_cursor_init`, before it calls `mdb_cursor_put`; and there's no code in `mdb_cursor_put` that sets it before `mdb_cursor_put` tries to dereference it; which means that the crash is guaranteed to occur as soon as `mdb_cursor_init` returns in `mdb_put`.
+
+It still isn't clear to me why the pointer is null, nor why `mdb_cursor_init` doesn't return a result code. But it occurs to me that `mdb_page_search` might be failing, and thus we might be able to avoid the crashes—even if we haven't resolved the underlying failure—by returning a result code from `mdb_cursor_init` when `mdb_page_search` fails, then checking that code in `mdb_put` before calling `mdb_cursor_put`.
+
+That's what this patch does, and it works so far in my testing of lmdb-rs and kvstore. I haven't yet tried the rkv tests, nor tests for other components in Firefox. But I thought I'd open a PR for it to get early feedback from you.
+
+(I also have a version of the patch that makes all `mdb_cursor_init` callers respect the result of that function, but that patch is failing a kvstore test with `MDB_NOTFOUND`; so clearly it's ok for `mdb_page_search` to fail with `MDB_NOTFOUND` sometimes. I'd need to do more research to determine in which other callers to `mdb_cursor_init` it's appropriate to check its result code.)
+",mykmelez,305455,2019-06-12T00:37:25Z,COLLABORATOR,True,2,1,1,Fork of LMDB/lmdb for changes to support use in Mozilla projects.,C,74eb0c5b853129d8b3008fd835d7a9110a34cf82,assert result of mdb_page_search in mdb_cursor_init
+4,https://api.github.com/repos/mozilla/lmdb/pulls/3,3,Use sys/cachectl.h rather than asm/cachectl.h on mips,It also contains the cacheflush function declaration.,glandium,1038527,2019-06-06T00:26:44Z,NONE,True,1,2,1,Fork of LMDB/lmdb for changes to support use in Mozilla projects.,C,3e9a0dfc718699671ac2f21d40ef259b5dac9c01,"Use sys/cachectl.h rather than asm/cachectl.h on mips
+
+It also contains the cacheflush function declaration."
+5,https://api.github.com/repos/mozilla/lmdb/pulls/2,2,enable configuration of MDB_IDL_LOGN,"@ncloudioj I wonder if we could reduce heap allocations to a reasonable amount when opening an environment in read-write mode in Firefox by decreasing `MDB_IDL_LOGN` (and thus `MDB_IDL_DB_SIZE` and `MDB_IDL_UM_SIZE`). Something like this change would enable configuration of `MDB_IDL_LOGN`, which Firefox (and other apps) could then define when building LMDB.
+
+I'm not sure what we'd set it to. We'd have to determine a value that is low enough to reduce allocations to a reasonable amount while being high enough to support our usage today and in the future. Some testing shows that much lower values pass tests of cert_storage and xulstore usage, although it isn't clear to me that those are representative workloads.
+
+In any case, I'm interested in what you think about the general approach!
+",mykmelez,305455,2019-04-10T23:55:05Z,COLLABORATOR,True,2,0,1,Fork of LMDB/lmdb for changes to support use in Mozilla projects.,C,46fa4c6fd7975c82c5136c960f737ce12c34867d,allow configuration of MDB_IDL_LOGN

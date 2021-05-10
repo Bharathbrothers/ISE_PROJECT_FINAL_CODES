@@ -1,0 +1,518 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/158,158,chore(docs): add MySQL version to documentation,"Fixes #110
+",vladikoff,128755,2015-08-09T22:59:56Z,CONTRIBUTOR,True,3,1,1,database layer for Firefox Accounts server,JavaScript,ed29529d4b79c1be86d580a99c26d870aa0b104d,"chore(docs): add MySQL version to documentation
+
+Fixes #110"
+1,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/157,157,feat(db): store user agent and last-access time in sessionTokens,"Partially addresses https://github.com/mozilla/fxa-auth-server/issues/983.
+
+Depends on:
+- https://github.com/mozilla/fxa-auth-db-mysql/pull/65
+- https://github.com/mozilla/fxa-auth-db-mem/pull/43
+- https://github.com/mozilla/fxa-auth-server/pull/997
+
+Adds the endpoint `POST /sessionToken/:id/update`.
+",philbooth,64367,2015-07-27T17:08:26Z,CONTRIBUTOR,False,130,12,6,database layer for Firefox Accounts server,JavaScript,40962f1934fc25a1131db43f7629cbf1471ee070,feat(db): store user agent and last-access time in sessionTokens
+2,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/156,156,chore(travis): Remove chilts,,chilts,3048,2015-07-16T23:40:50Z,CONTRIBUTOR,True,0,1,1,database layer for Firefox Accounts server,JavaScript,9734e57986a143bfdfe7db768d9bc218f4008f39,chore(travis): Remove chilts
+3,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/155,155,fix(db): ensure that requests for bad paths are logged,"@chilts @rfk
+
+Revised from #154, fixes #144, depends on https://github.com/mozilla/fxa-auth-db-mem/pull/39.
+
+Improves on the previous PR in two ways:
+1. Uses restify's `NotFound` event to catch all requests to unknown paths.
+2. Uses the linked fx-auth-db-mem PR to test that the server emits the failure event as expected.
+
+Any good?
+",philbooth,64367,2015-07-09T12:08:22Z,CONTRIBUTOR,True,128,27,2,database layer for Firefox Accounts server,JavaScript,dd6d8e2325456f6266134793310343db47ce36f0,"fix(db): ensure that requests for bad paths are logged
+
+Fixes #144"
+4,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/154,154,"fix(db): ensure that requests for bad paths are logged, fixes #144","I made some assumptions here, so I have questions:
+1. I've assumed that whatever is listening for the `'failure'` event is the thing that does the actual logging. Is that correct? Which repo is listening for that event? I tried grepping in a few but didn't find anything.
+2. I've not used restify before but couldn't see a better way in the docs to do what I've done in `index.js`. The identical sequential calls to `get()`, `put()`, `post()`, `delete()` and `head()` are a bit smelly, is there any way to wildcard the HTTP verb in restify?
+3. There's also an assumption in the general approach I've taken, I'm not sure if it's what you guys had in mind. Obviously I extracted the code in `handleError` to a named function for re-use, but I wasn't sure if that justified extracting the `resolve` handler to a named function too. Doing so would make the async call more uniform and improve readability I reckon, but it's not called from anywhere else so perhaps it's a bit OTT. What do you think?
+
+@chilts @rfk: r?
+",philbooth,64367,2015-07-06T10:07:30Z,CONTRIBUTOR,False,114,25,2,database layer for Firefox Accounts server,JavaScript,1c4c5538d055138e7572510b1752195b243df63a,"fix(db): ensure that requests for bad paths are logged, fixes #144"
+5,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/153,153,feat(api): Test to check passwordChangeToken returns the account.emai…,"…l address
+",chilts,3048,2015-07-01T22:32:11Z,CONTRIBUTOR,True,2,1,1,database layer for Firefox Accounts server,JavaScript,cfe03303e08ccf3f852a692dcdd788c30526386f,feat(api): Test to check passwordChangeToken returns the account.email address
+6,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/152,152,chore(travis): Tell Travis to use #fxa-bots,,chilts,3048,2015-07-01T04:32:07Z,CONTRIBUTOR,True,1,1,1,database layer for Firefox Accounts server,JavaScript,5b7436f41fcd8b5a49b3b0fc006bc2c67c98a025,chore(travis): Tell Travis to use #fxa-bots
+7,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/151,151,Propagate all error fields,"Fixes #150.
+
+@chilts, was this what you had in mind or have I got the wrong end of the stick?
+",philbooth,64367,2015-07-01T01:17:16Z,CONTRIBUTOR,True,12,2,2,database layer for Firefox Accounts server,JavaScript,fdf154b03216ce5642e248c7c1c779aea90afe80,"fix(db-api): propagate all error fields, fixes #151"
+8,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/149,149,Remove more semi colons,,chilts,3048,2015-06-15T01:54:47Z,CONTRIBUTOR,True,45,54,11,database layer for Firefox Accounts server,JavaScript,8e2e06d5db6626d554bd3d105d9476cfecdb2fb9,chore(lint): Replace JSHint with ESLint
+9,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/149,149,Remove more semi colons,,chilts,3048,2015-06-15T01:54:47Z,CONTRIBUTOR,True,45,54,11,database layer for Firefox Accounts server,JavaScript,e075381e28a98688db046d55417288896eb8847f,chore(lint): Remove more semi-colons so eslint is happy
+10,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/148,148,chore(lint): Replace JSHint with ESLint,"We're working on a PR to replace JSHint with ESLint in https://github.com/mozilla/fxa-content-server/pull/2578 (and soon in https://github.com/mozilla/fxa-js-client/issues/156).
+
+Not sure if we want to do all the **fxa-auth-**\* servers while we're at it.
+One cool thing is that we can use [ESLint shareable configs](http://eslint.org/docs/developer-guide/shareable-configs) to check our rules in and easily share them between all the **mozilla/fxa-**\* repos. I have a prototype config at https://www.npmjs.com/package/eslint-config-fxa.
+
+You can see in the .eslintrc file below where we're extending the ""fxa/server"" rules defined in **eslint-config-fxa** module and overriding/disabling a couple rules:
+
+``` yaml
+extends: fxa/server
+
+rules:
+  handle-callback-err: 0
+  semi: 0
+```
+
+You can see the base ESLint rules in https://github.com/pdehaan/eslint-config-fxa/blob/master/index.js and the ""fxa/server"" specific rules https://github.com/pdehaan/eslint-config-fxa/blob/master/server.js.
+
+But ESLint is objectively better, more customizable, easier to create custom rules, and updates more frequently. :sparkles: 
+",pdehaan,557895,2015-06-12T21:48:05Z,CONTRIBUTOR,True,29,38,9,database layer for Firefox Accounts server,JavaScript,8e2e06d5db6626d554bd3d105d9476cfecdb2fb9,chore(lint): Replace JSHint with ESLint
+11,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/147,147,chore(lint): Clean up some syntax errors reported by ESLint,,pdehaan,557895,2015-06-12T06:07:38Z,CONTRIBUTOR,True,15,15,4,database layer for Firefox Accounts server,JavaScript,96ea3b05b889bae02671c1fc9d6849c133870759,chore(lint): Clean up some syntax errors reported by ESLint
+12,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/146,146,feat(db-api): Add AppError.incorrectPassword for the backends to use …,"…in checkPassword
+",chilts,3048,2015-06-11T04:05:26Z,CONTRIBUTOR,True,66,5,3,database layer for Firefox Accounts server,JavaScript,25ba38e37dc09445bdc4c06a7cd3e9b0a5e9888e,feat(db-api): Add AppError.incorrectPassword for the backends to use in checkPassword
+13,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/145,145,docs(api): Server_API.md docs,,chilts,3048,2015-06-10T01:03:17Z,CONTRIBUTOR,True,1385,0,1,database layer for Firefox Accounts server,JavaScript,1c423a419d7c6a6153f62d2c127ca898a426306d,docs(api): Server_API.md docs
+14,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/143,143,refactor(tests): expect verifyHash to be absent from responses,"Fixes https://github.com/mozilla/fxa-auth-db-mysql/issues/47
+",eoger,6424575,2015-06-03T20:57:09Z,CONTRIBUTOR,True,6,4,2,database layer for Firefox Accounts server,JavaScript,8c67ddd95d2e6ded924478cfbf43b013b8ed51bc,refactor(tests): expect verifyHash to be absent from responses
+15,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/142,142,chore(license): Update license to be SPDX compliant,"https://docs.npmjs.com/files/package.json#license
+",pdehaan,557895,2015-05-23T00:03:44Z,CONTRIBUTOR,True,1,1,1,database layer for Firefox Accounts server,JavaScript,95f72ca97eed3faaca1124ab15a5521b58da8b42,chore(license): Update license to be SPDX compliant
+16,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/141,141,Check password api,"Part of https://github.com/mozilla/fxa-auth-db-server/issues/88
+",eoger,6424575,2015-05-20T23:39:27Z,CONTRIBUTOR,True,56,4,4,database layer for Firefox Accounts server,JavaScript,81afb92f5403f1720851f92c0e85b1b4f709710f,Added checkPassword API
+17,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/140,140,refactor(lib): Move source files into lib/ to tidy up,,chilts,3048,2015-05-13T05:01:19Z,CONTRIBUTOR,True,8,8,9,database layer for Firefox Accounts server,JavaScript,c0f9009c7c4acbb3665b1f49564f570cb41eddea,refactor(lib): Move source files into lib/ to tidy up
+18,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/139,139,build(travis): Test on both io.js v1 and v2,,chilts,3048,2015-05-05T03:54:26Z,CONTRIBUTOR,True,4,2,1,database layer for Firefox Accounts server,JavaScript,d34c7ae9a8ee88d1cf2fa3ed824248041af82436,build(travis): Test on both io.js v1 and v2
+19,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/138,138,"chore(test): Test on node.js v0.10, v0.12 and the latest io.js",,chilts,3048,2015-04-21T05:08:04Z,CONTRIBUTOR,True,8,0,1,database layer for Firefox Accounts server,JavaScript,1e0b4eca48a39ed3e518a471fa70b9224a0cc833,"chore(test): Test on node.js v0.10, v0.12 and the latest io.js"
+20,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/137,137,chore(copyright): Update to grunt-copyright v0.2.0,"When doing an `npm install` using node v0.12, it complains since grunt-copyright
+v0.1 has a `""node"": ""0.10.x""` in it's `engines` section. v0.2 has been updated
+to be `""node"": "">= 0.10.0""` which is satisfied with either v0.10 or v0.12.
+",chilts,3048,2015-04-20T00:54:02Z,CONTRIBUTOR,True,1,1,1,database layer for Firefox Accounts server,JavaScript,a78918e17d0a3d15d291cb4a3dbb23fe0ee37bbe,"chore(copyright): Update to grunt-copyright v0.2.0
+
+When doing an `npm install` using node v0.12, it complains since grunt-copyright
+v0.1 has a `""node"": ""0.10.x""` in it's `engines` section. v0.2 has been updated
+to be `""node"": "">= 0.10.0""` which is satisfied with either v0.10 or v0.12."
+21,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/136,136,refactor(tests): Generate test UIDs a different way,"Since we have weird dependency issues related to how the reverse backends work
+it may be better off to remove uuid/node-uuid completely so we don't have to
+solve it in a weird way. This actually ends up slightly cleaner too, though
+we may still have to solve this issue at some point in the future. See
+https://github.com/mozilla/fxa-auth-db-mem/issues/23#issuecomment-93856934
+for further details.
+",chilts,3048,2015-04-17T02:32:39Z,CONTRIBUTOR,True,1,5,2,database layer for Firefox Accounts server,JavaScript,c9a794bd45e7c2fc4a083d349e84ed1fb8600516,"refactor(tests): Generate test UIDs a different way
+
+Since we have weird dependency issues related to how the reverse backends work
+it may be better off to remove uuid/node-uuid completely so we don't have to
+solve it in a weird way. This actually ends up slightly cleaner too, though
+we may still have to solve this issue at some point in the future. See
+https://github.com/mozilla/fxa-auth-db-mem/issues/23#issuecomment-93856934
+for further details."
+22,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/135,135,refactor(tests): Switch to node-uuid to be consistent with other repos,"Since we had trouble with the uuid@2 package (the uuid.v4() subtly changed
+from returning a binary to returning an array) we decided to go back to
+node-uuid which we use in other repos. Even this has changed somewhat
+so that we just need a slight helper to generate a uuid in a Buffer
+a little more easily.
+",chilts,3048,2015-04-15T23:54:21Z,CONTRIBUTOR,True,13,7,2,database layer for Firefox Accounts server,JavaScript,3f6ea672b37738c7db2acf4d2cbe8070cf47f239,"refactor(tests): Switch to node-uuid to be consistent with other repos
+
+Since we had trouble with the uuid@2 package (the uuid.v4() subtly changed
+from returning a binary to returning an array) we decided to go back to
+node-uuid which we use in other repos. Even this has changed somewhat
+so that we just need a slight helper to generate a uuid in a Buffer
+a little more easily."
+23,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/134,134,"fix(shrinkwrap): as discussed, only ""top-level"" repos get shrunkwrapped","@chilts - r? 
+",jrgm,758162,2015-04-02T19:47:35Z,CONTRIBUTOR,True,2,1373,3,database layer for Firefox Accounts server,JavaScript,59dbc6e4f2ef0f1d08888606b03532f7ccb194b6,"fix(shrinkwrap): as discussed, only ""top-level"" repos get shrunkwrapped"
+24,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/133,133,Train 34,,jrgm,758162,2015-04-02T18:56:52Z,CONTRIBUTOR,True,7,2,3,database layer for Firefox Accounts server,JavaScript,67d85036141ea1e167f4959f4aff156902014728,Release v0.34.0
+25,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/133,133,Train 34,,jrgm,758162,2015-04-02T18:56:52Z,CONTRIBUTOR,True,7,2,3,database layer for Firefox Accounts server,JavaScript,a0adf324b37b9655bb33f8dad85d4acd5e2c3457,docs(changelog): belatedly add changelog note for train-34
+26,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/132,132,"fix(release): add tasks ""grunt version"" and ""grunt version:patch"" to create release tags","I dunno if we want to keep doing releases for this repo, but if so, this is a consistent way to do it.
+On balance, I think we should. r? @pdehaan @chilts @dannycoates 
+",jrgm,758162,2015-04-01T04:17:18Z,CONTRIBUTOR,True,112,29,7,database layer for Firefox Accounts server,JavaScript,ed6e9e46573ccd5d38547b911e6fd3ac15469cbd,"fix(release): add tasks ""grunt version"" and ""grunt version:patch"" to create release tags"
+27,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/131,131,chore(shrinkwrap): update npm-shrinkwrap.json,"Bring out yer Dead. Bring out yer Dead. 
+
+Just going to r= it myself and merge
+
+The versions of some of the modules could use a bit of an update, thought, but not this moment.
+",jrgm,758162,2015-03-30T22:59:34Z,CONTRIBUTOR,True,142,33,1,database layer for Firefox Accounts server,JavaScript,83ec3579a36d33b7f6e3bc866c5e6f5aa240a6e2,chore(shrinkwrap): update npm-shrinkwrap.json
+28,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/130,130,"fix(db): set createdAt, verifierSetAt and normalizedEmail in the tests","The fxa-auth-server always sets these fields, so we should simulate that here
+so that the backends perform the correct functionality.
+",chilts,3048,2015-03-26T22:45:34Z,CONTRIBUTOR,True,38,27,2,database layer for Firefox Accounts server,JavaScript,6ec5116086ccf20c2d2d8ec94a39836c1e8c05a1,"fix(db): set createdAt, verifierSetAt and normalizedEmail in the tests
+
+The fxa-auth-server always sets these fields, so we should simulate that here
+so that the backends perform the correct functionality."
+29,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/129,129,docs(readme): better readme for help implementing a storage backend,"This adds a better example of using this repo as well as a pointer to the mem and mysql backends for users just trying it out. A link to the DB API has also been added.
+",chilts,3048,2015-03-23T01:57:19Z,CONTRIBUTOR,True,39,5,1,database layer for Firefox Accounts server,JavaScript,c61188a507a50e778bedbe1093f450577100047e,"docs(readme): better readme for help implementing a storage backend
+
+This adds a better example of using this repo as well as a pointer
+to the mem and mysql backends for users just trying it out. A link
+to the DB API has also been added."
+30,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/128,128,Fixes #120 : Emits the memory stats for the server to log (if wanted),,chilts,3048,2015-03-13T01:59:30Z,CONTRIBUTOR,True,5,0,1,database layer for Firefox Accounts server,JavaScript,a3926281aa3a0c43a1f7b6303634ccade45527ef,"feat(log): Emit the memory stats for the server to log
+
+We used to log these stats in the fxa-auth-server but they were lost when we separated
+out the fxa-auth-db-server. This re-instates it.
+
+Fixes #120."
+31,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/127,127,"Remove the op from here, set in the backends already",,chilts,3048,2015-03-11T23:07:37Z,CONTRIBUTOR,True,0,2,1,database layer for Firefox Accounts server,JavaScript,16f7a08a871ca4335089b7094effa3016b0fb3f0,"Remove the op from here, set in the backends already"
+32,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/126,126,Add docs to help with developing the db repos,,chilts,3048,2015-03-04T07:54:21Z,CONTRIBUTOR,True,99,0,1,database layer for Firefox Accounts server,JavaScript,4daafb0b7340747b9ae795c1bc641881e934d39f,Add docs to help with developing the db repos
+33,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/125,125,chore(shrinkwrap): update shrinkwrap,"very minor updates, mostly. This is for `master`.
+",jrgm,758162,2015-03-04T04:10:25Z,CONTRIBUTOR,True,249,210,1,database layer for Firefox Accounts server,JavaScript,bcb82c6fb4f383d34d09b7cfae6a881a4c135d31,chore(shrinkwrap): update shrinkwrap
+34,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/124,124,Test that unlocking a non-existant account just returns ok(ish),,chilts,3048,2015-02-24T03:48:05Z,CONTRIBUTOR,True,12,4,1,database layer for Firefox Accounts server,JavaScript,004ec948875ba6fd692bab70309f624f6ecb8c3b,Test that unlocking a non-existant account just returns ok(ish)
+35,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/123,123,Locked account,"Continue with @chilts #91, now based on the ""reverse"" refactor.
+
+Goes along with:
+- https://github.com/mozilla/fxa-auth-db-mem/pull/11
+- https://github.com/mozilla/fxa-auth-db-mysql/pull/7
+- https://github.com/mozilla/fxa-auth-mailer/pull/23
+- https://github.com/mozilla/fxa-js-client/pull/141
+- https://github.com/mozilla/fxa-content-server/pull/1806
+- https://github.com/mozilla/fxa-auth-server/pull/867
+",shane-tomlinson,848085,2015-02-04T17:25:02Z,MEMBER,True,151,8,4,database layer for Firefox Accounts server,JavaScript,c3e787debef5faca623e8c84f01d6a38c0c31abe,"feat: Add account locked endpoints.
+
+* /account/:id/lock to lock an account.
+* /account/:id/unlock to unlock an account.
+
+Add locked account tests."
+36,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/123,123,Locked account,"Continue with @chilts #91, now based on the ""reverse"" refactor.
+
+Goes along with:
+- https://github.com/mozilla/fxa-auth-db-mem/pull/11
+- https://github.com/mozilla/fxa-auth-db-mysql/pull/7
+- https://github.com/mozilla/fxa-auth-mailer/pull/23
+- https://github.com/mozilla/fxa-js-client/pull/141
+- https://github.com/mozilla/fxa-content-server/pull/1806
+- https://github.com/mozilla/fxa-auth-server/pull/867
+",shane-tomlinson,848085,2015-02-04T17:25:02Z,MEMBER,True,151,8,4,database layer for Firefox Accounts server,JavaScript,b414e87908aaced6e02e2eec6d61290b34e3ac78,Ensure any unlock codes are removed when deleting an account.
+37,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/123,123,Locked account,"Continue with @chilts #91, now based on the ""reverse"" refactor.
+
+Goes along with:
+- https://github.com/mozilla/fxa-auth-db-mem/pull/11
+- https://github.com/mozilla/fxa-auth-db-mysql/pull/7
+- https://github.com/mozilla/fxa-auth-mailer/pull/23
+- https://github.com/mozilla/fxa-js-client/pull/141
+- https://github.com/mozilla/fxa-content-server/pull/1806
+- https://github.com/mozilla/fxa-auth-server/pull/867
+",shane-tomlinson,848085,2015-02-04T17:25:02Z,MEMBER,True,151,8,4,database layer for Firefox Accounts server,JavaScript,38fcc2a9e73005624f4098aa368e6573bf973172,Ensure `resetAccount` removes any outstanding unlockCodes for the uid.
+38,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/123,123,Locked account,"Continue with @chilts #91, now based on the ""reverse"" refactor.
+
+Goes along with:
+- https://github.com/mozilla/fxa-auth-db-mem/pull/11
+- https://github.com/mozilla/fxa-auth-db-mysql/pull/7
+- https://github.com/mozilla/fxa-auth-mailer/pull/23
+- https://github.com/mozilla/fxa-js-client/pull/141
+- https://github.com/mozilla/fxa-content-server/pull/1806
+- https://github.com/mozilla/fxa-auth-server/pull/867
+",shane-tomlinson,848085,2015-02-04T17:25:02Z,MEMBER,True,151,8,4,database layer for Firefox Accounts server,JavaScript,0ba011b880a02445802532ca4dc926da92c3b33a,"Updates based on suggestions by @chilts
+
+* When checking the account, also check the emailRecord.
+* Add a test comment when checking the unlockCode
+* Add `data.unlockCode` to fake.js->newUserDataBuffer"
+39,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/123,123,Locked account,"Continue with @chilts #91, now based on the ""reverse"" refactor.
+
+Goes along with:
+- https://github.com/mozilla/fxa-auth-db-mem/pull/11
+- https://github.com/mozilla/fxa-auth-db-mysql/pull/7
+- https://github.com/mozilla/fxa-auth-mailer/pull/23
+- https://github.com/mozilla/fxa-js-client/pull/141
+- https://github.com/mozilla/fxa-content-server/pull/1806
+- https://github.com/mozilla/fxa-auth-server/pull/867
+",shane-tomlinson,848085,2015-02-04T17:25:02Z,MEMBER,True,151,8,4,database layer for Firefox Accounts server,JavaScript,dada1b00bcb29738a793453fee1aad0642572f96,Remove the `String(err)` info from the test strings.
+40,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/121,121,"fix(db): Change the behaviour of the DB server so that a patch level mis-match is only logged, fixes #114 for train-29","@chilts - I had been using a snapshot build in stage with this, but hadn't got around to getting this in and branched. r? 
+",jrgm,758162,2015-02-02T19:55:39Z,CONTRIBUTOR,True,15,3,3,database layer for Firefox Accounts server,JavaScript,f7af9ecdd34137916a335d6649ae749a81438ee5,"fix(db): Change the behaviour of the DB server so that a patch level mis-match is only logged, fixes #114 for train-29"
+41,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/117,117,Add a CONTRIBUTING.md and an AUTHORS file,,chilts,3048,2015-01-28T03:40:51Z,CONTRIBUTOR,True,88,0,2,database layer for Firefox Accounts server,JavaScript,61ec29306bd89e460ecea5bb3727ba6a1e48871f,Fixes #104 : Add a CONTRIBUTING.md and an AUTHORS file
+42,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/116,116,Reverse with tests,,chilts,3048,2015-01-27T23:12:02Z,CONTRIBUTOR,True,1324,3773,43,database layer for Firefox Accounts server,JavaScript,56b07758c2dd09a974300f51da6d63083fa19b88,stripped down to a lib
+43,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/116,116,Reverse with tests,,chilts,3048,2015-01-27T23:12:02Z,CONTRIBUTOR,True,1324,3773,43,database layer for Firefox Accounts server,JavaScript,38161c44979a379bafa81ef926a2c426934f4e0f,simplified server api
+44,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/116,116,Reverse with tests,,chilts,3048,2015-01-27T23:12:02Z,CONTRIBUTOR,True,1324,3773,43,database layer for Firefox Accounts server,JavaScript,fad1acd475892ba1a843147716259033b29d71b9,include errors
+45,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/116,116,Reverse with tests,,chilts,3048,2015-01-27T23:12:02Z,CONTRIBUTOR,True,1324,3773,43,database layer for Firefox Accounts server,JavaScript,69752b9b93743113bd4f57258994291d9857fd5e,updated dependencies
+46,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/116,116,Reverse with tests,,chilts,3048,2015-01-27T23:12:02Z,CONTRIBUTOR,True,1324,3773,43,database layer for Firefox Accounts server,JavaScript,f4a3579199e83a20a9201e083d302433858890a7,Add the grunt jshint test back in
+47,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/116,116,Reverse with tests,,chilts,3048,2015-01-27T23:12:02Z,CONTRIBUTOR,True,1324,3773,43,database layer for Firefox Accounts server,JavaScript,311e77ff9fbd694b926fc1e300a15cd120920ba3,Add test/local/db_tests.js for use in different backends
+48,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/116,116,Reverse with tests,,chilts,3048,2015-01-27T23:12:02Z,CONTRIBUTOR,True,1324,3773,43,database layer for Firefox Accounts server,JavaScript,767e81b4bf451e86ce17366605386f4de315242c,Put tap-coverage.js back in
+49,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/116,116,Reverse with tests,,chilts,3048,2015-01-27T23:12:02Z,CONTRIBUTOR,True,1324,3773,43,database layer for Firefox Accounts server,JavaScript,88fbd9fda1ad6cff494d5006b373f482faea521a,"Add local tests back in, export both backend tests : db_tests and remote"
+50,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/116,116,Reverse with tests,,chilts,3048,2015-01-27T23:12:02Z,CONTRIBUTOR,True,1324,3773,43,database layer for Firefox Accounts server,JavaScript,365c199a581d03ee9cae08f2d948838d72013cc0,Grunt over the new backend tests
+51,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/116,116,Reverse with tests,,chilts,3048,2015-01-27T23:12:02Z,CONTRIBUTOR,True,1324,3773,43,database layer for Firefox Accounts server,JavaScript,3536bbfe2cf468ca898dc9f331b6497be5142fad,Add the tests for token deletion (for same uid)
+52,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/116,116,Reverse with tests,,chilts,3048,2015-01-27T23:12:02Z,CONTRIBUTOR,True,1324,3773,43,database layer for Firefox Accounts server,JavaScript,f535523bb25442cfbf63ab0e106d3f46445921ea,"Merge remote-tracking branch 'upstream/master' into reverse-with-tests
+
+Conflicts:
+	.travis.yml
+	Gruntfile.js
+	README.md
+	bin/db_patcher.js
+	db/mysql.js
+	index.js
+	package.json
+	test/local/db_tests.js
+	test/local/incorrect-patch-level.js
+	test/local/log-stats.js
+	test/local/mysql_tests.js
+	test/local/ping.js
+	test/remote/account.js
+	test/remote/basic.js"
+53,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/116,116,Reverse with tests,,chilts,3048,2015-01-27T23:12:02Z,CONTRIBUTOR,True,1324,3773,43,database layer for Firefox Accounts server,JavaScript,2383fe722319afc71d75cb387eae9252e79cc7d9,Address some issues from code review : Issue #116
+54,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/116,116,Reverse with tests,,chilts,3048,2015-01-27T23:12:02Z,CONTRIBUTOR,True,1324,3773,43,database layer for Firefox Accounts server,JavaScript,aa0b6d484a6965d2c25ea02062dc7a4290366af0,Fix logging by emitting the right request.summary from the server
+55,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/113,113,Fixes #107 - Remove references to the old .fxa_dbrc config file,,chilts,3048,2015-01-19T03:11:03Z,CONTRIBUTOR,True,11,9,1,database layer for Firefox Accounts server,JavaScript,05e630708134af3e396db27495ddb23156ccd72f,Fixes #107 - Remove references to the old .fxa_dbrc config file
+56,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/112,112,Squash two patches and create SQL for train 28,,chilts,3048,2015-01-16T01:07:24Z,CONTRIBUTOR,False,217,21,5,database layer for Firefox Accounts server,JavaScript,781638fc51afa50c0fe4c940f1bba1db9609b640,Squash two patches and create SQL for train 28
+57,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/108,108,Added checkPassword API,"Part of https://github.com/mozilla/fxa-auth-db-server/issues/88
+
+BLOCKS https://github.com/mozilla/fxa-auth-server/pull/846
+",eoger,6424575,2014-12-21T15:43:30Z,CONTRIBUTOR,False,1,0,1,database layer for Firefox Accounts server,JavaScript,78613525e3e6402409f447cde07b9066b67b6361,Added checkPassword API
+58,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/103,103,checkPassword API,"Draft for https://github.com/mozilla/fxa-auth-db-server/issues/88
+
+Needed by https://github.com/mozilla/fxa-auth-server/pull/846 to start with a MySQL db
+",eoger,6424575,2014-11-30T00:25:09Z,CONTRIBUTOR,False,109,21,9,database layer for Firefox Accounts server,JavaScript,f34fd0ee1df8e8206c04e6bf8ab30c7ede4d216d,Added checkPassword API functions
+59,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/103,103,checkPassword API,"Draft for https://github.com/mozilla/fxa-auth-db-server/issues/88
+
+Needed by https://github.com/mozilla/fxa-auth-server/pull/846 to start with a MySQL db
+",eoger,6424575,2014-11-30T00:25:09Z,CONTRIBUTOR,False,109,21,9,database layer for Firefox Accounts server,JavaScript,4ae9efe08d08c2679a37f72d13b48dc8a758795f,Added checkPassword_2 stored procedure
+60,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/103,103,checkPassword API,"Draft for https://github.com/mozilla/fxa-auth-db-server/issues/88
+
+Needed by https://github.com/mozilla/fxa-auth-server/pull/846 to start with a MySQL db
+",eoger,6424575,2014-11-30T00:25:09Z,CONTRIBUTOR,False,109,21,9,database layer for Firefox Accounts server,JavaScript,89b60e6b7a0cfdd7c49c52cfba4ab4f5788e98de,Added checkPassword API tests
+61,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/103,103,checkPassword API,"Draft for https://github.com/mozilla/fxa-auth-db-server/issues/88
+
+Needed by https://github.com/mozilla/fxa-auth-server/pull/846 to start with a MySQL db
+",eoger,6424575,2014-11-30T00:25:09Z,CONTRIBUTOR,False,109,21,9,database layer for Firefox Accounts server,JavaScript,a99222c120478642c1b04926f0c512477e44ba41,Remove type coercion
+62,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/103,103,checkPassword API,"Draft for https://github.com/mozilla/fxa-auth-db-server/issues/88
+
+Needed by https://github.com/mozilla/fxa-auth-server/pull/846 to start with a MySQL db
+",eoger,6424575,2014-11-30T00:25:09Z,CONTRIBUTOR,False,109,21,9,database layer for Firefox Accounts server,JavaScript,02b2b7f64c418663e106e28862f2d5ef6e39ac7b,Added AUTHORS file
+63,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/103,103,checkPassword API,"Draft for https://github.com/mozilla/fxa-auth-db-server/issues/88
+
+Needed by https://github.com/mozilla/fxa-auth-server/pull/846 to start with a MySQL db
+",eoger,6424575,2014-11-30T00:25:09Z,CONTRIBUTOR,False,109,21,9,database layer for Firefox Accounts server,JavaScript,9f71df12b3d432fbb72c556d2a664ca7a7cf09c1,Invalid password tests
+64,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/103,103,checkPassword API,"Draft for https://github.com/mozilla/fxa-auth-db-server/issues/88
+
+Needed by https://github.com/mozilla/fxa-auth-server/pull/846 to start with a MySQL db
+",eoger,6424575,2014-11-30T00:25:09Z,CONTRIBUTOR,False,109,21,9,database layer for Firefox Accounts server,JavaScript,9d828cc28827bce9a6962cf9f74876ccde44c5a1,Added doc for the checkPassword API
+65,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/100,100,Add a unique index to passwordChangeTokens(uid),,chilts,3048,2014-11-06T01:05:54Z,CONTRIBUTOR,True,11,1,3,database layer for Firefox Accounts server,JavaScript,9f9f5b1e06b51e80679096b04ff227bfe9db0270,Add a unique index to passwordChangeTokens(uid)
+66,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/99,99,"Force validate-shrinkwrap to be successful, but still note any vulnerabl...","...e modules
+",chilts,3048,2014-11-03T19:56:33Z,CONTRIBUTOR,False,1,1,1,database layer for Firefox Accounts server,JavaScript,698893f6e4b73ceaaad9fe3d5adf740139bfa229,"Force validate-shrinkwrap to be successful, but still note any vulnerable modules"
+67,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/98,98,fix(build): Adding --force flag onto grunt validate-shrinkwrap task,"...so it doesn't fail builds.
+
+Per @chilts's https://github.com/mozilla/fxa-auth-db-server/pull/96#issuecomment-61437783
+",pdehaan,557895,2014-11-03T18:54:06Z,CONTRIBUTOR,True,2,3,2,database layer for Firefox Accounts server,JavaScript,5b21034863dfe3f8a3de530e58831a9a2195d6e9,fix(build): Adding --force flag onto grunt validate-shrinkwrap task so it doesnt fail builds
+68,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/96,96,Update convict to newer version,,chilts,3048,2014-11-03T03:31:36Z,CONTRIBUTOR,True,338,310,2,database layer for Firefox Accounts server,JavaScript,cf8ed140c007a1ddb115dce0ae92cfaabb756abd,Update convict to newer version
+69,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/95,95,I94 fix insert replace account reset tokens,,chilts,3048,2014-11-03T03:22:43Z,CONTRIBUTOR,True,426,13,6,database layer for Firefox Accounts server,JavaScript,3122d9be3701153d7597912e2b5cead07c7811f9,"Fixes #94 : Make sure we replace rows in specific tables
+
+These include accountResetTokens, passwordChangeTokens and
+passwordForgotTokens. All should only have one row per account."
+70,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/95,95,I94 fix insert replace account reset tokens,,chilts,3048,2014-11-03T03:22:43Z,CONTRIBUTOR,True,426,13,6,database layer for Firefox Accounts server,JavaScript,fb4273c24b84cf0aa56a8b302287780e35161b31,"Add tests to make sure certain tokens are replaced
+
+For accountResetTokens, passwordForgotTokens and passwordChangeTokens
+we only allow one per accounts.uid and therefore when a 2nd one is
+inserted it should be replaced instead of in addition to the first.
+These tests make sure that this happens correctly."
+71,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/95,95,I94 fix insert replace account reset tokens,,chilts,3048,2014-11-03T03:22:43Z,CONTRIBUTOR,True,426,13,6,database layer for Firefox Accounts server,JavaScript,8cb0b42a0a97f1600a25a2b8bd3b3dc707934cbe,"Failed stored procedures return errors correctly
+
+This test makes sure that if there is an error in a stored procedure
+inside a transaction, that the error is propagated back up the stack
+and into db/mysql.js. Trying to make an existing SP fail and putting
+the correct one back into place seemed a bit fragile, so this adds
+a new one (which we know will fail) and then monkey patches `db` so
+that it mirrors the other methods by just calling `db.write()`. This
+is about as close as we can get without it becoming spaghetti."
+72,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/92,92,Rename the procedures to be v1,,chilts,3048,2014-10-13T22:50:49Z,CONTRIBUTOR,False,81,81,3,database layer for Firefox Accounts server,JavaScript,aae82d71c902fb81c64761a9a507742cd3c0f9f1,Rename the procedures to be v1
+73,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/91,91,"Add lockedAt to database, DB layer and exposed API",,chilts,3048,2014-10-13T01:51:05Z,CONTRIBUTOR,False,193,17,7,database layer for Firefox Accounts server,JavaScript,e30a8d2a235889a419b26db723caaedbe451597e,Add functionality for accounts.lockedAt
+74,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/91,91,"Add lockedAt to database, DB layer and exposed API",,chilts,3048,2014-10-13T01:51:05Z,CONTRIBUTOR,False,193,17,7,database layer for Firefox Accounts server,JavaScript,4b5fc6904ca69f7e5dfd58cb5055fb2dacfaef9c,Add tests for lockedAt
+75,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/91,91,"Add lockedAt to database, DB layer and exposed API",,chilts,3048,2014-10-13T01:51:05Z,CONTRIBUTOR,False,193,17,7,database layer for Firefox Accounts server,JavaScript,71e4066f7d5d2924afa6321f8df28546826d75d1,Expose the /account/:id/lock route
+76,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/90,90,Add a new unprivileged database user (fxa) and use it for the server,"Fixes #86 
+",chilts,3048,2014-10-08T03:07:46Z,CONTRIBUTOR,False,187,38,7,database layer for Firefox Accounts server,JavaScript,6784e98cb3d668c8481a4f0c2f8c21b47e5c3ab5,Add a new unprivileged database user (fxa) and use it for the server
+77,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/85,85,"Use the DB stored procedures, instead of raw SQL",,chilts,3048,2014-09-25T17:44:32Z,CONTRIBUTOR,False,131,169,3,database layer for Firefox Accounts server,JavaScript,eeda31c4e4c9e6c387cc2efb27a28d1e942f29d3,"Use the DB stored procedures, instead of raw SQL"
+78,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/84,84,Add all SQL stored procedures to the db schema,,chilts,3048,2014-09-25T17:44:21Z,CONTRIBUTOR,True,744,171,6,database layer for Firefox Accounts server,JavaScript,35c11490bfd3c177c0a9d6460d59904c5924582d,Add all SQL stored procedures to the db schema
+79,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/84,84,Add all SQL stored procedures to the db schema,,chilts,3048,2014-09-25T17:44:21Z,CONTRIBUTOR,True,744,171,6,database layer for Firefox Accounts server,JavaScript,6ae8c1effc351ed3a91e4fecdefcc74e9d91c2c0,"Use the DB stored procedures, instead of raw SQL"
+80,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/84,84,Add all SQL stored procedures to the db schema,,chilts,3048,2014-09-25T17:44:21Z,CONTRIBUTOR,True,744,171,6,database layer for Firefox Accounts server,JavaScript,787c01654e79a81f1ff3618f18b58b2be74753d1,Document what each stored procedure is doing
+81,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/83,83,Add the full text of the MPL 2.0,,chilts,3048,2014-09-22T15:41:14Z,CONTRIBUTOR,True,373,0,1,database layer for Firefox Accounts server,JavaScript,6f3dcb768c4daf7106004d9b268024ab8d09ae0f,Add the full text of the MPL 2.0
+82,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/80,80,Get Grunt to check copyright in tests,,chilts,3048,2014-09-14T23:57:44Z,CONTRIBUTOR,True,29,17,7,database layer for Firefox Accounts server,JavaScript,b0bcfa48effa6dd8cda47fdaf1e5f7d09e2c9185,Get Grunt to check copyright in tests
+83,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/79,79,Fixes #78 - Run grunt jshint when testing,,chilts,3048,2014-09-14T20:55:49Z,CONTRIBUTOR,True,1,1,1,database layer for Firefox Accounts server,JavaScript,e763f96f49218da57527591b86a1ce1ce789cb98,Fixes #78 - Run grunt jshint when testing
+84,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/77,77,Tweaking the JSHint paths to lint more code,"Noticed we were missing a few directories in the JSHint Grunt task.
+
+r? @chilts
+",pdehaan,557895,2014-09-11T01:08:44Z,CONTRIBUTOR,True,24,35,9,database layer for Firefox Accounts server,JavaScript,0439e55029e1b1f5cd8072788910cecdd5bfc404,Tweaking the JSHint paths to lint more code
+85,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/75,75,update node-ass version,"This is the version that I want to merge into lloyd/ass, but want to have it running in this repo first.
+",jrgm,758162,2014-09-05T18:51:06Z,CONTRIBUTOR,True,1,1,1,database layer for Firefox Accounts server,JavaScript,2c4ea30b430afdbd656bb20fe4dec57454b821b0,update node-ass version
+86,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/74,74,Use named mysql error constants rather than raw magic numbers.,"There were a few too many magic numbers in this file for my liking, so this PR just makes them named constants.
+",rfk,34695,2014-08-29T01:26:36Z,MEMBER,True,16,4,1,database layer for Firefox Accounts server,JavaScript,4cb5ce8795c4bfe5455a96bb2ea93c10c6a8e85b,Use named mysql error constants rather than raw magic numbers.
+87,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/73,73,show prune messages at loglevel info,"Leave some evidence that this is running periodically (every 30 +/- 15 minutes)
+",jrgm,758162,2014-08-28T22:19:24Z,CONTRIBUTOR,True,3,3,2,database layer for Firefox Accounts server,JavaScript,0e82dbd115d63d48b0d0bd934c9068e68805664d,show prune messages at loglevel info
+88,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/72,72,Use the mysql-patcher pkg for database patching,,chilts,3048,2014-08-25T03:43:05Z,CONTRIBUTOR,True,17,200,2,database layer for Firefox Accounts server,JavaScript,1e0a14c6308989fba180d243bd47265bf253abfe,Use the mysql-patcher pkg for database patching
+89,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/71,71,Fix db_patcher.js from running in the background,,chilts,3048,2014-08-24T23:56:36Z,CONTRIBUTOR,True,2,2,1,database layer for Firefox Accounts server,JavaScript,601b57119f7f83d27245e16a2a0fea45816cfb77,Fix db_patcher.js from running in the background
+90,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/70,70,"Fixes #69 - Remove patchLevel from config, now in code",,chilts,3048,2014-08-21T01:42:41Z,CONTRIBUTOR,True,33,23,9,database layer for Firefox Accounts server,JavaScript,93cd0ac8b8a838d117db6351309533a5a1678b5d,"Fixes #69 - Remove patchLevel from config, now in code"
+91,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/68,68,"pass err.stack so bunyan actually prints more than ""uncaughtException""","I was set up with the wrong value of patchLevel in my config so the server was crashing at startup. Unfortunately, all the error log would say was '""level"":60,""op"":""uncaughtException"",""err"": {},""msg"":"""" ...'
+which is not the most useful. This change will result in the full stack and root cause (""Error: dbIncorrectPatchLevel"") being shown.
+",jrgm,758162,2014-08-20T23:54:20Z,CONTRIBUTOR,True,1,1,1,database layer for Firefox Accounts server,JavaScript,b37baefc540c266a34875e473c2133aafcf34bf8,"pass err.stack so bunyan actually prints more than ""uncaughtException"""
+92,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/65,65,Adding grunt validate-shrinkwrap task,"Added a few more handy scripts:
+- `$ grunt validate-shrinkwrap` &mdash; validates an npm-shrinkwrap.json file against https://nodesecurity.io/advisories database.
+- `$ npm run outdated` &mdash; lists modules in package.json with newer versions.
+- `$ npm run shrinkwrap` &mdash; lists outdated modules, generates a new npm-shrinkwrap.json file, then validates the shrinkwrap file using `grunt validate-shrinkwrap` task.
+
+``` sh
+$ node -v && npm -v
+v0.10.30
+1.4.21
+```
+
+Fixes #62
+",pdehaan,557895,2014-08-07T07:28:40Z,CONTRIBUTOR,True,273,220,3,database layer for Firefox Accounts server,JavaScript,42fed2dc6388404225fd601b717a778e6b887659,Adding grunt validate-shrinkwrap task
+93,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/65,65,Adding grunt validate-shrinkwrap task,"Added a few more handy scripts:
+- `$ grunt validate-shrinkwrap` &mdash; validates an npm-shrinkwrap.json file against https://nodesecurity.io/advisories database.
+- `$ npm run outdated` &mdash; lists modules in package.json with newer versions.
+- `$ npm run shrinkwrap` &mdash; lists outdated modules, generates a new npm-shrinkwrap.json file, then validates the shrinkwrap file using `grunt validate-shrinkwrap` task.
+
+``` sh
+$ node -v && npm -v
+v0.10.30
+1.4.21
+```
+
+Fixes #62
+",pdehaan,557895,2014-08-07T07:28:40Z,CONTRIBUTOR,True,273,220,3,database layer for Firefox Accounts server,JavaScript,ef0b201c75169af75c62ce8ebc2a455149795479,install grunt-cli in travis
+94,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/64,64,use version of ass with updated temp module; remove travis workaround,"This uses a version of ass where I updated temp and some other deps.
+",jrgm,758162,2014-08-07T04:28:04Z,CONTRIBUTOR,True,202,236,3,database layer for Firefox Accounts server,JavaScript,d763a37218d01974bdb93e5dcb64bf4e8f0a4218,use version of ass with updated temp module; remove travis workaround
+95,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/63,63,Update deps for qs update,,chilts,3048,2014-08-07T04:03:21Z,CONTRIBUTOR,True,261,199,2,database layer for Firefox Accounts server,JavaScript,884ce6c14310dca9e379e2eec74b98ef2e6302b0,Update deps for qs update
+96,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/59,59,workaround a bug in temp module,,jrgm,758162,2014-08-06T16:57:53Z,CONTRIBUTOR,True,5,0,1,database layer for Firefox Accounts server,JavaScript,b594b9054b2b8010665b4451458954f5c40c90a8,workaround a bug in temp module
+97,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/58,58,use a version of ass that does not pull in gh-badges at all,"I want to propose merging https://github.com/jrgm/ass/tree/debadge into lloyd/master version, and this is a first step towards that. 
+",jrgm,758162,2014-07-24T21:22:41Z,CONTRIBUTOR,True,163,876,2,database layer for Firefox Accounts server,JavaScript,74d5c8b39c79660f232f0842715f385447f95853,use a version of ass that does not pull in gh-badges at all
+98,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/57,57,Email is already a buffer,,chilts,3048,2014-07-17T22:38:09Z,CONTRIBUTOR,True,24,24,3,database layer for Firefox Accounts server,JavaScript,6e5672ba1665804658738ccb369da6b0e516e247,email argument is already a buffer
+99,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/57,57,Email is already a buffer,,chilts,3048,2014-07-17T22:38:09Z,CONTRIBUTOR,True,24,24,3,database layer for Firefox Accounts server,JavaScript,8edbf062e2f2c49aa504da48c1037c8fded3dbcb,"These functions require a buffer, not a string"
+100,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/56,56,email argument is already a buffer,"The email parameter is already a buffer so the `Buffer(email, 'hex')` was a no-op.
+",dannycoates,87619,2014-07-17T18:13:56Z,MEMBER,False,4,4,1,database layer for Firefox Accounts server,JavaScript,6e5672ba1665804658738ccb369da6b0e516e247,email argument is already a buffer
+101,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/55,55,Switch to convict,,chilts,3048,2014-07-17T04:10:25Z,CONTRIBUTOR,True,587,199,5,database layer for Firefox Accounts server,JavaScript,bab63c3eafb23eaecdd62072e2582fc0a2533ba7,"Switch to convict for config
+
+Other projects of ours like fxa-auth-server and fxa-customs-server use convict,
+so this is a little more consistent."
+102,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/55,55,Switch to convict,,chilts,3048,2014-07-17T04:10:25Z,CONTRIBUTOR,True,587,199,5,database layer for Firefox Accounts server,JavaScript,530e794429e02c33f25f1862d5e247d49b19789a,Update shrinkwrap
+103,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/54,54,add shrinkwrap; npm shrinkwrap --dev,"Keeps things predictable for releases, hotfixes, bisect.
+",jrgm,758162,2014-07-11T22:44:43Z,CONTRIBUTOR,True,1656,0,1,database layer for Firefox Accounts server,JavaScript,4dee8dcb9f2fec4a630bb4c6427f05cf1a60749b,add shrinkwrap; npm shrinkwrap --dev
+104,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/54,54,add shrinkwrap; npm shrinkwrap --dev,"Keeps things predictable for releases, hotfixes, bisect.
+",jrgm,758162,2014-07-11T22:44:43Z,CONTRIBUTOR,True,1656,0,1,database layer for Firefox Accounts server,JavaScript,e2c5f40d29f3514a1fe5da74333f0a84492bbafd,"omit ""canvas"" from npm-shrinkwrap.json"
+105,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/53,53,added locale column to accounts,"Closes #52
+
+added locale to db functions:
+- createAccount
+- account
+- sessionToken
+- updateLocale
+
+added the /account/:id/locale api endpoint
+",dannycoates,87619,2014-07-08T18:33:04Z,MEMBER,True,57,6,6,database layer for Firefox Accounts server,JavaScript,b01ae7841614c767797b711131f6008316b71b1f,"added locale column to accounts
+
+added locale to db functions:
+- createAccount
+- account
+- sessionToken
+- updateLocale
+
+added the /account/:id/locale api endpoint"
+106,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/51,51,Add docs for each DB Backend to use,"Initial go. Perhaps it needs more polish as we go along.
+",chilts,3048,2014-07-03T22:42:50Z,CONTRIBUTOR,True,322,0,1,database layer for Firefox Accounts server,JavaScript,294486f2dc12d49ff98f68fe38db314cce8bddf5,Add docs for each DB Backend to use
+107,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/50,50,Issue 47 return 404 for unknowns uids,,chilts,3048,2014-06-24T01:19:38Z,CONTRIBUTOR,False,103,6,3,database layer for Firefox Accounts server,JavaScript,c6efc88e3f8a8b524c0ef787c0dd5f6f9aa16abc,Convert verify email to return 404 if account unknown
+108,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/50,50,Issue 47 return 404 for unknowns uids,,chilts,3048,2014-06-24T01:19:38Z,CONTRIBUTOR,False,103,6,3,database layer for Firefox Accounts server,JavaScript,4a435c628111d0dd9b87c8373724f8f7af71f0af,Make sure we return a 404 if resetting an unknown account
+109,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/50,50,Issue 47 return 404 for unknowns uids,,chilts,3048,2014-06-24T01:19:38Z,CONTRIBUTOR,False,103,6,3,database layer for Firefox Accounts server,JavaScript,7d44b40d4a954e0d193341269e92b5dd060e5048,Return a not found if we delete an unknown account
+110,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/49,49,Separate the MySql tests from the backend independent ones,"To aid with implementing other backends, this separation helps with testing the storage dependent and storage independent functionality.
+
+Note: No code changes.
+",chilts,3048,2014-06-18T02:18:16Z,CONTRIBUTOR,True,165,127,2,database layer for Firefox Accounts server,JavaScript,0878d9e89085b862a8874a3bbb64f8b1678b7e64,Separate the MySql tests from the backend independent ones
+111,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/46,46,Clarify tests for successful operations,,chilts,3048,2014-06-17T22:24:20Z,CONTRIBUTOR,True,43,25,1,database layer for Firefox Accounts server,JavaScript,3bc3050ec1cea6af0b66245de6b30c9654580a4b,Clarify tests for successful operations
+112,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/45,45,Re-use the existing statusCode,,chilts,3048,2014-06-05T21:19:24Z,CONTRIBUTOR,True,1,1,1,database layer for Firefox Accounts server,JavaScript,cc6b4becb305eb608c143f404ddf94597257d046,Re-use the existing statusCode
+113,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/44,44,Remove reserved word 'package',,chilts,3048,2014-06-05T04:26:47Z,CONTRIBUTOR,True,2,2,1,database layer for Firefox Accounts server,JavaScript,742ba286fa1de0f4fd1d4d5be0f1a3f4a14f2acc,Remove reserved word 'package'
+114,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/43,43,Move function to outer scope,"Since the 'if' doesn't introduce a new scope, it's best if the function is at the top level to stop any misunderstandings. This also stops `grunt jshint` complaining too.
+",chilts,3048,2014-06-05T02:48:17Z,CONTRIBUTOR,True,4,5,1,database layer for Firefox Accounts server,JavaScript,dfa940f8b14ce08fe5a2721424fd5447474077b1,"Move function to outer scope
+
+Since the 'if' doesn't introduce a new scope, it's best if the function
+is at the top level to stop any misunderstandings. This also stops
+`grunt jshint` complaining too."
+115,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/42,42,Remove extraneous uuid package dependency,,chilts,3048,2014-06-05T02:44:15Z,CONTRIBUTOR,True,0,1,1,database layer for Firefox Accounts server,JavaScript,a2750ad7b73e5128c735f6052450bdbc72120422,Remove extraneous uuid package dependency
+116,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/41,41,Test on Node v0.11 for the future,"Since node v0.12 is imminent :question: it might be good to start testing on it so that we know when things don't work. Mainly so we don't end up having to scramble when v0.12 turns into v1 and v0.10 is no longer supported.
+",chilts,3048,2014-06-05T02:36:57Z,CONTRIBUTOR,False,1,0,1,database layer for Firefox Accounts server,JavaScript,2b11c382322ec12d8802917e817cde86fc481445,Test on Node v0.11 for the future
+117,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/40,40,I11 add dry run to db patcher,,chilts,3048,2014-06-05T02:04:04Z,CONTRIBUTOR,False,56,30,2,database layer for Firefox Accounts server,JavaScript,79e9707154e961d979a9155366145e624144ff2f,Mechanical translation of options to config for consistency
+118,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/40,40,I11 add dry run to db patcher,,chilts,3048,2014-06-05T02:04:04Z,CONTRIBUTOR,False,56,30,2,database layer for Firefox Accounts server,JavaScript,1742aa74d55294d2ead8a1e4e2b1b907a1b6e25b,"Add --dry-run option to db_patcher.js
+
+Moves reading of the patches to a separate step prior to
+deciding whether to perform a dry run or do the real patching."
+119,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/40,40,I11 add dry run to db patcher,,chilts,3048,2014-06-05T02:04:04Z,CONTRIBUTOR,False,56,30,2,database layer for Firefox Accounts server,JavaScript,2e1af5151b872e92c364d678482f71fee434554e,Tidy up at end since we do not have to reconnect
+120,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/39,39,test that a bad query is retried if the error code is listed for retry,"See GH-33.
+
+This tests the case where it is a sql error and the resulting error has `err.errno == 1146`. 
+
+I need to work out a way to force a socket error to produce the wrapped `err.cause.errno` to have a value.
+",jrgm,758162,2014-06-03T23:23:12Z,CONTRIBUTOR,True,43,0,2,database layer for Firefox Accounts server,JavaScript,194bbedeaf1e89eada4902c35eee61b4a06758ab,test that a bad query is retried if the error code is listed for retry
+121,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/39,39,test that a bad query is retried if the error code is listed for retry,"See GH-33.
+
+This tests the case where it is a sql error and the resulting error has `err.errno == 1146`. 
+
+I need to work out a way to force a socket error to produce the wrapped `err.cause.errno` to have a value.
+",jrgm,758162,2014-06-03T23:23:12Z,CONTRIBUTOR,True,43,0,2,database layer for Firefox Accounts server,JavaScript,3c19602769158271a3337198d296cf8ad72862ab,just re-throw the error
+122,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/38,38,fix? #33,"We should have a test for this at some point.
+",dannycoates,87619,2014-06-02T21:33:42Z,MEMBER,True,2,1,1,database layer for Firefox Accounts server,JavaScript,77caf6d293dab5b913b099b9234f0f1c05d19759,fix? #33
+123,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/37,37,test: an incorrect patch level will cause DB.connect to throw,,jrgm,758162,2014-05-27T02:29:15Z,CONTRIBUTOR,True,43,0,1,database layer for Firefox Accounts server,JavaScript,87d9e00732fc6c7378d5647b5a410fc32eb467c4,an incorrect patch level will cause DB.connect to throw
+124,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/37,37,test: an incorrect patch level will cause DB.connect to throw,,jrgm,758162,2014-05-27T02:29:15Z,CONTRIBUTOR,True,43,0,1,database layer for Firefox Accounts server,JavaScript,a27cf5f95367e4ba57314883a48bdb519a12cf27,use a mock log object with error and trace
+125,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/36,36,"tests for error handling on db.read, db.write and db.transaction","check that error handling doesn't go from bad to worse ;-)
+",jrgm,758162,2014-05-27T01:46:18Z,CONTRIBUTOR,True,90,3,1,database layer for Firefox Accounts server,JavaScript,7019a273fc963365f2ad5878e7a4d0aff72186cf,"tests for error handling on db.read, db.write and db.transaction"
+126,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/35,35,test: try to create a duplicate account to force duplicate error handling,"This will exercise https://github.com/mozilla/fxa-auth-db-server/blob/master/db/mysql.js#L522-531 where it checks the errno. In this case, `err` is not a `RejectionError` as in GH-33, so `err.errno` does equal 1062.
+",jrgm,758162,2014-05-23T19:37:16Z,CONTRIBUTOR,True,18,2,1,database layer for Firefox Accounts server,JavaScript,7cbcf42eb21a770a3541a0fa5441e61666f4b503,try to create a duplicate account to force duplicate error handling
+127,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/35,35,test: try to create a duplicate account to force duplicate error handling,"This will exercise https://github.com/mozilla/fxa-auth-db-server/blob/master/db/mysql.js#L522-531 where it checks the errno. In this case, `err` is not a `RejectionError` as in GH-33, so `err.errno` does equal 1062.
+",jrgm,758162,2014-05-23T19:37:16Z,CONTRIBUTOR,True,18,2,1,database layer for Firefox Accounts server,JavaScript,c051c38f3cb63d810df8c68b5ef6d8c634f39dc9,remove debug comment line
+128,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/35,35,test: try to create a duplicate account to force duplicate error handling,"This will exercise https://github.com/mozilla/fxa-auth-db-server/blob/master/db/mysql.js#L522-531 where it checks the errno. In this case, `err` is not a `RejectionError` as in GH-33, so `err.errno` does equal 1062.
+",jrgm,758162,2014-05-23T19:37:16Z,CONTRIBUTOR,True,18,2,1,database layer for Firefox Accounts server,JavaScript,84fa57cd0e49f328e8239e9135a0f1074c742f6c,add a test for pending GH-34 and mark it todo
+129,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/34,34,"Apperror: add missing error member, and pass along the stack property if it exists","For better error reporting/debugging fwiw.
+",jrgm,758162,2014-05-23T18:20:27Z,CONTRIBUTOR,True,47,1,2,database layer for Firefox Accounts server,JavaScript,4e2767a41f43f7e909d2d21b5d882f37420b96e4,add missing error member
+130,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/34,34,"Apperror: add missing error member, and pass along the stack property if it exists","For better error reporting/debugging fwiw.
+",jrgm,758162,2014-05-23T18:20:27Z,CONTRIBUTOR,True,47,1,2,database layer for Firefox Accounts server,JavaScript,f6c73ae9e6920a3f5581b5511608b31105d20678,pass along the stack property if it exists
+131,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/34,34,"Apperror: add missing error member, and pass along the stack property if it exists","For better error reporting/debugging fwiw.
+",jrgm,758162,2014-05-23T18:20:27Z,CONTRIBUTOR,True,47,1,2,database layer for Firefox Accounts server,JavaScript,fa24a5a7f5aa1cb9720599fd2f17d3eaff7ce96a,add pendantic error tests
+132,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/32,32,Test remote,,chilts,3048,2014-05-23T10:00:07Z,CONTRIBUTOR,True,701,9,10,database layer for Firefox Accounts server,JavaScript,e9379aa241b06a25c844d49835d90c8b84bc9726,Add a basic set of remote tests
+133,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/32,32,Test remote,,chilts,3048,2014-05-23T10:00:07Z,CONTRIBUTOR,True,701,9,10,database layer for Firefox Accounts server,JavaScript,d4b25d08dc45e0ade3b653b001bf0c8ed30c0579,Initial remote account tests
+134,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/32,32,Test remote,,chilts,3048,2014-05-23T10:00:07Z,CONTRIBUTOR,True,701,9,10,database layer for Firefox Accounts server,JavaScript,2fb46e7dc128f512d4b9728cb42741f53428acb4,Tests for sessionToken handling
+135,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/32,32,Test remote,,chilts,3048,2014-05-23T10:00:07Z,CONTRIBUTOR,True,701,9,10,database layer for Firefox Accounts server,JavaScript,d65363e9169a7e1bb5af59d681368ce814fdb6ed,Fix up local tests to use the hexified email address
+136,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/32,32,Test remote,,chilts,3048,2014-05-23T10:00:07Z,CONTRIBUTOR,True,701,9,10,database layer for Firefox Accounts server,JavaScript,3622ac8cad4e03197aeb1a6ee7af8ea8b08c04a4,Add accountResetToken tests
+137,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/32,32,Test remote,,chilts,3048,2014-05-23T10:00:07Z,CONTRIBUTOR,True,701,9,10,database layer for Firefox Accounts server,JavaScript,53e4e6c2755490b301556b924ebd15a78404485c,Add passwordChangeToken and passwordForgotToken tests
+138,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/32,32,Test remote,,chilts,3048,2014-05-23T10:00:07Z,CONTRIBUTOR,True,701,9,10,database layer for Firefox Accounts server,JavaScript,cb432a6bed0f5f8a9d4de0fd9ca7762992ac4f3a,Tweaks from code review
+139,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/32,32,Test remote,,chilts,3048,2014-05-23T10:00:07Z,CONTRIBUTOR,True,701,9,10,database layer for Firefox Accounts server,JavaScript,1388b897a34e286fd94f66992017591191854afb,Add final remote tests
+140,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/32,32,Test remote,,chilts,3048,2014-05-23T10:00:07Z,CONTRIBUTOR,True,701,9,10,database layer for Firefox Accounts server,JavaScript,aa0cf770c544855bb108a4d4eb3512a9ac5a973c,record coverage for the db_server process
+141,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/32,32,Test remote,,chilts,3048,2014-05-23T10:00:07Z,CONTRIBUTOR,True,701,9,10,database layer for Firefox Accounts server,JavaScript,900091401c5ac34713d4c998f48c4bb5ab9bf66e,Use non .js in requires
+142,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/31,31,"for heka, set an ""op"" of ""uncaughtException""","@dannycoates r? @whd requested an op code on the messages so heka could act on them.
+",jrgm,758162,2014-05-23T00:21:11Z,CONTRIBUTOR,True,4,1,1,database layer for Firefox Accounts server,JavaScript,360a4dfc82bd5030de7317a6a19b9264c6c18f44,"for heka, set an ""op"" of ""uncaughtException"""
+143,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/30,30,ensure err is an object and emit that,"@dannycoates r? Fixes #29
+",jrgm,758162,2014-05-22T21:26:38Z,CONTRIBUTOR,True,4,1,1,database layer for Firefox Accounts server,JavaScript,6ebe46375a76b2d9d55f2cb6b5ae85247df4d91f,ensure err is an object and emit that
+144,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/28,28,Adding travis badge,,pdehaan,557895,2014-05-22T05:03:31Z,CONTRIBUTOR,True,2,0,1,database layer for Firefox Accounts server,JavaScript,1680e9f8a00eb00790fea62ec99daf5f65aedcd0,Adding travis badge
+145,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/27,27,Add rfkelly to travis notifications.,"Actually this is mostly to test if travis integration is working now...
+",rfk,34695,2014-05-22T04:53:05Z,MEMBER,True,1,0,1,database layer for Firefox Accounts server,JavaScript,90b79afdcb7b0373330f9361f2577afb6216a699,Add rfkelly to travis notifications.
+146,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/25,25,Add local tests,,chilts,3048,2014-05-21T09:31:41Z,CONTRIBUTOR,True,516,0,2,database layer for Firefox Accounts server,JavaScript,5620f77ec333d535f52c552162b600cfabfe28a9,Add local tests
+147,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/23,23,add a memory_monitor a la fxa-auth-server,"fixes #21
+
+This is just like the one from fxa-auth-server, but this one unrefs the timeout.
+",jrgm,758162,2014-05-20T02:06:58Z,CONTRIBUTOR,True,47,0,2,database layer for Firefox Accounts server,JavaScript,ab394af8ce1f4470042dbee50c4531d3b7b59972,add a memory_monitor a la fxa-auth-server
+148,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/22,22,"trap uncaughtException, log as fatal and exit","fixes #20
+",jrgm,758162,2014-05-20T01:14:12Z,CONTRIBUTOR,True,8,0,1,database layer for Firefox Accounts server,JavaScript,492388e1c63be1e5ceb184cfdd3a8bc1512a385b,"trap uncaughtException, log as fatal and exit"
+149,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/22,22,"trap uncaughtException, log as fatal and exit","fixes #20
+",jrgm,758162,2014-05-20T01:14:12Z,CONTRIBUTOR,True,8,0,1,database layer for Firefox Accounts server,JavaScript,3796165d863510a3b32ac79362469ffdbcb5b075,"exit process with code 8, ftw"
+150,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/18,18,Initial set of local tests,,chilts,3048,2014-05-19T10:43:10Z,CONTRIBUTOR,False,516,0,2,database layer for Firefox Accounts server,JavaScript,a86b6a7431e9a1f2650b3cd5f418986e5c1113de,Add initial local test for account creation
+151,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/18,18,Initial set of local tests,,chilts,3048,2014-05-19T10:43:10Z,CONTRIBUTOR,False,516,0,2,database layer for Firefox Accounts server,JavaScript,60b6ad602e76c48500e5a79cfbda5607ae3194e0,Normalise what is returned from both db.account() and db.emailRecord()
+152,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/18,18,Initial set of local tests,,chilts,3048,2014-05-19T10:43:10Z,CONTRIBUTOR,False,516,0,2,database layer for Firefox Accounts server,JavaScript,334d166eb434a1e5c07ad6f367ea3cc497804115,Add tests for creating/retrieving sessionTokens
+153,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/18,18,Initial set of local tests,,chilts,3048,2014-05-19T10:43:10Z,CONTRIBUTOR,False,516,0,2,database layer for Firefox Accounts server,JavaScript,09d1d2c12979c8d65c190b62ae6b9a04672bb7a6,Add key fetch token creation/retrieval
+154,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/18,18,Initial set of local tests,,chilts,3048,2014-05-19T10:43:10Z,CONTRIBUTOR,False,516,0,2,database layer for Firefox Accounts server,JavaScript,4848adef34be14af7e28ed08108bd58684e45210,Add initial tests for password change and reset tokens
+155,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/18,18,Initial set of local tests,,chilts,3048,2014-05-19T10:43:10Z,CONTRIBUTOR,False,516,0,2,database layer for Firefox Accounts server,JavaScript,10f5d83164576fd3962bafae3406da6a7f8884a2,Add test for verifying email
+156,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/18,18,Initial set of local tests,,chilts,3048,2014-05-19T10:43:10Z,CONTRIBUTOR,False,516,0,2,database layer for Firefox Accounts server,JavaScript,935c3a9dc206020ca78be892cbf70c7c43fd0ec7,Tests for deletion of tokens
+157,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/18,18,Initial set of local tests,,chilts,3048,2014-05-19T10:43:10Z,CONTRIBUTOR,False,516,0,2,database layer for Firefox Accounts server,JavaScript,9744eea8556f20664a179d5e9e00a70041f31d3a,Add tests for account reset token handling
+158,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/18,18,Initial set of local tests,,chilts,3048,2014-05-19T10:43:10Z,CONTRIBUTOR,False,516,0,2,database layer for Firefox Accounts server,JavaScript,5b270fb73c4861591b18e1168e6f844f32167aa6,Add tests for forgotPasswordVerified
+159,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/18,18,Initial set of local tests,,chilts,3048,2014-05-19T10:43:10Z,CONTRIBUTOR,False,516,0,2,database layer for Firefox Accounts server,JavaScript,824eea9dae0768228753613dc0bd78dc4d16ec72,Tests for delete/reset account
+160,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/18,18,Initial set of local tests,,chilts,3048,2014-05-19T10:43:10Z,CONTRIBUTOR,False,516,0,2,database layer for Firefox Accounts server,JavaScript,4db5223db072f983871a61398df89c2f9ecadba0,Add tests for listing account devices
+161,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/18,18,Initial set of local tests,,chilts,3048,2014-05-19T10:43:10Z,CONTRIBUTOR,False,516,0,2,database layer for Firefox Accounts server,JavaScript,f84dabd051b969c9af92b73871090614fc2ac828,"Set createdAt in the caller, rather than the DB module"
+162,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/18,18,Initial set of local tests,,chilts,3048,2014-05-19T10:43:10Z,CONTRIBUTOR,False,516,0,2,database layer for Firefox Accounts server,JavaScript,a951ee116e5e914828a526de28be1116e26703af,Don't convert emailVerified in the DB layer
+163,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/18,18,Initial set of local tests,,chilts,3048,2014-05-19T10:43:10Z,CONTRIBUTOR,False,516,0,2,database layer for Firefox Accounts server,JavaScript,c623ae9e6dc32b83a2367b6726d2c9977ee931fb,"Reverse changes in mysql.js, fix tests"
+164,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/17,17,Add info for contributors,,chilts,3048,2014-05-15T22:20:56Z,CONTRIBUTOR,False,20,1,3,database layer for Firefox Accounts server,JavaScript,b7c85657ab7977f37b85a2c276eff7fc17807306,Add info for contributors
+165,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/16,16,add travis CI,"Later, we can:
+- adjust notifications later (not so interesting without more tests)
+- fix to run db_patcher
+",jrgm,758162,2014-05-15T04:57:57Z,CONTRIBUTOR,True,29,1,2,database layer for Firefox Accounts server,JavaScript,b3c94e06c6ede92be227c20cfcdcf8137ae0392e,add travis CI;
+166,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/16,16,add travis CI,"Later, we can:
+- adjust notifications later (not so interesting without more tests)
+- fix to run db_patcher
+",jrgm,758162,2014-05-15T04:57:57Z,CONTRIBUTOR,True,29,1,2,database layer for Firefox Accounts server,JavaScript,2cfc4f6bd89dfa8b059c5dbaa83c0de1d02696d9,run db_patcher to ensure tables are in place
+167,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/16,16,add travis CI,"Later, we can:
+- adjust notifications later (not so interesting without more tests)
+- fix to run db_patcher
+",jrgm,758162,2014-05-15T04:57:57Z,CONTRIBUTOR,True,29,1,2,database layer for Firefox Accounts server,JavaScript,50a13a34926fd07d89c4e6c2d4e14f3429ee7677,add some victims
+168,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/15,15,test to hook into statInterval for progress,"test to hook into statInterval for progress
+",jrgm,758162,2014-05-15T04:13:14Z,CONTRIBUTOR,True,51,1,2,database layer for Firefox Accounts server,JavaScript,15ca81b7d8a1a85263e69c4e8133c5e2cd647438,test to hook into statInterval
+169,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/15,15,test to hook into statInterval for progress,"test to hook into statInterval for progress
+",jrgm,758162,2014-05-15T04:13:14Z,CONTRIBUTOR,True,51,1,2,database layer for Firefox Accounts server,JavaScript,6e6adc07e035ab0e13a5ff6c5e77f716c08f487e,ensure tables exist before test (and no semicolon)
+170,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/14,14,"log the request method (GET/PUT/POST, etc.)","log the request method (GET/PUT/POST, etc.), cause it's meaningful.
+",jrgm,758162,2014-05-15T04:01:22Z,CONTRIBUTOR,True,2,0,1,database layer for Firefox Accounts server,JavaScript,c9a8977e7a905457771783d00fce2692c1bd29c7,log the request method
+171,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/13,13,Updating package.json and tweaking Gruntfile,"Added a few missing/invalid fields in the package.json.
+Marginally improved the Gruntfile glob since I gave @chilts a bad one originally because of my stupidity.
+",pdehaan,557895,2014-05-14T23:45:39Z,CONTRIBUTOR,True,14,11,2,database layer for Firefox Accounts server,JavaScript,c2986583a5c413c3eaf14ab56146f6fc449d40ab,Updating package.json and tweaking Gruntfile
+172,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/12,12,Add grunt tasks for jshint and copyright,,chilts,3048,2014-05-14T21:56:30Z,CONTRIBUTOR,True,54,1,3,database layer for Firefox Accounts server,JavaScript,f656b4a4841b3a000983237135476dc16d5ac38e,Add grunt tasks for jshint and copyright
+173,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/9,9,Fixes #8 : Add a hostname config option,,chilts,3048,2014-05-13T23:15:01Z,CONTRIBUTOR,True,4,2,2,database layer for Firefox Accounts server,JavaScript,8eddae1292e3e65edfab372664c798f1d2e97333,Fixes #8 : Add a hostname config option
+174,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/6,6,Add a README,,chilts,3048,2014-05-09T07:00:20Z,CONTRIBUTOR,True,70,0,1,database layer for Firefox Accounts server,JavaScript,d3a18f9a7d3347fd09e76ab6c78a4ca74d6788ca,Add a README
+175,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/5,5,Add grunt tasks for jshint and copyright,,chilts,3048,2014-05-09T06:37:33Z,CONTRIBUTOR,False,61,0,3,database layer for Firefox Accounts server,JavaScript,fcc160cc65485f9be3fb9a61dea65e56f58bf3b7,Add grunt tasks for jshint and copyright
+176,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/4,4,Fix repo location to point to the mozilla repo,,chilts,3048,2014-05-09T04:59:45Z,CONTRIBUTOR,True,3,3,1,database layer for Firefox Accounts server,JavaScript,d5dad562d1b7702474d1dc431bfda1fce0d8030e,Fix repo location to point to the mozilla repo
+177,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/3,3,More files for .gitignore,,chilts,3048,2014-05-09T04:56:13Z,CONTRIBUTOR,True,4,0,1,database layer for Firefox Accounts server,JavaScript,af00436ee7e322b876749987a8b2a1ed12144b4b,More files for .gitignore
+178,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/2,2,Ability to prune tokens and config,,chilts,3048,2014-05-08T23:27:43Z,CONTRIBUTOR,True,271,5,6,database layer for Firefox Accounts server,JavaScript,25748a14e7407ff5655361a56ed381dd04d4b96c,Ability to prune tokens and config
+179,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/2,2,Ability to prune tokens and config,,chilts,3048,2014-05-08T23:27:43Z,CONTRIBUTOR,True,271,5,6,database layer for Firefox Accounts server,JavaScript,aa41ab612e7eb4c40cd86c24e29350178f0a24ce,Add tests for prune tokens
+180,https://api.github.com/repos/mozilla/fxa-auth-db-server/pulls/1,1,Add first DB test (ping),"This is a really simple DB ping test to start off the test infrastructure.
+",chilts,3048,2014-05-08T23:26:03Z,CONTRIBUTOR,True,135,1,5,database layer for Firefox Accounts server,JavaScript,4f3a2ccf1e0cec694484136af4007a3e5657a19f,Add first DB test (ping)

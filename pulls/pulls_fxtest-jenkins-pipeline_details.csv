@@ -1,0 +1,280 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/45,45,Add Mozilla Code of Conduct,"Fixes #44
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-30T06:09:21Z,CONTRIBUTOR,True,15,0,1,,Groovy,a369c5deb9bb7e5a67552235ddbc3976e3199082,"Add Mozilla Code of Conduct file
+
+Fixes #44.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/40,40,Fix indentation and remove superfluous test stage,"The additional `stage(test)` was causing an empty stage to appear in Jenkins. We're not currently using the ServiceBook integration, but I wanted to push this fix I worked on as part of the experiment in #39.",davehunt,122800,2017-12-18T16:21:01Z,MEMBER,True,17,18,1,,Groovy,eed26bde7cd78fa31f5dfdf1bd80075da3bb79de,Fix indentation and remove superfluous test stage
+2,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/39,39,Execute run script inside custom Docker image,"**DO NOT MERGE - This pull request is for demonstration and not intended for review/merge.**
+
+In this patch I have modified the ServiceBook function to build a custom Docker image based on an expected Dockerfile. This image is then used for the run script, which no longer needs to pull/run a Docker image from Docker Hub or similar. I also fixed an issue that caused a superfluous stage to be created in the Jenkins build. Note that in order for projects to use this changes, they would need to modify their `run` scripts appropriately.",davehunt,122800,2017-11-30T14:20:41Z,MEMBER,False,21,23,1,,Groovy,7ffd01bda27f7f22ed01d62c820f02a7324f376a,Build a custom Docker image for running the main entry script
+3,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/39,39,Execute run script inside custom Docker image,"**DO NOT MERGE - This pull request is for demonstration and not intended for review/merge.**
+
+In this patch I have modified the ServiceBook function to build a custom Docker image based on an expected Dockerfile. This image is then used for the run script, which no longer needs to pull/run a Docker image from Docker Hub or similar. I also fixed an issue that caused a superfluous stage to be created in the Jenkins build. Note that in order for projects to use this changes, they would need to modify their `run` scripts appropriately.",davehunt,122800,2017-11-30T14:20:41Z,MEMBER,False,21,23,1,,Groovy,bb63104e295e411caef414f7991be7a5a0b65246,Temporarily force specific fork/branch
+4,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/38,38,Replace getRevision function with GIT_COMMIT,The new environment variable is available from v1.2 of the declarative pipeline plugin. It's safe to merge this as it won't affect any pipelines until we tag a release and update the version in the respective pipelines.,davehunt,122800,2017-11-10T13:39:45Z,MEMBER,True,1,5,1,,Groovy,76b0aaf598a8c689453f8354a0b1331765d3bb21,Replace getRevision function with GIT_COMMIT available in declarative pipeline v1.2 and later
+5,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/36,36,Added release note for v1.9,@davehunt r?,stephendonner,387249,2017-09-18T16:45:40Z,CONTRIBUTOR,True,2,1,1,,Groovy,d48e4e067cca81f08430f497bbd72c99c5e56ccd,Added release note for v1.9
+6,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/35,35,Fix Service Book API URL,Fixes https://github.com/mozilla/fxtest-jenkins-pipeline/issues/34,stephendonner,387249,2017-09-14T23:06:41Z,CONTRIBUTOR,True,1,1,1,,Groovy,00f31ca510084db80bfe832c2517a5a8d66dabef,Fix Service Book API URL
+7,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/33,33,1.8 release notes entry,,stephendonner,387249,2017-09-13T17:37:59Z,CONTRIBUTOR,True,5,2,1,,Groovy,f5bf42eb7eeb76b0d7ac702b9c565e843cf30776,Add version history for 1.8 release
+8,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/33,33,1.8 release notes entry,,stephendonner,387249,2017-09-13T17:37:59Z,CONTRIBUTOR,True,5,2,1,,Groovy,87ef024e47bc788e0375ecdeb6f99a494d75f5c6,Fixed now-renamed link text
+9,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/31,31,Replace ad-hoc code with http_request - fixes #25,"I replaced the code with the plugin call - I am not sure how to test it though. Should we give it a run on the existing Jenkins to try out ? 
+
+- [x] mock the HTTP call and build a test
+- [x] add the lib dependency in README
+- [x] add a section in the README on how to run tests, ",tarekziade,250019,2017-09-08T07:36:56Z,CONTRIBUTOR,True,8924,83,4,,Groovy,6a71838dce3c8e8980b55b486ad180ce7677644f,replace ad-hoc code with http_request
+10,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/30,30,Switch Service Book env to prod,This fixes https://github.com/mozilla/fxtest-jenkins-pipeline/issues/26,stephendonner,387249,2017-09-06T22:23:17Z,CONTRIBUTOR,True,1,1,1,,Groovy,fec22e9538d246741871b65543a78a458ea99156,Fix Issue #26; switch Service Book to prod
+11,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/30,30,Switch Service Book env to prod,This fixes https://github.com/mozilla/fxtest-jenkins-pipeline/issues/26,stephendonner,387249,2017-09-06T22:23:17Z,CONTRIBUTOR,True,1,1,1,,Groovy,44993c1ab14977c671386bce6652b944c7dad9dd,"Use HTTPS, rather than HTTP"
+12,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/28,28,Add Travis CI build-status badge,@davehunt r?,stephendonner,387249,2017-09-01T20:14:10Z,CONTRIBUTOR,True,2,0,1,,Groovy,6ec6640a88ad08078f545345502b6180bcf875fd,Add Travis CI build-status badge
+13,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,955832b8601a64e7bc58f7111f26c9362833326d,First stab at new shared library
+14,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,168e9be88498659083c93a0a9c29e59330111dff,"Moving ServiceBook.groovy to its rightful place, so it can be actually loaded as a library"
+15,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,68d43abfc7430ae85bad0ab2ddfadd04a160ec81,Pull in tests using getProjectTests
+16,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,bca6ce3fdb94082beba084aca648271d1c32943e,More cleanup
+17,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,666023eb2278ae97793208fd27b5427122e05b1a,LMAO; amateur hour
+18,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,c40137f52230a777b5e7f373b769fc8994db2ad0,Actually call runStage()
+19,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,2f55e8b7cabf9e1937b7485b54f24d4ca0bde45e,Try referencing WORKSPACE specifically
+20,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,82623e0650fc37c4a75cbf5e1fc90fa199a95fb3,Restore try/catch; more cleanup
+21,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,7ef4e198d603c0cb4ed5add2028dfc28c45d53cc,Address review feedback about node{} placement
+22,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,d1467e7df3d4bb5373c04fdb5b91cb7ca941ccaf,Braces gonna kill me
+23,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,4a6e0268503ff3638868f4f2b40277f871dd7223,Check the failures array correctly
+24,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,d2cc9533898c49603bc8e0660a332fd7b441d354,Add testProject example and version history for v1.7 entry to README
+25,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,bd3891c1664097859291a50a75ffc4def11958a0,Fix Issue #27
+26,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,20fae8373fe238fd5a160887b3e84e4ab2805dbe,Merge branch 'master' into servicebook
+27,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,51b3786505f4ed3000d9af9ab2f26d93dcc52e8b,Tighten up allowed Git orgs
+28,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,5ffde43d74e5e915201b8501c3c4d0162cc6dc5a,Add tests for validating ServiceBook GitHub URLs
+29,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,b813c1c1b2fdb09bf2aa8236135518f51b927140,Make description of testProject method more accurate/descriptive
+30,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,ae8cf3c1b582092ccdccd5c150eb4a70a9e9de12,Add closing ticks
+31,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,4b9fa3330b31d0a1c79178d8d48801bec8d10453,More succinct entry for ServiceBook class and its testProject method
+32,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,230adaaf3e92342cada0d74483fc100af5f22010,Address review feedback for groovy example
+33,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,1c09a364066b0ccdcf302f9891e6192b4ccc5b28,Rejigger docs into Pipeline Steps + ServiceBook Class
+34,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,0c60dc36ecea4e1fd74a8b4457941a496268ff6b,Drop extraneous Class
+35,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/23,23,"Add a Service Book class with a shared testProject method, for scripted pipelines","@davehunt @tarekziade @rpappalax - thoughts and feedback much-desired and appreciated!
+
+I anticipate a fair amount of cleanup needed/desired here, but this is, IMHO, very much a working prototype.
+
+It can be seen working (i.e. getting to the same ""tox"" error) on https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage.stephend/15/console as in https://qa-preprod-master.fxtest.jenkins.stage.mozaws.net/job/kinto.stage/3/console
+
+Full output (patch): https://gist.github.com/stephendonner/9a3904b1294c12b9ecc67ea42c5ced71 vs. (existing): https://gist.github.com/stephendonner/146f85214800dd25527974ac52929f5a
+
+Since it's a shared library, we'll also need corresponding changes to call testProject() from a project's Jenkinsfile, which I've done (also rough) in https://github.com/Kinto/kinto-integration-tests/pull/35",stephendonner,387249,2017-08-30T06:51:03Z,CONTRIBUTOR,True,226,0,3,,Groovy,2191dbebbb5b0a7bd75812e9b874bba1dbd57fe9,Add Library include back in
+36,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/21,21,submitToTreeherder: skip schema validation,,oremj,45590,2017-04-28T15:53:19Z,CONTRIBUTOR,True,6,2,1,,Groovy,729f386703b0f33bcfedf77e6b50f4060501378a,submitToTreeherder: skip schema validation
+37,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/21,21,submitToTreeherder: skip schema validation,,oremj,45590,2017-04-28T15:53:19Z,CONTRIBUTOR,True,6,2,1,,Groovy,385eb07caf68cb813f1ff15f96ac4a415c062f8c,submitToTreeherder: add comment with link to schema issue
+38,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/20,20,Update README for upcoming 1.6 release,Once this is merged I'll tag 1.6.,davehunt,122800,2017-04-13T10:26:34Z,MEMBER,False,11,8,1,,Groovy,fcc16b57461380abda19a9a8ac16fbd9eb7f2413,Update README for upcoming 1.6 release
+39,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/19,19,Change name of TBPL log file to buildbot_text.,"Fixes #12 
+
+I've included a test for this change, but also ran an adhoc [here](https://fx-test-jenkins-dev.stage.mozaws.net:8443/job/fxapom.adhoc/50/console). Search in the console log for ""buildbot_text"". As a result, log parsing is now attempted, but [apparently fails](https://treeherder.allizom.org/#/jobs?repo=fxapom&revision=cd87f7f8bb06ff035ac716081e01a6f55046911d&selectedJob=84928378). We can take care of this independently.",davehunt,122800,2017-04-12T17:51:59Z,MEMBER,True,24,1,2,,Groovy,9fbd99275d545ed43184060455cf09ff78f82769,"Change name of TBPL log file to buildbot_text.
+
+Fixes #12"
+40,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/18,18,Add a link to the Treeherder resultset in the console log.,"Fixes #11 
+
+Tested [here](https://fx-test-jenkins-dev.stage.mozaws.net:8443/job/fxapom.adhoc/49/console), though because there hasn't been a recent push to FxAPOM there are no resultsets on Treeherder production. The link works if you replace mozilla.org with allizom.org.",davehunt,122800,2017-04-12T15:54:00Z,MEMBER,True,2,0,1,,Groovy,661c7a91c2755c6c3c290f83cecf10c42f249ce3,"Add a link to the Treeherder resultset in the console log.
+
+Fixes #11"
+41,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/17,17,Use YAML schema for Treeherder messages.,"Fixes #2 
+
+I tested this here:
+https://fx-test-jenkins-dev.stage.mozaws.net:8443/job/fxapom.adhoc/48/console",davehunt,122800,2017-04-12T15:30:44Z,MEMBER,True,446,476,4,,Groovy,048f7cd8204f17e3b92d3ee3b48af53de9633189,"Use YAML schema for Treeherder messages.
+
+Fixes #2"
+42,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/17,17,Use YAML schema for Treeherder messages.,"Fixes #2 
+
+I tested this here:
+https://fx-test-jenkins-dev.stage.mozaws.net:8443/job/fxapom.adhoc/48/console",davehunt,122800,2017-04-12T15:30:44Z,MEMBER,True,446,476,4,,Groovy,0995c2e4c3ab1fcb19f8de708a28e0248a7ab8e7,Merge branch 'master' into issue2
+43,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/16,16,Use more recent versions of dependencies for JSON schema validation.,"Fixes #4
+Closes #3",davehunt,122800,2017-04-11T21:26:12Z,MEMBER,True,8,3,2,,Groovy,2eae658b42b3156104550d9ed832b3c264b86d6f,"Use more recent versions of dependencies for JSON schema validation.
+
+Fixes #4
+Closes #3"
+44,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/15,15,Provide a default group for Treeherder jobs.,Fixes #13,davehunt,122800,2017-04-11T17:10:25Z,MEMBER,True,35,13,4,,Groovy,051c23b728bb5b20ad1fb2a9d02e531acb60a191,"Provide a default group for Treeherder jobs.
+
+Fixes #13"
+45,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/15,15,Provide a default group for Treeherder jobs.,Fixes #13,davehunt,122800,2017-04-11T17:10:25Z,MEMBER,True,35,13,4,,Groovy,29bf62ac9dc903d8d87495c82a413266369aa82a,Addressed nits
+46,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/14,14,Add tests for Treeherder display groups,,davehunt,122800,2017-04-11T16:14:31Z,MEMBER,True,69,9,4,,Groovy,e92e8f70889fe65a8ac0d9391be7675bd20da62e,Add tests for Treeherder display groups
+47,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/1,1,Introduce submitToTreeherder step,"This adds a `submitToTreeherder` step, along with some related refactoring and documentation improvements. Once this has been merged we can tag a new release, and Jenkins pipelines can opt-in to the new version to start submitting results to Treeherder.",davehunt,122800,2017-03-30T21:11:05Z,MEMBER,True,888,34,12,,Groovy,64cc356a1f0ce4a1dcf597e6dbecf0f11930db1f,"Introduce publishToS3, publishToPulse, and submitToTreeherder steps.
+
+This introduces the submitToTreeherder step along with some necessary refactoring."
+48,https://api.github.com/repos/mozilla/fxtest-jenkins-pipeline/pulls/1,1,Introduce submitToTreeherder step,"This adds a `submitToTreeherder` step, along with some related refactoring and documentation improvements. Once this has been merged we can tag a new release, and Jenkins pipelines can opt-in to the new version to start submitting results to Treeherder.",davehunt,122800,2017-03-30T21:11:05Z,MEMBER,True,888,34,12,,Groovy,4cc4f9b9d331c5e6c2092ad42ebc1df3dd43034f,Add documentation for all steps to README with requirements and examples

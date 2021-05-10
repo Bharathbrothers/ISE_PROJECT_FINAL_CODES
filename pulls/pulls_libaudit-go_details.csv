@@ -1,0 +1,571 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/libaudit-go/pulls/45,45,Add support for group names,Added support for group names while setting the audit rules. With this change the group names will be resolved to the corresponding group id.,mitprasoon,3781359,2020-12-07T07:35:04Z,NONE,False,10,3,1,go package for interfacing with Linux audit,Go,399c7e74391ff0027e8882a33721cac53c643a42,"Add support for group names
+
+Added support for group names while setting the audit rules. With this
+change the group names will be resolved to the corresponding group id."
+1,https://api.github.com/repos/mozilla/libaudit-go/pulls/40,40,Fix rules checkPath error printing,"It was a small mistake, because of which the tests did not pass.",lzakharov,26368218,2019-04-19T17:34:13Z,CONTRIBUTOR,True,1,1,1,go package for interfacing with Linux audit,Go,5829fa86c8b8d903bdac97d6b1b6f6fe8ae02d16,Fix rules checkPath error printing
+2,https://api.github.com/repos/mozilla/libaudit-go/pulls/39,39,Add Mozilla Code of Conduct,"Fixes #38
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-29T16:52:36Z,CONTRIBUTOR,True,15,0,1,go package for interfacing with Linux audit,Go,87156103d0b3ec215595ad1e9b2c98704d07eab7,"Add Mozilla Code of Conduct file
+
+Fixes #38.
+
+_(Message COC002)_"
+3,https://api.github.com/repos/mozilla/libaudit-go/pulls/34,34,Error comparing PID values in auditGetReply(),"struct sockaddr_nl {
+	__kernel_sa_family_t	        nl_family;	        /* AF_NETLINK */
+	unsigned short			nl_pad;		/* zero */
+	__u32					nl_pid;		/* port ID */
+         __u32					nl_groups;	/* multicast groups mask */
+};
+""sockaddr_nl->nl_pid"" is s.GetPID().
+
+and m.Header.Pid is ""nlmsghdr->nlmsg_pid"":
+struct nlmsghdr {
+	__u32		nlmsg_len;	/* Length of message including header */
+	__u16		nlmsg_type;	/* Message content */
+	__u16		nlmsg_flags;	/* Additional flags */
+	__u32		nlmsg_seq;	/* Sequence number */
+	__u32		nlmsg_pid;	/* Sending process port ID */
+};
+
+nlmsg_pid; /* Sending process port ID */  the replay packet from kernel mlmsg_pid could be 0.
+
+This situation resulted in libaudit-go not working and unable to receive kernel information when the kernel version was ""4.13.0-37-generic #42~16.04.1-Ubuntu SMP x86_64"".
+
+In auditd source code, “nlmsg_pid” never participated in the comparison.",maodapeng,2637872,2018-04-04T03:52:45Z,NONE,False,4,4,1,go package for interfacing with Linux audit,Go,241c19c665e55626b1145f64b5fce7a57a667441,"Error comparing PID values in auditGetReply()
+
+struct sockaddr_nl {
+	__kernel_sa_family_t	        nl_family;	        /* AF_NETLINK */
+	unsigned short			nl_pad;		/* zero */
+	__u32					nl_pid;		/* port ID */
+         __u32					nl_groups;	/* multicast groups mask */
+};
+""sockaddr_nl->nl_pid"" is s.GetPID().
+
+and m.Header.Pid is ""nlmsghdr->nlmsg_pid"":
+struct nlmsghdr {
+	__u32		nlmsg_len;	/* Length of message including header */
+	__u16		nlmsg_type;	/* Message content */
+	__u16		nlmsg_flags;	/* Additional flags */
+	__u32		nlmsg_seq;	/* Sequence number */
+	__u32		nlmsg_pid;	/* Sending process port ID */
+};
+
+nlmsg_pid; /* Sending process port ID */  the replay packet from kernel mlmsg_pid could be 0.
+
+This situation resulted in libaudit-go not working and unable to receive kernel information when the kernel version was ""4.13.0-37-generic #42~16.04.1-Ubuntu SMP x86_64"".
+
+In auditd source code, “nlmsg_pid” never participated in the comparison."
+4,https://api.github.com/repos/mozilla/libaudit-go/pulls/31,31,"Improve netlink support, handle partial record reassembly","* Improves handling of certain netlink messages which were being truncated
+* On parser failure, return a custom error type that include the raw event for inspection
+* Buffer and reassemble partial records; this handles AUDIT_EOE and returns the full audit event when it is comprised of multiple individual netlink messages",ameihm0912,9889986,2017-08-28T21:12:55Z,NONE,True,263,17,7,go package for interfacing with Linux audit,Go,dad0bb1755c08c7092472a868a771c547d92ea16,add example auditprint utility
+5,https://api.github.com/repos/mozilla/libaudit-go/pulls/31,31,"Improve netlink support, handle partial record reassembly","* Improves handling of certain netlink messages which were being truncated
+* On parser failure, return a custom error type that include the raw event for inspection
+* Buffer and reassemble partial records; this handles AUDIT_EOE and returns the full audit event when it is comprised of multiple individual netlink messages",ameihm0912,9889986,2017-08-28T21:12:55Z,NONE,True,263,17,7,go package for interfacing with Linux audit,Go,ebfabc8feda751c6867a8cf031a9c96dde10fcd5,"add ErrorAuditParse which describes parser errors
+
+Add ErrorAuditParse which is a custom error type that includes the audit
+message that could'nt be parser, for inspection by calling programs."
+6,https://api.github.com/repos/mozilla/libaudit-go/pulls/31,31,"Improve netlink support, handle partial record reassembly","* Improves handling of certain netlink messages which were being truncated
+* On parser failure, return a custom error type that include the raw event for inspection
+* Buffer and reassemble partial records; this handles AUDIT_EOE and returns the full audit event when it is comprised of multiple individual netlink messages",ameihm0912,9889986,2017-08-28T21:12:55Z,NONE,True,263,17,7,go package for interfacing with Linux audit,Go,ff64fe41f28538c53459e7e14dce83a481e97325,"handle cases of partial read from kernel netlink producer
+
+Closes #24
+
+In some cases, the netlink payload value in a message received from the
+kernel is not what it is expected to be.
+
+This seems to be dependent on where the audit message is being created
+in the kernel. For example, some functions make use of netlink macros
+which correctly add the header to the payload size (inclusive of
+header), and others such as audit_log_end appear to manually adjust the
+netlink message size, and set it to the size of the skb.
+
+This patch adjusts the behavior of the message consumer to simply use
+all bytes in the payload in the received buffer and ignore the netlink
+message length, unless the message is NLM_F_MULTI (multipart)."
+7,https://api.github.com/repos/mozilla/libaudit-go/pulls/31,31,"Improve netlink support, handle partial record reassembly","* Improves handling of certain netlink messages which were being truncated
+* On parser failure, return a custom error type that include the raw event for inspection
+* Buffer and reassemble partial records; this handles AUDIT_EOE and returns the full audit event when it is comprised of multiple individual netlink messages",ameihm0912,9889986,2017-08-28T21:12:55Z,NONE,True,263,17,7,go package for interfacing with Linux audit,Go,540a0375f4e15200a299a069ad900c1669012bb4,"support partial record reassembly and handle EOE
+
+Buffer and reassemble partial audit records, and handle returning the
+full audit event on EOE from the kernel."
+8,https://api.github.com/repos/mozilla/libaudit-go/pulls/31,31,"Improve netlink support, handle partial record reassembly","* Improves handling of certain netlink messages which were being truncated
+* On parser failure, return a custom error type that include the raw event for inspection
+* Buffer and reassemble partial records; this handles AUDIT_EOE and returns the full audit event when it is comprised of multiple individual netlink messages",ameihm0912,9889986,2017-08-28T21:12:55Z,NONE,True,263,17,7,go package for interfacing with Linux audit,Go,80726f8d73a085dd511587ac43f9eb211b6c8932,add example of using auditprint to README
+9,https://api.github.com/repos/mozilla/libaudit-go/pulls/30,30,Use errors package from stdlib,,ameihm0912,9889986,2017-08-25T21:42:28Z,NONE,True,5,718,10,go package for interfacing with Linux audit,Go,692c809a5ff3c8e30904f664273338967a02b81e,use stdlib errors package instead of externally referenced
+10,https://api.github.com/repos/mozilla/libaudit-go/pulls/30,30,Use errors package from stdlib,,ameihm0912,9889986,2017-08-25T21:42:28Z,NONE,True,5,718,10,go package for interfacing with Linux audit,Go,fe01971938dd27a3af3382304167faad28f518ed,remove vendored errors package
+11,https://api.github.com/repos/mozilla/libaudit-go/pulls/29,29,"make strict_path_check rule specific, fix bug in option handling","Makes strict_path_check specific to an individual audit rule, instead of
+a global option for the rule set.
+
+This also fixes the way the option was being handled, previously if
+strict_path_check was enabled and the watch rule could not find the
+file, it would continue instead of returning resulting in a panic.
+
+Closes #18",ameihm0912,9889986,2017-08-25T21:11:59Z,NONE,True,149,20,4,go package for interfacing with Linux audit,Go,2c1ae3d28b94b746fd912e816f6438503bf446e0,"make strict_path_check rule specific, fix bug in option handling
+
+Makes strict_path_check specific to an individual audit rule, instead of
+a global option for the rule set.
+
+In SetRules, return an additional argument indicating soft errors, such
+as when a rule has been skipped.
+
+This also fixes the way the option was being handled, previously if
+strict_path_check was enabled and the watch rule could not find the
+file, it would continue instead of returning resulting in a panic.
+
+Closes #18"
+12,https://api.github.com/repos/mozilla/libaudit-go/pulls/28,28,Documentation updates,"Doc updates, also remove an unused argument in event fetch routines, and export rule set types.",ameihm0912,9889986,2017-08-25T18:12:01Z,NONE,True,88,243,3,go package for interfacing with Linux audit,Go,f79a678101403ba528aca74491974510f225a4c0,remove variable args parameter to audit event fetch functions
+13,https://api.github.com/repos/mozilla/libaudit-go/pulls/28,28,Documentation updates,"Doc updates, also remove an unused argument in event fetch routines, and export rule set types.",ameihm0912,9889986,2017-08-25T18:12:01Z,NONE,True,88,243,3,go package for interfacing with Linux audit,Go,3aa026fe1376b8454dbe6a82503deaa5a2389a38,"export rules related types
+
+Export rules related types, since these types describe the JSON rule set
+format we want them to be visible in godoc."
+14,https://api.github.com/repos/mozilla/libaudit-go/pulls/28,28,Documentation updates,"Doc updates, also remove an unused argument in event fetch routines, and export rule set types.",ameihm0912,9889986,2017-08-25T18:12:01Z,NONE,True,88,243,3,go package for interfacing with Linux audit,Go,8a60d1a4419a78f9c56bca2ff90fc89c10d335d8,update README
+15,https://api.github.com/repos/mozilla/libaudit-go/pulls/27,27,Parser performance improvements,Contains some performance enhancements to the parser that reduce ns/op by about 800ns,ameihm0912,9889986,2017-08-24T21:43:58Z,NONE,True,45,17,3,go package for interfacing with Linux audit,Go,c27f93a9cf3508bca2b66be9920642877e06c498,add a profile makefile target
+16,https://api.github.com/repos/mozilla/libaudit-go/pulls/27,27,Parser performance improvements,Contains some performance enhancements to the parser that reduce ns/op by about 800ns,ameihm0912,9889986,2017-08-24T21:43:58Z,NONE,True,45,17,3,go package for interfacing with Linux audit,Go,bb8ff313ef8423d35663fa0f0a8a6088eddfc6ba,gofmt interpret
+17,https://api.github.com/repos/mozilla/libaudit-go/pulls/27,27,Parser performance improvements,Contains some performance enhancements to the parser that reduce ns/op by about 800ns,ameihm0912,9889986,2017-08-24T21:43:58Z,NONE,True,45,17,3,go package for interfacing with Linux audit,Go,6b9aa125af158b1eb74879d6cb66e39284b97351,"avoid strings Trim and extra variable allocation in printEscaped
+
+Instead, just index the existing value string and return a new string;
+reduces ns/op by about 200ns in parser benchmark"
+18,https://api.github.com/repos/mozilla/libaudit-go/pulls/27,27,Parser performance improvements,Contains some performance enhancements to the parser that reduce ns/op by about 800ns,ameihm0912,9889986,2017-08-24T21:43:58Z,NONE,True,45,17,3,go package for interfacing with Linux audit,Go,459a83bbe508e45eeb30315612127d2026e43b6b,"in interpretField, avoid second unnecessary map lookup in fieldLookupMap"
+19,https://api.github.com/repos/mozilla/libaudit-go/pulls/27,27,Parser performance improvements,Contains some performance enhancements to the parser that reduce ns/op by about 800ns,ameihm0912,9889986,2017-08-24T21:43:58Z,NONE,True,45,17,3,go package for interfacing with Linux audit,Go,cea48bb84227617cd2966896d21a09a2f183f214,"if interpret is set, don't delay interpretation of field values
+
+Interpret field values immediately before setting them in the map,
+avoids requiring iteration over the map keys and subsequent value
+reassignment."
+20,https://api.github.com/repos/mozilla/libaudit-go/pulls/26,26,Additional fixes in parser and interpreter,,ameihm0912,9889986,2017-08-24T18:41:29Z,NONE,True,403,411,8,go package for interfacing with Linux audit,Go,9ebea7bb561f7cff9d480ab14e2c1a8cdd20795c,remove regex parser
+21,https://api.github.com/repos/mozilla/libaudit-go/pulls/26,26,Additional fixes in parser and interpreter,,ameihm0912,9889986,2017-08-24T18:41:29Z,NONE,True,403,411,8,go package for interfacing with Linux audit,Go,a8a56ac7f1ce96c9ab8e19b4968989995ed09643,consistent use of receiver name in rule parser
+22,https://api.github.com/repos/mozilla/libaudit-go/pulls/26,26,Additional fixes in parser and interpreter,,ameihm0912,9889986,2017-08-24T18:41:29Z,NONE,True,403,411,8,go package for interfacing with Linux audit,Go,42bc24b61dd2180d9d4d00ae7e7bd9ebe1150a65,reorg data in parser test table
+23,https://api.github.com/repos/mozilla/libaudit-go/pulls/26,26,Additional fixes in parser and interpreter,,ameihm0912,9889986,2017-08-24T18:41:29Z,NONE,True,403,411,8,go package for interfacing with Linux audit,Go,613c64075707ee462c3386137b8af2f943ac80a9,clean up parser tests
+24,https://api.github.com/repos/mozilla/libaudit-go/pulls/26,26,Additional fixes in parser and interpreter,,ameihm0912,9889986,2017-08-24T18:41:29Z,NONE,True,403,411,8,go package for interfacing with Linux audit,Go,97b931bcad483b8bcfc8072a6bc6d896941bfc4f,minor cleanup in token interpreter
+25,https://api.github.com/repos/mozilla/libaudit-go/pulls/26,26,Additional fixes in parser and interpreter,,ameihm0912,9889986,2017-08-24T18:41:29Z,NONE,True,403,411,8,go package for interfacing with Linux audit,Go,0aecc2737820c56785a545226b2057861c7f5e1a,generate coverage map in makefile test target
+26,https://api.github.com/repos/mozilla/libaudit-go/pulls/26,26,Additional fixes in parser and interpreter,,ameihm0912,9889986,2017-08-24T18:41:29Z,NONE,True,403,411,8,go package for interfacing with Linux audit,Go,25f558eb97f309b7ff5e0cda825259a2827c12ec,run benchmarks in test target
+27,https://api.github.com/repos/mozilla/libaudit-go/pulls/26,26,Additional fixes in parser and interpreter,,ameihm0912,9889986,2017-08-24T18:41:29Z,NONE,True,403,411,8,go package for interfacing with Linux audit,Go,909b2c086a1af4e808030b6b235739d24a337972,minor cleanup in parser
+28,https://api.github.com/repos/mozilla/libaudit-go/pulls/26,26,Additional fixes in parser and interpreter,,ameihm0912,9889986,2017-08-24T18:41:29Z,NONE,True,403,411,8,go package for interfacing with Linux audit,Go,6e4cfa3119d4633a8124067df3dcb0a632b8f45d,correct spelling for fixPunctuations
+29,https://api.github.com/repos/mozilla/libaudit-go/pulls/26,26,Additional fixes in parser and interpreter,,ameihm0912,9889986,2017-08-24T18:41:29Z,NONE,True,403,411,8,go package for interfacing with Linux audit,Go,cd5411408f85a03c09d198ceba5bef2a4ea4ed8c,minor cleanup in event processor
+30,https://api.github.com/repos/mozilla/libaudit-go/pulls/26,26,Additional fixes in parser and interpreter,,ameihm0912,9889986,2017-08-24T18:41:29Z,NONE,True,403,411,8,go package for interfacing with Linux audit,Go,43bfffe8d66a4793357be6d4d1924afeefb43f70,remove underscores from sockaddr type definitions
+31,https://api.github.com/repos/mozilla/libaudit-go/pulls/26,26,Additional fixes in parser and interpreter,,ameihm0912,9889986,2017-08-24T18:41:29Z,NONE,True,403,411,8,go package for interfacing with Linux audit,Go,e863886e47d9639c673e108b69a9bea97d17d2c8,don't export MsgTypeTab
+32,https://api.github.com/repos/mozilla/libaudit-go/pulls/26,26,Additional fixes in parser and interpreter,,ameihm0912,9889986,2017-08-24T18:41:29Z,NONE,True,403,411,8,go package for interfacing with Linux audit,Go,039fa854abc58d75b688ba8329e9443a002c1643,add a note regarding constant generation
+33,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,aadf603fec800508ec8ab68c54289887ac5561cd,detect host endian in init rather than use nativeEndian
+34,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,95731a4780acdbf5cf651f6f7e8cdfd3a85b4bb1,remove emulated netlink connection and tests
+35,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,8690a6b4be583a758a6249e35f6eceebbfd18846,simplify wire format and setters tests
+36,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,288d90b4cd2aa834d1cafe85b3e283261ee18f56,"add license header to source, remove example from package comments"
+37,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,882915d8b63cf23f80275032f223cf28fc26b10b,update generated auditconstant_string.go
+38,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,9f0ffbec5da144767b97746a83382101f325bb20,fix linter warnings in libaudit.go
+39,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,2c95510ba79f268acdf37da506ae6b53b989df7c,remove emulated rules set interfaces
+40,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,a512d24192e79da0d23d13fde64643eccc1f6d0a,abstract file and system call audit types via interface
+41,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,154bcb57b9c3bb2113af202f16515340016a0411,remove unused rulesRetrieved
+42,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,9378c4381416055c30b05feb3aa97ca04bb78d3a,update comment for extractAuditRules
+43,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,aec888cbd5fc8b50ab19081ceb0672c42a8667da,remove toString interface member for audit rule types
+44,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,174f13647f86370b07c1a4d9b9f0249c59952ecb,single function for watch/perms kernel data structure set
+45,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,92b3d593e6128efdbaa01c25e11d331a429e8b6a,remove global error usage in checkPath
+46,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,d9d98cf5006e051dfab896817cd212e78088dd36,"dont export AuditSyscallToName, rename"
+47,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,34a453a30f349e813ec8503675399ccc09199df1,cleanup rule parser
+48,https://api.github.com/repos/mozilla/libaudit-go/pulls/25,25,Tweaks in rule parser and other consistency fixes,,ameihm0912,9889986,2017-08-23T21:50:21Z,NONE,True,547,1019,11,go package for interfacing with Linux audit,Go,df9b1a5beaf84b09f6b8971582a843ad44a0962a,additional syscall test with key
+49,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,82648c9eb961894639448bede83540fe043e3095,reorganize Makefile to make testing a bit easier
+50,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,770c61b99956e8a19166af71553091b7f6838bc4,improve comments around NetlinkConnection
+51,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,329be64d5ae12079183f6223f50e7ffc5b02b5b0,"some cleanup for NewNetlinkConnection, remove root check
+
+Includes removing root check here, since it's possible this may succeed
+due to capabilities."
+52,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,fb7910f38f1ce300d4f5a0b8f0eddd6f009442d1,move functions bound on NetlinkConnection under definition for clarity
+53,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,e611d165a3f1c1dd9216dcedde150f25eda74b82,additional cleanup on NetlinkConnection bound functions
+54,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,244d90fd7141e41157b847757de15638acd634c1,tweak NetlinkConnection Send()
+55,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,6b11bda3bda168979953c2fd106833f30668713c,"remove requirement to indicate maxmsglen in Receive
+
+We will always want to read up to NLMSG_HDRLEN +
+MAX_AUDIT_MESSAGE_LENGTH"
+56,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,7c6747f78321a4284ce1e943b940094265921ced,"overhaul parseAuditNetlinkMessage with a safer implementation
+
+Replace the existing implementation that used unsafe.Pointer with an
+implementation that does partial reads and honors NLM_F_MULTI. This is
+work in progress to resolve a bunch of strange alignment related issues
+that were occuring periodically with the previous function."
+57,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,02b484720495cfacff0eed3fd80e959239e6517b,remove duplicated code between AUDIT_SET functions
+58,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,5674c86f94901ae7bd01370b0ba94d9800fd6a98,"make auditGetReply more generic, better handle out of order replies"
+59,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,31a6b85f14c5bba4c56fb8a5cc03b22af1b18883,don't include NLMSG_DONE in response slice
+60,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,85c1a9cc7026bd1a7497c25ed6c219bbde7164e3,"revisit AuditIsEnabled, netlink ACK peek in auditGetReply"
+61,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,30af672770bd6eb000fb6876cda4c0840df68a1f,"rework ListAllRules, fixes tests"
+62,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,942ec4104f981b819fc709c79890067370e944fe,gitignore
+63,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,dcd2376ff4706757c6095eb06a44de4928c6c125,improve comment for auditGetReply
+64,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,665bf241eb4f4195e7c5d52c819010f262874368,move atomic increment of netlink sequence to function
+65,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,1b423c0565f6468222e9b08d67ec0feb1d270f73,use nativeEndian() in input uint16/32 pop
+66,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,978cc866a91161120afe65e8270373039bf56e78,"rework ToWireFormat, remove unsafe.Pointer"
+67,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,3a36504cf6037a407c7d2ee2c1c474984129a863,remove dup code in DeleteAllRules
+68,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,2c9d58d66257443cc02d726168789078b5933172,"rework SetRules, prefer deterministic type
+
+Reworks SetRules so we use a defined JSON type vs. converting the
+incoming JSON rules into an anonymous struct and map. Prior when we were
+iterating over the map keys, the order was not consistent which causes
+problems in the tests."
+69,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,f388b3580d7ca46df12b755d0217111aaa0b15b8,"rework auditAddRuleData, collect response ack from netlink"
+70,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,478c86d6c6323fd2e7a04b915a7c57df1ef8e1a9,remove use of unsafe in toWireFormat and use binary write
+71,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,e22b8e38c7df71ca947786d27694a1070a336b62,remove unused auditDeleteRuleData
+72,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,77ddcc352ac0c56c6f38b812cf11012a23be7ea0,"remove permAdded and syscallAdded globals, use fieldPairData"
+73,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,65f7f86bf7ccf202724aa510d84834f3957a467f,initial pass on auditRuleFieldPairData
+74,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,fdbbbb741912ce80cdf6428ee5ca327ee539bc25,style pass on auditRuleFieldPairData
+75,https://api.github.com/repos/mozilla/libaudit-go/pulls/22,22,Initial pass on some improvements,"A bunch of changes in here, mostly reliability/cleanup/testing related
+
+This PR is focused on the initial audit configuration and resolves intermittent failures running the tests.
+
+- Change makefile so make test works on branches/forks and rebuilds constants if needed
+- Reduce complexity of various netlink related functions
+- Remove use of unsafe package in areas performance is not important (e.g., configuration); unsafe.Pointer related logic has been changed to use binary.Write
+- Add alignment to outgoing netlink messages
+- Modify netlink message parsing to avoid unsafe.Pointer copies and honor NLM_F_MULTI
+- Remove code duplication in netlink message reception and use a single function for responses and for consuming kernel ACKs; add missing kernel ACK reception where needed
+- Change rules loading so it uses a standard JSON struct instead of an anonymous struct / interface{}; this was causing problems iterating over map values as the order of audit rules was not consistent between rule loads
+- Various other style changes to simplify the code",ameihm0912,9889986,2017-03-03T02:56:28Z,NONE,True,616,650,9,go package for interfacing with Linux audit,Go,9c252cfb890f94e9e74a0ced7579272ac3064b07,only set key on file rule if provided
+76,https://api.github.com/repos/mozilla/libaudit-go/pulls/11,11,"Replace logging of warnings by errors, Fix typos in error strings and comments",,arunk-s,3816340,2016-07-22T19:05:32Z,MEMBER,True,40,120,4,go package for interfacing with Linux audit,Go,0a45716ac1ebe07c2624f2684c71b4895241c752,"Replace logging of warnings by errors, Fix typos in error strings, comments"
+77,https://api.github.com/repos/mozilla/libaudit-go/pulls/10,10,Add changes done during GSoC'16,"Add native parser for audit messages and test cases for parser for performance benefits.
+Add interpretation support for audit message fields (further support can be added as needed)
+Remove json files and include the tables directly as Go variables
+Change package name to `libaudit`
+Add dependencies under `vendor`
+For changes excluding dependency diffs see: https://github.com/mozilla/libaudit-go/pull/10/commits/c266d65335b3f2fcf9965cd94b343d7b9c24b7cd
+",arunk-s,3816340,2016-07-17T16:12:30Z,MEMBER,True,7234,1100,43,go package for interfacing with Linux audit,Go,c266d65335b3f2fcf9965cd94b343d7b9c24b7cd,"Add Changes done in GSoC'16
+
+Add native parser for audit messages and test cases for parser, for performance benefits
+Add interpretation support for audit message fields (further support can be added as needed)
+Remove json files and include the tables directly as Go variables
+Change package name to libaudit"
+78,https://api.github.com/repos/mozilla/libaudit-go/pulls/10,10,Add changes done during GSoC'16,"Add native parser for audit messages and test cases for parser for performance benefits.
+Add interpretation support for audit message fields (further support can be added as needed)
+Remove json files and include the tables directly as Go variables
+Change package name to `libaudit`
+Add dependencies under `vendor`
+For changes excluding dependency diffs see: https://github.com/mozilla/libaudit-go/pull/10/commits/c266d65335b3f2fcf9965cd94b343d7b9c24b7cd
+",arunk-s,3816340,2016-07-17T16:12:30Z,MEMBER,True,7234,1100,43,go package for interfacing with Linux audit,Go,4b365d1c1fdb797caadbbea64414b1ab8f54d12a,Add vendor deps
+79,https://api.github.com/repos/mozilla/libaudit-go/pulls/10,10,Add changes done during GSoC'16,"Add native parser for audit messages and test cases for parser for performance benefits.
+Add interpretation support for audit message fields (further support can be added as needed)
+Remove json files and include the tables directly as Go variables
+Change package name to `libaudit`
+Add dependencies under `vendor`
+For changes excluding dependency diffs see: https://github.com/mozilla/libaudit-go/pull/10/commits/c266d65335b3f2fcf9965cd94b343d7b9c24b7cd
+",arunk-s,3816340,2016-07-17T16:12:30Z,MEMBER,True,7234,1100,43,go package for interfacing with Linux audit,Go,1b7ecea95732fb14914c20344cce692236d41be1,Add better error reporting in library
+80,https://api.github.com/repos/mozilla/libaudit-go/pulls/10,10,Add changes done during GSoC'16,"Add native parser for audit messages and test cases for parser for performance benefits.
+Add interpretation support for audit message fields (further support can be added as needed)
+Remove json files and include the tables directly as Go variables
+Change package name to `libaudit`
+Add dependencies under `vendor`
+For changes excluding dependency diffs see: https://github.com/mozilla/libaudit-go/pull/10/commits/c266d65335b3f2fcf9965cd94b343d7b9c24b7cd
+",arunk-s,3816340,2016-07-17T16:12:30Z,MEMBER,True,7234,1100,43,go package for interfacing with Linux audit,Go,40018364fd4d7b711012da652f4f2f3c89ffc3a8,Fix comments and error calls
+81,https://api.github.com/repos/mozilla/libaudit-go/pulls/7,7,Parse audit events into a go structure,"This pull request implements a new framework that parses the audit events and embed the result into AuditEvent structure and send it to the callback.
+",hardikj,3114839,2016-01-29T09:28:53Z,CONTRIBUTOR,True,211,74,4,go package for interfacing with Linux audit,Go,f7f7c92adbed42dd9e370c129275868814dbadb8,Add support for parsing events into a go structure
+82,https://api.github.com/repos/mozilla/libaudit-go/pulls/7,7,Parse audit events into a go structure,"This pull request implements a new framework that parses the audit events and embed the result into AuditEvent structure and send it to the callback.
+",hardikj,3114839,2016-01-29T09:28:53Z,CONTRIBUTOR,True,211,74,4,go package for interfacing with Linux audit,Go,48469cdeea25b3fa42e02b80e434e16f3e4a0c6d,remove wait grops and add Raw messages
+83,https://api.github.com/repos/mozilla/libaudit-go/pulls/7,7,Parse audit events into a go structure,"This pull request implements a new framework that parses the audit events and embed the result into AuditEvent structure and send it to the callback.
+",hardikj,3114839,2016-01-29T09:28:53Z,CONTRIBUTOR,True,211,74,4,go package for interfacing with Linux audit,Go,ee139ebbde6f94a6b6c463d9fdbbcf55e983078b,update readme with audit event changes
+84,https://api.github.com/repos/mozilla/libaudit-go/pulls/7,7,Parse audit events into a go structure,"This pull request implements a new framework that parses the audit events and embed the result into AuditEvent structure and send it to the callback.
+",hardikj,3114839,2016-01-29T09:28:53Z,CONTRIBUTOR,True,211,74,4,go package for interfacing with Linux audit,Go,05a85b2955b7737e34a62326a4cc46600395e428,Clean comment strings
+85,https://api.github.com/repos/mozilla/libaudit-go/pulls/6,6,Update README,,hardikj,3114839,2016-01-15T09:56:50Z,CONTRIBUTOR,True,148,1,1,go package for interfacing with Linux audit,Go,f99eca1dc8dfbd25c87e626868f83cb0d0281ab9,Update README
+86,https://api.github.com/repos/mozilla/libaudit-go/pulls/5,5,Merge cleanup branch,,hardikj,3114839,2016-01-14T18:06:20Z,CONTRIBUTOR,True,1061,988,2,go package for interfacing with Linux audit,Go,c7c40dd180ab794f3041df80ff799fd9235450e2,Restructuring and move ruledata components in ruledata.go
+87,https://api.github.com/repos/mozilla/libaudit-go/pulls/5,5,Merge cleanup branch,,hardikj,3114839,2016-01-14T18:06:20Z,CONTRIBUTOR,True,1061,988,2,go package for interfacing with Linux audit,Go,17c3572805363b7cd2c25661711a7268a6322e49,use syscall netlink message struc
+88,https://api.github.com/repos/mozilla/libaudit-go/pulls/5,5,Merge cleanup branch,,hardikj,3114839,2016-01-14T18:06:20Z,CONTRIBUTOR,True,1061,988,2,go package for interfacing with Linux audit,Go,ec45a91336a1e73a25e147a6ff016352724d269b,"Add file watch support
+
+New functions to setup watch directories/files and setup permissions"
+89,https://api.github.com/repos/mozilla/libaudit-go/pulls/5,5,Merge cleanup branch,,hardikj,3114839,2016-01-14T18:06:20Z,CONTRIBUTOR,True,1061,988,2,go package for interfacing with Linux audit,Go,de34b3502052a356754a2a67573821f1f51bb341,"Merge pull request #3 from arunk-s/cleanup2
+
+Add file watch support"
+90,https://api.github.com/repos/mozilla/libaudit-go/pulls/5,5,Merge cleanup branch,,hardikj,3114839,2016-01-14T18:06:20Z,CONTRIBUTOR,True,1061,988,2,go package for interfacing with Linux audit,Go,64a501b727b3cca5f032c30e9bfb47f0878c1364,added get_audit_events function
+91,https://api.github.com/repos/mozilla/libaudit-go/pulls/5,5,Merge cleanup branch,,hardikj,3114839,2016-01-14T18:06:20Z,CONTRIBUTOR,True,1061,988,2,go package for interfacing with Linux audit,Go,b5ac602331657244ea49c18c23fbc04fced590ad,some minor strings cleanup
+92,https://api.github.com/repos/mozilla/libaudit-go/pulls/5,5,Merge cleanup branch,,hardikj,3114839,2016-01-14T18:06:20Z,CONTRIBUTOR,True,1061,988,2,go package for interfacing with Linux audit,Go,fa41f991159d337b231abe94fede58aed4ffb92f,fix bytesize for recive function in audit_get_events
+93,https://api.github.com/repos/mozilla/libaudit-go/pulls/5,5,Merge cleanup branch,,hardikj,3114839,2016-01-14T18:06:20Z,CONTRIBUTOR,True,1061,988,2,go package for interfacing with Linux audit,Go,c4177b038bf95dfc36fd207e25c8202a7a19df3d,Go fmt + Add comment on ToWireFormat
+94,https://api.github.com/repos/mozilla/libaudit-go/pulls/5,5,Merge cleanup branch,,hardikj,3114839,2016-01-14T18:06:20Z,CONTRIBUTOR,True,1061,988,2,go package for interfacing with Linux audit,Go,961e4cc0c152c9831f62d881cd7260b88c52f4f9,Rename Get_audit_events to GetAuditEvents (camelcase)
+95,https://api.github.com/repos/mozilla/libaudit-go/pulls/3,3,Add file watch support,"New functions to setup watch directories/files and setup permissions
+",arunk-s,3816340,2015-11-29T19:47:57Z,MEMBER,True,215,49,1,go package for interfacing with Linux audit,Go,ec45a91336a1e73a25e147a6ff016352724d269b,"Add file watch support
+
+New functions to setup watch directories/files and setup permissions"

@@ -1,0 +1,73 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/appsync/pulls/10,10,Add Mozilla Code of Conduct,"Fixes #9
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-28T03:48:51Z,NONE,False,15,0,1,Sync for Open Web Aps,Python,9b7d9b1f1130f5db64fa70ae01fd7638c5d66758,"Add Mozilla Code of Conduct file
+
+Fixes #9.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/appsync/pulls/7,7,"Use latest release of PyVEP, to support new BrowserID assertion format",,rfk,34695,2012-01-27T02:43:33Z,MEMBER,True,8,8,2,Sync for Open Web Aps,Python,73800809fae10fdba79bb6a630e27731b5aa10f6,"Use latest release of PyVEP, to support new BrowserID assertion format"
+2,https://api.github.com/repos/mozilla/appsync/pulls/5,5,Bug 706809 - write through cache for the sauropod backend (draft),"We maintain the meta document in memcached to avoid hitting Sauropod on most GETs
+",tarekziade,250019,2011-12-14T23:03:23Z,CONTRIBUTOR,True,355,41,13,Sync for Open Web Aps,Python,cc2b9cd41cbd87e86b1147bb16594b78d55cbc42,first draft of write-through cache for the meta document
+3,https://api.github.com/repos/mozilla/appsync/pulls/5,5,Bug 706809 - write through cache for the sauropod backend (draft),"We maintain the meta document in memcached to avoid hitting Sauropod on most GETs
+",tarekziade,250019,2011-12-14T23:03:23Z,CONTRIBUTOR,True,355,41,13,Sync for Open Web Aps,Python,8a403fb55332ab12c8655aa5fc90809ef04615c6,"Fixed the various issues found by Ryan.
+
+Also: instead of letting the CacheError bubbling up and generate
+a log + 500, we just generate a log and ignore it, so the
+backend still works when Memcache is down."
+4,https://api.github.com/repos/mozilla/appsync/pulls/5,5,Bug 706809 - write through cache for the sauropod backend (draft),"We maintain the meta document in memcached to avoid hitting Sauropod on most GETs
+",tarekziade,250019,2011-12-14T23:03:23Z,CONTRIBUTOR,True,355,41,13,Sync for Open Web Aps,Python,c1711fc3af290de7cc53ac8c4b8efcae246c7479,code cleanup
+5,https://api.github.com/repos/mozilla/appsync/pulls/5,5,Bug 706809 - write through cache for the sauropod backend (draft),"We maintain the meta document in memcached to avoid hitting Sauropod on most GETs
+",tarekziade,250019,2011-12-14T23:03:23Z,CONTRIBUTOR,True,355,41,13,Sync for Open Web Aps,Python,cf3c2c212d49850484c5d93c3caea81e63e1f666,"In this changeset, I am adding a test_sauropod module.
+
+The test runs a fake Sauropod server and runs test_server
+against it. This makes sure the sauropod backend is tested
+even if there's no Node.js running.
+
+The test also exercise the memcache layer.
+
+Tests should pass if memcache is OFF or ON. OFF ignores
+the cache and go through."
+6,https://api.github.com/repos/mozilla/appsync/pulls/5,5,Bug 706809 - write through cache for the sauropod backend (draft),"We maintain the meta document in memcached to avoid hitting Sauropod on most GETs
+",tarekziade,250019,2011-12-14T23:03:23Z,CONTRIBUTOR,True,355,41,13,Sync for Open Web Aps,Python,b6b792b1dd211bccd780ced93ffab8860a312e19,code cleanup
+7,https://api.github.com/repos/mozilla/appsync/pulls/5,5,Bug 706809 - write through cache for the sauropod backend (draft),"We maintain the meta document in memcached to avoid hitting Sauropod on most GETs
+",tarekziade,250019,2011-12-14T23:03:23Z,CONTRIBUTOR,True,355,41,13,Sync for Open Web Aps,Python,b1ce40ceb4b5f0e5a955bde48ae3fe180c05b774,"Now testing the number of hits to make sure Memcache really caches.
+
+If Memcache is running the tests will use it and make sure it caches
+Sauropod GETs on the meta document, and saves hits.
+
+If Memcache is not running, the tests makes sure the backend still
+works with no cache.
+
+For the SQL backend, Memcache is mandatory for the tokens, if not
+running a verify will generate a 503 and another call a 401."
+8,https://api.github.com/repos/mozilla/appsync/pulls/5,5,Bug 706809 - write through cache for the sauropod backend (draft),"We maintain the meta document in memcached to avoid hitting Sauropod on most GETs
+",tarekziade,250019,2011-12-14T23:03:23Z,CONTRIBUTOR,True,355,41,13,Sync for Open Web Aps,Python,46629e0e2525ac9cde82d1e712548ad349ab597c,forgot to add this file
+9,https://api.github.com/repos/mozilla/appsync/pulls/5,5,Bug 706809 - write through cache for the sauropod backend (draft),"We maintain the meta document in memcached to avoid hitting Sauropod on most GETs
+",tarekziade,250019,2011-12-14T23:03:23Z,CONTRIBUTOR,True,355,41,13,Sync for Open Web Aps,Python,df145a9028e767f45640129c3968cc3d907593b7,typo
+10,https://api.github.com/repos/mozilla/appsync/pulls/4,4,Change e.message => str(e) due to deprecation warning,"This fixes DeprecationWarnings about use of e.message.  If there's a better option than str(e) just let me know...
+",rfk,34695,2011-12-14T21:32:43Z,MEMBER,True,4,4,3,Sync for Open Web Aps,Python,2767fb87863f528b68e9bcd4ec58852cbb3071ce,Change e.message => str(e) due to deprecation warning
+11,https://api.github.com/repos/mozilla/appsync/pulls/3,3,Use PyVEP library for doing BrowserID verification.,"PyVEP provides a DummyVerifier class for doing testing with properly-formed but invalid BrowserID assertions.  It will also make it easy to switch over to local verification once the VEP certificate format is
+finalized.
+
+(We could do local verification right now by replacing vep.RemoteVerifier() with vep.LocalVerifier(), but that opens up the possibility of breakage when the identity team changes things in the spec)
+
+Thoughts?
+",rfk,34695,2011-12-07T09:39:13Z,MEMBER,False,40,82,9,Sync for Open Web Aps,Python,f17c084216a54ab07999e9c59aa19db49025a503,"Use PyVEP library for doing BrowserID verification.
+
+PyVEP provides a DummyVerifier class for doing testing with properly-
+formed but invalid BrowserID assertions.  It will also make it easy to
+switch over to local verification once the VEP certificate format is
+finalized."
+12,https://api.github.com/repos/mozilla/appsync/pulls/2,2,this fixes 706218,,tarekziade,250019,2011-11-29T21:45:42Z,CONTRIBUTOR,True,44,24,8,Sync for Open Web Aps,Python,0177710da2c2b27449bde46afa2ff53dc5f3ba33,fixed typo
+13,https://api.github.com/repos/mozilla/appsync/pulls/2,2,this fixes 706218,,tarekziade,250019,2011-11-29T21:45:42Z,CONTRIBUTOR,True,44,24,8,Sync for Open Web Aps,Python,ca1bbf86a308e69bb94afd0c1092abd83e32e1c6,bug #706218 - fixed the timestamps
+14,https://api.github.com/repos/mozilla/appsync/pulls/1,1,formalize interface for storage backends,"This extracts the storage backend API into an explicit interface declaration, which is useful when thinking about the sauropod backend.
+",rfk,34695,2011-11-15T23:50:50Z,MEMBER,False,116,40,6,Sync for Open Web Aps,Python,3dc1f411e3aaa80a55d5c8724b910eb4e480f869,Declare a formal interface for storage backends.
+15,https://api.github.com/repos/mozilla/appsync/pulls/1,1,formalize interface for storage backends,"This extracts the storage backend API into an explicit interface declaration, which is useful when thinking about the sauropod backend.
+",rfk,34695,2011-11-15T23:50:50Z,MEMBER,False,116,40,6,Sync for Open Web Aps,Python,e2b8f7713b1b9f32ad73fee436d121b8ae5a4ebb,use the latest mozscv convenience hooks
+16,https://api.github.com/repos/mozilla/appsync/pulls/1,1,formalize interface for storage backends,"This extracts the storage backend API into an explicit interface declaration, which is useful when thinking about the sauropod backend.
+",rfk,34695,2011-11-15T23:50:50Z,MEMBER,False,116,40,6,Sync for Open Web Aps,Python,9fc1a953a5c6702ac5d35972dc3e9f54aaef2517,fix typo
+17,https://api.github.com/repos/mozilla/appsync/pulls/1,1,formalize interface for storage backends,"This extracts the storage backend API into an explicit interface declaration, which is useful when thinking about the sauropod backend.
+",rfk,34695,2011-11-15T23:50:50Z,MEMBER,False,116,40,6,Sync for Open Web Aps,Python,7a9d6d713fdb730e9917302b3562ed431d7e8069,"remove ""self"" from interface definition"
+18,https://api.github.com/repos/mozilla/appsync/pulls/1,1,formalize interface for storage backends,"This extracts the storage backend API into an explicit interface declaration, which is useful when thinking about the sauropod backend.
+",rfk,34695,2011-11-15T23:50:50Z,MEMBER,False,116,40,6,Sync for Open Web Aps,Python,9cda98b157e71a6afc0303d4fcca591bcc31bd8e,add unittest for IAppSyncDatabase interface conformance

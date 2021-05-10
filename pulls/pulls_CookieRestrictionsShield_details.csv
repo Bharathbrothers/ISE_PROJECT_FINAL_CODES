@@ -1,0 +1,172 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/96,96,Add Mozilla Code of Conduct,"Fixes #95
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-30T07:01:16Z,CONTRIBUTOR,True,15,0,1,,JavaScript,579df82fa17ac8dd8079cc34e9f06bfe027ddd3e,"Add Mozilla Code of Conduct file
+
+Fixes #95.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/93,93,increment to version 1.0.5,,ericawright,10803178,2018-09-14T16:49:08Z,CONTRIBUTOR,True,4,4,3,,JavaScript,fe8565e6bc642f9e188482237e437b7b535ca1e6,increment to version 1.0.5
+2,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/92,92,fix tests for doorhanger,,ericawright,10803178,2018-09-14T16:12:04Z,CONTRIBUTOR,True,7,12,1,,JavaScript,4bf57fb2770b861266bfed2a7c53476a023586a6,fix tests for doorhanger
+3,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/91,91,Allow survey to be shown on the same tab again after navigation.,fixes: #90,ericawright,10803178,2018-09-14T15:33:35Z,CONTRIBUTOR,True,2,1,1,,JavaScript,e2221788d6959cda26468eae83537abc694f22b9,Allow survey to be shown on the same tab again after navigation.
+4,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/88,88,Remove leftovers which were causing survey to appear too often.,"left from #85, whoops",ericawright,10803178,2018-09-13T21:04:44Z,CONTRIBUTOR,True,0,5,1,,JavaScript,32e66c45aa52a103b303b064e7d8b6242f2ed7bd,Remove leftovers which were causing survey to appear too often.
+5,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/87,87,increment version number.,Incremented version to be packaged for xpi signing.,ericawright,10803178,2018-09-13T21:03:45Z,CONTRIBUTOR,True,2276,2276,3,,JavaScript,70a69170cb30b84d8b2db7042d133a732a40c237,increment version number.
+6,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/86,86,stop getting the doc from the docshell.,"based on https://github.com/mozilla/FastBlockShield/pull/129/files
+
+The error that the docshell does not exist upon closing tabs no longer happens, and no longer needs to be worked around. We no longer get the pings containing 'num_blockable_trackers: -1'",ericawright,10803178,2018-09-13T20:45:28Z,CONTRIBUTOR,True,12,12,1,,JavaScript,a49b3f90ab40215174f59332a5d139f32d210b96,stop getting the doc from the docshell.
+7,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/85,85,Attach survey telemetry to the page it was connected to.,"based on https://github.com/mozilla/FastBlockShield/pull/124
+
+This introduces a new attribute on the tabInfo called
+`payloadWaitingForSurvey`, which keeps a payload that is currently held
+back from sending because the user still needs to respond to the reload
+survey.
+
+- `payloadWaitingForSurvey` sends on interaction with the survey, or on the next page refresh if the survey did not show up.
+- If there is a `payloadWaitingForSurvey` waiting to send, and you close the tab, you will see 2 payloads sent
+
+note: My tests fail at `5-reload-doorhanger.js line 171`, though they failed for the other PR too - could someone double check this please.
+
+fixes: #84 
+
+apparently also:
+fixes: #79",ericawright,10803178,2018-09-12T21:30:13Z,CONTRIBUTOR,True,390,171,8,,JavaScript,d4d5cc6bd9bbcacc9dedcdb9874bdfef388051fc,Attach survey telemetry to the page it was connected to.
+8,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/83,83,add third branch that blocks all third party cookies,"@TanviHacks @johannhof @groovecoder 
+
+If the third branch to block all third party cookies is proposed and approved here is 
+- the behaviour for it, 
+- an update for the docs 
+- an addition to the tests.",ericawright,10803178,2018-09-11T22:41:56Z,CONTRIBUTOR,True,101,5,4,,JavaScript,dc73d1be1ba0d7832c263e5c119063e3eae140aa,add third branch that blocks all third party cookies
+9,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/82,82,only offer chance of popup if interaction has happened in the previou…,"…s refreshes
+
+This is to avoid automatic refreshes that might come from page errors or other events on the page.
+
+If the user has interacted with the page - clicked, entered data into an input etc - then on the next refresh (and subsequent refreshes) they have a chance of seeing the popup.
+
+This flag gets reset on a navigate event - then they need to interact again to receive a chance of seeing the popup.
+
+With an early exit tabInfo.reloadCount does not increment from these refreshes.
+
+note: It hasn't been fully decided if we'd like to take this route yet
+
+fixes: #79 ",ericawright,10803178,2018-09-11T19:09:43Z,CONTRIBUTOR,False,9,0,3,,JavaScript,2e83bc8c5e6a2967c04357e0244c114a8466171b,only offer chance of popup if interaction has happened in the previous refreshes
+10,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/81,81,Remove call to non-existant function,fixes: #77,ericawright,10803178,2018-09-11T16:53:59Z,CONTRIBUTOR,True,0,1,1,,JavaScript,fcd0ce77def007c2132e75293e8b4123013e8d32,Remove call to non-existant function
+11,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/80,80,"update icon, show on about:addons.","seems it has to be a png....
+
+fixes: #76 ",ericawright,10803178,2018-09-11T14:42:09Z,CONTRIBUTOR,True,1,7,3,,JavaScript,029a836878c7a22a1c8f5d8861b088df206b5613,"update icon, show on about:addons."
+12,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/74,74,"remove testing flag, adjust manifest version","Fixes: #18 
+
+This will now send telemetry pings without the testing flag.
+
+I need to adjust the manifest version for each signed release - hence why it is done. ",ericawright,10803178,2018-09-10T20:23:14Z,CONTRIBUTOR,True,3,3,3,,JavaScript,3933dd0cf6af4147ee9aa6495b0426f279347d68,"remove testing flag, adjust manifest version"
+13,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/73,73,access setTimeout properly,"This can be tested with the newest signed xpi 1.0.2 on the [bug](https://bugzilla.mozilla.org/show_bug.cgi?id=1485518)
+
+the Doorhanger was not showing on beta due to setTimeout not being defined.
+
+fixes: #70 ",ericawright,10803178,2018-09-10T17:57:04Z,CONTRIBUTOR,True,1,1,1,,JavaScript,727348c6df1176884ebc6958801045653fbebabf,access setTimeout properly
+14,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/72,72,fix #71: browser.fastblock.enabled = false,"I think this is the right code to do this, but it fails on the 0th test.",groovecoder,71928,2018-09-10T17:25:08Z,MEMBER,True,5,0,2,,JavaScript,819db5b2323a74f31937056ef6986720bbb3931f,fix #71: browser.fastblock.enabled = false
+15,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/68,68,reverse button order to prevent false positives,"esc button triggers secondary option.
+To avoid false positives from the `esc` button, keeping the secondary option as the negative option is better. Cleared with mheubusch.",ericawright,10803178,2018-09-07T19:12:54Z,CONTRIBUTOR,True,8,8,1,,JavaScript,56c5f627a37231d8ef8e5153e717a7469025b2fa,reverse button order to prevent false positives
+16,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/67,67,set num trackers to default value if broken,"What do you think of this? I just don't want the error to cause unpredicatable behaviour. This was  we know if we get a -1 there was something incorrect. -1 is also the initial default value for this probe.
+
+re: #31",ericawright,10803178,2018-09-07T19:06:40Z,CONTRIBUTOR,True,5,2,1,,JavaScript,e3afb59b75bc0ff3a7d1b877e033dd82785f3a95,set num trackers to default value if broken
+17,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/66,66,add mozilla logo to add-on,"<img width=""835"" alt=""screen shot 2018-09-07 at 2 58 23 pm"" src=""https://user-images.githubusercontent.com/10803178/45238100-a9f10a00-b2ae-11e8-8158-1023e2c556e0.png"">
+
+Fixes: #56 ",ericawright,10803178,2018-09-07T19:00:12Z,CONTRIBUTOR,True,9,0,2,,JavaScript,3593ea6512b2e0788c47330439590777d6b913f3,add mozilla logo to add-on
+18,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/64,64,Fix CoookiesBlocked typo and regen TOC,,pdehaan,557895,2018-09-07T17:31:14Z,COLLABORATOR,True,17,19,1,,JavaScript,a0bedfbe28ed7fbe27df40f8f0a40475c85451d2,Fix CoookiesBlocked typo and regen TOC
+19,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/63,63,add variation name to breadcrumb,fixes: #52 ,ericawright,10803178,2018-09-07T17:01:35Z,CONTRIBUTOR,True,6,1,2,,JavaScript,53852e5d2084f24c7620fce65aa221131fac08a9,add variation name to breadcrumb
+20,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/62,62,Doorhanger,"<img width=""408"" alt=""screen shot 2018-09-07 at 11 42 45 am"" src=""https://user-images.githubusercontent.com/10803178/45229230-473e4500-b293-11e8-90a2-4380b1a0884c.png"">
+
+fixes: #53 
+fixes: #58 ",ericawright,10803178,2018-09-07T15:43:50Z,CONTRIBUTOR,True,20,32,4,,JavaScript,a2deab494601cc27daafbc1e38b2f4efb7fcfb49,Remove checkbox from survey
+21,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/62,62,Doorhanger,"<img width=""408"" alt=""screen shot 2018-09-07 at 11 42 45 am"" src=""https://user-images.githubusercontent.com/10803178/45229230-473e4500-b293-11e8-90a2-4380b1a0884c.png"">
+
+fixes: #53 
+fixes: #58 ",ericawright,10803178,2018-09-07T15:43:50Z,CONTRIBUTOR,True,20,32,4,,JavaScript,350eb0363631431f6e0c10d800ab55abbfe51bc9,change wording on popup
+22,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/61,61,Address issues raised in peer review,issues described [here](https://github.com/nhnt11/CookieRestrictionsShield/pull/1),ericawright,10803178,2018-09-07T15:04:05Z,CONTRIBUTOR,True,17,36,4,,JavaScript,556136f7159aa8d3f1567ef7a9d89fc45e86aff4,Address issues raised in peer review
+23,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/60,60,Really remove addon on disable or remove in about:addons (closes #106),"When uninstalling or disabling the add-on, it must be permanently gone and not able to undo. 
+
+Fixes: #44 ",ericawright,10803178,2018-09-06T21:58:31Z,CONTRIBUTOR,True,24,1,1,,JavaScript,74fef856628d76ed0089d7a8b195dacec3b4ff1c,Really remove addon on disable or remove in about:addons (closes #106)
+24,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/59,59,detect if password field was filled in,fixes: #48 ,ericawright,10803178,2018-09-06T21:54:35Z,CONTRIBUTOR,True,6,0,4,,JavaScript,99f1a660b48f9ce43a5cc71a0f75ff5501e40c18,detect if password field was filled in
+25,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/57,57,add prefs states to the payload,"fixes #51  
+fixes: #49
+
+also fixes some typos in the tests",ericawright,10803178,2018-09-06T21:23:33Z,CONTRIBUTOR,True,49,11,5,,JavaScript,d2ccdd4cf1d53e71206cc5fd3fe4e66cb9655f8b,add prefs states to the payload
+26,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/54,54,Fix .ui.enabled typo,Fixes #47 ,pdehaan,557895,2018-09-06T20:50:02Z,COLLABORATOR,True,1,1,1,,JavaScript,796ff8eec6e19f3df660483f36fb2dc66eef3329,Fix .ui.enabled typo
+27,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/45,45,Update dependencies,,pdehaan,557895,2018-09-06T16:33:22Z,COLLABORATOR,True,5887,5366,5,,JavaScript,e215da56213d4e098fd9d2824cfe4db234b84c8a,Update dependencies
+28,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/43,43,Rename manifest.json applications.gecko.id,Fixes #42,pdehaan,557895,2018-09-06T16:09:04Z,COLLABORATOR,True,27,27,7,,JavaScript,016e4f186bf8045f17937a48fe1a4c1c92ff5fa6,Rename manifest.json applications.gecko.id
+29,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/43,43,Rename manifest.json applications.gecko.id,Fixes #42,pdehaan,557895,2018-09-06T16:09:04Z,COLLABORATOR,True,27,27,7,,JavaScript,57a9fd4fbd33c51f0dafb71d7bd7edd043a5c8b3,Update docs+tests w/ new study name
+30,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/41,41,change similar things that were requested to change from the fastbloc…,"…k peer review
+
+copying the requested changed from https://github.com/mozilla/FastBlockShield/pull/96",ericawright,10803178,2018-09-05T23:21:56Z,CONTRIBUTOR,True,22,75,6,,JavaScript,b908568d44127fc44fec3123cc0a311f2e922ce0,change similar things that were requested to change from the fastblock peer review
+31,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/40,40,add data-review.txt,Putting the data review file here in the repo so it's not locked away on my machine. Don't necessarily have to merge this.,groovecoder,71928,2018-09-05T22:36:29Z,MEMBER,True,87,0,1,,JavaScript,823dcbc70969f40b307c5045b89c40ae15280fb6,add data-review.txt
+32,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/40,40,add data-review.txt,Putting the data review file here in the repo so it's not locked away on my machine. Don't necessarily have to merge this.,groovecoder,71928,2018-09-05T22:36:29Z,MEMBER,True,87,0,1,,JavaScript,00317726db0f7ec4c49756c885a7962eab5fb8eb,how we will analyze data
+33,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/39,39,set prefs according to the PHD,,ericawright,10803178,2018-09-05T22:21:14Z,CONTRIBUTOR,True,15,6,1,,JavaScript,1ecea629d3d5c2cef4446c57d0ed059f01d46f56,set prefs according to the PHD
+34,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/38,38,fix #37: hash etld in reload handler; test,,groovecoder,71928,2018-09-05T20:18:27Z,MEMBER,True,14,2,2,,JavaScript,e7fbaeed951f9cbe07dbef25dbd5b300ac97926b,fix #37: hash etld in reload handler; test
+35,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/34,34,remove unecessary telemetry,"Lots of telemetry has been removed, it's possible I missed something. 
+remove measurement of blocked trackers
+remove timing measurements
+remove error measurements
+
+fixes: #14 ",ericawright,10803178,2018-09-05T18:22:09Z,CONTRIBUTOR,True,6,183,7,,JavaScript,18c02fb344e7f1bab5c3ac03a08f6362168d156d,remove unecessary telemetry
+36,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/33,33,reload doorhanger,"keep record of whether the doorhanger has previously been dismissed with a positive or negative answer.
+
+Using the same approach and tests from fastblock 
+https://github.com/mozilla/FastBlockShield/pull/97
+fixes: #29 ",ericawright,10803178,2018-09-05T17:31:36Z,CONTRIBUTOR,True,163,4,3,,JavaScript,017f888f20c224e9bd2c3ad7c6e26990b6e5cda2,reload doorhanger status
+37,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/32,32,make tests pass,"
+",ericawright,10803178,2018-09-05T15:02:40Z,CONTRIBUTOR,True,30,28,6,,JavaScript,a5e244b730f118e319bddcbacde044f7eefa8f3e,make tests pass
+38,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/32,32,make tests pass,"
+",ericawright,10803178,2018-09-05T15:02:40Z,CONTRIBUTOR,True,30,28,6,,JavaScript,629e7f092703fd5a9edac8456b0cfd6e9378095c,fix lint issues
+39,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/30,30,Report when the user opens the control center (closes #19).,"1-telemetry is failing for me but seems unrelated.
+
+I fixed 3-add-exception to work.
+
+My npm install touched the package-lock file, I left it since I guess it'll update at some point anyway.",johannhof,2622601,2018-09-05T13:19:33Z,MEMBER,True,2118,2065,8,,JavaScript,0f8b31bb60760379f944d0acf5d8cd93316d52fd,Report when the user opens the control center (closes #19).
+40,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/28,28,"disable content blocking on this page on ""yes"" answer","Set an exception for content blocking this page if the user clicks ""yes"".
+
+So long as this was what was intended by ""disable cookie blocking""
+",ericawright,10803178,2018-09-04T18:05:01Z,CONTRIBUTOR,True,4,2,1,,JavaScript,e9590a929e3c47b5d7bc947f670d38d86e9d19c1,"disable content blocking on this page on ""yes"" answer"
+41,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/27,27,remove example surveys,remove unused example surveys,ericawright,10803178,2018-09-04T17:35:52Z,CONTRIBUTOR,True,1,23,1,,JavaScript,df62e3c8559f2f16f2e20e5935bc05b7f82f614c,remove example surveys
+42,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/26,26,Detect embedded social login scripts.,"- Detects if a page is using an emedded login script from google, twitter, facebook, paypal, linkedin, amazon or instagram. 
+-  Adds ""embedded_social_login_script"" to the telemetry ping.
+
+test: 
+https://developer.twitter.com/en/docs/basics/authentication/guides/single-user.html
+(I've only found one site so far)
+
+To discuss: 
+This is very rarely use in the wild, is this the only type of social logins we want to detect or are we concerned with buttons and anchor tags that redirect to Oauth endpoints?
+
+Fixes #15
+",ericawright,10803178,2018-09-04T17:19:15Z,CONTRIBUTOR,True,20,2,4,,JavaScript,fe9a2eea97504afc5feada688a647927c13b2240,Detect embedded social login scripts.
+43,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/25,25,Record tracking protection exception state,"this records the current state of if the user has set a tracking protection exception for this page.
+
+Imported from https://github.com/mozilla/FastBlockShield/pull/88/files
+
+Fixes: #7 ",ericawright,10803178,2018-09-04T14:41:00Z,CONTRIBUTOR,True,40,0,6,,JavaScript,3ffffeb75d028779cef14638068bada8cc55671c,Record tracking protection exception state.
+44,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/22,22,Detect if there is a login form on page.,"- Identify if there is a password field on the page, and if so, assume there is a login. 
+- Add `login_form_on_page` to telemetry",ericawright,10803178,2018-08-31T21:02:14Z,CONTRIBUTOR,True,6,1,4,,JavaScript,a720db484d39f66b0392d7c252a905bfde8a3644,Detect if there is a login form on page.
+45,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/21,21,fix #3: always send beforeunload and unload events,,groovecoder,71928,2018-08-31T20:24:00Z,MEMBER,True,16,42,4,,JavaScript,57691b00a19f1120b594a5b4c27eab05caff9c2a,fix #3: always send beforeunload and unload events
+46,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/21,21,fix #3: always send beforeunload and unload events,,groovecoder,71928,2018-08-31T20:24:00Z,MEMBER,True,16,42,4,,JavaScript,9b219b670e3eacfa2f6c59b9e7a9279239a555b9,wip: fire reload event even without trackers
+47,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/21,21,fix #3: always send beforeunload and unload events,,groovecoder,71928,2018-08-31T20:24:00Z,MEMBER,True,16,42,4,,JavaScript,16f682ba9e5cb1156802f37f147a0b1e0d22c796,Merge branch 'master' into ping-for-every-pageload-3
+48,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/21,21,fix #3: always send beforeunload and unload events,,groovecoder,71928,2018-08-31T20:24:00Z,MEMBER,True,16,42,4,,JavaScript,6deba4332a2c4627965e47088019c82c89e9dfb6,move reload message to load handler
+49,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/21,21,fix #3: always send beforeunload and unload events,,groovecoder,71928,2018-08-31T20:24:00Z,MEMBER,True,16,42,4,,JavaScript,b04f0a7882be6b040ec92a9c0036b58dafbd29f6,remove inaccurate 'tracking' verbage
+50,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/20,20,Report if the user adds or removes an exception for this page ,"
+- changes `user_added_exception` to `user_toggled_exception`
+- uses int instead of bool so we can see turn on, and a turn off events, plus neutral.
+
+Todo: update phd with details on the data sent
+Fixes: #16.",ericawright,10803178,2018-08-31T19:11:58Z,CONTRIBUTOR,True,31,20,6,,JavaScript,0bb472bf72d4519104ae08b8b512c2d1b32ed13d,Report if the user adds or removes an exception for this page for tracking protection.
+51,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/13,13,Disable Privacy Study checkbox,,groovecoder,71928,2018-08-31T15:40:06Z,MEMBER,True,24,19,2,,JavaScript,d39ee1e5cd05cb260198b99dbcefba86ba719554,add checkbox to popup; bubble up to feature.js
+52,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/13,13,Disable Privacy Study checkbox,,groovecoder,71928,2018-08-31T15:40:06Z,MEMBER,True,24,19,2,,JavaScript,9a3b79bd55e2da9af1195f20599898344a745d12,fix #2: disable study when checked
+53,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/13,13,Disable Privacy Study checkbox,,groovecoder,71928,2018-08-31T15:40:06Z,MEMBER,True,24,19,2,,JavaScript,7053c7237247bf3cd15002ad4be484b76dfd7c60,"remove logging, destructure, fix tabInfo bug"
+54,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/12,12,for #5: add breadcrumb pref for future heartbeat,"Though, which I checked for this in `about:preferences`, I think I realized we could just use the presence of the `extensions.cookie-restrictions-shield_mozilla.org.test.variationName` pref for the same purpose?",groovecoder,71928,2018-08-30T19:06:17Z,MEMBER,True,1,0,1,,JavaScript,bcfd8a355bb77b70bc9d8aa8df0fa5d4311aaecb,for #5: add breadcrumb pref for future heartbeat
+55,https://api.github.com/repos/mozilla/CookieRestrictionsShield/pulls/11,11,Make tests work with cookie tracking,Fixes: #10 ,ericawright,10803178,2018-08-30T18:58:28Z,CONTRIBUTOR,True,57,372,4,,JavaScript,5072ff7362b2d2d7063c6aca6fd9fac0a5143edc,Make tests work with cookie tracking

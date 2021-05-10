@@ -1,0 +1,939 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/codemoji/pulls/236,236,Add Mozilla Code of Conduct,"Fixes #235
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-29T21:53:17Z,NONE,False,15,0,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,d96d665c4c015afa64ffb44f643c1aa90604a0e5,"Add Mozilla Code of Conduct file
+
+Fixes #235.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/codemoji/pulls/230,230,"Revert ""Merging features from the develop branch""",Reverts mozilla/codemoji#229,patjouk,481052,2017-11-29T17:35:06Z,CONTRIBUTOR,False,6,8557,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,6b214968eded806c5e22a866be4c05cd8c56bd7b,"Revert ""Merging features from the develop branch"""
+2,https://api.github.com/repos/mozilla/codemoji/pulls/229,229,Merging features from the develop branch,,patjouk,481052,2017-11-29T17:25:01Z,CONTRIBUTOR,True,8557,6,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,95d806c7cc2f843dbdbc27366e6743bb00b0049d,Various updates
+3,https://api.github.com/repos/mozilla/codemoji/pulls/229,229,Merging features from the develop branch,,patjouk,481052,2017-11-29T17:25:01Z,CONTRIBUTOR,True,8557,6,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,7a9e4271ddaad484316118449c39d48cf046a40f,"Merge pull request #227 from mozilla/versionbumps
+
+Node update"
+4,https://api.github.com/repos/mozilla/codemoji/pulls/229,229,Merging features from the develop branch,,patjouk,481052,2017-11-29T17:25:01Z,CONTRIBUTOR,True,8557,6,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,cae977a94421b1b1f6030b0ff090cd6108089c22,added the other codemoji in the landing page
+5,https://api.github.com/repos/mozilla/codemoji/pulls/229,229,Merging features from the develop branch,,patjouk,481052,2017-11-29T17:25:01Z,CONTRIBUTOR,True,8557,6,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,2f58ed15c1fd9c209903568ac9f39a2b5b59ec6f,"Merge pull request #228 from todotoit/the_other
+
+Added the other codemoji cta in the landing page"
+6,https://api.github.com/repos/mozilla/codemoji/pulls/228,228,Added the other codemoji cta in the landing page,"Add-on requested by @brettgaylor, ready to be put on production. cc/ @patjouk ",abusedmedia,870788,2017-11-28T09:29:48Z,CONTRIBUTOR,True,85,5,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,cae977a94421b1b1f6030b0ff090cd6108089c22,added the other codemoji in the landing page
+7,https://api.github.com/repos/mozilla/codemoji/pulls/227,227,Node update,"ref MozillaFoundation/mofo-devops-private#92
+Updating to node 8.9. Also updating a few dependencies for security reason.",patjouk,481052,2017-11-07T15:03:34Z,CONTRIBUTOR,True,8477,6,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,95d806c7cc2f843dbdbc27366e6743bb00b0049d,Various updates
+8,https://api.github.com/repos/mozilla/codemoji/pulls/223,223,Deploy new version of codemoji to production,"Fixes include:
+#222 - Fix Query params check on page load, so we don't choke on analytics data!
+",cadecairos,438003,2016-07-16T01:09:33Z,CONTRIBUTOR,True,1,1,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,739fbd67baf5eb71dac3b275452d6989ae41cc37,fixes the query params check for determining whether to decrypt
+9,https://api.github.com/repos/mozilla/codemoji/pulls/223,223,Deploy new version of codemoji to production,"Fixes include:
+#222 - Fix Query params check on page load, so we don't choke on analytics data!
+",cadecairos,438003,2016-07-16T01:09:33Z,CONTRIBUTOR,True,1,1,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,2829b85e5cb60e855d74251c2d7c3f688bacd130,"Merge pull request #222 from mozilla/dehashfix
+
+fixes the query params check for determining whether to decrypt"
+10,https://api.github.com/repos/mozilla/codemoji/pulls/222,222,fixes the query params check for determining whether to decrypt,"fixes https://github.com/MozillaFoundation/Advocacy/issues/111, _I think_, by making sure to check for a `data` query argument, rather than just ""are there query argments"". In the case of https://github.com/MozillaFoundation/Advocacy/issues/111 there are query arguments but they do not represent data that should be decrypted, and so the current code as used forgets to check whether there is a queryValues.data before then calleding dehash(queryValues.data).
+
+I was able to reproduce the problem mentioned in the issue by running codemoji locally and hitting up http://localhost:3000/?utm_source=desktop%20snippet&amp;utm_medium=snippet&amp;utm_campaign=codemoji -- without this fix, it does the same thing (robot loader, then a white page), with the fix in place the welcome page will load just fine because no dehashing is attempted with a missing query argument.
+",Pomax,177243,2016-07-15T23:50:13Z,CONTRIBUTOR,True,1,1,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,739fbd67baf5eb71dac3b275452d6989ae41cc37,fixes the query params check for determining whether to decrypt
+11,https://api.github.com/repos/mozilla/codemoji/pulls/221,221,Analytics add on,"This PR adds the following as requested by @damiankay :
+- properly page tracking
+- a more descriptive label description for each tracked event
+- Added a tracked event to 'new message' CTA in decrypt view
+
+In [this](https://drive.google.com/open?id=1VWg1khLS25HXLbTwgKiFYpTwsadAu-kel7TftpwbkDk) spreadsheet the complete table of all the implemented events.
+
+cc/ @ScottDowne @cadecairos 
+",abusedmedia,870788,2016-07-11T12:18:16Z,CONTRIBUTOR,True,45,11,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,2998132c4248ce23d3e3375a3defb4e43de5475e,some analytics refinements
+12,https://api.github.com/repos/mozilla/codemoji/pulls/221,221,Analytics add on,"This PR adds the following as requested by @damiankay :
+- properly page tracking
+- a more descriptive label description for each tracked event
+- Added a tracked event to 'new message' CTA in decrypt view
+
+In [this](https://drive.google.com/open?id=1VWg1khLS25HXLbTwgKiFYpTwsadAu-kel7TftpwbkDk) spreadsheet the complete table of all the implemented events.
+
+cc/ @ScottDowne @cadecairos 
+",abusedmedia,870788,2016-07-11T12:18:16Z,CONTRIBUTOR,True,45,11,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,1897015f2be7510ea180d0d01ad072541045264d,small typo
+13,https://api.github.com/repos/mozilla/codemoji/pulls/219,219,Merge develop into master,,cadecairos,438003,2016-07-07T21:46:30Z,CONTRIBUTOR,True,3,3,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,8623e21d246ccf7859b74e0f432388c8ae7d2823,update legal link
+14,https://api.github.com/repos/mozilla/codemoji/pulls/219,219,Merge develop into master,,cadecairos,438003,2016-07-07T21:46:30Z,CONTRIBUTOR,True,3,3,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,d9525732f145d11bc4ae1b403079f9106f96f6c9,"Merge pull request #218 from ScottDowne/legal-link
+
+update legal link"
+15,https://api.github.com/repos/mozilla/codemoji/pulls/218,218,update legal link,,ScottDowne,197334,2016-07-07T20:34:27Z,CONTRIBUTOR,True,3,3,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,8623e21d246ccf7859b74e0f432388c8ae7d2823,update legal link
+16,https://api.github.com/repos/mozilla/codemoji/pulls/216,216,Update email in feedback link,,ScottDowne,197334,2016-07-05T16:58:35Z,CONTRIBUTOR,True,1,1,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,5fc8164b158f6a0aa80d3437982ad4dcfdd14bcb,Update email in feedback link
+17,https://api.github.com/repos/mozilla/codemoji/pulls/215,215,Description meta tag,"Added meta tag description for google crawler.
+
+closes #210 
+",abusedmedia,870788,2016-07-05T06:29:15Z,CONTRIBUTOR,True,3,0,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,e5bb87a6a3fa7eb09aaf16330429a0b8aee2433e,added meta tag description for google crawler
+18,https://api.github.com/repos/mozilla/codemoji/pulls/214,214,Twitter share fix,"This patch handles the issue notified [here](https://github.com/MozillaFoundation/Advocacy/issues/67) that happens with some specific text combinations preventing the twitter popup proper behaviour.
+
+cc/ @cadecairos
+",abusedmedia,870788,2016-07-02T08:37:16Z,CONTRIBUTOR,True,12,1,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,79d6e648625144b7461195e680db3913780c0501,twitter encode emoji fallback
+19,https://api.github.com/repos/mozilla/codemoji/pulls/214,214,Twitter share fix,"This patch handles the issue notified [here](https://github.com/MozillaFoundation/Advocacy/issues/67) that happens with some specific text combinations preventing the twitter popup proper behaviour.
+
+cc/ @cadecairos
+",abusedmedia,870788,2016-07-02T08:37:16Z,CONTRIBUTOR,True,12,1,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,8e9e513ca3318360dbfd70cbcd32442165542825,refining fallback for encoding truncated emoji string
+20,https://api.github.com/repos/mozilla/codemoji/pulls/214,214,Twitter share fix,"This patch handles the issue notified [here](https://github.com/MozillaFoundation/Advocacy/issues/67) that happens with some specific text combinations preventing the twitter popup proper behaviour.
+
+cc/ @cadecairos
+",abusedmedia,870788,2016-07-02T08:37:16Z,CONTRIBUTOR,True,12,1,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,86d820f1aa120cd562f529b96ef740b2b66d1be0,cleanup
+21,https://api.github.com/repos/mozilla/codemoji/pulls/214,214,Twitter share fix,"This patch handles the issue notified [here](https://github.com/MozillaFoundation/Advocacy/issues/67) that happens with some specific text combinations preventing the twitter popup proper behaviour.
+
+cc/ @cadecairos
+",abusedmedia,870788,2016-07-02T08:37:16Z,CONTRIBUTOR,True,12,1,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,7444620218d758e810a4ad066609ef26f0dc9d39,better way to handle the surrogate pair substring
+22,https://api.github.com/repos/mozilla/codemoji/pulls/211,211,Serve codemoji using express,"This is so we can deploy on Heroku
+",cadecairos,438003,2016-06-30T18:28:16Z,CONTRIBUTOR,True,145,5,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,3bd792bf49bea5b6aacb4ab9fa47a6c03088d7b0,Serve codemoji using expressjs
+23,https://api.github.com/repos/mozilla/codemoji/pulls/211,211,Serve codemoji using express,"This is so we can deploy on Heroku
+",cadecairos,438003,2016-06-30T18:28:16Z,CONTRIBUTOR,True,145,5,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,946062734616d63dd0a754dcd89ad021a85abe5f,Modify gulp build
+24,https://api.github.com/repos/mozilla/codemoji/pulls/211,211,Serve codemoji using express,"This is so we can deploy on Heroku
+",cadecairos,438003,2016-06-30T18:28:16Z,CONTRIBUTOR,True,145,5,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,8b6af07424f6f033c2f38f4659601a0e41f2d8dc,strict mode
+25,https://api.github.com/repos/mozilla/codemoji/pulls/211,211,Serve codemoji using express,"This is so we can deploy on Heroku
+",cadecairos,438003,2016-06-30T18:28:16Z,CONTRIBUTOR,True,145,5,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,d5bbde8200db2edac8ce9e3f0aa9652c15daa06a,Don't need ENV_DIR
+26,https://api.github.com/repos/mozilla/codemoji/pulls/207,207,Serve the twemoji SVGs vs using the twitter CDN,"Since we're rendering this content in the DOM it's safer to serve it using our infra VS using maxcdn.com
+
+this might not be necessary if we move codemoji off of mozilla.org
+
+@wex thoughts?
+",cadecairos,438003,2016-06-29T13:21:52Z,CONTRIBUTOR,False,879,3,877,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,351887bc09e7a6bc15adf7f21e859c21f715da4d,Add Twemoji SVG files
+27,https://api.github.com/repos/mozilla/codemoji/pulls/207,207,Serve the twemoji SVGs vs using the twitter CDN,"Since we're rendering this content in the DOM it's safer to serve it using our infra VS using maxcdn.com
+
+this might not be necessary if we move codemoji off of mozilla.org
+
+@wex thoughts?
+",cadecairos,438003,2016-06-29T13:21:52Z,CONTRIBUTOR,False,879,3,877,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,67b26823f03604ab26b993f1a30ff1c9bfd9429f,Serve the twemoji SVGs vs using the twitter CDN
+28,https://api.github.com/repos/mozilla/codemoji/pulls/206,206,Add CSP meta tag. S3 doesn't let us set a Content-Security-Policy hea…,"…der, so this is the only option
+",cadecairos,438003,2016-06-29T01:39:55Z,CONTRIBUTOR,True,1,0,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,ca171aebb574d4e57a7e3de66cc3f536a6a460a7,"Add CSP meta tag. S3 doesn't let us set a Content-Security-Policy header, so this is the only option"
+29,https://api.github.com/repos/mozilla/codemoji/pulls/203,203,Fix issue with `undefined` in encrypted text view,"# Issue
+
+An issue with view happened when user tried to encrypt characters which
+do not belong to defined charlist. If there were two or more such
+characters in a row, the 'undefined' word appeared in the view field.
+
+To reproduce the issue you can try to encrypt some cyrillic text. For
+example you can try this: ""Привіт, світе!"" (which means ""Hello world!"")
+
+Here is how it looks:
+![image](https://cloud.githubusercontent.com/assets/6533582/16433787/9cfcd694-3d94-11e6-9f19-082f9a790249.png)
+## Problem
+
+The problem is hidden here: https://github.com/mozilla/codemoji/blob/master/assets/js/ui.js#L151
+
+When you try to display a text with unknown characters like ""Привіт,
+світе!"" it will be transformed with twemoji function into something like
+this: `""Привіт<img ...> світе<img ...>""`. After regexp_replace and split
+occur that is transformed into the list of two elements: `[""Привіт<img ...>"", "" світе<img ...>""]`
+
+And when you try to access 3,4,5, and so forth element on line 155:
+https://github.com/mozilla/codemoji/blob/master/assets/js/ui.js#L155 it
+returnes undefined which is displayed later.
+
+P.S. I may make some mistakes about handling whitespaces, for example,
+but the problem in general is the same as I described.
+## Solution
+
+The solution is to find a better way to split that twemojified string
+into elements.
+# Commit
+
+This commit provides a solution to the described issue. As there is
+jQuery loaded into that module, I use it to split twemojified string
+into the list of DOM Elements. If the element is an Element node, I use
+its string representation to build the output. Otherwise I assume that
+it is a Text node. I split it character by character and add each
+character as separate character to splitted elements list.
+
+Then I use that list to build final result
+",anxolerd,6533582,2016-06-28T21:59:55Z,CONTRIBUTOR,True,25,3,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,8c1258b1b5c581dfe65c0b74c42341e2edfa90ac,"Fix issue with `undefined` in encrypted text view
+
+Issue
+=====
+An issue with view happened when user tried to encrypt characters which
+do not belong to defined charlist. If there were two or more such
+characters in a row, the 'undefined' word appeared in the view field.
+
+To reproduce the issue you can try to encrypt some cyrillic text. For
+example you can try this: ""Привіт, світе!"" (which means ""Hello world!"")
+
+Problem
+-------
+The problem is hidden here: https://github.com/mozilla/codemoji/blob/master/assets/js/ui.js#L151
+
+When you try to display a text with unknown characters like ""Привіт,
+світе!"" it will be transformed with twemoji function into something like
+this: ""Привіт<img ...> світе<img ...>"". After regexp_replace and split
+occurs that is transformed into the list of two elements:
+
+.. code::
+    [""Привіт<img ...>"", "" світе<img ...>""]
+
+And when you try to access 3,4,5, and so forth element on line 155:
+https://github.com/mozilla/codemoji/blob/master/assets/js/ui.js#L155 it
+returnes undefined which is displayed later.
+
+P.S. I may make some mistakes about handling whitespaces, for example,
+but the problem in general is the same as I described.
+
+Solution
+--------
+The solution is to find a better way to split that twemojified string
+into elements.
+
+Commit
+======
+This commit provides a solution to the described issue. As there is
+jQuery loaded into that module, I use it to split twemojified string
+into the list of DOM Elements. If the element is an Element node, I use
+its string representation to build the output. Otherwise I assume that
+it is a Text node. I split it character by character and add each
+character as separate character to splitted elements list.
+
+Than I use that list to build final result"
+30,https://api.github.com/repos/mozilla/codemoji/pulls/201,201,output text with $.text(),"@Pomax R?
+
+This is my proposed fix, but I'm having issues getting this running locally. still need to confirm it works.
+
+cc/ @brettgaylor @lovegushwa @simonwex 
+",cadecairos,438003,2016-06-28T18:38:17Z,CONTRIBUTOR,True,3,3,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,44c3668b937d4d26ac66d85b7aef3c3f3c219f2a,output text with $.text()
+31,https://api.github.com/repos/mozilla/codemoji/pulls/201,201,output text with $.text(),"@Pomax R?
+
+This is my proposed fix, but I'm having issues getting this running locally. still need to confirm it works.
+
+cc/ @brettgaylor @lovegushwa @simonwex 
+",cadecairos,438003,2016-06-28T18:38:17Z,CONTRIBUTOR,True,3,3,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,f58c3bd1061fde50ce4a42e2133f8d250b49a271,this is all we need
+32,https://api.github.com/repos/mozilla/codemoji/pulls/200,200,Fix analytics,"Here the fixes & adds about some tracking details discussed in call:
+- Learn more link in Share view is tracked in events as `learnmore` action
+- now there are `welcome` and `landing` virtual pageview tracked instead of a generic root path
+- 'decipher it' button is now tracked in `landing` category as `decipherit` action
+- the first emoji chosen in encrypt will be tracked as `key_first` action event then the following keys will be tracked as `key` action event.
+
+cc/ @ScottDowne @lovegushwa @cadecairos 
+",abusedmedia,870788,2016-06-10T15:25:15Z,CONTRIBUTOR,True,19,11,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,b5eafa2a2bcedac228d411d90e13e3be0cafb992,small fix in analytics tracks
+33,https://api.github.com/repos/mozilla/codemoji/pulls/200,200,Fix analytics,"Here the fixes & adds about some tracking details discussed in call:
+- Learn more link in Share view is tracked in events as `learnmore` action
+- now there are `welcome` and `landing` virtual pageview tracked instead of a generic root path
+- 'decipher it' button is now tracked in `landing` category as `decipherit` action
+- the first emoji chosen in encrypt will be tracked as `key_first` action event then the following keys will be tracked as `key` action event.
+
+cc/ @ScottDowne @lovegushwa @cadecairos 
+",abusedmedia,870788,2016-06-10T15:25:15Z,CONTRIBUTOR,True,19,11,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,73b659ff4b821b90af7c601b98f8d4aa13bfe9ab,merge with upstream
+34,https://api.github.com/repos/mozilla/codemoji/pulls/198,198,changing ga id,,ScottDowne,197334,2016-06-07T16:42:59Z,CONTRIBUTOR,True,1,1,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,f64c659b035b57f8306c8b80c2eaa283e7e45c04,changing ga id
+35,https://api.github.com/repos/mozilla/codemoji/pulls/197,197,ios7 compatibility fixes,"Hi @cadecairos 
+
+We've experienced some layout issues on Safari iOS7, this PR should fix that.
+
+cc/ @simonwex 
+",abusedmedia,870788,2016-05-31T13:59:01Z,CONTRIBUTOR,True,20,10,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,8b6d3d6500781ef0670e690a738b48920a613de7,some fix for ios7 compatibility
+36,https://api.github.com/repos/mozilla/codemoji/pulls/196,196,add animation on decrypt,"#194
+",marcoaimo,6996492,2016-05-12T09:35:52Z,NONE,True,196,12777,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,7c2ce3d9dee2835f06f6264dc96be81d413ee950,add animation on decrypt
+37,https://api.github.com/repos/mozilla/codemoji/pulls/196,196,add animation on decrypt,"#194
+",marcoaimo,6996492,2016-05-12T09:35:52Z,NONE,True,196,12777,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,deca0f774402c2dada4708e3dee579b7c4316dcb,fix animation loader barber in share section
+38,https://api.github.com/repos/mozilla/codemoji/pulls/195,195,Enhancement 194,,marcoaimo,6996492,2016-05-10T16:44:57Z,NONE,True,25524,55,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,ddcade9a8024e81b16adcb7cf5d39a754b804eec,minor fix alignment delete useless white space on save
+39,https://api.github.com/repos/mozilla/codemoji/pulls/195,195,Enhancement 194,,marcoaimo,6996492,2016-05-10T16:44:57Z,NONE,True,25524,55,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,8765c07ae194a3c638b40d5da65e248fc691f766,button got it now link last onboarding page
+40,https://api.github.com/repos/mozilla/codemoji/pulls/195,195,Enhancement 194,,marcoaimo,6996492,2016-05-10T16:44:57Z,NONE,True,25524,55,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,7a5d8f80cdfaffd69d57378bc7ae74052b31714c,update text last slide onboarding
+41,https://api.github.com/repos/mozilla/codemoji/pulls/195,195,Enhancement 194,,marcoaimo,6996492,2016-05-10T16:44:57Z,NONE,True,25524,55,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,4ddebd50a58403fc0a8b5a65c3ff9962ad9f6e16,redirect link to the last onboarding page after decrypt
+42,https://api.github.com/repos/mozilla/codemoji/pulls/195,195,Enhancement 194,,marcoaimo,6996492,2016-05-10T16:44:57Z,NONE,True,25524,55,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,5488df5c4e07d351f52aad96847a13daec337971,new text on encryption coackmarks
+43,https://api.github.com/repos/mozilla/codemoji/pulls/195,195,Enhancement 194,,marcoaimo,6996492,2016-05-10T16:44:57Z,NONE,True,25524,55,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,d8406c653250c2692e24799a6fed8579262d2617,new text coachmarks decrypt
+44,https://api.github.com/repos/mozilla/codemoji/pulls/195,195,Enhancement 194,,marcoaimo,6996492,2016-05-10T16:44:57Z,NONE,True,25524,55,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,ff9f13cff8a7c956ec91ede9fdbc20a05c01dfac,update text on twitter share
+45,https://api.github.com/repos/mozilla/codemoji/pulls/195,195,Enhancement 194,,marcoaimo,6996492,2016-05-10T16:44:57Z,NONE,True,25524,55,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,920491b42d7ed59cee17271fa4eff555de29f752,show wathsapp share button if mobile
+46,https://api.github.com/repos/mozilla/codemoji/pulls/195,195,Enhancement 194,,marcoaimo,6996492,2016-05-10T16:44:57Z,NONE,True,25524,55,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,6116e888cea00b103253b6eb4c7afcf72969ed50,hide whatsapp and sms share buttons if desktop with mobile layout
+47,https://api.github.com/repos/mozilla/codemoji/pulls/195,195,Enhancement 194,,marcoaimo,6996492,2016-05-10T16:44:57Z,NONE,True,25524,55,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,5e0237c7750063e8d053ed51615957b73ea87173,update footer
+48,https://api.github.com/repos/mozilla/codemoji/pulls/195,195,Enhancement 194,,marcoaimo,6996492,2016-05-10T16:44:57Z,NONE,True,25524,55,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,b41947fedbdd09139132f89d23a75e25556536b0,correction twitter text
+49,https://api.github.com/repos/mozilla/codemoji/pulls/195,195,Enhancement 194,,marcoaimo,6996492,2016-05-10T16:44:57Z,NONE,True,25524,55,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,e05b7fe86bc8b11f13a5800849d56e5f69ccab44,update footer_first_links class
+50,https://api.github.com/repos/mozilla/codemoji/pulls/195,195,Enhancement 194,,marcoaimo,6996492,2016-05-10T16:44:57Z,NONE,True,25524,55,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,6517bebe7359dffe2b378f940783f0374d5cfe1a,add learn more banner after share elements loaded
+51,https://api.github.com/repos/mozilla/codemoji/pulls/195,195,Enhancement 194,,marcoaimo,6996492,2016-05-10T16:44:57Z,NONE,True,25524,55,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,41b5dcc4edad4e16a13dacb7530d9620cd3e213b,add animation to share key on desktop layout
+52,https://api.github.com/repos/mozilla/codemoji/pulls/195,195,Enhancement 194,,marcoaimo,6996492,2016-05-10T16:44:57Z,NONE,True,25524,55,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,9c4b8a518f874fcb8cc32e893d2009e02a409759,add loader to wait share link
+53,https://api.github.com/repos/mozilla/codemoji/pulls/193,193,Logo enter animation,,marcoaimo,6996492,2016-05-04T11:11:13Z,NONE,True,17,10,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,9733ce56a756b66f6d4a37289224f77a0a2a3905,add ios7 fix
+54,https://api.github.com/repos/mozilla/codemoji/pulls/193,193,Logo enter animation,,marcoaimo,6996492,2016-05-04T11:11:13Z,NONE,True,17,10,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,f153797ab6b00737342c134ff4c354e7f74f880d,minor fix
+55,https://api.github.com/repos/mozilla/codemoji/pulls/193,193,Logo enter animation,,marcoaimo,6996492,2016-05-04T11:11:13Z,NONE,True,17,10,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,912c18ac6560ee5a6470a152fb7c95d87c4a7d32,minor fix
+56,https://api.github.com/repos/mozilla/codemoji/pulls/193,193,Logo enter animation,,marcoaimo,6996492,2016-05-04T11:11:13Z,NONE,True,17,10,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,de867d30798e080a8cd0529e21e2e2956a2d2c38,update logo svg
+57,https://api.github.com/repos/mozilla/codemoji/pulls/190,190,Various ui fixes,,marcoaimo,6996492,2016-05-02T11:20:19Z,NONE,True,40,17,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,84346541c8c5e1975975f1302c524f7502e8426a,closes #188: fix firefox location refresh on window resize
+58,https://api.github.com/repos/mozilla/codemoji/pulls/190,190,Various ui fixes,,marcoaimo,6996492,2016-05-02T11:20:19Z,NONE,True,40,17,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,b2c74218fcfa6033c52a6f011964dc9c62d8aae6,firefox - encrypt/decrypt emoji panel: fix emoji selection on click
+59,https://api.github.com/repos/mozilla/codemoji/pulls/190,190,Various ui fixes,,marcoaimo,6996492,2016-05-02T11:20:19Z,NONE,True,40,17,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,0846e571ebe4d53888dbf3ccf6a814abcca651f5,mobile - credits view: fix content scroll
+60,https://api.github.com/repos/mozilla/codemoji/pulls/190,190,Various ui fixes,,marcoaimo,6996492,2016-05-02T11:20:19Z,NONE,True,40,17,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,97705ef98ad7e918be87a20e8f05704f925ae8a9,mobile - share view: add loader for share elements and fix share modal height when share buttons are not yet loaded
+61,https://api.github.com/repos/mozilla/codemoji/pulls/190,190,Various ui fixes,,marcoaimo,6996492,2016-05-02T11:20:19Z,NONE,True,40,17,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,3fd7ac5219997bdbc3e18f59bba42cc975f5d778,fix: do not reset share modal in desktop view
+62,https://api.github.com/repos/mozilla/codemoji/pulls/190,190,Various ui fixes,,marcoaimo,6996492,2016-05-02T11:20:19Z,NONE,True,40,17,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,3272b8a88fff632aa42724f855168d5ca98bbf15,small copy edit
+63,https://api.github.com/repos/mozilla/codemoji/pulls/187,187,Logo enter animation,,marcoaimo,6996492,2016-04-27T14:25:29Z,NONE,True,517,10,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,2d82e40c8ec878d5f3e0b7a21dc0a2a909f7a589,logo animation draft
+64,https://api.github.com/repos/mozilla/codemoji/pulls/187,187,Logo enter animation,,marcoaimo,6996492,2016-04-27T14:25:29Z,NONE,True,517,10,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,7bc3d595fa8fcbe66618c438030d2551776ee771,progress on header animation
+65,https://api.github.com/repos/mozilla/codemoji/pulls/187,187,Logo enter animation,,marcoaimo,6996492,2016-04-27T14:25:29Z,NONE,True,517,10,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,60df6f1fbbdb19ecfdfa899dd34b8341e17c2538,update header logo animation
+66,https://api.github.com/repos/mozilla/codemoji/pulls/187,187,Logo enter animation,,marcoaimo,6996492,2016-04-27T14:25:29Z,NONE,True,517,10,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,f301681d53d104236e00f100af3686ed2d084816,small mods
+67,https://api.github.com/repos/mozilla/codemoji/pulls/185,185,Fix responsive height,"This pr should update responsive layout to react on window height resize and update the refresh of init objects when layout change from portrait to landscape (both in tablet and desktop).
+",marcoaimo,6996492,2016-04-26T17:36:53Z,NONE,True,135,35,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,9d69be61c1f114e6e63fb7629cf637094bb6d1c6,add css media query to adapt on height resize
+68,https://api.github.com/repos/mozilla/codemoji/pulls/185,185,Fix responsive height,"This pr should update responsive layout to react on window height resize and update the refresh of init objects when layout change from portrait to landscape (both in tablet and desktop).
+",marcoaimo,6996492,2016-04-26T17:36:53Z,NONE,True,135,35,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,b4f187d6c4b9e76a9a3f4e4551fabb52c9698f7e,adapt share page content on resize
+69,https://api.github.com/repos/mozilla/codemoji/pulls/185,185,Fix responsive height,"This pr should update responsive layout to react on window height resize and update the refresh of init objects when layout change from portrait to landscape (both in tablet and desktop).
+",marcoaimo,6996492,2016-04-26T17:36:53Z,NONE,True,135,35,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,0b9b2caecd5e77f1f0f3b8a5257c43376383a051,adapt landing page content on resize
+70,https://api.github.com/repos/mozilla/codemoji/pulls/185,185,Fix responsive height,"This pr should update responsive layout to react on window height resize and update the refresh of init objects when layout change from portrait to landscape (both in tablet and desktop).
+",marcoaimo,6996492,2016-04-26T17:36:53Z,NONE,True,135,35,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,d4e9bc76117c8a237fa20925e3a46f13d8c016b3,update handle orientation change to reload in desktop and tablet layouts
+71,https://api.github.com/repos/mozilla/codemoji/pulls/183,183,updating new logo version,"new logo version on 
+- landing
+- welcome
+- encryption
+- decryption
+- onboading
+",AmedeoSpagnolo,11834926,2016-04-21T16:19:01Z,CONTRIBUTOR,True,51621,28,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,34e1a2014d3b5397a896a215038d8b8e5a1052f0,updating new logo version
+72,https://api.github.com/repos/mozilla/codemoji/pulls/164,164,fix missing promise polyfill on IE,"Tested with BrowserStack
+
+Fix #163 
+",endorama,526307,2016-03-24T15:37:48Z,CONTRIBUTOR,True,233,1,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,38fdf9555d27d0b11f4a9dc511b8fd41c1e0b3f4,fix missing promise polyfill on IE
+73,https://api.github.com/repos/mozilla/codemoji/pulls/162,162,Add sms sharing,"Close #157, adding sms sharing funcionality
+
+The share button is still using the tumblr icons, @AmedeoSpagnolo could you take on with this?
+
+Also, please test it on iOS :)
+",endorama,526307,2016-03-23T14:59:56Z,CONTRIBUTOR,True,332,18,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,d72b53c041ec6596e0e1392001d493f6ab75902d,add setSeparator to Sharer
+74,https://api.github.com/repos/mozilla/codemoji/pulls/162,162,Add sms sharing,"Close #157, adding sms sharing funcionality
+
+The share button is still using the tumblr icons, @AmedeoSpagnolo could you take on with this?
+
+Also, please test it on iOS :)
+",endorama,526307,2016-03-23T14:59:56Z,CONTRIBUTOR,True,332,18,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,a954d1dfbf0ff62b7da5be15e56159a7f9deba1d,add bowser dep
+75,https://api.github.com/repos/mozilla/codemoji/pulls/162,162,Add sms sharing,"Close #157, adding sms sharing funcionality
+
+The share button is still using the tumblr icons, @AmedeoSpagnolo could you take on with this?
+
+Also, please test it on iOS :)
+",endorama,526307,2016-03-23T14:59:56Z,CONTRIBUTOR,True,332,18,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,0c715f7ca36e923e20355be38fc81bf166be8d0e,add sms sharer with ios differentiation
+76,https://api.github.com/repos/mozilla/codemoji/pulls/162,162,Add sms sharing,"Close #157, adding sms sharing funcionality
+
+The share button is still using the tumblr icons, @AmedeoSpagnolo could you take on with this?
+
+Also, please test it on iOS :)
+",endorama,526307,2016-03-23T14:59:56Z,CONTRIBUTOR,True,332,18,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,0a5e98b0c62906ed873a8177724532ad30b5aeda,remove tumblr sharer
+77,https://api.github.com/repos/mozilla/codemoji/pulls/162,162,Add sms sharing,"Close #157, adding sms sharing funcionality
+
+The share button is still using the tumblr icons, @AmedeoSpagnolo could you take on with this?
+
+Also, please test it on iOS :)
+",endorama,526307,2016-03-23T14:59:56Z,CONTRIBUTOR,True,332,18,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,6dd342bbbac163cda669c58108313abdd526f35d,try new ios separator
+78,https://api.github.com/repos/mozilla/codemoji/pulls/162,162,Add sms sharing,"Close #157, adding sms sharing funcionality
+
+The share button is still using the tumblr icons, @AmedeoSpagnolo could you take on with this?
+
+Also, please test it on iOS :)
+",endorama,526307,2016-03-23T14:59:56Z,CONTRIBUTOR,True,332,18,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,1a4d29a833f98c5a2ecd5f8a82a29b68aac16f20,fix #156; differentiate share button mobile vs desktop
+79,https://api.github.com/repos/mozilla/codemoji/pulls/161,161,mozilla newsletter landing logic first draft,"#115
+",marcoaimo,6996492,2016-03-23T14:29:22Z,NONE,True,10,3,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,34ed6578cd591799d17ef1c33b64b5d34569ca3e,mozilla newsletter landing logic first draft
+80,https://api.github.com/repos/mozilla/codemoji/pulls/160,160,Fix offending emoji,"Fix #153, replacing offending emoji with a working one
+",endorama,526307,2016-03-23T14:28:43Z,CONTRIBUTOR,True,5,5,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,03791a0b409b1a05196e2741992fe7a79a426b35,"remove 128545, add 128190"
+81,https://api.github.com/repos/mozilla/codemoji/pulls/160,160,Fix offending emoji,"Fix #153, replacing offending emoji with a working one
+",endorama,526307,2016-03-23T14:28:43Z,CONTRIBUTOR,True,5,5,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,91f63a17b299ba01988cc48364842808946d3f6b,rebuild emojis list
+82,https://api.github.com/repos/mozilla/codemoji/pulls/160,160,Fix offending emoji,"Fix #153, replacing offending emoji with a working one
+",endorama,526307,2016-03-23T14:28:43Z,CONTRIBUTOR,True,5,5,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,6b59aa8aff22428c3a0fa93ec5899ba26864dbec,fix #153; replace offending emoji
+83,https://api.github.com/repos/mozilla/codemoji/pulls/159,159,Encryption v2,"Different version of Cryptoloji algorithm: this use a classic linear Caesar cipher.
+In this case the emoji output is a bit more ""linear"", to make it more various we should shuffle the emoji list.
+",marcoaimo,6996492,2016-03-23T11:00:08Z,NONE,False,109,149,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,a5fecbb5aa0aa89a0b7778b5883886e377a00ed2,new draft encode
+84,https://api.github.com/repos/mozilla/codemoji/pulls/159,159,Encryption v2,"Different version of Cryptoloji algorithm: this use a classic linear Caesar cipher.
+In this case the emoji output is a bit more ""linear"", to make it more various we should shuffle the emoji list.
+",marcoaimo,6996492,2016-03-23T11:00:08Z,NONE,False,109,149,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,5f2f7a9ad349c87ed773c912aec0a7d9f8d23864,add decoding v2
+85,https://api.github.com/repos/mozilla/codemoji/pulls/159,159,Encryption v2,"Different version of Cryptoloji algorithm: this use a classic linear Caesar cipher.
+In this case the emoji output is a bit more ""linear"", to make it more various we should shuffle the emoji list.
+",marcoaimo,6996492,2016-03-23T11:00:08Z,NONE,False,109,149,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,0371d15b965d78b6d2935b41a0bb71e2b70355b4,clean up
+86,https://api.github.com/repos/mozilla/codemoji/pulls/159,159,Encryption v2,"Different version of Cryptoloji algorithm: this use a classic linear Caesar cipher.
+In this case the emoji output is a bit more ""linear"", to make it more various we should shuffle the emoji list.
+",marcoaimo,6996492,2016-03-23T11:00:08Z,NONE,False,109,149,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,c703fb4b63918e9dcc8c9451c30427d608dceb23,minor
+87,https://api.github.com/repos/mozilla/codemoji/pulls/159,159,Encryption v2,"Different version of Cryptoloji algorithm: this use a classic linear Caesar cipher.
+In this case the emoji output is a bit more ""linear"", to make it more various we should shuffle the emoji list.
+",marcoaimo,6996492,2016-03-23T11:00:08Z,NONE,False,109,149,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,9c75dd6a1227b6447f72158b74b6ccaf14c9b964,reove caesar cypher dep
+88,https://api.github.com/repos/mozilla/codemoji/pulls/159,159,Encryption v2,"Different version of Cryptoloji algorithm: this use a classic linear Caesar cipher.
+In this case the emoji output is a bit more ""linear"", to make it more various we should shuffle the emoji list.
+",marcoaimo,6996492,2016-03-23T11:00:08Z,NONE,False,109,149,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,dcc8aa7f69852a88b0f43fe9f4089429deca64b7,update commonjs
+89,https://api.github.com/repos/mozilla/codemoji/pulls/159,159,Encryption v2,"Different version of Cryptoloji algorithm: this use a classic linear Caesar cipher.
+In this case the emoji output is a bit more ""linear"", to make it more various we should shuffle the emoji list.
+",marcoaimo,6996492,2016-03-23T11:00:08Z,NONE,False,109,149,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,46d2018f2c37673f72c2314d4ccdda540eabe8a6,add shuffle function instead of lodash removed shuffle
+90,https://api.github.com/repos/mozilla/codemoji/pulls/154,154,Fix 145,,marcoaimo,6996492,2016-03-21T17:22:07Z,NONE,True,135,41,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,c2343ff8cf4a9a84f3736c0654941f9331fde054,add tooltip fallback to copy to clipboard
+91,https://api.github.com/repos/mozilla/codemoji/pulls/154,154,Fix 145,,marcoaimo,6996492,2016-03-21T17:22:07Z,NONE,True,135,41,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,9125a83eab3f1b5990326d09acca1b1f8e101998,closes #145. Add ios fallback to cpoy link and key
+92,https://api.github.com/repos/mozilla/codemoji/pulls/154,154,Fix 145,,marcoaimo,6996492,2016-03-21T17:22:07Z,NONE,True,135,41,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,560e15461c44c3fef4c7083b12f26c22d9b76887,minor fix
+93,https://api.github.com/repos/mozilla/codemoji/pulls/154,154,Fix 145,,marcoaimo,6996492,2016-03-21T17:22:07Z,NONE,True,135,41,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,ecde4d99f6911582884e02a06fe9b471ca4f24c9,hide help button on header in share view
+94,https://api.github.com/repos/mozilla/codemoji/pulls/154,154,Fix 145,,marcoaimo,6996492,2016-03-21T17:22:07Z,NONE,True,135,41,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,e16730ba08f9707731cb9760bd7ff6afc03d4b92,on desktop fix share modal as footer
+95,https://api.github.com/repos/mozilla/codemoji/pulls/154,154,Fix 145,,marcoaimo,6996492,2016-03-21T17:22:07Z,NONE,True,135,41,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,ab0bd6a27b8c079f1cbea61c72fe7e11fd82d09b,minor fix
+96,https://api.github.com/repos/mozilla/codemoji/pulls/154,154,Fix 145,,marcoaimo,6996492,2016-03-21T17:22:07Z,NONE,True,135,41,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,e6a158a031a71d65cfbb00ba5dbfb627ff8ac785,minor fix
+97,https://api.github.com/repos/mozilla/codemoji/pulls/154,154,Fix 145,,marcoaimo,6996492,2016-03-21T17:22:07Z,NONE,True,135,41,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,33e112175e53e00303678b32100157edaaafb768,minor on copy
+98,https://api.github.com/repos/mozilla/codemoji/pulls/152,152,closes #133,,marcoaimo,6996492,2016-03-21T10:41:41Z,NONE,True,4,1,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,08d8f9121a35b58577ad1695d9dc6c63162cf192,closes #133
+99,https://api.github.com/repos/mozilla/codemoji/pulls/151,151,closes #137. ,"Remove autoscroll on pick a key from slider, fix multiple encrypt/decrypt calls bug
+",marcoaimo,6996492,2016-03-21T10:29:18Z,NONE,True,53,32,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,88e6437b94fdc342d6f169b34719f4dd8f881be3,"closes #137. Remove autoscroll on pick a key from slider, fix multiple encrypt/decrypt calls bug"
+100,https://api.github.com/repos/mozilla/codemoji/pulls/146,146,Boarding,,abusedmedia,870788,2016-03-19T12:16:42Z,CONTRIBUTOR,True,3961,8847,18,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,4e37af8ff0846b07e8a19130824231ecd67cacc5,wip
+101,https://api.github.com/repos/mozilla/codemoji/pulls/146,146,Boarding,,abusedmedia,870788,2016-03-19T12:16:42Z,CONTRIBUTOR,True,3961,8847,18,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,d4a497fcc031199d1faa203c829a460809806fd8,boarding done
+102,https://api.github.com/repos/mozilla/codemoji/pulls/130,130,New onboarding animations,,abusedmedia,870788,2016-03-17T17:36:23Z,CONTRIBUTOR,True,10992,5588,20,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,e9c53eb3e40ecbf75a4c164f873771b56763135e,new onboarding animations
+103,https://api.github.com/repos/mozilla/codemoji/pulls/130,130,New onboarding animations,,abusedmedia,870788,2016-03-17T17:36:23Z,CONTRIBUTOR,True,10992,5588,20,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,4b4ce45b6edae7fea2ae3b5857946ffb89eee591,fixed some issues on other browsers
+104,https://api.github.com/repos/mozilla/codemoji/pulls/130,130,New onboarding animations,,abusedmedia,870788,2016-03-17T17:36:23Z,CONTRIBUTOR,True,10992,5588,20,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,9e1717e7a0492f8ddfcbfcd1d0586ef4ef25058c,minor cleanup
+105,https://api.github.com/repos/mozilla/codemoji/pulls/129,129,minor mods,,abusedmedia,870788,2016-03-10T18:07:13Z,CONTRIBUTOR,True,9,2,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,3c1ebe99b3d96fdffdd2551be0e195f71726a6cb,minor mods
+106,https://api.github.com/repos/mozilla/codemoji/pulls/128,128,Fix animations timing,,terminalia,4320125,2016-03-10T17:38:33Z,NONE,True,284,172,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,ff6e109db39104d2b46c94fc8908c3995e044876,Add fade out to Slide 1
+107,https://api.github.com/repos/mozilla/codemoji/pulls/128,128,Fix animations timing,,terminalia,4320125,2016-03-10T17:38:33Z,NONE,True,284,172,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,a3ec37505a7ec836ff23f270261c0c2979fcee0f,Add fade out to Slide 2
+108,https://api.github.com/repos/mozilla/codemoji/pulls/128,128,Fix animations timing,,terminalia,4320125,2016-03-10T17:38:33Z,NONE,True,284,172,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,5ad188c111eb273c701f8ac73d74909737413d8a,Add fade in Slide 3
+109,https://api.github.com/repos/mozilla/codemoji/pulls/128,128,Fix animations timing,,terminalia,4320125,2016-03-10T17:38:33Z,NONE,True,284,172,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,1e2b0a2aee8b9145976fc22467c61eb53a998c8f,Fix Slide 3 stagger timing
+110,https://api.github.com/repos/mozilla/codemoji/pulls/128,128,Fix animations timing,,terminalia,4320125,2016-03-10T17:38:33Z,NONE,True,284,172,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,012bf558198da2f859d5ef433ca60ed745060032,Fix playground animtion timing in Slide 4
+111,https://api.github.com/repos/mozilla/codemoji/pulls/128,128,Fix animations timing,,terminalia,4320125,2016-03-10T17:38:33Z,NONE,True,284,172,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,ef51043f88981d65b34862d6341d499b849369fe,Add fade out Slide 4
+112,https://api.github.com/repos/mozilla/codemoji/pulls/128,128,Fix animations timing,,terminalia,4320125,2016-03-10T17:38:33Z,NONE,True,284,172,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,bbf26dda7fbe3d7fb130f79549daada0874e8848,Fix slide07 svg text group
+113,https://api.github.com/repos/mozilla/codemoji/pulls/128,128,Fix animations timing,,terminalia,4320125,2016-03-10T17:38:33Z,NONE,True,284,172,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,2d3d1da45a550a01b0896421c79eda4b5d886866,Add fade out slide 6 and fade in slide 7
+114,https://api.github.com/repos/mozilla/codemoji/pulls/128,128,Fix animations timing,,terminalia,4320125,2016-03-10T17:38:33Z,NONE,True,284,172,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,fd8ee6163f93a35eb3da95ce9d6945b80ea907ed,Set initial stateman step to 1
+115,https://api.github.com/repos/mozilla/codemoji/pulls/128,128,Fix animations timing,,terminalia,4320125,2016-03-10T17:38:33Z,NONE,True,284,172,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,2a51a91459b036858c1640749309d13a860443eb,Fix button next click when invisible
+116,https://api.github.com/repos/mozilla/codemoji/pulls/128,128,Fix animations timing,,terminalia,4320125,2016-03-10T17:38:33Z,NONE,True,284,172,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,2e23bc777037a86814b31881000f94b4cea2f636,Remove unusued function
+117,https://api.github.com/repos/mozilla/codemoji/pulls/128,128,Fix animations timing,,terminalia,4320125,2016-03-10T17:38:33Z,NONE,True,284,172,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,9de0f7de30d677ffd18eab12b1f0dbaaa85a958e,Fix next button display block
+118,https://api.github.com/repos/mozilla/codemoji/pulls/128,128,Fix animations timing,,terminalia,4320125,2016-03-10T17:38:33Z,NONE,True,284,172,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,692bb74c9149f1522ddcae6c3cadc4edf61251c4,Fix go for it button
+119,https://api.github.com/repos/mozilla/codemoji/pulls/127,127,Add copy call to action in share view,"Adds a button to copy share link in share view
+
+Closes #126 
+",endorama,526307,2016-03-10T14:50:19Z,CONTRIBUTOR,True,71,51,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,17e71781235a3a7f803a322382c87b8a0d36fe0b,convert some px to rems
+120,https://api.github.com/repos/mozilla/codemoji/pulls/127,127,Add copy call to action in share view,"Adds a button to copy share link in share view
+
+Closes #126 
+",endorama,526307,2016-03-10T14:50:19Z,CONTRIBUTOR,True,71,51,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,456db6e43975e0474de6ea145d848800d03ba2ee,"remove Api.getMessage, add Api.getShortenedLink"
+121,https://api.github.com/repos/mozilla/codemoji/pulls/127,127,Add copy call to action in share view,"Adds a button to copy share link in share view
+
+Closes #126 
+",endorama,526307,2016-03-10T14:50:19Z,CONTRIBUTOR,True,71,51,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,ce3b28df0569d3089132db1a6ce66a451aa62207,close #126. Add copy button for share link
+122,https://api.github.com/repos/mozilla/codemoji/pulls/127,127,Add copy call to action in share view,"Adds a button to copy share link in share view
+
+Closes #126 
+",endorama,526307,2016-03-10T14:50:19Z,CONTRIBUTOR,True,71,51,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,538f900520411fab04dd4782cae07d09d6379654,restored url plain
+123,https://api.github.com/repos/mozilla/codemoji/pulls/125,125,Fix animations,"Complete onboarding animation refactoring + animation timing fixes
+",endorama,526307,2016-03-09T18:10:16Z,CONTRIBUTOR,True,264,322,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,695929ab1056611de92fff7549a7339ad8fbc0c0,Fix animation slide 3
+124,https://api.github.com/repos/mozilla/codemoji/pulls/125,125,Fix animations,"Complete onboarding animation refactoring + animation timing fixes
+",endorama,526307,2016-03-09T18:10:16Z,CONTRIBUTOR,True,264,322,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,cc0b048b35df22d77ef8ac0707d297dcc54d683b,Fix animation slide 4
+125,https://api.github.com/repos/mozilla/codemoji/pulls/125,125,Fix animations,"Complete onboarding animation refactoring + animation timing fixes
+",endorama,526307,2016-03-09T18:10:16Z,CONTRIBUTOR,True,264,322,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,78204646c1b4414a476ca7c34eaf770bad6fe8d5,Fix animation slide 5
+126,https://api.github.com/repos/mozilla/codemoji/pulls/125,125,Fix animations,"Complete onboarding animation refactoring + animation timing fixes
+",endorama,526307,2016-03-09T18:10:16Z,CONTRIBUTOR,True,264,322,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,6ec8022f868e0a8b4742dbd33ab1435c2ff08b4f,Fix nextbutton animation slide 4
+127,https://api.github.com/repos/mozilla/codemoji/pulls/125,125,Fix animations,"Complete onboarding animation refactoring + animation timing fixes
+",endorama,526307,2016-03-09T18:10:16Z,CONTRIBUTOR,True,264,322,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,81fec7bf746de2908aee516fae46dc4b18175481,Fix netbutton animation slide 5
+128,https://api.github.com/repos/mozilla/codemoji/pulls/125,125,Fix animations,"Complete onboarding animation refactoring + animation timing fixes
+",endorama,526307,2016-03-09T18:10:16Z,CONTRIBUTOR,True,264,322,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,7a24eca82e62c047df79d9584082d7ed70ed946d,Fix animation slide 6
+129,https://api.github.com/repos/mozilla/codemoji/pulls/125,125,Fix animations,"Complete onboarding animation refactoring + animation timing fixes
+",endorama,526307,2016-03-09T18:10:16Z,CONTRIBUTOR,True,264,322,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,db5a9c1215740bab8e2d3a6739a9f56acbbfaa0c,Fix animation slide 1
+130,https://api.github.com/repos/mozilla/codemoji/pulls/125,125,Fix animations,"Complete onboarding animation refactoring + animation timing fixes
+",endorama,526307,2016-03-09T18:10:16Z,CONTRIBUTOR,True,264,322,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,ebb594a7fb3ac2a22c61d721021b4877a15bd3ff,Fix animation slide 2
+131,https://api.github.com/repos/mozilla/codemoji/pulls/125,125,Fix animations,"Complete onboarding animation refactoring + animation timing fixes
+",endorama,526307,2016-03-09T18:10:16Z,CONTRIBUTOR,True,264,322,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,fbcd926d33ae63668805b9c5ed15829a646393e3,Fix animation slide 3 timing show onboarding text
+132,https://api.github.com/repos/mozilla/codemoji/pulls/125,125,Fix animations,"Complete onboarding animation refactoring + animation timing fixes
+",endorama,526307,2016-03-09T18:10:16Z,CONTRIBUTOR,True,264,322,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,b3354afa3cb8fbc1f83434188f2c9dc41c63a7e6,refactoring onboarding
+133,https://api.github.com/repos/mozilla/codemoji/pulls/125,125,Fix animations,"Complete onboarding animation refactoring + animation timing fixes
+",endorama,526307,2016-03-09T18:10:16Z,CONTRIBUTOR,True,264,322,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,dd348e42b59f927054ab6bc3cdb875bea0a9c1f4,fixes #122. Onboarding element appearing in other states
+134,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,d009fa28df6f230dafab52f5bc51ce90f99c2b13,add logic slides
+135,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,d50d03aa314a5e54ae92f7baf0a6e562704c2681,Fix minor bug in ui.js
+136,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,0b72bfdaff7d128398a31e49ef4c2a94ef5eb783,Fix animation in slide 4 and 5
+137,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,0e34532070396640ccc81ad2f865b5bdf0c82499,Add text animation in slide 3
+138,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,1cb4fffea4c735cdbce555a2292ec24584c25f0b,Add text animation in slide 3 complete
+139,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,d13e8327134030c8faee9a950ac82c71618afca2,Add id to text bacgkround in slide03.svg
+140,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,0a9c435d9e943433ce78bd2e8965b6a496883ab3,Add text background animation in slide 3
+141,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,acda1102e2a6192086e7091723fff35e5509c68f,add error section 404
+142,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,76daa98e48418e565c06c0703c0c55c72184faf2,update onboarding logic
+143,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,49c5efd0b8de921f678f0a309801c844b41a6f63,delete slide onboarding drag and transitions
+144,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,6940d7c5e7353afb04e50922e2e23a799f2ffc9e,Update animation in slide 4
+145,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,f63159fa6bbb1ddd2c4d8708a649196feb15099e,Fix animation in slide 5
+146,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,afa121780c47399619aa2cfd420a6338042e6bf7,update svg for animation
+147,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,4df7823803fe7da811071657f53575b48ae2a429,Fix slide 3 animation
+148,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,1ae0ed0fef66a61950147da547d50ad1238e1fbb,Update slide04 animation
+149,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,1070ef4b953ade9fba1b85405567a6c6f1aca945,Fix slide 04 animation
+150,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,206344c89ac4c157c889042a7b23ece6abd1b682,Add slide 5 animation
+151,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,6c524d74b6a16700094eaf490108bd6063da899c,fix logic loading svgs
+152,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,b4d08c80a9dba67d7ea98df97d3f74fbcf6c51a6,refactoring logic svg loading and onboarding section
+153,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,77ed6de49fa974d9cec4e70b43f2981d0643cdb7,Update onboarding animation
+154,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,0a77732b0a5ad355ead14205c357efaded07b89e,refactoring logic onboarding until slide 3
+155,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,63eb873afdd2a8ca3f6c6c5bd032b3b53fa75386,fix text in second onboarding slide
+156,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,a7e369cb496c847fa1ce34891d2b800964a7827d,Add slide07 svg
+157,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,8f8df888cd274a49d131baa992cfcfb4aff52a61,Add animation 6 and 7
+158,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,d3b52651e85f73df60d4b5abd395700da9b3ba25,Fix svg loading logic
+159,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,dad3c629c60e9072da1b8ecec5ca992fef0f97b8,align and fix logic
+160,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,8f2e723a2bd2794c53194644a51d2dfd22893f53,new svg def
+161,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,9b35c8b93714e87ba94fddab8b66dadf70395afd,Update first 3 onboarding animations
+162,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,e9c5e0eecfc3c8504f5222772892602f2362e906,Add slide 4 playground
+163,https://api.github.com/repos/mozilla/codemoji/pulls/117,117,Transition slides onboarding,,terminalia,4320125,2016-03-08T17:20:02Z,NONE,True,7873,1421,19,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,3ebb5499b17d397f3edbc50c485c86c0810e7791,Add playground animation
+164,https://api.github.com/repos/mozilla/codemoji/pulls/114,114,Hard refresh on orientation change,"To properly satisfy #107, we need a complete page refresh.
+
+Currently the JS logic that handle visualization and animations are too tigh coupled with orientation assumption to properly switch without issues ( or are too low coupled and distinct ).
+
+Thanks to the fact that we can access each state separately thanks to url fragments, we decided to opt in for a full page refresh when a orientation change is detected. Also we do not expect the users to change orientation multiple times for fun, so a full page refresh is a minor drawback for a fully-working experience
+",endorama,526307,2016-03-08T12:27:22Z,CONTRIBUTOR,True,13,4,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,04b5df2aea5d8000e0a5500634af7cd11237545f,set display block on keyslider_plus with css
+165,https://api.github.com/repos/mozilla/codemoji/pulls/114,114,Hard refresh on orientation change,"To properly satisfy #107, we need a complete page refresh.
+
+Currently the JS logic that handle visualization and animations are too tigh coupled with orientation assumption to properly switch without issues ( or are too low coupled and distinct ).
+
+Thanks to the fact that we can access each state separately thanks to url fragments, we decided to opt in for a full page refresh when a orientation change is detected. Also we do not expect the users to change orientation multiple times for fun, so a full page refresh is a minor drawback for a fully-working experience
+",endorama,526307,2016-03-08T12:27:22Z,CONTRIBUTOR,True,13,4,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,388eeeb49e7faa711d805c4e887a81aadfcfae36,reset keypanel width after animation
+166,https://api.github.com/repos/mozilla/codemoji/pulls/114,114,Hard refresh on orientation change,"To properly satisfy #107, we need a complete page refresh.
+
+Currently the JS logic that handle visualization and animations are too tigh coupled with orientation assumption to properly switch without issues ( or are too low coupled and distinct ).
+
+Thanks to the fact that we can access each state separately thanks to url fragments, we decided to opt in for a full page refresh when a orientation change is detected. Also we do not expect the users to change orientation multiple times for fun, so a full page refresh is a minor drawback for a fully-working experience
+",endorama,526307,2016-03-08T12:27:22Z,CONTRIBUTOR,True,13,4,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,21e5ed27384e88ffd34950713e3814a5680db569,hide keyslider on desktop
+167,https://api.github.com/repos/mozilla/codemoji/pulls/114,114,Hard refresh on orientation change,"To properly satisfy #107, we need a complete page refresh.
+
+Currently the JS logic that handle visualization and animations are too tigh coupled with orientation assumption to properly switch without issues ( or are too low coupled and distinct ).
+
+Thanks to the fact that we can access each state separately thanks to url fragments, we decided to opt in for a full page refresh when a orientation change is detected. Also we do not expect the users to change orientation multiple times for fun, so a full page refresh is a minor drawback for a fully-working experience
+",endorama,526307,2016-03-08T12:27:22Z,CONTRIBUTOR,True,13,4,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,e85cf867b71ef05a3412098d5012b7d8c79da893,fix #107. Hard refresh on orientation change
+168,https://api.github.com/repos/mozilla/codemoji/pulls/113,113,insert toTwemoji img key,,marcoaimo,6996492,2016-03-08T10:57:49Z,NONE,True,30,25,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,ac5c69d649decb5a1e4704d4b0179045e1c0920f,insert toTwemoji img key
+169,https://api.github.com/repos/mozilla/codemoji/pulls/113,113,insert toTwemoji img key,,marcoaimo,6996492,2016-03-08T10:57:49Z,NONE,True,30,25,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,8b9615337cb1e6a8c1a3f220ca84d29aecdced3a,fix feedback css
+170,https://api.github.com/repos/mozilla/codemoji/pulls/113,113,insert toTwemoji img key,,marcoaimo,6996492,2016-03-08T10:57:49Z,NONE,True,30,25,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,d8832235e7fceeaa30d955f3e33f903c3075e844,add copy to clipboard fallback
+171,https://api.github.com/repos/mozilla/codemoji/pulls/112,112,Styling sliding panel,"Some styles for sliding panel required in #91
+",endorama,526307,2016-03-08T10:06:46Z,CONTRIBUTOR,True,29,0,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,02bc0f863dcc85c6b367ba03b0bd44fa6612a9e6,add box shadow to help panels
+172,https://api.github.com/repos/mozilla/codemoji/pulls/112,112,Styling sliding panel,"Some styles for sliding panel required in #91
+",endorama,526307,2016-03-08T10:06:46Z,CONTRIBUTOR,True,29,0,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,e112baa488ac900871456fa6f2faaac09c77e239,closes #91. Change color to section titles on coachmarks open
+173,https://api.github.com/repos/mozilla/codemoji/pulls/110,110,Longer emoji set for keyslider,"closes #82
+",endorama,526307,2016-03-07T17:27:44Z,CONTRIBUTOR,True,20,3,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,f154bffc0fac130756ca71b49d6a2de47727bf11,implement keyslider specific emoji set
+174,https://api.github.com/repos/mozilla/codemoji/pulls/110,110,Longer emoji set for keyslider,"closes #82
+",endorama,526307,2016-03-07T17:27:44Z,CONTRIBUTOR,True,20,3,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,0444b48b3798ed48d1587b000ff2a11733c3f0af,fixes #82. Longer keyslider emoji set
+175,https://api.github.com/repos/mozilla/codemoji/pulls/109,109,Not found page for missing or not found messages,"Closes #79
+",marcoaimo,6996492,2016-03-07T15:08:31Z,NONE,True,594,1,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,1d1e05b1ad3eaccfd6c930f0c60d20dbd54b5295,404 page first draft
+176,https://api.github.com/repos/mozilla/codemoji/pulls/109,109,Not found page for missing or not found messages,"Closes #79
+",marcoaimo,6996492,2016-03-07T15:08:31Z,NONE,True,594,1,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,ae33da5774bef34641635ca68136bad9fe2ecdc7,update 404 not found state
+177,https://api.github.com/repos/mozilla/codemoji/pulls/108,108,Implement URL persistence,"This PR implementes a backendless backend using URL as persistent storage.
+
+It encode a hash into the URL for later retrieval.
+The obtained URL is the one to share for the end user.
+There is no URL shortening up to now.
+
+To test this:
+- encrypt a message
+- copy the link from share view
+- paste it in the browser
+- go to decrypt and decrypt message
+
+Everything should work fine.
+",endorama,526307,2016-03-07T14:05:56Z,CONTRIBUTOR,True,607,2006,13,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,6b6b4481c3de8eeabfd2566ae0cfb2b62adc27e1,add youarei dep
+178,https://api.github.com/repos/mozilla/codemoji/pulls/108,108,Implement URL persistence,"This PR implementes a backendless backend using URL as persistent storage.
+
+It encode a hash into the URL for later retrieval.
+The obtained URL is the one to share for the end user.
+There is no URL shortening up to now.
+
+To test this:
+- encrypt a message
+- copy the link from share view
+- paste it in the browser
+- go to decrypt and decrypt message
+
+Everything should work fine.
+",endorama,526307,2016-03-07T14:05:56Z,CONTRIBUTOR,True,607,2006,13,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,130399d34816539c7b4c946961103d05bcf8741c,add storage implementation
+179,https://api.github.com/repos/mozilla/codemoji/pulls/108,108,Implement URL persistence,"This PR implementes a backendless backend using URL as persistent storage.
+
+It encode a hash into the URL for later retrieval.
+The obtained URL is the one to share for the end user.
+There is no URL shortening up to now.
+
+To test this:
+- encrypt a message
+- copy the link from share view
+- paste it in the browser
+- go to decrypt and decrypt message
+
+Everything should work fine.
+",endorama,526307,2016-03-07T14:05:56Z,CONTRIBUTOR,True,607,2006,13,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,a8812ebb7349b4832d4ba8014c9c64919b9aa187,init storage on app load
+180,https://api.github.com/repos/mozilla/codemoji/pulls/108,108,Implement URL persistence,"This PR implementes a backendless backend using URL as persistent storage.
+
+It encode a hash into the URL for later retrieval.
+The obtained URL is the one to share for the end user.
+There is no URL shortening up to now.
+
+To test this:
+- encrypt a message
+- copy the link from share view
+- paste it in the browser
+- go to decrypt and decrypt message
+
+Everything should work fine.
+",endorama,526307,2016-03-07T14:05:56Z,CONTRIBUTOR,True,607,2006,13,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,288e67728ee5dcaaf8df94dbea0bf371e79cb3c9,implement storage persist and link creation during share
+181,https://api.github.com/repos/mozilla/codemoji/pulls/108,108,Implement URL persistence,"This PR implementes a backendless backend using URL as persistent storage.
+
+It encode a hash into the URL for later retrieval.
+The obtained URL is the one to share for the end user.
+There is no URL shortening up to now.
+
+To test this:
+- encrypt a message
+- copy the link from share view
+- paste it in the browser
+- go to decrypt and decrypt message
+
+Everything should work fine.
+",endorama,526307,2016-03-07T14:05:56Z,CONTRIBUTOR,True,607,2006,13,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,1d8bdac61e957160304d398da8f13e45f81a2d66,cleanup share state
+182,https://api.github.com/repos/mozilla/codemoji/pulls/108,108,Implement URL persistence,"This PR implementes a backendless backend using URL as persistent storage.
+
+It encode a hash into the URL for later retrieval.
+The obtained URL is the one to share for the end user.
+There is no URL shortening up to now.
+
+To test this:
+- encrypt a message
+- copy the link from share view
+- paste it in the browser
+- go to decrypt and decrypt message
+
+Everything should work fine.
+",endorama,526307,2016-03-07T14:05:56Z,CONTRIBUTOR,True,607,2006,13,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,7b7adeb29c8d3f757c16537b95807e605a274f89,fill message in landing view
+183,https://api.github.com/repos/mozilla/codemoji/pulls/108,108,Implement URL persistence,"This PR implementes a backendless backend using URL as persistent storage.
+
+It encode a hash into the URL for later retrieval.
+The obtained URL is the one to share for the end user.
+There is no URL shortening up to now.
+
+To test this:
+- encrypt a message
+- copy the link from share view
+- paste it in the browser
+- go to decrypt and decrypt message
+
+Everything should work fine.
+",endorama,526307,2016-03-07T14:05:56Z,CONTRIBUTOR,True,607,2006,13,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,c520bc2b2694b411ddbfa876b3ca4aa6a302348c,redirect to 404 if message is not found when entering landing state
+184,https://api.github.com/repos/mozilla/codemoji/pulls/108,108,Implement URL persistence,"This PR implementes a backendless backend using URL as persistent storage.
+
+It encode a hash into the URL for later retrieval.
+The obtained URL is the one to share for the end user.
+There is no URL shortening up to now.
+
+To test this:
+- encrypt a message
+- copy the link from share view
+- paste it in the browser
+- go to decrypt and decrypt message
+
+Everything should work fine.
+",endorama,526307,2016-03-07T14:05:56Z,CONTRIBUTOR,True,607,2006,13,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,3745ec208a6daee2eaabb819d0e537cae0908c9d,fix decrypt state and proper load message from storage
+185,https://api.github.com/repos/mozilla/codemoji/pulls/108,108,Implement URL persistence,"This PR implementes a backendless backend using URL as persistent storage.
+
+It encode a hash into the URL for later retrieval.
+The obtained URL is the one to share for the end user.
+There is no URL shortening up to now.
+
+To test this:
+- encrypt a message
+- copy the link from share view
+- paste it in the browser
+- go to decrypt and decrypt message
+
+Everything should work fine.
+",endorama,526307,2016-03-07T14:05:56Z,CONTRIBUTOR,True,607,2006,13,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,f3807f2d25b9ea79d57f1aa7a92f0d23b6b4163a,remove q dep
+186,https://api.github.com/repos/mozilla/codemoji/pulls/108,108,Implement URL persistence,"This PR implementes a backendless backend using URL as persistent storage.
+
+It encode a hash into the URL for later retrieval.
+The obtained URL is the one to share for the end user.
+There is no URL shortening up to now.
+
+To test this:
+- encrypt a message
+- copy the link from share view
+- paste it in the browser
+- go to decrypt and decrypt message
+
+Everything should work fine.
+",endorama,526307,2016-03-07T14:05:56Z,CONTRIBUTOR,True,607,2006,13,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,f293e1bea1b55eb6544b1bfc26e50d7960fc777b,cleanup decrypt
+187,https://api.github.com/repos/mozilla/codemoji/pulls/108,108,Implement URL persistence,"This PR implementes a backendless backend using URL as persistent storage.
+
+It encode a hash into the URL for later retrieval.
+The obtained URL is the one to share for the end user.
+There is no URL shortening up to now.
+
+To test this:
+- encrypt a message
+- copy the link from share view
+- paste it in the browser
+- go to decrypt and decrypt message
+
+Everything should work fine.
+",endorama,526307,2016-03-07T14:05:56Z,CONTRIBUTOR,True,607,2006,13,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,c6aba4bcfbc6935feccd4221dcc8057a73f99a6d,reset Cryptoloji.current before exiting decrypt
+188,https://api.github.com/repos/mozilla/codemoji/pulls/108,108,Implement URL persistence,"This PR implementes a backendless backend using URL as persistent storage.
+
+It encode a hash into the URL for later retrieval.
+The obtained URL is the one to share for the end user.
+There is no URL shortening up to now.
+
+To test this:
+- encrypt a message
+- copy the link from share view
+- paste it in the browser
+- go to decrypt and decrypt message
+
+Everything should work fine.
+",endorama,526307,2016-03-07T14:05:56Z,CONTRIBUTOR,True,607,2006,13,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,7026fe9af77527484956f6889e1438f952334d47,refactor main_share animation
+189,https://api.github.com/repos/mozilla/codemoji/pulls/108,108,Implement URL persistence,"This PR implementes a backendless backend using URL as persistent storage.
+
+It encode a hash into the URL for later retrieval.
+The obtained URL is the one to share for the end user.
+There is no URL shortening up to now.
+
+To test this:
+- encrypt a message
+- copy the link from share view
+- paste it in the browser
+- go to decrypt and decrypt message
+
+Everything should work fine.
+",endorama,526307,2016-03-07T14:05:56Z,CONTRIBUTOR,True,607,2006,13,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,368cf31597a6d629bdda577608b9c44aebd98af0,refactor decrypt_feedback animation
+190,https://api.github.com/repos/mozilla/codemoji/pulls/102,102,Update enter encrypt animation,"add animation enter encrypt
+",AmedeoSpagnolo,11834926,2016-03-03T15:22:32Z,CONTRIBUTOR,True,11,8,1,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,90798ddf8bb64e563e66924071a81bfeab44c929,Update enter encrypt animation
+191,https://api.github.com/repos/mozilla/codemoji/pulls/95,95,Better critical path management,,abusedmedia,870788,2016-03-03T08:57:33Z,CONTRIBUTOR,True,52,17,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,f2b4baf705580193c502e94ed2280af3361d379e,more opt and fixes
+192,https://api.github.com/repos/mozilla/codemoji/pulls/95,95,Better critical path management,,abusedmedia,870788,2016-03-03T08:57:33Z,CONTRIBUTOR,True,52,17,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,cdc67ca6f1e81f9e6aceade39122654a9420a47e,more touches
+193,https://api.github.com/repos/mozilla/codemoji/pulls/94,94,Optimization first round,,abusedmedia,870788,2016-03-02T22:06:16Z,CONTRIBUTOR,True,132,111,28,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,906da850526065fb732581e7888afc8304a57acb,builder and some optimizations
+194,https://api.github.com/repos/mozilla/codemoji/pulls/94,94,Optimization first round,,abusedmedia,870788,2016-03-02T22:06:16Z,CONTRIBUTOR,True,132,111,28,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,5af3b8d9c0f217cd109ab5dfd5970f821f552a32,some cleanup
+195,https://api.github.com/repos/mozilla/codemoji/pulls/94,94,Optimization first round,,abusedmedia,870788,2016-03-02T22:06:16Z,CONTRIBUTOR,True,132,111,28,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,3aed0597c2f258eadf30237cfecdc707cc5d41a4,fix css hideifmobile
+196,https://api.github.com/repos/mozilla/codemoji/pulls/94,94,Optimization first round,,abusedmedia,870788,2016-03-02T22:06:16Z,CONTRIBUTOR,True,132,111,28,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,3ca7d4af3650761ab940cd94ecc66221a82ee9ca,restores the emoji delay
+197,https://api.github.com/repos/mozilla/codemoji/pulls/94,94,Optimization first round,,abusedmedia,870788,2016-03-02T22:06:16Z,CONTRIBUTOR,True,132,111,28,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,4165992f4b2421226274f8240f6df90b9e52f70b,further attempts
+198,https://api.github.com/repos/mozilla/codemoji/pulls/94,94,Optimization first round,,abusedmedia,870788,2016-03-02T22:06:16Z,CONTRIBUTOR,True,132,111,28,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,af27104bafb8694a30957c7b50515a4b9f0cc9cc,finding svginjection bug
+199,https://api.github.com/repos/mozilla/codemoji/pulls/94,94,Optimization first round,,abusedmedia,870788,2016-03-02T22:06:16Z,CONTRIBUTOR,True,132,111,28,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,bc2cc845fb075f9808680df61ff80233fc66d0b8,fixed absurd bug
+200,https://api.github.com/repos/mozilla/codemoji/pulls/93,93,New onboarding animation (first two slides),,terminalia,4320125,2016-03-02T15:30:11Z,NONE,True,1766,3,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,da3431fb7fd418bfc03bd788beec09862f996c86,Add new onboarding animation slide 1
+201,https://api.github.com/repos/mozilla/codemoji/pulls/93,93,New onboarding animation (first two slides),,terminalia,4320125,2016-03-02T15:30:11Z,NONE,True,1766,3,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,4439aef0807d87718d3738c0dbe590e5f236443b,Add scaling to slide 1 onboarding animation
+202,https://api.github.com/repos/mozilla/codemoji/pulls/93,93,New onboarding animation (first two slides),,terminalia,4320125,2016-03-02T15:30:11Z,NONE,True,1766,3,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,294e86abcd99a8f8c74f85223914cb84fd72dd0a,Fix svg loading in onboarding
+203,https://api.github.com/repos/mozilla/codemoji/pulls/93,93,New onboarding animation (first two slides),,terminalia,4320125,2016-03-02T15:30:11Z,NONE,True,1766,3,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,a5c9d5a9e052141aed463fd90a27856f9f7326a0,Add new logic for onboarding animation
+204,https://api.github.com/repos/mozilla/codemoji/pulls/93,93,New onboarding animation (first two slides),,terminalia,4320125,2016-03-02T15:30:11Z,NONE,True,1766,3,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,71274aaea61b8733fa1334d4f01e749660ae3eae,Fix onboarding animation logic
+205,https://api.github.com/repos/mozilla/codemoji/pulls/93,93,New onboarding animation (first two slides),,terminalia,4320125,2016-03-02T15:30:11Z,NONE,True,1766,3,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,a7a1c50dbbd2dea5c5bd16596047fec506d6f8b1,Add perfect looping to onboarding animation
+206,https://api.github.com/repos/mozilla/codemoji/pulls/93,93,New onboarding animation (first two slides),,terminalia,4320125,2016-03-02T15:30:11Z,NONE,True,1766,3,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,1e57615691a7e365249bb1095ce606734379c73c,Parametrized onboarding animation logic
+207,https://api.github.com/repos/mozilla/codemoji/pulls/93,93,New onboarding animation (first two slides),,terminalia,4320125,2016-03-02T15:30:11Z,NONE,True,1766,3,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,a7243f393032bb446de11019e83c9d0e94ae938a,Remove console logs and add comments
+208,https://api.github.com/repos/mozilla/codemoji/pulls/93,93,New onboarding animation (first two slides),,terminalia,4320125,2016-03-02T15:30:11Z,NONE,True,1766,3,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,12b9f76b6892dac4ae3cb4ace5119a621d94d0a4,new svgs
+209,https://api.github.com/repos/mozilla/codemoji/pulls/93,93,New onboarding animation (first two slides),,terminalia,4320125,2016-03-02T15:30:11Z,NONE,True,1766,3,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,79bc0dd2f66c578b0f50dcf9b357910812ddd0ff,Fix slide02 svg group names
+210,https://api.github.com/repos/mozilla/codemoji/pulls/93,93,New onboarding animation (first two slides),,terminalia,4320125,2016-03-02T15:30:11Z,NONE,True,1766,3,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,a2d41a22ead3cfd70e11229f075d6ef53a16e0dc,Add second slide onboarding animation
+211,https://api.github.com/repos/mozilla/codemoji/pulls/87,87,Refactoring decrypt,"layout view decrypt and fix logic
+",AmedeoSpagnolo,11834926,2016-03-01T11:25:14Z,CONTRIBUTOR,True,135,66,10,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,98740737e4727915b9047e15350357a194db8a8c,refactoring
+212,https://api.github.com/repos/mozilla/codemoji/pulls/87,87,Refactoring decrypt,"layout view decrypt and fix logic
+",AmedeoSpagnolo,11834926,2016-03-01T11:25:14Z,CONTRIBUTOR,True,135,66,10,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,90dfbd8da5ccbaf79732ce3823d3548eeb0f1439,update layout and color
+213,https://api.github.com/repos/mozilla/codemoji/pulls/87,87,Refactoring decrypt,"layout view decrypt and fix logic
+",AmedeoSpagnolo,11834926,2016-03-01T11:25:14Z,CONTRIBUTOR,True,135,66,10,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,3a1733896acb0807f3e3e5e69cba2e0c828e6270,update
+214,https://api.github.com/repos/mozilla/codemoji/pulls/87,87,Refactoring decrypt,"layout view decrypt and fix logic
+",AmedeoSpagnolo,11834926,2016-03-01T11:25:14Z,CONTRIBUTOR,True,135,66,10,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,efeac09fd1e6cf8615e97a37f1130fb8dd3c5c13,fix color decrypt section
+215,https://api.github.com/repos/mozilla/codemoji/pulls/87,87,Refactoring decrypt,"layout view decrypt and fix logic
+",AmedeoSpagnolo,11834926,2016-03-01T11:25:14Z,CONTRIBUTOR,True,135,66,10,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,de6ae59c64341c526dc83eff32b8f1b858b2c010,minor fix
+216,https://api.github.com/repos/mozilla/codemoji/pulls/86,86,New share view,,marcoaimo,6996492,2016-02-29T17:18:28Z,NONE,True,323,173,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,b081fda13ac44eb6073156721f7ce59afc529e0a,new share view layout
+217,https://api.github.com/repos/mozilla/codemoji/pulls/86,86,New share view,,marcoaimo,6996492,2016-02-29T17:18:28Z,NONE,True,323,173,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,a78901fc54a991ca9198a040087da62f13ebea2f,add share view share key hint
+218,https://api.github.com/repos/mozilla/codemoji/pulls/86,86,New share view,,marcoaimo,6996492,2016-02-29T17:18:28Z,NONE,True,323,173,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,672d941439af6b9c39c829a462ca1390fed88f58,remove placeholder text and key and link to real ones
+219,https://api.github.com/repos/mozilla/codemoji/pulls/86,86,New share view,,marcoaimo,6996492,2016-02-29T17:18:28Z,NONE,True,323,173,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,112dc2adb552956d40e30867b0bfc435942457b7,minor update
+220,https://api.github.com/repos/mozilla/codemoji/pulls/86,86,New share view,,marcoaimo,6996492,2016-02-29T17:18:28Z,NONE,True,323,173,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,83ee98a2cce5306c0cbd520c6086a2c62f39e977,update share view with transition
+221,https://api.github.com/repos/mozilla/codemoji/pulls/86,86,New share view,,marcoaimo,6996492,2016-02-29T17:18:28Z,NONE,True,323,173,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,db6a762521c1278547a932310b599e6ca728d606,update captcha
+222,https://api.github.com/repos/mozilla/codemoji/pulls/86,86,New share view,,marcoaimo,6996492,2016-02-29T17:18:28Z,NONE,True,323,173,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,b93fa578c1ca165abae5a4d200f19c2320549a6f,temporarly remove key and message
+223,https://api.github.com/repos/mozilla/codemoji/pulls/80,80,Align decrypt page with encrypt and finalize flow,"This PR will align decrypt view with encrypt view ( both mobile and desktop ) and will finalize decryptio flow.
+
+@AmedeoSpagnolo I'll leave to you style fixes and markup
+",endorama,526307,2016-02-26T11:58:24Z,CONTRIBUTOR,False,163,130,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,96992528942d95a14e26f2f13df919d1559926ce,remove decrypt and landing states
+224,https://api.github.com/repos/mozilla/codemoji/pulls/80,80,Align decrypt page with encrypt and finalize flow,"This PR will align decrypt view with encrypt view ( both mobile and desktop ) and will finalize decryptio flow.
+
+@AmedeoSpagnolo I'll leave to you style fixes and markup
+",endorama,526307,2016-02-26T11:58:24Z,CONTRIBUTOR,False,163,130,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,ec4369679f7526cb667ed021bd0a74ee06297a2e,add decryption state and childrens
+225,https://api.github.com/repos/mozilla/codemoji/pulls/80,80,Align decrypt page with encrypt and finalize flow,"This PR will align decrypt view with encrypt view ( both mobile and desktop ) and will finalize decryptio flow.
+
+@AmedeoSpagnolo I'll leave to you style fixes and markup
+",endorama,526307,2016-02-26T11:58:24Z,CONTRIBUTOR,False,163,130,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,9de7052f94a060b63578be85ed4f0e1718d8eee9,implement multiple keypanels
+226,https://api.github.com/repos/mozilla/codemoji/pulls/80,80,Align decrypt page with encrypt and finalize flow,"This PR will align decrypt view with encrypt view ( both mobile and desktop ) and will finalize decryptio flow.
+
+@AmedeoSpagnolo I'll leave to you style fixes and markup
+",endorama,526307,2016-02-26T11:58:24Z,CONTRIBUTOR,False,163,130,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,9f2c0214b9ff3500c46c2cf54c31d666f0597807,fix decryptText input text retrieval
+227,https://api.github.com/repos/mozilla/codemoji/pulls/80,80,Align decrypt page with encrypt and finalize flow,"This PR will align decrypt view with encrypt view ( both mobile and desktop ) and will finalize decryptio flow.
+
+@AmedeoSpagnolo I'll leave to you style fixes and markup
+",endorama,526307,2016-02-26T11:58:24Z,CONTRIBUTOR,False,163,130,8,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,90166157f0e206421d8a8176ba2a29bbd6ed2ca8,quick implementation of missing html elements
+228,https://api.github.com/repos/mozilla/codemoji/pulls/76,76,Implement custom scrollbars,"Close #71, implementing custom styled scrollbars
+",endorama,526307,2016-02-25T17:55:34Z,CONTRIBUTOR,True,1074,2,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,102c146bdbe7eb58e6819e75807fbb873c25e8b2,add nanoscroller dependency
+229,https://api.github.com/repos/mozilla/codemoji/pulls/76,76,Implement custom scrollbars,"Close #71, implementing custom styled scrollbars
+",endorama,526307,2016-02-25T17:55:34Z,CONTRIBUTOR,True,1074,2,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,4ebe9e6825da5918756709711fea9ee9fb821bad,close #71. Implement custom scrollbar
+230,https://api.github.com/repos/mozilla/codemoji/pulls/68,68,closes #59 - Implement page loader,"Closes #59.
+
+To test comment out this line [assets/js/states/captcha.js#L48](https://github.com/todotoit/cryptoloji/blob/168d68fafd2d972cc07b5f55d99904a2a696d166/assets/js/states/captcha.js#L48)
+",marcoaimo,6996492,2016-02-24T17:35:17Z,NONE,True,59,1,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,f01b182e47b5f67ec2ba809308d9a9d1c8df5eeb,closes #59
+231,https://api.github.com/repos/mozilla/codemoji/pulls/67,67,closes #51. Add noscript with relevant text,,endorama,526307,2016-02-24T17:23:02Z,CONTRIBUTOR,True,12,1,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,fa48cbe58449c720e035f757285d5de31fd4e7f9,closes #51. Add noscript with relevant text
+232,https://api.github.com/repos/mozilla/codemoji/pulls/66,66,Closes #61 - Landing page link on second visit,,endorama,526307,2016-02-24T16:02:45Z,CONTRIBUTOR,True,15,4,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,fadd9dd3aa1322f47427c5f95bb7326ebb58d5f7,closes #61. Implement landing page on second visit
+233,https://api.github.com/repos/mozilla/codemoji/pulls/66,66,Closes #61 - Landing page link on second visit,,endorama,526307,2016-02-24T16:02:45Z,CONTRIBUTOR,True,15,4,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,633210856eb02424512e160e1c38b30cd5f10fd2,fix incorrect isFirstVisit detection
+234,https://api.github.com/repos/mozilla/codemoji/pulls/63,63,Fix 62 - Landscape orientation overlay is shown on android with open keyboard,"@abusedmedia @marcoaimo @AmedeoSpagnolo this PR sets a custom attribute on `html` element named `orientation` with possible values `portrait` or `landscape`
+",endorama,526307,2016-02-24T15:32:52Z,CONTRIBUTOR,True,34,10,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,37ae17b9aa0651349995f1d62c704589aa00f1b3,implement handleOrientationChanges to react to different orientations
+235,https://api.github.com/repos/mozilla/codemoji/pulls/63,63,Fix 62 - Landscape orientation overlay is shown on android with open keyboard,"@abusedmedia @marcoaimo @AmedeoSpagnolo this PR sets a custom attribute on `html` element named `orientation` with possible values `portrait` or `landscape`
+",endorama,526307,2016-02-24T15:32:52Z,CONTRIBUTOR,True,34,10,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,162dc5427fd3c4e322e6ef21d0903881c1539d3b,fixes #62. Show landscape overlay only when really landscape
+236,https://api.github.com/repos/mozilla/codemoji/pulls/63,63,Fix 62 - Landscape orientation overlay is shown on android with open keyboard,"@abusedmedia @marcoaimo @AmedeoSpagnolo this PR sets a custom attribute on `html` element named `orientation` with possible values `portrait` or `landscape`
+",endorama,526307,2016-02-24T15:32:52Z,CONTRIBUTOR,True,34,10,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,c38c063067e59296399ad5537a4e4d931321b604,add comments
+237,https://api.github.com/repos/mozilla/codemoji/pulls/60,60,encryption output text animation,"Opening this PR for discussing implementation of encrypted output text animation.
+
+Please link related issues to this PR.
+",marcoaimo,6996492,2016-02-24T14:25:30Z,NONE,True,134,13,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,fa84bf8548828959eb5b94e31620b0e3dee274f5,add function to mpa input text in emoji letter text
+238,https://api.github.com/repos/mozilla/codemoji/pulls/60,60,encryption output text animation,"Opening this PR for discussing implementation of encrypted output text animation.
+
+Please link related issues to this PR.
+",marcoaimo,6996492,2016-02-24T14:25:30Z,NONE,True,134,13,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,4ab9179acc7fd799753dbb3b628e4a7506c49e30,add bluebox and emojis wrappers
+239,https://api.github.com/repos/mozilla/codemoji/pulls/60,60,encryption output text animation,"Opening this PR for discussing implementation of encrypted output text animation.
+
+Please link related issues to this PR.
+",marcoaimo,6996492,2016-02-24T14:25:30Z,NONE,True,134,13,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,b64f94520f4753eadd1db06826248c00fb192ff9,first anim in letters
+240,https://api.github.com/repos/mozilla/codemoji/pulls/60,60,encryption output text animation,"Opening this PR for discussing implementation of encrypted output text animation.
+
+Please link related issues to this PR.
+",marcoaimo,6996492,2016-02-24T14:25:30Z,NONE,True,134,13,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,d48a6c29004a3ad0f54009cdb193caae0993c4e1,better tuning
+241,https://api.github.com/repos/mozilla/codemoji/pulls/53,53,Minor fixes,"closes #46, #47, #48 + add limit to encrypt textarea input length
+",marcoaimo,6996492,2016-02-23T15:26:32Z,NONE,True,15,10,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,879622ae228a4da1fdbfd9b42f2c1bd888a669a4,closes #47
+242,https://api.github.com/repos/mozilla/codemoji/pulls/53,53,Minor fixes,"closes #46, #47, #48 + add limit to encrypt textarea input length
+",marcoaimo,6996492,2016-02-23T15:26:32Z,NONE,True,15,10,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,34d3e01ca8f75a209dc5ab3c995a9f57ff726a95,closes #46
+243,https://api.github.com/repos/mozilla/codemoji/pulls/53,53,Minor fixes,"closes #46, #47, #48 + add limit to encrypt textarea input length
+",marcoaimo,6996492,2016-02-23T15:26:32Z,NONE,True,15,10,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,613a86e95750edf7586ece544f3677e5c1b965a0,limit encrypt textarea length
+244,https://api.github.com/repos/mozilla/codemoji/pulls/53,53,Minor fixes,"closes #46, #47, #48 + add limit to encrypt textarea input length
+",marcoaimo,6996492,2016-02-23T15:26:32Z,NONE,True,15,10,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,20165042cbfc4bd21942e8d2a0afdd83027c5b06,closes #48
+245,https://api.github.com/repos/mozilla/codemoji/pulls/52,52,Google recaptcha,,marcoaimo,6996492,2016-02-23T14:37:29Z,NONE,True,45994,47,327,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,9efdce4bdb0229d11f0013b65f3a3189c7566bd7,First integration of google recaptcha into cryptology app
+246,https://api.github.com/repos/mozilla/codemoji/pulls/52,52,Google recaptcha,,marcoaimo,6996492,2016-02-23T14:37:29Z,NONE,True,45994,47,327,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,ec2b906a3008ca70297a5c18e35da7c1f25ed84a,Fix CORS in captcha backend
+247,https://api.github.com/repos/mozilla/codemoji/pulls/52,52,Google recaptcha,,marcoaimo,6996492,2016-02-23T14:37:29Z,NONE,True,45994,47,327,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,f6f9df15d3774a2f281e4f196dd8c11a24dbcdd2,Fix captcha backend url
+248,https://api.github.com/repos/mozilla/codemoji/pulls/52,52,Google recaptcha,,marcoaimo,6996492,2016-02-23T14:37:29Z,NONE,True,45994,47,327,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,42f5d4a98c153d512d102717e8522cdc0c09c340,update captcha state view
+249,https://api.github.com/repos/mozilla/codemoji/pulls/50,50,Onboarding refactoring,"refactoring onboarding logic and layout
+",AmedeoSpagnolo,11834926,2016-02-23T14:16:38Z,CONTRIBUTOR,True,5991,132,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,2f0e792f6d08b41d8e6065579146daf94bd32663,init logic views
+250,https://api.github.com/repos/mozilla/codemoji/pulls/50,50,Onboarding refactoring,"refactoring onboarding logic and layout
+",AmedeoSpagnolo,11834926,2016-02-23T14:16:38Z,CONTRIBUTOR,True,5991,132,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,2abbad718386bf058ea2f39f8547e83adc6fbf5b,logic update
+251,https://api.github.com/repos/mozilla/codemoji/pulls/50,50,Onboarding refactoring,"refactoring onboarding logic and layout
+",AmedeoSpagnolo,11834926,2016-02-23T14:16:38Z,CONTRIBUTOR,True,5991,132,12,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,57fc3c7544100f2d27993dceb3f84b453eac586d,add svg to onboarding
+252,https://api.github.com/repos/mozilla/codemoji/pulls/45,45,add favicon,"Add favicon with support for all browsers + mobile
+
+Support tab pinning, website on home ( for Android and iOS )
+",endorama,526307,2016-02-22T16:58:21Z,CONTRIBUTOR,True,304,8,36,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,8de8cbfca6738f4f917836c7ad1dcb2860efe420,favicon generation from gulp
+253,https://api.github.com/repos/mozilla/codemoji/pulls/45,45,add favicon,"Add favicon with support for all browsers + mobile
+
+Support tab pinning, website on home ( for Android and iOS )
+",endorama,526307,2016-02-22T16:58:21Z,CONTRIBUTOR,True,304,8,36,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,d7a6c2c4292f6aa3e9eea4da5357d35fc8a21df2,add favicon source file + favicon build data
+254,https://api.github.com/repos/mozilla/codemoji/pulls/45,45,add favicon,"Add favicon with support for all browsers + mobile
+
+Support tab pinning, website on home ( for Android and iOS )
+",endorama,526307,2016-02-22T16:58:21Z,CONTRIBUTOR,True,304,8,36,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,9c0b1eb0fc55673c47feca9a297a1c7397c2d3f7,fix missing ; breaking minify
+255,https://api.github.com/repos/mozilla/codemoji/pulls/45,45,add favicon,"Add favicon with support for all browsers + mobile
+
+Support tab pinning, website on home ( for Android and iOS )
+",endorama,526307,2016-02-22T16:58:21Z,CONTRIBUTOR,True,304,8,36,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,5a19b8545e44aef89a86e2c42048f04cfc51bdd0,close #21. Implement favicon generation caching
+256,https://api.github.com/repos/mozilla/codemoji/pulls/34,34,add overlay for landscape orientation,,marcoaimo,6996492,2016-02-18T17:23:23Z,NONE,False,98,3,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,95a602910d30268ac6eac0cf2792a383a1fec420,add overlay for landscape orientation
+257,https://api.github.com/repos/mozilla/codemoji/pulls/34,34,add overlay for landscape orientation,,marcoaimo,6996492,2016-02-18T17:23:23Z,NONE,False,98,3,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,45d9e67688779c784a799541f8e7f1d91cf1abbc,add lock icon asset
+258,https://api.github.com/repos/mozilla/codemoji/pulls/34,34,add overlay for landscape orientation,,marcoaimo,6996492,2016-02-18T17:23:23Z,NONE,False,98,3,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,ad7f31ba3881b24e07e17bcbb1fe9f1ff78763c7,fix layout landscape rotation error
+259,https://api.github.com/repos/mozilla/codemoji/pulls/32,32,Animation onboarding,"Fix loading animation and loading svg file
+",terminalia,4320125,2016-02-18T15:34:51Z,NONE,True,754,420,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,280ef0098c05b8dc5d5274f159b495e8ed5ce2bd,remove ids from loading svg
+260,https://api.github.com/repos/mozilla/codemoji/pulls/32,32,Animation onboarding,"Fix loading animation and loading svg file
+",terminalia,4320125,2016-02-18T15:34:51Z,NONE,True,754,420,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,5cda2fb4fdc4de659107084ae57d584e535da299,Update color
+261,https://api.github.com/repos/mozilla/codemoji/pulls/32,32,Animation onboarding,"Fix loading animation and loading svg file
+",terminalia,4320125,2016-02-18T15:34:51Z,NONE,True,754,420,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,3f14e307ef5804d28aa2b733a62c881c40a04cd9,Update svg file and loading logic
+262,https://api.github.com/repos/mozilla/codemoji/pulls/32,32,Animation onboarding,"Fix loading animation and loading svg file
+",terminalia,4320125,2016-02-18T15:34:51Z,NONE,True,754,420,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,143b5fd04d10886b59de8b572a1b9f3c0cd75851,refactoring svg
+263,https://api.github.com/repos/mozilla/codemoji/pulls/32,32,Animation onboarding,"Fix loading animation and loading svg file
+",terminalia,4320125,2016-02-18T15:34:51Z,NONE,True,754,420,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,e9ea0cfee33be407d9e03e185f570df56fea0c86,Update loading svg file and animation logic
+264,https://api.github.com/repos/mozilla/codemoji/pulls/32,32,Animation onboarding,"Fix loading animation and loading svg file
+",terminalia,4320125,2016-02-18T15:34:51Z,NONE,True,754,420,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,5012a60346b1cab1b55f613f19afc454b57ebfc5,Update loading svg and animation logic
+265,https://api.github.com/repos/mozilla/codemoji/pulls/32,32,Animation onboarding,"Fix loading animation and loading svg file
+",terminalia,4320125,2016-02-18T15:34:51Z,NONE,True,754,420,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,fb95e7745428dffa386709fb1a830f7ab559d3d4,Fix section_loading css
+266,https://api.github.com/repos/mozilla/codemoji/pulls/31,31,Decrypt state,,marcoaimo,6996492,2016-02-18T12:27:26Z,NONE,True,39,68,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,40967654e4a0bf8f39e474c775d48e998c8d4fde,update slider behaviour on key selection
+267,https://api.github.com/repos/mozilla/codemoji/pulls/31,31,Decrypt state,,marcoaimo,6996492,2016-02-18T12:27:26Z,NONE,True,39,68,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,4ed9993d543c32c3601e4f4280859476d235d2a8,remove old state
+268,https://api.github.com/repos/mozilla/codemoji/pulls/31,31,Decrypt state,,marcoaimo,6996492,2016-02-18T12:27:26Z,NONE,True,39,68,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,513e62e73e31e9d7e8d93bb687568420433d970a,update api to get encrypted message
+269,https://api.github.com/repos/mozilla/codemoji/pulls/31,31,Decrypt state,,marcoaimo,6996492,2016-02-18T12:27:26Z,NONE,True,39,68,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,5a1ba69de2ad37681fece1e711c54c38b9b70568,update decrypt state
+270,https://api.github.com/repos/mozilla/codemoji/pulls/31,31,Decrypt state,,marcoaimo,6996492,2016-02-18T12:27:26Z,NONE,True,39,68,7,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,92468e273b91a5465fbc7db81911daa6151d0b0c,update decgrypt layout
+271,https://api.github.com/repos/mozilla/codemoji/pulls/30,30,Fix share buttons behaviour,"This PR should fix share buttons behaviours on desktop and mobile ( using web intents )
+
+On desktop the Whatsapp share does not work.
+",endorama,526307,2016-02-18T11:35:41Z,CONTRIBUTOR,True,137,10,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,222e3478b49db77fb6059d1988612d31951c55c4,add Cryptoloji.UI.Sharer
+272,https://api.github.com/repos/mozilla/codemoji/pulls/30,30,Fix share buttons behaviour,"This PR should fix share buttons behaviours on desktop and mobile ( using web intents )
+
+On desktop the Whatsapp share does not work.
+",endorama,526307,2016-02-18T11:35:41Z,CONTRIBUTOR,True,137,10,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,16688b1a629bcde9e55d9ea6249a785b21dd9d0c,fix share buttons behaviour
+273,https://api.github.com/repos/mozilla/codemoji/pulls/29,29,Share state,,marcoaimo,6996492,2016-02-17T20:38:38Z,NONE,True,960,98,9,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,0476e7885fd1e6ef0a7316903515a0461a13f2a0,new social view draft
+274,https://api.github.com/repos/mozilla/codemoji/pulls/29,29,Share state,,marcoaimo,6996492,2016-02-17T20:38:38Z,NONE,True,960,98,9,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,a416e900934742feec17617b522b740e616190b9,fix width on share link box
+275,https://api.github.com/repos/mozilla/codemoji/pulls/29,29,Share state,,marcoaimo,6996492,2016-02-17T20:38:38Z,NONE,True,960,98,9,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,5a4a73eab1f4f39a2ef3946dc96fd5fd312d92a0,add clipboard.js dependency
+276,https://api.github.com/repos/mozilla/codemoji/pulls/29,29,Share state,,marcoaimo,6996492,2016-02-17T20:38:38Z,NONE,True,960,98,9,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,3d218f01b8f6c96816b3271be290afa2ca49bd54,implement share link copy to clipboard
+277,https://api.github.com/repos/mozilla/codemoji/pulls/29,29,Share state,,marcoaimo,6996492,2016-02-17T20:38:38Z,NONE,True,960,98,9,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,910dc16f2d135d6faddd9797cafaf359c146ddc2,quick rename backend get message json stub
+278,https://api.github.com/repos/mozilla/codemoji/pulls/29,29,Share state,,marcoaimo,6996492,2016-02-17T20:38:38Z,NONE,True,960,98,9,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,cbec23be6854ccbb087564c84915fe2501e5cb56,update style for new share layout
+279,https://api.github.com/repos/mozilla/codemoji/pulls/29,29,Share state,,marcoaimo,6996492,2016-02-17T20:38:38Z,NONE,True,960,98,9,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,80eaf9a1413badd54e578a05b738d3e551d9cbc0,minor update wrap social
+280,https://api.github.com/repos/mozilla/codemoji/pulls/29,29,Share state,,marcoaimo,6996492,2016-02-17T20:38:38Z,NONE,True,960,98,9,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,a397418c9c1a27dd371ea926879e2ae8b615859a,minor fix on share link
+281,https://api.github.com/repos/mozilla/codemoji/pulls/29,29,Share state,,marcoaimo,6996492,2016-02-17T20:38:38Z,NONE,True,960,98,9,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,4146c1bbac2851c7d1689f65c1f8b108c24005a6,wrap a tag to fix header link in mobile
+282,https://api.github.com/repos/mozilla/codemoji/pulls/29,29,Share state,,marcoaimo,6996492,2016-02-17T20:38:38Z,NONE,True,960,98,9,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,ad7d29009be1cdf4b274ba33cab14de7a2285176,minor
+283,https://api.github.com/repos/mozilla/codemoji/pulls/29,29,Share state,,marcoaimo,6996492,2016-02-17T20:38:38Z,NONE,True,960,98,9,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,bd9e9ae042d3969b0f1bae8bde1fc6ace4ea4749,add social share web intents
+284,https://api.github.com/repos/mozilla/codemoji/pulls/29,29,Share state,,marcoaimo,6996492,2016-02-17T20:38:38Z,NONE,True,960,98,9,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,69617b7dcb0fc10a2d385a352cc8f8332fa10a35,handle key copy
+285,https://api.github.com/repos/mozilla/codemoji/pulls/29,29,Share state,,marcoaimo,6996492,2016-02-17T20:38:38Z,NONE,True,960,98,9,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,973f5e2864f66abeb444af3dd305253840445652,temporary fix need to be reviewed
+286,https://api.github.com/repos/mozilla/codemoji/pulls/28,28,Proper styles and colors to welcome page,"- Use proper colors in welcome page
+- remove decrypt link
+",endorama,526307,2016-02-17T16:53:45Z,CONTRIBUTOR,True,19,14,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,1c551e3eb1a1217080879247648f87f7cb7fbfb9,disable decrypt link from home page
+287,https://api.github.com/repos/mozilla/codemoji/pulls/28,28,Proper styles and colors to welcome page,"- Use proper colors in welcome page
+- remove decrypt link
+",endorama,526307,2016-02-17T16:53:45Z,CONTRIBUTOR,True,19,14,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,9b3b37639f520d87c81bec8f1722cad960ea41ef,fix light spelling
+288,https://api.github.com/repos/mozilla/codemoji/pulls/28,28,Proper styles and colors to welcome page,"- Use proper colors in welcome page
+- remove decrypt link
+",endorama,526307,2016-02-17T16:53:45Z,CONTRIBUTOR,True,19,14,3,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,d9f9bf5a7bf0c259dc39b3e50287d9c84871a302,colorize welcome page
+289,https://api.github.com/repos/mozilla/codemoji/pulls/26,26,add new edit input state,"Closes #20 
+",marcoaimo,6996492,2016-02-17T14:21:28Z,NONE,False,90,11,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,f05c72262fd2b780176e7a9e57cad2c7543b5de2,add new edit input state
+290,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,db1dd3dda98351b046dbf0e8dfde8e7d4cd8484b,add emoji list builder scripts
+291,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,a4d9b33574c4040726c310caa8df6ccf5a78fb4d,test new encrypter
+292,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,906d6608e100f63fcf484550f03f4f26cc949978,add emoji list
+293,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,579bbf7aadc20061295e6386e1e35f1aa82fc72b,add some resources to readme
+294,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,cd4e343892e671ff989137916413fb3965893336,new encode and decode in testing for emojifier
+295,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,bfed02aa9526f4f81a46f5fc180592d3ff182280,move Cryptoloji.twemoji to Cryptoloji.UI.toTwemoji
+296,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,dac45e42bb1b26d14d1826f402dad9851caacec3,output test page for complete emoji list
+297,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,c450062818d80526b4b7305ff604c7c7608256d9,cryptoloji encryptor library
+298,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,671e98bad1ab183acecc08793aca7eee7cb960f7,some test around encryptor
+299,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,4db7bf2e4a680bceca48b5860620f5731859ff07,upgrade lodash to 4.5.0
+300,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,57d14f8911d518c77a50b0dfd87ccc9faef71d80,browser-sync monitor libs folder
+301,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,609a69909bfce266b1b480c97e4f8c0260f1afa1,add punycode dependency
+302,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,b08d882320c4795b86c7eebac9e6b9f7942a6667,use new CryptoLib implementation
+303,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,abc614b4ebcb7005212fcf6c95932bc5105de533,fixes #3. Use complete emoji list
+304,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,c2530f9cdb1ebc5f541f097071ca0736099df03b,support codepoint emoji list
+305,https://api.github.com/repos/mozilla/codemoji/pulls/24,24,New encryption and encoding library,"Implements new encryption and encoding library with the proper set of emojis.
+
+The newly implemented CryptoLib follows UMD standard for dependency injection.
+",endorama,526307,2016-02-17T09:37:24Z,CONTRIBUTOR,True,19399,5814,33,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,da124c7641f1022a968510ee0fc38f01d2cd1bee,cleanup
+306,https://api.github.com/repos/mozilla/codemoji/pulls/19,19,Fix placeholder animation,,marcoaimo,6996492,2016-02-16T18:26:11Z,NONE,True,853,26,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,45fdf9e5353f7c43ba0823f8d038eb9dd71be000,add theaterjs extended source
+307,https://api.github.com/repos/mozilla/codemoji/pulls/19,19,Fix placeholder animation,,marcoaimo,6996492,2016-02-16T18:26:11Z,NONE,True,853,26,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,50d87a426db4f23e0c9950f4d873308d847017ac,remove bower dependency for theaterjs
+308,https://api.github.com/repos/mozilla/codemoji/pulls/19,19,Fix placeholder animation,,marcoaimo,6996492,2016-02-16T18:26:11Z,NONE,True,853,26,5,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,c0e385eaf9090ccac4bb1e6c65268883f7a61251,fix multiple calls on theater animation
+309,https://api.github.com/repos/mozilla/codemoji/pulls/18,18,Typify placeholder,"change library to manage placeholder animation
+",marcoaimo,6996492,2016-02-16T14:16:50Z,NONE,True,28,442,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,fe7787459ea2f004ddf683ef1630ecf332ac521d,add theaterjs dependency
+310,https://api.github.com/repos/mozilla/codemoji/pulls/18,18,Typify placeholder,"change library to manage placeholder animation
+",marcoaimo,6996492,2016-02-16T14:16:50Z,NONE,True,28,442,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,9541ebef7bd3842d38c41198a7f11399ac10396a,update placeholder animation
+311,https://api.github.com/repos/mozilla/codemoji/pulls/18,18,Typify placeholder,"change library to manage placeholder animation
+",marcoaimo,6996492,2016-02-16T14:16:50Z,NONE,True,28,442,4,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,05bd89dd4fec942cc51a3ba360afd6323d6b52c2,remove old tipify dep
+312,https://api.github.com/repos/mozilla/codemoji/pulls/17,17,Fix #15 - close keymodal on encrypt state exit,,endorama,526307,2016-02-16T11:40:04Z,CONTRIBUTOR,True,2,2,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,28f2d9ae7cf9c767f6f556cea798d0ccde261b81,fix keymodal close behaviour
+313,https://api.github.com/repos/mozilla/codemoji/pulls/17,17,Fix #15 - close keymodal on encrypt state exit,,endorama,526307,2016-02-16T11:40:04Z,CONTRIBUTOR,True,2,2,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,19ce78a1bf37d943aece283686b8d18ef4fc6309,fix #15. Close keymodal on encrypt state leave
+314,https://api.github.com/repos/mozilla/codemoji/pulls/16,16,Key shared selection,"properly behaviour for shared selection between key modal selector and key slider selector
+",endorama,526307,2016-02-16T11:36:09Z,CONTRIBUTOR,True,27,14,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,9fb38dbfcb6794c13a5396d80bb5e3ac54c45a46,avoid selecting key multiple times from keymodal
+315,https://api.github.com/repos/mozilla/codemoji/pulls/16,16,Key shared selection,"properly behaviour for shared selection between key modal selector and key slider selector
+",endorama,526307,2016-02-16T11:36:09Z,CONTRIBUTOR,True,27,14,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,34e18ad4528dc718c27f80034cc24164228924e2,do not resetSelection on close and click on keymodal
+316,https://api.github.com/repos/mozilla/codemoji/pulls/16,16,Key shared selection,"properly behaviour for shared selection between key modal selector and key slider selector
+",endorama,526307,2016-02-16T11:36:09Z,CONTRIBUTOR,True,27,14,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,494647e9c036175b5b3e6493b3df68df002f528b,select keymodal emoji on keyslider key select
+317,https://api.github.com/repos/mozilla/codemoji/pulls/16,16,Key shared selection,"properly behaviour for shared selection between key modal selector and key slider selector
+",endorama,526307,2016-02-16T11:36:09Z,CONTRIBUTOR,True,27,14,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,e19ae5eaa36b97773be729f2a008de943ec39ac2,fix keymodal fill behaviour when already filled
+318,https://api.github.com/repos/mozilla/codemoji/pulls/14,14,Svg loader,,marcoaimo,6996492,2016-02-15T18:26:55Z,NONE,True,28,1,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,03e2810404b5a369af38e114e5880fae9452561a,add handler to load svg
+319,https://api.github.com/repos/mozilla/codemoji/pulls/14,14,Svg loader,,marcoaimo,6996492,2016-02-15T18:26:55Z,NONE,True,28,1,2,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,935c3453f4311c12afe2e88128898e055d6859dd,append preloaded svg
+320,https://api.github.com/repos/mozilla/codemoji/pulls/12,12,Animation onboarding,,AmedeoSpagnolo,11834926,2016-02-15T17:37:28Z,CONTRIBUTOR,True,1088,1594,27,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,0d9f2e156bda9866c59d89189b8aa81acc87e69b,add animation
+321,https://api.github.com/repos/mozilla/codemoji/pulls/12,12,Animation onboarding,,AmedeoSpagnolo,11834926,2016-02-15T17:37:28Z,CONTRIBUTOR,True,1088,1594,27,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,667cf521f9b08f0cf6bc1696e28a2293bf94f571,.
+322,https://api.github.com/repos/mozilla/codemoji/pulls/12,12,Animation onboarding,,AmedeoSpagnolo,11834926,2016-02-15T17:37:28Z,CONTRIBUTOR,True,1088,1594,27,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,e1b94f551d8c0b36931abb8d1c4559a260bd35ee,update logic svg loading
+323,https://api.github.com/repos/mozilla/codemoji/pulls/12,12,Animation onboarding,,AmedeoSpagnolo,11834926,2016-02-15T17:37:28Z,CONTRIBUTOR,True,1088,1594,27,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,3ca8fef216ac17ae7cc239c9814595e5b49fa9dd,Fix loading animation
+324,https://api.github.com/repos/mozilla/codemoji/pulls/12,12,Animation onboarding,,AmedeoSpagnolo,11834926,2016-02-15T17:37:28Z,CONTRIBUTOR,True,1088,1594,27,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,1e68c0bc4b007e6ceaec3d86dcc6d6e058f30039,clean svg from index
+325,https://api.github.com/repos/mozilla/codemoji/pulls/12,12,Animation onboarding,,AmedeoSpagnolo,11834926,2016-02-15T17:37:28Z,CONTRIBUTOR,True,1088,1594,27,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,b4806db28144150a03a1d7a2e850cd64364206f9,update svg
+326,https://api.github.com/repos/mozilla/codemoji/pulls/12,12,Animation onboarding,,AmedeoSpagnolo,11834926,2016-02-15T17:37:28Z,CONTRIBUTOR,True,1088,1594,27,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,f74ad7f78bebd34af03332d79041f6a0590b083e,Fix animation for each letter class
+327,https://api.github.com/repos/mozilla/codemoji/pulls/12,12,Animation onboarding,,AmedeoSpagnolo,11834926,2016-02-15T17:37:28Z,CONTRIBUTOR,True,1088,1594,27,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,36d82213e793d72a3d862dae5be796d478672267,minor fix logic loading
+328,https://api.github.com/repos/mozilla/codemoji/pulls/11,11,Ui fix,,marcoaimo,6996492,2016-02-15T16:25:30Z,NONE,True,47,21,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,24f11c55a895f6a8f0e26707f93cf7c089572b84,jump to encrypt status after onboarding
+329,https://api.github.com/repos/mozilla/codemoji/pulls/11,11,Ui fix,,marcoaimo,6996492,2016-02-15T16:25:30Z,NONE,True,47,21,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,0d4a50e32290c8700ec089e1b8f19aea394e7483,add oversize class to input text counter
+330,https://api.github.com/repos/mozilla/codemoji/pulls/11,11,Ui fix,,marcoaimo,6996492,2016-02-15T16:25:30Z,NONE,True,47,21,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,8ad9c11accfad7e0623dd7db14fb53773fa5d143,add utils file
+331,https://api.github.com/repos/mozilla/codemoji/pulls/11,11,Ui fix,,marcoaimo,6996492,2016-02-15T16:25:30Z,NONE,True,47,21,6,Mozilla Foundation project to support 2016 Encrypt campaign,JavaScript,a6232e770e33fcd720d687a73883613e1660fca2,add keyslider more button on end of scroll

@@ -1,0 +1,334 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/addons_daily/pulls/69,69,Pin docker image to use debian stretch,This should fix issues with the CircleCI build/test.,acmiyaguchi,3304040,2019-07-30T17:53:25Z,CONTRIBUTOR,True,1,1,1,ETL code that produces the addons_daily derived dataset.,Python,733066a5dd6e4474a69cd7b673dbfe6989dfb72e,Pin docker image to use debian stretch
+1,https://api.github.com/repos/mozilla/addons_daily/pulls/68,68,Use get for dict access,Fixes the edge case that failed on 7/5 that caused the job to crap out thereafter.,benmiroglio,8593945,2019-07-16T14:36:28Z,CONTRIBUTOR,True,5,3,1,ETL code that produces the addons_daily derived dataset.,Python,92da478f2d452b10ff876aa060a4b8259b072d53,Use get for dict access
+2,https://api.github.com/repos/mozilla/addons_daily/pulls/68,68,Use get for dict access,Fixes the edge case that failed on 7/5 that caused the job to crap out thereafter.,benmiroglio,8593945,2019-07-16T14:36:28Z,CONTRIBUTOR,True,5,3,1,ETL code that produces the addons_daily derived dataset.,Python,3b787f86e491537f8df4ac8d9fcc927713195d82,Merge branch 'master' into use-get-for-dict-access
+3,https://api.github.com/repos/mozilla/addons_daily/pulls/67,67,Bump scd version to v7,"Bumps `search_clients_daily` version to v7, see https://bugzilla.mozilla.org/show_bug.cgi?id=1564513. Merge pending after backfill completion.",benmiroglio,8593945,2019-07-11T16:27:39Z,CONTRIBUTOR,True,1,1,1,ETL code that produces the addons_daily derived dataset.,Python,ea5451bdd9d485e993eba61ee4ad6440b5df8720,Bump scd version to v7
+4,https://api.github.com/repos/mozilla/addons_daily/pulls/66,66,Bump default search_clients_daily version to v6,,benmiroglio,8593945,2019-06-26T15:47:17Z,CONTRIBUTOR,True,1,1,1,ETL code that produces the addons_daily derived dataset.,Python,589ca15d524f6d7c149e7206a06799b04c472ae1,Bump default search_clients_daily version to v6
+5,https://api.github.com/repos/mozilla/addons_daily/pulls/65,65,Fix #64 - Materialize range generator into a list ,"This fixes issue #64 which is currently causing failures in Airflow. I've disabled the DAG until this patch goes through. The failure because Python3 serializes the generator function for `range`, instead of the values of range.
+
+This patch contains the following:
+* Reproduces the bug locally using click's `CliRunner` tooling
+* Fixes issue #64 by calling `list`
+* Adds an option for `--output` that defaults to `OUTPATH` for integration testing via `mozetl-databricks.py`
+* Uses a common `spark` fixture in `conftest.py` that lasts the entire testing session
+
+```bash
+python bin/mozetl-databricks.py \
+    --git-path https://github.com/acmiyaguchi/addons_daily.git \
+    --git-branch master \
+    --module-name addons_daily \
+    --num-workers 10 \
+    --python 3 \
+    --token <TOKEN>  \
+    addons_report \
+        --date 20190608 \
+	--output s3://telemetry-test-bucket/addons_daily/v1/
+```
+Cluster logs: https://dbc-caf9527b-e073.cloud.databricks.com/#job/3395/run/1",acmiyaguchi,3304040,2019-06-24T23:06:00Z,CONTRIBUTOR,True,97,23,5,ETL code that produces the addons_daily derived dataset.,Python,47d5b3b06216210aa4a998c82c38247e973d94e9,Add common Spark session fixture
+6,https://api.github.com/repos/mozilla/addons_daily/pulls/65,65,Fix #64 - Materialize range generator into a list ,"This fixes issue #64 which is currently causing failures in Airflow. I've disabled the DAG until this patch goes through. The failure because Python3 serializes the generator function for `range`, instead of the values of range.
+
+This patch contains the following:
+* Reproduces the bug locally using click's `CliRunner` tooling
+* Fixes issue #64 by calling `list`
+* Adds an option for `--output` that defaults to `OUTPATH` for integration testing via `mozetl-databricks.py`
+* Uses a common `spark` fixture in `conftest.py` that lasts the entire testing session
+
+```bash
+python bin/mozetl-databricks.py \
+    --git-path https://github.com/acmiyaguchi/addons_daily.git \
+    --git-branch master \
+    --module-name addons_daily \
+    --num-workers 10 \
+    --python 3 \
+    --token <TOKEN>  \
+    addons_report \
+        --date 20190608 \
+	--output s3://telemetry-test-bucket/addons_daily/v1/
+```
+Cluster logs: https://dbc-caf9527b-e073.cloud.databricks.com/#job/3395/run/1",acmiyaguchi,3304040,2019-06-24T23:06:00Z,CONTRIBUTOR,True,97,23,5,ETL code that produces the addons_daily derived dataset.,Python,3df335c1b760448d83a84b848aaa346feae0f62e,Fix #64 - Materialize range generator into a list
+7,https://api.github.com/repos/mozilla/addons_daily/pulls/65,65,Fix #64 - Materialize range generator into a list ,"This fixes issue #64 which is currently causing failures in Airflow. I've disabled the DAG until this patch goes through. The failure because Python3 serializes the generator function for `range`, instead of the values of range.
+
+This patch contains the following:
+* Reproduces the bug locally using click's `CliRunner` tooling
+* Fixes issue #64 by calling `list`
+* Adds an option for `--output` that defaults to `OUTPATH` for integration testing via `mozetl-databricks.py`
+* Uses a common `spark` fixture in `conftest.py` that lasts the entire testing session
+
+```bash
+python bin/mozetl-databricks.py \
+    --git-path https://github.com/acmiyaguchi/addons_daily.git \
+    --git-branch master \
+    --module-name addons_daily \
+    --num-workers 10 \
+    --python 3 \
+    --token <TOKEN>  \
+    addons_report \
+        --date 20190608 \
+	--output s3://telemetry-test-bucket/addons_daily/v1/
+```
+Cluster logs: https://dbc-caf9527b-e073.cloud.databricks.com/#job/3395/run/1",acmiyaguchi,3304040,2019-06-24T23:06:00Z,CONTRIBUTOR,True,97,23,5,ETL code that produces the addons_daily derived dataset.,Python,89c837995221238827a0572a74e00f40d4bea841,Add `--output` option for redirecting test output
+8,https://api.github.com/repos/mozilla/addons_daily/pulls/65,65,Fix #64 - Materialize range generator into a list ,"This fixes issue #64 which is currently causing failures in Airflow. I've disabled the DAG until this patch goes through. The failure because Python3 serializes the generator function for `range`, instead of the values of range.
+
+This patch contains the following:
+* Reproduces the bug locally using click's `CliRunner` tooling
+* Fixes issue #64 by calling `list`
+* Adds an option for `--output` that defaults to `OUTPATH` for integration testing via `mozetl-databricks.py`
+* Uses a common `spark` fixture in `conftest.py` that lasts the entire testing session
+
+```bash
+python bin/mozetl-databricks.py \
+    --git-path https://github.com/acmiyaguchi/addons_daily.git \
+    --git-branch master \
+    --module-name addons_daily \
+    --num-workers 10 \
+    --python 3 \
+    --token <TOKEN>  \
+    addons_report \
+        --date 20190608 \
+	--output s3://telemetry-test-bucket/addons_daily/v1/
+```
+Cluster logs: https://dbc-caf9527b-e073.cloud.databricks.com/#job/3395/run/1",acmiyaguchi,3304040,2019-06-24T23:06:00Z,CONTRIBUTOR,True,97,23,5,ETL code that produces the addons_daily derived dataset.,Python,7d47f8abc471c60395a07d6fd1f4f6b87c65b046,Create fixture for main dependency mocks and test invalid prefixes
+9,https://api.github.com/repos/mozilla/addons_daily/pulls/63,63,Copy parts of bgbb_airflow's cli.py,for https://github.com/mozilla/telemetry-airflow/pull/533,relud,433717,2019-06-22T00:22:35Z,COLLABORATOR,True,13,0,1,ETL code that produces the addons_daily derived dataset.,Python,292e197d9fbe351362ecb77e46215488ecd9be31,Copy parts of bgbb_airflow's cli.py
+10,https://api.github.com/repos/mozilla/addons_daily/pulls/62,62,Added docstrings to all functions,,smelancon,35283199,2019-06-19T17:27:53Z,CONTRIBUTOR,False,221,44,4,ETL code that produces the addons_daily derived dataset.,Python,e7d41f2376c9e1ed7e7373355d2f4d34c451d311,added docstrings
+11,https://api.github.com/repos/mozilla/addons_daily/pulls/62,62,Added docstrings to all functions,,smelancon,35283199,2019-06-19T17:27:53Z,CONTRIBUTOR,False,221,44,4,ETL code that produces the addons_daily derived dataset.,Python,efd9de7948272f6223270d210283635f5462614d,fixed formatting for black
+12,https://api.github.com/repos/mozilla/addons_daily/pulls/62,62,Added docstrings to all functions,,smelancon,35283199,2019-06-19T17:27:53Z,CONTRIBUTOR,False,221,44,4,ETL code that produces the addons_daily derived dataset.,Python,f08a269b56a88a7e3f8bec3caa83035010a2b125,Merge branch 'master' into docstrings
+13,https://api.github.com/repos/mozilla/addons_daily/pulls/61,61,Remove click vars,,benmiroglio,8593945,2019-06-05T23:25:51Z,CONTRIBUTOR,True,1,7,1,ETL code that produces the addons_daily derived dataset.,Python,0e742e991cd223815857fefb547afbca29853ffd,Remove unused click vars
+14,https://api.github.com/repos/mozilla/addons_daily/pulls/61,61,Remove click vars,,benmiroglio,8593945,2019-06-05T23:25:51Z,CONTRIBUTOR,True,1,7,1,ETL code that produces the addons_daily derived dataset.,Python,aa3c4acd04e49cf268d296460da9cbc3a0680958,remove egg files
+15,https://api.github.com/repos/mozilla/addons_daily/pulls/61,61,Remove click vars,,benmiroglio,8593945,2019-06-05T23:25:51Z,CONTRIBUTOR,True,1,7,1,ETL code that produces the addons_daily derived dataset.,Python,4203b2bdd8f92b6dee8ee35d5b5c23f88140e211,Merge branch 'master' into remove-click-vars
+16,https://api.github.com/repos/mozilla/addons_daily/pulls/60,60,Change main() to write to s3,,benmiroglio,8593945,2019-06-05T22:58:19Z,CONTRIBUTOR,True,10,3,1,ETL code that produces the addons_daily derived dataset.,Python,a4e0147c4a59fdd3e99498e91e8742ea9eebe2b5,Change main() to write to s3
+17,https://api.github.com/repos/mozilla/addons_daily/pulls/60,60,Change main() to write to s3,,benmiroglio,8593945,2019-06-05T22:58:19Z,CONTRIBUTOR,True,10,3,1,ETL code that produces the addons_daily derived dataset.,Python,ded45c0de1e25f5daaeb18807fcb3804c255471b,Merge branch 'master' into write-data
+18,https://api.github.com/repos/mozilla/addons_daily/pulls/59,59,Is system,,smelancon,35283199,2019-06-05T18:51:30Z,CONTRIBUTOR,True,58,3,6,ETL code that produces the addons_daily derived dataset.,Python,f2e637e8fd0bccc606a282f94ef2e0dd96ecd108,added is_system metric
+19,https://api.github.com/repos/mozilla/addons_daily/pulls/59,59,Is system,,smelancon,35283199,2019-06-05T18:51:30Z,CONTRIBUTOR,True,58,3,6,ETL code that produces the addons_daily derived dataset.,Python,039fe9dce3147cbd1b0d948309a0c1f423fba547,modified tests
+20,https://api.github.com/repos/mozilla/addons_daily/pulls/59,59,Is system,,smelancon,35283199,2019-06-05T18:51:30Z,CONTRIBUTOR,True,58,3,6,ETL code that produces the addons_daily derived dataset.,Python,62e8920c9bfd2161fd434befe2bcc4f154f45197,Merge branch 'master' into is_system
+21,https://api.github.com/repos/mozilla/addons_daily/pulls/59,59,Is system,,smelancon,35283199,2019-06-05T18:51:30Z,CONTRIBUTOR,True,58,3,6,ETL code that produces the addons_daily derived dataset.,Python,9bbcb1b190561c295ecf4c2a8f11509a4c09eb9a,added temporary file to generate test data
+22,https://api.github.com/repos/mozilla/addons_daily/pulls/59,59,Is system,,smelancon,35283199,2019-06-05T18:51:30Z,CONTRIBUTOR,True,58,3,6,ETL code that produces the addons_daily derived dataset.,Python,4944441c80e3401800b064fb1e42c85c2e08a0d7,fixing circular import
+23,https://api.github.com/repos/mozilla/addons_daily/pulls/59,59,Is system,,smelancon,35283199,2019-06-05T18:51:30Z,CONTRIBUTOR,True,58,3,6,ETL code that produces the addons_daily derived dataset.,Python,04e446d8c17694f5d1937b85f8cc0ca9fd906dee,update test results
+24,https://api.github.com/repos/mozilla/addons_daily/pulls/59,59,Is system,,smelancon,35283199,2019-06-05T18:51:30Z,CONTRIBUTOR,True,58,3,6,ETL code that produces the addons_daily derived dataset.,Python,26beb68e3e176826ade0690c007a62dc296b0bf6,remove scratch file
+25,https://api.github.com/repos/mozilla/addons_daily/pulls/59,59,Is system,,smelancon,35283199,2019-06-05T18:51:30Z,CONTRIBUTOR,True,58,3,6,ETL code that produces the addons_daily derived dataset.,Python,b5dbedb825ce6470d4f97ef79c171de236384486,fixed single quotes
+26,https://api.github.com/repos/mozilla/addons_daily/pulls/59,59,Is system,,smelancon,35283199,2019-06-05T18:51:30Z,CONTRIBUTOR,True,58,3,6,ETL code that produces the addons_daily derived dataset.,Python,18b386996667885971bf44aae6dc5c5c0f033200,fixed booleans in json
+27,https://api.github.com/repos/mozilla/addons_daily/pulls/59,59,Is system,,smelancon,35283199,2019-06-05T18:51:30Z,CONTRIBUTOR,True,58,3,6,ETL code that produces the addons_daily derived dataset.,Python,a04fa3eeb5aa552eedc57dafd9a7080db21371e9,formatting black
+28,https://api.github.com/repos/mozilla/addons_daily/pulls/58,58,Multiply sampled counts by 100,,benmiroglio,8593945,2019-06-05T14:54:51Z,CONTRIBUTOR,True,52,54,3,ETL code that produces the addons_daily derived dataset.,Python,fed638107ee42695f1e58263a5dd8f6683e34700,Multiply sampled counts by 100
+29,https://api.github.com/repos/mozilla/addons_daily/pulls/57,57,Reset top 10 list to begin at 1,,benmiroglio,8593945,2019-06-05T13:55:29Z,CONTRIBUTOR,True,24,41,3,ETL code that produces the addons_daily derived dataset.,Python,b74744d3d20386adfa6c901bdfaf8cb93f260966,Reset top 10 list to begin at 1
+30,https://api.github.com/repos/mozilla/addons_daily/pulls/56,56,"Update demo metrics, do not use collect_list",,benmiroglio,8593945,2019-06-05T02:58:35Z,CONTRIBUTOR,True,90,66,3,ETL code that produces the addons_daily derived dataset.,Python,33e5de0b0b23d09b6827d71ff8b01ff4ee81aeb0,"Update demo metrics, do not use collect_list"
+31,https://api.github.com/repos/mozilla/addons_daily/pulls/55,55,"Change search metrics, do not use collect_list",,benmiroglio,8593945,2019-06-04T21:46:48Z,CONTRIBUTOR,True,76,94,5,ETL code that produces the addons_daily derived dataset.,Python,4572a7b39d84f7c2c8d9b94cc65c346631692060,"Change search metrics, do not use collect_list"
+32,https://api.github.com/repos/mozilla/addons_daily/pulls/55,55,"Change search metrics, do not use collect_list",,benmiroglio,8593945,2019-06-04T21:46:48Z,CONTRIBUTOR,True,76,94,5,ETL code that produces the addons_daily derived dataset.,Python,b1a947ed1d27b6d0db82353117446c94bda513e4,Update tests
+33,https://api.github.com/repos/mozilla/addons_daily/pulls/52,52,Fix method error for load_data_s3,,benmiroglio,8593945,2019-06-04T18:29:30Z,CONTRIBUTOR,True,1,1,1,ETL code that produces the addons_daily derived dataset.,Python,f15c16602c142fd86540e44127c1f116670c05a8,Fix method error for load_data_s3
+34,https://api.github.com/repos/mozilla/addons_daily/pulls/51,51,Add install flow and search tests,,benmiroglio,8593945,2019-06-04T18:11:44Z,CONTRIBUTOR,True,88,4,4,ETL code that produces the addons_daily derived dataset.,Python,5a75ace5d8424e8c10ec3628aad78cd948a5d07d,Add install flow and search tests
+35,https://api.github.com/repos/mozilla/addons_daily/pulls/50,50,Use 28 day mau,,benmiroglio,8593945,2019-06-04T17:48:30Z,CONTRIBUTOR,True,31,72,2,ETL code that produces the addons_daily derived dataset.,Python,a403aa84b6f8e16696b23d78d8e4637d591f0e42,Use 28 day mau
+36,https://api.github.com/repos/mozilla/addons_daily/pulls/49,49,Breakout install events by source,,benmiroglio,8593945,2019-06-04T17:32:44Z,CONTRIBUTOR,True,125,29,5,ETL code that produces the addons_daily derived dataset.,Python,f814117456a751512e67fe93084681bc9c19b518,Breakout install events by source
+37,https://api.github.com/repos/mozilla/addons_daily/pulls/48,48,Bucket countries,,benmiroglio,8593945,2019-06-04T16:47:40Z,CONTRIBUTOR,True,23,10,2,ETL code that produces the addons_daily derived dataset.,Python,f0bf4945c48e023aff8aefceacb4528a33a8cfdc,Bucket countries
+38,https://api.github.com/repos/mozilla/addons_daily/pulls/47,47,adding proportion of dau as metric,,brianwright2,40579480,2019-06-04T00:40:51Z,CONTRIBUTOR,True,90,19,4,ETL code that produces the addons_daily derived dataset.,Python,1124a48ad75fad0fa8327c407f5f71086bb0afda,adding proportion of dau as metric
+39,https://api.github.com/repos/mozilla/addons_daily/pulls/47,47,adding proportion of dau as metric,,brianwright2,40579480,2019-06-04T00:40:51Z,CONTRIBUTOR,True,90,19,4,ETL code that produces the addons_daily derived dataset.,Python,734bfe73e2251cabacc2ea2ca52bd50a1ee1feaa,stylistic changes
+40,https://api.github.com/repos/mozilla/addons_daily/pulls/44,44,Force load keyedHistograms only,,benmiroglio,8593945,2019-06-03T20:13:16Z,CONTRIBUTOR,True,948,218,3,ETL code that produces the addons_daily derived dataset.,Python,97c11d5ab70baa4a861818e03ada571067ac6aa8,Force load keyedHistograms only
+41,https://api.github.com/repos/mozilla/addons_daily/pulls/41,41,Adjust filters for production,,benmiroglio,8593945,2019-06-03T18:37:26Z,CONTRIBUTOR,True,117,914,9,ETL code that produces the addons_daily derived dataset.,Python,8a516ed3b59c6d6bdca0d7e3a527f0d157614abe,Adjust filters for production
+42,https://api.github.com/repos/mozilla/addons_daily/pulls/40,40,Add two tests,,benmiroglio,8593945,2019-05-31T21:21:52Z,CONTRIBUTOR,True,978,835,7,ETL code that produces the addons_daily derived dataset.,Python,247f337b4e4de86dc4ca718a262e6302594c968d,Add two tests
+43,https://api.github.com/repos/mozilla/addons_daily/pulls/39,39,More refactoring,,benmiroglio,8593945,2019-05-31T18:13:42Z,CONTRIBUTOR,True,61,13,2,ETL code that produces the addons_daily derived dataset.,Python,c2cbd1d36029e1394bbfdf2471d497544b0e516a,More refactoring
+44,https://api.github.com/repos/mozilla/addons_daily/pulls/38,38,Refactor test code,,benmiroglio,8593945,2019-05-31T17:19:46Z,CONTRIBUTOR,True,939,982,9,ETL code that produces the addons_daily derived dataset.,Python,2a5a5ce435336f0cf885d336597476cb21f9ccdf,Refactor test code
+45,https://api.github.com/repos/mozilla/addons_daily/pulls/37,37,Clean up code,,benmiroglio,8593945,2019-05-31T04:32:30Z,CONTRIBUTOR,True,35,62,3,ETL code that produces the addons_daily derived dataset.,Python,9123560b3f26d3af63cd845e746503c17d165039,Clean up code
+46,https://api.github.com/repos/mozilla/addons_daily/pulls/36,36,Add back modular tests,,benmiroglio,8593945,2019-05-30T23:19:19Z,CONTRIBUTOR,True,402,0,2,ETL code that produces the addons_daily derived dataset.,Python,7c0f1049018726028ec52a980d8a474619d3fd35,Add back modular tests
+47,https://api.github.com/repos/mozilla/addons_daily/pulls/35,35,Create one integrated test,,benmiroglio,8593945,2019-05-30T22:47:58Z,CONTRIBUTOR,True,767,632,15,ETL code that produces the addons_daily derived dataset.,Python,69b26b4f2d4f510545f6c09dd5b395477ce994dd,Create one integrated test
+48,https://api.github.com/repos/mozilla/addons_daily/pulls/35,35,Create one integrated test,,benmiroglio,8593945,2019-05-30T22:47:58Z,CONTRIBUTOR,True,767,632,15,ETL code that produces the addons_daily derived dataset.,Python,e93d8796a152442881f58fcdae0f3e3ea3a60aa2,Kill py27
+49,https://api.github.com/repos/mozilla/addons_daily/pulls/35,35,Create one integrated test,,benmiroglio,8593945,2019-05-30T22:47:58Z,CONTRIBUTOR,True,767,632,15,ETL code that produces the addons_daily derived dataset.,Python,6e0c7b821c1979c41d5718ecd32c38d42b789932,Remove remaining py27 job
+50,https://api.github.com/repos/mozilla/addons_daily/pulls/34,34,Test rewrite,,benmiroglio,8593945,2019-05-30T19:10:20Z,CONTRIBUTOR,True,397,2677,16,ETL code that produces the addons_daily derived dataset.,Python,e63cd5c8d2464cbc7603cf7905bc6434f3afa1ab,Fix raw ping dates
+51,https://api.github.com/repos/mozilla/addons_daily/pulls/34,34,Test rewrite,,benmiroglio,8593945,2019-05-30T19:10:20Z,CONTRIBUTOR,True,397,2677,16,ETL code that produces the addons_daily derived dataset.,Python,d855fa3f92e318f47bcbbdfcade0e5e2624ba3b3,Skip demo test
+52,https://api.github.com/repos/mozilla/addons_daily/pulls/34,34,Test rewrite,,benmiroglio,8593945,2019-05-30T19:10:20Z,CONTRIBUTOR,True,397,2677,16,ETL code that produces the addons_daily derived dataset.,Python,ec522b7253116dc2b1d4f41aa5e3855f1cfef8dd,Run black
+53,https://api.github.com/repos/mozilla/addons_daily/pulls/34,34,Test rewrite,,benmiroglio,8593945,2019-05-30T19:10:20Z,CONTRIBUTOR,True,397,2677,16,ETL code that produces the addons_daily derived dataset.,Python,fd5856eb78fff2df069b32c1364bbadb04a235c3,Unpersist dataframes in tests that time out
+54,https://api.github.com/repos/mozilla/addons_daily/pulls/34,34,Test rewrite,,benmiroglio,8593945,2019-05-30T19:10:20Z,CONTRIBUTOR,True,397,2677,16,ETL code that produces the addons_daily derived dataset.,Python,0ed1f54930b9a8d5bfc255599096b78534123cd6,Black check
+55,https://api.github.com/repos/mozilla/addons_daily/pulls/34,34,Test rewrite,,benmiroglio,8593945,2019-05-30T19:10:20Z,CONTRIBUTOR,True,397,2677,16,ETL code that produces the addons_daily derived dataset.,Python,75f39ea39c9e756f918ff542e30442562194ae3d,Test new format
+56,https://api.github.com/repos/mozilla/addons_daily/pulls/34,34,Test rewrite,,benmiroglio,8593945,2019-05-30T19:10:20Z,CONTRIBUTOR,True,397,2677,16,ETL code that produces the addons_daily derived dataset.,Python,d66bb437ce573e58199b295d470f1c54b254646e,Add browser test with new format
+57,https://api.github.com/repos/mozilla/addons_daily/pulls/34,34,Test rewrite,,benmiroglio,8593945,2019-05-30T19:10:20Z,CONTRIBUTOR,True,397,2677,16,ETL code that produces the addons_daily derived dataset.,Python,ac541be74b3c0e9d060325088473f92d58bb5921,Add remaining tests with new format
+58,https://api.github.com/repos/mozilla/addons_daily/pulls/34,34,Test rewrite,,benmiroglio,8593945,2019-05-30T19:10:20Z,CONTRIBUTOR,True,397,2677,16,ETL code that produces the addons_daily derived dataset.,Python,e14fe3ba01213e211d72af3564643c6f518f2e2d,Clear spark catalog cache
+59,https://api.github.com/repos/mozilla/addons_daily/pulls/33,33,Fix raw ping dates,,benmiroglio,8593945,2019-05-30T00:58:06Z,CONTRIBUTOR,True,9,6,2,ETL code that produces the addons_daily derived dataset.,Python,e63cd5c8d2464cbc7603cf7905bc6434f3afa1ab,Fix raw ping dates
+60,https://api.github.com/repos/mozilla/addons_daily/pulls/33,33,Fix raw ping dates,,benmiroglio,8593945,2019-05-30T00:58:06Z,CONTRIBUTOR,True,9,6,2,ETL code that produces the addons_daily derived dataset.,Python,d855fa3f92e318f47bcbbdfcade0e5e2624ba3b3,Skip demo test
+61,https://api.github.com/repos/mozilla/addons_daily/pulls/33,33,Fix raw ping dates,,benmiroglio,8593945,2019-05-30T00:58:06Z,CONTRIBUTOR,True,9,6,2,ETL code that produces the addons_daily derived dataset.,Python,ec522b7253116dc2b1d4f41aa5e3855f1cfef8dd,Run black
+62,https://api.github.com/repos/mozilla/addons_daily/pulls/33,33,Fix raw ping dates,,benmiroglio,8593945,2019-05-30T00:58:06Z,CONTRIBUTOR,True,9,6,2,ETL code that produces the addons_daily derived dataset.,Python,fd5856eb78fff2df069b32c1364bbadb04a235c3,Unpersist dataframes in tests that time out
+63,https://api.github.com/repos/mozilla/addons_daily/pulls/33,33,Fix raw ping dates,,benmiroglio,8593945,2019-05-30T00:58:06Z,CONTRIBUTOR,True,9,6,2,ETL code that produces the addons_daily derived dataset.,Python,0ed1f54930b9a8d5bfc255599096b78534123cd6,Black check
+64,https://api.github.com/repos/mozilla/addons_daily/pulls/32,32,Fix gen date,,benmiroglio,8593945,2019-05-30T00:19:50Z,CONTRIBUTOR,True,117,41,4,ETL code that produces the addons_daily derived dataset.,Python,8257663cf0a3a72d3c3d633788ad536c0ad10e95,Generalize date for trends
+65,https://api.github.com/repos/mozilla/addons_daily/pulls/32,32,Fix gen date,,benmiroglio,8593945,2019-05-30T00:19:50Z,CONTRIBUTOR,True,117,41,4,ETL code that produces the addons_daily derived dataset.,Python,47b486bca1b180d9b8b100e534cff193023651aa,Remove deprecated load_main_summary_function
+66,https://api.github.com/repos/mozilla/addons_daily/pulls/32,32,Fix gen date,,benmiroglio,8593945,2019-05-30T00:19:50Z,CONTRIBUTOR,True,117,41,4,ETL code that produces the addons_daily derived dataset.,Python,b10a142bfed390b17022c59ef4ce0ef8e465a78d,Fix date generalizaitons
+67,https://api.github.com/repos/mozilla/addons_daily/pulls/32,32,Fix gen date,,benmiroglio,8593945,2019-05-30T00:19:50Z,CONTRIBUTOR,True,117,41,4,ETL code that produces the addons_daily derived dataset.,Python,8ce9aa95909077c9a387ce205f91498ff43509f8,Run black
+68,https://api.github.com/repos/mozilla/addons_daily/pulls/31,31,Fix date generalization,Restores and adds some more flexible date functionality to allow backfills. ,benmiroglio,8593945,2019-05-29T22:58:41Z,CONTRIBUTOR,False,101,41,4,ETL code that produces the addons_daily derived dataset.,Python,8257663cf0a3a72d3c3d633788ad536c0ad10e95,Generalize date for trends
+69,https://api.github.com/repos/mozilla/addons_daily/pulls/31,31,Fix date generalization,Restores and adds some more flexible date functionality to allow backfills. ,benmiroglio,8593945,2019-05-29T22:58:41Z,CONTRIBUTOR,False,101,41,4,ETL code that produces the addons_daily derived dataset.,Python,47b486bca1b180d9b8b100e534cff193023651aa,Remove deprecated load_main_summary_function
+70,https://api.github.com/repos/mozilla/addons_daily/pulls/30,30,Test Rework,"Re write tests in order to match the updated functions, as well as incorporating logical functions that examine the pyspark dataframes themselves rather than the list of rows collected from respective dataframes.",brianwright2,40579480,2019-05-15T22:37:32Z,CONTRIBUTOR,True,6030,3526,25,ETL code that produces the addons_daily derived dataset.,Python,f5628afd49adf2bbb9a9c62000a16e26c9b29ba8,reworking tests
+71,https://api.github.com/repos/mozilla/addons_daily/pulls/30,30,Test Rework,"Re write tests in order to match the updated functions, as well as incorporating logical functions that examine the pyspark dataframes themselves rather than the list of rows collected from respective dataframes.",brianwright2,40579480,2019-05-15T22:37:32Z,CONTRIBUTOR,True,6030,3526,25,ETL code that produces the addons_daily derived dataset.,Python,403c77ff0eedb068df533d9816c449d1f46a1beb,attemping a commit
+72,https://api.github.com/repos/mozilla/addons_daily/pulls/30,30,Test Rework,"Re write tests in order to match the updated functions, as well as incorporating logical functions that examine the pyspark dataframes themselves rather than the list of rows collected from respective dataframes.",brianwright2,40579480,2019-05-15T22:37:32Z,CONTRIBUTOR,True,6030,3526,25,ETL code that produces the addons_daily derived dataset.,Python,9b05748ef697455333cdca6e604cdb05942253c4,attempt to commit
+73,https://api.github.com/repos/mozilla/addons_daily/pulls/30,30,Test Rework,"Re write tests in order to match the updated functions, as well as incorporating logical functions that examine the pyspark dataframes themselves rather than the list of rows collected from respective dataframes.",brianwright2,40579480,2019-05-15T22:37:32Z,CONTRIBUTOR,True,6030,3526,25,ETL code that produces the addons_daily derived dataset.,Python,25dd157c4db50b16dfa5b20afb25e5e231c192a4,fixing tests
+74,https://api.github.com/repos/mozilla/addons_daily/pulls/30,30,Test Rework,"Re write tests in order to match the updated functions, as well as incorporating logical functions that examine the pyspark dataframes themselves rather than the list of rows collected from respective dataframes.",brianwright2,40579480,2019-05-15T22:37:32Z,CONTRIBUTOR,True,6030,3526,25,ETL code that produces the addons_daily derived dataset.,Python,b1a8ff6ce132f355dbbde1d9eabcfdf31edbdd3c,reworking tests to pass pytest-black
+75,https://api.github.com/repos/mozilla/addons_daily/pulls/30,30,Test Rework,"Re write tests in order to match the updated functions, as well as incorporating logical functions that examine the pyspark dataframes themselves rather than the list of rows collected from respective dataframes.",brianwright2,40579480,2019-05-15T22:37:32Z,CONTRIBUTOR,True,6030,3526,25,ETL code that produces the addons_daily derived dataset.,Python,61b7a425fd011aad7b75f8b76ea2dd6f0d2457bb,Fix test dates
+76,https://api.github.com/repos/mozilla/addons_daily/pulls/30,30,Test Rework,"Re write tests in order to match the updated functions, as well as incorporating logical functions that examine the pyspark dataframes themselves rather than the list of rows collected from respective dataframes.",brianwright2,40579480,2019-05-15T22:37:32Z,CONTRIBUTOR,True,6030,3526,25,ETL code that produces the addons_daily derived dataset.,Python,e02a1b6ed931cc4297ad3159b0f9f7a13d7b5667,"Reuse spark session, delete cache"
+77,https://api.github.com/repos/mozilla/addons_daily/pulls/30,30,Test Rework,"Re write tests in order to match the updated functions, as well as incorporating logical functions that examine the pyspark dataframes themselves rather than the list of rows collected from respective dataframes.",brianwright2,40579480,2019-05-15T22:37:32Z,CONTRIBUTOR,True,6030,3526,25,ETL code that produces the addons_daily derived dataset.,Python,1581727f96cf48c43370e193b4b63415fe9854dc,Add moztelemetry dependency
+78,https://api.github.com/repos/mozilla/addons_daily/pulls/30,30,Test Rework,"Re write tests in order to match the updated functions, as well as incorporating logical functions that examine the pyspark dataframes themselves rather than the list of rows collected from respective dataframes.",brianwright2,40579480,2019-05-15T22:37:32Z,CONTRIBUTOR,True,6030,3526,25,ETL code that produces the addons_daily derived dataset.,Python,0068d93763a0c4050c2dd0806f86c43aa427e171,Move large python-defined data to files
+79,https://api.github.com/repos/mozilla/addons_daily/pulls/30,30,Test Rework,"Re write tests in order to match the updated functions, as well as incorporating logical functions that examine the pyspark dataframes themselves rather than the list of rows collected from respective dataframes.",brianwright2,40579480,2019-05-15T22:37:32Z,CONTRIBUTOR,True,6030,3526,25,ETL code that produces the addons_daily derived dataset.,Python,f102c2840e6dd7fde567fd75b50248a9b8edb653,Move more python data to json
+80,https://api.github.com/repos/mozilla/addons_daily/pulls/29,29,generalize date and sample id to be processed,,smelancon,35283199,2019-05-15T21:46:28Z,CONTRIBUTOR,True,138,709,10,ETL code that produces the addons_daily derived dataset.,Python,7a55ddad47a7c41b08a57268e60e96409b0f90f0,generalize date and sample id to be processed
+81,https://api.github.com/repos/mozilla/addons_daily/pulls/29,29,generalize date and sample id to be processed,,smelancon,35283199,2019-05-15T21:46:28Z,CONTRIBUTOR,True,138,709,10,ETL code that produces the addons_daily derived dataset.,Python,dcbefcb35a1b4af021ad965ca78c40e66d428d91,Merge branch 'master' into generalize_date
+82,https://api.github.com/repos/mozilla/addons_daily/pulls/29,29,generalize date and sample id to be processed,,smelancon,35283199,2019-05-15T21:46:28Z,CONTRIBUTOR,True,138,709,10,ETL code that produces the addons_daily derived dataset.,Python,b33f9f208448dd8561d384e644680807a189239c,Run black on code
+83,https://api.github.com/repos/mozilla/addons_daily/pulls/29,29,generalize date and sample id to be processed,,smelancon,35283199,2019-05-15T21:46:28Z,CONTRIBUTOR,True,138,709,10,ETL code that produces the addons_daily derived dataset.,Python,ba4a6453b039d72351e3a3d972baaeee00f3dd7c,Move more data to json
+84,https://api.github.com/repos/mozilla/addons_daily/pulls/28,28,Merge pull request #27 from mozilla/master,Rewriting Tests,benmiroglio,8593945,2019-05-15T20:10:38Z,CONTRIBUTOR,True,0,0,0,ETL code that produces the addons_daily derived dataset.,Python,188f7431f348408a78f2926f7c3b8cfa52a0291e,"Merge pull request #27 from mozilla/master
+
+Rewriting Tests"
+85,https://api.github.com/repos/mozilla/addons_daily/pulls/27,27,Rewriting Tests,,brianwright2,40579480,2019-05-15T20:04:48Z,CONTRIBUTOR,True,4461,3102,31,ETL code that produces the addons_daily derived dataset.,Python,4c89913039f1e8878fcdefa1dcc4693e47f57609,Fix or xfail tests
+86,https://api.github.com/repos/mozilla/addons_daily/pulls/27,27,Rewriting Tests,,brianwright2,40579480,2019-05-15T20:04:48Z,CONTRIBUTOR,True,4461,3102,31,ETL code that produces the addons_daily derived dataset.,Python,c2aedd21b54dd21676b4e4461c0ddb2f15b8d3da,sort rows in failing test
+87,https://api.github.com/repos/mozilla/addons_daily/pulls/27,27,Rewriting Tests,,brianwright2,40579480,2019-05-15T20:04:48Z,CONTRIBUTOR,True,4461,3102,31,ETL code that produces the addons_daily derived dataset.,Python,054837ace9eb10fd5a5ed17ed967ac771dd6c63e,add code coverage
+88,https://api.github.com/repos/mozilla/addons_daily/pulls/27,27,Rewriting Tests,,brianwright2,40579480,2019-05-15T20:04:48Z,CONTRIBUTOR,True,4461,3102,31,ETL code that produces the addons_daily derived dataset.,Python,9aeeb9f77f280bfc463aa2eb5ffef79e712206b7,"Merge pull request #22 from mozilla/ci_tox
+
+Fix or xfail tests"
+89,https://api.github.com/repos/mozilla/addons_daily/pulls/27,27,Rewriting Tests,,brianwright2,40579480,2019-05-15T20:04:48Z,CONTRIBUTOR,True,4461,3102,31,ETL code that produces the addons_daily derived dataset.,Python,30974b60ea69af358becb1a5507400f0410db06e,Format python with black
+90,https://api.github.com/repos/mozilla/addons_daily/pulls/27,27,Rewriting Tests,,brianwright2,40579480,2019-05-15T20:04:48Z,CONTRIBUTOR,True,4461,3102,31,ETL code that produces the addons_daily derived dataset.,Python,b1bc5992fcf4043eb3c1b9e64909b2369cbc4091,"Merge pull request #23 from mozilla/black
+
+Format python with black"
+91,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,9a0563f4b433f3bd8a871d592e46a66c10fab82c,updated search clients daily metrics
+92,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,a38cc56c667e13b56efe76a9687ac6cc7ea38a9e,fix spelling
+93,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,40f457faf30ea976cbb2a8945ac8961a22dc00d2,fixed more submission date inconsistencies
+94,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,0878c8a62d1dfa456eb8c934112f44d3f2456962,trying to load data
+95,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,24fd20d3e0998495b2b075cf2d27f4a4e964f017,get all search metrics from search_clients_daily
+96,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,42e1b8a0a94e49e68f19da0b64e8747e4b9591ad,trying to load search clients daily
+97,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,df9298a0593fbfd21c409e6d3e33796041f77211,fix typo
+98,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,ccea897b63212896bb0800802df17acd63df4718,change name of load_main_summary to load_data_s3
+99,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,69a777e9633f47aff98ad44d7be6093580b58b52,change name of load_main_summary to load_data_s3
+100,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,4e494c440948b4fe5ffc12811e9c4a0739768063,call get_top_ten_others with main summary not addons expanded
+101,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,7e2048e0bad82520db3a21849dd36008f6cae540,fix imports
+102,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,5c1649739e4fdad866ae83f307dadddc0f630333,fix arguments for get_trend_metrics
+103,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,4bfe92c9930292cc062492b42dd73ca6964e4a36,import data types from pyspark
+104,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,9dfd7eff5875e81b39b1dc7dfc8f6eb6ebf2206d,fixing variable name
+105,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,41d7eae66f7c99a8ef3e99d8bb19c3c08a29fdaa,fixing import
+106,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,945442337a3679cc6be8309ed2a9bd31d9284586,fixing merge conflict
+107,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,dddd6910c58a16b057063bac43a34665ff0ef9e4,fixing merge conflict
+108,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,1bcf6065fa7e6f989b04a16013748333e75b5b8d,Merge branch 'master' into search-metrics
+109,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,c7f863932cf4a6ce15ed192add0a9e6f94f896ca,calculate sum not average
+110,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,4f59ed1f5d9ba7e78442af7bd59b33ddb4d62cf6,fix imports
+111,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,5cfaa33077f1ae9cb38cd8b4d620588ffbe3aab9,Merge branch 'master' of https://github.com/mozilla/addons_daily into search-metrics
+112,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,9a63f2c054df4cbfbfb347657f8f9b903fb82208,fix call to load_data_s3
+113,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,c6e961a62940930ba3fd9cfb71f6c551649cb9f9,temporarily taking out events
+114,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,590040c5a83133927ff6aec14912da725635ba5d,fixed references to Submission_date
+115,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,c10dd24ebe6868ce477156e050f735c69b666fc2,temporarily removed tab switch time
+116,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,7038522bccf19e8243150db878699146265ddf56,updated imports
+117,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,56e965b1ffcc5525bf22db1b69dd83b4be778d09,changed imports
+118,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,f185af17d8edeca940a2402a4edbc08e7c3dfa59,changed imports
+119,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,bdce574a1ad445a7cf405a91cb4fba73558dfa57,trying to fix imports
+120,https://api.github.com/repos/mozilla/addons_daily/pulls/25,25,Search metrics,"- Bucketed the metrics from `search_clients_daily` by engine, and added `search_with_ads` and `ad_click`
+- Changed name of `load_main_summary` to `load_data_s3`
+- Fixed some mistakes with variable names, imports, and function calls so the code runs without errors
+",smelancon,35283199,2019-05-13T22:16:12Z,CONTRIBUTOR,True,245,142,7,ETL code that produces the addons_daily derived dataset.,Python,76e24a0329a4df54793d934f4253d11bf12bfde5,change import
+121,https://api.github.com/repos/mozilla/addons_daily/pulls/24,24,Enforce flake8 in CI,leaving as a draft until code can be updated to also comply with flake8,relud,433717,2019-05-09T23:58:22Z,COLLABORATOR,False,2,0,1,ETL code that produces the addons_daily derived dataset.,Python,7e7b721d3f80f83700a840845f6a4350b39e164c,Enforce flake8 in CI
+122,https://api.github.com/repos/mozilla/addons_daily/pulls/23,23,Format python with black,"~this won't pass CI until #22 is merged, after which it will have merge conflicts, so making this a draft for now.~ edit: this is ready now
+
+I modified [tox.ini](https://github.com/mozilla/addons_daily/pull/23/files#diff-b91f3d5bd63fcd17221b267e851608e8) and the rest is from `black .`",relud,433717,2019-05-08T19:57:03Z,COLLABORATOR,True,3953,2565,13,ETL code that produces the addons_daily derived dataset.,Python,30974b60ea69af358becb1a5507400f0410db06e,Format python with black
+123,https://api.github.com/repos/mozilla/addons_daily/pulls/22,22,Fix or xfail tests,"also adds `gitignore`, renames `__init__.py` `addons_report.py` and `utils` into `addons_daily` module, and configures `setup.py` to package that module",relud,433717,2019-05-08T18:57:24Z,COLLABORATOR,True,103,132,23,ETL code that produces the addons_daily derived dataset.,Python,4c89913039f1e8878fcdefa1dcc4693e47f57609,Fix or xfail tests
+124,https://api.github.com/repos/mozilla/addons_daily/pulls/22,22,Fix or xfail tests,"also adds `gitignore`, renames `__init__.py` `addons_report.py` and `utils` into `addons_daily` module, and configures `setup.py` to package that module",relud,433717,2019-05-08T18:57:24Z,COLLABORATOR,True,103,132,23,ETL code that produces the addons_daily derived dataset.,Python,c2aedd21b54dd21676b4e4461c0ddb2f15b8d3da,sort rows in failing test
+125,https://api.github.com/repos/mozilla/addons_daily/pulls/22,22,Fix or xfail tests,"also adds `gitignore`, renames `__init__.py` `addons_report.py` and `utils` into `addons_daily` module, and configures `setup.py` to package that module",relud,433717,2019-05-08T18:57:24Z,COLLABORATOR,True,103,132,23,ETL code that produces the addons_daily derived dataset.,Python,054837ace9eb10fd5a5ed17ed967ac771dd6c63e,add code coverage
+126,https://api.github.com/repos/mozilla/addons_daily/pulls/21,21,Fix CircleCI,,relud,433717,2019-05-08T15:27:11Z,COLLABORATOR,True,17,8,6,ETL code that produces the addons_daily derived dataset.,Python,f9bf7cebdb1bb11def8699d24d6bd6bd3c4a1e5f,Install tox to fix CI
+127,https://api.github.com/repos/mozilla/addons_daily/pulls/21,21,Fix CircleCI,,relud,433717,2019-05-08T15:27:11Z,COLLABORATOR,True,17,8,6,ETL code that produces the addons_daily derived dataset.,Python,84674b495e961d43779a620d1baa28a0e035a151,Add missing workflows version
+128,https://api.github.com/repos/mozilla/addons_daily/pulls/21,21,Fix CircleCI,,relud,433717,2019-05-08T15:27:11Z,COLLABORATOR,True,17,8,6,ETL code that produces the addons_daily derived dataset.,Python,6a9d81cc67e7dd0b2bda2a167b826b9d9faddee5,Add more dependencies and code coverage
+129,https://api.github.com/repos/mozilla/addons_daily/pulls/21,21,Fix CircleCI,,relud,433717,2019-05-08T15:27:11Z,COLLABORATOR,True,17,8,6,ETL code that produces the addons_daily derived dataset.,Python,ef7d49173d2cf8c51355bb2dd479a96c15bb37e1,remove coverage
+130,https://api.github.com/repos/mozilla/addons_daily/pulls/21,21,Fix CircleCI,,relud,433717,2019-05-08T15:27:11Z,COLLABORATOR,True,17,8,6,ETL code that produces the addons_daily derived dataset.,Python,70beb565a06603bcfe7932a069e9a66bf4398262,add java dependency
+131,https://api.github.com/repos/mozilla/addons_daily/pulls/21,21,Fix CircleCI,,relud,433717,2019-05-08T15:27:11Z,COLLABORATOR,True,17,8,6,ETL code that produces the addons_daily derived dataset.,Python,3552fa496113d71f7b76617075242c94cfe922c4,Create __init__.py
+132,https://api.github.com/repos/mozilla/addons_daily/pulls/21,21,Fix CircleCI,,relud,433717,2019-05-08T15:27:11Z,COLLABORATOR,True,17,8,6,ETL code that produces the addons_daily derived dataset.,Python,8145ba0c6cca142bac675afa18b2bd79feb5fe33,Create __init__.py
+133,https://api.github.com/repos/mozilla/addons_daily/pulls/21,21,Fix CircleCI,,relud,433717,2019-05-08T15:27:11Z,COLLABORATOR,True,17,8,6,ETL code that produces the addons_daily derived dataset.,Python,aa7ac276c32372a64a6c1163f7edb1a250274526,Use relative import
+134,https://api.github.com/repos/mozilla/addons_daily/pulls/21,21,Fix CircleCI,,relud,433717,2019-05-08T15:27:11Z,COLLABORATOR,True,17,8,6,ETL code that produces the addons_daily derived dataset.,Python,86f4d759fc95969349ab916b9417c32182ea154e,Update test_search_daily.py
+135,https://api.github.com/repos/mozilla/addons_daily/pulls/21,21,Fix CircleCI,,relud,433717,2019-05-08T15:27:11Z,COLLABORATOR,True,17,8,6,ETL code that produces the addons_daily derived dataset.,Python,a17b07518576fcc9d9ccfb181bab90a9ed3f0439,use relative import
+136,https://api.github.com/repos/mozilla/addons_daily/pulls/17,17,Add circleci config,someone with admin on this repo needs to go to https://circleci.com/gh/mozilla/addons_daily/edit and choose `follow project` to enable circleci builds,relud,433717,2019-05-08T15:13:15Z,COLLABORATOR,True,21,0,2,ETL code that produces the addons_daily derived dataset.,Python,0877543b5a58b4814e465496ef7be3754f391f5c,Add circleci config
+137,https://api.github.com/repos/mozilla/addons_daily/pulls/17,17,Add circleci config,someone with admin on this repo needs to go to https://circleci.com/gh/mozilla/addons_daily/edit and choose `follow project` to enable circleci builds,relud,433717,2019-05-08T15:13:15Z,COLLABORATOR,True,21,0,2,ETL code that produces the addons_daily derived dataset.,Python,7be2a35ac752c1b6f0a16e060d47063fdc8de853,Add ci badge to readme
+138,https://api.github.com/repos/mozilla/addons_daily/pulls/16,16,Adding install flow events to dataset,,smelancon,35283199,2019-05-01T23:01:58Z,CONTRIBUTOR,True,70,5,3,ETL code that produces the addons_daily derived dataset.,Python,081b7e9e8925c4d1c9e8ecd3a6b413107c1f5bb7,adding events_data.py
+139,https://api.github.com/repos/mozilla/addons_daily/pulls/16,16,Adding install flow events to dataset,,smelancon,35283199,2019-05-01T23:01:58Z,CONTRIBUTOR,True,70,5,3,ETL code that produces the addons_daily derived dataset.,Python,1b448b8e8fe2cd20aabebde8ec4b0400dc3bad4b,adding install flow events
+140,https://api.github.com/repos/mozilla/addons_daily/pulls/16,16,Adding install flow events to dataset,,smelancon,35283199,2019-05-01T23:01:58Z,CONTRIBUTOR,True,70,5,3,ETL code that produces the addons_daily derived dataset.,Python,0398d9ddfe8af6ebb45926bb45c815a812b658f9,changes to addons_report
+141,https://api.github.com/repos/mozilla/addons_daily/pulls/15,15,"Fixing dates, moving crashes metrics",,smelancon,35283199,2019-04-24T23:47:53Z,CONTRIBUTOR,True,5,42,2,ETL code that produces the addons_daily derived dataset.,Python,d0b3747d8c4e21bc0d80b094cb2209c1e471e43e,changing to submission_date_s3
+142,https://api.github.com/repos/mozilla/addons_daily/pulls/15,15,"Fixing dates, moving crashes metrics",,smelancon,35283199,2019-04-24T23:47:53Z,CONTRIBUTOR,True,5,42,2,ETL code that produces the addons_daily derived dataset.,Python,3cfb9eba4bfdde1887276f47eb5b3962254eb0aa,fixing merge conflict
+143,https://api.github.com/repos/mozilla/addons_daily/pulls/15,15,"Fixing dates, moving crashes metrics",,smelancon,35283199,2019-04-24T23:47:53Z,CONTRIBUTOR,True,5,42,2,ETL code that produces the addons_daily derived dataset.,Python,7b9d70d599ab4f1079d6eda83f933c9af0867152,changing to submission_date_s3
+144,https://api.github.com/repos/mozilla/addons_daily/pulls/15,15,"Fixing dates, moving crashes metrics",,smelancon,35283199,2019-04-24T23:47:53Z,CONTRIBUTOR,True,5,42,2,ETL code that produces the addons_daily derived dataset.,Python,51dffda63c63948438246647b17e90b6a06119f3,formatting
+145,https://api.github.com/repos/mozilla/addons_daily/pulls/15,15,"Fixing dates, moving crashes metrics",,smelancon,35283199,2019-04-24T23:47:53Z,CONTRIBUTOR,True,5,42,2,ETL code that produces the addons_daily derived dataset.,Python,9692f4f4887b4009b631e78fb89eca1c914db57d,fixing arguments to get_trend_metrics
+146,https://api.github.com/repos/mozilla/addons_daily/pulls/14,14,"fixing function calls in addons_report.py, indentation",,smelancon,35283199,2019-04-24T20:58:29Z,CONTRIBUTOR,True,15,24,1,ETL code that produces the addons_daily derived dataset.,Python,5b1005118a7f637b07e5799efde2e4a67b7027cf,fixing functions loading telemetry data in  addons_report.py
+147,https://api.github.com/repos/mozilla/addons_daily/pulls/12,12,Combining groupbys,Combined calculations of related metrics,smelancon,35283199,2019-04-22T23:03:43Z,CONTRIBUTOR,True,237,346,3,ETL code that produces the addons_daily derived dataset.,Python,33e2ec6fcd436cd4c7487e51cb1103a0de38717f,combining group bys in telemetry data
+148,https://api.github.com/repos/mozilla/addons_daily/pulls/12,12,Combining groupbys,Combined calculations of related metrics,smelancon,35283199,2019-04-22T23:03:43Z,CONTRIBUTOR,True,237,346,3,ETL code that produces the addons_daily derived dataset.,Python,f44ad1da4b99781cb07b2429553ab1c049408fe5,combining country and os distributions
+149,https://api.github.com/repos/mozilla/addons_daily/pulls/12,12,Combining groupbys,Combined calculations of related metrics,smelancon,35283199,2019-04-22T23:03:43Z,CONTRIBUTOR,True,237,346,3,ETL code that produces the addons_daily derived dataset.,Python,8056436a398b7636ce269f1ccb3e1f14d604406a,"combining engagement metrics, browser metrics, trend metrics"
+150,https://api.github.com/repos/mozilla/addons_daily/pulls/12,12,Combining groupbys,Combined calculations of related metrics,smelancon,35283199,2019-04-22T23:03:43Z,CONTRIBUTOR,True,237,346,3,ETL code that produces the addons_daily derived dataset.,Python,ca576a7cb6adede0366f4a27538daee358169139,"cleanup, docstrings, adding disabled addon metric to engagement metrics"
+151,https://api.github.com/repos/mozilla/addons_daily/pulls/12,12,Combining groupbys,Combined calculations of related metrics,smelancon,35283199,2019-04-22T23:03:43Z,CONTRIBUTOR,True,237,346,3,ETL code that produces the addons_daily derived dataset.,Python,73a765c4590dc60026b777294573b830bdcd0baa,cleaning up
+152,https://api.github.com/repos/mozilla/addons_daily/pulls/12,12,Combining groupbys,Combined calculations of related metrics,smelancon,35283199,2019-04-22T23:03:43Z,CONTRIBUTOR,True,237,346,3,ETL code that produces the addons_daily derived dataset.,Python,baf95bd6f995a2855af0382dc4b0371e16fe6c64,moving crashes over to raw_pings.py
+153,https://api.github.com/repos/mozilla/addons_daily/pulls/12,12,Combining groupbys,Combined calculations of related metrics,smelancon,35283199,2019-04-22T23:03:43Z,CONTRIBUTOR,True,237,346,3,ETL code that produces the addons_daily derived dataset.,Python,6f448b28c93df9f1ffc094744a49677acc643e66,Merge branch 'master' into combining-groupbys
+154,https://api.github.com/repos/mozilla/addons_daily/pulls/8,8,Simplify MAU,"it has the same effect, tested locally, it's just shorter",relud,433717,2019-04-17T18:04:21Z,COLLABORATOR,True,2,8,1,ETL code that produces the addons_daily derived dataset.,Python,d2a53d9f48e173f1d893e86a13c2016d80f8c219,Simplify MAU

@@ -1,0 +1,161 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/44,44,chore(travis): update travis to be sudo: false,"Fixes #41
+",vladikoff,128755,2015-08-09T22:21:31Z,CONTRIBUTOR,True,2,0,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,6d3c4fea27b7cda24d2d74aa5cf1a837efa29d78,"chore(travis): update travis to be sudo: false
+
+Fixes #41"
+1,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/43,43,feat(db): store user agent and last-access time in sessionTokens,"Partially addresses https://github.com/mozilla/fxa-auth-server/issues/983.
+
+Depends on:
+- https://github.com/mozilla/fxa-auth-db-mysql/pull/65
+- https://github.com/mozilla/fxa-auth-server/pull/997
+
+Adds `userAgent` and `lastAccessTime` to `sessionTokens`.
+",philbooth,64367,2015-07-27T17:18:00Z,CONTRIBUTOR,False,16,0,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,8d93bf04bf0a6f26d17d120b0e8d7fc5f09ff863,feat(db): store user agent and last-access time in sessionTokens
+2,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/42,42,fix(db): check that a uid was passed in args,"This fixes one of the issues from https://github.com/mozilla/fxa-auth-server/issues/993, where mem-backed tests are failing if auth-server pulls in latest fxa-auth-db-{server,mem}.
+
+This was changed in https://github.com/mozilla/fxa-auth-db-mem/commit/603d4c29e7477977b335fa13c59cf935a02caae2. Formerly there was checking that the user could be found in emailRecord. Looks like tests are missing some cases.
+",jrgm,758162,2015-07-22T20:14:40Z,CONTRIBUTOR,True,3,0,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,5d965fda26727db7859751baaf9bcdfa1975357f,fix(db): check that a uid was passed in args
+3,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/40,40,chore(lint): Switch from JSHint to ESLint,,pdehaan,557895,2015-07-14T20:07:08Z,CONTRIBUTOR,True,52,58,7,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,fc81a8e64305a73c05916c99ded3faa0a75aa0de,chore(lint): Switch from JSHint to ESLint
+4,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/39,39,feat(tests): pass the server.on function to backend tests,"@chilts @rfk
+
+This is a proposal to enable functional tests of server emitted events. It just involves passing the bound `server.on` function to the backend tests, so that they can listen for any events of interest.
+
+For usage, see the incoming fxa-auth-db-server PR (I'll refer to this PR from that one).
+
+Not sure how you guys feel about it or where it lies on the hackishness spectrum, but it was the simplest thing I could think of to do what I wanted. Thoughts?
+",philbooth,64367,2015-07-09T12:04:10Z,CONTRIBUTOR,True,3,3,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,122bc686b9b45f9a9886f19a23b880d9a0291232,"feat(tests): pass the server object to backend tests
+
+Doing this enables functional testing of server emitted events."
+5,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/38,38,chore(travis): Tell Travis to use #fxa-bots,,chilts,3048,2015-07-01T04:31:53Z,CONTRIBUTOR,True,1,1,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,aa043a79d7195d540557d4d656668cbb8eab304a,chore(travis): Tell Travis to use #fxa-bots
+6,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/37,37,feat(api): Return the account email address on passwordChangeToken,,chilts,3048,2015-07-01T04:10:07Z,CONTRIBUTOR,True,1,0,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,34f56bec6509938885248fa6d21125737cbd661c,feat(api): Return the account email address on passwordChangeToken
+7,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/36,36,chore(lint): Clean up some syntax errors reported by ESLint,,pdehaan,557895,2015-06-12T06:23:46Z,CONTRIBUTOR,True,9,9,3,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,de362e2d9cbb220fca91db58e2bdb263e2b36dd4,chore(lint): Clean up some syntax errors reported by ESLint
+8,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/35,35,fix(db): Return 400 on incorrect password,,chilts,3048,2015-06-11T04:11:19Z,CONTRIBUTOR,True,2,2,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,b272ac86197e15173bd3cb2a05729834fff26429,fix(db): Return 400 on incorrect password
+9,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/34,34,refactor(db): remove verifyHash from responses,"Fixes https://github.com/mozilla/fxa-auth-db-mysql/issues/47
+",eoger,6424575,2015-06-04T18:39:08Z,CONTRIBUTOR,True,32,18,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,603d4c29e7477977b335fa13c59cf935a02caae2,refactor(db): remove verifyHash from responses
+10,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/33,33,chore(license): Update license to be SPDX compliant,"specifying the type and URL is deprecated:
+
+https://docs.npmjs.com/files/package.json#license
+",pdehaan,557895,2015-05-23T00:13:45Z,CONTRIBUTOR,True,1,4,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,1a26efaa8c3b91eb44c411ff36d5e248b63291b3,chore(license): Update license to be SPDX compliant
+11,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/32,32,Added checkPassword API,"Part of https://github.com/mozilla/fxa-auth-db-server/issues/88
+",eoger,6424575,2015-05-20T23:39:33Z,CONTRIBUTOR,True,15,0,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,6102d159b8d93782624d71ca04c0e4637b51aa40,Added checkPassword API
+12,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/31,31,refactor(lib): Move a few source files into lib/,"Both bin/ and config/ directories have been left alone.
+",chilts,3048,2015-05-14T05:09:30Z,CONTRIBUTOR,True,10,10,7,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,6e3f08013f292d8f18b997078fcd9a734868b29d,"refactor(lib): Move a few source files into lib/
+
+Both bin/ and config/ directories have been left alone."
+13,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/30,30,build(travis): Test on both io.js v1 and v2,,chilts,3048,2015-05-05T03:54:33Z,CONTRIBUTOR,True,4,2,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,8e7d99f6b21295d5db8c8b3bb767ac13868a20d0,build(travis): Test on both io.js v1 and v2
+14,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/29,29,"chore(test): Test on node.js v0.10, v0.12 and the latest io.js",,chilts,3048,2015-04-21T05:08:00Z,CONTRIBUTOR,True,8,0,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,5017fb2e8886165ff1bd550fdd744ec2bfb57c5d,"chore(test): Test on node.js v0.10, v0.12 and the latest io.js"
+15,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/28,28,chore(copyright): Update to grunt-copyright v0.2.0,"When doing an `npm install` using node v0.12, it complains since grunt-copyright
+v0.1 has a `""node"": ""0.10.x""` in it's `engines` section. v0.2 has been updated
+to be `""node"": "">= 0.10.0""` which is satisfied with either v0.10 or v0.12.
+",chilts,3048,2015-04-20T00:39:41Z,CONTRIBUTOR,True,1,1,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,dab9ad57d001b6eed61741b57ff5fefd998ec7fe,"chore(copyright): Update to grunt-copyright v0.2.0
+
+When doing an `npm install` using node v0.12, it complains since grunt-copyright
+v0.1 has a `""node"": ""0.10.x""` in it's `engines` section. v0.2 has been updated
+to be `""node"": "">= 0.10.0""` which is satisfied with either v0.10 or v0.12."
+16,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/27,27,fix(package): Remove uuid completely since no longer needed,"Since node-uuid / uuid has been removed from fxa-auth-db-server, we no
+longer have to install it here. Having it here used to upset shrinkwrap
+if conflicting versions were being used and/or installed (e.g. uuid v1 to
+uuid v2 - the APIs were incompatible. See the issue for more details.
+
+Fixes #23.
+",chilts,3048,2015-04-19T23:41:06Z,CONTRIBUTOR,True,1,2,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,3e52599679f8446a9923dbfbcfe0cb063b791443,"fix(package): Remove uuid completely since no longer needed
+
+Since node-uuid / uuid has been removed from fxa-auth-db-server, we no
+longer have to install it here. Having it here used to upset shrinkwrap
+if conflicting versions were being used and/or installed (e.g. uuid v1 to
+uuid v2 - the APIs were incompatible). See the issue for more details.
+
+Fixes #23."
+17,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/26,26,"fix(shrinkwrap): as discussed, only ""top-level"" repos get shrunkwrapped","@chilts r?
+",jrgm,758162,2015-04-02T19:52:25Z,CONTRIBUTOR,True,0,1519,3,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,ae9ebcbf0e288cbade0feab806fce1ee008008c4,"fix(shrinkwrap): as discussed, only ""top-level"" repos get shrunkwrapped"
+18,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/25,25,fix(logging): load the logger from the new location,"@chilts r? 
+
+So, fxa-auth-server had not had the git sha bumped to pick up the recent changes in fxa-auth-db-mem, 
+and when I did so, it turned up this missing change. With that fixed all tests pass in both modules. 
+
+I have another PR to fix the version in fxa-auth-server, but am holding that back until this one gets merge, since tests of that PR would be failing until then.
+",jrgm,758162,2015-03-31T21:25:09Z,CONTRIBUTOR,True,2,2,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,fe5bbb22d96e24ed28e49e51b53b746866df571f,fix(logging): load the logger from the new location
+19,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/24,24,"Use uuid@1.4.x, not uuid@2.x","This addresses somewhat https://github.com/mozilla/fxa-auth-db-mem/issues/23, by using uuid@1.4.1 which returns a Buffer from `uuid.v4('binary')` and is the version used by fxa-auth-db-mysql, et al.
+
+r? @chilts (or if @chilts is still sick @dannycoates)
+",jrgm,758162,2015-03-31T03:56:26Z,CONTRIBUTOR,True,222,581,2,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,6fc86e675a2d3c9df0e818fd4e5a16bb14b99eee,fix(uuid): use uuid@1.4.1 which returns a Buffer from uuid.v4('binary')
+20,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/24,24,"Use uuid@1.4.x, not uuid@2.x","This addresses somewhat https://github.com/mozilla/fxa-auth-db-mem/issues/23, by using uuid@1.4.1 which returns a Buffer from `uuid.v4('binary')` and is the version used by fxa-auth-db-mysql, et al.
+
+r? @chilts (or if @chilts is still sick @dannycoates)
+",jrgm,758162,2015-03-31T03:56:26Z,CONTRIBUTOR,True,222,581,2,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,f639ab91bd046d2d4bbb7fab57e8df6b0ad50bc8,chore(shrinkwrap): update shrinkwrap
+21,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/22,22,chore(shrinkwrap): update npm-shrinkwrap.json,"Just changing shrinkwrap. r=me
+",jrgm,758162,2015-03-30T23:09:21Z,CONTRIBUTOR,False,222,581,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,2a8397a2d5fa80715b999dce4f46257f66f9df20,chore(shrinkwrap): update npm-shrinkwrap.json
+22,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/21,21,"fix(db): do not set createdAt, verifierSetAt or normalizedEmail here","Since the fxa-auth-server always sends these fields, then we shouldn't
+set them to anything in this backend.
+",chilts,3048,2015-03-26T22:45:32Z,CONTRIBUTOR,True,157,28,3,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,2a7d326c673c93423bbe6f8a4aae43fe0eef3ed1,"fix(db): do not set createdAt, verifierSetAt or normalizedEmail here
+
+Since the fxa-auth-server always sends these fields, then we shouldn't
+set them to anything in this backend."
+23,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/20,20,chore(package.json): add extra fields related to the repo,"Things like homepage, bugs and keywords.
+",chilts,3048,2015-03-23T02:55:27Z,CONTRIBUTOR,True,10,2,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,7dcbdb5e83a0af63afff3684a35cf6319decdbe5,"chore(package.json): add extra fields related to the repo
+
+Things like homepage, bugs and keywords."
+24,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/19,19,Log the memory stats,,chilts,3048,2015-03-13T01:59:35Z,CONTRIBUTOR,True,3,0,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,7955bd2742583301d2618a88a2dacd1b760a13f9,Log the memory stats
+25,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/18,18,Fixes #13 - Switch logger to mozlog from bunyan,,chilts,3048,2015-03-09T03:48:53Z,CONTRIBUTOR,True,685,467,6,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,17f778f5f6082775f34364f12dc607e46b9ac855,Fixes #13 - Switch logger to mozlog from bunyan
+26,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/17,17,Fixes #16 - Mask the unlocking of a non-existant account,,chilts,3048,2015-02-24T03:47:18Z,CONTRIBUTOR,True,6,0,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,de85c1e5abf19f621672709ecfc08422f41e7d8b,Fixes #16 - Mask the unlocking of a non-existant account
+27,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/15,15,Fix relative import paths in index.js,"Looks like we forgot to update some `require` paths in the refactor.  This fixes them so they'll work correctly with fxa-auth-server.
+",rfk,34695,2015-02-04T04:19:48Z,MEMBER,True,3,3,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,e1a87d05ca0f331291ea1fc114e3b7bc758cd384,Fix relative import paths in index.js
+28,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/12,12,Reverse with tests,,chilts,3048,2015-01-27T23:11:48Z,CONTRIBUTOR,True,1710,34,16,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,658221f81a4a4444915d3a277adfbb75aebb399e,Update to the latest deps and make the server start
+29,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/12,12,Reverse with tests,,chilts,3048,2015-01-27T23:11:48Z,CONTRIBUTOR,True,1710,34,16,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,a0337ae1cd1974eb5939ba065d6505a340f346f5,Pass all of the db-server's db_tests.js
+30,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/12,12,Reverse with tests,,chilts,3048,2015-01-27T23:11:48Z,CONTRIBUTOR,True,1710,34,16,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,7b84cc8d8f87834b7fed30bcb3c0678a28914504,Move db_tests.js into test/backend
+31,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/12,12,Reverse with tests,,chilts,3048,2015-01-27T23:11:48Z,CONTRIBUTOR,True,1710,34,16,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,2fa990c34f427f026923c3cafb17b5a4ee542991,More patterns for .gitignore
+32,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/12,12,Reverse with tests,,chilts,3048,2015-01-27T23:11:48Z,CONTRIBUTOR,True,1710,34,16,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,4d4ea3d75bff6205ead8bd20c1228aac222a6ed8,Add config back in
+33,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/12,12,Reverse with tests,,chilts,3048,2015-01-27T23:11:48Z,CONTRIBUTOR,True,1710,34,16,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,e1ed2e689a544c700b999986fb73d9dd1f3dafe1,Run all remote tests from dbServer
+34,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/12,12,Reverse with tests,,chilts,3048,2015-01-27T23:11:48Z,CONTRIBUTOR,True,1710,34,16,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,7b82e809d64b9381f01bb83d3ecef131ec6ced02,Grunt when testing
+35,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/12,12,Reverse with tests,,chilts,3048,2015-01-27T23:11:48Z,CONTRIBUTOR,True,1710,34,16,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,d16ed754990667a1cacb719adc651f05f0f2e999,These tokens are replaced on a per user level
+36,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/12,12,Reverse with tests,,chilts,3048,2015-01-27T23:11:48Z,CONTRIBUTOR,True,1710,34,16,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,3801a2050168520d1a4b6787d1449c028f6369a8,Make sure we install uuid as a devDependency
+37,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/12,12,Reverse with tests,,chilts,3048,2015-01-27T23:11:48Z,CONTRIBUTOR,True,1710,34,16,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,f6ff8ab518893b75725de2c44060f5af5179a926,Add a shrinkwrap file
+38,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/12,12,Reverse with tests,,chilts,3048,2015-01-27T23:11:48Z,CONTRIBUTOR,True,1710,34,16,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,b46ec954f3c36a542dba4f9f2b762ff7ebf9fe3d,Make sure Grunt is installed on Travis
+39,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/12,12,Reverse with tests,,chilts,3048,2015-01-27T23:11:48Z,CONTRIBUTOR,True,1710,34,16,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,1ff8982c84c5bcf9b936a58cfcbd86228756c5a9,Refactor into server and index for export
+40,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/12,12,Reverse with tests,,chilts,3048,2015-01-27T23:11:48Z,CONTRIBUTOR,True,1710,34,16,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,c45c97ccdc8e3853d0f9118e776aa2251ef368b2,Address some review comments in #12
+41,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/12,12,Reverse with tests,,chilts,3048,2015-01-27T23:11:48Z,CONTRIBUTOR,True,1710,34,16,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,1f5c6337fa5fd57e09803dddc4ba725d9c4c8028,Fix logging (and what server event to listen to for error)
+42,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/12,12,Reverse with tests,,chilts,3048,2015-01-27T23:11:48Z,CONTRIBUTOR,True,1710,34,16,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,dbaa705425d491103c638c1b61411af51ee2ae46,Fix logging of requests for success and failure
+43,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/11,11,feat: Account locked!,"- Add `lockAccount`, `unlockAccount`, and `unlockCode` db functions.
+- Add new `lockedAt` and `unlockCode` columns to the `accounts` table.
+- Update `emailRecord` and `account` to return `lockedAt`
+
+Goes along with:
+- https://github.com/mozilla/fxa-auth-db-server/pull/123
+- https://github.com/mozilla/fxa-auth-db-mysql/pull/7
+- https://github.com/mozilla/fxa-auth-mailer/pull/23
+- https://github.com/mozilla/fxa-js-client/pull/141
+- https://github.com/mozilla/fxa-content-server/pull/1806
+- https://github.com/mozilla/fxa-auth-server/pull/867
+",shane-tomlinson,848085,2015-01-26T13:27:37Z,MEMBER,True,427,586,3,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,2067453f8d499fa335f0ad509690d4e413bfa023,"feat: Account locked!
+
+* Add `lockAccount`, `unlockAccount`, and `unlockCode` db functions.
+* Add new `lockedAt` and `unlockCode` columns to the `accounts` table.
+* Update `emailRecord` and `account` to return `lockedAt`
+
+Goes along with:
+* https://github.com/mozilla/fxa-auth-db-mysql/pull/7
+* https://github.com/mozilla/fxa-auth-db-server/pull/123"
+44,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/10,10,Added checkPassword API,"Part of https://github.com/mozilla/fxa-auth-db-server/issues/88
+",eoger,6424575,2014-12-21T15:48:58Z,CONTRIBUTOR,False,14,0,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,89d770a7170d0da44e2075fdeee6c633b39141ec,Added checkPassword API
+45,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/9,9,Added checkPassword API,"Part of https://github.com/mozilla/fxa-auth-db-server/issues/88
+
+BLOCKS https://github.com/mozilla/fxa-auth-server/pull/846
+",eoger,6424575,2014-12-21T15:41:55Z,CONTRIBUTOR,False,14,0,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,aaed0c231d1d0ee772eecedd20687e123466fafa,Added checkPassword API
+46,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/7,7,"initial travis.yml file, package.json tweaks",,pdehaan,557895,2014-09-23T21:53:38Z,CONTRIBUTOR,True,20,1,2,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,5268956b691e47f579f0a8965c210df6b93f07f1,"initial travis.yml file, package.json tweaks"
+47,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/7,7,"initial travis.yml file, package.json tweaks",,pdehaan,557895,2014-09-23T21:53:38Z,CONTRIBUTOR,True,20,1,2,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,c5f15b9104594d8c48c6bbd2e0c512ae727edb85,rebasing package.json
+48,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/6,6,Add a simple README.md file,,chilts,3048,2014-09-23T17:09:45Z,CONTRIBUTOR,True,9,0,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,4ffc102e6efb9334e4efa6570c6a26be1468de70,Add a simple README.md file
+49,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/5,5,"adding description, author, and repository fields",,pdehaan,557895,2014-09-22T23:52:32Z,CONTRIBUTOR,True,8,4,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,7dbd4120b3f351b091363712f950070b77fd87d7,"adding description, author, and repository fields"
+50,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/4,4,Add the full text of the MPL 2.0,,chilts,3048,2014-09-22T15:41:33Z,CONTRIBUTOR,True,373,0,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,fee7aaee433b12322984b431120b667d18801d90,Add the full text of the MPL 2.0
+51,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/2,2,"find the uid as a ""foreign key"" on a record","fixes https://github.com/mozilla/fxa-auth-server/issues/773 (or not).
+",jrgm,758162,2014-07-30T22:58:04Z,CONTRIBUTOR,True,20,15,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,ca814abeb74c2e7aa13e18939d494cb002bebb1c,"find the uid as a ""foreign key"" on a record"
+52,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/2,2,"find the uid as a ""foreign key"" on a record","fixes https://github.com/mozilla/fxa-auth-server/issues/773 (or not).
+",jrgm,758162,2014-07-30T22:58:04Z,CONTRIBUTOR,True,20,15,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,97f787bf5e6f6a5c222b0f534325e28d7c420e51,a better error message (instead of 'Cannot call method toString of undefined'
+53,https://api.github.com/repos/mozilla/fxa-auth-db-mem/pulls/1,1,fix: resetAccount should reject the promise with a `notFound` error if the account is not found.,"Updating the fxa-auth-server to use the fxa-auth-db-mem instead of the Heap DB introduced a subtle change in resetAccount. The Heap DB rejected the promise with an `unknownAccount` error if the account's uid was not found, the fxa-auth-db-mem equivalent does not.
+
+This change checks whether an account exists, if it does not, reject the promise with a `notFound` error.
+
+fixes https://github.com/mozilla/fxa-auth-server/issues/773
+Causes all tests referenced in https://github.com/mozilla/fxa-content-server/pull/1455 to pass.
+",shane-tomlinson,848085,2014-07-29T10:51:04Z,MEMBER,False,13,13,1,Memory backend (for testing) for the fxa-auth-db-server,JavaScript,2d2d4ee84ca4dea664f6119678aea4d307159638,"fix: resetAccount should throw a `notFound` error if the account is not found.
+
+fixes https://github.com/mozilla/fxa-auth-server/issues/773"

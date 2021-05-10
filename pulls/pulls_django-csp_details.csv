@@ -1,0 +1,679 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/django-csp/pulls/166,166,Drop old Django and Python versions,"* Remove old Django and Python versions from tox and Circle CI test grids
+* Update setup.py classifiers accordingly.
+* Update `py.test` command to `pytest` since it was renamed.
+* Update `master` to `main` for Django's default branch since it was renamed.
+* Drop universal wheel declaration in `setup.cfg` since Python 2 is no longer supported.
+* Fix `.gitignore` to ignore generated coverage files.
+* Move `pytest-cov` requirement to test requirements to get a version compatible with the pinned pytest version (otherwise pip logs a red warning).",adamchainz,857609,2021-04-10T11:13:44Z,NONE,False,15,102,5,Content Security Policy for Django.,Python,95b148a65893d1a83e7d1909cb4125d804cc1412,"Drop old Django and Python versions
+
+* Remove old Django and Python versions from tox and Circle CI test grids
+* Update setup.py classifiers accordingly.
+* Update `py.test` command to `pytest` since it was renamed.
+* Update `master` to `main` for Django's default branch since it was renamed.
+* Drop universal wheel declaration in `setup.cfg` since Python 2 is no longer supported.
+* Fix `.gitignore` to ignore generated coverage files.
+* Move `pytest-cov` requirement to test requirements to get a version compatible with the pinned pytest version (otherwise pip logs a red warning)."
+1,https://api.github.com/repos/mozilla/django-csp/pulls/165,165,Fix 164 migrate ci,"fix: #164 
+
+Changes the base image from ubuntu to debian.
+
+NB: does not fix the error the existing pypy 2 jobs currently fail with trying to install cryptography e.g. https://travis-ci.org/github/mozilla/django-csp/jobs/752883562",g-k,226605,2021-01-04T22:43:27Z,CONTRIBUTOR,True,137,80,2,Content Security Policy for Django.,Python,132f6a44efb1bd08c634d1f5350c33bd8e7e75d1,ci: add circleci config
+2,https://api.github.com/repos/mozilla/django-csp/pulls/165,165,Fix 164 migrate ci,"fix: #164 
+
+Changes the base image from ubuntu to debian.
+
+NB: does not fix the error the existing pypy 2 jobs currently fail with trying to install cryptography e.g. https://travis-ci.org/github/mozilla/django-csp/jobs/752883562",g-k,226605,2021-01-04T22:43:27Z,CONTRIBUTOR,True,137,80,2,Content Security Policy for Django.,Python,13e184c0ea3100c9ebbcba6f6e4b13a9c92641d9,ci: remove travis ci
+3,https://api.github.com/repos/mozilla/django-csp/pulls/163,163,Update installation.rst,"Reference to closed issue #162
+
+In Django, some Middleware are required to be added before or after others. I've came across this ordering requirement when implementing `django.middleware.cache.*` and `django.middleware.security.*`. 
+
+This pull request informs any new users that they are not required to maintain any sort of ordering when implementing `csp.middleware.CSPMiddleware`",Jesus805,6550703,2020-10-01T21:48:58Z,CONTRIBUTOR,True,1,0,1,Content Security Policy for Django.,Python,5aaab6471fb677b4c1f79874e0debbec2fad27e8,Update installation.rst
+4,https://api.github.com/repos/mozilla/django-csp/pulls/161,161,Fix unwrap_script regex,"References #155 
+
+Rebased onto upstream master and merged commits",dannyrohde,34044206,2020-08-22T01:50:23Z,NONE,False,52,1,3,Content Security Policy for Django.,Python,ea107abbb2a971e7da007a16bf7dadeb04a1ae62,"Fix unwrap script regex
+
+Regex needs to be non-greedy before finding a closing '>' to ensure it will capture the complete script in the capture group
+Add test for script unwrapping"
+5,https://api.github.com/repos/mozilla/django-csp/pulls/161,161,Fix unwrap_script regex,"References #155 
+
+Rebased onto upstream master and merged commits",dannyrohde,34044206,2020-08-22T01:50:23Z,NONE,False,52,1,3,Content Security Policy for Django.,Python,c82de07c4f98c0fba983a551c0593e953a5d32a4,"Update documentation
+
+Update documentation to explain how to load the 'csp' template tag"
+6,https://api.github.com/repos/mozilla/django-csp/pulls/160,160,Added support and documentation for Trusted Types,Fixes #157 ,meggles711,22086577,2020-07-27T17:21:10Z,CONTRIBUTOR,True,165,0,5,Content Security Policy for Django.,Python,7b125dd0dffab8fba9d11dc8ddae23e016998206,Added support for Trusted Types directives.
+7,https://api.github.com/repos/mozilla/django-csp/pulls/160,160,Added support and documentation for Trusted Types,Fixes #157 ,meggles711,22086577,2020-07-27T17:21:10Z,CONTRIBUTOR,True,165,0,5,Content Security Policy for Django.,Python,527391d944c47d2dbef923abdfb1d6b538f2c1e5,Added documentation for Trusted Types
+8,https://api.github.com/repos/mozilla/django-csp/pulls/160,160,Added support and documentation for Trusted Types,Fixes #157 ,meggles711,22086577,2020-07-27T17:21:10Z,CONTRIBUTOR,True,165,0,5,Content Security Policy for Django.,Python,393ee950bf4599cc48978fed77da3b597015541c,Fixed formatting errors.
+9,https://api.github.com/repos/mozilla/django-csp/pulls/160,160,Added support and documentation for Trusted Types,Fixes #157 ,meggles711,22086577,2020-07-27T17:21:10Z,CONTRIBUTOR,True,165,0,5,Content Security Policy for Django.,Python,6efaad957e4e22e91d5c29a69d91b0c1f1765546,Added example code blocks. Fixed Notes.
+10,https://api.github.com/repos/mozilla/django-csp/pulls/158,158,Added support for trusted types #157,#157 ,dhvcc,18076967,2020-07-19T01:08:53Z,NONE,False,25,1,3,Content Security Policy for Django.,Python,2e51ce65cc4d1ea3a3a2cfda0544b60e800f1114,Added support for trusted types #157
+11,https://api.github.com/repos/mozilla/django-csp/pulls/154,154,Remove deprecation warning for child-src,"From [the CSP specification](https://w3c.github.io/webappsec-csp/#changes-from-level-2):
+> The child-src model has been substantially altered:
+>
+> 1. The frame-src directive, which was deprecated in CSP Level 2, has been undeprecated, but continues to defer to child-src if not present (which defers to default-src in turn).
+> 2. A worker-src directive has been added, deferring to child-src if not present (which likewise defers to script-src and eventually default-src).
+> 3. Dedicated workers now always inherit their creator’s policy.
+
+[History of this feature](https://stackoverflow.com/questions/46039068/csp-child-src-and-frame-src-deprecated/46042614#46042614)
+
+---
+
+This is basically a revert of https://github.com/mozilla/django-csp/pull/81",rik,3653,2020-06-26T17:40:12Z,CONTRIBUTOR,False,8,13,4,Content Security Policy for Django.,Python,1f20329eb40e52939b7ffffc651e82be684326b2,"Remove deprecation warning for child-src
+
+From [the CSP specification](https://w3c.github.io/webappsec-csp/#changes-from-level-2):
+> The child-src model has been substantially altered:
+>
+> 1. The frame-src directive, which was deprecated in CSP Level 2, has been undeprecated, but continues to defer to child-src if not present (which defers to default-src in turn).
+> 2. A worker-src directive has been added, deferring to child-src if not present (which likewise defers to script-src and eventually default-src).
+> 3. Dedicated workers now always inherit their creator’s policy.
+
+[History of this feature](https://stackoverflow.com/questions/46039068/csp-child-src-and-frame-src-deprecated/46042614#46042614)"
+12,https://api.github.com/repos/mozilla/django-csp/pulls/152,152,use 128 bits base64 encoded for nonce per spec Fixes #148,,graingert,413772,2020-06-07T14:18:03Z,CONTRIBUTOR,True,8,3,1,Content Security Policy for Django.,Python,cc1735b87590b281338752021bfa30a8c7a4f74d,use 128 bits base64 encoded for nonce per spec Fixes #148
+13,https://api.github.com/repos/mozilla/django-csp/pulls/146,146,Tweak configuration docs,"* Change formatting and some wording for readability sake
+* Make defaults reflect the actual default values",jaap3,48517,2020-03-03T14:01:52Z,CONTRIBUTOR,False,110,58,1,Content Security Policy for Django.,Python,baa25c81a1d45194fcec4d64ad525fe1581a68e7,"Tweak configuration docs
+
+* Change formatting and some wording for readability sake
+* Make defaults reflect the actual default values"
+14,https://api.github.com/repos/mozilla/django-csp/pulls/146,146,Tweak configuration docs,"* Change formatting and some wording for readability sake
+* Make defaults reflect the actual default values",jaap3,48517,2020-03-03T14:01:52Z,CONTRIBUTOR,False,110,58,1,Content Security Policy for Django.,Python,06b7a3ec07e142a72bcec17c5f6732c13ce1eb17,Add correct default to CSP_INCLUDE_NONCE_IN and a additional note
+15,https://api.github.com/repos/mozilla/django-csp/pulls/145,145,Add expected script to output,"I did not test this, but I assume the Django templatetag and Jinja2 extension include the actual script code in the output.",jaap3,48517,2020-03-03T09:48:21Z,CONTRIBUTOR,True,1,1,1,Content Security Policy for Django.,Python,e744d0ad1a02e8331ed333df81e901c9ddb1bff9,Add expected script to output
+16,https://api.github.com/repos/mozilla/django-csp/pulls/144,144,Fix #125: Document correct context variable name,As noted in issue #125 the context processors actually adds a variable with the name `CSP_NONCE` to the context.,jaap3,48517,2020-03-03T09:35:32Z,CONTRIBUTOR,True,2,2,1,Content Security Policy for Django.,Python,96c45fc64b7ddb8601fb359efd9acac5e962a155,Fix #125: Document correct context variable name
+17,https://api.github.com/repos/mozilla/django-csp/pulls/142,142,Fix type-o.,,asherf,1268088,2020-01-08T22:48:08Z,CONTRIBUTOR,True,1,1,1,Content Security Policy for Django.,Python,0c1ab5e9217ad313dff2c919e7301ba42325c2e9,Fix type-o.
+18,https://api.github.com/repos/mozilla/django-csp/pulls/141,141,Fix pypi version badge,"pypi version badge seems busted, this fixes it.
+before:
+![Screenshot 2020-01-08 14 25 35](https://user-images.githubusercontent.com/1268088/72021393-c5618180-3222-11ea-9f92-9f06a9ea8b25.png)
+
+after:
+![Screenshot 2020-01-08 14 26 02](https://user-images.githubusercontent.com/1268088/72021439-db6f4200-3222-11ea-8e00-6e30f37576ed.png)
+
+(visible at: https://github.com/asherf/django-csp/blob/fix-badge/README.rst)",asherf,1268088,2020-01-08T22:26:35Z,CONTRIBUTOR,True,1,1,1,Content Security Policy for Django.,Python,fb9f40ee6a3b38aefa5dbd8f1fda6bce8e37a43c,Fix pypi version badge
+19,https://api.github.com/repos/mozilla/django-csp/pulls/140,140,Allow to override INCLUDE_NONCE_IN via @csp,This should fix #139 ,fallen,151032,2020-01-04T17:08:35Z,NONE,False,5,3,1,Content Security Policy for Django.,Python,79da411fecea840438b3b4c08b82a9ad216f5bc7,Allow to override INCLUDE_NONCE_IN via @csp
+20,https://api.github.com/repos/mozilla/django-csp/pulls/138,138,Prepare 3.6,"Once this lands and we push the release to PyPI it should satisfy
+the requests in #129.",pmac,19176817,2019-12-20T21:43:48Z,MEMBER,True,10,1,2,Content Security Policy for Django.,Python,2dfa6663f87c174e02c92fc83b1b2c5e07ba36df,Prepare 3.6
+21,https://api.github.com/repos/mozilla/django-csp/pulls/134,134,setup.py add python 3.8 meta tag,,g-k,226605,2019-12-03T18:35:34Z,CONTRIBUTOR,True,1,0,1,Content Security Policy for Django.,Python,4c3ca7684018b3c5821b74c2c933b07a433c9d2b,setup.py add python 3.8 meta tag
+22,https://api.github.com/repos/mozilla/django-csp/pulls/133,133,utils: use force_str instead of force_text,fixes: #132 ,g-k,226605,2019-12-03T18:14:58Z,CONTRIBUTOR,True,2,2,1,Content Security Policy for Django.,Python,7c7ed59750573a46d954aba834d85b77c4a02a16,utils: use force_str instead of force_text
+23,https://api.github.com/repos/mozilla/django-csp/pulls/131,131,add coverage badge to readme,,g-k,226605,2019-12-03T18:05:05Z,CONTRIBUTOR,True,2,0,1,Content Security Policy for Django.,Python,397397424967649caacd906b30f3ca9fbabcc835,add coverage badge to readme
+24,https://api.github.com/repos/mozilla/django-csp/pulls/130,130,CI: add cpython 3.8 and django versions,,g-k,226605,2019-12-03T17:11:30Z,CONTRIBUTOR,True,19,1,2,Content Security Policy for Django.,Python,052c6e54c3bc0de05b2b8d1e5fb287ad5687c9cf,"ci: test against cpython 3.{6,7,8} with django master"
+25,https://api.github.com/repos/mozilla/django-csp/pulls/130,130,CI: add cpython 3.8 and django versions,,g-k,226605,2019-12-03T17:11:30Z,CONTRIBUTOR,True,19,1,2,Content Security Policy for Django.,Python,8696d948fccaae4f46e769e42eace1ae22902952,"ci: test against cpython 3.{6,7,8} w/ django 3.0.x
+
+Django 3 only supports 3.6+"
+26,https://api.github.com/repos/mozilla/django-csp/pulls/130,130,CI: add cpython 3.8 and django versions,,g-k,226605,2019-12-03T17:11:30Z,CONTRIBUTOR,True,19,1,2,Content Security Policy for Django.,Python,20d051e4832842374b8566dfd1b1e35b4b23d7b9,add cpython 3.8 and django 3.0.x to tox config
+27,https://api.github.com/repos/mozilla/django-csp/pulls/128,128,Add Django 2.2 and Python 3.7,"Hi @g-k ,
+
+Could you please do a review?",DmytroLitvinov,16066485,2019-10-28T18:32:06Z,CONTRIBUTOR,True,25,2,3,Content Security Policy for Django.,Python,ebb9d730355ff48d8baceb553d0deb3d3cc3e80d,Add Django 2.2 and Python 3.7 for testing
+28,https://api.github.com/repos/mozilla/django-csp/pulls/124,124,Add support for the report-to directive,"This PR adds basic support for the `report-to` directive. I'm not 100% on the test, but I'm following the format outlined here
+https://w3c.github.io/reporting/",darakian,3607524,2019-06-10T21:28:41Z,CONTRIBUTOR,True,12,0,3,Content Security Policy for Django.,Python,40298f08aced457534dc4dad4354657ad49b425b,"Add report-to directive, associated test and docs"
+29,https://api.github.com/repos/mozilla/django-csp/pulls/124,124,Add support for the report-to directive,"This PR adds basic support for the `report-to` directive. I'm not 100% on the test, but I'm following the format outlined here
+https://w3c.github.io/reporting/",darakian,3607524,2019-06-10T21:28:41Z,CONTRIBUTOR,True,12,0,3,Content Security Policy for Django.,Python,40f95bdaa151122a0e131c3b6b6b5f5e53f3022a,Formatting updates to pass build
+30,https://api.github.com/repos/mozilla/django-csp/pulls/124,124,Add support for the report-to directive,"This PR adds basic support for the `report-to` directive. I'm not 100% on the test, but I'm following the format outlined here
+https://w3c.github.io/reporting/",darakian,3607524,2019-06-10T21:28:41Z,CONTRIBUTOR,True,12,0,3,Content Security Policy for Django.,Python,56dda112a3549616b192f197937261fd13b9ccc4,Add Report-to header and stub build_report_policy function
+31,https://api.github.com/repos/mozilla/django-csp/pulls/124,124,Add support for the report-to directive,"This PR adds basic support for the `report-to` directive. I'm not 100% on the test, but I'm following the format outlined here
+https://w3c.github.io/reporting/",darakian,3607524,2019-06-10T21:28:41Z,CONTRIBUTOR,True,12,0,3,Content Security Policy for Django.,Python,42b8e1980e257d36f55323fcca5abb3374b0ac4f,First pass at report_to dict creation
+32,https://api.github.com/repos/mozilla/django-csp/pulls/124,124,Add support for the report-to directive,"This PR adds basic support for the `report-to` directive. I'm not 100% on the test, but I'm following the format outlined here
+https://w3c.github.io/reporting/",darakian,3607524,2019-06-10T21:28:41Z,CONTRIBUTOR,True,12,0,3,Content Security Policy for Django.,Python,4b2804ad39ec68410bb5619201d0c5abd810f8ba,Add tab indent
+33,https://api.github.com/repos/mozilla/django-csp/pulls/124,124,Add support for the report-to directive,"This PR adds basic support for the `report-to` directive. I'm not 100% on the test, but I'm following the format outlined here
+https://w3c.github.io/reporting/",darakian,3607524,2019-06-10T21:28:41Z,CONTRIBUTOR,True,12,0,3,Content Security Policy for Django.,Python,59b8f5b5b1ee01e132067ba40b1938ad8dcc57fe,Add missing function call
+34,https://api.github.com/repos/mozilla/django-csp/pulls/124,124,Add support for the report-to directive,"This PR adds basic support for the `report-to` directive. I'm not 100% on the test, but I'm following the format outlined here
+https://w3c.github.io/reporting/",darakian,3607524,2019-06-10T21:28:41Z,CONTRIBUTOR,True,12,0,3,Content Security Policy for Django.,Python,60511d87de6001850e3933154c674930a272d92d,fixup! Add missing function call
+35,https://api.github.com/repos/mozilla/django-csp/pulls/124,124,Add support for the report-to directive,"This PR adds basic support for the `report-to` directive. I'm not 100% on the test, but I'm following the format outlined here
+https://w3c.github.io/reporting/",darakian,3607524,2019-06-10T21:28:41Z,CONTRIBUTOR,True,12,0,3,Content Security Policy for Django.,Python,414515017e1ffde67766965697d5ecaf16e8198d,Pep8 :rage:
+36,https://api.github.com/repos/mozilla/django-csp/pulls/124,124,Add support for the report-to directive,"This PR adds basic support for the `report-to` directive. I'm not 100% on the test, but I'm following the format outlined here
+https://w3c.github.io/reporting/",darakian,3607524,2019-06-10T21:28:41Z,CONTRIBUTOR,True,12,0,3,Content Security Policy for Django.,Python,945f0ef8c8e24090e5060c5c1db689845ba85e05,Partial pare down
+37,https://api.github.com/repos/mozilla/django-csp/pulls/124,124,Add support for the report-to directive,"This PR adds basic support for the `report-to` directive. I'm not 100% on the test, but I'm following the format outlined here
+https://w3c.github.io/reporting/",darakian,3607524,2019-06-10T21:28:41Z,CONTRIBUTOR,True,12,0,3,Content Security Policy for Django.,Python,a026fb0719dac758c7d9150dc227a2dd43f63ce2,Update report building logic
+38,https://api.github.com/repos/mozilla/django-csp/pulls/124,124,Add support for the report-to directive,"This PR adds basic support for the `report-to` directive. I'm not 100% on the test, but I'm following the format outlined here
+https://w3c.github.io/reporting/",darakian,3607524,2019-06-10T21:28:41Z,CONTRIBUTOR,True,12,0,3,Content Security Policy for Django.,Python,bfac682631941b1c49eaa38e48a3f471a626d1f2,Revert middleware.py
+39,https://api.github.com/repos/mozilla/django-csp/pulls/124,124,Add support for the report-to directive,"This PR adds basic support for the `report-to` directive. I'm not 100% on the test, but I'm following the format outlined here
+https://w3c.github.io/reporting/",darakian,3607524,2019-06-10T21:28:41Z,CONTRIBUTOR,True,12,0,3,Content Security Policy for Django.,Python,a3daf9a1b1e939c12ceb2cafd1041ed3e8a186ef,Alter report-to test to conform to w3c examples
+40,https://api.github.com/repos/mozilla/django-csp/pulls/121,121,Disable CSP for Django NotFound debug view,,rik,3653,2019-05-09T14:23:54Z,CONTRIBUTOR,True,19,3,2,Content Security Policy for Django.,Python,2001dd25de77493844746c80ac91a8c5c283766a,Disable CSP for Django NotFound debug view
+41,https://api.github.com/repos/mozilla/django-csp/pulls/118,118,Update Django versions,"Hello @jsocol,
+
+Could you please review it and merge it?",DmytroLitvinov,16066485,2019-04-16T20:10:19Z,CONTRIBUTOR,False,21,1,3,Content Security Policy for Django.,Python,19759f45c8bd8d437fefecdb214c829b2588fbae,Update django versions
+42,https://api.github.com/repos/mozilla/django-csp/pulls/117,117,tox: add missing versions,Fix tox `ERROR: unknown environment '2.7-2.1.x'` errors for Django 2.1 and a pytest deprecation warning.,g-k,226605,2019-03-29T14:31:42Z,CONTRIBUTOR,True,5,2,2,Content Security Policy for Django.,Python,9b5d7a1113277d95044b7b888fff200c646dcb05,tox: add missing versions
+43,https://api.github.com/repos/mozilla/django-csp/pulls/117,117,tox: add missing versions,Fix tox `ERROR: unknown environment '2.7-2.1.x'` errors for Django 2.1 and a pytest deprecation warning.,g-k,226605,2019-03-29T14:31:42Z,CONTRIBUTOR,True,5,2,2,Content Security Policy for Django.,Python,1abe51f6ec8f7c066fd5b6c184e71f710113b250,setup.cfg fix removed in pytest 4 warning
+44,https://api.github.com/repos/mozilla/django-csp/pulls/116,116,Add Mozilla Code of Conduct,"Fixes #115
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-28T03:36:09Z,CONTRIBUTOR,True,15,0,1,Content Security Policy for Django.,Python,370ecf4b3af29c276e33bcb749f1ef1d6d43d8ad,"Add Mozilla Code of Conduct file
+
+Fixes #115.
+
+_(Message COC002)_"
+45,https://api.github.com/repos/mozilla/django-csp/pulls/114,114,"Add prefetch-src, navigate-to level 3directives","Also typo fix FRAME_ANCESTOR doc, and order utils.py directives in the same way that the CSP level 3 docs orders them. I was going to reoder the docs and the tests in the same way, but then I got lazy. Sorry.",darakian,3607524,2019-03-22T17:18:27Z,CONTRIBUTOR,True,35,10,3,Content Security Policy for Django.,Python,40a995740c610b186b795cb05a184841389263e2,"Add prefetch-src, navigate-to, type fix FRAME_ANCESTOR doc, and order utils.py directives in the same way that the CSP level 3 docs order them"
+46,https://api.github.com/repos/mozilla/django-csp/pulls/114,114,"Add prefetch-src, navigate-to level 3directives","Also typo fix FRAME_ANCESTOR doc, and order utils.py directives in the same way that the CSP level 3 docs orders them. I was going to reoder the docs and the tests in the same way, but then I got lazy. Sorry.",darakian,3607524,2019-03-22T17:18:27Z,CONTRIBUTOR,True,35,10,3,Content Security Policy for Django.,Python,63319e3197e92874e63db7b1e6c0781618e03145,Fix typo
+47,https://api.github.com/repos/mozilla/django-csp/pulls/113,113,Update CI,refs: https://github.com/mozilla/django-csp/pull/112#issuecomment-474520121,g-k,226605,2019-03-20T19:27:39Z,CONTRIBUTOR,True,13,9,4,Content Security Policy for Django.,Python,60d5cb6db3cc8acd2f3ac996b213fd8ee4e201dd,"update CI and drop non-src usage of six
+
+six is unvendored in 3.x: https://github.com/django/django/blob/38c3f7ea599d942f95a618aa25cd80395705bfa4/docs/releases/3.0.txt#L283-L284"
+48,https://api.github.com/repos/mozilla/django-csp/pulls/112,112,Add new headers used in CSP level 3 - https://w3c.github.io/webappsec-csp/,"Should address this issue https://github.com/mozilla/django-csp/issues/108
+The PR might be a bit off, I just tried to copy the format which was used for all of the other headers. New directives are script-src-attr, script-src-elem, style-src-attr, and style-src-elem",darakian,3607524,2019-03-12T21:45:25Z,CONTRIBUTOR,True,36,0,3,Content Security Policy for Django.,Python,b8d002947671f05dcc2e1e0ee64b431361945fde,Add new headers used in CSP level 3 - https://w3c.github.io/webappsec-csp/
+49,https://api.github.com/repos/mozilla/django-csp/pulls/112,112,Add new headers used in CSP level 3 - https://w3c.github.io/webappsec-csp/,"Should address this issue https://github.com/mozilla/django-csp/issues/108
+The PR might be a bit off, I just tried to copy the format which was used for all of the other headers. New directives are script-src-attr, script-src-elem, style-src-attr, and style-src-elem",darakian,3607524,2019-03-12T21:45:25Z,CONTRIBUTOR,True,36,0,3,Content Security Policy for Django.,Python,a5578c503c7930075ca2a8c80c6e81c76fd71834,Fix them names
+50,https://api.github.com/repos/mozilla/django-csp/pulls/110,110,Make jinja2 optional.,Fixes #109,EnTeQuAk,139033,2019-01-16T15:52:59Z,CONTRIBUTOR,True,14,4,3,Content Security Policy for Django.,Python,5e09e033fc3bf75b097a8365d5f656dc1f523821,"Make jinja2 optional.
+
+Fixes #109"
+51,https://api.github.com/repos/mozilla/django-csp/pulls/110,110,Make jinja2 optional.,Fixes #109,EnTeQuAk,139033,2019-01-16T15:52:59Z,CONTRIBUTOR,True,14,4,3,Content Security Policy for Django.,Python,68e39afa27e52a046d8d79a6f46f8e985d56e14d,Add jinja2 to test_requires
+52,https://api.github.com/repos/mozilla/django-csp/pulls/107,107,Drop obsolete MIDDLEWARE_CLASSES for MIDDLEWARE,"In Django 1.10, MIDDLEWARE replaces MIDDLEWARE_CLASSES.",petterreinholdtsen,731031,2018-12-08T14:12:46Z,CONTRIBUTOR,True,2,2,1,Content Security Policy for Django.,Python,fde7ee53d20d499cfeefeded6b0d3941b7277cba,"Drop obsolete MIDDLEWARE_CLASSES for MIDDLEWARE
+
+In Django 1.10, MIDDLEWARE replaces MIDDLEWARE_CLASSES."
+53,https://api.github.com/repos/mozilla/django-csp/pulls/104,104,Docs: Add info about quoting hash source values,,HeyHugo,1010517,2018-10-11T14:20:06Z,CONTRIBUTOR,True,1,1,1,Content Security Policy for Django.,Python,e360049d351d6a4eb92e3c192264d56f7b07d084,Add info about quoting hash source values
+54,https://api.github.com/repos/mozilla/django-csp/pulls/104,104,Docs: Add info about quoting hash source values,,HeyHugo,1010517,2018-10-11T14:20:06Z,CONTRIBUTOR,True,1,1,1,Content Security Policy for Django.,Python,7f04fb57ca3260efc531e13ac862b0be2f3b7a6f,copy
+55,https://api.github.com/repos/mozilla/django-csp/pulls/102,102,Remove --use-wheel from pip calls,"``--use-wheel`` was [deprecated in pip 7](https://pip.pypa.io/en/stable/news/#id25), and dropped in [pip 10](https://pip.pypa.io/en/stable/news/#b1-2018-03-31). Thanks to https://stackoverflow.com/a/50171690/10612 for the links.",jwhitlock,286017,2018-09-23T14:46:35Z,MEMBER,True,2,2,1,Content Security Policy for Django.,Python,a88c5525049a8ac9b0266524e4bf1d4c24bfcd6a,"Remove --use-wheel from pip calls
+
+--use-wheel was deprecated in pip 7, and dropped in pip 10.
+
+https://pip.pypa.io/en/stable/news/#id25
+https://pip.pypa.io/en/stable/news/#b1-2018-03-31"
+56,https://api.github.com/repos/mozilla/django-csp/pulls/100,100,CSP_REPORT_PERCENTAGE test: Try larger N,,jonashaag,175722,2018-04-06T14:31:08Z,CONTRIBUTOR,True,2,2,1,Content Security Policy for Django.,Python,6ddd5465a0bc94a553f7556df3548e339129695a,CSP_REPORT_PERCENTAGE test: Try larger N
+57,https://api.github.com/repos/mozilla/django-csp/pulls/99,99,Correct CSP_REPORT_URI docs to mention support for a tuple or list.,"The docs seem to say that `CSP_REPORT_URI` needs to be a string, but a tuple or list works as well, since `report-uri` supports multiple URLs. This updates the docs to make that a little clearer (and follow the style of the docs for other settings).",Osmose,193106,2018-04-05T20:45:56Z,CONTRIBUTOR,True,2,2,1,Content Security Policy for Django.,Python,0bc974a848fdba1703469b08682dce355eea7a6e,"Correct CSP_REPORT_URI docs to mention support for a tuple or list.
+
+The directive also supports a single string, but this is a compatability that
+all the other settings have and none of them mention it explicitly."
+58,https://api.github.com/repos/mozilla/django-csp/pulls/98,98,"#96, Created some initial coverage logic","Added in pytest-cov and coveralls to check for coverage. We're actually sitting at [98% coverage](https://coveralls.io/github/raiderrobert/django-csp), which is pretty awesome for not tracking it.",raiderrobert,806571,2018-04-03T15:36:48Z,CONTRIBUTOR,True,8,4,3,Content Security Policy for Django.,Python,08ab8bb9ead708563968aed805e8f75d86e34c08,Added in coverage & coveralls
+59,https://api.github.com/repos/mozilla/django-csp/pulls/98,98,"#96, Created some initial coverage logic","Added in pytest-cov and coveralls to check for coverage. We're actually sitting at [98% coverage](https://coveralls.io/github/raiderrobert/django-csp), which is pretty awesome for not tracking it.",raiderrobert,806571,2018-04-03T15:36:48Z,CONTRIBUTOR,True,8,4,3,Content Security Policy for Django.,Python,c1acb8cdf89dc2cdf6b65cf7c2d9950b0be94173,"Merge remote-tracking branch 'mozilla/master'
+catching up to mozilla master"
+60,https://api.github.com/repos/mozilla/django-csp/pulls/98,98,"#96, Created some initial coverage logic","Added in pytest-cov and coveralls to check for coverage. We're actually sitting at [98% coverage](https://coveralls.io/github/raiderrobert/django-csp), which is pretty awesome for not tracking it.",raiderrobert,806571,2018-04-03T15:36:48Z,CONTRIBUTOR,True,8,4,3,Content Security Policy for Django.,Python,d884d52e151c3fc147043d5426ea705f98a8ca4b,Merge branch 'master' into master
+61,https://api.github.com/repos/mozilla/django-csp/pulls/98,98,"#96, Created some initial coverage logic","Added in pytest-cov and coveralls to check for coverage. We're actually sitting at [98% coverage](https://coveralls.io/github/raiderrobert/django-csp), which is pretty awesome for not tracking it.",raiderrobert,806571,2018-04-03T15:36:48Z,CONTRIBUTOR,True,8,4,3,Content Security Policy for Django.,Python,4a3ec77535d23b7d406f97b77c46daa287c8f801,Using --only-binary instead of --use-wheel
+62,https://api.github.com/repos/mozilla/django-csp/pulls/98,98,"#96, Created some initial coverage logic","Added in pytest-cov and coveralls to check for coverage. We're actually sitting at [98% coverage](https://coveralls.io/github/raiderrobert/django-csp), which is pretty awesome for not tracking it.",raiderrobert,806571,2018-04-03T15:36:48Z,CONTRIBUTOR,True,8,4,3,Content Security Policy for Django.,Python,f4cc73241b0a3c90002cc6638093473ca12d4493,Update setup.py
+63,https://api.github.com/repos/mozilla/django-csp/pulls/98,98,"#96, Created some initial coverage logic","Added in pytest-cov and coveralls to check for coverage. We're actually sitting at [98% coverage](https://coveralls.io/github/raiderrobert/django-csp), which is pretty awesome for not tracking it.",raiderrobert,806571,2018-04-03T15:36:48Z,CONTRIBUTOR,True,8,4,3,Content Security Policy for Django.,Python,b6cea0360119aed77d0f09e859c7bdfb7e037788,Update setup.py
+64,https://api.github.com/repos/mozilla/django-csp/pulls/98,98,"#96, Created some initial coverage logic","Added in pytest-cov and coveralls to check for coverage. We're actually sitting at [98% coverage](https://coveralls.io/github/raiderrobert/django-csp), which is pretty awesome for not tracking it.",raiderrobert,806571,2018-04-03T15:36:48Z,CONTRIBUTOR,True,8,4,3,Content Security Policy for Django.,Python,495959c76d088dcc8a4d76539f4c03d20796f756,Removed `--only-binary` flag
+65,https://api.github.com/repos/mozilla/django-csp/pulls/97,97,Report percentage,"See #91 
+",jonashaag,175722,2018-03-25T14:29:07Z,CONTRIBUTOR,True,68,4,5,Content Security Policy for Django.,Python,7b55e8a72ef497c2e05ee593fdb90c2f4fb18fd5,Add CSP_REPORT_PERCENTAGE option
+66,https://api.github.com/repos/mozilla/django-csp/pulls/97,97,Report percentage,"See #91 
+",jonashaag,175722,2018-03-25T14:29:07Z,CONTRIBUTOR,True,68,4,5,Content Security Policy for Django.,Python,4b2cdaf4675673915538c37c3ef0bd2b3eca3020,Move report-uri throttling to csp.contrib
+67,https://api.github.com/repos/mozilla/django-csp/pulls/97,97,Report percentage,"See #91 
+",jonashaag,175722,2018-03-25T14:29:07Z,CONTRIBUTOR,True,68,4,5,Content Security Policy for Django.,Python,33d8c30071df4a88c6e0c62871ad4bccb38bcdfe,Remove old code
+68,https://api.github.com/repos/mozilla/django-csp/pulls/97,97,Report percentage,"See #91 
+",jonashaag,175722,2018-03-25T14:29:07Z,CONTRIBUTOR,True,68,4,5,Content Security Policy for Django.,Python,220345716c450fbb8d89393795a079e12884349f,Remove old code
+69,https://api.github.com/repos/mozilla/django-csp/pulls/94,94,Updated travis and tox,"- Simplified tox.ini and .travis.yml configs significantly 
+- Added Django 2.0-master and pypy3",raiderrobert,806571,2018-03-09T03:43:17Z,CONTRIBUTOR,True,38,96,2,Content Security Policy for Django.,Python,8936ecb2e3b8233d2c914c26cfa49ae00b4591d9,Updated travis and tox configs
+70,https://api.github.com/repos/mozilla/django-csp/pulls/92,92,Don't crash if CSP_INCLUDE_NONCE_IN setting is missing,,jonashaag,175722,2017-11-23T20:28:52Z,CONTRIBUTOR,True,12,2,2,Content Security Policy for Django.,Python,1324d3f13c99cc4333379757dfad19bfea559136,Don't crash if CSP_INCLUDE_NONCE_IN setting is missing
+71,https://api.github.com/repos/mozilla/django-csp/pulls/91,91,Add CSP_REPORT_PERCENTAGE option,Throttle the number of requests made to your report endpoint. Simple implementation that only sends `report-uri` for a certain percentage of requests.,jonashaag,175722,2017-08-25T08:41:34Z,CONTRIBUTOR,False,33,3,5,Content Security Policy for Django.,Python,f827386b44c220cd8b415686220333f363a65add,Add CSP_REPORT_PERCENTAGE option
+72,https://api.github.com/repos/mozilla/django-csp/pulls/90,90,Drop old django 1.6 and 1.7,This also adds changelog entries for 3.3 and upcoming 3.4 releases,EnTeQuAk,139033,2017-08-22T05:09:50Z,CONTRIBUTOR,True,14,45,5,Content Security Policy for Django.,Python,7a333da1930ab206699b29798ccca520885315bc,Drop Support for Django 1.6 and 1.7
+73,https://api.github.com/repos/mozilla/django-csp/pulls/90,90,Drop old django 1.6 and 1.7,This also adds changelog entries for 3.3 and upcoming 3.4 releases,EnTeQuAk,139033,2017-08-22T05:09:50Z,CONTRIBUTOR,True,14,45,5,Content Security Policy for Django.,Python,43800bd27d3a3e9679883efdc26b020e62554b32,Add changelog entries for 3.3 and future 3.4
+74,https://api.github.com/repos/mozilla/django-csp/pulls/90,90,Drop old django 1.6 and 1.7,This also adds changelog entries for 3.3 and upcoming 3.4 releases,EnTeQuAk,139033,2017-08-22T05:09:50Z,CONTRIBUTOR,True,14,45,5,Content Security Policy for Django.,Python,09a00a8bce6de654b2958ab4556a516e552685ec,Remove unused requirements.txt
+75,https://api.github.com/repos/mozilla/django-csp/pulls/89,89,Use a custom class when raising csp-related deprecation warnings,This allows consumers of the app to filter those warnings out by filtering on the class.,diox,187006,2017-06-27T21:03:21Z,MEMBER,False,7,3,2,Content Security Policy for Django.,Python,800001b223144f53dad3a26cd85b0855957cb57d,"Use a custom class when raising csp-related deprecation warnings
+
+This allows consumers of the app to filter those warnings out
+by filtering on the class."
+76,https://api.github.com/repos/mozilla/django-csp/pulls/88,88,Remove upper bound on Django version,Django's backwards compatibility and deprecation policies mean that any future compatibility issues will be known well in advance of any breakage. There is no advantage to pinning the upper bound on the supported Django version. It means a django-csp release is required to support each version of Django (and we're currently waiting on a django-csp release to upgrade to Django 1.11).,JshWright,69920,2017-04-14T13:27:42Z,CONTRIBUTOR,True,1,1,1,Content Security Policy for Django.,Python,cad3e45442fa1ae7f1b0df82158558dda8bd2a28,"Remove upper bound on Django version
+
+Django's backwards compatibility and deprecation policies mean that any future compatibility issues will be known well in advance of any breakage. There is no advantage to pinning the upper bound on the supported Django version. It means a django-csp release is required to support each version of Django (and we're currently waiting on a django-csp release to upgrade to Django 1.11)."
+77,https://api.github.com/repos/mozilla/django-csp/pulls/87,87,Add support for Django 1.11 and Python 3.6,"Django 1.11 has been released, so it's time to support it!",Flimm,355454,2017-04-05T08:40:46Z,CONTRIBUTOR,True,41,1,3,Content Security Policy for Django.,Python,3a0ad0396d82764c5c2ffdef5ab1cb745b95b8d7,Add support for Django 1.11 and Python 3.6
+78,https://api.github.com/repos/mozilla/django-csp/pulls/85,85,Allow removing directives using @csp_replace,"In mozilla/normandy#604 we need to allow framing by any origin for only a particular view in our app. The only way we can do this (as far I've found) is to remove the `frame-ancestors` directive completely. We also want to have this directive set by default.
+
+The current version of `@csp_replace` can't do this, because any value that would remove the directive is falsey, and `@csp_replace` doesn't allow falsey values to replace defaults. I think this is an oversight.
+
+The code in this PR fixes this by accepting any values from `@csp_replace`, even falsey ones.",mythmon,305049,2017-03-11T01:33:53Z,MEMBER,True,12,1,2,Content Security Policy for Django.,Python,af5bf65f5341f9c459a3b2b053f3196c51565a0e,Allow removing directives using @csp_replace
+79,https://api.github.com/repos/mozilla/django-csp/pulls/84,84,Update and fix documentation with what we actually released.,,EnTeQuAk,139033,2017-01-17T12:17:45Z,CONTRIBUTOR,True,16,4,1,Content Security Policy for Django.,Python,7c0899e6c27304ea7ddeae194cb73d842cc27090,Update and fix documentation with what we actually released.
+80,https://api.github.com/repos/mozilla/django-csp/pulls/82,82,docs: Fix typo WOKER -> WORKER,,g-k,226605,2016-12-09T20:47:01Z,CONTRIBUTOR,True,1,1,1,Content Security Policy for Django.,Python,f0d0cfbbd0c3bfec46bccd730d9ed9321eb149a0,docs: Fix typo WOKER -> WORKER
+81,https://api.github.com/repos/mozilla/django-csp/pulls/81,81,add deprecation warning for child-src,"refs: #80
+
+Using the stdlib `warnings.catch_warnings` was timing out and `pytest.deprecated_call` gave me `AssertionError: <type 'exceptions.DeprecationWarning'> did not produce DeprecationWarning`.",g-k,226605,2016-12-09T00:22:44Z,CONTRIBUTOR,True,17,2,3,Content Security Policy for Django.,Python,bde06032e9ef0976a984731ab1e967baa63cbfbd,"add deprecation warning for child-src
+
+refs: #80"
+82,https://api.github.com/repos/mozilla/django-csp/pulls/81,81,add deprecation warning for child-src,"refs: #80
+
+Using the stdlib `warnings.catch_warnings` was timing out and `pytest.deprecated_call` gave me `AssertionError: <type 'exceptions.DeprecationWarning'> did not produce DeprecationWarning`.",g-k,226605,2016-12-09T00:22:44Z,CONTRIBUTOR,True,17,2,3,Content Security Policy for Django.,Python,2e690490bc0dcb87c8b506d92ab83b926af85593,warn for child-src with on space b/w sentences
+83,https://api.github.com/repos/mozilla/django-csp/pulls/81,81,add deprecation warning for child-src,"refs: #80
+
+Using the stdlib `warnings.catch_warnings` was timing out and `pytest.deprecated_call` gave me `AssertionError: <type 'exceptions.DeprecationWarning'> did not produce DeprecationWarning`.",g-k,226605,2016-12-09T00:22:44Z,CONTRIBUTOR,True,17,2,3,Content Security Policy for Django.,Python,b870693ae24dbb150cef040c552e3d6a75e20596,Prep changelog for v3.0.1
+84,https://api.github.com/repos/mozilla/django-csp/pulls/78,78,"""Safe"" script template tag","First pass at a template tag based on the pr #75. This creates a `{% script %}` and {% endscript %}` token that will wrap whatever is inside with a nonce-signed script tag and prevent anything besides text nodes being expanded inside of the block. 
+
+#### Caveats
+
+* This definitely needs some docs ~~and tests~~
+* ~~There is also no `type` parameter in the script tag that is generated, I'm not clear on how big of a problem that is, but it should be easy enough to take a type argument~~
+
+* ~~No Jinja support yet. Frankly, I don't know a ton about it but this could provide a good jumping off point?~~",systemsoverload,1300246,2016-11-07T21:02:19Z,CONTRIBUTOR,True,475,5,15,Content Security Policy for Django.,Python,a1612b13a001683e7ee31d72086e59590471c8a1,Add jinja extension and django templatetag for nonced script
+85,https://api.github.com/repos/mozilla/django-csp/pulls/78,78,"""Safe"" script template tag","First pass at a template tag based on the pr #75. This creates a `{% script %}` and {% endscript %}` token that will wrap whatever is inside with a nonce-signed script tag and prevent anything besides text nodes being expanded inside of the block. 
+
+#### Caveats
+
+* This definitely needs some docs ~~and tests~~
+* ~~There is also no `type` parameter in the script tag that is generated, I'm not clear on how big of a problem that is, but it should be easy enough to take a type argument~~
+
+* ~~No Jinja support yet. Frankly, I don't know a ton about it but this could provide a good jumping off point?~~",systemsoverload,1300246,2016-11-07T21:02:19Z,CONTRIBUTOR,True,475,5,15,Content Security Policy for Django.,Python,4fc0c6fe8a20b933cecfd8d05348361d706c2d24,Merge branch 'master' into systemsoverload/nonce-script-template-tag
+86,https://api.github.com/repos/mozilla/django-csp/pulls/78,78,"""Safe"" script template tag","First pass at a template tag based on the pr #75. This creates a `{% script %}` and {% endscript %}` token that will wrap whatever is inside with a nonce-signed script tag and prevent anything besides text nodes being expanded inside of the block. 
+
+#### Caveats
+
+* This definitely needs some docs ~~and tests~~
+* ~~There is also no `type` parameter in the script tag that is generated, I'm not clear on how big of a problem that is, but it should be easy enough to take a type argument~~
+
+* ~~No Jinja support yet. Frankly, I don't know a ton about it but this could provide a good jumping off point?~~",systemsoverload,1300246,2016-11-07T21:02:19Z,CONTRIBUTOR,True,475,5,15,Content Security Policy for Django.,Python,b59e2617de8bb1becb2955f6b8caa895b285ce1e,Add CSP_INCLUDE_NONCE_IN to configuration docs
+87,https://api.github.com/repos/mozilla/django-csp/pulls/78,78,"""Safe"" script template tag","First pass at a template tag based on the pr #75. This creates a `{% script %}` and {% endscript %}` token that will wrap whatever is inside with a nonce-signed script tag and prevent anything besides text nodes being expanded inside of the block. 
+
+#### Caveats
+
+* This definitely needs some docs ~~and tests~~
+* ~~There is also no `type` parameter in the script tag that is generated, I'm not clear on how big of a problem that is, but it should be easy enough to take a type argument~~
+
+* ~~No Jinja support yet. Frankly, I don't know a ton about it but this could provide a good jumping off point?~~",systemsoverload,1300246,2016-11-07T21:02:19Z,CONTRIBUTOR,True,475,5,15,Content Security Policy for Django.,Python,31f9aa7a8bd68799eeb155157d79b8fe09375d8b,Merge branch 'systemsoverload/nonce-script-template-tag' of github.com:systemsoverload/django-csp into systemsoverload/nonce-script-template-tag
+88,https://api.github.com/repos/mozilla/django-csp/pulls/78,78,"""Safe"" script template tag","First pass at a template tag based on the pr #75. This creates a `{% script %}` and {% endscript %}` token that will wrap whatever is inside with a nonce-signed script tag and prevent anything besides text nodes being expanded inside of the block. 
+
+#### Caveats
+
+* This definitely needs some docs ~~and tests~~
+* ~~There is also no `type` parameter in the script tag that is generated, I'm not clear on how big of a problem that is, but it should be easy enough to take a type argument~~
+
+* ~~No Jinja support yet. Frankly, I don't know a ton about it but this could provide a good jumping off point?~~",systemsoverload,1300246,2016-11-07T21:02:19Z,CONTRIBUTOR,True,475,5,15,Content Security Policy for Django.,Python,81e677df28a1a87e42eacde1a8f19d02b727af89,Add basic outline for nonce documentation
+89,https://api.github.com/repos/mozilla/django-csp/pulls/77,77,Create context processor for CSP nonce,Based on the open PR https://github.com/mozilla/django-csp/pull/75 - The real diff here (assuming #75 gets merged) is just the addition of `context_processors.py`,systemsoverload,1300246,2016-11-07T20:35:59Z,CONTRIBUTOR,True,32,0,2,Content Security Policy for Django.,Python,900b50501ab73b9eb96d290e11c1afc62c6bf67e,Add context processor that utilizes the request.csp_nonce() property
+90,https://api.github.com/repos/mozilla/django-csp/pulls/76,76,update docs with correct settings title,`CSP_UPGRADE_INSECURE_REQUESTS` is used while it is supposed to be `CSP_BLOCK_ALL_MIXED_CONTENT`,abugasavio,1155468,2016-11-03T11:24:31Z,CONTRIBUTOR,True,1,1,1,Content Security Policy for Django.,Python,5ae084434edb4fa4944b1e93f79eb5b6a6bf7679,update docs by replacing misplaced CSP_UPGRADE_INSECURE_REQUESTS with CSP_BLOCK_ALL_MIXED_CONTENT
+91,https://api.github.com/repos/mozilla/django-csp/pulls/75,75,Add basic nonce implementation to build_policy and CSPMiddleware,"RE: https://github.com/mozilla/django-csp/issues/48
+
+Add the groundwork for nonce generation to `build_policy` and `CSPMiddleware`. If the interest still primarily lies in a new template tag I would be glad to add that (as well as a simple context processor) in a follow-up PR.
+
+Also of note: my initial pass of the nonce generation function was something like `b64encode(os.urandom(16))` and I won't push back if someone would prefer something more specific, but it seemed easier to lean on the django crypto utils.",systemsoverload,1300246,2016-11-02T19:28:10Z,CONTRIBUTOR,True,90,8,5,Content Security Policy for Django.,Python,c307382c1a94df26e2e5178fcc0fead7ed327499,Add basic nonce implementation to build_policy and CSPMiddleware
+92,https://api.github.com/repos/mozilla/django-csp/pulls/75,75,Add basic nonce implementation to build_policy and CSPMiddleware,"RE: https://github.com/mozilla/django-csp/issues/48
+
+Add the groundwork for nonce generation to `build_policy` and `CSPMiddleware`. If the interest still primarily lies in a new template tag I would be glad to add that (as well as a simple context processor) in a follow-up PR.
+
+Also of note: my initial pass of the nonce generation function was something like `b64encode(os.urandom(16))` and I won't push back if someone would prefer something more specific, but it seemed easier to lean on the django crypto utils.",systemsoverload,1300246,2016-11-02T19:28:10Z,CONTRIBUTOR,True,90,8,5,Content Security Policy for Django.,Python,88b2644734a9fdf800cc5518f9d645d7148a100f,Clarify intent of comment
+93,https://api.github.com/repos/mozilla/django-csp/pulls/75,75,Add basic nonce implementation to build_policy and CSPMiddleware,"RE: https://github.com/mozilla/django-csp/issues/48
+
+Add the groundwork for nonce generation to `build_policy` and `CSPMiddleware`. If the interest still primarily lies in a new template tag I would be glad to add that (as well as a simple context processor) in a follow-up PR.
+
+Also of note: my initial pass of the nonce generation function was something like `b64encode(os.urandom(16))` and I won't push back if someone would prefer something more specific, but it seemed easier to lean on the django crypto utils.",systemsoverload,1300246,2016-11-02T19:28:10Z,CONTRIBUTOR,True,90,8,5,Content Security Policy for Django.,Python,7eb88ef807a233280440fe880580328ab5101b9b,Add setting to disable the csp nonce header
+94,https://api.github.com/repos/mozilla/django-csp/pulls/75,75,Add basic nonce implementation to build_policy and CSPMiddleware,"RE: https://github.com/mozilla/django-csp/issues/48
+
+Add the groundwork for nonce generation to `build_policy` and `CSPMiddleware`. If the interest still primarily lies in a new template tag I would be glad to add that (as well as a simple context processor) in a follow-up PR.
+
+Also of note: my initial pass of the nonce generation function was something like `b64encode(os.urandom(16))` and I won't push back if someone would prefer something more specific, but it seemed easier to lean on the django crypto utils.",systemsoverload,1300246,2016-11-02T19:28:10Z,CONTRIBUTOR,True,90,8,5,Content Security Policy for Django.,Python,54fe5f3829246815d6d208f64e5b56b24795ba19,Use SimpleLazyObject to create a lazy cached property on the request obj
+95,https://api.github.com/repos/mozilla/django-csp/pulls/75,75,Add basic nonce implementation to build_policy and CSPMiddleware,"RE: https://github.com/mozilla/django-csp/issues/48
+
+Add the groundwork for nonce generation to `build_policy` and `CSPMiddleware`. If the interest still primarily lies in a new template tag I would be glad to add that (as well as a simple context processor) in a follow-up PR.
+
+Also of note: my initial pass of the nonce generation function was something like `b64encode(os.urandom(16))` and I won't push back if someone would prefer something more specific, but it seemed easier to lean on the django crypto utils.",systemsoverload,1300246,2016-11-02T19:28:10Z,CONTRIBUTOR,True,90,8,5,Content Security Policy for Django.,Python,07b93c6021144fa1d43a3efd0330c1f2e8afeeca,Remove CSP_DISABLE_NONCE setting in favor of CSP_INCLUDE_NONCE_IN
+96,https://api.github.com/repos/mozilla/django-csp/pulls/75,75,Add basic nonce implementation to build_policy and CSPMiddleware,"RE: https://github.com/mozilla/django-csp/issues/48
+
+Add the groundwork for nonce generation to `build_policy` and `CSPMiddleware`. If the interest still primarily lies in a new template tag I would be glad to add that (as well as a simple context processor) in a follow-up PR.
+
+Also of note: my initial pass of the nonce generation function was something like `b64encode(os.urandom(16))` and I won't push back if someone would prefer something more specific, but it seemed easier to lean on the django crypto utils.",systemsoverload,1300246,2016-11-02T19:28:10Z,CONTRIBUTOR,True,90,8,5,Content Security Policy for Django.,Python,c09169b02a859fb0174150c6a88c3d2a3694fabd,Append nonce per src directive specified in settings
+97,https://api.github.com/repos/mozilla/django-csp/pulls/75,75,Add basic nonce implementation to build_policy and CSPMiddleware,"RE: https://github.com/mozilla/django-csp/issues/48
+
+Add the groundwork for nonce generation to `build_policy` and `CSPMiddleware`. If the interest still primarily lies in a new template tag I would be glad to add that (as well as a simple context processor) in a follow-up PR.
+
+Also of note: my initial pass of the nonce generation function was something like `b64encode(os.urandom(16))` and I won't push back if someone would prefer something more specific, but it seemed easier to lean on the django crypto utils.",systemsoverload,1300246,2016-11-02T19:28:10Z,CONTRIBUTOR,True,90,8,5,Content Security Policy for Django.,Python,5020afc9fbb7f8a68c499c7d8c4e2dfb128d7179,Rename shadowed comprehension variable
+98,https://api.github.com/repos/mozilla/django-csp/pulls/75,75,Add basic nonce implementation to build_policy and CSPMiddleware,"RE: https://github.com/mozilla/django-csp/issues/48
+
+Add the groundwork for nonce generation to `build_policy` and `CSPMiddleware`. If the interest still primarily lies in a new template tag I would be glad to add that (as well as a simple context processor) in a follow-up PR.
+
+Also of note: my initial pass of the nonce generation function was something like `b64encode(os.urandom(16))` and I won't push back if someone would prefer something more specific, but it seemed easier to lean on the django crypto utils.",systemsoverload,1300246,2016-11-02T19:28:10Z,CONTRIBUTOR,True,90,8,5,Content Security Policy for Django.,Python,a0915b13c81a61c156b60fe99419c6ec9054bb97,Wrap nonce in single quotes per spec
+99,https://api.github.com/repos/mozilla/django-csp/pulls/74,74,Add missing directives,"Adds the following CSP directives:
+
+* manifest-src https://github.com/mozilla/django-csp/issues/60
+* worker-src
+* plugin-types https://github.com/mozilla/django-csp/issues/59
+* require-sri-for
+* upgrade-insecure-requests https://github.com/mozilla/django-csp/issues/58
+* block-all-mixed-content
+
+Is this package tracking CSP drafts, shipped CSP directives, or both?
+
+require-sri-for, upgrade-insecure-requests, block-all-mixed-content, and the CSP 3 headers are still in draft.  There is a tiny overhead to including them, but we gain forward compatibility assuming they stay in the specs.
+
+On the other hand, referrer-policy https://github.com/mozilla/django-csp/issues/57 and reflected-xss were removed from CSP, but adding them could still benefit users at the cost of some historical baggage.",g-k,226605,2016-11-01T14:51:21Z,CONTRIBUTOR,True,78,4,3,Content Security Policy for Django.,Python,0162c3ec696577555bfbc4ec36fc334baa4b0901,"Add manifest-src fetch directive
+
+https://w3c.github.io/webappsec-csp/#directive-manifest-src
+
+refs: #60"
+100,https://api.github.com/repos/mozilla/django-csp/pulls/74,74,Add missing directives,"Adds the following CSP directives:
+
+* manifest-src https://github.com/mozilla/django-csp/issues/60
+* worker-src
+* plugin-types https://github.com/mozilla/django-csp/issues/59
+* require-sri-for
+* upgrade-insecure-requests https://github.com/mozilla/django-csp/issues/58
+* block-all-mixed-content
+
+Is this package tracking CSP drafts, shipped CSP directives, or both?
+
+require-sri-for, upgrade-insecure-requests, block-all-mixed-content, and the CSP 3 headers are still in draft.  There is a tiny overhead to including them, but we gain forward compatibility assuming they stay in the specs.
+
+On the other hand, referrer-policy https://github.com/mozilla/django-csp/issues/57 and reflected-xss were removed from CSP, but adding them could still benefit users at the cost of some historical baggage.",g-k,226605,2016-11-01T14:51:21Z,CONTRIBUTOR,True,78,4,3,Content Security Policy for Django.,Python,649441785c2e09fd5c4f74dd99c8dd85d5d2c988,"Add worker-src fetch directive
+
+https://w3c.github.io/webappsec-csp/#directive-worker-src"
+101,https://api.github.com/repos/mozilla/django-csp/pulls/74,74,Add missing directives,"Adds the following CSP directives:
+
+* manifest-src https://github.com/mozilla/django-csp/issues/60
+* worker-src
+* plugin-types https://github.com/mozilla/django-csp/issues/59
+* require-sri-for
+* upgrade-insecure-requests https://github.com/mozilla/django-csp/issues/58
+* block-all-mixed-content
+
+Is this package tracking CSP drafts, shipped CSP directives, or both?
+
+require-sri-for, upgrade-insecure-requests, block-all-mixed-content, and the CSP 3 headers are still in draft.  There is a tiny overhead to including them, but we gain forward compatibility assuming they stay in the specs.
+
+On the other hand, referrer-policy https://github.com/mozilla/django-csp/issues/57 and reflected-xss were removed from CSP, but adding them could still benefit users at the cost of some historical baggage.",g-k,226605,2016-11-01T14:51:21Z,CONTRIBUTOR,True,78,4,3,Content Security Policy for Django.,Python,9fcc5909a029e196a2d1706f2675e88d63810acd,"Add plugin-types document directive
+
+https://w3c.github.io/webappsec-csp/#directive-plugin-types
+
+Refs: #59"
+102,https://api.github.com/repos/mozilla/django-csp/pulls/74,74,Add missing directives,"Adds the following CSP directives:
+
+* manifest-src https://github.com/mozilla/django-csp/issues/60
+* worker-src
+* plugin-types https://github.com/mozilla/django-csp/issues/59
+* require-sri-for
+* upgrade-insecure-requests https://github.com/mozilla/django-csp/issues/58
+* block-all-mixed-content
+
+Is this package tracking CSP drafts, shipped CSP directives, or both?
+
+require-sri-for, upgrade-insecure-requests, block-all-mixed-content, and the CSP 3 headers are still in draft.  There is a tiny overhead to including them, but we gain forward compatibility assuming they stay in the specs.
+
+On the other hand, referrer-policy https://github.com/mozilla/django-csp/issues/57 and reflected-xss were removed from CSP, but adding them could still benefit users at the cost of some historical baggage.",g-k,226605,2016-11-01T14:51:21Z,CONTRIBUTOR,True,78,4,3,Content Security Policy for Django.,Python,5bffc2ba386172819127d32d287d97fcb11f6f22,"Add require-sri-for
+
+https://www.w3.org/TR/CSP/#directives-elsewhere
+https://w3c.github.io/webappsec-subresource-integrity/#request-verification-algorithms"
+103,https://api.github.com/repos/mozilla/django-csp/pulls/74,74,Add missing directives,"Adds the following CSP directives:
+
+* manifest-src https://github.com/mozilla/django-csp/issues/60
+* worker-src
+* plugin-types https://github.com/mozilla/django-csp/issues/59
+* require-sri-for
+* upgrade-insecure-requests https://github.com/mozilla/django-csp/issues/58
+* block-all-mixed-content
+
+Is this package tracking CSP drafts, shipped CSP directives, or both?
+
+require-sri-for, upgrade-insecure-requests, block-all-mixed-content, and the CSP 3 headers are still in draft.  There is a tiny overhead to including them, but we gain forward compatibility assuming they stay in the specs.
+
+On the other hand, referrer-policy https://github.com/mozilla/django-csp/issues/57 and reflected-xss were removed from CSP, but adding them could still benefit users at the cost of some historical baggage.",g-k,226605,2016-11-01T14:51:21Z,CONTRIBUTOR,True,78,4,3,Content Security Policy for Django.,Python,ff841b6c5a28e4421a8a9aa4647104b79df7053a,Add upgrade-insecure-requests
+104,https://api.github.com/repos/mozilla/django-csp/pulls/74,74,Add missing directives,"Adds the following CSP directives:
+
+* manifest-src https://github.com/mozilla/django-csp/issues/60
+* worker-src
+* plugin-types https://github.com/mozilla/django-csp/issues/59
+* require-sri-for
+* upgrade-insecure-requests https://github.com/mozilla/django-csp/issues/58
+* block-all-mixed-content
+
+Is this package tracking CSP drafts, shipped CSP directives, or both?
+
+require-sri-for, upgrade-insecure-requests, block-all-mixed-content, and the CSP 3 headers are still in draft.  There is a tiny overhead to including them, but we gain forward compatibility assuming they stay in the specs.
+
+On the other hand, referrer-policy https://github.com/mozilla/django-csp/issues/57 and reflected-xss were removed from CSP, but adding them could still benefit users at the cost of some historical baggage.",g-k,226605,2016-11-01T14:51:21Z,CONTRIBUTOR,True,78,4,3,Content Security Policy for Django.,Python,503a6bebcc9acc7f2b0383c50e1e39f86d6d4927,Add block-all-mixed-content
+105,https://api.github.com/repos/mozilla/django-csp/pulls/74,74,Add missing directives,"Adds the following CSP directives:
+
+* manifest-src https://github.com/mozilla/django-csp/issues/60
+* worker-src
+* plugin-types https://github.com/mozilla/django-csp/issues/59
+* require-sri-for
+* upgrade-insecure-requests https://github.com/mozilla/django-csp/issues/58
+* block-all-mixed-content
+
+Is this package tracking CSP drafts, shipped CSP directives, or both?
+
+require-sri-for, upgrade-insecure-requests, block-all-mixed-content, and the CSP 3 headers are still in draft.  There is a tiny overhead to including them, but we gain forward compatibility assuming they stay in the specs.
+
+On the other hand, referrer-policy https://github.com/mozilla/django-csp/issues/57 and reflected-xss were removed from CSP, but adding them could still benefit users at the cost of some historical baggage.",g-k,226605,2016-11-01T14:51:21Z,CONTRIBUTOR,True,78,4,3,Content Security Policy for Django.,Python,2b07e8975d9bc2837efe4d5758e7611dd3243594,handle flag directives more cleanly
+106,https://api.github.com/repos/mozilla/django-csp/pulls/71,71,Add support for django 1.10,"This PR does two things:
+- It adds django 1.10 to the build environment for python 2.7, 3.4, 3.5, and pypy
+- It uses the [django.utils.deprecation.MiddlewareMixin](https://docs.djangoproject.com/en/1.10/topics/http/middleware/#django.utils.deprecation.MiddlewareMixin) to make the `CSPMiddleware` compatible with the [new](https://docs.djangoproject.com/en/1.10/topics/http/middleware/) and old middleware style.
+
+This PR will resolve #70 
+
+Thoughts? I would love some feedback. 😄 
+",hockeybuggy,607279,2016-08-30T15:18:48Z,CONTRIBUTOR,True,34,1,3,Content Security Policy for Django.,Python,9fbf971dfa73ab21f8df4fe2169cf861d3c302b0,"Add support for Django 1.10 new style of middleware.
+
+Update the tox env for Django 1.10 tests for python 2.7, 3.4, and 3.5
+
+Try adding the `__call__` and `__init__` methods manually.
+
+Use the deprecation `MiddlewareMixin` rather than calling `__call__` and
+`__init__`.
+
+Add a guard for the importing the `deprecation.MiddlewareMixin`
+
+Add django 1.10 to the `.travis.yml` file.
+
+Add a new line above the `try` for style reasons."
+107,https://api.github.com/repos/mozilla/django-csp/pulls/68,68,Allow lazy-evaluated string objects (such as reverse_lazy) to be assi…,"…gned to CSP_REPORT_URI
+
+Fixes #67 
+",nealedj,356075,2016-07-18T08:47:23Z,CONTRIBUTOR,True,17,0,2,Content Security Policy for Django.,Python,d7eeea51cb434159c04d9a533ab280abcb1a05c2,Allow lazy-evaluated string objects (such as reverse_lazy) to be assigned to CSP_REPORT_URI
+108,https://api.github.com/repos/mozilla/django-csp/pulls/65,65,Remove leftover references to the old report processing feature,"Fixes #64.
+",edmorley,501702,2016-05-04T16:13:20Z,CONTRIBUTOR,True,7,4,3,Content Security Policy for Django.,Python,c3b399f753cbc81aeb44f29c0ff727c2b1695167,"Remove leftover references to the old report processing feature
+
+Fixes #64."
+109,https://api.github.com/repos/mozilla/django-csp/pulls/61,61,"Facelift, support for py3 and modern django version, wheel support.","- Add support for Python 3 and PyPy
+- Move to pytest for testing
+- Add wheel build support
+- Drops support for Django < 1.6, adds support for Django 1.6, 1.7 1.8 and 1.9
+
+This adds a proper tox config and uses this in travis, moves to pytest
+instead of nose and cleans up some old stuff.
+",EnTeQuAk,139033,2016-04-21T14:38:05Z,CONTRIBUTOR,True,506,332,17,Content Security Policy for Django.,Python,b30785ecd89980ca001c13ed034c9c1ba0def064,"Facelift, support for py3 and modern django version, wheel support.
+
+* Add support for Python 3 and PyPy
+* Move to pytest for testing
+* Add wheel build support
+* Drops support for Django < 1.6, adds support for Django 1.6, 1.7 1.8 and 1.9
+
+This adds a proper tox config and uses this in travis, moves to pytest
+instead of nose and cleans up some old stuff."
+110,https://api.github.com/repos/mozilla/django-csp/pulls/61,61,"Facelift, support for py3 and modern django version, wheel support.","- Add support for Python 3 and PyPy
+- Move to pytest for testing
+- Add wheel build support
+- Drops support for Django < 1.6, adds support for Django 1.6, 1.7 1.8 and 1.9
+
+This adds a proper tox config and uses this in travis, moves to pytest
+instead of nose and cleans up some old stuff.
+",EnTeQuAk,139033,2016-04-21T14:38:05Z,CONTRIBUTOR,True,506,332,17,Content Security Policy for Django.,Python,dfc23ad0c979933e41a00fcf3b8c5269fad72ee2,Merge branch 'master' of github.com:mozilla/django-csp into facelift
+111,https://api.github.com/repos/mozilla/django-csp/pulls/61,61,"Facelift, support for py3 and modern django version, wheel support.","- Add support for Python 3 and PyPy
+- Move to pytest for testing
+- Add wheel build support
+- Drops support for Django < 1.6, adds support for Django 1.6, 1.7 1.8 and 1.9
+
+This adds a proper tox config and uses this in travis, moves to pytest
+instead of nose and cleans up some old stuff.
+",EnTeQuAk,139033,2016-04-21T14:38:05Z,CONTRIBUTOR,True,506,332,17,Content Security Policy for Django.,Python,39425414cbcb3485f7dd51f7ca5e261f2e40c52e,"Exclude python 3.5 from building with django 1.7 and 1.6, it's just not officially supported"
+112,https://api.github.com/repos/mozilla/django-csp/pulls/61,61,"Facelift, support for py3 and modern django version, wheel support.","- Add support for Python 3 and PyPy
+- Move to pytest for testing
+- Add wheel build support
+- Drops support for Django < 1.6, adds support for Django 1.6, 1.7 1.8 and 1.9
+
+This adds a proper tox config and uses this in travis, moves to pytest
+instead of nose and cleans up some old stuff.
+",EnTeQuAk,139033,2016-04-21T14:38:05Z,CONTRIBUTOR,True,506,332,17,Content Security Policy for Django.,Python,d6a9fca3a849c2cd944c0123caf6f34f4008c1f4,Merge branch 'master' of github.com:mozilla/django-csp into facelift
+113,https://api.github.com/repos/mozilla/django-csp/pulls/61,61,"Facelift, support for py3 and modern django version, wheel support.","- Add support for Python 3 and PyPy
+- Move to pytest for testing
+- Add wheel build support
+- Drops support for Django < 1.6, adds support for Django 1.6, 1.7 1.8 and 1.9
+
+This adds a proper tox config and uses this in travis, moves to pytest
+instead of nose and cleans up some old stuff.
+",EnTeQuAk,139033,2016-04-21T14:38:05Z,CONTRIBUTOR,True,506,332,17,Content Security Policy for Django.,Python,d8a5d40939e8d2338b3da0c183318c0516b3553c,"Update contribution docs, re-add author, add me as maintainer."
+114,https://api.github.com/repos/mozilla/django-csp/pulls/61,61,"Facelift, support for py3 and modern django version, wheel support.","- Add support for Python 3 and PyPy
+- Move to pytest for testing
+- Add wheel build support
+- Drops support for Django < 1.6, adds support for Django 1.6, 1.7 1.8 and 1.9
+
+This adds a proper tox config and uses this in travis, moves to pytest
+instead of nose and cleans up some old stuff.
+",EnTeQuAk,139033,2016-04-21T14:38:05Z,CONTRIBUTOR,True,506,332,17,Content Security Policy for Django.,Python,aab4fac6979f7816c82bde6ef25bda467132843a,Fix reference to requirements.txt
+115,https://api.github.com/repos/mozilla/django-csp/pulls/54,54,Add source-list directives from CSP2,"Fixes #55 
+",muffinresearch,1514,2016-02-18T10:26:14Z,MEMBER,True,37,0,3,Content Security Policy for Django.,Python,56669f996248404ac1aa89f3caaa9b0de1d32d87,Add source-list directives from CSP2
+116,https://api.github.com/repos/mozilla/django-csp/pulls/52,52,Accidental config mutating bug,"The decorators would accidentally mutate config, causing future requests against other views to return the wrong policy.
+
+This fixes that, and it includes tests. This builds upon code in pull request #51 , so merging this will merge both.
+",Flimm,355454,2016-02-12T14:46:03Z,CONTRIBUTOR,True,84,38,3,Content Security Policy for Django.,Python,46739294e17d82daa999fc251c1ebe3459e3ab79,"Fix accidental mutation of config
+
+The decorators would accidentally mutate config, causing future requests
+against other views to return the wrong policy.
+
+This fixes that."
+117,https://api.github.com/repos/mozilla/django-csp/pulls/51,51,Fix bug when @csp arguments were strings,"The bug was causing this code:
+
+```
+@csp(IMG_SRC='imgsrv2.com')
+def view(request):
+     # ....
+```
+
+to emit headers like `Content-Security-Policy: img-src i m g s r v 2 . c o m`
+
+I fixed the bug, and I changed the documentation to instruct users to use lists or tuples for consistency
+with the configuration.
+",Flimm,355454,2016-02-12T14:00:29Z,CONTRIBUTOR,True,24,5,3,Content Security Policy for Django.,Python,d81989ed576debf1508c82fd941cceff00c3af3f,"Fix bug when @csp arguments were strings
+
+In documentation, instruct users to use lists or tuples for consistency
+with the configuration."
+118,https://api.github.com/repos/mozilla/django-csp/pulls/51,51,Fix bug when @csp arguments were strings,"The bug was causing this code:
+
+```
+@csp(IMG_SRC='imgsrv2.com')
+def view(request):
+     # ....
+```
+
+to emit headers like `Content-Security-Policy: img-src i m g s r v 2 . c o m`
+
+I fixed the bug, and I changed the documentation to instruct users to use lists or tuples for consistency
+with the configuration.
+",Flimm,355454,2016-02-12T14:00:29Z,CONTRIBUTOR,True,24,5,3,Content Security Policy for Django.,Python,e0d7752a40871238cc1bb36fb845abe9534c09ad,Fix test test_csp
+119,https://api.github.com/repos/mozilla/django-csp/pulls/49,49,Django admin doesn't use inline JS anymore,"Once https://github.com/django/django/pull/5567/ lands Django admin will support django-csp out of the box
+",graingert,413772,2015-11-07T15:03:13Z,CONTRIBUTOR,True,5,4,3,Content Security Policy for Django.,Python,2f45ce99278fce1513e51d1d38fddfa3db1d6140,Django admin doesn't use inline JS anymore
+120,https://api.github.com/repos/mozilla/django-csp/pulls/47,47,Fix some of the interlinks in the docs.,"I noticed a few broken links on [Read the Docs](http://django-csp.readthedocs.org/en/latest/index.html). This pull request fixes it (at least locally when building with Sphinx).
+",clokep,517124,2015-06-02T20:36:37Z,CONTRIBUTOR,True,5,5,3,Content Security Policy for Django.,Python,cb80c8ed0f9f383a66876cb7610778d5da8596f2,Fix some of the interlinks in the docs.
+121,https://api.github.com/repos/mozilla/django-csp/pulls/46,46,CSP_DEFAULT_SRC default to None,"This PR is mostly for the discussion to make sure we're setting the default like it is on purpose.
+
+According to [the docs](https://developer.mozilla.org/en-US/docs/Web/Security/CSP/CSP_policy_directives) for default-src:
+
+> The default-src directive defines the security policy for all types of content which are not expressly called out by more specific directives.
+
+Defaulting to 'self' would be a good idea if every site was intent on enforcing every directive.  However, there are many directives and I think it's more reasonable to expect a site to enforce, say, script-src and style-src and ignore the rest.  With this default in place they can't ignore the rest, as the rest are suddenly set to 'self' instead of None.
+
+It's easily avoided by setting CSP_DEFAULT_SRC = None in your config, but I just wanted to double check that it's the best default we can make.
+
+I came across this because getting CSP to work for every directive can be a lot of work so we've been focused on incremental steps.  I defined script-src and object-srcs and then got a flood of reports about style-src which I hadn't touched at all - then I realized it had a default.
+
+Anyway.  Thoughts?
+",clouserw,80098,2014-11-11T19:29:24Z,MEMBER,False,1,1,1,Content Security Policy for Django.,Python,dc63a49c6c6b189286f96d61700e7aa6c132db09,CSP_DEFAULT_SRC default to None
+122,https://api.github.com/repos/mozilla/django-csp/pulls/45,45,Changed middleware to try and get the Django admin URL dynamically,"Pull request for #44. All tests pass, which is highly suspicious, because I've not added or modified any, and I feel like `MiddlewareTests.text_exclude` _should_ fail, but I can't even get a `import pdb; pdb.set_trace()` breakpoint working when invoking `./run.sh test`, so it's actually kind of impossible for me to tell if my fix ... is a fix. 
+",kezabelle,118377,2014-11-01T15:32:19Z,CONTRIBUTOR,False,17,1,3,Content Security Policy for Django.,Python,e1e4c3d66864903c4b7faa745dc105ea9a4b2916,"Changed middleware to try and get the Django admin URL dynamically, rather than assuming it will exist as /admin"
+123,https://api.github.com/repos/mozilla/django-csp/pulls/43,43,add script-src to docs,,clouserw,80098,2014-05-12T22:32:20Z,MEMBER,True,2,0,1,Content Security Policy for Django.,Python,1ae2ad4523d2189bca46723eb6c9259245f1560d,add script-src to docs
+124,https://api.github.com/repos/mozilla/django-csp/pulls/41,41,Test & proposed fix for GH #40,"Cherry pick 89a66c9 to see the test failures, and 229d061 to see them pass. See #40 for issue & stacktrace.
+",kezabelle,118377,2014-03-11T15:24:29Z,CONTRIBUTOR,True,20,1,2,Content Security Policy for Django.,Python,89a66c95c0a58ce9e20500829f5d02421b2aa449,"Test failures for having project settings as tuples, and updates (decorators, etc) as strings."
+125,https://api.github.com/repos/mozilla/django-csp/pulls/41,41,Test & proposed fix for GH #40,"Cherry pick 89a66c9 to see the test failures, and 229d061 to see them pass. See #40 for issue & stacktrace.
+",kezabelle,118377,2014-03-11T15:24:29Z,CONTRIBUTOR,True,20,1,2,Content Security Policy for Django.,Python,229d061b7ff9d62dd52208f1ed27b87e71737e05,"Fixes #40
+project settings in the form of CSP_IMG_SRC = ('x', 'y') (a tuple) won't throw a TypeError when trying to use a decorator to update a specific view.
+Test case added in 89a66c95c0a58ce9e20500829f5d02421b2aa449 passes."
+126,https://api.github.com/repos/mozilla/django-csp/pulls/35,35,Add possibility for transmitting the X-WebKit-CSP header (issue #33).,"Proposed implementation of issue #33. I left out the detection of Safari, since this is quite unreliable on the server-side using the user-agent string. If this fix looks good to you, I'll send a pull request updating the documentation.
+",qll,680751,2013-11-24T15:37:52Z,NONE,False,32,2,2,Content Security Policy for Django.,Python,b02c16069e1623c06f2eef2b5455828d89a5d2f7,Add possibility to transmit a legacy header for old WebKit browsers. Fix #33.
+127,https://api.github.com/repos/mozilla/django-csp/pulls/35,35,Add possibility for transmitting the X-WebKit-CSP header (issue #33).,"Proposed implementation of issue #33. I left out the detection of Safari, since this is quite unreliable on the server-side using the user-agent string. If this fix looks good to you, I'll send a pull request updating the documentation.
+",qll,680751,2013-11-24T15:37:52Z,NONE,False,32,2,2,Content Security Policy for Django.,Python,291344c19ade2ccc77682b0a1d9ea28404a729b1,Add test to assert that the WebKit legacy header is disabled by default.
+128,https://api.github.com/repos/mozilla/django-csp/pulls/34,34,disable CSP for django debug view Fixes #27,,graingert,413772,2013-11-04T14:08:06Z,CONTRIBUTOR,True,14,1,2,Content Security Policy for Django.,Python,97622fa565a85ac9492c51bd085757a7a95a9879,"disable CSP for django debug view Fixes #27
+
+add test for django debug view csp exempt"
+129,https://api.github.com/repos/mozilla/django-csp/pulls/32,32,update link to spec and header name,,freddyb,87264,2013-07-01T10:34:23Z,NONE,True,2,2,1,Content Security Policy for Django.,Python,e9e4b48912b67e6ddcae07a098828ad538364079,update link to spec and header name
+130,https://api.github.com/repos/mozilla/django-csp/pulls/31,31,add warning for csp exceptions,"I found it notable to point out that XSS on one path gives DOM/XMLHttpRequest access to all other paths.
+CSP exceptions sound like a bad idea to me, but might still be justifiable on secure subpages which underwent a higher level of scrutiny.
+
+I hope this is valid sphinx syntax and shows a warning box. My knowledge in this area is limited.. :)
+If this warning text sounds too harsh or could need different wording, feel free to change.
+",freddyb,87264,2013-07-01T10:30:00Z,NONE,True,7,0,1,Content Security Policy for Django.,Python,7642c31cb3642572f17098aa37f10d210e8af035,"add warning for csp exceptions
+
+I found it notable to point out that XSS on one path gives DOM/XMLHttpRequest access to all other paths.
+CSP exceptions sound like a bad idea to me, but might still be justifiable on secure subpages which underwent a higher level of scrutiny.
+
+I hope this is valid sphinx syntax and shows a warning box. My knowledge in this area is limited.. :)"
+131,https://api.github.com/repos/mozilla/django-csp/pulls/31,31,add warning for csp exceptions,"I found it notable to point out that XSS on one path gives DOM/XMLHttpRequest access to all other paths.
+CSP exceptions sound like a bad idea to me, but might still be justifiable on secure subpages which underwent a higher level of scrutiny.
+
+I hope this is valid sphinx syntax and shows a warning box. My knowledge in this area is limited.. :)
+If this warning text sounds too harsh or could need different wording, feel free to change.
+",freddyb,87264,2013-07-01T10:30:00Z,NONE,True,7,0,1,Content Security Policy for Django.,Python,41a99c98eeaf6836d7ece3ba1f639d0b94266399,changed wording of csp exception warning
+132,https://api.github.com/repos/mozilla/django-csp/pulls/29,29,Remove deprecated headers,"Should only be using the standard `Content-Security-Policy` header now.
+
+Modern browsers won't even read the deprecated headers anymore.
+",jaysoo,53559,2013-06-07T15:57:10Z,CONTRIBUTOR,True,3,8,2,Content Security Policy for Django.,Python,11fa0cc3917c4b5e06d7fc91cfe7c37bcc34a9dd,Removed deprecated headers
+133,https://api.github.com/repos/mozilla/django-csp/pulls/28,28,Remove deprecated X- prefix for CSP header,"Maybe should not merge yet until Firefox 15+ gains greater adoption, but gets rid of that annoying message on the Firefox developer console.
+",mattbasta,279498,2013-02-21T00:14:36Z,NONE,False,3,3,2,Content Security Policy for Django.,Python,e2ef916b988dc6cf705b3f7fdbb8d9cc54f47670,Remove deprecated X- prefix for CSP header
+134,https://api.github.com/repos/mozilla/django-csp/pulls/26,26,Removed debug print.,,mitar,585279,2012-11-11T04:07:45Z,CONTRIBUTOR,True,0,1,1,Content Security Policy for Django.,Python,6a5af6e731a08337e6aed5d0b6ce496d46fbac43,Removed debug print.
+135,https://api.github.com/repos/mozilla/django-csp/pulls/25,25,When using Firefox 16 some fields from JSON are missing in report model and `create` fails. See #24,"Added check so that only existing fields in the model are passed to `create` to prevent any future similar errors.
+
+See #24
+",mitar,585279,2012-10-30T02:15:43Z,CONTRIBUTOR,False,8,0,1,Content Security Policy for Django.,Python,0d89a40f47b62a8d8acc991c9572b7e677adb46c,"When using Firefox 16 some fields from JSON are missing in report model and `create` fails. See #24
+
+Added check so that only existing fields in the model are passed to
+`create` to prevent any future similar errors."
+136,https://api.github.com/repos/mozilla/django-csp/pulls/22,22,Changes blocked_uri field to a models.CharField.,"The blocked-uri parameter from CSP reports does not have to be an absolute URL.
+
+Django's URLField is too restrictive for what should be allowable for the browser to send for the `blocked-uri` value.
+",chroto,502800,2012-10-12T17:30:08Z,NONE,True,1,1,1,Content Security Policy for Django.,Python,1be6df92891f8bba0be5e586c461b803ecfa7418,"Changes blocked_uri field to a models.CharField.
+
+The blocked-uri parameter from CSP reports does not have to be a fully
+qualified URL."
+137,https://api.github.com/repos/mozilla/django-csp/pulls/21,21,inform setup.py of templates it needs to copy,"setup.py needs to know about package resources, so they can be copied into the installation environment.
+",gavinwahl,421710,2012-10-09T21:35:45Z,CONTRIBUTOR,False,4,0,1,Content Security Policy for Django.,Python,3e16b3507512e7a3c1327fb6d785835e562e23f1,inform setup.py of templates it needs to copy
+138,https://api.github.com/repos/mozilla/django-csp/pulls/20,20,.setdefault method instead of if k not in d: d[k],"Use setdefault method for more efficient overwrite prevention
+",graingert,413772,2012-08-07T16:16:36Z,CONTRIBUTOR,False,2,5,1,Content Security Policy for Django.,Python,02ca1eb2dc7f846d3d2db65d124b5236828f2de8,".setdefault method instead of if k not in d: d[k]
+
+Use setdefault method for more efficient overwrite prevention"
+139,https://api.github.com/repos/mozilla/django-csp/pulls/19,19,set headers from settings.CSP_HEADERS #8,"A potential solution to #8 rather than worrying about what header to send, let the user decide in CSP_HEADERS
+",graingert,413772,2012-07-24T22:31:29Z,CONTRIBUTOR,False,9,9,1,Content Security Policy for Django.,Python,5f87bae58bd8bccfbaa572c8fdbe398dea1d026d,set headers from settings.CSP_HEADERS #8
+140,https://api.github.com/repos/mozilla/django-csp/pulls/19,19,set headers from settings.CSP_HEADERS #8,"A potential solution to #8 rather than worrying about what header to send, let the user decide in CSP_HEADERS
+",graingert,413772,2012-07-24T22:31:29Z,CONTRIBUTOR,False,9,9,1,Content Security Policy for Django.,Python,f4cca4f376d532092603e3e04e4c0d0de310c0f3,use dict.setdefault so as not to overwite existing
+141,https://api.github.com/repos/mozilla/django-csp/pulls/17,17,"Update for CSP ""Last Call Working Draft""","These changes include fmarier's pull request 2, ""Update the middleware for Draft 20110315"", and updates django-csp to match the ""Last Call Working Draft"": http://www.w3.org/TR/2012/WD-CSP-20120710/
+
+I haven't tested violation reports extensively.  Neither Firefox Aurora 15.0a2 nor Chrome 20.0.1132.57 send compliant violation reports.
+",scjody,1136329,2012-07-16T22:00:59Z,CONTRIBUTOR,False,15,32,2,Content Security Policy for Django.,Python,faac309604e81e931c7bb758d6e8f72c20b05f24,Change link to point to the W3C wiki
+142,https://api.github.com/repos/mozilla/django-csp/pulls/17,17,"Update for CSP ""Last Call Working Draft""","These changes include fmarier's pull request 2, ""Update the middleware for Draft 20110315"", and updates django-csp to match the ""Last Call Working Draft"": http://www.w3.org/TR/2012/WD-CSP-20120710/
+
+I haven't tested violation reports extensively.  Neither Firefox Aurora 15.0a2 nor Chrome 20.0.1132.57 send compliant violation reports.
+",scjody,1136329,2012-07-16T22:00:59Z,CONTRIBUTOR,False,15,32,2,Content Security Policy for Django.,Python,5007f362a57fc6118b8071bbe625765fa9c56f6e,"Rename ""allow"" to ""default-src"" (3.2.1)"
+143,https://api.github.com/repos/mozilla/django-csp/pulls/17,17,"Update for CSP ""Last Call Working Draft""","These changes include fmarier's pull request 2, ""Update the middleware for Draft 20110315"", and updates django-csp to match the ""Last Call Working Draft"": http://www.w3.org/TR/2012/WD-CSP-20120710/
+
+I haven't tested violation reports extensively.  Neither Firefox Aurora 15.0a2 nor Chrome 20.0.1132.57 send compliant violation reports.
+",scjody,1136329,2012-07-16T22:00:59Z,CONTRIBUTOR,False,15,32,2,Content Security Policy for Django.,Python,dbde1c3b79097cd0e74c6981fe90caabd9dd8f19,"Mention that ""javascript:"" URIs are disabled by default (3.2.13)"
+144,https://api.github.com/repos/mozilla/django-csp/pulls/17,17,"Update for CSP ""Last Call Working Draft""","These changes include fmarier's pull request 2, ""Update the middleware for Draft 20110315"", and updates django-csp to match the ""Last Call Working Draft"": http://www.w3.org/TR/2012/WD-CSP-20120710/
+
+I haven't tested violation reports extensively.  Neither Firefox Aurora 15.0a2 nor Chrome 20.0.1132.57 send compliant violation reports.
+",scjody,1136329,2012-07-16T22:00:59Z,CONTRIBUTOR,False,15,32,2,Content Security Policy for Django.,Python,91e0a419d02e948ea429700c8bc6c3b47396c441,"Rename ""inline-scripts"" option to ""disable-xss-protection"" (3.2.13)"
+145,https://api.github.com/repos/mozilla/django-csp/pulls/17,17,"Update for CSP ""Last Call Working Draft""","These changes include fmarier's pull request 2, ""Update the middleware for Draft 20110315"", and updates django-csp to match the ""Last Call Working Draft"": http://www.w3.org/TR/2012/WD-CSP-20120710/
+
+I haven't tested violation reports extensively.  Neither Firefox Aurora 15.0a2 nor Chrome 20.0.1132.57 send compliant violation reports.
+",scjody,1136329,2012-07-16T22:00:59Z,CONTRIBUTOR,False,15,32,2,Content Security Policy for Django.,Python,105270f0457fd104b2030419ec8bd1945ad750c5,"Merge branch 'draft20110315' of https://github.com/fmarier/django-csp
+
+Conflicts:
+	csp/__init__.py"
+146,https://api.github.com/repos/mozilla/django-csp/pulls/17,17,"Update for CSP ""Last Call Working Draft""","These changes include fmarier's pull request 2, ""Update the middleware for Draft 20110315"", and updates django-csp to match the ""Last Call Working Draft"": http://www.w3.org/TR/2012/WD-CSP-20120710/
+
+I haven't tested violation reports extensively.  Neither Firefox Aurora 15.0a2 nor Chrome 20.0.1132.57 send compliant violation reports.
+",scjody,1136329,2012-07-16T22:00:59Z,CONTRIBUTOR,False,15,32,2,Content Security Policy for Django.,Python,8964d3fe9369f8a189d31c22bbabdad0d7725ead,"Update for CSP ""Last Call Working Draft"":
+http://www.w3.org/TR/2012/WD-CSP-20120710/"
+147,https://api.github.com/repos/mozilla/django-csp/pulls/16,16,drop POLICY_URI setting and view fixes #13,,graingert,413772,2012-07-16T16:05:28Z,CONTRIBUTOR,True,1,34,4,Content Security Policy for Django.,Python,d134555f3d9aa1bfd17847fde1ee49f85046fe3e,drop POLICY_URI setting and view fixes #13
+148,https://api.github.com/repos/mozilla/django-csp/pulls/16,16,drop POLICY_URI setting and view fixes #13,,graingert,413772,2012-07-16T16:05:28Z,CONTRIBUTOR,True,1,34,4,Content Security Policy for Django.,Python,ba21e6ef1c874ed55744e90d52eb2f751f6cde3a,updated documentation to reflext fix to #13
+149,https://api.github.com/repos/mozilla/django-csp/pulls/15,15,Remove exception handling from csp.views.report,"There is no need to catch all Exceptions and return an HttpResponseBadRequest() because django does this by default.
+
+All this does is make debug more difficult.
+",graingert,413772,2012-07-16T13:27:00Z,CONTRIBUTOR,False,2,5,1,Content Security Policy for Django.,Python,19f814917da764ea3ec624810898a57b1a8da885,Remove exception handling from csp.views.report
+150,https://api.github.com/repos/mozilla/django-csp/pulls/5,5,Add CSP_EXCLUDE_URL_PREFXIES,"CSP_EXCLUDE_URL_PREFIXES allows users to specify certain URLs that
+should not send CSP headers in their responses.
+
+fixes #4
+",Osmose,193106,2011-12-28T19:14:37Z,CONTRIBUTOR,True,11,0,2,Content Security Policy for Django.,Python,35f1d147c953522db1a524ecf86c2751e96af9e4,"Add CSP_EXCLUDE_URL_PREFIXES setting.
+
+CSP_EXCLUDE_URL_PREFIXES allows users to specify certain URLs that
+should not send CSP headers in their responses."
+151,https://api.github.com/repos/mozilla/django-csp/pulls/3,3,Mention CSP_XHR directive in the documentation,"This is already implemented but it's not mentioned anywhere in the documentation.
+",fmarier,167821,2011-10-13T10:22:43Z,CONTRIBUTOR,True,1,0,1,Content Security Policy for Django.,Python,5be9cf7f86ba6e29af2433705d4eb5279342d348,Mention CSP_XHR directive in the documentation
+152,https://api.github.com/repos/mozilla/django-csp/pulls/2,2,Update the middleware for Draft 20110315,"The existing middleware is based on the old deprecated specification.
+
+Here are the changes needed to bring it in line with the latest version of the spec on the W3C site.
+",fmarier,167821,2011-10-13T10:20:07Z,CONTRIBUTOR,False,12,12,2,Content Security Policy for Django.,Python,faac309604e81e931c7bb758d6e8f72c20b05f24,Change link to point to the W3C wiki
+153,https://api.github.com/repos/mozilla/django-csp/pulls/2,2,Update the middleware for Draft 20110315,"The existing middleware is based on the old deprecated specification.
+
+Here are the changes needed to bring it in line with the latest version of the spec on the W3C site.
+",fmarier,167821,2011-10-13T10:20:07Z,CONTRIBUTOR,False,12,12,2,Content Security Policy for Django.,Python,5007f362a57fc6118b8071bbe625765fa9c56f6e,"Rename ""allow"" to ""default-src"" (3.2.1)"
+154,https://api.github.com/repos/mozilla/django-csp/pulls/2,2,Update the middleware for Draft 20110315,"The existing middleware is based on the old deprecated specification.
+
+Here are the changes needed to bring it in line with the latest version of the spec on the W3C site.
+",fmarier,167821,2011-10-13T10:20:07Z,CONTRIBUTOR,False,12,12,2,Content Security Policy for Django.,Python,dbde1c3b79097cd0e74c6981fe90caabd9dd8f19,"Mention that ""javascript:"" URIs are disabled by default (3.2.13)"
+155,https://api.github.com/repos/mozilla/django-csp/pulls/2,2,Update the middleware for Draft 20110315,"The existing middleware is based on the old deprecated specification.
+
+Here are the changes needed to bring it in line with the latest version of the spec on the W3C site.
+",fmarier,167821,2011-10-13T10:20:07Z,CONTRIBUTOR,False,12,12,2,Content Security Policy for Django.,Python,91e0a419d02e948ea429700c8bc6c3b47396c441,"Rename ""inline-scripts"" option to ""disable-xss-protection"" (3.2.13)"
+156,https://api.github.com/repos/mozilla/django-csp/pulls/1,1,Fix the CSP_NOTIFY setting,"As documented, the `CSP_NOTIFY` setting is a list of recipient addresses for CSP violation reports. This setting currently does nothing. This patch implements this functionality, and retains the current fallback to django admins if `CSP_NOTIFY` is not set.
+",PaulMcMillan,494159,2011-08-17T03:01:21Z,CONTRIBUTOR,True,11,5,2,Content Security Policy for Django.,Python,1ea57bbb895980ecce8b59f3d0eb6be6bb68d0df,Fixed CSP_NOTIFY setting and updated docs slightly.

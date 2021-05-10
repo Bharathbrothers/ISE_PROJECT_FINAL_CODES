@@ -1,0 +1,204 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/KitchenSink/pulls/17,17,Add Mozilla Code of Conduct,"Fixes #16
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-28T04:13:09Z,NONE,False,15,0,1,,JavaScript,95659e2b3a85a8c5e2255ee6653cbf2d27f54a4c,"Add Mozilla Code of Conduct file
+
+Fixes #16.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/KitchenSink/pulls/14,14,Found the right doc about browser API and fixed the test,"https://developer.mozilla.org/en-US/docs/WebAPI/Browser
+",zalun,97885,2013-05-29T14:03:00Z,CONTRIBUTOR,True,6,6,1,,JavaScript,110b2c40a5bf039d706a299542e49b205b216ba9,"Found the right doc about browser API and fixed the test
+https://developer.mozilla.org/en-US/docs/WebAPI/Browser"
+2,https://api.github.com/repos/mozilla/KitchenSink/pulls/13,13,CORS test is passing on emulator and unagi,"test is based on response from API prepared on collection server
+CORS is using the right request attributes
+JSON response is tested as well
+",zalun,97885,2013-05-22T11:24:35Z,CONTRIBUTOR,False,35,9,3,,JavaScript,43d28a3efaddfdd2a7df2b6acfc1c3881f8274e0,"test is based on response from API prepared on collection server
+CORS is using the right request attributes
+JSON response is tested as well"
+3,https://api.github.com/repos/mozilla/KitchenSink/pulls/12,12,important fixes,"- fixed getting phoneResourceUri
+- doNotStore attribute added to settings
+",zalun,97885,2013-05-21T12:33:45Z,CONTRIBUTOR,True,7,4,2,,JavaScript,9ba571fb5c0ca49b03b243412cf2ef13a8a0b821,"* fixed getting phoneResourceUri
+* doNotStore attribute added to settings"
+4,https://api.github.com/repos/mozilla/KitchenSink/pulls/11,11,Sending results to the collection server,"Sending results to the collection server
+https://github.com/mozilla/KitchenSinkServer running on 127.0.0.1:8093
+
+All runTests is now sending callbacks after receiving all results (or
+timeout)
+
+Data format is defined in KitchenSinkServer
+{
+  test_result: // JSON.stringify({
+    {api_name}: {
+      ""preparation"": (-1/0/1), # -1: no preparation needed
+                               #  0: not prepared (and it should)
+                               #  1: prepared
+      ""tests"": {
+        {testName}: (0/1),   #  0: failed
+                             #  1: passed
+        ...
+      },
+      (""timeout"": 1)           #  any test interrupted by setTimeout
+    },
+    ...
+  }),
+  device: // currently null, we might have some way to provide the model,
+  phone: // uri identifying the app in collection server,
+  app_version: // version of the kitchensink app,
+  user_agent: // navigator.userAgent
+}
+- few test callbacks fixed
+- wifi manage removed from manifest as it needs certified app
+- settings is showing up as a dark modal
+- switching certified from the settings page
+- set the default setting state
+",zalun,97885,2013-05-17T13:25:19Z,CONTRIBUTOR,True,370,39,11,,JavaScript,69a5e23d5508222c60ad59259dee23b9e894fbff,"Sending results to the collection server
+https://github.com/mozilla/KitchenSinkServer running on 127.0.0.1:8093
+
+All runTests is now sending callbacks after receiving all results (or
+timeout)
+
+Data format is defined in KitchenSinkServer
+{
+  test_result: // JSON.stringify({
+    {api_name}: {
+      ""preparation"": (-1/0/1), # -1: no preparation needed
+                               #  0: not prepared (and it should)
+                               #  1: prepared
+      ""tests"": {
+		{testName}: (0/1),   #  0: failed
+							 #  1: passed
+		...
+	  },
+	  (""timeout"": 1)           #  any test interrupted by setTimeout
+    },
+    ...
+  }),
+  device: // currently null, we might have some way to provide the model,
+  phone: // uri identifying the app in collection server,
+  app_version: // version of the kitchensink app,
+  user_agent: // navigator.userAgent
+}
+
+* few test callbacks fixed
+* wifi manage removed from manifest as it needs certified app
+* settings is showing up as a dark modal
+* switching certified from the settings page
+* set the default setting state
+* jshint fixes"
+5,https://api.github.com/repos/mozilla/KitchenSink/pulls/11,11,Sending results to the collection server,"Sending results to the collection server
+https://github.com/mozilla/KitchenSinkServer running on 127.0.0.1:8093
+
+All runTests is now sending callbacks after receiving all results (or
+timeout)
+
+Data format is defined in KitchenSinkServer
+{
+  test_result: // JSON.stringify({
+    {api_name}: {
+      ""preparation"": (-1/0/1), # -1: no preparation needed
+                               #  0: not prepared (and it should)
+                               #  1: prepared
+      ""tests"": {
+        {testName}: (0/1),   #  0: failed
+                             #  1: passed
+        ...
+      },
+      (""timeout"": 1)           #  any test interrupted by setTimeout
+    },
+    ...
+  }),
+  device: // currently null, we might have some way to provide the model,
+  phone: // uri identifying the app in collection server,
+  app_version: // version of the kitchensink app,
+  user_agent: // navigator.userAgent
+}
+- few test callbacks fixed
+- wifi manage removed from manifest as it needs certified app
+- settings is showing up as a dark modal
+- switching certified from the settings page
+- set the default setting state
+",zalun,97885,2013-05-17T13:25:19Z,CONTRIBUTOR,True,370,39,11,,JavaScript,fe4ebdd9e0843f2abe1ffd2dd158a2a46ca7edc9,"* fixes after review
+* removed settings management from ui.js (it is working in settings.js)"
+6,https://api.github.com/repos/mozilla/KitchenSink/pulls/10,10,Settings with UI and automation,,zalun,97885,2013-05-03T16:26:26Z,CONTRIBUTOR,True,193,62,7,,JavaScript,548aae524aa7a0598c57fb31a7609af4ef59645e,"* settings.js stores settings in localStorage
+* settings object emits an event when any key changes
+* hide/showCertified moved from settings.js to ui.js"
+7,https://api.github.com/repos/mozilla/KitchenSink/pulls/10,10,Settings with UI and automation,,zalun,97885,2013-05-03T16:26:26Z,CONTRIBUTOR,True,193,62,7,,JavaScript,ae150bf9246576d7d43f922a4c84fb58701e3411,"* settings is showing up as a dark modal
+* switching certified from the settings page
+* set the default state
+* automatically update setting elements if chosen"
+8,https://api.github.com/repos/mozilla/KitchenSink/pulls/9,9,* settings.js stores settings in localStorage,"- hide/showCertified moved from settings.js to ui.js
+- show/hideCertified is run regarding the last setting stored
+",zalun,97885,2013-05-03T12:19:46Z,CONTRIBUTOR,True,96,55,4,,JavaScript,548aae524aa7a0598c57fb31a7609af4ef59645e,"* settings.js stores settings in localStorage
+* settings object emits an event when any key changes
+* hide/showCertified moved from settings.js to ui.js"
+9,https://api.github.com/repos/mozilla/KitchenSink/pulls/8,8,we can now switch on/off certified,,zalun,97885,2013-04-11T22:11:12Z,CONTRIBUTOR,True,80,2,5,,JavaScript,bab42b9c8ad79b76322871f597a285163f644504,we can now switch on/off certified
+10,https://api.github.com/repos/mozilla/KitchenSink/pulls/8,8,we can now switch on/off certified,,zalun,97885,2013-04-11T22:11:12Z,CONTRIBUTOR,True,80,2,5,,JavaScript,93126c8d898a8e3b52893d4d5ac509ec9433e446,"* review fixes
+* named functions
+* some comments
+* style issues"
+11,https://api.github.com/repos/mozilla/KitchenSink/pulls/7,7,working with slick and elements - no zepto,"- removed logging to non existing debug element
+- style fixes
+- all needed elements/\* in app.js
+",zalun,97885,2013-04-11T10:05:34Z,CONTRIBUTOR,True,4955,58,26,,JavaScript,eaec082ba2dadc2f46f90fc43275b93be1db21af,"* working with slick and elements - no zepto
+* removed logging to non existing debug element
+* style fixes
+* all needed elements/* in app.js"
+12,https://api.github.com/repos/mozilla/KitchenSink/pulls/6,6,some UI improvements,"- Zepto upgrade
+- logs inside content element
+- name element easier to touch
+- removed background from failed API
+- dropshadow added
+",zalun,97885,2013-04-05T13:42:52Z,CONTRIBUTOR,True,465,1406,13,,JavaScript,f367bb052844d5390c42660bd576afb76903ddbd,"UI Improved
+
+* Zepto upgrade
+* logs inside content element
+* name element easier to touch
+* removed background from failed API
+* dropshadow added
+* DEBUG removed as no longer needed
+* apis are no longer overflow scrolled
+* header added
+  x-appbar with icons for reload and menu
+* FxOS style for buttons"
+13,https://api.github.com/repos/mozilla/KitchenSink/pulls/5,5,new descriptions and links tomore info added,"some not required tests removed
+",zalun,97885,2013-04-03T12:28:36Z,CONTRIBUTOR,True,64,42,21,,JavaScript,35fe833522b3bd4606d509d94b39b4b499046d65,"new descriptions and links tomore info added
+some not required tests removed
+
+r?"
+14,https://api.github.com/repos/mozilla/KitchenSink/pulls/4,4,Adding description,"Accordion like UI
+- ul changed to dl
+- dt is the old li
+- dd is hollding the content
+- action is now called from within the dd
+
+treat all links as MozActivity
+",zalun,97885,2013-04-02T12:41:38Z,CONTRIBUTOR,True,116,28,4,,JavaScript,af0d6bdfda4c48f7202a707b128f39029878e448,"ul changed to dl
+dt is the old li
+dd is hollding the content
+action is now called from within the dd
+
+treat all links as MozActivity"
+15,https://api.github.com/repos/mozilla/KitchenSink/pulls/4,4,Adding description,"Accordion like UI
+- ul changed to dl
+- dt is the old li
+- dd is hollding the content
+- action is now called from within the dd
+
+treat all links as MozActivity
+",zalun,97885,2013-04-02T12:41:38Z,CONTRIBUTOR,True,116,28,4,,JavaScript,9dcd0847bd41db44c9a4000d4027ce05c2b3941b,r? fixes (mostly style)
+16,https://api.github.com/repos/mozilla/KitchenSink/pulls/3,3,manifest validated,"icons added
+",zalun,97885,2013-03-27T14:34:43Z,CONTRIBUTOR,True,35,10,6,,JavaScript,445569208decb3ff9ad045e15b59ea7cfec25253,"manifest validated
+icons added"
+17,https://api.github.com/repos/mozilla/KitchenSink/pulls/2,2,test switching FM radio on and off,,zalun,97885,2013-03-25T11:34:18Z,CONTRIBUTOR,True,26,0,1,,JavaScript,07c6169b3b4d7f5881285830a737028b58471056,test switching FM radio on and off
+18,https://api.github.com/repos/mozilla/KitchenSink/pulls/2,2,test switching FM radio on and off,,zalun,97885,2013-03-25T11:34:18Z,CONTRIBUTOR,True,26,0,1,,JavaScript,1775eb342a1de695fd2ac5ea39958147162fc3d2,typo
+19,https://api.github.com/repos/mozilla/KitchenSink/pulls/1,1,OOP refactoring,"- prime added for OOP
+  https://github.com/mootools/prime
+- API is a class
+- apis is an array of classes
+",zalun,97885,2013-03-19T21:59:26Z,CONTRIBUTOR,True,2267,885,61,,JavaScript,44dbeed88b0b53e90e46133f4f34136396bc7be6,"* prime added for OOP
+  https://github.com/mootools/prime
+* ``API`` is a class
+* ``apis`` is an array of classes
+* constructing APIs moved to individual files
+* added string.js which adds simple substitute method (minitemplating)
+* webfm action fixed"

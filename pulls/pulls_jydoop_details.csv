@@ -1,0 +1,719 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/jydoop/pulls/57,57,Provide sample data for new users to try Jydoop.,"Resolves issue 56
+",mreid-moz,969479,2014-08-19T19:26:31Z,CONTRIBUTOR,True,132,2,2,Efficient Hadoop Map-Reduce in Python,Python,8559bc7f756e8f2ea2ea25252db34411fb2bdd73,"Provide sample data for new users to try Jydoop.
+
+Resolves issue 56"
+1,https://api.github.com/repos/mozilla/jydoop/pulls/55,55,Fhr toolbox changes,"r? @mreid-moz
+",bsmedberg,1914477,2014-02-21T15:55:11Z,CONTRIBUTOR,True,24,642,11,Efficient Hadoop Map-Reduce in Python,Python,f90937ac24a22d1cb2eb34fb7940e1f4ab2bc820,"Move the FHR utils/scripts from the jydoop repository to fhr-toolbox. To run them, symlink jydoop/scripts/fhrtoolbox to fhr-toolbox/jydoop."
+2,https://api.github.com/repos/mozilla/jydoop/pulls/55,55,Fhr toolbox changes,"r? @mreid-moz
+",bsmedberg,1914477,2014-02-21T15:55:11Z,CONTRIBUTOR,True,24,642,11,Efficient Hadoop Map-Reduce in Python,Python,80771264996dc298b11b235f53a7abc864f6f63f,Don't hard-code the list of directories that make up driver.jar when calculating dependencies: use find to build that list. This allows symlinking -toolbox libraries into scripts/ and having them work correctly.
+3,https://api.github.com/repos/mozilla/jydoop/pulls/55,55,Fhr toolbox changes,"r? @mreid-moz
+",bsmedberg,1914477,2014-02-21T15:55:11Z,CONTRIBUTOR,True,24,642,11,Efficient Hadoop Map-Reduce in Python,Python,3b7b162f7d401cbd37a8ad6b5dbdbb11069f86e6,Give mappers access to the configuration via context. Allow using an environment variable to save results to a different directory.
+4,https://api.github.com/repos/mozilla/jydoop/pulls/53,53,typo fix; per-script number of reducers,"Fixed a typo in healthreportutils.py.
+
+Added the ability to set a custom number of reducers by defining a function ""num_reduce_tasks"" in your script. Ex:
+def num_reduce_tasks():
+    return 23
+There may be a better way to do this; I copied the approach from ""skip_local_output"". But it Works Today, so there's that...
+
+Extended the functionality that mreid added for counters to local jobs run with FileDriver.py. There's probably a better way to do this too, but this also works fine.
+",bcolloran,2380975,2013-12-18T23:12:08Z,NONE,False,55,3,3,Efficient Hadoop Map-Reduce in Python,Python,ba29faa3e88eedb8fb16d232efefca25af556072,fixed a typo
+5,https://api.github.com/repos/mozilla/jydoop/pulls/53,53,typo fix; per-script number of reducers,"Fixed a typo in healthreportutils.py.
+
+Added the ability to set a custom number of reducers by defining a function ""num_reduce_tasks"" in your script. Ex:
+def num_reduce_tasks():
+    return 23
+There may be a better way to do this; I copied the approach from ""skip_local_output"". But it Works Today, so there's that...
+
+Extended the functionality that mreid added for counters to local jobs run with FileDriver.py. There's probably a better way to do this too, but this also works fine.
+",bcolloran,2380975,2013-12-18T23:12:08Z,NONE,False,55,3,3,Efficient Hadoop Map-Reduce in Python,Python,2e8215a8acc82bb5071407a19262236e8f54c7c9,fixed some formatting
+6,https://api.github.com/repos/mozilla/jydoop/pulls/53,53,typo fix; per-script number of reducers,"Fixed a typo in healthreportutils.py.
+
+Added the ability to set a custom number of reducers by defining a function ""num_reduce_tasks"" in your script. Ex:
+def num_reduce_tasks():
+    return 23
+There may be a better way to do this; I copied the approach from ""skip_local_output"". But it Works Today, so there's that...
+
+Extended the functionality that mreid added for counters to local jobs run with FileDriver.py. There's probably a better way to do this too, but this also works fine.
+",bcolloran,2380975,2013-12-18T23:12:08Z,NONE,False,55,3,3,Efficient Hadoop Map-Reduce in Python,Python,0267cbf8f467a77fae97c1604e2cbb70f4aba7d4,added local counters to FileDriver.py
+7,https://api.github.com/repos/mozilla/jydoop/pulls/51,51,Expose HBase timestamps to the map function,"This also adds an hbase-specific setup helper function to reduce the amount of boilerplate required to set up an hbase scan.
+
+As a minimal example:
+
+```
+import hbaseutils
+
+def setupjob(job, args):
+    hbaseutils.setup_full_scan_job(""user_profile"", job, args)
+    job.getConfiguration().set(""org.mozilla.jydoop.include_row_timestamp"", ""true"")
+
+def map(key, value, ts, cx):
+    cx.write(key, ts)
+```
+",mreid-moz,969479,2013-11-21T15:00:39Z,CONTRIBUTOR,False,86,5,4,Efficient Hadoop Map-Reduce in Python,Python,d1acd565ac30b486e3879e55354a768958b32fd7,expose hadoop getConfiguration in PythonWrapper$ContextWrapper
+8,https://api.github.com/repos/mozilla/jydoop/pulls/51,51,Expose HBase timestamps to the map function,"This also adds an hbase-specific setup helper function to reduce the amount of boilerplate required to set up an hbase scan.
+
+As a minimal example:
+
+```
+import hbaseutils
+
+def setupjob(job, args):
+    hbaseutils.setup_full_scan_job(""user_profile"", job, args)
+    job.getConfiguration().set(""org.mozilla.jydoop.include_row_timestamp"", ""true"")
+
+def map(key, value, ts, cx):
+    cx.write(key, ts)
+```
+",mreid-moz,969479,2013-11-21T15:00:39Z,CONTRIBUTOR,False,86,5,4,Efficient Hadoop Map-Reduce in Python,Python,45a63031fa5b7fe7c2d613443e87781eccdcf9f9,Expose HBase timestamps to the map function
+9,https://api.github.com/repos/mozilla/jydoop/pulls/51,51,Expose HBase timestamps to the map function,"This also adds an hbase-specific setup helper function to reduce the amount of boilerplate required to set up an hbase scan.
+
+As a minimal example:
+
+```
+import hbaseutils
+
+def setupjob(job, args):
+    hbaseutils.setup_full_scan_job(""user_profile"", job, args)
+    job.getConfiguration().set(""org.mozilla.jydoop.include_row_timestamp"", ""true"")
+
+def map(key, value, ts, cx):
+    cx.write(key, ts)
+```
+",mreid-moz,969479,2013-11-21T15:00:39Z,CONTRIBUTOR,False,86,5,4,Efficient Hadoop Map-Reduce in Python,Python,aedbc0bfc386689ed0e339d8206b445a4e61ab75,Expose HBase timestamps to the map function
+10,https://api.github.com/repos/mozilla/jydoop/pulls/51,51,Expose HBase timestamps to the map function,"This also adds an hbase-specific setup helper function to reduce the amount of boilerplate required to set up an hbase scan.
+
+As a minimal example:
+
+```
+import hbaseutils
+
+def setupjob(job, args):
+    hbaseutils.setup_full_scan_job(""user_profile"", job, args)
+    job.getConfiguration().set(""org.mozilla.jydoop.include_row_timestamp"", ""true"")
+
+def map(key, value, ts, cx):
+    cx.write(key, ts)
+```
+",mreid-moz,969479,2013-11-21T15:00:39Z,CONTRIBUTOR,False,86,5,4,Efficient Hadoop Map-Reduce in Python,Python,2a9cc62492c79fdbc1b0fcdc8f6d2ed29d254fb9,user profile hbase dump taking advantage of mreid's timestamp feature
+11,https://api.github.com/repos/mozilla/jydoop/pulls/51,51,Expose HBase timestamps to the map function,"This also adds an hbase-specific setup helper function to reduce the amount of boilerplate required to set up an hbase scan.
+
+As a minimal example:
+
+```
+import hbaseutils
+
+def setupjob(job, args):
+    hbaseutils.setup_full_scan_job(""user_profile"", job, args)
+    job.getConfiguration().set(""org.mozilla.jydoop.include_row_timestamp"", ""true"")
+
+def map(key, value, ts, cx):
+    cx.write(key, ts)
+```
+",mreid-moz,969479,2013-11-21T15:00:39Z,CONTRIBUTOR,False,86,5,4,Efficient Hadoop Map-Reduce in Python,Python,f51420a80f486c66683318e4c2b16c7464289553,"Merge pull request #1 from oyiptong/expose_hbase_timestamps
+
+userprofile.py script with exposed hbase timestamps"
+12,https://api.github.com/repos/mozilla/jydoop/pulls/50,50,user profile data dump script,"in addition to the jython userprofile.py script, PythonWrapper$ContextWrapper has been modified to expose the hadoop job's configuration
+",oyiptong,9365,2013-11-15T20:21:46Z,NONE,False,58,0,2,Efficient Hadoop Map-Reduce in Python,Python,d1acd565ac30b486e3879e55354a768958b32fd7,expose hadoop getConfiguration in PythonWrapper$ContextWrapper
+13,https://api.github.com/repos/mozilla/jydoop/pulls/50,50,user profile data dump script,"in addition to the jython userprofile.py script, PythonWrapper$ContextWrapper has been modified to expose the hadoop job's configuration
+",oyiptong,9365,2013-11-15T20:21:46Z,NONE,False,58,0,2,Efficient Hadoop Map-Reduce in Python,Python,d49f19b996bcc296c5da3f6095da1e8c73345e53,user profile hbase dump
+14,https://api.github.com/repos/mozilla/jydoop/pulls/50,50,user profile data dump script,"in addition to the jython userprofile.py script, PythonWrapper$ContextWrapper has been modified to expose the hadoop job's configuration
+",oyiptong,9365,2013-11-15T20:21:46Z,NONE,False,58,0,2,Efficient Hadoop Map-Reduce in Python,Python,2eb60d4d8d96a1ad1ea6fcf553069d1a38c3d22c,make no-op pattern less restrictive in userprofile.py
+15,https://api.github.com/repos/mozilla/jydoop/pulls/50,50,user profile data dump script,"in addition to the jython userprofile.py script, PythonWrapper$ContextWrapper has been modified to expose the hadoop job's configuration
+",oyiptong,9365,2013-11-15T20:21:46Z,NONE,False,58,0,2,Efficient Hadoop Map-Reduce in Python,Python,b031e6d4fd4cf0c4b299ccba07930d37efdcfade,formatting and description of userprofile.py
+16,https://api.github.com/repos/mozilla/jydoop/pulls/50,50,user profile data dump script,"in addition to the jython userprofile.py script, PythonWrapper$ContextWrapper has been modified to expose the hadoop job's configuration
+",oyiptong,9365,2013-11-15T20:21:46Z,NONE,False,58,0,2,Efficient Hadoop Map-Reduce in Python,Python,e9f0787b7b27c3999de1ea87f6fb996fd46cdaf4,userprofile.py outputs json instead of csv
+17,https://api.github.com/repos/mozilla/jydoop/pulls/47,47,Add support for custom job counters,,mreid-moz,969479,2013-11-08T21:04:10Z,CONTRIBUTOR,True,6,0,1,Efficient Hadoop Map-Reduce in Python,Python,82933189eb06df3eb0c0fa4a3e0a8cf876fce331,Add support for custom job counters
+18,https://api.github.com/repos/mozilla/jydoop/pulls/46,46,Fix json.dumps(),"This change lets you use json.dumps() from python.  The previous byte array stuff didn't seem to work.
+",mreid-moz,969479,2013-11-08T15:51:49Z,CONTRIBUTOR,True,2,6,1,Efficient Hadoop Map-Reduce in Python,Python,256d30aba3ec3c8c2b872236c1e4975448e25679,Fix json.dumps()
+19,https://api.github.com/repos/mozilla/jydoop/pulls/44,44,Add a basic setupjob function for raw seqfiles,"You can read from one or more HDFS directories using sequencefileutils.setupjob
+",mreid-moz,969479,2013-08-02T18:56:00Z,CONTRIBUTOR,True,18,0,1,Efficient Hadoop Map-Reduce in Python,Python,c7ae599e685fe6f08363b70e96a1d6184bc208ca,Add a basic setupjob function for raw seqfiles
+20,https://api.github.com/repos/mozilla/jydoop/pulls/43,43,Use the HDFS data for telemetry jobs by default.,"Now that 'mappertype' is part of the job setup instead of a separate function, we can switch the default for Telemetry to HDFS without affecting existing scripts.
+
+This is desirable because jobs run faster and produce less load on the cluster compared to using HBase.
+",mreid-moz,969479,2013-07-23T15:14:41Z,CONTRIBUTOR,True,11,15,4,Efficient Hadoop Map-Reduce in Python,Python,b9ea5fa0f31aeee565ce7fd3006300f3b120907d,Use the HDFS data for telemetry jobs by default.
+21,https://api.github.com/repos/mozilla/jydoop/pulls/42,42,Move the 'mappertype' to job configuration.,"This means that scripts do not have to implement an extra method to set the
+mapper type, and it can just be set once in that data source's ""setupjob""
+function. This eases the burden for developing new scripts.
+
+Any scripts already written to specify a mappertype function should continue
+to work fine, as long as they reference one of the standard jydoop 'setupjob'
+functions.
+",mreid-moz,969479,2013-07-23T14:32:01Z,CONTRIBUTOR,True,24,33,6,Efficient Hadoop Map-Reduce in Python,Python,e71da9b1bdb67ddcc5a70ec43d3f721ca8143803,"Move the 'mappertype' to job configuration.
+
+This means that scripts do not have to implement an extra method to set the
+mapper type, and it can just be set once in that data source's ""setupjob""
+function. This eases the burden for developing new scripts.
+
+Any scripts already written to specify a mappertype function should continue
+to work fine, as long as they reference one of the standard jydoop 'setupjob'
+functions."
+22,https://api.github.com/repos/mozilla/jydoop/pulls/41,41,Telemetry hdfs support,"Add support for reading Telemetry data from HDFS (Sequence Files) instead of scanning HBase. This is now the preferred way to access Telemetry data for the most recent 2 weeks.  You'll get an error message if you try to run on data outside that time frame.
+",mreid-moz,969479,2013-07-23T13:12:22Z,CONTRIBUTOR,True,134,3,3,Efficient Hadoop Map-Reduce in Python,Python,6d957baebd02f1aa534de4f2b55a49e4216ae1a3,"Add code + example for reading telemetry from hdfs
+
+If you run a job on Telemetry data outside of the supported date range, you'll
+get a helpful error message."
+23,https://api.github.com/repos/mozilla/jydoop/pulls/41,41,Telemetry hdfs support,"Add support for reading Telemetry data from HDFS (Sequence Files) instead of scanning HBase. This is now the preferred way to access Telemetry data for the most recent 2 weeks.  You'll get an error message if you try to run on data outside that time frame.
+",mreid-moz,969479,2013-07-23T13:12:22Z,CONTRIBUTOR,True,134,3,3,Efficient Hadoop Map-Reduce in Python,Python,a0054278621a87d15a49323cf06d80c2e34b98b9,Update docs for Telemetry HDFS access
+24,https://api.github.com/repos/mozilla/jydoop/pulls/40,40,add some scripts,"Some scripts I'm using to measure before/after for content-prefs.sqlite and formhistory.sqlite
+",gavinsharp,327839,2013-07-19T20:52:27Z,CONTRIBUTOR,True,153,0,3,Efficient Hadoop Map-Reduce in Python,Python,0b164dc7c3df524e348bf2fa5e9a7d5d228825f5,add some scripts
+25,https://api.github.com/repos/mozilla/jydoop/pulls/40,40,add some scripts,"Some scripts I'm using to measure before/after for content-prefs.sqlite and formhistory.sqlite
+",gavinsharp,327839,2013-07-19T20:52:27Z,CONTRIBUTOR,True,153,0,3,Efficient Hadoop Map-Reduce in Python,Python,40452775611212cbea1d50bc74f54a18ed148d00,tweak added scripts
+26,https://api.github.com/repos/mozilla/jydoop/pulls/39,39,Update Makefile for compatibility with CDH4,,mreid-moz,969479,2013-07-10T17:21:07Z,CONTRIBUTOR,True,7,8,1,Efficient Hadoop Map-Reduce in Python,Python,7d06f24fdba377fffb8ed44401f7bac52dd8234e,Update Makefile for compatibility with CDH4
+27,https://api.github.com/repos/mozilla/jydoop/pulls/39,39,Update Makefile for compatibility with CDH4,,mreid-moz,969479,2013-07-10T17:21:07Z,CONTRIBUTOR,True,7,8,1,Efficient Hadoop Map-Reduce in Python,Python,4be925ef09b745115209b2005dd2809d0c2ea895,Minor Makefile cleanup
+28,https://api.github.com/repos/mozilla/jydoop/pulls/38,38,Update documentation to reflect recent changes.,,mreid-moz,969479,2013-07-04T17:44:05Z,CONTRIBUTOR,True,193,18,1,Efficient Hadoop Map-Reduce in Python,Python,8c227f74d3ee2ee2c30bcefd0d45281fe341d0d3,"Add more detailed documentation for new features.
+
+Describe the required / optional functions in a jydoop script, and add docs
+for skipping local output and accessing TestPilot / Jydoop input data."
+29,https://api.github.com/repos/mozilla/jydoop/pulls/38,38,Update documentation to reflect recent changes.,,mreid-moz,969479,2013-07-04T17:44:05Z,CONTRIBUTOR,True,193,18,1,Efficient Hadoop Map-Reduce in Python,Python,15b01086a4a8d3e26350d91a488fbf8b495b13ed,Fix a typo
+30,https://api.github.com/repos/mozilla/jydoop/pulls/37,37,Sequence file support,"This branch includes changes to support new Mapper types (besides HBase) including Text-based sequence files (useful for TestPilot data) and the PythonKey/PythonValue sequence files that are output by jydoop jobs.
+
+The Mapper type is specified by creating a function in the jydoop job that returns either HBASE, TEXT, or JYDOOP, with HBASE being the default so that existing jobs do not need to be modified.
+
+The HBaseDriver class is renamed to HadoopDriver to reflect its more general nature.
+
+I also added an option to skip local output (and also skip the corresponding delete of data inside HDFS) to support the use of jydoop output as jydoop input.  This allows one to setup data-processing pipelines with multiple stages of processing without having to download potentially large data sets between stages.
+
+Sorry about the noisy intermediate commits, I ended up refactoring a few things as I went along.
+
+Finally, I would like to reduce the amount of code in the Mapper classes, so if this seems like a sound approach, I can refactor them to inherit from a common ancestor.
+",mreid-moz,969479,2013-06-21T20:08:31Z,CONTRIBUTOR,True,262,29,10,Efficient Hadoop Map-Reduce in Python,Python,7b606548d91a0429e434fe0f91e13fefc1c2a3da,Update makefile to work on the 'peach' cluster
+31,https://api.github.com/repos/mozilla/jydoop/pulls/37,37,Sequence file support,"This branch includes changes to support new Mapper types (besides HBase) including Text-based sequence files (useful for TestPilot data) and the PythonKey/PythonValue sequence files that are output by jydoop jobs.
+
+The Mapper type is specified by creating a function in the jydoop job that returns either HBASE, TEXT, or JYDOOP, with HBASE being the default so that existing jobs do not need to be modified.
+
+The HBaseDriver class is renamed to HadoopDriver to reflect its more general nature.
+
+I also added an option to skip local output (and also skip the corresponding delete of data inside HDFS) to support the use of jydoop output as jydoop input.  This allows one to setup data-processing pipelines with multiple stages of processing without having to download potentially large data sets between stages.
+
+Sorry about the noisy intermediate commits, I ended up refactoring a few things as I went along.
+
+Finally, I would like to reduce the amount of code in the Mapper classes, so if this seems like a sound approach, I can refactor them to inherit from a common ancestor.
+",mreid-moz,969479,2013-06-21T20:08:31Z,CONTRIBUTOR,True,262,29,10,Efficient Hadoop Map-Reduce in Python,Python,45a5544e6e39782b4c8fd78f729ae0015a6aa4b0,First stab
+32,https://api.github.com/repos/mozilla/jydoop/pulls/37,37,Sequence file support,"This branch includes changes to support new Mapper types (besides HBase) including Text-based sequence files (useful for TestPilot data) and the PythonKey/PythonValue sequence files that are output by jydoop jobs.
+
+The Mapper type is specified by creating a function in the jydoop job that returns either HBASE, TEXT, or JYDOOP, with HBASE being the default so that existing jobs do not need to be modified.
+
+The HBaseDriver class is renamed to HadoopDriver to reflect its more general nature.
+
+I also added an option to skip local output (and also skip the corresponding delete of data inside HDFS) to support the use of jydoop output as jydoop input.  This allows one to setup data-processing pipelines with multiple stages of processing without having to download potentially large data sets between stages.
+
+Sorry about the noisy intermediate commits, I ended up refactoring a few things as I went along.
+
+Finally, I would like to reduce the amount of code in the Mapper classes, so if this seems like a sound approach, I can refactor them to inherit from a common ancestor.
+",mreid-moz,969479,2013-06-21T20:08:31Z,CONTRIBUTOR,True,262,29,10,Efficient Hadoop Map-Reduce in Python,Python,f86ea43e185ba56aa6714a0533dd086eae61dcc2,"Runs, but key / value are messed up."
+33,https://api.github.com/repos/mozilla/jydoop/pulls/37,37,Sequence file support,"This branch includes changes to support new Mapper types (besides HBase) including Text-based sequence files (useful for TestPilot data) and the PythonKey/PythonValue sequence files that are output by jydoop jobs.
+
+The Mapper type is specified by creating a function in the jydoop job that returns either HBASE, TEXT, or JYDOOP, with HBASE being the default so that existing jobs do not need to be modified.
+
+The HBaseDriver class is renamed to HadoopDriver to reflect its more general nature.
+
+I also added an option to skip local output (and also skip the corresponding delete of data inside HDFS) to support the use of jydoop output as jydoop input.  This allows one to setup data-processing pipelines with multiple stages of processing without having to download potentially large data sets between stages.
+
+Sorry about the noisy intermediate commits, I ended up refactoring a few things as I went along.
+
+Finally, I would like to reduce the amount of code in the Mapper classes, so if this seems like a sound approach, I can refactor them to inherit from a common ancestor.
+",mreid-moz,969479,2013-06-21T20:08:31Z,CONTRIBUTOR,True,262,29,10,Efficient Hadoop Map-Reduce in Python,Python,c57a0ab550e22f8d7204904871946e9ee68fe1a0,Ignore vim swap files
+34,https://api.github.com/repos/mozilla/jydoop/pulls/37,37,Sequence file support,"This branch includes changes to support new Mapper types (besides HBase) including Text-based sequence files (useful for TestPilot data) and the PythonKey/PythonValue sequence files that are output by jydoop jobs.
+
+The Mapper type is specified by creating a function in the jydoop job that returns either HBASE, TEXT, or JYDOOP, with HBASE being the default so that existing jobs do not need to be modified.
+
+The HBaseDriver class is renamed to HadoopDriver to reflect its more general nature.
+
+I also added an option to skip local output (and also skip the corresponding delete of data inside HDFS) to support the use of jydoop output as jydoop input.  This allows one to setup data-processing pipelines with multiple stages of processing without having to download potentially large data sets between stages.
+
+Sorry about the noisy intermediate commits, I ended up refactoring a few things as I went along.
+
+Finally, I would like to reduce the amount of code in the Mapper classes, so if this seems like a sound approach, I can refactor them to inherit from a common ancestor.
+",mreid-moz,969479,2013-06-21T20:08:31Z,CONTRIBUTOR,True,262,29,10,Efficient Hadoop Map-Reduce in Python,Python,64b16db3d9cec6a1fa9af157fc6b7351acd07d44,Make Makefile work on mango-gw
+35,https://api.github.com/repos/mozilla/jydoop/pulls/37,37,Sequence file support,"This branch includes changes to support new Mapper types (besides HBase) including Text-based sequence files (useful for TestPilot data) and the PythonKey/PythonValue sequence files that are output by jydoop jobs.
+
+The Mapper type is specified by creating a function in the jydoop job that returns either HBASE, TEXT, or JYDOOP, with HBASE being the default so that existing jobs do not need to be modified.
+
+The HBaseDriver class is renamed to HadoopDriver to reflect its more general nature.
+
+I also added an option to skip local output (and also skip the corresponding delete of data inside HDFS) to support the use of jydoop output as jydoop input.  This allows one to setup data-processing pipelines with multiple stages of processing without having to download potentially large data sets between stages.
+
+Sorry about the noisy intermediate commits, I ended up refactoring a few things as I went along.
+
+Finally, I would like to reduce the amount of code in the Mapper classes, so if this seems like a sound approach, I can refactor them to inherit from a common ancestor.
+",mreid-moz,969479,2013-06-21T20:08:31Z,CONTRIBUTOR,True,262,29,10,Efficient Hadoop Map-Reduce in Python,Python,c31a9c94df59a1091e3ef9a3035d7ce532db55ed,Add a basic testpilot test
+36,https://api.github.com/repos/mozilla/jydoop/pulls/37,37,Sequence file support,"This branch includes changes to support new Mapper types (besides HBase) including Text-based sequence files (useful for TestPilot data) and the PythonKey/PythonValue sequence files that are output by jydoop jobs.
+
+The Mapper type is specified by creating a function in the jydoop job that returns either HBASE, TEXT, or JYDOOP, with HBASE being the default so that existing jobs do not need to be modified.
+
+The HBaseDriver class is renamed to HadoopDriver to reflect its more general nature.
+
+I also added an option to skip local output (and also skip the corresponding delete of data inside HDFS) to support the use of jydoop output as jydoop input.  This allows one to setup data-processing pipelines with multiple stages of processing without having to download potentially large data sets between stages.
+
+Sorry about the noisy intermediate commits, I ended up refactoring a few things as I went along.
+
+Finally, I would like to reduce the amount of code in the Mapper classes, so if this seems like a sound approach, I can refactor them to inherit from a common ancestor.
+",mreid-moz,969479,2013-06-21T20:08:31Z,CONTRIBUTOR,True,262,29,10,Efficient Hadoop Map-Reduce in Python,Python,e8239842675ddfb9b8bc6625f9de534a5ca4697a,Use 'mapreduce' instead of 'mapred' classes
+37,https://api.github.com/repos/mozilla/jydoop/pulls/37,37,Sequence file support,"This branch includes changes to support new Mapper types (besides HBase) including Text-based sequence files (useful for TestPilot data) and the PythonKey/PythonValue sequence files that are output by jydoop jobs.
+
+The Mapper type is specified by creating a function in the jydoop job that returns either HBASE, TEXT, or JYDOOP, with HBASE being the default so that existing jobs do not need to be modified.
+
+The HBaseDriver class is renamed to HadoopDriver to reflect its more general nature.
+
+I also added an option to skip local output (and also skip the corresponding delete of data inside HDFS) to support the use of jydoop output as jydoop input.  This allows one to setup data-processing pipelines with multiple stages of processing without having to download potentially large data sets between stages.
+
+Sorry about the noisy intermediate commits, I ended up refactoring a few things as I went along.
+
+Finally, I would like to reduce the amount of code in the Mapper classes, so if this seems like a sound approach, I can refactor them to inherit from a common ancestor.
+",mreid-moz,969479,2013-06-21T20:08:31Z,CONTRIBUTOR,True,262,29,10,Efficient Hadoop Map-Reduce in Python,Python,94d05668d77e6dbd1287a97c99946b8071ca9e7a,Change key type back to Text
+38,https://api.github.com/repos/mozilla/jydoop/pulls/37,37,Sequence file support,"This branch includes changes to support new Mapper types (besides HBase) including Text-based sequence files (useful for TestPilot data) and the PythonKey/PythonValue sequence files that are output by jydoop jobs.
+
+The Mapper type is specified by creating a function in the jydoop job that returns either HBASE, TEXT, or JYDOOP, with HBASE being the default so that existing jobs do not need to be modified.
+
+The HBaseDriver class is renamed to HadoopDriver to reflect its more general nature.
+
+I also added an option to skip local output (and also skip the corresponding delete of data inside HDFS) to support the use of jydoop output as jydoop input.  This allows one to setup data-processing pipelines with multiple stages of processing without having to download potentially large data sets between stages.
+
+Sorry about the noisy intermediate commits, I ended up refactoring a few things as I went along.
+
+Finally, I would like to reduce the amount of code in the Mapper classes, so if this seems like a sound approach, I can refactor them to inherit from a common ancestor.
+",mreid-moz,969479,2013-06-21T20:08:31Z,CONTRIBUTOR,True,262,29,10,Efficient Hadoop Map-Reduce in Python,Python,34b3f2f540f59709cb4e0c966da173e2dd80e1df,Use proper Key/Value
+39,https://api.github.com/repos/mozilla/jydoop/pulls/37,37,Sequence file support,"This branch includes changes to support new Mapper types (besides HBase) including Text-based sequence files (useful for TestPilot data) and the PythonKey/PythonValue sequence files that are output by jydoop jobs.
+
+The Mapper type is specified by creating a function in the jydoop job that returns either HBASE, TEXT, or JYDOOP, with HBASE being the default so that existing jobs do not need to be modified.
+
+The HBaseDriver class is renamed to HadoopDriver to reflect its more general nature.
+
+I also added an option to skip local output (and also skip the corresponding delete of data inside HDFS) to support the use of jydoop output as jydoop input.  This allows one to setup data-processing pipelines with multiple stages of processing without having to download potentially large data sets between stages.
+
+Sorry about the noisy intermediate commits, I ended up refactoring a few things as I went along.
+
+Finally, I would like to reduce the amount of code in the Mapper classes, so if this seems like a sound approach, I can refactor them to inherit from a common ancestor.
+",mreid-moz,969479,2013-06-21T20:08:31Z,CONTRIBUTOR,True,262,29,10,Efficient Hadoop Map-Reduce in Python,Python,1b1eb6e92c5dc52561023d0d42707502577ccae1,Iterate properly from Start Date to End Date.
+40,https://api.github.com/repos/mozilla/jydoop/pulls/37,37,Sequence file support,"This branch includes changes to support new Mapper types (besides HBase) including Text-based sequence files (useful for TestPilot data) and the PythonKey/PythonValue sequence files that are output by jydoop jobs.
+
+The Mapper type is specified by creating a function in the jydoop job that returns either HBASE, TEXT, or JYDOOP, with HBASE being the default so that existing jobs do not need to be modified.
+
+The HBaseDriver class is renamed to HadoopDriver to reflect its more general nature.
+
+I also added an option to skip local output (and also skip the corresponding delete of data inside HDFS) to support the use of jydoop output as jydoop input.  This allows one to setup data-processing pipelines with multiple stages of processing without having to download potentially large data sets between stages.
+
+Sorry about the noisy intermediate commits, I ended up refactoring a few things as I went along.
+
+Finally, I would like to reduce the amount of code in the Mapper classes, so if this seems like a sound approach, I can refactor them to inherit from a common ancestor.
+",mreid-moz,969479,2013-06-21T20:08:31Z,CONTRIBUTOR,True,262,29,10,Efficient Hadoop Map-Reduce in Python,Python,6600e15f825520d10d7b11d8f75006d0fede1edb,Refactored to use HadoopDriver.java
+41,https://api.github.com/repos/mozilla/jydoop/pulls/37,37,Sequence file support,"This branch includes changes to support new Mapper types (besides HBase) including Text-based sequence files (useful for TestPilot data) and the PythonKey/PythonValue sequence files that are output by jydoop jobs.
+
+The Mapper type is specified by creating a function in the jydoop job that returns either HBASE, TEXT, or JYDOOP, with HBASE being the default so that existing jobs do not need to be modified.
+
+The HBaseDriver class is renamed to HadoopDriver to reflect its more general nature.
+
+I also added an option to skip local output (and also skip the corresponding delete of data inside HDFS) to support the use of jydoop output as jydoop input.  This allows one to setup data-processing pipelines with multiple stages of processing without having to download potentially large data sets between stages.
+
+Sorry about the noisy intermediate commits, I ended up refactoring a few things as I went along.
+
+Finally, I would like to reduce the amount of code in the Mapper classes, so if this seems like a sound approach, I can refactor them to inherit from a common ancestor.
+",mreid-moz,969479,2013-06-21T20:08:31Z,CONTRIBUTOR,True,262,29,10,Efficient Hadoop Map-Reduce in Python,Python,d2749389fb7ba823016f80c8befaf07b0c75679b,"Refactor Sequence File support into HadoopDriver
+
+This combines the functionality of HBaseDriver and SequenceFileDriver without
+all that duplicated code.
+
+There is also a ""JydoopMapper"" which is intended to support using the output
+of one Jydoop job as the input of another."
+42,https://api.github.com/repos/mozilla/jydoop/pulls/37,37,Sequence file support,"This branch includes changes to support new Mapper types (besides HBase) including Text-based sequence files (useful for TestPilot data) and the PythonKey/PythonValue sequence files that are output by jydoop jobs.
+
+The Mapper type is specified by creating a function in the jydoop job that returns either HBASE, TEXT, or JYDOOP, with HBASE being the default so that existing jobs do not need to be modified.
+
+The HBaseDriver class is renamed to HadoopDriver to reflect its more general nature.
+
+I also added an option to skip local output (and also skip the corresponding delete of data inside HDFS) to support the use of jydoop output as jydoop input.  This allows one to setup data-processing pipelines with multiple stages of processing without having to download potentially large data sets between stages.
+
+Sorry about the noisy intermediate commits, I ended up refactoring a few things as I went along.
+
+Finally, I would like to reduce the amount of code in the Mapper classes, so if this seems like a sound approach, I can refactor them to inherit from a common ancestor.
+",mreid-moz,969479,2013-06-21T20:08:31Z,CONTRIBUTOR,True,262,29,10,Efficient Hadoop Map-Reduce in Python,Python,3cdd898280c050294a68b101f960e11f2cdc46dd,"Add an option to skip local output
+
+If your jydoop job defines a ""skip_local_output"" function which returns True
+or a non-zero Int, the output will be left in HDFS for further processing."
+43,https://api.github.com/repos/mozilla/jydoop/pulls/37,37,Sequence file support,"This branch includes changes to support new Mapper types (besides HBase) including Text-based sequence files (useful for TestPilot data) and the PythonKey/PythonValue sequence files that are output by jydoop jobs.
+
+The Mapper type is specified by creating a function in the jydoop job that returns either HBASE, TEXT, or JYDOOP, with HBASE being the default so that existing jobs do not need to be modified.
+
+The HBaseDriver class is renamed to HadoopDriver to reflect its more general nature.
+
+I also added an option to skip local output (and also skip the corresponding delete of data inside HDFS) to support the use of jydoop output as jydoop input.  This allows one to setup data-processing pipelines with multiple stages of processing without having to download potentially large data sets between stages.
+
+Sorry about the noisy intermediate commits, I ended up refactoring a few things as I went along.
+
+Finally, I would like to reduce the amount of code in the Mapper classes, so if this seems like a sound approach, I can refactor them to inherit from a common ancestor.
+",mreid-moz,969479,2013-06-21T20:08:31Z,CONTRIBUTOR,True,262,29,10,Efficient Hadoop Map-Reduce in Python,Python,2a2b9a2e77b71827958527cff38305a787ee55e5,Add some utils for using jydoop output as input
+44,https://api.github.com/repos/mozilla/jydoop/pulls/37,37,Sequence file support,"This branch includes changes to support new Mapper types (besides HBase) including Text-based sequence files (useful for TestPilot data) and the PythonKey/PythonValue sequence files that are output by jydoop jobs.
+
+The Mapper type is specified by creating a function in the jydoop job that returns either HBASE, TEXT, or JYDOOP, with HBASE being the default so that existing jobs do not need to be modified.
+
+The HBaseDriver class is renamed to HadoopDriver to reflect its more general nature.
+
+I also added an option to skip local output (and also skip the corresponding delete of data inside HDFS) to support the use of jydoop output as jydoop input.  This allows one to setup data-processing pipelines with multiple stages of processing without having to download potentially large data sets between stages.
+
+Sorry about the noisy intermediate commits, I ended up refactoring a few things as I went along.
+
+Finally, I would like to reduce the amount of code in the Mapper classes, so if this seems like a sound approach, I can refactor them to inherit from a common ancestor.
+",mreid-moz,969479,2013-06-21T20:08:31Z,CONTRIBUTOR,True,262,29,10,Efficient Hadoop Map-Reduce in Python,Python,a8fcebf3f140b18bcb38c4fc495482373981fbea,Set default MapperType to HBASE (fix an NPE)
+45,https://api.github.com/repos/mozilla/jydoop/pulls/35,35,Add a script to fetch SECURITY_UI Telemetry data.,"This is the script used to provide data for today's ""Access to Telemetry Data on Security UI Measurement"" request.
+",mreid-moz,969479,2013-06-18T19:54:33Z,CONTRIBUTOR,True,30,0,1,Efficient Hadoop Map-Reduce in Python,Python,1e0cbe8e175c57e9329ad344945797a47eaccfcc,Add a script to fetch SECURITY_UI Telemetry data.
+46,https://api.github.com/repos/mozilla/jydoop/pulls/34,34,Allow scripts to customize the output.,"And make the default output a little better (use CSV if multiple values are present, otherwise just print value-per-line). Delete the temporary files off of hadoop after we've successfully completed output.
+",bsmedberg,1914477,2013-04-25T21:12:03Z,CONTRIBUTOR,True,109,37,3,Efficient Hadoop Map-Reduce in Python,Python,51719bc9f1f5584585196ecd0cdbf07ea6b5daf4,"Allow scripts to customize the output and make the defaulat output a little better (use CSV if multiple values are present, otherwise just print value-per-line). Delete the temporary files off of hadoop after we've successfully completed output."
+47,https://api.github.com/repos/mozilla/jydoop/pulls/33,33,Add pylib to sys.path in FileDriver.py,"This should fix FileDriver.py (which was broken after recent pylib refactoring).
+",indygreg,342993,2013-04-23T23:15:26Z,CONTRIBUTOR,True,1,0,1,Efficient Hadoop Map-Reduce in Python,Python,3406633be17dbcf110d09687aedba4b65fd37a67,Add pylib to sys.path in FileDriver.py
+48,https://api.github.com/repos/mozilla/jydoop/pulls/31,31,FHR Utilities and Scripts,"I have coded up a framework for simpler processing of Firefox Health Report data.
+
+There is a @FHRMapper decorator that can be applied to the job's map(). When applied, it automagically JSON-decodes the payload into an instance of class. This class exposes some commonly used APIs, such as the ability to easily iterate over all days of data and to easily get at session times, etc. The goal is to have common logic in the class to reduce DRY violations.
+
+The @FHRMapper decorator also exposes commonly-used filtering primitives so jobs don't have to reimplement these over and over. Again, more DRY defense.
+
+Following that large commit are a set of scripts I have written. I have placed these in their own directory. Since jobs only query a single source of data, I think it makes sense to aggregate the jobs by the set of data they interface with.
+",indygreg,342993,2013-04-20T21:06:44Z,CONTRIBUTOR,True,612,1,12,Efficient Hadoop Map-Reduce in Python,Python,3406633be17dbcf110d09687aedba4b65fd37a67,Add pylib to sys.path in FileDriver.py
+49,https://api.github.com/repos/mozilla/jydoop/pulls/31,31,FHR Utilities and Scripts,"I have coded up a framework for simpler processing of Firefox Health Report data.
+
+There is a @FHRMapper decorator that can be applied to the job's map(). When applied, it automagically JSON-decodes the payload into an instance of class. This class exposes some commonly used APIs, such as the ability to easily iterate over all days of data and to easily get at session times, etc. The goal is to have common logic in the class to reduce DRY violations.
+
+The @FHRMapper decorator also exposes commonly-used filtering primitives so jobs don't have to reimplement these over and over. Again, more DRY defense.
+
+Following that large commit are a set of scripts I have written. I have placed these in their own directory. Since jobs only query a single source of data, I think it makes sense to aggregate the jobs by the set of data they interface with.
+",indygreg,342993,2013-04-20T21:06:44Z,CONTRIBUTOR,True,612,1,12,Efficient Hadoop Map-Reduce in Python,Python,2d87732efe375b06abbf1fbede42a8605b19f751,Add class and decorator for more easily interfacing with FHR data
+50,https://api.github.com/repos/mozilla/jydoop/pulls/31,31,FHR Utilities and Scripts,"I have coded up a framework for simpler processing of Firefox Health Report data.
+
+There is a @FHRMapper decorator that can be applied to the job's map(). When applied, it automagically JSON-decodes the payload into an instance of class. This class exposes some commonly used APIs, such as the ability to easily iterate over all days of data and to easily get at session times, etc. The goal is to have common logic in the class to reduce DRY violations.
+
+The @FHRMapper decorator also exposes commonly-used filtering primitives so jobs don't have to reimplement these over and over. Again, more DRY defense.
+
+Following that large commit are a set of scripts I have written. I have placed these in their own directory. Since jobs only query a single source of data, I think it makes sense to aggregate the jobs by the set of data they interface with.
+",indygreg,342993,2013-04-20T21:06:44Z,CONTRIBUTOR,True,612,1,12,Efficient Hadoop Map-Reduce in Python,Python,d0ff9d698e0af931c23d358fef6344d6fe20fe23,Move count_fhr_facets.py into fhr script subdir
+51,https://api.github.com/repos/mozilla/jydoop/pulls/31,31,FHR Utilities and Scripts,"I have coded up a framework for simpler processing of Firefox Health Report data.
+
+There is a @FHRMapper decorator that can be applied to the job's map(). When applied, it automagically JSON-decodes the payload into an instance of class. This class exposes some commonly used APIs, such as the ability to easily iterate over all days of data and to easily get at session times, etc. The goal is to have common logic in the class to reduce DRY violations.
+
+The @FHRMapper decorator also exposes commonly-used filtering primitives so jobs don't have to reimplement these over and over. Again, more DRY defense.
+
+Following that large commit are a set of scripts I have written. I have placed these in their own directory. Since jobs only query a single source of data, I think it makes sense to aggregate the jobs by the set of data they interface with.
+",indygreg,342993,2013-04-20T21:06:44Z,CONTRIBUTOR,True,612,1,12,Efficient Hadoop Map-Reduce in Python,Python,1148caa4b393e398fccd82ea405703d6d6f9f109,Script to retrieve FHR errors
+52,https://api.github.com/repos/mozilla/jydoop/pulls/31,31,FHR Utilities and Scripts,"I have coded up a framework for simpler processing of Firefox Health Report data.
+
+There is a @FHRMapper decorator that can be applied to the job's map(). When applied, it automagically JSON-decodes the payload into an instance of class. This class exposes some commonly used APIs, such as the ability to easily iterate over all days of data and to easily get at session times, etc. The goal is to have common logic in the class to reduce DRY violations.
+
+The @FHRMapper decorator also exposes commonly-used filtering primitives so jobs don't have to reimplement these over and over. Again, more DRY defense.
+
+Following that large commit are a set of scripts I have written. I have placed these in their own directory. Since jobs only query a single source of data, I think it makes sense to aggregate the jobs by the set of data they interface with.
+",indygreg,342993,2013-04-20T21:06:44Z,CONTRIBUTOR,True,612,1,12,Efficient Hadoop Map-Reduce in Python,Python,c8d737cfef56d1f39615b7346b2a874515f81a94,Script to retrieve FHR session counts
+53,https://api.github.com/repos/mozilla/jydoop/pulls/31,31,FHR Utilities and Scripts,"I have coded up a framework for simpler processing of Firefox Health Report data.
+
+There is a @FHRMapper decorator that can be applied to the job's map(). When applied, it automagically JSON-decodes the payload into an instance of class. This class exposes some commonly used APIs, such as the ability to easily iterate over all days of data and to easily get at session times, etc. The goal is to have common logic in the class to reduce DRY violations.
+
+The @FHRMapper decorator also exposes commonly-used filtering primitives so jobs don't have to reimplement these over and over. Again, more DRY defense.
+
+Following that large commit are a set of scripts I have written. I have placed these in their own directory. Since jobs only query a single source of data, I think it makes sense to aggregate the jobs by the set of data they interface with.
+",indygreg,342993,2013-04-20T21:06:44Z,CONTRIBUTOR,True,612,1,12,Efficient Hadoop Map-Reduce in Python,Python,8a914ce6a093ab2d17cced42e29ddc8b7a969c28,Script to measure Telemetry and Blocklist flags
+54,https://api.github.com/repos/mozilla/jydoop/pulls/31,31,FHR Utilities and Scripts,"I have coded up a framework for simpler processing of Firefox Health Report data.
+
+There is a @FHRMapper decorator that can be applied to the job's map(). When applied, it automagically JSON-decodes the payload into an instance of class. This class exposes some commonly used APIs, such as the ability to easily iterate over all days of data and to easily get at session times, etc. The goal is to have common logic in the class to reduce DRY violations.
+
+The @FHRMapper decorator also exposes commonly-used filtering primitives so jobs don't have to reimplement these over and over. Again, more DRY defense.
+
+Following that large commit are a set of scripts I have written. I have placed these in their own directory. Since jobs only query a single source of data, I think it makes sense to aggregate the jobs by the set of data they interface with.
+",indygreg,342993,2013-04-20T21:06:44Z,CONTRIBUTOR,True,612,1,12,Efficient Hadoop Map-Reduce in Python,Python,6ae0f7620ac238fb2f84375093b6d0075df10701,Script to obtain Places counts
+55,https://api.github.com/repos/mozilla/jydoop/pulls/31,31,FHR Utilities and Scripts,"I have coded up a framework for simpler processing of Firefox Health Report data.
+
+There is a @FHRMapper decorator that can be applied to the job's map(). When applied, it automagically JSON-decodes the payload into an instance of class. This class exposes some commonly used APIs, such as the ability to easily iterate over all days of data and to easily get at session times, etc. The goal is to have common logic in the class to reduce DRY violations.
+
+The @FHRMapper decorator also exposes commonly-used filtering primitives so jobs don't have to reimplement these over and over. Again, more DRY defense.
+
+Following that large commit are a set of scripts I have written. I have placed these in their own directory. Since jobs only query a single source of data, I think it makes sense to aggregate the jobs by the set of data they interface with.
+",indygreg,342993,2013-04-20T21:06:44Z,CONTRIBUTOR,True,612,1,12,Efficient Hadoop Map-Reduce in Python,Python,9d7e0da35713203d06366c1b063859990a83e931,Script to dump large payloads
+56,https://api.github.com/repos/mozilla/jydoop/pulls/31,31,FHR Utilities and Scripts,"I have coded up a framework for simpler processing of Firefox Health Report data.
+
+There is a @FHRMapper decorator that can be applied to the job's map(). When applied, it automagically JSON-decodes the payload into an instance of class. This class exposes some commonly used APIs, such as the ability to easily iterate over all days of data and to easily get at session times, etc. The goal is to have common logic in the class to reduce DRY violations.
+
+The @FHRMapper decorator also exposes commonly-used filtering primitives so jobs don't have to reimplement these over and over. Again, more DRY defense.
+
+Following that large commit are a set of scripts I have written. I have placed these in their own directory. Since jobs only query a single source of data, I think it makes sense to aggregate the jobs by the set of data they interface with.
+",indygreg,342993,2013-04-20T21:06:44Z,CONTRIBUTOR,True,612,1,12,Efficient Hadoop Map-Reduce in Python,Python,720a6c8a70177ffa3ede095ffa960551c18b6649,Script to record search counts by where in the browser they were performed
+57,https://api.github.com/repos/mozilla/jydoop/pulls/31,31,FHR Utilities and Scripts,"I have coded up a framework for simpler processing of Firefox Health Report data.
+
+There is a @FHRMapper decorator that can be applied to the job's map(). When applied, it automagically JSON-decodes the payload into an instance of class. This class exposes some commonly used APIs, such as the ability to easily iterate over all days of data and to easily get at session times, etc. The goal is to have common logic in the class to reduce DRY violations.
+
+The @FHRMapper decorator also exposes commonly-used filtering primitives so jobs don't have to reimplement these over and over. Again, more DRY defense.
+
+Following that large commit are a set of scripts I have written. I have placed these in their own directory. Since jobs only query a single source of data, I think it makes sense to aggregate the jobs by the set of data they interface with.
+",indygreg,342993,2013-04-20T21:06:44Z,CONTRIBUTOR,True,612,1,12,Efficient Hadoop Map-Reduce in Python,Python,e2dba90eaab02119786a409845ae0ce66ee4fe48,Script to record which search engines were used
+58,https://api.github.com/repos/mozilla/jydoop/pulls/30,30,Move common modules to jydoop directory,"This is issue #29. We can now put common modules in a shared directory and they will always be available to scripts regardless of what directory the script is in.
+",indygreg,342993,2013-04-20T19:13:29Z,CONTRIBUTOR,True,36,24,6,Efficient Hadoop Map-Reduce in Python,Python,35a0136f21611d18c58c3929e09fc57cd67383af,Move common modules to jydoop directory
+59,https://api.github.com/repos/mozilla/jydoop/pulls/26,26,Add fhr_mapper decorator,"Instead of having every FHR job require it's map() reimplement the logic for decoding the raw value into a useful object, I figured it would best if we centralize this logic so map() implementations can get going faster - and always using the preferred method for doing the conversion.
+
+So, I introduced a decorator that can easily be applied to a map() function. It automagically JSON-decodes the payload function using the Jackson API. It just works.
+
+Eventually, I'd like to extend this to have the payload represented by a custom Python class (with common APIs) to further reduce boilerplate in analysis scripts. Expect additional pull requests.
+",indygreg,342993,2013-04-20T03:44:46Z,CONTRIBUTOR,False,14,0,1,Efficient Hadoop Map-Reduce in Python,Python,ca79160967cd5a1889219a856d1ca04497168344,Add fhr_mapper decorator
+60,https://api.github.com/repos/mozilla/jydoop/pulls/23,23,Separated key/value serialization from bsmedberg,,tarasglek,857083,2013-04-19T18:21:00Z,CONTRIBUTOR,True,338,252,6,Efficient Hadoop Map-Reduce in Python,Python,6a632f7bb65663b0969aee626a56275942d74935,Separate the type and value classes so that values can contain lists and dicts (and are not sortable) while keys cannot contain those and are sortable.
+61,https://api.github.com/repos/mozilla/jydoop/pulls/23,23,Separated key/value serialization from bsmedberg,,tarasglek,857083,2013-04-19T18:21:00Z,CONTRIBUTOR,True,338,252,6,Efficient Hadoop Map-Reduce in Python,Python,3ff6ff439699cf5ee13895534541ec4f7f28f461,Fix the tests.
+62,https://api.github.com/repos/mozilla/jydoop/pulls/23,23,Separated key/value serialization from bsmedberg,,tarasglek,857083,2013-04-19T18:21:00Z,CONTRIBUTOR,True,338,252,6,Efficient Hadoop Map-Reduce in Python,Python,0e6ba2ee22d96605b59e313471aa67e34937370a,"Merge pull request #1 from bsmedberg/dictlist
+
+Separate the type and value classes"
+63,https://api.github.com/repos/mozilla/jydoop/pulls/23,23,Separated key/value serialization from bsmedberg,,tarasglek,857083,2013-04-19T18:21:00Z,CONTRIBUTOR,True,338,252,6,Efficient Hadoop Map-Reduce in Python,Python,9a7b8b94e607d1fcb6ec378241fe2bfeb3ccf38a,cleaner jython check
+64,https://api.github.com/repos/mozilla/jydoop/pulls/22,22,Allow scripts to do work on setup/cleanup of jobs.,"This will allow me to copy a binary to a tempfile on disk and clean it up correctly.
+",bsmedberg,1914477,2013-04-19T17:22:54Z,CONTRIBUTOR,True,16,1,1,Efficient Hadoop Map-Reduce in Python,Python,cd7f3a341db507072b583fdee67fc789c4913385,Allow scripts to do work on setup/cleanup of jobs. This will allow me to copy a binary to a tempfile on disk and clean it up correctly.
+65,https://api.github.com/repos/mozilla/jydoop/pulls/21,21,"Added Lists, Dicts to serialization code","I did not do != 0 comparisons for dicts because that's confusing. I'm not convinced we need that.
+
+I also did not implement byte-level dict comparison. I'm still not sure why you implemented it.
+
+I'm still not quite sure why we need to have 1:1 mapping between sorting based on raw bytes & by higher level datastructures. The only thing that's important is that things that are equal as higher level objects remain equal as when represented as a bytestream...how they are sorted relative to other keys seems to not be important. Is there some detail I'm missing?
+",tarasglek,857083,2013-04-19T05:43:05Z,CONTRIBUTOR,True,76,11,2,Efficient Hadoop Map-Reduce in Python,Python,1b1f1aa960b4953fff2fa1b2ad805c03dc58ddde,Dict serialization support
+66,https://api.github.com/repos/mozilla/jydoop/pulls/21,21,"Added Lists, Dicts to serialization code","I did not do != 0 comparisons for dicts because that's confusing. I'm not convinced we need that.
+
+I also did not implement byte-level dict comparison. I'm still not sure why you implemented it.
+
+I'm still not quite sure why we need to have 1:1 mapping between sorting based on raw bytes & by higher level datastructures. The only thing that's important is that things that are equal as higher level objects remain equal as when represented as a bytestream...how they are sorted relative to other keys seems to not be important. Is there some detail I'm missing?
+",tarasglek,857083,2013-04-19T05:43:05Z,CONTRIBUTOR,True,76,11,2,Efficient Hadoop Map-Reduce in Python,Python,7111add80bc1deddbb65754bf3dc91a809fd48be,List serialization support
+67,https://api.github.com/repos/mozilla/jydoop/pulls/19,19,Rename from pydoop to jydoop,"I missed a spot where pydoop needed to change to jydoop (due to a lingering pydoop.pyc).  This fixes it.
+",mreid-moz,969479,2013-04-10T17:44:11Z,CONTRIBUTOR,True,4,4,2,Efficient Hadoop Map-Reduce in Python,Python,7f560531fc89fddbff54bbe9b938abca9da6e551,Rename from pydoop to jydoop
+68,https://api.github.com/repos/mozilla/jydoop/pulls/18,18,Add line numbers to fake keys,"Changes fake keys from ""fake_key_<byte offset>"" to ""fake_key_<line number>_<byte offset>""
+",mreid-moz,969479,2013-04-10T16:59:55Z,CONTRIBUTOR,True,3,3,1,Efficient Hadoop Map-Reduce in Python,Python,78a8c9ac25fe7b65d29117dd5c811555d20f898f,Add line numbers to fake keys
+69,https://api.github.com/repos/mozilla/jydoop/pulls/18,18,Add line numbers to fake keys,"Changes fake keys from ""fake_key_<byte offset>"" to ""fake_key_<line number>_<byte offset>""
+",mreid-moz,969479,2013-04-10T16:59:55Z,CONTRIBUTOR,True,3,3,1,Efficient Hadoop Map-Reduce in Python,Python,269002a5e351155bd4ba091ea659fcd67a28257a,Change keys from 'fake_key_X' to 'line_Y'.
+70,https://api.github.com/repos/mozilla/jydoop/pulls/16,16,Fix the instructions for running local analysis.,"quick fix to the README
+",mreid-moz,969479,2013-04-09T14:16:03Z,CONTRIBUTOR,True,3,3,1,Efficient Hadoop Map-Reduce in Python,Python,da0b6ff3682b1735796107b7045d55bcf3fe9978,Fix the instructions for running local analysis.
+71,https://api.github.com/repos/mozilla/jydoop/pulls/15,15,Rename pydoop->jydoop,,bsmedberg,1914477,2013-04-08T23:08:47Z,CONTRIBUTOR,True,32,32,12,Efficient Hadoop Map-Reduce in Python,Python,2fdda52ddda15c838a5d51d72f4809beb5024aff,Rename pydoop->jydoop because there is already a pretty well-known project called pydoop.
+72,https://api.github.com/repos/mozilla/jydoop/pulls/14,14,Add support for Health Report data,"The HBase table for Firefox Health Report data does not use salted keys, so you do a full table scan to process the data.  This adds a utility to setup such a full table scan.
+
+Also adds a sample FHR-processing script.
+",mreid-moz,969479,2013-04-08T19:59:16Z,CONTRIBUTOR,True,56,0,2,Efficient Hadoop Map-Reduce in Python,Python,364e7ca6ba35575ce454d7dcabf9e6e56af3018a,Add a full-table hbase scanner for FHR
+73,https://api.github.com/repos/mozilla/jydoop/pulls/14,14,Add support for Health Report data,"The HBase table for Firefox Health Report data does not use salted keys, so you do a full table scan to process the data.  This adds a utility to setup such a full table scan.
+
+Also adds a sample FHR-processing script.
+",mreid-moz,969479,2013-04-08T19:59:16Z,CONTRIBUTOR,True,56,0,2,Efficient Hadoop Map-Reduce in Python,Python,9326ca828a046d63d6dc15742c2de2c50ff428ca,Add an example to analyze Health Report data.
+74,https://api.github.com/repos/mozilla/jydoop/pulls/14,14,Add support for Health Report data,"The HBase table for Firefox Health Report data does not use salted keys, so you do a full table scan to process the data.  This adds a utility to setup such a full table scan.
+
+Also adds a sample FHR-processing script.
+",mreid-moz,969479,2013-04-08T19:59:16Z,CONTRIBUTOR,True,56,0,2,Efficient Hadoop Map-Reduce in Python,Python,fe02b06326d33da175665a21be988718e470ee2d,Fix conversion to byte[]
+75,https://api.github.com/repos/mozilla/jydoop/pulls/13,13,Allow scripts to specify which hbase columns they are expecting.,"So that we don't have to hardcode data:json in HBaseDriver.
+",bsmedberg,1914477,2013-04-08T14:32:33Z,CONTRIBUTOR,True,128,6,5,Efficient Hadoop Map-Reduce in Python,Python,72e1747d398e15a7fe9f200bd5235e370b778fde,Make the column list customizable by annotating the column list from script (preparation for crash-stats queries).
+76,https://api.github.com/repos/mozilla/jydoop/pulls/13,13,Allow scripts to specify which hbase columns they are expecting.,"So that we don't have to hardcode data:json in HBaseDriver.
+",bsmedberg,1914477,2013-04-08T14:32:33Z,CONTRIBUTOR,True,128,6,5,Efficient Hadoop Map-Reduce in Python,Python,0faab76e175c819bdc65b018cdd005ded404a611,"Example script which groups crash reports by (signature, graphicsvendor)"
+77,https://api.github.com/repos/mozilla/jydoop/pulls/13,13,Allow scripts to specify which hbase columns they are expecting.,"So that we don't have to hardcode data:json in HBaseDriver.
+",bsmedberg,1914477,2013-04-08T14:32:33Z,CONTRIBUTOR,True,128,6,5,Efficient Hadoop Map-Reduce in Python,Python,a419cd442c752f4f6b96da78efe67aa1c6b41d2b,"When a cell is not present in hbase, convert it to None."
+78,https://api.github.com/repos/mozilla/jydoop/pulls/13,13,Allow scripts to specify which hbase columns they are expecting.,"So that we don't have to hardcode data:json in HBaseDriver.
+",bsmedberg,1914477,2013-04-08T14:32:33Z,CONTRIBUTOR,True,128,6,5,Efficient Hadoop Map-Reduce in Python,Python,daa6636d67d67f48f7eebfa99ac0c89263056b67,"Clarify error message for json.loads("""")"
+79,https://api.github.com/repos/mozilla/jydoop/pulls/12,12,Use Jackson for JSON,"Speed improvement of 40-50%
+",bsmedberg,1914477,2013-04-06T16:38:16Z,CONTRIBUTOR,True,166,24,4,Efficient Hadoop Map-Reduce in Python,Python,1ab4f6dc45872613b8916788a386be315b08d871,"Make the map/combine/reduce invocations more efficient. Convert and store the ContextWrapper once. Turn keys and values into PyString directly rather than relying on dynamic conversion, and use byte-expansion rather than unicode conversion for the key and value; keys are not ASCII and unicode conversion on them fails miserably."
+80,https://api.github.com/repos/mozilla/jydoop/pulls/12,12,Use Jackson for JSON,"Speed improvement of 40-50%
+",bsmedberg,1914477,2013-04-06T16:38:16Z,CONTRIBUTOR,True,166,24,4,Efficient Hadoop Map-Reduce in Python,Python,3ffed3736e7669e41401d86a0aa04c7ef8f03cde,Use Jackson instead of Jyson for speed. See also TODO for future speed improvements in JacksonWrapper.loads.
+81,https://api.github.com/repos/mozilla/jydoop/pulls/11,11,File driver changes for proper importing and combining,,bsmedberg,1914477,2013-04-06T15:08:40Z,CONTRIBUTOR,True,19,2,1,Efficient Hadoop Map-Reduce in Python,Python,865fd0c913d5394ba3dcc137bac80b7ec6b40d0a,Set up sys.path properly in FileDriver to enable imports.
+82,https://api.github.com/repos/mozilla/jydoop/pulls/11,11,File driver changes for proper importing and combining,,bsmedberg,1914477,2013-04-06T15:08:40Z,CONTRIBUTOR,True,19,2,1,Efficient Hadoop Map-Reduce in Python,Python,da77cb341d76edcda332273052ed4e6c2d5dbbc4,Merge branch 'master' of https://github.com/tarasglek/pydoop into FileDriver
+83,https://api.github.com/repos/mozilla/jydoop/pulls/11,11,File driver changes for proper importing and combining,,bsmedberg,1914477,2013-04-06T15:08:40Z,CONTRIBUTOR,True,19,2,1,Efficient Hadoop Map-Reduce in Python,Python,bdf5dce603cab0a98cb172d7523632a3fe636e9f,"The combine function shouldn't recombine, so keep combine results separate from map results and merge them after we're finished mapping."
+84,https://api.github.com/repos/mozilla/jydoop/pulls/11,11,File driver changes for proper importing and combining,,bsmedberg,1914477,2013-04-06T15:08:40Z,CONTRIBUTOR,True,19,2,1,Efficient Hadoop Map-Reduce in Python,Python,ad0e12634010378097f804cdf0b98b837f986b65,Make FileDriver work with no combine function.
+85,https://api.github.com/repos/mozilla/jydoop/pulls/10,10,Implement HBase table and range selection as a python library `telemetryutils`,"This prepares for being able to use pydoop with crash-stats and FHR as well. NOTE: this requires the change from https://github.com/mozilla-metrics/akela/pull/7, removing and re-downloading the akela jar.
+",bsmedberg,1914477,2013-04-04T20:53:05Z,CONTRIBUTOR,True,83,33,7,Efficient Hadoop Map-Reduce in Python,Python,14c00d9b5bc9e371397813d69ae7038502ee3479,"Implement HBase table and range selection as a python library `telemetryutils`. This prepares for being able to use pydoop with crash-stats and FHR as well. NOTE: this requires the change from https://github.com/mozilla-metrics/akela/pull/7, removing and re-downloading the akela jar."
+86,https://api.github.com/repos/mozilla/jydoop/pulls/10,10,Implement HBase table and range selection as a python library `telemetryutils`,"This prepares for being able to use pydoop with crash-stats and FHR as well. NOTE: this requires the change from https://github.com/mozilla-metrics/akela/pull/7, removing and re-downloading the akela jar.
+",bsmedberg,1914477,2013-04-04T20:53:05Z,CONTRIBUTOR,True,83,33,7,Efficient Hadoop Map-Reduce in Python,Python,7aea4be6afcbea7727c1a63a0edae61300d6cc12,Remove debugging print and correct formatting.
+87,https://api.github.com/repos/mozilla/jydoop/pulls/9,9,"Allow relative imports to work by adding an entry to sys.path, and add a pydoop utility library which will be a repository of shared functons.",,bsmedberg,1914477,2013-04-04T19:00:24Z,CONTRIBUTOR,True,63,60,6,Efficient Hadoop Map-Reduce in Python,Python,0856367883ad0ef0cdc679c4762acf987ad457b3,Remove extraneous files.
+88,https://api.github.com/repos/mozilla/jydoop/pulls/9,9,"Allow relative imports to work by adding an entry to sys.path, and add a pydoop utility library which will be a repository of shared functons.",,bsmedberg,1914477,2013-04-04T19:00:24Z,CONTRIBUTOR,True,63,60,6,Efficient Hadoop Map-Reduce in Python,Python,ca5aa64342736211679842b46634ec15844a1fdc,"Allow relative imports to work by adding an entry to sys.path, and add a pydoop utility library which will be a repository of shared functons."
+89,https://api.github.com/repos/mozilla/jydoop/pulls/9,9,"Allow relative imports to work by adding an entry to sys.path, and add a pydoop utility library which will be a repository of shared functons.",,bsmedberg,1914477,2013-04-04T19:00:24Z,CONTRIBUTOR,True,63,60,6,Efficient Hadoop Map-Reduce in Python,Python,30f2b97b6703dcaa824872ea70c456e125f85640,Set a more complete name for jobs so that the job information shows up in the admin console.
+90,https://api.github.com/repos/mozilla/jydoop/pulls/8,8,Package all the scripts in driver.jar and select which one to run at runtime,"Because that way makefile dependencies don't leave you with the ""wrong"" CallJava.py when you change SCRIPT. And because this will allow for some cool stuff next.
+",bsmedberg,1914477,2013-04-04T17:41:32Z,CONTRIBUTOR,True,73,20,3,Efficient Hadoop Map-Reduce in Python,Python,086147ca3125d882ed6ef5981b03659163f86d30,Ship all the scripts in driver.jar and select which one to run at runtime (preparation for a standard library of pydoop python scripts).
+91,https://api.github.com/repos/mozilla/jydoop/pulls/8,8,Package all the scripts in driver.jar and select which one to run at runtime,"Because that way makefile dependencies don't leave you with the ""wrong"" CallJava.py when you change SCRIPT. And because this will allow for some cool stuff next.
+",bsmedberg,1914477,2013-04-04T17:41:32Z,CONTRIBUTOR,True,73,20,3,Efficient Hadoop Map-Reduce in Python,Python,b9add5b932ab53c49294942838d3a9665dc482df,"When you create the job, it forks the configuration, so we can't use getConf().set after that point, we have to set it directly on the job configuration."
+92,https://api.github.com/repos/mozilla/jydoop/pulls/7,7,Add support for single-scan HBase jobs,"This lets you query the FHR data.
+",mreid-moz,969479,2013-04-04T17:12:25Z,CONTRIBUTOR,False,137,3,3,Efficient Hadoop Map-Reduce in Python,Python,6b0808c767eaff6ee06cce6a9efab3ebe7070dd9,Fix a typo
+93,https://api.github.com/repos/mozilla/jydoop/pulls/7,7,Add support for single-scan HBase jobs,"This lets you query the FHR data.
+",mreid-moz,969479,2013-04-04T17:12:25Z,CONTRIBUTOR,False,137,3,3,Efficient Hadoop Map-Reduce in Python,Python,d3a3543925cfbcc70822a30b514e1c81a850ff29,"Merge remote-tracking branch 'upstream/master'
+
+Conflicts:
+	CallJava.py"
+94,https://api.github.com/repos/mozilla/jydoop/pulls/7,7,Add support for single-scan HBase jobs,"This lets you query the FHR data.
+",mreid-moz,969479,2013-04-04T17:12:25Z,CONTRIBUTOR,False,137,3,3,Efficient Hadoop Map-Reduce in Python,Python,ac9e5af79535397fb302895840cc6c64b9915743,Merge remote-tracking branch 'upstream/master'
+95,https://api.github.com/repos/mozilla/jydoop/pulls/7,7,Add support for single-scan HBase jobs,"This lets you query the FHR data.
+",mreid-moz,969479,2013-04-04T17:12:25Z,CONTRIBUTOR,False,137,3,3,Efficient Hadoop Map-Reduce in Python,Python,b5011e475ae808e5c3599f671f69fa8ebb7d2024,Update README with current filenames / examples
+96,https://api.github.com/repos/mozilla/jydoop/pulls/7,7,Add support for single-scan HBase jobs,"This lets you query the FHR data.
+",mreid-moz,969479,2013-04-04T17:12:25Z,CONTRIBUTOR,False,137,3,3,Efficient Hadoop Map-Reduce in Python,Python,a692453159f13a43ec28cf32569f0d92c8047bc4,Do a single full-table scan for 'metrics' table.
+97,https://api.github.com/repos/mozilla/jydoop/pulls/7,7,Add support for single-scan HBase jobs,"This lets you query the FHR data.
+",mreid-moz,969479,2013-04-04T17:12:25Z,CONTRIBUTOR,False,137,3,3,Efficient Hadoop Map-Reduce in Python,Python,dbeadad0eb869e6684b3178834e6c98a963f3e43,Add a sample FHR script
+98,https://api.github.com/repos/mozilla/jydoop/pulls/7,7,Add support for single-scan HBase jobs,"This lets you query the FHR data.
+",mreid-moz,969479,2013-04-04T17:12:25Z,CONTRIBUTOR,False,137,3,3,Efficient Hadoop Map-Reduce in Python,Python,e58bc34f6400c1b1c90d8b24ad7760e467d8476c,Add missing 'throws' declaration.
+99,https://api.github.com/repos/mozilla/jydoop/pulls/7,7,Add support for single-scan HBase jobs,"This lets you query the FHR data.
+",mreid-moz,969479,2013-04-04T17:12:25Z,CONTRIBUTOR,False,137,3,3,Efficient Hadoop Map-Reduce in Python,Python,043ca1d11b0478370b846644e58eb2516eb728bf,Wrap json parse with try/catch
+100,https://api.github.com/repos/mozilla/jydoop/pulls/6,6,README.md,"And slightly better/more accurate instructions.
+",bsmedberg,1914477,2013-04-04T14:39:07Z,CONTRIBUTOR,True,19,21,1,Efficient Hadoop Map-Reduce in Python,Python,f62873fff0064219e87c09e2c58695cd37324e3d,"Update with proper markdown
+
+And slightly better/more accurate instructions."
+101,https://api.github.com/repos/mozilla/jydoop/pulls/5,5,Combiner functions.,"This was easy!
+",bsmedberg,1914477,2013-04-03T23:55:31Z,CONTRIBUTOR,True,41,4,3,Efficient Hadoop Map-Reduce in Python,Python,16da69d9610fcd5d344c51383dfe32aa4005bddb,Combiner is now pretty trivial.
+102,https://api.github.com/repos/mozilla/jydoop/pulls/5,5,Combiner functions.,"This was easy!
+",bsmedberg,1914477,2013-04-03T23:55:31Z,CONTRIBUTOR,True,41,4,3,Efficient Hadoop Map-Reduce in Python,Python,b0620a7b8281723febeba5f445f7879a76579736,"Make osdistribution use the combiner framework, and document it liberally."
+103,https://api.github.com/repos/mozilla/jydoop/pulls/5,5,Combiner functions.,"This was easy!
+",bsmedberg,1914477,2013-04-03T23:55:31Z,CONTRIBUTOR,True,41,4,3,Efficient Hadoop Map-Reduce in Python,Python,cd32fbfa80fc55438a5fccd0e80ae26a7b1c91cb,Make FileDriver use tab separation the same way the HBaseDriver default output does.
+104,https://api.github.com/repos/mozilla/jydoop/pulls/5,5,Combiner functions.,"This was easy!
+",bsmedberg,1914477,2013-04-03T23:55:31Z,CONTRIBUTOR,True,41,4,3,Efficient Hadoop Map-Reduce in Python,Python,f6f861e9d13234c35232f583b95e2407bb411b3f,The sun is a mass of incadescent gas: a gigantic nuclear furnace / Where hydrogen is turned into helium at a temperature of millions of degrees... have the FileDriver run combiner functions.
+105,https://api.github.com/repos/mozilla/jydoop/pulls/5,5,Combiner functions.,"This was easy!
+",bsmedberg,1914477,2013-04-03T23:55:31Z,CONTRIBUTOR,True,41,4,3,Efficient Hadoop Map-Reduce in Python,Python,91ddc8eeebceb06b17bd14d6233d55930e9b94c0,Yo ho its hot! The sun is not a place where we could live. / But here on Earth there would be no life Without the light it gives. And actually fix and use the combiner in FileDriver.py
+106,https://api.github.com/repos/mozilla/jydoop/pulls/4,4,"RawComparator implementation, with testsuite",,bsmedberg,1914477,2013-04-03T22:20:11Z,CONTRIBUTOR,True,311,22,4,Efficient Hadoop Map-Reduce in Python,Python,986534faa36daae8e66aeff25d52f0c11971d1b2,Implement RawComparator for TypeWritable for speed.
+107,https://api.github.com/repos/mozilla/jydoop/pulls/4,4,"RawComparator implementation, with testsuite",,bsmedberg,1914477,2013-04-03T22:20:11Z,CONTRIBUTOR,True,311,22,4,Efficient Hadoop Map-Reduce in Python,Python,c2a23923a81880ac144c89900359de9a56e9852d,Implement tests for TypeWritable and its implementation of RawComparator.
+108,https://api.github.com/repos/mozilla/jydoop/pulls/3,3,"Despite this being called the ""combiner"" branch, this does everything except actually implement a combiner","Present in this PR:
+- Implement ""TypeWritable"" which efficiently wraps python strings, ints, floats, and tuples of these.
+- Start using jyson as a drop-in replacement for the jython ""json"" module which performs horribly.
+- Implement working reducers
+- Implement a final combiner which takes the input from multiple reducers and combines it into a single result file on the local machine.
+
+This change has been tested against telemetry data on mango-gw and works.
+
+Next steps:
+- Implement the combiner
+- Have TypeWritable implement RawComparator for extra speed
+- Do some additional type checking in the python driver for better debugging before deployment
+- Make the output serialization of tuples produce excel-tab CSV format
+- Allow scripts to customize their output (already implemented in python driver, sorta)
+- Change the dispatch mechanism to include all of ""scripts"" in the JAR file and select which script to run dynamically. Allow importing of utility modules i.e. ""combiner = pydoop.countcombine; reduce = pydoop.countreduce""
+",bsmedberg,1914477,2013-03-30T19:12:14Z,CONTRIBUTOR,True,395,81,9,Efficient Hadoop Map-Reduce in Python,Python,33c7f999071736205fe2d38235f6fa120696b1d3,"Allow job scripts to customize their output, and change the samples to output reasonable key/value combinations. Add an example that reduces. Note, this patch by itself only implements the python driver half of output customization: the Java half still needs to be implemented."
+109,https://api.github.com/repos/mozilla/jydoop/pulls/3,3,"Despite this being called the ""combiner"" branch, this does everything except actually implement a combiner","Present in this PR:
+- Implement ""TypeWritable"" which efficiently wraps python strings, ints, floats, and tuples of these.
+- Start using jyson as a drop-in replacement for the jython ""json"" module which performs horribly.
+- Implement working reducers
+- Implement a final combiner which takes the input from multiple reducers and combines it into a single result file on the local machine.
+
+This change has been tested against telemetry data on mango-gw and works.
+
+Next steps:
+- Implement the combiner
+- Have TypeWritable implement RawComparator for extra speed
+- Do some additional type checking in the python driver for better debugging before deployment
+- Make the output serialization of tuples produce excel-tab CSV format
+- Allow scripts to customize their output (already implemented in python driver, sorta)
+- Change the dispatch mechanism to include all of ""scripts"" in the JAR file and select which script to run dynamically. Allow importing of utility modules i.e. ""combiner = pydoop.countcombine; reduce = pydoop.countreduce""
+",bsmedberg,1914477,2013-03-30T19:12:14Z,CONTRIBUTOR,True,395,81,9,Efficient Hadoop Map-Reduce in Python,Python,4aeb87af811925961bd57b09fc94bb8b2876553a,"Move the Java into the correct directory structure expected by a java compiler, and give it a more correct package name. Add a Writeable class which is used to efficiently serialize just the data we might actually want in a python key/value, so that we can now emit tuples and integers."
+110,https://api.github.com/repos/mozilla/jydoop/pulls/3,3,"Despite this being called the ""combiner"" branch, this does everything except actually implement a combiner","Present in this PR:
+- Implement ""TypeWritable"" which efficiently wraps python strings, ints, floats, and tuples of these.
+- Start using jyson as a drop-in replacement for the jython ""json"" module which performs horribly.
+- Implement working reducers
+- Implement a final combiner which takes the input from multiple reducers and combines it into a single result file on the local machine.
+
+This change has been tested against telemetry data on mango-gw and works.
+
+Next steps:
+- Implement the combiner
+- Have TypeWritable implement RawComparator for extra speed
+- Do some additional type checking in the python driver for better debugging before deployment
+- Make the output serialization of tuples produce excel-tab CSV format
+- Allow scripts to customize their output (already implemented in python driver, sorta)
+- Change the dispatch mechanism to include all of ""scripts"" in the JAR file and select which script to run dynamically. Allow importing of utility modules i.e. ""combiner = pydoop.countcombine; reduce = pydoop.countreduce""
+",bsmedberg,1914477,2013-03-30T19:12:14Z,CONTRIBUTOR,True,395,81,9,Efficient Hadoop Map-Reduce in Python,Python,a798248a5f79bd80dbc881fcd0a0f6d9ec994a4d,Fix makefile to use the new package names and Text is no longer correct.
+111,https://api.github.com/repos/mozilla/jydoop/pulls/3,3,"Despite this being called the ""combiner"" branch, this does everything except actually implement a combiner","Present in this PR:
+- Implement ""TypeWritable"" which efficiently wraps python strings, ints, floats, and tuples of these.
+- Start using jyson as a drop-in replacement for the jython ""json"" module which performs horribly.
+- Implement working reducers
+- Implement a final combiner which takes the input from multiple reducers and combines it into a single result file on the local machine.
+
+This change has been tested against telemetry data on mango-gw and works.
+
+Next steps:
+- Implement the combiner
+- Have TypeWritable implement RawComparator for extra speed
+- Do some additional type checking in the python driver for better debugging before deployment
+- Make the output serialization of tuples produce excel-tab CSV format
+- Allow scripts to customize their output (already implemented in python driver, sorta)
+- Change the dispatch mechanism to include all of ""scripts"" in the JAR file and select which script to run dynamically. Allow importing of utility modules i.e. ""combiner = pydoop.countcombine; reduce = pydoop.countreduce""
+",bsmedberg,1914477,2013-03-30T19:12:14Z,CONTRIBUTOR,True,395,81,9,Efficient Hadoop Map-Reduce in Python,Python,b43c6632c598c676feca9c8133b2602c27ae9e3d,Fix TypeWritable to use public access so that jython agrees to reflect it properly. Use the ContextWrapper so that we get TypeWritable out as well as in.
+112,https://api.github.com/repos/mozilla/jydoop/pulls/3,3,"Despite this being called the ""combiner"" branch, this does everything except actually implement a combiner","Present in this PR:
+- Implement ""TypeWritable"" which efficiently wraps python strings, ints, floats, and tuples of these.
+- Start using jyson as a drop-in replacement for the jython ""json"" module which performs horribly.
+- Implement working reducers
+- Implement a final combiner which takes the input from multiple reducers and combines it into a single result file on the local machine.
+
+This change has been tested against telemetry data on mango-gw and works.
+
+Next steps:
+- Implement the combiner
+- Have TypeWritable implement RawComparator for extra speed
+- Do some additional type checking in the python driver for better debugging before deployment
+- Make the output serialization of tuples produce excel-tab CSV format
+- Allow scripts to customize their output (already implemented in python driver, sorta)
+- Change the dispatch mechanism to include all of ""scripts"" in the JAR file and select which script to run dynamically. Allow importing of utility modules i.e. ""combiner = pydoop.countcombine; reduce = pydoop.countreduce""
+",bsmedberg,1914477,2013-03-30T19:12:14Z,CONTRIBUTOR,True,395,81,9,Efficient Hadoop Map-Reduce in Python,Python,83c5860c418943e72c37589492cc2ec407fa91bc,Use jyson again. The builtin json module that comes with jython is dog-slow: 9 seconds to parse a single telemetry record!
+113,https://api.github.com/repos/mozilla/jydoop/pulls/3,3,"Despite this being called the ""combiner"" branch, this does everything except actually implement a combiner","Present in this PR:
+- Implement ""TypeWritable"" which efficiently wraps python strings, ints, floats, and tuples of these.
+- Start using jyson as a drop-in replacement for the jython ""json"" module which performs horribly.
+- Implement working reducers
+- Implement a final combiner which takes the input from multiple reducers and combines it into a single result file on the local machine.
+
+This change has been tested against telemetry data on mango-gw and works.
+
+Next steps:
+- Implement the combiner
+- Have TypeWritable implement RawComparator for extra speed
+- Do some additional type checking in the python driver for better debugging before deployment
+- Make the output serialization of tuples produce excel-tab CSV format
+- Allow scripts to customize their output (already implemented in python driver, sorta)
+- Change the dispatch mechanism to include all of ""scripts"" in the JAR file and select which script to run dynamically. Allow importing of utility modules i.e. ""combiner = pydoop.countcombine; reduce = pydoop.countreduce""
+",bsmedberg,1914477,2013-03-30T19:12:14Z,CONTRIBUTOR,True,395,81,9,Efficient Hadoop Map-Reduce in Python,Python,f954f881a93d4925f3ca151e89f8acc5ce6f263f,Add a toString method on TypeWritable so that TextOutputFormat does something reasonable with it.
+114,https://api.github.com/repos/mozilla/jydoop/pulls/3,3,"Despite this being called the ""combiner"" branch, this does everything except actually implement a combiner","Present in this PR:
+- Implement ""TypeWritable"" which efficiently wraps python strings, ints, floats, and tuples of these.
+- Start using jyson as a drop-in replacement for the jython ""json"" module which performs horribly.
+- Implement working reducers
+- Implement a final combiner which takes the input from multiple reducers and combines it into a single result file on the local machine.
+
+This change has been tested against telemetry data on mango-gw and works.
+
+Next steps:
+- Implement the combiner
+- Have TypeWritable implement RawComparator for extra speed
+- Do some additional type checking in the python driver for better debugging before deployment
+- Make the output serialization of tuples produce excel-tab CSV format
+- Allow scripts to customize their output (already implemented in python driver, sorta)
+- Change the dispatch mechanism to include all of ""scripts"" in the JAR file and select which script to run dynamically. Allow importing of utility modules i.e. ""combiner = pydoop.countcombine; reduce = pydoop.countreduce""
+",bsmedberg,1914477,2013-03-30T19:12:14Z,CONTRIBUTOR,True,395,81,9,Efficient Hadoop Map-Reduce in Python,Python,b6f28a38ffde23544f014c984c03e1fd5f1b76de,Add a sampler to osdistribution for faster testing.
+115,https://api.github.com/repos/mozilla/jydoop/pulls/3,3,"Despite this being called the ""combiner"" branch, this does everything except actually implement a combiner","Present in this PR:
+- Implement ""TypeWritable"" which efficiently wraps python strings, ints, floats, and tuples of these.
+- Start using jyson as a drop-in replacement for the jython ""json"" module which performs horribly.
+- Implement working reducers
+- Implement a final combiner which takes the input from multiple reducers and combines it into a single result file on the local machine.
+
+This change has been tested against telemetry data on mango-gw and works.
+
+Next steps:
+- Implement the combiner
+- Have TypeWritable implement RawComparator for extra speed
+- Do some additional type checking in the python driver for better debugging before deployment
+- Make the output serialization of tuples produce excel-tab CSV format
+- Allow scripts to customize their output (already implemented in python driver, sorta)
+- Change the dispatch mechanism to include all of ""scripts"" in the JAR file and select which script to run dynamically. Allow importing of utility modules i.e. ""combiner = pydoop.countcombine; reduce = pydoop.countreduce""
+",bsmedberg,1914477,2013-03-30T19:12:14Z,CONTRIBUTOR,True,395,81,9,Efficient Hadoop Map-Reduce in Python,Python,8f5a68dbe09dc7a47fd1703168b8e0fbbe24d1d5,"Add final output flattening to the hbase driver: now it produces a single file, automatically combining the multiple reduce output."
+116,https://api.github.com/repos/mozilla/jydoop/pulls/2,2,"Make FileDriver.py the ""runner"" ","So that each mapreduce script doesn't have to have the stubs which load FileDriver.
+",bsmedberg,1914477,2013-03-21T15:27:42Z,CONTRIBUTOR,True,27,28,4,Efficient Hadoop Map-Reduce in Python,Python,3659ff26dd454062ba57ae2761da74813f2e08c6,"Make FileDriver.py the ""runner"" for mapreduce so that each mapreduce script doesn't have to have the stubs which load FileDriver."
+117,https://api.github.com/repos/mozilla/jydoop/pulls/1,1,A bunch of little build fixes,"Remove HDFSDriver (not useful code)
+Make hbase root dir configurable
+Use jython standalone and remove use of jyson
+Download/use akela
+",bsmedberg,1914477,2013-03-21T09:07:29Z,CONTRIBUTOR,True,10,76,3,Efficient Hadoop Map-Reduce in Python,Python,62f16e8d759f6efc25c4ed649f43fd917490b35e,"Make the path of hbase configurable, and make it easier to build."
+118,https://api.github.com/repos/mozilla/jydoop/pulls/1,1,A bunch of little build fixes,"Remove HDFSDriver (not useful code)
+Make hbase root dir configurable
+Use jython standalone and remove use of jyson
+Download/use akela
+",bsmedberg,1914477,2013-03-21T09:07:29Z,CONTRIBUTOR,True,10,76,3,Efficient Hadoop Map-Reduce in Python,Python,4ecb4b8a901298aa1fe6174b9515fd3bebb19427,"Use the proper jython-standalone.jar, which makes Jyson unnecessary. Also pull akela."
+119,https://api.github.com/repos/mozilla/jydoop/pulls/1,1,A bunch of little build fixes,"Remove HDFSDriver (not useful code)
+Make hbase root dir configurable
+Use jython standalone and remove use of jyson
+Download/use akela
+",bsmedberg,1914477,2013-03-21T09:07:29Z,CONTRIBUTOR,True,10,76,3,Efficient Hadoop Map-Reduce in Python,Python,6a24e3c8b09e6070434ad07ad811a8344f667d20,Use curl and > to avoid redownload issues.
+120,https://api.github.com/repos/mozilla/jydoop/pulls/1,1,A bunch of little build fixes,"Remove HDFSDriver (not useful code)
+Make hbase root dir configurable
+Use jython standalone and remove use of jyson
+Download/use akela
+",bsmedberg,1914477,2013-03-21T09:07:29Z,CONTRIBUTOR,True,10,76,3,Efficient Hadoop Map-Reduce in Python,Python,e174f13cbc7031b2836fe222d23ef1c5a5c94438,Remove unused/incorrect HDFSDriver.java
+121,https://api.github.com/repos/mozilla/jydoop/pulls/1,1,A bunch of little build fixes,"Remove HDFSDriver (not useful code)
+Make hbase root dir configurable
+Use jython standalone and remove use of jyson
+Download/use akela
+",bsmedberg,1914477,2013-03-21T09:07:29Z,CONTRIBUTOR,True,10,76,3,Efficient Hadoop Map-Reduce in Python,Python,13d8b684c6be8856a21a2f097c0179673be11122,Actually remove the HDFS driver which we don't need.
+122,https://api.github.com/repos/mozilla/jydoop/pulls/1,1,A bunch of little build fixes,"Remove HDFSDriver (not useful code)
+Make hbase root dir configurable
+Use jython standalone and remove use of jyson
+Download/use akela
+",bsmedberg,1914477,2013-03-21T09:07:29Z,CONTRIBUTOR,True,10,76,3,Efficient Hadoop Map-Reduce in Python,Python,c07e0a22e1469c929b5cf606ed30ea63dc4948f8,Fix misspelling.
+123,https://api.github.com/repos/mozilla/jydoop/pulls/1,1,A bunch of little build fixes,"Remove HDFSDriver (not useful code)
+Make hbase root dir configurable
+Use jython standalone and remove use of jyson
+Download/use akela
+",bsmedberg,1914477,2013-03-21T09:07:29Z,CONTRIBUTOR,True,10,76,3,Efficient Hadoop Map-Reduce in Python,Python,39475c74efed4af7badf9225303bf2832a03aa4d,Use wget -c per taras

@@ -1,0 +1,41 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/Garmr/pulls/15,15,LICENSE,"MPL
+",mozfreddyb,5418775,2016-02-18T08:51:37Z,COLLABORATOR,True,373,0,1,Security Testing Tool,Python,ff703c31c2988965874766cd109a6306b35475d6,"LICENSE
+
+MPL"
+1,https://api.github.com/repos/mozilla/Garmr/pulls/11,11,HSTS Fixes,"On some sites, such as facebook.com, the HSTS header is only set when it gets a request from a browser that has implemented HSTS. Therefore, in order to perform a valid check, Garmr needs to set the User-Agent request header to be a modern web browser, such as the latest version of Firefox. I've set this value in the requests session.
+
+I've also added 2 additional checks to the HSTS check to validate the max-age is long enough and to validate that the includeSubDomains directive is included. For information on why this is important, see the HSTS spec here: http://tools.ietf.org/html/rfc6797 and a proof of concept for SSL Strip with non-protected sites here: https://www.youtube.com/watch?v=uGBjxfizy48
+",Demuxx,1087705,2014-09-03T20:10:20Z,NONE,False,34,1,2,Security Testing Tool,Python,92957485866e1ea6647bca97a8c4c99efc135fb6,"Fixed HSTS check with user-agent header
+
+There was a bug where some sites won't return the HSTS header unless you have
+a browser that supports the header. This is resolved by setting a user-agent
+of a browser that supports HSTS."
+2,https://api.github.com/repos/mozilla/Garmr/pulls/11,11,HSTS Fixes,"On some sites, such as facebook.com, the HSTS header is only set when it gets a request from a browser that has implemented HSTS. Therefore, in order to perform a valid check, Garmr needs to set the User-Agent request header to be a modern web browser, such as the latest version of Firefox. I've set this value in the requests session.
+
+I've also added 2 additional checks to the HSTS check to validate the max-age is long enough and to validate that the includeSubDomains directive is included. For information on why this is important, see the HSTS spec here: http://tools.ietf.org/html/rfc6797 and a proof of concept for SSL Strip with non-protected sites here: https://www.youtube.com/watch?v=uGBjxfizy48
+",Demuxx,1087705,2014-09-03T20:10:20Z,NONE,False,34,1,2,Security Testing Tool,Python,97a86908729f07d6bee5ba120ee13991f30e80f2,"Added additional HSTS header checks
+
+In addition to checking for the presence of HSTS header, Garmr should
+check to make sure the max-age is set high enough (~180 days) and that
+includeSubDomains is set for additional security against new versions
+of SSL Strip man-in-the-middle attacks."
+3,https://api.github.com/repos/mozilla/Garmr/pulls/10,10,Save default output file with .json or .xml file extension,"This change appends the value of the report argument to the default filename, by default the output will be ""garmr-results.xml"". If the json reporter is specified the file will be ""garmr-results.json"".
+",travispaul,2118993,2014-06-19T18:10:27Z,NONE,False,2,4,1,Security Testing Tool,Python,4fd16703dd426ba1d720b7a9912f918708783ddc,"Save default output file with .json or .xml file extension
+
+This change appends the value of the report argument to the default
+filename. by default the output will be ""garmr-results.xml"" if
+json reporter is specified the file will be ""garmr-results.json"""
+4,https://api.github.com/repos/mozilla/Garmr/pulls/9,9,Updated usage to show json and stdout options,"The usage section was never updated when the JsonReporter and stdout options were added.  I thought Garmr only supported XML output until I installed it!
+",travispaul,2118993,2014-06-19T17:44:52Z,NONE,False,4,2,1,Security Testing Tool,Python,802c5549115dbc47ac5c4959faf6b315aa5988a9,"Updated usage to show json and stdout options
+
+The usage section was never updated when the JsonReporter and stdout options were added."
+5,https://api.github.com/repos/mozilla/Garmr/pulls/8,8,amend CSP checks to work with CSP 1.0 header,,davehunt,122800,2014-05-14T14:19:24Z,MEMBER,True,3,40,1,Security Testing Tool,Python,c8ea361d4fdd652bc751a1776e89d2b5148e9f8c,amend CSP checks to work with CSP 1.0 header
+6,https://api.github.com/repos/mozilla/Garmr/pulls/5,5,This version of Garmr requires Requests > 0.8.3 and setuptools,"Garmr needs setuptools to be installed 
+",ErvisTusha,984560,2013-01-23T17:44:06Z,NONE,False,2,2,2,Security Testing Tool,Python,d7a7a4f82ef72a4d6e58a62401dcefc7b042e3eb,This version of Garmr requires Requests > 0.8.3 and setuptools
+7,https://api.github.com/repos/mozilla/Garmr/pulls/5,5,This version of Garmr requires Requests > 0.8.3 and setuptools,"Garmr needs setuptools to be installed 
+",ErvisTusha,984560,2013-01-23T17:44:06Z,NONE,False,2,2,2,Security Testing Tool,Python,6fdf1d17e14ef295baa60d85d1a0af0d43a84d17,check spelling
+8,https://api.github.com/repos/mozilla/Garmr/pulls/4,4,Updated setup.py to include BeautifulSoup,"After installing Garmr I got an error that BeautifulSoup could not be found. So I added it to the setup.py as a dependency that will be installed just like the requests package.
+",st3fan,28052,2012-10-27T02:28:50Z,MEMBER,True,1,1,1,Security Testing Tool,Python,9be6982bc943a3d59de57f917e1222d267e9d603,Update setup.py to include BeautifulSoup dependency
+9,https://api.github.com/repos/mozilla/Garmr/pulls/3,3,fix unreferenced result error,"I ran this locally against mozillians and this fixes https://github.com/mozilla/Garmr/issues/2
+",readevalprint,118430,2012-05-01T19:08:09Z,NONE,False,3,2,1,Security Testing Tool,Python,2340087077ac08285a2634488a399bb0715eca49,fix unreferenced result error

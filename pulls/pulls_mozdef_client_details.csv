@@ -1,0 +1,280 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/mozdef_client/pulls/43,43,Remove jmespath from requirements.txt,"jmespath is helpful for paginating results from boto, but it's not implemented in mozdef_client.
+
+Having it listed as a requirement produces a knock-on issue for setuptools' entry_points, which looks for requirements and needs them to be installed.  So jmespath needs to be either added to setup.py, or removed completely, and removing makes more sense.",gcoxmoz,5704975,2020-11-08T19:52:51Z,CONTRIBUTOR,True,0,1,1,"MozDef client library (send events, etc.)",Python,ba5ce241ad83dfcb2c648d9a168086d2a874646f,"Remove jmespath from requirements.txt
+
+jmespath is helpful for paginating results from boto, but it's not implemented in mozdef_client.
+Having it listed as a requirement produces a knock-on issue for setuptools' entry_points, which looks for requirements and needs them to be installed.  So jmespath needs to be either added to setup.py, or removed completely, and removing makes more sense."
+1,https://api.github.com/repos/mozilla/mozdef_client/pulls/42,42,Close requests sessions when the message object is deleted,This is mostly so that we don't rely on Requests to clean up.  Some tests which use this module can get a warning about leaked connections.,gcoxmoz,5704975,2020-09-04T21:32:50Z,CONTRIBUTOR,True,6,0,1,"MozDef client library (send events, etc.)",Python,00f7915290b021a1ea1f0a838df462d73b79cc4b,"Close requests sessions when the message object is deleted
+
+This is mostly so that we don't rely on Requests to clean up.  Some tests which use this module can get a warning about leaked connections."
+2,https://api.github.com/repos/mozilla/mozdef_client/pulls/41,41,updating all required packages,,Phrozyn,4267984,2020-04-10T21:50:57Z,CONTRIBUTOR,True,8,12,2,"MozDef client library (send events, etc.)",Python,d1de884200b2f5516e0e53b1aae841c33d43fb19,updating all required packages
+3,https://api.github.com/repos/mozilla/mozdef_client/pulls/41,41,updating all required packages,,Phrozyn,4267984,2020-04-10T21:50:57Z,CONTRIBUTOR,True,8,12,2,"MozDef client library (send events, etc.)",Python,ac3b0e62918201336d59e526a70292fde6d11198,moving pytest last supported py2 version
+4,https://api.github.com/repos/mozilla/mozdef_client/pulls/41,41,updating all required packages,,Phrozyn,4267984,2020-04-10T21:50:57Z,CONTRIBUTOR,True,8,12,2,"MozDef client library (send events, etc.)",Python,52024dc02157164b524bf5e58a109f233b400300,rolling futures back to available latest version of 3.1.1
+5,https://api.github.com/repos/mozilla/mozdef_client/pulls/40,40,Fix requests callback deprecation warning,,pwnbus,2117578,2020-04-10T18:58:20Z,COLLABORATOR,True,3,5,1,"MozDef client library (send events, etc.)",Python,8eb2ff7751e68c905ab8ffa83b8acd761816b067,Fix requests callback deprecation warning
+6,https://api.github.com/repos/mozilla/mozdef_client/pulls/38,38,Bump requests from 2.9.1 to 2.20.0,"Bumps [requests](https://github.com/requests/requests) from 2.9.1 to 2.20.0.
+<details>
+<summary>Changelog</summary>
+
+*Sourced from [requests's changelog](https://github.com/psf/requests/blob/master/HISTORY.md).*
+
+> 2.20.0 (2018-10-18)
+> -------------------
+> 
+> **Bugfixes**
+> 
+> -   Content-Type header parsing is now case-insensitive (e.g.
+>     charset=utf8 v Charset=utf8).
+> -   Fixed exception leak where certain redirect urls would raise
+>     uncaught urllib3 exceptions.
+> -   Requests removes Authorization header from requests redirected
+>     from https to http on the same hostname. (CVE-2018-18074)
+> -   `should_bypass_proxies` now handles URIs without hostnames (e.g.
+>     files).
+> 
+> **Dependencies**
+> 
+> - Requests now supports urllib3 v1.24.
+> 
+> **Deprecations**
+> 
+> - Requests has officially stopped support for Python 2.6.
+> 
+> 2.19.1 (2018-06-14)
+> -------------------
+> 
+> **Bugfixes**
+> 
+> -   Fixed issue where status\_codes.py's `init` function failed trying
+>     to append to a `__doc__` value of `None`.
+> 
+> 2.19.0 (2018-06-12)
+> -------------------
+> 
+> **Improvements**
+> 
+> -   Warn user about possible slowdown when using cryptography version
+>     &lt; 1.3.4
+> -   Check for invalid host in proxy URL, before forwarding request to
+>     adapter.
+> -   Fragments are now properly maintained across redirects. (RFC7231
+>     7.1.2)
+> -   Removed use of cgi module to expedite library load time.
+> -   Added support for SHA-256 and SHA-512 digest auth algorithms.
+> -   Minor performance improvement to `Request.content`.
+> -   Migrate to using collections.abc for 3.7 compatibility.
+> 
+> **Bugfixes**
+> 
+> -   Parsing empty `Link` headers with `parse_header_links()` no longer
+>     return one bogus entry.
+></tr></table> ... (truncated)
+</details>
+<details>
+<summary>Commits</summary>
+
+- [`bd84045`](https://github.com/psf/requests/commit/bd840450c0d1e9db3bf62382c15d96378cc3a056) v2.20.0
+- [`7fd9267`](https://github.com/psf/requests/commit/7fd9267b3bab1d45f5e4ac0953629c5531ecbc55) remove final remnants from 2.6
+- [`6ae8a21`](https://github.com/psf/requests/commit/6ae8a2189235b62d7c5b2a6b95528750f046097c) Add myself to AUTHORS
+- [`89ab030`](https://github.com/psf/requests/commit/89ab030cdb83a728a30e172bc65d27ba214d2eda) Use comprehensions whenever possible
+- [`2c6a842`](https://github.com/psf/requests/commit/2c6a8426aebd853966747f2c851f551c583cb21a) Merge pull request [#4827](https://github-redirect.dependabot.com/requests/requests/issues/4827) from webmaven/patch-1
+- [`30be889`](https://github.com/psf/requests/commit/30be889651e7034eaa56edaf5794d68ffbfde9ed) CVE URLs update: www sub-subdomain no longer valid
+- [`a6cd380`](https://github.com/psf/requests/commit/a6cd380c640087218695bc7c62311a4843777e43) Merge pull request [#4765](https://github-redirect.dependabot.com/requests/requests/issues/4765) from requests/encapsulate_urllib3_exc
+- [`bbdbcc8`](https://github.com/psf/requests/commit/bbdbcc8f0553f112ff68b0950b4128bd8af000fc) wrap url parsing exceptions from urllib3's PoolManager
+- [`ff0c325`](https://github.com/psf/requests/commit/ff0c325014f817095de35013d385e137b111d6e8) Merge pull request [#4805](https://github-redirect.dependabot.com/requests/requests/issues/4805) from jdufresne/https
+- [`b0ad249`](https://github.com/psf/requests/commit/b0ad2499c8641d29affc90f565e6628d333d2a96) Prefer https:// for URLs throughout project
+- Additional commits viewable in [compare view](https://github.com/requests/requests/compare/v2.9.1...v2.20.0)
+</details>
+<br />
+
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=requests&package-manager=pip&previous-version=2.9.1&new-version=2.20.0)](https://help.github.com/articles/configuring-automated-security-fixes)
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.
+
+[//]: # (dependabot-automerge-start)
+[//]: # (dependabot-automerge-end)
+
+---
+
+<details>
+<summary>Dependabot commands and options</summary>
+<br />
+
+You can trigger Dependabot actions by commenting on this PR:
+- `@dependabot rebase` will rebase this PR
+- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it
+- `@dependabot merge` will merge this PR after your CI passes on it
+- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it
+- `@dependabot cancel merge` will cancel a previously requested merge and block automerging
+- `@dependabot reopen` will reopen this PR if it is closed
+- `@dependabot ignore this [patch|minor|major] version` will close this PR and stop Dependabot creating any more for this minor/major version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot use these labels` will set the current labels as the default for future PRs for this repo and language
+- `@dependabot use these reviewers` will set the current reviewers as the default for future PRs for this repo and language
+- `@dependabot use these assignees` will set the current assignees as the default for future PRs for this repo and language
+- `@dependabot use this milestone` will set the current milestone as the default for future PRs for this repo and language
+
+You can disable automated security fix PRs for this repo from the [Security Alerts page](https://github.com/mozilla/mozdef_client/network/alerts).
+
+</details>",dependabot[bot],49699333,2019-11-01T12:41:55Z,NONE,False,1,1,1,"MozDef client library (send events, etc.)",Python,8e0b94481ef6f57c445af9e077a25b7946193390,"Bump requests from 2.9.1 to 2.20.0
+
+Bumps [requests](https://github.com/requests/requests) from 2.9.1 to 2.20.0.
+- [Release notes](https://github.com/requests/requests/releases)
+- [Changelog](https://github.com/psf/requests/blob/master/HISTORY.md)
+- [Commits](https://github.com/requests/requests/compare/v2.9.1...v2.20.0)
+
+Signed-off-by: dependabot[bot] <support@github.com>"
+7,https://api.github.com/repos/mozilla/mozdef_client/pulls/37,37,Enable travisci on project,,pwnbus,2117578,2019-07-02T18:44:50Z,COLLABORATOR,True,23,10,2,"MozDef client library (send events, etc.)",Python,ce144d1f69135bd8f54cb97542cfe9901fb4ec48,Enable travisci on project
+8,https://api.github.com/repos/mozilla/mozdef_client/pulls/37,37,Enable travisci on project,,pwnbus,2117578,2019-07-02T18:44:50Z,COLLABORATOR,True,23,10,2,"MozDef client library (send events, etc.)",Python,56446427a80fad0653070337b9fc7d0613759bfa,Comment out broken test
+9,https://api.github.com/repos/mozilla/mozdef_client/pulls/37,37,Enable travisci on project,,pwnbus,2117578,2019-07-02T18:44:50Z,COLLABORATOR,True,23,10,2,"MozDef client library (send events, etc.)",Python,4d29a56c4ac1699c6c2afe8f0a8cc8bb1626bec8,Remove python3.6 as part of build
+10,https://api.github.com/repos/mozilla/mozdef_client/pulls/36,36,Specify python3 as supported version in setup file,,pwnbus,2117578,2019-07-01T21:56:06Z,COLLABORATOR,True,14,0,1,"MozDef client library (send events, etc.)",Python,8a5ee22de9c3fd896317dcf5eeee6ce4eecf9455,Specify python3 as supported version in setup file
+11,https://api.github.com/repos/mozilla/mozdef_client/pulls/36,36,Specify python3 as supported version in setup file,,pwnbus,2117578,2019-07-01T21:56:06Z,COLLABORATOR,True,14,0,1,"MozDef client library (send events, etc.)",Python,d15d6a5a7e22e7fe566ca03321c35a5a40ed583b,Merge remote-tracking branch 'origin/master' into declare_python3_support
+12,https://api.github.com/repos/mozilla/mozdef_client/pulls/35,35,Reorganize into a proper python package format,,pwnbus,2117578,2019-07-01T17:58:36Z,COLLABORATOR,True,767,705,25,"MozDef client library (send events, etc.)",Python,928071d4d25107744e517ceb89bbb35d0582d774,Reorganize into a proper python package format
+13,https://api.github.com/repos/mozilla/mozdef_client/pulls/35,35,Reorganize into a proper python package format,,pwnbus,2117578,2019-07-01T17:58:36Z,COLLABORATOR,True,767,705,25,"MozDef client library (send events, etc.)",Python,f72bcce0960e8a96bca95bc41f0d2c8f39496489,Modify makefile target for tests
+14,https://api.github.com/repos/mozilla/mozdef_client/pulls/35,35,Reorganize into a proper python package format,,pwnbus,2117578,2019-07-01T17:58:36Z,COLLABORATOR,True,767,705,25,"MozDef client library (send events, etc.)",Python,b0db780158d828d1b00aee332c800747d282c2e6,Enable travisci on project
+15,https://api.github.com/repos/mozilla/mozdef_client/pulls/35,35,Reorganize into a proper python package format,,pwnbus,2117578,2019-07-01T17:58:36Z,COLLABORATOR,True,767,705,25,"MozDef client library (send events, etc.)",Python,c9562aa923b3a6a95b0b85076317ab30280dd76f,Add test dependencies
+16,https://api.github.com/repos/mozilla/mozdef_client/pulls/35,35,Reorganize into a proper python package format,,pwnbus,2117578,2019-07-01T17:58:36Z,COLLABORATOR,True,767,705,25,"MozDef client library (send events, etc.)",Python,a3de985094ddfe5ace803fc94839d25e1e1db6a0,Update .travisci
+17,https://api.github.com/repos/mozilla/mozdef_client/pulls/35,35,Reorganize into a proper python package format,,pwnbus,2117578,2019-07-01T17:58:36Z,COLLABORATOR,True,767,705,25,"MozDef client library (send events, etc.)",Python,aa1ebebdbb6de4878e307a8e63675286779b1d0d,Merge remote-tracking branch 'origin/master' into restructure_python_package
+18,https://api.github.com/repos/mozilla/mozdef_client/pulls/35,35,Reorganize into a proper python package format,,pwnbus,2117578,2019-07-01T17:58:36Z,COLLABORATOR,True,767,705,25,"MozDef client library (send events, etc.)",Python,764560b1006b7a2252ca470625a63495853817fd,Merge remote-tracking branch 'origin/master' into restructure_python_package
+19,https://api.github.com/repos/mozilla/mozdef_client/pulls/35,35,Reorganize into a proper python package format,,pwnbus,2117578,2019-07-01T17:58:36Z,COLLABORATOR,True,767,705,25,"MozDef client library (send events, etc.)",Python,826117b24d1ec29150f3c55871ba4ca5880408f6,Update makefile and setup config
+20,https://api.github.com/repos/mozilla/mozdef_client/pulls/34,34,Add Mozilla Code of Conduct,"Fixes #33
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-29T05:06:55Z,CONTRIBUTOR,True,15,0,1,"MozDef client library (send events, etc.)",Python,835b27e343992b98e728af8ee8381778de6447be,"Add Mozilla Code of Conduct file
+
+Fixes #33.
+
+_(Message COC002)_"
+21,https://api.github.com/repos/mozilla/mozdef_client/pulls/31,31,update to current version of packages,,jeffbryner,566889,2018-12-26T21:02:09Z,CONTRIBUTOR,False,15,11,1,"MozDef client library (send events, etc.)",Python,39aebbf52a2a0806f114fe96c1d176b378ef6119,update to current version of packages
+22,https://api.github.com/repos/mozilla/mozdef_client/pulls/30,30,Cleanup of setup.py,"* Fixes the URL (was pointed off at kang's repo)
+* makes setup.py pep8 cleaner
+* postpends the git hash to the package description, for exact package versioning (we're 14 commits past 1.0.11 at this point, and this becomes a nightmare to track in RPM-land).",gcoxmoz,5704975,2018-12-12T23:22:01Z,CONTRIBUTOR,True,49,18,1,"MozDef client library (send events, etc.)",Python,1e97931cce7ed1227681bc0fbe32c06941f6951e,pep8 and URL cleanup against setup.py
+23,https://api.github.com/repos/mozilla/mozdef_client/pulls/30,30,Cleanup of setup.py,"* Fixes the URL (was pointed off at kang's repo)
+* makes setup.py pep8 cleaner
+* postpends the git hash to the package description, for exact package versioning (we're 14 commits past 1.0.11 at this point, and this becomes a nightmare to track in RPM-land).",gcoxmoz,5704975,2018-12-12T23:22:01Z,CONTRIBUTOR,True,49,18,1,"MozDef client library (send events, etc.)",Python,7679373e082a0599a771c25f71cb847841077528,Add git hash to package description
+24,https://api.github.com/repos/mozilla/mozdef_client/pulls/29,29,Sync with docs,Docs ( https://mozdef.readthedocs.io/en/latest/usage.html#json-format ) call out more options for severity and allow for a 'source' field. Adding these to the mozdef client.,jeffbryner,566889,2018-12-12T19:37:12Z,CONTRIBUTOR,True,24,10,1,"MozDef client library (send events, etc.)",Python,e3bb7d0cc18add97441e609187861b21ac9453cc,"Sync with docs
+
+Docs ( https://mozdef.readthedocs.io/en/latest/usage.html#json-format ) call out more options for severity and allow for a 'source' field. Adding these to the mozdef client."
+25,https://api.github.com/repos/mozilla/mozdef_client/pulls/27,27,Clarify MozDefMessage and MozDefMsg docstrings,,gene1wood,1134034,2018-01-16T23:21:11Z,MEMBER,True,25,5,1,"MozDef client library (send events, etc.)",Python,2e65683b028d375238014ddbb479077915867ecf,Clarify MozDefMessage and MozDefMsg docstrings
+26,https://api.github.com/repos/mozilla/mozdef_client/pulls/25,25,Pull unit tests out into a seperate module,,gene1wood,1134034,2018-01-10T18:17:09Z,MEMBER,True,224,213,3,"MozDef client library (send events, etc.)",Python,597cf888a4a55930e7384110ef76d87381b9add8,Pull unit tests out into a seperate module
+27,https://api.github.com/repos/mozilla/mozdef_client/pulls/24,24,add setup.cfg to allow easy rpm building,Adding a setup.cfg so we can build RPMs without having to commit to installing fpm,gcoxmoz,5704975,2018-01-10T00:43:29Z,CONTRIBUTOR,True,2,0,1,"MozDef client library (send events, etc.)",Python,7c91fe6386d308023036acceee5b7d9fda51367f,add setup.cfg to allow easy rpm building
+28,https://api.github.com/repos/mozilla/mozdef_client/pulls/23,23,Adding gitignore items,"Issue #15 makes a good point, offering up a .gitignore file base on github suggestions.",gcoxmoz,5704975,2018-01-10T00:39:14Z,CONTRIBUTOR,True,122,1,1,"MozDef client library (send events, etc.)",Python,bedcecd3ffdfb8605b60b3e32f7da8896bbc0bf3,Adding gitignore items for https://github.com/mozilla/mozdef_client/issues/15
+29,https://api.github.com/repos/mozilla/mozdef_client/pulls/22,22,"Replaces python-mozdef, see https://bugzilla.mozilla.org/show_bug.cgi…",…?id=1124893,gdestuynder,956866,2017-11-21T18:58:31Z,CONTRIBUTOR,True,1,1,1,"MozDef client library (send events, etc.)",Python,4cbcfdbc841a31c0e0cb07408148ce42cb072e7f,"Replaces python-mozdef, see https://bugzilla.mozilla.org/show_bug.cgi?id=1124893"
+30,https://api.github.com/repos/mozilla/mozdef_client/pulls/20,20,update mozdef_client url in submodule example,,ameihm0912,9889986,2017-07-10T19:45:00Z,NONE,True,1,1,1,"MozDef client library (send events, etc.)",Python,715d1d217ebf3ed45b15e2e7bcc24b94547f80b0,update mozdef_client url in submodule example
+31,https://api.github.com/repos/mozilla/mozdef_client/pulls/19,19,Modify severity levels with hostname customization,Signed-off-by: Brandon Myers <bmyers@mozilla.com>,pwnbus,2117578,2017-04-07T16:42:19Z,COLLABORATOR,True,28,5,1,"MozDef client library (send events, etc.)",Python,a7531f7b193e1182f269b2b3e6b898b91e23be8f,"Modify severity levels with hostname customization
+
+Signed-off-by: Brandon Myers <bmyers@mozilla.com>"
+32,https://api.github.com/repos/mozilla/mozdef_client/pulls/19,19,Modify severity levels with hostname customization,Signed-off-by: Brandon Myers <bmyers@mozilla.com>,pwnbus,2117578,2017-04-07T16:42:19Z,COLLABORATOR,True,28,5,1,"MozDef client library (send events, etc.)",Python,cdeecec703a5ccbed298d13816163f157494469e,"Allow hostname customizable
+
+Signed-off-by: Brandon Myers <bmyers@mozilla.com>"
+33,https://api.github.com/repos/mozilla/mozdef_client/pulls/19,19,Modify severity levels with hostname customization,Signed-off-by: Brandon Myers <bmyers@mozilla.com>,pwnbus,2117578,2017-04-07T16:42:19Z,COLLABORATOR,True,28,5,1,"MozDef client library (send events, etc.)",Python,94fe4c1950a197930896069d7f70bcd1e6b8ce2a,"Further add improvements for hostname field
+
+Signed-off-by: Brandon Myers <bmyers@mozilla.com>"
+34,https://api.github.com/repos/mozilla/mozdef_client/pulls/19,19,Modify severity levels with hostname customization,Signed-off-by: Brandon Myers <bmyers@mozilla.com>,pwnbus,2117578,2017-04-07T16:42:19Z,COLLABORATOR,True,28,5,1,"MozDef client library (send events, etc.)",Python,76b9a42767da940441153751e597626838c1b567,"Fix hostname socket functions
+
+Signed-off-by: Brandon Myers <bmyers@mozilla.com>"
+35,https://api.github.com/repos/mozilla/mozdef_client/pulls/18,18,1.0.10  / fix uninitialized timestamp,See also https://bugzilla.mozilla.org/show_bug.cgi?id=1340602,gdestuynder,956866,2017-02-17T20:24:35Z,CONTRIBUTOR,True,3,2,3,"MozDef client library (send events, etc.)",Python,4dd85d0b204ee30f23ed4e5a8a2e5fc248df2c70,Bump to version 1.0.9
+36,https://api.github.com/repos/mozilla/mozdef_client/pulls/18,18,1.0.10  / fix uninitialized timestamp,See also https://bugzilla.mozilla.org/show_bug.cgi?id=1340602,gdestuynder,956866,2017-02-17T20:24:35Z,CONTRIBUTOR,True,3,2,3,"MozDef client library (send events, etc.)",Python,89ade39d47f0ff8f7a6c8ae7fe9b59ff62a7f386,"Initialize the timestamp so that its always present, even if none
+This is not in line with the rest of the code, though this lib needs a
+rewrite. Having arbitrarily initialized object attributes is dangerous
+to begin with"
+37,https://api.github.com/repos/mozilla/mozdef_client/pulls/18,18,1.0.10  / fix uninitialized timestamp,See also https://bugzilla.mozilla.org/show_bug.cgi?id=1340602,gdestuynder,956866,2017-02-17T20:24:35Z,CONTRIBUTOR,True,3,2,3,"MozDef client library (send events, etc.)",Python,bf19db51eba439f513d7f4cf2387b7361cfc3d90,bump 1.0.10
+38,https://api.github.com/repos/mozilla/mozdef_client/pulls/17,17,Bump to version 1.0.9,,gdestuynder,956866,2017-01-19T18:30:03Z,CONTRIBUTOR,True,2,2,2,"MozDef client library (send events, etc.)",Python,4dd85d0b204ee30f23ed4e5a8a2e5fc248df2c70,Bump to version 1.0.9
+39,https://api.github.com/repos/mozilla/mozdef_client/pulls/16,16,SQS message size checking,This adds error checking for messages which are too large to be sent over SQS. Fixes #8,gene1wood,1134034,2016-12-21T20:55:22Z,MEMBER,True,32,1,2,"MozDef client library (send events, etc.)",Python,3273edf4c5b23d7826ec69d40a7a887cb18d04a6,Add details to docs on using SQS
+40,https://api.github.com/repos/mozilla/mozdef_client/pulls/16,16,SQS message size checking,This adds error checking for messages which are too large to be sent over SQS. Fixes #8,gene1wood,1134034,2016-12-21T20:55:22Z,MEMBER,True,32,1,2,"MozDef client library (send events, etc.)",Python,c59f7cac9b1fab555d6032e859a3f5fc93a39023,Check SQS event message length
+41,https://api.github.com/repos/mozilla/mozdef_client/pulls/14,14,Fixes #11 Move init to the top of class MozDefEvent,,jinankjain,3854904,2016-08-13T02:07:48Z,CONTRIBUTOR,True,15,14,1,"MozDef client library (send events, etc.)",Python,08eec8e6b4f5a9cda4b4dcba770ba6689bf9ff02,Fixes #11 Move init to the top of class MozDefEvent
+42,https://api.github.com/repos/mozilla/mozdef_client/pulls/13,13,1.07 + fixes,,gdestuynder,956866,2016-08-12T20:21:32Z,CONTRIBUTOR,True,5,1,3,"MozDef client library (send events, etc.)",Python,3f59352c7066cdb73216a454cef8354d8bbe6796,"Add gene to authors, bump version to 1.0.7"
+43,https://api.github.com/repos/mozilla/mozdef_client/pulls/13,13,1.07 + fixes,,gdestuynder,956866,2016-08-12T20:21:32Z,CONTRIBUTOR,True,5,1,3,"MozDef client library (send events, etc.)",Python,c6ab7afdd425651b9dab2c2fc1bffbac285fc959,Add a twine option for when we dont like setup.py
+44,https://api.github.com/repos/mozilla/mozdef_client/pulls/9,9,Fixing incorrect dependency argument,"http://python-packaging.readthedocs.io/en/latest/dependencies.html
+
+`requires` isn't the right argument and so `mozdef_client` fails due to missing dependencies.
+",gene1wood,1134034,2016-08-11T22:13:51Z,MEMBER,True,1,1,1,"MozDef client library (send events, etc.)",Python,fa1897a445675b7024f73f9386870cca6e663de8,"Fixing incorrect dependency argument
+http://python-packaging.readthedocs.io/en/latest/dependencies.html"
+45,https://api.github.com/repos/mozilla/mozdef_client/pulls/6,6,Asset hints and compliance updates,"This change adds support for sending asset hints.
+
+It also changes the way compliance events are sent (in MozDef they are now structured like a generic MozDef event).
+",ameihm0912,9889986,2015-03-16T16:05:38Z,NONE,True,79,34,2,"MozDef client library (send events, etc.)",Python,ceb3ac8496129e0e4dcb0bc623fa07eaeced3028,add support for asset hint events
+46,https://api.github.com/repos/mozilla/mozdef_client/pulls/6,6,Asset hints and compliance updates,"This change adds support for sending asset hints.
+
+It also changes the way compliance events are sent (in MozDef they are now structured like a generic MozDef event).
+",ameihm0912,9889986,2015-03-16T16:05:38Z,NONE,True,79,34,2,"MozDef client library (send events, etc.)",Python,37de0fd0d1c193b103dee26beaeac1dca03c4d0f,update compliance item format to align with standard event
+47,https://api.github.com/repos/mozilla/mozdef_client/pulls/6,6,Asset hints and compliance updates,"This change adds support for sending asset hints.
+
+It also changes the way compliance events are sent (in MozDef they are now structured like a generic MozDef event).
+",ameihm0912,9889986,2015-03-16T16:05:38Z,NONE,True,79,34,2,"MozDef client library (send events, etc.)",Python,64074a3613425b5e4aeb6b3fd3f8276aebf771d0,validate dict in validate_log() vs object (for compliance msg)
+48,https://api.github.com/repos/mozilla/mozdef_client/pulls/6,6,Asset hints and compliance updates,"This change adds support for sending asset hints.
+
+It also changes the way compliance events are sent (in MozDef they are now structured like a generic MozDef event).
+",ameihm0912,9889986,2015-03-16T16:05:38Z,NONE,True,79,34,2,"MozDef client library (send events, etc.)",Python,629ed0cbe7c34097d3979f3f226730f3faa999de,update documentation for compliance event changes
+49,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,6d6f38c04416cac33ed3f47ee4683f2c4e9444be,support setting tags for compliance item
+50,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,542e7b0cee7c90422cbafae39062fa0a9af20bff,"overhaul mozdef_client, now a bit clearer and more maintainable"
+51,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,b17f93b2e3ea0e8d43a8387bb052fe07d8a299ee,"remove unused http callback, some additional cleanup"
+52,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,9318a39859edc92e0f96d9bd456ad7022cf58161,"remove unused _timestamp, add self to fire_and_forget method"
+53,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,2426b1d1aafc0033d198b4523d4997899c282b3f,make sourcename a required field in vulnerability events
+54,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,88debdd1cb2bffbd0618e0510784f4380ea201f9,add back support for syslog submission
+55,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,016bb039fcd1f6fdb588e7dbabc6664e092ebfa6,some documentation additions
+56,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,485928271604c088801d20c826b67c747622a7ad,additional documentation updates
+57,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,adf64c10d71e7e690e3cf9a7ceb92e85d3c17f05,additional documentation updates
+58,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,63b922e836a9b07d5697943f3684d110c5168ee1,remove comment that is no longer applicable
+59,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,5b441d690f9fcb6c077a79a89286909fcfc346c8,remove comment that is no longer applicable
+60,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,b7be65942c94524990a2b569eba1649dd0e1d401,add some additional event fields that were missing
+61,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,c3755576f451845ab0925dec3209dce11d4babe7,add a method to set event category field
+62,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,9b3fa0ac9dc662eebaa642e4066e617330b45be3,documentation updates
+63,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,a6cb900c6aafc6bb5c0f9ab4ebe3de7c0eb2c949,documentation updates
+64,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,af158811a8217034d71a867360d55def8e5684d1,add methods to configure certificate validation
+65,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,d9c75dcb03238806acee089846eea56bc98c9ec8,resolve a bunch of minor issues identified in PR
+66,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,b59ef4c24790583fd046d38c3f145b292bdffa29,add a legacy compatibility mode that wraps newer objects
+67,https://api.github.com/repos/mozilla/mozdef_client/pulls/5,5,Overhaul of mozdef_client,"Bunch of changes to mozdef_client to modify the library in preparation for other event types (asset hints).
+",ameihm0912,9889986,2015-03-04T21:15:00Z,NONE,True,552,329,5,"MozDef client library (send events, etc.)",Python,911db1791c6b6fc360855945f5ea333e4f3120ba,"change legacy -> simple since we will want to keep this around
+
+The simple message submission is less code in calling applications
+and makes it a bit easier to integrate."
+68,https://api.github.com/repos/mozilla/mozdef_client/pulls/4,4,support setting tags for compliance item,"The tags field now exists in compliance items to support metadata storage.
+",ameihm0912,9889986,2015-02-10T17:36:34Z,NONE,False,392,320,5,"MozDef client library (send events, etc.)",Python,6d6f38c04416cac33ed3f47ee4683f2c4e9444be,support setting tags for compliance item
+69,https://api.github.com/repos/mozilla/mozdef_client/pulls/4,4,support setting tags for compliance item,"The tags field now exists in compliance items to support metadata storage.
+",ameihm0912,9889986,2015-02-10T17:36:34Z,NONE,False,392,320,5,"MozDef client library (send events, etc.)",Python,542e7b0cee7c90422cbafae39062fa0a9af20bff,"overhaul mozdef_client, now a bit clearer and more maintainable"
+70,https://api.github.com/repos/mozilla/mozdef_client/pulls/4,4,support setting tags for compliance item,"The tags field now exists in compliance items to support metadata storage.
+",ameihm0912,9889986,2015-02-10T17:36:34Z,NONE,False,392,320,5,"MozDef client library (send events, etc.)",Python,b17f93b2e3ea0e8d43a8387bb052fe07d8a299ee,"remove unused http callback, some additional cleanup"
+71,https://api.github.com/repos/mozilla/mozdef_client/pulls/4,4,support setting tags for compliance item,"The tags field now exists in compliance items to support metadata storage.
+",ameihm0912,9889986,2015-02-10T17:36:34Z,NONE,False,392,320,5,"MozDef client library (send events, etc.)",Python,9318a39859edc92e0f96d9bd456ad7022cf58161,"remove unused _timestamp, add self to fire_and_forget method"
+72,https://api.github.com/repos/mozilla/mozdef_client/pulls/4,4,support setting tags for compliance item,"The tags field now exists in compliance items to support metadata storage.
+",ameihm0912,9889986,2015-02-10T17:36:34Z,NONE,False,392,320,5,"MozDef client library (send events, etc.)",Python,2426b1d1aafc0033d198b4523d4997899c282b3f,make sourcename a required field in vulnerability events
+73,https://api.github.com/repos/mozilla/mozdef_client/pulls/4,4,support setting tags for compliance item,"The tags field now exists in compliance items to support metadata storage.
+",ameihm0912,9889986,2015-02-10T17:36:34Z,NONE,False,392,320,5,"MozDef client library (send events, etc.)",Python,88debdd1cb2bffbd0618e0510784f4380ea201f9,add back support for syslog submission
+74,https://api.github.com/repos/mozilla/mozdef_client/pulls/4,4,support setting tags for compliance item,"The tags field now exists in compliance items to support metadata storage.
+",ameihm0912,9889986,2015-02-10T17:36:34Z,NONE,False,392,320,5,"MozDef client library (send events, etc.)",Python,016bb039fcd1f6fdb588e7dbabc6664e092ebfa6,some documentation additions
+75,https://api.github.com/repos/mozilla/mozdef_client/pulls/4,4,support setting tags for compliance item,"The tags field now exists in compliance items to support metadata storage.
+",ameihm0912,9889986,2015-02-10T17:36:34Z,NONE,False,392,320,5,"MozDef client library (send events, etc.)",Python,485928271604c088801d20c826b67c747622a7ad,additional documentation updates
+76,https://api.github.com/repos/mozilla/mozdef_client/pulls/4,4,support setting tags for compliance item,"The tags field now exists in compliance items to support metadata storage.
+",ameihm0912,9889986,2015-02-10T17:36:34Z,NONE,False,392,320,5,"MozDef client library (send events, etc.)",Python,adf64c10d71e7e690e3cf9a7ceb92e85d3c17f05,additional documentation updates
+77,https://api.github.com/repos/mozilla/mozdef_client/pulls/3,3,add gitignore,"gitignore so submodule isn't reported modified
+",ameihm0912,9889986,2015-01-28T18:44:14Z,NONE,True,1,0,1,"MozDef client library (send events, etc.)",Python,36958afe56439a4ca05285228eb6c51973cf00fd,add gitignore
+78,https://api.github.com/repos/mozilla/mozdef_client/pulls/2,2,support sending custom vulnerability events through mozdef_client,"Adds a new event type for vulnerability documents and support to send them with mozdef_client. Note that is a lot simpler then the way we are doing it for compliance events, we can probably change that to just send the compliance event in since we don't actually use any of the other data in the base message type (e.g., get rid of the 4 arguments to send_compliance and just send a single argument).
+",ameihm0912,9889986,2015-01-21T22:33:12Z,NONE,True,23,0,1,"MozDef client library (send events, etc.)",Python,0dcc7a1f9d96b0139f3c223ca36a2826f7aaf772,support sending custom vulnerability events through mozdef_client
+79,https://api.github.com/repos/mozilla/mozdef_client/pulls/1,1,compliance event support,,ameihm0912,9889986,2014-12-17T17:40:44Z,NONE,True,69,14,1,"MozDef client library (send events, etc.)",Python,0c578699ea56a9f36a89c4356eb8921e1c43690e,support compliance message types
+80,https://api.github.com/repos/mozilla/mozdef_client/pulls/1,1,compliance event support,,ameihm0912,9889986,2014-12-17T17:40:44Z,NONE,True,69,14,1,"MozDef client library (send events, etc.)",Python,76ecb0f0b212f354d48534f5dcc362084aec4449,add validation for compliance messages

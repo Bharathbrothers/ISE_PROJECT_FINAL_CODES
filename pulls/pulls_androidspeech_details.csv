@@ -1,0 +1,94 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/androidspeech/pulls/47,47,Fix #41: Update to DeepSpeech v0.9,,lissyx,1645737,2020-11-20T09:10:56Z,NONE,True,8,26,3,An Android library module to Mozilla's Speech-To-Text services,C,873ee77c3cb757876b74dcda1d63096baa095725,Fix #41: Update to DeepSpeech v0.9
+1,https://api.github.com/repos/mozilla/androidspeech/pulls/46,46,Fix ModelUtils returning false negative,"Problem:
+- Even if a `.noUseDecoder`  file is present, a `scorer` is still required. In implementations that do not supply a scorer file this will cause a critical failure.
+
+Fix:
+- If a `.noUseDecoder` or `scorer` file is present then `ModelUtils.isReady` will return `true`.",nvandessel,51134175,2020-11-18T02:10:59Z,NONE,False,1,1,1,An Android library module to Mozilla's Speech-To-Text services,C,78a5ec933175c7396fef5bdc8cfe1734280c8917,Fix ModelUtils returning false negative
+2,https://api.github.com/repos/mozilla/androidspeech/pulls/46,46,Fix ModelUtils returning false negative,"Problem:
+- Even if a `.noUseDecoder`  file is present, a `scorer` is still required. In implementations that do not supply a scorer file this will cause a critical failure.
+
+Fix:
+- If a `.noUseDecoder` or `scorer` file is present then `ModelUtils.isReady` will return `true`.",nvandessel,51134175,2020-11-18T02:10:59Z,NONE,False,1,1,1,An Android library module to Mozilla's Speech-To-Text services,C,9b87cefea3349f5b589260ac1b00accb62e275a6,Merge branch 'master' of github.com:mozilla/androidspeech into hotfix/model-utils-false-negative
+3,https://api.github.com/repos/mozilla/androidspeech/pulls/45,45,Bump deepspeech  version to 0.8.2. Add support to newer model version,Fixes [#41](https://github.com/mozilla/androidspeech/issues/41),kamir86,46770,2020-11-11T07:26:26Z,NONE,False,9,14,4,An Android library module to Mozilla's Speech-To-Text services,C,b7fdc5670b7c9d4477b314596d8323f064b404ce,Bump deepspeech  version to 0.8.2. Add support to newer model version
+4,https://api.github.com/repos/mozilla/androidspeech/pulls/45,45,Bump deepspeech  version to 0.8.2. Add support to newer model version,Fixes [#41](https://github.com/mozilla/androidspeech/issues/41),kamir86,46770,2020-11-11T07:26:26Z,NONE,False,9,14,4,An Android library module to Mozilla's Speech-To-Text services,C,3fabb0cbf973b3f5eda5da8c64ddb391d1eb7bd3,Removed un-needed file alphabet.txt
+5,https://api.github.com/repos/mozilla/androidspeech/pulls/43,43,Remove speechlibrary dependency from utils,Remove speechlibrary dependency from utils,keianhzo,837184,2020-06-25T22:06:44Z,COLLABORATOR,True,45,29,8,An Android library module to Mozilla's Speech-To-Text services,C,951d382450a90655eb3c43dd23aa8c7ef0784ec7,Remove speechlibrary dependency from utils
+6,https://api.github.com/repos/mozilla/androidspeech/pulls/38,38,Fix recording issues,"Related to: https://discourse.mozilla.org/t/android-demo-app-poor-inference-results/61348
+
+`nshorts = mRecorder.read(mBuftemp, 0, mBuftemp.length);`
+and
+`mStt.encode(mBuftemp, 0, nshorts);` 
+were beingcalled in the same thread in start method which caused missed voice data.
+
+This PR fixes that running the local STT client in it's own thread.",keianhzo,837184,2020-06-08T16:51:03Z,COLLABORATOR,True,61,31,6,An Android library module to Mozilla's Speech-To-Text services,C,59adb32daac2a252c0dac95ce213f74c40516aac,Run local STT in a different thread
+7,https://api.github.com/repos/mozilla/androidspeech/pulls/38,38,Fix recording issues,"Related to: https://discourse.mozilla.org/t/android-demo-app-poor-inference-results/61348
+
+`nshorts = mRecorder.read(mBuftemp, 0, mBuftemp.length);`
+and
+`mStt.encode(mBuftemp, 0, nshorts);` 
+were beingcalled in the same thread in start method which caused missed voice data.
+
+This PR fixes that running the local STT client in it's own thread.",keianhzo,837184,2020-06-08T16:51:03Z,COLLABORATOR,True,61,31,6,An Android library module to Mozilla's Speech-To-Text services,C,ad974f0e09352fed07a6211d7e2a33d36654f4ac,Update version to 2.0.2
+8,https://api.github.com/repos/mozilla/androidspeech/pulls/37,37,Make mozillaspeechlibrary compileOnly in speechutils and other fixes,Make mozillaspeechlibrary compileOnly and other fixes,keianhzo,837184,2020-06-08T07:04:57Z,COLLABORATOR,True,27,10,9,An Android library module to Mozilla's Speech-To-Text services,C,a07ea527d123201ec040a2bcc30f286e47bc7594,Make mozillaspeechlibrary compileOnly and other fixes
+9,https://api.github.com/repos/mozilla/androidspeech/pulls/36,36,Maven and Readme updated,Add Maven upload support for SpeechUtils. Updated Readme.,keianhzo,837184,2020-06-01T09:11:30Z,COLLABORATOR,True,173,53,5,An Android library module to Mozilla's Speech-To-Text services,C,811d096136c45146925ff581bc942612be364f80,Maven and Readme updated
+10,https://api.github.com/repos/mozilla/androidspeech/pulls/34,34,Speech Service refactor and improvements,"Fixes #30 Fixes https://github.com/MozillaReality/FirefoxReality/issues/2723
+- Refactor some code to be reused across implementations, especially the code related to voice recording.
+- Fixed threading and callback issues. We were still sending callbacks even if the speech request had been cancelled. Now a stopped request shouldn't notify anymore.
+- Added utilities to Download and Unzip models
+- Utilities to handle models, installed models, model paths, urls, check model availability, different model versions, etc.
+- Improved general stability",keianhzo,837184,2020-05-06T14:42:53Z,COLLABORATOR,True,2417,1491,48,An Android library module to Mozilla's Speech-To-Text services,C,3cbf9aabcb7abd346f5370146b44c20a9bfa73b9,"Refactor
+
+
+
+
+wip"
+11,https://api.github.com/repos/mozilla/androidspeech/pulls/33,33,fix file extraction,"extreacted zip already contains named folder
+extracted files before: eng/eng/model.tflite
+extracted files now: eng/model.tflite",flozi00,47894090,2020-04-28T08:17:13Z,NONE,False,1,1,1,An Android library module to Mozilla's Speech-To-Text services,C,c6bfcb350b847c12be9dfd9f2ce4150d0b361610,"fix file extraction
+
+extreacted zip already contains named folder
+extracted files before: eng/eng/model.tflite
+extracted files now: eng/model.tflite"
+12,https://api.github.com/repos/mozilla/androidspeech/pulls/28,28,bump to v 1.0.10,,andrenatal,973388,2020-02-24T19:23:15Z,COLLABORATOR,True,5,5,3,An Android library module to Mozilla's Speech-To-Text services,C,636fd2b7d0f57756dd4aad3717c1c70f8203a874,bump to v 1.0.10
+13,https://api.github.com/repos/mozilla/androidspeech/pulls/27,27,GeckoWebExecutor implementation,@andrenatal This implementation adds support for a GeckoWebExecutor based Http connection so projects already using Gecko can simplify the Http stack. The problem is that I get an invalid answer from the server but I cannot debug it so I'm not sure what's happening or why the request is not valid.,keianhzo,837184,2020-02-10T15:27:09Z,COLLABORATOR,True,353,183,16,An Android library module to Mozilla's Speech-To-Text services,C,4636a226fa73c6ffbfc456db4daf018d3a0ccb87,Added support for using GeckoWebExecutor when available
+14,https://api.github.com/repos/mozilla/androidspeech/pulls/27,27,GeckoWebExecutor implementation,@andrenatal This implementation adds support for a GeckoWebExecutor based Http connection so projects already using Gecko can simplify the Http stack. The problem is that I get an invalid answer from the server but I cannot debug it so I'm not sure what's happening or why the request is not valid.,keianhzo,837184,2020-02-10T15:27:09Z,COLLABORATOR,True,353,183,16,An Android library module to Mozilla's Speech-To-Text services,C,9564a9ac156a7bd77c64ff2b7909914327671f3f,Version bump to 1.0.11
+15,https://api.github.com/repos/mozilla/androidspeech/pulls/27,27,GeckoWebExecutor implementation,@andrenatal This implementation adds support for a GeckoWebExecutor based Http connection so projects already using Gecko can simplify the Http stack. The problem is that I get an invalid answer from the server but I cannot debug it so I'm not sure what's happening or why the request is not valid.,keianhzo,837184,2020-02-10T15:27:09Z,COLLABORATOR,True,353,183,16,An Android library module to Mozilla's Speech-To-Text services,C,faffcd385e74327f8d0eed5c8cbce0b7b94f8b47,wip
+16,https://api.github.com/repos/mozilla/androidspeech/pulls/27,27,GeckoWebExecutor implementation,@andrenatal This implementation adds support for a GeckoWebExecutor based Http connection so projects already using Gecko can simplify the Http stack. The problem is that I get an invalid answer from the server but I cannot debug it so I'm not sure what's happening or why the request is not valid.,keianhzo,837184,2020-02-10T15:27:09Z,COLLABORATOR,True,353,183,16,An Android library module to Mozilla's Speech-To-Text services,C,83fd735430582e715a9d6dbd933e0e20dd74fd89,Update to androidx
+17,https://api.github.com/repos/mozilla/androidspeech/pulls/27,27,GeckoWebExecutor implementation,@andrenatal This implementation adds support for a GeckoWebExecutor based Http connection so projects already using Gecko can simplify the Http stack. The problem is that I get an invalid answer from the server but I cannot debug it so I'm not sure what's happening or why the request is not valid.,keianhzo,837184,2020-02-10T15:27:09Z,COLLABORATOR,True,353,183,16,An Android library module to Mozilla's Speech-To-Text services,C,976384e47938a3d969a672f676fafe099a1203af,update also the library versionPatch
+18,https://api.github.com/repos/mozilla/androidspeech/pulls/26,26,Call cancel on the network thread too when calling cancel on the service,Related to https://github.com/MozillaReality/FirefoxReality/issues/2723. When calling cancel on the service only the local thread is cancelled. Make sure we call cancel on both.,keianhzo,837184,2020-02-10T14:09:34Z,COLLABORATOR,True,3,1,1,An Android library module to Mozilla's Speech-To-Text services,C,c6b5799f8295e1b289a8aadd0246f269c54c5a27,Call cancel on the network thread too when calling cancel on the service
+19,https://api.github.com/repos/mozilla/androidspeech/pulls/25,25,Update to DeepSpeech v0.6.1,,lissyx,1645737,2020-01-13T09:25:32Z,NONE,True,2,2,1,An Android library module to Mozilla's Speech-To-Text services,C,f65200ba1100717e9fe688c1d86a69e885fdc154,Update to DeepSpeech v0.6.1
+20,https://api.github.com/repos/mozilla/androidspeech/pulls/24,24,Switch to final DeepSpeech v0.6,,lissyx,1645737,2019-12-06T11:18:17Z,NONE,True,3,3,2,An Android library module to Mozilla's Speech-To-Text services,C,a0f611837f48b0740cf3a926d2620d8b530058af,Switch to final DeepSpeech v0.6
+21,https://api.github.com/repos/mozilla/androidspeech/pulls/23,23,Update DS to 0.6.0a13,,lissyx,1645737,2019-11-05T17:23:41Z,NONE,True,41,17,2,An Android library module to Mozilla's Speech-To-Text services,C,394943056c7240ffb6fded9f63c785a190e3bdf7,Update DS to 0.6.0a14
+22,https://api.github.com/repos/mozilla/androidspeech/pulls/22,22,Update DS to 0.6.0a10,,lissyx,1645737,2019-10-11T13:32:31Z,NONE,False,41,13,2,An Android library module to Mozilla's Speech-To-Text services,C,76056c948e57f66484bb20a1f02f48f5997a0f6c,Update DS to 0.6.0a10
+23,https://api.github.com/repos/mozilla/androidspeech/pulls/21,21,Update to DeepSpeech v0.6 API,,lissyx,1645737,2019-09-26T10:27:25Z,NONE,True,22,17,4,An Android library module to Mozilla's Speech-To-Text services,C,61d7a9258f5e52d76ad3ae6e5710322ccd4ab7ad,Update to DeepSpeech v0.6 API
+24,https://api.github.com/repos/mozilla/androidspeech/pulls/17,17,Add consumer proguard rules.,"I'm working on enabling R8 minification for Firefox Reality and found some problems with the androidspeech library (a crash if Opus class attributes are not kept or connection failures if httpclient dependendies are not kept).
+
+This PR adds proguard rules that will only be applied on the consumer of the library",MortimerGoro,1070794,2019-07-18T15:21:59Z,CONTRIBUTOR,True,6,0,2,An Android library module to Mozilla's Speech-To-Text services,C,e7d294661c9b7e0e82f5d4754e1c40f653c7189b,Add consumer proguard rules.
+25,https://api.github.com/repos/mozilla/androidspeech/pulls/15,15,Update to DeepSpeech 0.5.0,,lissyx,1645737,2019-06-12T07:54:27Z,NONE,True,1,1,1,An Android library module to Mozilla's Speech-To-Text services,C,50a0f6e44143da216550dab5a83b6782923a457d,Update to DeepSpeech 0.5.1
+26,https://api.github.com/repos/mozilla/androidspeech/pulls/12,12,Update README with working example,,benfrancis,552417,2019-04-05T15:44:27Z,CONTRIBUTOR,True,3,0,1,An Android library module to Mozilla's Speech-To-Text services,C,133b49899b1e07c8cdd991517e7dc5199e1c0b54,Update README with working example
+27,https://api.github.com/repos/mozilla/androidspeech/pulls/11,11,Add Mozilla Code of Conduct,"Fixes #10
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-30T07:00:21Z,CONTRIBUTOR,True,15,0,1,An Android library module to Mozilla's Speech-To-Text services,C,b8be457b0cb128e0b6114bb214635727a303effb,"Add Mozilla Code of Conduct file
+
+Fixes #10.
+
+_(Message COC002)_"
+28,https://api.github.com/repos/mozilla/androidspeech/pulls/9,9,Adding DeepSpeech w/ TFLite,This is now is a shape good enough to justify discussions.,lissyx,1645737,2019-03-05T16:07:36Z,NONE,True,539,16,7,An Android library module to Mozilla's Speech-To-Text services,C,716203c280859198875e08ea41a476ac3e4c9c89,WIP: Adding DeepSpeech w/ TFLite
+29,https://api.github.com/repos/mozilla/androidspeech/pulls/7,7,Switch to VOICE_RECOGNITION audio source,"Testing shows it's uncovering much better results, especially running
+with DeepSpeech in crowed / noisy environment",lissyx,1645737,2018-12-06T20:41:42Z,NONE,True,1,1,1,An Android library module to Mozilla's Speech-To-Text services,C,667f8c252fc5cf4d48bad4eaf2f34ece1be9a85f,"Switch to VOICE_RECOGNITION audio source
+
+Testing shows it's uncovering much better results, especially running
+with DeepSpeech in crowed / noisy environment"
+30,https://api.github.com/repos/mozilla/androidspeech/pulls/5,5,Make the library compatible with java 1.7,,andrenatal,973388,2018-10-16T22:35:15Z,COLLABORATOR,True,23,20,3,An Android library module to Mozilla's Speech-To-Text services,C,3b893a89cdc554a13c680cffd2760584111d426d,Make the library compatible with java 1.7
+31,https://api.github.com/repos/mozilla/androidspeech/pulls/4,4,Make toogles on in the default app,,andrenatal,973388,2018-10-12T20:24:28Z,COLLABORATOR,True,2,2,1,An Android library module to Mozilla's Speech-To-Text services,C,7cb6dc499899bf394d050d086a4fec873abb4b87,Make toogles on in the default app
+32,https://api.github.com/repos/mozilla/androidspeech/pulls/3,3,"Adding new headers to support multi-lingual, turn on/off the storing …","…of samples and transcriptions, a tag name for the client",andrenatal,973388,2018-10-12T17:38:22Z,COLLABORATOR,True,120,25,5,An Android library module to Mozilla's Speech-To-Text services,C,727102b9146f5063667fd508d90c891ad50c5207,"Adding new headers to support multi-lingual, turn on/off the storing of samples and transcriptions, a tag name for the client"
+33,https://api.github.com/repos/mozilla/androidspeech/pulls/2,2,Add hotword recorder.,,mrstegeman,457381,2018-09-26T20:23:01Z,CONTRIBUTOR,True,284,0,1,An Android library module to Mozilla's Speech-To-Text services,C,104d02008883b58033fcf35e7e8a6ae2413a2dbf,Add hotword recorder.
+34,https://api.github.com/repos/mozilla/androidspeech/pulls/1,1,Update Idle state even when there are no listeners attached,@andrenatal  Update the idle state in case there are no listeners attached.,keianhzo,837184,2018-08-31T18:06:07Z,COLLABORATOR,True,4,4,1,An Android library module to Mozilla's Speech-To-Text services,C,5e42db48845ebd1544c6f6742d59ffd1a2d49caa,Update Idle state even when there are no listeners attached

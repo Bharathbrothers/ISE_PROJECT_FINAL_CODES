@@ -1,0 +1,108 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/jschannel/pulls/41,41,Enable syntax highlighting in README.md,,kaaboaye,12039839,2020-02-07T17:11:25Z,NONE,False,38,34,1,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,bad80c005b0b60e5f9faa9adb297537073cbb144,Enable syntax highlighting in README.md
+1,https://api.github.com/repos/mozilla/jschannel/pulls/40,40,Method not bound handling,"If requested method has not been bound to the channel the provided error function is not invoked, so the caller never gets to know what happened and why.  There are instances (let's think about browser extensions and the separation between content_script and background script) in which it is not easy to understand if bind has already been executed in the other context, so having a way to reliably know that allows a proper management of these situations.
+With this pull request the channel invokes the error function even when the caller requested a method that is not bound instead of simply ignoring the request.",mfbonfigli,9132199,2019-08-10T12:23:13Z,NONE,False,94,59,3,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,da2b458cd3436840830486f3e591392c71e4269f,Added call to error callback function in case requested method is not bound to the channel.
+2,https://api.github.com/repos/mozilla/jschannel/pulls/40,40,Method not bound handling,"If requested method has not been bound to the channel the provided error function is not invoked, so the caller never gets to know what happened and why.  There are instances (let's think about browser extensions and the separation between content_script and background script) in which it is not easy to understand if bind has already been executed in the other context, so having a way to reliably know that allows a proper management of these situations.
+With this pull request the channel invokes the error function even when the caller requested a method that is not bound instead of simply ignoring the request.",mfbonfigli,9132199,2019-08-10T12:23:13Z,NONE,False,94,59,3,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,bb79c9a9916efd58f847c0cc9a4ae89720345662,Added an example of error callback in case of method not bound to the channel
+3,https://api.github.com/repos/mozilla/jschannel/pulls/39,39,Add Mozilla Code of Conduct,"Fixes #38
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-28T03:38:04Z,NONE,False,15,0,1,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,31356d5a197abc36d5efc55df34755f3df1f4748,"Add Mozilla Code of Conduct file
+
+Fixes #38.
+
+_(Message COC002)_"
+4,https://api.github.com/repos/mozilla/jschannel/pulls/37,37,Removed all references of window.JSON.,"When this library is used on a content script in an extension on firefox the window.JSON object doesn’t exist. Importing the JSON2 library loads the JSON object but doesn’t attach it to the windows.
+Removing all references of window.JSON allows to use the JSON object directly.",pokono,358137,2018-02-01T16:46:24Z,NONE,False,2,2,1,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,7ea7f2b84698bf44d3c676031a6d5c561ba27f4c,Removed all references of window.JSON.
+5,https://api.github.com/repos/mozilla/jschannel/pulls/32,32,Update links to JSON-RPC and pmrpc,,mortonfox,495892,2016-08-03T04:07:37Z,NONE,False,2,2,1,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,529fec408cb0c56d5963e4a3c043b883febfe706,Update links to JSON-RPC and pmrpc
+6,https://api.github.com/repos/mozilla/jschannel/pulls/30,30,#29 add package.json,"Added _package.json_ and added support of _CommonJs_ and _AMD_ modules (`module.exports` and `define('jschannel', ...`)
+
+Currently you may test installation using command:
+
+`npm install git://github.com/CourseTalk/jschannel.git`
+
+After publishing to npm command will looks like:
+
+`npm install jschannel`
+",erm0l0v,1074603,2015-08-27T11:17:01Z,NONE,False,39,1,2,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,23ef2ab63b13b5b253440bb81422fa3e9c8ab7e1,add package.json
+7,https://api.github.com/repos/mozilla/jschannel/pulls/28,28,"Throw Errors, not strings","It's bad form and messes up exception reporting.
+",RobinDaugherty,1005280,2015-04-03T17:28:07Z,NONE,False,21,21,1,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,0bec317f03ff7b79c0e8d8417e7f7e6b9cd3027f,"Throw Errors, not strings"
+8,https://api.github.com/repos/mozilla/jschannel/pulls/27,27,Bower Registry,"Hi, there!
+
+I've added the package to Bower registry so people can easily `bower install jschannel`. Hope you don't mind.
+
+For now, the registry is pointing to my fork, as it contains the _bower.json_ file, but as soon as this pull request gets merged, I'll change it to point to your repository.
+
+Thanks for the great library ;)
+",lucasconstantino,2688512,2014-08-02T00:45:48Z,NONE,False,21,0,1,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,bce5c2c6356a15f14655c032d99a4a314156cc70,Registered at Bower.
+9,https://api.github.com/repos/mozilla/jschannel/pulls/25,25,Do not check null for recursive data structures,"If a param has more than one `null` anywhere in it, the call will fail, falsely identifying
+as a recursive data structure, because in JS, `typeof null === 'object'`
+",brianchirls,492291,2014-02-04T20:04:51Z,NONE,False,1,1,1,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,e8ada0b59ff240ddfad2808d1e00ed8ac0cf38e3,"Do not check null for recursive data structures
+
+If a param has more than one `null` anywhere in it, the call will fail, falsely identifying
+as a recursive data structure, because in JS, `typeof null === 'object'`"
+10,https://api.github.com/repos/mozilla/jschannel/pulls/24,24,Enable loading via AMD / require.js,"When loaded as an AMD module, the global-scoped object (window.Channel) is still created.  This makes sure that it will not interfere with existing pages using jschannel.
+",jffry,602773,2014-01-17T02:47:18Z,NONE,False,7,0,1,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,bb71bf490debcc6fa2c204b8b495a74443d9be1a,"Enable loading via AMD / require.js
+
+When loaded as an AMD module, the global-scoped object (window.Channel)
+is still created.  This makes sure that it will not interfere with
+existing pages using jschannel."
+11,https://api.github.com/repos/mozilla/jschannel/pulls/22,22,Allow `Error` instances to be thrown in remote methods,"If a remote method throws an `Error` instance, this is what we receive in the error callback :
+first argument: ""runtime_error""
+second argument: ""{}""
+
+With this fix, this is what we get if, for instance, a ReferenceError is thrown:
+first argument: ""ReferenceError""
+second argument: ""x is not defined""
+",Tug,230230,2013-10-23T15:17:34Z,NONE,False,8,2,1,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,f84e6e9b2a53a043e81715ab4902cc781c8d11c1,Allow `Error` instances to be thrown in remote methods
+12,https://api.github.com/repos/mozilla/jschannel/pulls/21,21,Enable connection to pdf.js environments,"Allows connection to the ""resource://pdf.js"" origin, which is required for talking to PDF.js.
+Fixes #20.
+",csillag,2093792,2013-10-04T00:28:03Z,NONE,False,2,0,1,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,14d5643a338b53742c438a6e4fc7c17d555778f6,Enable connection to pdf.js environments
+13,https://api.github.com/repos/mozilla/jschannel/pulls/18,18,"if Prototype is loaded, remove its Array.toJSON ","This is a corner case given Prototype isn't used all that often anymore, but it was a particularly nasty one to track down. It would be nice to save other people the trouble.
+",edsu,33829,2013-08-22T12:42:09Z,CONTRIBUTOR,False,15,0,1,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,ef3dc3d5d16913af44d3b30a30945e1605a8a23f,"if Prototype is loaded, remove its Array.toJSON which flattens arrays into strings. Fixes #17"
+14,https://api.github.com/repos/mozilla/jschannel/pulls/18,18,"if Prototype is loaded, remove its Array.toJSON ","This is a corner case given Prototype isn't used all that often anymore, but it was a particularly nasty one to track down. It would be nice to save other people the trouble.
+",edsu,33829,2013-08-22T12:42:09Z,CONTRIBUTOR,False,15,0,1,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,e9caa88ac9390385b57d263528f0869ae6a48ac9,temporarily remove Prototype's Array.toJSON to address @csillag's concerns about disrupting Prototype
+15,https://api.github.com/repos/mozilla/jschannel/pulls/15,15,guard against recursive data structures in pruneFunctions. fixes #14,,edsu,33829,2013-03-12T08:56:58Z,CONTRIBUTOR,True,33,0,3,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,8c4f7ebaabe10f79e47cfaab2f19581d084bf6ac,guard against recursive data structures in pruneFunctions. fixes #14
+16,https://api.github.com/repos/mozilla/jschannel/pulls/13,13,added cfg.reconnect to allow the page in a child frame to reconnect with its parent after a reload,"Hi, I noticed that a channel looses its connection if the page in the child frame is reloaded. 
+
+Needed to be able to ""reconnect"" with the parent again after navigating inside the iframe, so here's a take on that functionality. A demo can be found under `example/multipage/`. 
+
+Would be great to get some input on this functionality... There's probably a safer and better way to do it. (On that note, the real use case does not use `origin: ""*""`)
+",bjrn,151166,2013-03-04T22:32:03Z,NONE,False,162,7,5,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,f9fa96f8cfb9004037712b27dcbeb67aec0d8667,Reconnect option to allow the page in a child frame to reconnect with its parent after a reload.
+17,https://api.github.com/repos/mozilla/jschannel/pulls/12,12,Add Channel.buildFactory().,"This simple change wraps all of jschannel in a function call that can be
+accessed through `Channel.buildFactory()`. This allows jschannel to be used
+outside of the context of cross-document messaging, for example as an
+RPC mechanism between a server and client, or to create intra-document APIs
+that can easily become cross-document if needed.
+
+Also added `example/fake-window.html` to illustrate the use of the new
+function.
+",toolness,124687,2013-02-06T17:47:07Z,CONTRIBUTOR,False,173,1,2,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,2594171a669b38a59ed0c95f2cc5d00e3d453e54,"Add Channel.buildFactory().
+
+This simple change wraps all of jschannel in a function call that can be
+accessed through Channel.buildFactory(). This allows jschannel to be used
+outside of the context of cross-document messaging, for example as an
+RPC mechanism between a server and client, or to create intra-document APIs
+that can easily become cross-document if needed.
+
+Also added example/fake-window.html to illustrate the use of the new
+function."
+18,https://api.github.com/repos/mozilla/jschannel/pulls/11,11,Normalize channel origin to lower-case (with test case),"Addresses https://github.com/mozilla/jschannel/issues/10
+",jmandel,313089,2011-05-23T21:13:11Z,NONE,True,8,1,2,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,94576c4c1bf13894d8bbf0469e56c69b7cad3672,normalize channel origin to lower-case (with test case)
+19,https://api.github.com/repos/mozilla/jschannel/pulls/9,9,Allow chaining with bind,"One line change, I'm just returning the channel object from the bind method to allow for method chaining.
+",brianloveswords,166258,2011-05-10T05:37:07Z,CONTRIBUTOR,True,1,0,1,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,168b487998a8dd84c6e9214599c1f1d383d78a48,Return channel object from bind to allow chaining.
+20,https://api.github.com/repos/mozilla/jschannel/pulls/8,8,"A flurrly of fairly minor changes, and one experimental one.","The experimental one is funky and I am totally cool with its rejection. Just trying to make the docs a bit easier to grok... There are certainly better ways of going about that than my bizarre experiments. :)
+",toolness,124687,2011-05-09T01:35:00Z,CONTRIBUTOR,True,150,32,3,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,50d70fb21cfca4a3652414d6d3433fb85d02575f,"Trivial comment typo, its -> it's"
+21,https://api.github.com/repos/mozilla/jschannel/pulls/8,8,"A flurrly of fairly minor changes, and one experimental one.","The experimental one is funky and I am totally cool with its rejection. Just trying to make the docs a bit easier to grok... There are certainly better ways of going about that than my bizarre experiments. :)
+",toolness,124687,2011-05-09T01:35:00Z,CONTRIBUTOR,True,150,32,3,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,82225d1afc570ba0aa6172d6e5c5fdf8c4ded1cf,"More trivial comment typos, its -> it's"
+22,https://api.github.com/repos/mozilla/jschannel/pulls/8,8,"A flurrly of fairly minor changes, and one experimental one.","The experimental one is funky and I am totally cool with its rejection. Just trying to make the docs a bit easier to grok... There are certainly better ways of going about that than my bizarre experiments. :)
+",toolness,124687,2011-05-09T01:35:00Z,CONTRIBUTOR,True,150,32,3,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,1ce152924766416aeaba6b32752871fe484cb5cb,Another typo fix.
+23,https://api.github.com/repos/mozilla/jschannel/pulls/8,8,"A flurrly of fairly minor changes, and one experimental one.","The experimental one is funky and I am totally cool with its rejection. Just trying to make the docs a bit easier to grok... There are certainly better ways of going about that than my bizarre experiments. :)
+",toolness,124687,2011-05-09T01:35:00Z,CONTRIBUTOR,True,150,32,3,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,69baf4224136731832a41e6e8ae6569785f93bd1,"Typo string fix, 'non-existant' -> 'nonexistent'"
+24,https://api.github.com/repos/mozilla/jschannel/pulls/8,8,"A flurrly of fairly minor changes, and one experimental one.","The experimental one is funky and I am totally cool with its rejection. Just trying to make the docs a bit easier to grok... There are certainly better ways of going about that than my bizarre experiments. :)
+",toolness,124687,2011-05-09T01:35:00Z,CONTRIBUTOR,True,150,32,3,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,be37a7794865b678171df329a8a548fb12531c36,"Made the doctests easier to read by changing some of the examples to be multi-line. Among other things, this makes it so readers don't have to scroll horizontally in the <pre> areas to see all the code."
+25,https://api.github.com/repos/mozilla/jschannel/pulls/8,8,"A flurrly of fairly minor changes, and one experimental one.","The experimental one is funky and I am totally cool with its rejection. Just trying to make the docs a bit easier to grok... There are certainly better ways of going about that than my bizarre experiments. :)
+",toolness,124687,2011-05-09T01:35:00Z,CONTRIBUTOR,True,150,32,3,A JavaScript library which implements fancy IPC semantics on top of postMessage.,JavaScript,6793b3676609a1db7ca97be2994c6312f8921fb4,"This is a somewhat experimental change that attempts to make the doctests easier to understand by displaying relevant snippets of code from the child frame.
+
+I'm not sure how effective it is, but it does help me understand how to use jschannel a bit better by juxtaposing child and parent code on the same page.
+
+This enhancement is purely for the sake of readability, however, and shouldn't impact the execution of tests in any way."

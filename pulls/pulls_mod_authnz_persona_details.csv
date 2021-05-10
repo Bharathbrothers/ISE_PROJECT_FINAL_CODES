@@ -1,0 +1,208 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/36,36,README: clarify hostname used in IDP requests,"The previous text only mentioned the server's hostname but ServerName also works, which is necessary for servers behind a load-balancer.
+",acdha,46565,2015-02-20T19:18:46Z,CONTRIBUTOR,True,4,2,1,A persona authentication module for apache,C,512a876755cf72a3bddcd6cc552cebd06ff698e4,"README: clarify hostname used in IDP requests
+
+The previous text only mentioned the server's hostname but ServerName also works, which is necessary for servers behind a load-balancer."
+1,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/35,35,Reduce log level in Auth_persona_check_cookie,"Currently every request generates a log message at ERROR, which is very noisy during normal usage. This simply changes it down to APLOG_DEBUG.
+",acdha,46565,2015-01-16T13:53:40Z,CONTRIBUTOR,True,1,1,1,A persona authentication module for apache,C,7c3887d0fae0219e01630077c2f6aface986689c,"Reduce log level in Auth_persona_check_cookie
+
+Currently every request generates a log message at ERROR, which is very noisy during normal usage"
+2,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/32,32,Adding installation instructions for Debian/Ubuntu,,gene1wood,1134034,2014-05-13T22:43:47Z,MEMBER,True,21,7,1,A persona authentication module for apache,C,9b6498c11073356161ab1dbde06fccfce997cc24,Adding installation instructions for Debian/Ubuntu
+3,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/26,26,set custom error response content for 401/403 errors,"So the approach here is that, in our `Auth_persona_check_cookie` function, which is registered as a `check_user_id` hook, if the user has a correct cookie and let in (aka is authenticated), we set a custom error response for 401 or 403 errors. These override any custom `ErrorDocument`s the user has set up, but I think it's still a pretty big net win, since this will subsequently show a nice Persona error page with a custom error message for any failed authorization (e.g. `Require persona-idp`, but also `Require user` even if we stop handling it ourselves).
+
+@lloyd r? @gene1wood want to test this?
+",djc,158471,2013-10-02T19:45:51Z,MEMBER,False,17,0,1,A persona authentication module for apache,C,59e7b1f688d3c81842ed374ad8aa8bd0413451bc,set custom error response content for 401/403 errors
+4,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/25,25,HMAC/SHA1 implementation,"I've taken #23 and merged it into a single commit (since IIRC the commits there don't make sense to preserve). I've also made two changes of my own that I think make it slightly cleaner.
+
+While the single-valued return value is potentially more future-proof, I think having that in the code now does not actually help. Since we don't really have a stable API surface here, we can always add it as soon as we need it.
+
+Since the HMAC code has no other ties to APR than that it uses the APR implementation of SHA1, I'm not sure why it makes sense to name it with APRX everywhere here, since it'll just be maintained in this codebase.
+
+@gozer-mozilla, does that make sense?
+",djc,158471,2013-10-01T15:06:54Z,MEMBER,True,96,18,5,A persona authentication module for apache,C,c2511bdb6fb222aeaec4117b4fba1423e07571b9,"Add a HMAC implementation based on top of APR's SHA1.
+
+No unit-tests yet, but conforms to the HMAC-SHA1 Spec"
+5,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/25,25,HMAC/SHA1 implementation,"I've taken #23 and merged it into a single commit (since IIRC the commits there don't make sense to preserve). I've also made two changes of my own that I think make it slightly cleaner.
+
+While the single-valued return value is potentially more future-proof, I think having that in the code now does not actually help. Since we don't really have a stable API surface here, we can always add it as soon as we need it.
+
+Since the HMAC code has no other ties to APR than that it uses the APR implementation of SHA1, I'm not sure why it makes sense to name it with APRX everywhere here, since it'll just be maintained in this codebase.
+
+@gozer-mozilla, does that make sense?
+",djc,158471,2013-10-01T15:06:54Z,MEMBER,True,96,18,5,A persona authentication module for apache,C,ac44f28e059f310dadcb2d6339d952f318586b6e,"false security is false, might as well return void"
+6,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/25,25,HMAC/SHA1 implementation,"I've taken #23 and merged it into a single commit (since IIRC the commits there don't make sense to preserve). I've also made two changes of my own that I think make it slightly cleaner.
+
+While the single-valued return value is potentially more future-proof, I think having that in the code now does not actually help. Since we don't really have a stable API surface here, we can always add it as soon as we need it.
+
+Since the HMAC code has no other ties to APR than that it uses the APR implementation of SHA1, I'm not sure why it makes sense to name it with APRX everywhere here, since it'll just be maintained in this codebase.
+
+@gozer-mozilla, does that make sense?
+",djc,158471,2013-10-01T15:06:54Z,MEMBER,True,96,18,5,A persona authentication module for apache,C,acc9c1d81a12837c9667c4717674291cf63fd2fe,get rid of APRX prefix
+7,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/23,23,HMAC/SHA1 implementation,"Looking at the implementation of the signature method, I noticed it's not doing a proper HMAC, but instead, using a more simplistic SHA1(secret + data) which is known to be flawed and insecure.
+
+This branch is a reimplemntation of the cookie signature scheme that uses the standard secure HMAC method.
+
+It's functionally identical and is spec verified AFAIKT
+",gozer,903592,2013-09-10T01:10:26Z,CONTRIBUTOR,False,105,17,5,A persona authentication module for apache,C,f4c717cdfcf9a166ca7726847efeb7636637208c,"rename Signature to HMAC, since that's what it is."
+8,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/23,23,HMAC/SHA1 implementation,"Looking at the implementation of the signature method, I noticed it's not doing a proper HMAC, but instead, using a more simplistic SHA1(secret + data) which is known to be flawed and insecure.
+
+This branch is a reimplemntation of the cookie signature scheme that uses the standard secure HMAC method.
+
+It's functionally identical and is spec verified AFAIKT
+",gozer,903592,2013-09-10T01:10:26Z,CONTRIBUTOR,False,105,17,5,A persona authentication module for apache,C,219387229db45cfdde9ea3fc4bc812ba99560842,"Add a HMAC implementation based on top of APR's SHA1.
+
+No unit-tests yet, but conforms to the HMAC-SHA1 Spec"
+9,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/23,23,HMAC/SHA1 implementation,"Looking at the implementation of the signature method, I noticed it's not doing a proper HMAC, but instead, using a more simplistic SHA1(secret + data) which is known to be flawed and insecure.
+
+This branch is a reimplemntation of the cookie signature scheme that uses the standard secure HMAC method.
+
+It's functionally identical and is spec verified AFAIKT
+",gozer,903592,2013-09-10T01:10:26Z,CONTRIBUTOR,False,105,17,5,A persona authentication module for apache,C,95f800bcfcb8dfff77bb44fdc2515fd7784aef1b,Use constants for the digest size instead of hard-coding things
+10,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/23,23,HMAC/SHA1 implementation,"Looking at the implementation of the signature method, I noticed it's not doing a proper HMAC, but instead, using a more simplistic SHA1(secret + data) which is known to be flawed and insecure.
+
+This branch is a reimplemntation of the cookie signature scheme that uses the standard secure HMAC method.
+
+It's functionally identical and is spec verified AFAIKT
+",gozer,903592,2013-09-10T01:10:26Z,CONTRIBUTOR,False,105,17,5,A persona authentication module for apache,C,91ca8623349e4c834003477d08292dd199d6c6e5,merge conflict
+11,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/23,23,HMAC/SHA1 implementation,"Looking at the implementation of the signature method, I noticed it's not doing a proper HMAC, but instead, using a more simplistic SHA1(secret + data) which is known to be flawed and insecure.
+
+This branch is a reimplemntation of the cookie signature scheme that uses the standard secure HMAC method.
+
+It's functionally identical and is spec verified AFAIKT
+",gozer,903592,2013-09-10T01:10:26Z,CONTRIBUTOR,False,105,17,5,A persona authentication module for apache,C,74f2936bc9ec07b39088c815d8c4b0f1873778e1,fix merge commit
+12,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/21,21,Fixing typo in readme and adding example for 'Require user',"The filename of the shared object that's built is ""mod_authn_persona.so"" not ""authn_persona_module.so"". I've also added a couple lines illustrating the third usage example of 'Require user'
+",gene1wood,1134034,2013-09-09T16:25:26Z,MEMBER,True,3,1,1,A persona authentication module for apache,C,b9fb8de257b8eca82e81f3e76a6e6023762a44f1,Fixing typo in readme and adding example for 'Require user'
+13,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/20,20,show error page and allow relogin after failed authorization (fixes #13),,djc,158471,2013-09-03T10:47:46Z,MEMBER,True,87,49,3,A persona authentication module for apache,C,7aae9157863db83dca74050b28cdcb290eab27cd,enable adding JS code to signin page
+14,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/20,20,show error page and allow relogin after failed authorization (fixes #13),,djc,158471,2013-09-03T10:47:46Z,MEMBER,True,87,49,3,A persona authentication module for apache,C,af34d7e695d132741712dd4bac96b567480c3a6b,process assertions even if a valid cookie is present
+15,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/20,20,show error page and allow relogin after failed authorization (fixes #13),,djc,158471,2013-09-03T10:47:46Z,MEMBER,True,87,49,3,A persona authentication module for apache,C,1cb5cf6c3b085b5fa34b4acc20a9d0d82c9ff08e,fire watch() from window.onload() to allow for some preparation
+16,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/20,20,show error page and allow relogin after failed authorization (fixes #13),,djc,158471,2013-09-03T10:47:46Z,MEMBER,True,87,49,3,A persona authentication module for apache,C,722741498bbd5b9fd87566286ed1c05ff3b193de,show error if authorization failed (403 Forbidden)
+17,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/14,14,"The Apache auth framework handles stacked aaa modules fine. So, some of","the auth logic in here was superfluous.
+
+In short, the auth_check phase needs only bother itself with:
+  Require persona-idp
+
+The other cases like 'Require valid-user','Require user foo@bar.com'
+will be handled by core modules. This way, it works as expected and
+doesn't require any re-implementation.
+
+For instance:
+
+<Location />
+  AuthType Persona
+  Require user gozer@mozilla.com
+  Require user bob@mozillafoundation.org
+  Require persona-idp mozilla.org
+</Location>
+
+Will work as expected.
+
+While I was at it, I removed the userfile support, since it can
+easily be implemented with the 'Require group' stuff.
+",gozer,903592,2013-08-29T19:49:46Z,CONTRIBUTOR,False,15,78,1,A persona authentication module for apache,C,97135381233eb3da6b4ab26a9ee4797ececcb82e,"The Apache auth framework handles stacked aaa modules fine. So, some of
+the auth logic in here was superfluous.
+
+In short, the auth_check phase needs only bother itself with:
+  Require persona-idp
+
+The other cases like 'Require valid-user','Require user foo@bar.com'
+will be handled by core modules. This way, it works as expected and
+doesn't require any re-implementation.
+
+For instance:
+
+<Location />
+  AuthType Persona
+  Require user gozer@mozilla.com
+  Require user bob@mozillafoundation.org
+  Require persona-idp mozilla.org
+</Location>
+
+Will work as expected.
+
+While I was at it, I removed the userfile support, since it can
+easily be implemented with the 'Require group' stuff."
+18,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/13,13,Autoconf work,"Once this is added, you can simply build with:
+
+$> ./buildconf
+$> ./configure
+$> make
+",gozer,903592,2013-08-29T17:16:30Z,CONTRIBUTOR,False,1038,37,14,A persona authentication module for apache,C,dda71f5dcd928eba1ea9ba62779fdef078c5f138,autoconf foo
+19,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/13,13,Autoconf work,"Once this is added, you can simply build with:
+
+$> ./buildconf
+$> ./configure
+$> make
+",gozer,903592,2013-08-29T17:16:30Z,CONTRIBUTOR,False,1038,37,14,A persona authentication module for apache,C,cad561660e4cbe60075b935d4158666b33db5d5b,cleanup
+20,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/13,13,Autoconf work,"Once this is added, you can simply build with:
+
+$> ./buildconf
+$> ./configure
+$> make
+",gozer,903592,2013-08-29T17:16:30Z,CONTRIBUTOR,False,1038,37,14,A persona authentication module for apache,C,798571f0b7ad77fba360118b06daa4968aa027c3,autotools cleanup
+21,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/13,13,Autoconf work,"Once this is added, you can simply build with:
+
+$> ./buildconf
+$> ./configure
+$> make
+",gozer,903592,2013-08-29T17:16:30Z,CONTRIBUTOR,False,1038,37,14,A persona authentication module for apache,C,6b9b9778a546fef2e26ccff50514de009a9eb97b,autotools cleanup
+22,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/13,13,Autoconf work,"Once this is added, you can simply build with:
+
+$> ./buildconf
+$> ./configure
+$> make
+",gozer,903592,2013-08-29T17:16:30Z,CONTRIBUTOR,False,1038,37,14,A persona authentication module for apache,C,a81e1d63f84223b672d198e3a39a3fb5a3e82562,cleanup some install targets
+23,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/13,13,Autoconf work,"Once this is added, you can simply build with:
+
+$> ./buildconf
+$> ./configure
+$> make
+",gozer,903592,2013-08-29T17:16:30Z,CONTRIBUTOR,False,1038,37,14,A persona authentication module for apache,C,4f6e738b4b95819a4c0e4214af5e32fb762a7895,-Wno-unused-function
+24,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/13,13,Autoconf work,"Once this is added, you can simply build with:
+
+$> ./buildconf
+$> ./configure
+$> make
+",gozer,903592,2013-08-29T17:16:30Z,CONTRIBUTOR,False,1038,37,14,A persona authentication module for apache,C,b37a2f91fbcc929db8173b422d6d5afdc06ecbd3,initial test skeleton
+25,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/13,13,Autoconf work,"Once this is added, you can simply build with:
+
+$> ./buildconf
+$> ./configure
+$> make
+",gozer,903592,2013-08-29T17:16:30Z,CONTRIBUTOR,False,1038,37,14,A persona authentication module for apache,C,275bfde7c9ff6951821d180183c061a7d6473f54,Merge remote-tracking branch 'upstream/master' into autoconf
+26,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/12,12,Allow requirement for a specific IdP (fixes #3),"@lloyd r?
+",djc,158471,2013-08-29T14:50:37Z,MEMBER,True,20,1,2,A persona authentication module for apache,C,dedc6602028fd73879f65c906d56655ece8d3aa4,add persona-idp option for Require directives
+27,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/12,12,Allow requirement for a specific IdP (fixes #3),"@lloyd r?
+",djc,158471,2013-08-29T14:50:37Z,MEMBER,True,20,1,2,A persona authentication module for apache,C,4aae3b5b4ecf88a6967ef09d3b103be6b2c9ff71,make note of Require persona-idp in README
+28,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/11,11,Secret option,"Over to @lloyd for r?
+",djc,158471,2013-08-29T09:26:16Z,MEMBER,True,44,20,3,A persona authentication module for apache,C,0cbeeb7c4fac0ba65ca12a8cd5d4d51e10483c18,setup configuration structure to hold server secret
+29,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/11,11,Secret option,"Over to @lloyd for r?
+",djc,158471,2013-08-29T09:26:16Z,MEMBER,True,44,20,3,A persona authentication module for apache,C,0247d5f0a495fa38fdf10aceb11f0600673e08a4,use server-wide configuration API for server secret
+30,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/11,11,Secret option,"Over to @lloyd for r?
+",djc,158471,2013-08-29T09:26:16Z,MEMBER,True,44,20,3,A persona authentication module for apache,C,809be8d0ebf8080fc210d1856f5887b2f3e02a61,enable setting the server secret with config directive
+31,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/11,11,Secret option,"Over to @lloyd for r?
+",djc,158471,2013-08-29T09:26:16Z,MEMBER,True,44,20,3,A persona authentication module for apache,C,88f23165ac12ebc5717ca290075623b27fc0c6a2,rewrite README entry on server secret configuration
+32,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/9,9,Use nice visual design implemented by @ryanfeeley,,djc,158471,2013-08-28T16:35:52Z,MEMBER,True,165,5,1,A persona authentication module for apache,C,34ae6705f7a5eae5a7f53fcfc24a30448ce71898,Implemented visual design and data URL images
+33,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/9,9,Use nice visual design implemented by @ryanfeeley,,djc,158471,2013-08-28T16:35:52Z,MEMBER,True,165,5,1,A persona authentication module for apache,C,ab5e694542a2f252560ac2ac51fa5a8373e4d8ff,commit to utf-8 encoding so the UA doesn't have to guess
+34,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/9,9,Use nice visual design implemented by @ryanfeeley,,djc,158471,2013-08-28T16:35:52Z,MEMBER,True,165,5,1,A persona authentication module for apache,C,29ca75817239175a7f3112b49fd2d51379e97afb,remove loading class if user needs to start login process
+35,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/9,9,Use nice visual design implemented by @ryanfeeley,,djc,158471,2013-08-28T16:35:52Z,MEMBER,True,165,5,1,A persona authentication module for apache,C,2c32b2bb6c6e6cfe2111cb596be640b2a682d4ee,work with third party cookies disabled
+36,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/8,8,Implemented visual design and data URL images,,djc,158471,2013-08-28T13:13:56Z,MEMBER,False,160,4,1,A persona authentication module for apache,C,34ae6705f7a5eae5a7f53fcfc24a30448ce71898,Implemented visual design and data URL images
+37,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/7,7,2 random secrets,"Fixes #2.
+",djc,158471,2013-08-28T11:27:16Z,MEMBER,True,65,57,6,A persona authentication module for apache,C,9101444d3f0686e3d5192e6a0d7ae5b5d717481f,get securely random bytes and use them for signatures (WIP)
+38,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/7,7,2 random secrets,"Fixes #2.
+",djc,158471,2013-08-28T11:27:16Z,MEMBER,True,65,57,6,A persona authentication module for apache,C,f161c4c4a7ea30dfd657758df6060e1a82a9e7e1,Merge branch 'master' into 2-random-secrets
+39,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/7,7,2 random secrets,"Fixes #2.
+",djc,158471,2013-08-28T11:27:16Z,MEMBER,True,65,57,6,A persona authentication module for apache,C,f213dbda8b9f291e6c9229adebef9c9a1896639a,simplify authentication logic - fix case of invalid cookie + valid assertion
+40,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/7,7,2 random secrets,"Fixes #2.
+",djc,158471,2013-08-28T11:27:16Z,MEMBER,True,65,57,6,A persona authentication module for apache,C,a124c9f9f97d54a15e4448eb7ca1b0e0d9112e86,properly seed apr's PRNG with random bytes
+41,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/6,6,"reorder login flow code, fix redirection issue (fixes #5)",,djc,158471,2013-08-28T09:07:27Z,MEMBER,True,22,26,1,A persona authentication module for apache,C,31bcecd5718b60b5f85c51c47fa0bb6adc72d048,"reorder login flow code, fix redirection issue (fixes #5)"
+42,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/6,6,"reorder login flow code, fix redirection issue (fixes #5)",,djc,158471,2013-08-28T09:07:27Z,MEMBER,True,22,26,1,A persona authentication module for apache,C,1ecfc730a50d759b06dbcbb4c5668de825db27b6,clean up debug message
+43,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/4,4,update the README,"simplify, and describe the current design approach.
+",lloyd,39411,2013-08-28T08:43:41Z,CONTRIBUTOR,True,42,107,1,A persona authentication module for apache,C,90aa8415905fd6c81c5859138594a51d4eb7ee40,update the README
+44,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/4,4,update the README,"simplify, and describe the current design approach.
+",lloyd,39411,2013-08-28T08:43:41Z,CONTRIBUTOR,True,42,107,1,A persona authentication module for apache,C,973ffc90c1223e88710225346790af1bcf123fad,improve documentation of cookie secret
+45,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/4,4,update the README,"simplify, and describe the current design approach.
+",lloyd,39411,2013-08-28T08:43:41Z,CONTRIBUTOR,True,42,107,1,A persona authentication module for apache,C,774c7af3d6ff0507809d11a2ddb937a01ca14510,readme: there's something to be said for consistently wrapped lines
+46,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/4,4,update the README,"simplify, and describe the current design approach.
+",lloyd,39411,2013-08-28T08:43:41Z,CONTRIBUTOR,True,42,107,1,A persona authentication module for apache,C,abd6b3d2102e309d1465e45ad8b87522a4dd9b5c,mention require valid-user in readme
+47,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/1,1,Update build instructions for new name,,djc,158471,2013-08-27T13:44:01Z,MEMBER,True,4,4,1,A persona authentication module for apache,C,82546af3888a475888b65b23389f2c3eece62868,Update build instructions for new name
+48,https://api.github.com/repos/mozilla/mod_authnz_persona/pulls/1,1,Update build instructions for new name,,djc,158471,2013-08-27T13:44:01Z,MEMBER,True,4,4,1,A persona authentication module for apache,C,c4f32523492f7369cdd2509b9fda6e6736a863e2,Fix module name/path for new module name

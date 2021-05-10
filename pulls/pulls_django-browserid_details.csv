@@ -1,0 +1,1748 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/django-browserid/pulls/300,300,Cast audience to string because of possible lazily evaluated variables.,"Hi @Osmose,
+
+Could you share your thoughts/review this?
+
+Thanks in advance.
+",jotes,8784972,2016-08-09T23:05:30Z,NONE,False,64,3,3,Django application for adding BrowserID support.,JavaScript,ccb8f0a7112e06dda43342c26772085a5a3d562e,Cast audience to string because of possible lazily evaluated variables.
+1,https://api.github.com/repos/mozilla/django-browserid/pulls/299,299,Allow usage of named urls for redirection URLs in the settings.,"Since Django 1.7, the `*_REDIRECT_URL` settings can be named URLs, to reduce configuration duplication. This change teaches Django BrowserID about this possibility.
+
+Documentation: https://docs.djangoproject.com/en/1.7/ref/settings/#login-url
+",abompard,95780,2016-06-19T15:39:52Z,CONTRIBUTOR,True,53,6,4,Django application for adding BrowserID support.,JavaScript,a788da3219d1950b2b42f37904c438e910af1cf7,"Allow usage of named urls for redirection URLs in the settings.
+
+Since Django 1.7, the `*_REDIRECT_URL` settings can be named URLs, to
+reduce configuration duplication. This change teaches Django BrowserID
+about this possibility.
+
+Documentation:
+https://docs.djangoproject.com/en/1.7/ref/settings/#login-url"
+2,https://api.github.com/repos/mozilla/django-browserid/pulls/299,299,Allow usage of named urls for redirection URLs in the settings.,"Since Django 1.7, the `*_REDIRECT_URL` settings can be named URLs, to reduce configuration duplication. This change teaches Django BrowserID about this possibility.
+
+Documentation: https://docs.djangoproject.com/en/1.7/ref/settings/#login-url
+",abompard,95780,2016-06-19T15:39:52Z,CONTRIBUTOR,True,53,6,4,Django application for adding BrowserID support.,JavaScript,34f9291dc4547c0e7f635ee5b186cbbd7bd1b207,"Implement suggestion from review, update docs"
+3,https://api.github.com/repos/mozilla/django-browserid/pulls/298,298,Fix django-browserid for Django 1.9 with Jinja2,"- The context processor is missing in the source, but present in the wheel. This PR adds it back with slight modifications.
+- The context processor passes the request as the first parameter, but `helpers.browserid_info` doesn't take any parameters. This results in obscure errors when using the library. Removing the `functools.partial` solves the issue.
+",Uberi,437196,2016-03-01T23:21:59Z,NONE,False,56,0,2,Django application for adding BrowserID support.,JavaScript,71ad92423e611f00a306e751869c71891819afc2,Fix django-browserid for Django 1.9 with Jinja2
+4,https://api.github.com/repos/mozilla/django-browserid/pulls/297,297,De-duplicate login/logout redirect behaviour,"As raised in #296, `browserid_login` and `browserid_logout` buttons set a default `next` which prevents the documented behaviour of `Verify.success_url` and `Logout.redirect_url` ever taking effect. The default values duplicate the default behaviour of those properties, causing confusion when attempts to customise the redirect behaviour of these views has no effect.
+
+This change instead uses a blank `next` by default, letting the `Verify.success_url` and `Logout.redirect_url` behaviour be used as appropriate when no `next` has been explicitly supplied at the point of creating the button. The default behaviour of the library should be unaffected, but it could affect existing custom JS that mistakenly uses the `data-next` attribute of the button instead of the returned `redirect` from the API.
+",alanbriolat,12193,2015-12-17T12:06:37Z,CONTRIBUTOR,False,18,39,2,Django application for adding BrowserID support.,JavaScript,a345a32ac1052599b828a95006fabac35f79b32f,De-duplicate login/logout redirect behaviour
+5,https://api.github.com/repos/mozilla/django-browserid/pulls/295,295,Use the new style urlpatterns syntax to fix Django deprecation warnings,"The `patterns()` syntax is now deprecated:
+https://docs.djangoproject.com/en/1.8/releases/1.8/#django-conf-urls-patterns
+
+And so under Django 1.8 results in warnings:
+
+> django_browserid/urls.py:28: RemovedInDjango110Warning: django.conf.urls.patterns() is deprecated and will be removed in Django 1.10. Update your urlpatterns to be a list of django.conf.urls.url() instances instead.
+
+Fixes #294.
+",edmorley,501702,2015-11-25T15:37:29Z,CONTRIBUTOR,True,3,3,1,Django application for adding BrowserID support.,JavaScript,7ff1506542d89f30433906b19c41cbea84be5e93,"Use the new style urlpatterns syntax to fix Django deprecation warnings
+
+The `patterns()` syntax is now deprecated:
+https://docs.djangoproject.com/en/1.8/releases/1.8/#django-conf-urls-patterns
+
+And so under Django 1.8 results in warnings:
+
+django_browserid/urls.py:28: RemovedInDjango110Warning:
+django.conf.urls.patterns() is deprecated and will be removed in
+Django 1.10. Update your urlpatterns to be a list of
+django.conf.urls.url() instances instead.
+
+Fixes #294."
+6,https://api.github.com/repos/mozilla/django-browserid/pulls/292,292,Fix #291: Add Django 1.9 support and test against the beta.,"#291 mentions that `same_origin` doesn't exist in Django 1.9; it was replaced by `is_same_domain`, which is not what we used `same_origin` for. So I replicated the function in our utils. There was also a small issue where extra cache headers were added by the no-cache decorator, so I just altered our test to check for the minimum that we expect from the cache headers.
+
+I also added 1.9b1 to the tox/travis tests. Once 1.9 is out we can update to test against the released version and cut a new bugfix release.
+
+@peterbe r?
+",Osmose,193106,2015-10-27T22:25:50Z,CONTRIBUTOR,True,69,15,6,Django application for adding BrowserID support.,JavaScript,fe2b4ec22303e7751c6c9cefe66ed33883b1300f,Fix #291: Add Django 1.9 support and test against the beta.
+7,https://api.github.com/repos/mozilla/django-browserid/pulls/290,290,Switch to Travis' container-based infra.,,Osmose,193106,2015-10-21T17:07:13Z,CONTRIBUTOR,True,9,6,2,Django application for adding BrowserID support.,JavaScript,b801063de23d2f55c7c0308d24f60da7b7785d87,Switch to Travis' container-based infra and fix tests.
+8,https://api.github.com/repos/mozilla/django-browserid/pulls/289,289,Simplify CSRF and Tests,"This PR does two things:
+1. Reduces our set of tested/supported Python and Django versions to Django 1.7 and 1.8 and their supported Python versions. Since 1.8 is the new LTS release we don't need to support 1.4 anymore, and our support of other unsupported Django versions was just holding us back.
+   
+   As a part of this, I removed django-nose (as we weren't really using any of it's features) and refactored `runtests.py` to match a bit better the [testing script that Django suggests](https://docs.djangoproject.com/en/1.8/topics/testing/advanced/#using-the-django-test-runner-to-test-reusable-applications). I left nose in because we use some of its helpers and I didn't feel like renaming and reformatting our tests to remove it.
+2. Simplify the CSRF view to just check for the two variations of CSRF tokens we care about instead of doing some magic around pulling the token out of the request context. I ran into issues with the existing code while working on Pontoon, which uses django-jinja, which got me looking at it in the first place.
+",Osmose,193106,2015-04-28T22:10:03Z,CONTRIBUTOR,True,138,224,14,Django application for adding BrowserID support.,JavaScript,e331d9b1784a6952faa0d4daceacbbd17e3c682a,"Limit tests to run on Django 1.7 and 1.8.
+
+1.8 is the new LTS and 1.7 is still currently supported."
+9,https://api.github.com/repos/mozilla/django-browserid/pulls/289,289,Simplify CSRF and Tests,"This PR does two things:
+1. Reduces our set of tested/supported Python and Django versions to Django 1.7 and 1.8 and their supported Python versions. Since 1.8 is the new LTS release we don't need to support 1.4 anymore, and our support of other unsupported Django versions was just holding us back.
+   
+   As a part of this, I removed django-nose (as we weren't really using any of it's features) and refactored `runtests.py` to match a bit better the [testing script that Django suggests](https://docs.djangoproject.com/en/1.8/topics/testing/advanced/#using-the-django-test-runner-to-test-reusable-applications). I left nose in because we use some of its helpers and I didn't feel like renaming and reformatting our tests to remove it.
+2. Simplify the CSRF view to just check for the two variations of CSRF tokens we care about instead of doing some magic around pulling the token out of the request context. I ran into issues with the existing code while working on Pontoon, which uses django-jinja, which got me looking at it in the first place.
+",Osmose,193106,2015-04-28T22:10:03Z,CONTRIBUTOR,True,138,224,14,Django application for adding BrowserID support.,JavaScript,443fddcb440085d1826815b61220980ae9815721,"Simplify how we fetch CSRF tokens.
+
+After running into issues with the template magic we use to fetch the
+CSRF token, I decided to just keep things simple and add an explicit
+special case for checking where session-csrf stores its token."
+10,https://api.github.com/repos/mozilla/django-browserid/pulls/288,288,Clean up broken/non-canonical external links in readme/docs,"Fixes a number of links that were either broken or else redirected.
+",edmorley,501702,2015-04-28T09:36:05Z,CONTRIBUTOR,True,11,11,4,Django application for adding BrowserID support.,JavaScript,77ed5e7e1d22627fd522345eb317b3938e165cec,Clean up broken/non-canonical external links in readme/docs
+11,https://api.github.com/repos/mozilla/django-browserid/pulls/287,287,Use __import__ instead of importlib in utils.py.,"Fixes a warning being raised on Django 1.8 about importlib being removed
+in Django 1.9.
+",Osmose,193106,2015-04-27T23:28:59Z,CONTRIBUTOR,True,13,31,2,Django application for adding BrowserID support.,JavaScript,852d8da9bbc601801779aa98159b9b24483f3692,"Use __import__ instead of importlib in utils.py.
+
+Fixes a warning being raised on Django 1.8 about importlib being removed
+in Django 1.9."
+12,https://api.github.com/repos/mozilla/django-browserid/pulls/284,284,Django1.8,"Fix the CSRF view for Django 1.8+.
+",abompard,95780,2015-04-06T21:12:54Z,CONTRIBUTOR,False,14,2,2,Django application for adding BrowserID support.,JavaScript,090e7c7b19604fc7b5eef86fcea5ad4644245974,Fix the csrf view for Django 1.8+
+13,https://api.github.com/repos/mozilla/django-browserid/pulls/284,284,Django1.8,"Fix the CSRF view for Django 1.8+.
+",abompard,95780,2015-04-06T21:12:54Z,CONTRIBUTOR,False,14,2,2,Django application for adding BrowserID support.,JavaScript,8b34491a288bbe912de373b6605975baf01a984d,Bind to a dummy template instead of rendering it
+14,https://api.github.com/repos/mozilla/django-browserid/pulls/284,284,Django1.8,"Fix the CSRF view for Django 1.8+.
+",abompard,95780,2015-04-06T21:12:54Z,CONTRIBUTOR,False,14,2,2,Django application for adding BrowserID support.,JavaScript,70e0c9b7bc505f58927cbf1c0fc35b42eba47e4a,Use the configured template engine instead of Django's default
+15,https://api.github.com/repos/mozilla/django-browserid/pulls/281,281,Remove fancy_tag,"Fixes #280
+",abompard,95780,2015-04-03T12:53:41Z,CONTRIBUTOR,True,11,16,4,Django application for adding BrowserID support.,JavaScript,b37b9d772e247a1ad0f55ca6b6c08c520c086585,"Remove fancy_tag
+
+Fixes #280"
+16,https://api.github.com/repos/mozilla/django-browserid/pulls/281,281,Remove fancy_tag,"Fixes #280
+",abompard,95780,2015-04-03T12:53:41Z,CONTRIBUTOR,True,11,16,4,Django application for adding BrowserID support.,JavaScript,52fe20abe92375fecdd4302668e9be2bf287e2b1,Remove leftover references to fancy_tag
+17,https://api.github.com/repos/mozilla/django-browserid/pulls/279,279,Update version specifiers in tox.ini and .travis.yml.,"The travis run on #278 failed because Travis was testing us against
+Django 1.7 and Python 2.6, which isn't supported. I realized our
+version specifiers weren't consistent with eachother and decided to
+fix them up.
+
+Now all of the specifiers act like the `~=` operator from PEP 440 and
+install the latest compatible version within each major Django version
+while testing, which I think better mirrors the versions our users
+are going to be using.
+
+This PR is mostly so I can see if Travis likes the changes. :D
+",Osmose,193106,2015-03-12T17:34:39Z,CONTRIBUTOR,True,27,28,2,Django application for adding BrowserID support.,JavaScript,afabe0e74e2871f9334e05f4456b3cc3d334c162,Update version specifiers in tox.ini and .travis.yml.
+18,https://api.github.com/repos/mozilla/django-browserid/pulls/278,278,Simplify quickstart HTML template,"This makes the quickstart HTML template use the `browserid_css` and `browserid_js` template tags, which is useful for a few reasons:
+- It simplifies the template code.
+- It allows the template to be copy-pasted into an empty file (the existing code is missing a `{% load static %}` but this change removes the need for that).
+- It makes the template work automatically with the auto-login system for offline development.
+",toolness,124687,2015-03-12T13:19:17Z,CONTRIBUTOR,True,2,4,1,Django application for adding BrowserID support.,JavaScript,36efbb5f37e39d483caa0aae388999b840055802,"Simplify quickstart HTML template
+
+This makes the quickstart HTML template use the `browserid_css` and `browserid_js` template tags, which is useful for a few reasons:
+
+* It simplifies the template code.
+* It allows the template to be copy-pasted into an empty file (the existing code is missing a `{% load static %}` but this change removes the need for that).
+* It makes the template work automatically with the auto-login system for offline development."
+19,https://api.github.com/repos/mozilla/django-browserid/pulls/278,278,Simplify quickstart HTML template,"This makes the quickstart HTML template use the `browserid_css` and `browserid_js` template tags, which is useful for a few reasons:
+- It simplifies the template code.
+- It allows the template to be copy-pasted into an empty file (the existing code is missing a `{% load static %}` but this change removes the need for that).
+- It makes the template work automatically with the auto-login system for offline development.
+",toolness,124687,2015-03-12T13:19:17Z,CONTRIBUTOR,True,2,4,1,Django application for adding BrowserID support.,JavaScript,37bf6d453652e063eb41cf3b8fc8db899ce4edf5,Remove duplicate persona script from quickstart
+20,https://api.github.com/repos/mozilla/django-browserid/pulls/277,277,Add contribute.json file.,"Add a contribute.json file à la http://contribute.paas.allizom.org/.
+",Osmose,193106,2015-03-02T17:08:09Z,CONTRIBUTOR,True,25,0,1,Django application for adding BrowserID support.,JavaScript,0cacc64d8173e431c8663ed08e73f20f0478ef0d,Add contribute.json file.
+21,https://api.github.com/repos/mozilla/django-browserid/pulls/275,275,Fix circular import issue with jingo.,"Turns out jingo imports all apps in INSTALLED_APPS when it’s loaded.
+Which loads django_browserid. Which imports django_browserid.compat. 
+Which attempts to import jingo, which fails since that’s a circular
+import, causing the fake jingo.register shim to be used, which means
+the helpers aren’t available in the templates.
+
+The solution? Shove the shim inside helpers.py, which is loaded as late
+as possible by jingo to avoid import issues like this.
+",Osmose,193106,2015-01-27T22:16:32Z,CONTRIBUTOR,True,27,27,3,Django application for adding BrowserID support.,JavaScript,d19bfb519eebd8a202adabbdb28b82ee08f47ba5,"Fix circular import issue with jingo.
+
+Turns out jingo imports all apps in INSTALLED_APPS when it’s loaded.
+Which loads django_browserid. Which imports django_browserid.compat. 
+Which attempts to import jingo, which fails since that’s a circular
+import, causing the fake jingo.register shim to be used, which means
+the helpers aren’t available in the templates.
+
+The solution? Shove the shim inside helpers.py, which is loaded as late
+as possible by jingo to avoid import issues like this."
+22,https://api.github.com/repos/mozilla/django-browserid/pulls/275,275,Fix circular import issue with jingo.,"Turns out jingo imports all apps in INSTALLED_APPS when it’s loaded.
+Which loads django_browserid. Which imports django_browserid.compat. 
+Which attempts to import jingo, which fails since that’s a circular
+import, causing the fake jingo.register shim to be used, which means
+the helpers aren’t available in the templates.
+
+The solution? Shove the shim inside helpers.py, which is loaded as late
+as possible by jingo to avoid import issues like this.
+",Osmose,193106,2015-01-27T22:16:32Z,CONTRIBUTOR,True,27,27,3,Django application for adding BrowserID support.,JavaScript,02432a9f74bfec302e6fa3a52021d5e0ceb1431f,Keep travis up to date.
+23,https://api.github.com/repos/mozilla/django-browserid/pulls/274,274,fixed broken doc links in customization,"I fixed broken links in doc 
+",pythonik,5600432,2014-12-29T10:59:23Z,CONTRIBUTOR,True,9,9,1,Django application for adding BrowserID support.,JavaScript,8812e9c07687d1034324efea6ca4b2057390428f,fixed broken doc links in customization
+24,https://api.github.com/repos/mozilla/django-browserid/pulls/273,273,Fixing broken link to troubleshooting section from readme,,gene1wood,1134034,2014-12-10T17:15:29Z,MEMBER,True,1,1,1,Django application for adding BrowserID support.,JavaScript,d89355870766d8caf1bbdb34ac215693451d3941,Fixing broken link to troubleshooting section from readme
+25,https://api.github.com/repos/mozilla/django-browserid/pulls/272,272,Support for django 1.7,"- django-nose version updated to 1.2 (instead of forked version used previously)
+- Called setup() before executing the tests (https://docs.djangoproject.com/en/dev/releases/1.7/#standalone-scripts)
+- Running migrate instead of syncdb in case of django version > 1.7
+",seocam,33388,2014-09-21T00:12:03Z,CONTRIBUTOR,True,49,6,6,Django application for adding BrowserID support.,JavaScript,602597c6a969455c743e4836c66b57d4a89b1f8b,Running tests for django 1.7
+26,https://api.github.com/repos/mozilla/django-browserid/pulls/272,272,Support for django 1.7,"- django-nose version updated to 1.2 (instead of forked version used previously)
+- Called setup() before executing the tests (https://docs.djangoproject.com/en/dev/releases/1.7/#standalone-scripts)
+- Running migrate instead of syncdb in case of django version > 1.7
+",seocam,33388,2014-09-21T00:12:03Z,CONTRIBUTOR,True,49,6,6,Django application for adding BrowserID support.,JavaScript,677b8c0d0621dde1bfb4a9b654d2c96cc53a2dba,Added python 3.4 to classifiers
+27,https://api.github.com/repos/mozilla/django-browserid/pulls/272,272,Support for django 1.7,"- django-nose version updated to 1.2 (instead of forked version used previously)
+- Called setup() before executing the tests (https://docs.djangoproject.com/en/dev/releases/1.7/#standalone-scripts)
+- Running migrate instead of syncdb in case of django version > 1.7
+",seocam,33388,2014-09-21T00:12:03Z,CONTRIBUTOR,True,49,6,6,Django application for adding BrowserID support.,JavaScript,b1f806888f1786921864e21f19e256b8f2df369d,Added python 3.2 and 3.3 to Django 1.7 tests
+28,https://api.github.com/repos/mozilla/django-browserid/pulls/270,270,Rework the auto-login docs,"I reworked the auto-login docs turning the instructions into lists of
+steps and breaking up the text into an ""enable"" section and a ""disable""
+section. I think this is easier to read. It's certainly easier to
+follow.
+
+Further, I think this addresses the confusion around what happens if
+you're not using ""django_browserid.helpers.browserid_js"" regarding
+""browserid/autologin.js"" since it explicitly addresses it in the
+relevant areas as a discrete step.
+
+Fixes #267 
+
+r?
+",willkg,820826,2014-08-29T18:55:53Z,MEMBER,True,28,20,1,Django application for adding BrowserID support.,JavaScript,3c6838955a0fbe1fab49376b51c6c3ca7e586d9b,"Rework the auto-login docs
+
+I reworked the auto-login docs turning the instructions into lists of
+steps and breaking up the text into an ""enable"" section and a ""disable""
+section. I think this is easier to read. It's certainly easier to
+follow.
+
+Further, I think this addresses the confusion around what happens if
+you're not using ""django_browserid.helpers.browserid_js"" regarding
+""browserid/autologin.js"" since it explicitly addresses it in the
+relevant areas as a discrete step.
+
+Fixes #267"
+29,https://api.github.com/repos/mozilla/django-browserid/pulls/270,270,Rework the auto-login docs,"I reworked the auto-login docs turning the instructions into lists of
+steps and breaking up the text into an ""enable"" section and a ""disable""
+section. I think this is easier to read. It's certainly easier to
+follow.
+
+Further, I think this addresses the confusion around what happens if
+you're not using ""django_browserid.helpers.browserid_js"" regarding
+""browserid/autologin.js"" since it explicitly addresses it in the
+relevant areas as a discrete step.
+
+Fixes #267 
+
+r?
+",willkg,820826,2014-08-29T18:55:53Z,MEMBER,True,28,20,1,Django application for adding BrowserID support.,JavaScript,55f0b9b0ebc4001bb912fdd1df3a908496e7dc86,Fixed issues from PR comments
+30,https://api.github.com/repos/mozilla/django-browserid/pulls/269,269,Fix Template tag browserid_logout,"Fixes #268.
+",seocam,33388,2014-08-27T13:31:04Z,CONTRIBUTOR,True,28,9,3,Django application for adding BrowserID support.,JavaScript,ac6fdf15f7782229feecc3db756cc5399e939003,"Changed test for custom class in logout link
+
+browserid-logout class should always be there."
+31,https://api.github.com/repos/mozilla/django-browserid/pulls/269,269,Fix Template tag browserid_logout,"Fixes #268.
+",seocam,33388,2014-08-27T13:31:04Z,CONTRIBUTOR,True,28,9,3,Django application for adding BrowserID support.,JavaScript,29fb3cfd70998b0603c1706e54340c870feaac06,Set mandatory class for logout button
+32,https://api.github.com/repos/mozilla/django-browserid/pulls/269,269,Fix Template tag browserid_logout,"Fixes #268.
+",seocam,33388,2014-08-27T13:31:04Z,CONTRIBUTOR,True,28,9,3,Django application for adding BrowserID support.,JavaScript,ff8da006b2ef4ea810a1259872cf72ce65d6edae,Fixed logout button on Python 2.6
+33,https://api.github.com/repos/mozilla/django-browserid/pulls/269,269,Fix Template tag browserid_logout,"Fixes #268.
+",seocam,33388,2014-08-27T13:31:04Z,CONTRIBUTOR,True,28,9,3,Django application for adding BrowserID support.,JavaScript,6b8719764bf49a19595067aa0878ccf80739f44e,Simplified check for browserid-logout class
+34,https://api.github.com/repos/mozilla/django-browserid/pulls/269,269,Fix Template tag browserid_logout,"Fixes #268.
+",seocam,33388,2014-08-27T13:31:04Z,CONTRIBUTOR,True,28,9,3,Django application for adding BrowserID support.,JavaScript,0f5a17e673044521000ef2c81493abb7c54b4871,Added default class or login link as well
+35,https://api.github.com/repos/mozilla/django-browserid/pulls/269,269,Fix Template tag browserid_logout,"Fixes #268.
+",seocam,33388,2014-08-27T13:31:04Z,CONTRIBUTOR,True,28,9,3,Django application for adding BrowserID support.,JavaScript,e82a59d72a662e66d63d4b9e159d5955267563cf,"Fixed class ordering. Tests passing on Django 1.4
+
+assertHTMLEqual was kind of dumb before Django 1.5"
+36,https://api.github.com/repos/mozilla/django-browserid/pulls/264,264,Fix #57: Add local verification via PyBrowserID.,"2 years isn't the worst 
+",Osmose,193106,2014-07-03T16:18:18Z,CONTRIBUTOR,True,190,62,11,Django application for adding BrowserID support.,JavaScript,66641335751b869562ba7a554e61ca56bc880257,Fix #57: Add local verification via PyBrowserID.
+37,https://api.github.com/repos/mozilla/django-browserid/pulls/263,263,Fix #66: Add onReady to django_browserid.registerWatchHandlers.,,Osmose,193106,2014-07-01T14:35:59Z,CONTRIBUTOR,True,13,4,2,Django application for adding BrowserID support.,JavaScript,54494bf85c63283cf8aface107670f66f8d36830,Fix #66: Add onReady to django_browserid.registerWatchHandlers.
+38,https://api.github.com/repos/mozilla/django-browserid/pulls/262,262,Fix #140: Add support for offline development via auto-login backend.,,Osmose,193106,2014-06-30T11:07:39Z,CONTRIBUTOR,True,264,44,9,Django application for adding BrowserID support.,JavaScript,37a73fda55077ee31be85fcf7a8356ccf40f8225,Fix #140: Add support for offline development via auto-login backend.
+39,https://api.github.com/repos/mozilla/django-browserid/pulls/261,261,Fix 225: Use empty tuple as default setting value in CSP sanity check.,,Osmose,193106,2014-06-29T01:56:27Z,CONTRIBUTOR,True,38,4,2,Django application for adding BrowserID support.,JavaScript,644e21e649ed9d20f82a74f62f812c7ef12e2f75,Fix 225: Use empty tuple as default setting value in CSP sanity check.
+40,https://api.github.com/repos/mozilla/django-browserid/pulls/260,260,Fix #231: Add error handling to JS and document the API a bit better.,"From the comments in the issue I figured the best fix was to actually handle the errors properly in our JS and to add an example and pointer to our JS in the docs. Let me know if you think we need more than this to consider the issue fixed.
+",Osmose,193106,2014-06-23T15:56:34Z,CONTRIBUTOR,True,35,3,3,Django application for adding BrowserID support.,JavaScript,701b0140678b4d9a6c7bce8f66b46d56c56ed60b,Fix #231: Add error handling to JS and document the API a bit better.
+41,https://api.github.com/repos/mozilla/django-browserid/pulls/259,259,Fix the admin integration by adding a missing browserid_info tag.,"Forgot to test the admin integration, doh.
+",Osmose,193106,2014-06-23T15:55:22Z,CONTRIBUTOR,True,1,0,1,Django application for adding BrowserID support.,JavaScript,c98243aa10c21696ebe8c434877bff2cc9792fed,Fix the admin integration by adding a missing browserid_info tag.
+42,https://api.github.com/repos/mozilla/django-browserid/pulls/258,258,Fix #243: Document removal of context processor.,"Also adds a small reminder to Troubleshooting about leftover pyx files.
+",Osmose,193106,2014-06-23T14:19:51Z,CONTRIBUTOR,True,12,0,2,Django application for adding BrowserID support.,JavaScript,99f291c8729d88a74b3e50c098af5c2fc007cefb,"Fix #243: Document removal of context processor.
+
+Also adds a small reminder to Troubleshooting about leftover pyc files."
+43,https://api.github.com/repos/mozilla/django-browserid/pulls/257,257,Fix #248: Fix next param logic and move logic to Python.,"By deciding whether to redirect the user to the next param URL or the
+default URL in Python instead of JavaScript, we can rely on Django’s
+is_safe_url logic.
+",Osmose,193106,2014-06-22T13:34:24Z,CONTRIBUTOR,True,149,37,5,Django application for adding BrowserID support.,JavaScript,c2456794b886d038e7ef3fce0dd7da45516a10cd,"Fix #248: Fix next param logic and move logic to Python.
+
+By deciding whether to redirect the user to the next param URL or the
+default URL in Python instead of JavaScript, we can rely on Django’s
+is_safe_url logic."
+44,https://api.github.com/repos/mozilla/django-browserid/pulls/256,256,Fix #249: Never cache CSRFToken.,,Osmose,193106,2014-06-21T14:39:10Z,CONTRIBUTOR,True,7,0,2,Django application for adding BrowserID support.,JavaScript,d0588d18e18dcfcb9194297501e82926e70bd8e9,Fix #249: Never cache CSRFToken.
+45,https://api.github.com/repos/mozilla/django-browserid/pulls/255,255,Fix #253: Use stateless Persona API instead of workarounds.,,Osmose,193106,2014-06-21T13:56:03Z,CONTRIBUTOR,True,8,54,4,Django application for adding BrowserID support.,JavaScript,07962522c91032cc9be0510728fa6df618a5beb1,Fix #253: Use stateless Persona API instead of workarounds.
+46,https://api.github.com/repos/mozilla/django-browserid/pulls/254,254,Handle all exceptions from auth.authenticate(),"At the moment when auth.authenticate() throws an Exception the user gets only:
+
+```
+[07/Jun/2014 06:45:35] ""POST /browserid/login/ HTTP/1.1"" 500 17
+```
+
+...in the logs. Because django_browserid handles only BrowserIDException, but django.contrib.auth will throw django Exceptions. Those won't be catched here and the exception message and stacktrace is lost.
+
+This pull-request is just an idea, maybe a better solution would be to handle differently:
+- django.core.exceptions.PermissionDenied -- log it ant throw _403_, and 
+- all other Exceptions (log them and throw _500_).
+
+What do you think?
+",tkrajina,379243,2014-06-07T06:59:39Z,CONTRIBUTOR,False,24,4,3,Django application for adding BrowserID support.,JavaScript,38dadc74d26098540f324e37c5d271519d30c0be,"ctags ""tags"" file ignored"
+47,https://api.github.com/repos/mozilla/django-browserid/pulls/254,254,Handle all exceptions from auth.authenticate(),"At the moment when auth.authenticate() throws an Exception the user gets only:
+
+```
+[07/Jun/2014 06:45:35] ""POST /browserid/login/ HTTP/1.1"" 500 17
+```
+
+...in the logs. Because django_browserid handles only BrowserIDException, but django.contrib.auth will throw django Exceptions. Those won't be catched here and the exception message and stacktrace is lost.
+
+This pull-request is just an idea, maybe a better solution would be to handle differently:
+- django.core.exceptions.PermissionDenied -- log it ant throw _403_, and 
+- all other Exceptions (log them and throw _500_).
+
+What do you think?
+",tkrajina,379243,2014-06-07T06:59:39Z,CONTRIBUTOR,False,24,4,3,Django application for adding BrowserID support.,JavaScript,7cca8c22b5384d918ad7195e896ad8147241f5b2,Handle all exceptions from auth.authenticate()
+48,https://api.github.com/repos/mozilla/django-browserid/pulls/254,254,Handle all exceptions from auth.authenticate(),"At the moment when auth.authenticate() throws an Exception the user gets only:
+
+```
+[07/Jun/2014 06:45:35] ""POST /browserid/login/ HTTP/1.1"" 500 17
+```
+
+...in the logs. Because django_browserid handles only BrowserIDException, but django.contrib.auth will throw django Exceptions. Those won't be catched here and the exception message and stacktrace is lost.
+
+This pull-request is just an idea, maybe a better solution would be to handle differently:
+- django.core.exceptions.PermissionDenied -- log it ant throw _403_, and 
+- all other Exceptions (log them and throw _500_).
+
+What do you think?
+",tkrajina,379243,2014-06-07T06:59:39Z,CONTRIBUTOR,False,24,4,3,Django application for adding BrowserID support.,JavaScript,946f0208c333d268f81e54626b8ce53998e35132,Check that any exception is logged
+49,https://api.github.com/repos/mozilla/django-browserid/pulls/254,254,Handle all exceptions from auth.authenticate(),"At the moment when auth.authenticate() throws an Exception the user gets only:
+
+```
+[07/Jun/2014 06:45:35] ""POST /browserid/login/ HTTP/1.1"" 500 17
+```
+
+...in the logs. Because django_browserid handles only BrowserIDException, but django.contrib.auth will throw django Exceptions. Those won't be catched here and the exception message and stacktrace is lost.
+
+This pull-request is just an idea, maybe a better solution would be to handle differently:
+- django.core.exceptions.PermissionDenied -- log it ant throw _403_, and 
+- all other Exceptions (log them and throw _500_).
+
+What do you think?
+",tkrajina,379243,2014-06-07T06:59:39Z,CONTRIBUTOR,False,24,4,3,Django application for adding BrowserID support.,JavaScript,116f43dd042cf3a241257cb3988d00a4347ecb8d,Doc
+50,https://api.github.com/repos/mozilla/django-browserid/pulls/252,252,Python3 installation fix,"I'm trying to install this library with python 3 (it is listed in settings.py), but pip installation fails with:
+
+```
+  File "".../python3.2/site-packages/docs/conf.py"", line 51
+    project = u'django-browserid'
+                                ^
+SyntaxError: invalid syntax
+```
+
+This is just a trivial installation fix.
+",tkrajina,379243,2014-05-30T18:21:26Z,CONTRIBUTOR,True,6,6,1,Django application for adding BrowserID support.,JavaScript,131f6f0a9a43c8584b552ec3fd6ffede0e6266e3,Python3 installation fix
+51,https://api.github.com/repos/mozilla/django-browserid/pulls/251,251,Fix #247: Execute lazy callables for csrf_token within the view.,"Django’s CSRF middleware does not send a CSRF cookie if the csrf_token
+value, which is a lazy-evaluated value, is called. This avoids 
+unnecessary cookies, but causes trouble if you don’t evaluate the 
+csrf_token within your view.
+
+CsrfToken was doing just that, as it just passed the value to 
+HttpResponse, not evaluating csrf_token before the middleware ran and
+decided not to send the cookie. By `unicode`ing the value we force it
+to run and the middleware sends the cookie as expected.
+",Osmose,193106,2014-05-25T06:24:49Z,CONTRIBUTOR,True,38,1,2,Django application for adding BrowserID support.,JavaScript,1d17fd3137782efb88f22dce9d8e13101686a9c3,"Fix #247: Execute lazy callables for csrf_token within the view.
+
+Django’s CSRF middleware does not send a CSRF cookie if the csrf_token
+value, which is a lazy-evaluated value, is called. This avoids 
+unnecessary cookies, but causes trouble if you don’t evaluate the 
+csrf_token within your view.
+
+CsrfToken was doing just that, as it just passed the value to 
+HttpResponse, not evaluating csrf_token before the middleware ran and
+decided not to send the cookie. By `unicode`ing the value we force it
+to run and the middleware sends the cookie as expected."
+52,https://api.github.com/repos/mozilla/django-browserid/pulls/250,250,Fix #237: Switch verify view logging to debug and remove traceback.,,Osmose,193106,2014-05-25T05:47:52Z,CONTRIBUTOR,True,7,6,2,Django application for adding BrowserID support.,JavaScript,d67b3c0e61cf0f887e86608ce9d89334efc1f6c5,Fix #237: Switch verify view logging to debug and remove traceback.
+53,https://api.github.com/repos/mozilla/django-browserid/pulls/246,246,[docs] Add JQuery 1.8 requirement to quickstart and upgrade notes. Fixes #242,,glogiotatidis,584352,2014-05-09T15:30:06Z,CONTRIBUTOR,True,3,1,2,Django application for adding BrowserID support.,JavaScript,3d983e86d24edfc8d83534574a3de0c70dd33b95,[docs] Add JQuery 1.8 requirement to quickstart and upgrade notes. Fixes #242
+54,https://api.github.com/repos/mozilla/django-browserid/pulls/245,245,match docs to setup.py for requests version,"I should have done this when I did [that](https://github.com/mozilla/django-browserid/commit/8a2d717d1e9cb83ef4e9ef86eff15f47f2d66751)
+",peterbe,26739,2014-05-08T15:48:05Z,CONTRIBUTOR,False,1,1,1,Django application for adding BrowserID support.,JavaScript,b44eded5aacafb999340c5c0f39457fc04ba64ca,match docs to setup.py for requests version
+55,https://api.github.com/repos/mozilla/django-browserid/pulls/244,244,Docs update,,glogiotatidis,584352,2014-05-08T13:58:09Z,CONTRIBUTOR,True,4,4,3,Django application for adding BrowserID support.,JavaScript,7c85f1ce7aa948f7e156c6121658559f0bbbd8fc,[docs] Require at least JQuery 1.8. Fixes #242
+56,https://api.github.com/repos/mozilla/django-browserid/pulls/244,244,Docs update,,glogiotatidis,584352,2014-05-08T13:58:09Z,CONTRIBUTOR,True,4,4,3,Django application for adding BrowserID support.,JavaScript,fcf8c222f59d733b4176b40b0ae84a2f54248ee7,[docs] Update BROWSERID_VERIFY_VIEW to BROWSERID_VERIFY_CLASS
+57,https://api.github.com/repos/mozilla/django-browserid/pulls/241,241,Fixing stylesheet link tag,,MounirMesselmeni,1055731,2014-05-03T10:09:09Z,CONTRIBUTOR,True,1,1,1,Django application for adding BrowserID support.,JavaScript,ca8ca03a9222298b31630b60f6c942c42cc81714,Fixing stylesheet link tag
+58,https://api.github.com/repos/mozilla/django-browserid/pulls/240,240,Fix #239: Switch back to using browserid_info for id.request arguments.,"Since AJAX is no longer necessary before pulling up the Persona popup, 
+popup blocking doesn't block the popup anymore.
+",Osmose,193106,2014-05-01T20:31:00Z,CONTRIBUTOR,True,164,166,12,Django application for adding BrowserID support.,JavaScript,a021621b9adabac4d722880cce6e1f90b2908a8e,"Fix #239: Switch back to using browserid_info for id.request arguments.
+
+Since AJAX is no longer necessary before pulling up the Persona popup, 
+popup blocking doesn't block the popup anymore."
+59,https://api.github.com/repos/mozilla/django-browserid/pulls/236,236,Rewrite documentation,"Rewrites a majority of our documentation. _I_ think it's better, but do _you_ think it's better? Who knows!
+
+General source of inspiration here would be the documentation for Requests, with a bit of help from django-compressor and a few other libraries as well. 
+
+The setup doc is replaced by a Quickstart doc for getting people up and running much faster, and dumps most of the advanced use cases in the Customization doc. Troubleshooting also got a bit of a reorg to help people find their issues easily. Also includes some extra docs for upgrading from older versions (gleaned from looking at diffs of the setup docs between tags).
+
+I'm pretty happy with the result, but I know that a good thrashing in review will help iron out the wrinkles.
+
+Also, a few other nice things:
+- Removes context_processors.py. No idea why that wasn't deleted when we stopped using it. 
+- Sets us up to use the ReadTheDocs custom theme when building locally, so we can get a better idea of what the docs will look like.
+- Adds CONTRIBUTING.rst to the root of the repo so that it shows up in the Github pull request page, and includes these in the generate docs. Will be nice to be able to point people to standards instead of just notifying them individually of what they did wrong.
+",Osmose,193106,2014-03-05T02:25:36Z,CONTRIBUTOR,True,1042,720,26,Django application for adding BrowserID support.,JavaScript,8ef356a93e69432b71b31d673eda08640bf2849a,Use ReadTheDocs' custom theme when building docs locally.
+60,https://api.github.com/repos/mozilla/django-browserid/pulls/236,236,Rewrite documentation,"Rewrites a majority of our documentation. _I_ think it's better, but do _you_ think it's better? Who knows!
+
+General source of inspiration here would be the documentation for Requests, with a bit of help from django-compressor and a few other libraries as well. 
+
+The setup doc is replaced by a Quickstart doc for getting people up and running much faster, and dumps most of the advanced use cases in the Customization doc. Troubleshooting also got a bit of a reorg to help people find their issues easily. Also includes some extra docs for upgrading from older versions (gleaned from looking at diffs of the setup docs between tags).
+
+I'm pretty happy with the result, but I know that a good thrashing in review will help iron out the wrinkles.
+
+Also, a few other nice things:
+- Removes context_processors.py. No idea why that wasn't deleted when we stopped using it. 
+- Sets us up to use the ReadTheDocs custom theme when building locally, so we can get a better idea of what the docs will look like.
+- Adds CONTRIBUTING.rst to the root of the repo so that it shows up in the Github pull request page, and includes these in the generate docs. Will be nice to be able to point people to standards instead of just notifying them individually of what they did wrong.
+",Osmose,193106,2014-03-05T02:25:36Z,CONTRIBUTOR,True,1042,720,26,Django application for adding BrowserID support.,JavaScript,2b061526ddda1db95ca802cc190907192d3e4d1b,"Remove context_processors.py.
+
+Not sure how it stayed around, it's not used anymore."
+61,https://api.github.com/repos/mozilla/django-browserid/pulls/236,236,Rewrite documentation,"Rewrites a majority of our documentation. _I_ think it's better, but do _you_ think it's better? Who knows!
+
+General source of inspiration here would be the documentation for Requests, with a bit of help from django-compressor and a few other libraries as well. 
+
+The setup doc is replaced by a Quickstart doc for getting people up and running much faster, and dumps most of the advanced use cases in the Customization doc. Troubleshooting also got a bit of a reorg to help people find their issues easily. Also includes some extra docs for upgrading from older versions (gleaned from looking at diffs of the setup docs between tags).
+
+I'm pretty happy with the result, but I know that a good thrashing in review will help iron out the wrinkles.
+
+Also, a few other nice things:
+- Removes context_processors.py. No idea why that wasn't deleted when we stopped using it. 
+- Sets us up to use the ReadTheDocs custom theme when building locally, so we can get a better idea of what the docs will look like.
+- Adds CONTRIBUTING.rst to the root of the repo so that it shows up in the Github pull request page, and includes these in the generate docs. Will be nice to be able to point people to standards instead of just notifying them individually of what they did wrong.
+",Osmose,193106,2014-03-05T02:25:36Z,CONTRIBUTOR,True,1042,720,26,Django application for adding BrowserID support.,JavaScript,00c5034307ef9d61f52d24724c20d1515ed9b2d6,"Fix #173, #201: Rewrite all the docs!
+
+- Add a CONTRIBUTING.rst file and include it in the Sphinx docs.
+- Reorganize documentation directories to make more sense.
+- Make it all better."
+62,https://api.github.com/repos/mozilla/django-browserid/pulls/235,235,Check origin before redirecting users with default JS.,"Prevents issues like phishing attempts on sites that allow users to post HTML (users posts a link with data-next and the right class, user logs in and then thinks they're on the same site when they got redirected to attack site).
+",Osmose,193106,2014-02-27T15:38:04Z,CONTRIBUTOR,True,20,2,1,Django application for adding BrowserID support.,JavaScript,08c88d37e02a750210420ab2e0b528d26821ead4,Check origin before redirecting users with default JS.
+63,https://api.github.com/repos/mozilla/django-browserid/pulls/234,234,"Fix #211, #217: Remove support for auto-login/logout.","Removes logout callbacks altogether, and updates the login callback to
+only do anything if requestDeferred is set, which only happens when the
+page calls getAssertion, effectively disabling automatic login and 
+logout.
+",Osmose,193106,2014-02-27T14:57:37Z,CONTRIBUTOR,True,58,139,5,Django application for adding BrowserID support.,JavaScript,a1c6928dbe4c221313a5143a6cf0fe0dbad82fdd,"Fix #211, #217: Remove support for auto-login/logout.
+
+Have onlogin callback store the assertion and call navigator.id.logout
+immediately. Then, have the onlogout callback check for the stored 
+assertion and resolve any post-login deferred we have set. What this
+does is it immediately logs out users from Persona once they log in,
+which removes the possibility of automatic login being triggered on
+another page.
+
+Automatic logout, in turn, only does anything if an assertion has been
+stored, which means automatic logout requests do nothing as well."
+64,https://api.github.com/repos/mozilla/django-browserid/pulls/234,234,"Fix #211, #217: Remove support for auto-login/logout.","Removes logout callbacks altogether, and updates the login callback to
+only do anything if requestDeferred is set, which only happens when the
+page calls getAssertion, effectively disabling automatic login and 
+logout.
+",Osmose,193106,2014-02-27T14:57:37Z,CONTRIBUTOR,True,58,139,5,Django application for adding BrowserID support.,JavaScript,fe9cedda5daf3b97a784c9164e8b98005807f3dc,Add support for platforms that use a redirect-based Persona flow.
+65,https://api.github.com/repos/mozilla/django-browserid/pulls/233,233,issue 232 - pull json out of old requests fetches,"At 1.0.0 `response.json` became a callable. 
+",peterbe,26739,2014-02-21T19:27:16Z,CONTRIBUTOR,True,1,1,1,Django application for adding BrowserID support.,JavaScript,8a2d717d1e9cb83ef4e9ef86eff15f47f2d66751,issue 232 - pull json out of old requests fetches
+66,https://api.github.com/repos/mozilla/django-browserid/pulls/230,230,Add package.json for easier install of JS test dependencies.,,Osmose,193106,2014-02-18T19:44:43Z,CONTRIBUTOR,True,25,4,2,Django application for adding BrowserID support.,JavaScript,8e5373dd56b7f730b6245c3a11fcb38d55a50591,Add package.json for easier install of JS test dependencies.
+67,https://api.github.com/repos/mozilla/django-browserid/pulls/229,229,Fix #199: Test comments to docstrings and use test name for output.,"Now, instead of showing the doctoring of a test, nose will show the 
+function name of the test. Trick courtesy of andym.
+
+All docstrings that were converted/written as normal comments have been
+moved back to docstrings, and wrapped to 72 characters as per PEP8 
+recommendations.
+",Osmose,193106,2014-02-18T06:24:05Z,CONTRIBUTOR,True,198,92,8,Django application for adding BrowserID support.,JavaScript,07369a5f750479c9fdf403d3e548d739cf3d2c34,"Fix #199: Test comments to docstrings and use test name for output.
+
+Now, instead of showing the doctoring of a test, nose will show the 
+function name of the test. Trick courtesy of andym.
+
+All docstrings that were converted/written as normal comments have been
+moved back to docstrings, and wrapped to 72 characters as per PEP8 
+recommendations."
+68,https://api.github.com/repos/mozilla/django-browserid/pulls/228,228,Remove support for named URLs; users can use reverse_lazy instead.,"As mentioned in #164, since users can just use `reverse_lazy` to turn named URLs into full URLs in the settings file, we don't need the logic for auto-reversing URLs anymore, so I removed it to keep things simple. 
+",Osmose,193106,2014-02-18T06:04:58Z,CONTRIBUTOR,True,7,19,3,Django application for adding BrowserID support.,JavaScript,e132aac84be915dd5bb0f41ac1bd7288ef45d40a,Remove support for named URLs; users can use reverse_lazy instead.
+69,https://api.github.com/repos/mozilla/django-browserid/pulls/227,227,Fix CSS class names.,"Add .persona-button by default (if none provided).
+~~Add color param to browserid_logout, same as _login.~~
+",mvasilkov,140257,2014-02-07T17:56:20Z,CONTRIBUTOR,False,31,8,2,Django application for adding BrowserID support.,JavaScript,fea3c5eecf75a3e51f939dae893f208f8808242b,"Fix CSS class names.
+
+Add .persona-button by default (if none provided)."
+70,https://api.github.com/repos/mozilla/django-browserid/pulls/226,226,Fix CSS class name.,".browserid-login => .persona-button
+
+(It was changed in CSS but not in tags, resulting in plain text link without styling.)
+",mvasilkov,140257,2014-02-07T16:34:23Z,CONTRIBUTOR,False,8,8,1,Django application for adding BrowserID support.,JavaScript,d7dd9024c7d95205f077c100e07319c1988cfcf7,"Fix CSS class name.
+
+.browserid-login => .persona-button"
+71,https://api.github.com/repos/mozilla/django-browserid/pulls/224,224,Run django==1.5.4 on travis for py3k,,graingert,413772,2014-01-24T09:55:43Z,CONTRIBUTOR,True,0,1,1,Django application for adding BrowserID support.,JavaScript,8cd4fe1a7e0697cb611c653a02569180ba0670ed,Run django==1.5.4 on travis
+72,https://api.github.com/repos/mozilla/django-browserid/pulls/223,223,issue 222 - BROWSERID_AUDIENCES not necessary in debug mode,"Basically, this makes it possible to have `BROWSERID_AUDIENCES` either unset or set to an empty list. If it is set with some values that's what gets checked. 
+",peterbe,26739,2014-01-14T17:33:12Z,CONTRIBUTOR,False,28,2,3,Django application for adding BrowserID support.,JavaScript,5b7cbfcc005219ade20ecaf5e4c699c337efaeba,issue 222 - BROWSERID_AUDIENCES not necessary in debug mode
+73,https://api.github.com/repos/mozilla/django-browserid/pulls/221,221,Fix json decoding error on python3,"response.content is returned as a byte array, and json.loads will choke on it, leading to a failed log-in attempt, which you'll see in the django logs as:
+
+Failed to parse remote verifier response: `b'{""audience"":""[redacted]"",""expires"":1387148033218,""issuer"":""gmail.login.persona.org"",""email"":""[redacted]"",""status"":""okay""}'`
+",gilpinheiro,5205260,2013-12-15T22:57:48Z,CONTRIBUTOR,False,7,3,2,Django application for adding BrowserID support.,JavaScript,0b366c8bf9643421608296d8ae72df0bd1db6c77,"Fix json decoding error on python3 and added test case changes to support .json() method on _request
+
+Problem fixed:
+
+'response.content' is returned as a byte array, and json.loads will choke on it, leading to a failed log-in attempt, which you'd have see in the django logs as:
+
+Failed to parse remote verifier response: `b'{""audience"":""[redacted]"",""expires"":1387148033218,""issuer"":""gmail.login.persona.org"",""email"":""[redacted]"",""status"":""okay""}'`"
+74,https://api.github.com/repos/mozilla/django-browserid/pulls/219,219,#151: Add unit tests for JavaScript.,"Extracts the API from browserid.js and moves it to a new file, api.js,
+that authors can include on their own if they don't want the automatic
+behavior of browserid.js. This also allows us to unit-test the API 
+while ignoring the onload stuff from browserid.js.
+
+There aren't tests yet for browserid.js as that would better be handled
+by end-to-end tests using something like Selenium.
+",Osmose,193106,2013-12-12T16:37:49Z,CONTRIBUTOR,True,9411,118,13,Django application for adding BrowserID support.,JavaScript,b4b772f6b81cbdb95b6a2646a407dc58a513ece6,"#151: Add unit tests for JavaScript.
+
+Extracts the API from browserid.js and moves it to a new file, api.js,
+that authors can include on their own if they don't want the automatic
+behavior of browserid.js. This also allows us to unit-test the API 
+while ignoring the onload stuff from browserid.js.
+
+There aren't tests yet for browserid.js as that would better be handled
+by end-to-end tests using something like Selenium."
+75,https://api.github.com/repos/mozilla/django-browserid/pulls/218,218,Fix #196: Add support for BrowserID in the admin interface.,"Also changes browserid_login and browserid_logout to not auto-add the
+browserid-login/browserid-logout classes to links that they generate,
+in order to allow code to use the helpers without forcing the buttons
+to use the login code from browserid.js (the admin utilizes this).
+
+Also also adds some licensing comments that we were missing.
+",Osmose,193106,2013-12-10T19:48:24Z,CONTRIBUTOR,True,276,21,10,Django application for adding BrowserID support.,JavaScript,e8d1d57145401cf3f42993fe84edc32e29e5903f,"Fix #196: Add support for BrowserID in the admin interface.
+
+Also changes browserid_login and browserid_logout to not auto-add the
+browserid-login/browserid-logout classes to links that they generate,
+in order to allow code to use the helpers without forcing the buttons
+to use the login code from browserid.js (the admin utilizes this).
+
+Also also adds some licensing comments that we were missing."
+76,https://api.github.com/repos/mozilla/django-browserid/pulls/216,216,Update SITE_URL references in docs,"Fixes #213.
+
+r?
+",willkg,820826,2013-11-19T21:34:08Z,MEMBER,False,8,7,1,Django application for adding BrowserID support.,JavaScript,339dad412030b737b02864f8fb91242782d61f43,"Update SITE_URL references in docs
+
+Fixes #213."
+77,https://api.github.com/repos/mozilla/django-browserid/pulls/215,215,Fix #145: Remove context processor.,,Osmose,193106,2013-11-19T15:31:37Z,CONTRIBUTOR,True,30,19,4,Django application for adding BrowserID support.,JavaScript,3d3c86cbfb277002af814ea8e34adf639cd70c32,Fix #145: Remove context processor.
+78,https://api.github.com/repos/mozilla/django-browserid/pulls/214,214,Use dedicated settings file for building documentation.,"Also fix up some paths in the API docs, remove `sanity_checks` from the 
+documentation (it's not for use outside the library, mostly), and add
+`MockVerifier` to the django_browserid init for importing.
+",Osmose,193106,2013-11-19T15:17:04Z,CONTRIBUTOR,True,8,10,6,Django application for adding BrowserID support.,JavaScript,ab32810bc12085212f80eab3888b8ace7912419f,"Use dedicated settings file for building documentation.
+
+Also fix up some paths in the API docs, remove `sanity_checks` from the 
+documentation (it's not for use outside the library, mostly), and add
+`MockVerifier` to the django_browserid init for importing."
+79,https://api.github.com/repos/mozilla/django-browserid/pulls/212,212,Django 1.6 support,"Trivial tests/migration to Django 1.6...
+",brainstorm,175587,2013-11-09T22:48:53Z,NONE,False,38,18,4,Django application for adding BrowserID support.,JavaScript,162a91c62be25240f53c0798bfee994073924204,Does django-browserid work on Django 1.6?
+80,https://api.github.com/repos/mozilla/django-browserid/pulls/212,212,Django 1.6 support,"Trivial tests/migration to Django 1.6...
+",brainstorm,175587,2013-11-09T22:48:53Z,NONE,False,38,18,4,Django application for adding BrowserID support.,JavaScript,b8cefe4936277cdfbb63ef4deb4f84fe0dc2da08,"For some reason, even if I have pip>1.4, the --pre command is not recognized, disabling --pre"
+81,https://api.github.com/repos/mozilla/django-browserid/pulls/212,212,Django 1.6 support,"Trivial tests/migration to Django 1.6...
+",brainstorm,175587,2013-11-09T22:48:53Z,NONE,False,38,18,4,Django application for adding BrowserID support.,JavaScript,6a7fcf93df5fff444fd012ad3d37fc445ffe99bf,Tweaking .travis.yml accordingly to test for django 1.6
+82,https://api.github.com/repos/mozilla/django-browserid/pulls/212,212,Django 1.6 support,"Trivial tests/migration to Django 1.6...
+",brainstorm,175587,2013-11-09T22:48:53Z,NONE,False,38,18,4,Django application for adding BrowserID support.,JavaScript,7f8f95d8e89c00b98ca37c56b0da30231ab3f2c5,Extended test coverage on newer python/django combinations and deprecated manual versions tested section in the documentation
+83,https://api.github.com/repos/mozilla/django-browserid/pulls/212,212,Django 1.6 support,"Trivial tests/migration to Django 1.6...
+",brainstorm,175587,2013-11-09T22:48:53Z,NONE,False,38,18,4,Django application for adding BrowserID support.,JavaScript,d48376e0672625fe82733517f8735d75e32695ff,Travis env for django 1.6
+84,https://api.github.com/repos/mozilla/django-browserid/pulls/209,209,Issue #167,"Pull request for Issue #167
+",pramodhkp,1507241,2013-10-30T16:42:08Z,NONE,False,17,3,2,Django application for adding BrowserID support.,JavaScript,db5b378a4b0527ec8fbd4e8d2bafcd457d425141,Issue #167
+85,https://api.github.com/repos/mozilla/django-browserid/pulls/209,209,Issue #167,"Pull request for Issue #167
+",pramodhkp,1507241,2013-10-30T16:42:08Z,NONE,False,17,3,2,Django application for adding BrowserID support.,JavaScript,2f2a1232fd0a2cb7870f909aa4b47d77d4de362f,Added reverse
+86,https://api.github.com/repos/mozilla/django-browserid/pulls/209,209,Issue #167,"Pull request for Issue #167
+",pramodhkp,1507241,2013-10-30T16:42:08Z,NONE,False,17,3,2,Django application for adding BrowserID support.,JavaScript,936a88a37f97b17d93a8833fb7fd9e98424059ee,Added test for succes_url
+87,https://api.github.com/repos/mozilla/django-browserid/pulls/208,208,Fix #197: Use AJAX for submitting assertions instead of a hidden form.,"This is a large change, and breaks backwards compatibility in a lot of
+ways, including new JSON responses from Verify, a new JavaScript API,
+and moved URLs.
+- Change Verify to return JSON.
+- Remove `next` parameter from Verify, since we no longer need to
+  redirect users.
+- Fix #198: Replace browserid_info helper with Info view. This lets us 
+  retrieve the CSRF token without relying on the helper.
+- Update the JavaScript API to a Promise-like interface using jQuery
+  Deferreds, making the entire API async now that we're using AJAX.
+- Add Logout view so logout can be done via AJAX as well.
+- Add `next` parameter to browserid_logout helper.
+- Fix a few broken tests that weren't asserting anything.
+- Move sanity_check tests to the right test file.
+- Remove pyquery dependency.
+- Add tests for behavior that wasn't being tested.
+
+Sorry for the giant changeset, but the changes just sort've piled up as I went along. The removal of the browserid_info could maybe be split out, as could the test updates if anyone thinks that's worth it, but if you can just handle mega-PR you'd be my best friend. :D
+",Osmose,193106,2013-10-22T06:27:38Z,CONTRIBUTOR,True,765,678,25,Django application for adding BrowserID support.,JavaScript,66f670386de6dbe8b5265455b4f85adee08f51c8,"Fix #197: Use AJAX for submitting assertions instead of a hidden form.
+
+This is a large change, and breaks backwards compatibility in a lot of
+ways, including new JSON responses from Verify, a new JavaScript API,
+and moved URLs.
+
+- Change Verify to return JSON.
+- Remove `next` parameter from Verify, since we no longer need to
+  redirect users.
+- Fix #198: Replace browserid_info helper with Info view. This lets us 
+  retrieve the CSRF token without relying on the helper.
+- Update the JavaScript API to a Promise-like interface using jQuery
+  Deferreds, making the entire API async now that we're using AJAX.
+- Add Logout view so logout can be done via AJAX as well.
+- Add `next` parameter to browserid_logout helper.
+- Fix a few broken tests that weren't asserting anything.
+- Move sanity_check tests to the right test file.
+- Remove pyquery dependency.
+- Add tests for behavior that wasn't being tested."
+88,https://api.github.com/repos/mozilla/django-browserid/pulls/207,207,Fix docs building,"To build the docs, we have to be able to import
+django_browserid.tests.settings. To import that, it first imports
+django_browserid.tests.**init** which imports django_browserid.auth
+which imports something which requires settings, but that's not loaded
+yet, so everything goes down in a firey spiral of doom.
+
+This fixes that by ridiculously importing those two things in the method
+they're used rather than at the top level.
+
+r?
+",willkg,820826,2013-10-17T20:14:01Z,MEMBER,True,5,2,1,Django application for adding BrowserID support.,JavaScript,e38bb5e5408b8fdfd9328984e3af8c6de8a89156,"Fix docs building
+
+To build the docs, we have to be able to import
+django_browserid.tests.settings. To import that, it first imports
+django_browserid.tests.__init__ which imports django_browserid.auth
+which imports something which requires settings, but that's not loaded
+yet, so everything goes down in a firey spiral of doom.
+
+This fixes that by ridiculously importing those two things in the method
+they're used rather than at the top level."
+89,https://api.github.com/repos/mozilla/django-browserid/pulls/206,206,Getting backend from session,"Previously the session backend was stored in the user object but since django already stores it in the session we can just get it from there.
+",arloc,1674205,2013-10-09T21:20:21Z,CONTRIBUTOR,False,26,11,4,Django application for adding BrowserID support.,JavaScript,2278f7f09430e8a9e9862bd0c0d32572ba0ecf9b,"getting backend from session
+
+previously the session backend was stored in the user object but since django al
+ready stores it in the session we can just get it from there."
+90,https://api.github.com/repos/mozilla/django-browserid/pulls/206,206,Getting backend from session,"Previously the session backend was stored in the user object but since django already stores it in the session we can just get it from there.
+",arloc,1674205,2013-10-09T21:20:21Z,CONTRIBUTOR,False,26,11,4,Django application for adding BrowserID support.,JavaScript,582d58c884f243c5bc3dcc651d82e4f97a0307d6,Verify if backend is instance of browserid backend
+91,https://api.github.com/repos/mozilla/django-browserid/pulls/206,206,Getting backend from session,"Previously the session backend was stored in the user object but since django already stores it in the session we can just get it from there.
+",arloc,1674205,2013-10-09T21:20:21Z,CONTRIBUTOR,False,26,11,4,Django application for adding BrowserID support.,JavaScript,6779fdd75d418e20227d4652d80d60f44df1effb,fix browserid info with no backends
+92,https://api.github.com/repos/mozilla/django-browserid/pulls/204,204,Fix #195: Add support for Python 3.2 and 3.3 and enable tests on them.,"Thanks to @senden9 for most of these fixes. Rebasing #187 proved to be more work than just rewriting the patch to the new code.
+",Osmose,193106,2013-09-27T15:40:58Z,CONTRIBUTOR,True,237,279,16,Django application for adding BrowserID support.,JavaScript,aaa61c2fff1d36293893a1e185a655e9eadf7048,"Fix #195: Add support for Python 3.2 and 3.3 and enable tests on them.
+
+Thanks to @senden9 for most of these fixes."
+93,https://api.github.com/repos/mozilla/django-browserid/pulls/204,204,Fix #195: Add support for Python 3.2 and 3.3 and enable tests on them.,"Thanks to @senden9 for most of these fixes. Rebasing #187 proved to be more work than just rewriting the patch to the new code.
+",Osmose,193106,2013-09-27T15:40:58Z,CONTRIBUTOR,True,237,279,16,Django application for adding BrowserID support.,JavaScript,5a0eee5c3e315daf603c821a90ccc5fa7d43a0c5,"Use Django's version of six and drop Django 1.3 support.
+
+Django 1.3 lacks a decorator we want to use for Python 3 support, and
+given that 1.3 is out-of-date and we already have a few workarounds in
+place to keep it working, it's time to drop it. This includes removing
+the workarounds I know of to clean up the code a bit."
+94,https://api.github.com/repos/mozilla/django-browserid/pulls/203,203,Add tox.ini,"This covers:
+- python 2.6 and 2.7
+- django 1.3, 1.4 and 1.5
+
+This also updates the django versions in .travis.yml.
+
+Fixes #200.
+
+r?
+",willkg,820826,2013-09-25T01:14:15Z,MEMBER,True,53,4,3,Django application for adding BrowserID support.,JavaScript,7821359c93bed70c6db2aa445af010c4e2d254d0,"Add tox.ini
+
+This covers:
+
+* python 2.6 and 2.7
+* django 1.3, 1.4 and 1.5
+
+This also updates the django versions in .travis.yml.
+
+Fixes #200."
+95,https://api.github.com/repos/mozilla/django-browserid/pulls/203,203,Add tox.ini,"This covers:
+- python 2.6 and 2.7
+- django 1.3, 1.4 and 1.5
+
+This also updates the django versions in .travis.yml.
+
+Fixes #200.
+
+r?
+",willkg,820826,2013-09-25T01:14:15Z,MEMBER,True,53,4,3,Django application for adding BrowserID support.,JavaScript,7cc591321841b23ae7be521c8feda329e03e0111,Add note about tox to docs
+96,https://api.github.com/repos/mozilla/django-browserid/pulls/202,202,Fix #194: Replace verify function with Verifier classes.,"Adds a RemoteVerifier class to replace the verify function. While this makes straight-up verification slightly more clunky (`RemoteVerifier().verify()`), it makes it much easier to swap out alternate verifiers and to customize things like the arguments passed to `requests.post`.
+
+This changes the public API, but we're pre-1.0, suckers!
+
+This also updates `get_audience` to use a setting called `BROWSERID_AUDIENCES` instead of `SITE_URL`. The bad news is that it means you can't develop without this setting (whereas SITE_URL was optional in development), but IMO it's useful to explicitly require an important setting like this at all times. The upside is that I removed a bunch of code around the three or four different types that `SITE_URL` could be, and removed our reliance on a semi-common setting that may be used for several different things. 
+
+Playdoh, for example, can now just use `['http://localhost:8000', 'http://127.0.0.1']` as it's value instead of making the user customize the value.
+
+Other smaller changes:
+- Add `tmp` to gitignore. I used this directory for storing a small Django site that uses a develop install of the library, making it easy to test changes on an example site.
+- Return a `VerificationResult` from verification instead of a dict. It's more useful!
+- Change `import_function_from_setting` to `import_from_setting`. That other name was just obnoxious.
+
+Sorry for dumping such a huge change, but, I mean, the issue is a huge change. Phew!
+",Osmose,193106,2013-09-24T22:06:40Z,CONTRIBUTOR,True,487,395,18,Django application for adding BrowserID support.,JavaScript,79ba1d01e742dfe95c08bb7517b9353e6c1d0050,"Fix #194: Replace verify function with Verifier classes.
+
+Add the RemoteVerifier class to replace the verify function. Instead of
+just calling verify to trigger verification, you must first create an
+instance of the RemoteVerifier. Verification now returns a 
+VerificationResult instance.
+
+Update the authentication backend to use the RemoteVerifier and adds a
+method for subclasses to override if they want to use a custom verifier
+instead."
+97,https://api.github.com/repos/mozilla/django-browserid/pulls/193,193,Minor changes,"Got django-browserid up and running. In the process made two minor tweaks. A typo in the documentation, and a missing dependency on `six`.
+",edwardabraham,120982,2013-09-22T01:58:20Z,CONTRIBUTOR,True,2,1,2,Django application for adding BrowserID support.,JavaScript,83519f11526b76651290081a53b4e1a97e3b7d3e,Adding mising six dependcy to requirements
+98,https://api.github.com/repos/mozilla/django-browserid/pulls/193,193,Minor changes,"Got django-browserid up and running. In the process made two minor tweaks. A typo in the documentation, and a missing dependency on `six`.
+",edwardabraham,120982,2013-09-22T01:58:20Z,CONTRIBUTOR,True,2,1,2,Django application for adding BrowserID support.,JavaScript,63f48f070896b07759aedf6c6cf4299fa3cf3386,Typo in the documentation
+99,https://api.github.com/repos/mozilla/django-browserid/pulls/191,191,Documentation for using Django-BrowserId with AJAX.,"I recently had to piece together how to do this and this is how I did
+it. It may not be complete, but it is a good start. One thing I am
+uncertain of is what to do with `next`. I had to set it to something
+that resolves otherwise, the AJAX handler would attempt to redirect and
+on 404, fail which caused the login to fail. It would be better since
+this is done via AJAX, to not need next.
+",varikin,14263,2013-09-10T03:14:28Z,NONE,False,54,0,1,Django application for adding BrowserID support.,JavaScript,0eaac62722e6df0dfd202b0d1b90bb8df906d3bb,"Documentation for using Django-BrowserId with AJAX.
+
+I recently had to piece together how to do this and this is how I did
+it. It may not be complete, but it is a good start. One thing I am
+uncertain of is what to do with `next`. I had to set it to something
+that resolves otherwise, the AJAX handler would attempt to redirect and
+on 404, fail which caused the login to fail. It would be better since
+this is done via AJAX, to not need next."
+100,https://api.github.com/repos/mozilla/django-browserid/pulls/190,190,Add a bit about HTTP_X_FORWARDED_PROTO,,ericholscher,25510,2013-09-03T16:20:11Z,CONTRIBUTOR,False,26,0,2,Django application for adding BrowserID support.,JavaScript,7d6067320be8ea25cf9a40ee4d8f6491ac7ff273,Add a bit about HTTP_X_FORWARDED_PROTO
+101,https://api.github.com/repos/mozilla/django-browserid/pulls/190,190,Add a bit about HTTP_X_FORWARDED_PROTO,,ericholscher,25510,2013-09-03T16:20:11Z,CONTRIBUTOR,False,26,0,2,Django application for adding BrowserID support.,JavaScript,edbffc6c9bef7f6f49e215f4cfcf245ef9f0bafd,"Link to dev instead of 1.6 docs.
+
+Also add myself to authors."
+102,https://api.github.com/repos/mozilla/django-browserid/pulls/189,189,Update django versions,"This upgrades the versions of django we're testing with in the travis configuration.
+
+Quick r?
+",willkg,820826,2013-08-31T11:59:34Z,MEMBER,False,4,4,1,Django application for adding BrowserID support.,JavaScript,9cbf4dd849b8ee3c7784a8c2b7059111ea783cb2,Update django versions
+103,https://api.github.com/repos/mozilla/django-browserid/pulls/187,187,WIP: Python3.3 - Make it compatible,"Make django-browserid Python3.3 compatible.
+The automatic tests say it work with Python 2.6, 2.7 and 3.3 (see the [Build Status](https://travis-ci.org/senden9/django-browserid/builds/10596540)) but with for 3.2. It should be tested manually or reviewed from other people before release/merge it.
+",senden9,905857,2013-08-25T17:11:17Z,NONE,False,18,9,6,Django application for adding BrowserID support.,JavaScript,2f4d138507e7fa411d380693387a83df9154bc42,fix bug #185 (force_unicode() is not Django 1.5/Python 3 compatible)
+104,https://api.github.com/repos/mozilla/django-browserid/pulls/187,187,WIP: Python3.3 - Make it compatible,"Make django-browserid Python3.3 compatible.
+The automatic tests say it work with Python 2.6, 2.7 and 3.3 (see the [Build Status](https://travis-ci.org/senden9/django-browserid/builds/10596540)) but with for 3.2. It should be tested manually or reviewed from other people before release/merge it.
+",senden9,905857,2013-08-25T17:11:17Z,NONE,False,18,9,6,Django application for adding BrowserID support.,JavaScript,0baf30a3ed63db3cdd2bc45c7825c44c5a88b558,"Make it Python 3.3 compatibel
+(with 2to3 and error catching)"
+105,https://api.github.com/repos/mozilla/django-browserid/pulls/187,187,WIP: Python3.3 - Make it compatible,"Make django-browserid Python3.3 compatible.
+The automatic tests say it work with Python 2.6, 2.7 and 3.3 (see the [Build Status](https://travis-ci.org/senden9/django-browserid/builds/10596540)) but with for 3.2. It should be tested manually or reviewed from other people before release/merge it.
+",senden9,905857,2013-08-25T17:11:17Z,NONE,False,18,9,6,Django application for adding BrowserID support.,JavaScript,c4c256cbd27026dc73534082681930fbebf65966,make it python 2.7 compatible
+106,https://api.github.com/repos/mozilla/django-browserid/pulls/187,187,WIP: Python3.3 - Make it compatible,"Make django-browserid Python3.3 compatible.
+The automatic tests say it work with Python 2.6, 2.7 and 3.3 (see the [Build Status](https://travis-ci.org/senden9/django-browserid/builds/10596540)) but with for 3.2. It should be tested manually or reviewed from other people before release/merge it.
+",senden9,905857,2013-08-25T17:11:17Z,NONE,False,18,9,6,Django application for adding BrowserID support.,JavaScript,e0769d4765460c507839d2f954b5fa280be5768f,"add ""six"" to the requirements"
+107,https://api.github.com/repos/mozilla/django-browserid/pulls/186,186,fix bug #185 (force_unicode() is not Django 1.5/Python 3 compatible),"Catch the ImportError for force_unicode. See the ""[Porting to Python 3](https://docs.djangoproject.com/en/1.5/topics/python3/#string-handling)"" from Django documentation.
+",senden9,905857,2013-08-25T14:06:03Z,NONE,False,8,5,3,Django application for adding BrowserID support.,JavaScript,2f4d138507e7fa411d380693387a83df9154bc42,fix bug #185 (force_unicode() is not Django 1.5/Python 3 compatible)
+108,https://api.github.com/repos/mozilla/django-browserid/pulls/186,186,fix bug #185 (force_unicode() is not Django 1.5/Python 3 compatible),"Catch the ImportError for force_unicode. See the ""[Porting to Python 3](https://docs.djangoproject.com/en/1.5/topics/python3/#string-handling)"" from Django documentation.
+",senden9,905857,2013-08-25T14:06:03Z,NONE,False,8,5,3,Django application for adding BrowserID support.,JavaScript,f896995ae717e7f8a25a3c510d000104f373eca0,Update .travis.yml to use Django 1.5.2 instead 1.5.1
+109,https://api.github.com/repos/mozilla/django-browserid/pulls/186,186,fix bug #185 (force_unicode() is not Django 1.5/Python 3 compatible),"Catch the ImportError for force_unicode. See the ""[Porting to Python 3](https://docs.djangoproject.com/en/1.5/topics/python3/#string-handling)"" from Django documentation.
+",senden9,905857,2013-08-25T14:06:03Z,NONE,False,8,5,3,Django application for adding BrowserID support.,JavaScript,42cf897d02573579458f52f87b1ead12a7fefa2d,Update .travis.yml to use Django 1.5.2 instead 1.5.1 (also on Python 3.2/3.3)
+110,https://api.github.com/repos/mozilla/django-browserid/pulls/186,186,fix bug #185 (force_unicode() is not Django 1.5/Python 3 compatible),"Catch the ImportError for force_unicode. See the ""[Porting to Python 3](https://docs.djangoproject.com/en/1.5/topics/python3/#string-handling)"" from Django documentation.
+",senden9,905857,2013-08-25T14:06:03Z,NONE,False,8,5,3,Django application for adding BrowserID support.,JavaScript,868c5016cdbc96ae69f98179175ebb387bfc7536,Update README Django 1.5.1 => 1.5.2
+111,https://api.github.com/repos/mozilla/django-browserid/pulls/182,182,Add some resiliency against race conditions during user creation.,"Flicks has been seeing an issue where users accidentally trigger two
+requests to the Verification view, which attempts to authenticate them
+twice, simultaneously. This can cause a race condition in the 
+authentication logic where a user doesn't exist when we check but does
+exist when we attempt to create them.
+
+This patch avoids this by catching IntegrityErrors during user creation
+and re-fetching the user from the database. If the user still isn't
+found, then we re-raise the IntegrityError; there's not much else we can
+reasonably do.
+",Osmose,193106,2013-08-11T02:03:50Z,CONTRIBUTOR,True,33,3,2,Django application for adding BrowserID support.,JavaScript,357aa7933fcba7393b3b68eae721ff64dc72e2d8,"Add some resiliency against race conditions during user creation.
+
+Flicks has been seeing an issue where users accidentally trigger two
+requests to the Verification view, which attempts to authenticate them
+twice, simultaneously. This can cause a race condition in the 
+authentication logic where a user doesn't exist when we check but does
+exist when we attempt to create them.
+
+This patch avoids this by catching IntegrityErrors during user creation
+and re-fetching the user from the database. If the user still isn't
+found, then we re-raise the IntegrityError; there's not much else we can
+reasonably do."
+112,https://api.github.com/repos/mozilla/django-browserid/pulls/181,181,Ability to override the Verify class,"Continuation of #169, this includes the fixes I suggested.
+",Osmose,193106,2013-08-11T02:01:46Z,CONTRIBUTOR,True,184,40,9,Django application for adding BrowserID support.,JavaScript,1b92cd20b12a7164b25d0e829193f48720a5977b,ability to override Verify class
+113,https://api.github.com/repos/mozilla/django-browserid/pulls/181,181,Ability to override the Verify class,"Continuation of #169, this includes the fixes I suggested.
+",Osmose,193106,2013-08-11T02:01:46Z,CONTRIBUTOR,True,184,40,9,Django application for adding BrowserID support.,JavaScript,8e8ef59f2d90f5756116bfce8874298f3bf26021,Review fixes.
+114,https://api.github.com/repos/mozilla/django-browserid/pulls/180,180,Log the exception (it was silent),"""... Errors should never pass silently. ...""
+(The Zen of Python, by Tim Peters)
+",seocam,33388,2013-08-08T20:17:52Z,CONTRIBUTOR,False,11,3,3,Django application for adding BrowserID support.,JavaScript,830eabc4419b331afff1f5c83f7c773cefa7b701,"Log the exception (it was silent)
+
+""... Errors should never pass silently. ...""
+(The Zen of Python, by Tim Peters)"
+115,https://api.github.com/repos/mozilla/django-browserid/pulls/180,180,Log the exception (it was silent),"""... Errors should never pass silently. ...""
+(The Zen of Python, by Tim Peters)
+",seocam,33388,2013-08-08T20:17:52Z,CONTRIBUTOR,False,11,3,3,Django application for adding BrowserID support.,JavaScript,203e407c4814c87f879a7db04ddfe9a81bde524f,Verify if error is not None
+116,https://api.github.com/repos/mozilla/django-browserid/pulls/180,180,Log the exception (it was silent),"""... Errors should never pass silently. ...""
+(The Zen of Python, by Tim Peters)
+",seocam,33388,2013-08-08T20:17:52Z,CONTRIBUTOR,False,11,3,3,Django application for adding BrowserID support.,JavaScript,d58d055c1f9a0672c7cb378118e9d3fa3dedc380,"Testing if logger is called
+
+logger.error should be called when BrowserIDException is raised"
+117,https://api.github.com/repos/mozilla/django-browserid/pulls/180,180,Log the exception (it was silent),"""... Errors should never pass silently. ...""
+(The Zen of Python, by Tim Peters)
+",seocam,33388,2013-08-08T20:17:52Z,CONTRIBUTOR,False,11,3,3,Django application for adding BrowserID support.,JavaScript,00ac76fe95cb34d4e4717491307fe571c291278f,Merge branch 'master' of https://github.com/mozilla/django-browserid
+118,https://api.github.com/repos/mozilla/django-browserid/pulls/180,180,Log the exception (it was silent),"""... Errors should never pass silently. ...""
+(The Zen of Python, by Tim Peters)
+",seocam,33388,2013-08-08T20:17:52Z,CONTRIBUTOR,False,11,3,3,Django application for adding BrowserID support.,JavaScript,95e426549ab4b77a76609731f835af4fa5cbeaef,Adding __unicode__ method to BrowserIDException
+119,https://api.github.com/repos/mozilla/django-browserid/pulls/177,177,Add getAssertion and verifyAssertion to JavaScript API.,"On Flicks, we ran into an issue where we wanted to perform an action that required a POST and a csrf token and prompt the user for login first if they aren't logged in. The problem is that if we attempt to log the user in prior to performing the action, django-browserid will redirect the user to a new page. If that new page automatically does the action, it will be vulnerable to a CSRF attack.
+
+The alternative was to perform the action, store the intent in the user's session, and then prompt them for login, and perform the action post-login if the intent is found in their session. The issue with this is that the action requires an AJAX request, and calling the login code from within the AJAX handler causes popup warnings because navigator.id.request is being called outside of a click handler.
+
+The next option was to use navigator.id.get to get an assertion, and then perform the action, and lastly submit the assertion for verification once the action was logged in their session. This would've worked, except include.js doesn't allow you to use navigator.id.get at the same time as navigator.id.watch.
+
+Thus, this patch. It emulates the functionality of navigator.id.get using the watch API, and also adds a function to trigger the verification form submission in case anyone wants to trigger login from within the callback. 
+
+Long term I think we should change verifyAssertion to use an iframe so that we can finally support verification and login without leaving the page, but this should work in the short term and let me get on with my Flicks work. :D
+",Osmose,193106,2013-07-08T20:01:29Z,CONTRIBUTOR,True,54,4,2,Django application for adding BrowserID support.,JavaScript,f1ab8018e4197a21f9262aa041d0f537a3c55cb7,Add getAssertion and verifyAssertion to JavaScript API.
+120,https://api.github.com/repos/mozilla/django-browserid/pulls/176,176,fixes #157 docs: adding this back in since it is a requirement for the admin,"Added this back in for documentation purposes. 
+",brianray,676284,2013-07-03T01:07:57Z,CONTRIBUTOR,True,1,0,1,Django application for adding BrowserID support.,JavaScript,60626825facbf9bc4bd8ad5abec8d68fac67d5eb,fixes #157 adding this back in since it is a requirement for the admin
+121,https://api.github.com/repos/mozilla/django-browserid/pulls/175,175,"Intercept import error raised by ""from django.conf.urls import patterns, url"" in django < 1.4","I've run the tests against django 1.3 and fixed the import error complaining about ""from django.conf.urls import patterns, url""
+",fpischedda,1579487,2013-06-17T08:01:20Z,CONTRIBUTOR,False,4,1,1,Django application for adding BrowserID support.,JavaScript,b51b29d23153d7cddc3283a6faa2d34e9f097ff9,"django.conf.default.urls is deperecated, use django.conf.urls instead"
+122,https://api.github.com/repos/mozilla/django-browserid/pulls/175,175,"Intercept import error raised by ""from django.conf.urls import patterns, url"" in django < 1.4","I've run the tests against django 1.3 and fixed the import error complaining about ""from django.conf.urls import patterns, url""
+",fpischedda,1579487,2013-06-17T08:01:20Z,CONTRIBUTOR,False,4,1,1,Django application for adding BrowserID support.,JavaScript,8ee6930d912362316e7b1a4fd96bbd5443d014db,intercept ImportError for backward compatibility with django 1.3
+123,https://api.github.com/repos/mozilla/django-browserid/pulls/174,174,"django.conf.default.urls is deperecated in django 1.5, use django.conf.urls instead","this little patch doesn't check django version but uses the right namespace per for django 1.5
+",fpischedda,1579487,2013-06-15T13:51:54Z,CONTRIBUTOR,True,5,1,2,Django application for adding BrowserID support.,JavaScript,b51b29d23153d7cddc3283a6faa2d34e9f097ff9,"django.conf.default.urls is deperecated, use django.conf.urls instead"
+124,https://api.github.com/repos/mozilla/django-browserid/pulls/174,174,"django.conf.default.urls is deperecated in django 1.5, use django.conf.urls instead","this little patch doesn't check django version but uses the right namespace per for django 1.5
+",fpischedda,1579487,2013-06-15T13:51:54Z,CONTRIBUTOR,True,5,1,2,Django application for adding BrowserID support.,JavaScript,8ee6930d912362316e7b1a4fd96bbd5443d014db,intercept ImportError for backward compatibility with django 1.3
+125,https://api.github.com/repos/mozilla/django-browserid/pulls/174,174,"django.conf.default.urls is deperecated in django 1.5, use django.conf.urls instead","this little patch doesn't check django version but uses the right namespace per for django 1.5
+",fpischedda,1579487,2013-06-15T13:51:54Z,CONTRIBUTOR,True,5,1,2,Django application for adding BrowserID support.,JavaScript,05b97ac2347d04433be7e44319bbba502b6f2d22,"Update AUTHORS.rst
+
+added myself to authors as suggested :)"
+126,https://api.github.com/repos/mozilla/django-browserid/pulls/172,172,Update testing docs,"Fixes the test run stuff.
+
+Tiny r?
+",willkg,820826,2013-06-01T13:24:32Z,MEMBER,True,2,2,1,Django application for adding BrowserID support.,JavaScript,7b8a018ca40cd3e1e63d6cae5f4b1629443b672a,Update testing docs
+127,https://api.github.com/repos/mozilla/django-browserid/pulls/171,171,Fix #136: Replace test_verification with new tests in test_base.,"Replaces the out-of-date tests in test_verification with new ones. Also makes a few formatting fixes to `base.py`.
+
+@willkg r?
+",Osmose,193106,2013-05-27T06:14:30Z,CONTRIBUTOR,True,113,191,3,Django application for adding BrowserID support.,JavaScript,dc86af668f7abf7362f13753964cd78562f8980c,Fix #136: Replace test_verification with new tests in test_base.
+128,https://api.github.com/repos/mozilla/django-browserid/pulls/170,170,issue 168 - make it possible to override email check,"@Osmose r?
+
+Any ideas about what I should do with documentation?
+",peterbe,26739,2013-05-23T22:50:27Z,CONTRIBUTOR,True,26,0,2,Django application for adding BrowserID support.,JavaScript,97ce2f268623cdeeff509b4d345d186dc6b1cba3,issue 168 - make it possible to override email check
+129,https://api.github.com/repos/mozilla/django-browserid/pulls/169,169,Ability to override Verify class,"This makes it possible to override which Verify view class you are going to use. 
+
+@Osmose r?
+",peterbe,26739,2013-05-23T17:19:13Z,CONTRIBUTOR,False,85,3,4,Django application for adding BrowserID support.,JavaScript,9e9aa596728cc113edcbde7ac650e3515c76c0da,ability to override Verify class
+130,https://api.github.com/repos/mozilla/django-browserid/pulls/165,165,Ensure backend attribute exists on user objects.,"A user's email is only included in the browserid_info div if it was
+authenticated by the BrowserIDBackend, which is signified by the
+backend attribute on the user object. However, if a user is retrieved
+from the session, the backend attribute isn't set by default.
+
+In that case, the user object is retrieved by the get_user method
+on the backend that first logged the user in. This commit updates that
+method so that it sets the backend attribute on the user object, 
+ensuring that it will always have that attribute and can be correctly
+identified as being authed by the BrowserIDBackend.
+
+Oh, and I also added Python 3.3 to the allowed failures list in Travis
+until we figure out why lxml doesn't want to install on it.
+",Osmose,193106,2013-05-14T03:43:41Z,CONTRIBUTOR,True,12,1,3,Django application for adding BrowserID support.,JavaScript,45135f76d80c6c698cd9a94d6f9a89f806cda9c9,"Ensure backend attribute exists on user objects.
+
+A user's email is only included in the browserid_info div if it was
+authenticated by the BrowserIDBackend, which is signified by the
+backend attribute on the user object. However, if a user is retrieved
+from the session, the backend attribute isn't set by default.
+
+In that case, the user object is retrieved by the get_user method
+on the backend that first logged the user in. This commit updates that
+method so that it sets the backend attribute on the user object, 
+ensuring that it will always have that attribute and can be correctly
+identified as being authed by the BrowserIDBackend.
+
+Oh, and I also added Python 3.3 to the allowed failures list in Travis
+until we figure out why lxml doesn't want to install on it."
+131,https://api.github.com/repos/mozilla/django-browserid/pulls/164,164,issue 163 - zip_safe=False to prevent installing as unpacked .egg,"r?
+",peterbe,26739,2013-05-13T23:05:03Z,CONTRIBUTOR,True,1,0,1,Django application for adding BrowserID support.,JavaScript,47b5eb6cb556acd3ae9496ae3229202a66fb4837,issue 163 - zip_safe=False to prevent installing as unpacked .egg
+132,https://api.github.com/repos/mozilla/django-browserid/pulls/160,160,Include css in package data,"Makes the persona-buttons.css file available when installed using pip.
+",richardmansfield,359372,2013-05-07T22:16:16Z,CONTRIBUTOR,True,1,1,1,Django application for adding BrowserID support.,JavaScript,7457fb35ab32424b8d51f33d362e2c2df292154b,"Include css in package data
+
+Makes the persona-buttons.css file available when installed using pip."
+133,https://api.github.com/repos/mozilla/django-browserid/pulls/158,158,Fix #141: Remove email from browserid_info if user authed normally.,"If the user authenticates using a different method than BrowserID, the
+browserid_info function should not include the user's email for use
+by the JavaScript.
+",Osmose,193106,2013-05-05T21:57:19Z,CONTRIBUTOR,True,39,4,4,Django application for adding BrowserID support.,JavaScript,dcc16b0032d265b78bb5962e82795d46aea03ea8,"Fix #141: Remove email from browserid_info if user authed normally.
+
+If the user authenticates using a different method than BrowserID, the
+browserid_info function should not include the user's email for use
+by the JavaScript."
+134,https://api.github.com/repos/mozilla/django-browserid/pulls/156,156,workaround for python bug issue15881,"Without this fix we run into this bug: http://bugs.python.org/issue15881
+
+Now `python setup.py test` works!
+",peterbe,26739,2013-04-23T20:16:31Z,CONTRIBUTOR,True,9,0,1,Django application for adding BrowserID support.,JavaScript,bfe60bb2ec456157cb045675377c0b2287e8bfb8,workaround for python bug issue15881
+135,https://api.github.com/repos/mozilla/django-browserid/pulls/154,154,Add support for lazily-evaluated BROWSERID_REQUEST_ARGS.,"Updates our use of BROWSERID_REQUEST_ARGS to support Django Promises.
+This is primarily useful for translating strings in the request args
+using lazy translation, as well as reversing URLs using reverse_lazy.
+",Osmose,193106,2013-04-16T14:10:50Z,CONTRIBUTOR,True,62,3,5,Django application for adding BrowserID support.,JavaScript,fd45b0f568981eaf9d1c3fe2ec71b6c7b143077c,"Add support for lazily-evaluated BROWSERID_REQUEST_ARGS.
+
+Updates our use of BROWSERID_REQUEST_ARGS to support Django Promises.
+This is primarily useful for translating strings in the request args
+using lazy translation, as well as reversing URLs using reverse_lazy."
+136,https://api.github.com/repos/mozilla/django-browserid/pulls/153,153,Multiple site urls,"SITE_URL now accepts a string, an iterable of strings or a callable that returns either.
+
+Fixes #51
+",thekashifmalik,1322934,2013-04-15T08:21:17Z,NONE,False,36,14,5,Django application for adding BrowserID support.,JavaScript,138fb3f18ac046b5ebbffc8cfb28f5c62aa4fe9c,Add SITE_URL callable and iterable tests.
+137,https://api.github.com/repos/mozilla/django-browserid/pulls/153,153,Multiple site urls,"SITE_URL now accepts a string, an iterable of strings or a callable that returns either.
+
+Fixes #51
+",thekashifmalik,1322934,2013-04-15T08:21:17Z,NONE,False,36,14,5,Django application for adding BrowserID support.,JavaScript,88cf7de717a890cf0d1aa68afaea06e762db98e3,Add SITE_URL callable and iterable functionality.
+138,https://api.github.com/repos/mozilla/django-browserid/pulls/153,153,Multiple site urls,"SITE_URL now accepts a string, an iterable of strings or a callable that returns either.
+
+Fixes #51
+",thekashifmalik,1322934,2013-04-15T08:21:17Z,NONE,False,36,14,5,Django application for adding BrowserID support.,JavaScript,cf564bb7ecead02320e1a49a99019aa517d18bf1,Update documentation for SITE_URL.
+139,https://api.github.com/repos/mozilla/django-browserid/pulls/153,153,Multiple site urls,"SITE_URL now accepts a string, an iterable of strings or a callable that returns either.
+
+Fixes #51
+",thekashifmalik,1322934,2013-04-15T08:21:17Z,NONE,False,36,14,5,Django application for adding BrowserID support.,JavaScript,1a7ee2c1c84fb05d0f438db55904a7764459bf4f,Fix documentation url.
+140,https://api.github.com/repos/mozilla/django-browserid/pulls/153,153,Multiple site urls,"SITE_URL now accepts a string, an iterable of strings or a callable that returns either.
+
+Fixes #51
+",thekashifmalik,1322934,2013-04-15T08:21:17Z,NONE,False,36,14,5,Django application for adding BrowserID support.,JavaScript,99317bd7027273bd10257815c9798ec68856a7a6,Removed comments.
+141,https://api.github.com/repos/mozilla/django-browserid/pulls/153,153,Multiple site urls,"SITE_URL now accepts a string, an iterable of strings or a callable that returns either.
+
+Fixes #51
+",thekashifmalik,1322934,2013-04-15T08:21:17Z,NONE,False,36,14,5,Django application for adding BrowserID support.,JavaScript,979ff48c70fb8ce4ec22edafa76585a8ca25b842,Fix test docs and syntax.
+142,https://api.github.com/repos/mozilla/django-browserid/pulls/153,153,Multiple site urls,"SITE_URL now accepts a string, an iterable of strings or a callable that returns either.
+
+Fixes #51
+",thekashifmalik,1322934,2013-04-15T08:21:17Z,NONE,False,36,14,5,Django application for adding BrowserID support.,JavaScript,3ca137a805a7165f4e39eb64bc3bba2108e53a60,Change too-general Exception to more-specific TypeError.
+143,https://api.github.com/repos/mozilla/django-browserid/pulls/153,153,Multiple site urls,"SITE_URL now accepts a string, an iterable of strings or a callable that returns either.
+
+Fixes #51
+",thekashifmalik,1322934,2013-04-15T08:21:17Z,NONE,False,36,14,5,Django application for adding BrowserID support.,JavaScript,ff95c5e31139029bc218a9ed9a960930c61e933c,Only accept string or iterable.
+144,https://api.github.com/repos/mozilla/django-browserid/pulls/153,153,Multiple site urls,"SITE_URL now accepts a string, an iterable of strings or a callable that returns either.
+
+Fixes #51
+",thekashifmalik,1322934,2013-04-15T08:21:17Z,NONE,False,36,14,5,Django application for adding BrowserID support.,JavaScript,1c4ff0107ebc08a1999e105448232b2ca3bcd410,Update tests.
+145,https://api.github.com/repos/mozilla/django-browserid/pulls/153,153,Multiple site urls,"SITE_URL now accepts a string, an iterable of strings or a callable that returns either.
+
+Fixes #51
+",thekashifmalik,1322934,2013-04-15T08:21:17Z,NONE,False,36,14,5,Django application for adding BrowserID support.,JavaScript,b96e73b854513cdb25f141365d1429cec545c2b8,Ignore egg.
+146,https://api.github.com/repos/mozilla/django-browserid/pulls/153,153,Multiple site urls,"SITE_URL now accepts a string, an iterable of strings or a callable that returns either.
+
+Fixes #51
+",thekashifmalik,1322934,2013-04-15T08:21:17Z,NONE,False,36,14,5,Django application for adding BrowserID support.,JavaScript,b2e1fb3dd0f605723ce427df9fd7bdc93f5a3bf7,Pass all tests.
+147,https://api.github.com/repos/mozilla/django-browserid/pulls/153,153,Multiple site urls,"SITE_URL now accepts a string, an iterable of strings or a callable that returns either.
+
+Fixes #51
+",thekashifmalik,1322934,2013-04-15T08:21:17Z,NONE,False,36,14,5,Django application for adding BrowserID support.,JavaScript,9d29aed4019e61a16d12cb61682e348fbc4d1723,Update docs.
+148,https://api.github.com/repos/mozilla/django-browserid/pulls/153,153,Multiple site urls,"SITE_URL now accepts a string, an iterable of strings or a callable that returns either.
+
+Fixes #51
+",thekashifmalik,1322934,2013-04-15T08:21:17Z,NONE,False,36,14,5,Django application for adding BrowserID support.,JavaScript,66a92e467ef2d1573062477d2b3ee5d2e25bef44,Refine code flow.
+149,https://api.github.com/repos/mozilla/django-browserid/pulls/153,153,Multiple site urls,"SITE_URL now accepts a string, an iterable of strings or a callable that returns either.
+
+Fixes #51
+",thekashifmalik,1322934,2013-04-15T08:21:17Z,NONE,False,36,14,5,Django application for adding BrowserID support.,JavaScript,3ed765cd20164560d7ee36aa892f21e3f05fb14c,Merge remote-tracking branch 'origin/master' into multiple_site_urls
+150,https://api.github.com/repos/mozilla/django-browserid/pulls/150,150,Add a small JS API.,"Adds a global variable to browserid.js (django_browserid) that has 3
+useful methods: login and logout for manually triggering BrowserID,
+and isUserAuthenticated for checking if the current user is 
+authenticated.
+
+We still need to add some automated testing for the JS, but in the
+meantime I've tested this on my test playdoh site and it seemed to
+work fine. I'll also be using this on Flicks very soon (guess what
+motivated me to add these? :P).
+",Osmose,193106,2013-04-11T20:52:26Z,CONTRIBUTOR,True,76,13,3,Django application for adding BrowserID support.,JavaScript,3dece7cbcacabc1230471e353fb624f7b0f3781a,"Add a small JS API.
+
+Adds a global variable to browserid.js (django_browserid) that has 3
+useful methods: login and logout for manually triggering BrowserID,
+and isUserAuthenticated for checking if the current user is 
+authenticated."
+151,https://api.github.com/repos/mozilla/django-browserid/pulls/149,149,Add python 3.3 to python and allow_failures #148,,graingert,413772,2013-04-05T16:28:08Z,CONTRIBUTOR,False,74,52,10,Django application for adding BrowserID support.,JavaScript,bca11204df10e6134d3f6b7b5b6652a70189551a,Add python 3.3 to python and allow_failures #148
+152,https://api.github.com/repos/mozilla/django-browserid/pulls/149,149,Add python 3.3 to python and allow_failures #148,,graingert,413772,2013-04-05T16:28:08Z,CONTRIBUTOR,False,74,52,10,Django application for adding BrowserID support.,JavaScript,de34807a2720079d507aa16c2397f024b7c93907,"remove dependency on unittest2
+
+This allows support for both python 2.6 and 3.3"
+153,https://api.github.com/repos/mozilla/django-browserid/pulls/149,149,Add python 3.3 to python and allow_failures #148,,graingert,413772,2013-04-05T16:28:08Z,CONTRIBUTOR,False,74,52,10,Django application for adding BrowserID support.,JavaScript,95312c1c5fd16b455a6135bdbba0c08e827a65dc,use @willkg 's implementation of skip_if
+154,https://api.github.com/repos/mozilla/django-browserid/pulls/149,149,Add python 3.3 to python and allow_failures #148,,graingert,413772,2013-04-05T16:28:08Z,CONTRIBUTOR,False,74,52,10,Django application for adding BrowserID support.,JavaScript,9cf7fcbf804f46bc06b36585d4ce962349a457af,only test python 3.3 with DJANGO_VERSION=1.5
+155,https://api.github.com/repos/mozilla/django-browserid/pulls/149,149,Add python 3.3 to python and allow_failures #148,,graingert,413772,2013-04-05T16:28:08Z,CONTRIBUTOR,False,74,52,10,Django application for adding BrowserID support.,JavaScript,990963145b037f72c5c39a033b64382c8e6bea6e,setup.py: in version checking code use utf8 encoding
+156,https://api.github.com/repos/mozilla/django-browserid/pulls/149,149,Add python 3.3 to python and allow_failures #148,,graingert,413772,2013-04-05T16:28:08Z,CONTRIBUTOR,False,74,52,10,Django application for adding BrowserID support.,JavaScript,50971d4f311c40d7bf1fe78c22ae634763836b72,use django-nose version that supports Python 3
+157,https://api.github.com/repos/mozilla/django-browserid/pulls/149,149,Add python 3.3 to python and allow_failures #148,,graingert,413772,2013-04-05T16:28:08Z,CONTRIBUTOR,False,74,52,10,Django application for adding BrowserID support.,JavaScript,d377d9c05528fab060b945e48339751585bb963d,fix lack of basestring in python 3 using six
+158,https://api.github.com/repos/mozilla/django-browserid/pulls/149,149,Add python 3.3 to python and allow_failures #148,,graingert,413772,2013-04-05T16:28:08Z,CONTRIBUTOR,False,74,52,10,Django application for adding BrowserID support.,JavaScript,f8b63e6c50724d8a30ff332c90700ba7df93a885,use newer urllib.parse on python3
+159,https://api.github.com/repos/mozilla/django-browserid/pulls/149,149,Add python 3.3 to python and allow_failures #148,,graingert,413772,2013-04-05T16:28:08Z,CONTRIBUTOR,False,74,52,10,Django application for adding BrowserID support.,JavaScript,54918dbe1e44feffa9c27fa782493792e740813a,use reload_module from six instead of reload
+160,https://api.github.com/repos/mozilla/django-browserid/pulls/149,149,Add python 3.3 to python and allow_failures #148,,graingert,413772,2013-04-05T16:28:08Z,CONTRIBUTOR,False,74,52,10,Django application for adding BrowserID support.,JavaScript,62042fb944327b28786014b10a51e54624504608,use force_bytes to test for non-ascii bytes_type
+161,https://api.github.com/repos/mozilla/django-browserid/pulls/149,149,Add python 3.3 to python and allow_failures #148,,graingert,413772,2013-04-05T16:28:08Z,CONTRIBUTOR,False,74,52,10,Django application for adding BrowserID support.,JavaScript,19f650fd52e7bed9c79ede8d3daadba8d55af0d4,"convert emails to utf-8 bytes before hashing, if they are unicode
+
+This could result in some issues, eg the behavior of default_username_algo  will change subtly from py2 to py3k"
+162,https://api.github.com/repos/mozilla/django-browserid/pulls/149,149,Add python 3.3 to python and allow_failures #148,,graingert,413772,2013-04-05T16:28:08Z,CONTRIBUTOR,False,74,52,10,Django application for adding BrowserID support.,JavaScript,103893fa0c79c24105f508fc21d6e329d9fed333,use quick and dirty fix instead of skipIf
+163,https://api.github.com/repos/mozilla/django-browserid/pulls/149,149,Add python 3.3 to python and allow_failures #148,,graingert,413772,2013-04-05T16:28:08Z,CONTRIBUTOR,False,74,52,10,Django application for adding BrowserID support.,JavaScript,7db4703aedd2fc79b0b0ab14399c11cf4961007e,"add python 3.2, remove 3.3 from allowed_failures"
+164,https://api.github.com/repos/mozilla/django-browserid/pulls/149,149,Add python 3.3 to python and allow_failures #148,,graingert,413772,2013-04-05T16:28:08Z,CONTRIBUTOR,False,74,52,10,Django application for adding BrowserID support.,JavaScript,f1253f8ff19267e9c326e3cc91e013b5fba2058e,fix nits
+165,https://api.github.com/repos/mozilla/django-browserid/pulls/146,146,"support running tests with ""python setup.py test""","also removes the dependency on fabric
+",graingert,413772,2013-04-05T00:50:17Z,CONTRIBUTOR,False,28,27,6,Django application for adding BrowserID support.,JavaScript,46c763f11f76b2f3ba365b164196794a37494f44,"support running tests with python setup.py test
+
+also removes the dependency on fabric"
+166,https://api.github.com/repos/mozilla/django-browserid/pulls/146,146,"support running tests with ""python setup.py test""","also removes the dependency on fabric
+",graingert,413772,2013-04-05T00:50:17Z,CONTRIBUTOR,False,28,27,6,Django application for adding BrowserID support.,JavaScript,a9148c9c9dd5232a3f6e278bfa914e6330898569,"move runtests to project root
+
+avoids import django_browserid before environment variables are configured"
+167,https://api.github.com/repos/mozilla/django-browserid/pulls/146,146,"support running tests with ""python setup.py test""","also removes the dependency on fabric
+",graingert,413772,2013-04-05T00:50:17Z,CONTRIBUTOR,False,28,27,6,Django application for adding BrowserID support.,JavaScript,681a898d9dba89c70fe7f07bc61d1b84258f092b,ensure settings are imported before django_browserid
+168,https://api.github.com/repos/mozilla/django-browserid/pulls/146,146,"support running tests with ""python setup.py test""","also removes the dependency on fabric
+",graingert,413772,2013-04-05T00:50:17Z,CONTRIBUTOR,False,28,27,6,Django application for adding BrowserID support.,JavaScript,fdaa159f6033e345b9fe3d28abbc810f917ca50b,"use interactive=False and failfast=False for tests
+
+https://docs.djangoproject.com/en/dev/topics/testing/advanced/#django.test.simple.DjangoTestSuiteRunner"
+169,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,ad88a2c3cd1cf7d783c78e9fd6c4aafc0e49d18d,Add BrowserID button images.
+170,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,d741b8e5ace2a9b3fe05a0bafa747846d3539ef5,Edit template tag to check for image and render corresponding HTML.
+171,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,64b3a875034d862de8acae1d59b15ebdc06c1f2a,Add image template.
+172,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,46b0cbe8c0747b82adc646308f5dc4824a736cc9,Add tests.
+173,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,1751da7d118f082cc558ccabd4018ec990ddebf6,Fix template variable name.
+174,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,7fdee7b60dca59193da0516928ea8775b66db8f1,Add documentation.
+175,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,f236afccde1031d6d740798cab7628dc4b3344f7,Add name to contributors.
+176,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,429a5b7afe11a9ade1f4aef89b1c68737d291101,Remove images
+177,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,912fad922fb52b159787c7f6aec022e46ed73c2c,Add persona css
+178,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,01e076271d035f3be98b4330c6a7a16c5b24711e,Add form css
+179,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,ebf5846a6c9b485e9d148e15a35d4888f88e1a83,Add browserID css tag
+180,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,6927a39d9b8d5c1174402b1fc9377261ce2e4013,Switch to CSS based helpers and remove seperate image template.
+181,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,b2fac8cf442ba30f284ad05292a2605cf6bb08c9,Add test for new CSS
+182,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,4057921125a5b8e12b577ec357f8fd867bbc2291,Remove unused image test.
+183,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,8af4ae095a542e934cc1027c5bf22f4a7e00e348,Add documentation for CSS.
+184,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,167e76c3d4f3f73c37a91173163d773b7c131884,Merge remote-tracking branch 'origin/master' into mozilla_branding
+185,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,d887fa168e234adab4643acc2b58ee57041420fd,Change `css` to `color` and clean up extra `html` variable.
+186,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,3d20c6fd3384999b3cf92d17df3a23f13f5412bc,Update documentation.
+187,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,2d2bdd53ba9ca49f6c6945c323eaf37839342779,Fix misc. helpers.py code styling.
+188,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,dd5a7c732c81abe0c5abcdcc292652bfdd750059,ALL OF THE NEWLINE
+189,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,6a9cc6b74b50297f964e2ff193f4fc880e456969,Fix setup.py nitpicks.
+190,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,1c05067ead88295ab62c8727bbe470eb79812277,Fix formatting error.
+191,https://api.github.com/repos/mozilla/django-browserid/pulls/144,144,Mozilla branding,"Added functionality to use the very recognizable Persona branding buttons. It's very simply to use and should make convenient a very common case.
+
+It's also completely optional.
+
+Fixes #116
+",thekashifmalik,1322934,2013-03-30T15:01:25Z,NONE,False,296,24,9,Django application for adding BrowserID support.,JavaScript,ae0d492f0e4f8291ce937e7e73ef5b0284324c9c,"Merge remote-tracking branch 'origin/master' into mozilla_branding
+
+Conflicts:
+	django_browserid/helpers.py"
+192,https://api.github.com/repos/mozilla/django-browserid/pulls/139,139,Issue 138. Fix login failure auto-login,"If you have BROWSERID_CREATE_USER = False, then try to log in with a valid
+account on Persona, but not on the site, then you end up in this endless
+loop of going to a page on the site and being redirected to the login
+failure page immediately.
+
+This fixes that.
+
+Fixes #138
+",willkg,820826,2013-03-08T20:20:18Z,MEMBER,True,1,0,1,Django application for adding BrowserID support.,JavaScript,9eb0bd3054ddfab4543fae25171f9cee18b5f928,"Issue 138. Fix login failure auto-login
+
+If you have BROWSERID_CREATE_USER = False, then try to log in with a valid
+account on Persona, but not on the site, then you end up in this endless
+loop of going to a page on the site and being redirected to the login
+failure page immediately.
+
+This fixes that."
+193,https://api.github.com/repos/mozilla/django-browserid/pulls/137,137,Fix #97: Raise BrowserIDException on service errors and handle in view.,"- Adds BrowserIDException and updates verify to raise it when there is 
+  an issue connecting to the remote verification service.
+- Update the Verify view to catch the raised BrowserIDException and 
+  redirect to the login failure page when it is raised.
+",Osmose,193106,2013-03-04T18:58:02Z,CONTRIBUTOR,True,73,11,7,Django application for adding BrowserID support.,JavaScript,07a6ee5f850090acf5ae85f62e310c948599a6d3,"Fix #97: Raise BrowserIDException on service errors and handle in view.
+
+- Adds BrowserIDException and updates verify to raise it when there is 
+  an issue connecting to the remote verification service.
+- Update the Verify view to catch the raised BrowserIDException and 
+  redirect to the login failure page when it is raised."
+194,https://api.github.com/repos/mozilla/django-browserid/pulls/135,135,"Fix #79: Document Verify view, `next` argument, and other small fixes.","I'm still not sure if this is a prominent-enough mention of the `next` argument, or that it even matters given the new template helpers.
+",Osmose,193106,2013-03-04T15:27:36Z,CONTRIBUTOR,True,76,37,6,Django application for adding BrowserID support.,JavaScript,0032483ce540fdbc45ccc44d61ab6c9d10bf95b3,"Fix #79: Document Verify view, `next` argument, and other small fixes."
+195,https://api.github.com/repos/mozilla/django-browserid/pulls/134,134,Fix #125: Add security checks to Verify view.,,Osmose,193106,2013-03-03T23:25:07Z,CONTRIBUTOR,True,42,22,3,Django application for adding BrowserID support.,JavaScript,dde99f6ae444c4045c52d9bd8978fd31eaceabbf,Fix #125: Add security checks to Verify view.
+196,https://api.github.com/repos/mozilla/django-browserid/pulls/133,133,Update template helper API,"After using it for a while, I became unsatisfied by `browserid_button`. It was becoming a bit of a monster in terms of parameters, and the `user.is_authenticated` check didn't seem to work well in our own template, as it makes customizing that logic a bit harder.
+
+So I split it out into two functions, `browserid_login` and `browserid_logout`. Now users can have greater control over where the login and logout links appear and what they look like, and the code on our side is simpler (we can avoid most of the sillyness of having partially-evaluated helpers). 
+
+Other issues that were addressed:
+- The login buttons all now use a single form on the page. This avoids some issues with the <form> element being put inside of an inline element. As a part of this, browserid_info is now a function instead of just a variable.
+- Template helpers are in helpers.py now.
+- Documentation has been updated, and most of the autodoc stuff has been moved into a separate API page.
+- Remove the Verify view logic to support a custom redirect parameter and just use `next`.
+
+I'm just terrible at this ""small commits"" thing.
+",Osmose,193106,2013-02-26T16:02:31Z,CONTRIBUTOR,True,442,275,21,Django application for adding BrowserID support.,JavaScript,aa76cf099a36eb97104bfb67ba3fcc941cf47a79,"Replace browserid_button with browserid_login and browserid_logout.
+
+- Move template helpers to helpers.py and replace browserid_button
+  with browserid_login and browserid_logout instead.
+- Add login form to browserid_info to avoid issues with having a form 
+  tag inside an inline element.
+- Simplify Verify view redirect to look directly for the `next` 
+  parameter.
+- Update browserid.js to work with the new single-login form."
+197,https://api.github.com/repos/mozilla/django-browserid/pulls/133,133,Update template helper API,"After using it for a while, I became unsatisfied by `browserid_button`. It was becoming a bit of a monster in terms of parameters, and the `user.is_authenticated` check didn't seem to work well in our own template, as it makes customizing that logic a bit harder.
+
+So I split it out into two functions, `browserid_login` and `browserid_logout`. Now users can have greater control over where the login and logout links appear and what they look like, and the code on our side is simpler (we can avoid most of the sillyness of having partially-evaluated helpers). 
+
+Other issues that were addressed:
+- The login buttons all now use a single form on the page. This avoids some issues with the <form> element being put inside of an inline element. As a part of this, browserid_info is now a function instead of just a variable.
+- Template helpers are in helpers.py now.
+- Documentation has been updated, and most of the autodoc stuff has been moved into a separate API page.
+- Remove the Verify view logic to support a custom redirect parameter and just use `next`.
+
+I'm just terrible at this ""small commits"" thing.
+",Osmose,193106,2013-02-26T16:02:31Z,CONTRIBUTOR,True,442,275,21,Django application for adding BrowserID support.,JavaScript,1334c6e151cc41963199110644c90fbe2f3840f4,Update docs and changelog.
+198,https://api.github.com/repos/mozilla/django-browserid/pulls/133,133,Update template helper API,"After using it for a while, I became unsatisfied by `browserid_button`. It was becoming a bit of a monster in terms of parameters, and the `user.is_authenticated` check didn't seem to work well in our own template, as it makes customizing that logic a bit harder.
+
+So I split it out into two functions, `browserid_login` and `browserid_logout`. Now users can have greater control over where the login and logout links appear and what they look like, and the code on our side is simpler (we can avoid most of the sillyness of having partially-evaluated helpers). 
+
+Other issues that were addressed:
+- The login buttons all now use a single form on the page. This avoids some issues with the <form> element being put inside of an inline element. As a part of this, browserid_info is now a function instead of just a variable.
+- Template helpers are in helpers.py now.
+- Documentation has been updated, and most of the autodoc stuff has been moved into a separate API page.
+- Remove the Verify view logic to support a custom redirect parameter and just use `next`.
+
+I'm just terrible at this ""small commits"" thing.
+",Osmose,193106,2013-02-26T16:02:31Z,CONTRIBUTOR,True,442,275,21,Django application for adding BrowserID support.,JavaScript,86449fca53972ea447be442a33f098cffad900ea,"Make browserid_info a function to fix the form CSRF.
+
+Django's CSRF protection is difficult to use outside of a view. When
+browserid_info was being generated in the context processor, it couldn't
+get the {% csrf_token %} tag to output a CSRF token.
+
+To fix this, we change browserid_info to a function that executes when
+the template is rendered. By that point, the Django CSRF plumbing has
+sorted itself out and {% csrf_token %} now outputs a token correctly.
+This also has the side benefit of making the API a bit more consistent."
+199,https://api.github.com/repos/mozilla/django-browserid/pulls/133,133,Update template helper API,"After using it for a while, I became unsatisfied by `browserid_button`. It was becoming a bit of a monster in terms of parameters, and the `user.is_authenticated` check didn't seem to work well in our own template, as it makes customizing that logic a bit harder.
+
+So I split it out into two functions, `browserid_login` and `browserid_logout`. Now users can have greater control over where the login and logout links appear and what they look like, and the code on our side is simpler (we can avoid most of the sillyness of having partially-evaluated helpers). 
+
+Other issues that were addressed:
+- The login buttons all now use a single form on the page. This avoids some issues with the <form> element being put inside of an inline element. As a part of this, browserid_info is now a function instead of just a variable.
+- Template helpers are in helpers.py now.
+- Documentation has been updated, and most of the autodoc stuff has been moved into a separate API page.
+- Remove the Verify view logic to support a custom redirect parameter and just use `next`.
+
+I'm just terrible at this ""small commits"" thing.
+",Osmose,193106,2013-02-26T16:02:31Z,CONTRIBUTOR,True,442,275,21,Django application for adding BrowserID support.,JavaScript,16518ff05d2854055e486724ac9424fd7a4795e3,Drop support for Django 1.3.
+200,https://api.github.com/repos/mozilla/django-browserid/pulls/133,133,Update template helper API,"After using it for a while, I became unsatisfied by `browserid_button`. It was becoming a bit of a monster in terms of parameters, and the `user.is_authenticated` check didn't seem to work well in our own template, as it makes customizing that logic a bit harder.
+
+So I split it out into two functions, `browserid_login` and `browserid_logout`. Now users can have greater control over where the login and logout links appear and what they look like, and the code on our side is simpler (we can avoid most of the sillyness of having partially-evaluated helpers). 
+
+Other issues that were addressed:
+- The login buttons all now use a single form on the page. This avoids some issues with the <form> element being put inside of an inline element. As a part of this, browserid_info is now a function instead of just a variable.
+- Template helpers are in helpers.py now.
+- Documentation has been updated, and most of the autodoc stuff has been moved into a separate API page.
+- Remove the Verify view logic to support a custom redirect parameter and just use `next`.
+
+I'm just terrible at this ""small commits"" thing.
+",Osmose,193106,2013-02-26T16:02:31Z,CONTRIBUTOR,True,442,275,21,Django application for adding BrowserID support.,JavaScript,c9dad3f8948ed30ccc8e69751e55528bb62b499b,"Review fixes, reenable Django 1.3.7 testing to see if it works."
+201,https://api.github.com/repos/mozilla/django-browserid/pulls/131,131,Documented `next` url,,tuxcanfly,132667,2013-02-24T16:24:37Z,CONTRIBUTOR,False,19,0,1,Django application for adding BrowserID support.,JavaScript,322e06b38f1826512c3c8a6c4d50e656016f2b8c,documented next url
+202,https://api.github.com/repos/mozilla/django-browserid/pulls/130,130,Added jquery to the complete example.,"I know it's documented in the next line, but impatient people (like me!) would expect the complete example to just work (TM).
+",tuxcanfly,132667,2013-02-24T16:20:35Z,CONTRIBUTOR,False,3,0,2,Django application for adding BrowserID support.,JavaScript,3ec1b496ccf0482f78f84774ca90d3b55589b5d8,added jquery to the complete example
+203,https://api.github.com/repos/mozilla/django-browserid/pulls/130,130,Added jquery to the complete example.,"I know it's documented in the next line, but impatient people (like me!) would expect the complete example to just work (TM).
+",tuxcanfly,132667,2013-02-24T16:20:35Z,CONTRIBUTOR,False,3,0,2,Django application for adding BrowserID support.,JavaScript,710f76849667707a1f6d718a8a106af3153aa21d,complete example - move jquery to bottom
+204,https://api.github.com/repos/mozilla/django-browserid/pulls/130,130,Added jquery to the complete example.,"I know it's documented in the next line, but impatient people (like me!) would expect the complete example to just work (TM).
+",tuxcanfly,132667,2013-02-24T16:20:35Z,CONTRIBUTOR,False,3,0,2,Django application for adding BrowserID support.,JavaScript,32cbdb349e7cea6f634dd4834bd9d9a1c53cf5c7,adding myself to AUTHORS
+205,https://api.github.com/repos/mozilla/django-browserid/pulls/129,129,Added syntax highlight for django/jinja2 examples using code-block,,tuxcanfly,132667,2013-02-24T16:15:12Z,CONTRIBUTOR,False,6,2,1,Django application for adding BrowserID support.,JavaScript,6de5cb0dcc54d3f9ac5268434a424402a8222f04,highlight django code blocks
+206,https://api.github.com/repos/mozilla/django-browserid/pulls/128,128,Add trove classifier info,"This adds the trove classifier information so it's got the right metadata on pypi and other places.
+
+r?
+",willkg,820826,2013-02-16T14:05:38Z,MEMBER,False,11,0,1,Django application for adding BrowserID support.,JavaScript,1ed7e48e1d631af13dde9f7f0121b00353f7bbe0,Add trove classifier info
+207,https://api.github.com/repos/mozilla/django-browserid/pulls/127,127,version number in one place,"Now there's only the `__version__` in `django_browserid/__init__.py`. 
+
+I tested this by running `python setup.py sdist` and it indeed create `dist/django-browserid-0.7.1.tar.gz`
+",peterbe,26739,2013-02-15T21:58:32Z,CONTRIBUTOR,False,22,6,2,Django application for adding BrowserID support.,JavaScript,4dd6a56a6ad66cadfcf7d181381b81d269f40375,version number in one place
+208,https://api.github.com/repos/mozilla/django-browserid/pulls/127,127,version number in one place,"Now there's only the `__version__` in `django_browserid/__init__.py`. 
+
+I tested this by running `python setup.py sdist` and it indeed create `dist/django-browserid-0.7.1.tar.gz`
+",peterbe,26739,2013-02-15T21:58:32Z,CONTRIBUTOR,False,22,6,2,Django application for adding BrowserID support.,JavaScript,dd248be9a8f959281a8972ca390bfc6c7a10ed64,and the docs/conf.py
+209,https://api.github.com/repos/mozilla/django-browserid/pulls/127,127,version number in one place,"Now there's only the `__version__` in `django_browserid/__init__.py`. 
+
+I tested this by running `python setup.py sdist` and it indeed create `dist/django-browserid-0.7.1.tar.gz`
+",peterbe,26739,2013-02-15T21:58:32Z,CONTRIBUTOR,False,22,6,2,Django application for adding BrowserID support.,JavaScript,86eb553b142402831fa497d808b29ab55d65bb7e,fix
+210,https://api.github.com/repos/mozilla/django-browserid/pulls/126,126,Allow LOGIN_REDIRECT_URL_FAILURE to be view name,"This tweaks the failure_url handling so that it can be a view name
+or a url. Also adds a test for it.
+
+Fixes #123.
+
+r?
+",willkg,820826,2013-02-15T15:14:46Z,MEMBER,False,35,3,3,Django application for adding BrowserID support.,JavaScript,21e19e382ea4707838bc30f54e897cbd47a388ae,"Allow LOGIN_REDIRECT_URL_FAILURE to be view name
+
+This tweaks the failure_url handling so that it can be a view name
+or a url. Also adds a test for it.
+
+Fixes #123."
+211,https://api.github.com/repos/mozilla/django-browserid/pulls/124,124,Add ability to alter class on browserid_button link.,,Osmose,193106,2013-02-12T20:00:45Z,CONTRIBUTOR,True,25,4,3,Django application for adding BrowserID support.,JavaScript,35319108318a15bcbe0c41724ce01e46471f859d,Add ability to alter class on browserid_button link.
+212,https://api.github.com/repos/mozilla/django-browserid/pulls/122,122,Less pain,"This takes the changes master mkelly made in pull #105 and addresses many of the nits professor peterbe made.
+
+I broke each nit out into its own commit for the purposes of easier reviewing. Hope that helps rather than hinders.
+
+r?
+",willkg,820826,2013-02-11T22:48:47Z,MEMBER,True,309,85,12,Django application for adding BrowserID support.,JavaScript,39ee9ae588b5a2590d32cfd47dcf16321e256729,Fix #105: Improve documentation and add more logging.
+213,https://api.github.com/repos/mozilla/django-browserid/pulls/122,122,Less pain,"This takes the changes master mkelly made in pull #105 and addresses many of the nits professor peterbe made.
+
+I broke each nit out into its own commit for the purposes of easier reviewing. Hope that helps rather than hinders.
+
+r?
+",willkg,820826,2013-02-11T22:48:47Z,MEMBER,True,309,85,12,Django application for adding BrowserID support.,JavaScript,ee4feb2da61cd05a55909db3bd8c0cece49dce4a,"Fix minor nits
+
+* tweak get_audience docstring for clarity
+* change log to logger, nix .format() calls
+* tweak site_url checking
+* invert SANITY_CHECKS setting: Peter likes False by default, so this
+  inverts the name and value.
+* move sanity_checks to base for reusability"
+214,https://api.github.com/repos/mozilla/django-browserid/pulls/122,122,Less pain,"This takes the changes master mkelly made in pull #105 and addresses many of the nits professor peterbe made.
+
+I broke each nit out into its own commit for the purposes of easier reviewing. Hope that helps rather than hinders.
+
+r?
+",willkg,820826,2013-02-11T22:48:47Z,MEMBER,True,309,85,12,Django application for adding BrowserID support.,JavaScript,ea5cf5ee2dabf188580dcd0b5eda1a724e25ace3,Fix notty typo
+215,https://api.github.com/repos/mozilla/django-browserid/pulls/120,120,Add note to docs for template_context_processors,"I always have to go look up the default value of `TEMPLATE_CONTEXT_PROCESSORS` so I thought maybe adding a link would be handy.
+",wraithan,90898,2013-02-09T21:46:04Z,CONTRIBUTOR,True,4,0,1,Django application for adding BrowserID support.,JavaScript,6a4e8ed19552bea924a35b6ef2a792e2b46bc439,Add note to docs for template_context_processors
+216,https://api.github.com/repos/mozilla/django-browserid/pulls/119,119,issue118 - setup.py and inclusion of stuff,"@Osmose r?
+
+I actually learned a lot from working on this. It basically boils down to: Don't use distutils, use setuptools. 
+
+When you use distutils you have to list all the packages and you have to maintain both a MANIFEST.in file and you have maintain a `package_data` parameter to `setup()`. 
+",peterbe,26739,2013-01-31T21:34:18Z,CONTRIBUTOR,False,7,3,3,Django application for adding BrowserID support.,JavaScript,75f9a9df060b11c0292d0a75dcc4d5eab3a1e77e,issue118 - setup.py and inclusion of stuff
+217,https://api.github.com/repos/mozilla/django-browserid/pulls/117,117,issue 109 - unicode in extra arguments to the verify function,"@Osmose r?
+",peterbe,26739,2013-01-25T01:17:57Z,CONTRIBUTOR,True,9,5,2,Django application for adding BrowserID support.,JavaScript,9b19c75756c77a9f090776d67b33c68efc692adc,issue 109 - unicode in extra arguments to the verify function
+218,https://api.github.com/repos/mozilla/django-browserid/pulls/117,117,issue 109 - unicode in extra arguments to the verify function,"@Osmose r?
+",peterbe,26739,2013-01-25T01:17:57Z,CONTRIBUTOR,True,9,5,2,Django application for adding BrowserID support.,JavaScript,a893c1d1b1f2c3292262bc00b6a8269f46db5799,rolling rolling rolling
+219,https://api.github.com/repos/mozilla/django-browserid/pulls/113,113,Fix #105: Improve documentation and add more logging.,,Osmose,193106,2013-01-21T20:18:35Z,CONTRIBUTOR,False,289,81,11,Django application for adding BrowserID support.,JavaScript,b57e981523444049b1cd63fff61b3243abdfbdb6,Fix #105: Improve documentation and add more logging.
+220,https://api.github.com/repos/mozilla/django-browserid/pulls/111,111,Add browserid_extra to BrowserIDBackend.authenticate,"Added an optional keyword argument to `BrowserIDBackend.authenticate`, called `browserid_extra` that is passed to `verify` as `extra_params` instead of passing all the kwargs to `verify` directly.
+
+Concerned code :
+Line 65,  77 of `auth.py`
+",prasoon2211,2565248,2013-01-08T07:49:28Z,CONTRIBUTOR,False,13,6,4,Django application for adding BrowserID support.,JavaScript,a6f75c0a182025e536d372deb85b598ec20ddf04,django-browserid : Implemented code change for issue 110
+221,https://api.github.com/repos/mozilla/django-browserid/pulls/111,111,Add browserid_extra to BrowserIDBackend.authenticate,"Added an optional keyword argument to `BrowserIDBackend.authenticate`, called `browserid_extra` that is passed to `verify` as `extra_params` instead of passing all the kwargs to `verify` directly.
+
+Concerned code :
+Line 65,  77 of `auth.py`
+",prasoon2211,2565248,2013-01-08T07:49:28Z,CONTRIBUTOR,False,13,6,4,Django application for adding BrowserID support.,JavaScript,46db8c6a61105b8c4e02bb79e2019502d00d6995,Fixed issue 110. Added an extra kwarg to BrowserIDBackend.authenticate that is now being passed to verify.
+222,https://api.github.com/repos/mozilla/django-browserid/pulls/111,111,Add browserid_extra to BrowserIDBackend.authenticate,"Added an optional keyword argument to `BrowserIDBackend.authenticate`, called `browserid_extra` that is passed to `verify` as `extra_params` instead of passing all the kwargs to `verify` directly.
+
+Concerned code :
+Line 65,  77 of `auth.py`
+",prasoon2211,2565248,2013-01-08T07:49:28Z,CONTRIBUTOR,False,13,6,4,Django application for adding BrowserID support.,JavaScript,9d8054e31e2caf9fd4a4551ec9f89582243832b1,Issue 110: Tests are working.
+223,https://api.github.com/repos/mozilla/django-browserid/pulls/111,111,Add browserid_extra to BrowserIDBackend.authenticate,"Added an optional keyword argument to `BrowserIDBackend.authenticate`, called `browserid_extra` that is passed to `verify` as `extra_params` instead of passing all the kwargs to `verify` directly.
+
+Concerned code :
+Line 65,  77 of `auth.py`
+",prasoon2211,2565248,2013-01-08T07:49:28Z,CONTRIBUTOR,False,13,6,4,Django application for adding BrowserID support.,JavaScript,0096216e560e6b84a5bd2d1e0ada1b6421babeff,Merge branch 'master' of https://github.com/mozilla/django-browserid
+224,https://api.github.com/repos/mozilla/django-browserid/pulls/111,111,Add browserid_extra to BrowserIDBackend.authenticate,"Added an optional keyword argument to `BrowserIDBackend.authenticate`, called `browserid_extra` that is passed to `verify` as `extra_params` instead of passing all the kwargs to `verify` directly.
+
+Concerned code :
+Line 65,  77 of `auth.py`
+",prasoon2211,2565248,2013-01-08T07:49:28Z,CONTRIBUTOR,False,13,6,4,Django application for adding BrowserID support.,JavaScript,645bd4594784cdeb88c5ae4d440e246fa4da2991,Added test for browserid_extra param
+225,https://api.github.com/repos/mozilla/django-browserid/pulls/111,111,Add browserid_extra to BrowserIDBackend.authenticate,"Added an optional keyword argument to `BrowserIDBackend.authenticate`, called `browserid_extra` that is passed to `verify` as `extra_params` instead of passing all the kwargs to `verify` directly.
+
+Concerned code :
+Line 65,  77 of `auth.py`
+",prasoon2211,2565248,2013-01-08T07:49:28Z,CONTRIBUTOR,False,13,6,4,Django application for adding BrowserID support.,JavaScript,ce4354a4868c44dd281b16e0868dde8a19ef7bd8,Modified tests - now working
+226,https://api.github.com/repos/mozilla/django-browserid/pulls/108,108,Improve button code,"Revamp template code and documentation.
+- Adds 3 new template functions, `browserid_button`, `browserid_js`, and
+  `browserid_info`, to make embedding a login/logout button easier.
+- Simplify setup documentation and make a few miscellaneous 
+  documentation fixes.
+- Update JavaScript with lots of fixes.
+
+Fixes #102; Fixes #101.
+",Osmose,193106,2013-01-03T18:57:01Z,CONTRIBUTOR,True,474,299,29,Django application for adding BrowserID support.,JavaScript,8df1a778487fde9e59bec03f0eb086abadff2e37,"Revamp template code and documentation.
+
+- Adds 3 new template functions, `browserid_button`, `browserid_js`, and
+  `browserid_info`, to make embedding a login/logout button easier.
+- Simplify setup documentation and make a few miscellaneous 
+  documentation fixes.
+- Update JavaScript with lots of fixes.
+
+Fixes #102; Fixes #101."
+227,https://api.github.com/repos/mozilla/django-browserid/pulls/108,108,Improve button code,"Revamp template code and documentation.
+- Adds 3 new template functions, `browserid_button`, `browserid_js`, and
+  `browserid_info`, to make embedding a login/logout button easier.
+- Simplify setup documentation and make a few miscellaneous 
+  documentation fixes.
+- Update JavaScript with lots of fixes.
+
+Fixes #102; Fixes #101.
+",Osmose,193106,2013-01-03T18:57:01Z,CONTRIBUTOR,True,474,299,29,Django application for adding BrowserID support.,JavaScript,72009f28f55c91c8ed1bb79930bc84f88dc00211,"Add templatetags to make new buttons work with Django templates.
+
+Also adds in a few small improvements based on code review and updates
+the changelog and authors file."
+228,https://api.github.com/repos/mozilla/django-browserid/pulls/107,107,Use a custom verify url programmatically,,kumar303,55398,2012-12-26T20:54:17Z,CONTRIBUTOR,True,82,11,6,Django application for adding BrowserID support.,JavaScript,4fa64a0dc0d7b49718902295d052381a6b861c73,Document the developer setup process
+229,https://api.github.com/repos/mozilla/django-browserid/pulls/107,107,Use a custom verify url programmatically,,kumar303,55398,2012-12-26T20:54:17Z,CONTRIBUTOR,True,82,11,6,Django application for adding BrowserID support.,JavaScript,a5292a04d8e077cd96a8f4358442e7182682f739,"Use multiple verify URLs in the same Django app
+
+This was needed to support both a persona service on
+desktop and one on B2G for the same website.
+Details: https://bugzilla.mozilla.org/show_bug.cgi?id=821351"
+230,https://api.github.com/repos/mozilla/django-browserid/pulls/104,104,issue 103 - fake assertion posts with non-ascii,"Solves https://github.com/mozilla/django-browserid/issues/103
+",peterbe,26739,2012-12-14T01:51:30Z,CONTRIBUTOR,True,24,0,2,Django application for adding BrowserID support.,JavaScript,666442058784c25dd4ce119b62597551433b215e,issue 103 - fake assertion posts with non-ascii
+231,https://api.github.com/repos/mozilla/django-browserid/pulls/100,100,Fix urls.py setup docs. ,"The way docs explain to include browserid urls.py will result in the following urlpattern
+
+r'^browserid/browserid/verify/' 
+
+This PR fixes the docs.
+",glogiotatidis,584352,2012-11-20T09:53:16Z,CONTRIBUTOR,True,1,1,1,Django application for adding BrowserID support.,JavaScript,8a947cf441e76d420cc5e1080dc310bc013889ca,Fix urls.py setup docs.
+232,https://api.github.com/repos/mozilla/django-browserid/pulls/99,99,Fix #98: Replace e.target with this for navigator.id.request arguments,"Mastering Django ongoing... decided to take a break and fix this up :)
+",callmekatootie,2317133,2012-11-13T15:20:05Z,NONE,False,1,1,1,Django application for adding BrowserID support.,JavaScript,1ce72cf35e943c3b6b425845665d810245921040,Fix #98: Replace e.target with this for navigator.id.request arguments
+233,https://api.github.com/repos/mozilla/django-browserid/pulls/96,96,Bug 794634 - Add unverified email addresses from Persona,"(See bug 794634#c9 for details)
+
+History:
+Several IdPs have stated that they wish to be able to have people able to use some services without having fully validated their email address (e.g. during new user sign ups) The Persona protocol was modified to allow for the optional idea of ""unverified addresses"" from a given provider. This required light modification of the validation as well as handling the new ""unverified-email"" field. 
+",jrconlin,35755,2012-11-08T21:32:35Z,NONE,True,38,11,4,Django application for adding BrowserID support.,JavaScript,c2fe8f791b946f690d64a124146ab59b7dcc75d4,"Bug 794634 - Add unverified email addresses from Persona
+
+(See bug 794634#c9 for details)"
+234,https://api.github.com/repos/mozilla/django-browserid/pulls/95,95,Make logout links work properly and add docs for how to make them.,,Osmose,193106,2012-11-08T18:21:13Z,CONTRIBUTOR,True,23,2,2,Django application for adding BrowserID support.,JavaScript,15550f12e643b66d210efe0644321b3816ca0f74,Make logout links work properly and add docs for how to make them.
+235,https://api.github.com/repos/mozilla/django-browserid/pulls/94,94,Fix #82: Avoid common infinite-login-loop on error.,"Avoids a login loop due to login errors and Persona's need to auto-login
+users without their explicit action. _shakes fist at Persona_
+
+There's still other situations that may cause infinite loops, but they
+shouldn't show up in production and/or have either obvious log entries
+or documentation explaining what caused them.
+",Osmose,193106,2012-11-07T22:55:35Z,CONTRIBUTOR,True,56,6,4,Django application for adding BrowserID support.,JavaScript,18601fb191bbb8be9ba07912b7001786c094d12b,"Fix #82: Avoid common infinite-login-loop on error.
+
+Avoids a login loop due to login errors and Persona's need to auto-login
+users without their explicit action. *shakes fist at Persona*
+
+There's still other situations that may cause infinite loops, but they
+shouldn't show up in production and/or have either obvious log entries
+or documentation explaining what caused them."
+236,https://api.github.com/repos/mozilla/django-browserid/pulls/93,93,Custom user model,"Expands upon @niran's work to support custom user models and adds tests and docs, plus changes the implementation to support the tests.
+",Osmose,193106,2012-11-07T20:31:07Z,CONTRIBUTOR,True,124,22,7,Django application for adding BrowserID support.,JavaScript,fb1b044bd7ba492ae93325e4210ef25ee42346a9,"Replace explicit User reference with get_user_model, if available"
+237,https://api.github.com/repos/mozilla/django-browserid/pulls/93,93,Custom user model,"Expands upon @niran's work to support custom user models and adds tests and docs, plus changes the implementation to support the tests.
+",Osmose,193106,2012-11-07T20:31:07Z,CONTRIBUTOR,True,124,22,7,Django application for adding BrowserID support.,JavaScript,9ba58975d2e7d050746355363666ac9568a866ee,Merge remote-tracking branch 'niran/custom-user'
+238,https://api.github.com/repos/mozilla/django-browserid/pulls/93,93,Custom user model,"Expands upon @niran's work to support custom user models and adds tests and docs, plus changes the implementation to support the tests.
+",Osmose,193106,2012-11-07T20:31:07Z,CONTRIBUTOR,True,124,22,7,Django application for adding BrowserID support.,JavaScript,a6b06b5eb6f2535e3a9f54136a24aafa97bea1bc,"Add tests for custom users, update Travis test config, and add docs.
+
+Adds new tests for Django 1.5's new custom user models, and updates
+the implementation to support them (there's an issue with the original
+code where it didn't pick up on an updated AUTH_USER_MODEL setting).
+
+Updates .travis.yml to test Django 1.3, 1.4, and 1.5.
+
+Adds documentation to help users customize django-browserid for their
+custom user models."
+239,https://api.github.com/repos/mozilla/django-browserid/pulls/93,93,Custom user model,"Expands upon @niran's work to support custom user models and adds tests and docs, plus changes the implementation to support the tests.
+",Osmose,193106,2012-11-07T20:31:07Z,CONTRIBUTOR,True,124,22,7,Django application for adding BrowserID support.,JavaScript,6d36f9a318388107559f49559fbe20f424eafc24,Refactor auth tests to be better.
+240,https://api.github.com/repos/mozilla/django-browserid/pulls/92,92,Fix #63 - Replace % with string formats,"Fix for issue #63
+",callmekatootie,2317133,2012-11-06T14:36:50Z,NONE,True,11,12,2,Django application for adding BrowserID support.,JavaScript,ec9606007e083fe5e84ce640d025e44621632c07,Fix #63 - Replace % with string formats
+241,https://api.github.com/repos/mozilla/django-browserid/pulls/91,91,[Related to Issue #63] String Format used instead of parameter placeholders,"This is the solution for issue #63. I am slightly skeptical about this since I could find only two files throughout the project which needed this change. I was expecting more.
+
+Also, I see that I should have branched earlier and not after issuing pull request for Issue #89 since this now contains the files changed for that issue as well :(
+
+Anyway, let me know if my changes are valid.
+",callmekatootie,2317133,2012-11-03T15:38:47Z,NONE,False,27,12,5,Django application for adding BrowserID support.,JavaScript,4062107b745e8c745b898fc9236c47d300038ded,Initial arrangement of the css for the login
+242,https://api.github.com/repos/mozilla/django-browserid/pulls/91,91,[Related to Issue #63] String Format used instead of parameter placeholders,"This is the solution for issue #63. I am slightly skeptical about this since I could find only two files throughout the project which needed this change. I was expecting more.
+
+Also, I see that I should have branched earlier and not after issuing pull request for Issue #89 since this now contains the files changed for that issue as well :(
+
+Anyway, let me know if my changes are valid.
+",callmekatootie,2317133,2012-11-03T15:38:47Z,NONE,False,27,12,5,Django application for adding BrowserID support.,JavaScript,c3eac46c9701277ddd16bf0da96068a58131762b,Login Button now hidden until JS binds login event
+243,https://api.github.com/repos/mozilla/django-browserid/pulls/91,91,[Related to Issue #63] String Format used instead of parameter placeholders,"This is the solution for issue #63. I am slightly skeptical about this since I could find only two files throughout the project which needed this change. I was expecting more.
+
+Also, I see that I should have branched earlier and not after issuing pull request for Issue #89 since this now contains the files changed for that issue as well :(
+
+Anyway, let me know if my changes are valid.
+",callmekatootie,2317133,2012-11-03T15:38:47Z,NONE,False,27,12,5,Django application for adding BrowserID support.,JavaScript,da39612907402e8cc64cb02d9282ab90b035f75d,Newline added to the stylesheet file
+244,https://api.github.com/repos/mozilla/django-browserid/pulls/91,91,[Related to Issue #63] String Format used instead of parameter placeholders,"This is the solution for issue #63. I am slightly skeptical about this since I could find only two files throughout the project which needed this change. I was expecting more.
+
+Also, I see that I should have branched earlier and not after issuing pull request for Issue #89 since this now contains the files changed for that issue as well :(
+
+Anyway, let me know if my changes are valid.
+",callmekatootie,2317133,2012-11-03T15:38:47Z,NONE,False,27,12,5,Django application for adding BrowserID support.,JavaScript,29ec1f4a80519b72978f09917ed633c4e0e0d686,Corrected the selector to display the element
+245,https://api.github.com/repos/mozilla/django-browserid/pulls/91,91,[Related to Issue #63] String Format used instead of parameter placeholders,"This is the solution for issue #63. I am slightly skeptical about this since I could find only two files throughout the project which needed this change. I was expecting more.
+
+Also, I see that I should have branched earlier and not after issuing pull request for Issue #89 since this now contains the files changed for that issue as well :(
+
+Anyway, let me know if my changes are valid.
+",callmekatootie,2317133,2012-11-03T15:38:47Z,NONE,False,27,12,5,Django application for adding BrowserID support.,JavaScript,77eae0e1560844ec4e47516480d029554da6c5c4,Replaced parameter placeholders with str.format
+246,https://api.github.com/repos/mozilla/django-browserid/pulls/90,90,Remove reference to handle_user() in documentation,"The handle_user method in views.Verify was removed in 687847a
+",ptgolden,376031,2012-10-30T19:01:27Z,CONTRIBUTOR,True,1,1,1,Django application for adding BrowserID support.,JavaScript,a51ec4125d60a445fb05e74c10353678060b2dc7,"Remove reference to handle_user() in documentation
+
+handle_user() method in views.Verify was removed in 687847a"
+247,https://api.github.com/repos/mozilla/django-browserid/pulls/89,89,Login button is now hidden until Javascript binds the login event,"Hello,
+1. Created the CSS file - style.css under the static/browserid/ folder
+2. Add the CSS to the media requirements
+3. `onready` event added to the navigator.id to trigger a function which displays the button
+
+Let me know in case of any issues.
+
+Regards,
+callmekatootie
+",callmekatootie,2317133,2012-10-27T11:34:55Z,NONE,False,16,0,3,Django application for adding BrowserID support.,JavaScript,4062107b745e8c745b898fc9236c47d300038ded,Initial arrangement of the css for the login
+248,https://api.github.com/repos/mozilla/django-browserid/pulls/89,89,Login button is now hidden until Javascript binds the login event,"Hello,
+1. Created the CSS file - style.css under the static/browserid/ folder
+2. Add the CSS to the media requirements
+3. `onready` event added to the navigator.id to trigger a function which displays the button
+
+Let me know in case of any issues.
+
+Regards,
+callmekatootie
+",callmekatootie,2317133,2012-10-27T11:34:55Z,NONE,False,16,0,3,Django application for adding BrowserID support.,JavaScript,c3eac46c9701277ddd16bf0da96068a58131762b,Login Button now hidden until JS binds login event
+249,https://api.github.com/repos/mozilla/django-browserid/pulls/89,89,Login button is now hidden until Javascript binds the login event,"Hello,
+1. Created the CSS file - style.css under the static/browserid/ folder
+2. Add the CSS to the media requirements
+3. `onready` event added to the navigator.id to trigger a function which displays the button
+
+Let me know in case of any issues.
+
+Regards,
+callmekatootie
+",callmekatootie,2317133,2012-10-27T11:34:55Z,NONE,False,16,0,3,Django application for adding BrowserID support.,JavaScript,da39612907402e8cc64cb02d9282ab90b035f75d,Newline added to the stylesheet file
+250,https://api.github.com/repos/mozilla/django-browserid/pulls/89,89,Login button is now hidden until Javascript binds the login event,"Hello,
+1. Created the CSS file - style.css under the static/browserid/ folder
+2. Add the CSS to the media requirements
+3. `onready` event added to the navigator.id to trigger a function which displays the button
+
+Let me know in case of any issues.
+
+Regards,
+callmekatootie
+",callmekatootie,2317133,2012-10-27T11:34:55Z,NONE,False,16,0,3,Django application for adding BrowserID support.,JavaScript,29ec1f4a80519b72978f09917ed633c4e0e0d686,Corrected the selector to display the element
+251,https://api.github.com/repos/mozilla/django-browserid/pulls/88,88,Custom user (Django 1.5) support,,niran,106437,2012-10-25T21:37:04Z,CONTRIBUTOR,False,6,1,1,Django application for adding BrowserID support.,JavaScript,fb1b044bd7ba492ae93325e4210ef25ee42346a9,"Replace explicit User reference with get_user_model, if available"
+252,https://api.github.com/repos/mozilla/django-browserid/pulls/87,87,Fix request timeouts so they work,"The old code was not configuring a timeout
+but oddly it was also causing requests to
+post to /verify?timeout=5 which became invalid
+recently in a change to the Persona server.
+",kumar303,55398,2012-10-25T17:34:36Z,CONTRIBUTOR,True,18,5,2,Django application for adding BrowserID support.,JavaScript,8ddb4f1fe606b707a8e53883a53751754f505999,"Fixed request timeouts so they work.
+
+The old code was not configuring a timeout
+but oddly it was also causing requests to
+post to /verify?timeout=5 which became invalid
+recently in a change to the Persona server."
+253,https://api.github.com/repos/mozilla/django-browserid/pulls/86,86,Update URLs to point to login.persona.org only,"This will help applications avoid unnecessary browserid.org -> login.persona.org redirects
+",fmarier,167821,2012-10-12T03:10:39Z,CONTRIBUTOR,True,7,7,4,Django application for adding BrowserID support.,JavaScript,ac0f6108380528020d0f5cf55ceabd2c221e3f23,Update URLs to point to login.persona.org only
+254,https://api.github.com/repos/mozilla/django-browserid/pulls/83,83,Remove test docstrings,,almet,67073,2012-09-25T13:39:57Z,COLLABORATOR,True,43,47,6,Django application for adding BrowserID support.,JavaScript,7a5801b1097d55c1ab1f02efc99bc890dac8c735,"Replace the docstrings in the tests by comments.
+
+This allow to have more precise output when the tests are failing."
+255,https://api.github.com/repos/mozilla/django-browserid/pulls/83,83,Remove test docstrings,,almet,67073,2012-09-25T13:39:57Z,COLLABORATOR,True,43,47,6,Django application for adding BrowserID support.,JavaScript,790d12853aaedd3a79c285a29dc5d914e1ea693a,Make the python-linter happier
+256,https://api.github.com/repos/mozilla/django-browserid/pulls/81,81,Fix #75: Support navigator.id.request options.,"Adds the ability to customize the BrowserID login popup and
+behavior by passing options to navigator.id.request. These
+can be specified using data attributes on the login button.
+",Osmose,193106,2012-09-20T02:32:35Z,CONTRIBUTOR,True,84,28,4,Django application for adding BrowserID support.,JavaScript,24dffa7fb5b3a85dfd78e9be905100c823cd50ca,"Fix #75: Support navigator.id.request options.
+
+Adds the ability to customize the BrowserID login popup and
+behavior by passing options to navigator.id.request. These
+can be specified using data attributes on the login button."
+257,https://api.github.com/repos/mozilla/django-browserid/pulls/81,81,Fix #75: Support navigator.id.request options.,"Adds the ability to customize the BrowserID login popup and
+behavior by passing options to navigator.id.request. These
+can be specified using data attributes on the login button.
+",Osmose,193106,2012-09-20T02:32:35Z,CONTRIBUTOR,True,84,28,4,Django application for adding BrowserID support.,JavaScript,afc60d223000bd45e56d601864b38730c76c2bbb,"Support live bindings for login button.
+
+delegate is like on but for jQuery < 1.7. Magic!"
+258,https://api.github.com/repos/mozilla/django-browserid/pulls/80,80,Make clear which is the default BROWSERID_CREATE_USER value.,"Rephrased a bit to make clear which is the default BROWSERID_CREATE_USER value.
+",glogiotatidis,584352,2012-09-05T14:40:32Z,CONTRIBUTOR,True,1,2,1,Django application for adding BrowserID support.,JavaScript,1a4e4a5059a7752323004c6179c82e732d82add5,"Update docs/details/advanced.rst
+
+Rephrased a bit to make clear which is the default BROWSERID_CREATE_USER value."
+259,https://api.github.com/repos/mozilla/django-browserid/pulls/78,78,Bug 780223 - Fixes for Persona changes,"Change to use watch() instead of getVerifiedEmail()
+- r feedback.
+- Note: moving triggers to .class, however keeping the original #browserid trigger as a deprecated method until it can be properly removed from customer code. 
+",jrconlin,35755,2012-08-08T17:18:30Z,NONE,False,28,1,1,Django application for adding BrowserID support.,JavaScript,1928034b80d0c14dfd2e773932f09a29811e4ee1,"Bug 780223 - Fixes for Persona changes
+
+Change to use watch() instead of getVerifiedEmail()"
+260,https://api.github.com/repos/mozilla/django-browserid/pulls/76,76,Bug 780223 - Fixes for Persona changes,"Change to use watch() instead of getVerifiedEmail()
+",jrconlin,35755,2012-08-07T23:05:12Z,NONE,False,24,1,1,Django application for adding BrowserID support.,JavaScript,1d2d9459cd3d37087a2d792d5f2a40a6437fb486,"Bug 780223 - Fixes for Persona changes
+
+Change to use watch() instead of getVerifiedEmail()"
+261,https://api.github.com/repos/mozilla/django-browserid/pulls/74,74,Add login.persona.org to CSP settings,"Not sure if CSP works over redirects 
+",graingert,413772,2012-07-23T14:12:26Z,CONTRIBUTOR,True,5,5,3,Django application for adding BrowserID support.,JavaScript,50ae6fd8fa54dc73db89b7f9ec9614d3237a943f,Add login.persona.org to CSP settings
+262,https://api.github.com/repos/mozilla/django-browserid/pulls/74,74,Add login.persona.org to CSP settings,"Not sure if CSP works over redirects 
+",graingert,413772,2012-07-23T14:12:26Z,CONTRIBUTOR,True,5,5,3,Django application for adding BrowserID support.,JavaScript,90166ca344b663883f7fe59cbf587b5980a1b2f2,add csp change to setup.rst
+263,https://api.github.com/repos/mozilla/django-browserid/pulls/74,74,Add login.persona.org to CSP settings,"Not sure if CSP works over redirects 
+",graingert,413772,2012-07-23T14:12:26Z,CONTRIBUTOR,True,5,5,3,Django application for adding BrowserID support.,JavaScript,2bfcaa1582c29c6debe198a80b17cec6bf930ff3,Use https://login.persona.org/include.js directly in forms.py
+264,https://api.github.com/repos/mozilla/django-browserid/pulls/72,72,Fix #29: Add a user_created signal and more tests.,"Adds a signal for reacting to when a user is created automatically.
+The issue also asked for a login signal, but Django already
+provides one.
+
+Also adds tests for the authentication backend.
+",Osmose,193106,2012-06-28T00:03:40Z,CONTRIBUTOR,False,129,5,5,Django application for adding BrowserID support.,JavaScript,99e0bdcdec7b6afcd49e396c27a5d91fc33c247a,"Fix #29: Add a user_created signal and more tests.
+
+Adds a signal for reacting to when a user is created automatically.
+The issue also asked for a login signal, but Django already
+provides one.
+
+Also adds tests for the authentication backend."
+265,https://api.github.com/repos/mozilla/django-browserid/pulls/71,71,Fix #33: Document Javascript Fallback.,"An earlier commit already removed the misleading 
+`{% url gracfully_degrade %}` piece and noted the jQuery
+dependency. This commit finishes up the improvements by
+documenting how to add graceful degradation to your login
+links.
+",Osmose,193106,2012-06-27T15:04:35Z,CONTRIBUTOR,True,20,5,2,Django application for adding BrowserID support.,JavaScript,122dc677c645374fe658aa6de333fa3c47a8b039,"Fix #33: Document Javascript Fallback.
+
+An earlier commit already removed the misleading 
+`{% url gracfully_degrade %}` piece and noted the jQuery
+dependency. This commit finishes up the improvements by
+documenting how to add graceful degradation to your login
+links."
+266,https://api.github.com/repos/mozilla/django-browserid/pulls/70,70,Fix #68: Add more info to troubleshooting.,"Adds two common problems with login failures to the
+troubleshooting section of the docs.
+",Osmose,193106,2012-06-26T21:02:43Z,CONTRIBUTOR,True,44,3,1,Django application for adding BrowserID support.,JavaScript,47c48b5cc0c9e83b52b85fde1a3874d4f0645775,"Fix #68: Add more info to troubleshooting.
+
+Adds two common problems with login failures to the
+troubleshooting section of the docs."
+267,https://api.github.com/repos/mozilla/django-browserid/pulls/69,69,Include 'django_browserid.tests' in installed packages,"The tests subpackage has helpers that are useful for running tests in
+django projects, such as `mock_browserid`.  Include this subpackage in
+the distutils script so that it won't be ignored by pip, easy_install,
+etc.
+",yourcelf,21318,2012-06-24T14:24:24Z,CONTRIBUTOR,True,1,1,1,Django application for adding BrowserID support.,JavaScript,60574e2f88e32565eb2a5de1258651527515ff3b,"Include `tests` subpackage in installation
+
+The tests subpackage has helpers that are useful for running tests in
+django projects, such as `mock_browserid`.  Include this subpackage in
+the distutils script so that it won't be ignored by pip, easy_install,
+etc."
+268,https://api.github.com/repos/mozilla/django-browserid/pulls/65,65,Fix #64: Add docs for CSP issues.,,Osmose,193106,2012-06-07T17:49:32Z,CONTRIBUTOR,True,34,0,3,Django application for adding BrowserID support.,JavaScript,9c66c229876614d1f0a5426126a5536f7c3c9e0f,Fix #64: Add docs for CSP issues.
+269,https://api.github.com/repos/mozilla/django-browserid/pulls/61,61,Minor doc and code cleanup.,,andymckay,74699,2012-04-28T07:19:34Z,CONTRIBUTOR,True,19,11,4,Django application for adding BrowserID support.,JavaScript,58ff2aed5b43305f5373612292e16b94e5db6e80,point out that the JS in BrowserID requires jQuery
+270,https://api.github.com/repos/mozilla/django-browserid/pulls/61,61,Minor doc and code cleanup.,,andymckay,74699,2012-04-28T07:19:34Z,CONTRIBUTOR,True,19,11,4,Django application for adding BrowserID support.,JavaScript,224d8c233851aac794964b16b824262f030e7565,different defaults and no point specifying setting up something that's default
+271,https://api.github.com/repos/mozilla/django-browserid/pulls/61,61,Minor doc and code cleanup.,,andymckay,74699,2012-04-28T07:19:34Z,CONTRIBUTOR,True,19,11,4,Django application for adding BrowserID support.,JavaScript,88cd0ef8b611ed91666385a8109c0038c04bbc1a,cope with verify returning False correctly
+272,https://api.github.com/repos/mozilla/django-browserid/pulls/60,60,"Fix minor documentation issue, where email localpart extraction assumes sane email addresses",,graingert,413772,2012-04-16T11:17:58Z,CONTRIBUTOR,True,1,1,1,Django application for adding BrowserID support.,JavaScript,efbd17d06628a2429a77a4769a13acbf5cb9d51a,"Remove domain part of ""really@insane""emailAddresses@example.com"
+273,https://api.github.com/repos/mozilla/django-browserid/pulls/59,59,"""/browserid/verify/?next="" fails with NoReverseMatch at /browserid/verify/",,graingert,413772,2012-04-16T10:34:30Z,CONTRIBUTOR,False,1,1,1,Django application for adding BrowserID support.,JavaScript,f1b86027058b6562840dac25b8cdd84114a304f6,"check redirect_to for truthiness, because ("""" is not none) but ("""" == False)"
+274,https://api.github.com/repos/mozilla/django-browserid/pulls/55,55,Update ReadTheDocs to reflect addition to pypi ,,graingert,413772,2012-03-29T22:26:56Z,CONTRIBUTOR,True,7,6,1,Django application for adding BrowserID support.,JavaScript,1f1f27fff891e4d22cd22ef48eec782953bdeca4,Update ReadTheDocs to reflect addition to pypi
+275,https://api.github.com/repos/mozilla/django-browserid/pulls/52,52,Include JS file in sdist and install it.,"The setup.py file currently doesn't include browserid.js in the tarball generated by `python setup.py sdist`, or install it. 
+
+The setuptools `include_package_data` keyword arg is ineffective without listing the setuptools-git plugin in `setup_requires` (setuptools natively only finds package data in Subversion). Since `setup_requires` plugins cause problems for people installing without a network connection, it's better to just explicitly list the package data using the `package_data` keyword arg.
+
+Due to a bug in distutils in Python versions prior to 2.7, it's also necessary to list that JS file in MANIFEST.in or it may not be included in the sdist.
+
+I've also switched to a plain `from distutils.core import setup` in place of `from setuptools import setup`, since with the removal of `include_package_data` no setuptools-specific features are used anymore.
+",carljm,61586,2012-03-27T20:21:15Z,MEMBER,True,4,2,3,Django application for adding BrowserID support.,JavaScript,731479679c96cb09c2cbf0c9a83ded4ec77853e3,Include JS file in sdist.
+276,https://api.github.com/repos/mozilla/django-browserid/pulls/49,49,Add support for running tests via fabric.,"Makes testing sane, AKA no more adding to another project to run the tests.
+",Osmose,193106,2012-03-14T02:17:56Z,CONTRIBUTOR,True,60,3,7,Django application for adding BrowserID support.,JavaScript,0a8cad64c2e63e010f1a37badd1546240f51fd8d,Add support for running tests via fabric.
+277,https://api.github.com/repos/mozilla/django-browserid/pulls/48,48,importing BrowserID_Verify,"there are no such view as BrowserID_Verify
+",meehow,56711,2012-03-09T18:27:39Z,CONTRIBUTOR,False,6,3,3,Django application for adding BrowserID support.,JavaScript,ce2014f341c8e7dfb1b7c8ebb8f45d6abdfd7512,import-bug and naming
+278,https://api.github.com/repos/mozilla/django-browserid/pulls/48,48,importing BrowserID_Verify,"there are no such view as BrowserID_Verify
+",meehow,56711,2012-03-09T18:27:39Z,CONTRIBUTOR,False,6,3,3,Django application for adding BrowserID support.,JavaScript,d39a71b94c6e09bde69c4316b0068f021815d8f4,ignore build dirs
+279,https://api.github.com/repos/mozilla/django-browserid/pulls/46,46,Fixing auth goofup,"the wrong verify method is being called from auth.py
+",tallowen,557689,2012-03-08T19:37:51Z,MEMBER,False,1,1,1,Django application for adding BrowserID support.,JavaScript,19e71090dec164c64907f7b7a68c1324d5a785e4,Fixing auth goofup
+280,https://api.github.com/repos/mozilla/django-browserid/pulls/45,45,Fixup issues with views.py,"Removed unnecessary modules and variables. Removed handle_user because it no longer really has a useful case.
+",tallowen,557689,2012-03-08T18:20:41Z,MEMBER,False,14,18,3,Django application for adding BrowserID support.,JavaScript,0f8adf49d1a9ae40f991f85e4bfc5edfb07e0f4c,"Fixup issues with class based views api
+
+Removed unessary modules and variables. Made a saner call order. Made some pep8 changes because they bother me."
+281,https://api.github.com/repos/mozilla/django-browserid/pulls/44,44,Fixup issues with views.py,"The handle user was rendered useless by having the `login_success`  function. The `get` function was also not being used.
+",tallowen,557689,2012-03-08T04:18:42Z,MEMBER,False,1,11,1,Django application for adding BrowserID support.,JavaScript,c25d6e5c254a8a1197e8a17252389a0bd157af32,"Fixup issues with views.py
+
+Removed unessary modules and variables."
+282,https://api.github.com/repos/mozilla/django-browserid/pulls/43,43,Class based views,"Extension to tallowen's class based view change.
+
+Refactored the verify view and added tests for it. Part of this
+included switching from fudge to mock for mocking out settings
+during tests.
+",Osmose,193106,2012-03-06T20:41:24Z,CONTRIBUTOR,True,281,108,7,Django application for adding BrowserID support.,JavaScript,ec1e893bf2360853a01e8926b107b357db372735,Class based views (no api changes)
+283,https://api.github.com/repos/mozilla/django-browserid/pulls/43,43,Class based views,"Extension to tallowen's class based view change.
+
+Refactored the verify view and added tests for it. Part of this
+included switching from fudge to mock for mocking out settings
+during tests.
+",Osmose,193106,2012-03-06T20:41:24Z,CONTRIBUTOR,True,281,108,7,Django application for adding BrowserID support.,JavaScript,a0327574948d1bce283c3436df700aa1f11eff63,"Refactor tests and view.
+
+Refactored the verify view and added tests for it. Part of this
+included switching from fudge to mock for mocking out settings
+during tests."
+284,https://api.github.com/repos/mozilla/django-browserid/pulls/42,42,Deprecate DOMAIN and PROTOCOL in favor of SITE_URL,"I can't find a good reason to keep around convoluted code to support two methods of determining the site audience when `SITE_URL` works fine. I couldn't find any major use of `SITE_URL` that conflicts with how we use it; everything I found online conforms to what we expect from the setting (and it's a useful piece to have lying around anyway, especially for absolute URLs).
+
+I propose we deprecate DOMAIN and PROTOCOL in favor of SITE_URL, to be removed in a few months.
+",Osmose,193106,2012-03-05T23:51:37Z,CONTRIBUTOR,True,9,19,2,Django application for adding BrowserID support.,JavaScript,4a641a5314312db553f16f2fadb60371a76e8c23,Deprecate DOMAIN and PROTOCOL in favor of SITE_URL
+285,https://api.github.com/repos/mozilla/django-browserid/pulls/41,41,Form media,"Using this for a code review of a contributor's changes along with my own.
+
+Adds the JS needed for django-browserid to the form media for BrowserIDForm and updates the docs to match.
+",Osmose,193106,2012-03-05T22:46:11Z,CONTRIBUTOR,True,61,18,5,Django application for adding BrowserID support.,JavaScript,5635cdbc4e493d27dd6ab77ae92cf70ae78e2deb,Updated to use the django form media standard
+286,https://api.github.com/repos/mozilla/django-browserid/pulls/41,41,Form media,"Using this for a code review of a contributor's changes along with my own.
+
+Adds the JS needed for django-browserid to the form media for BrowserIDForm and updates the docs to match.
+",Osmose,193106,2012-03-05T22:46:11Z,CONTRIBUTOR,True,61,18,5,Django application for adding BrowserID support.,JavaScript,84156b3f723b9b38b45006002d648a7dcf51ef21,Fix manifest and documentation for form media.
+287,https://api.github.com/repos/mozilla/django-browserid/pulls/39,39,Updated to use the django form media standard,"the browserid_form now has the correct media[""js""] as described in:
+
+https://docs.djangoproject.com/en/dev/topics/forms/media/
+",graingert,413772,2012-02-28T22:50:16Z,CONTRIBUTOR,False,14,3,5,Django application for adding BrowserID support.,JavaScript,cc7c7728016cc940822a9cea094d899156e02095,Updated to use the django form media standard
+288,https://api.github.com/repos/mozilla/django-browserid/pulls/36,36,Class based views (no api changes),"Lets use class based views for django-browserid. They are much more flexible and user customizable. This means that developers could over write specific methods of the view instead of the whole thing.
+",tallowen,557689,2012-02-22T22:27:07Z,MEMBER,False,57,21,2,Django application for adding BrowserID support.,JavaScript,34e9ff478163964fbd34584c1c92669b781ada62,Class based views (no api changes)
+289,https://api.github.com/repos/mozilla/django-browserid/pulls/35,35,auto_id = False for multiple BrowserID forms per page,,groovecoder,71928,2012-02-15T23:22:03Z,MEMBER,False,7,0,1,Django application for adding BrowserID support.,JavaScript,0114ba24b341b8ca011853091b83a7d83d31f184,auto_id=False to allow multiple forms per page
+290,https://api.github.com/repos/mozilla/django-browserid/pulls/32,32,Readme update for installing requirements,"Added a requirements section so that dependencies can be known for installation. As well as some javascript tweaks for jquery and a mention of jquery.
+",buddylindsey,226303,2012-02-13T23:19:14Z,NONE,False,19,11,1,Django application for adding BrowserID support.,JavaScript,462851dafcd5c4581b9628277d8dfc3185e47b9e,Added a requirements section so that dependencies can be known for installation.
+291,https://api.github.com/repos/mozilla/django-browserid/pulls/32,32,Readme update for installing requirements,"Added a requirements section so that dependencies can be known for installation. As well as some javascript tweaks for jquery and a mention of jquery.
+",buddylindsey,226303,2012-02-13T23:19:14Z,NONE,False,19,11,1,Django application for adding BrowserID support.,JavaScript,ac78acda5ff81535c32f8e0cba048c059f81f0bd,Update README.rst
+292,https://api.github.com/repos/mozilla/django-browserid/pulls/30,30,Implement #29.,"This implements #29, signals on signup/login. This specific commit is untested, but I hope I didn't botch the three-line copy paste too badly.
+",skorokithakis,23648,2012-02-07T06:28:09Z,NONE,False,23,2,2,Django application for adding BrowserID support.,JavaScript,ee8f7a6854d0642d105590bb2a772c68d653303c,Add user creation/login signals.
+293,https://api.github.com/repos/mozilla/django-browserid/pulls/28,28,Fix issue #13.,"Implements creating inactive users (with appropriate docs section).
+",skorokithakis,23648,2012-01-30T21:54:30Z,NONE,False,29,4,4,Django application for adding BrowserID support.,JavaScript,5bb2b37979db8927b36d38203d5f10bcded023e9,Enable creation of inactive users.
+294,https://api.github.com/repos/mozilla/django-browserid/pulls/28,28,Fix issue #13.,"Implements creating inactive users (with appropriate docs section).
+",skorokithakis,23648,2012-01-30T21:54:30Z,NONE,False,29,4,4,Django application for adding BrowserID support.,JavaScript,1c84e59e1b97aa5fd438ca475cd2f3178c915501,Fix crash when DOMAIN is missing.
+295,https://api.github.com/repos/mozilla/django-browserid/pulls/28,28,Fix issue #13.,"Implements creating inactive users (with appropriate docs section).
+",skorokithakis,23648,2012-01-30T21:54:30Z,NONE,False,29,4,4,Django application for adding BrowserID support.,JavaScript,0d75c09d020f50569e295994f18573f7401109b1,Enable authenticated users to actually log in.
+296,https://api.github.com/repos/mozilla/django-browserid/pulls/28,28,Fix issue #13.,"Implements creating inactive users (with appropriate docs section).
+",skorokithakis,23648,2012-01-30T21:54:30Z,NONE,False,29,4,4,Django application for adding BrowserID support.,JavaScript,7e511b4dee09ddefb23bf4327ae74b5c3688c034,Add login/signup signals.
+297,https://api.github.com/repos/mozilla/django-browserid/pulls/27,27,Make verify a standalone function.,"Also moves verify and get_audience to base.py and makes them
+importable from django_browserid directly. Their old references
+have been deprecated and will be removed after a reasonable(?)
+amount of time.
+",Osmose,193106,2012-01-30T05:37:19Z,CONTRIBUTOR,True,162,126,5,Django application for adding BrowserID support.,JavaScript,05cb0564152ed613715c3cffbe08dec8fbe8334f,"Make verify a standalone function.
+
+Also moves verify and get_audience to base.py and makes them
+importable from django_browserid directly. Their old references
+have been deprecated and will be removed after a reasonable(?)
+amount of time."
+298,https://api.github.com/repos/mozilla/django-browserid/pulls/26,26,Refactored auth.py to make it subclassable …,"create_user is actually used to create users which means you can
+subclass the backend and change the way it does that
+",tallowen,557689,2012-01-25T01:32:26Z,MEMBER,True,59,10,3,Django application for adding BrowserID support.,JavaScript,9b01d44f8524a0f2ea7e5f08fa1ac07f7a4ca58c,"Refactored auth.py to make it subclassable …
+
+create_user is actually used to create users which means you can
+subclass the backend and change the way it does that"
+299,https://api.github.com/repos/mozilla/django-browserid/pulls/26,26,Refactored auth.py to make it subclassable …,"create_user is actually used to create users which means you can
+subclass the backend and change the way it does that
+",tallowen,557689,2012-01-25T01:32:26Z,MEMBER,True,59,10,3,Django application for adding BrowserID support.,JavaScript,aaef80701fd5b182f8503814ab16a654221b3641,"Merge remote-tracking branch 'mozilla/master' into auth
+
+Conflicts:
+	django_browserid/auth.py"
+300,https://api.github.com/repos/mozilla/django-browserid/pulls/24,24,Refactor auth.py to be more subclassable,"""BrowserIDBackend"" is not easily subclassable because the functions are not totally atomic. ""create_user"" is not invoked to create the user. Even though ""default_username_algo"" is overwriteable using the settings, it would be better if one could easily change it via sublcassing.
+",tallowen,557689,2012-01-23T05:19:51Z,MEMBER,False,47,49,1,Django application for adding BrowserID support.,JavaScript,e30f6cf633f0941dc4183669b4b5d718e5b4ffac,Updated to use python requests instead of httplib2
+301,https://api.github.com/repos/mozilla/django-browserid/pulls/24,24,Refactor auth.py to be more subclassable,"""BrowserIDBackend"" is not easily subclassable because the functions are not totally atomic. ""create_user"" is not invoked to create the user. Even though ""default_username_algo"" is overwriteable using the settings, it would be better if one could easily change it via sublcassing.
+",tallowen,557689,2012-01-23T05:19:51Z,MEMBER,False,47,49,1,Django application for adding BrowserID support.,JavaScript,8ef6d5f2f52f493bd57ca252af77614e47cb367d,Merge branch 'master' of git://github.com/mozilla/django-browserid
+302,https://api.github.com/repos/mozilla/django-browserid/pulls/24,24,Refactor auth.py to be more subclassable,"""BrowserIDBackend"" is not easily subclassable because the functions are not totally atomic. ""create_user"" is not invoked to create the user. Even though ""default_username_algo"" is overwriteable using the settings, it would be better if one could easily change it via sublcassing.
+",tallowen,557689,2012-01-23T05:19:51Z,MEMBER,False,47,49,1,Django application for adding BrowserID support.,JavaScript,168f9159da68654dd23f9ae50164ec026db4bbf2,"Refactored auth.py to make it subclassable
+
+create_user is actually used to create users which means you can
+subclass the backend and change the way it does that"
+303,https://api.github.com/repos/mozilla/django-browserid/pulls/24,24,Refactor auth.py to be more subclassable,"""BrowserIDBackend"" is not easily subclassable because the functions are not totally atomic. ""create_user"" is not invoked to create the user. Even though ""default_username_algo"" is overwriteable using the settings, it would be better if one could easily change it via sublcassing.
+",tallowen,557689,2012-01-23T05:19:51Z,MEMBER,False,47,49,1,Django application for adding BrowserID support.,JavaScript,9cdbe23b81e319451d0d44dfd13e1e566895314e,"Refactored auth.py to make it subclassable
+
+create_user is actually used to create users which means you can
+subclass the backend and change the way it does that"
+304,https://api.github.com/repos/mozilla/django-browserid/pulls/23,23,Replaced HttpLib2 dependency with python requests,,tallowen,557689,2012-01-19T02:39:11Z,MEMBER,False,17,31,4,Django application for adding BrowserID support.,JavaScript,e30f6cf633f0941dc4183669b4b5d718e5b4ffac,Updated to use python requests instead of httplib2
+305,https://api.github.com/repos/mozilla/django-browserid/pulls/22,22,Added csrf to readme,"As the installation instructions are written the callback view (browser/verify/) will throw an error because the template as instructed is not csrf protected.
+",tallowen,557689,2012-01-12T23:09:27Z,MEMBER,True,1,0,1,Django application for adding BrowserID support.,JavaScript,3919ec43e135c2b5f6a6ef95e1bf6927aa14b390,Added csrf to readme
+306,https://api.github.com/repos/mozilla/django-browserid/pulls/20,20,Minor changes,"- fixed spelling of algorithms
+- removed a superfluous word
+- changed "": ::"" -> ""::"" -- in reST, you can end a sentence with :: and
+  it implies colon
+",willkg,820826,2011-12-30T21:16:50Z,MEMBER,False,16,16,1,Django application for adding BrowserID support.,JavaScript,8cc2f156667e66e7476112c40ba72eacc348d3cd,"Minor changes
+
+* fixed spelling of algorithms
+* removed a superfluous word
+* changed "": ::"" -> ""::"" -- in reST, you can end a sentence with :: and
+  it implies colon"
+307,https://api.github.com/repos/mozilla/django-browserid/pulls/19,19,authenticated users need browserid_form to change their email,,groovecoder,71928,2011-12-29T18:24:59Z,MEMBER,True,1,5,1,Django application for adding BrowserID support.,JavaScript,376504e2efe90abcb31cf029949e1679a545a9e1,authenticated users need browserid to change their email
+308,https://api.github.com/repos/mozilla/django-browserid/pulls/18,18,A minor fix,"The code in auth.py looks like it wants to see if there's a DOMAIN setting, and if not, warn; but it calls getattr(settings, ""DOMAIN""), which raises an AttributeException in that situation. Just adding the obvious default None.
+",shaib,129187,2011-12-24T19:28:21Z,CONTRIBUTOR,False,1,1,1,Django application for adding BrowserID support.,JavaScript,e3a09df9dbc8b3d6d89c7a3a4157ecb1862d3421,Correct check for DOMAIN setting so it warns as intended (and not raise error)
+309,https://api.github.com/repos/mozilla/django-browserid/pulls/17,17,Let's try this again...,,gkoberger,381393,2011-12-13T19:23:20Z,CONTRIBUTOR,True,6,2,1,Django application for adding BrowserID support.,JavaScript,c28e8e71d3491054f47c8652c5f67c02b5131d44,Re-order logging to make it more useful
+310,https://api.github.com/repos/mozilla/django-browserid/pulls/16,16,Changing logging so we can figure out Jay's issues,,gkoberger,381393,2011-12-13T19:15:24Z,CONTRIBUTOR,False,6,2,1,Django application for adding BrowserID support.,JavaScript,c28e8e71d3491054f47c8652c5f67c02b5131d44,Re-order logging to make it more useful
+311,https://api.github.com/repos/mozilla/django-browserid/pulls/14,14,Put json.loads in a try/except,"On AMO we're seeing the following errors.  This will at least catch them and log what's going on...
+
+```
+Traceback (most recent call last):
+
+ File ""/data/www/apps-preview-dev.allizom.org/zamboni/vendor/src/django/django/core/handlers/base.py"", line 111, in get_response
+   response = callback(request, *callback_args, **callback_kwargs)
+
+ File ""/data/www/apps-preview-dev.allizom.org/zamboni/apps/amo/decorators.py"", line 49, in wrapper
+   return f(request, *args, **kw)
+
+ File ""/data/www/apps-preview-dev.allizom.org/zamboni/apps/users/views.py"", line 325, in browserid_login
+   assertion=request.POST['assertion'])
+
+ File ""/data/www/apps-preview-dev.allizom.org/zamboni/apps/users/views.py"", line 290, in browserid_authenticate
+   result = backend.verify(assertion, settings.SITE_URL)
+
+ File ""/data/www/apps-preview-dev.allizom.org/zamboni/vendor/src/django-browserid/django_browserid/auth.py"", line 65, in verify
+   'audience': audience
+
+ File ""/data/www/apps-preview-dev.allizom.org/zamboni/vendor/src/django-browserid/django_browserid/auth.py"", line 57, in _verify_http_request
+   return json.loads(content)
+
+ File ""/usr/lib64/python2.6/json/__init__.py"", line 307, in loads
+   return _default_decoder.decode(s)
+
+ File ""/usr/lib64/python2.6/json/decoder.py"", line 319, in decode
+   obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+
+ File ""/usr/lib64/python2.6/json/decoder.py"", line 338, in raw_decode
+   raise ValueError(""No JSON object could be decoded"")
+
+ValueError: No JSON object could be decoded
+```
+",robhudson,1106,2011-12-02T21:51:38Z,MEMBER,True,8,1,1,Django application for adding BrowserID support.,JavaScript,3f286595ae490156a062deaba9fe814fb474b77b,Guarded against bad JSON and added logging.
+312,https://api.github.com/repos/mozilla/django-browserid/pulls/12,12,Using the correct function call,"navigator.getVerifiedEmail no longers works so replaced with navigator.id.getVerifiedEmail
+",rossbruniges,96099,2011-11-14T13:41:46Z,MEMBER,True,2,2,1,Django application for adding BrowserID support.,JavaScript,8840eb693570c741f6c715a728af44210e8f1f44,Updating the JS code snippet to use the correct function
+313,https://api.github.com/repos/mozilla/django-browserid/pulls/11,11,Extra logging (motivated by mysterious auth failures in AMO),,washort,947487,2011-11-11T01:15:11Z,CONTRIBUTOR,True,2,0,1,Django application for adding BrowserID support.,JavaScript,ed54923e73741e00085e822d7fdee0e019ccf2b7,get some logging going for BrowserID verification failures
+314,https://api.github.com/repos/mozilla/django-browserid/pulls/6,6,Add scheme and port to the audience sent to the verifier,"This an update to make it work with the new verifier that rolled into production as part of train 2011-10-20.
+
+Unfortunately this breaks backward compatibility with any existing users of this code, but there's not really any way around it as far as I can tell since the auth plugin needs to know whether or not the host is on HTTPS to be able to set the right scheme.
+",fmarier,167821,2011-10-28T09:19:34Z,CONTRIBUTOR,False,22,23,3,Django application for adding BrowserID support.,JavaScript,90919b8a7f0af10410dfef28ce24f4471cd38903,Update example response to match current output from the verifier
+315,https://api.github.com/repos/mozilla/django-browserid/pulls/6,6,Add scheme and port to the audience sent to the verifier,"This an update to make it work with the new verifier that rolled into production as part of train 2011-10-20.
+
+Unfortunately this breaks backward compatibility with any existing users of this code, but there's not really any way around it as far as I can tell since the auth plugin needs to know whether or not the host is on HTTPS to be able to set the right scheme.
+",fmarier,167821,2011-10-28T09:19:34Z,CONTRIBUTOR,False,22,23,3,Django application for adding BrowserID support.,JavaScript,3f28ae57d3cc2adf1c8665a7386aef21912ba6a2,"Change audience to match format now expected by the verifier
+
+Train 2011-10-20 now accepts the scheme and port number as part of
+the audience:
+
+https://groups.google.com/group/mozilla.dev.identity/browse_thread/thread/f56b436d804a66c5"
+316,https://api.github.com/repos/mozilla/django-browserid/pulls/5,5,Accept an alternate username generation algo in settings for user creation,"Just an idea, mostly: I wanted to offer a default username that was a bit more friendly than the hash, and I thought that the local part of an email address might be a good starter. But, rather than just hack that in, I made the algo itself configurable
+",lmorchard,21687,2011-10-15T03:49:36Z,MEMBER,False,30,6,2,Django application for adding BrowserID support.,JavaScript,0fa2d891a18bad0e0f15fc2221b0ce305220f3d6,Accept an alternate username generation algo in settings for user creation
+317,https://api.github.com/repos/mozilla/django-browserid/pulls/4,4,Abstract out create_user and filter_user functionality,"This allows the authentication backend to work with third-party
+applications that don't keep user email addresses in the auth_user
+table (for example, because they want to support more than one
+email per user).
+
+An example of an application using this can be found here:
+
+  https://code.launchpad.net/~fmarier/libravatar/mozilla-browserid-backend
+",fmarier,167821,2011-10-02T07:23:59Z,CONTRIBUTOR,True,10,2,1,Django application for adding BrowserID support.,JavaScript,00c55b512106a2af647e82e94e8020c68c70b7fe,"Abstract out create_user and filter_user functionality
+
+This allows the authentication backend to work with third-party
+applications that don't keep user email addresses in the auth_user
+table (for example, because they want to support more than one
+email per user).
+
+An example of an application using this can be found here:
+
+  https://code.launchpad.net/~fmarier/libravatar/mozilla-browserid-backend"
+318,https://api.github.com/repos/mozilla/django-browserid/pulls/3,3,Corrected navigator.getVerifiedEmail to navigator.id.getVerifiedEmail,,glogiotatidis,584352,2011-09-08T11:37:44Z,CONTRIBUTOR,True,1,1,1,Django application for adding BrowserID support.,JavaScript,3e44793ff6886c7d6977ce9c9d217162ae6ac32a,Corrected navigator.getVerifiedEmail to navigator.id.getVerifiedEmail
+319,https://api.github.com/repos/mozilla/django-browserid/pulls/2,2,Add a context-processor for easier handling of browserid-form,"Just what the context says.
+",shaib,129187,2011-08-04T12:08:47Z,CONTRIBUTOR,True,24,3,2,Django application for adding BrowserID support.,JavaScript,293999c15586a5513e21052ae20910bcfb8f43f4,added context processor for creating form in request

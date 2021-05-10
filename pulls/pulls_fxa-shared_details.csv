@@ -1,0 +1,359 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/fxa-shared/pulls/73,73,chore(docs): Point README to monorepo,@mozilla/fxa-devs - r?,shane-tomlinson,848085,2019-04-03T06:11:10Z,MEMBER,True,2,98,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,0f3a48b366ba531e4cd6959463adf894a820b131,"chore(docs): Point README to monorepo
+
+@mozilla/fxa-devs - r?"
+1,https://api.github.com/repos/mozilla/fxa-shared/pulls/72,72,Add Mozilla Code of Conduct,"Fixes #71
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-29T22:02:26Z,NONE,False,15,0,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,6c52fa4ec06849f9843aaefe374539c286659d27,"Add Mozilla Code of Conduct file
+
+Fixes #71.
+
+_(Message COC002)_"
+2,https://api.github.com/repos/mozilla/fxa-shared/pulls/70,70,Merge 1.0.23 into master,@mozilla/fxa-devs r?,philbooth,64367,2019-03-29T05:59:57Z,CONTRIBUTOR,True,2,2,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,b3fc96a77f40d9dc53002eec7dd8a08fa72e6a86,chore(package): bump version
+3,https://api.github.com/repos/mozilla/fxa-shared/pulls/69,69,fix(redis): fix broken zpoprangebyscore argument-marshalling,"Blocks mozilla/fxa-auth-server#2990.
+
+My logic for passing through the optional arguments to `zrangebyscore`, added this morning in #67, turned out to be the cause of a frustrating bug that was causing my tests to fail this afternoon. It's obvious in hindsight, but passing the same options to `zremrangebyscore` was a foolish idea.
+
+However it's not simply enough to just stop passing `...options` to `zremrangebyscore`, because that would allow `zrangebyscore` to return a different result set with the `offset` and `count` optional params. Instead I've simplified the interface and just pass `WITHSCORES` explicitly if specified now, which is all that's needed for the verification reminders script to work.
+
+@mozilla/fxa-devs r?",philbooth,64367,2019-03-27T20:16:35Z,CONTRIBUTOR,True,11,13,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,d7bbd44d6d0c12179a118a48d38003bc3b30eacc,fix(redis): fix broken zpoprangebyscore argument-marshalling
+4,https://api.github.com/repos/mozilla/fxa-shared/pulls/68,68,Merge 1.0.22 into master,@mozilla/fxa-devs r?,philbooth,64367,2019-03-27T11:18:47Z,CONTRIBUTOR,True,5,5,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,7452e47255b85e2c6f2eaebff891fec0afdffc90,chore(package): update js-yaml to fix npm audit warning
+5,https://api.github.com/repos/mozilla/fxa-shared/pulls/68,68,Merge 1.0.22 into master,@mozilla/fxa-devs r?,philbooth,64367,2019-03-27T11:18:47Z,CONTRIBUTOR,True,5,5,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,a51da5e4392a3bd0a6d212af6621ac2b12f5fa16,chore(package): bump version
+6,https://api.github.com/repos/mozilla/fxa-shared/pulls/67,67,feat(redis): implement atomic zpoprangebyscore method for sorted sets,"Blocks mozilla/fxa-auth-server#2990.
+
+We need to pop verification reminders atomically, which we can do with Redis `MULTI` and `EXEC`. This change just wraps those round `zrangebyscore` and `zremrangebyscore`, similar to what we did previously for the `update` command. It also removes `zremrangebyscore` from the interface because we have no need to call it and don't want non-atomic usage creeping in in the future.
+
+@mozilla/fxa-devs r?",philbooth,64367,2019-03-27T09:12:07Z,CONTRIBUTOR,True,137,23,3,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,9c57df4dfba99f31a231db7dc201ca61d310f6b1,feat(redis): implement atomic zpoprangebyscore method for sorted sets
+7,https://api.github.com/repos/mozilla/fxa-shared/pulls/66,66,Merge 1.0.21 into master,@mozilla/fxa-devs r?,philbooth,64367,2019-03-21T20:13:04Z,CONTRIBUTOR,True,2,2,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,66e18c60ab93466e7b63e88618eac52dd9ab30e7,chore(package): bump version
+8,https://api.github.com/repos/mozilla/fxa-shared/pulls/65,65,feat(redis): add methods for managing sorted sets,"Blocks mozilla/fxa-auth-server#2939.
+
+We want to use [Redis sorted sets](https://redis.io/topics/data-types-intro#redis-sorted-sets) to store verification reminders. This PR just exposes a bunch of their methods.
+
+I think I'll probably only need `zadd`, `zrangebyscore` and `zremrangebyscore` to implement verification reminders, but I exposed a bunch of others too because it didn't require any additional code to do so and I might find uses for them when I actually do that work.
+
+There have been some indentation changes where I expose the method names as a property, so you'll probably want to review this with [`?w=1`](https://github.com/mozilla/fxa-shared/pull/65/files?w=1).
+
+@mozilla/fxa-devs r?",philbooth,64367,2019-03-20T09:12:01Z,CONTRIBUTOR,True,317,280,7,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,7c8a7a74a178f5c83d0844d19db983a157d76c9e,feat(redis): add methods for managing sorted sets
+9,https://api.github.com/repos/mozilla/fxa-shared/pulls/64,64,feat(docs): add a readme for feature flags,"It's not perfect but it's a start. If this lands I'll add a link to it in the content server docs and anywhere else that people suggest.
+
+@mozilla/fxa-devs r?",philbooth,64367,2019-03-19T14:30:26Z,CONTRIBUTOR,True,225,0,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,dc2b5a4b5a645888a1f14b203be18b5c66065ce0,feat(docs): add a readme for feature flags
+10,https://api.github.com/repos/mozilla/fxa-shared/pulls/63,63,Merge 1.0.20 into master,@mozilla/fxa-devs r?,philbooth,64367,2019-03-14T16:49:08Z,CONTRIBUTOR,True,2,2,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,9117816410e1a574fa96c96f51ea4a87fc2e84a9,chore(package): bump version
+11,https://api.github.com/repos/mozilla/fxa-shared/pulls/62,62,Merge 1.0.19 into master,@mozilla/fxa-devs r?,philbooth,64367,2019-03-08T08:55:44Z,CONTRIBUTOR,True,1,1,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,ebc62e679fac0d7d7fd20a63085a8d4c564f603f,chore(package): bump version
+12,https://api.github.com/repos/mozilla/fxa-shared/pulls/61,61,refactor(redis): extract the auth server's redis abstraction,"As a pre-requisite for feature-flagging, this PR pulls the Redis abstraction out of the auth server so we can use it in the content server too.
+
+The abstraction originates from mozilla/fxa-auth-server#2235 and a fair amount of discussion took place in that PR so if you have any questions about why things are done in a certain way, it might be worth having a read of that first. In particular, the error semantics of the node Redis client are kind of flaky and what's here is our battle-hardened approach to working sanely under those conditions.
+
+The implementation depends on bluebird promises, although I know some on the team think we should be moving away from bluebird rather than towards it. In my defence, bluebird's disposer pattern is really handy for robustly managing connections and I'm not enthusiastic about re-implementing it from scratch here. I'd probably get it wrong, plus it heaps further testing and maintenance burden on us.
+
+Note that the tests will now fail for anyone who doesn't have Redis installed, because there are some integration tests that require a real instance to run against. That might seem slightly odd because our config for connecting to Redis doesn't live in this repo, it is of course server-specific. I could have left the integration tests in the server repos alongside the config, but that would incur a lengthy interval between bugs being introduced here and then picked up during integration.
+
+@mozilla/fxa-devs r?",philbooth,64367,2019-03-01T10:24:46Z,CONTRIBUTOR,True,1601,6,12,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,cb49e9dee2d825cdf9e1c8bb4a4112121dbdef48,refactor(redis): extract the auth server's redis abstraction
+13,https://api.github.com/repos/mozilla/fxa-shared/pulls/56,56,feat(feature-flags): implement LaunchDarkly abstraction,"Fixes #42.
+
+Marking as `WIP` while I deploy this and mozilla/fxa-content-server#6945 to an `fxa-dev` box so I can have a play with the actual API and iron out any kinks.",philbooth,64367,2019-02-08T12:42:58Z,CONTRIBUTOR,False,2747,2,7,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,8c54a8ad8d2b0cacead47798ada64d542050c043,feat(feature-flags): add a skeleton api to return feature flag state
+14,https://api.github.com/repos/mozilla/fxa-shared/pulls/56,56,feat(feature-flags): implement LaunchDarkly abstraction,"Fixes #42.
+
+Marking as `WIP` while I deploy this and mozilla/fxa-content-server#6945 to an `fxa-dev` box so I can have a play with the actual API and iron out any kinks.",philbooth,64367,2019-02-08T12:42:58Z,CONTRIBUTOR,False,2747,2,7,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,a2b94698a932f09cc9bf25df6a7e5fa721952514,feat(feature-flags): implement LaunchDarkly abstraction
+15,https://api.github.com/repos/mozilla/fxa-shared/pulls/55,55,chore(release): Merge 1.0.18 into master,,shane-tomlinson,848085,2019-02-06T09:31:32Z,MEMBER,True,1,1,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,6a4c3e7526de8a098128265c6b5baad3b486cae7,1.0.18
+16,https://api.github.com/repos/mozilla/fxa-shared/pulls/54,54,feat(test): Test on node 8 and 10 rather than 6 and 8,@mozilla/fxa-devs - r?,shane-tomlinson,848085,2019-02-06T07:10:09Z,MEMBER,True,1,1,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,c763e96b74e30dda3a440b7137a785959c5736b9,feat(test): Test on node 8 and 10 rather than 6 and 8
+17,https://api.github.com/repos/mozilla/fxa-shared/pulls/53,53,fix(metrics): Add an entry to EVENT_PROPERTIES for `notify` group.,"I missed this yesterday in #52.
+
+blocks mozilla/fxa-content-server#6895
+
+@mozilla/fxa-devs - r?",shane-tomlinson,848085,2019-02-06T06:42:30Z,MEMBER,True,9,0,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,420fcdcc999ad3827dbd499feea8f65c2b18710b,"fix(metrics): Add an entry to EVENT_PROPERTIES for `notify` group.
+
+I missed this yesterday."
+18,https://api.github.com/repos/mozilla/fxa-shared/pulls/52,52,feat(metrics): Add the `fxa_notify` group.,"This will be used for generic notifications, such as when
+a user clicks on a ""Download Firefox"" button from the
+""Upgrade Firefox"" screen.
+
+blocks mozilla/fxa-content-server#6895
+
+@irrationalagent - r?",shane-tomlinson,848085,2019-02-05T18:40:38Z,MEMBER,True,2,0,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,dcca6e958b402d2a4f64b0dfb3636e9687642b87,"feat(metrics): Add the `fxa_notify` group.
+
+This will be used for generic notifications, such as when
+a user clicks on a ""Download Firefox"" button from the
+""Upgrade Firefox"" screen.
+
+issue mozilla/fxa-content-server#6895"
+19,https://api.github.com/repos/mozilla/fxa-shared/pulls/51,51,1.0.17,@mozilla/fxa-devs - r?,shane-tomlinson,848085,2019-02-01T14:57:36Z,MEMBER,True,1,1,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,613c41fb71526f8d45494df7c37714bcbb76d47d,1.0.17
+20,https://api.github.com/repos/mozilla/fxa-shared/pulls/50,50,feat(l10n): Enable Catalan (ca),"fixes #49
+fixes mozilla/fxa-content-server-l10n#322
+
+@mozilla/fxa-devs - r?",shane-tomlinson,848085,2019-02-01T13:35:55Z,MEMBER,True,1,0,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,e510c36db1aedb012a5c6e9d3cc8225b933e74d6,"feat(l10n): Enable Catalan (ca)
+
+fixes #49
+fixes mozilla/fxa-content-server-l10n#322"
+21,https://api.github.com/repos/mozilla/fxa-shared/pulls/48,48,chore(release): Merge 1.0.16 to master,,shane-tomlinson,848085,2019-01-31T20:52:38Z,MEMBER,True,1,1,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,2919b7f0233ebb52c294adcea8f8ade1e1cd3193,1.0.16
+22,https://api.github.com/repos/mozilla/fxa-shared/pulls/47,47,"revert(metrics): Revert ""feat(metrics): Use the service name or client_id as the entrypoint if none given.""","This reverts commit 6f2792b2c834ffdb4e6f93ada004872c4bb17b20.
+
+fixes #46 
+
+@mozilla/fxa-devs - r?",shane-tomlinson,848085,2019-01-31T20:36:49Z,MEMBER,True,4,44,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,c39cdacd2ce460d4631ab92ea741c2d6107c9d65,"revert(metrics): Revert ""feat(metrics): Use the service name or client_id as the entrypoint if none given.""
+
+This reverts commit 6f2792b2c834ffdb4e6f93ada004872c4bb17b20."
+23,https://api.github.com/repos/mozilla/fxa-shared/pulls/45,45,feat(feature-flags): implement a common api for feature-flagging,"Fixes #41.
+
+This is the start of some common code for feature-flagging, but I'm marking it WIP because I want to experiment some more with the actual integration code in the content server before wasting anyone's time on code review. (although don't let that discourage you from commenting of course, if you have any feedback to share)",philbooth,64367,2019-01-29T19:00:41Z,CONTRIBUTOR,True,2508,0,8,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,77aebdcfadff6c03ba5dc75f139c797cba1fde07,feat(feature-flags): add a skeleton api to return feature flag state
+24,https://api.github.com/repos/mozilla/fxa-shared/pulls/45,45,feat(feature-flags): implement a common api for feature-flagging,"Fixes #41.
+
+This is the start of some common code for feature-flagging, but I'm marking it WIP because I want to experiment some more with the actual integration code in the content server before wasting anyone's time on code review. (although don't let that discourage you from commenting of course, if you have any feedback to share)",philbooth,64367,2019-01-29T19:00:41Z,CONTRIBUTOR,True,2508,0,8,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,d2bdce452eb5e17b9b9d8dfcbb297609a7b2b203,feat(feature-flags): implement LaunchDarkly abstraction
+25,https://api.github.com/repos/mozilla/fxa-shared/pulls/45,45,feat(feature-flags): implement a common api for feature-flagging,"Fixes #41.
+
+This is the start of some common code for feature-flagging, but I'm marking it WIP because I want to experiment some more with the actual integration code in the content server before wasting anyone's time on code review. (although don't let that discourage you from commenting of course, if you have any feedback to share)",philbooth,64367,2019-01-29T19:00:41Z,CONTRIBUTOR,True,2508,0,8,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,66e28e345a7bbce223e1892cb8c6a29343e5def9,feat(feature-flags): implement feature-flagging with redis
+26,https://api.github.com/repos/mozilla/fxa-shared/pulls/45,45,feat(feature-flags): implement a common api for feature-flagging,"Fixes #41.
+
+This is the start of some common code for feature-flagging, but I'm marking it WIP because I want to experiment some more with the actual integration code in the content server before wasting anyone's time on code review. (although don't let that discourage you from commenting of course, if you have any feedback to share)",philbooth,64367,2019-01-29T19:00:41Z,CONTRIBUTOR,True,2508,0,8,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,b4ac4d1bfd72a2f937ffcf206f4d6c0676b4ef98,feat(scripts): write a script for managing feature flags in redis
+27,https://api.github.com/repos/mozilla/fxa-shared/pulls/45,45,feat(feature-flags): implement a common api for feature-flagging,"Fixes #41.
+
+This is the start of some common code for feature-flagging, but I'm marking it WIP because I want to experiment some more with the actual integration code in the content server before wasting anyone's time on code review. (although don't let that discourage you from commenting of course, if you have any feedback to share)",philbooth,64367,2019-01-29T19:00:41Z,CONTRIBUTOR,True,2508,0,8,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,0d084bde076901180e2c6da79a699999e5648914,refactor(feature-flags): remove the LaunchDarkly abstraction
+28,https://api.github.com/repos/mozilla/fxa-shared/pulls/45,45,feat(feature-flags): implement a common api for feature-flagging,"Fixes #41.
+
+This is the start of some common code for feature-flagging, but I'm marking it WIP because I want to experiment some more with the actual integration code in the content server before wasting anyone's time on code review. (although don't let that discourage you from commenting of course, if you have any feedback to share)",philbooth,64367,2019-01-29T19:00:41Z,CONTRIBUTOR,True,2508,0,8,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,7f181de4c901b5840cce7bbc8ec5d399e1f04a10,refactor(feature-flags): validate flags using an external schema
+29,https://api.github.com/repos/mozilla/fxa-shared/pulls/45,45,feat(feature-flags): implement a common api for feature-flagging,"Fixes #41.
+
+This is the start of some common code for feature-flagging, but I'm marking it WIP because I want to experiment some more with the actual integration code in the content server before wasting anyone's time on code review. (although don't let that discourage you from commenting of course, if you have any feedback to share)",philbooth,64367,2019-01-29T19:00:41Z,CONTRIBUTOR,True,2508,0,8,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,a98b6d478cad951c8691b31588952c6bc22ebc16,fix(feature-flags): ensure terminate closes redis connections too
+30,https://api.github.com/repos/mozilla/fxa-shared/pulls/44,44,Merge v1.0.15 tag into master,"Noticed this never merged to `master` and wanted to get it in before I PR other changes.
+
+@mozilla/fxa-devs r?",philbooth,64367,2019-01-29T17:25:38Z,CONTRIBUTOR,True,1,1,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,5ee843f169108a41a7bd002d7acfa6658afffd3e,1.0.15
+31,https://api.github.com/repos/mozilla/fxa-shared/pulls/40,40,feat(metrics): Use the service name or client_id as the entrypoint if none given.,"fixes mozilla/fxa-content-server#6757
+
+@philbooth - r? I wasn't totally sure about this approach, would appreciate suggestions on how to improve it!",shane-tomlinson,848085,2019-01-18T09:43:36Z,MEMBER,True,44,4,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,6f2792b2c834ffdb4e6f93ada004872c4bb17b20,"feat(metrics): Use the service name or client_id as the entrypoint if none given.
+
+fixes mozilla/fxa-content-server#6757"
+32,https://api.github.com/repos/mozilla/fxa-shared/pulls/37,37,feat(metrics): return an array instead of a single event for amplitude,"Breaking change. Blocks mozilla/fxa-activity-metrics#110.
+
+We want to emit a `login - complete` Amplitude event immediately after `login - forgot_complete`, so that the login numbers after account reset look correct in Amplitude. The cleanest way to do that from an API perspective is by adding an extra property to the event mappings that are passed into this repo. Taking a cue from CSS, I'm calling that property `after`.
+
+So, given the following diff in the auth server:
+
+```diff
+diff --git a/lib/metrics/amplitude.js b/lib/metrics/amplitude.js
+index 6faff195..5105b503 100644
+--- a/lib/metrics/amplitude.js
++++ b/lib/metrics/amplitude.js
+@@ -66,7 +66,11 @@ const EVENTS = {
+   },
+   'account.reset': {
+     group: GROUPS.login,
+-    event: 'forgot_complete'
++    event: 'forgot_complete',
++    after: {
++      group: GROUPS.login,
++      event: 'complete'
++    }
+   },
+   'account.signed': {
+     group: GROUPS.activity,
+```
+
+...the changes here would achieve the desired outcome of a `login - complete` event that happens 1 millisecond after the `login - forgot_complete` event. They are made in such a way as to hopefully be reusable if similar scenarios crop up in the future.
+
+Note that CI is updated to test in node 10 instead of node 6 because I added our new best pal, object spread syntax.
+
+@mozilla/fxa-devs r?",philbooth,64367,2018-11-27T15:07:19Z,CONTRIBUTOR,False,86,29,4,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,11213d5133ed46fa2f4406fab4527e3df7d6ceb3,feat(metrics): return an array instead of a single event for amplitude
+33,https://api.github.com/repos/mozilla/fxa-shared/pulls/37,37,feat(metrics): return an array instead of a single event for amplitude,"Breaking change. Blocks mozilla/fxa-activity-metrics#110.
+
+We want to emit a `login - complete` Amplitude event immediately after `login - forgot_complete`, so that the login numbers after account reset look correct in Amplitude. The cleanest way to do that from an API perspective is by adding an extra property to the event mappings that are passed into this repo. Taking a cue from CSS, I'm calling that property `after`.
+
+So, given the following diff in the auth server:
+
+```diff
+diff --git a/lib/metrics/amplitude.js b/lib/metrics/amplitude.js
+index 6faff195..5105b503 100644
+--- a/lib/metrics/amplitude.js
++++ b/lib/metrics/amplitude.js
+@@ -66,7 +66,11 @@ const EVENTS = {
+   },
+   'account.reset': {
+     group: GROUPS.login,
+-    event: 'forgot_complete'
++    event: 'forgot_complete',
++    after: {
++      group: GROUPS.login,
++      event: 'complete'
++    }
+   },
+   'account.signed': {
+     group: GROUPS.activity,
+```
+
+...the changes here would achieve the desired outcome of a `login - complete` event that happens 1 millisecond after the `login - forgot_complete` event. They are made in such a way as to hopefully be reusable if similar scenarios crop up in the future.
+
+Note that CI is updated to test in node 10 instead of node 6 because I added our new best pal, object spread syntax.
+
+@mozilla/fxa-devs r?",philbooth,64367,2018-11-27T15:07:19Z,CONTRIBUTOR,False,86,29,4,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,b77efed26a4c4d57cb14dca2b524ab0c1d0ea614,chore(ci): run tests in node versions 8 and 10
+34,https://api.github.com/repos/mozilla/fxa-shared/pulls/36,36,chore(package): bump version to 1.0.14,,philbooth,64367,2018-09-24T14:27:15Z,CONTRIBUTOR,True,1,1,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,d102de73748e57746a18e2c69cbef16a2c441454,chore(package): bump version to 1.0.14
+35,https://api.github.com/repos/mozilla/fxa-shared/pulls/35,35,fix(l10n): ensure the correct language is selected in localizeTimestamp,"Fixes #33.
+
+The test of `supportedLanguages.indexOf` was mistakenly checking against `0` instead of `-1`. This meant that the first item in our list of supported languages, arabic, was never being matched and other, unsupported ones were being matched.
+
+Furthermore, the `accept-languages` package assumes it is initialised with an array of languages that are sorted in order of precedence. This meant our `defaultLanguage` option was effectively being ignored because it was not at the start of the list.
+
+This change fixes both issues and tweaks the tests so that they will fail if either one regresses in the future.
+
+@mozilla/fxa-devs r?",philbooth,64367,2018-09-24T13:32:47Z,CONTRIBUTOR,True,16,5,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,a3dbf6130e579a8f322bea7500f1466485c1d9c7,"fix(l10n): ensure the correct language is selected in localizeTimestamp
+
+The test of supportedLanguages.indexOf was mistakenly checking against 0
+instead of -1. This meant that the first item in our list of supported
+languages, arabic, was never being matched and other, unsupported ones
+were being matched.
+
+Furthermore, the accept-languages package assumes it is initialised with
+an array of languages that are sorted in order of precedence. This meant
+our defaultLanguage option was effectively being ignored because it was
+not at the start of the list.
+
+This change fixes both issues and tweaks the tests so that they'll fail
+if either regresses in the future."
+36,https://api.github.com/repos/mozilla/fxa-shared/pulls/32,32,Merge v1.0.13 to master.,This release includes the new oauth scope-cehcking stuff.,rfk,34695,2018-07-23T05:38:12Z,MEMBER,True,1,1,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,a46a5f730a868cd2b1f12bb800c81cc7c1df8f9e,1.0.13
+37,https://api.github.com/repos/mozilla/fxa-shared/pulls/31,31,chore(release): Bump to 1.0.12,@mozilla/fxa-devs - r?,shane-tomlinson,848085,2018-07-11T16:04:42Z,MEMBER,True,1,1,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,52648d11ce10f027f31a32716fb97cd4fcca4c82,1.0.12
+38,https://api.github.com/repos/mozilla/fxa-shared/pulls/30,30,feat(metrics): Allow a function for `event` in the fuzzy types.,"If `event` in a fuzzy event is a function, the result
+of the function will become the eventType. Function is passed
+the `eventCategory` and `eventTarget`
+
+ref https://github.com/mozilla/fxa-content-server/issues/6349
+
+@philbooth - r?",shane-tomlinson,848085,2018-07-11T13:45:30Z,MEMBER,True,24,1,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,b29f62fb088407d1c3b5cc36b25e1eff98ba16ff,"feat(metrics): Allow a function for `event` in the fuzzy types.
+
+If `event` in a fuzzy event is a function, the result
+of the function will become the eventType. Function is passed
+the `eventCategory` and `eventTarget`
+
+ref https://github.com/mozilla/fxa-content-server/issues/6349"
+39,https://api.github.com/repos/mozilla/fxa-shared/pulls/29,29,feat(metrics): add event properties for email sender and service,"Related to mozilla/fxa-email-service#113.
+
+Adds some event properties that we can use to track metrics for the new email service. Equivalent auth server PR to follow.
+
+@mozilla/fxa-devs r?",philbooth,64367,2018-07-09T10:53:43Z,CONTRIBUTOR,True,10,1,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,a661702d33fc121eb456e6cc1524c31c94f0fc99,feat(metrics): add event properties for email sender and service
+40,https://api.github.com/repos/mozilla/fxa-shared/pulls/27,27,chore(package): bump to 1.0.10,@mozilla/fxa-devs - r?,shane-tomlinson,848085,2018-06-14T13:15:52Z,MEMBER,True,1,1,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,25c3beea7bcea0ff4ddc06dcafe3afeb20b33660,chore(package): bump to 1.0.10
+41,https://api.github.com/repos/mozilla/fxa-shared/pulls/26,26,feat(l10n): Enable nb-NO locale.,"fixes #25
+
+@mozilla/fxa-devs - r?",shane-tomlinson,848085,2018-06-05T10:05:58Z,MEMBER,True,1,0,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,d56cee7609cffa1d5b0b1f40e757642ec836092a,"feat(l10n): Enable nb-NO locale.
+
+fixes #25"
+42,https://api.github.com/repos/mozilla/fxa-shared/pulls/24,24,refactor(metrics): pull email type definitions back up to the caller,"Related to #23.
+
+I've got equivalent branches in the auth and content servers that define `data.emailTypes` accordingly, which I'll PR once this one is merged.
+
+@mozilla/fxa-devs r?",philbooth,64367,2018-05-16T16:27:42Z,CONTRIBUTOR,True,4,56,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,052bdb5a3926bc4823215fa1ab01203a323c0409,refactor(metrics): pull email type definitions back up to the caller
+43,https://api.github.com/repos/mozilla/fxa-shared/pulls/22,22,fix(emails): add `lowRecoveryCodesEmail` email template,"Connects to https://github.com/mozilla/fxa-auth-server/issues/2409
+
+@mozilla/fxa-devs r?",vbudhram,1295288,2018-05-09T17:41:14Z,CONTRIBUTOR,True,2,0,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,94f0b6869e63d589375e03d74d33f6f41879cb96,fix(emails): add `lowRecoveryCodesEmail` email template
+44,https://api.github.com/repos/mozilla/fxa-shared/pulls/21,21,feat(scope): Implement shareable code for checking OAuth scopes.,"Connects to https://github.com/mozilla/fxa-oauth-server/issues/575
+
+As part of https://github.com/mozilla/fxa-oauth-server/pull/551, let's consolidate our OAuth-scope-checking code in a single place.  We currently have separate implementations of subsets of this logic in auth-server, profile-server and oauth-server, this adds a bunch of testcases and extracts it into a shared lb.
+
+@mozilla/fxa-devs r?
+",rfk,34695,2018-05-03T01:22:30Z,MEMBER,True,1020,26,10,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,da56913202facd5fdbc86eb510b40cf4a096a452,chore(lint): Enforce consistent semicolon style.
+45,https://api.github.com/repos/mozilla/fxa-shared/pulls/21,21,feat(scope): Implement shareable code for checking OAuth scopes.,"Connects to https://github.com/mozilla/fxa-oauth-server/issues/575
+
+As part of https://github.com/mozilla/fxa-oauth-server/pull/551, let's consolidate our OAuth-scope-checking code in a single place.  We currently have separate implementations of subsets of this logic in auth-server, profile-server and oauth-server, this adds a bunch of testcases and extracts it into a shared lb.
+
+@mozilla/fxa-devs r?
+",rfk,34695,2018-05-03T01:22:30Z,MEMBER,True,1020,26,10,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,84efa8cdaee4a238eb8b7c740f776aa225985f79,feat(scope): Implement shareable code for checking OAuth scopes.
+46,https://api.github.com/repos/mozilla/fxa-shared/pulls/20,20,feat(metrics): extract common code for emitting amplitude events,"Fixes #11.
+
+WIP until the auth server tests are fixed and some tests are written for this repo.
+
+Related PRs for content and auth servers:
+
+* https://github.com/mozilla/fxa-content-server/pull/6022
+* https://github.com/mozilla/fxa-auth-server/pull/2384
+
+@irrationalagent, this is the PR I mentioned just now.",philbooth,64367,2018-04-05T15:44:10Z,CONTRIBUTOR,True,694,0,4,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,6b09ee4879bb1599627330fe3fa99b509f33b6b6,feat(metrics): extract common code for emitting amplitude events
+47,https://api.github.com/repos/mozilla/fxa-shared/pulls/20,20,feat(metrics): extract common code for emitting amplitude events,"Fixes #11.
+
+WIP until the auth server tests are fixed and some tests are written for this repo.
+
+Related PRs for content and auth servers:
+
+* https://github.com/mozilla/fxa-content-server/pull/6022
+* https://github.com/mozilla/fxa-auth-server/pull/2384
+
+@irrationalagent, this is the PR I mentioned just now.",philbooth,64367,2018-04-05T15:44:10Z,CONTRIBUTOR,True,694,0,4,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,a5d7fb7ef992c4223570e6ff54ef729ff197f677,Merge branch 'master' into pb/11
+48,https://api.github.com/repos/mozilla/fxa-shared/pulls/20,20,feat(metrics): extract common code for emitting amplitude events,"Fixes #11.
+
+WIP until the auth server tests are fixed and some tests are written for this repo.
+
+Related PRs for content and auth servers:
+
+* https://github.com/mozilla/fxa-content-server/pull/6022
+* https://github.com/mozilla/fxa-auth-server/pull/2384
+
+@irrationalagent, this is the PR I mentioned just now.",philbooth,64367,2018-04-05T15:44:10Z,CONTRIBUTOR,True,694,0,4,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,bb57953a49f7b0b8595c45aa7e66d4450e46ec5a,fix(metrics): fix lint errors
+49,https://api.github.com/repos/mozilla/fxa-shared/pulls/20,20,feat(metrics): extract common code for emitting amplitude events,"Fixes #11.
+
+WIP until the auth server tests are fixed and some tests are written for this repo.
+
+Related PRs for content and auth servers:
+
+* https://github.com/mozilla/fxa-content-server/pull/6022
+* https://github.com/mozilla/fxa-auth-server/pull/2384
+
+@irrationalagent, this is the PR I mentioned just now.",philbooth,64367,2018-04-05T15:44:10Z,CONTRIBUTOR,True,694,0,4,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,b26d552ec7874dbdd901d2b6f1038cdd16487cdc,feat(metrics): add unit tests for amplitude metrics
+50,https://api.github.com/repos/mozilla/fxa-shared/pulls/20,20,feat(metrics): extract common code for emitting amplitude events,"Fixes #11.
+
+WIP until the auth server tests are fixed and some tests are written for this repo.
+
+Related PRs for content and auth servers:
+
+* https://github.com/mozilla/fxa-content-server/pull/6022
+* https://github.com/mozilla/fxa-auth-server/pull/2384
+
+@irrationalagent, this is the PR I mentioned just now.",philbooth,64367,2018-04-05T15:44:10Z,CONTRIBUTOR,True,694,0,4,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,e333f1a6e395b08e20e240cc0a76c182f020c06d,fix(metrics): link to the event taxonomy in amplitude comments
+51,https://api.github.com/repos/mozilla/fxa-shared/pulls/20,20,feat(metrics): extract common code for emitting amplitude events,"Fixes #11.
+
+WIP until the auth server tests are fixed and some tests are written for this repo.
+
+Related PRs for content and auth servers:
+
+* https://github.com/mozilla/fxa-content-server/pull/6022
+* https://github.com/mozilla/fxa-auth-server/pull/2384
+
+@irrationalagent, this is the PR I mentioned just now.",philbooth,64367,2018-04-05T15:44:10Z,CONTRIBUTOR,True,694,0,4,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,e82e86aab7dc1b5963e4a309e6b7c73eabed81e3,feat(metrics): add more commentary for the returned mapper fn
+52,https://api.github.com/repos/mozilla/fxa-shared/pulls/19,19,fix(lint-setup): #16 added lint setup,Fixes https://github.com/mozilla/fxa-shared/issues/16,deeptibaghel,448609,2018-04-04T11:25:15Z,CONTRIBUTOR,True,20,2,4,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,788e7739ba0f4b24b5541201aa3a251456d28e3e,fix(lint-setup): Fixes #16 added lint setup
+53,https://api.github.com/repos/mozilla/fxa-shared/pulls/19,19,fix(lint-setup): #16 added lint setup,Fixes https://github.com/mozilla/fxa-shared/issues/16,deeptibaghel,448609,2018-04-04T11:25:15Z,CONTRIBUTOR,True,20,2,4,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,60efade4099d43065a1972cf75549b7504b8dc6e,chore(package): simplify the lint invocation a bit
+54,https://api.github.com/repos/mozilla/fxa-shared/pulls/18,18,feat(email): define array of popular email domains,"Related to mozilla/fxa-content-server#6014.
+
+There are duplicate definitions for this array in the auth and content servers. As @vbudhram pointed out in https://github.com/mozilla/fxa-content-server/pull/6012#discussion_r178104726, that's silly.
+
+@mozilla/fxa-devs r?",philbooth,64367,2018-04-03T10:55:45Z,CONTRIBUTOR,True,36,2,5,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,68441661c02def63e63d022ce71335a7d2544258,feat(email): define array of popular email domains
+55,https://api.github.com/repos/mozilla/fxa-shared/pulls/17,17,chore(tests): migrate from tap to mocha+chai,"Fixes #15.
+
+@mozilla/fxa-devs r?",philbooth,64367,2018-04-03T09:54:43Z,CONTRIBUTOR,True,133,57,4,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,f78ea61610f1094c85510aaffab8a1046d705f9c,chore(tests): migrate from tap to mocha+chai
+56,https://api.github.com/repos/mozilla/fxa-shared/pulls/14,14,chode(deps): update deps,Ref: https://nodesecurity.io/advisories/532,vladikoff,128755,2018-02-16T20:57:39Z,CONTRIBUTOR,True,7,4,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,c3e7eae2a62186b28a63ca1a63cb43770fc5837e,"chode(deps): update deps
+
+Ref: https://nodesecurity.io/advisories/532"
+57,https://api.github.com/repos/mozilla/fxa-shared/pulls/14,14,chode(deps): update deps,Ref: https://nodesecurity.io/advisories/532,vladikoff,128755,2018-02-16T20:57:39Z,CONTRIBUTOR,True,7,4,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,4cf0c937e1fa03a5198c6492106d7bffe92d8748,chore(deps): update node version
+58,https://api.github.com/repos/mozilla/fxa-shared/pulls/12,12,Add cak locale,Fixes https://github.com/mozilla/fxa/issues/268,vladikoff,128755,2017-09-07T14:53:27Z,CONTRIBUTOR,True,1,0,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,5ec0d31e920b84320c7611bbec8816e0e00129e1,Add cak locale
+59,https://api.github.com/repos/mozilla/fxa-shared/pulls/10,10,fix(l10n): Add support for fy-NL,"issue #9 
+
+@jrgm - r?",shane-tomlinson,848085,2016-11-03T12:16:36Z,MEMBER,True,1,0,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,e59a97bd06cc14856aa220a8d7639a8a714f40f9,"fix(l10n): Add support for fy-NL
+
+issue #9"
+60,https://api.github.com/repos/mozilla/fxa-shared/pulls/8,8,feat(locales): add new supported locales,"Fixes https://github.com/mozilla/fxa-shared/issues/7
+
+@jrgm r?
+",vladikoff,128755,2016-09-28T14:36:26Z,CONTRIBUTOR,True,11,1,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,5088e65cd5574002d806f90195560197fefd2057,feat(locales): add new supported locales
+61,https://api.github.com/repos/mozilla/fxa-shared/pulls/6,6,feat(l10n): support timeAgo removeSuffix,"@vbudhram r?
+",vladikoff,128755,2016-09-14T01:40:35Z,CONTRIBUTOR,False,12,2,2,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,54fa1feb8605925bc98ec25cdc7ef63db5624b19,feat(l10n): support timeAgo removeSuffix
+62,https://api.github.com/repos/mozilla/fxa-shared/pulls/5,5,chore(license): Add MPL2 LICENSE file,"Fixes #4 
+",pdehaan,557895,2016-08-29T02:15:34Z,CONTRIBUTOR,True,362,0,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,093b1d8d7a8c6024b9d8a5cd6aa3a6e9e89799ac,chore(license): Add MPL2 LICENSE file
+63,https://api.github.com/repos/mozilla/fxa-shared/pulls/3,3,feat(l10n): add localize timestamp utility,"@vbudhram r?
+",vladikoff,128755,2016-08-16T19:02:37Z,CONTRIBUTOR,True,130,0,5,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,57bb4c7695807e55c4c03981b28d44415f7d1db6,feat(l10n): add localize timestamp utility
+64,https://api.github.com/repos/mozilla/fxa-shared/pulls/2,2,chore(tests): add travis,,vladikoff,128755,2016-08-16T17:58:29Z,CONTRIBUTOR,True,14,0,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,65f39c8c4690d5022b560b885327113b55bbcfc5,chore(tests): add travis
+65,https://api.github.com/repos/mozilla/fxa-shared/pulls/1,1,feat(l10n): shared languages,"@vbudhram feedback?
+",vladikoff,128755,2016-08-12T18:31:48Z,CONTRIBUTOR,True,110,1,7,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,738710f90e7c473eed12f34417c3f68c7c5400b3,feat(l10n): share the list of supported languages
+66,https://api.github.com/repos/mozilla/fxa-shared/pulls/1,1,feat(l10n): shared languages,"@vbudhram feedback?
+",vladikoff,128755,2016-08-12T18:31:48Z,CONTRIBUTOR,True,110,1,7,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,71885d937438f8bfcc5de5c1be954bcb90ed942b,feat(l10n): export index path
+67,https://api.github.com/repos/mozilla/fxa-shared/pulls/1,1,feat(l10n): shared languages,"@vbudhram feedback?
+",vladikoff,128755,2016-08-12T18:31:48Z,CONTRIBUTOR,True,110,1,7,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,d2cf4f310fd8994fbb6cf21db54496eb958d86a4,chore(docs): rename to fxa-shared

@@ -1,0 +1,853 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/contribute.json/pulls/114,114,Bump jinja2 from 2.10.1 to 2.11.3,"Bumps [jinja2](https://github.com/pallets/jinja) from 2.10.1 to 2.11.3.
+<details>
+<summary>Release notes</summary>
+<p><em>Sourced from <a href=""https://github.com/pallets/jinja/releases"">jinja2's releases</a>.</em></p>
+<blockquote>
+<h2>2.11.3</h2>
+<p>This contains a fix for a speed issue with the <code>urlize</code> filter. <code>urlize</code> is likely to be called on untrusted user input. For certain inputs some of the regular expressions used to parse the text could take a very long time due to backtracking. As part of the fix, the email matching became slightly stricter. The various speedups apply to <code>urlize</code> in general, not just the specific input cases.</p>
+<ul>
+<li>PyPI: <a href=""https://pypi.org/project/Jinja2/2.11.3/"">https://pypi.org/project/Jinja2/2.11.3/</a></li>
+<li>Changes: <a href=""https://jinja.palletsprojects.com/en/2.11.x/changelog/#version-2-11-3"">https://jinja.palletsprojects.com/en/2.11.x/changelog/#version-2-11-3</a></li>
+</ul>
+<h2>2.11.2</h2>
+<ul>
+<li>Changelog: <a href=""https://jinja.palletsprojects.com/en/2.11.x/changelog/#version-2-11-2"">https://jinja.palletsprojects.com/en/2.11.x/changelog/#version-2-11-2</a></li>
+</ul>
+<h2>2.11.1</h2>
+<p>This fixes an issue in async environment when indexing the result of an attribute lookup, like <code>{{ data.items[1:] }}</code>.</p>
+<ul>
+<li>Changes: <a href=""https://jinja.palletsprojects.com/en/2.11.x/changelog/#version-2-11-1"">https://jinja.palletsprojects.com/en/2.11.x/changelog/#version-2-11-1</a></li>
+</ul>
+<h2>2.11.0</h2>
+<ul>
+<li>Changes: <a href=""https://jinja.palletsprojects.com/en/2.11.x/changelog/#version-2-11-0"">https://jinja.palletsprojects.com/en/2.11.x/changelog/#version-2-11-0</a></li>
+<li>Blog: <a href=""https://palletsprojects.com/blog/jinja-2-11-0-released/"">https://palletsprojects.com/blog/jinja-2-11-0-released/</a></li>
+<li>Twitter: <a href=""https://twitter.com/PalletsTeam/status/1221883554537230336"">https://twitter.com/PalletsTeam/status/1221883554537230336</a></li>
+</ul>
+<p>This is the last version to support Python 2.7 and 3.5. The next version will be Jinja 3.0 and will support Python 3.6 and newer.</p>
+<h2>2.10.3</h2>
+<ul>
+<li>Changes: <a href=""http://jinja.palletsprojects.com/en/2.10.x/changelog/#version-2-10-3"">http://jinja.palletsprojects.com/en/2.10.x/changelog/#version-2-10-3</a></li>
+</ul>
+<h2>2.10.2</h2>
+<ul>
+<li>Changes: <a href=""http://jinja.palletsprojects.com/en/2.10.x/changelog/#version-2-10-2"">http://jinja.palletsprojects.com/en/2.10.x/changelog/#version-2-10-2</a></li>
+</ul>
+</blockquote>
+</details>
+<details>
+<summary>Changelog</summary>
+<p><em>Sourced from <a href=""https://github.com/pallets/jinja/blob/master/CHANGES.rst"">jinja2's changelog</a>.</em></p>
+<blockquote>
+<h2>Version 2.11.3</h2>
+<p>Released 2021-01-31</p>
+<ul>
+<li>Improve the speed of the <code>urlize</code> filter by reducing regex
+backtracking. Email matching requires a word character at the start
+of the domain part, and only word characters in the TLD. :pr:<code>1343</code></li>
+</ul>
+<h2>Version 2.11.2</h2>
+<p>Released 2020-04-13</p>
+<ul>
+<li>Fix a bug that caused callable objects with <code>__getattr__</code>, like
+:class:<code>~unittest.mock.Mock</code> to be treated as a
+:func:<code>contextfunction</code>. :issue:<code>1145</code></li>
+<li>Update <code>wordcount</code> filter to trigger :class:<code>Undefined</code> methods
+by wrapping the input in :func:<code>soft_str</code>. :pr:<code>1160</code></li>
+<li>Fix a hang when displaying tracebacks on Python 32-bit.
+:issue:<code>1162</code></li>
+<li>Showing an undefined error for an object that raises
+<code>AttributeError</code> on access doesn't cause a recursion error.
+:issue:<code>1177</code></li>
+<li>Revert changes to :class:<code>~loaders.PackageLoader</code> from 2.10 which
+removed the dependency on setuptools and pkg_resources, and added
+limited support for namespace packages. The changes caused issues
+when using Pytest. Due to the difficulty in supporting Python 2 and
+:pep:<code>451</code> simultaneously, the changes are reverted until 3.0.
+:pr:<code>1182</code></li>
+<li>Fix line numbers in error messages when newlines are stripped.
+:pr:<code>1178</code></li>
+<li>The special <code>namespace()</code> assignment object in templates works in
+async environments. :issue:<code>1180</code></li>
+<li>Fix whitespace being removed before tags in the middle of lines when
+<code>lstrip_blocks</code> is enabled. :issue:<code>1138</code></li>
+<li>:class:<code>~nativetypes.NativeEnvironment</code> doesn't evaluate
+intermediate strings during rendering. This prevents early
+evaluation which could change the value of an expression.
+:issue:<code>1186</code></li>
+</ul>
+<h2>Version 2.11.1</h2>
+<p>Released 2020-01-30</p>
+<ul>
+<li>Fix a bug that prevented looking up a key after an attribute
+(<code>{{ data.items[1:] }}</code>) in an async template. :issue:<code>1141</code></li>
+</ul>
+<!-- raw HTML omitted -->
+</blockquote>
+<p>... (truncated)</p>
+</details>
+<details>
+<summary>Commits</summary>
+<ul>
+<li><a href=""https://github.com/pallets/jinja/commit/cf215390d4a4d6f0a4de27e2687eed176878f13d""><code>cf21539</code></a> release version 2.11.3</li>
+<li><a href=""https://github.com/pallets/jinja/commit/15ef8f09b659f9100610583938005a7a10472d4d""><code>15ef8f0</code></a> Merge pull request <a href=""https://github-redirect.dependabot.com/pallets/jinja/issues/1343"">#1343</a> from pallets/urlize-speedup</li>
+<li><a href=""https://github.com/pallets/jinja/commit/ef658dc3b6389b091d608e710a810ce8b87995b3""><code>ef658dc</code></a> speed up urlize matching</li>
+<li><a href=""https://github.com/pallets/jinja/commit/eeca0fecc3318d43f61bc340ad61db641b861ade""><code>eeca0fe</code></a> Merge pull request <a href=""https://github-redirect.dependabot.com/pallets/jinja/issues/1207"">#1207</a> from mhansen/patch-1</li>
+<li><a href=""https://github.com/pallets/jinja/commit/2dd769111cbb1a2637f805b3b4c652ec8096d371""><code>2dd7691</code></a> Merge pull request <a href=""https://github-redirect.dependabot.com/pallets/jinja/issues/1209"">#1209</a> from mhansen/patch-3</li>
+<li><a href=""https://github.com/pallets/jinja/commit/48929401db7228db04dfd8e88115dd5c30dc2d86""><code>4892940</code></a> do_dictsort: update example ready to copy/paste</li>
+<li><a href=""https://github.com/pallets/jinja/commit/7db7d336ba12574e6205fdd929386fd529e3fad4""><code>7db7d33</code></a> api.rst: bugfix in docs, import PackageLoader</li>
+<li><a href=""https://github.com/pallets/jinja/commit/9ec465baefe32e305bd4e61da49e6c39360c194e""><code>9ec465b</code></a> fix changelog header</li>
+<li><a href=""https://github.com/pallets/jinja/commit/737a4cd41d09878e7e6c584a2062f5853dc30150""><code>737a4cd</code></a> release version 2.11.2</li>
+<li><a href=""https://github.com/pallets/jinja/commit/179df6b54e87b3d420cabf65fc07b2605ffc05f8""><code>179df6b</code></a> Merge pull request <a href=""https://github-redirect.dependabot.com/pallets/jinja/issues/1190"">#1190</a> from pallets/native-eval</li>
+<li>Additional commits viewable in <a href=""https://github.com/pallets/jinja/compare/2.10.1...2.11.3"">compare view</a></li>
+</ul>
+</details>
+<br />
+
+
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=jinja2&package-manager=pip&previous-version=2.10.1&new-version=2.11.3)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.
+
+[//]: # (dependabot-automerge-start)
+[//]: # (dependabot-automerge-end)
+
+---
+
+<details>
+<summary>Dependabot commands and options</summary>
+<br />
+
+You can trigger Dependabot actions by commenting on this PR:
+- `@dependabot rebase` will rebase this PR
+- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it
+- `@dependabot merge` will merge this PR after your CI passes on it
+- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it
+- `@dependabot cancel merge` will cancel a previously requested merge and block automerging
+- `@dependabot reopen` will reopen this PR if it is closed
+- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually
+- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot use these labels` will set the current labels as the default for future PRs for this repo and language
+- `@dependabot use these reviewers` will set the current reviewers as the default for future PRs for this repo and language
+- `@dependabot use these assignees` will set the current assignees as the default for future PRs for this repo and language
+- `@dependabot use this milestone` will set the current milestone as the default for future PRs for this repo and language
+
+You can disable automated security fix PRs for this repo from the [Security Alerts page](https://github.com/mozilla/contribute.json/network/alerts).
+
+</details>",dependabot[bot],49699333,2021-03-19T22:38:07Z,NONE,False,1,1,1,A JSON schema for open-source project contribution data.,Less,feadbfb493d6a61925e20b92817277c72031d640,"Bump jinja2 from 2.10.1 to 2.11.3
+
+Bumps [jinja2](https://github.com/pallets/jinja) from 2.10.1 to 2.11.3.
+- [Release notes](https://github.com/pallets/jinja/releases)
+- [Changelog](https://github.com/pallets/jinja/blob/master/CHANGES.rst)
+- [Commits](https://github.com/pallets/jinja/compare/2.10.1...2.11.3)
+
+Signed-off-by: dependabot[bot] <support@github.com>"
+1,https://api.github.com/repos/mozilla/contribute.json/pulls/113,113,Use Node.js v14,,jbuck,578466,2021-03-16T20:22:32Z,MEMBER,True,1,1,1,A JSON schema for open-source project contribution data.,Less,ac8e1e7ed69b6f04fb84b074c88220f66b7c9970,Use Node.js v14
+2,https://api.github.com/repos/mozilla/contribute.json/pulls/112,112,Bump cryptography from 2.3.1 to 3.3.2,"Bumps [cryptography](https://github.com/pyca/cryptography) from 2.3.1 to 3.3.2.
+<details>
+<summary>Changelog</summary>
+<p><em>Sourced from <a href=""https://github.com/pyca/cryptography/blob/main/CHANGELOG.rst"">cryptography's changelog</a>.</em></p>
+<blockquote>
+<p>3.3.2 - 2021-02-07</p>
+<pre><code>
+* **SECURITY ISSUE:** Fixed a bug where certain sequences of ``update()`` calls
+  when symmetrically encrypting very large payloads (&gt;2GB) could result in an
+  integer overflow, leading to buffer overflows. *CVE-2020-36242* **Update:**
+  This fix is a workaround for *CVE-2021-23840* in OpenSSL, fixed in OpenSSL
+  1.1.1j.
+<p>.. _v3-3-1:</p>
+<p>3.3.1 - 2020-12-09
+</code></pre></p>
+<ul>
+<li>Re-added a legacy symbol causing problems for older <code>pyOpenSSL</code> users.</li>
+</ul>
+<p>.. _v3-3:</p>
+<p>3.3 - 2020-12-08</p>
+<pre><code>
+* **BACKWARDS INCOMPATIBLE:** Support for Python 3.5 has been removed due to
+  low usage and maintenance burden.
+* **BACKWARDS INCOMPATIBLE:** The
+  :class:`~cryptography.hazmat.primitives.ciphers.modes.GCM` and
+  :class:`~cryptography.hazmat.primitives.ciphers.aead.AESGCM` now require
+  64-bit to 1024-bit (8 byte to 128 byte) initialization vectors. This change
+  is to conform with an upcoming OpenSSL release that will no longer support
+  sizes outside this window.
+* **BACKWARDS INCOMPATIBLE:** When deserializing asymmetric keys we now
+  raise ``ValueError`` rather than ``UnsupportedAlgorithm`` when an
+  unsupported cipher is used. This change is to conform with an upcoming
+  OpenSSL release that will no longer distinguish between error types.
+* **BACKWARDS INCOMPATIBLE:** We no longer allow loading of finite field
+  Diffie-Hellman parameters of less than 512 bits in length. This change is to
+  conform with an upcoming OpenSSL release that no longer supports smaller
+  sizes. These keys were already wildly insecure and should not have been used
+  in any application outside of testing.
+* Updated Windows, macOS, and ``manylinux`` wheels to be compiled with
+  OpenSSL 1.1.1i.
+* Python 2 support is deprecated in ``cryptography``. This is the last release
+  that will support Python 2.
+* Added the
+  :meth:`~cryptography.hazmat.primitives.asymmetric.rsa.RSAPublicKey.recover_data_from_signature`
+  function to
+  :class:`~cryptography.hazmat.primitives.asymmetric.rsa.RSAPublicKey`
+  for recovering the signed data from an RSA signature.
+<p>.. _v3-2-1:</p>
+<p>&lt;/tr&gt;&lt;/table&gt;
+</code></pre></p>
+</blockquote>
+<p>... (truncated)</p>
+</details>
+<details>
+<summary>Commits</summary>
+<ul>
+<li><a href=""https://github.com/pyca/cryptography/commit/82b6ce28389f0a317bc55ba2091a74b346db7cae""><code>82b6ce2</code></a> correct buffer overflows cause by integer overflow in openssl (<a href=""https://github.com/pyca/cryptography/issues/5747"">#5747</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/1ff0d50948bbb6f2aa53d5648f1188a567d941cd""><code>1ff0d50</code></a> re-add Cryptography_HAS_TLSEXT_HOSTNAME and bump for 3.3.1 (<a href=""https://github.com/pyca/cryptography/issues/5625"">#5625</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/7e8fff73cf0c597fe2df34daf2027506f84b9d3b""><code>7e8fff7</code></a> Prepare for 3.3 release (<a href=""https://github.com/pyca/cryptography/issues/5603"">#5603</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/b5278c908574b2d965755d063a95812c6b520a8e""><code>b5278c9</code></a> Fixed DH tests for latest CentOS FIPS OpenSSL (<a href=""https://github.com/pyca/cryptography/issues/5604"">#5604</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/6693d55cbe05c98c9e1fe3a8b08639f5491a572a""><code>6693d55</code></a> Add support for RSA signature recovery (<a href=""https://github.com/pyca/cryptography/issues/5573"">#5573</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/8686d524b7b890bcbe6132b774bd72a3ae37cf0d""><code>8686d52</code></a> Document that PKCS1v1.5 is not constant time (<a href=""https://github.com/pyca/cryptography/issues/5600"">#5600</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/1be144acc6b46ae2ece459d80a20831ac2ac1c74""><code>1be144a</code></a> bump cffi minimum version to help out pyopenssl (<a href=""https://github.com/pyca/cryptography/issues/5598"">#5598</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/96f2d96d1c4884a7d314372d4876e0d45e24e342""><code>96f2d96</code></a> remove legacy debugging code from setup.py (<a href=""https://github.com/pyca/cryptography/issues/5597"">#5597</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/2660f93eca71be5558cfcb9a120310636791e6ec""><code>2660f93</code></a> Document that Firefox doesn't support unencrypted pkcs12 (<a href=""https://github.com/pyca/cryptography/issues/5596"">#5596</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/a2096694853aed0828d0aaf38e364577a52b3780""><code>a209669</code></a> Added tls bindings for new OpenSSL APIs (<a href=""https://github.com/pyca/cryptography/issues/5595"">#5595</a>)</li>
+<li>Additional commits viewable in <a href=""https://github.com/pyca/cryptography/compare/2.3.1...3.3.2"">compare view</a></li>
+</ul>
+</details>
+<br />
+
+
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=cryptography&package-manager=pip&previous-version=2.3.1&new-version=3.3.2)](https://docs.github.com/en/github/managing-security-vulnerabilities/about-dependabot-security-updates#about-compatibility-scores)
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.
+
+[//]: # (dependabot-automerge-start)
+[//]: # (dependabot-automerge-end)
+
+---
+
+<details>
+<summary>Dependabot commands and options</summary>
+<br />
+
+You can trigger Dependabot actions by commenting on this PR:
+- `@dependabot rebase` will rebase this PR
+- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it
+- `@dependabot merge` will merge this PR after your CI passes on it
+- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it
+- `@dependabot cancel merge` will cancel a previously requested merge and block automerging
+- `@dependabot reopen` will reopen this PR if it is closed
+- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually
+- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot use these labels` will set the current labels as the default for future PRs for this repo and language
+- `@dependabot use these reviewers` will set the current reviewers as the default for future PRs for this repo and language
+- `@dependabot use these assignees` will set the current assignees as the default for future PRs for this repo and language
+- `@dependabot use this milestone` will set the current milestone as the default for future PRs for this repo and language
+
+You can disable automated security fix PRs for this repo from the [Security Alerts page](https://github.com/mozilla/contribute.json/network/alerts).
+
+</details>",dependabot[bot],49699333,2021-03-16T20:18:01Z,NONE,False,1,1,1,A JSON schema for open-source project contribution data.,Less,3a63f2e64a91fd621b459f271087f1445290bc50,"Bump cryptography from 2.3.1 to 3.3.2
+
+Bumps [cryptography](https://github.com/pyca/cryptography) from 2.3.1 to 3.3.2.
+- [Release notes](https://github.com/pyca/cryptography/releases)
+- [Changelog](https://github.com/pyca/cryptography/blob/main/CHANGELOG.rst)
+- [Commits](https://github.com/pyca/cryptography/compare/2.3.1...3.3.2)
+
+Signed-off-by: dependabot[bot] <support@github.com>"
+3,https://api.github.com/repos/mozilla/contribute.json/pulls/111,111,Upgrade to heroku-20 stack,,jbuck,578466,2021-03-11T20:27:14Z,MEMBER,True,4,4,3,A JSON schema for open-source project contribution data.,Less,256470ded8d738fa3825277a8994a2c01a2cec8a,Switch to stable Heroku buildpacks
+4,https://api.github.com/repos/mozilla/contribute.json/pulls/111,111,Upgrade to heroku-20 stack,,jbuck,578466,2021-03-11T20:27:14Z,MEMBER,True,4,4,3,A JSON schema for open-source project contribution data.,Less,16fb4d47f11a5eefc56d83f5ba627d9a0f45ae1c,Switch to python 3.6.13 runtime
+5,https://api.github.com/repos/mozilla/contribute.json/pulls/111,111,Upgrade to heroku-20 stack,,jbuck,578466,2021-03-11T20:27:14Z,MEMBER,True,4,4,3,A JSON schema for open-source project contribution data.,Less,cf00616bb31fef8ccf41f04000188838ea2de42d,Upgrade MarkupSafe to fix setuptools error
+6,https://api.github.com/repos/mozilla/contribute.json/pulls/109,109,Bump cryptography from 2.3.1 to 3.2,"Bumps [cryptography](https://github.com/pyca/cryptography) from 2.3.1 to 3.2.
+<details>
+<summary>Changelog</summary>
+<p><em>Sourced from <a href=""https://github.com/pyca/cryptography/blob/master/CHANGELOG.rst"">cryptography's changelog</a>.</em></p>
+<blockquote>
+<p>3.2 - 2020-10-25</p>
+<pre><code>
+* **SECURITY ISSUE:** Attempted to make RSA PKCS#1v1.5 decryption more constant
+  time, to protect against Bleichenbacher vulnerabilities. Due to limitations
+  imposed by our API, we cannot completely mitigate this vulnerability and a
+  future release will contain a new API which is designed to be resilient to
+  these for contexts where it is required. Credit to **Hubert Kario** for
+  reporting the issue. *CVE-2020-25659*
+* Support for OpenSSL 1.0.2 has been removed. Users on older version of OpenSSL
+  will need to upgrade.
+* Added basic support for PKCS7 signing (including SMIME) via
+  :class:`~cryptography.hazmat.primitives.serialization.pkcs7.PKCS7SignatureBuilder`.
+<p>.. _v3-1-1:</p>
+<p>3.1.1 - 2020-09-22
+</code></pre></p>
+<ul>
+<li>Updated Windows, macOS, and <code>manylinux</code> wheels to be compiled with
+OpenSSL 1.1.1h.</li>
+</ul>
+<p>.. _v3-1:</p>
+<p>3.1 - 2020-08-26</p>
+<pre><code>
+* **BACKWARDS INCOMPATIBLE:** Removed support for ``idna`` based
+  :term:`U-label` parsing in various X.509 classes. This support was originally
+  deprecated in version 2.1 and moved to an extra in 2.5.
+* Deprecated OpenSSL 1.0.2 support. OpenSSL 1.0.2 is no longer supported by
+  the OpenSSL project. The next version of ``cryptography`` will drop support
+  for it.
+* Deprecated support for Python 3.5. This version sees very little use and will
+  be removed in the next release.
+* ``backend`` arguments to functions are no longer required and the
+  default backend will automatically be selected if no ``backend`` is provided.
+* Added initial support for parsing certificates from PKCS7 files with
+  :func:`~cryptography.hazmat.primitives.serialization.pkcs7.load_pem_pkcs7_certificates`
+  and
+  :func:`~cryptography.hazmat.primitives.serialization.pkcs7.load_der_pkcs7_certificates`
+  .
+* Calling ``update`` or ``update_into`` on
+  :class:`~cryptography.hazmat.primitives.ciphers.CipherContext` with ``data``
+  longer than 2\ :sup:`31` bytes no longer raises an ``OverflowError``. This
+  also resolves the same issue in :doc:`/fernet`.
+<p>.. _v3-0:</p>
+<p>3.0 - 2020-07-20
+&lt;/tr&gt;&lt;/table&gt;
+</code></pre></p>
+</blockquote>
+<p>... (truncated)</p>
+</details>
+<details>
+<summary>Commits</summary>
+<ul>
+<li><a href=""https://github.com/pyca/cryptography/commit/c9e65222c91df8b6f61650a3460e30232962c1e0""><code>c9e6522</code></a> 3.2 release (<a href=""https://github-redirect.dependabot.com/pyca/cryptography/issues/5508"">#5508</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/58494b41d6ecb0f56b7c5f05d5f5e3ca0320d494""><code>58494b4</code></a> Attempt to mitigate Bleichenbacher attacks on RSA decryption (<a href=""https://github-redirect.dependabot.com/pyca/cryptography/issues/5507"">#5507</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/cf9bd6a36bc7b05abca114b76e216598d9ad9b16""><code>cf9bd6a</code></a> move blinding to <strong>init</strong> on both RSA public and private (<a href=""https://github-redirect.dependabot.com/pyca/cryptography/issues/5506"">#5506</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/bf4b962f4b92a1633835b2d17974f18de2d61620""><code>bf4b962</code></a> be more verbose in the 102 deprecation notice (<a href=""https://github-redirect.dependabot.com/pyca/cryptography/issues/5505"">#5505</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/ada53e7ca0f04a33711c330a130d34376e5ecc2b""><code>ada53e7</code></a> make the regexes for branches more strict (<a href=""https://github-redirect.dependabot.com/pyca/cryptography/issues/5504"">#5504</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/8be1d4b1113eabea306dd60ab64e7f00815d6a52""><code>8be1d4b</code></a> Stop using <a href=""https://github.com/master"">@master</a> for GH actions (<a href=""https://github-redirect.dependabot.com/pyca/cryptography/issues/5503"">#5503</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/08a97cca715ca0842d6792d0079e351efbb48ec9""><code>08a97cc</code></a> Bump actions/upload-artifact from v1 to v2.2.0 (<a href=""https://github-redirect.dependabot.com/pyca/cryptography/issues/5502"">#5502</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/52a0e44e97dd6e150509b14c9b1f76a261f12786""><code>52a0e44</code></a> Add a dependabot configuration to bump our github actions (<a href=""https://github-redirect.dependabot.com/pyca/cryptography/issues/5501"">#5501</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/611c4a340f6c53a7e28a9695a3248bd4e9f8558d""><code>611c4a3</code></a> PKCS7SignatureBuilder now supports new option NoCerts when signing (<a href=""https://github-redirect.dependabot.com/pyca/cryptography/issues/5500"">#5500</a>)</li>
+<li><a href=""https://github.com/pyca/cryptography/commit/836a92a28fbe9df8c37121e340b91ed9cd519ddd""><code>836a92a</code></a> chunking didn't actually work (<a href=""https://github-redirect.dependabot.com/pyca/cryptography/issues/5499"">#5499</a>)</li>
+<li>Additional commits viewable in <a href=""https://github.com/pyca/cryptography/compare/2.3.1...3.2"">compare view</a></li>
+</ul>
+</details>
+<br />
+
+
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=cryptography&package-manager=pip&previous-version=2.3.1&new-version=3.2)](https://docs.github.com/en/github/managing-security-vulnerabilities/configuring-github-dependabot-security-updates)
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.
+
+[//]: # (dependabot-automerge-start)
+[//]: # (dependabot-automerge-end)
+
+---
+
+<details>
+<summary>Dependabot commands and options</summary>
+<br />
+
+You can trigger Dependabot actions by commenting on this PR:
+- `@dependabot rebase` will rebase this PR
+- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it
+- `@dependabot merge` will merge this PR after your CI passes on it
+- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it
+- `@dependabot cancel merge` will cancel a previously requested merge and block automerging
+- `@dependabot reopen` will reopen this PR if it is closed
+- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually
+- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot use these labels` will set the current labels as the default for future PRs for this repo and language
+- `@dependabot use these reviewers` will set the current reviewers as the default for future PRs for this repo and language
+- `@dependabot use these assignees` will set the current assignees as the default for future PRs for this repo and language
+- `@dependabot use this milestone` will set the current milestone as the default for future PRs for this repo and language
+
+You can disable automated security fix PRs for this repo from the [Security Alerts page](https://github.com/mozilla/contribute.json/network/alerts).
+
+</details>",dependabot[bot],49699333,2020-10-27T21:07:17Z,NONE,False,1,1,1,A JSON schema for open-source project contribution data.,Less,1b26d044dbd512abea3baa4ae0c65347c7996037,"Bump cryptography from 2.3.1 to 3.2
+
+Bumps [cryptography](https://github.com/pyca/cryptography) from 2.3.1 to 3.2.
+- [Release notes](https://github.com/pyca/cryptography/releases)
+- [Changelog](https://github.com/pyca/cryptography/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pyca/cryptography/compare/2.3.1...3.2)
+
+Signed-off-by: dependabot[bot] <support@github.com>"
+7,https://api.github.com/repos/mozilla/contribute.json/pulls/108,108,Bump werkzeug from 0.14.1 to 0.15.3,"Bumps [werkzeug](https://github.com/pallets/werkzeug) from 0.14.1 to 0.15.3.
+<details>
+<summary>Release notes</summary>
+
+*Sourced from [werkzeug's releases](https://github.com/pallets/werkzeug/releases).*
+
+> ## 0.15.3
+> * Blog: https://palletsprojects.com/blog/werkzeug-0-15-3-released/
+> * Changes: https://werkzeug.palletsprojects.com/en/0.15.x/changes/#version-0-15-3
+> 
+> 
+> ## 0.15.2
+> * Blog: https://palletsprojects.com/blog/werkzeug-0-15-2-released/
+> * Changes: https://werkzeug.palletsprojects.com/en/0.15.x/changes/#version-0-15-2
+> 
+> ## 0.15.1
+> * Blog: https://palletsprojects.com/blog/werkzeug-0-15-1-released/
+> * Changes: https://werkzeug.palletsprojects.com/en/0.15.x/changes/
+> 
+> ## 0.15.0
+> * Blog: https://palletsprojects.com/blog/werkzeug-0-15-0-released/
+> * Changes: https://werkzeug.palletsprojects.com/en/0.15.x/changes/
+</details>
+<details>
+<summary>Changelog</summary>
+
+*Sourced from [werkzeug's changelog](https://github.com/pallets/werkzeug/blob/master/CHANGES.rst).*
+
+> Version 0.15.3
+> --------------
+> 
+> Released 2019-05-14
+> 
+> -   Properly handle multi-line header folding in development server in
+>     Python 2.7. (:issue:`1080`)
+> -   Restore the ``response`` argument to :exc:`~exceptions.Unauthorized`.
+>     (:pr:`1527`)
+> -   :exc:`~exceptions.Unauthorized` doesn't add the ``WWW-Authenticate``
+>     header if ``www_authenticate`` is not given. (:issue:`1516`)
+> -   The default URL converter correctly encodes bytes to string rather
+>     than representing them with ``b''``. (:issue:`1502`)
+> -   Fix the filename format string in
+>     :class:`~middleware.profiler.ProfilerMiddleware` to correctly handle
+>     float values. (:issue:`1511`)
+> -   Update :class:`~middleware.lint.LintMiddleware` to work on Python 3.
+>     (:issue:`1510`)
+> -   The debugger detects cycles in chained exceptions and does not time
+>     out in that case. (:issue:`1536`)
+> -   When running the development server in Docker, the debugger security
+>     pin is now unique per container.
+> 
+> 
+> Version 0.15.2
+> --------------
+> 
+> Released 2019-04-02
+> 
+> -   ``Rule`` code generation uses a filename that coverage will ignore.
+>     The previous value, ""generated"", was causing coverage to fail.
+>     (:issue:`1487`)
+> -   The test client removes the cookie header if there are no persisted
+>     cookies. This fixes an issue introduced in 0.15.0 where the cookies
+>     from the original request were used for redirects, causing functions
+>     such as logout to fail. (:issue:`1491`)
+> -   The test client copies the environ before passing it to the app, to
+>     prevent in-place modifications from affecting redirect requests.
+>     (:issue:`1498`)
+> -   The ``""werkzeug""`` logger only adds a handler if there is no handler
+>     configured for its level in the logging chain. This avoids double
+>     logging if other code configures logging first. (:issue:`1492`)
+> 
+> 
+> Version 0.15.1
+> --------------
+> 
+> Released 2019-03-21
+> 
+> -   :exc:`~exceptions.Unauthorized` takes ``description`` as the first
+></tr></table> ... (truncated)
+</details>
+<details>
+<summary>Commits</summary>
+
+- [`9b1123a`](https://github.com/pallets/werkzeug/commit/9b1123a779e95b5c38ca911ce1329e87a3348a92) release version 0.15.3
+- [`00bc43b`](https://github.com/pallets/werkzeug/commit/00bc43b1672e662e5e3b8cecd79e67fc968fa246) unique debugger pin in Docker containers
+- [`2cbdf2b`](https://github.com/pallets/werkzeug/commit/2cbdf2b02273daccf85845b1e1569096e65ffe58) Merge pull request [#1542](https://github-redirect.dependabot.com/pallets/werkzeug/issues/1542) from asottile/exceptions_arent_always_hashable
+- [`0e669f6`](https://github.com/pallets/werkzeug/commit/0e669f6be532801267d35de23c5f5237b8406d8a) Fix unhashable exception types
+- [`bdc17e4`](https://github.com/pallets/werkzeug/commit/bdc17e4cd10bbb17449006cef385ec953a11fc36) Merge pull request [#1540](https://github-redirect.dependabot.com/pallets/werkzeug/issues/1540) from pallets/break-tb-cycle
+- [`44e38c2`](https://github.com/pallets/werkzeug/commit/44e38c2985bcd3a7c17467bead901b8f36528f5f) break cycle in chained exceptions
+- [`777500b`](https://github.com/pallets/werkzeug/commit/777500b64647ea47b21e52e5e113ba1d86014c05) Merge pull request [#1518](https://github-redirect.dependabot.com/pallets/werkzeug/issues/1518) from NiklasMM/fix/1510_lint-middleware-python3-compa...
+- [`e00c7c2`](https://github.com/pallets/werkzeug/commit/e00c7c2cedcbcad3772e4522813c78bc9a860fbe) Make LintMiddleware Python 3 compatible and add tests
+- [`d590cc7`](https://github.com/pallets/werkzeug/commit/d590cc7cf2fcb34ebc0783eb3c2913e8ce016ed8) Merge pull request [#1539](https://github-redirect.dependabot.com/pallets/werkzeug/issues/1539) from pallets/profiler-format
+- [`0388fc9`](https://github.com/pallets/werkzeug/commit/0388fc95e696513bbefbde293f3f76cc482df8fa) update filename_format for ProfilerMiddleware.
+- Additional commits viewable in [compare view](https://github.com/pallets/werkzeug/compare/0.14.1...0.15.3)
+</details>
+<br />
+
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=werkzeug&package-manager=pip&previous-version=0.14.1&new-version=0.15.3)](https://help.github.com/articles/configuring-automated-security-fixes)
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.
+
+[//]: # (dependabot-automerge-start)
+[//]: # (dependabot-automerge-end)
+
+---
+
+<details>
+<summary>Dependabot commands and options</summary>
+<br />
+
+You can trigger Dependabot actions by commenting on this PR:
+- `@dependabot rebase` will rebase this PR
+- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it
+- `@dependabot merge` will merge this PR after your CI passes on it
+- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it
+- `@dependabot cancel merge` will cancel a previously requested merge and block automerging
+- `@dependabot reopen` will reopen this PR if it is closed
+- `@dependabot close` will close this PR and stop Dependabot recreating it. You can achieve the same result by closing it manually
+- `@dependabot ignore this major version` will close this PR and stop Dependabot creating any more for this major version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this minor version` will close this PR and stop Dependabot creating any more for this minor version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot use these labels` will set the current labels as the default for future PRs for this repo and language
+- `@dependabot use these reviewers` will set the current reviewers as the default for future PRs for this repo and language
+- `@dependabot use these assignees` will set the current assignees as the default for future PRs for this repo and language
+- `@dependabot use this milestone` will set the current milestone as the default for future PRs for this repo and language
+
+You can disable automated security fix PRs for this repo from the [Security Alerts page](https://github.com/mozilla/contribute.json/network/alerts).
+
+</details>",dependabot[bot],49699333,2020-02-12T16:33:34Z,NONE,False,1,1,1,A JSON schema for open-source project contribution data.,Less,88290682b465d42571e9928081e5d3ba54678547,"Bump werkzeug from 0.14.1 to 0.15.3
+
+Bumps [werkzeug](https://github.com/pallets/werkzeug) from 0.14.1 to 0.15.3.
+- [Release notes](https://github.com/pallets/werkzeug/releases)
+- [Changelog](https://github.com/pallets/werkzeug/blob/master/CHANGES.rst)
+- [Commits](https://github.com/pallets/werkzeug/compare/0.14.1...0.15.3)
+
+Signed-off-by: dependabot[bot] <support@github.com>"
+8,https://api.github.com/repos/mozilla/contribute.json/pulls/107,107,Add 'chat' to the 'participate' object,"The 'chat' object if given must supply an URL form
+reference to a chat for the project. Optionally
+it can also supply contacts in that chat.
+
+I didn't add any examples except the IRC channel ref
+that was already in the readme. I also didn't remove
+the IRC keys. Possibly they could be removed immediately
+since the spec is not guaranteed according to the readme
+to be stable but possibly they should be removed only
+after Observatory [supports the new chat key](https://infosec.mozilla.org/guidelines/web_security#contributejson) and Mozilla
+sites have had time to roll over so they don't suffer a bad
+Observatory rating?
+
+Also add chat.mozilla.org contribute.json to the list.
+Note currently it contains the IRC keys, since
+Mozilla Observatory will otherwise give -5 points
+until a Matrix chat room reference can be given to
+point to the right Riot Web related room.
+
+Closes #106 ",jaywink,1174866,2020-02-11T09:16:02Z,CONTRIBUTOR,True,28,1,3,A JSON schema for open-source project contribution data.,Less,d60725d137beaa590d534ab58a27d96e5680344a,"Add 'chat' to the 'participate' object
+
+The 'chat' object if given must supply an URL form
+reference to a chat for the project. Optionally
+it can also supply contacts in that chat."
+9,https://api.github.com/repos/mozilla/contribute.json/pulls/107,107,Add 'chat' to the 'participate' object,"The 'chat' object if given must supply an URL form
+reference to a chat for the project. Optionally
+it can also supply contacts in that chat.
+
+I didn't add any examples except the IRC channel ref
+that was already in the readme. I also didn't remove
+the IRC keys. Possibly they could be removed immediately
+since the spec is not guaranteed according to the readme
+to be stable but possibly they should be removed only
+after Observatory [supports the new chat key](https://infosec.mozilla.org/guidelines/web_security#contributejson) and Mozilla
+sites have had time to roll over so they don't suffer a bad
+Observatory rating?
+
+Also add chat.mozilla.org contribute.json to the list.
+Note currently it contains the IRC keys, since
+Mozilla Observatory will otherwise give -5 points
+until a Matrix chat room reference can be given to
+point to the right Riot Web related room.
+
+Closes #106 ",jaywink,1174866,2020-02-11T09:16:02Z,CONTRIBUTOR,True,28,1,3,A JSON schema for open-source project contribution data.,Less,94d7500d2ac724b095a9e330af1266d1bb5bd84a,"Add chat.mozilla.org contribute.json to the list
+
+Note currently it contains the IRC keys, since
+Mozilla Observatory will otherwise give -5 points
+until a Matrix chat room reference can be given to
+point to the right Riot Web related room."
+10,https://api.github.com/repos/mozilla/contribute.json/pulls/105,105,README 1.md,,JESCAH,57129164,2019-10-29T07:55:15Z,CONTRIBUTOR,True,1,1,1,A JSON schema for open-source project contribution data.,Less,16d39b5f373495cc0a0ce9dd3539fe4da8c5e2ad,Update README.md
+11,https://api.github.com/repos/mozilla/contribute.json/pulls/104,104,upgrade jinja2,,peterbe,26739,2019-04-16T14:04:38Z,CONTRIBUTOR,True,1,1,1,A JSON schema for open-source project contribution data.,Less,1c50797625d954e7a6300379f5e322802478d17c,upgrade jinja2
+12,https://api.github.com/repos/mozilla/contribute.json/pulls/103,103,Add Mozilla Code of Conduct,"Fixes #102
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-29T05:00:50Z,CONTRIBUTOR,True,15,0,1,A JSON schema for open-source project contribution data.,Less,e972a1ab11d428ffa9cb56fa277ea557a7105dd6,"Add Mozilla Code of Conduct file
+
+Fixes #102.
+
+_(Message COC002)_"
+13,https://api.github.com/repos/mozilla/contribute.json/pulls/101,101,correct raven install line,"First of all, this is the correct way to add `raven` to the requirements file for Flask projects. 
+Second of all, version 6.10.0 had some mention about fixes specifically to stackframes from Flask apps. Can't hurt. ",peterbe,26739,2018-12-19T15:50:23Z,CONTRIBUTOR,True,1,2,1,A JSON schema for open-source project contribution data.,Less,a24f5baf47a5c168327364f8ef7c7e005bd5182f,correct raven install line
+14,https://api.github.com/repos/mozilla/contribute.json/pulls/100,100,upgrade relevant libs,low key commit message. You know what I mean. ,peterbe,26739,2018-10-30T16:54:00Z,CONTRIBUTOR,True,3,3,1,A JSON schema for open-source project contribution data.,Less,e78df0aef1ff6ce71c7c9031e5faff6a6d7932f7,upgrade relevant libs
+15,https://api.github.com/repos/mozilla/contribute.json/pulls/99,99,UnboundLocalError 'content',"Fixes #98 
+
+To reproduce:
+
+```
+▶ curl -v -XPOST http://localhost:5000/validate
+{
+  ""request_error"": ""Neither request.data or request.url""
+}
+
+```",peterbe,26739,2018-10-15T13:00:11Z,CONTRIBUTOR,True,4,0,1,A JSON schema for open-source project contribution data.,Less,f842b78cb4869c334bafcb0936735812b2ad0b32,"UnboundLocalError 'content'
+
+Fixes #98"
+16,https://api.github.com/repos/mozilla/contribute.json/pulls/97,97,SystemExit on URL downloads that take forever,"Fixes #96
+
+
+Now you get this instead:
+<img width=""1181"" alt=""screen shot 2018-09-13 at 4 20 33 pm"" src=""https://user-images.githubusercontent.com/26739/45513565-ffc32780-b770-11e8-87a4-b0c2c2a0f107.png"">
+",peterbe,26739,2018-09-13T20:21:02Z,CONTRIBUTOR,True,1,1,1,A JSON schema for open-source project contribution data.,Less,b8456c6b0d690e69d9bfc5b470f43252fd87dd90,"SystemExit on URL downloads that take forever
+
+Fixes #96"
+17,https://api.github.com/repos/mozilla/contribute.json/pulls/95,95,TypeError -  Object of type 'bytes' is not JSON serializable,Fixes #94,peterbe,26739,2018-09-13T20:15:48Z,CONTRIBUTOR,True,1,1,1,A JSON schema for open-source project contribution data.,Less,6be3372ac2e60723e0c770592d3fbffbcb0673b0,"TypeError -  Object of type 'bytes' is not JSON serializable
+
+Fixes #94"
+18,https://api.github.com/repos/mozilla/contribute.json/pulls/93,93,TypeError on load-example,Fixes #92,peterbe,26739,2018-09-13T18:47:24Z,CONTRIBUTOR,True,10,3,1,A JSON schema for open-source project contribution data.,Less,d7f96729e963600934c27e217e953d3385a2edc0,"TypeError on load-example
+
+Fixes #92"
+19,https://api.github.com/repos/mozilla/contribute.json/pulls/91,91,TypeError on /examples.json,Fixes #90,peterbe,26739,2018-09-13T18:27:27Z,CONTRIBUTOR,True,1,1,1,A JSON schema for open-source project contribution data.,Less,1d88f6d7168539326ac5d00c2fd6da644d5b9b8a,"TypeError on /examples.json
+
+Fixes #90"
+20,https://api.github.com/repos/mozilla/contribute.json/pulls/88,88,Add raven to track errors,"Not been able to test this yet since I don't have a Sentry DSN for this project. I CC'ed you on an email about setting this up. If that's a problem, perhaps we can create a new project in one of your teams @pmac 
+",peterbe,26739,2018-09-04T18:35:44Z,CONTRIBUTOR,True,13,0,3,A JSON schema for open-source project contribution data.,Less,0b74a368ea55138321a68ee56241003293efa721,Add raven to track errors
+21,https://api.github.com/repos/mozilla/contribute.json/pulls/88,88,Add raven to track errors,"Not been able to test this yet since I don't have a Sentry DSN for this project. I CC'ed you on an email about setting this up. If that's a problem, perhaps we can create a new project in one of your teams @pmac 
+",peterbe,26739,2018-09-04T18:35:44Z,CONTRIBUTOR,True,13,0,3,A JSON schema for open-source project contribution data.,Less,d60641b11ba06b2c9ee5f38d1949e70cc0eaba3e,ditch unused variable
+22,https://api.github.com/repos/mozilla/contribute.json/pulls/88,88,Add raven to track errors,"Not been able to test this yet since I don't have a Sentry DSN for this project. I CC'ed you on an email about setting this up. If that's a problem, perhaps we can create a new project in one of your teams @pmac 
+",peterbe,26739,2018-09-04T18:35:44Z,CONTRIBUTOR,True,13,0,3,A JSON schema for open-source project contribution data.,Less,5d1222250afa27be004d5c5d5e7a2f37f1d3483e,remove debugging
+23,https://api.github.com/repos/mozilla/contribute.json/pulls/86,86,Upgrade the python world,"@pmac you were too quick to merge :)
+Some more necessary changes. THings work locally now. ",peterbe,26739,2018-09-04T18:16:34Z,CONTRIBUTOR,True,5,5,4,A JSON schema for open-source project contribution data.,Less,b2601d03b4b591c159d0ad48ae69550782e9e622,use Flask-Caching instead
+24,https://api.github.com/repos/mozilla/contribute.json/pulls/86,86,Upgrade the python world,"@pmac you were too quick to merge :)
+Some more necessary changes. THings work locally now. ",peterbe,26739,2018-09-04T18:16:34Z,CONTRIBUTOR,True,5,5,4,A JSON schema for open-source project contribution data.,Less,5d77fa52c12996ae510f97e0cab6e77ef613af5f,travis test with py 3.6 instead
+25,https://api.github.com/repos/mozilla/contribute.json/pulls/85,85,Move to Python 3.6 on Heroku,,pmac,19176817,2018-09-04T18:11:30Z,MEMBER,True,1,1,1,A JSON schema for open-source project contribution data.,Less,1d22035c9e94db212800fcd97bb75fc63d62626c,Move to Python 3.6 on Heroku
+26,https://api.github.com/repos/mozilla/contribute.json/pulls/84,84,upgrade the python world,A small step forward. ,peterbe,26739,2018-09-04T17:53:19Z,CONTRIBUTOR,True,19,19,1,A JSON schema for open-source project contribution data.,Less,dc69203a660e171db785d5c26c3e050029c13145,upgrade the python world
+27,https://api.github.com/repos/mozilla/contribute.json/pulls/83,83,upgrade gunicorn,,peterbe,26739,2018-09-04T15:49:06Z,CONTRIBUTOR,True,1,1,1,A JSON schema for open-source project contribution data.,Less,4ea9eab3970cdd9bdefffa638c4083ea373ca0c9,upgrade gunicorn
+28,https://api.github.com/repos/mozilla/contribute.json/pulls/77,77,Update knownurls.txt,add https://contrast-finder.org/contribute.json,dzc34,6709977,2017-01-31T22:18:26Z,CONTRIBUTOR,True,1,0,1,A JSON schema for open-source project contribution data.,Less,1abd8b43f1eb53946b30882875250aba74233526,"Update knownurls.txt 
+
+added contrast-finder.org/contribute.json"
+29,https://api.github.com/repos/mozilla/contribute.json/pulls/70,70,Add Firefox settings service,,leplatrem,546692,2016-07-26T19:21:30Z,CONTRIBUTOR,True,1,0,1,A JSON schema for open-source project contribution data.,Less,0421502adb7cd3dabef113275d1ba506acb34489,Add Firefox settings service
+30,https://api.github.com/repos/mozilla/contribute.json/pulls/69,69,redirect stackato app to heroku host,"@pmclanahan r?
+",peterbe,26739,2015-07-24T19:39:13Z,CONTRIBUTOR,True,26,15,3,A JSON schema for open-source project contribution data.,Less,6a0eb7d817d7c65948647c1e0fd08f42c01ab303,redirect stackato app to heroku host
+31,https://api.github.com/repos/mozilla/contribute.json/pulls/68,68,Add flask-sslify.,"- redirect http -> https
+- set HSTS header
+",pmclanahan,19934,2015-07-24T15:18:53Z,MEMBER,True,3,0,2,A JSON schema for open-source project contribution data.,Less,d8baa7632f8572d668b978ffe047f5f1b81bf9b1,"Add flask-sslify.
+
+* redirect http -> https
+* set HSTS header"
+32,https://api.github.com/repos/mozilla/contribute.json/pulls/67,67,Fix #61: Add translate key to schema.,"This is my proposal to fix #61. I just coppied and renamed `participate`. I could easily see having something other than `docs` be the only required property, but whatever the group feels for that is fine with me.
+",pmclanahan,19934,2015-05-14T18:37:42Z,MEMBER,False,28,1,3,A JSON schema for open-source project contribution data.,Less,0e89eb9450239433802ddf0d1c5d7b2a6a6eea40,Fix #61: Add translate key to schema.
+33,https://api.github.com/repos/mozilla/contribute.json/pulls/67,67,Fix #61: Add translate key to schema.,"This is my proposal to fix #61. I just coppied and renamed `participate`. I could easily see having something other than `docs` be the only required property, but whatever the group feels for that is fine with me.
+",pmclanahan,19934,2015-05-14T18:37:42Z,MEMBER,False,28,1,3,A JSON schema for open-source project contribution data.,Less,ee5d140c06f946a6d292c0c3a3d57045d533cdb8,Validate contribute.json with the schema in Travis.
+34,https://api.github.com/repos/mozilla/contribute.json/pulls/66,66,Test build and deploy via Travis-CI.,"Run flake8 and npm install.
+",pmclanahan,19934,2015-05-13T03:09:36Z,MEMBER,True,18,0,3,A JSON schema for open-source project contribution data.,Less,26c5a6c432d0f7852ef38d4c7bf7c1c547fe6eed,"Test build and deploy via Travis-CI.
+
+Run flake8 and npm install, then push to heroku automatically."
+35,https://api.github.com/repos/mozilla/contribute.json/pulls/65,65,"for developers, fixes #21","@pmclanahan r?
+
+![screenshot 2015-05-06 09 13 07](https://cloud.githubusercontent.com/assets/26739/7497581/2fdeff10-f3d0-11e4-8780-84459dac88a2.png)
+",peterbe,26739,2015-05-06T16:13:46Z,CONTRIBUTOR,True,8,4,1,A JSON schema for open-source project contribution data.,Less,d07ba99c97b1fe9408d480a8153851af35f39078,"for developers, fixes #21"
+36,https://api.github.com/repos/mozilla/contribute.json/pulls/64,64,Deploy via Heroku.,"These are the changes I made to get http://www.contributejson.org running on heroku. Let's discuss @peterbe.
+",pmclanahan,19934,2015-03-27T20:49:36Z,MEMBER,True,338,279,16,A JSON schema for open-source project contribution data.,Less,41a90f33be120f1b193bedaf9a0b4b7572a40dd0,"Deploy via Heroku.
+
+* Move package.json to repo root.
+* Move gruntfile to repo root.
+* Update readme.
+* Use port from env.
+* Use cache settings from env."
+37,https://api.github.com/repos/mozilla/contribute.json/pulls/63,63,switch to ui-router,"ui-router is so much better. 
+",peterbe,26739,2015-03-24T21:59:08Z,CONTRIBUTOR,True,46,34,6,A JSON schema for open-source project contribution data.,Less,d0b24332d26df31f060612f303fe2248a629a322,switch to ui-router
+38,https://api.github.com/repos/mozilla/contribute.json/pulls/62,62,"participate->home not required, fixes #2","@Osmose @pmclanahan r?
+
+Note that the [Schema page](https://contribute.paas.allizom.org/schema) will pick this up by automatically reading [this url](https://raw.githubusercontent.com/mozilla/contribute.json/master/schema.json).
+",peterbe,26739,2015-03-19T15:56:45Z,CONTRIBUTOR,True,0,1,1,A JSON schema for open-source project contribution data.,Less,2e776b86b8989728482f9d2a0a5d08c0c0963430,"participate->home not required, fixes #2"
+39,https://api.github.com/repos/mozilla/contribute.json/pulls/59,59,Add nocturnal,,glogiotatidis,584352,2015-03-03T12:45:29Z,CONTRIBUTOR,True,1,0,1,A JSON schema for open-source project contribution data.,Less,1e85bbcc85f55266bf3236955f4c0ae167b029c1,Add nocturnal
+40,https://api.github.com/repos/mozilla/contribute.json/pulls/57,57,Set container width to 100%,"Fixes #56.
+
+Sorry for that @peterbe :)
+",koddsson,318208,2015-02-27T20:18:09Z,CONTRIBUTOR,True,1,0,1,A JSON schema for open-source project contribution data.,Less,713bca055d23bc63f6e74b6b6dc1fe2808492e68,Set container width to 100%
+41,https://api.github.com/repos/mozilla/contribute.json/pulls/55,55,let's call it what it is instead,"@Osmose || @pmclanahan || @schalkneethling r?
+
+I don't remember the history of this but what I do know is that the nav title should match what you get when you click on it. 
+",peterbe,26739,2015-02-27T19:46:33Z,CONTRIBUTOR,True,1,1,1,A JSON schema for open-source project contribution data.,Less,ecc0991c38ef2187e6b06bacc289ccb85afecf16,let's call it what it is instead
+42,https://api.github.com/repos/mozilla/contribute.json/pulls/54,54,Mobile layout!,"I tried not to mess with the desktop version too much. This also adds tabzilla like how it's described in the tabzilla docs and generally tries to follow the sandstone best practices.
+
+Give it a whirl and tell me what you think.
+
+![mobile](https://cloud.githubusercontent.com/assets/318208/6314622/192da658-b9de-11e4-8c93-7ade40434ba4.png)
+![desktop](https://cloud.githubusercontent.com/assets/318208/6314623/19331020-b9de-11e4-9eb7-155ea14f4ea4.png)
+",koddsson,318208,2015-02-21T15:31:13Z,CONTRIBUTOR,True,55,42,4,A JSON schema for open-source project contribution data.,Less,dac7213b294d89664feb3e115d499ee93b089bee,Add .gitignores
+43,https://api.github.com/repos/mozilla/contribute.json/pulls/54,54,Mobile layout!,"I tried not to mess with the desktop version too much. This also adds tabzilla like how it's described in the tabzilla docs and generally tries to follow the sandstone best practices.
+
+Give it a whirl and tell me what you think.
+
+![mobile](https://cloud.githubusercontent.com/assets/318208/6314622/192da658-b9de-11e4-8c93-7ade40434ba4.png)
+![desktop](https://cloud.githubusercontent.com/assets/318208/6314623/19331020-b9de-11e4-9eb7-155ea14f4ea4.png)
+",koddsson,318208,2015-02-21T15:31:13Z,CONTRIBUTOR,True,55,42,4,A JSON schema for open-source project contribution data.,Less,adb03efb4eed46d5880d39378ba0883c7d4627a4,"Utilize media queries to achieve mobile layout.
+
+Fixes #51"
+44,https://api.github.com/repos/mozilla/contribute.json/pulls/54,54,Mobile layout!,"I tried not to mess with the desktop version too much. This also adds tabzilla like how it's described in the tabzilla docs and generally tries to follow the sandstone best practices.
+
+Give it a whirl and tell me what you think.
+
+![mobile](https://cloud.githubusercontent.com/assets/318208/6314622/192da658-b9de-11e4-8c93-7ade40434ba4.png)
+![desktop](https://cloud.githubusercontent.com/assets/318208/6314623/19331020-b9de-11e4-9eb7-155ea14f4ea4.png)
+",koddsson,318208,2015-02-21T15:31:13Z,CONTRIBUTOR,True,55,42,4,A JSON schema for open-source project contribution data.,Less,1b5ea0bff42b297eada39e6bb114b8d3ed74d209,media query small fixes
+45,https://api.github.com/repos/mozilla/contribute.json/pulls/54,54,Mobile layout!,"I tried not to mess with the desktop version too much. This also adds tabzilla like how it's described in the tabzilla docs and generally tries to follow the sandstone best practices.
+
+Give it a whirl and tell me what you think.
+
+![mobile](https://cloud.githubusercontent.com/assets/318208/6314622/192da658-b9de-11e4-8c93-7ade40434ba4.png)
+![desktop](https://cloud.githubusercontent.com/assets/318208/6314623/19331020-b9de-11e4-9eb7-155ea14f4ea4.png)
+",koddsson,318208,2015-02-21T15:31:13Z,CONTRIBUTOR,True,55,42,4,A JSON schema for open-source project contribution data.,Less,4aa6d8c6c3a3af8ee190bf401b58cfe5630d1333,"Merge pull request #2 from peterbe/media-query-small-fixes
+
+media query small fixes"
+46,https://api.github.com/repos/mozilla/contribute.json/pulls/54,54,Mobile layout!,"I tried not to mess with the desktop version too much. This also adds tabzilla like how it's described in the tabzilla docs and generally tries to follow the sandstone best practices.
+
+Give it a whirl and tell me what you think.
+
+![mobile](https://cloud.githubusercontent.com/assets/318208/6314622/192da658-b9de-11e4-8c93-7ade40434ba4.png)
+![desktop](https://cloud.githubusercontent.com/assets/318208/6314623/19331020-b9de-11e4-9eb7-155ea14f4ea4.png)
+",koddsson,318208,2015-02-21T15:31:13Z,CONTRIBUTOR,True,55,42,4,A JSON schema for open-source project contribution data.,Less,9091dcde54000c4ea19ebae088939da14d15824b,Add hidden-xs class and add to mozilla logo.
+47,https://api.github.com/repos/mozilla/contribute.json/pulls/53,53,"validation by textarea, fixes #52","@glogiotatidis r?
+",peterbe,26739,2015-02-17T19:06:04Z,CONTRIBUTOR,True,2,1,1,A JSON schema for open-source project contribution data.,Less,100dda2420a8df042710d510bf8b7dead7fc00f7,"validation by textarea, fixes #52"
+48,https://api.github.com/repos/mozilla/contribute.json/pulls/50,50,Add tech filtering!,"I wanted to filter by react.js projects! Came up short for projects though! :<
+",koddsson,318208,2015-02-07T00:20:29Z,CONTRIBUTOR,True,27,8,4,A JSON schema for open-source project contribution data.,Less,4eba34e2ce698afd3f5f62bf5c866added4c5f9d,Add tech filtering!
+49,https://api.github.com/repos/mozilla/contribute.json/pulls/50,50,Add tech filtering!,"I wanted to filter by react.js projects! Came up short for projects though! :<
+",koddsson,318208,2015-02-07T00:20:29Z,CONTRIBUTOR,True,27,8,4,A JSON schema for open-source project contribution data.,Less,a7cb9ea5a684bdfa8e74d6a391321f2c16b02f77,Add search box to example site and various fixes.
+50,https://api.github.com/repos/mozilla/contribute.json/pulls/50,50,Add tech filtering!,"I wanted to filter by react.js projects! Came up short for projects though! :<
+",koddsson,318208,2015-02-07T00:20:29Z,CONTRIBUTOR,True,27,8,4,A JSON schema for open-source project contribution data.,Less,d49921fa01f6b019f32258c91bc7cf1fac8fdcd1,tech filtering without route stuff
+51,https://api.github.com/repos/mozilla/contribute.json/pulls/50,50,Add tech filtering!,"I wanted to filter by react.js projects! Came up short for projects though! :<
+",koddsson,318208,2015-02-07T00:20:29Z,CONTRIBUTOR,True,27,8,4,A JSON schema for open-source project contribution data.,Less,7c89cb01b17b9300567183947e80c5e38984228d,"Merge pull request #1 from peterbe/peterbe_add-tech-filtering
+
+tech filtering without route stuff"
+52,https://api.github.com/repos/mozilla/contribute.json/pulls/49,49,Add badges.mozilla.org to knownurls.,,lmorchard,21687,2015-02-03T19:28:24Z,MEMBER,True,1,0,1,A JSON schema for open-source project contribution data.,Less,c3cc3f8fb465341cf9672c2299eca9a5247122c3,Add badges.mozilla.org to knownurls.
+53,https://api.github.com/repos/mozilla/contribute.json/pulls/48,48,Add mozillians.org to knownurls.,,johngian,835321,2015-01-22T10:47:23Z,CONTRIBUTOR,True,1,0,1,A JSON schema for open-source project contribution data.,Less,151880a11008b0eeb9c0927692bab7a08974d684,Add mozillians.org to knownurls.
+54,https://api.github.com/repos/mozilla/contribute.json/pulls/47,47,add the Firefox Marketplace,,cvan,203725,2015-01-16T00:43:06Z,CONTRIBUTOR,True,1,0,1,A JSON schema for open-source project contribution data.,Less,da0bf198e8d0d45a7af887052e3ef43216a7646a,add the Firefox Marketplace
+55,https://api.github.com/repos/mozilla/contribute.json/pulls/46,46,Add Mozilla Reps to knownurls list.,"ReMo portal has now a contribute.json file [0].
+
+[0] https://reps.mozilla.org/contribute.json
+",akatsoulas,900565,2014-11-25T15:44:38Z,CONTRIBUTOR,True,1,0,1,A JSON schema for open-source project contribution data.,Less,49f13a46ab9399f77b7466879ebc017fedf2f207,Add Mozilla Reps.
+56,https://api.github.com/repos/mozilla/contribute.json/pulls/45,45,Update the url for One and Done's contribute.json,"Alphabetize the current entries
+",bobsilverberg,142755,2014-11-24T18:54:35Z,CONTRIBUTOR,True,5,5,1,A JSON schema for open-source project contribution data.,Less,1c87e8294bc28828fee72fa5b92f2df4ae46b2cb,"Update the url for One and Done's contribute.json
+
+Alphabetize the current entries"
+57,https://api.github.com/repos/mozilla/contribute.json/pulls/44,44,support SNI,"@mythmon r?
+",peterbe,26739,2014-11-05T21:23:05Z,CONTRIBUTOR,True,6,0,1,A JSON schema for open-source project contribution data.,Less,9d093e948320e3df69a4ce1fad070a54a3b3275b,support SNI
+58,https://api.github.com/repos/mozilla/contribute.json/pulls/44,44,support SNI,"@mythmon r?
+",peterbe,26739,2014-11-05T21:23:05Z,CONTRIBUTOR,True,6,0,1,A JSON schema for open-source project contribution data.,Less,ee8a782b1736fedf9573f73919f85aea4511902e,less dupes
+59,https://api.github.com/repos/mozilla/contribute.json/pulls/43,43,Update knownurls.txt,,ShaguftaMethwani,6694476,2014-11-05T20:22:58Z,CONTRIBUTOR,True,1,0,1,A JSON schema for open-source project contribution data.,Less,b38e7309bd4d6f3e2a19cc7bc702c2353a62eda4,Update knownurls.txt
+60,https://api.github.com/repos/mozilla/contribute.json/pulls/42,42,Adding Mozilla Input to knownurls.txt,"Mozilla Input's contribute.json file can be found at the link below;
+https://input.mozilla.org/contribute.json
+",bkowshik,2899501,2014-11-04T03:49:54Z,NONE,False,1,0,1,A JSON schema for open-source project contribution data.,Less,99172e256f76ddfde918072c2b4dc4795109703a,"Adding Mozilla Input to knownurls.txt
+
+Mozilla Input's contribute.json file can be found at the link below;
+https://input.mozilla.org/contribute.json"
+61,https://api.github.com/repos/mozilla/contribute.json/pulls/41,41,Add Input,"Input now has a contribute.json file. Adding it to the knownurls list.
+
+r?
+",willkg,820826,2014-11-04T03:23:43Z,MEMBER,True,1,0,1,A JSON schema for open-source project contribution data.,Less,49b4a8af062d65a33e600b124f4d1f6a3ffa9163,"Add Input
+
+Input now has a contribute.json file. Adding it to the knownurls list."
+62,https://api.github.com/repos/mozilla/contribute.json/pulls/40,40,Update knownurls.txt,"one and done contribute.json
+",ShaguftaMethwani,6694476,2014-10-28T16:10:56Z,CONTRIBUTOR,False,1,0,1,A JSON schema for open-source project contribution data.,Less,fb5c162561ff9213a6eb8b7e4e89d0380ac7e17d,"Update knownurls.txt
+
+one and done contribute.json"
+63,https://api.github.com/repos/mozilla/contribute.json/pulls/40,40,Update knownurls.txt,"one and done contribute.json
+",ShaguftaMethwani,6694476,2014-10-28T16:10:56Z,CONTRIBUTOR,False,1,0,1,A JSON schema for open-source project contribution data.,Less,787d42d4ed8889681913970f82eca53e3137e51d,Update knownurls.txt
+64,https://api.github.com/repos/mozilla/contribute.json/pulls/39,39,Document compiling the LESS files,"Compile the LESS files in the readme so things look pretty.
+",mstriemer,211578,2014-10-23T15:29:41Z,MEMBER,True,7,1,1,A JSON schema for open-source project contribution data.,Less,71cf8f841cb337691c6a60e095bcd79bd602e159,Document compiling the LESS files
+65,https://api.github.com/repos/mozilla/contribute.json/pulls/38,38,Correct links in examples,"Fixes #37
+",mstriemer,211578,2014-10-23T15:24:01Z,MEMBER,False,2,2,1,A JSON schema for open-source project contribution data.,Less,6350d34946b6a7e1bb6539300ea27e0c1c34ccf3,Correct links in examples
+66,https://api.github.com/repos/mozilla/contribute.json/pulls/36,36,Added non website based repo buddyup,"I know I can just edit the text file here on Github but, as all the other current URLs linked to live on mozilla.\* domain I just wanted to double check that adding a link such as this is the correct/preferred way. @peterbe 
+",ghost,10137,2014-10-22T21:38:41Z,NONE,True,1,0,1,A JSON schema for open-source project contribution data.,Less,3bf818682f450ff535262791aa26d20447f32f0d,Added non website based repo buddyup
+67,https://api.github.com/repos/mozilla/contribute.json/pulls/35,35,"a list of known examples, fixes #23","@pmclanahan (and maybe @ossreleasefeed ) r?
+",peterbe,26739,2014-10-17T19:33:09Z,CONTRIBUTOR,True,96,24,6,A JSON schema for open-source project contribution data.,Less,d87f900a12952402af59212a66cbe48927fc0756,"a list of known examples, fixes #23"
+68,https://api.github.com/repos/mozilla/contribute.json/pulls/35,35,"a list of known examples, fixes #23","@pmclanahan (and maybe @ossreleasefeed ) r?
+",peterbe,26739,2014-10-17T19:33:09Z,CONTRIBUTOR,True,96,24,6,A JSON schema for open-source project contribution data.,Less,1f10698e41a367abdae83e5df333c213216f69fa,removed some unused things
+69,https://api.github.com/repos/mozilla/contribute.json/pulls/35,35,"a list of known examples, fixes #23","@pmclanahan (and maybe @ossreleasefeed ) r?
+",peterbe,26739,2014-10-17T19:33:09Z,CONTRIBUTOR,True,96,24,6,A JSON schema for open-source project contribution data.,Less,aed0ad9888c5aea477c808e682986051abd0df14,strip just once
+70,https://api.github.com/repos/mozilla/contribute.json/pulls/34,34,"a list of known examples, #23","@pmclanahan any others I forgot?
+
+My intention is to make the app read this file from github's raw server periodically for the `/examples` page. Instead of keeping a database in paas, to add another URL all you need to do is edit this file (and optionally make a pull request).
+",peterbe,26739,2014-10-17T18:10:30Z,CONTRIBUTOR,True,6,0,1,A JSON schema for open-source project contribution data.,Less,d9ef1049874dc86c4d90d9f8bd133adf25904c9e,"a list of known examples, #23"
+71,https://api.github.com/repos/mozilla/contribute.json/pulls/33,33,"schema page, fixes #32","@pmclanahan or @ossreleasefeed r?
+
+I'm going to work on the `/examples` page next. 
+",peterbe,26739,2014-10-16T19:12:41Z,CONTRIBUTOR,True,68,17,7,A JSON schema for open-source project contribution data.,Less,6881d91884114c7a3482b93d91edb0ea27b56076,"schema page, fixes #32"
+72,https://api.github.com/repos/mozilla/contribute.json/pulls/31,31,smaller h1s,"@ossreleasefeed r?
+
+I thought those `h1`s were screaming for too much attention. 
+![screenshot 2014-10-16 10 44 53](https://cloud.githubusercontent.com/assets/26739/4667372/30a4ccee-555c-11e4-8c41-164aae0b9e52.png)
+48px seems a better size. 
+",peterbe,26739,2014-10-16T17:45:24Z,CONTRIBUTOR,True,1,1,1,A JSON schema for open-source project contribution data.,Less,2818932b7204986367119fc7de7c45876d942caf,smaller h1s
+73,https://api.github.com/repos/mozilla/contribute.json/pulls/28,28,Check urls,"@ossreleasefeed or @pmclanahan r?
+
+Now it looks like this:
+![screenshot 2014-09-05 10 51 08](https://cloud.githubusercontent.com/assets/26739/4169223/3f18106c-3525-11e4-97d7-2b62501d80b3.png)
+",peterbe,26739,2014-09-05T17:51:26Z,CONTRIBUTOR,True,101,3,6,A JSON schema for open-source project contribution data.,Less,5422fab0e5a84aaeb2e2fe1124ffc0350e8274c5,check URLs
+74,https://api.github.com/repos/mozilla/contribute.json/pulls/27,27,numbered lines,"@mythmon r?
+",peterbe,26739,2014-09-02T21:18:45Z,CONTRIBUTOR,True,46,3,5,A JSON schema for open-source project contribution data.,Less,4810fc7fce4aacee09610000881b3fc569f723a4,numbered lines
+75,https://api.github.com/repos/mozilla/contribute.json/pulls/26,26,one contribute.json for the whole thing,"@pmclanahan r?
+
+So, we used to have a two `contribute.json`. I guess we thought we'd have one for the project and one for the validator app. That's silly. 
+
+Also, I wanted the `contribute.json` to exist in the root directory but to make it available in the stackato app, it'd have to copy from the parent directory into the stackato `./app` directory. 
+",peterbe,26739,2014-09-02T17:33:05Z,CONTRIBUTOR,True,11,17,4,A JSON schema for open-source project contribution data.,Less,01abb78004e5bfa5c9ac4736a64e38664918b6fb,one contribute.json for the whole thing
+76,https://api.github.com/repos/mozilla/contribute.json/pulls/26,26,one contribute.json for the whole thing,"@pmclanahan r?
+
+So, we used to have a two `contribute.json`. I guess we thought we'd have one for the project and one for the validator app. That's silly. 
+
+Also, I wanted the `contribute.json` to exist in the root directory but to make it available in the stackato app, it'd have to copy from the parent directory into the stackato `./app` directory. 
+",peterbe,26739,2014-09-02T17:33:05Z,CONTRIBUTOR,True,11,17,4,A JSON schema for open-source project contribution data.,Less,3144e6a31bbfa8038912d9411e60c64385f96802,sample url correction
+77,https://api.github.com/repos/mozilla/contribute.json/pulls/25,25,"Ability to validate by text or by file upload, fixes #24","@pmclanahan or @ossreleasefeed r?
+",peterbe,26739,2014-08-29T17:46:14Z,CONTRIBUTOR,True,141,37,7,A JSON schema for open-source project contribution data.,Less,71fe2e04cfb29c50c4572d54403907ad511af3e1,"Ability to validate by text or by file upload, fixes #24"
+78,https://api.github.com/repos/mozilla/contribute.json/pulls/25,25,"Ability to validate by text or by file upload, fixes #24","@pmclanahan or @ossreleasefeed r?
+",peterbe,26739,2014-08-29T17:46:14Z,CONTRIBUTOR,True,141,37,7,A JSON schema for open-source project contribution data.,Less,aa9a398666a8285457be32e301d4c9758423d9b9,better errors on upload/text
+79,https://api.github.com/repos/mozilla/contribute.json/pulls/20,20,Chance stage to prod,"@peterbe r? I left the license file as is for now.
+",ghost,10137,2014-08-12T09:05:21Z,NONE,True,1,1,1,A JSON schema for open-source project contribution data.,Less,3c4026145a8e923b63e04b6af770679989110283,Chance stage to prod
+80,https://api.github.com/repos/mozilla/contribute.json/pulls/19,19,README fixes,"@ossreleasefeed or @pmclanahan r?
+",peterbe,26739,2014-08-11T20:50:15Z,CONTRIBUTOR,True,12,8,1,A JSON schema for open-source project contribution data.,Less,077890b475986c3038e39aef66fa26db48c04d38,README fixes
+81,https://api.github.com/repos/mozilla/contribute.json/pulls/19,19,README fixes,"@ossreleasefeed or @pmclanahan r?
+",peterbe,26739,2014-08-11T20:50:15Z,CONTRIBUTOR,True,12,8,1,A JSON schema for open-source project contribution data.,Less,0bc236089d7da24ab4d90be31bccdcd8b95780bf,https url to git clone
+82,https://api.github.com/repos/mozilla/contribute.json/pulls/19,19,README fixes,"@ossreleasefeed or @pmclanahan r?
+",peterbe,26739,2014-08-11T20:50:15Z,CONTRIBUTOR,True,12,8,1,A JSON schema for open-source project contribution data.,Less,05d73a96bea501d41c5878f4d86077f7aa2e10e6,flask not flash
+83,https://api.github.com/repos/mozilla/contribute.json/pulls/18,18,Update readme with more detailed steps on running the flask app,"@pmclanahan r?
+",ghost,10137,2014-08-11T16:36:05Z,NONE,True,17,8,1,A JSON schema for open-source project contribution data.,Less,d1946e89e343b86b86f5be72b10a6953fcbc8193,Update readme with more detailed steps on running the flask app
+84,https://api.github.com/repos/mozilla/contribute.json/pulls/17,17,"remove extra ""our"" from README.md",,phrawzty,625232,2014-08-11T16:12:38Z,CONTRIBUTOR,True,1,1,1,A JSON schema for open-source project contribution data.,Less,aff725c66b0e312d4bffa4eee9653bc0eb43efd1,"remove extra ""our"""
+85,https://api.github.com/repos/mozilla/contribute.json/pulls/16,16,"Fix issue #15, add contribute.json","@pmclanahan r?
+",ghost,10137,2014-08-11T09:16:41Z,NONE,True,19,0,1,A JSON schema for open-source project contribution data.,Less,0cc15d60f5396971f09782b4651261c97f7204b1,"Fix issue #15, add contribute.json"
+86,https://api.github.com/repos/mozilla/contribute.json/pulls/14,14,Added step by step instructions on getting the Flask app up and running locally.,"@pmclanahan r?
+",ghost,10137,2014-08-11T08:58:43Z,NONE,False,17,8,1,A JSON schema for open-source project contribution data.,Less,364dca16adb75dbc8ebda90babd4dc718db5910e,"Update README.md
+
+Added step by step instructions on getting the Flash app up and running locally."
+87,https://api.github.com/repos/mozilla/contribute.json/pulls/14,14,Added step by step instructions on getting the Flask app up and running locally.,"@pmclanahan r?
+",ghost,10137,2014-08-11T08:58:43Z,NONE,False,17,8,1,A JSON schema for open-source project contribution data.,Less,f09de2363bb8ba7e6dd8ba9b2d884eb838ce2a28,"Update README.md
+
+Fixed formatting"
+88,https://api.github.com/repos/mozilla/contribute.json/pulls/13,13,Remove global text-shadow,"I like text-shadow as much as the next person, but it really kills readability and page perf.
+",potch,253470,2014-08-08T20:38:34Z,CONTRIBUTOR,False,0,0,0,A JSON schema for open-source project contribution data.,Less,3e3fb7c84a764ef3644f1c81dde52bdbf5f0bf73,"Revert ""Removed global text-shadow""
+
+This reverts commit f0a2123362a12a310c37af151494564eb1f0bd6a.
+
+Accidentally did this on the main repo. sorry!"
+89,https://api.github.com/repos/mozilla/contribute.json/pulls/13,13,Remove global text-shadow,"I like text-shadow as much as the next person, but it really kills readability and page perf.
+",potch,253470,2014-08-08T20:38:34Z,CONTRIBUTOR,False,0,0,0,A JSON schema for open-source project contribution data.,Less,6a3991c948bb5921aeaa816dbc4fdd739963f01b,remove text shadow to reduce major jank
+90,https://api.github.com/repos/mozilla/contribute.json/pulls/12,12,Fix unfortunate typo in footer.,,mythmon,305049,2014-08-08T18:01:35Z,MEMBER,True,1,1,1,A JSON schema for open-source project contribution data.,Less,86c330956b0de442b501c33ccfa97c68f1e630f6,Fix unfortunate typo in footer.
+91,https://api.github.com/repos/mozilla/contribute.json/pulls/10,10,better validation error handling,"@pmac r? much better error handling on the validation.
+
+I've never used `requests.exception.RequestException` but it's neat because it traps all sorts of errors with making the request.
+",peterbe,26739,2014-08-07T20:05:19Z,CONTRIBUTOR,True,14,12,3,A JSON schema for open-source project contribution data.,Less,7982076e29f4c155172f06d63c473d791a64e628,better validation error handling
+92,https://api.github.com/repos/mozilla/contribute.json/pulls/9,9,"what, why and how","@pmac tempted to do a r? but I'm confident it's a good start. We just need to polish and tune and keep adding to it. 
+What do you think?
+",peterbe,26739,2014-08-07T17:58:21Z,CONTRIBUTOR,True,86,7,5,A JSON schema for open-source project contribution data.,Less,a01cdb960b1b590a8993b33a29637a82adb16388,"what, why and how"
+93,https://api.github.com/repos/mozilla/contribute.json/pulls/8,8,Add IRC contacts to schema.,"@peterbe opinion?
+",pmclanahan,19934,2014-08-05T19:17:14Z,MEMBER,True,13,1,2,A JSON schema for open-source project contribution data.,Less,fabf268df5f5246c6ff2a34b12c156cb1ebd330a,Add IRC contacts to schema.
+94,https://api.github.com/repos/mozilla/contribute.json/pulls/7,7,Add a required fields section to README.,,bramwelt,324567,2014-08-05T17:44:28Z,NONE,False,16,0,1,A JSON schema for open-source project contribution data.,Less,e5be200c4781129e5f8f138dc7eb1118807fee94,Add a required fields section to README.
+95,https://api.github.com/repos/mozilla/contribute.json/pulls/6,6,flask app,"@pmclanahan r?
+
+So this is a very rough draft. Although written in a rush after lunch in about 2-3 hours it's still really really rough. It works. 
+If it works we can tune it up a bit and publish it on paas. 
+",peterbe,26739,2014-08-04T22:54:51Z,CONTRIBUTOR,True,569,0,12,A JSON schema for open-source project contribution data.,Less,1c90370200921fa04887b4896b9ee7d4f2d85323,flask app
+96,https://api.github.com/repos/mozilla/contribute.json/pulls/5,5,"repository->type to not be required, fixes #1","r?
+",peterbe,26739,2014-08-01T20:40:31Z,CONTRIBUTOR,True,0,1,1,A JSON schema for open-source project contribution data.,Less,e74d9621eb98a2ce42405bbeca0d35a141c7a1f1,"repository->type to not be required, fixes #1"
+97,https://api.github.com/repos/mozilla/contribute.json/pulls/4,4,JSON Schema,"I actually tested this on https://json-schema-validator.herokuapp.com/ and it passes with the example in the README. 
+
+Once we have this established, instead of loose Issues discussing keys we can make PRs that modifies schema.json and revolve the discussion around those. 
+",peterbe,26739,2014-08-01T20:31:16Z,CONTRIBUTOR,True,109,1,2,A JSON schema for open-source project contribution data.,Less,46467318b5cc79de1ab038d1251851c547068597,JSON Schema

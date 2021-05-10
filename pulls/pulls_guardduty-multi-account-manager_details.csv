@@ -1,0 +1,307 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/41,41, Fix bug causing NameError: name 'event' is not defined ,,gene1wood,1134034,2019-11-13T00:38:11Z,MEMBER,True,7,3,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,9992ea5bb6faf70aca72808cd89f4977f063e45b,Fix bug causing NameError: name 'event' is not defined
+1,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/41,41, Fix bug causing NameError: name 'event' is not defined ,,gene1wood,1134034,2019-11-13T00:38:11Z,MEMBER,True,7,3,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,b24e41736ba013b7db34e0b2505384053de033c4,Log the record if an exception is thrown
+2,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/40,40,Fix the member account role template which was not deployable in all the regions,,NitriKx,1231438,2019-05-24T21:21:52Z,NONE,False,46,0,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,9a4acf6bc73fd7b3ed8ea837ab84da742a28a978,Fix the template to allow to deploy it in any region
+3,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/39,39,Replace some hardcoded mappings by parameters ,This will help to automate deployment of the solution (especially as a nested stack),NitriKx,1231438,2019-05-24T21:06:14Z,NONE,False,49,15,2,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,8169fc55757d25ce2fef5c3768b9fa3e4ec1814b,Replace some hardcoded mappings by parameters
+4,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/38,38,Improve cfn-lint,"Because the package ""cfnlint"" is quite old and unmaintained (command remains nammed ""cfn-lint"") ",NitriKx,1231438,2019-05-24T20:31:51Z,NONE,False,1,1,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,2ac91d9f6de8bce45d43a818bbbdf30e4a23bdae,Fix the cfn-lint dependency which was not installing the cfn-lint tool in the virtualenv
+5,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/37,37,Allow to use a different region than us-west-2,"As mentioned in the issue #36, we can not use the tool if our DynamoDB table is not deployed in us-west-2. This PR allows to easily change the dynamodb region within the CloudFormation mappings.",NitriKx,1231438,2019-05-24T19:24:07Z,NONE,False,7,4,2,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,9a1d4ba1f29bbe6cb1cffea0adab43f400ea3b63,Allow to use a different region than us-west-2 for the DynamoDB table used in the invitation management lambda
+6,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/35,35,Add Mozilla Code of Conduct,"Fixes #34
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-30T07:04:37Z,NONE,False,15,0,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,cd8f8b2fa37f1c7ac8537c0cef563ffde52868b8,"Add Mozilla Code of Conduct file
+
+Fixes #34.
+
+_(Message COC002)_"
+7,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/33,33,Add case for EMAILVERIFICATIONFAILED where we delete the member,"This will start the process over from the beginning
+Also, handle the case where the GuardDuty parent list doesn't match
+the child state. We only encountered this becasuse of the bug
+regarding EMAILVERIFICATIONFAILED but couldn't hurt to handle this case
+gracefully even if it won't come up
+
+
+Switch from using GetMembers to ListMembers to workaround limit of 50 accounts
+There's an undocumented limit either on the account ids submitted
+for a guardduty:GetMembers request or on the responses. Switching
+to ListMembers to work around this",gene1wood,1134034,2019-03-30T05:29:46Z,MEMBER,True,39,19,3,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,948f7a3f02019b7e2426cd574028f3c4a0067b80,"Add boto3 requirement
+
+despite it being present in lambda by default"
+8,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/33,33,Add case for EMAILVERIFICATIONFAILED where we delete the member,"This will start the process over from the beginning
+Also, handle the case where the GuardDuty parent list doesn't match
+the child state. We only encountered this becasuse of the bug
+regarding EMAILVERIFICATIONFAILED but couldn't hurt to handle this case
+gracefully even if it won't come up
+
+
+Switch from using GetMembers to ListMembers to workaround limit of 50 accounts
+There's an undocumented limit either on the account ids submitted
+for a guardduty:GetMembers request or on the responses. Switching
+to ListMembers to work around this",gene1wood,1134034,2019-03-30T05:29:46Z,MEMBER,True,39,19,3,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,59d3dc1cae8cf5cccb607fa2cc1c34c0e6acca27,"Increase Lambda max execution time to 15 min
+
+to accomodate large lists of accounts"
+9,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/33,33,Add case for EMAILVERIFICATIONFAILED where we delete the member,"This will start the process over from the beginning
+Also, handle the case where the GuardDuty parent list doesn't match
+the child state. We only encountered this becasuse of the bug
+regarding EMAILVERIFICATIONFAILED but couldn't hurt to handle this case
+gracefully even if it won't come up
+
+
+Switch from using GetMembers to ListMembers to workaround limit of 50 accounts
+There's an undocumented limit either on the account ids submitted
+for a guardduty:GetMembers request or on the responses. Switching
+to ListMembers to work around this",gene1wood,1134034,2019-03-30T05:29:46Z,MEMBER,True,39,19,3,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,56ba4cd8e5c22e0927c9f68a94da5cded3bc6291,"Switch from using GetMembers to ListMembers to workaround limit of 50 accounts
+
+There's an undocumented limit either on the account ids submitted
+for a guardduty:GetMembers request or on the responses. Switching
+to ListMembers to work around this"
+10,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/33,33,Add case for EMAILVERIFICATIONFAILED where we delete the member,"This will start the process over from the beginning
+Also, handle the case where the GuardDuty parent list doesn't match
+the child state. We only encountered this becasuse of the bug
+regarding EMAILVERIFICATIONFAILED but couldn't hurt to handle this case
+gracefully even if it won't come up
+
+
+Switch from using GetMembers to ListMembers to workaround limit of 50 accounts
+There's an undocumented limit either on the account ids submitted
+for a guardduty:GetMembers request or on the responses. Switching
+to ListMembers to work around this",gene1wood,1134034,2019-03-30T05:29:46Z,MEMBER,True,39,19,3,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,ff1d526d18028161cdd6570c2775fa4f920b6ffa,"Add case for EMAILVERIFICATIONFAILED where we delete the member
+
+This will start the process over from the beginning
+Also, handle the case where the GuardDuty parent list doesn't match
+the child state. We only encountered this becasuse of the bug
+regarding EMAILVERIFICATIONFAILED but couldn't hurt to handle this case
+gracefully even if it won't come up"
+11,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/28,28,Support multiple orgs,"* Fix bug of function running out of execution time 
+* Add support for multiple AWS Organizations
+  * This allows passing a comma delimited list of AWS Organization ARNs instead of a single ARN
+* Code cleanup
+  * PEP008ing lines
+  * Fixing typos
+* Allow passing variables in as Parameters
+  * This changes the Mappings to Parameters with defaults
+so that different values can be passed in.
+  * The Makefile is updated to pass these variables in so that staging deployments can be done",gene1wood,1134034,2019-02-14T02:39:57Z,MEMBER,True,142,72,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,66b42e81ede79ae4577a68fc5e8025f469ffc18b,Fix bug of function running out of execution time
+12,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/28,28,Support multiple orgs,"* Fix bug of function running out of execution time 
+* Add support for multiple AWS Organizations
+  * This allows passing a comma delimited list of AWS Organization ARNs instead of a single ARN
+* Code cleanup
+  * PEP008ing lines
+  * Fixing typos
+* Allow passing variables in as Parameters
+  * This changes the Mappings to Parameters with defaults
+so that different values can be passed in.
+  * The Makefile is updated to pass these variables in so that staging deployments can be done",gene1wood,1134034,2019-02-14T02:39:57Z,MEMBER,True,142,72,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,4ca6d0c72ce7912f9c36429a14ff0f304c8ed386,"Add support for multiple AWS Organizations
+
+This allows passing a comma delimited list of AWS Organization
+ARNs instead of a single ARN"
+13,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/28,28,Support multiple orgs,"* Fix bug of function running out of execution time 
+* Add support for multiple AWS Organizations
+  * This allows passing a comma delimited list of AWS Organization ARNs instead of a single ARN
+* Code cleanup
+  * PEP008ing lines
+  * Fixing typos
+* Allow passing variables in as Parameters
+  * This changes the Mappings to Parameters with defaults
+so that different values can be passed in.
+  * The Makefile is updated to pass these variables in so that staging deployments can be done",gene1wood,1134034,2019-02-14T02:39:57Z,MEMBER,True,142,72,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,0573771eff8f50200320021a98e79f2abaca2792,"Code cleanup
+
+PEP008ing lines
+Fixing typos"
+14,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/28,28,Support multiple orgs,"* Fix bug of function running out of execution time 
+* Add support for multiple AWS Organizations
+  * This allows passing a comma delimited list of AWS Organization ARNs instead of a single ARN
+* Code cleanup
+  * PEP008ing lines
+  * Fixing typos
+* Allow passing variables in as Parameters
+  * This changes the Mappings to Parameters with defaults
+so that different values can be passed in.
+  * The Makefile is updated to pass these variables in so that staging deployments can be done",gene1wood,1134034,2019-02-14T02:39:57Z,MEMBER,True,142,72,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,27e6727f64dcc39f14191ea391139008a462c629,"Allow passing variables in as Parameters
+
+This changes the Mappings to Parameters with defaults
+so that different values can be passed in.
+
+The Makefile is updated to pass these variables in so that staging deployments can be done"
+15,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/27,27,rename gd2md to normalization,"Fixes #23 
+It renames gd2md terms to normalization ... or simply withdraws it when not relevant anymore.",jcaffet,15911786,2019-02-02T13:58:53Z,CONTRIBUTOR,False,12,12,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,cc0876f17c673c6c6529e44ad6bebc8467e88c6c,rename gd2md to normalization
+16,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/26,26,fix mutli-account-guard-duty typo,Fixes #24 ,jcaffet,15911786,2019-02-02T09:46:05Z,CONTRIBUTOR,True,2,1,2,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,e94070e7a06e59814ce7df6b2e44bfc82c205a22,fix mutli-account-guard-duty typo
+17,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/26,26,fix mutli-account-guard-duty typo,Fixes #24 ,jcaffet,15911786,2019-02-02T09:46:05Z,CONTRIBUTOR,True,2,1,2,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,5cf25a14fb93f8d451f64a1afd1de1043ff30fa1,Leave typo'd IAM Role path in for backwards compatibility
+18,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/25,25,fix mutli-account-guard-duty typo,#24 ,jcaffet,15911786,2019-02-02T08:20:05Z,CONTRIBUTOR,False,2,2,2,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,6f541dad412219d80a4c632a5f8b7ddd387a1b85,fix mutli-account-guard-duty typo
+19,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/25,25,fix mutli-account-guard-duty typo,#24 ,jcaffet,15911786,2019-02-02T08:20:05Z,CONTRIBUTOR,False,2,2,2,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,ded7628355141bd9a55ef97ea8d6aeee1b55a729,fix mutli-account-guard-duty typo
+20,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/25,25,fix mutli-account-guard-duty typo,#24 ,jcaffet,15911786,2019-02-02T08:20:05Z,CONTRIBUTOR,False,2,2,2,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,25ac888deb73043a8ad3cd59269168d0fee3323c,Merge branch 'fix-mutli-account-guard-duty-typo' of github.com:jcaffet/guardduty-multi-account-manager into fix-mutli-account-guard-duty-typo
+21,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/21,21,Add links to README for re:Invent presentation and slides,,gene1wood,1134034,2019-01-11T19:38:31Z,MEMBER,True,5,0,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,f9f5059d7a0fd463306db3c2ab03ebe2f2f01445,Add links to README for re:Invent presentation and slides
+22,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/20,20,Move parameters to mappings,"This will ensure users don't change the values and ensures that
+this template can not be used in it's current form and *must*
+have the mappings configured before use
+
+Update README to reflect changes in CloudFormation Cross Account Outputs and the GuardDuty member role
+
+We may want to squash merge this once it's reviewed",gene1wood,1134034,2018-12-29T20:33:36Z,MEMBER,True,180,94,10,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,17189f333b567090748ba1ff2a9c796b67108cc8,"Move parameters to mappings
+
+This will ensure users don't change the values and ensures that
+this template can not be used in it's current form and *must*
+have the mappings configured before use"
+23,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/20,20,Move parameters to mappings,"This will ensure users don't change the values and ensures that
+this template can not be used in it's current form and *must*
+have the mappings configured before use
+
+Update README to reflect changes in CloudFormation Cross Account Outputs and the GuardDuty member role
+
+We may want to squash merge this once it's reviewed",gene1wood,1134034,2018-12-29T20:33:36Z,MEMBER,True,180,94,10,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,e9a95211800f243e30b893c501ed03790789c1c3,Update README to reflect changes in CloudFormation Cross Account Outputs and the GuardDuty member role
+24,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/20,20,Move parameters to mappings,"This will ensure users don't change the values and ensures that
+this template can not be used in it's current form and *must*
+have the mappings configured before use
+
+Update README to reflect changes in CloudFormation Cross Account Outputs and the GuardDuty member role
+
+We may want to squash merge this once it's reviewed",gene1wood,1134034,2018-12-29T20:33:36Z,MEMBER,True,180,94,10,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,1ff829fc77cb849e923d7e2df6bec8562ea761ae,Further README cleanup
+25,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/20,20,Move parameters to mappings,"This will ensure users don't change the values and ensures that
+this template can not be used in it's current form and *must*
+have the mappings configured before use
+
+Update README to reflect changes in CloudFormation Cross Account Outputs and the GuardDuty member role
+
+We may want to squash merge this once it's reviewed",gene1wood,1134034,2018-12-29T20:33:36Z,MEMBER,True,180,94,10,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,eb9c30ca8cd8612416916fa128330e49723e8c05,Merge branch 'master' into move-parameters-to-mappings
+26,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/20,20,Move parameters to mappings,"This will ensure users don't change the values and ensures that
+this template can not be used in it's current form and *must*
+have the mappings configured before use
+
+Update README to reflect changes in CloudFormation Cross Account Outputs and the GuardDuty member role
+
+We may want to squash merge this once it's reviewed",gene1wood,1134034,2018-12-29T20:33:36Z,MEMBER,True,180,94,10,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,23fe424be6ebec58af031eab582797f85350d45f,Remove .keep files that are no longer needed
+27,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/20,20,Move parameters to mappings,"This will ensure users don't change the values and ensures that
+this template can not be used in it's current form and *must*
+have the mappings configured before use
+
+Update README to reflect changes in CloudFormation Cross Account Outputs and the GuardDuty member role
+
+We may want to squash merge this once it's reviewed",gene1wood,1134034,2018-12-29T20:33:36Z,MEMBER,True,180,94,10,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,34ce8d3b898f7bd76ad7b8f6ee6d066a3eef79c0,Remove vestigial stackset make target
+28,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/20,20,Move parameters to mappings,"This will ensure users don't change the values and ensures that
+this template can not be used in it's current form and *must*
+have the mappings configured before use
+
+Update README to reflect changes in CloudFormation Cross Account Outputs and the GuardDuty member role
+
+We may want to squash merge this once it's reviewed",gene1wood,1134034,2018-12-29T20:33:36Z,MEMBER,True,180,94,10,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,376383e5d77516fe5284eb3fe50531f4c869e53a,"Rename make target cf-lint to cfn-lint to match tool name
+
+Remove cfn-lint exception as upstream has been bugfixed awslabs/cfn-python-lint#408"
+29,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/20,20,Move parameters to mappings,"This will ensure users don't change the values and ensures that
+this template can not be used in it's current form and *must*
+have the mappings configured before use
+
+Update README to reflect changes in CloudFormation Cross Account Outputs and the GuardDuty member role
+
+We may want to squash merge this once it's reviewed",gene1wood,1134034,2018-12-29T20:33:36Z,MEMBER,True,180,94,10,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,3f527c855b7dbe90af695cb512948d7ab8bd3f71,Remove DependsOn that isn't needed
+30,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/20,20,Move parameters to mappings,"This will ensure users don't change the values and ensures that
+this template can not be used in it's current form and *must*
+have the mappings configured before use
+
+Update README to reflect changes in CloudFormation Cross Account Outputs and the GuardDuty member role
+
+We may want to squash merge this once it's reviewed",gene1wood,1134034,2018-12-29T20:33:36Z,MEMBER,True,180,94,10,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,721231b390f66a4fdcda118ae58da727bf64fd83,"Add required mappings to member role
+
+Leaving the defaults as they are will prevent stack creation, forcing users to
+actively configure the defaults"
+31,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/20,20,Move parameters to mappings,"This will ensure users don't change the values and ensures that
+this template can not be used in it's current form and *must*
+have the mappings configured before use
+
+Update README to reflect changes in CloudFormation Cross Account Outputs and the GuardDuty member role
+
+We may want to squash merge this once it's reviewed",gene1wood,1134034,2018-12-29T20:33:36Z,MEMBER,True,180,94,10,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,6b6ab33133da205acc6fd91eeeecb5b7c469a1f5,"Change template and code locations to be user customizable
+
+Change default template location to new public S3 buckets
+Change default code location to dynamically created locations in the local region
+Add Launch Stack button to documentation
+Change Makefile to publish to new public S3 bucket (now using bucket replication)
+Remove file specific ACLs as the new bucket is public"
+32,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/20,20,Move parameters to mappings,"This will ensure users don't change the values and ensures that
+this template can not be used in it's current form and *must*
+have the mappings configured before use
+
+Update README to reflect changes in CloudFormation Cross Account Outputs and the GuardDuty member role
+
+We may want to squash merge this once it's reviewed",gene1wood,1134034,2018-12-29T20:33:36Z,MEMBER,True,180,94,10,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,28ea6ea88b09ff945ba815b21025b11d5e1c724e,Add link to parent template to README
+33,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/20,20,Move parameters to mappings,"This will ensure users don't change the values and ensures that
+this template can not be used in it's current form and *must*
+have the mappings configured before use
+
+Update README to reflect changes in CloudFormation Cross Account Outputs and the GuardDuty member role
+
+We may want to squash merge this once it's reviewed",gene1wood,1134034,2018-12-29T20:33:36Z,MEMBER,True,180,94,10,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,249e816ff6992f009834637fb4e6257566a4765f,Update travis config to use new cfn-lint make target from 376383e5d77516fe5284eb3fe50531f4c869e53a
+34,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/19,19,Update parameter names in the README,,gene1wood,1134034,2018-12-20T20:44:27Z,MEMBER,True,8,5,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,25dbea5c01714ae783fc1bd3f819af3d0f0a7464,Update parameter names in the README
+35,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/18,18,Fix member role name,"Add examples and constraints to parameters
+Flesh out docs a bit more",gene1wood,1134034,2018-11-21T17:36:49Z,MEMBER,True,40,12,2,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,05a01acb2360191c4a3248f83b4b9b9e7d3eb027,"Fix member role name
+
+Add examples and constraints to parameters
+Flesh out docs a bit more"
+36,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/17,17,Add example organiztions role and add doc detail,,gene1wood,1134034,2018-11-21T16:29:08Z,MEMBER,True,80,16,2,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,2bb81902e3e7c670f2e28fa14c5ed8c9fefa953b,Add example organiztions role and add doc detail
+37,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/16,16,add diagram and docs,,andrewkrug,2502523,2018-11-20T23:05:08Z,CONTRIBUTOR,True,55,0,2,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,ae707f2987fd02574580fab981140e9f21bc070f,add diagram and docs
+38,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/15,15,Fix up templates,,gene1wood,1134034,2018-11-20T22:42:51Z,MEMBER,True,10,3,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,b653ae8c8afbc284cdb0dd8153b403f406f37314,Remove argument added to boto 2 months ago that's not yet present in the boto3/botocore built into Lambda
+39,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/15,15,Fix up templates,,gene1wood,1134034,2018-11-20T22:42:51Z,MEMBER,True,10,3,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,a3bee17583eca268adfea616d40094258c68dbe7,Fix logging in Lambda
+40,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/15,15,Fix up templates,,gene1wood,1134034,2018-11-20T22:42:51Z,MEMBER,True,10,3,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,e4caf104af6411936d10601be39ef7b086a50f85,Switch off DEBUG logging
+41,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/14,14,Fix up templates,,gene1wood,1134034,2018-11-20T19:05:16Z,MEMBER,True,40,23,5,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,7d9156528a7b16cbc8c1da8631bee39d3757389d,Fix function ARN passed to CloudWatch Events
+42,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/14,14,Fix up templates,,gene1wood,1134034,2018-11-20T19:05:16Z,MEMBER,True,40,23,5,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,d2e228877152015db3df2c3a50e6678870fe0fdd,Fix timeoute types
+43,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/14,14,Fix up templates,,gene1wood,1134034,2018-11-20T19:05:16Z,MEMBER,True,40,23,5,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,166bb34da953842b17493b75baa8a73b85b9ac8b,Add IAM capability to Makefile
+44,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/14,14,Fix up templates,,gene1wood,1134034,2018-11-20T19:05:16Z,MEMBER,True,40,23,5,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,16954bf918f7e9ccd366afdcf7aca386306ca544,Move to a multi-region s3 hosted lambda function code model
+45,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/14,14,Fix up templates,,gene1wood,1134034,2018-11-20T19:05:16Z,MEMBER,True,40,23,5,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,4aeaf8ecb77bb44ec86fbe374f0854dd773942e2,Give each CloudWatch Event Rule a distinct name
+46,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/14,14,Fix up templates,,gene1wood,1134034,2018-11-20T19:05:16Z,MEMBER,True,40,23,5,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,f5f7fe9abec5c5b742bbfc390c7074b69fb88e45,Fix dict_keys error
+47,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/14,14,Fix up templates,,gene1wood,1134034,2018-11-20T19:05:16Z,MEMBER,True,40,23,5,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,0aa2818300b96a570bb930f3ae3bcd2866ac7d68,Fix AssumeRole permission issue and Schedule ref
+48,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/13,13,Fixing up invitation manager,,gene1wood,1134034,2018-11-19T22:35:22Z,MEMBER,True,240,67,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,6531cba5e1cc35e4c405344114180a0bf3e9ad92,"Fix invitation manager
+
+Fix logging
+Make Org IAM Role and account filter list settable from the environment
+Make RelationshipStatus comparisons case insensitive
+Add logging around role assumption failures
+Add account id detail to detector creation logs
+Fix account id email map generation
+Fix account role map generation
+Create optional MANAGER_IAM_ROLE_ARN role for testing
+Fix account filtering
+Move logging to after calls"
+49,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/13,13,Fixing up invitation manager,,gene1wood,1134034,2018-11-19T22:35:22Z,MEMBER,True,240,67,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,14b1f5e5d63977464cee172c7e75f5d9cd7c0963,Fix member IAM role with missing ListInvitations permission
+50,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/13,13,Fixing up invitation manager,,gene1wood,1134034,2018-11-19T22:35:22Z,MEMBER,True,240,67,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,bf15e2f3efb383a51e7779fcb1a1467c0bb1f8a5,Initial commit of invitation manager CloudFormation template
+51,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/13,13,Fixing up invitation manager,,gene1wood,1134034,2018-11-19T22:35:22Z,MEMBER,True,240,67,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,cb30ccb4a9899e866c291846f139294dcb33b72e,Fix Makefile target names
+52,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/13,13,Fixing up invitation manager,,gene1wood,1134034,2018-11-19T22:35:22Z,MEMBER,True,240,67,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,e0d99ad2fd84f81f9a585c26f0f0ba987ad41d9c,Only process member accounts for which we have an IAM role
+53,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/13,13,Fixing up invitation manager,,gene1wood,1134034,2018-11-19T22:35:22Z,MEMBER,True,240,67,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,12dbe2116a3acb638ef95953ebc9a4ae510007f4,Add tear down function for testing
+54,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/13,13,Fixing up invitation manager,,gene1wood,1134034,2018-11-19T22:35:22Z,MEMBER,True,240,67,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,e237e728090cbf54f9cf3e366379e20afe04fa9a,Add missing permissions to enable tear down
+55,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/12,12,completed guardduty plumbing for cross-region sns to lambda,,andrewkrug,2502523,2018-11-17T15:37:19Z,CONTRIBUTOR,True,81,17,2,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,3fbdde77e7cb1805d6c1ba04251b4cc86582cd91,completed guardduty plumbing for cross-region sns to lambda
+56,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/12,12,completed guardduty plumbing for cross-region sns to lambda,,andrewkrug,2502523,2018-11-17T15:37:19Z,CONTRIBUTOR,True,81,17,2,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,9d6b0b77df8cfc3f0bc811c2e9ceeb7809501225,add plumbing lib
+57,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/11,11,Update GuardDuty account linker lambda function,Flesh out all the functions,gene1wood,1134034,2018-11-16T21:39:52Z,MEMBER,True,287,148,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,0fd7eaaac203f84b1c4ff457e66fd03e9fe95a78,"Update GuardDuty account linker lambda function
+
+Flesh out all the functions"
+58,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/11,11,Update GuardDuty account linker lambda function,Flesh out all the functions,gene1wood,1134034,2018-11-16T21:39:52Z,MEMBER,True,287,148,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,2ea2f004f6406ce77d8a8115412b703f9f8ab0ef,Fix region list
+59,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/11,11,Update GuardDuty account linker lambda function,Flesh out all the functions,gene1wood,1134034,2018-11-16T21:39:52Z,MEMBER,True,287,148,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,0d02aad3eb1b8d8402b0042ab27895660f0785ca,Add support for environment variables
+60,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/11,11,Update GuardDuty account linker lambda function,Flesh out all the functions,gene1wood,1134034,2018-11-16T21:39:52Z,MEMBER,True,287,148,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,6b347872bb3598f5c73f258732ce328fd7d369a8,Merge branch 'master' into wip_gd_lib
+61,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/11,11,Update GuardDuty account linker lambda function,Flesh out all the functions,gene1wood,1134034,2018-11-16T21:39:52Z,MEMBER,True,287,148,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,dc3a3f659d4f7771f7501b8515a7b75aa4dc0335,Create makefile and rename to account_linker
+62,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/11,11,Update GuardDuty account linker lambda function,Flesh out all the functions,gene1wood,1134034,2018-11-16T21:39:52Z,MEMBER,True,287,148,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,23e0694d217c6d769d3b0e1cca1ebfe8d4a60e5d,Add an account filter to facilitate testing
+63,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/11,11,Update GuardDuty account linker lambda function,Flesh out all the functions,gene1wood,1134034,2018-11-16T21:39:52Z,MEMBER,True,287,148,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,6bd90cc78c57a21ec684b6861d010c5872388b15,Add logging
+64,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/11,11,Update GuardDuty account linker lambda function,Flesh out all the functions,gene1wood,1134034,2018-11-16T21:39:52Z,MEMBER,True,287,148,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,1919f261a5faf218b350f15fa3761c73ba7e8dac,"Renamed to invitation manager
+
+and change ACCOUNT_FILTER_LIST to a space delimited list"
+65,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/11,11,Update GuardDuty account linker lambda function,Flesh out all the functions,gene1wood,1134034,2018-11-16T21:39:52Z,MEMBER,True,287,148,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,19fffb1cc6b062a229a02b2a459d758462e245c2,Fix incorrect member account client session
+66,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/11,11,Update GuardDuty account linker lambda function,Flesh out all the functions,gene1wood,1134034,2018-11-16T21:39:52Z,MEMBER,True,287,148,4,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,df4445d6abff9b5d37c0fd61073627fdf3940011,Add a path to the IAM role
+67,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/10,10,Guardduty plumbing,"* Add code to manage event normalization
+* Add a management function to ensure Cloudwatch => SNS => Lamda exists in every region.",andrewkrug,2502523,2018-11-16T20:52:03Z,CONTRIBUTOR,True,525,0,5,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,a2afd64913cc65f53fc5cc83a24c38f6dfd22fd2,wip on gd lib
+68,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/10,10,Guardduty plumbing,"* Add code to manage event normalization
+* Add a management function to ensure Cloudwatch => SNS => Lamda exists in every region.",andrewkrug,2502523,2018-11-16T20:52:03Z,CONTRIBUTOR,True,525,0,5,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,3a2c6115ad965ab146df13adc185a26d7214d1ee,add guardduty plumbing functions
+69,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/9,9,Add service linked roles,Fixes #4,gene1wood,1134034,2018-11-15T18:54:16Z,MEMBER,True,63,0,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,7dc32126b69faf8681fee9a821e0a07cffff8376,Set category for emitted IAM Role ARNs
+70,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/9,9,Add service linked roles,Fixes #4,gene1wood,1134034,2018-11-15T18:54:16Z,MEMBER,True,63,0,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,cdcef99e3e4c1385b1e63a9b5a010845c0c20b9d,Add creation of GuardDuty service linked role
+71,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/7,7,Add additional member role permissions,Fixes #3,gene1wood,1134034,2018-11-14T22:27:20Z,MEMBER,True,4,0,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,47229cc1b26f88a3ff829d632032b8df11812583,"Add additional member role permissions
+
+Fixes #3"
+72,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/6,6,Add final production SNS ARN,,gene1wood,1134034,2018-11-14T22:25:04Z,MEMBER,True,1,1,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,3cc76a9697fd019f29e84908ba58c9d773c3da22,Add final production SNS ARN
+73,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/5,5,Add member account role,This still needs the final SNS topic parameter default configured,gene1wood,1134034,2018-11-13T22:52:32Z,MEMBER,True,48,0,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,d17a03dd7f039f213e653264cc990c20a101bee6,"Add member account role
+
+This still needs the final SNS topic parameter default configured"
+74,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/2,2,Add initial design and plan doc,Originates from mozilla/security#13,gene1wood,1134034,2018-11-12T17:05:55Z,MEMBER,True,76,0,1,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,1d79ecb597e48a1c2c88a4c8345378d7cdb598ee,"Add initial design and plan doc
+
+Originates from mozilla/security#13"
+75,https://api.github.com/repos/mozilla/guardduty-multi-account-manager/pulls/1,1,add intial project skeleton,,andrewkrug,2502523,2018-11-12T16:58:52Z,CONTRIBUTOR,True,56,0,11,Automate the AWS GuardDuty account invitation lifecycle for all of your organizations AWS accounts in all regions as well as aggregate and normalize the GuardDuty findings,Python,234d3a8c027e8cd88566a82cf189418821aaab21,add intial project skeleton

@@ -1,0 +1,215 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/graphs/pulls/8,8,Min/Max/Stddev data series should not be hoverable or clickable,,rniwa,285965,2012-04-16T16:57:26Z,NONE,True,3,1,1,The Mozilla graph server,JavaScript,83afb461a930aa74b1996203e61618c2575cc677,Min/Max/Stddev data series should not be hoverable or clickable
+1,https://api.github.com/repos/mozilla/graphs/pulls/7,7,Fix regressions from y axis adjustment and zooming,,rniwa,285965,2012-04-06T22:59:25Z,NONE,True,21,10,2,The Mozilla graph server,JavaScript,297d12a075d66ba60cb0000d515996672d85a645,"Fix regressions.
+
+1. My y-axis zooming change (c1fc48d) caused tickFormatter to not round properly.
+Round at 4th decimal place so that values under that will be ignored.
+
+2. Also fix a regression from d1c3946 for ""bug 705293 - adjust Y axis according
+to timeline"". It didn't trim entries in d.data for changesets and additional
+changesets, and ended up confusing the graph."
+2,https://api.github.com/repos/mozilla/graphs/pulls/7,7,Fix regressions from y axis adjustment and zooming,,rniwa,285965,2012-04-06T22:59:25Z,NONE,True,21,10,2,The Mozilla graph server,JavaScript,61e3f6d21c2132b83d68209b3aaef24c534fb339,"Fix another regression from my y-axis range change. The set of changesets used
+to show the regression range should respect selection on the main plot."
+3,https://api.github.com/repos/mozilla/graphs/pulls/6,6,Y axis zooming,"Also fixes a bug in the custom unit support.
+",rniwa,285965,2012-04-05T00:06:19Z,NONE,True,167,83,6,The Mozilla graph server,JavaScript,26ac25a35dbc30284cba3656c09895f76032c9aa,"Add the initial support for y-axis zooming.
+
+Renamed zoomFrom and zoomTo to zoomXFrom and zoomXTo and added zoomY to store
+an array of zoom ranges, renamed getZoomRange to getZoomXRange, and added
+getZooomYRanges. Also merged getPlotRange into zoomIn since it's not used
+elsewhere, and extracted selToZoomRanges to obtain zooming ranges from the URL.
+
+There is some boilerplate due to having to convert to and from yaxis, y2axis,
+... yNaxis properties used by some of flot functions to an array of values we
+use in zoomY."
+4,https://api.github.com/repos/mozilla/graphs/pulls/6,6,Y axis zooming,"Also fixes a bug in the custom unit support.
+",rniwa,285965,2012-04-05T00:06:19Z,NONE,True,167,83,6,The Mozilla graph server,JavaScript,af5eb1ed402e0db702c42815d50d7eb5424da1de,"Revert unnecessary refactoring in GraphCommon.updatePlot. Also remove the dead
+code in onPlotSelect and onPlotUnSelect."
+5,https://api.github.com/repos/mozilla/graphs/pulls/6,6,Y axis zooming,"Also fixes a bug in the custom unit support.
+",rniwa,285965,2012-04-05T00:06:19Z,NONE,True,167,83,6,The Mozilla graph server,JavaScript,3755a2a3146e16aed87fb02be51e2fcb04cc01ab,"Fix a bug in y-axis zooming when adding, removing, or changing the visiblity of
+a data series.
+
+Also fix a bug that some series were assigned of a wrong y-axis when there are
+more than two series."
+6,https://api.github.com/repos/mozilla/graphs/pulls/6,6,Y axis zooming,"Also fixes a bug in the custom unit support.
+",rniwa,285965,2012-04-05T00:06:19Z,NONE,True,167,83,6,The Mozilla graph server,JavaScript,8034fae8e8f51a6d0e05a0667a387319c136c11a,"Change the minimum size of selection from 5 to 1 so that the selection is shown
+in the overview even when a small y-axis range is selected."
+7,https://api.github.com/repos/mozilla/graphs/pulls/5,5,Custom units,,rniwa,285965,2012-04-03T05:04:47Z,NONE,True,49,17,3,The Mozilla graph server,JavaScript,8612707e189ff26272f951733b502a0605719741,"Add the support for custom units. The graph server can now add optional ""unit""
+to runs json. We show all distinct y-axes units and continue to show unitless
+y-axis when some of runs don't specify one. All y-axes are replaced by % y-axis
+on the percentage delta view.
+
+There are slight glitches right now:
+1. Overflow's y-axes don't respond to the visibility of runs
+2. Users can't tell which series uses which units"
+8,https://api.github.com/repos/mozilla/graphs/pulls/5,5,Custom units,,rniwa,285965,2012-04-03T05:04:47Z,NONE,True,49,17,3,The Mozilla graph server,JavaScript,a808d476e575d3677afce9c08b9502a566931901,"Delete invisible series from the overview plot as well so that y-axes for
+invisible data won't be shown."
+9,https://api.github.com/repos/mozilla/graphs/pulls/5,5,Custom units,,rniwa,285965,2012-04-03T05:04:47Z,NONE,True,49,17,3,The Mozilla graph server,JavaScript,de815971b6cb849957329e85158dbb7021905c75,"Don't add y-axes for invisible series. This fixes a bug where custom y-axes used
+for invisible series remain on the plots."
+10,https://api.github.com/repos/mozilla/graphs/pulls/5,5,Custom units,,rniwa,285965,2012-04-03T05:04:47Z,NONE,True,49,17,3,The Mozilla graph server,JavaScript,abcdd5db43b8f1b7f6f41e43685d1ef51d4149ef,"Add missing curly brackets in GraphCommon.updatePlot, and modify graph-2.js to
+show the custom unit after the test name in each legend if one is specified."
+11,https://api.github.com/repos/mozilla/graphs/pulls/4,4,Add support for y-axis zooming,"Add support for y-axis zooming. Changed the plot's selection type from x to xy to allow selection in the y-axis. Renamed zoomFrom and zoomTo to zoomXFrom and zoomXTo, and added zoomYFrom and zoomYTo to GraphCommon, and added y-axis range parameter to GraphCommon.zoomToRange to adjust y-axis optionally. Also renamed GraphCommon.getZoomRange to getZoomXRange for clarity. Finally, changed the min value of the overview plot to 0 for running graphs so that y-axis selection can be made regardless of what plot adjusts the default y-axis range to be.
+",rniwa,285965,2012-04-01T23:50:18Z,NONE,False,93,68,3,The Mozilla graph server,JavaScript,550ab9034b83e2b9d8d90fa07c7382a174402406,"Add support for y-axis zooming. Changed the plot's selection type from x to xy
+to allow selection in the y-axis. Renamed zoomFrom and zoomTo to zoomXFrom and
+zoomXTo, and added zoomYFrom and zoomYTo to GraphCommon, and added y-axis range
+parameter to GraphCommon.zoomToRange to adjust y-axis optionally. Also renamed
+GraphCommon.getZoomRange to getZoomXRange for clarity. Finally, changed the min
+value of the overview plot to 0 for running graphs so that y-axis selection can
+be made regardless of what plot adjusts the default y-axis range to be."
+12,https://api.github.com/repos/mozilla/graphs/pulls/3,3,fixes bug 723768,,rhelmer,61412,2012-02-06T18:40:03Z,MEMBER,True,38,5,3,The Mozilla graph server,JavaScript,6a59a26fea1cf248a5069350b851a337f781ea49,"bug 723768 - display optional min/max/stdev, patch by Ryosuke Niwa"
+13,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,7ab116ec8fb64455b80389cf5e38d26e0aef8260,"Add extra headers for threading of talos regression messages
+
+--HG--
+branch : 1.0"
+14,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,ccd9bc92689ddc4fe9b2a6bdbf38ee83a19217c5,"Latest config
+
+--HG--
+branch : 1.0"
+15,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,2fd2be96f527aa5519ab08115d05ad2fcd5536f8,"Added electrolysis to dashboard
+
+--HG--
+branch : 1.0"
+16,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,4c33a2d391c722455470ab718823a0c77ed85660,"add n900 machines to the graph server
+
+--HG--
+branch : 1.0"
+17,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,67cc09ed13ea0a9e95c8621ca911ff3729edc9dc,"miscommunication, using 'update os_list where id=17 set id=16' to correct the offset of 1 in the os_list primary key
+
+--HG--
+branch : 1.0"
+18,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,5d64fd8c49f6075102d209323db76b6d79068328,"bug 537065 (Tracking bug for rollout of Talos rev3 minis) add next 100 machines to graph server p=anodelman r=bhearsum
+
+--HG--
+branch : 1.0"
+19,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,122685c81691b465cd49cabc79df4eea717d6e82,"Bug 547134. r=rdoherty
+
+--HG--
+branch : 1.0"
+20,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,a6974b73240c1bd3d7575a0bce12de8b25272837,"Bug 547058 - Graph server sends incorrect Access-Control header. r=rdoherty
+
+--HG--
+branch : 1.0"
+21,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,6a8f1419b9ff849cc8cd38e3dc27a27bb377ec46,"Bug 547876 - Track only talos-r3 and talos-rev2-tiger machines. r=alice
+
+--HG--
+branch : 1.0"
+22,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,b9aea03eca5340770819241cded6e497636df773,"add new mobile branches. p=jhford r=alice
+
+--HG--
+branch : 1.0"
+23,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,cce6e9169c0aed08f411d8c328bcc63cacf454be,"Bug 547029. add linux64 to the graphserver. r=bhearsum,alice
+
+--HG--
+branch : 1.0"
+24,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,51a8b4f3e181e840ac1b55de8f5c379b10628a64,"Bug 547029. fixup lorentz entries for linux64. r=anodelman
+
+--HG--
+branch : 1.0"
+25,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,a1cc29ff847e41c891570a1517709071f4dc2981,"bug 552987 - fixing lorentz graph server machine names p=lsblakk r=alice
+
+--HG--
+branch : 1.0"
+26,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,8f88a96f0d040e92f28c9f67fa051a8828c2d002,"add n900-021 through 50. bug 538517 r=alice
+
+--HG--
+branch : 1.0"
+27,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,9b74bc07dd4a3a41970055dca51000529e0caadc,"Bug 518015 - Add cache headers to /api/test.
+
+--HG--
+branch : 1.0"
+28,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,8dfb84727f56e4af29f51995cda88303cc9bc3ca,"Backout changeset fda7eb35e03d
+
+--HG--
+branch : 1.0"
+29,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,7934abc97ba402b733e1ab25630ab269c67dc46b,"Bug 518015 - Add cache headers to /api/test.
+
+--HG--
+branch : 1.0"
+30,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,127cf12ec78aa469466f47197c565fd20409eb58,"Bug 552987 - fixes to Lorentz win32/mac machine names for graphserver p=lsblakk r=alice
+
+--HG--
+branch : 1.0"
+31,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,e822e53a0cb88ce0550ac673ae672fe3573fe223,"Bug 554502 - Improve caching behaviour of graphs. r=rdoherty,ianb
+
+--HG--
+branch : 1.0"
+32,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,dc06bb70267df32535d3ace4d6555d453bf04da3,"bug 534819 (Create new Talos suite: tscroll) add scroll test to graph server p=anodelman r=lsblakk
+
+--HG--
+branch : 1.0"
+33,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,c3832522306996f7b23ff7f109ab6434926acdae,"remove the touch pros from the default sql. they will remain in graphs-stage until we remove them, which i may wait to do for the sake of android.
+
+--HG--
+branch : 1.0"
+34,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,40db3276d98ec67cd245f3ac99ab3591ce11d154,"Bug 554179 - Use the mobile-browser repo for mobile regression emails - r=catlee
+
+--HG--
+branch : 1.0"
+35,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,c8a5ce8eaa24679095e9c7918484e5c3ed67aece,"Bug 555340 - Talos grokker script produces links which are broken in gmail's web interface; r=catlee f=callek
+
+--HG--
+branch : 1.0"
+36,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,7d4c249a675e8b25b418d47e0563d9a787982598,"merged in 11869d75a9f2
+
+--HG--
+branch : 1.0"
+37,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,bb2ed7393c9d692272e12508dd7db3f440234e80,"Support tests where higher values are an improvement
+
+--HG--
+branch : 1.0"
+38,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,fd283c731e25640c7320ed1a6657c337abd5a876,"Use bitly to shorten urls
+
+--HG--
+branch : 1.0"
+39,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,b3609cfc4fe28c629006c8f1dc05079768e6b206,"Only look for good machines in regression analysis
+
+--HG--
+branch : 1.0"
+40,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,16b34b6d3ae5d0e75061f6e6f70a5c084823c9f4,"Bug 557934 - Follow-up: Direction shouldn't change its meaning; r=catlee
+
+--HG--
+branch : 1.0"
+41,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,9ff87cccfa10136c21f1676abaf2a8e489579d81,"bug 507738 (Create new Talos Suite: use newer version of Dromaeo) add dromaeo tests to graph server code (take 2) p=anodelman r=lsblakk
+
+--HG--
+branch : 1.0"
+42,https://api.github.com/repos/mozilla/graphs/pulls/2,2,merge active branch (1.0) into default on hg,,rhelmer,61412,2012-02-03T22:58:54Z,MEMBER,True,1910,435,11,The Mozilla graph server,JavaScript,8cfe347863f066ce92bc0bccd0337f3f831a4208,"Bug 556518: Shorter urls for graph server. r=rdoherty.
+
+--HG--
+branch : 1.0"
+43,https://api.github.com/repos/mozilla/graphs/pulls/1,1,bug 721895 - merge hg and git codebases,"This doesn't make any actual changes, just merges the history of the hg default branch so we can merge the codebases per bug 721895
+",rhelmer,61412,2012-02-03T20:32:30Z,MEMBER,True,0,0,0,The Mozilla graph server,JavaScript,7b3d19f6bf6696647ff159149c967e81671feb1a,"merging with changes from default branch
+
+--HG--
+branch : production"
+44,https://api.github.com/repos/mozilla/graphs/pulls/1,1,bug 721895 - merge hg and git codebases,"This doesn't make any actual changes, just merges the history of the hg default branch so we can merge the codebases per bug 721895
+",rhelmer,61412,2012-02-03T20:32:30Z,MEMBER,True,0,0,0,The Mozilla graph server,JavaScript,b4438aca2ee72ce3bc768aa3fd34302bdd9f8d25,merging heads
+45,https://api.github.com/repos/mozilla/graphs/pulls/1,1,bug 721895 - merge hg and git codebases,"This doesn't make any actual changes, just merges the history of the hg default branch so we can merge the codebases per bug 721895
+",rhelmer,61412,2012-02-03T20:32:30Z,MEMBER,True,0,0,0,The Mozilla graph server,JavaScript,60d61fa3fa7a4a051eb018867961deaaa6c99a11,"Bug 438750 - Move the series index value from the status bar to the onmouseover tooltip, r=rdoherty"
+46,https://api.github.com/repos/mozilla/graphs/pulls/1,1,bug 721895 - merge hg and git codebases,"This doesn't make any actual changes, just merges the history of the hg default branch so we can merge the codebases per bug 721895
+",rhelmer,61412,2012-02-03T20:32:30Z,MEMBER,True,0,0,0,The Mozilla graph server,JavaScript,753c5ec0b42e233b09d67c6e900a2d18acdee731,"Bug 463323 - create flatline effect in graphs by repeating last recorded value (p=anodelman, r=ccooper)"
+47,https://api.github.com/repos/mozilla/graphs/pulls/1,1,bug 721895 - merge hg and git codebases,"This doesn't make any actual changes, just merges the history of the hg default branch so we can merge the codebases per bug 721895
+",rhelmer,61412,2012-02-03T20:32:30Z,MEMBER,True,0,0,0,The Mozilla graph server,JavaScript,2063544cad151213d407441e8ac9763fc6970da4,"merging with tip
+
+--HG--
+branch : production"
+48,https://api.github.com/repos/mozilla/graphs/pulls/1,1,bug 721895 - merge hg and git codebases,"This doesn't make any actual changes, just merges the history of the hg default branch so we can merge the codebases per bug 721895
+",rhelmer,61412,2012-02-03T20:32:30Z,MEMBER,True,0,0,0,The Mozilla graph server,JavaScript,cdc283a8721bc173dfcbf263e2e2414767338c72,"bug 468530, Add message to inform users of upcoming architecture changes, r=anodelman"
+49,https://api.github.com/repos/mozilla/graphs/pulls/1,1,bug 721895 - merge hg and git codebases,"This doesn't make any actual changes, just merges the history of the hg default branch so we can merge the codebases per bug 721895
+",rhelmer,61412,2012-02-03T20:32:30Z,MEMBER,True,0,0,0,The Mozilla graph server,JavaScript,5dec3f79b9040f15851de86f934243ecc587c1f9,merging
+50,https://api.github.com/repos/mozilla/graphs/pulls/1,1,bug 721895 - merge hg and git codebases,"This doesn't make any actual changes, just merges the history of the hg default branch so we can merge the codebases per bug 721895
+",rhelmer,61412,2012-02-03T20:32:30Z,MEMBER,True,0,0,0,The Mozilla graph server,JavaScript,fa27dbb1f5a2909d95c2a2da8758502fbd04de58,"bug 466094, adding jquery 1.3b to fix slow unload"
+51,https://api.github.com/repos/mozilla/graphs/pulls/1,1,bug 721895 - merge hg and git codebases,"This doesn't make any actual changes, just merges the history of the hg default branch so we can merge the codebases per bug 721895
+",rhelmer,61412,2012-02-03T20:32:30Z,MEMBER,True,0,0,0,The Mozilla graph server,JavaScript,86dca720bf298ffb7eb3f50fab66bbf6a3d5c3a2,merging with tip
+52,https://api.github.com/repos/mozilla/graphs/pulls/1,1,bug 721895 - merge hg and git codebases,"This doesn't make any actual changes, just merges the history of the hg default branch so we can merge the codebases per bug 721895
+",rhelmer,61412,2012-02-03T20:32:30Z,MEMBER,True,0,0,0,The Mozilla graph server,JavaScript,ea8dead943fa115c2e4700a9eb1039a707057d7c,remove 1.0 schema merge
+53,https://api.github.com/repos/mozilla/graphs/pulls/1,1,bug 721895 - merge hg and git codebases,"This doesn't make any actual changes, just merges the history of the hg default branch so we can merge the codebases per bug 721895
+",rhelmer,61412,2012-02-03T20:32:30Z,MEMBER,True,0,0,0,The Mozilla graph server,JavaScript,137cd86af5c41a3ef15944e56e505ab133fafb94,"Bug 469721 - maemo talos platform is Unknown, p=anodelman r=rdoherty"
+54,https://api.github.com/repos/mozilla/graphs/pulls/1,1,bug 721895 - merge hg and git codebases,"This doesn't make any actual changes, just merges the history of the hg default branch so we can merge the codebases per bug 721895
+",rhelmer,61412,2012-02-03T20:32:30Z,MEMBER,True,0,0,0,The Mozilla graph server,JavaScript,9f4fe57484710ac76734ea03ba3a41a3b266ce35,"bug 471038, r=lars"
+55,https://api.github.com/repos/mozilla/graphs/pulls/1,1,bug 721895 - merge hg and git codebases,"This doesn't make any actual changes, just merges the history of the hg default branch so we can merge the codebases per bug 721895
+",rhelmer,61412,2012-02-03T20:32:30Z,MEMBER,True,0,0,0,The Mozilla graph server,JavaScript,4f3cd52f9b29eb7494d7ea7a211b60f772e443a0,updated new graph server messaging
+56,https://api.github.com/repos/mozilla/graphs/pulls/1,1,bug 721895 - merge hg and git codebases,"This doesn't make any actual changes, just merges the history of the hg default branch so we can merge the codebases per bug 721895
+",rhelmer,61412,2012-02-03T20:32:30Z,MEMBER,True,0,0,0,The Mozilla graph server,JavaScript,39a191960912a04e399ca6a35ce1520dd27b9c1c,"bug 721895 - merge hg and graphs codebases
+
+--HG--
+rename : graph.html => index.html"

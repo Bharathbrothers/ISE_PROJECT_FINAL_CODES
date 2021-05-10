@@ -1,0 +1,137 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/libadb.js/pulls/32,32,Add Mozilla Code of Conduct,"Fixes #31
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-29T04:52:48Z,CONTRIBUTOR,True,15,0,1,ADB Javascript library for mozilla runtime,C++,8e76950a1b3017ec5a3ef175fd0470994420b54f,"Add Mozilla Code of Conduct file
+
+Fixes #31.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/libadb.js/pulls/30,30,Bug 994980 - Improved restart when swapping back from console ADB. Fixes #8.,"These changes smooth over handling when there's already a server running (from the terminal).
+
+When trying to start libadb, we now check for an existing server and kill it if it exists. Note that, at least on Mac, I have seen this cause the old server to segfault, but at least it goes away... I haven't found a way to kill it more cleanly. Though, I also saw this happen when using the actual ADB binary, so maybe there's nothing to do about this issue.
+
+This also cleans up some shutdown code paths, so we are better prepared to cycle between on / off states via the new ""refresh"" function I am adding.
+",jryans,279572,2014-04-10T22:58:43Z,CONTRIBUTOR,False,34,27,2,ADB Javascript library for mozilla runtime,C++,1d7bc9ad26e9a63ba73f944b37db989e3aefa064,Bug 994980 - Improved restart when swapping back from console ADB. r=ochameau
+2,https://api.github.com/repos/mozilla/libadb.js/pulls/29,29,Bug 957164 - Support full refresh in case server dies. r=ochameau,"For UI v2, Paul would like to support scanning when you open a list. So, here we listen for a new ""refresh"" event. If libadb's server is no longer running for some reason (like when you have run console ADB in between), we restart and re-list the devices.
+",jryans,279572,2014-04-10T22:34:57Z,CONTRIBUTOR,False,13,3,1,ADB Javascript library for mozilla runtime,C++,4888e5593b74a5e7fc5b77915a6ae6fa6ce3b5b7,Bug 957164 - Support full refresh in case server dies. r=ochameau
+3,https://api.github.com/repos/mozilla/libadb.js/pulls/28,28,Grab a pretty name for the device,"Before this change, we show long hex strings for each device. By adding it, we get a name like ""full_mako"" or ""tmo_g2_us"" for each device.
+",jryans,279572,2014-04-03T13:11:31Z,CONTRIBUTOR,True,27,13,2,ADB Javascript library for mozilla runtime,C++,c28a12944156de186be7709ca05c16e8b6d74ccd,Grab a pretty name for the device
+4,https://api.github.com/repos/mozilla/libadb.js/pulls/27,27,"Build first before package, etc.","On my first build, I failed to realize that `package`, etc. don't actually run build first. This takes care of that for you.
+",jryans,279572,2014-04-02T16:30:37Z,CONTRIBUTOR,True,7,5,1,ADB Javascript library for mozilla runtime,C++,903718571a82c3ae6161989a0021e5bb56ae8e22,"Build first before package, etc."
+5,https://api.github.com/repos/mozilla/libadb.js/pulls/26,26,Bug 990097 - Fix promise error in Nightly. r=ochameau,,jryans,279572,2014-04-02T14:27:35Z,CONTRIBUTOR,True,13,13,6,ADB Javascript library for mozilla runtime,C++,1182af623727547bf8e43f05c0b415d1fce72de5,Bug 990097 - Fix promise error in Nightly. r=ochameau
+6,https://api.github.com/repos/mozilla/libadb.js/pulls/25,25,Fix replug shutdown crash.,"Fixes #22 and tests when a device is plugged in.
+
+I'm still not happy with the close/open code since it returns before things are really ready/shtudown, but this fixes any known issues.
+",brendandahl,942640,2014-02-18T18:42:16Z,CONTRIBUTOR,True,14,6,2,ADB Javascript library for mozilla runtime,C++,cc1c4a59fd0e7db733b38daa6deb7fb8be20f027,Fix replug shutdown crash.
+7,https://api.github.com/repos/mozilla/libadb.js/pulls/24,24,Add a readme.,,brendandahl,942640,2014-02-18T00:08:04Z,CONTRIBUTOR,False,55,0,1,ADB Javascript library for mozilla runtime,C++,ea75a7141c88ee0aca35c2cad7a75350e4f31ec2,Add a readme.
+8,https://api.github.com/repos/mozilla/libadb.js/pulls/23,23,Allow logging to be enabled by environment variable.,"Allows you do things like ADB_TRACE=services,sync
+",brendandahl,942640,2014-02-17T23:33:57Z,CONTRIBUTOR,True,1,0,1,ADB Javascript library for mozilla runtime,C++,67bdbe9ed5dce5294daf7b5fd1d4b578374d493c,Allow logging to be enabled by environment variable.
+9,https://api.github.com/repos/mozilla/libadb.js/pulls/21,21,Fix device still showing up after replug.,"Fixes #20 and possibly the shutdown issue Paul was having.
+",brendandahl,942640,2014-02-14T01:46:20Z,CONTRIBUTOR,True,1,1,1,ADB Javascript library for mozilla runtime,C++,e489f0fe0be1ccf4c24488d25881a634e246c0ea,Fix device still showing up after replug.
+10,https://api.github.com/repos/mozilla/libadb.js/pulls/18,18,Fix connection problems when command line adb is already running.,"Fixes #17
+
+The pipes are left in a bad state after we tell command line adb to die. This is same problem I ran into when starting and stopping our library multiple times.
+
+The nulled out handle will prevent crashes if the handle goes bad in the future and it is freed.
+",brendandahl,942640,2014-02-04T23:18:40Z,CONTRIBUTOR,True,19,0,1,ADB Javascript library for mozilla runtime,C++,dccb90b97e934596271f8adf8f7f4a799bbb9c51,Fix connection problems when command line adb is already running.
+11,https://api.github.com/repos/mozilla/libadb.js/pulls/16,16,Only cleanup thread array lists if they have been allocated.,"Fixes a crash when close and start happen back to back.
+",brendandahl,942640,2014-01-29T00:41:32Z,CONTRIBUTOR,True,40,29,2,ADB Javascript library for mozilla runtime,C++,206295d057d24c53e4130b26be1972dff3907cd6,Only cleanup thread array lists if they have been allocated.
+12,https://api.github.com/repos/mozilla/libadb.js/pulls/15,15,Remove the two evals.,"The runOnPeerThread function serialized a function and postMessaged it and then eval'ed it.  This can be very confusing since that code doesn't actually have access to the scope you'd think it would run in.  Now I just send a message and put that code in the file it belonged in.
+",brendandahl,942640,2014-01-17T01:27:47Z,CONTRIBUTOR,True,53,77,4,ADB Javascript library for mozilla runtime,C++,57c00f6af66d6668e4b28c98f3ff4c441f5a3591,Remove eval from write fully.
+13,https://api.github.com/repos/mozilla/libadb.js/pulls/15,15,Remove the two evals.,"The runOnPeerThread function serialized a function and postMessaged it and then eval'ed it.  This can be very confusing since that code doesn't actually have access to the scope you'd think it would run in.  Now I just send a message and put that code in the file it belonged in.
+",brendandahl,942640,2014-01-17T01:27:47Z,CONTRIBUTOR,True,53,77,4,ADB Javascript library for mozilla runtime,C++,8d4264783c081198d67c3682573c5933f0062f84,Start device loop worker without run on peer thread.
+14,https://api.github.com/repos/mozilla/libadb.js/pulls/15,15,Remove the two evals.,"The runOnPeerThread function serialized a function and postMessaged it and then eval'ed it.  This can be very confusing since that code doesn't actually have access to the scope you'd think it would run in.  Now I just send a message and put that code in the file it belonged in.
+",brendandahl,942640,2014-01-17T01:27:47Z,CONTRIBUTOR,True,53,77,4,ADB Javascript library for mozilla runtime,C++,918f87b8a600f243e53e8a8a3dabc4e26be55b9b,Start input and output threads without run on peer thread.
+15,https://api.github.com/repos/mozilla/libadb.js/pulls/15,15,Remove the two evals.,"The runOnPeerThread function serialized a function and postMessaged it and then eval'ed it.  This can be very confusing since that code doesn't actually have access to the scope you'd think it would run in.  Now I just send a message and put that code in the file it belonged in.
+",brendandahl,942640,2014-01-17T01:27:47Z,CONTRIBUTOR,True,53,77,4,ADB Javascript library for mozilla runtime,C++,105fe8ea679f90f447da67018de7d6389969918a,Remove the run on peer thread for the main thread.
+16,https://api.github.com/repos/mozilla/libadb.js/pulls/15,15,Remove the two evals.,"The runOnPeerThread function serialized a function and postMessaged it and then eval'ed it.  This can be very confusing since that code doesn't actually have access to the scope you'd think it would run in.  Now I just send a message and put that code in the file it belonged in.
+",brendandahl,942640,2014-01-17T01:27:47Z,CONTRIBUTOR,True,53,77,4,ADB Javascript library for mozilla runtime,C++,6e2c082b13752272c9ccb9c647fb2cc4dfec34fe,Remove runOnPeerThread().
+17,https://api.github.com/repos/mozilla/libadb.js/pulls/15,15,Remove the two evals.,"The runOnPeerThread function serialized a function and postMessaged it and then eval'ed it.  This can be very confusing since that code doesn't actually have access to the scope you'd think it would run in.  Now I just send a message and put that code in the file it belonged in.
+",brendandahl,942640,2014-01-17T01:27:47Z,CONTRIBUTOR,True,53,77,4,ADB Javascript library for mozilla runtime,C++,9d9f78ef3b1a0d086a1f34a2abd710490d58767f,Directly create new EventedChromeWorkers.
+18,https://api.github.com/repos/mozilla/libadb.js/pulls/14,14,Use SDK 1.15,"Use SDK 1.15b1 to strip down xpi size by not shipping sdk modules.
+
+@mykmelez could you review this?
+",ochameau,199907,2014-01-08T11:48:11Z,MEMBER,True,9,9,3,ADB Javascript library for mozilla runtime,C++,7683c175ddc28e2351750ea83c089131cfb9f3f5,Use SDK 1.15
+19,https://api.github.com/repos/mozilla/libadb.js/pulls/13,13,Move helper libs to a dedicated folder.,"To workaround cfx bug that introduce duplicated data folder when using root addon folder as lib module, I moved main.js to a sub ""lib"" folder.
+
+@mykmelez could you review it?
+",ochameau,199907,2014-01-08T11:14:42Z,MEMBER,True,0,0,1,ADB Javascript library for mozilla runtime,C++,f22c29c3bf2840e39a626186ed4108e6f6c9ba53,Move helper libs to a dedicated folder.
+20,https://api.github.com/repos/mozilla/libadb.js/pulls/11,11,Shutdown cleanup,"- Many file descriptors were left open. They're now tracked globally for windows(like in the osx/linux code) and closed on shutdown. It would be better if we closed them in the code that used them.
+- A number of initialization variables weren't being reset.
+- Made the device loop shutdown consistent. I was getting intermittent failures with the old code since the device loop often remained open during shutdown and devices were being added while things were being freed.
+- Simplified killing the IO pump.
+- Fixed the bug on OSX where devices weren't able to reconnect after close and open.
+",brendandahl,942640,2013-12-16T19:51:26Z,CONTRIBUTOR,True,216,137,14,ADB Javascript library for mozilla runtime,C++,1be4ef4c5a92f89743343edf8cf28f8537aed7a6,Make shutting down and restarting the library possible.
+21,https://api.github.com/repos/mozilla/libadb.js/pulls/11,11,Shutdown cleanup,"- Many file descriptors were left open. They're now tracked globally for windows(like in the osx/linux code) and closed on shutdown. It would be better if we closed them in the code that used them.
+- A number of initialization variables weren't being reset.
+- Made the device loop shutdown consistent. I was getting intermittent failures with the old code since the device loop often remained open during shutdown and devices were being added while things were being freed.
+- Simplified killing the IO pump.
+- Fixed the bug on OSX where devices weren't able to reconnect after close and open.
+",brendandahl,942640,2013-12-16T19:51:26Z,CONTRIBUTOR,True,216,137,14,ADB Javascript library for mozilla runtime,C++,f8febb72c6cffed1625889739c3cd637c5eae456,Fix OSX not being able to reconnect to device on close and open.
+22,https://api.github.com/repos/mozilla/libadb.js/pulls/11,11,Shutdown cleanup,"- Many file descriptors were left open. They're now tracked globally for windows(like in the osx/linux code) and closed on shutdown. It would be better if we closed them in the code that used them.
+- A number of initialization variables weren't being reset.
+- Made the device loop shutdown consistent. I was getting intermittent failures with the old code since the device loop often remained open during shutdown and devices were being added while things were being freed.
+- Simplified killing the IO pump.
+- Fixed the bug on OSX where devices weren't able to reconnect after close and open.
+",brendandahl,942640,2013-12-16T19:51:26Z,CONTRIBUTOR,True,216,137,14,ADB Javascript library for mozilla runtime,C++,36070e49013d94a75c75b8701f46c29771dd7ca7,Avoid crash by invalidating timer before stopping run loop.
+23,https://api.github.com/repos/mozilla/libadb.js/pulls/10,10,update libadb and make other useful changes,"@ochameau: this updates the ADB Helper addon to libadb 0.7, the latest version. It also adds a useful .gitignore rule, fixes a Makefile issue that causes the Helper addon to be missing the ADB library when you do `make package` without having previously done `make run` (because the library was only being copied to _helper/data/_ on `make run`), and breaks the dependency on a remote libadb package even when you're building adb locally. Plus a bit of refactoring.
+",mykmelez,305455,2013-11-13T00:20:13Z,CONTRIBUTOR,True,18,10,2,ADB Javascript library for mozilla runtime,C++,4320a37b2fcf4b9239e9ef5891477f100d06b5bc,update to latest version of libadb
+24,https://api.github.com/repos/mozilla/libadb.js/pulls/10,10,update libadb and make other useful changes,"@ochameau: this updates the ADB Helper addon to libadb 0.7, the latest version. It also adds a useful .gitignore rule, fixes a Makefile issue that causes the Helper addon to be missing the ADB library when you do `make package` without having previously done `make run` (because the library was only being copied to _helper/data/_ on `make run`), and breaks the dependency on a remote libadb package even when you're building adb locally. Plus a bit of refactoring.
+",mykmelez,305455,2013-11-13T00:20:13Z,CONTRIBUTOR,True,18,10,2,ADB Javascript library for mozilla runtime,C++,d398122e1ee67191ce0128cd533b21e0ef37b129,copy ADB to helper/ on 'make [build]' so 'make package' works in a clean repo
+25,https://api.github.com/repos/mozilla/libadb.js/pulls/10,10,update libadb and make other useful changes,"@ochameau: this updates the ADB Helper addon to libadb 0.7, the latest version. It also adds a useful .gitignore rule, fixes a Makefile issue that causes the Helper addon to be missing the ADB library when you do `make package` without having previously done `make run` (because the library was only being copied to _helper/data/_ on `make run`), and breaks the dependency on a remote libadb package even when you're building adb locally. Plus a bit of refactoring.
+",mykmelez,305455,2013-11-13T00:20:13Z,CONTRIBUTOR,True,18,10,2,ADB Javascript library for mozilla runtime,C++,ccfb38debb20a85a3abfd0f11c4f528cab2ad696,ignore the generated helper/data/ subdirectory
+26,https://api.github.com/repos/mozilla/libadb.js/pulls/10,10,update libadb and make other useful changes,"@ochameau: this updates the ADB Helper addon to libadb 0.7, the latest version. It also adds a useful .gitignore rule, fixes a Makefile issue that causes the Helper addon to be missing the ADB library when you do `make package` without having previously done `make run` (because the library was only being copied to _helper/data/_ on `make run`), and breaks the dependency on a remote libadb package even when you're building adb locally. Plus a bit of refactoring.
+",mykmelez,305455,2013-11-13T00:20:13Z,CONTRIBUTOR,True,18,10,2,ADB Javascript library for mozilla runtime,C++,f484e68d1156a80e1cd606486033187cec808371,Merge branch 'master' into update-libadb
+27,https://api.github.com/repos/mozilla/libadb.js/pulls/10,10,update libadb and make other useful changes,"@ochameau: this updates the ADB Helper addon to libadb 0.7, the latest version. It also adds a useful .gitignore rule, fixes a Makefile issue that causes the Helper addon to be missing the ADB library when you do `make package` without having previously done `make run` (because the library was only being copied to _helper/data/_ on `make run`), and breaks the dependency on a remote libadb package even when you're building adb locally. Plus a bit of refactoring.
+",mykmelez,305455,2013-11-13T00:20:13Z,CONTRIBUTOR,True,18,10,2,ADB Javascript library for mozilla runtime,C++,4ece304fd52e3637b7c7c41012313d70dc25ff9c,update to latest version of libadb
+28,https://api.github.com/repos/mozilla/libadb.js/pulls/10,10,update libadb and make other useful changes,"@ochameau: this updates the ADB Helper addon to libadb 0.7, the latest version. It also adds a useful .gitignore rule, fixes a Makefile issue that causes the Helper addon to be missing the ADB library when you do `make package` without having previously done `make run` (because the library was only being copied to _helper/data/_ on `make run`), and breaks the dependency on a remote libadb package even when you're building adb locally. Plus a bit of refactoring.
+",mykmelez,305455,2013-11-13T00:20:13Z,CONTRIBUTOR,True,18,10,2,ADB Javascript library for mozilla runtime,C++,fbb59f2e6c712ff2b4343246588b8f0a931b8105,clean helper/data
+29,https://api.github.com/repos/mozilla/libadb.js/pulls/10,10,update libadb and make other useful changes,"@ochameau: this updates the ADB Helper addon to libadb 0.7, the latest version. It also adds a useful .gitignore rule, fixes a Makefile issue that causes the Helper addon to be missing the ADB library when you do `make package` without having previously done `make run` (because the library was only being copied to _helper/data/_ on `make run`), and breaks the dependency on a remote libadb package even when you're building adb locally. Plus a bit of refactoring.
+",mykmelez,305455,2013-11-13T00:20:13Z,CONTRIBUTOR,True,18,10,2,ADB Javascript library for mozilla runtime,C++,d254be2a2fc366f2cec2ef7442dc817e5f70aa0f,remove unnecessary dependency on remote package when building locally; use LIB_SUFFIX consistently
+30,https://api.github.com/repos/mozilla/libadb.js/pulls/9,9,Fix firefox crash when command line adb is started.,"This removes the exit(0) when adb tells us to close and instead triggers our close function.  Unfortunately, once closed the app manager connection doesn't currently work again until firefox is restarted.  Also, the device doesn't show up to adb until it is replugged.
+
+Next I'm going to try to get it into a state where close() and start() can be called and everything will work again.
+",brendandahl,942640,2013-11-08T21:48:56Z,CONTRIBUTOR,True,12,3,5,ADB Javascript library for mozilla runtime,C++,7d75f683d506ddf5ca49589718962e3aca5e6b71,Fix firefox crash when command line adb is started.
+31,https://api.github.com/repos/mozilla/libadb.js/pulls/5,5,make 'make package' package the helper addon,"`make package` fails with an error:
+
+```
+11-05 14:50 > make package
+cd addon-sdk && . bin/activate && cd ../addon && cfx xpi
+Welcome to the Add-on SDK. Run 'cfx docs' for assistance.
+package.json does not have a 'main' entry.
+make: *** [package] Error 1
+```
+
+I think that's because it's trying to `cfx xpi` in the _addon/_ directory, which is now just a package of modules, instead of the _helper/_ directory, which contains the _main.js_ and _package.json_ files for the helper addon.
+
+If so, then this is the right fix, although I haven't tested resultant addon package.
+
+@ochameau does this look correct to you?
+",mykmelez,305455,2013-11-05T23:01:31Z,CONTRIBUTOR,True,1,1,1,ADB Javascript library for mozilla runtime,C++,38ea4da6669ea59184302be2468624e0c424b116,make 'make package' package the helper addon
+32,https://api.github.com/repos/mozilla/libadb.js/pulls/4,4,update to latest version of libadb,"@ochameau This updates LIBADB_VERSION to the latest version with the recent fixes for Windows performance.
+",mykmelez,305455,2013-11-05T22:58:24Z,CONTRIBUTOR,True,1,1,1,ADB Javascript library for mozilla runtime,C++,dae2259443f067f13a823dc5f86447ef7802ee26,update to latest version of libadb
+33,https://api.github.com/repos/mozilla/libadb.js/pulls/3,3,Use synchronous read on windows and remove thread shutdown code.,"Solves the windows performance issue https://github.com/mozilla/r2d2b2g/issues/835. As mentioned in email, I also removed the thread shutdown code as I no longer get crashes when shutting down firefox.
+
+/cc @bkase @myk
+",brendandahl,942640,2013-10-29T23:06:58Z,CONTRIBUTOR,True,19,120,5,ADB Javascript library for mozilla runtime,C++,c8ffd5cc18d2ae50079950afe0332b89edd3fd76,Use synchronous read on windows and remove thread shutdown code.
+34,https://api.github.com/repos/mozilla/libadb.js/pulls/2,2,update to latest version of libadb,"@ochameau: this updates the version of libadb that `make LIBADB_LOCATION=remote` downloads from 0.3 to 0.4, which is the latest version of the library. There are no code changes here, because the code in android-tools/ is already up-to-date, so `make LIBADB_LOCATION=local` already builds the latest version locally. This merely updates the build variable.
+
+Note that @bkase and I also recently reviewed and merged @brendandahl's fixes for that Windows crasher. But those changes are all in JS, so they don't require rebuilding the library. We still have a performance/CPU utilization issue with the wait timer on Windows, and we need to work out the library lifecycle issues, but then we should be ready to advertise libadb to a larger audience and get folks using it!
+",mykmelez,305455,2013-10-16T21:34:19Z,CONTRIBUTOR,True,1,1,1,ADB Javascript library for mozilla runtime,C++,a6d614a0518a1f2b940691f2a7a4abadf78d2156,update to latest version of libadb
+35,https://api.github.com/repos/mozilla/libadb.js/pulls/1,1,Store references to callback objects to prevent garbage collection.,"As warned in https://developer.mozilla.org/en-US/docs/Mozilla/js-ctypes/js-ctypes_reference/Callbacks the callback objects must be stored so they are not GC'ed.
+
+Should fix crashes on windows and possibly others. Steps to crash firefox on windows:
+1) start app manager w/ liadb
+2) connect to phone
+3) open about:memory and run GC
+
+I've added comments to most of the lines since it seems a bit strange to create a variable that is only used once on the next line.
+",brendandahl,942640,2013-10-15T20:06:09Z,CONTRIBUTOR,True,25,22,8,ADB Javascript library for mozilla runtime,C++,76ee0b666a92160c0404f557bd418595d894e1c9,Store references to callback objects to prevent garbage collection.

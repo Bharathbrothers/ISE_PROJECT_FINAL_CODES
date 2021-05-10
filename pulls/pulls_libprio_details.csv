@@ -1,0 +1,1049 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/libprio/pulls/110,110,Fixed comment,Just fixing a last comment before moving work to libprio-rs,degregat,2052230,2020-11-19T11:35:01Z,CONTRIBUTOR,True,2,1,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,bae10113be1ebc56598cc9f7a88f8ee0e83f59bb,Fixed comment
+1,https://api.github.com/repos/mozilla/libprio/pulls/109,109,add deprecation warning with pointer to libprio-rs,,rhelmer,61412,2020-11-18T19:09:44Z,MEMBER,True,2,0,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,6ee6c57b8bf53a91d2526d2010cb76794535e6a8,add deprecation warning with pointer to libprio-rs
+2,https://api.github.com/repos/mozilla/libprio/pulls/108,108,Added fixed point encoding,"Here is the first approach for a fixed point encoding (#106).
+
+A couple of questions sorted by importance:
+- What is the convention on bounds checks? Do we do them everytime or only in external functions? 
+
+- The test suite right now is very exhaustive (e.g. encoding gets tested for all single precision floats). If these take too long, I can come up with a viable subset/sampling.
+
+- Should I only add the methods to mprio.h or also client.h and server.h? (Did not do the latter with the uint circuit.)
+
+- How should I call the convenience functions? Is PrioConfig_FP okay? I could also move them to fixed_point.h and prefix them with PrioFP for example.
+
+Since this is another large PR, I'm happy about any suggestions to improve it.
+",degregat,2052230,2020-11-06T13:26:43Z,CONTRIBUTOR,False,1401,3,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,c788a0d1e2c1aa795c7e66e15ddcf4b166429acd,Added fixed point encoding
+3,https://api.github.com/repos/mozilla/libprio/pulls/107,107,Fix and test zeroing of t->data_shares in set_data_uint,"PrioTotalShare_set_data_uint can not use MPArray_copy, which would have overwritten t->data_shares. Instead of overwriting each field of t->data_shares and then adding onto it, it omitted the zeroing. This leads to inaccurate results when reusing memory that has been allocated once and not zeroed between aggregation rounds.
+
+Up till now, the tests reallocated memory for every aggregation round, thus did not detect this error. This PR fixes the omission in PrioTotalShare_set_data_uint and modifies the tests to check over multiple rounds.",degregat,2052230,2020-11-05T19:05:24Z,CONTRIBUTOR,True,18,15,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,2158e7288edcac1f006dcbac1fd6a93935555b6c,Fix and test zeroing of t->data_shares in set_data_uint
+4,https://api.github.com/repos/mozilla/libprio/pulls/104,104,Hash batchID with shared secret to get PRG seed.,"The servers in Prio use a shared secret to generate common randomness. The servers use this randomness in the protocol they run for checking the well-formedness of client submissions. For security (i.e., to protect against malicious clients) it is important that clients not be able to predict the random values that the servers use.
+
+Currently, `PrioServer_new` takes as input a shared secret. Although it is not specified very clearly in the documentation, it is important that the servers use a _different_ shared secret for every protocol run. Even if we fix the documentation, I suspect that users of the library will reuse the same shared secret over many protocol runs, which could potentially cause problems.
+
+To protect against this failure mode, this PR hashes the `shared_secret` value given in `PrioServer_new` with the `batch_id` string that is part of the `PrioConfig`. Since the batch ID should change for every protocol run, this fix means that the randomness that the servers use will also change with every protocol run.",henrycg,163574,2020-07-26T14:06:54Z,COLLABORATOR,True,127,18,5, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,36c0aefe5268115a14e65af48afff2725bc2258f,Hash batchID with shared secret to get PRG seed.
+5,https://api.github.com/repos/mozilla/libprio/pulls/103,103,Add script to distribute binary wheels,"This PR adds the ability to distribute binary wheels for use in macOS and Linux. The `scripts/python-dist.sh` script will generate wheels for supported Python versions and upload them to pypi. The [uploaded package for `prio==1.0.3` can be tested from testpypi](https://test.pypi.org/project/prio/1.0.3/).
+
+```bash
+docker run -it python:3 bash
+apt update && apt install libmsgpackc2 libnss3
+pip3 install -i https://test.pypi.org/simple/ prio==1.0.3
+python3 -c ""from prio.libprio import *; Prio_init(); print(PrioPRGSeed_randomize())""
+```
+
+This should work in most environments where it would be useful to run Prio (e.g. a Dataproc or EMR cluster). There are some caveats here:
+
+* The deployment process is manual. Adding this to CI is doable, but it requires some setup. It is easier to manually push new packages when updates are merged.
+* The macOS deployment script uses pyenv, which can be slow to download and install.
+* The linux wheels are not actually [`manylinux1` (PEP-513) compatible](https://www.python.org/dev/peps/pep-0513/). This is due to the reliance on NSS, which does not play well with `auditwheel repair`. Attempting to use a wheel that includes a copy of the shares libraries from the `manylinux2014` docker container will fail to initialize.
+
+
+",acmiyaguchi,3304040,2020-07-24T23:28:54Z,COLLABORATOR,True,217,2,7, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,56bd48935b2aebbb8fb21c9ab1bb77f2e5488817,Add Dockerfile that can generate linux wheels
+6,https://api.github.com/repos/mozilla/libprio/pulls/103,103,Add script to distribute binary wheels,"This PR adds the ability to distribute binary wheels for use in macOS and Linux. The `scripts/python-dist.sh` script will generate wheels for supported Python versions and upload them to pypi. The [uploaded package for `prio==1.0.3` can be tested from testpypi](https://test.pypi.org/project/prio/1.0.3/).
+
+```bash
+docker run -it python:3 bash
+apt update && apt install libmsgpackc2 libnss3
+pip3 install -i https://test.pypi.org/simple/ prio==1.0.3
+python3 -c ""from prio.libprio import *; Prio_init(); print(PrioPRGSeed_randomize())""
+```
+
+This should work in most environments where it would be useful to run Prio (e.g. a Dataproc or EMR cluster). There are some caveats here:
+
+* The deployment process is manual. Adding this to CI is doable, but it requires some setup. It is easier to manually push new packages when updates are merged.
+* The macOS deployment script uses pyenv, which can be slow to download and install.
+* The linux wheels are not actually [`manylinux1` (PEP-513) compatible](https://www.python.org/dev/peps/pep-0513/). This is due to the reliance on NSS, which does not play well with `auditwheel repair`. Attempting to use a wheel that includes a copy of the shares libraries from the `manylinux2014` docker container will fail to initialize.
+
+
+",acmiyaguchi,3304040,2020-07-24T23:28:54Z,COLLABORATOR,True,217,2,7, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,4d42e23c025777ab0767e2777ad0f2c099405811,Add script for distributing binary eggs and wheels
+7,https://api.github.com/repos/mozilla/libprio/pulls/103,103,Add script to distribute binary wheels,"This PR adds the ability to distribute binary wheels for use in macOS and Linux. The `scripts/python-dist.sh` script will generate wheels for supported Python versions and upload them to pypi. The [uploaded package for `prio==1.0.3` can be tested from testpypi](https://test.pypi.org/project/prio/1.0.3/).
+
+```bash
+docker run -it python:3 bash
+apt update && apt install libmsgpackc2 libnss3
+pip3 install -i https://test.pypi.org/simple/ prio==1.0.3
+python3 -c ""from prio.libprio import *; Prio_init(); print(PrioPRGSeed_randomize())""
+```
+
+This should work in most environments where it would be useful to run Prio (e.g. a Dataproc or EMR cluster). There are some caveats here:
+
+* The deployment process is manual. Adding this to CI is doable, but it requires some setup. It is easier to manually push new packages when updates are merged.
+* The macOS deployment script uses pyenv, which can be slow to download and install.
+* The linux wheels are not actually [`manylinux1` (PEP-513) compatible](https://www.python.org/dev/peps/pep-0513/). This is due to the reliance on NSS, which does not play well with `auditwheel repair`. Attempting to use a wheel that includes a copy of the shares libraries from the `manylinux2014` docker container will fail to initialize.
+
+
+",acmiyaguchi,3304040,2020-07-24T23:28:54Z,COLLABORATOR,True,217,2,7, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,51070fe344af79ff2c255ce4caa4ef37d08a6420,Remove eggs from the build process
+8,https://api.github.com/repos/mozilla/libprio/pulls/103,103,Add script to distribute binary wheels,"This PR adds the ability to distribute binary wheels for use in macOS and Linux. The `scripts/python-dist.sh` script will generate wheels for supported Python versions and upload them to pypi. The [uploaded package for `prio==1.0.3` can be tested from testpypi](https://test.pypi.org/project/prio/1.0.3/).
+
+```bash
+docker run -it python:3 bash
+apt update && apt install libmsgpackc2 libnss3
+pip3 install -i https://test.pypi.org/simple/ prio==1.0.3
+python3 -c ""from prio.libprio import *; Prio_init(); print(PrioPRGSeed_randomize())""
+```
+
+This should work in most environments where it would be useful to run Prio (e.g. a Dataproc or EMR cluster). There are some caveats here:
+
+* The deployment process is manual. Adding this to CI is doable, but it requires some setup. It is easier to manually push new packages when updates are merged.
+* The macOS deployment script uses pyenv, which can be slow to download and install.
+* The linux wheels are not actually [`manylinux1` (PEP-513) compatible](https://www.python.org/dev/peps/pep-0513/). This is due to the reliance on NSS, which does not play well with `auditwheel repair`. Attempting to use a wheel that includes a copy of the shares libraries from the `manylinux2014` docker container will fail to initialize.
+
+
+",acmiyaguchi,3304040,2020-07-24T23:28:54Z,COLLABORATOR,True,217,2,7, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,69c67536d13891f09279279e8e4d20406f698619,Use manylinux2014 for building linux wheels and update readme
+9,https://api.github.com/repos/mozilla/libprio/pulls/103,103,Add script to distribute binary wheels,"This PR adds the ability to distribute binary wheels for use in macOS and Linux. The `scripts/python-dist.sh` script will generate wheels for supported Python versions and upload them to pypi. The [uploaded package for `prio==1.0.3` can be tested from testpypi](https://test.pypi.org/project/prio/1.0.3/).
+
+```bash
+docker run -it python:3 bash
+apt update && apt install libmsgpackc2 libnss3
+pip3 install -i https://test.pypi.org/simple/ prio==1.0.3
+python3 -c ""from prio.libprio import *; Prio_init(); print(PrioPRGSeed_randomize())""
+```
+
+This should work in most environments where it would be useful to run Prio (e.g. a Dataproc or EMR cluster). There are some caveats here:
+
+* The deployment process is manual. Adding this to CI is doable, but it requires some setup. It is easier to manually push new packages when updates are merged.
+* The macOS deployment script uses pyenv, which can be slow to download and install.
+* The linux wheels are not actually [`manylinux1` (PEP-513) compatible](https://www.python.org/dev/peps/pep-0513/). This is due to the reliance on NSS, which does not play well with `auditwheel repair`. Attempting to use a wheel that includes a copy of the shares libraries from the `manylinux2014` docker container will fail to initialize.
+
+
+",acmiyaguchi,3304040,2020-07-24T23:28:54Z,COLLABORATOR,True,217,2,7, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,8b7275e5ca44e7c624e2708b0942cac3cb51f56f,Add update script and readme to reflect final testing
+10,https://api.github.com/repos/mozilla/libprio/pulls/102,102,CI: unbreak FreeBSD,"Regressed by https://bugs.freebsd.org/bugzilla/show_bug.cgi?id=241463.
+`/quarterly` (default on releases) package set was refreshed on 2020-07-07.
+
+```
+$ pkg search scons
+scons-py27-3.1.2               Build tool alternative to make
+scons-py37-3.1.2               Build tool alternative to make
+```
+",jbeich,11153579,2020-07-18T05:09:32Z,CONTRIBUTOR,True,2,1,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,6ab2b5affa41873fb2473541c6fd292870eb9358,"CI: chase scons package rename on FreeBSD
+
+scons became scons-py27 + scons-py37."
+11,https://api.github.com/repos/mozilla/libprio/pulls/101,101,Build and publish linux wheels,"The build and release process for linux wheels can be done within this Docker container.
+
+* Install pyenv and the relevant versions of Python (3.6, 3.7, 3.8)
+* Build the binary wheel
+* Distribute by uploading to pypi (or gcs)
+
+I've done some initial testing by building the wheel in this centos container and running it in an ubuntu container. It might be worth considering TaskCluster for this use-case, but I am more familiar with CircleCI for multi-step workflows. @rhelmer do you have input on what CI service to use to build and distribute the wheels?",acmiyaguchi,3304040,2020-07-17T00:21:21Z,COLLABORATOR,False,66,4,3, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,56bd48935b2aebbb8fb21c9ab1bb77f2e5488817,Add Dockerfile that can generate linux wheels
+12,https://api.github.com/repos/mozilla/libprio/pulls/101,101,Build and publish linux wheels,"The build and release process for linux wheels can be done within this Docker container.
+
+* Install pyenv and the relevant versions of Python (3.6, 3.7, 3.8)
+* Build the binary wheel
+* Distribute by uploading to pypi (or gcs)
+
+I've done some initial testing by building the wheel in this centos container and running it in an ubuntu container. It might be worth considering TaskCluster for this use-case, but I am more familiar with CircleCI for multi-step workflows. @rhelmer do you have input on what CI service to use to build and distribute the wheels?",acmiyaguchi,3304040,2020-07-17T00:21:21Z,COLLABORATOR,False,66,4,3, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,5ab79d4a1b5da22521547a4ed348802d69d05a7e,Add job stages to travis
+13,https://api.github.com/repos/mozilla/libprio/pulls/100,100,Add interface to serialize and merge server state,"The current interface requires a long-lived pointer to a `PrioServer` structure. This makes it difficult to use the library when server state is distributed across several processes. This PR adds methods for server serialization and deserialization, as well as a method for merging the state of two server structures.",acmiyaguchi,3304040,2020-07-17T00:08:38Z,COLLABORATOR,True,647,7,11, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,a81abbdd1041064227e30e52ec56bd3e0ba38ced,Add interface for server serialization
+14,https://api.github.com/repos/mozilla/libprio/pulls/100,100,Add interface to serialize and merge server state,"The current interface requires a long-lived pointer to a `PrioServer` structure. This makes it difficult to use the library when server state is distributed across several processes. This PR adds methods for server serialization and deserialization, as well as a method for merging the state of two server structures.",acmiyaguchi,3304040,2020-07-17T00:08:38Z,COLLABORATOR,True,647,7,11, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,12a6a657d5c31b7ff5c37c03a0ffea22410e70c3,Add a test of the new interface from the Python bindings
+15,https://api.github.com/repos/mozilla/libprio/pulls/100,100,Add interface to serialize and merge server state,"The current interface requires a long-lived pointer to a `PrioServer` structure. This makes it difficult to use the library when server state is distributed across several processes. This PR adds methods for server serialization and deserialization, as well as a method for merging the state of two server structures.",acmiyaguchi,3304040,2020-07-17T00:08:38Z,COLLABORATOR,True,647,7,11, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,17a8b713f66cc147770ba163c021a0fd356595bf,Add implementations for the serialization and merge interface
+16,https://api.github.com/repos/mozilla/libprio/pulls/100,100,Add interface to serialize and merge server state,"The current interface requires a long-lived pointer to a `PrioServer` structure. This makes it difficult to use the library when server state is distributed across several processes. This PR adds methods for server serialization and deserialization, as well as a method for merging the state of two server structures.",acmiyaguchi,3304040,2020-07-17T00:08:38Z,COLLABORATOR,True,647,7,11, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,2d0f4de538732030162b12e10547fc72617ae764,Update swig interface for server serialization
+17,https://api.github.com/repos/mozilla/libprio/pulls/100,100,Add interface to serialize and merge server state,"The current interface requires a long-lived pointer to a `PrioServer` structure. This makes it difficult to use the library when server state is distributed across several processes. This PR adds methods for server serialization and deserialization, as well as a method for merging the state of two server structures.",acmiyaguchi,3304040,2020-07-17T00:08:38Z,COLLABORATOR,True,647,7,11, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,5f7f363d690dce16846ce05ddca25da235f582cd,Add version bump
+18,https://api.github.com/repos/mozilla/libprio/pulls/100,100,Add interface to serialize and merge server state,"The current interface requires a long-lived pointer to a `PrioServer` structure. This makes it difficult to use the library when server state is distributed across several processes. This PR adds methods for server serialization and deserialization, as well as a method for merging the state of two server structures.",acmiyaguchi,3304040,2020-07-17T00:08:38Z,COLLABORATOR,True,647,7,11, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,930c430cb1b343cddbfbb28f28e6fba37fcb7097,Add test for merging uint
+19,https://api.github.com/repos/mozilla/libprio/pulls/100,100,Add interface to serialize and merge server state,"The current interface requires a long-lived pointer to a `PrioServer` structure. This makes it difficult to use the library when server state is distributed across several processes. This PR adds methods for server serialization and deserialization, as well as a method for merging the state of two server structures.",acmiyaguchi,3304040,2020-07-17T00:08:38Z,COLLABORATOR,True,647,7,11, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,e020530499224b4f42db4d3eab90beb908eb66a9,Add test for serializing server state
+20,https://api.github.com/repos/mozilla/libprio/pulls/100,100,Add interface to serialize and merge server state,"The current interface requires a long-lived pointer to a `PrioServer` structure. This makes it difficult to use the library when server state is distributed across several processes. This PR adds methods for server serialization and deserialization, as well as a method for merging the state of two server structures.",acmiyaguchi,3304040,2020-07-17T00:08:38Z,COLLABORATOR,True,647,7,11, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,f6fa6d576ad78c08df634b6ca27e533d0e24e6b8,Add implementation of server merge test (and formatting)
+21,https://api.github.com/repos/mozilla/libprio/pulls/100,100,Add interface to serialize and merge server state,"The current interface requires a long-lived pointer to a `PrioServer` structure. This makes it difficult to use the library when server state is distributed across several processes. This PR adds methods for server serialization and deserialization, as well as a method for merging the state of two server structures.",acmiyaguchi,3304040,2020-07-17T00:08:38Z,COLLABORATOR,True,647,7,11, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,d2f0f131b68f84636ff8a996843774917e118ab0,Add more formatting fixes
+22,https://api.github.com/repos/mozilla/libprio/pulls/100,100,Add interface to serialize and merge server state,"The current interface requires a long-lived pointer to a `PrioServer` structure. This makes it difficult to use the library when server state is distributed across several processes. This PR adds methods for server serialization and deserialization, as well as a method for merging the state of two server structures.",acmiyaguchi,3304040,2020-07-17T00:08:38Z,COLLABORATOR,True,647,7,11, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,4f5d9c6eddc778dc8c1176b67d8324a4115673a1,Clean up testing resource (fix memory leak)
+23,https://api.github.com/repos/mozilla/libprio/pulls/100,100,Add interface to serialize and merge server state,"The current interface requires a long-lived pointer to a `PrioServer` structure. This makes it difficult to use the library when server state is distributed across several processes. This PR adds methods for server serialization and deserialization, as well as a method for merging the state of two server structures.",acmiyaguchi,3304040,2020-07-17T00:08:38Z,COLLABORATOR,True,647,7,11, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,02e96c57af62d42b874d96fd8223b51b922941ed,Add checks for server index and public keys
+24,https://api.github.com/repos/mozilla/libprio/pulls/100,100,Add interface to serialize and merge server state,"The current interface requires a long-lived pointer to a `PrioServer` structure. This makes it difficult to use the library when server state is distributed across several processes. This PR adds methods for server serialization and deserialization, as well as a method for merging the state of two server structures.",acmiyaguchi,3304040,2020-07-17T00:08:38Z,COLLABORATOR,True,647,7,11, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,d90b1b5737e21a1968f5f8437182a8de6a415154,Declare private functions as static
+25,https://api.github.com/repos/mozilla/libprio/pulls/99,99,Expose NSS indirectly (for sandboxing),"This supersedes #84. I've left mpi as is. We can do that in a separate patch, but I'm also okay with just sandboxing the mpi bits to start.
+
+These are the MPI functions that I think we'd have to expose if we/when we want to extract out those bits.
+
+```
+mp_add
+mp_addmod
+mp_clear
+mp_cmp
+mp_cmp_d
+mp_cmp_z
+mp_copy
+mp_exptmod_d
+mp_init
+mp_invmod
+mp_mod
+mp_mul_d
+mp_mulmod
+mp_read_radix
+mp_read_unsigned_octets
+mp_set
+mp_sub
+mp_sub_d
+mp_submod
+mp_to_fixlen_octets
+mp_unsigned_octet_size
+```",deian,374012,2020-06-30T04:16:26Z,NONE,False,294,64,8, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,c5296117041b6ecb5e17e02c5f3e12770122a144,Closing brace missing in C++
+26,https://api.github.com/repos/mozilla/libprio/pulls/99,99,Expose NSS indirectly (for sandboxing),"This supersedes #84. I've left mpi as is. We can do that in a separate patch, but I'm also okay with just sandboxing the mpi bits to start.
+
+These are the MPI functions that I think we'd have to expose if we/when we want to extract out those bits.
+
+```
+mp_add
+mp_addmod
+mp_clear
+mp_cmp
+mp_cmp_d
+mp_cmp_z
+mp_copy
+mp_exptmod_d
+mp_init
+mp_invmod
+mp_mod
+mp_mul_d
+mp_mulmod
+mp_read_radix
+mp_read_unsigned_octets
+mp_set
+mp_sub
+mp_sub_d
+mp_submod
+mp_to_fixlen_octets
+mp_unsigned_octet_size
+```",deian,374012,2020-06-30T04:16:26Z,NONE,False,294,64,8, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,bb74902796a45b68673da8b34aa040e1dea6aa5a,Extract NSS into separate interface
+27,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,b9c23f782d5cd8e68296b328109467593b7f8f86,Fix SConstruct to build on macOS again
+28,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,629b50544f26c69635299706f43d3b36a7b16923,Add dockerfile with centos8
+29,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,d8f72b4e85b27ae805059313e0832f53c59e28ce,Add initial set of files for python binding
+30,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,53532e694be57ffc9441b22047f586393007b31d,Add build that works in linux
+31,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,7ecb592d08993962aa3ed48e7ff8705f23ebe2ca,Add functional build of python bindings
+32,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,7fff6340c569fd990326d58a147bbb14202c3968,Use setuptools and document failure mode
+33,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,f22ae2284d4dd9e5a7ff2e2c6ea1992d3fbc9aa8,Rename prio to src
+34,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,f035f39d1e7564a1282ae9020c3eec938834a929,Move swig interface into separate folder
+35,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,e7826ed79de2f0196c65758431b6a1666cdd6735,Update readme and tests
+36,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,72595d01a3d181453e69fa7eda08f85a2bfafc06,Reformat swig file and add in generated swig wrapper
+37,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,4c85f9be7e54776605cc0bdcf2c5960b7c41dda3,Organize swig interface with modules and macros
+38,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,fa8cd8389fc62cd1fe18568d20fdaf39e4b0355f,Remove libprio namespace from tests
+39,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,e91224ed80e213daf7819a3c81d98189ef23dca3,Add BBIT_PREC_MAX to swig interface
+40,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,2ee827537d6787e8c88e3cd0afb1985f8b5e9841,Fix implicit declaration of MIN function in binding
+41,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,5cde17e183e4f22e0c9fcf8f71812460ae820cac,Add tests for config and move bigger test to the bottom
+42,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,5f375d9cb368a6ff6b7cc74d0dd60d24d8068515,Accidentally change thing with keys
+43,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,3dc610a93277ac4aadb72f082e76aee9adf087de,Add wrapper for PrioTotalShare_final_uint
+44,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,89dc5b49a98a61e05e4033e719b98588cf987696,Add working interface to uint encodings
+45,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,4f1b8679105816f4d6367671f5190a9b5afff21a,Move MSGPACK_* macros to end of interface due to inline code
+46,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,a036d6106661e9cbe42cfc52b54cf716ad97533d,Add tests for most of the serialization
+47,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,08bede60d98ddb47b44973636e331f82bb84ceb3,Update config and key tests
+48,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,9516be4b5c79cc397708868455f8f7eefe66647c,Fix hex exports of keys from including null byte
+49,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,21f17f3ce396195cc3aee3e15452ffdfa83b4225,Add documentation to failing multiprocessing test
+50,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,856eae83d573ba09afa33da685a63344f1f781c7,Remove automatic prio context at module load and fix tests
+51,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,80ea7ed3b48b8e7f23663b7dba8c857f1c3b90a2,Fix multi-processing test
+52,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,5b1dfdbfbe98e6e6372c6d36a5430bd113b9eaf0,Remove MANIFEST from clean
+53,https://api.github.com/repos/mozilla/libprio/pulls/98,98,Add generated Python bindings,"This adds a Python extension module that wraps libprio with SWIG. This fixes issues that I was having with multi-processing, so it should be safe to call this within other libraries. I've tested this on macOS and linux.
+
+I've done some testing in another branch, and can generate binary wheels for Python 3.8 on linux that can be installed on Ubuntu 20.04 (as long as nss, nspr, and msgpackc are available). 
+
+@rhelmer r?",acmiyaguchi,3304040,2020-06-30T01:11:05Z,COLLABORATOR,True,8168,9,21, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,eee219cb199db45f786c5cdfa1416bdb653501bd,Fix travis by updating msgpack instead of installing
+54,https://api.github.com/repos/mozilla/libprio/pulls/97,97,Run code through clang-format 9.0.,"This is a revival of @degregat 's PR #88 after merging the recent PRs.
+
+Generated by running the following command in the top-level dir:
+
+> clang-format --style=Mozilla \
+   -i include/*.h pclient/*.c prio/*.c prio/*.h ptest/*.c ptest/*.h",henrycg,163574,2020-05-29T16:51:20Z,COLLABORATOR,True,1083,721,31, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,bf04a6977bdbc1dadbede883e51a34ca9dcde192,"Run code through clang-format 9.0.
+
+Generated by running the following command in the top-level dir:
+
+> clang-format --style=Mozilla \
+   -i include/*.h pclient/*.c prio/*.c prio/*.h ptest/*.c ptest/*.h
+
+Update .travis.yml and clang-format.sh to use 9.0"
+55,https://api.github.com/repos/mozilla/libprio/pulls/96,96,b-bit circuit,"This is rebased onto master, patches the travis problem and commits are squashed to one per patch.",degregat,2052230,2020-05-29T15:49:00Z,CONTRIBUTOR,True,1041,3,10, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,27c6e2706023cd71d9ba72820df1e2bf372630cb,Added b-bit integer circuit
+56,https://api.github.com/repos/mozilla/libprio/pulls/96,96,b-bit circuit,"This is rebased onto master, patches the travis problem and commits are squashed to one per patch.",degregat,2052230,2020-05-29T15:49:00Z,CONTRIBUTOR,True,1041,3,10, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,610e3ed924c37544bd8d35a28ef0c673f7c3ff29,Amended as discussed in the review
+57,https://api.github.com/repos/mozilla/libprio/pulls/96,96,b-bit circuit,"This is rebased onto master, patches the travis problem and commits are squashed to one per patch.",degregat,2052230,2020-05-29T15:49:00Z,CONTRIBUTOR,True,1041,3,10, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,35ee8367048d00b7402e8ef4b5b41afcc040af43,Renamed to _uint
+58,https://api.github.com/repos/mozilla/libprio/pulls/96,96,b-bit circuit,"This is rebased onto master, patches the travis problem and commits are squashed to one per patch.",degregat,2052230,2020-05-29T15:49:00Z,CONTRIBUTOR,True,1041,3,10, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,1b9f3d133b328d74a2316d7ad9704b726f31b265,Added documentation
+59,https://api.github.com/repos/mozilla/libprio/pulls/96,96,b-bit circuit,"This is rebased onto master, patches the travis problem and commits are squashed to one per patch.",degregat,2052230,2020-05-29T15:49:00Z,CONTRIBUTOR,True,1041,3,10, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,6e9ede51c381fa79a344502060fd08359efc67d3,"Lowered BBIT_PREC_MAX, added tests and documentation"
+60,https://api.github.com/repos/mozilla/libprio/pulls/96,96,b-bit circuit,"This is rebased onto master, patches the travis problem and commits are squashed to one per patch.",degregat,2052230,2020-05-29T15:49:00Z,CONTRIBUTOR,True,1041,3,10, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,10f41f5b3b2e2823b26bccba3305384685244862,Check wether prec set correctly on server
+61,https://api.github.com/repos/mozilla/libprio/pulls/96,96,b-bit circuit,"This is rebased onto master, patches the travis problem and commits are squashed to one per patch.",degregat,2052230,2020-05-29T15:49:00Z,CONTRIBUTOR,True,1041,3,10, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,ddfef8c64676878878c60b7f0cc317c98741e58a,Increase verbosity of tests in travis
+62,https://api.github.com/repos/mozilla/libprio/pulls/95,95,Cleanup .travis.yml,"- msgpack is now a regular package
+- SConstruct already adds macOS flags",jbeich,11153579,2020-05-21T10:10:30Z,CONTRIBUTOR,True,2,4,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,bff60f391b65836b8a4894867f960059577bf5b8,CI: drop extra flags on macOS after 854d87d8a15b
+63,https://api.github.com/repos/mozilla/libprio/pulls/95,95,Cleanup .travis.yml,"- msgpack is now a regular package
+- SConstruct already adds macOS flags",jbeich,11153579,2020-05-21T10:10:30Z,CONTRIBUTOR,True,2,4,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,b2dc736a3ceadf870274b34fe1e2401bd3a3420b,CI: drop LD_LIBRARY_PATH after 52643cefe666
+64,https://api.github.com/repos/mozilla/libprio/pulls/95,95,Cleanup .travis.yml,"- msgpack is now a regular package
+- SConstruct already adds macOS flags",jbeich,11153579,2020-05-21T10:10:30Z,CONTRIBUTOR,True,2,4,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,0af75b4fd8d8d9ede316809672be86ad58d3a210,"CI: fix install errors on macOS
+
+Error: nss 3.48 is already installed
+To upgrade to 3.52, run `brew upgrade nss`.
+Error: nspr 4.24 is already installed
+To upgrade to 4.25, run `brew upgrade nspr`."
+65,https://api.github.com/repos/mozilla/libprio/pulls/94,94,Unbreak with NSS >= 3.52,Fixes https://github.com/mozilla/libprio/issues/92,jbeich,11153579,2020-05-20T16:24:10Z,CONTRIBUTOR,True,1,4,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,2978b6c6477505a4c8cf5543e1e7aeb9a934a180,"Keep using old CK_GCM_PARAMS on NSS >= 3.52
+
+Based on https://hg.mozilla.org/mozilla-central/rev/463069687b3d"
+66,https://api.github.com/repos/mozilla/libprio/pulls/93,93,Unbreak build on FreeBSD,,jbeich,11153579,2020-05-20T13:05:09Z,CONTRIBUTOR,True,16,1,3, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,ed6a02d5e0629338f721f0ab828f801001815ef5,"Avoid redefining MIN
+
+In file included from build/pclient/main.c:13:
+./prio/util.h:17:9: error: 'MIN' macro redefined [-Werror,-Wmacro-redefined]
+ #define MIN(a, b) ((a) < (b) ? (a) : (b))
+         ^
+/usr/include/sys/param.h:308:9: note: previous definition is here
+ #define MIN(a,b) (((a)<(b))?(a):(b))
+         ^"
+67,https://api.github.com/repos/mozilla/libprio/pulls/93,93,Unbreak build on FreeBSD,,jbeich,11153579,2020-05-20T13:05:09Z,CONTRIBUTOR,True,16,1,3, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,487b2ca29b3b3cef2fdccf8023239c0fc226d725,"Add build flags for BSDs
+
+In file included from build/pclient/main.c:9:
+include/mprio.h:16:10: fatal error: 'blapit.h' file not found
+ #include <blapit.h>
+          ^~~~~~~~~~
+In file included from build/pclient/main.c:9:
+include/mprio.h:17:10: fatal error: 'msgpack.h' file not found
+ #include <msgpack.h>
+          ^~~~~~~~~~~
+ld: error: unable to find library -lnss3
+ld: error: unable to find library -lnspr4
+ld: error: unable to find library -lmsgpackc"
+68,https://api.github.com/repos/mozilla/libprio/pulls/93,93,Unbreak build on FreeBSD,,jbeich,11153579,2020-05-20T13:05:09Z,CONTRIBUTOR,True,16,1,3, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,17d9d4e7c95447047c61d648b81e9444ac9e2564,CI: add FreeBSD job
+69,https://api.github.com/repos/mozilla/libprio/pulls/91,91,b-bit integer circuit ,"@henrycg This is taking into account the comments from #89. 
+
+I added some convenience functions to ease the creation of a compatible config without changing the underlying data structures and algorithms.",degregat,2052230,2020-05-19T10:57:12Z,CONTRIBUTOR,False,1040,2,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,d18484ea075b581b8424ca0531c65dcb65828bfc,Added b-bit integer circuit
+70,https://api.github.com/repos/mozilla/libprio/pulls/91,91,b-bit integer circuit ,"@henrycg This is taking into account the comments from #89. 
+
+I added some convenience functions to ease the creation of a compatible config without changing the underlying data structures and algorithms.",degregat,2052230,2020-05-19T10:57:12Z,CONTRIBUTOR,False,1040,2,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,a3802bf5423737ed4662a4cf135e747d572258d6,Added pclient_int
+71,https://api.github.com/repos/mozilla/libprio/pulls/91,91,b-bit integer circuit ,"@henrycg This is taking into account the comments from #89. 
+
+I added some convenience functions to ease the creation of a compatible config without changing the underlying data structures and algorithms.",degregat,2052230,2020-05-19T10:57:12Z,CONTRIBUTOR,False,1040,2,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,cbcef3285bfa5e04c749429cdcf1cee906e67be3,Amended as discussed in the review
+72,https://api.github.com/repos/mozilla/libprio/pulls/91,91,b-bit integer circuit ,"@henrycg This is taking into account the comments from #89. 
+
+I added some convenience functions to ease the creation of a compatible config without changing the underlying data structures and algorithms.",degregat,2052230,2020-05-19T10:57:12Z,CONTRIBUTOR,False,1040,2,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,af60f4510b2790889236c728100b9a448639f6b7,format
+73,https://api.github.com/repos/mozilla/libprio/pulls/91,91,b-bit integer circuit ,"@henrycg This is taking into account the comments from #89. 
+
+I added some convenience functions to ease the creation of a compatible config without changing the underlying data structures and algorithms.",degregat,2052230,2020-05-19T10:57:12Z,CONTRIBUTOR,False,1040,2,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,eb6c9598ae9878ba883cc8e7aa4fd9f04a41ecbe,TODOs already handled/out of band
+74,https://api.github.com/repos/mozilla/libprio/pulls/91,91,b-bit integer circuit ,"@henrycg This is taking into account the comments from #89. 
+
+I added some convenience functions to ease the creation of a compatible config without changing the underlying data structures and algorithms.",degregat,2052230,2020-05-19T10:57:12Z,CONTRIBUTOR,False,1040,2,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,df9f2d6be64a9b78943329e192b35e05a2987879,Renamed to _uint
+75,https://api.github.com/repos/mozilla/libprio/pulls/91,91,b-bit integer circuit ,"@henrycg This is taking into account the comments from #89. 
+
+I added some convenience functions to ease the creation of a compatible config without changing the underlying data structures and algorithms.",degregat,2052230,2020-05-19T10:57:12Z,CONTRIBUTOR,False,1040,2,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,43017b59c053a72b4d1417a0cb5e13839476b9d2,Added documentation
+76,https://api.github.com/repos/mozilla/libprio/pulls/91,91,b-bit integer circuit ,"@henrycg This is taking into account the comments from #89. 
+
+I added some convenience functions to ease the creation of a compatible config without changing the underlying data structures and algorithms.",degregat,2052230,2020-05-19T10:57:12Z,CONTRIBUTOR,False,1040,2,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,704ce5dcbe0e43505b5ec47815ccd2360068ab66,"Lowered BBIT_PREC_MAX, added tests and documentation"
+77,https://api.github.com/repos/mozilla/libprio/pulls/91,91,b-bit integer circuit ,"@henrycg This is taking into account the comments from #89. 
+
+I added some convenience functions to ease the creation of a compatible config without changing the underlying data structures and algorithms.",degregat,2052230,2020-05-19T10:57:12Z,CONTRIBUTOR,False,1040,2,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,0766b7608773908ad36aa40dd1981741bb1ddcb2,Clarify/fix documentation
+78,https://api.github.com/repos/mozilla/libprio/pulls/91,91,b-bit integer circuit ,"@henrycg This is taking into account the comments from #89. 
+
+I added some convenience functions to ease the creation of a compatible config without changing the underlying data structures and algorithms.",degregat,2052230,2020-05-19T10:57:12Z,CONTRIBUTOR,False,1040,2,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,059a3751143e2b9f7eb93dc1b028cc4756ce2674,Check wether prec set correctly on server
+79,https://api.github.com/repos/mozilla/libprio/pulls/90,90,Fuzzing Support,"This PR adds generic fuzzing support to the project, including the `server_verify_fuzz` target for fuzzing the full server-side verification procedure and its corpus.",choller,1140686,2020-05-11T09:36:59Z,MEMBER,True,346,0,5, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,25ce190dd9592a1a1e1f563490e61e474052da00,"Add -gline-tables-only when building with sanitizers but without DEBUG
+
+Sanitizers require debugging symbols to provide proper tracebacks. It is
+however not required to build with full debug symbols (-g), instead it
+suffices to use -gline-tables-only to reduce the binary size."
+80,https://api.github.com/repos/mozilla/libprio/pulls/90,90,Fuzzing Support,"This PR adds generic fuzzing support to the project, including the `server_verify_fuzz` target for fuzzing the full server-side verification procedure and its corpus.",choller,1140686,2020-05-11T09:36:59Z,MEMBER,True,346,0,5, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,ca3234365be6d4412ac979313633c93c3294ac37,"Add FUZZING support
+
+This adds the FUZZING variable to the build system, which will build all
+code with libFuzzer instrumentation and activate the pfuzz subdirectory.
+Inside this subdirectory, all .c files will be built as standalone
+fuzzing targets. This flag is supposed to be combined with SANITIZE=1
+but there are cases where it is desirable to build without sanitizers,
+hence I left the flags separated."
+81,https://api.github.com/repos/mozilla/libprio/pulls/90,90,Fuzzing Support,"This PR adds generic fuzzing support to the project, including the `server_verify_fuzz` target for fuzzing the full server-side verification procedure and its corpus.",choller,1140686,2020-05-11T09:36:59Z,MEMBER,True,346,0,5, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,d7f9270c7d9927b179ec737446a83549fb0b7c27,"Add server_verify fuzzing target
+
+This target performs a full server verify cycle similar to the server
+test. Since two data blobs are required, we use a simple custom mutator
+that internally splits the data in two fields A and B and ensures that
+one of the two is mutated per iteration."
+82,https://api.github.com/repos/mozilla/libprio/pulls/90,90,Fuzzing Support,"This PR adds generic fuzzing support to the project, including the `server_verify_fuzz` target for fuzzing the full server-side verification procedure and its corpus.",choller,1140686,2020-05-11T09:36:59Z,MEMBER,True,346,0,5, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,9abe6691eed3668c4a81bf38515521039a3ba73a,Add a zipped corpus for the server_verify_fuzz target.
+83,https://api.github.com/repos/mozilla/libprio/pulls/90,90,Fuzzing Support,"This PR adds generic fuzzing support to the project, including the `server_verify_fuzz` target for fuzzing the full server-side verification procedure and its corpus.",choller,1140686,2020-05-11T09:36:59Z,MEMBER,True,346,0,5, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,d6ddc45fe1438dea15cbb7cf2fbbab1b01ab7d25,Add fuzzing documentation
+84,https://api.github.com/repos/mozilla/libprio/pulls/90,90,Fuzzing Support,"This PR adds generic fuzzing support to the project, including the `server_verify_fuzz` target for fuzzing the full server-side verification procedure and its corpus.",choller,1140686,2020-05-11T09:36:59Z,MEMBER,True,346,0,5, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,2ab023c69d6ee97044c3e775563bf59770ae020c,Run changes through clang-format-3.9
+85,https://api.github.com/repos/mozilla/libprio/pulls/89,89,b-bit integer circuit,"This is an implementation of the b-bit integer circuit as described in the prio paper.
+
+It is explained in encode.h, circuit.h and prg.h.
+
+If you notice any missing tests or my explanations in the comments prove to be insufficient, please let me know so I can fix that.
+
+EIntArray interface handlers felt more natural to do this way but I could remodel them after mparray.h:
+https://github.com/degregat/libprio/blob/c1295db54c6c45a9cb7da2688041391467c17ae2/prio/encode.c#L88
+
+Some questions from my side so far: 
+- Up to which b do we want to support. The maximum depends on how many submissions we want to fit into an usigned long long which also depends on the platform:
+https://github.com/degregat/libprio/blob/a71fe8c26906aaa0f072086bdef8cb7b5ce7e96e/prio/config.c#L56
+
+- Two regarding the use of msgpack, which was unclear to me from the msgpack-c documentation: Do we gain anything from using the msgpack arrays in the two places below:
+https://github.com/degregat/libprio/blob/a71fe8c26906aaa0f072086bdef8cb7b5ce7e96e/prio/serial.c#L193
+https://github.com/degregat/libprio/blob/a71fe8c26906aaa0f072086bdef8cb7b5ce7e96e/prio/serial.c#L210
+
+- I am unsure about the parameters for the new EInt tests in prg_test:
+https://github.com/degregat/libprio/blob/a71fe8c26906aaa0f072086bdef8cb7b5ce7e96e/ptest/prg_test.c#L419
+
+- Should the maximum value be computed in PrioConfig? Apart from the following it only gets used in tests: https://github.com/degregat/libprio/blob/a71fe8c26906aaa0f072086bdef8cb7b5ce7e96e/prio/encode.c#L51
+
+- Should tmp be allocated inside the accumulator or not:
+https://github.com/degregat/libprio/blob/c1295db54c6c45a9cb7da2688041391467c17ae2/prio/prg.c#L123
+
+I know this PR contains sizeable changes, so I am open to all feedback, discussion and reworking parts of this.",degregat,2052230,2020-05-04T12:35:06Z,CONTRIBUTOR,False,2468,744,43, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,bb719a66f03e536803f57a93d22efe56a151ca50,Reformatted codebase with clang-format 9.0
+86,https://api.github.com/repos/mozilla/libprio/pulls/89,89,b-bit integer circuit,"This is an implementation of the b-bit integer circuit as described in the prio paper.
+
+It is explained in encode.h, circuit.h and prg.h.
+
+If you notice any missing tests or my explanations in the comments prove to be insufficient, please let me know so I can fix that.
+
+EIntArray interface handlers felt more natural to do this way but I could remodel them after mparray.h:
+https://github.com/degregat/libprio/blob/c1295db54c6c45a9cb7da2688041391467c17ae2/prio/encode.c#L88
+
+Some questions from my side so far: 
+- Up to which b do we want to support. The maximum depends on how many submissions we want to fit into an usigned long long which also depends on the platform:
+https://github.com/degregat/libprio/blob/a71fe8c26906aaa0f072086bdef8cb7b5ce7e96e/prio/config.c#L56
+
+- Two regarding the use of msgpack, which was unclear to me from the msgpack-c documentation: Do we gain anything from using the msgpack arrays in the two places below:
+https://github.com/degregat/libprio/blob/a71fe8c26906aaa0f072086bdef8cb7b5ce7e96e/prio/serial.c#L193
+https://github.com/degregat/libprio/blob/a71fe8c26906aaa0f072086bdef8cb7b5ce7e96e/prio/serial.c#L210
+
+- I am unsure about the parameters for the new EInt tests in prg_test:
+https://github.com/degregat/libprio/blob/a71fe8c26906aaa0f072086bdef8cb7b5ce7e96e/ptest/prg_test.c#L419
+
+- Should the maximum value be computed in PrioConfig? Apart from the following it only gets used in tests: https://github.com/degregat/libprio/blob/a71fe8c26906aaa0f072086bdef8cb7b5ce7e96e/prio/encode.c#L51
+
+- Should tmp be allocated inside the accumulator or not:
+https://github.com/degregat/libprio/blob/c1295db54c6c45a9cb7da2688041391467c17ae2/prio/prg.c#L123
+
+I know this PR contains sizeable changes, so I am open to all feedback, discussion and reworking parts of this.",degregat,2052230,2020-05-04T12:35:06Z,CONTRIBUTOR,False,2468,744,43, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,c1295db54c6c45a9cb7da2688041391467c17ae2,Added circuit for b-bit integers
+87,https://api.github.com/repos/mozilla/libprio/pulls/88,88,Clang format 9.0,"It was reformatted with clang-format 9.0.0 issuing the following command in the project root:
+```clang-format --style=Mozilla -i include/*.h pclient/*.c prio/*.c prio/*.h ptest/*.c ptest/*.h```
+",degregat,2052230,2020-05-03T17:03:13Z,CONTRIBUTOR,False,968,634,29, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,9800c767971e4bbeb72fdb9c8a978ac8e60d9d9c,Reformatted codebase with clang-format 9.0
+88,https://api.github.com/repos/mozilla/libprio/pulls/88,88,Clang format 9.0,"It was reformatted with clang-format 9.0.0 issuing the following command in the project root:
+```clang-format --style=Mozilla -i include/*.h pclient/*.c prio/*.c prio/*.h ptest/*.c ptest/*.h```
+",degregat,2052230,2020-05-03T17:03:13Z,CONTRIBUTOR,False,968,634,29, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,1b60dcd6716d03174cc992d7c90362c3210adb0d,Updated clang-format.sh and .travis.yml
+89,https://api.github.com/repos/mozilla/libprio/pulls/88,88,Clang format 9.0,"It was reformatted with clang-format 9.0.0 issuing the following command in the project root:
+```clang-format --style=Mozilla -i include/*.h pclient/*.c prio/*.c prio/*.h ptest/*.c ptest/*.h```
+",degregat,2052230,2020-05-03T17:03:13Z,CONTRIBUTOR,False,968,634,29, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,e575a1a921d53415ca41c0bd6732558a83b1f4a6,Fixed package name for CI
+90,https://api.github.com/repos/mozilla/libprio/pulls/88,88,Clang format 9.0,"It was reformatted with clang-format 9.0.0 issuing the following command in the project root:
+```clang-format --style=Mozilla -i include/*.h pclient/*.c prio/*.c prio/*.h ptest/*.c ptest/*.h```
+",degregat,2052230,2020-05-03T17:03:13Z,CONTRIBUTOR,False,968,634,29, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,8329ba870ba38b2c7b04f06dedd41958e022ae61,Fixed path for CI
+91,https://api.github.com/repos/mozilla/libprio/pulls/86,86,upgrade Travis CI distro to Ubuntu Bionic,,rhelmer,61412,2020-04-26T18:31:18Z,MEMBER,True,5,11,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,6811375b2c80bc40ad3600282b868b8ada48fe34,upgrade Travis CI distro to Ubuntu Bionic
+92,https://api.github.com/repos/mozilla/libprio/pulls/84,84,[WIP]: Change prio for rlbox sandboxing,"  This patch adds support to use nss functions
+  in rlbox wasm sandbox. We can thus enable the
+  use of Prio as a sandboxed lib for Firefox.",Hyperion101010,32175777,2020-04-24T20:25:32Z,NONE,False,127,28,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,970562938de2c244bf84bb00ef4c477c9fc7c9b6,"[WIP]: Change prio for rlbox sandboxing
+
+  This patch adds support to use nss functions
+  in rlbox wasm sandbox. We can thus enable the
+  use of Prio as a sandboxed lib for Firefox."
+93,https://api.github.com/repos/mozilla/libprio/pulls/84,84,[WIP]: Change prio for rlbox sandboxing,"  This patch adds support to use nss functions
+  in rlbox wasm sandbox. We can thus enable the
+  use of Prio as a sandboxed lib for Firefox.",Hyperion101010,32175777,2020-04-24T20:25:32Z,NONE,False,127,28,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,571bcf765a0b2cd29a946147c763f38b6b68a9cb," [WIP]: Change prio for rlbox sandboxing
+
+ Follow up."
+94,https://api.github.com/repos/mozilla/libprio/pulls/84,84,[WIP]: Change prio for rlbox sandboxing,"  This patch adds support to use nss functions
+  in rlbox wasm sandbox. We can thus enable the
+  use of Prio as a sandboxed lib for Firefox.",Hyperion101010,32175777,2020-04-24T20:25:32Z,NONE,False,127,28,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,210d6ac2047d5da3aafe6384b3f99966eb2bab77," [WIP]: Change prio for rlbox sandboxing #84
+
+ Made changes in nss struct in include/callbk.h"
+95,https://api.github.com/repos/mozilla/libprio/pulls/84,84,[WIP]: Change prio for rlbox sandboxing,"  This patch adds support to use nss functions
+  in rlbox wasm sandbox. We can thus enable the
+  use of Prio as a sandboxed lib for Firefox.",Hyperion101010,32175777,2020-04-24T20:25:32Z,NONE,False,127,28,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,61dc3502a4a9579faf01129a6581e1d327cf0c12,upgrade Travis CI distro to Ubuntu Bionic (#86)
+96,https://api.github.com/repos/mozilla/libprio/pulls/84,84,[WIP]: Change prio for rlbox sandboxing,"  This patch adds support to use nss functions
+  in rlbox wasm sandbox. We can thus enable the
+  use of Prio as a sandboxed lib for Firefox.",Hyperion101010,32175777,2020-04-24T20:25:32Z,NONE,False,127,28,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,74d6eeaf31d0ecb81ef4ce6e3cf4d465c3740673,"  [WIP]: Change prio for rlbox sandboxing #84
+
+   Made changes in the prio lib to pass nss
+   functions as pointers. Needed to make changes
+   in pclient to not break tests.
+   They will be later implemented in wrapper
+   for firefox."
+97,https://api.github.com/repos/mozilla/libprio/pulls/84,84,[WIP]: Change prio for rlbox sandboxing,"  This patch adds support to use nss functions
+  in rlbox wasm sandbox. We can thus enable the
+  use of Prio as a sandboxed lib for Firefox.",Hyperion101010,32175777,2020-04-24T20:25:32Z,NONE,False,127,28,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,752c2fb89c4a66d948e777226af23931e1f7c55d,"  [WIP]: Change prio for rlbox sandboxing.
+
+    Formatting using mozila style and clang format.
+    Removed callbk.c and added in driver code."
+98,https://api.github.com/repos/mozilla/libprio/pulls/84,84,[WIP]: Change prio for rlbox sandboxing,"  This patch adds support to use nss functions
+  in rlbox wasm sandbox. We can thus enable the
+  use of Prio as a sandboxed lib for Firefox.",Hyperion101010,32175777,2020-04-24T20:25:32Z,NONE,False,127,28,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,44b2964d335dbe7ad87fb9cbcde2859e0701221c,"  [WIP]: Change prio for rlbox sandboxing #84
+
+   Now without mozilla style formating."
+99,https://api.github.com/repos/mozilla/libprio/pulls/84,84,[WIP]: Change prio for rlbox sandboxing,"  This patch adds support to use nss functions
+  in rlbox wasm sandbox. We can thus enable the
+  use of Prio as a sandboxed lib for Firefox.",Hyperion101010,32175777,2020-04-24T20:25:32Z,NONE,False,127,28,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,48c6bd75ca97940225ecc2ff6bca12e29fb59269,"  [WIP]: Change prio for rlbox sandboxing
+
+   Using clang-format 3.9 with style
+   as Mozilla."
+100,https://api.github.com/repos/mozilla/libprio/pulls/84,84,[WIP]: Change prio for rlbox sandboxing,"  This patch adds support to use nss functions
+  in rlbox wasm sandbox. We can thus enable the
+  use of Prio as a sandboxed lib for Firefox.",Hyperion101010,32175777,2020-04-24T20:25:32Z,NONE,False,127,28,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,124f1c2ea43b31bd3937e9d86f84f7cd7c5c9bc3,"  [WIP]: Change prio for rlbox sandboxing
+
+   Changed the callbk file name to NssCtx,
+   Added some comments and minor changes."
+101,https://api.github.com/repos/mozilla/libprio/pulls/84,84,[WIP]: Change prio for rlbox sandboxing,"  This patch adds support to use nss functions
+  in rlbox wasm sandbox. We can thus enable the
+  use of Prio as a sandboxed lib for Firefox.",Hyperion101010,32175777,2020-04-24T20:25:32Z,NONE,False,127,28,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,bab0e56f7504ef429e925719645cb02994ca4e31,"  [WIP]: Change prio for rlbox sandboxing
+
+   Minor changes."
+102,https://api.github.com/repos/mozilla/libprio/pulls/83,83,Test CI,,rhelmer,61412,2020-04-20T18:53:08Z,MEMBER,False,22,2,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,fb785b88b350fa02e4f97def0f34da4a755f4713,Test ci
+103,https://api.github.com/repos/mozilla/libprio/pulls/83,83,Test CI,,rhelmer,61412,2020-04-20T18:53:08Z,MEMBER,False,22,2,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,fb4952e20032b5daa04feaf59edfb67b600b490c,test CI
+104,https://api.github.com/repos/mozilla/libprio/pulls/83,83,Test CI,,rhelmer,61412,2020-04-20T18:53:08Z,MEMBER,False,22,2,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,083eb8fdf8ec3ca099f4a2d4bc0281776b2b797b,Merge branch 'master' into test-ci
+105,https://api.github.com/repos/mozilla/libprio/pulls/82,82,No need to memset memory allocated with calloc,,tititiou36,679652,2020-04-19T10:15:53Z,CONTRIBUTOR,True,1,2,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,ae8f4395706cb140197aa267b809bf8acac220ed,No need to memset memory allocated with calloc
+106,https://api.github.com/repos/mozilla/libprio/pulls/81,81,Fix serialization bug in `prio/serial.c`,"* In `serial_read_packet_client`, we should check that the type
+of the incoming packet matches the type of the `PrioPacketClient`
+passed into `serial_read_packet_client` and fail if the two don't
+match.
+
+* Add a test for this behavior.",henrycg,163574,2020-04-18T12:10:24Z,COLLABORATOR,True,18,1,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,52f5581c20d800f8125dbbfd9c34b0d2e505a42e,"Fix serialization bug in `prio/serial.c`
+
+* In `serial_read_packet_client`, we should check that the type
+of the incoming packet matches the type of the `PrioPacketClient`
+passed into `serial_read_packet_client` and fail if the two don't
+match.
+
+* Add a test for this behavior."
+107,https://api.github.com/repos/mozilla/libprio/pulls/81,81,Fix serialization bug in `prio/serial.c`,"* In `serial_read_packet_client`, we should check that the type
+of the incoming packet matches the type of the `PrioPacketClient`
+passed into `serial_read_packet_client` and fail if the two don't
+match.
+
+* Add a test for this behavior.",henrycg,163574,2020-04-18T12:10:24Z,COLLABORATOR,True,18,1,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,4cae47cb4f662ea641aecfc8689fe9cdc6e87c81,Merge branch 'master' into avoid-server-confusion
+108,https://api.github.com/repos/mozilla/libprio/pulls/80,80,Fix memory leak in serial_read_packet_client,"This fixes several checks that jump over the (non-empty) `cleanup` section in `serial_read_packet_client`, as well as a straight return in the switch case.",choller,1140686,2020-04-17T11:46:10Z,MEMBER,True,55,51,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,9c14b02d42d5c6dbf0987bf1142c5943e1557c77,Fix memory leak in serial_read_packet_client
+109,https://api.github.com/repos/mozilla/libprio/pulls/80,80,Fix memory leak in serial_read_packet_client,"This fixes several checks that jump over the (non-empty) `cleanup` section in `serial_read_packet_client`, as well as a straight return in the switch case.",choller,1140686,2020-04-17T11:46:10Z,MEMBER,True,55,51,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,e9a3d3c3968578d2877f79b8d6b277abcf347d8e,"Fixing more memory leaks in `prio/serial.c`
+
+The `UP_CHECK` macro just returned on failure, rather than
+jumping to the `cleanup` label. This commit replaces `UP_CHECK`
+with `UP_CHECKC`, which jumps to `cleanup` on failure."
+110,https://api.github.com/repos/mozilla/libprio/pulls/80,80,Fix memory leak in serial_read_packet_client,"This fixes several checks that jump over the (non-empty) `cleanup` section in `serial_read_packet_client`, as well as a straight return in the switch case.",choller,1140686,2020-04-17T11:46:10Z,MEMBER,True,55,51,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,93b5539d02387c10d6a176a2a9f632327cb43507,"Replace `P_CHECK` with `P_CHECKC` in prio/serial.c
+
+Every function in `prio/serial.c` has a `cleanup` label, but
+much of the code in these functions won't actually jump to
+cleanup on failure. As far as I can tell, this doesn't cause
+any additional memory leaks, but in case someone adds cleanup
+code at the `cleanup` label in the future, it seems prudent to
+always jump to `cleanup` on failure."
+111,https://api.github.com/repos/mozilla/libprio/pulls/78,78,remove unnecessary runtime call to strlen(),"PRIO_TAG is a fixed-size string, we can use sizeof to the same effect.
+This also has the nice side-effect of removing a variable-length-array
+since AAD_LEN could not be known at compile-time",GabrielGanne,10854961,2019-08-07T14:28:33Z,CONTRIBUTOR,True,1,1,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,fd04a43d8c2def8097ff6e0a2ae831338704ccdd,"remove unnecessary runtime call to strlen()
+
+PRIO_TAG is a fixed-size string, we can use sizeof to the same effect.
+This also has the nice side-effect of removing a variable-length-array
+since AAD_LEN could not be known at compile-time"
+112,https://api.github.com/repos/mozilla/libprio/pulls/74,74,Update SConstruct to modify include path based on sys.platform,This modifies the build script to include the right paths based on the current operating system (macOS or linux).,acmiyaguchi,3304040,2019-04-29T23:57:05Z,COLLABORATOR,True,41,25,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,fce0a6ef66fe860270310c41c5d5b480533e1064,Format SConstruct with black
+113,https://api.github.com/repos/mozilla/libprio/pulls/74,74,Update SConstruct to modify include path based on sys.platform,This modifies the build script to include the right paths based on the current operating system (macOS or linux).,acmiyaguchi,3304040,2019-04-29T23:57:05Z,COLLABORATOR,True,41,25,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,c5c499bee1bd1a8691891128f90050dd8491d22d,Update SConstruct to modify include path based on OS
+114,https://api.github.com/repos/mozilla/libprio/pulls/74,74,Update SConstruct to modify include path based on sys.platform,This modifies the build script to include the right paths based on the current operating system (macOS or linux).,acmiyaguchi,3304040,2019-04-29T23:57:05Z,COLLABORATOR,True,41,25,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,5f50228157ff2a84ad1ca6fb976c290b6282324e,Remove unneeded exports
+115,https://api.github.com/repos/mozilla/libprio/pulls/73,73,Add Mozilla Code of Conduct,"Fixes #72
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-30T06:57:05Z,CONTRIBUTOR,True,9,0,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,5fdaf74daccc786ee438469aab1d6650fcab8e8b,"Add Mozilla Code of Conduct file
+
+Fixes #72.
+
+_(Message COC002)_"
+116,https://api.github.com/repos/mozilla/libprio/pulls/73,73,Add Mozilla Code of Conduct,"Fixes #72
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-30T06:57:05Z,CONTRIBUTOR,True,9,0,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,37e93b92ae8a071987b1a92e4dfac981a599135c,Remove comment in CODE_OF_CONDUCT.md
+117,https://api.github.com/repos/mozilla/libprio/pulls/69,69,Remove precomputed table of roots (#68),"There is no need to ship the large precomputed table of roots of unity;
+it's possible to compute the table on the fly in linear time (in the
+table size). This commit:
+* removes the table from `prio/params.h`,
+* removes the script that generates it (`scripts/gen_params.py`), and
+* adds code to generate the table in `prio/config.c`.",henrycg,163574,2019-03-24T01:22:38Z,COLLABORATOR,True,64,4192,8, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,2715b7423cad271f99db14633a930bd2298d98f6,"Remove precomputed table of roots (#68)
+
+There is no need to ship the large precomputed table of roots of unity;
+it's possible to compute the table on the fly in linear time (in the
+table size). This commit:
+* removes the table from `prio/params.h`,
+* removes the script that generates it (`scripts/gen_params.py`), and
+* adds code to generate the table in `prio/config.c`."
+118,https://api.github.com/repos/mozilla/libprio/pulls/69,69,Remove precomputed table of roots (#68),"There is no need to ship the large precomputed table of roots of unity;
+it's possible to compute the table on the fly in linear time (in the
+table size). This commit:
+* removes the table from `prio/params.h`,
+* removes the script that generates it (`scripts/gen_params.py`), and
+* adds code to generate the table in `prio/config.c`.",henrycg,163574,2019-03-24T01:22:38Z,COLLABORATOR,True,64,4192,8, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,623b705439c1afc83026f7ecc02cd2e618054ffe,Point Travis to latest version of NSS
+119,https://api.github.com/repos/mozilla/libprio/pulls/66,66,upgrade nss and tighten up error checking,,rhelmer,61412,2019-02-14T22:17:42Z,MEMBER,True,4,4,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,a50333c751e62fa675d10251be5b3aaba7284245,upgrade nss and tighten up error checking
+120,https://api.github.com/repos/mozilla/libprio/pulls/66,66,upgrade nss and tighten up error checking,,rhelmer,61412,2019-02-14T22:17:42Z,MEMBER,True,4,4,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,06cdec64aa51db54b354f63eef254c4ce5b4ee7b,try different bash syntax
+121,https://api.github.com/repos/mozilla/libprio/pulls/65,65,Ensure that early cleanup runs correctly,,rhelmer,61412,2019-02-14T18:10:14Z,MEMBER,True,27,14,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,93e9ae63486044c5f77b381a699443887bcf41e0,Ensure that early cleanup runs correctly
+122,https://api.github.com/repos/mozilla/libprio/pulls/62,62,use `unsigned long long` to support 64-bit ints on 32-bit platforms,,rhelmer,61412,2019-01-10T00:55:58Z,MEMBER,True,9,9,4, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,26de87463a88cbcef80eca01c81357d4c2b006b6,use  to support 64-bit ints on 32-bit platforms
+123,https://api.github.com/repos/mozilla/libprio/pulls/62,62,use `unsigned long long` to support 64-bit ints on 32-bit platforms,,rhelmer,61412,2019-01-10T00:55:58Z,MEMBER,True,9,9,4, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,dbcfbc81d2b64d59b9cbeb90762f424ac2e080af,Tests and utilitie now use unsigned long long.
+124,https://api.github.com/repos/mozilla/libprio/pulls/61,61,bump NSS version to fix travis-CI build,,rhelmer,61412,2019-01-09T03:36:50Z,MEMBER,True,4,4,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,d52eddd2017dae15ae431c2c8f77894f62824e7a,bump NSS version to fix travis-CI build
+125,https://api.github.com/repos/mozilla/libprio/pulls/60,60,Fix security bug in proof-checking code,"**Short version:** This PR fixes a small security bug in libprio. The bug would have taken quite a bit of work to exploit, but is a bug nonetheless.
+
+**Long version:** Per Appendix D.2 of the full version of the Prio paper, the servers should evaluate the polynomials f, g, and h at a random point r in the set {M+1, ..., modulus-1}, where M is the number of multiplication gates in the ""Valid"" circuit. The implementation previously—and incorrectly—sampled the point r from the larger set {0, ..., modulus-1}.
+
+The probability that a random point r would fall into the ""bad set"" {0, ..., M} is only (M+1)/(modulus size). Since we are using a 72-bit modulus, this probability would be no more than ~1/2^{60} for the data sizes that libprio currently supports. So, with probability ~1/2^{60}, the implementation could leak some bits of information about a client's private data to the servers. This is a pretty small failure probability, but this patch should nonetheless remove it entirely.",henrycg,163574,2019-01-08T05:39:58Z,COLLABORATOR,True,103,3,5, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,7c563bed00a71551bf0a8b636eb9a30aabd5c8bc,Add PRG_get_int_range() function
+126,https://api.github.com/repos/mozilla/libprio/pulls/60,60,Fix security bug in proof-checking code,"**Short version:** This PR fixes a small security bug in libprio. The bug would have taken quite a bit of work to exploit, but is a bug nonetheless.
+
+**Long version:** Per Appendix D.2 of the full version of the Prio paper, the servers should evaluate the polynomials f, g, and h at a random point r in the set {M+1, ..., modulus-1}, where M is the number of multiplication gates in the ""Valid"" circuit. The implementation previously—and incorrectly—sampled the point r from the larger set {0, ..., modulus-1}.
+
+The probability that a random point r would fall into the ""bad set"" {0, ..., M} is only (M+1)/(modulus size). Since we are using a 72-bit modulus, this probability would be no more than ~1/2^{60} for the data sizes that libprio currently supports. So, with probability ~1/2^{60}, the implementation could leak some bits of information about a client's private data to the servers. This is a pretty small failure probability, but this patch should nonetheless remove it entirely.",henrycg,163574,2019-01-08T05:39:58Z,COLLABORATOR,True,103,3,5, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,d9d2629d513c0bb3f9c41425efbe0eb3592b8733,"Fix bug in proof-checking code.
+
+Per Appendix D.2 of the full version of the Prio paper, the servers
+should evaluate the polynomials f, g, and h at a random point r in the
+set {M+1, ..., modulus-1}, where M is the number of multiplication gates
+in the ""Valid"" circuit. The implementation previously sampled the point
+r from the larger set {0, ..., modulus-1}."
+127,https://api.github.com/repos/mozilla/libprio/pulls/60,60,Fix security bug in proof-checking code,"**Short version:** This PR fixes a small security bug in libprio. The bug would have taken quite a bit of work to exploit, but is a bug nonetheless.
+
+**Long version:** Per Appendix D.2 of the full version of the Prio paper, the servers should evaluate the polynomials f, g, and h at a random point r in the set {M+1, ..., modulus-1}, where M is the number of multiplication gates in the ""Valid"" circuit. The implementation previously—and incorrectly—sampled the point r from the larger set {0, ..., modulus-1}.
+
+The probability that a random point r would fall into the ""bad set"" {0, ..., M} is only (M+1)/(modulus size). Since we are using a 72-bit modulus, this probability would be no more than ~1/2^{60} for the data sizes that libprio currently supports. So, with probability ~1/2^{60}, the implementation could leak some bits of information about a client's private data to the servers. This is a pretty small failure probability, but this patch should nonetheless remove it entirely.",henrycg,163574,2019-01-08T05:39:58Z,COLLABORATOR,True,103,3,5, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,c37c560298a41b45d94b20e92f4cff212da987f8,Remove extraneous printf() in test code
+128,https://api.github.com/repos/mozilla/libprio/pulls/60,60,Fix security bug in proof-checking code,"**Short version:** This PR fixes a small security bug in libprio. The bug would have taken quite a bit of work to exploit, but is a bug nonetheless.
+
+**Long version:** Per Appendix D.2 of the full version of the Prio paper, the servers should evaluate the polynomials f, g, and h at a random point r in the set {M+1, ..., modulus-1}, where M is the number of multiplication gates in the ""Valid"" circuit. The implementation previously—and incorrectly—sampled the point r from the larger set {0, ..., modulus-1}.
+
+The probability that a random point r would fall into the ""bad set"" {0, ..., M} is only (M+1)/(modulus size). Since we are using a 72-bit modulus, this probability would be no more than ~1/2^{60} for the data sizes that libprio currently supports. So, with probability ~1/2^{60}, the implementation could leak some bits of information about a client's private data to the servers. This is a pretty small failure probability, but this patch should nonetheless remove it entirely.",henrycg,163574,2019-01-08T05:39:58Z,COLLABORATOR,True,103,3,5, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,35234d8012e6a03b591035b3a0ca55ddeb7d6d97,Fixes per clang-format
+129,https://api.github.com/repos/mozilla/libprio/pulls/59,59,Add auto-generated documentation,"This adds auto-generated documentation through doxygen.
+
+Generated documentation can be previewed at https://acmiyaguchi.github.io/libprio. The [mprio.h](https://acmiyaguchi.github.io/libprio/mprio_8h.html) can be found here; it includes a source tree map and comments from the header itself. I'm planning on using a doxy2swig script to generate better documentation for the python bindings in #56.
+
+The `.travis.yml` has been updated to auto-deploy documentation to a `gh-pages` branch. I've also fixed a few bugs that were preventing the build from completing by upgrading libnss.",acmiyaguchi,3304040,2018-12-12T23:24:48Z,COLLABORATOR,False,2621,85,16, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,bcec4401143dafa756310f179c898c6af83a152b,Add Doxyfile template
+130,https://api.github.com/repos/mozilla/libprio/pulls/59,59,Add auto-generated documentation,"This adds auto-generated documentation through doxygen.
+
+Generated documentation can be previewed at https://acmiyaguchi.github.io/libprio. The [mprio.h](https://acmiyaguchi.github.io/libprio/mprio_8h.html) can be found here; it includes a source tree map and comments from the header itself. I'm planning on using a doxy2swig script to generate better documentation for the python bindings in #56.
+
+The `.travis.yml` has been updated to auto-deploy documentation to a `gh-pages` branch. I've also fixed a few bugs that were preventing the build from completing by upgrading libnss.",acmiyaguchi,3304040,2018-12-12T23:24:48Z,COLLABORATOR,False,2621,85,16, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,269c044a3919696b01dc9fbfc223aabbdfaf6813,Configure doxygen for CI
+131,https://api.github.com/repos/mozilla/libprio/pulls/59,59,Add auto-generated documentation,"This adds auto-generated documentation through doxygen.
+
+Generated documentation can be previewed at https://acmiyaguchi.github.io/libprio. The [mprio.h](https://acmiyaguchi.github.io/libprio/mprio_8h.html) can be found here; it includes a source tree map and comments from the header itself. I'm planning on using a doxy2swig script to generate better documentation for the python bindings in #56.
+
+The `.travis.yml` has been updated to auto-deploy documentation to a `gh-pages` branch. I've also fixed a few bugs that were preventing the build from completing by upgrading libnss.",acmiyaguchi,3304040,2018-12-12T23:24:48Z,COLLABORATOR,False,2621,85,16, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,0aec154efb99e91234b1baa124196dfdc731c960,"Update gen_params.py for doxygen
+
+Run `python scripts/gen_params.py > prio/params.h` from root."
+132,https://api.github.com/repos/mozilla/libprio/pulls/59,59,Add auto-generated documentation,"This adds auto-generated documentation through doxygen.
+
+Generated documentation can be previewed at https://acmiyaguchi.github.io/libprio. The [mprio.h](https://acmiyaguchi.github.io/libprio/mprio_8h.html) can be found here; it includes a source tree map and comments from the header itself. I'm planning on using a doxy2swig script to generate better documentation for the python bindings in #56.
+
+The `.travis.yml` has been updated to auto-deploy documentation to a `gh-pages` branch. I've also fixed a few bugs that were preventing the build from completing by upgrading libnss.",acmiyaguchi,3304040,2018-12-12T23:24:48Z,COLLABORATOR,False,2621,85,16, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,f0847554cb10f93ace18e2aa4b034d569ecc96a8, Modify comments for auto-generated documentation
+133,https://api.github.com/repos/mozilla/libprio/pulls/59,59,Add auto-generated documentation,"This adds auto-generated documentation through doxygen.
+
+Generated documentation can be previewed at https://acmiyaguchi.github.io/libprio. The [mprio.h](https://acmiyaguchi.github.io/libprio/mprio_8h.html) can be found here; it includes a source tree map and comments from the header itself. I'm planning on using a doxy2swig script to generate better documentation for the python bindings in #56.
+
+The `.travis.yml` has been updated to auto-deploy documentation to a `gh-pages` branch. I've also fixed a few bugs that were preventing the build from completing by upgrading libnss.",acmiyaguchi,3304040,2018-12-12T23:24:48Z,COLLABORATOR,False,2621,85,16, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,10fc9e74d3927114ed9f9ebcd5c29cfcabef0168,Move documentation to docs/
+134,https://api.github.com/repos/mozilla/libprio/pulls/59,59,Add auto-generated documentation,"This adds auto-generated documentation through doxygen.
+
+Generated documentation can be previewed at https://acmiyaguchi.github.io/libprio. The [mprio.h](https://acmiyaguchi.github.io/libprio/mprio_8h.html) can be found here; it includes a source tree map and comments from the header itself. I'm planning on using a doxy2swig script to generate better documentation for the python bindings in #56.
+
+The `.travis.yml` has been updated to auto-deploy documentation to a `gh-pages` branch. I've also fixed a few bugs that were preventing the build from completing by upgrading libnss.",acmiyaguchi,3304040,2018-12-12T23:24:48Z,COLLABORATOR,False,2621,85,16, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,87366d3a0198a30afbd2663841e741a0e320b76a,Add auto-generated docs to CI for deployment on Github Pages
+135,https://api.github.com/repos/mozilla/libprio/pulls/59,59,Add auto-generated documentation,"This adds auto-generated documentation through doxygen.
+
+Generated documentation can be previewed at https://acmiyaguchi.github.io/libprio. The [mprio.h](https://acmiyaguchi.github.io/libprio/mprio_8h.html) can be found here; it includes a source tree map and comments from the header itself. I'm planning on using a doxy2swig script to generate better documentation for the python bindings in #56.
+
+The `.travis.yml` has been updated to auto-deploy documentation to a `gh-pages` branch. I've also fixed a few bugs that were preventing the build from completing by upgrading libnss.",acmiyaguchi,3304040,2018-12-12T23:24:48Z,COLLABORATOR,False,2621,85,16, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,ad2592c7b0d21f5c64b68ace498692262df6d6bd,Deploy documentation to gh-pages on master
+136,https://api.github.com/repos/mozilla/libprio/pulls/59,59,Add auto-generated documentation,"This adds auto-generated documentation through doxygen.
+
+Generated documentation can be previewed at https://acmiyaguchi.github.io/libprio. The [mprio.h](https://acmiyaguchi.github.io/libprio/mprio_8h.html) can be found here; it includes a source tree map and comments from the header itself. I'm planning on using a doxy2swig script to generate better documentation for the python bindings in #56.
+
+The `.travis.yml` has been updated to auto-deploy documentation to a `gh-pages` branch. I've also fixed a few bugs that were preventing the build from completing by upgrading libnss.",acmiyaguchi,3304040,2018-12-12T23:24:48Z,COLLABORATOR,False,2621,85,16, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,a62f8afa54b0cc264ee3fc23e5dad975f01c9fc7,Add generated documentation to the README
+137,https://api.github.com/repos/mozilla/libprio/pulls/58,58,Issue 57 correctly check max input length,"- Expose the maximum allowable number of data fields as `PrioConfig_maxDataFields`.
+- Fix bug in `prio/config.c` that implements the data-fields bounds check incorrectly.
+- Tests for above.",henrycg,163574,2018-11-03T19:17:06Z,COLLABORATOR,True,46,10,3, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,f01d40b03b8475a15e87e77a1b5b7235532bd02f,"Issue #57 - Expose maximum number of data fields
+
+- Add PrioConfig_maxDataFields() to public API
+- Check that the number of data fields passed in during config
+  creation is not too large."
+138,https://api.github.com/repos/mozilla/libprio/pulls/58,58,Issue 57 correctly check max input length,"- Expose the maximum allowable number of data fields as `PrioConfig_maxDataFields`.
+- Fix bug in `prio/config.c` that implements the data-fields bounds check incorrectly.
+- Tests for above.",henrycg,163574,2018-11-03T19:17:06Z,COLLABORATOR,True,46,10,3, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,bdab42635a3059cde4c7735b2b8e56ea9fa5ef56,Test for PrioConfig_maxDataFields()
+139,https://api.github.com/repos/mozilla/libprio/pulls/58,58,Issue 57 correctly check max input length,"- Expose the maximum allowable number of data fields as `PrioConfig_maxDataFields`.
+- Fix bug in `prio/config.c` that implements the data-fields bounds check incorrectly.
+- Tests for above.",henrycg,163574,2018-11-03T19:17:06Z,COLLABORATOR,True,46,10,3, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,cad6bc1c31fe8df8b8093d3318fb2764dfb53a26,Fix formatting per clang-format.
+140,https://api.github.com/repos/mozilla/libprio/pulls/54,54,Ensure that output does not overflow,"This adds some simple sanity checking to the `TotalShare_set_final` function to make sure that we never run into an integer overflow. We should never hit this case, but I am adding this just to be safe.",henrycg,163574,2018-10-09T03:41:03Z,COLLABORATOR,True,17,4,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,e5c6952d609dc7a422c86ab6f22e82669f5b0a2d,Ensure that output does not overflow
+141,https://api.github.com/repos/mozilla/libprio/pulls/53,53,issue #43 - add travis-ci integration for osx,added support for testing libprio on osx,ghost,10137,2018-10-08T18:06:36Z,NONE,True,22,11,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,12f054f0fd2a01f5ac5592d6043e999048090e08,issue #43 - add travis-ci integration for osx
+142,https://api.github.com/repos/mozilla/libprio/pulls/53,53,issue #43 - add travis-ci integration for osx,added support for testing libprio on osx,ghost,10137,2018-10-08T18:06:36Z,NONE,True,22,11,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,0eb604923b0b16341323b9c727387726cb3f1def,opt for using clang-format on linux side only
+143,https://api.github.com/repos/mozilla/libprio/pulls/52,52,memory leak in fft_interpolate_raw,"This should probably be `MP_CHECKC`. Otherwise this leaks.
+(Found by coverity)",franziskuskiefer,890105,2018-09-28T07:56:49Z,CONTRIBUTOR,True,2,2,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,0be71bda721f7ae129e15e5f3fd5929a9677cdc7,"memory leak in fft_interpolate_raw
+
+This should probably be `MP_CHECKC`. Otherwise this leaks.
+(Found by coverity)"
+144,https://api.github.com/repos/mozilla/libprio/pulls/51,51,Functions for import/export of private keys,"* This commit adds import/export functions for private keys to fix #48 .
+* Also, while working on this, I realized that having the clang sanitizers on interferes with running valgrind, so I have a commit in here that allows turning the sanitizers on/off independently of `DEBUG` mode.",henrycg,163574,2018-09-27T23:15:15Z,COLLABORATOR,True,722,257,14, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,8721a1a44339bc5442964c8de79a2f3ae9500f91,"Allow DEBUG mode without sanitizers
+
+Valgrind is incompatible with AddressSanitizer, so it is nice to turn
+on DEBUG mode without the sanitizers."
+145,https://api.github.com/repos/mozilla/libprio/pulls/51,51,Functions for import/export of private keys,"* This commit adds import/export functions for private keys to fix #48 .
+* Also, while working on this, I realized that having the clang sanitizers on interferes with running valgrind, so I have a commit in here that allows turning the sanitizers on/off independently of `DEBUG` mode.",henrycg,163574,2018-09-27T23:15:15Z,COLLABORATOR,True,722,257,14, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,469ee525649afced0bb1f81ea3baf6dc2ebe13c2,PrivateKey import/export functions
+146,https://api.github.com/repos/mozilla/libprio/pulls/51,51,Functions for import/export of private keys,"* This commit adds import/export functions for private keys to fix #48 .
+* Also, while working on this, I realized that having the clang sanitizers on interferes with running valgrind, so I have a commit in here that allows turning the sanitizers on/off independently of `DEBUG` mode.",henrycg,163574,2018-09-27T23:15:15Z,COLLABORATOR,True,722,257,14, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,81d7bbfda0647c8c6b0209f5e8d660ee5a493502,"Define PT_CHECK*() macros for better test output
+
+When using P_CHECKC(), you get no information about where
+or why the test failed. These macros also call `mu_check()`
+so that you can more easily figure out what went wrong."
+147,https://api.github.com/repos/mozilla/libprio/pulls/51,51,Functions for import/export of private keys,"* This commit adds import/export functions for private keys to fix #48 .
+* Also, while working on this, I realized that having the clang sanitizers on interferes with running valgrind, so I have a commit in here that allows turning the sanitizers on/off independently of `DEBUG` mode.",henrycg,163574,2018-09-27T23:15:15Z,COLLABORATOR,True,722,257,14, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,eed27012ce7caf2c73c4acebcf47e2ebea875f3d,Fix clang-format issues
+148,https://api.github.com/repos/mozilla/libprio/pulls/51,51,Functions for import/export of private keys,"* This commit adds import/export functions for private keys to fix #48 .
+* Also, while working on this, I realized that having the clang sanitizers on interferes with running valgrind, so I have a commit in here that allows turning the sanitizers on/off independently of `DEBUG` mode.",henrycg,163574,2018-09-27T23:15:15Z,COLLABORATOR,True,722,257,14, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,07aefe4f625ea5ffe9562765675a3eb05cc10fbb,Configure travis to use NSS 3.39
+149,https://api.github.com/repos/mozilla/libprio/pulls/51,51,Functions for import/export of private keys,"* This commit adds import/export functions for private keys to fix #48 .
+* Also, while working on this, I realized that having the clang sanitizers on interferes with running valgrind, so I have a commit in here that allows turning the sanitizers on/off independently of `DEBUG` mode.",henrycg,163574,2018-09-27T23:15:15Z,COLLABORATOR,True,722,257,14, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,d5a8f4d15370008ffa31d7f9bb1e93a01e61748b,Update README with new version dependencies.
+150,https://api.github.com/repos/mozilla/libprio/pulls/51,51,Functions for import/export of private keys,"* This commit adds import/export functions for private keys to fix #48 .
+* Also, while working on this, I realized that having the clang sanitizers on interferes with running valgrind, so I have a commit in here that allows turning the sanitizers on/off independently of `DEBUG` mode.",henrycg,163574,2018-09-27T23:15:15Z,COLLABORATOR,True,722,257,14, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,501edc7bdcb59bf51bf1da9f436feeb8bf71346e,"Fixes per rhelmer's review
+
+* Fix typos.
+* Use (pointer,length)-style arguments for import and export functions."
+151,https://api.github.com/repos/mozilla/libprio/pulls/50,50,Add contact details for security bugs,"* Remove warning about security-critical TODOs, since we fixed all of those.
+* Add contact info for security-critical bugs. I assume that these should go to Mozilla. Based on the information on Mozilla's bug bounty page, critical libprio bugs should be eligible for bug bounties.",henrycg,163574,2018-09-27T01:30:10Z,COLLABORATOR,True,4,5,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,bf71c62bccfef0208b5f8b48d8dbbce7e69b6227,Add contact details for security bugs
+152,https://api.github.com/repos/mozilla/libprio/pulls/49,49,Move `PK11_FreeSlot` below `cleanup` label,"While looking at the code in `encrypt.c`, I noticed that there's a bug that might cause `slot` to never get cleaned up.
+",henrycg,163574,2018-09-26T04:08:48Z,COLLABORATOR,True,5,3,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,3127132316220bcc605c30fdb03e41254afabd85,Move `PK11_FreeSlot` below `cleanup` label
+153,https://api.github.com/repos/mozilla/libprio/pulls/47,47,issue #42 - use appveyor to build+test libprio on Windows,,rhelmer,61412,2018-09-24T07:51:05Z,MEMBER,False,48,0,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,6b26355fdc0302e215d45dc544e64644e88f199d,issue #42 - use appveyor to build+test libprio on Windows
+154,https://api.github.com/repos/mozilla/libprio/pulls/47,47,issue #42 - use appveyor to build+test libprio on Windows,,rhelmer,61412,2018-09-24T07:51:05Z,MEMBER,False,48,0,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,387bf718b4c70fb9319d869b9551de5c5542c69a,disable cloning deps until I can figured out how to get appveyor to be ok with multiple VS solutions files
+155,https://api.github.com/repos/mozilla/libprio/pulls/46,46,Use AddressSanitizer and UBSanitizer in ptest,"Per #44:
+* In debug mode, enable clang's AddressSanitizer and UndefinedBehaviorSanitizer.
+* Configure Travis to compile in debug mode.
+
+These should catch some memory/C errors in testing.",henrycg,163574,2018-09-24T05:04:36Z,COLLABORATOR,True,5,2,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,9e383390ff3561372fbddba9b706b74975d89363,Use AddressSanitizer and UBSanitizer in ptest
+156,https://api.github.com/repos/mozilla/libprio/pulls/45,45,Remove all variable-length arrays on the stack,"This commit removes all stack-allocated VLAs.
+
+Last week, @sadjad convinced me that stack-allocated arrays are dangerous: If an attacker can control the size of the allocated array, the attacker can allocate a huge array on the stack and crash the program using a stack overflow.
+
+I don't think that this is a terribly pressing concern for libprio, but since MSVC doesn't support VLAs anyways, we might as well get rid of them entirely.",henrycg,163574,2018-09-24T01:13:46Z,COLLABORATOR,True,357,302,13, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,75f9b389c654ecbc397f6d7d53ceb95de3e4d788,Remove all variable-length arrays
+157,https://api.github.com/repos/mozilla/libprio/pulls/45,45,Remove all variable-length arrays on the stack,"This commit removes all stack-allocated VLAs.
+
+Last week, @sadjad convinced me that stack-allocated arrays are dangerous: If an attacker can control the size of the allocated array, the attacker can allocate a huge array on the stack and crash the program using a stack overflow.
+
+I don't think that this is a terribly pressing concern for libprio, but since MSVC doesn't support VLAs anyways, we might as well get rid of them entirely.",henrycg,163574,2018-09-24T01:13:46Z,COLLABORATOR,True,357,302,13, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,12cad8be43926dd2a603ab893bbb16dc63b62259,Fix indenting
+158,https://api.github.com/repos/mozilla/libprio/pulls/40,40,"Linux distros expect NSS headers to not have nss/ prefix on include, …",…see https://bugzilla.mozilla.org/show_bug.cgi?id=1491289,rhelmer,61412,2018-09-17T21:26:04Z,MEMBER,True,20,20,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,98b7ffae2af1bb7a508ebc74be7ec1ae7fe5ab79,"Linux distros expect NSS headers to not have nss/ prefix on include, see https://bugzilla.mozilla.org/show_bug.cgi?id=1491289"
+159,https://api.github.com/repos/mozilla/libprio/pulls/40,40,"Linux distros expect NSS headers to not have nss/ prefix on include, …",…see https://bugzilla.mozilla.org/show_bug.cgi?id=1491289,rhelmer,61412,2018-09-17T21:26:04Z,MEMBER,True,20,20,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,3c1c82660d57d68d58d739cbc4f3a3097917a344,put /usr/include/nss on default path
+160,https://api.github.com/repos/mozilla/libprio/pulls/40,40,"Linux distros expect NSS headers to not have nss/ prefix on include, …",…see https://bugzilla.mozilla.org/show_bug.cgi?id=1491289,rhelmer,61412,2018-09-17T21:26:04Z,MEMBER,True,20,20,9, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,123caa1a58472d1fb038365646c45c3e152ab75d,make clang-format happy
+161,https://api.github.com/repos/mozilla/libprio/pulls/39,39,This Firefox-specific browser test was moved to a unit test in https:…,"…//bugzilla.mozilla.org/show_bug.cgi?id=1485620 so we can remove it now
+
+@henrycg would you mind making sure I didn't miss anything in the conversion to the gtest ^? Thanks!",rhelmer,61412,2018-09-17T18:16:56Z,MEMBER,True,0,377,4, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,247cb67cbb9713f80393b66b0b95d3c7dee5b4f9,This Firefox-specific browser test was moved to a unit test in https://bugzilla.mozilla.org/show_bug.cgi?id=1485620 so we can remove it now
+162,https://api.github.com/repos/mozilla/libprio/pulls/38,38,"make roots data read-only, shareable between processes, and smaller on 64-bit platforms","This change shrinks the roots tables themselves by 32K on 64-bit platforms (sadly, no change on 32-bit platforms), places the tables into read-only memory so they can be shared between processes, and eliminates the run-time relocations previously required (tens of kilobytes on 64-bit platforms).
+
+I confess to not building the whole thing, but I did at least verify that `params.h` builds as expected.",froydnj,151096,2018-09-17T13:43:13Z,CONTRIBUTOR,True,4251,8289,4, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,a50b692b6a7015f6b4ec20221186173cf43abd47,"don't clang-format generated roots
+
+The formatted arrays are significantly less readable."
+163,https://api.github.com/repos/mozilla/libprio/pulls/38,38,"make roots data read-only, shareable between processes, and smaller on 64-bit platforms","This change shrinks the roots tables themselves by 32K on 64-bit platforms (sadly, no change on 32-bit platforms), places the tables into read-only memory so they can be shared between processes, and eliminates the run-time relocations previously required (tens of kilobytes on 64-bit platforms).
+
+I confess to not building the whole thing, but I did at least verify that `params.h` builds as expected.",froydnj,151096,2018-09-17T13:43:13Z,CONTRIBUTOR,True,4251,8289,4, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,76a6df66136f3ac66daa58ca0a6b0ea5d97b43f9,"eliminate the need for RootsInv data
+
+Since RootsInv is essentially Roots stored in reverse order, we don't
+need to store an entirely separate array for the inverse roots.  We can
+simply iterate over Roots in reverse order to produce the inverse roots."
+164,https://api.github.com/repos/mozilla/libprio/pulls/38,38,"make roots data read-only, shareable between processes, and smaller on 64-bit platforms","This change shrinks the roots tables themselves by 32K on 64-bit platforms (sadly, no change on 32-bit platforms), places the tables into read-only memory so they can be shared between processes, and eliminates the run-time relocations previously required (tens of kilobytes on 64-bit platforms).
+
+I confess to not building the whole thing, but I did at least verify that `params.h` builds as expected.",froydnj,151096,2018-09-17T13:43:13Z,CONTRIBUTOR,True,4251,8289,4, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,75661bb9f4d7ae7a508c658a40bfed5c98b653c4,"make roots data read-only and shareable between processes
+
+The roots of unity are currently stored as:
+
+static const char *Roots[] = { ... };
+
+which is inefficient for two reasons:
+
+1. `Roots` is a writable array, even though we only ever read from it.
+2. `Roots` contain pointers, which require run-time relocations.
+   These run-time relocations can be at least as large as the entries
+   in the array.
+
+The upshot is that `Roots` requires more space than necessary and cannot
+be shared between processes.
+
+To fix both of these problems, let's change the storage format to one
+long character array, where individual roots are formatted to all be the
+same width.  This format enables efficient access to individual roots
+and is pointer-free, so no run-time relocations are required."
+165,https://api.github.com/repos/mozilla/libprio/pulls/38,38,"make roots data read-only, shareable between processes, and smaller on 64-bit platforms","This change shrinks the roots tables themselves by 32K on 64-bit platforms (sadly, no change on 32-bit platforms), places the tables into read-only memory so they can be shared between processes, and eliminates the run-time relocations previously required (tens of kilobytes on 64-bit platforms).
+
+I confess to not building the whole thing, but I did at least verify that `params.h` builds as expected.",froydnj,151096,2018-09-17T13:43:13Z,CONTRIBUTOR,True,4251,8289,4, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,28a77e0ed9af82358122467d37dd6f8e9658306c,"Script works with Python3, add one sanity check"
+166,https://api.github.com/repos/mozilla/libprio/pulls/36,36,Workaround for NSS AES-NI bug on Windows,"I'm hoping that this workaround allows us to use libprio on Windows in spite of [NSS bug 1489691](https://bugzilla.mozilla.org/show_bug.cgi?id=1489691).
+
+My hope is that both of the PRG implementations in this pull request (`PRG_SIMPLE` and `PRG_BUFFERING`) are 
+1. Byte-compatible with each other and
+1. Byte-compatible with the earlier PRG implementation.
+
+If not, then Prio client packets encoded with one version of libprio will be unintelligible to a server using a different version of libprio. To try to ensure that I at least meet goal (1), I kept both the original implementation (`PRG_SIMPLE`) and the workaround (`PRG_BUFFERING`) so that we can easily test one against the other.
+
+We could also just get rid of `PRG_SIMPLE` on all platforms, but ideally once the NSS folks fix the bug, we will be able to get rid of `PRG_BUFFERING` instead.",henrycg,163574,2018-09-13T18:56:24Z,COLLABORATOR,False,332,53,6, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,73e9669d455895216c5d2ced271581b66e52dd44,Workaround for NSS Windows AES-NI bug
+167,https://api.github.com/repos/mozilla/libprio/pulls/35,35,change readme and SConstruct to specify linkflags not ldflags,"PR #34 changes the way compiler flags are read from the environment, and
+SCons seems to want `LINKFLAGS` set in the enviroment instead of
+`LDFLAGS` - this was being mapped before.
+
+It's probably not worth re-mapping this, instead just change it so what is
+specified in the README still works for platforms that need to install
+NSS in a weird place (like macOS and Windows) :)",rhelmer,61412,2018-09-12T04:36:34Z,MEMBER,True,2,2,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,62c87bd9ed3b84b25160c5207cd62048616d9f31,"change readme to specify linkflags not ldflags
+
+PR #34 changes the way compiler flags are read from the environment, and
+SCons seems to want ""LINKFLAGS"" set in the enviroment instead of
+""LDFLAGS"" - this was being mapped before.
+
+It's probably not worth re-mapping this, just changing it so what is
+specified in the README still works for platforms that need to install
+NSS in a weird place (like macOS and Windows) :)"
+168,https://api.github.com/repos/mozilla/libprio/pulls/34,34,Add CCFLAGS to compiler options,"I want to compile libprio with position independent code (`-fPIC`) to wrap it in a Python library. Setting `CFLAGS='-fPIC' scons` unfortunately doesn't work because the flags are reset in MPI.
+
+https://github.com/mozilla/libprio/blob/02beee180ea3e9b88a45059fd878760c48c187ba/mpi/SConscript#L6
+
+This PR adds a compiler flag that isn't overloaded. According to the [SCons documentation](https://www.scons.org/doc/HTML/scons-user.html#cv-CCFLAGS) and [this user guide](http://pages.cs.wisc.edu/~driscoll/software/scons/variables.html), `CCFLAGS` is a commonly used variable that gets passed to both the C and C++ compiler.
+",acmiyaguchi,3304040,2018-09-10T22:29:29Z,COLLABORATOR,True,8,11,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,f160e19201f416cb792894268e36a698a782db76,Add CCFLAGS for compiler options
+169,https://api.github.com/repos/mozilla/libprio/pulls/33,33,bug 1465251 - turned out the last histogram I picked was expired :/ I…,"… checked and it looks like all the ones we are using now are not expired, and I see active code incrementing them.",rhelmer,61412,2018-09-08T19:09:19Z,MEMBER,True,1,1,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,fdb6e33f08446adbf4cae904b3f178a6fcf18e30,"bug 1465251 - turned out the last histogram I picked was expired :/ I checked and it looks like all the ones we are using now are not expired, and I see active code incrementing them."
+170,https://api.github.com/repos/mozilla/libprio/pulls/32,32,"per bug 1465251, switch to sync version of PrioEncoder.encode()","Another silly late-breaking API change - turns out the code using this is all synchronous so making a Promise-based API is counter-productive. Pretty trivial change, but it avoids some terrible JS code in the consumer this way.",rhelmer,61412,2018-09-07T18:23:09Z,MEMBER,True,17,20,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,a8fb5eca5363948dd7ee0e91aecb1a49df4a333e,"per bug 1465251, switch to sync version of PrioEncoder.encode()"
+171,https://api.github.com/repos/mozilla/libprio/pulls/31,31,"per bug 1465251, switch to using boolean-only histograms","Minor change to the histograms we're collecting, also remove the unused `toTypedArray` function.",rhelmer,61412,2018-09-06T18:08:18Z,MEMBER,True,3,11,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,9b98b024fa8edc18c5ce75f41a59aafcfe9131fd,"per bug 1465251, switch to using boolean-only histograms"
+172,https://api.github.com/repos/mozilla/libprio/pulls/30,30,avoid undefined behavior on platforms where char is signed (which wou…,…ld result in integer overflow before),rhelmer,61412,2018-08-30T16:13:08Z,MEMBER,True,1,1,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,a21b86981c9f06b14c25bcf7b12f5ded7ccc7770,avoid undefined behavior on platforms where char is signed (which would result in integer overflow before)
+173,https://api.github.com/repos/mozilla/libprio/pulls/29,29,"scons currently always does a debug build, fix the default and also t…",…he example in the README,rhelmer,61412,2018-08-30T04:52:06Z,MEMBER,True,2,2,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,5b9b9fb182464f17bc1629f77a8df4ba5c761b5c,"scons currently always does a debug build, fix the default and also the example in the README"
+174,https://api.github.com/repos/mozilla/libprio/pulls/28,28,Two small fixes,"* Remove unnecessary debug #define
+* Fix formatting in README",henrycg,163574,2018-08-29T21:12:56Z,COLLABORATOR,True,1,3,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,6480773c45f1bf83b33a57f9a63e48002f4e6ae1,"Two small fixes
+
+* Remove unnecessary debug #define
+* Fix formatting in README"
+175,https://api.github.com/repos/mozilla/libprio/pulls/27,27,issue #25 - use clang as the compiler,"I'd suggest using Clang as the supported compiler - I know the big open source projects are moving to it on all platforms, and there are a lot of supported static analysis tools.",rhelmer,61412,2018-08-29T20:42:27Z,MEMBER,True,6,3,3, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,768dfb95515305b870de8e59e1a0d4070de5899a,issue #25 - use clang as the compiler
+176,https://api.github.com/repos/mozilla/libprio/pulls/27,27,issue #25 - use clang as the compiler,"I'd suggest using Clang as the supported compiler - I know the big open source projects are moving to it on all platforms, and there are a lot of supported static analysis tools.",rhelmer,61412,2018-08-29T20:42:27Z,MEMBER,True,6,3,3, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,d1ab26522d3f1d9298605af12b86ed7c94266b25,update README to reflect required SCons version
+177,https://api.github.com/repos/mozilla/libprio/pulls/26,26,"issue #25 - format libprio with clang-format, using Mozilla style","This reformats existing source clang-format using Mozilla style, and adds a script to the Travis config which will print a diff in the build output with any new changes that do not match the style.",rhelmer,61412,2018-08-28T20:11:25Z,MEMBER,True,10732,10662,39, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,08570cc13dbe329f07886494d463bf5232c42c04,"issue #25 - format libprio with clang-format, using Mozilla style"
+178,https://api.github.com/repos/mozilla/libprio/pulls/26,26,"issue #25 - format libprio with clang-format, using Mozilla style","This reformats existing source clang-format using Mozilla style, and adds a script to the Travis config which will print a diff in the build output with any new changes that do not match the style.",rhelmer,61412,2018-08-28T20:11:25Z,MEMBER,True,10732,10662,39, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,dd066ffdc111900b53138d4f671a5c28df7a870b,force clang 3.9 (latest available on Ubuntu Trusty)
+179,https://api.github.com/repos/mozilla/libprio/pulls/26,26,"issue #25 - format libprio with clang-format, using Mozilla style","This reformats existing source clang-format using Mozilla style, and adds a script to the Travis config which will print a diff in the build output with any new changes that do not match the style.",rhelmer,61412,2018-08-28T20:11:25Z,MEMBER,True,10732,10662,39, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,672f04bbcdd1ffea4dbb9d96dc9ea04384b6f375,"remove clang-format file, 3.9 is confused by some settings. try using built-in Mozilla style instead"
+180,https://api.github.com/repos/mozilla/libprio/pulls/24,24,issue #20 - do not use locale-dependent versions of isxdigit and toupper,,rhelmer,61412,2018-08-27T21:12:47Z,MEMBER,True,24,2,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,10aeb86dc8ad28c1fac021d8ef44cd14b2d0ab3d,issue #20 - do not use locale-dependent versions of isxdigit and toupper
+181,https://api.github.com/repos/mozilla/libprio/pulls/24,24,issue #20 - do not use locale-dependent versions of isxdigit and toupper,,rhelmer,61412,2018-08-27T21:12:47Z,MEMBER,True,24,2,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,022985daae6f0d7332ac282a8a33a79c91e50ab7,Fix formatting nits
+182,https://api.github.com/repos/mozilla/libprio/pulls/22,22,issue #21 - add minimal travis-ci integration for libprio,I *think* this is the bare minimum needed to install deps + build + test,rhelmer,61412,2018-08-27T18:45:26Z,MEMBER,True,19,0,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,449c4087d63171f98fc57788c2b5efb7ee388f6c,issue #21 - add minimal travis-ci integration for libprio
+183,https://api.github.com/repos/mozilla/libprio/pulls/19,19,Fix issue #17 - do not use VLAs as MSVC only supports C90,"I couldn't figure out how to update your pull request, so I am opening a new one here.",henrycg,163574,2018-08-26T15:08:53Z,COLLABORATOR,False,80,47,8, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,f71522cce3f9440c2172a1ba15ce752166988459,fix issue #17 - do not use VLAs as MSVC only supports C90
+184,https://api.github.com/repos/mozilla/libprio/pulls/19,19,Fix issue #17 - do not use VLAs as MSVC only supports C90,"I couldn't figure out how to update your pull request, so I am opening a new one here.",henrycg,163574,2018-08-26T15:08:53Z,COLLABORATOR,False,80,47,8, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,64f6641362278e623e2e01b58bee8627b4c09d9d,Remove variable-length arrays
+185,https://api.github.com/repos/mozilla/libprio/pulls/19,19,Fix issue #17 - do not use VLAs as MSVC only supports C90,"I couldn't figure out how to update your pull request, so I am opening a new one here.",henrycg,163574,2018-08-26T15:08:53Z,COLLABORATOR,False,80,47,8, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,fde94b41702eb49de34e7ec680db1a11abf9f246,Fix array len bug in encrypt.c
+186,https://api.github.com/repos/mozilla/libprio/pulls/18,18,fix issue #17 - do not use VLAs as MSVC only supports C90,"Here's a quick stab at this... seems to pass tests when I use the `ptest` tool, and I am running a Firefox tryserver CI build w/ the MSVC builder too, but I could use your expert eye on this @henrycg :)",rhelmer,61412,2018-08-24T16:57:16Z,MEMBER,False,7,6,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,f71522cce3f9440c2172a1ba15ce752166988459,fix issue #17 - do not use VLAs as MSVC only supports C90
+187,https://api.github.com/repos/mozilla/libprio/pulls/16,16,"Work with noopt and non 64bit platforms (android, asan, noopt debug, etc)",This is detailed in issue #15 ,rhelmer,61412,2018-08-23T20:21:09Z,MEMBER,True,2,3,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,85a5dad99ef347a1f9d74146013a80e40a4fd3b8,"fix issue #15 - do not compile the unused mp_comba.c, only works on 64-bit platforms"
+188,https://api.github.com/repos/mozilla/libprio/pulls/16,16,"Work with noopt and non 64bit platforms (android, asan, noopt debug, etc)",This is detailed in issue #15 ,rhelmer,61412,2018-08-23T20:21:09Z,MEMBER,True,2,3,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,f158a497b4debf135f11db30a40b4d51b477acb9,"fix issue #15 - use static inline, as disabling optimizations will cause the compiler not to inline and unable to find these functions to link"
+189,https://api.github.com/repos/mozilla/libprio/pulls/14,14,free PK11 slot as this appears to be leaking NSS resources at shutdown,"So I am still seeing an NSS assert at shutdown when using Prio in debug builds, I debugged it down to here:
+https://searchfox.org/mozilla-central/rev/f2ac80ab7dbde5400a3400d463e07331194dec94/security/nss/lib/pk11wrap/pk11util.c#91
+
+It looks like what's happening is `PK11_GetInternalSlot` is called without a corresponding `PK11_FreeSlot`, which is what this PR does. (`PK11_FreeSlot` returns void which is why there is no error check)
+
+I'm testing on macOS and don't see the assert in my local debug build with this patch, and it also passes the libprio browser-test.",rhelmer,61412,2018-08-23T13:43:58Z,MEMBER,True,1,0,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,b9d21e977ccea7b9a5bfa7cc81afb74dc959427d,free PK11 slot as this appears to be leaking NSS resources at shutdown
+190,https://api.github.com/repos/mozilla/libprio/pulls/13,13,Fixes to browser-test,"* Reorder params to match browser implementation
+* Randomize data on each run",henrycg,163574,2018-08-23T04:23:47Z,COLLABORATOR,True,5,4,2, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,6a440804269449d515a4079ee0fd466aaee062b1,"Fixes to browser-test
+
+* Reorder params to match browser implementation
+* Randomize data on each run"
+191,https://api.github.com/repos/mozilla/libprio/pulls/12,12,look for mpi header in system path instead of file path,"Good thing @franziskuskiefer asked me to remove `mpi/` dir when we import - we were still trying to build against the header in libprio, not the one in m-c!
+
+I've tested that this builds fine in mozilla-central if I add the NSS `mpi/` dir to the include path, and libprio also builds fine for me with Scons.
+",rhelmer,61412,2018-08-11T04:51:57Z,MEMBER,True,35,30,23, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,1f22a2e8874ce85b54d2045032a725e9f4927150,look for mpi header in system path instead of file path
+192,https://api.github.com/repos/mozilla/libprio/pulls/12,12,look for mpi header in system path instead of file path,"Good thing @franziskuskiefer asked me to remove `mpi/` dir when we import - we were still trying to build against the header in libprio, not the one in m-c!
+
+I've tested that this builds fine in mozilla-central if I add the NSS `mpi/` dir to the include path, and libprio also builds fine for me with Scons.
+",rhelmer,61412,2018-08-11T04:51:57Z,MEMBER,True,35,30,23, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,9aaea60bc30171462b48318c3463c26e3c7ecc81,Put #includes in alphabetical order
+193,https://api.github.com/repos/mozilla/libprio/pulls/11,11,fix issue #7 - encode-once.js needs to be rewritten for latest API,"We decided in issue #7 not to spend any more time on this, but we might as well land what we have as it's probably the only working example of how to use the PrioEncoder JS API :)
+
+So it'll be useful as a reference when we move the test code over to the mozilla-central repo.",rhelmer,61412,2018-08-11T03:07:27Z,MEMBER,True,36,18,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,d6226450cee473a3ba98ccc579a178f5acd38de7,fix issue #7 - encode-once.js needs to be rewritten for latest API
+194,https://api.github.com/repos/mozilla/libprio/pulls/10,10,Pick up LDFLAGS and CPPFLAGS from environment,,henrycg,163574,2018-08-10T23:53:40Z,COLLABORATOR,True,6,1,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,5f909ce0fd64dd66cfb0d070cbe0c634ad0189e3,Pick up LDFLAGS and CPPFLAGS from environment
+195,https://api.github.com/repos/mozilla/libprio/pulls/8,8,Fix popen() for Linux and add debugging info,"* popen() on Linux takes only ""r"" as a mode
+* Add some `printf`s for debugging",henrycg,163574,2018-08-10T18:24:49Z,COLLABORATOR,True,14,1,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,ece9252e0cccdbeaaafcb2cd348d2b23e8ccc075,"Fix popen() for Linux and add debugging info
+
+* popen() on Linux takes only ""r"" as a mode"
+196,https://api.github.com/repos/mozilla/libprio/pulls/6,6,import string.h instead of strings.h for windows compat,r? @henrycg ,rhelmer,61412,2018-08-09T05:27:58Z,MEMBER,True,9,9,4, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,b15cdbadf51fe300ddc8146335b077391278a071,import string.h instead of strings.h for windows compat
+197,https://api.github.com/repos/mozilla/libprio/pulls/6,6,import string.h instead of strings.h for windows compat,r? @henrycg ,rhelmer,61412,2018-08-09T05:27:58Z,MEMBER,True,9,9,4, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,2cf9df63b0f40a76da12c091690ce86abb549be6,use memset instead of bzero
+198,https://api.github.com/repos/mozilla/libprio/pulls/5,5,move extern C above includes,r? @henrycg ,rhelmer,61412,2018-08-09T05:25:34Z,MEMBER,True,4,4,1, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,f64487577ce4cad5a93b1e2d9f539f02da3f3b38,move extern C above includes
+199,https://api.github.com/repos/mozilla/libprio/pulls/2,2,Use NSS_InitContext instead of NSS_Init,Have libprio use its own NSS context instead of relying on the global context. This follows the recommendation of https://wiki.mozilla.org/NSS_Library_Init.,henrycg,163574,2018-08-04T05:37:34Z,COLLABORATOR,True,22,15,3, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,07ff286022e307904e3036b28e25f13a2481bb2c,Use NSS_InitContext instead of NSS_Init
+200,https://api.github.com/repos/mozilla/libprio/pulls/1,1,Code for libprio pilot,"These commits contain all of the libprio library code, broken down by functional component. The four commits contain:
+- the core code for the libprio client and servers, 
+- the tests and example code form invoking libprio,
+- a copy of the NSS MPI bignum library (needed to use libprio as a standalone library), and
+- the master build file for scons and a README.
+
+The first commit (with the core code) contains the header files and .c files that will need to go into the browser implementation of libprio, so this code should receive the most scrutiny.
+",henrycg,163574,2018-06-25T21:57:43Z,COLLABORATOR,True,87730,19,127, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,647aed4d359bb4a065a1e73fc5bdcfd14aa9355e,"The core libprio code for Prio client and server.
+
+These files contain the core cryptographic routines needed
+to implement the Prio client and Prio server."
+201,https://api.github.com/repos/mozilla/libprio/pulls/1,1,Code for libprio pilot,"These commits contain all of the libprio library code, broken down by functional component. The four commits contain:
+- the core code for the libprio client and servers, 
+- the tests and example code form invoking libprio,
+- a copy of the NSS MPI bignum library (needed to use libprio as a standalone library), and
+- the master build file for scons and a README.
+
+The first commit (with the core code) contains the header files and .c files that will need to go into the browser implementation of libprio, so this code should receive the most scrutiny.
+",henrycg,163574,2018-06-25T21:57:43Z,COLLABORATOR,True,87730,19,127, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,a3b265b3ca424d7ce1d0ea65120398ba7e6f2642,Tests and example code for libprio.
+202,https://api.github.com/repos/mozilla/libprio/pulls/1,1,Code for libprio pilot,"These commits contain all of the libprio library code, broken down by functional component. The four commits contain:
+- the core code for the libprio client and servers, 
+- the tests and example code form invoking libprio,
+- a copy of the NSS MPI bignum library (needed to use libprio as a standalone library), and
+- the master build file for scons and a README.
+
+The first commit (with the core code) contains the header files and .c files that will need to go into the browser implementation of libprio, so this code should receive the most scrutiny.
+",henrycg,163574,2018-06-25T21:57:43Z,COLLABORATOR,True,87730,19,127, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,42c5ca2b54d73a5c0bb7b54151dc1cf6a4eef738,"A copy of NSS's MPI library.
+
+Since NSS does not export the MPI bignum library, we ship a copy
+with the standalone version of libprio."
+203,https://api.github.com/repos/mozilla/libprio/pulls/1,1,Code for libprio pilot,"These commits contain all of the libprio library code, broken down by functional component. The four commits contain:
+- the core code for the libprio client and servers, 
+- the tests and example code form invoking libprio,
+- a copy of the NSS MPI bignum library (needed to use libprio as a standalone library), and
+- the master build file for scons and a README.
+
+The first commit (with the core code) contains the header files and .c files that will need to go into the browser implementation of libprio, so this code should receive the most scrutiny.
+",henrycg,163574,2018-06-25T21:57:43Z,COLLABORATOR,True,87730,19,127, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,432a37e38cbed0b37022cd43041f7f640dbde922,Build file and README for libprio.
+204,https://api.github.com/repos/mozilla/libprio/pulls/1,1,Code for libprio pilot,"These commits contain all of the libprio library code, broken down by functional component. The four commits contain:
+- the core code for the libprio client and servers, 
+- the tests and example code form invoking libprio,
+- a copy of the NSS MPI bignum library (needed to use libprio as a standalone library), and
+- the master build file for scons and a README.
+
+The first commit (with the core code) contains the header files and .c files that will need to go into the browser implementation of libprio, so this code should receive the most scrutiny.
+",henrycg,163574,2018-06-25T21:57:43Z,COLLABORATOR,True,87730,19,127, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,eaa258b33e8038aa35200b845fe395c39c570b01,Edits per code review by franziskuskiefer
+205,https://api.github.com/repos/mozilla/libprio/pulls/1,1,Code for libprio pilot,"These commits contain all of the libprio library code, broken down by functional component. The four commits contain:
+- the core code for the libprio client and servers, 
+- the tests and example code form invoking libprio,
+- a copy of the NSS MPI bignum library (needed to use libprio as a standalone library), and
+- the master build file for scons and a README.
+
+The first commit (with the core code) contains the header files and .c files that will need to go into the browser implementation of libprio, so this code should receive the most scrutiny.
+",henrycg,163574,2018-06-25T21:57:43Z,COLLABORATOR,True,87730,19,127, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,e56c919f5c74225bacf3a7ffb1e54dfdbcbe9b7f,More edits per code review by franziskuskiefer
+206,https://api.github.com/repos/mozilla/libprio/pulls/1,1,Code for libprio pilot,"These commits contain all of the libprio library code, broken down by functional component. The four commits contain:
+- the core code for the libprio client and servers, 
+- the tests and example code form invoking libprio,
+- a copy of the NSS MPI bignum library (needed to use libprio as a standalone library), and
+- the master build file for scons and a README.
+
+The first commit (with the core code) contains the header files and .c files that will need to go into the browser implementation of libprio, so this code should receive the most scrutiny.
+",henrycg,163574,2018-06-25T21:57:43Z,COLLABORATOR,True,87730,19,127, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,0220a63bfd672eff30a9e9d6aeea89aa5645b2ec,Fix memory bugs found by clang-analyzer
+207,https://api.github.com/repos/mozilla/libprio/pulls/1,1,Code for libprio pilot,"These commits contain all of the libprio library code, broken down by functional component. The four commits contain:
+- the core code for the libprio client and servers, 
+- the tests and example code form invoking libprio,
+- a copy of the NSS MPI bignum library (needed to use libprio as a standalone library), and
+- the master build file for scons and a README.
+
+The first commit (with the core code) contains the header files and .c files that will need to go into the browser implementation of libprio, so this code should receive the most scrutiny.
+",henrycg,163574,2018-06-25T21:57:43Z,COLLABORATOR,True,87730,19,127, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,01492126d85c1271ff92573c8aba28a5f4079f93,"Remove ugly hack from PublicKey_import method
+
+Now we can import a 32-byte curve25519 public key into NSS without
+having to generate a new keypair from scratch."
+208,https://api.github.com/repos/mozilla/libprio/pulls/1,1,Code for libprio pilot,"These commits contain all of the libprio library code, broken down by functional component. The four commits contain:
+- the core code for the libprio client and servers, 
+- the tests and example code form invoking libprio,
+- a copy of the NSS MPI bignum library (needed to use libprio as a standalone library), and
+- the master build file for scons and a README.
+
+The first commit (with the core code) contains the header files and .c files that will need to go into the browser implementation of libprio, so this code should receive the most scrutiny.
+",henrycg,163574,2018-06-25T21:57:43Z,COLLABORATOR,True,87730,19,127, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,6849de93d787aa01c27dc6f9612ba5aecda1f9b5,Replace SConstruct file with simpler one
+209,https://api.github.com/repos/mozilla/libprio/pulls/1,1,Code for libprio pilot,"These commits contain all of the libprio library code, broken down by functional component. The four commits contain:
+- the core code for the libprio client and servers, 
+- the tests and example code form invoking libprio,
+- a copy of the NSS MPI bignum library (needed to use libprio as a standalone library), and
+- the master build file for scons and a README.
+
+The first commit (with the core code) contains the header files and .c files that will need to go into the browser implementation of libprio, so this code should receive the most scrutiny.
+",henrycg,163574,2018-06-25T21:57:43Z,COLLABORATOR,True,87730,19,127, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,4680e1c1effc69dcc860c7d302a8cf0afde3ab98,Update README to incorporate code review edits
+210,https://api.github.com/repos/mozilla/libprio/pulls/1,1,Code for libprio pilot,"These commits contain all of the libprio library code, broken down by functional component. The four commits contain:
+- the core code for the libprio client and servers, 
+- the tests and example code form invoking libprio,
+- a copy of the NSS MPI bignum library (needed to use libprio as a standalone library), and
+- the master build file for scons and a README.
+
+The first commit (with the core code) contains the header files and .c files that will need to go into the browser implementation of libprio, so this code should receive the most scrutiny.
+",henrycg,163574,2018-06-25T21:57:43Z,COLLABORATOR,True,87730,19,127, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,f73361622c9c0e6932fb3f2cb7d77c6021704dd2,"Allow importing and exporting public keys in hex
+
+- Public functions PublicKey_import_hex and PublicKey_export_hex
+- Tests for these functions"
+211,https://api.github.com/repos/mozilla/libprio/pulls/1,1,Code for libprio pilot,"These commits contain all of the libprio library code, broken down by functional component. The four commits contain:
+- the core code for the libprio client and servers, 
+- the tests and example code form invoking libprio,
+- a copy of the NSS MPI bignum library (needed to use libprio as a standalone library), and
+- the master build file for scons and a README.
+
+The first commit (with the core code) contains the header files and .c files that will need to go into the browser implementation of libprio, so this code should receive the most scrutiny.
+",henrycg,163574,2018-06-25T21:57:43Z,COLLABORATOR,True,87730,19,127, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,d124ffb5d03215a7b6427200e7c24e383107da5b,"Add end-to-end test program for PrioEncoder.
+
+Add browser-test utility that
+1) generates new server keypairs,
+2) uses xpcshell to call the PrioEncoder DOM routines,
+3) parses the output of PrioEncoder,
+4) validates the encoded packet, and
+5) checks that the submitted data is what we expected."
+212,https://api.github.com/repos/mozilla/libprio/pulls/1,1,Code for libprio pilot,"These commits contain all of the libprio library code, broken down by functional component. The four commits contain:
+- the core code for the libprio client and servers, 
+- the tests and example code form invoking libprio,
+- a copy of the NSS MPI bignum library (needed to use libprio as a standalone library), and
+- the master build file for scons and a README.
+
+The first commit (with the core code) contains the header files and .c files that will need to go into the browser implementation of libprio, so this code should receive the most scrutiny.
+",henrycg,163574,2018-06-25T21:57:43Z,COLLABORATOR,True,87730,19,127, A C library implementing a basic version of the Prio system for private aggregation. https://crypto.stanford.edu/prio/,Assembly,6ef4ce63fe277ab009f6bf450f12a1019645fe28,Fixes to make browser-test compile on Linux

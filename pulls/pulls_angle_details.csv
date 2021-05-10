@@ -1,0 +1,649 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/angle/pulls/26,26,Bug 1620075. Add a feature flag to allow ES3 on 10.0 devices.,This lets us run WebRender on devices that only support D3D 10.0,jrmuizel,332653,2020-11-09T20:32:33Z,CONTRIBUTOR,True,24,7,6,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,17e40b55e3f23a3c4ee4793c1783ee8ec3e06c97,"Bug 1620075. Add a feature flag to allow ES3 on 10.0 devices.
+
+This lets us run WebRender on devices that only support D3D 10.0"
+1,https://api.github.com/repos/mozilla/angle/pulls/25,25,Qualify TIntermPreprocessorDirective as final,"While building Firefox, this is printed many times
+
+```
+55:44.99 In file included from /Users/m/Downloads/gecko/gfx/angle/checkout/src/compiler/translator/tree_util/IntermNodePatternMatcher.cpp:13:
+55:44.99 /Users/m/Downloads/gecko/gfx/angle/checkout/src/compiler/translator/IntermNode.h:916:37: warning: class with destructor marked 'final' cannot be inherited from [-Wfinal-dtor-non-final-class]
+55:44.99     ~TIntermPreprocessorDirective() final;
+55:44.99                                     ^
+55:44.99 /Users/m/Downloads/gecko/gfx/angle/checkout/src/compiler/translator/IntermNode.h:911:7: note: mark 'sh::TIntermPreprocessorDirective' as 'final' to silence this warning
+55:44.99 class TIntermPreprocessorDirective : public TIntermNode
+55:44.99  
+```
+
+Complies with the coding style:
+
+> {DO} use C++11/14 according to the [Chromium c++ 11/14 guide] (http://chromium-cpp.appspot.com/).",DesWurstes,23437045,2020-09-25T13:51:54Z,NONE,False,2,2,1,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,fd08c62d8cfe9d06596cd604a3df62165d100fcf,Qualify TIntermPreprocessorDirective as final
+2,https://api.github.com/repos/mozilla/angle/pulls/24,24,Use deviceContext instead of deviceContext1,"Sometimes we don't have a deviceContext1 (on Win7) and would crash. We
+on't have any need to use it so just use deviceContext.",jrmuizel,332653,2020-05-11T15:37:48Z,CONTRIBUTOR,True,1,1,1,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,d8a98e12503a8c87f2533c9485b750cbe1e73896,"Use deviceContext instead of deviceContext1
+
+Sometimes we don't have a deviceContext1 (on Win7) and would crash. We
+on't have any need to use it so just use deviceContext."
+3,https://api.github.com/repos/mozilla/angle/pulls/23,23,Handle a null blend state.,"null is used as the default blend state so
+we",jrmuizel,332653,2020-05-07T14:41:01Z,CONTRIBUTOR,True,9,7,1,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,304aafb227f2b33975a803446b5713ea6bdce480,"Handle a null blend state.
+
+null is used as the default blend state so
+we"
+4,https://api.github.com/repos/mozilla/angle/pulls/22,22,Don't use ClearView if we previously used dual source blending on Intel gen6,"Doing a ClearView after a dual source blend seems to cause a TDR on
+Intel SandyBridge. Presumeably this is because the ClearView is
+implemented as a regular draw and the driver doesn't properly set up the
+state.
+
+If we detect that this is going to happen we fall back to the manual
+draw call path. This lets us use ClearView most of the time still.",jrmuizel,332653,2020-05-04T21:53:57Z,CONTRIBUTOR,True,48,2,5,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,076a8dc5d29842f06617a12632e7e84f0e1d78d4,"Don't use ClearView if we previously used dual source blending on Intel gen6.
+
+Doing a ClearView after a dual source blend seems to cause a TDR on
+Intel SandyBridge. Presumeably this is because the ClearView is
+implemented as a regular draw and the driver doesn't properly set up the
+state.
+
+If we detect that this is going to happen we fall back to the manual
+draw call path. This lets us use ClearView most of the time still."
+5,https://api.github.com/repos/mozilla/angle/pulls/21,21,Restrict the slow texture upload workaround to 128bit formats.,"The workaround is slow for having a CPU-visible mirror of the texture, but that mirror is not properly recycled with regards to GPU usage, thus causing a CPU stall on update.
+
+Original reports were related to WebRender vertex texture updates that are RGBA32F and RGBA32U formats. Limiting the workaround to these formats would allow the affected platforms to upload regular texture data faster without stalls.
+
+Related to https://bugzilla.mozilla.org/show_bug.cgi?id=1585404",kvark,107301,2019-11-26T17:00:26Z,CONTRIBUTOR,True,34,11,5,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,c09635eadc3d3b08447f19b733ff81e9ea2b1737,"Restrict the slow texture upload workaround to 128bit formats.
+
+The workaround is slow for having a CPU-visible mirror of the texture, but that mirror is not properly recycled with regards to GPU usage, thus causing a CPU stall on update.
+
+Original reports were related to WebRender vertex texture updates that are RGBA32F and RGBA32U formats. Limiting the workaround to these formats would allow the affected platforms to upload regular texture data faster without stalls."
+6,https://api.github.com/repos/mozilla/angle/pulls/20,20,use image upload workaround for Intel Ivy Bridge with D3D11 renderer,Ivy Bridge hardware displays the same unfortunate behavior as Haswell. Enabling the same fix used for Haswell resolves the issue.,lsalzman,1456849,2019-10-02T20:54:09Z,NONE,False,10,1,3,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,4ac150f76f21769a7d51e1dde7403f8041d3b370,use image upload workaround for Intel Ivy Bridge with D3D11 renderer
+7,https://api.github.com/repos/mozilla/angle/pulls/19,19,Fix occasional corruption of vertex textures in HD4600 GPUs.,"This appears to be caused by the UpdateSubResource
+call, which is worked around by using the other image upload
+path that ANGLE supports.
+
+The workaround doesn't include a driver version, since the
+bug is occurring in the most recent driver that is currently
+available (15.40.42.5063, released 19th Mar 2019).",gw3583,39062770,2019-08-01T20:59:54Z,CONTRIBUTOR,True,3,0,1,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,b22a12031035e41c6bbe6fc1c6fc42de20abb2a0,"Fix occasional corruption of vertex textures in HD4600 GPUs.
+
+This appears to be caused by the UpdateSubResource call,
+which is worked around by enabling the other image upload
+path that ANGLE supports.
+
+The workaround doesn't include a driver version, since the
+bug is occurring in the most recent driver that is currently
+available (15.40.42.5063, released 19th Mar 2019)."
+8,https://api.github.com/repos/mozilla/angle/pulls/18,18,Add Mozilla Code of Conduct,"
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-29T16:48:47Z,NONE,False,15,0,1,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,3a378e31b1581f15b335e5403ff7b2d07bc9bdbc,"See PR for details
+
+_(Message COC002)_"
+9,https://api.github.com/repos/mozilla/angle/pulls/14,14,Add support for EGL_MOZ_create_context_provoking_vertex_dont_care,This is Dan's patch from bug 1492723.,mattwoodrow,1445066,2018-10-08T21:16:44Z,CONTRIBUTOR,True,55,14,12,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,895294a057c022f0db77975a19419abbec4c9226,"Add support for EGL_MOZ_create_context_provoking_vertex_dont_care
+extension"
+10,https://api.github.com/repos/mozilla/angle/pulls/13,13,Support async glProgramBInary,These are the patches from bugzilla bug 1494474.,mattwoodrow,1445066,2018-10-08T20:58:20Z,CONTRIBUTOR,True,357,208,6,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,04adbfe1a2bfad21c549a0d30349d1da620e556c,Make ProgramImpl::load() return a task and support asynchronously waiting for it to complete.
+11,https://api.github.com/repos/mozilla/angle/pulls/13,13,Support async glProgramBInary,These are the patches from bugzilla bug 1494474.,mattwoodrow,1445066,2018-10-08T20:58:20Z,CONTRIBUTOR,True,357,208,6,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,2555cc62e340cef6a2744b7f52f3e8b94aa635e1,Move task definitions to earlier in the file.
+12,https://api.github.com/repos/mozilla/angle/pulls/13,13,Support async glProgramBInary,These are the patches from bugzilla bug 1494474.,mattwoodrow,1445066,2018-10-08T20:58:20Z,CONTRIBUTOR,True,357,208,6,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,e15a25c6fa1d910115ce6fd7a03fa5ffece8a054,Support async Program::load for ProgramD3D.
+13,https://api.github.com/repos/mozilla/angle/pulls/12,12,Bug 1331335 Fix Angle compilation with SSE2,The previous code detected if SSE2 was detected by looking for sse2 in the filename. The only file that this flagged has been removed (rev 53735145cfbe) and a new file needs the flag. So change how we detect if the file needs the flag by just making a list.,tomrittervg,163497,2017-01-18T19:45:52Z,NONE,False,21,3,2,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,9fdbd5ae2cb3fc332d26cadb0af0589d6f17bebc,"Update gyp checkout instructions
+
+gyp is no longer available via SVN; so update it to git and preserve the (very old) specific checkout recommended."
+14,https://api.github.com/repos/mozilla/angle/pulls/12,12,Bug 1331335 Fix Angle compilation with SSE2,The previous code detected if SSE2 was detected by looking for sse2 in the filename. The only file that this flagged has been removed (rev 53735145cfbe) and a new file needs the flag. So change how we detect if the file needs the flag by just making a list.,tomrittervg,163497,2017-01-18T19:45:52Z,NONE,False,21,3,2,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,3a0d39a57093dfb7e8d1b35350e3ad1ad075da90,"Bug 1331335 Fix Angle compilation with SSE2
+
+The previous code detected if SSE2 was detected by looking for sse2 in the filename. The only file that this flagged has been removed (rev 53735145cfbe) and a new file needs the flag. So change how we detect if the file needs the flag by just making a list."
+15,https://api.github.com/repos/mozilla/angle/pulls/11,11,Update gyp checkout instructions,gyp is no longer available via SVN; so update it to git and preserve the (very old) specific checkout recommended.,tomrittervg,163497,2017-01-18T19:20:03Z,NONE,False,4,1,1,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,9fdbd5ae2cb3fc332d26cadb0af0589d6f17bebc,"Update gyp checkout instructions
+
+gyp is no longer available via SVN; so update it to git and preserve the (very old) specific checkout recommended."
+16,https://api.github.com/repos/mozilla/angle/pulls/10,10,Fix infinite recursion in macro expansion (bug1324765),"Fix infinite recursion in macro expansion by cherry-picking fix in newer version of ANGLE.
+
+BUG=angleproject:1600
+TEST=angle_unittests
+
+Change-Id: I72bf81ec060f36255a0f13b132a4fd69b89672ff
+Reviewed-on: https://chromium-review.googlesource.com/412744
+Commit-Queue: Olli Etuaho <oetuaho@nvidia.com>
+Reviewed-by: Jamie Madill <jmadill@chromium.org>",subsevenx2001,1597202,2017-01-04T11:59:13Z,NONE,True,73,4,3,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,8a2c9139f951ae2161a74f50cc6f3fbf1dd6bb72,"Fix infinite recursion in macro expansion
+
+BUG=angleproject:1600
+TEST=angle_unittests
+
+Change-Id: I72bf81ec060f36255a0f13b132a4fd69b89672ff
+Reviewed-on: https://chromium-review.googlesource.com/412744
+Commit-Queue: Olli Etuaho <oetuaho@nvidia.com>
+Reviewed-by: Jamie Madill <jmadill@chromium.org>"
+17,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,11dd96b273f14859802b9dfa58234138ed42b756,Add README.mozilla
+18,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,9da21fb5af0af3d94bab8e8fcc08b85abb9cc616,Fix an issue GCC has with linking to undecorated stdcalls.
+19,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,d345fa5182293ccca75df32ea03f027a9490c3a7,"Add Makefile.in (needed for moz tree for now)
+
+Change-Id: Ib0093021a860afa2df699e1b7b24cccad41b2e35"
+20,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,d9114a053bd3f5949681d954a7cb99fd93414dfb,"Add gyp_mozbuild and associated build machinery for generating moz.build files
+
+Change-Id: I05449681c021dc1e8fc9d618572c666aece99f54"
+21,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,0edb2beeb48d2408000fe876ad2a5b30280893ec,"Update README.mozilla with tagging info
+
+Change-Id: Ic16e1935430fe41da3d221c39c9e43f693208aca"
+22,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,90173175a7d07a28c775e76f5d7ee88c2fbd36ca,"Fix generate_mozbuild to handle non-d3d11 and non-SDK-DX builds
+
+Change-Id: If5a8bf92100433a47d33ba53977a5d37afce4b21"
+23,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,b9ce75a817a1af3644da2aa4ee2b31375e8245f3,"More generate_mozbuild fixes
+
+Change-Id: Ib51cb95e07790121f76cef41fe5473dfdfbc61d2"
+24,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,1e1ccd53a62bc6898390d59836d502cc848cafd4,Fix gyp_mozbuild arguments to commit_id.py
+25,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,2ab06e63584767b9f7ed7d7f0364c72ee75169ba,Fix include location of commit.h in src/common/version.h
+26,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,cce8a0ca37d4c86849bdc4d5ec15e9995bd55c49,"Update generate_mozbuild with new build commands
+
+LIBRARY_NAME and FORCE_SHARED_LIB are no longer supported. They
+were deprecated in bug:
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1059113"
+27,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,2eaa8ee1281d14b034840caca83ab216a74535b2,"Update generate_mozbuild to include ShaderVars.h
+
+New ANGLE header included by ShaderLang.h"
+28,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,25bbc8bf0ebe0f05615205c7c3927d254e57f46e,Fixed generate_mozbuild.py for mingw builds.
+29,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,10fe4396f008c4435ee4e185c9c3fd346e8b5719,Bug 1077148 part 4 - Add and use new moz.build templates for Gecko programs and libraries. r=gps
+30,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,2fcb0d709c03c7bce7266f8f5d2f09a150cfa98d,"Set ANGLE_RESOURCE_SHARE_TYPE = D3D11_RESOURCE_MISC_SHARED_KEYEDMUTEX
+
+We need this to get keyed mutex support."
+31,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,7eb2e07efd8ca33321383167d593f502764852f9,"Bug 1134028 - Don't assign flags to file that may not be defined
+
+The renderer/d3d/d3d11/SwapChain11.cpp source file is only defined if
+building on Windows. The generated moz.build was adjusting the .flags
+of this file unconditionally. This worked up until now because the
+moz.build was only being evaluated on Windows. However, this assumption
+no longer holds true after work in bug 1132771 is complete.
+
+Patch the generation script to put .flags adjustment for the file
+in question behind the same conditional as the SOURCES assignment."
+32,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,af9c829e90d977345b87eec87e04bbeedaaf768e,Bug 1134565 - Fix generate_mozbuild.py to not set DISABLE_STL_WRAPPING in gfx/angle
+33,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,974b1b7e0fc1d279131ee301b7f82b7f2904d447,"Bug 1157835 - Remove the MSVC_ENABLE_PGO flag. r=glandium
+
+Commit on behalf of :dmajor"
+34,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,7dbab14edc0e98d6e991dae5b62f8a9ce14cd88e,Bug 1147447 - Remove disabling of STL wrapping for libGLESv2 and libEGL. r=jrmuizel
+35,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,dd1bf173e4c4ffdb04b67e9ce539dede340a3669,Fix included guards for renderer/d3d/d3d11/dxgi_support_table.h
+36,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,fd0c6f9080da8cb8352747b02ec9c6fc2715f17e,Update mozbuild generator script to work with chromium/2466 branch changes.
+37,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,92f753b83aece1bb42fc2e1b7eebd816f367d2f5,Add a missing include
+38,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,8410aff6e754b2e5253ca3599450305833439624,Remove gcc workaround that was breaking things
+39,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,ad356697d7abc44f6edb427f6f2cca89281c008c,"Update moz build generator
+
+As part of this we now build a libANGLE"
+40,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,cd2057c43b40bbea3141edbded9c16d9fe249609,Enable HLSL translator
+41,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,cb61a8bcefb5c317a3fcafa067221e7ceb2b6736,"Emulate faceforward(float, float, float) when function emulation is enabled
+
+This causes aborts in some versions of the Apple Intel driver.
+
+Change-Id: I9dadb0eebc6ca57c1892737b62f3ad94d4e1c7dc"
+42,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,a059189f03b7a78fcd46cb4ee4378b6855c3c92f,"Always use D3DPOOL_DEFAULT for D3D9 textures.
+
+There is a bug on XP (non-D3D9Ex) where we'd select
+MANAGED in getTexturePool, but trigger a crash in Image9::copyToSurface
+where the source pool is SYSTEMMEM, but the destination pool is
+MANAGED.  It expects the dest pool to be DEFAULT if the source is
+SYSTEMMEM.
+
+This is triggered by the texture-size WebGL conformance test.
+
+Change-Id: I44c39eabb695e2d2f8fba7c582b63c2ff23bde26"
+43,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,d45358e13f9aaf7bd9c3cc79d025b9c0c702c4c6,"E_INVALIDARG sometimes means OOM.
+
+Gecko bug 996266
+r=kamidphish"
+44,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,1c76e6f2b8893ebb588c66f38527b7cbaf0cc044,"Fix for Windows XP conformance crash
+
+Windows XP was failing the WebGL conformance test:
+
+https://www.khronos.org/registry/webgl/sdk/tests/conformance/textures/tex-image-with-format-and-type.html
+
+This was tracked down to missing formats in the D3D9FormatMap. More
+information can be found at:
+        https://bugzilla.mozilla.org/show_bug.cgi?id=1036068#c4
+and
+        https://code.google.com/p/angleproject/issues/detail?id=724"
+45,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,58c02845e804bd82f6fc720ba5606e9ff7b12dd3,Bug 1094097. Fix building without D3D11. r=jrmuizel
+46,https://api.github.com/repos/mozilla/angle/pulls/9,9,Bug 1297924 - Update to ANGLE/2838,,mephisto41,1924982,2016-08-30T04:07:57Z,NONE,False,726,25,17,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,ba9c0dac8fa4886117335b39eea3409cd8829c3b,"Bug 1079400. Limit the maximum render target size to avoid crashes. r=jgilbert
+
+This avoids crashes with certain NVIDIA drivers."
+47,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,00ed7a1f12f88ab9a4ea39429b1392b3a0615e84,"Enable always-available extensions in gl::Context.
+
+We can consolidate exposing these extensions in initCaps. Otherwise
+we have to maintain the lists in every Renderer back-end.
+
+Also do the same treatment for select egl::Display extensions.
+
+BUG=angleproject:1319
+
+Change-Id: I529dd120c6d2cdbb789bd9dd20491e796e97f3f6
+Reviewed-on: https://chromium-review.googlesource.com/345914
+Reviewed-by: Corentin Wallez <cwallez@chromium.org>
+Commit-Queue: Jamie Madill <jmadill@chromium.org>"
+48,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,fd08a9597703aa5e1dfb983c8e228ba8aab8d533,"DisplayGLX: make the Mesa context creation workaround Mesa specific.
+
+BUG=598902
+
+Change-Id: Ib2ca69fb3573dbd0df3dafb4caec0500c7a8aa3b
+Reviewed-on: https://chromium-review.googlesource.com/347071
+Reviewed-by: Jamie Madill <jmadill@chromium.org>
+Commit-Queue: Corentin Wallez <cwallez@chromium.org>"
+49,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,25ab4510787f247ca364a052f7b3389ed7311d7a,"Implement GL_EXT_texture_norm16 extension
+
+BUG=angleproject:1365
+
+Change-Id: I972b156ecb41ff44bc1f6365373ab386bacc85f1
+Reviewed-on: https://chromium-review.googlesource.com/346530
+Reviewed-by: Jamie Madill <jmadill@chromium.org>
+Commit-Queue: Jamie Madill <jmadill@chromium.org>"
+50,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,35170f5c329f74623643421c61fa1cd1d9a8a01e,"Fix Renderer generator script.
+
+This script breaks peridocially because we don't have automated tests
+for it. Split the FBO attachment object class into its own file, and
+also fix a couple other small snags that prevented the script from
+running.
+
+This will facilitate generating Vulkan renderer stubs.
+
+BUG=angleproject:1319
+
+Change-Id: I30a6ce4ab0adad962cea76731dbe82837c5c9a1b
+Reviewed-on: https://chromium-review.googlesource.com/347064
+Reviewed-by: Corentin Wallez <cwallez@chromium.org>
+Commit-Queue: Jamie Madill <jmadill@chromium.org>"
+51,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,9e54b5af89883d3add301b00f11c57c1efda579c,"Add Vulkan stubs.
+
+Currently enabled for Windows by default.
+
+BUG=angleproject:1319
+
+Change-Id: I87921c579bee466465fb1e3f629bb3a40fdff659
+Reviewed-on: https://chromium-review.googlesource.com/328730
+Reviewed-by: Corentin Wallez <cwallez@chromium.org>
+Commit-Queue: Jamie Madill <jmadill@chromium.org>"
+52,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,901b379f0cb6368658874f40e244b01d6bfc4039,"Fix use-after-free when deleting share contexts.
+
+The pattern of gen context, share context, free context, then allocate
+a shared GL object in the second context would cause a use-after-free
+of the ContextImpl as a GLFactory. Fix this by passing the factory
+as a parameter to the resource manager allocation methods instead of
+storing the factory pointer. This allows the same ResourceManager to
+work with separate Context implementations, which will work with
+non-virtual contexts.
+
+BUG=612931
+
+Change-Id: Ifceeb893bebd072f318963d935ff9d17181f5305
+Reviewed-on: https://chromium-review.googlesource.com/347463
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Commit-Queue: Jamie Madill <jmadill@chromium.org>
+Reviewed-by: Corentin Wallez <cwallez@chromium.org>"
+53,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,946903d23ae361ddb05d2c0f64b339eb1694311b,"Remove usage of auto_ptr in MacroExpander
+
+BUG=angleproject:1269
+
+Change-Id: I1fafa102b065f6da1797e8790ec3ed498d9d8b45
+Reviewed-on: https://chromium-review.googlesource.com/339379
+Reviewed-by: Jamie Madill <jmadill@chromium.org>
+Commit-Queue: Corentin Wallez <cwallez@chromium.org>"
+54,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,064da41c7e7caefc7babb564917d6dd151f7951d,"doc/ContributingCode.md add more links needed at given context
+
+Change-Id: I331ac7b24fd35735a0822a6b86ece66e1847f475
+Reviewed-on: https://chromium-review.googlesource.com/347130
+Reviewed-by: Jamie Madill <jmadill@chromium.org>
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Commit-Queue: Geoff Lang <geofflang@chromium.org>"
+55,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,e31fd8753bb62c6d951efb9be463f7671d342b15,"Enable Release ASSERT in ANGLE.
+
+This will mainly affect the Chromium bots.
+
+BUG=angleproject:790
+
+Change-Id: I0c4318e83eedba851f15b3b139551cdb6a2fde12
+Reviewed-on: https://chromium-review.googlesource.com/346103
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Reviewed-by: Kenneth Russell <kbr@chromium.org>
+Commit-Queue: Jamie Madill <jmadill@chromium.org>"
+56,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,093a4c3c0d0d2b2cfcbaf2b7547dc24ac3e30e3b,"Fix README.md for commonmark with small edits
+
+Change-Id: Id7ed37945744a083e6eb5b6a792f8379b7b98bac
+Reviewed-on: https://chromium-review.googlesource.com/348200
+Reviewed-by: Jamie Madill <jmadill@chromium.org>
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Commit-Queue: Geoff Lang <geofflang@chromium.org>"
+57,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,d787e50bcd1ff65611867297d5c58206bde0fbd1,"Try more to use ANGLE_TRY.
+
+Also refactor the Renderer11::copyImage functions to share code.
+
+BUG=angleproject:1384
+
+Change-Id: I95f4266c0c9b67a13cba17797989fcc0b0d50c1d
+Reviewed-on: https://chromium-review.googlesource.com/347248
+Reviewed-by: Corentin Wallez <cwallez@chromium.org>
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Commit-Queue: Jamie Madill <jmadill@chromium.org>"
+58,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,44c2156ef0fc0ddaa9a71603f725180c8c611f82,"D3D11: Fix CopyTexture for ES3 types.
+
+We were passing a sized format and indexing a table which expects unsized.
+
+BUG=angleproject:1384
+
+Change-Id: I69eb8e3d66cfb2178e3a7a4ddb93a54f47bbc938
+Reviewed-on: https://chromium-review.googlesource.com/347249
+Reviewed-by: Corentin Wallez <cwallez@chromium.org>
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Commit-Queue: Jamie Madill <jmadill@chromium.org>"
+59,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,c8ec0b20537cfb19f5c58de0ea63c38beb1c0eb9,"Roll buildtools.
+
+This will include a new clang-format for standalone ANGLE.
+
+BUG=None
+
+Change-Id: Ia4a888c77487d03c2c83989c5f565dea993d5a06
+Reviewed-on: https://chromium-review.googlesource.com/348374
+Reviewed-by: Geoff Lang <geofflang@chromium.org>"
+60,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,2766ecbaa566735f2dfaecbeccf5dd98065e9932,"Add cmdline help to commit_id.py
+
+Change-Id: I2b87e0b60f40d345388562e33ed8eb7010adf186
+Reviewed-on: https://chromium-review.googlesource.com/349040
+Reviewed-by: Jamie Madill <jmadill@chromium.org>"
+61,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,171e6a5806300855da8f6408703fa7ef4b0d4089,"ProgramGL: translate location in setUniform1uiv
+
+BUG=angleproject:1401
+
+Change-Id: I5d08ecb2d4090e4be049dc6d25fc2ea17911ff2c
+Reviewed-on: https://chromium-review.googlesource.com/349011
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Reviewed-by: Jamie Madill <jmadill@chromium.org>
+Commit-Queue: Corentin Wallez <cwallez@chromium.org>"
+62,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,e2e406c3a4fffc8be04631a6da3934cb180f4349,"Add base::numerics for safe math and conversions.
+
+This replaces are ""IsUnsignedXXXSafe"" family of methods.
+Also add overflow checks to unpack block sizes.
+
+BUG=angleproject:1397
+
+Change-Id: Ib47be149b0486c70f795b0d0f8899441faac9340
+Reviewed-on: https://chromium-review.googlesource.com/348062
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Commit-Queue: Jamie Madill <jmadill@chromium.org>"
+63,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,513558d373d11d18c6a9ce509ed9a5bc5328a2f4,"Pass depth to computeBlockSize.
+
+This was very wrong for 3D textures.
+
+BUG=angleproject:1384
+
+Change-Id: I7f042449e30e1e909778c0524d1ce99d20ddfd65
+Reviewed-on: https://chromium-review.googlesource.com/348063
+Reviewed-by: Corentin Wallez <cwallez@chromium.org>
+Commit-Queue: Jamie Madill <jmadill@chromium.org>"
+64,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,7c5d2364d3d4ed320326e02bd92453db0fb38259,"Fix GL_KHR_debug extension functions names
+
+Otherwise, running end2end tests on Nexus 5X crashes.
+
+BUG=angleproject:1362
+TEST=angle_end2end_tests on Nexus 5X
+
+Change-Id: I063d9f9836a1575cbf0abe361dbf8b2c1492105d
+Reviewed-on: https://chromium-review.googlesource.com/349420
+Reviewed-by: Jamie Madill <jmadill@chromium.org>
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Commit-Queue: Yuly Novikov <ynovikov@chromium.org>"
+65,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,ae0c126a7a599182e36f2b1b2ebcfc8b78e3b471,"Move getSwapBehavior call to be after SurfaceImpl initialize
+
+Otherwise, end2end tests crash on Nexus 5X,
+since the underlying EGL surface doesn't exist
+at the time of getSwapBehavior call.
+
+BUG=angleproject:1362
+TEST=angle_end2end_tests on Nexus 5X
+
+Change-Id: I550e46ee82592b9d1ea49a3c968d7ffad3ab06f7
+Reviewed-on: https://chromium-review.googlesource.com/349430
+Reviewed-by: Jamie Madill <jmadill@chromium.org>
+Commit-Queue: Yuly Novikov <ynovikov@chromium.org>"
+66,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,27b96979263fec7d5d61ee432c22e7a0da16fffe,"Add how to update working copy after change is submitted
+
+Change-Id: I387249d29822d91a6126f6c25cb35e8b80cb4c36
+Reviewed-on: https://chromium-review.googlesource.com/349460
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Commit-Queue: Geoff Lang <geofflang@chromium.org>"
+67,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,c88d8354479c2e8021ceacebed1450d509cf8ffa,"Use MapBufferRangeWithFallback in VertexArrayGL::streamAttributes
+
+Otherwise, end2end tests crash on Nexus 5X,
+because Adreno driver doesn't provide glMapBuffer.
+
+BUG=angleproject:1362
+TEST=angle_end2end_tests on Nexus 5X and Linux
+
+Change-Id: I6207eca2d0e03eee957bb612271a66016fd562bb
+Reviewed-on: https://chromium-review.googlesource.com/349421
+Reviewed-by: Jamie Madill <jmadill@chromium.org>
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Commit-Queue: Yuly Novikov <ynovikov@chromium.org>"
+68,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,c3c140995bacc04036d9519a2c34bc1c328553cc,"README.md group links by purpose and add Gerrit there
+
+Change-Id: Icb15891d4325ad1724647f5d6faf0d17fbb50269
+Reviewed-on: https://chromium-review.googlesource.com/349470
+Reviewed-by: Jamie Madill <jmadill@chromium.org>
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Commit-Queue: Geoff Lang <geofflang@chromium.org>"
+69,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,07529ff8dcacd94b93d432122d0c6aa68631843a,"Remove const qualifier from generateConfigs
+
+Requested in https://chromium-review.googlesource.com/349353
+
+BUG=angleproject:1362
+
+Change-Id: I989757c2fb8f65d5afcfb177b7f8da1414871e6f
+Reviewed-on: https://chromium-review.googlesource.com/349694
+Reviewed-by: Corentin Wallez <cwallez@chromium.org>
+Reviewed-by: Jamie Madill <jmadill@chromium.org>
+Commit-Queue: Yuly Novikov <ynovikov@chromium.org>"
+70,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,acccc6c92739f410fed0eb2035ea99d63fe0c4b3,"Vulkan: Hook up Renderer create functions.
+
+Do this in a separate CL to preserve the renderer generation.
+
+BUG=angleproject:1319
+
+Change-Id: I6d5768f199f6aabff747b3708c0625ff78e1ceb0
+Reviewed-on: https://chromium-review.googlesource.com/349424
+Reviewed-by: Corentin Wallez <cwallez@chromium.org>
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Commit-Queue: Jamie Madill <jmadill@chromium.org>"
+71,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,a6426d675341a6cccc0fefa34eea7bf55a5ba7e9,"Android GL backend and end2end tests
+
+Just the bare minimum implementation for end2end tests to run.
+
+BUG=angleproject:1362
+TEST=angle_end2end_tests on Nexus 5X
+
+Change-Id: I92293e0f8bdc2ffaa5d4661927750d7cb3d931e6
+Reviewed-on: https://chromium-review.googlesource.com/349353
+Reviewed-by: Jamie Madill <jmadill@chromium.org>
+Commit-Queue: Yuly Novikov <ynovikov@chromium.org>"
+72,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,149a099948cb0ffdf31057d33d0e5d327079adcf,"Translate requirements of GL_EXT_draw_buffers to GL_ARB_draw_buffers.
+
+GL_ARB_draw_buffers adds special semantics when writing to gl_FragData even
+if multiple renderbuffers is part of the core spec so it needs to be declared
+in the translated shader.
+
+BUG=617410
+
+Change-Id: Id5524634c278ba303413b11251d560744f2517ca
+Reviewed-on: https://chromium-review.googlesource.com/350121
+Reviewed-by: Zhenyao Mo <zmo@chromium.org>
+Reviewed-by: Jamie Madill <jmadill@chromium.org>
+Commit-Queue: Geoff Lang <geofflang@chromium.org>"
+73,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,afe93f65aaba1e0fccfcf56686967d19ed1e6f57,"Roll Cherry.
+
+This fixes a bug preventing Cherry from running on Windows.
+
+BUG=None
+
+Change-Id: I0049005093e5abb7a7fd2c5b125e8133c0e0cab5
+Reviewed-on: https://chromium-review.googlesource.com/350402
+Reviewed-by: Geoff Lang <geofflang@chromium.org>"
+74,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,46d7932a68c7b7524f9d4a1840039eddfb3ad6cd,"Fix MSVS x64 build
+
+EGLAttrib can be a 64-bit type on some configurations, in which case
+it needs an explicit cast to be converted to EGLint.
+
+TEST=standalone MSVS 2015 x64 debug build
+
+Change-Id: I6b3e0ae705e8862e079e81e516d6bf99409732e7
+Reviewed-on: https://chromium-review.googlesource.com/350411
+Reviewed-by: Olli Etuaho <oetuaho@nvidia.com>
+Commit-Queue: Olli Etuaho <oetuaho@nvidia.com>
+Reviewed-by: Yuly Novikov <ynovikov@chromium.org>
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Commit-Queue: Geoff Lang <geofflang@chromium.org>"
+75,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,8b8d043205a69802be7579bd90798162f34740b2,"Revert ""Use MapBufferRangeWithFallback in VertexArrayGL::streamAttributes""
+
+This reverts commit c88d8354479c2e8021ceacebed1450d509cf8ffa.
+
+Likely causing failures on Linux webgl tests:
+http://build.chromium.org/p/chromium.gpu.fyi/waterfall?builder=Linux%20Release%20(New%20Intel)
+
+Change-Id: I0294f7f544c666ee7db13c4f7acae868c6bd2240
+Reviewed-on: https://chromium-review.googlesource.com/350530
+Reviewed-by: Geoff Lang <geofflang@chromium.org>"
+76,https://api.github.com/repos/mozilla/angle/pulls/8,8,update angle to chromium/2776,,mephisto41,1924982,2016-06-27T03:53:17Z,NONE,False,17707,4076,299,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,4b4cdff894f412ad54fc53e24de3edbf5b25c07c,"Fix unpack parameter validation.
+
+BUG=angleproject:1397
+
+Change-Id: Icdfc99eefcfad730ec887b82ec0758a6d6c0b9a7
+Reviewed-on: https://chromium-review.googlesource.com/348064
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Commit-Queue: Jamie Madill <jmadill@chromium.org>"
+77,https://api.github.com/repos/mozilla/angle/pulls/7,7,Mozbuild updates,"These kinds of updates would be easier if generate_mozbuild.py was in mozilla-central, as is the case for gfx/skia/.
+",nnethercote,1940286,2015-08-31T01:22:50Z,NONE,True,11,2,1,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,4e42356c0636f9a2ab6379a90c89f3b9b24e0f50,Enlarge and clarify the warning in the generated moz.build file.
+78,https://api.github.com/repos/mozilla/angle/pulls/7,7,Mozbuild updates,"These kinds of updates would be easier if generate_mozbuild.py was in mozilla-central, as is the case for gfx/skia/.
+",nnethercote,1940286,2015-08-31T01:22:50Z,NONE,True,11,2,1,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,3455ad9f81561c29270098cbc9f8b4dac8f45218,Update to account for Mozilla bug 1198334.
+79,https://api.github.com/repos/mozilla/angle/pulls/6,6,E_INVALIDARG sometimes means OOM.,"Gecko bug 996266
+r=kamidphish
+",jdashg,1471629,2014-08-27T05:56:32Z,CONTRIBUTOR,True,3,1,1,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,07dbea848bb2929ab4caa4bf658b94b7d65cb3be,"E_INVALIDARG sometimes means OOM.
+
+Gecko bug 996266
+r=kamidphish"
+80,https://api.github.com/repos/mozilla/angle/pulls/5,5,Improve the const correctness.,"This improvement to the const correctness makes ProgramBinary::save
+compile with clang-cl as well, which is more strict than MSVC.
+",ehsan,168508,2014-07-06T01:19:57Z,MEMBER,False,1370,617,18,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,5348c90b04536da4d24edeacec45137e016e7246,Add README.mozilla
+81,https://api.github.com/repos/mozilla/angle/pulls/5,5,Improve the const correctness.,"This improvement to the const correctness makes ProgramBinary::save
+compile with clang-cl as well, which is more strict than MSVC.
+",ehsan,168508,2014-07-06T01:19:57Z,MEMBER,False,1370,617,18,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,31542cccbcdc7cd4aee2168ee128a7601d139956,Fix an issue GCC has with linking to undecorated stdcalls.
+82,https://api.github.com/repos/mozilla/angle/pulls/5,5,Improve the const correctness.,"This improvement to the const correctness makes ProgramBinary::save
+compile with clang-cl as well, which is more strict than MSVC.
+",ehsan,168508,2014-07-06T01:19:57Z,MEMBER,False,1370,617,18,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,0c5c0985f862b5a9c980fca7d1b1851a6a7d8603,"Report zero bit sizes for channels that shouldn't exist.
+
+If the actual format has more channels than the internal format of a
+framebuffer, bits counts greater than zero will be returned for channels
+that should not exist.  While it is not against the spec to return more
+bits than exist in the format, it can be confusing for users or break
+tests.  get*Bits will now only return greater than zero bit counts when
+the format should have the given channel.
+
+Since this is the only location that we return information about the
+""real"" internal format we're using, it's safe to only make the
+modifications here.
+
+BUG=angle:653
+
+Change-Id: I43ef4c6290c8c70737d579d7e9a2dd30d653330b"
+83,https://api.github.com/repos/mozilla/angle/pulls/5,5,Improve the const correctness.,"This improvement to the const correctness makes ProgramBinary::save
+compile with clang-cl as well, which is more strict than MSVC.
+",ehsan,168508,2014-07-06T01:19:57Z,MEMBER,False,1370,617,18,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,650206504051bab41f0e09870a91633bf525b173,"Emulate faceforward(float, float, float) when function emulation is enabled
+
+This causes aborts in some versions of the Apple Intel driver.
+
+Change-Id: I9dadb0eebc6ca57c1892737b62f3ad94d4e1c7dc"
+84,https://api.github.com/repos/mozilla/angle/pulls/5,5,Improve the const correctness.,"This improvement to the const correctness makes ProgramBinary::save
+compile with clang-cl as well, which is more strict than MSVC.
+",ehsan,168508,2014-07-06T01:19:57Z,MEMBER,False,1370,617,18,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,b3adef13638d7a480cf28dbce403dad74e97e326,"Always use D3DPOOL_DEFAULT for D3D9 textures.
+
+There is a bug on XP (non-D3D9Ex) where we'd select
+MANAGED in getTexturePool, but trigger a crash in Image9::copyToSurface
+where the source pool is SYSTEMMEM, but the destination pool is
+MANAGED.  It expects the dest pool to be DEFAULT if the source is
+SYSTEMMEM.
+
+This is triggered by the texture-size WebGL conformance test.
+
+Change-Id: I44c39eabb695e2d2f8fba7c582b63c2ff23bde26"
+85,https://api.github.com/repos/mozilla/angle/pulls/5,5,Improve the const correctness.,"This improvement to the const correctness makes ProgramBinary::save
+compile with clang-cl as well, which is more strict than MSVC.
+",ehsan,168508,2014-07-06T01:19:57Z,MEMBER,False,1370,617,18,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,7cf3a4efe85b2e3c869b222b14651a253169c854,"Support building angle with clang-cl
+
+This works around http://llvm.org/PR20013.
+
+Change-Id: Ibbd8ab4678cf1caf39b329ea304bdbdc21075ddf
+Reviewed-on: https://chromium-review.googlesource.com/206481
+Reviewed-by: Jamie Madill <jmadill@chromium.org>
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Tested-by: <ehsan@mozilla.com>"
+86,https://api.github.com/repos/mozilla/angle/pulls/5,5,Improve the const correctness.,"This improvement to the const correctness makes ProgramBinary::save
+compile with clang-cl as well, which is more strict than MSVC.
+",ehsan,168508,2014-07-06T01:19:57Z,MEMBER,False,1370,617,18,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,a7f4d9131445789e32d513d32491f48293b3efae,"Add ANGLE_NO_EXCEPTIONS macro
+
+This macro allows us to hide angle's usage of try/catch so that we can
+properly hide them from compilers that do not support exceptions
+properly (such as clang-cl and gcc/clang with -fno-exceptions).
+
+Change-Id: I75f466a5322e5840e007711ea851f444bd6ca299
+Reviewed-on: https://chromium-review.googlesource.com/206562
+Reviewed-by: Geoff Lang <geofflang@chromium.org>
+Tested-by: <ehsan@mozilla.com>
+Reviewed-by: Jamie Madill <jmadill@chromium.org>"
+87,https://api.github.com/repos/mozilla/angle/pulls/5,5,Improve the const correctness.,"This improvement to the const correctness makes ProgramBinary::save
+compile with clang-cl as well, which is more strict than MSVC.
+",ehsan,168508,2014-07-06T01:19:57Z,MEMBER,False,1370,617,18,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,57497037ebe6ef4b804a2f3e60fd4df5cebe5022,"Add Makefile.in (needed for moz tree for now)
+
+Change-Id: Ib0093021a860afa2df699e1b7b24cccad41b2e35"
+88,https://api.github.com/repos/mozilla/angle/pulls/5,5,Improve the const correctness.,"This improvement to the const correctness makes ProgramBinary::save
+compile with clang-cl as well, which is more strict than MSVC.
+",ehsan,168508,2014-07-06T01:19:57Z,MEMBER,False,1370,617,18,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,f2c46459366d99b8f60dcdc255ca4608acf89871,"Add gyp_mozbuild and associated build machinery for generating moz.build files
+
+Change-Id: I05449681c021dc1e8fc9d618572c666aece99f54"
+89,https://api.github.com/repos/mozilla/angle/pulls/5,5,Improve the const correctness.,"This improvement to the const correctness makes ProgramBinary::save
+compile with clang-cl as well, which is more strict than MSVC.
+",ehsan,168508,2014-07-06T01:19:57Z,MEMBER,False,1370,617,18,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,6b834d7be784e513c68ff2c4614de4ab81840563,"Improve the const correctness.
+
+This improvement to the const correctness makes ProgramBinary::save
+compile with clang-cl as well, which is more strict than MSVC.
+
+Change-Id: Iae091643fa1df7f094b89dbe7529c4e173f04a6d"
+90,https://api.github.com/repos/mozilla/angle/pulls/4,4,Fix initialiser list order. (-Worder),"Remove warnings.
+",djg,156077,2014-05-15T05:31:52Z,CONTRIBUTOR,False,487,12,13,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,752de934726cf633f4ee47dc8906d2858108998d,Add README.mozilla
+91,https://api.github.com/repos/mozilla/angle/pulls/4,4,Fix initialiser list order. (-Worder),"Remove warnings.
+",djg,156077,2014-05-15T05:31:52Z,CONTRIBUTOR,False,487,12,13,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,2187f22a5ec792bba9bce20b510aaa96882f430a,Fix an issue GCC has with linking to undecorated stdcalls.
+92,https://api.github.com/repos/mozilla/angle/pulls/4,4,Fix initialiser list order. (-Worder),"Remove warnings.
+",djg,156077,2014-05-15T05:31:52Z,CONTRIBUTOR,False,487,12,13,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,53d22dff2f6230c213ab6aeebc7796ad8b1a3a79,Bug 840577 - Fix ANGLE cross compilation on case sensitive OSes
+93,https://api.github.com/repos/mozilla/angle/pulls/4,4,Fix initialiser list order. (-Worder),"Remove warnings.
+",djg,156077,2014-05-15T05:31:52Z,CONTRIBUTOR,False,487,12,13,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,b13ee1b61ecc2ef2734ee0698c5eb8952f29aaeb,Fixes TCompiler::Init to treat resources.ArrayIndexClampingStrategy as a request for the default strategy.
+94,https://api.github.com/repos/mozilla/angle/pulls/4,4,Fix initialiser list order. (-Worder),"Remove warnings.
+",djg,156077,2014-05-15T05:31:52Z,CONTRIBUTOR,False,487,12,13,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,fb619487af847b98af9dbcb645f5d85f7610f8cd,Add READ/DRAW_FRAMEBUFFER_BINDING_ANGLE to getQueryParameterInfo
+95,https://api.github.com/repos/mozilla/angle/pulls/4,4,Fix initialiser list order. (-Worder),"Remove warnings.
+",djg,156077,2014-05-15T05:31:52Z,CONTRIBUTOR,False,487,12,13,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,992a01085d49a1d23ee1abf0011e07be10cd9d52,"Report more-correct internal format for X8R8G8B8
+
+Or at least correct-er.  The problem with the current code is that it will return
+GL_ALPHA_BITS == 8, even though the render buffer actually has 0 bits."
+96,https://api.github.com/repos/mozilla/angle/pulls/4,4,Fix initialiser list order. (-Worder),"Remove warnings.
+",djg,156077,2014-05-15T05:31:52Z,CONTRIBUTOR,False,487,12,13,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,9f10fcd59db6e92f260d85ad58a9caf0f3130af3,"Add gyp_mozbuild and associated build machinery for generating moz.build files
+
+Change-Id: I05449681c021dc1e8fc9d618572c666aece99f54"
+97,https://api.github.com/repos/mozilla/angle/pulls/4,4,Fix initialiser list order. (-Worder),"Remove warnings.
+",djg,156077,2014-05-15T05:31:52Z,CONTRIBUTOR,False,487,12,13,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,ed976270db20098eac1a66c3237f2bcc14bf5fcb,Fix initialiser list order. (-Worder)
+98,https://api.github.com/repos/mozilla/angle/pulls/3,3,Fix getVariableInfo handling of interface blocks.,"interface blocks weren't handled and leading to asserts inside the translator. This patch handles interface blocks in the same way as structures.
+",djg,156077,2014-05-15T05:31:26Z,CONTRIBUTOR,False,488,12,12,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,752de934726cf633f4ee47dc8906d2858108998d,Add README.mozilla
+99,https://api.github.com/repos/mozilla/angle/pulls/3,3,Fix getVariableInfo handling of interface blocks.,"interface blocks weren't handled and leading to asserts inside the translator. This patch handles interface blocks in the same way as structures.
+",djg,156077,2014-05-15T05:31:26Z,CONTRIBUTOR,False,488,12,12,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,2187f22a5ec792bba9bce20b510aaa96882f430a,Fix an issue GCC has with linking to undecorated stdcalls.
+100,https://api.github.com/repos/mozilla/angle/pulls/3,3,Fix getVariableInfo handling of interface blocks.,"interface blocks weren't handled and leading to asserts inside the translator. This patch handles interface blocks in the same way as structures.
+",djg,156077,2014-05-15T05:31:26Z,CONTRIBUTOR,False,488,12,12,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,53d22dff2f6230c213ab6aeebc7796ad8b1a3a79,Bug 840577 - Fix ANGLE cross compilation on case sensitive OSes
+101,https://api.github.com/repos/mozilla/angle/pulls/3,3,Fix getVariableInfo handling of interface blocks.,"interface blocks weren't handled and leading to asserts inside the translator. This patch handles interface blocks in the same way as structures.
+",djg,156077,2014-05-15T05:31:26Z,CONTRIBUTOR,False,488,12,12,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,b13ee1b61ecc2ef2734ee0698c5eb8952f29aaeb,Fixes TCompiler::Init to treat resources.ArrayIndexClampingStrategy as a request for the default strategy.
+102,https://api.github.com/repos/mozilla/angle/pulls/3,3,Fix getVariableInfo handling of interface blocks.,"interface blocks weren't handled and leading to asserts inside the translator. This patch handles interface blocks in the same way as structures.
+",djg,156077,2014-05-15T05:31:26Z,CONTRIBUTOR,False,488,12,12,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,fb619487af847b98af9dbcb645f5d85f7610f8cd,Add READ/DRAW_FRAMEBUFFER_BINDING_ANGLE to getQueryParameterInfo
+103,https://api.github.com/repos/mozilla/angle/pulls/3,3,Fix getVariableInfo handling of interface blocks.,"interface blocks weren't handled and leading to asserts inside the translator. This patch handles interface blocks in the same way as structures.
+",djg,156077,2014-05-15T05:31:26Z,CONTRIBUTOR,False,488,12,12,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,992a01085d49a1d23ee1abf0011e07be10cd9d52,"Report more-correct internal format for X8R8G8B8
+
+Or at least correct-er.  The problem with the current code is that it will return
+GL_ALPHA_BITS == 8, even though the render buffer actually has 0 bits."
+104,https://api.github.com/repos/mozilla/angle/pulls/3,3,Fix getVariableInfo handling of interface blocks.,"interface blocks weren't handled and leading to asserts inside the translator. This patch handles interface blocks in the same way as structures.
+",djg,156077,2014-05-15T05:31:26Z,CONTRIBUTOR,False,488,12,12,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,9f10fcd59db6e92f260d85ad58a9caf0f3130af3,"Add gyp_mozbuild and associated build machinery for generating moz.build files
+
+Change-Id: I05449681c021dc1e8fc9d618572c666aece99f54"
+105,https://api.github.com/repos/mozilla/angle/pulls/3,3,Fix getVariableInfo handling of interface blocks.,"interface blocks weren't handled and leading to asserts inside the translator. This patch handles interface blocks in the same way as structures.
+",djg,156077,2014-05-15T05:31:26Z,CONTRIBUTOR,False,488,12,12,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,767a9e3dc9bfde6a4e71534a46e5b66daf00280d,Fix getVariableInfo handling of interface blocks.
+106,https://api.github.com/repos/mozilla/angle/pulls/1,1,Add execute bit to gyp -> moz.build scripts,,djg,156077,2014-05-14T03:23:08Z,CONTRIBUTOR,True,0,0,2,Downstream from https://chromium.googlesource.com/angle/angle with Gecko-specific patches. Talk to jgilbert for more info.,C++,b49f818e033a59dc8ef7b7dcb10cb150d28dc7c9,Add execute bit to gyp -> moz.build scripts

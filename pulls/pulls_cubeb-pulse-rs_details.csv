@@ -1,0 +1,637 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/68,68,Remove cubeb_stream_reset_default_device API.,See mozilla/cubeb#641,kinetiknz,67343,2021-02-17T01:06:06Z,CONTRIBUTOR,True,1,5,2,,Rust,f928d3d0155a27a69d176684e7a7aa4ed99c8dd7,Remove cubeb_stream_reset_default_device API.
+1,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/63,63, Use the input data ring buffer to count input frames read,"This is what we need. When starting a stream, there are two cases:
+- There are already frames buffered in the ring buffer: we want to trim the input data to have just enough to not buffer
+- There are no (or not enough) frames in the ring buffer: we want to provide silence to the callback
+
+`get_linear_input_data()` underruns gracefully and fill the remaining space with silence.",padenot,270485,2020-10-15T12:14:22Z,COLLABORATOR,True,18,11,1,,Rust,e5fff0db85250882f0626351e95c47c602084563,Use the input data ring buffer to count input frames read.
+2,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/62,62,Add support for changing stream name,"Blocked by https://github.com/djg/cubeb-rs/pull/54 and https://github.com/kinetiknz/cubeb/pull/615.
+
+This PR adds support for the cubeb_stream_set_name method.",mymindstorm,27789806,2020-10-01T00:40:24Z,CONTRIBUTOR,True,53,1,4,,Rust,a0d27d4b759835dc31f4c7b317d552584d103c8a, Add method to change stream name
+3,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/60,60,Fixed callback buffer size,"It allows to wait for bigger buffer if it is lower than 128 frames, and use the previous multiple of 128 if higher, the rest will be send in the next callback.
+I set it to 128 frames by default, I didn't know how to get a user defined value.",Koalab99,60042855,2020-06-05T12:57:02Z,CONTRIBUTOR,False,13,3,1,,Rust,028d4e96188b91223a6d36d6772e78fd7cb72df6,"Fixed callback buffer size
+
+It allows to wait for bigger buffer if it is lower than 128 frames, and use the previous multiple of 128 if higher, the rest will be send in the next callback.
+I set it to 128 frames by default, I didn't know how to get a user defined value."
+4,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/59,59,Remove initial playback latency when full duplex,"This is in case the input fill the ringbuffer too much before the output
+is initialized and read it.",Koalab99,60042855,2020-06-04T13:04:01Z,CONTRIBUTOR,True,35,0,1,,Rust,0ad7e33849fdf4e17a6a06ebee6e948f5416db64,"Remove initial playback latency when full duplex
+
+This is in case the input fill the ringbuffer too much before the output
+is initialized and read it."
+5,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/59,59,Remove initial playback latency when full duplex,"This is in case the input fill the ringbuffer too much before the output
+is initialized and read it.",Koalab99,60042855,2020-06-04T13:04:01Z,CONTRIBUTOR,True,35,0,1,,Rust,eaa7bd52a1b9782bb54e35ecfd2d1c28bd4394b7,Added trim function and decreased input_frame_count value
+6,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/59,59,Remove initial playback latency when full duplex,"This is in case the input fill the ringbuffer too much before the output
+is initialized and read it.",Koalab99,60042855,2020-06-04T13:04:01Z,CONTRIBUTOR,True,35,0,1,,Rust,45627eb5fb6972bbed0ef16fd449a9e8c791f399,Fixed rust syntax error
+7,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/59,59,Remove initial playback latency when full duplex,"This is in case the input fill the ringbuffer too much before the output
+is initialized and read it.",Koalab99,60042855,2020-06-04T13:04:01Z,CONTRIBUTOR,True,35,0,1,,Rust,3ab056fd7bc92621718a7bfc9732d25bb3b880df,Condition and comment change
+8,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/58,58,Set buffer attributes to control latency,"Changed the buffer attribute to get stream latency closer to the frame_latency, explained at [1],
+Also changed the way the buffer size is calculated, it now calls
+pulseaudio pa_usec_to_byte defined in [2]
+
+[1] https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/Developer/Clients/LatencyControl/
+[2] https://gitlab.freedesktop.org/pulseaudio/pulseaudio/-/blob/master/src/pulse/sample.c#L86",Koalab99,60042855,2020-05-29T12:13:53Z,CONTRIBUTOR,False,4,4,1,,Rust,945eb5f7613e95ced07a18a2f0a799a68dbc7d89,"Set buffer attributes to control latency
+
+Changed the buffer attribute to get stream latency closer to the frame_latency, explained at [1],
+Also changed the way the buffer size is calculated, it now calls
+pulseaudio pa_usec_to_byte.
+
+[1] https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/Developer/Clients/LatencyControl/"
+9,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/58,58,Set buffer attributes to control latency,"Changed the buffer attribute to get stream latency closer to the frame_latency, explained at [1],
+Also changed the way the buffer size is calculated, it now calls
+pulseaudio pa_usec_to_byte defined in [2]
+
+[1] https://www.freedesktop.org/wiki/Software/PulseAudio/Documentation/Developer/Clients/LatencyControl/
+[2] https://gitlab.freedesktop.org/pulseaudio/pulseaudio/-/blob/master/src/pulse/sample.c#L86",Koalab99,60042855,2020-05-29T12:13:53Z,CONTRIBUTOR,False,4,4,1,,Rust,c933829a9b5aca097ea44f809355f3929271371f,"Revert buffer_size_bytes to its previous value
+
+I did it wrong the first time, I used frame latency as a usec, so the
+buffer size was way smaller than what it should be, it reduced latency
+but in a dangerous way."
+10,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/57,57,Added input_latency code to backend/stream.rs,"It is similar to latency code defined just above in the file.
+Also fixed some formating.",Koalab99,60042855,2020-05-28T14:42:04Z,CONTRIBUTOR,True,17,2,1,,Rust,af0770bd120f88b7a6556973e910733684aa5375,"Added input_latency code
+
+It is similar to latency code defined just above in the file.
+Also fixed some formating."
+11,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/57,57,Added input_latency code to backend/stream.rs,"It is similar to latency code defined just above in the file.
+Also fixed some formating.",Koalab99,60042855,2020-05-28T14:42:04Z,CONTRIBUTOR,True,17,2,1,,Rust,cea4fef244db85711ad5ddecd8d9d8152f998ce1,"Fixed negative buffer latency panic
+
+I tested wrong, pulse can return negative latencies, but here is a patch"
+12,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/57,57,Added input_latency code to backend/stream.rs,"It is similar to latency code defined just above in the file.
+Also fixed some formating.",Koalab99,60042855,2020-05-28T14:42:04Z,CONTRIBUTOR,True,17,2,1,,Rust,4636e0b7c0487f5cf242fd02216f8308ad95ed3f,Input latency return 0 when negative
+13,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/57,57,Added input_latency code to backend/stream.rs,"It is similar to latency code defined just above in the file.
+Also fixed some formating.",Koalab99,60042855,2020-05-28T14:42:04Z,CONTRIBUTOR,True,17,2,1,,Rust,2e6dd3c1fd4f7e38e2863defcf69206014d978fb,Add description for negative input latency case
+14,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/56,56,"Add an empty (for now) method for input_latency, and bump the cubeb version",,padenot,270485,2020-04-30T13:09:03Z,COLLABORATOR,True,5,1,2,,Rust,80536e3dab67960d31b72c4d9156fdbaa1c97397,"Add an empty (for now) method for input_latency, and bump the cubeb version"
+15,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/55,55,"Revert ""Disable server-side volume handling.""",This reverts commit e845327c3fe91192870a34fc2999d2f460291295 to fix the problem described in BMO 1632093.,achronop,1420722,2020-04-27T18:46:47Z,CONTRIBUTOR,True,54,6,1,,Rust,3be3d4924889153685fea67afe9a87a62e8740c4,"Revert ""Disable server-side volume handling.""
+
+This reverts commit e845327c3fe91192870a34fc2999d2f460291295."
+16,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/54,54,Stop moving input devices,Stop moving to a new device when the default device changes or when the current device is removed. ,achronop,1420722,2020-04-16T13:10:01Z,CONTRIBUTOR,True,22,8,1,,Rust,e69763b01821e3ca83d5aea8750d77f7ce85d418,"Implement devices change logic.
+
+Set DONT_MOVE in input and output device if device id is specified or the CUBEB_STREAM_PREF_DISABLE_DEVICE_SWITCHING is set."
+17,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/53,53,Disable server-side volume handling.,"The API from pulseaudio is not coming, and this is causing user pain. We
+can resurrect this code when we have an API to do what we want to do.
+
+This fixes [BMO#1422637](https://bugzilla.mozilla.org/show_bug.cgi?id=1422637).",padenot,270485,2020-04-16T07:05:34Z,COLLABORATOR,True,6,54,1,,Rust,b697b7e98ac9e1af7b76a9886c5add2fd48f711d,"Disable server-side volume handling.
+
+The API from pulseaudio is not coming, and this is causing user pain. We
+can resurrect this code when we have an API to do what we want to do."
+18,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/52,52,Update ringbuf to 0.2,"I'm planning to use `ringbuf` in `cubeb-coreaudio-rs`, and I felt like updating this, and using 0.2 also there, to avoid duplicates when vendored in Gecko.
+
+This also fixes a warning that probably appeared with an updated `rustc` version.",padenot,270485,2020-03-30T14:58:00Z,COLLABORATOR,True,13,42,3,,Rust,1d7d09d0228374f1b7780fccb969f3025b53530d,Update ringbuf to 0.2
+19,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/52,52,Update ringbuf to 0.2,"I'm planning to use `ringbuf` in `cubeb-coreaudio-rs`, and I felt like updating this, and using 0.2 also there, to avoid duplicates when vendored in Gecko.
+
+This also fixes a warning that probably appeared with an updated `rustc` version.",padenot,270485,2020-03-30T14:58:00Z,COLLABORATOR,True,13,42,3,,Rust,b56ca67b00cb614281cb862d5d10bea07117ba0d,Fix warning
+20,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/51,51,Add the license to Cargo.toml,,glandium,1038527,2019-12-05T07:32:52Z,CONTRIBUTOR,True,3,0,3,,Rust,9626433d9f2e34dbe1fee884483babdbc3030e49,Add the license to Cargo.toml
+21,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/50,50,Update semver to 0.9,,glandium,1038527,2019-12-05T07:11:59Z,CONTRIBUTOR,True,1,1,1,,Rust,a25bac8295a241e67932705f17f8babdbcccec15,Update semver to 0.9
+22,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/49,49,backend: Special case single channel center mapping to mono.,"Addresses [BMO 1582442](https://bugzilla.mozilla.org/show_bug.cgi?id=1582442).
+
+r? @achronop please",kinetiknz,67343,2019-10-22T00:00:28Z,CONTRIBUTOR,True,7,1,1,,Rust,745ad3314e849752b97bcebae3830dcf58eb0956,"backend: Special case single channel center mapping to mono.
+
+Addresses BMO 1582442."
+23,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/48,48,update the info when default device changes,Import the fix for: https://github.com/kinetiknz/cubeb/issues/545,achronop,1420722,2019-10-01T09:48:19Z,CONTRIBUTOR,True,129,115,1,,Rust,3ed4456448bbc4bc0ce04bfd900cb073337a3a70,"update the info when default device changes
+
+Import the fix for: https://github.com/kinetiknz/cubeb/issues/545"
+24,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/47,47,Update semver to 0.7,,Eijebong,3650385,2019-09-06T18:39:27Z,CONTRIBUTOR,True,1,1,1,,Rust,5142f458722386fe757cec4e5e1ab01282b5e718,Update semver to 0.7
+25,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/46,46,Update to cubeb-rs 0.6.0; remove panning API.,"Part of https://github.com/kinetiknz/cubeb/pull/532
+
+r? @padenot please",kinetiknz,67343,2019-08-21T22:09:55Z,CONTRIBUTOR,True,3,69,3,,Rust,7cd411ab32c6ce046f59b36d0a86b5db56019e28,Update to cubeb-rs 0.6.0; remove panning API.
+26,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/45,45,Tweak `pa_buffer_attr` according to Ford_Prefect's recommendations.,"irc.mozilla.org#media, 2019/07/05, CEST
+
+```
+11:43 <padenot>      Ford_Prefect, I'm also experimenting with various
+                     setttings for the buffer_attr here
+                     https://searchfox.org/mozilla-central/rev/b9041f813de0a05bf6de95a145d4e25004499517/media/libcubeb/cubeb-pulse-rs/src/backend/stream.rs#946
+11:44 <padenot>      I see conflicting information: Chrome's code seem to
+                     work well and does something, but the docs say
+                     something else
+11:55 <Ford_Prefect> padenot: what values?
+11:55 <padenot>      the 5 values to put in pa_buffer_attr for input and output
+11:56 <padenot>      see this comment https://cs.chromium.org/chromium/src/media/audio/pulse/pulse_util.cc?type=cs&q=pa_buffer_Attr&g=0&l=480
+12:09 <Ford_Prefect> padenot: huh, that seems to have changed since the
+                     last time I saw it. minreq = tlength / 4 is good,
+                     particularly for smaller values
+12:11 <Ford_Prefect> I'm not sure why Chrome is doing * 3, they should
+                     be okay with * 2 (so minreq will be buffer_size / 4)
+12:11 <Ford_Prefect> er, tlength
+12:12 <Ford_Prefect> I've never been able to come up with a good
+                     works-for-everything heuristic on the PA side,
+                     hence this divide-by-4 thumb rule
+```",padenot,270485,2019-07-22T08:41:24Z,COLLABORATOR,True,26,40,1,,Rust,18261174ed5a5c441756bfeba840137f37262581,"Tweak pa_buffer_attr according to Ford_Prefect's recommendations.
+
+irc.mozilla.org#media, 2019/07/05, CEST
+
+```
+11:43 <padenot>      Ford_Prefect, I'm also experimenting with various
+                     setttings for the buffer_attr here
+                     https://searchfox.org/mozilla-central/rev/b9041f813de0a05bf6de95a145d4e25004499517/media/libcubeb/cubeb-pulse-rs/src/backend/stream.rs#946
+11:44 <padenot>      I see conflicting information: Chrome's code seem to
+                     work well and does something, but the docs say
+                     something else
+11:55 <Ford_Prefect> padenot: what values?
+11:55 <padenot>      the 5 values to put in pa_buffer_attr for input and output
+11:56 <padenot>      see this comment https://cs.chromium.org/chromium/src/media/audio/pulse/pulse_util.cc?type=cs&q=pa_buffer_Attr&g=0&l=480
+12:09 <Ford_Prefect> padenot: huh, that seems to have changed since the
+                     last time I saw it. minreq = tlength / 4 is good,
+                     particularly for smaller values
+12:11 <Ford_Prefect> I'm not sure why Chrome is doing * 3, they should
+                     be okay with * 2 (so minreq will be buffer_size / 4)
+12:11 <Ford_Prefect> er, tlength
+12:12 <Ford_Prefect> I've never been able to come up with a good
+                     works-for-everything heuristic on the PA side,
+                     hence this divide-by-4 thumb rule
+```"
+27,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/44,44,Use the correct number of samples in the input buffer ringbuffer pull operation,This is the cause for the backout at: https://bugzilla.mozilla.org/show_bug.cgi?id=1567457,padenot,270485,2019-07-22T08:37:12Z,COLLABORATOR,True,3,2,1,,Rust,2eca07d7447968eacc1fe512f815dfe783dcb3f8,Use the correct number of samples in the input buffer ringbuffer pull operation.
+28,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/43,43,Reland PR #41 once Gecko's minimum rustc is 1.36,I reverted PR #41 to unblock landing PR #42 since the base toolchain Gecko builds are still on 1.35.,kinetiknz,67343,2019-07-19T04:48:55Z,CONTRIBUTOR,True,38,37,3,,Rust,a5d9f56c3917724949112e0d23a76bacdc7c7073,"Revert ""Revert ""Use std::mem::MaybeUninit instead of the deprecated std::mem::uninitialized""""
+
+This reverts commit a32febf6c3ec1b57e5a34bb2dd28bcbc8ffd961f."
+29,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/42,42,Drive data callbacks on the output write event instead of the input read event,This fixes the output buffering we observe when doing calls in Firefox.,padenot,270485,2019-07-16T15:39:08Z,COLLABORATOR,True,188,10,5,,Rust,a189ca79b5b9b57982e72f23a8d2fb593f35894a,Make pa_sample_size available in Rust.
+30,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/42,42,Drive data callbacks on the output write event instead of the input read event,This fixes the output buffering we observe when doing calls in Firefox.,padenot,270485,2019-07-16T15:39:08Z,COLLABORATOR,True,188,10,5,,Rust,3917b6e32b3c889b8c7a49875bdb8c87014eea45,"Run the PulseAudio callbacks from the output
+
+This is lots of code, but it's not particularly complex. Instead of
+driving the callbacks from the input events, this drives them using the
+output event.
+
+For this to work, the input data delivered to the program are queued
+into a lock-free ringbuffer. Then, when there is a need for output data,
+PulseAudio calls its callback, and we put the data from the ring buffer
+into a linear piece of memory, and call the callback as usual.
+
+All the complexity and duplication is because we support f32 and i16
+really."
+31,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/41,41,Use std::mem::MaybeUninit instead of the deprecated std::mem::uninitialized,"See https://gankro.github.io/blah/initialize-me-maybe/
+
+Gecko now uses 1.36: https://bugzilla.mozilla.org/show_bug.cgi?id=1563378",SimonSapin,291359,2019-07-10T11:49:32Z,CONTRIBUTOR,True,54,53,3,,Rust,d84093984bd2c3c60e44d7d2c911f581343eb027,"Use assert_eq instead of debug_assert_eq for safety-critical assertions.
+
+Generic methods are monomorphized,
+so for each given instance `size_of::<CB>()` is a constant.
+The assertion can therefore be optimized away
+by constant propagation and dead code elimination."
+32,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/41,41,Use std::mem::MaybeUninit instead of the deprecated std::mem::uninitialized,"See https://gankro.github.io/blah/initialize-me-maybe/
+
+Gecko now uses 1.36: https://bugzilla.mozilla.org/show_bug.cgi?id=1563378",SimonSapin,291359,2019-07-10T11:49:32Z,CONTRIBUTOR,True,54,53,3,,Rust,953d21d6f049123305869e4ae414b60080e84deb,"Use std::mem::MaybeUninit instead of the deprecated std::mem::uninitialized
+
+See https://gankro.github.io/blah/initialize-me-maybe/
+
+Gecko now uses 1.36: https://bugzilla.mozilla.org/show_bug.cgi?id=1563378"
+33,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/40,40,Set default layout when it is not configured (BMO 1518106).,"Translate in rust-backend commit: https://github.com/kinetiknz/cubeb/commit/9a8e02e7515e7cef01504d0730616be310813b77
+
+Do you think `default_layout_for_channels` method should be implemented inside ChannelLayout implementation inside `cubeb-core` crate in [1] as a `default` member method?
+
+[1] https://github.com/djg/cubeb-rs/blob/master/cubeb-core/src/channel.rs#L76",achronop,1420722,2019-01-22T14:45:36Z,CONTRIBUTOR,True,61,1,3,,Rust,8791c692c81938953c9b0ec1042fabe25ad05f53,Set default layout when it is not configured (BMO 1518106).
+34,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/40,40,Set default layout when it is not configured (BMO 1518106).,"Translate in rust-backend commit: https://github.com/kinetiknz/cubeb/commit/9a8e02e7515e7cef01504d0730616be310813b77
+
+Do you think `default_layout_for_channels` method should be implemented inside ChannelLayout implementation inside `cubeb-core` crate in [1] as a `default` member method?
+
+[1] https://github.com/djg/cubeb-rs/blob/master/cubeb-core/src/channel.rs#L76",achronop,1420722,2019-01-22T14:45:36Z,CONTRIBUTOR,True,61,1,3,,Rust,483bad607bade2ecd4407e8d88eec11663cda440,Update review comments
+35,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/39,39,Separate input output callbacks for collection changes (BMO 1498242).,"Use  separate callback for input and output devices. This will allow to  register a context with different notification callbacks for different  type of devices. 
+
+See also: https://github.com/kinetiknz/cubeb/pull/464, https://github.com/kinetiknz/cubeb/pull/465
+",achronop,1420722,2018-10-17T09:50:03Z,CONTRIBUTOR,True,49,23,1,,Rust,5aad75fed69403605449c185b24eb5e226eeee19,Separate input output callbacks for collection changes (BMO 1498242).
+36,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/38,38,Log rather than assert unsuccessful stream/context callbacks.,Fix for [BMO bug 1471922](https://bugzilla.mozilla.org/show_bug.cgi?id=1471922).,kinetiknz,67343,2018-07-24T00:32:52Z,CONTRIBUTOR,True,9,3,2,,Rust,1b4fff36eabc0aa96554a126c3f5c7054efb26e0,"Log rather than assert unsuccessful stream/context callbacks.
+
+Fix for BMO bug 1471922."
+37,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/37,37,Use fully-qualified syntax for USecExt::to_bytes.,"This addresses [BMO  #1472001](https://bugzilla.mozilla.org/show_bug.cgi?id=1472001), where we fail to build with Rust nightly because USecExt::to_bytes implemented on USec (which is a type alias of
+u64, not a newtype) is ambiguous when nightly stdlib's u64::to_bytes is present.
+
+I also changed the return type of `get_time` from u64 to USec to make it slightly clearer.",kinetiknz,67343,2018-06-28T23:07:26Z,CONTRIBUTOR,True,3,3,2,,Rust,89275882fea5d9cbda512265b672681ff78703ed,"Use fully-qualified syntax for USecExt::to_bytes.
+
+This addresses BMO #1472001, where we fail to build with Rust nightly
+because USecExt::to_bytes implemented on USec (which is a type alias of
+u64, not a newtype) is ambiguous when nightly stdlib's u64::to_bytes is
+present."
+38,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/36,36,Mark PulseContext and PulseStream #[repr(C)] to ensure ABI compatibil…,…ity with libcubeb.,kinetiknz,67343,2018-04-17T07:25:36Z,CONTRIBUTOR,True,2,0,2,,Rust,e332132dda65835dc0fdbe40e7bd73b4dba54475,Mark PulseContext and PulseStream #[repr(C)] to ensure ABI compatibility with libcubeb.
+39,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/35,35,Fix channel layout mapping,The ChannelLayoutIter is a good candidate to be upstreamed to `cubeb-rs`,djg,156077,2018-03-29T03:10:07Z,COLLABORATOR,True,365,11,1,,Rust,55ce985ad6c53049355907e3df09f172827aecfd,"Fix cubeb channel layout to pulse channel map.
+
+Turns out that the clever C code I copied was incorrect.  So changed
+it to the rust idiom of iterating the bits in the bit set via
+Iterator.  Added copious tests so not to get burned if, in the future,
+this layout changes."
+40,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/34,34,Check Context::connect result.,This applies the same fix made in kinetiknz/cubeb#425.,kinetiknz,67343,2018-03-22T02:55:23Z,CONTRIBUTOR,True,8,4,1,,Rust,28b508375f8d45f07aff11169209723a230796cc,"Check Context::connect result.
+
+This applies the same fix made in kinetiknz/cubeb#425."
+41,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/33,33,Cubeb mixer,Import changes from Gecko [Bug 1432779](https://bugzil.la/1432779).,djg,156077,2018-03-13T03:51:17Z,COLLABORATOR,True,44,167,5,,Rust,4c243de050e9f27a55f401fbf046108fa3cd153d,"Remove the concept of preferred layout.
+
+Channel layout is derived by the content being played. The concept of
+preferred layout is meaningless. Either we have a layout defined, or
+we don't. There's no in-between.
+
+So we remove it."
+42,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/33,33,Cubeb mixer,Import changes from Gecko [Bug 1432779](https://bugzil.la/1432779).,djg,156077,2018-03-13T03:51:17Z,COLLABORATOR,True,44,167,5,,Rust,247b01d8e971d0680fa1cc39e63d17e0fc030556,Update versions due to change in cubeb channel layout and mixer.
+43,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/32,32,Handle error in pa_context_get_server_info.,"This addresses Gecko Bug 1438414, where `debug_assert_ne!(i, ptr::null_mut())` fires in callback for `Context::get_server_info`.
+
+From reading the PulseAudio source code, this happens in a few error cases, such as command timeout.",djg,156077,2018-03-06T00:46:32Z,COLLABORATOR,True,28,17,2,,Rust,22cdde3e573303649a77e48a19f7ca2c4d308047,"Handle error in pa_context_get_server_info.
+
+This addresses Gecko Bug 1438414, where `debug_assert_ne!(i,
+ptr::null_mut())` fires in callback for `Context::get_server_info`.
+
+From reading the PulseAudio source code, this happens in a few error
+cases such as command timeout."
+44,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/31,31,Refactor to cubeb rs 0.4,"As it says on the tin. Refactor required for cubeb-rs 0.4 changes.
+
+This depends on djg/cubeb-rs#29",djg,156077,2018-02-13T03:57:49Z,COLLABORATOR,True,770,1447,15,,Rust,946f589d2809513905ea173e0b617ebf1f192a6f,"Refactor to use cubeb-rs for FFI.
+
+Remove the use of local copy of cubeb FFI bindings to use the shared
+code in cubeb-rs crates."
+45,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/31,31,Refactor to cubeb rs 0.4,"As it says on the tin. Refactor required for cubeb-rs 0.4 changes.
+
+This depends on djg/cubeb-rs#29",djg,156077,2018-02-13T03:57:49Z,COLLABORATOR,True,770,1447,15,,Rust,d73a1884068bb995c2f741a289af6e1379090e73,Update to use cubeb-rs 0.4.
+46,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/31,31,Refactor to cubeb rs 0.4,"As it says on the tin. Refactor required for cubeb-rs 0.4 changes.
+
+This depends on djg/cubeb-rs#29",djg,156077,2018-02-13T03:57:49Z,COLLABORATOR,True,770,1447,15,,Rust,f58dc34c5af519352aed4b4cd79bb34060e59c65,Reformat all the code to rust standard.
+47,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/29,29,Handle stream preferences and loopback requests.,"https://github.com/kinetiknz/cubeb/pull/387 introduced a preferences member on
+the stream params struct. This updates the backend to handle that member. This
+also makes the backend return the appropriate not supported error should the
+new prefs be used to request a loopback stream, as the backend does not
+currently support loopback streams.",SingingTree,3637370,2018-01-24T16:48:37Z,CONTRIBUTOR,True,22,1,2,,Rust,0400b1804d14ca087446c6ae4ad51151c7f0b2e8,"Handle stream preferences and loopback requests.
+
+https://github.com/kinetiknz/cubeb/pull/387 introduced a preferences member on
+the stream params struct. This updates the backend to handle that member. This
+also makes the backend return the appropriate not supported error should the
+new prefs be used to request a loopback stream, as the backend does not
+currently support loopback streams."
+48,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/27,27,avoid deadlock when context subscribe fails,When pa_context_subscribe fails we need to unlock the main loop to avoid infinite blocking.,achronop,1420722,2018-01-16T15:45:19Z,CONTRIBUTOR,True,1,0,1,,Rust,012c0c63f337060c89930a88e68706f6feb453ad,avoid deadlock when context subscribe fails
+49,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/23,23,Update to bitflags 1.0,The 1.0 version uses associated constants instead of module constants.,nox,123095,2017-11-16T09:12:31Z,CONTRIBUTOR,False,108,111,8,,Rust,7d0e1316029857281e4de36fe083cc681a152ed5,"Update to bitflags 1.0
+
+The 1.0 version uses associated constants instead of module constants."
+50,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/23,23,Update to bitflags 1.0,The 1.0 version uses associated constants instead of module constants.,nox,123095,2017-11-16T09:12:31Z,CONTRIBUTOR,False,108,111,8,,Rust,6ecb59b57fa9ec081508af9f705ba3d3e35b6e29,"Raise minimum Rust version to 1.20
+
+bitflags 1.0 requires Rust 1.20."
+51,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/22,22,Fix a few unused mut warnings on newer Rust compilers,,est31,8872119,2017-10-28T04:26:18Z,CONTRIBUTOR,True,14,14,3,,Rust,d23647e5689c37a50f416499339a3a47461c5321,Fix a few unused mut warnings on newer Rust compilers
+52,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/21,21,Fomat log message in rust code,"Rust and C++ have different format specifiers and this results in broken logs when pulse backend is used in Gecko. This patch contracts the formatted string inside rust code and gives it ready on `log_callback`.
+
+Fixed:
+```
+[CubebOperation #1]: E/cubeb /firefox/media/libcubeb/cubeb-pulse-rs/src/backend/stream.rs:90: Requested buffer attributes maxlength 4294967295, tlength 8816, prebuf 4294967295, minreq 2204, fragsize 2204
+[CubebOperation #1]: E/cubeb /firefox/media/libcubeb/cubeb-pulse-rs/src/backend/stream.rs:90: Output buffer attributes maxlength 4194304, tlength 6608, prebuf 4416, minreq 2200, fragsize 2204
+```
+Broken:
+```
+[CubebOperation #1]: E/cubeb /firefox/media/libcubeb/cubeb-pulse-rs/src/backend/stream.rs:90: Requested buffer attributes maxlength {}, tlength {}, prebuf {}, minreq {}, fragsize {}
+[CubebOperation #1]: E/cubeb /firefox/media/libcubeb/cubeb-pulse-rs/src/backend/stream.rs:90: Output buffer attributes maxlength {}, tlength {}, prebuf {}, minreq {}, fragsize {}
+```",achronop,1420722,2017-10-18T17:21:36Z,CONTRIBUTOR,True,2,2,1,,Rust,4156668a0695fc32140a9871a578dae52754d0ad,Fomat log message in rust code
+53,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/20,20,Improve handling when there are no pulse source/sink.,Port of kinetik/cubeb PR #360.,djg,156077,2017-09-26T02:01:47Z,COLLABORATOR,True,23,13,2,,Rust,ecfadf7e4d8615d06c94c5de9d6ced8849565cac,"Improve handling when there are no pulse source/sink.
+
+Port of kinetik/cubeb PR #360."
+54,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/19,19,travis-ci: Add missing glib 2.0 dev dep.,i386 travis builds were failing because of missing ubuntu dep.,djg,156077,2017-09-25T05:39:04Z,COLLABORATOR,True,1,0,1,,Rust,b2cc191213e8e54f1e509deab0daf8e2097e9d40,travis-ci: Add missing glib 2.0 dev dep.
+55,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/18,18,Stable cubeb_devid (based on kinetiknz/cubeb#299),"Implements the string interning approach already used in kinetiknz/cubeb#299 to provide the same lifetime guarantee for cubeb_devids in the Rust implementation.
+
+Also includes a couple of other minor fixes.
+
+Opening PR early to track this, but it might not be ready to review/merge yet.  Feel free to comment on it, though.
+
+Pushed to try here: https://treeherder.mozilla.org/#/jobs?repo=try&revision=5531dafbabdbddc3ec4bf97efb4c5f188807fa2a",kinetiknz,67343,2017-08-31T03:35:49Z,CONTRIBUTOR,True,73,12,4,,Rust,ccd39afb30172c2aac0421f1b4bc57d805f718ea,Fix unused macro warning for cstr!.
+56,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/18,18,Stable cubeb_devid (based on kinetiknz/cubeb#299),"Implements the string interning approach already used in kinetiknz/cubeb#299 to provide the same lifetime guarantee for cubeb_devids in the Rust implementation.
+
+Also includes a couple of other minor fixes.
+
+Opening PR early to track this, but it might not be ready to review/merge yet.  Feel free to comment on it, though.
+
+Pushed to try here: https://treeherder.mozilla.org/#/jobs?repo=try&revision=5531dafbabdbddc3ec4bf97efb4c5f188807fa2a",kinetiknz,67343,2017-08-31T03:35:49Z,CONTRIBUTOR,True,73,12,4,,Rust,f2dc8502c66b68f345215f33683615cd5baf2b9e,context: Treat DeviceType as a bitfield.
+57,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/18,18,Stable cubeb_devid (based on kinetiknz/cubeb#299),"Implements the string interning approach already used in kinetiknz/cubeb#299 to provide the same lifetime guarantee for cubeb_devids in the Rust implementation.
+
+Also includes a couple of other minor fixes.
+
+Opening PR early to track this, but it might not be ready to review/merge yet.  Feel free to comment on it, though.
+
+Pushed to try here: https://treeherder.mozilla.org/#/jobs?repo=try&revision=5531dafbabdbddc3ec4bf97efb4c5f188807fa2a",kinetiknz,67343,2017-08-31T03:35:49Z,CONTRIBUTOR,True,73,12,4,,Rust,b82731897ada99e23c755377a51524995b855f9a,backend: Add (crude) string interning to provide stable devids.
+58,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/18,18,Stable cubeb_devid (based on kinetiknz/cubeb#299),"Implements the string interning approach already used in kinetiknz/cubeb#299 to provide the same lifetime guarantee for cubeb_devids in the Rust implementation.
+
+Also includes a couple of other minor fixes.
+
+Opening PR early to track this, but it might not be ready to review/merge yet.  Feel free to comment on it, though.
+
+Pushed to try here: https://treeherder.mozilla.org/#/jobs?repo=try&revision=5531dafbabdbddc3ec4bf97efb4c5f188807fa2a",kinetiknz,67343,2017-08-31T03:35:49Z,CONTRIBUTOR,True,73,12,4,,Rust,55ff03e315a48cfa092ad77b8dc3b36f20e895e3,backend: Add test for Intern.
+59,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/16,16,Stream latency return enum,fixes #10 ,djg,156077,2017-08-06T04:44:54Z,COLLABORATOR,True,22,8,3,,Rust,435a545a40fda1b2622da0514f3d889ff94dadff,"pulse-rs: Stream::get_latency return StreamLatency enum.
+
+Instead of returning tuple (u64, bool) where if bool is true
+translates to a negative latency, the latency is returned via variant
+enum where Positive and Negative makes the distinction explicit."
+60,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/16,16,Stream latency return enum,fixes #10 ,djg,156077,2017-08-06T04:44:54Z,COLLABORATOR,True,22,8,3,,Rust,a75fccacfdbc8f85bba9d4dba873b95e4c481a4f,cubeb-pulse-rs: Updates required by changes to Stream::get_latency().
+61,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/15,15,stream: Fix !negative assert in latency().,"Should assert that negative is false, not true.",djg,156077,2017-08-06T04:19:42Z,COLLABORATOR,True,1,1,1,,Rust,cbbf6d286791504b8e70c60336d3285fbcd3b0e2,stream: Fix !negative assert in latency().
+62,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/13,13,Synchronize the cubeb_ops table with Cubeb,"To synchronize the changes in https://github.com/kinetiknz/cubeb/pull/336, we need to update the ```cubeb_ops``` table.
+
+I try not to burn anything here since I am not familiar with this.",ChunMinChang,5111652,2017-07-07T03:59:25Z,MEMBER,True,2,0,2,,Rust,96c5e78e5370aa3647b9e59b75f0d6615fae6742,Add cubeb_stream_reset_default_device to synchronize the changes of Cubeb
+63,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/12,12,Upstream pa sink flag fix,"@kinetiknz, could you just pass your eye over these fixes. try_from was wrong for SinkFlags (It was checking SourceFlags). Unfortunately, neither my local testing, nor try push picked up the issue.
+
+I've removed the expect() call. Causing panics is too risky, it brings down the whole process. Really, we should log any unknown flags, but not crash.",djg,156077,2017-06-24T06:43:16Z,COLLABORATOR,True,5,5,2,,Rust,9c52e897e2e077f31b2dc0a3588447ffa7da553f,Upstream gecko Bug 1376000.
+64,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/12,12,Upstream pa sink flag fix,"@kinetiknz, could you just pass your eye over these fixes. try_from was wrong for SinkFlags (It was checking SourceFlags). Unfortunately, neither my local testing, nor try push picked up the issue.
+
+I've removed the expect() call. Causing panics is too risky, it brings down the whole process. Really, we should log any unknown flags, but not crash.",djg,156077,2017-06-24T06:43:16Z,COLLABORATOR,True,5,5,2,,Rust,2ae2f7ad9b2a9d205e7b5e337102702d5a7264dc,Upstream gecko Bug 1375873.
+65,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,b538cd98b85e40fe3ffa38a183c67ea72e4065ee,cubeb-pulse-rs: Rearrange stream corking functions.
+66,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,1c466026f98ada93764ebd8511e2adcfbb46566c,"cubeb-pulse-rs: Cleanup pulse callbacks.
+
+* Move to function local
+* Replace generic names with names explaining function of callback."
+67,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,4a67a5a6872d5ff1a51edbef8d20ba32f98344f6,"cubeb-pulse-rs: Collapse indentical functions into state_from_port.
+
+De-duplication of code: state_from_sink_port and
+state_from_source_port are cut'n'paste code."
+68,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,d6b2f70ceb951920786ea62177b131f4502b035e,pulse-rs: Changes needed for pulse::threaded_mainloop.
+69,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,48260e9f1837108540fb4e9004a481f18e384bf6,cubeb-pulse-rs: Convert pa_threaded_mainloop to pulse::ThreadedMainloop.
+70,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,3c1db1196e42520fc4e8574bca20b9335e724482,"pulse-ffi: Changes for pulse::Context, pulse::Operation, etc."
+71,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,cfaf3e6d2614c28b5ecc7d0c5d9faf962201a1a5,"pulse-rs: Changes needed for pulse::Context, pulse::Operation, etc."
+72,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,8c700b407cf1456315fb22274fb9a12b96952113,cubeb-pulse-rs: Convert ffi::pa_context to pulse::Context.
+73,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,ad9da2b97be52e259a45e041a0a402c8fadc3233,pulse-ffi: Changes for pulse::Stream.
+74,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,235b7551d8fc6f0512440e9ed999486d1e687f98,pulse-rs: Changes for pulse::Stream.
+75,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,70c4983bf146b0f907a6af26e569ddb632430949,cubeb-pulse-rs: Convert pa_stream to pulse::Stream.
+76,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,9a1e7d4e50f52f8cb3bdec88d32cb0fd80cb0670,cubeb-pulse-rs: Cleanup unsafe { } calls with extension traits.
+77,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,f85f0ecaf2e416f0b070e1f96dcbb6105ef2ec5e,pulse-rs: Changes to support extension traits.
+78,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,23858f4263a5dbe870304ef535994abf7a28c930,clippy fixes.
+79,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,fc8770fe0d3f9d6761c424abcaff62545257a1f0,pulse-rs: Change ThreadedMainloop::Start to return Result<()>.
+80,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,5c976aa8a31633596b69eb7eb2a2602ff04821b7,cubeb-rs: Make ThreadedMainloop::signal implicitly not wait.
+81,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,246fa1c2ce608bfe4c872177882f1969ca24f361,cubeb-pulse-rs: Remove rr comment.
+82,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,f876867ed213859eb634a65d32fb6c2b7df6db69,Reinstate assert that get_latency result is non-negative.
+83,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,8ccf7baca234e754dafacc72f4ba29a638ae3d4f,Add note about wrapped functions in callbacks.
+84,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,cdbf92848837d317e29b7b9536f0bfa23559a580,Add comment that is_good() fns must match PulseAudio macros.
+85,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,662fd5f69e4c7c9e7ace95bc1150803e10b03a76,Remove early return from position() so not to skip unlock.
+86,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,4532a13e2160e8b6ceaa105854dee32103a0c0df,Remove unused fn write_with_free.
+87,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,554403099cf7fa5af98236072899cca52859f81c,Macro-fy error checking and returning Operation boilerplate.
+88,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,a1a6aa2c188de1f4ca960a32cbb6481170abb028,pulse::Stream::drop_record -> pulse::Stream::drop
+89,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,4a9be5fdccfac959badbeb72ab308178fc9400f0,"Remove unused pulse::{Context, Stream}::clone()"
+90,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,64ebb5256445c2ac74101bc47fbac08b5010868b,"pulse-rs: Replace nullable Context with Option<Context>
+
+In discussion with :kinetik it was decided to use more idiomatic
+Rust. Instead of being able to hold a Context that might be invalid,
+use Option<Context> to signal when a valid Context is held."
+91,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,2f9b659590e8ee90543934ab6bb67ca90a2d3245,"cubeb-pulse-rs: Clean up trigger_user_callback parameters.
+
+Turns out stream pointer to trigger_user_callback was only ever
+self.output_stream."
+92,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,5bfb0d853623c970309964dcb52db6b63ca89591,"pulse-rs: Replace nullable Stream with Option<Stream>
+
+In discussion with :kinetik it was decided to use more idiomatic
+Rust. Instead of being able to hold a Stream that might be invalid,
+use Option<Stream> to signal when a valid Stream is held."
+93,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,8ce4d7d2e43b8520a7dae48935a5ff70b3743cb3,pulse-rs: Replace implicit unref with explicit unref.
+94,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/7,7,Rustify pulse bindings,"Hi @kinetiknz could you please review. I've split out into chunks that I hope help make it easier to review. My idea is to flatten all these into one commit on final merge. (perhaps one commit for each crate?)
+
+@rillian, may want to have a look and provide rust advice too? Up to you if you have time.",djg,156077,2017-05-05T04:28:46Z,COLLABORATOR,True,2827,1052,17,,Rust,d4163a2838db2ce0227683f13279c4842c7acdfc,"pulse-rs: Change PropList interface to take rust strings.
+
+... and perform the allocation to convert to CString internally.
+Remove cstr! macro."
+95,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/6,6,Move logging to own module,"Incorporated from https://github.com/djg/cubeb-ffi
+
+- Move logging into log module.
+- Fix test failure.
+- Hide implementation details behind cubeb::log_enabled()
+- g_log_* -> g_cubeb_log_*",djg,156077,2017-04-26T00:37:21Z,COLLABORATOR,True,80,68,5,,Rust,17056508a614b1123a028db145409190bd539d13,"Merge pull request #1 from djg/dev
+
+Port cubeb_pulse.c to rust"
+96,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/6,6,Move logging to own module,"Incorporated from https://github.com/djg/cubeb-ffi
+
+- Move logging into log module.
+- Fix test failure.
+- Hide implementation details behind cubeb::log_enabled()
+- g_log_* -> g_cubeb_log_*",djg,156077,2017-04-26T00:37:21Z,COLLABORATOR,True,80,68,5,,Rust,9c5499d7a031e8496acbf567a697957812736308,Merge branch 'dev'
+97,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/6,6,Move logging to own module,"Incorporated from https://github.com/djg/cubeb-ffi
+
+- Move logging into log module.
+- Fix test failure.
+- Hide implementation details behind cubeb::log_enabled()
+- g_log_* -> g_cubeb_log_*",djg,156077,2017-04-26T00:37:21Z,COLLABORATOR,True,80,68,5,,Rust,dbcd7f96aea8d249a4b78f9a7597768c9dff22eb,logging: Extract from ffi.rs to log.rs.
+98,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/5,5,travis: Use rustup to install the i686 cross target.,"This is easier to understand than using the external wrapper
+script, with everything defined in-tree. We lose the hack
+around doc-tests not working with cross-compilation, however.
+
+Define TARGET and FEATURES only if they are different
+from the defaults. Use rustup to install the alternate
+target support. Use posix shell parameter expansion to
+prefix the --target and --features cargo switches if the
+corresponding variables are set.
+
+Use folded blocks to improve formatting. The '>' prefix
+character folds the subsequent indented block into a single
+string with newlines removed. This lets us add and remove
+switches cleanly without long lines or continuation. Note
+however that the whole block must use the same indentation.
+
+Remove some keys which just declared default values.",rillian,225102,2017-04-20T05:53:01Z,CONTRIBUTOR,True,36,18,1,,Rust,f03bdf1617f57ed0991879bdf1d550ffbcaca905,"travis: Use rustup to install the i686 cross target.
+
+This is easier to understand than using the external wrapper
+script, with everything defined in-tree. We lose the hack
+around doc-tests not working with cross-compilation, however.
+
+Define TARGET and FEATURES only if they are different
+from the defaults. Use rustup to install the alternate
+target support. Use posix shell parameter expansion to
+prefix the --target and --features cargo switches if the
+corresponding variables are set.
+
+Use folded blocks to improve formatting. The '>' prefix
+character folds the subsequent indented block into a single
+string with newlines removed. This lets us add and remove
+switches cleanly without long lines or continuation. Note
+however that the whole block must use the same indentation.
+
+Remove some keys which just declared default values."
+99,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/5,5,travis: Use rustup to install the i686 cross target.,"This is easier to understand than using the external wrapper
+script, with everything defined in-tree. We lose the hack
+around doc-tests not working with cross-compilation, however.
+
+Define TARGET and FEATURES only if they are different
+from the defaults. Use rustup to install the alternate
+target support. Use posix shell parameter expansion to
+prefix the --target and --features cargo switches if the
+corresponding variables are set.
+
+Use folded blocks to improve formatting. The '>' prefix
+character folds the subsequent indented block into a single
+string with newlines removed. This lets us add and remove
+switches cleanly without long lines or continuation. Note
+however that the whole block must use the same indentation.
+
+Remove some keys which just declared default values.",rillian,225102,2017-04-20T05:53:01Z,CONTRIBUTOR,True,36,18,1,,Rust,17e4b9abcce51f2cbe20c211084f708e4f61d022,"Fix indentation and spacing.
+
+Dan prefers list markers aligned with the parent key, rather
+than indented like my editor wants to do. Fix an incorrect
+indent and move everything to match that rule.
+
+I added some empty lines and rearranged some sections for
+better readability. Especially with top-level keys, the
+lack of indent makes it harder to distinguish items without
+more open spacing."
+100,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/4,4,Master,,djg,156077,2017-04-20T02:58:24Z,COLLABORATOR,True,0,0,0,,Rust,17056508a614b1123a028db145409190bd539d13,"Merge pull request #1 from djg/dev
+
+Port cubeb_pulse.c to rust"
+101,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/4,4,Master,,djg,156077,2017-04-20T02:58:24Z,COLLABORATOR,True,0,0,0,,Rust,9c5499d7a031e8496acbf567a697957812736308,Merge branch 'dev'
+102,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/3,3,Configure Travis CI.,Build 32-bit/64-bit x static-link/dynamic-link,djg,156077,2017-04-18T23:59:29Z,COLLABORATOR,True,63,16,7,,Rust,5a5ee7aad838f5ee0ee84ee481f05af35803e42a,"Cargo.toml: Remove default feature as it causes headaches.
+
+Too many issues with static-link vs. dynamic-link.  Remove default and
+static-link and just base decision upon dynamic-link feature to pulse-ffi."
+103,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/3,3,Configure Travis CI.,Build 32-bit/64-bit x static-link/dynamic-link,djg,156077,2017-04-18T23:59:29Z,COLLABORATOR,True,63,16,7,,Rust,f4d86424928a37e044892f4dad56cf4ac292aabc,README.md: Add Travis build status badge.
+104,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/3,3,Configure Travis CI.,Build 32-bit/64-bit x static-link/dynamic-link,djg,156077,2017-04-18T23:59:29Z,COLLABORATOR,True,63,16,7,,Rust,faa1dcf3a061144c1f7edee76f23691eabd1f436,"Configure Travis CI.
+
+Build 32-bit/64-bit x static-link/dynamic-link"
+105,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,f8a2748a3b530ac1ab240f0a8dde84329320cfc5,"FFI bindings for cubeb.
+
+Generated via rust-bindgen and then handcrafted."
+106,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,02906130fd9610f4f13e98cf86c8f1b487489f95,Initial version of cubeb_pulse.c converted to rust.
+107,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,9eca1e50962f6a3eaa77454c006561c32474a13b,Include local version of libpulse-sys that supports dyld fns.
+108,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,59c1a77670d001c20289d718e4c9aee215ecc776,Create README.md
+109,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,965a9f214edf954406586eea3547c1bc0396cb12,"Add LICENSE
+
+Use the same license as Cubeb, which this code is derived from."
+110,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,4605b7230b617e002e3e3a17b35e6db3ad60d483,Add AUTHORS file.
+111,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,6efc9115ef9453cd51a05b709a24f00ec5331438,"Implement version checking for functions that require it.
+
+In cubeb_pulse.c, the header file that is being compiled against is
+checked for version.  Because that is unavailable through the ffi
+bindings for pulse instead use pa_get_library_version() which returns
+the version of libpulse that is linked against at runtime."
+112,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,fac187ff2ce4ed1b224fcea28e5b5f57f68202f5,"Bug 1332887: return state enabled with port is NULL.
+
+Merge from kinetiknz/cubeb #224."
+113,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,200a8bc36e16fb45715c5a03d5f9b9b26acdcb05,Review: Pulse Audio -> PulseAudio
+114,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,99655223ab921d07135cea117ec5bb19839dd1fe,"Review: Specify explicit libc version.
+
+Set to ^0.2.20 to match version used in gecko."
+115,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,5ee26dcaa9fab24d27ddfdf4481734eda3d7dfae,"Review: Replace the use of libc with std::os::raw.
+
+Removes dependency upon libc for c types."
+116,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,7543f0c95eacf1716afd2748af693a890af1de28,Review: Remove commented g_log_callback example.
+117,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,c8ed91cfc6915141fa7c6dce46ac5a97f0078ee5,Review: Consistently format macro parameters.
+118,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,985c3b9d57604bc3ca8649e74ebd83186b6d2706,"Convert enums to new_type ints.
+
+Update makes constants look more like the Cubeb C API.
+
+eg: cubeb::SAMPLE_S16LE instead of CUBEB_SAMPLE_S16LE."
+119,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,ab8d6a1dc075a8e9fa56f41d7cdcf3293e866e3f,"Switch out libpulse-sys for pulse-ffi.
+
+pulse-ffi has a better license and allows for dynamic loading for
+pulse.so."
+120,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,072d0afba3c2c691cce7d696fc1faf91c8b4ae7d,"Apply unsafe keyword as necessary.
+
+Resulting from change from libpulse-sys to pulse-ffi.  C FFI functions
+are unsafe just like extern ""C"" { pub fn ... }"
+121,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,a58d66fbb28ca0a0527111de2a112a7753dfd535,Remove libpulse-sys crate.
+122,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,3f51735824e68158aa368307e723acf209dcf2e7,Remove cubeb-pulse-rs dependency upon libc.
+123,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,fa9fe542a9ec8e5fb51ec0ad73862ab611beb319,User ptr::null_mut() instead of 0 cast.
+124,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,42a52d16488436860e01ea02a78eaab3e743847f,Convert DeviceFmt to use bitflags macro.
+125,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,7400be3387b8c62a0eb3d932b61172c0105548e3,Convert DevicePref to use bitflags macro.
+126,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,e6b461b7a9aeee419e1ba153c07d57d29f178790,Convert DeviceType to use bitflags macro.
+127,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,6f736d301eb79596753b29eed00e3d2d83e2fe38,Fix DataCallback to use c_long instead of i64.
+128,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,3a4a15b92c55cae2e17978fd0ffd22cf07a7cf50,"Remove empty file, destroy.rs"
+129,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,a8c3362364df6b51d78ac4ce93bd45a3bf627c65,ChannelMap: Default initialize to zero size and invalid values.
+130,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,3811b978aba87c961d57175f17ff547c4830e74f,Eliminate destroy! macro.
+131,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,427aaafff79ec2539326c2836c3876b99bfb361e,"Convert licensing comments to ISC-style.
+
+Source files now match LICENSE file."
+132,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,82251ad3aeb768cd5dbfd41aa67d823448b2d3f3,Replace *i8 with *c_char in FFI.
+133,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,0095f8aa451c37138718a32bb64b8a6c75a51068,make all functions exposed to cubeb C ops tables unsafe.
+134,https://api.github.com/repos/mozilla/cubeb-pulse-rs/pulls/1,1,Port cubeb_pulse.c to rust,"This is a direct port of cubeb_pulse.c with light conversion to be ""rust-like""
+
+@kinetiknz please review",djg,156077,2017-03-16T04:35:08Z,COLLABORATOR,True,4909,0,20,,Rust,f69f5c3ace1a750ca3fd395620e766664299b8d8,PA_RATE_MAX: Move to pulse-ffi crate.

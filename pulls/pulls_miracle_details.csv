@@ -1,0 +1,32 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/miracle/pulls/12,12,marked project as inactive in README,,crankycoder,4829,2018-08-03T14:54:36Z,NONE,False,3,0,1,,Python,d5965e1ac04148b02f91496ec42717d27ab26e33,marked project as inactive in README
+1,https://api.github.com/repos/mozilla/miracle/pulls/7,7,changes to schema diagram,"1) to facilitate others manipulating the schema diagram, I've added the source ""db_schema.dia"" file.
+2) corrected case of the column type text of the ""users"" table
+3) corrected background from transparent to white
+",twobraids,581227,2016-10-04T18:30:07Z,CONTRIBUTOR,True,77,74,2,,Python,767d7923f12ddbdc23fd61e7dd4a9c0485944334,added source dia file for db_schema & svg with background
+2,https://api.github.com/repos/mozilla/miracle/pulls/1,1,Pass Bucket as a string to head_bucket,"When attempting to run contextgraph-service in worker role the following traceback occurs:
+
+```
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: Traceback (most recent call last):
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: File ""/usr/local/lib/python3.5/site-packages/billiard/process.py"", line 292, in _bootstrap
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: self.run()
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: File ""/usr/local/lib/python3.5/site-packages/billiard/pool.py"", line 292, in run
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: self.after_fork()
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: File ""/usr/local/lib/python3.5/site-packages/billiard/pool.py"", line 395, in after_fork
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: self.initializer(*self.initargs)
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: File ""/usr/local/lib/python3.5/site-packages/celery/concurrency/prefork.py"", line 84, in process_initializer
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: signals.worker_process_init.send(sender=None)
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: File ""/usr/local/lib/python3.5/site-packages/celery/utils/dispatch/signal.py"", line 166, in send
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: response = receiver(signal=self, sender=sender, **named)
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: File ""/app/contextgraph/worker/app.py"", line 59, in init_worker_process
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: init_worker(celery_app)
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: File ""/app/contextgraph/worker/app.py"", line 42, in init_worker
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: celery_app.bucket.connect(celery_app.raven)
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: File ""/app/contextgraph/bucket.py"", line 33, in connect
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: s3.meta.client.head_bucket(bucket)
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: File ""/usr/local/lib/python3.5/site-packages/botocore/client.py"", line 256, in _api_call
+Jun 03 21:04:19 ip-172-31-36-20 docker[3905]: ""%s() only accepts keyword arguments."" % py_operation_name)
+```
+
+This patch resolves the issue. r?
+",jasonthomas,910992,2016-06-03T22:05:35Z,MEMBER,True,1,1,1,,Python,d5469d2335a7aee830ffaeea421ff139071feb6b,Pass Bucket as a string to head_bucket

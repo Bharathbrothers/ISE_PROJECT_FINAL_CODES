@@ -1,0 +1,26 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/mozcommitbuilder/pulls/18,18,Make default shellCacheDir hidden on Linux/OS X,"I don't see much need to clutter people's home directory with the moz-commitbuilder-cache so I suggest that it is prefixed with a '.' so that it is hidden on Linux/OS X.  This patch provides a migration path for existing users by first checking if ~/moz-commitbuilder-cache exists and using that. Otherwise, it defaults to ~/.moz-commitbuilder-cache for shellCacheDir.
+",mnoorenberghe,601139,2013-02-15T06:42:25Z,CONTRIBUTOR,True,10,2,1,regression finding and firefox building library for mozilla firefox's central repository.,Python,10e95a9186d956d2fd928eff7c96617e4ffcb19c,Default to ~/.moz-commitbuilder-cache for shellCacheDir
+1,https://api.github.com/repos/mozilla/mozcommitbuilder/pulls/10,10,[FirefoxRunner] TypeError: __init__() takes at least 2 arguments (2 given),"Using mozcommitbuilder (via mozregression) to bisect fails with the following error:
+
+```
+File ""/usr/local/lib/python2.7/dist-packages/mozcommitbuilder-0.4.9-py2.7.egg/mozcommitbuilder/builder.py"", line 275, in bisect
+  self.bisectRecurse(testcondition=testcondition, args_for_condition=args_for_condition)
+File ""/usr/local/lib/python2.7/dist-packages/mozcommitbuilder-0.4.9-py2.7.egg/mozcommitbuilder/builder.py"", line 393, in bisectRecurse
+  self.run()
+File ""/usr/local/lib/python2.7/dist-packages/mozcommitbuilder-0.4.9-py2.7.egg/mozcommitbuilder/builder.py"", line 465, in run
+  runner = FirefoxRunner(binary=os.path.join(self.shellCacheDir,""mozbuild-trunk"",""obj-ff-dbg"",""dist"",""bin"") + ""/firefox"")
+TypeError: __init__() takes at least 2 arguments (2 given)
+```
+
+FirefoxRunner (and all other runners from mozrunner) expect the first argument to be a profile. We don't need to specify any if we use Runner.create(). Not 100% sure that's the right fix but this makes me able to bisect again.
+",ttaubert,300895,2012-06-15T10:16:42Z,NONE,True,6,6,1,regression finding and firefox building library for mozilla firefox's central repository.,Python,3e4786dc3f17d50baab4da2e11f4ae66945ec991,Call FirefoxRunner.create() instead of the constructor.
+2,https://api.github.com/repos/mozilla/mozcommitbuilder/pulls/9,9,Fixed cleanup flag,"It was broken / didn't work. Made it work.
+",samliu,135933,2012-05-31T00:10:42Z,MEMBER,True,15,13,1,regression finding and firefox building library for mozilla firefox's central repository.,Python,9deac856414d9da83cad6b94a4a2bd3b0a9026b2,fixed the cleaup flag
+3,https://api.github.com/repos/mozilla/mozcommitbuilder/pulls/8,8,"Added a cleanup flag, updated readme, fixed a bug introduced by the previous commit (simplejson)","Based on a request by jhammel (k0s)
+",samliu,135933,2012-05-30T23:58:13Z,MEMBER,True,37,7,3,regression finding and firefox building library for mozilla firefox's central repository.,Python,224ab13379d651ee23377d273510a79b18eb6e0b,"readme, added a cleanup flag, bumped version number"
+4,https://api.github.com/repos/mozilla/mozcommitbuilder/pulls/5,5,mozcommitbuilder uses pulse but it is not declared in the setup.py,"https://github.com/mozilla/mozcommitbuilder/issues/4
+
+pypi should also be updated.  
+",k0s,270826,2011-12-29T22:34:59Z,CONTRIBUTOR,True,9,6,1,regression finding and firefox building library for mozilla firefox's central repository.,Python,d3cb79f30a198ea4e6f0e01ecaecff50fd9fb170,https://github.com/mozilla/mozcommitbuilder/issues/4
+5,https://api.github.com/repos/mozilla/mozcommitbuilder/pulls/3,3,Faster default for --cores,,jruderman,692547,2011-07-02T01:36:29Z,CONTRIBUTOR,True,10,4,1,regression finding and firefox building library for mozilla firefox's central repository.,Python,5344f18903e27920823d6bc5a4ebd6d55fca2b7b,Make --cores default to the number of cores on the system.

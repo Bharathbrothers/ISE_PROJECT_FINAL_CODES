@@ -1,0 +1,886 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/268,268,everything has moved to auth-server,"There's no reason to leave the code un-maintained, as someone can copy it, security vulnerabilties and all.
+
+Only thing left is the README saying we've moved to the auth-server.",seanmonstar,51479,2017-04-26T18:10:29Z,MEMBER,True,1,15427,89,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,6fbc515b1fc2b5a5764cabf5abc2c79108fab8fe,everything has moved to auth-server
+1,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/263,263,fix(mail): add from header for the new nodemailer,Fixes #262,vladikoff,128755,2017-02-21T17:11:17Z,CONTRIBUTOR,True,5,1,3,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,019eadf86519d52d00d4e5d7e491b42e67924721,"fix(mail): add from header for the new nodemailer
+
+Fixes #262"
+2,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/261,261,feat(sms): implement status check,"This is the auth mailer part of mozilla/fxa-auth-server#1646. It adds a method to check the balance of the nexmo account and indicate whether it's any good based on a threshold defined in config.
+
+@mozilla/fxa-devs r?",philbooth,64367,2017-02-20T17:23:42Z,CONTRIBUTOR,False,90,4,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,d78a22742e91bcbb883e130cf7f98d381051ab2c,feat(sms): implement status check
+3,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/259,259,feat(mailer): add support for sending SMS messages,"Related to mozilla/fxa-auth-server#1628. Replaces #254.
+
+This is broadly the same as the previous PR. The main difference is that I didn't realise the auth server invokes the mailer in-process before, so some redundant server nonsense has been removed. For the same reason, the interface for the package needed changing to return the `sms` module. I opted to return an object `{ email, sms }` but am open to other suggestions if anyone finds that offensive.
+
+With the elimination of my imaginary server boundary, it made sense to pull the config and phone number validation up to the auth server level so those are both removed. And with the config gone, the `send-sms` script has moved over there too.
+
+All that means the code here should be a bit simpler than it was. I think it's ready for review now but note that **we don't want to merge this until the auth server changes are also ready to be merged**. The aforementioned interface change requires equivalent changes in the auth server. 
+
+You can see those auth server changes in the [phil/issue-1628 branch](https://github.com/mozilla/fxa-auth-server/compare/master...phil/issue-1628). I just need to sort out the correct sender id for USA/Canada and wire in the flow events before it, too, is ready to be reviewed.
+
+@mozilla/fxa-devs r?",philbooth,64367,2017-02-08T12:12:33Z,CONTRIBUTOR,True,990,17,9,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,dfaad39ecaf41c48d90c09dc1645f4603da7f992,feat(mailer): add support for sending SMS messages
+4,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/258,258,fix(git): update husky to unbreak git hooks on ubuntu,,seanmonstar,51479,2017-02-08T00:43:14Z,MEMBER,True,67,4,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,829fc284af711a493b93effa1bbbc4daff202083,fix(git): update husky to unbreak git hooks on ubuntu
+5,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/257,257,fix(config): change reminder poll for many servers,"@vbudhram r?
+
+This change because all auth-servers will be polling and not just one.",vladikoff,128755,2017-02-08T00:15:49Z,CONTRIBUTOR,True,1,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,03f35d19a70ade772f88241e900e871262bdc91d,fix(config): change reminder poll for many servers
+6,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/255,255,fix(reminders): update reminder logic to support latest db,"Connects to https://github.com/mozilla/fxa-auth-db-mysql/issues/196
+
+Ref: https://github.com/mozilla/fxa-auth-db-mysql/pull/200",vladikoff,128755,2017-02-03T16:58:26Z,CONTRIBUTOR,False,5,3,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,8fe70e38f2bc3dd38d4a04b58e0f59a7838297c7,wip2
+7,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/254,254,feat(mailer): add support for sending SMS messages,"Related to mozilla/fxa-auth-server#1628.
+
+- [x] Define the API.
+- [x] Include SMS messages in the auth mailer templates for l10n.
+- [x] Implement phone number validation.
+- [x] Unit tests.
+- [x] Fix `Invalid Text Message` error from Nexmo.
+- [x] Test out sending actual messages to the UK, the USA and Canada.
+- [x] Export the sms interface for direct calling.
+- [ ] Include the proper install link.
+- [ ] Include the finalised message text.
+- [ ] Include the finalised sender ids.
+
+/cc @shane-tomlinson @vbudhram ",philbooth,64367,2017-02-01T19:10:17Z,CONTRIBUTOR,False,1053,29,11,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,0732b875d9792f1fb3e32284c4c0b3757ddb754e,feat(mailer): add support for sending SMS messages
+8,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/252,252,chore(docs): update AUTHORS file,"updating authors, but also checking of l10n extract fail was caused by deps updates or something else: 
+
+https://github.com/mozilla/fxa-auth-mailer/pull/251",vladikoff,128755,2017-01-27T14:47:48Z,CONTRIBUTOR,True,23,0,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,e68830764ba16d61395c1622035fd6896b1ae0c6,chore(docs): update AUTHORS file
+9,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/251,251,"fix(dependencies): update bluebird, nodemailer, convict, moment-timezone","Code changes were due to updates in bluebird, it no longer uses `cancellable`, but it's easy enough to just have a local variable track that.",seanmonstar,51479,2017-01-27T00:06:05Z,MEMBER,True,426,968,4,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,c46aa7e7de9e21a06a556d465c9ce7785483a6f3,"fix(dependencies): update bluebird, nodemailer, convict, moment-timezone"
+10,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/249,249,refactor(templates): Update to correct font-size and line height,"Easiest way to test is to run `node ./scripts/write-to-disk.js all` and view html output in `.mail_output` folder.
+
+Fixes #242
+
+Sample Emails
+<img width=""377"" alt=""screen shot 2017-01-19 at 5 35 07 pm"" src=""https://cloud.githubusercontent.com/assets/1295288/22128230/9e18ce28-de6d-11e6-9c42-5c411a9ce5f3.png"">
+<img width=""325"" alt=""screen shot 2017-01-19 at 5 36 02 pm"" src=""https://cloud.githubusercontent.com/assets/1295288/22128264/bcfb3358-de6d-11e6-8a4b-f1ece9bf3664.png"">
+<img width=""345"" alt=""screen shot 2017-01-19 at 5 39 18 pm"" src=""https://cloud.githubusercontent.com/assets/1295288/22128378/3bfc2f36-de6e-11e6-8e62-1f5bbfa27cd7.png"">
+<img width=""334"" alt=""screen shot 2017-01-19 at 5 34 23 pm"" src=""https://cloud.githubusercontent.com/assets/1295288/22128206/82154c24-de6d-11e6-889e-8df89db28967.png"">
+",vbudhram,1295288,2017-01-19T22:44:05Z,CONTRIBUTOR,True,148,140,22,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,562d0b89d64b661e83e23b44e00998a6acd0df7c,refactor(templates): Update to correct font-size and line height
+11,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/249,249,refactor(templates): Update to correct font-size and line height,"Easiest way to test is to run `node ./scripts/write-to-disk.js all` and view html output in `.mail_output` folder.
+
+Fixes #242
+
+Sample Emails
+<img width=""377"" alt=""screen shot 2017-01-19 at 5 35 07 pm"" src=""https://cloud.githubusercontent.com/assets/1295288/22128230/9e18ce28-de6d-11e6-9c42-5c411a9ce5f3.png"">
+<img width=""325"" alt=""screen shot 2017-01-19 at 5 36 02 pm"" src=""https://cloud.githubusercontent.com/assets/1295288/22128264/bcfb3358-de6d-11e6-8a4b-f1ece9bf3664.png"">
+<img width=""345"" alt=""screen shot 2017-01-19 at 5 39 18 pm"" src=""https://cloud.githubusercontent.com/assets/1295288/22128378/3bfc2f36-de6e-11e6-8e62-1f5bbfa27cd7.png"">
+<img width=""334"" alt=""screen shot 2017-01-19 at 5 34 23 pm"" src=""https://cloud.githubusercontent.com/assets/1295288/22128206/82154c24-de6d-11e6-889e-8df89db28967.png"">
+",vbudhram,1295288,2017-01-19T22:44:05Z,CONTRIBUTOR,True,148,140,22,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,160cd15923126ac1e9aca83979aa9bce033fa81b,refactor(templates): remove mailer link styling
+12,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/248,248,refactor(templates): Update to correct details styling,"All emails that have location details updated per https://docs.google.com/document/d/1I7TSNa7mvUFipX48OhGSRbuVybIqSb5QdnCmivSjl-c/edit
+
+Sample:
+<img width=""358"" alt=""screen shot 2017-01-18 at 1 36 00 pm"" src=""https://cloud.githubusercontent.com/assets/1295288/22077760/7cc49d14-dd83-11e6-8ef4-8fc5a71747f2.png"">
+
+Fixes #246 ",vbudhram,1295288,2017-01-18T18:40:44Z,CONTRIBUTOR,True,28,28,7,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,b2bfdeed6658462f36eddaeeeb2991831b85e810,refactor(templates): Update to correct details styling
+13,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/247,247,"set up ""SES Event Publishing"" metrics","This (along with changes to come for fxa-auth-server, and config changes in AWS), will provide more fine-grained details on SES usage.
+
+r? - @vladikoff, @vbudhram ",jrgm,758162,2017-01-12T04:48:31Z,CONTRIBUTOR,True,117,5,3,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,a59e1bc21d1d144a12d3a2713e11d8d83ea4571b,"refactor(mailer): hoist headers, to be symmetric with other code"
+14,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/247,247,"set up ""SES Event Publishing"" metrics","This (along with changes to come for fxa-auth-server, and config changes in AWS), will provide more fine-grained details on SES usage.
+
+r? - @vladikoff, @vbudhram ",jrgm,758162,2017-01-12T04:48:31Z,CONTRIBUTOR,True,117,5,3,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,56bd661628320dd6fff33356bb2a37b552a8d14f,"feat(mailer): set up ""SES Event Publishing"" metrics"
+15,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/245,245,fix(templates): remove suspicious_location template,"Fixes #183 
+
+@mozilla/fxa-devs r?",vladikoff,128755,2017-01-03T19:14:51Z,CONTRIBUTOR,True,2,226,6,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,1d877213e80cfefb7c4c15a753a1dd9e322ca9a0,"fix(templates): remove suspicious_location template
+
+Fixes #183"
+16,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/244,244,"fix(strings): add comma to ready, set, sync",,vladikoff,128755,2016-12-23T16:59:17Z,CONTRIBUTOR,True,3,3,3,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,7f56474c3a866ade98ae541df95656aaf0c330fa,"fix(strings): add comma to ready, set, sync"
+17,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/243,243,refactor(templates): Add more location data to emails,"This PR adds adds a new verify account sync template. This does not change the verify account email for non-sync users. It also adds location data to
+
+- verify sync account email
+- password reset email
+- password change success email
+
+It also contains some slight text tweaks to the emails.
+
+Fixes #189 ",vbudhram,1295288,2016-12-21T17:01:53Z,CONTRIBUTOR,True,309,27,22,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,50e80aac8d4e6f1f506e1b4c0c9e1a74d98c6b39,"refactor(templates): Add new sync template, add location data to password change, password reset"
+18,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/243,243,refactor(templates): Add more location data to emails,"This PR adds adds a new verify account sync template. This does not change the verify account email for non-sync users. It also adds location data to
+
+- verify sync account email
+- password reset email
+- password change success email
+
+It also contains some slight text tweaks to the emails.
+
+Fixes #189 ",vbudhram,1295288,2016-12-21T17:01:53Z,CONTRIBUTOR,True,309,27,22,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,793d1e848e7bfaa745f60bb58f5e87eada9db9bc,fix(mailer): prepare subject for string extraction
+19,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/243,243,refactor(templates): Add more location data to emails,"This PR adds adds a new verify account sync template. This does not change the verify account email for non-sync users. It also adds location data to
+
+- verify sync account email
+- password reset email
+- password change success email
+
+It also contains some slight text tweaks to the emails.
+
+Fixes #189 ",vbudhram,1295288,2016-12-21T17:01:53Z,CONTRIBUTOR,True,309,27,22,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,b1ddaa91fe6c2a848d8a515b5448f817beca4ef7,fix(template): remove extra line break in templates
+20,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/241,241,fix(metrics): Add flowId and flowBeginTime to headers if avalible,"This PR adds support for forwarding the `flowId` and `flowBeginTime` values in the email headers. These will be used to track email bounce events that correspond to flows. This has been added to all our emails except `verificationReminderEmail`.
+
+Part of https://github.com/mozilla/fxa-auth-server/issues/1425",vbudhram,1295288,2016-12-16T03:52:43Z,CONTRIBUTOR,True,130,40,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,6d5446216179c3c1d407da1fcd9993decfacfbd8,fix(metrics): Add flowId and flowBeginTime to headers if avalible
+21,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/240,240,fix(deps): update prod dependencies,"@mozilla/fxa-devs r?
+
+Ref: https://github.com/mozilla/fxa-shared/issues/9",vladikoff,128755,2016-11-30T21:54:32Z,CONTRIBUTOR,True,356,213,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,d62080dfc558ef58bd5244730a0b9e44a41b09ad,fix(deps): update prod dependencies
+22,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/239,239,"chore(deps): pick up latest l10n, update shrinkwrap script",,vladikoff,128755,2016-11-30T20:27:53Z,CONTRIBUTOR,True,321,307,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,85664b896adbd4bc99ee366ea9221e1ba385bdb9,"chore(deps): pick up latest l10n, update shrinkwrap script"
+23,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/238,238,fix(l10n): update l10n SHA handling,"Fixes #210 
+
+@jrgm r?",vladikoff,128755,2016-11-24T15:31:58Z,CONTRIBUTOR,True,192,167,4,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,5bc30692d29d5b1ae34824b997d436952a1b6884,fix(l10n): update l10n SHA handling
+24,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/237,237,fix(config): add extra validation for supported locales,"Fixes #232 
+
+@vbudhram r?",vladikoff,128755,2016-11-15T20:18:22Z,CONTRIBUTOR,True,5,0,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,0e12808c90c81312cd10fcc70464f50b31b82b49,fix(config): add extra validation for supported locales
+25,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/236,236,fix(config): disable polling if pollTime === 0,"r? - @vladikoff or @jbuck 
+
+The database queries are extremely unfriendly to mysql replication. I have disabled `verificationReminders.rate` in the auth-server, but I'd like a graceful way to disable this polling entirely today, and we can revisit what other changes are needed on Monday.",jrgm,758162,2016-11-13T19:08:19Z,CONTRIBUTOR,True,10,1,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,c38ed4f5e5284ec5a57e6e7dc6ed882dd0bb5621,fix(config): disable polling if pollTime === 0
+26,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/236,236,fix(config): disable polling if pollTime === 0,"r? - @vladikoff or @jbuck 
+
+The database queries are extremely unfriendly to mysql replication. I have disabled `verificationReminders.rate` in the auth-server, but I'd like a graceful way to disable this polling entirely today, and we can revisit what other changes are needed on Monday.",jrgm,758162,2016-11-13T19:08:19Z,CONTRIBUTOR,True,10,1,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,59e55909887d62e5c3c9039ef029c23b0a4fc710,fix(coverage): mark some uncovered polling code
+27,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/235,235,fix(tests): increase testing coverage,"Fixes #230
+
+@vbudhram r?",vladikoff,128755,2016-11-08T19:14:02Z,CONTRIBUTOR,True,149,1,3,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,5d7cf079eaeca211ee3b150eebbcbb063f7ea45a,"fix(tests): increase testing coverage
+
+Fixes #230"
+28,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/229,229,feat(mailer): Remove the `Alternatively` link from all emails.,"It's big. It detracts from the main link. It's so big that it's
+impossible to place other content below it. @ryanfeeley wants it out!
+
+fixes #228
+
+@vbudhram - r?
+",shane-tomlinson,848085,2016-10-18T15:05:47Z,MEMBER,True,0,41,12,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,55b6c3fca9a1112e8e25f4e609edeeac1ae42b06,"feat(mailer): Remove the `Alternatively` link from all emails.
+
+It's big. It detracts from the main link. It's so big that it's
+impossible to place other content below it. @ryanfeeley wants it out!
+
+fixes #228"
+29,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/227,227,refactor(mailer): Increase comprehensibility of device description,"fix #193 
+",RPraneetha,12150428,2016-10-15T14:14:43Z,CONTRIBUTOR,True,30,19,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,a05c80b45bd14ebb0a7d4ed80932a5c4a05b6943,refactor(mailer): Increase comprehensibility of device description
+30,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/227,227,refactor(mailer): Increase comprehensibility of device description,"fix #193 
+",RPraneetha,12150428,2016-10-15T14:14:43Z,CONTRIBUTOR,True,30,19,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,9acdd30b200953531d7ac6f01af777829b4542f2,refactor(mailer): Increase comprehensibility of device descriptions
+31,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/227,227,refactor(mailer): Increase comprehensibility of device description,"fix #193 
+",RPraneetha,12150428,2016-10-15T14:14:43Z,CONTRIBUTOR,True,30,19,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,6365adab03b9781f53873812f06b1457de912dfe,refactor(mailer): Increase comprehensibility of device description
+32,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/227,227,refactor(mailer): Increase comprehensibility of device description,"fix #193 
+",RPraneetha,12150428,2016-10-15T14:14:43Z,CONTRIBUTOR,True,30,19,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,163aa7638afdd5671b6d41bcb66ed4fd700f0e1a,refactor(mailer): Increase comprehensibility of device description
+33,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/227,227,refactor(mailer): Increase comprehensibility of device description,"fix #193 
+",RPraneetha,12150428,2016-10-15T14:14:43Z,CONTRIBUTOR,True,30,19,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,facd6b987bf78a85e80a4af43b81670f58b7da1f,refactor(mailer): Increase comprehensibility of device description
+34,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/227,227,refactor(mailer): Increase comprehensibility of device description,"fix #193 
+",RPraneetha,12150428,2016-10-15T14:14:43Z,CONTRIBUTOR,True,30,19,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,dfbece7ffc202fadcb290dc05bfcf9cda98dd2d5,refactor(mailer): Increase comprehensibility of device description
+35,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/227,227,refactor(mailer): Increase comprehensibility of device description,"fix #193 
+",RPraneetha,12150428,2016-10-15T14:14:43Z,CONTRIBUTOR,True,30,19,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,46f7791501f4472791e0debec0e938c3bb7888d4,refactor(mailer): Increase comprehensibility of device description
+36,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/226,226,refactor(mailer): Increase comprehensibility of device description,"fix #193 
+",RPraneetha,12150428,2016-10-15T07:42:02Z,CONTRIBUTOR,False,2,5,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,5a07042da710dee7b2f1478000376be68b7ccbdc,refactor(mailer): Increase comprehensibility of device description
+37,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/225,225,refactor(mailer): Increase comprehensibility of device description,"fix for https://github.com/mozilla/fxa-auth-mailer/issues/193
+",RPraneetha,12150428,2016-10-13T22:07:32Z,CONTRIBUTOR,False,2,5,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,d19374921f0aa5afd87c80b18cbeb009d066d160,refactor(mailer): Increase comprehensibility of device description
+38,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/224,224, refactor(mailer): Increase comprehensibility of Device description ( #193),"Fix for https://github.com/mozilla/fxa-auth-mailer/issues/193
+",RPraneetha,12150428,2016-10-13T21:49:11Z,CONTRIBUTOR,False,2,5,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,b4c17d2454cdc2cbd1d1b84afd60d256b70134c3,"refactor(mailer): Increase comprehensibility of Device description ( #193)
+
+Fix for https://github.com/mozilla/fxa-auth-mailer/issues/193"
+39,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/224,224, refactor(mailer): Increase comprehensibility of Device description ( #193),"Fix for https://github.com/mozilla/fxa-auth-mailer/issues/193
+",RPraneetha,12150428,2016-10-13T21:49:11Z,CONTRIBUTOR,False,2,5,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,258cefb87faa45817c7952de07133f06336be503,"Merge pull request #1 from RPraneetha/RPraneetha-patch-1
+
+refactor(mailer): Increase comprehensibility of Device description ( …"
+40,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/223,223,fix(travis): test on node 4 and 6; always CXX=g++-4.8,"fix(travis): test on node 4 and 6; always CXX=g++-4.8
+
+r? - @vladikoff 
+",jrgm,758162,2016-10-07T04:17:25Z,CONTRIBUTOR,True,2,8,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,44f76dacef68f8da698f3f94b6f379b7bf0261f9,fix(travis): test on node 4 and 6; always CXX=g++-4.8
+41,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/222,222,"feat(shared): add new locales, pick up latest l10n",,vladikoff,128755,2016-10-04T23:46:32Z,CONTRIBUTOR,True,343,379,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,bc5f104f81168f98d6a716ccb77913263b4d249b,"feat(shared): add new locales, pick up latest l10n"
+42,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/220,220,fix(mailer): Fix the title size in the password reset related templates.,"Change both ""password_reset"" and ""recovery"" to use `h1` instead of `h3`
+
+fixes #217 
+
+<img width=""359"" alt=""screen shot 2016-09-29 at 21 54 49"" src=""https://cloud.githubusercontent.com/assets/848085/18972095/a915490e-868f-11e6-91be-ef4c1fd6ca45.png"">
+
+<img width=""357"" alt=""screen shot 2016-09-29 at 21 54 53"" src=""https://cloud.githubusercontent.com/assets/848085/18972096/aa3a8272-868f-11e6-891e-1beb3ec4efd0.png"">
+
+@ryanfeeley - r?
+",shane-tomlinson,848085,2016-09-29T20:57:25Z,MEMBER,True,4,4,4,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,54a0bd06c99614cd9b6c1ecbe43247593cb232c2,"fix(mailer): Fix the title size in the password reset related templates.
+
+fixes #217"
+43,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/219,219,fix(mailer): Swap the order of IP and Location.,"Extract the common stuff to partials so it's easier to change from
+now on.
+
+fixes #216 
+
+@vbudhram - mind an r?
+
+note to @shane-tomlinson - update the template in #198 to use the partial.
+",shane-tomlinson,848085,2016-09-29T17:16:50Z,MEMBER,True,21,16,7,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,2b1dfdfe8056dcfee139780dfa90d406c98319d4,"fix(mailer): Swap the order of IP and Location.
+
+Extract the common stuff to partials so it's easier to change from
+now on.
+
+fixes #216"
+44,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/218,218,fix(coverage): Add script to enabled code coverage for local tests,"Noticed test coverage wasn't being reported for this. Uses the common coverage script.
+",vbudhram,1295288,2016-09-29T15:41:56Z,CONTRIBUTOR,True,23,2,3,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,0e9d63449af0e6a3b3f38693c00b8af4e5f35eca,fix(coverage): Add script to enabled code coverage for local tests
+45,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/218,218,fix(coverage): Add script to enabled code coverage for local tests,"Noticed test coverage wasn't being reported for this. Uses the common coverage script.
+",vbudhram,1295288,2016-09-29T15:41:56Z,CONTRIBUTOR,True,23,2,3,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,03432441479479502ace3f808543cab871e824f7,fix(coverage): Add coveralls
+46,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/215,215,feat(geo): add state info into emails,"Fixes #201
+
+@vbudhram r?
+",vladikoff,128755,2016-09-29T14:34:15Z,CONTRIBUTOR,True,90,14,3,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,33e983fb41ae95fda87266b5d9284a509a879d9c,"feat(geo): add state info into emails
+
+Fixes #201"
+47,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/215,215,feat(geo): add state info into emails,"Fixes #201
+
+@vbudhram r?
+",vladikoff,128755,2016-09-29T14:34:15Z,CONTRIBUTOR,True,90,14,3,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,9e5cfc26986be549612734937fcb1c28fe82e373,fix(tests): add more test coverage
+48,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/213,213,feat(headers): Add email template name to headers sent,"Fixes #209 
+",vbudhram,1295288,2016-09-20T17:54:49Z,CONTRIBUTOR,True,20,1,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,3a02a13cdb5e9657ef990c662a3328de827df337,feat(headers): Add email template name to headers sent
+49,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/213,213,feat(headers): Add email template name to headers sent,"Fixes #209 
+",vbudhram,1295288,2016-09-20T17:54:49Z,CONTRIBUTOR,True,20,1,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,e886d04a97a7ef3523e2ce12267f47ba5801e9eb,feat(headers): Renamed header
+50,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/208,208,fix(send): improve error logging,"Fixes #207
+
+@jrgm r?
+",vladikoff,128755,2016-09-07T23:20:22Z,CONTRIBUTOR,True,13,3,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,2fcdd984987ed2b595ce9c442fda6aee9084b6fa,"fix(send): improve error logging
+
+Fixes #207"
+51,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/208,208,fix(send): improve error logging,"Fixes #207
+
+@jrgm r?
+",vladikoff,128755,2016-09-07T23:20:22Z,CONTRIBUTOR,True,13,3,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,8731c66b5051ed76832c4ff5e33602a3108047f1,fix(log): switch from trace to info for email success
+52,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/208,208,fix(send): improve error logging,"Fixes #207
+
+@jrgm r?
+",vladikoff,128755,2016-09-07T23:20:22Z,CONTRIBUTOR,True,13,3,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,a493dec677c504338dc0331832cf80791e47d55d,fix(style): adjust sendMail promise
+53,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/206,206,changes to make this ready for production,"As a start, I have these changes to get this ready for production. There will probably be other changes later, but this is a first set.
+1. dump the full config at startup.
+2. errors should be logged at error level.
+3. Use language list from fxa-shared.
+
+r? - @vladikoff 
+",jrgm,758162,2016-09-07T19:10:02Z,CONTRIBUTOR,True,101,73,6,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,6751d64306e40fbadcba693ab2d6ad40722a54a7,fix(logging): dump full config to log at startup
+54,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/206,206,changes to make this ready for production,"As a start, I have these changes to get this ready for production. There will probably be other changes later, but this is a first set.
+1. dump the full config at startup.
+2. errors should be logged at error level.
+3. Use language list from fxa-shared.
+
+r? - @vladikoff 
+",jrgm,758162,2016-09-07T19:10:02Z,CONTRIBUTOR,True,101,73,6,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,3f0ee35ce512b6090cd8e17fd3c9c1157f163591,fix(logging): errors are log.error() level
+55,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/206,206,changes to make this ready for production,"As a start, I have these changes to get this ready for production. There will probably be other changes later, but this is a first set.
+1. dump the full config at startup.
+2. errors should be logged at error level.
+3. Use language list from fxa-shared.
+
+r? - @vladikoff 
+",jrgm,758162,2016-09-07T19:10:02Z,CONTRIBUTOR,True,101,73,6,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,39fe34b8ff46fec71092b43f38a199a2c53b77f0,fix(l10n): use fxa-shared for list of supported languages
+56,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/205,205,fix(deps): update to poolee 1.0.1,"Fixes #202
+
+@vbudhram @jrgm r?
+",vladikoff,128755,2016-09-07T16:43:11Z,CONTRIBUTOR,True,848,331,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,3128a6c2e8a91e275a2dcc2cfa98e3c53f90c85f,"fix(deps): update to poolee 1.0.1
+
+Fixes #202"
+57,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/204,204,"fix(links): Remove non-functional ""sign in"" link.","Fixes #203; @vbudhram r?
+",rfk,34695,2016-09-06T06:12:20Z,MEMBER,True,0,38,6,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,b455d7491ce9b2e6826d6581cbca3d012819689c,"fix(links): Remove non-functional ""sign in"" link."
+58,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/200,200,fix(l10n): adjust default language,"Fixes #192
+
+@vbudhram r?
+See comments in https://github.com/mozilla/fxa-auth-mailer/issues/192#issuecomment-239806441
+",vladikoff,128755,2016-08-15T17:37:18Z,CONTRIBUTOR,True,1,7,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,0bae5e444636445ca0c29a2893f30fec59934f1c,"fix(l10n): adjust default language
+
+Fixes #192"
+59,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/199,199,fix(style): Change to supported apostrophe,"Fixes #191 
+",vbudhram,1295288,2016-08-10T17:15:08Z,CONTRIBUTOR,True,1,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,b89b6275af3ad381db75c5b12c3ab2ac9e311950,fix(style): Change to supported apostrophe
+60,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/198,198,feat(mailer): Add signin authorization and support.,"fixes #196 
+",shane-tomlinson,848085,2016-08-10T16:14:56Z,MEMBER,True,218,6,8,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,4ca3de3b8eac28df99debdc29cef20475ff82ba8,feat(mailer): Add the signin unblock email
+61,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/198,198,feat(mailer): Add signin authorization and support.,"fixes #196 
+",shane-tomlinson,848085,2016-08-10T16:14:56Z,MEMBER,True,218,6,8,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,ee9641749470709513bbf0431ba9ea6dae496c65,refactor(mailer): Use the location partial for the unblock_code template
+62,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/198,198,feat(mailer): Add signin authorization and support.,"fixes #196 
+",shane-tomlinson,848085,2016-08-10T16:14:56Z,MEMBER,True,218,6,8,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,9fc662669f11a4065db82dc163b479a1d43af00d,"fix(mailer): Sentence call all the email subject's
+
+fixes #214"
+63,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/198,198,feat(mailer): Add signin authorization and support.,"fixes #196 
+",shane-tomlinson,848085,2016-08-10T16:14:56Z,MEMBER,True,218,6,8,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,aca2db47999dd2cd5d6256aa22e93337647041c8,"fix(mailer): Use `monospace` for the unblock code for better legibility.
+
+In the write-to-disk script, print some characters that are similar
+to see how they appear using the fonts."
+64,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/195,195,fix(mailer): fix undefined translation choice,"Fixes #192 
+@vbudhram better fix for #192 
+",vladikoff,128755,2016-08-04T18:17:59Z,CONTRIBUTOR,True,7,0,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,128035c580dd3d2b10f4cda1545be87aa7f9eef0,"fix(mailer): fix undefined translation choice
+
+Fixes #192"
+65,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/194,194,fix(mailer): add strict mailer options,"Fixes #192
+
+@vbudhram r?
+",vladikoff,128755,2016-08-04T17:50:49Z,CONTRIBUTOR,False,4,0,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,7a96d6f3ea655b04c0c76c2792fe025a1b0fcf9b,"fix(mailer): add strict mailer options
+
+Fixes #192"
+66,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/190,190,feat(metrics): Add utm_* metrics,"This PR adds a bunch of UTM params to all our email links. [Here is a list](https://github.com/mozilla/fxa-auth-mailer/issues/182#issuecomment-234312264) of the params and the links on each email. 
+
+Fixes #182 
+FIxes #188 
+",vbudhram,1295288,2016-07-26T20:25:51Z,CONTRIBUTOR,True,368,171,32,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,22e7a0840540ca104090e636f3529c73c1ff8766,feat(metrics): Initial commit for utm_* metrics
+67,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/190,190,feat(metrics): Add utm_* metrics,"This PR adds a bunch of UTM params to all our email links. [Here is a list](https://github.com/mozilla/fxa-auth-mailer/issues/182#issuecomment-234312264) of the params and the links on each email. 
+
+Fixes #182 
+FIxes #188 
+",vbudhram,1295288,2016-07-26T20:25:51Z,CONTRIBUTOR,True,368,171,32,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,225eda7f0ec6c8a0d5203fee05d1c5400fc0c0e5,feat(metrics): Fixed busted test cases
+68,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/190,190,feat(metrics): Add utm_* metrics,"This PR adds a bunch of UTM params to all our email links. [Here is a list](https://github.com/mozilla/fxa-auth-mailer/issues/182#issuecomment-234312264) of the params and the links on each email. 
+
+Fixes #182 
+FIxes #188 
+",vbudhram,1295288,2016-07-26T20:25:51Z,CONTRIBUTOR,True,368,171,32,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,bf9a711e8413b5062f1bf7ddfe8570e2d95a17c3,feat(metrics): Added utm params to all links in all emails
+69,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/190,190,feat(metrics): Add utm_* metrics,"This PR adds a bunch of UTM params to all our email links. [Here is a list](https://github.com/mozilla/fxa-auth-mailer/issues/182#issuecomment-234312264) of the params and the links on each email. 
+
+Fixes #182 
+FIxes #188 
+",vbudhram,1295288,2016-07-26T20:25:51Z,CONTRIBUTOR,True,368,171,32,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,ef30503d85950d77344b77833ad667b234322be4,"feat(metrics): Rename to templateName, add url queryparam checking"
+70,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/190,190,feat(metrics): Add utm_* metrics,"This PR adds a bunch of UTM params to all our email links. [Here is a list](https://github.com/mozilla/fxa-auth-mailer/issues/182#issuecomment-234312264) of the params and the links on each email. 
+
+Fixes #182 
+FIxes #188 
+",vbudhram,1295288,2016-07-26T20:25:51Z,CONTRIBUTOR,True,368,171,32,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,1a92123662a0bd570be8182782026c6c099239f3,feat(metrics): Fix busted test cases
+71,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/190,190,feat(metrics): Add utm_* metrics,"This PR adds a bunch of UTM params to all our email links. [Here is a list](https://github.com/mozilla/fxa-auth-mailer/issues/182#issuecomment-234312264) of the params and the links on each email. 
+
+Fixes #182 
+FIxes #188 
+",vbudhram,1295288,2016-07-26T20:25:51Z,CONTRIBUTOR,True,368,171,32,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,eaed5abb4027037267cc358adb9be57af64c5fe1,"Merge remote-tracking branch 'origin/master' into issue-182-add-utm-params
+
+# Conflicts:
+#	mailer.js
+#	test/local/mailer_tests.js"
+72,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/190,190,feat(metrics): Add utm_* metrics,"This PR adds a bunch of UTM params to all our email links. [Here is a list](https://github.com/mozilla/fxa-auth-mailer/issues/182#issuecomment-234312264) of the params and the links on each email. 
+
+Fixes #182 
+FIxes #188 
+",vbudhram,1295288,2016-07-26T20:25:51Z,CONTRIBUTOR,True,368,171,32,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,8ec8d82a8b88556c4379fa038e8c06db65a4a953,feat(metrics): Rebased and renamed context to content
+73,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/190,190,feat(metrics): Add utm_* metrics,"This PR adds a bunch of UTM params to all our email links. [Here is a list](https://github.com/mozilla/fxa-auth-mailer/issues/182#issuecomment-234312264) of the params and the links on each email. 
+
+Fixes #182 
+FIxes #188 
+",vbudhram,1295288,2016-07-26T20:25:51Z,CONTRIBUTOR,True,368,171,32,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,7ddd2608ce5a6b8edec41eae776d8cf0567c770e,feat(metrics): Updated based on review
+74,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/190,190,feat(metrics): Add utm_* metrics,"This PR adds a bunch of UTM params to all our email links. [Here is a list](https://github.com/mozilla/fxa-auth-mailer/issues/182#issuecomment-234312264) of the params and the links on each email. 
+
+Fixes #182 
+FIxes #188 
+",vbudhram,1295288,2016-07-26T20:25:51Z,CONTRIBUTOR,True,368,171,32,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,905ea3515c716f3b89634c53aa03aa21146a794b,feat(metrics): Added templateName to content map
+75,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/190,190,feat(metrics): Add utm_* metrics,"This PR adds a bunch of UTM params to all our email links. [Here is a list](https://github.com/mozilla/fxa-auth-mailer/issues/182#issuecomment-234312264) of the params and the links on each email. 
+
+Fixes #182 
+FIxes #188 
+",vbudhram,1295288,2016-07-26T20:25:51Z,CONTRIBUTOR,True,368,171,32,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,be65c2c225197522d27b94ef1a48b7ec847d4b3b,feat(metrics): Fixed bug in naming
+76,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/190,190,feat(metrics): Add utm_* metrics,"This PR adds a bunch of UTM params to all our email links. [Here is a list](https://github.com/mozilla/fxa-auth-mailer/issues/182#issuecomment-234312264) of the params and the links on each email. 
+
+Fixes #182 
+FIxes #188 
+",vbudhram,1295288,2016-07-26T20:25:51Z,CONTRIBUTOR,True,368,171,32,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,39bd11cbfb07656ee982b0a575eb1633686bfd95,feat(metrics): PR fixes and added password manager info link as config var
+77,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/187,187,feat(mailer): Remove the account lockout feature.,"With signin confirmation and email recaphta we have more targeted
+meant to keep bad people at bay while minimizing friction for valid
+users, account lockout no longer seems particularly elegant.
+
+fixes #186 
+
+This should not be merged until after https://github.com/mozilla/fxa-auth-server/pull/1360
+",shane-tomlinson,848085,2016-07-21T09:44:30Z,MEMBER,True,0,159,7,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,9454fe5453cbffc22a3a0c7a2b0ef38f76df45a7,"feat(mailer): Remove the account lockout feature.
+
+With signin confirmation and email recaphta we have more targeted
+meant to keep bad people at bay while minimizing friction for valid
+users, account lockout no longer seems particularly elegant.
+
+fixes #186"
+78,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/184,184,fix(deps): update dev dependencies,"@vbudhram r?
+",vladikoff,128755,2016-07-19T16:16:45Z,CONTRIBUTOR,True,1766,2378,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,77ff484e73d9aaafb16d8b616d08ea791f363ad2,fix(deps): update dev dependencies
+79,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/181,181,fix(mailer): Slow down the verification reminder emails in dev.,"This fixes the content-server functional tests for unverified accounts. The
+verification reminder emails arrived before sign in w/ an unverified account
+verification emails.
+
+fixes mozilla/fxa-content-server#3929
+
+@vladikoff - r? ~~Can you hold off on merging, I want to make sure this really does what it says it does.~~
+",shane-tomlinson,848085,2016-07-14T21:22:50Z,MEMBER,True,2,2,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,b6270428adca33ec4843fd9d526349ab22f4062f,"fix(mailer): Slow down the verification reminder emails in dev.
+
+This fixes the content-server functional tests for unverified accounts. The
+verification reminder emails arrived before sign in w/ an unverified account
+verification emails.
+
+fixes mozilla/fxa-content-server#3929"
+80,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/180,180,feat(location): add location data to emails,"Adds the location data to emails
+@vbudhram 
+@vladikoff 
+@shane-tomlinson
+
+(@rfk adds: Connects to #162; this makes waffle link the PR with the issue card)
+",TDA,432707,2016-07-08T23:08:09Z,CONTRIBUTOR,True,990,453,11,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,94a11fcd32582cf345560609cf12c8c516b1e365,feat(location): add location data to emails
+81,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/180,180,feat(location): add location data to emails,"Adds the location data to emails
+@vbudhram 
+@vladikoff 
+@shane-tomlinson
+
+(@rfk adds: Connects to #162; this makes waffle link the PR with the issue card)
+",TDA,432707,2016-07-08T23:08:09Z,CONTRIBUTOR,True,990,453,11,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,e51725f3c4a182e470b64edb7987595d4e44bd19,"fix(templates): Ditch the style elements, move styles to elements themselves.
+
+Also - update the write-to-disk script to add location information.
+Also - add if conditionals around the ip and timestamp"
+82,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/179,179,feat(server): add db connection retry on start,"Fixes #178
+",vladikoff,128755,2016-07-04T23:50:43Z,CONTRIBUTOR,True,159,13,4,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,f60825a2b5056207280b2343f6ba706193466a49,"feat(server): add db connection retry on start
+
+Fixes #178"
+83,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/176,176,chore(eslint): make eslint rules consistent,"Fixes #175
+
+@pdehaan 
+",TDA,432707,2016-06-24T18:02:23Z,CONTRIBUTOR,True,11,5,3,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,94fe068389ac50f3b472ffde28b1bbe202dc640e,"chore(eslint): make eslint rules consistent
+Fixes #175"
+84,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/174,174,fix(bind): should by default bind to localhost,"The default binding should be localhost; not a public endpoint, right? 
+
+r? - @vladikoff 
+",jrgm,758162,2016-06-24T00:18:48Z,CONTRIBUTOR,True,7,1,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,60087f63c2f3459ca647d4141078a6142b0012c4,fix(bind): should by default bind to localhost
+85,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/173,173,"fix(eslint): in this case, yes, we do just ignore the error","Error is handled by defaulting to empty stdout. So unlikely to actually fail.
+
+Merging to fix master.
+",jrgm,758162,2016-06-24T00:16:05Z,CONTRIBUTOR,True,3,3,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,e11093f254fa756f5c2f6165afeb4e8e722e5dc6,"fix(eslint): in this case, yes, we do just ignore the error"
+86,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/172,172,Fix eslint nags,"There error is handled by defaulting to no output. So unlikely to happen. 
+
+Merging since this fixes master, which is failing right now.
+",jrgm,758162,2016-06-24T00:13:42Z,CONTRIBUTOR,False,10,4,3,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,743cb9ccb2b367972a977cc1ce5552ed3829061e,fix(bind): should by default bind to localhost
+87,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/172,172,Fix eslint nags,"There error is handled by defaulting to no output. So unlikely to happen. 
+
+Merging since this fixes master, which is failing right now.
+",jrgm,758162,2016-06-24T00:13:42Z,CONTRIBUTOR,False,10,4,3,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,74d50be940a54a88ba990f2c9aff48aff0a98758,"fix(eslint): in this case, yes, we do just ignore the error"
+88,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/171,171,chore(build): Add a script to generate version info,,jbuck,578466,2016-06-23T20:39:08Z,MEMBER,True,35,0,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,4f12ad17a2b9e5e1d1e12ea5567a9129610beb13,chore(build): Add a script to generate version info
+89,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/170,170,Grunt release scripting,"Per @jrgm's request at [1], this adds our usual grunt scripting for tagging releases, making it easier to deploy this as a standalone server instead of a library.  @vladikoff r?
+
+[1] https://bugzilla.mozilla.org/show_bug.cgi?id=1281355#c2
+",rfk,34695,2016-06-22T05:16:34Z,MEMBER,True,9123,92,12,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,2e7ad8dc705f7da98ce9129010027c4d4b94b5ef,chore(build): Refactor gruntfile into individual task files.
+90,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/170,170,Grunt release scripting,"Per @jrgm's request at [1], this adds our usual grunt scripting for tagging releases, making it easier to deploy this as a standalone server instead of a library.  @vladikoff r?
+
+[1] https://bugzilla.mozilla.org/show_bug.cgi?id=1281355#c2
+",rfk,34695,2016-06-22T05:16:34Z,MEMBER,True,9123,92,12,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,268900a5eb9b8158a36a62f09b2484b951fe5080,feat(build): Add version-tagging grunt tasks
+91,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/169,169,feat(metrics): include type of reminder in the email query,"@rfk r?
+
+This will allow us to track verification flow via reminders on the auth-server
+
+ref https://github.com/mozilla/fxa/issues/138
+",vladikoff,128755,2016-06-21T17:14:41Z,CONTRIBUTOR,True,20,1,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,0ab0ad241f8d91bc72636507497a5a0d0c2a7449,feat(metrics): include type of reminder in the email query
+92,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/168,168,chore(mozlog): update from mozlog@2.0.3 to 2.0.5,"r? - @vladikoff 
+
+Picks up a couple of error logging fixes.
+",jrgm,758162,2016-06-21T02:11:47Z,CONTRIBUTOR,True,1,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,3cd552e85f6b013da09deac1e03a2a2fdbb1c1b6,chore(mozlog): update from mozlog@2.0.3 to 2.0.5
+93,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/167,167,fix(styles): update more blue styled links,,vladikoff,128755,2016-06-06T17:56:31Z,CONTRIBUTOR,True,6,6,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,32f90678a5fcf0557b95c2bd1bfa394524a969a2,fix(styles): update more blue styled links
+94,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/166,166,Rfeeley/style tweaks,"Take the new blue, it’s fresher
+",ryanfeeley,68213,2016-06-06T17:30:27Z,CONTRIBUTOR,True,49,49,16,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,cd793fe79f853ff488341761a5998513213c8cb0,Updated to style guide blue
+95,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/166,166,Rfeeley/style tweaks,"Take the new blue, it’s fresher
+",ryanfeeley,68213,2016-06-06T17:30:27Z,CONTRIBUTOR,True,49,49,16,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,bdbb821f56c68726fc0317b1ab143e674712bca1,Updated the blue
+96,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/163,163,feat(metrics): track templates used in sent email,"Fixes #130
+",vladikoff,128755,2016-05-30T17:16:00Z,CONTRIBUTOR,True,5,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,2bc2a5e068bd965396afeb4ac9efbb3fecff98b9,"feat(metrics): track templates used in sent email
+
+Fixes #130"
+97,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/161,161,feat(mailer): Add the `write-to-disk.js` script.,"@philbooth - this is for you!
+",shane-tomlinson,848085,2016-05-20T14:02:21Z,MEMBER,True,142,2,5,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,0412f70724475274f684ac93107d46e89cb4ad4f,feat(mailer): Add the `write-to-disk.js` script.
+98,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/161,161,feat(mailer): Add the `write-to-disk.js` script.,"@philbooth - this is for you!
+",shane-tomlinson,848085,2016-05-20T14:02:21Z,MEMBER,True,142,2,5,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,4a30c795d256259220ebc73ff6c0207c5de5ceb5,"fix(script): Cleanup of write-to-disk.js based on @philbooth's feedback.
+
+* Include mkdirp so output dir is automatically created.
+* Generate the list of acceptable mail types from the mailer."
+99,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/159,159,"fix(mail): Shorten the ""Still there?"" text.","fixes #152
+
+@ryanfeeley and @vladikoff - r?
+",shane-tomlinson,848085,2016-05-17T13:00:26Z,MEMBER,True,3,3,3,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,d5854e0c04b527baf5bbb6a86b59b45f19ac1bb6,"fix(mail): Shorten the ""Still there?"" text.
+
+fixes #152"
+100,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/158,158,fix(mailer): Several mailer fixes,"- Password changed template shows ""reset your password"" link. ""change your password"" used to be displayed. If an attacker changed the user's password, the user would not know the new password to change it.
+- Fix the ""reset password"" link color in the ""Your password has been reset"" email.
+- All password reset links auto-submit the password reset form.
+- The ""Change your password"" link in the ""New sign in to Firefox"" email contains the users email address.
+
+fixes #151
+fixes #153
+fixes #154
+fixes #155
+fixes #157
+",shane-tomlinson,848085,2016-05-12T08:48:10Z,MEMBER,True,125,40,11,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,a9d4a81ff7910231cbe45aaa438e9dda6350270d,"fix(mailer): Several mailer fixes
+
+* Password changed template shows ""reset your password"" link.
+  ""change your password"" used to be displayed. If an attacker changed
+  the user's password, the user would not know the new password to change it.
+* Fix the ""reset password"" link color in the ""Your password has been reset"" email.
+* All password reset links auto-submit the password reset form.
+* The ""Change your password"" link in the ""New sign in to Firefox"" email
+  contains the users email address.
+
+fixes #151
+fixes #153
+fixes #154
+fixes #155
+fixes #157"
+101,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/158,158,fix(mailer): Several mailer fixes,"- Password changed template shows ""reset your password"" link. ""change your password"" used to be displayed. If an attacker changed the user's password, the user would not know the new password to change it.
+- Fix the ""reset password"" link color in the ""Your password has been reset"" email.
+- All password reset links auto-submit the password reset form.
+- The ""Change your password"" link in the ""New sign in to Firefox"" email contains the users email address.
+
+fixes #151
+fixes #153
+fixes #154
+fixes #155
+fixes #157
+",shane-tomlinson,848085,2016-05-12T08:48:10Z,MEMBER,True,125,40,11,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,062508e2ff3c900bb40b2212f375609c05628497,"fix(mailer): Ensure the signin link contains the user's email address.
+
+fixes #153"
+102,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/158,158,fix(mailer): Several mailer fixes,"- Password changed template shows ""reset your password"" link. ""change your password"" used to be displayed. If an attacker changed the user's password, the user would not know the new password to change it.
+- Fix the ""reset password"" link color in the ""Your password has been reset"" email.
+- All password reset links auto-submit the password reset form.
+- The ""Change your password"" link in the ""New sign in to Firefox"" email contains the users email address.
+
+fixes #151
+fixes #153
+fixes #154
+fixes #155
+fixes #157
+",shane-tomlinson,848085,2016-05-12T08:48:10Z,MEMBER,True,125,40,11,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,864c262631e63ba6036c3893f428d3fb66a4e6c4,"fix(mailer): Fix the color of the ios and android store links.
+
+fixes #150"
+103,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/156,156,"fix(mailer): Add change password link to ""Verify login"" email","Also remove `passwordChangeLinkAttributes` from all emails that do not
+use them.
+
+@vbudhram - r?
+",shane-tomlinson,848085,2016-05-11T16:14:40Z,MEMBER,True,61,43,5,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,29d831865e5b535e0ce06fc236f610228a89da79,"fix(mailer): Add change password link to ""Verify login"" email
+
+Also remove `passwordChangeLinkAttributes` from all emails that do not
+use them."
+104,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/149,149,feat(config): update confirmation links to store listings,"Closes #142
+
+cc @ryanfeeley
+",seanmonstar,51479,2016-05-11T00:03:04Z,MEMBER,True,2,2,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,f5aba9cafa2e3820147d98bec1085869485786ca,"feat(config): update confirmation links to store listings
+
+Closes #142"
+105,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/148,148,fix(travis): update Travis to MySql 5.6,"Fixes #147
+",vladikoff,128755,2016-05-06T17:32:51Z,CONTRIBUTOR,True,8,3,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,af0d1ff78c253e9f51dc4658c5b817065098e76b,"fix(travis): update Travis to MySql 5.6
+
+Fixes #147"
+106,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/146,146,chore(mail): Remove the verify_reminder_* templates,"These templates are not actually referenced anywhere and are identical
+to the verification_reminder_\* variants.
+
+fixes #144 
+
+@vladikoff - r?
+",shane-tomlinson,848085,2016-05-06T12:27:22Z,MEMBER,True,0,136,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,00b7a685fbb899236900ad8071ef618c9e4ece1e,"chore(mail): Remove the verify_reminder_* templates
+
+These templates are not actually referenced anywhere and are identical
+to the verification_reminder_* variants.
+
+fixes #144"
+107,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/145,145,feat(mail): Add the Mozilla address to all emails.,"fixes #133
+",shane-tomlinson,848085,2016-05-06T12:21:49Z,MEMBER,True,182,45,30,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,e1256eb6b38837c515e6f85fb3b4a3135083f651,"feat(mail): Add the Mozilla address to all emails.
+
+fixes #133"
+108,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/143,143,fix(l10n): adjust l10n-extract keyword,"Fixes: https://github.com/mozilla/fxa-content-server/issues/3612
+
+Ref: https://github.com/zaach/jsxgettext/pull/106
+",vladikoff,128755,2016-05-02T15:03:31Z,CONTRIBUTOR,True,2,2,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,8e961efdfbe6ead93a0a5e5f8949e00fead5905b,fix(l10n): adjust l10n-extract keyword
+109,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/141,141,feat(security): signin confirmation email,"This PR contains the re-verify email template. Based on the original verify email template.
+- [x] Better verbage on email
+- [x] String extraction
+",shane-tomlinson,848085,2016-04-11T10:03:24Z,MEMBER,True,186,9,7,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,0141a6d356f2b5712d27aec29bc62be43b272b73,feat(signin): Sign-in verification email template
+110,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/140,140,feat(logins): Bring back a revised login notification email.,,shane-tomlinson,848085,2016-04-11T09:55:52Z,MEMBER,True,118,14,7,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,f8255a93ffe2a50e7f584852cd108c225b60652b,feat(logins): Bring back a revised login notification email.
+111,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/139,139,feat(mailer): Add new security templates,"New templates:
+- suspicious location
+- reset_password_required
+
+Add the ability to pass in a ""sender"" to the Mailer, for testing.
+",shane-tomlinson,848085,2016-04-11T09:43:16Z,MEMBER,True,445,38,8,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,cc0adef7b89b002ef53d6c5cfe405d5267beb69a,"feat(mailer): Add new security templates
+
+New templates:
+* suspicious location
+* reset_password_required
+
+Add the ability to pass in a ""sender"" to the Mailer, for testing."
+112,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/138,138,feat(mailer): Add new security templates,"New templates:
+- suspicious location
+- reset_password_required
+
+Add the ability to pass in a ""sender"" to the Mailer, for testing.
+",shane-tomlinson,848085,2016-04-08T10:23:22Z,MEMBER,True,438,32,9,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,6b6762eb5e1db24ca63551b6046e116363ee1988,"feat(mailer): Add new security templates
+
+New templates:
+* suspicious location
+* reset_password_required
+
+Add the ability to pass in a ""sender"" to the Mailer, for testing."
+113,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/138,138,feat(mailer): Add new security templates,"New templates:
+- suspicious location
+- reset_password_required
+
+Add the ability to pass in a ""sender"" to the Mailer, for testing.
+",shane-tomlinson,848085,2016-04-08T10:23:22Z,MEMBER,True,438,32,9,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,847d772f6ad99d0389609946a384a22edd09f044,"fix(install): Update grunt to fix peerDependency problem on install.
+
+Already merged into master in 71a7b20255c93c54e1974acad7b727dda58cb91f"
+114,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/138,138,feat(mailer): Add new security templates,"New templates:
+- suspicious location
+- reset_password_required
+
+Add the ability to pass in a ""sender"" to the Mailer, for testing.
+",shane-tomlinson,848085,2016-04-08T10:23:22Z,MEMBER,True,438,32,9,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,f88f00f62d2401ac8b6eeb98ce0c6784f319da02,fix(install): pin to the correct fxa-content-server-l10n branch w/ translations
+115,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/137,137,fix(server): Fix the port binding.,"Fetch the port from config using `config.get('port')` instead of `config.port`.
+
+fixes #136
+",shane-tomlinson,848085,2016-04-06T11:08:45Z,MEMBER,True,1,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,6fa96b4210eca22f8d6ff795f005ebc256ea6458,"fix(server): Fix the port binding.
+
+Fetch the port from config using `config.get('port')` instead of `config.port`.
+
+fixes #136"
+116,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/135,135,fix(install): Update grunt to fix peerDependency problem on install,"fixes #134
+
+@vladikoff - r?
+",shane-tomlinson,848085,2016-04-06T11:04:45Z,MEMBER,True,1,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,71a7b20255c93c54e1974acad7b727dda58cb91f,"fix(install): Update grunt to fix peerDependency problem on install
+
+fixes #134"
+117,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/132,132,fix(templates): make base partial responsive,"These are changes suggested by Jessilyn to the base template to make it responsive. It's been roughly tested in Email on Acid, but probably needs more.
+",ckarlof,2365255,2016-04-01T22:18:13Z,NONE,False,100,20,10,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,168007a7ebeb55b0bbd2358274bbafd5521039d2,fix(templates): make base partial responsive
+118,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/131,131,fix(tests): add test matrix for mysql and memory,,vladikoff,128755,2016-03-27T05:36:40Z,CONTRIBUTOR,True,29,0,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,57d46b621a5b1e79296724ff2e026bafc221b6f6,fix(tests): add test matrix for mysql and memory
+119,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/126,126,fix(config): add content server config values,"Should match: https://github.com/mozilla/fxa-auth-server/blob/master/config/index.js#L371
+
+@rfk @vbudhram r?
+",vladikoff,128755,2016-03-11T23:10:35Z,CONTRIBUTOR,True,26,18,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,954b73d96a419d67b70639a6d554f1c8d775ac0b,fix(config): add content server config values
+120,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/125,125,feat(reminders): add new reminder templates,"@vbudhram r?
+",vladikoff,128755,2016-03-11T22:25:01Z,CONTRIBUTOR,True,51,22,9,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,9367ff4a893b4127b9c0a92d7837d8e1a4ce0eb5,feat(reminders): add new reminder templates
+121,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/124,124,feat(styles): Update password reset templates,"This PR updates password flow email templates. 
+
+Reference https://github.com/mozilla/fxa-content-server/issues/3467
+Reference https://github.com/mozilla/fxa-content-server/pull/3559
+",vbudhram,1295288,2016-03-04T05:33:07Z,CONTRIBUTOR,True,50,22,8,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,9c6c9df63e75d2933dab721428eb6dbeb80c8022,feat(amo): Update password reset templates
+122,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/123,123,feat(reminders): add verification reminders,"Fixes #99 
+",vladikoff,128755,2016-02-27T05:14:40Z,CONTRIBUTOR,True,482,34,11,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,a235d88fc491e5910ee315850b6b8ea17590ca70,"feat(reminders): add verification reminders
+
+Fixes #99"
+123,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/121,121,chore(dependencies): upgrade mozlog to 2.0.3,"Picks up this fix for exception logging - https://github.com/mozilla/mozlog/commit/e11def164c2a8cf2578930227815bea01c90b799
+",jrgm,758162,2016-02-14T02:22:49Z,CONTRIBUTOR,True,1,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,ce6b3994f404e103f51a72c074e0fe991eb79132,chore(dependencies): upgrade mozlog to 2.0.3
+124,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/118,118,feat(email): add utm params to the post verify email,"Fixes #110
+",vladikoff,128755,2016-02-09T20:29:48Z,CONTRIBUTOR,True,24,3,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,e8ea5d36789fefeebec4a4f2e297197647353d86,"feat(email): add utm params to the post verify email
+
+Fixes #110"
+125,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/117,117,chore(travis): run grunt l10n-extract on travis,"Fixes #116
+",vladikoff,128755,2016-02-05T22:33:15Z,CONTRIBUTOR,True,2,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,73f2063242415765181122b2a3f33f49161f2c43,"chore(travis): run grunt l10n-extract on travis
+
+Fixes #116"
+126,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/115,115,fix(l10n): Convert const to var to fix l10n-extract Grunt task,"Not sure why the l10n-extract task chokes on `const` keyword, but the world is a funny place.
+
+``` sh
+➜  fxa-auth-mailer git:(issue-114) $ grunt l10n-extract
+Running ""l10n-extract"" task
+
+Done, without errors.
+
+
+$ node --version && npm --version
+v0.10.35
+2.14.2
+```
+
+Fixes #114 
+",pdehaan,557895,2016-02-04T18:09:29Z,CONTRIBUTOR,True,4,4,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,19dc2de7145ff12359fba918622d24470724d6e7,fix(l10n): Convert const to var to fix l10n-extract Grunt task
+127,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/113,113,feat(db): add ability to check account verification status,"Fixes #111
+",vladikoff,128755,2016-02-03T05:07:36Z,CONTRIBUTOR,True,655,2,9,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,f33f8a9df707a38d54f93d8d485fad5362cfc11c,"feat(db): add ability to check account verification status
+
+Fixes #111"
+128,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/107,107,feat(log): switch to mozlog,,vladikoff,128755,2015-12-30T18:27:09Z,CONTRIBUTOR,True,59,57,6,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,d74a9e5c4ee33e1dd0b84c62871fda604c71cb5e,feat(log): switch to mozlog
+129,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/106,106,fix(deps): update dependencies,"@rfk r?
+",vladikoff,128755,2015-12-15T23:48:15Z,CONTRIBUTOR,True,41,30,6,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,e769d6914279cf806f310fc54f213ee7889f9f48,fix(deps): update dependencies
+130,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/103,103,WIP feat(reminder): add verification reminder dequeue,"Fixes #99
+",vladikoff,128755,2015-11-24T08:03:23Z,CONTRIBUTOR,False,373,197,21,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,d33d45742be445ab1a1138a44fb4a1fae529ad2d,"feat(reminder): add verification reminder dequeue
+
+Fixes #99"
+131,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/103,103,WIP feat(reminder): add verification reminder dequeue,"Fixes #99
+",vladikoff,128755,2015-11-24T08:03:23Z,CONTRIBUTOR,False,373,197,21,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,a003798c70387c55ac75aa1d600957d85cf0a224,wip
+132,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/102,102,fix(config): remove rc,"Fixes #18
+",vladikoff,128755,2015-11-11T21:34:38Z,CONTRIBUTOR,True,144,128,4,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,f286322174ce58ad2d22e2b8a215d7f76998070a,fix(config): switch from rc to convict
+133,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/101,101,feat(reminder): add verification reminder email templates and strings,"Fixes #100
+",vladikoff,128755,2015-11-11T18:44:00Z,CONTRIBUTOR,True,146,2,5,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,8763bac26a604946e28d84c34bca22d4936a1c60,"feat(reminder): add verification reminder email templates and strings
+
+Fixes #100"
+134,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/98,98,feat(support): better support page and a new support url,"Fixes #79
+",vladikoff,128755,2015-10-21T19:56:47Z,CONTRIBUTOR,True,1,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,271459907651ec71d6f4fac84f15e5093ea6908c,"feat(support): better support page and a new support url
+
+Fixes #79"
+135,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/97,97,fix(email): disable new sync device email,"Fixes #96
+",vladikoff,128755,2015-10-19T22:00:29Z,CONTRIBUTOR,False,1,19,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,c07d3112291e1de9a98dcec5b2bf949d294a98bd,"fix(email): disable new sync device email 
+
+Fixes #96"
+136,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/93,93,fix(email): add better password change link for certain emails,"Fix #78
+",vladikoff,128755,2015-10-06T21:55:43Z,CONTRIBUTOR,True,28,14,6,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,d5e2c0f9fca4f63cea75670653c6100dc6618bd2,"fix(emails): add better change password text
+
+Fixes #78"
+137,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/92,92,fix(l10n): remove html attributes from string,"Fixes #74 
+@dannycoates r?
+
+When merging the next batch of extracted strings, we'll need to convert/regex-foo the old stings into this new format so we don't lose any translations.
+",zaach,3903,2015-10-05T13:20:14Z,CONTRIBUTOR,True,100,22,16,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,741623a744bfd3de75c001e1458e0bdc47f92fb2,"fix(l10n): remove html attributes from string
+
+Fixes #74"
+138,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/89,89,"fix(templates): share the same logo template with all templates, clea…","…n up HTML, fix font bugs
+
+Fixes #62
+",vladikoff,128755,2015-09-29T22:27:23Z,CONTRIBUTOR,True,673,389,23,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,586595b6ab52d666b20deff106918f1f15b05542,"fix(templates): share the same logo template with all templates, clean up HTML, fix font bugs
+
+Fixes #62"
+139,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/87,87,fix(templates): remove extra alt text from the Firefox logo,"Fixes #86
+",vladikoff,128755,2015-09-28T18:20:04Z,CONTRIBUTOR,True,8,8,8,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,198e8f74764cdaa87ae8d5100bf60ad023d04cb6,"fix(templates): remove extra alt text from the Firefox logo
+
+Fixes #86"
+140,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/85,85,fix(email): adjust sign-in subject to include Firefox instead of sync,"Fixes #76
+",vladikoff,128755,2015-09-23T15:50:08Z,CONTRIBUTOR,True,1,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,2787eb58f218858db88f21d9aafb9499e90308ed,"fix(email): adjust sign-in subject to include Firefox instead of sync
+
+Fixes #76"
+141,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/82,82,maybe fix #73,"untested
+",dannycoates,87619,2015-09-21T21:43:58Z,MEMBER,True,1,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,d6fcb3a048e093f89c6682fe36821911e5615999,Fix size of activate button in verify emails on Outlook. Fixes #73
+142,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/81,81,fix(templates): disable HTML escaping of Android/iOS product links.,"Fixes #80.  @dannycoates r?
+",rfk,34695,2015-09-21T19:55:48Z,MEMBER,True,1,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,54b799c17698fafba7c2c75294263a3865735ed6,fix(templates): disable HTML escaping of Android/iOS product links.
+143,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/72,72,added post verify and reminder emails +housekeeping,"Sorry for jamming these all into one, but it made extracting strings easier.
+#51
+#60
+#62
+#68
+#66
+#65
+",dannycoates,87619,2015-08-27T02:42:02Z,MEMBER,True,497,500,21,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,e9a06ced3576b0c846826d23e675ed6de27d80d0,added post verify and reminder emails +housekeeping
+144,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/71,71,stubbed post_verify and reminder email text,"@ryanfeeley please activate... _er_ verify these strings are correct as written.
+
+Closes #69 
+",dannycoates,87619,2015-08-26T20:45:44Z,MEMBER,True,26,0,3,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,1c6ef21394a1ba2ff557c9bc064b77f5c6407de4,stubbed post_verify and reminder email text
+145,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/59,59,fix(schema): re-add schema html,"@rfk let me run this through our testing service before merge 
+",johngruen,3323249,2015-07-09T21:50:20Z,CONTRIBUTOR,True,8,0,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,c0a6d74a7cc84041e70afa14cd45eac3b5db6b1c,fix(schema): re-add schema html
+146,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/57,57,chore(l10n): document the new l10n extraction workflow,"Fixes #52 
+",eoger,6424575,2015-07-07T18:14:38Z,CONTRIBUTOR,True,2,6,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,fe636db7e9a20fe65552fd9d237fb68493ff4cd6,chore(l10n): document the new l10n extraction workflow
+147,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/56,56,chore(travis): Tell Travis to use #fxa-bots,,chilts,3048,2015-07-01T04:35:49Z,CONTRIBUTOR,True,1,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,2b32117134d832e5caee83dcb6ab05fa2252937d,chore(travis): Tell Travis to use #fxa-bots
+148,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/55,55,"Append ""now"" to verify/reset password button CTAs","Fixes https://github.com/mozilla/fxa-auth-server/issues/881.
+
+That issue only mentions the buttons, so I've not made the change in the text templates. Is that right/wrong?
+",philbooth,64367,2015-06-30T23:20:36Z,CONTRIBUTOR,True,2,2,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,074d9da0fd02355abb3f16cb64619b1e1d361959,"fix(templates): append ""now"" to reset password button"
+149,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/53,53,refactor(mailer): Extract boilerplate sending code into send.,"@rfk - I promised it immediately. Here ya go.
+
+This is running on stomlinson.dev.lcip.org
+",shane-tomlinson,848085,2015-06-21T13:23:52Z,MEMBER,True,119,123,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,6aa1b295eb8c6bada5038c5d34ce55ac1687c688,refactor(mailer): Extract boilerplate sending code into send.
+150,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/50,50,chore(lint): add ESLint to repo,"Fixes #45
+Add ESLint and remove lint errors
+@pdehaan 
+",TDA,432707,2015-06-17T22:18:02Z,CONTRIBUTOR,True,49,23,10,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,3e34e03788d4126de5dc5b897fc953cdb3cbe56b,"chore(lint): add ESLint to repo
+Fixes #45
+Add ESLint and remove lint errors"
+151,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/48,48,style(verify): add logo and restyle verify email,"Finally got this thing humming!
+
+Here's a bunch of screenshots of how it looks everywhere: 
+https://www.dropbox.com/sh/08l1mgm583tc746/AACJyIfyyvwkAygDMKtsR0rza?dl=0
+
+@ryanfeeley 
+",johngruen,3323249,2015-06-15T23:09:10Z,CONTRIBUTOR,True,60,114,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,b8f5480703945ec26f72952adc9cc60ff9d71d82,style(verify): add logo and restyle verify email
+152,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/47,47,fix(locales): always normalize the locale,"So this fixes the issue noted in https://github.com/mozilla/fxa-auth-mailer/pull/46#issuecomment-111657709 and https://github.com/mozilla/fxa-content-server-l10n/issues/52
+
+(This whole 'upper-case or lower-case', '- or _', '2 or 3 or 4 character' language and/or country-code is fugly).
+",jrgm,758162,2015-06-13T04:46:56Z,CONTRIBUTOR,True,1,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,303cc2a2ff08310abf2e56b32dedfb96a5ba46ce,fix(locales): always normalize the locale
+153,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/46,46,chore(cleanup): Fixed some syntax errors reported by ESLint,"Addresses some of the basic ESLint style issues (quotes, spaces, semicolons) reported in #45.
+",pdehaan,557895,2015-06-11T23:13:02Z,CONTRIBUTOR,False,20,22,7,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,071be3421d1e07a87cefac442a8a7d1499c10738,chore(cleanup): Fixed some syntax errors reported by ESLint
+154,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/42,42,feat(signup): add schema.org one-click-action button to verify email,"Fixes https://github.com/mozilla/fxa-auth-mailer/issues/36.
+
+![screen shot 2015-06-04 at 5 10 44 pm](https://cloud.githubusercontent.com/assets/6424575/7997132/592002d8-0add-11e5-9667-e17f39a200da.png)
+Right now to test it you have to copy-paste the email HTML code [here](http://gmail-actions.appspot.com/).
+
+I think maybe @jrgm will have to [register to Google](https://developers.google.com/gmail/markup/registering-with-google) to make it work on production servers.
+",eoger,6424575,2015-06-05T00:18:10Z,CONTRIBUTOR,True,11,0,2,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,7c769e706bc2945c6b404a18b0cf316c8b9019a4,feat(signup): add schema.org one-click-action button to verify email
+155,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/41,41,chore(license): Update license attribute to be SPDX compliant,"specifying the type and URL is deprecated:
+
+https://docs.npmjs.com/files/package.json#license
+",pdehaan,557895,2015-05-22T23:59:48Z,CONTRIBUTOR,True,1,4,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,7b0b2a8d03f3469caf439df95a5bade318793b47,chore(license): Update license attribute to be SPDX compliant
+156,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/40,40,"fix(l10n): make defaultLanguage configurable, and switch to ""en"" default","This adjusts the defaultLanguage from 'en-US' to 'en' and makes that sorta configurable. 
+I don't particularly like the `config.i18n` part, since that's a detail from fxa-auth-server. 
+",jrgm,758162,2015-04-22T22:11:57Z,CONTRIBUTOR,True,11,5,4,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,fc5ebbe582d2d548f5ec7e0826ce745ac8b51b79,"fix(l10n): make defaultLanguage configurable, and switch to ""en"" default"
+157,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/38,38,add auth obj in options if set in config,"in local development, I've updated `/fxa-auth-server/config/dev.json`. adding into smtp, `user` and `password` as they are by default `undefined` (trying to use smtp from Gandi.net)
+
+but I've received `RecipientError` `Client host rejected: Access denied` by the server
+
+Then I saw that these prop in config are not used in nodemailer when it is called.. that's why I've added the `auth` config.
+",sovanna,811759,2015-04-14T14:36:45Z,CONTRIBUTOR,True,8,0,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,9cb4577c63132e8c2ef2db3e6d2bde8865f180e1,add auth obj in options if set in config
+158,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/32,32,fix(l10n): Ensure the email subjects are extracted.,"Look in the .js files for strings surrounded by `gettext()`
+
+fixes #31
+",shane-tomlinson,848085,2015-03-11T16:22:05Z,MEMBER,True,19,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,eab01bb06ece76a1acd694d9325f2d65cf13625a,"fix(l10n): Ensure the email subjects are extracted.
+
+Look in the .js files for strings surrounded by `gettext()`
+
+fixes #31"
+159,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/26,26,"feat: Add change password, reset password, and new sync device notification emails.","fixes #24
+
+Link to:
+https://github.com/mozilla/fxa-js-client/pull/146
+https://github.com/mozilla/fxa-auth-server/pull/876
+https://github.com/mozilla/fxa-auth-server/pull/941
+https://github.com/mozilla/fxa-content-server/pull/2129
+https://github.com/mozilla/fxa-content-server/pull/2561
+https://github.com/mozilla/fxa-content-server/pull/2562
+",shane-tomlinson,848085,2015-02-22T15:05:01Z,MEMBER,True,366,7,9,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,064bfca67b8c60e27518a980ad7e4a16de593fbc,"feat: Add change password, reset password, and new sync device notification emails.
+
+fixes #24"
+160,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/25,25,"Use new, shorter sender address on verification emails","This updates the defailt sender to match what's suggested in https://github.com/mozilla/fxa-auth-server/issues/841#issuecomment-75295048
+
+I'm not sure if this local config value is actually used in our current setup, but it seems wise to keep things consistent.  @dannycoates r?
+",rfk,34695,2015-02-20T21:00:42Z,MEMBER,True,1,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,dd8c04a915b33a0c879a9a093ee80b041a397a1f,"Use new, shorter sender address on verification emails"
+161,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/23,23,add unlock email,"A combination of @rfk's PR #17 and @rfeeley's copy.
+
+fixes #16 
+
+Goes along with:
+- https://github.com/mozilla/fxa-auth-db-server/pull/123
+- https://github.com/mozilla/fxa-auth-db-mem/pull/11
+- https://github.com/mozilla/fxa-auth-db-mysql/pull/7
+- https://github.com/mozilla/fxa-js-client/pull/141
+- https://github.com/mozilla/fxa-content-server/pull/1806
+- https://github.com/mozilla/fxa-auth-server/pull/867
+",shane-tomlinson,848085,2015-02-04T17:18:27Z,MEMBER,True,167,3,6,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,733a6f0ff947147d0f638c66d5b49873096fbab2,WIP: add unlock email (with placeholder copy for now)
+162,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/23,23,add unlock email,"A combination of @rfk's PR #17 and @rfeeley's copy.
+
+fixes #16 
+
+Goes along with:
+- https://github.com/mozilla/fxa-auth-db-server/pull/123
+- https://github.com/mozilla/fxa-auth-db-mem/pull/11
+- https://github.com/mozilla/fxa-auth-db-mysql/pull/7
+- https://github.com/mozilla/fxa-js-client/pull/141
+- https://github.com/mozilla/fxa-content-server/pull/1806
+- https://github.com/mozilla/fxa-auth-server/pull/867
+",shane-tomlinson,848085,2015-02-04T17:18:27Z,MEMBER,True,167,3,6,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,f057c518ef63048bd367b3621af49340574277eb,Update Unlock Account email with latest copy from @rfeeley
+163,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/23,23,add unlock email,"A combination of @rfk's PR #17 and @rfeeley's copy.
+
+fixes #16 
+
+Goes along with:
+- https://github.com/mozilla/fxa-auth-db-server/pull/123
+- https://github.com/mozilla/fxa-auth-db-mem/pull/11
+- https://github.com/mozilla/fxa-auth-db-mysql/pull/7
+- https://github.com/mozilla/fxa-js-client/pull/141
+- https://github.com/mozilla/fxa-content-server/pull/1806
+- https://github.com/mozilla/fxa-auth-server/pull/867
+",shane-tomlinson,848085,2015-02-04T17:18:27Z,MEMBER,True,167,3,6,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,4f71738df2add01c3ad24751eaba66ec3e150687,update the auth-mailer to correctly print unlock codes to the console.
+164,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/23,23,add unlock email,"A combination of @rfk's PR #17 and @rfeeley's copy.
+
+fixes #16 
+
+Goes along with:
+- https://github.com/mozilla/fxa-auth-db-server/pull/123
+- https://github.com/mozilla/fxa-auth-db-mem/pull/11
+- https://github.com/mozilla/fxa-auth-db-mysql/pull/7
+- https://github.com/mozilla/fxa-js-client/pull/141
+- https://github.com/mozilla/fxa-content-server/pull/1806
+- https://github.com/mozilla/fxa-auth-server/pull/867
+",shane-tomlinson,848085,2015-02-04T17:18:27Z,MEMBER,True,167,3,6,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,19209ff1cc30b66631238675d4643027cc269916,"Remove the ""Danger, Will Robinson"" text."
+165,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/21,21,chore(l10n): setup extraction script for l10n,"Fixes #20.
+
+GRUNT :bomb: 
+
+@dannycoates r?
+",zaach,3903,2015-01-14T00:38:37Z,CONTRIBUTOR,True,75,1,4,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,111bb1e943b3e30755277f2fd92a79bde05d85e7,chore(l10n): setup extraction script for l10n
+166,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/19,19,almost there,"hey y'all, over here!
+
+@ckarlof @zaach @ryanfeeley
+",dannycoates,87619,2014-12-08T20:38:16Z,MEMBER,True,4,4,3,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,f6a4a31c509acff6df81a14d8885f4cd7a6c04f7,stay on target
+167,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/17,17,WIP: add unlock email (with placeholder copy for now),"Fixes #16, but blocked on final copy and upstream API tweaks.  Also could really use some tests.
+",rfk,34695,2014-11-26T06:32:34Z,MEMBER,False,167,3,5,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,733a6f0ff947147d0f638c66d5b49873096fbab2,WIP: add unlock email (with placeholder copy for now)
+168,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/14,14,first stab at a travis.yml file,"See https://github.com/mozilla/fxa-auth-mailer/pull/12#issuecomment-56450374
+",pdehaan,557895,2014-09-22T22:04:52Z,CONTRIBUTOR,False,23,0,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,e7f50b27422b9c10519bf30e82e6196e6af6154b,first stab at a travis.yml file
+169,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/13,13,Adding description and author fields to package.json,"Fixes #6 (along with the README.md contribution from @fmarier in PR#12).
+",pdehaan,557895,2014-09-22T21:59:59Z,CONTRIBUTOR,True,6,3,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,47c49b90012dcb855f1ef039ae262a17fc4c3851,Adding description and author fields to package.json
+170,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/13,13,Adding description and author fields to package.json,"Fixes #6 (along with the README.md contribution from @fmarier in PR#12).
+",pdehaan,557895,2014-09-22T21:59:59Z,CONTRIBUTOR,True,6,3,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,7469a40195e17c794dc4936a1b61782612c8455f,adding license url
+171,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/12,12,Add some notes from Danny's presentation at the fxa-backend workweek,,fmarier,167821,2014-09-22T21:47:34Z,NONE,True,16,0,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,80a933e17d6fce274268c6474978bd04bb26b496,Add some notes from Danny's presentation at the fxa-backend workweek
+172,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/11,11,Add a copy of the MPL,,fmarier,167821,2014-09-22T21:36:18Z,NONE,False,373,0,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,e26e216f30ac2f56311bcf4613a9f37759804124,Add a copy of the MPL
+173,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/10,10,Add travis config file,,fmarier,167821,2014-09-22T21:35:33Z,NONE,True,18,0,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,2b3876e6c469254c62853dda66f157721d8fd2be,Add travis config file
+174,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/10,10,Add travis config file,,fmarier,167821,2014-09-22T21:35:33Z,NONE,True,18,0,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,b3a03e396192df189c7f0cb0e7015653568d4528,Quote the node version number in the travis file
+175,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/9,9,Add the full text of the MPL 2.0,,chilts,3048,2014-09-22T15:42:03Z,CONTRIBUTOR,True,373,0,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,77c598004e3a22ab539ccf3ad9207e0d78e9ac33,Add the full text of the MPL 2.0
+176,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/7,7,Update package.json with the repo info.,"This is to make it slightly easier for newcomers to the auth server who are trying to figure out where the email code lives.
+",shane-tomlinson,848085,2014-09-10T17:01:14Z,MEMBER,False,6,0,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,991ac729041e3902d2d626dc620cd8c60383c7bc,Update package.json with the repo info.
+177,https://api.github.com/repos/mozilla/fxa-auth-mailer/pulls/4,4,recoveryEmail should call templates recoveryEmail,"I was adding tests and coverage, and that pointed out this error. While the
+subject on the outgoing email was correct ('Reset your password'), as was the
+link in the content (/complete_reset_password), the body text was about
+signing up, not resetting a password. So, usable, but for some number of
+users, it might be somewhat confusing.
+
+I think we should consider picking this up in train-14 (before it goes live
+Monday afternoon). /cc @ckolos, @ckarlof
+",jrgm,758162,2014-06-16T03:10:57Z,CONTRIBUTOR,True,1,1,1,[⚠️ DEPRECATED ⚠️] Helper server for fxa-auth-server to send email. Use fxa-auth-server directly,,46eedde24631d7b33a9d199e267035cf6b35e06c,recoveryEmail should call templates recoveryEmail

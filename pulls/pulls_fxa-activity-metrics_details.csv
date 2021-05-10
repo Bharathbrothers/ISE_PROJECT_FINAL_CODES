@@ -1,0 +1,1196 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/134,134,Add Mozilla Code of Conduct,"Fixes #133
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-29T21:59:41Z,NONE,False,15,0,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,8ecb0658dd87435287a03aa4f1ff1d0e63c5a0a5,"Add Mozilla Code of Conduct file
+
+Fixes #133.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/132,132,chore(scripts): rename sampled tables because of off-by-one error,"Related to #129.
+
+Contrasts to #131, where that approach fixes the off-by-one error but this approach accepts the presence of the error and just renames the tables instead. Would need to be applied in conjuction with a bunch of `ALTER TABLE` queries:
+
+```sql
+ALTER TABLE activity_events_sampled_10 RENAME TO activity_events_sampled_11;
+ALTER TABLE activity_events_sampled_50 RENAME TO activity_events_sampled_51;
+ALTER TABLE daily_activity_per_device_sampled_10 RENAME TO daily_activity_per_device_sampled_11;
+ALTER TABLE daily_activity_per_device_sampled_50 RENAME TO daily_activity_per_device_sampled_51;
+ALTER TABLE daily_multi_device_users_sampled_10 RENAME TO daily_multi_device_users_sampled_11;
+ALTER TABLE daily_multi_device_users_sampled_50 RENAME TO daily_multi_device_users_sampled_51;
+ALTER TABLE email_events_sampled_10 RENAME TO email_events_sampled_11;
+ALTER TABLE email_events_sampled_50 RENAME TO email_events_sampled_51;
+ALTER TABLE flow_events_sampled_10 RENAME TO flow_events_sampled_11;
+ALTER TABLE flow_events_sampled_50 RENAME TO flow_events_sampled_51;
+ALTER TABLE flow_experiments_sampled_10 RENAME TO flow_experiments_sampled_11;
+ALTER TABLE flow_experiments_sampled_50 RENAME TO flow_experiments_sampled_51;
+ALTER TABLE flow_metadata_sampled_10 RENAME TO flow_metadata_sampled_11;
+ALTER TABLE flow_metadata_sampled_50 RENAME TO flow_metadata_sampled_51;
+```
+
+But, @jbuck and @irrationalagent, are we really sure it's worth doing this if we're also doing #131? This forces people to edit their broken queries twice, once now to pick up the new table names and then again later when they want to update to the fixed schema. Does it make sense to pay that cost for 2 weeks fewer of a bug that has been hanging around us for literally years at this point?
+
+(I'm happy if you think the answer to those questions is ""yes"" btw, just wanted to make sure we were asking them before taking action)
+
+r?",philbooth,64367,2019-02-20T18:28:51Z,CONTRIBUTOR,False,5,5,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,db5434a3674c9413607f799638a3407e1401ff88,chore(scripts): rename sampled tables because of off-by-one error
+2,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/131,131,fix(scripts): fix off-by-one errors in metrics sample rates,"Fixes #129 (well, along with a re-import of data it does).
+
+@jbuck, @irrationalagent r?",philbooth,64367,2019-02-20T18:11:12Z,CONTRIBUTOR,True,4,4,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,40ec2bfb2dacf931b497492b2ec7fe75549db823,fix(scripts): fix off-by-one errors in metrics sample rates
+3,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/128,128,feat(docs): update the readme with details of the new data source,"The readme in this repo had gone very stale. I've deleted most of it, because all the stuff about the temporary data source and so on is out of date now. I've mentioned the new data source instead and also that there is a migration away from Heka in progress.
+
+@mozilla/fxa-devs r?",philbooth,64367,2019-02-11T10:59:56Z,CONTRIBUTOR,True,15,44,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,8862c0b0c15f8b263b7d0ff2b0aab247ee761527,feat(docs): update the readme with details of the new data source
+4,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/126,126,fix(scripts): generate a unique name for temporary tables,"@jbuck, haven't tested this but it's what I had in mind in https://github.com/mozilla/fxa-activity-metrics/pull/124#issuecomment-451380528. What do you think?",philbooth,64367,2019-01-04T08:53:36Z,CONTRIBUTOR,False,23,8,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,89d663c68ddce685fffcb8fc8c4a6f70101c3ee9,fix(scripts): generate a unique name for temporary tables
+5,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/124,124,Create import tables as temporary tables,,jbuck,578466,2018-12-29T18:35:03Z,MEMBER,True,2,2,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,4141223dfab61e4c34fb18204a6219800f41903b,Create import tables as temporary tables
+6,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/123,123,feat(scripts): add country and region columns to activity/flow events,"Fixes #108.
+
+Adds 2 extra columns, `country` and `region`, to the `activty_events` and `flow_events` tables. We need to get those 2 columns added to the CSV before we can apply this change (hence `WIP`), because without them the import will fail. This also means that, once applied, the scripts won't be able to re-import old data from before the columns existed.
+
+@jbuck, based on the discussion in https://github.com/mozilla/fxa-activity-metrics/issues/108#issuecomment-450213718, do you think stackdriver logging will happen soon enough for us to just add columns to the CSV that way, or do you think we'll need to update the Heka filter as an initial step? I suspect it's the latter, but worth asking.
+
+And if we do need to update the Heka filter, do you know who we should ask to help us? I used to know how to do this, but I can't remember what was involved now, or even where to find the code.",philbooth,64367,2018-12-28T13:53:15Z,CONTRIBUTOR,False,16,6,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,3bf88050109ac54fb7cd3c8c1c2a47c32056b086,feat(scripts): add country and region columns to activity/flow events
+7,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/122,122,fix(scripts): Allow a small number of import errors,,jbuck,578466,2018-12-18T21:17:12Z,MEMBER,True,2,0,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,01af24b0b83a3935e2190de10e6f5cd96db07319,fix(scripts): Allow a small number of import errors
+8,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/120,120,fix(vars): Remove unused variables,,jbuck,578466,2018-12-14T17:03:12Z,MEMBER,True,1,3,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,24738b89c9508d5436105c73d5c82bfdf9982230,fix(vars): Remove unused variables
+9,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/119,119,feat(credentials): Support using an IAM role for credentials.,"Here's my quick pitch for supporting an `AWS_IAM_ROLE` env var, per https://github.com/mozilla/fxa-activity-metrics/issues/115#issuecomment-447138271.  It runs locally and appears to spit out the right strings but I haven't tried actually connecting it to a redshift cluster...",rfk,34695,2018-12-14T02:14:01Z,MEMBER,True,36,13,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,1b4dc9bdc0769b3a02d69813bb06c37d7d37cd75,feat(credentials): Support using an IAM role for credentials.
+10,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/118,118,fix(s3): Connect to correct S3 bucket region,"The S3 bucket is in the us-west-2 region. Boto is able to follow redirects to the right place, but this means no redirect needed",jbuck,578466,2018-12-13T21:19:37Z,MEMBER,True,3,3,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,93a1e4851a2d38cf011917e89d34a3fdcf449ae1,fix(s3): Connect to correct S3 bucket region
+11,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/117,117,fix(docker): Fix image tag,I added the creds to CircleCI but the build failed because `fxa-email-service:build` is in the wrong repo. I think after this patch it should push up to Dockerhub correctly,jbuck,578466,2018-12-13T17:28:57Z,MEMBER,False,73,0,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,a98147a8c04c565e7a864c6db65eca5772892de6,feat(scripts): dockerize the import/summarize scripts
+12,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/117,117,fix(docker): Fix image tag,I added the creds to CircleCI but the build failed because `fxa-email-service:build` is in the wrong repo. I think after this patch it should push up to Dockerhub correctly,jbuck,578466,2018-12-13T17:28:57Z,MEMBER,False,73,0,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,edb9dc2b9afaeae3035bfdf1aed64b6782a170e7,fix(docker): Fix image tag
+13,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/116,116,feat(scripts): dockerize the import/summarize scripts,"Fixes #115.
+
+WIP. Don't review yet, I'm only PRing so I can work through build issues in Circle...",philbooth,64367,2018-12-12T15:17:17Z,CONTRIBUTOR,False,71,0,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,2036208bf1d24717c9f02a6aa7f27d53e708f469,feat(scripts): dockerize the import/summarize scripts
+14,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/106,106,feat(scripts): delete flow.begin events after processing,"Fixes #104.
+
+This is the last thing I'm going to do about reducing the size of our data. `flow.completed` survives. Have pushed to the redshift helper for tomorrow morning's import, to check it's okay before merging.
+
+@mozilla/fxa-devs ",philbooth,64367,2018-08-28T10:51:28Z,CONTRIBUTOR,True,8,1,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,2e5b2700b0409b77fdff325adf97b98c71ebcafa,fix(scripts): remove old support for flow.${viewName}.begin events
+15,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/106,106,feat(scripts): delete flow.begin events after processing,"Fixes #104.
+
+This is the last thing I'm going to do about reducing the size of our data. `flow.completed` survives. Have pushed to the redshift helper for tomorrow morning's import, to check it's okay before merging.
+
+@mozilla/fxa-devs ",philbooth,64367,2018-08-28T10:51:28Z,CONTRIBUTOR,True,8,1,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,4576a7d3ec6165d9b315a2e9563071c91317250e,feat(scripts): delete flow.begin events after processing
+16,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/105,105,Debigulate flow_events,"Related to #104.
+
+This includes the three less contentious changes to reduce the amount of data we store in Redshift. They don't break any queries as far as I can make out.
+
+@jbuck r?
+
+(if you think things look okay from a syntax standpoint I'll do a trial run import before merging, just to make sure everything still works)",philbooth,64367,2018-08-17T12:49:08Z,CONTRIBUTOR,True,14,52,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,99998da9704b78d638f4c498304adba8db423e5e,feat(scripts): delete flow.continued events after processing
+17,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/105,105,Debigulate flow_events,"Related to #104.
+
+This includes the three less contentious changes to reduce the amount of data we store in Redshift. They don't break any queries as far as I can make out.
+
+@jbuck r?
+
+(if you think things look okay from a syntax standpoint I'll do a trial run import before merging, just to make sure everything still works)",philbooth,64367,2018-08-17T12:49:08Z,CONTRIBUTOR,True,14,52,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,df5e7f34a1c1c355e001adca83267fd7d3568d6f,feat(scripts): delete flow.experiment events after processing
+18,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/105,105,Debigulate flow_events,"Related to #104.
+
+This includes the three less contentious changes to reduce the amount of data we store in Redshift. They don't break any queries as far as I can make out.
+
+@jbuck r?
+
+(if you think things look okay from a syntax standpoint I'll do a trial run import before merging, just to make sure everything still works)",philbooth,64367,2018-08-17T12:49:08Z,CONTRIBUTOR,True,14,52,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,a5a1a12d04357a7ea477ea806f7dd3763745faed,chore(scripts): turn off the strict multi-device import
+19,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/100,100,wip: break up the flow import for kinesis integration,"Related to #99. Not for merging, just for discussion / ongoing work.
+
+I'm opening this for when @jbuck gets back from holiday, hopefully it is sufficient to unblock him on the mozlog 2 stuff. (I disappear off on a holiday of my own shortly after he gets back)
+
+What I've done here is break apart the flow import into 2 separate scripts:
+
+* `kinesis_flow_events_1.py`, which you can mostly ignore. This one is just here so I can set up and populate our temporary / raw data table for the other script to read from. The work in this script will ultimately be done by Kinesis Firehose, when he have the real mozlog 2 pipeline up and running. It can also serve as a reference when setting up the Kinesis stuff, for what the Redshift schema needs to be and what the expected CSV format is.
+
+* `kinesis_flow_events_2.py`, which contains the good stuff. This script reads data from the temporary / raw data table and makes no assumptions about the length of time that table covers. For more about why we want to do this, see the discussion in #99.
+
+Something that we lose with these changes is straightforward error correction. Because the existing scripts do everything in atomic units of a day, it's easy to delete and re-import specific days in the event of something going wrong. But hopefully our shiny new pipeline will be so perfect that we don't have to worry about that too much. (this is why there are no `export_date` columns in the new schema)
+
+The other side-effect of the loss of per-day semantics is that we now populate `flow_metadata` first, so that we can use `MAX(begin_time)` when drawing the line for data expiry. That seemed like the right thing to do, although maybe it's not that important really.
+
+If anyone wants to muck about with these scripts for real, they're in `~/kinesis-flow-events` on our redshift helper EC2 instance. There's also a week of data currently imported to `kinesis_` prefixed table names in Redshift, which I imported (and tested) just to make sure the code actually works.",philbooth,64367,2018-02-20T14:14:51Z,CONTRIBUTOR,False,383,0,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,119248349d37f8b0b3e30461003b32710ed67fa6,wip: break up the flow import for kinesis integration
+20,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/100,100,wip: break up the flow import for kinesis integration,"Related to #99. Not for merging, just for discussion / ongoing work.
+
+I'm opening this for when @jbuck gets back from holiday, hopefully it is sufficient to unblock him on the mozlog 2 stuff. (I disappear off on a holiday of my own shortly after he gets back)
+
+What I've done here is break apart the flow import into 2 separate scripts:
+
+* `kinesis_flow_events_1.py`, which you can mostly ignore. This one is just here so I can set up and populate our temporary / raw data table for the other script to read from. The work in this script will ultimately be done by Kinesis Firehose, when he have the real mozlog 2 pipeline up and running. It can also serve as a reference when setting up the Kinesis stuff, for what the Redshift schema needs to be and what the expected CSV format is.
+
+* `kinesis_flow_events_2.py`, which contains the good stuff. This script reads data from the temporary / raw data table and makes no assumptions about the length of time that table covers. For more about why we want to do this, see the discussion in #99.
+
+Something that we lose with these changes is straightforward error correction. Because the existing scripts do everything in atomic units of a day, it's easy to delete and re-import specific days in the event of something going wrong. But hopefully our shiny new pipeline will be so perfect that we don't have to worry about that too much. (this is why there are no `export_date` columns in the new schema)
+
+The other side-effect of the loss of per-day semantics is that we now populate `flow_metadata` first, so that we can use `MAX(begin_time)` when drawing the line for data expiry. That seemed like the right thing to do, although maybe it's not that important really.
+
+If anyone wants to muck about with these scripts for real, they're in `~/kinesis-flow-events` on our redshift helper EC2 instance. There's also a week of data currently imported to `kinesis_` prefixed table names in Redshift, which I imported (and tested) just to make sure the code actually works.",philbooth,64367,2018-02-20T14:14:51Z,CONTRIBUTOR,False,383,0,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,273a56f20499e33320d59e1b0f3eeff7eddb5098,wip: stop storing raw flow.continued events
+21,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/84,84,feat(schema): add a stricter definition of multi-device users,"This is an experimental new definition of the `daily_multi_device_users` table, which tries to discount the effect of zombie sessions causing single-device users to show up as multi-device. It tweaks the `INSERT` logic by requiring that the `present` device is used both before and after the `past` device, thus indicating that the two devices have been in use simultaneously. The tweak is applied against a new table rather than the existing one, so that we don't mess with any existing queries and can compare the two definitions side-by-side.
+
+I copied this version of the script over to the redshift helper on Friday, so we have a couple of days history in the table already and it is gradually filling up day-by-day. I did also run a script to initialise the new table with a full 3 months of old data, but the query died running out of disk space. If it's important to have that data immediately, I could set the initial import to run on a day-by-day basis instead. But since this is only experimental anyway, I figured it was fine to let it populate gradually and we can see how it goes over time.
+
+@vbudhram, super low-priority r?",philbooth,64367,2017-07-10T09:12:40Z,CONTRIBUTOR,True,80,36,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,7cfea5a02239cf4a5a5c4e4370dae0af1b302088,feat(schema): add a stricter definition of multi-device users
+22,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/83,83,feat(schema): add a continued_from column to flow_metadata,"Related to mozilla/fxa-auth-server#1945.
+
+This change just performs similar update logic to the other post-import updates we run on the `flow_metadata` table, setting a `continued_from` column based on the `flow.continued.${flow_id}` event that was added in mozilla/fxa-auth-server#1946. Hopefully there's nothing surprising here.
+
+As an initial test, I:
+
+1. Added a `continued_from` column to `flow_metadata` (and its sampled brethren).
+2. Changed the `type` column on `flow_events` (and siblings) to be `VARCHAR(79)`.
+3. Deleted the flow data for `2017-06-15`.
+4. Re-imported `2017-06-15` using the updated script from this PR.
+
+The import finished okay and the data seems fine. Obviously the real test will come when these events start showing up in the data. I left the updated script in place on the redshift helper so it should just start working as and when.
+
+@vbudhram, @rfk r?
+
+",philbooth,64367,2017-06-16T14:03:38Z,CONTRIBUTOR,True,24,3,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,93adb0a6520a0279591b40087088e0542facd33d,feat(schema): add a continued_from column to flow_metadata
+23,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/82,82,feat(scripts): import counts,"Fixes #68.
+
+Adds a new table to redshift, `counts`, that stores absolute daily counts of stuff. Currently that table includes two counts, `accounts` and `verified_accounts`. Perhaps it will grow more columns in the future, which is why I opted for such a generic table name.
+
+You can see a redash chart that uses the new table [here](https://sql.telemetry.mozilla.org/queries/4783/source#9714) (actual numbers redacted because reasons):
+
+<img width=""647"" alt=""Screen shot of a chart showing the total number of Firefox Accounts, with the numbers redacted"" src=""https://user-images.githubusercontent.com/64367/26888547-443f05c2-4ba3-11e7-9c7b-ec3261dabe34.png"" />
+
+I implemented this as a standalone script rather than leaning on common code in `import_events.py`, for a couple of reasons:
+
+1. Given that there is only 1 row of data per day, there's really no benefit to expiring old data. Better to offer the most complete history possible to queries.
+
+2. The common code for importing events assumes a timestamp that's seconds-since-the-epoch, whereas the CSV for this contains YYYY-mm-dd. I could have refactored the common code to enable re-use here without numeric timestamps, or I could have asked @jbuck to change his export to write a timestamp. But I didn't see the point to be honest, the schema for this table seems simple enough to not bother leaning on anything else.
+
+Note that these changes are currently running live on the redshift helper instance, because I wanted to see them work before opening the PR.
+
+@vbudhram r?
+
+",philbooth,64367,2017-06-07T16:08:38Z,CONTRIBUTOR,True,104,0,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,b179997f6e4ee8167b484e20fc1bbf29de0e80a8,feat(scripts): import counts
+24,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/78,78,fix(scripts): update column schemata for zstd encoding,Related to #73.,philbooth,64367,2017-05-04T12:02:43Z,CONTRIBUTOR,True,74,74,5,A server for managing the Firefox Accounts metrics database and pipeline,Python,71dd87ba0f7f6c6621ef3ed7858b62e49c97643d,fix(scripts): update column schemata for zstd encoding
+25,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/76,76,feat(email): Import email events as part of `make import`,This will cause them to be imported by the daily cronjob; @vbudhram r?,rfk,34695,2017-04-26T22:29:01Z,MEMBER,True,1,0,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,eb605bbc9d46c0d084a1d7bdfdc16a7ca029fabf,feat(email): Import email events as part of `make import`
+26,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/71,71,fix(scripts): count from the end when parsing date from file name,"The email events file name in S3 has an extra hyphenated part, which caused `import_events.py` to include an extra part in the date string. Instead of assuming that everything after the first hyphenated part is a date, we can fix it by counting back three parts from the end.
+
+@vbudhram r?",philbooth,64367,2017-04-13T13:31:24Z,CONTRIBUTOR,True,3,1,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,2f919898e64bf6f7eabf1299b214fe3aea5cb849,fix(scripts): count from the end when parsing date from file name
+27,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/70,70,feat(scripts): Add email events import script,This PR adds the script to import email events into redshift.,vbudhram,1295288,2017-04-12T15:50:20Z,CONTRIBUTOR,True,24,0,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,3ac5dfd8d3ddd2c83e5e0b1939ac7ebddc1d669b,feat(scripts): Add import email script
+28,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/70,70,feat(scripts): Add email events import script,This PR adds the script to import email events into redshift.,vbudhram,1295288,2017-04-12T15:50:20Z,CONTRIBUTOR,True,24,0,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,91fd683619d011e79f59354de5d43a82f462ded3,swap bounced and complaint in import
+29,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/67,67,feat(scripts): Add script to import email events,This is still WIP script to import email events into redash.,vbudhram,1295288,2017-03-29T20:59:39Z,CONTRIBUTOR,False,113,27,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,93e1dcbfaa20d6a1597547a7a8d9d6551d4c5ab2,feat(scripts): maintain separate tables for experiment data
+30,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/67,67,feat(scripts): Add script to import email events,This is still WIP script to import email events into redash.,vbudhram,1295288,2017-03-29T20:59:39Z,CONTRIBUTOR,False,113,27,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,ad97c9a8c999bf1891ea9e3e743805380c6933b9,fix(scripts): analyze the summary tables after vacuuming
+31,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/67,67,feat(scripts): Add script to import email events,This is still WIP script to import email events into redash.,vbudhram,1295288,2017-03-29T20:59:39Z,CONTRIBUTOR,False,113,27,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,8b54dbb63338790f8dd4992f0fc43ceaa920f5e8,feat(scripts): Add script to import email events
+32,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/67,67,feat(scripts): Add script to import email events,This is still WIP script to import email events into redash.,vbudhram,1295288,2017-03-29T20:59:39Z,CONTRIBUTOR,False,113,27,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,ba459656f1ec02c59db59fe9fb086855b2a4a50a,feat(scripts): Fixes from @philbooth review
+33,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/62,62,refactored import scripts,"Fixes #61.
+
+~~Not opening this for comment yet (although comments are still welcome of course), more to raise visibility~~. This is currently deployed to the redshift helper so if the imports suddenly fail there, it's likely because of something I've done wrong here.
+
+~~As I write this, the only change here is to refactor `import_activity_events.py` so that most of the code is pulled out to a generic `import_events.py`. Next step is to use the refactored code to add automatic expiration to the flow import.~~
+
+~~Obviously, everything related to `flow_metadata` will remain specific to the flow import, which may mean looping twice, first through the CSVs and then through the imported days in `flow_events`. Or more likely, I'll pass some kind of command function in to `import_events.py` so it can return control to the calling script on each iteration.~~
+
+Anyway, the point is I'm expecting what's here to evolve rapidly.",philbooth,64367,2017-03-17T15:09:33Z,CONTRIBUTOR,True,498,447,5,A server for managing the Firefox Accounts metrics database and pipeline,Python,23d872d38cee1f4ac199bd8204065bee5fd2bb89,refactor(scripts): extract common logic from import_activity_events.py
+34,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/62,62,refactored import scripts,"Fixes #61.
+
+~~Not opening this for comment yet (although comments are still welcome of course), more to raise visibility~~. This is currently deployed to the redshift helper so if the imports suddenly fail there, it's likely because of something I've done wrong here.
+
+~~As I write this, the only change here is to refactor `import_activity_events.py` so that most of the code is pulled out to a generic `import_events.py`. Next step is to use the refactored code to add automatic expiration to the flow import.~~
+
+~~Obviously, everything related to `flow_metadata` will remain specific to the flow import, which may mean looping twice, first through the CSVs and then through the imported days in `flow_events`. Or more likely, I'll pass some kind of command function in to `import_events.py` so it can return control to the calling script on each iteration.~~
+
+Anyway, the point is I'm expecting what's here to evolve rapidly.",philbooth,64367,2017-03-17T15:09:33Z,CONTRIBUTOR,True,498,447,5,A server for managing the Firefox Accounts metrics database and pipeline,Python,17dd88cc0aeaf74620f7c32d05fec4541065cd62,refactor(scripts): interpolate table names in queries
+35,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/62,62,refactored import scripts,"Fixes #61.
+
+~~Not opening this for comment yet (although comments are still welcome of course), more to raise visibility~~. This is currently deployed to the redshift helper so if the imports suddenly fail there, it's likely because of something I've done wrong here.
+
+~~As I write this, the only change here is to refactor `import_activity_events.py` so that most of the code is pulled out to a generic `import_events.py`. Next step is to use the refactored code to add automatic expiration to the flow import.~~
+
+~~Obviously, everything related to `flow_metadata` will remain specific to the flow import, which may mean looping twice, first through the CSVs and then through the imported days in `flow_events`. Or more likely, I'll pass some kind of command function in to `import_events.py` so it can return control to the calling script on each iteration.~~
+
+Anyway, the point is I'm expecting what's here to evolve rapidly.",philbooth,64367,2017-03-17T15:09:33Z,CONTRIBUTOR,True,498,447,5,A server for managing the Firefox Accounts metrics database and pipeline,Python,c0312d9761ae1ed0b56f169dfa1e25e959216e98,feat(scripts): maintain downsampled tables for the flow data
+36,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/62,62,refactored import scripts,"Fixes #61.
+
+~~Not opening this for comment yet (although comments are still welcome of course), more to raise visibility~~. This is currently deployed to the redshift helper so if the imports suddenly fail there, it's likely because of something I've done wrong here.
+
+~~As I write this, the only change here is to refactor `import_activity_events.py` so that most of the code is pulled out to a generic `import_events.py`. Next step is to use the refactored code to add automatic expiration to the flow import.~~
+
+~~Obviously, everything related to `flow_metadata` will remain specific to the flow import, which may mean looping twice, first through the CSVs and then through the imported days in `flow_events`. Or more likely, I'll pass some kind of command function in to `import_events.py` so it can return control to the calling script on each iteration.~~
+
+Anyway, the point is I'm expecting what's here to evolve rapidly.",philbooth,64367,2017-03-17T15:09:33Z,CONTRIBUTOR,True,498,447,5,A server for managing the Firefox Accounts metrics database and pipeline,Python,93970cd2bf372f51944e7da421bd434b93897af0,fix(scripts): add more cases to the cleaning script
+37,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/62,62,refactored import scripts,"Fixes #61.
+
+~~Not opening this for comment yet (although comments are still welcome of course), more to raise visibility~~. This is currently deployed to the redshift helper so if the imports suddenly fail there, it's likely because of something I've done wrong here.
+
+~~As I write this, the only change here is to refactor `import_activity_events.py` so that most of the code is pulled out to a generic `import_events.py`. Next step is to use the refactored code to add automatic expiration to the flow import.~~
+
+~~Obviously, everything related to `flow_metadata` will remain specific to the flow import, which may mean looping twice, first through the CSVs and then through the imported days in `flow_events`. Or more likely, I'll pass some kind of command function in to `import_events.py` so it can return control to the calling script on each iteration.~~
+
+Anyway, the point is I'm expecting what's here to evolve rapidly.",philbooth,64367,2017-03-17T15:09:33Z,CONTRIBUTOR,True,498,447,5,A server for managing the Firefox Accounts metrics database and pipeline,Python,ff6ebbb357bb58cf44dbfc940f4794fb67adfbfd,feat(scripts): maintain separate tables for experiment data
+38,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/62,62,refactored import scripts,"Fixes #61.
+
+~~Not opening this for comment yet (although comments are still welcome of course), more to raise visibility~~. This is currently deployed to the redshift helper so if the imports suddenly fail there, it's likely because of something I've done wrong here.
+
+~~As I write this, the only change here is to refactor `import_activity_events.py` so that most of the code is pulled out to a generic `import_events.py`. Next step is to use the refactored code to add automatic expiration to the flow import.~~
+
+~~Obviously, everything related to `flow_metadata` will remain specific to the flow import, which may mean looping twice, first through the CSVs and then through the imported days in `flow_events`. Or more likely, I'll pass some kind of command function in to `import_events.py` so it can return control to the calling script on each iteration.~~
+
+Anyway, the point is I'm expecting what's here to evolve rapidly.",philbooth,64367,2017-03-17T15:09:33Z,CONTRIBUTOR,True,498,447,5,A server for managing the Firefox Accounts metrics database and pipeline,Python,e9601eb6caabdd42c5785532ec4760d2a5465018,fix(scripts): analyze the summary tables after vacuuming
+39,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/59,59,feat(vendor-export): Prep anonymized data for sending to external vendor for evaluation,"Sharing this for visibillity, esp. with @davismtl.  This is a script that will take our historical data in S3, and attempt to produce an even-more-anonymized event stream suitable for sharing with external vendors to evaluate their service.  It writes the processed data back to S3 so that we don't have to process it over and over.",rfk,34695,2017-03-10T21:32:11Z,MEMBER,False,985,0,5,A server for managing the Firefox Accounts metrics database and pipeline,Python,f7e7e30a5257cb2b5498d9a46c21dd1e0e3389d8,feat(vendor-export): Prep anonymized data for sending to external vendors for evaluation.
+40,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/59,59,feat(vendor-export): Prep anonymized data for sending to external vendor for evaluation,"Sharing this for visibillity, esp. with @davismtl.  This is a script that will take our historical data in S3, and attempt to produce an even-more-anonymized event stream suitable for sharing with external vendors to evaluate their service.  It writes the processed data back to S3 so that we don't have to process it over and over.",rfk,34695,2017-03-10T21:32:11Z,MEMBER,False,985,0,5,A server for managing the Firefox Accounts metrics database and pipeline,Python,3255a6d52f188939c13103510ad6e06a46605628,"feat(vendor-export): Add scripts to import amplitude events to redshift, amplitude HTTP API."
+41,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/58,58,feat(scripts): add scripts for cleaning and padding the flow data,"@rfk, these are the housekeeping scripts I mentioned in IRC earlier/yesterday. Feel free to merge if you think they'll add value, or ignore if you think they're redundant now that the validation is all sorted.",philbooth,64367,2017-03-09T15:44:04Z,CONTRIBUTOR,True,70,0,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,b6ac196fad8530366e4bd2a4be88c16d371c87bd,feat(scripts): add scripts for cleaning and padding the flow data
+42,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/55,55,feat(scripts): add optional locale and uid to flow_metadata,"Fixes #36. Fixes #48. Replaces #54.
+
+This is rebased against #53 because merge conflicts. You might want to review that one before this one, or both together is fine too.
+
+mozilla-services/puppet-config#2488 was merged last night, which means the CSV files going forward will contain `locale` and `uid` fields. This change updates the import scripts so that we populate new columns for these fields when they're present.
+
+We could add the new columns to the existing `flow_metadata` schema with a separate query but, given that #53 needs doing at the same time, I'm minded to drop all the data and re-import it. Two birds, one stone, zero bespoke queries.
+
+@rfk r?",philbooth,64367,2017-02-22T13:26:23Z,CONTRIBUTOR,True,56,29,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,39966c0c8488f17d93c1a2c2e1bbe58a6870f5f7,fix(scripts): ensure dependent flow_metadata columns are set sanely
+43,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/55,55,feat(scripts): add optional locale and uid to flow_metadata,"Fixes #36. Fixes #48. Replaces #54.
+
+This is rebased against #53 because merge conflicts. You might want to review that one before this one, or both together is fine too.
+
+mozilla-services/puppet-config#2488 was merged last night, which means the CSV files going forward will contain `locale` and `uid` fields. This change updates the import scripts so that we populate new columns for these fields when they're present.
+
+We could add the new columns to the existing `flow_metadata` schema with a separate query but, given that #53 needs doing at the same time, I'm minded to drop all the data and re-import it. Two birds, one stone, zero bespoke queries.
+
+@rfk r?",philbooth,64367,2017-02-22T13:26:23Z,CONTRIBUTOR,True,56,29,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,063a0a1d8495b0aba40d3961130d657d40881d29,feat(scripts): add optional locale and uid to flow_metadata
+44,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/54,54,feat(scripts): add optional locale and uid to flow_metadata,"Fixes #36. Fixes #48.
+
+This is rebased against #53 because merge conflicts. You might want to review that one before this one, or both together is fine too.
+
+mozilla-services/puppet-config#2488 was merged last night, which means the CSV files going forward will contain `locale` and `uid` fields. This change updates the import scripts so that we populate them correctly.
+
+We could add the new columns to the existing `flow_metadata` schema with a separate query but, given that #53 needs doing at the same time, I'm minded to drop all the data and re-import it. Two birds, one stone, zero bespoke queries.
+
+@rfk r?",philbooth,64367,2017-02-22T12:22:04Z,CONTRIBUTOR,False,37,27,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,39966c0c8488f17d93c1a2c2e1bbe58a6870f5f7,fix(scripts): ensure dependent flow_metadata columns are set sanely
+45,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/54,54,feat(scripts): add optional locale and uid to flow_metadata,"Fixes #36. Fixes #48.
+
+This is rebased against #53 because merge conflicts. You might want to review that one before this one, or both together is fine too.
+
+mozilla-services/puppet-config#2488 was merged last night, which means the CSV files going forward will contain `locale` and `uid` fields. This change updates the import scripts so that we populate them correctly.
+
+We could add the new columns to the existing `flow_metadata` schema with a separate query but, given that #53 needs doing at the same time, I'm minded to drop all the data and re-import it. Two birds, one stone, zero bespoke queries.
+
+@rfk r?",philbooth,64367,2017-02-22T12:22:04Z,CONTRIBUTOR,False,37,27,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,031b70ba1a795430f145ed2a81d7768256ed6874,feat(scripts): add optional locale and uid to flow_metadata
+46,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/53,53,fix(scripts): ensure dependent flow_metadata columns are set sanely,"Fixes #51.
+
+This needs to be accompanied with an equivalent update to the existing `flow_metadata` to properly fix the issue. That could be done with a bespoke standalone query or we could just drop the data and reimport it using these changes over the weekend. The flow event import has less moving parts than the activity event import, so I expect it be a smoother ride than last weekend if we take that route.
+
+@rfk r?",philbooth,64367,2017-02-22T12:01:58Z,CONTRIBUTOR,True,21,19,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,39966c0c8488f17d93c1a2c2e1bbe58a6870f5f7,fix(scripts): ensure dependent flow_metadata columns are set sanely
+47,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/47,47,feat(import): maintain down-sampled tables with automatic data expiry,"Fixes #42.
+
+This is the non-wip version of #46. I opted to do it as a clean PR and summarise the lengthy discussion from over there as a single, succinct-ish description.
+
+Queries against the activity event data are slow, because we have so many events. That is a problem which will get worse over time. This change attempts to fix it by reducing the size of the data.
+
+It does so by maintaining three sets of activity event data:
+
+* Unsampled, holding 3 months of data.
+* 50% sampled, holding 6 months of data.
+* 10% sampled, holding 2 years of data.
+
+The values for sample rate and history length are essentially arbitrary, although I picked those in an effort to have roughly the same number of records in each set. In theory, most queries should take about the same amount of time regardless of the set they're running against.
+
+In practice, I ran a couple of queries against them and got these results:
+
+Query|Data set|Execution time
+-----|--------|--------------
+[Retention](https://sql.telemetry.mozilla.org/queries/725/source)|100% / 3 months|1 hour, 14 minutes
+[Retention](https://sql.telemetry.mozilla.org/queries/725/source)|50% / 6 months|57 minutes
+[Retention](https://sql.telemetry.mozilla.org/queries/725/source)|10% / 13 months*|13 minutes
+[Engagement](https://sql.telemetry.mozilla.org/queries/2333/source)|100% / 3 months|25 minutes
+[Engagement](https://sql.telemetry.mozilla.org/queries/2333/source)|50% / 6 months|32 minutes
+[Engagement](https://sql.telemetry.mozilla.org/queries/2333/source)|10% / 13 months*|18 minutes
+
+(*only 13 months because we don't have enough history for the full 2 years yet)
+
+For comparison, the execution times for those queries against our existing data set are:
+
+Query|Data set|Execution time
+-----|--------|--------------
+[Retention](https://sql.telemetry.mozilla.org/queries/725/source)|100% / 13 months|~10 hours (estimated)
+[Engagement](https://sql.telemetry.mozilla.org/queries/2333/source)|100% / 13 months|2 hours, 20 minutes
+
+Tweaking the values for sample rate and history length up or down, to tailor performance to our needs, is a straightforward change to the scripts.
+
+It may be that we decide to maintain these tables alongside the existing ones, rather than in replacement of. If that is the case, we could just rename these altered queries, or perhaps we'd want them in a separate repo.
+
+@rfk, r?",philbooth,64367,2017-01-24T16:33:47Z,CONTRIBUTOR,True,302,69,4,A server for managing the Firefox Accounts metrics database and pipeline,Python,9f6ca9a801a355dc4f08eb05bb34c5d1ed08dbc3,feat(import): maintain down-sampled tables with automatic data expiry
+48,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/46,46,wip: proposal for sampled activity event imports,"Fixes #42.
+
+@rfk, this is another one of my poorly-thought-through hacks, opened with a view to getting your feedback if you have time to look at it quickly. As usual, I haven't tried running it yet so it there's probably logic and syntax errors.
+
+It represents my first stab at what the import script for activity events might look like, with sampling of old data implemented as per #42 / #45.
+
+~~Hopefully it's quite straightforward, the only bit of magic I used was the [`ROW_NUMBER` window function](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_ROW_NUMBER.html) to sample the data on insert into each table.~~
+
+In its current state it would need to be run as a full, clean re-import the first time round, or perhaps it could be preceded by a dedicated one-off script that sets up the sampled tables using the already-imported dataset.
+
+~~And obviously there would need to be matching changes to the `calculate_daily_summary` script too.~~
+
+Thoughts?",philbooth,64367,2016-12-22T02:23:24Z,CONTRIBUTOR,False,154,59,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,3fbc8115522c10a2413ab9f4f04037680e0978eb,wip: proposal for sampled activity event imports
+49,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/46,46,wip: proposal for sampled activity event imports,"Fixes #42.
+
+@rfk, this is another one of my poorly-thought-through hacks, opened with a view to getting your feedback if you have time to look at it quickly. As usual, I haven't tried running it yet so it there's probably logic and syntax errors.
+
+It represents my first stab at what the import script for activity events might look like, with sampling of old data implemented as per #42 / #45.
+
+~~Hopefully it's quite straightforward, the only bit of magic I used was the [`ROW_NUMBER` window function](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_ROW_NUMBER.html) to sample the data on insert into each table.~~
+
+In its current state it would need to be run as a full, clean re-import the first time round, or perhaps it could be preceded by a dedicated one-off script that sets up the sampled tables using the already-imported dataset.
+
+~~And obviously there would need to be matching changes to the `calculate_daily_summary` script too.~~
+
+Thoughts?",philbooth,64367,2016-12-22T02:23:24Z,CONTRIBUTOR,False,154,59,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,9518ab953920c02af1d6426ba938409174f4a409,wip: preserve table name for unsampled events
+50,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/46,46,wip: proposal for sampled activity event imports,"Fixes #42.
+
+@rfk, this is another one of my poorly-thought-through hacks, opened with a view to getting your feedback if you have time to look at it quickly. As usual, I haven't tried running it yet so it there's probably logic and syntax errors.
+
+It represents my first stab at what the import script for activity events might look like, with sampling of old data implemented as per #42 / #45.
+
+~~Hopefully it's quite straightforward, the only bit of magic I used was the [`ROW_NUMBER` window function](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_ROW_NUMBER.html) to sample the data on insert into each table.~~
+
+In its current state it would need to be run as a full, clean re-import the first time round, or perhaps it could be preceded by a dedicated one-off script that sets up the sampled tables using the already-imported dataset.
+
+~~And obviously there would need to be matching changes to the `calculate_daily_summary` script too.~~
+
+Thoughts?",philbooth,64367,2016-12-22T02:23:24Z,CONTRIBUTOR,False,154,59,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,327b1519a37331cf77a1d8d0028ab82590a05912,wip: sample data by uid rather than by row
+51,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/46,46,wip: proposal for sampled activity event imports,"Fixes #42.
+
+@rfk, this is another one of my poorly-thought-through hacks, opened with a view to getting your feedback if you have time to look at it quickly. As usual, I haven't tried running it yet so it there's probably logic and syntax errors.
+
+It represents my first stab at what the import script for activity events might look like, with sampling of old data implemented as per #42 / #45.
+
+~~Hopefully it's quite straightforward, the only bit of magic I used was the [`ROW_NUMBER` window function](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_ROW_NUMBER.html) to sample the data on insert into each table.~~
+
+In its current state it would need to be run as a full, clean re-import the first time round, or perhaps it could be preceded by a dedicated one-off script that sets up the sampled tables using the already-imported dataset.
+
+~~And obviously there would need to be matching changes to the `calculate_daily_summary` script too.~~
+
+Thoughts?",philbooth,64367,2016-12-22T02:23:24Z,CONTRIBUTOR,False,154,59,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,bd8f91f832e91550b98f42e718da317ba50effe1,wip: propagate sampling to the summary tables
+52,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/46,46,wip: proposal for sampled activity event imports,"Fixes #42.
+
+@rfk, this is another one of my poorly-thought-through hacks, opened with a view to getting your feedback if you have time to look at it quickly. As usual, I haven't tried running it yet so it there's probably logic and syntax errors.
+
+It represents my first stab at what the import script for activity events might look like, with sampling of old data implemented as per #42 / #45.
+
+~~Hopefully it's quite straightforward, the only bit of magic I used was the [`ROW_NUMBER` window function](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_ROW_NUMBER.html) to sample the data on insert into each table.~~
+
+In its current state it would need to be run as a full, clean re-import the first time round, or perhaps it could be preceded by a dedicated one-off script that sets up the sampled tables using the already-imported dataset.
+
+~~And obviously there would need to be matching changes to the `calculate_daily_summary` script too.~~
+
+Thoughts?",philbooth,64367,2016-12-22T02:23:24Z,CONTRIBUTOR,False,154,59,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,5b0a05dcec057d6243a84ce5c103be4a3b1990a1,wip: fix stupid python syntax errors
+53,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/46,46,wip: proposal for sampled activity event imports,"Fixes #42.
+
+@rfk, this is another one of my poorly-thought-through hacks, opened with a view to getting your feedback if you have time to look at it quickly. As usual, I haven't tried running it yet so it there's probably logic and syntax errors.
+
+It represents my first stab at what the import script for activity events might look like, with sampling of old data implemented as per #42 / #45.
+
+~~Hopefully it's quite straightforward, the only bit of magic I used was the [`ROW_NUMBER` window function](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_ROW_NUMBER.html) to sample the data on insert into each table.~~
+
+In its current state it would need to be run as a full, clean re-import the first time round, or perhaps it could be preceded by a dedicated one-off script that sets up the sampled tables using the already-imported dataset.
+
+~~And obviously there would need to be matching changes to the `calculate_daily_summary` script too.~~
+
+Thoughts?",philbooth,64367,2016-12-22T02:23:24Z,CONTRIBUTOR,False,154,59,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,631a0cb6c123a04a33a197ca67273a956eb2f040,wip: only insert data that is within the expiry period
+54,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/46,46,wip: proposal for sampled activity event imports,"Fixes #42.
+
+@rfk, this is another one of my poorly-thought-through hacks, opened with a view to getting your feedback if you have time to look at it quickly. As usual, I haven't tried running it yet so it there's probably logic and syntax errors.
+
+It represents my first stab at what the import script for activity events might look like, with sampling of old data implemented as per #42 / #45.
+
+~~Hopefully it's quite straightforward, the only bit of magic I used was the [`ROW_NUMBER` window function](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_ROW_NUMBER.html) to sample the data on insert into each table.~~
+
+In its current state it would need to be run as a full, clean re-import the first time round, or perhaps it could be preceded by a dedicated one-off script that sets up the sampled tables using the already-imported dataset.
+
+~~And obviously there would need to be matching changes to the `calculate_daily_summary` script too.~~
+
+Thoughts?",philbooth,64367,2016-12-22T02:23:24Z,CONTRIBUTOR,False,154,59,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,40cecc919c2b4e861a6eef41fbb8d3a3ca3a9834,wip: update the retro import query for downsampling
+55,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/46,46,wip: proposal for sampled activity event imports,"Fixes #42.
+
+@rfk, this is another one of my poorly-thought-through hacks, opened with a view to getting your feedback if you have time to look at it quickly. As usual, I haven't tried running it yet so it there's probably logic and syntax errors.
+
+It represents my first stab at what the import script for activity events might look like, with sampling of old data implemented as per #42 / #45.
+
+~~Hopefully it's quite straightforward, the only bit of magic I used was the [`ROW_NUMBER` window function](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_ROW_NUMBER.html) to sample the data on insert into each table.~~
+
+In its current state it would need to be run as a full, clean re-import the first time round, or perhaps it could be preceded by a dedicated one-off script that sets up the sampled tables using the already-imported dataset.
+
+~~And obviously there would need to be matching changes to the `calculate_daily_summary` script too.~~
+
+Thoughts?",philbooth,64367,2016-12-22T02:23:24Z,CONTRIBUTOR,False,154,59,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,5595083ce615678c8d4834500e8c1c602c85b6c2,wip: add table-vacuuming to the retro import script
+56,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/46,46,wip: proposal for sampled activity event imports,"Fixes #42.
+
+@rfk, this is another one of my poorly-thought-through hacks, opened with a view to getting your feedback if you have time to look at it quickly. As usual, I haven't tried running it yet so it there's probably logic and syntax errors.
+
+It represents my first stab at what the import script for activity events might look like, with sampling of old data implemented as per #42 / #45.
+
+~~Hopefully it's quite straightforward, the only bit of magic I used was the [`ROW_NUMBER` window function](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_ROW_NUMBER.html) to sample the data on insert into each table.~~
+
+In its current state it would need to be run as a full, clean re-import the first time round, or perhaps it could be preceded by a dedicated one-off script that sets up the sampled tables using the already-imported dataset.
+
+~~And obviously there would need to be matching changes to the `calculate_daily_summary` script too.~~
+
+Thoughts?",philbooth,64367,2016-12-22T02:23:24Z,CONTRIBUTOR,False,154,59,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,382ac1bc3902f9e98f14b653b1768c6151790177,wip: expire old data in the summary tables
+57,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/46,46,wip: proposal for sampled activity event imports,"Fixes #42.
+
+@rfk, this is another one of my poorly-thought-through hacks, opened with a view to getting your feedback if you have time to look at it quickly. As usual, I haven't tried running it yet so it there's probably logic and syntax errors.
+
+It represents my first stab at what the import script for activity events might look like, with sampling of old data implemented as per #42 / #45.
+
+~~Hopefully it's quite straightforward, the only bit of magic I used was the [`ROW_NUMBER` window function](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_ROW_NUMBER.html) to sample the data on insert into each table.~~
+
+In its current state it would need to be run as a full, clean re-import the first time round, or perhaps it could be preceded by a dedicated one-off script that sets up the sampled tables using the already-imported dataset.
+
+~~And obviously there would need to be matching changes to the `calculate_daily_summary` script too.~~
+
+Thoughts?",philbooth,64367,2016-12-22T02:23:24Z,CONTRIBUTOR,False,154,59,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,d3790b97edb7bc257ed4fffdc63b7f3522308bc5,wip: fix extremely wooly thinking about expiry tests
+58,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/46,46,wip: proposal for sampled activity event imports,"Fixes #42.
+
+@rfk, this is another one of my poorly-thought-through hacks, opened with a view to getting your feedback if you have time to look at it quickly. As usual, I haven't tried running it yet so it there's probably logic and syntax errors.
+
+It represents my first stab at what the import script for activity events might look like, with sampling of old data implemented as per #42 / #45.
+
+~~Hopefully it's quite straightforward, the only bit of magic I used was the [`ROW_NUMBER` window function](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_ROW_NUMBER.html) to sample the data on insert into each table.~~
+
+In its current state it would need to be run as a full, clean re-import the first time round, or perhaps it could be preceded by a dedicated one-off script that sets up the sampled tables using the already-imported dataset.
+
+~~And obviously there would need to be matching changes to the `calculate_daily_summary` script too.~~
+
+Thoughts?",philbooth,64367,2016-12-22T02:23:24Z,CONTRIBUTOR,False,154,59,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,14c86e349ef88679e0bf655b80ded21709179641,wip: add missing TRUNCATECOLUMNS to the retro import script
+59,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/46,46,wip: proposal for sampled activity event imports,"Fixes #42.
+
+@rfk, this is another one of my poorly-thought-through hacks, opened with a view to getting your feedback if you have time to look at it quickly. As usual, I haven't tried running it yet so it there's probably logic and syntax errors.
+
+It represents my first stab at what the import script for activity events might look like, with sampling of old data implemented as per #42 / #45.
+
+~~Hopefully it's quite straightforward, the only bit of magic I used was the [`ROW_NUMBER` window function](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_ROW_NUMBER.html) to sample the data on insert into each table.~~
+
+In its current state it would need to be run as a full, clean re-import the first time round, or perhaps it could be preceded by a dedicated one-off script that sets up the sampled tables using the already-imported dataset.
+
+~~And obviously there would need to be matching changes to the `calculate_daily_summary` script too.~~
+
+Thoughts?",philbooth,64367,2016-12-22T02:23:24Z,CONTRIBUTOR,False,154,59,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,9e6220133d83e8743c15785716704fbc608eb19d,wip: reinstate create events table step to retro import
+60,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/46,46,wip: proposal for sampled activity event imports,"Fixes #42.
+
+@rfk, this is another one of my poorly-thought-through hacks, opened with a view to getting your feedback if you have time to look at it quickly. As usual, I haven't tried running it yet so it there's probably logic and syntax errors.
+
+It represents my first stab at what the import script for activity events might look like, with sampling of old data implemented as per #42 / #45.
+
+~~Hopefully it's quite straightforward, the only bit of magic I used was the [`ROW_NUMBER` window function](http://docs.aws.amazon.com/redshift/latest/dg/r_WF_ROW_NUMBER.html) to sample the data on insert into each table.~~
+
+In its current state it would need to be run as a full, clean re-import the first time round, or perhaps it could be preceded by a dedicated one-off script that sets up the sampled tables using the already-imported dataset.
+
+~~And obviously there would need to be matching changes to the `calculate_daily_summary` script too.~~
+
+Thoughts?",philbooth,64367,2016-12-22T02:23:24Z,CONTRIBUTOR,False,154,59,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,6dcaf750a419a1b17fe3704312cd4d0dca43d080,wip: fix broken vacuum query
+61,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/44,44,Performance and correctness fixes for the flow import scripts,"This changeset contains three significant commits:
+
+* `flow_metadata.flow_id` is promoted to `DISTKEY`, to match `flow_events.flow_id`. This fixes #40.
+
+* Compression is disabled on `flow_metadata.begin_time` and `flow_events.timestamp`. This is a partial fix for #43.
+
+* Sane deletion logic for overlapping flow data is implemented via `flow_metadata.export_date` and `flow_events.export_date` columns. This a combination of #39 and #34, with a couple of fixes for stupid syntax errors (my fault). Fixes #33.
+
+For expediency, or perhaps it was just laziness, I tested the effects of these changes all together. I hope that's okay, because they can still be measured independently to some extent.
+
+The import time should only be affected by the `export_date` commit. Performance of the analytical queries is affected by both the `DISTKEY` and the `SORTKEY` commits, but it seemed like the latter was the only one we were unsure about there so I opted to measure them together. And we can get independent validation of the `SORTKEY` change by further measuring its impact against a subset of the activity event data, which I plan to do tomorrow.
+
+So the results, based on 104 days of data (2nd September until 16th December), are like so:
+
+**Complete import duration:** ~9.5 hours
+**Of which, vacuuming duration:** ~45 minutes
+
+**Independently clearing the 104th day:**  ~20 seconds
+**Independently importing the 104th day:** ~7.5 minutes
+
+**Executing the engagement ratio/multi-device query:** ~1.5 hours
+
+The import time is a huge improvement on my original ham-fisted attempt to fix duplicate events in #34. It's a little bit worse than the last timing I have for importing without the fix, which was ~6 hours for 84 days of data. The single-day clear/import figures seem eminently reasonable too.
+
+The performance of the engagement ratio query is a significant improvement over what we currently have. My last timing was ~2 hours when run against 96 days of data.
+
+In terms of correctness, everything seems to look okay. I can conceive of one theoretical problem but it shouldn't harm us in practice. Before the content server implemented flow event timestamp validation (train 74), we emitted events that were more than one day removed from their `export_date`. In such cases, were we to clear and then import a single day, it would lead to duplicating those events with the current logic.
+
+However, in practice, I don't expect us to re-import any of that historical data on a per-day basis and the  described problem does not occur when re-importing wholesale. Furthermore, given that we know the data prior to train 74 contains garbage, I fully expect us to permanently delete it all once we've built up a bit more history to show longer trends in the charts.
+
+All told, I believe these changes are a big improvement on what we currently have. @rfk, r?",philbooth,64367,2016-12-17T16:54:53Z,CONTRIBUTOR,True,45,27,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,2412ef89ae6c012e16e80bf8f1b90609680e9c86,fix(db): promote flow_metadata.flow_id to DISTKEY
+62,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/44,44,Performance and correctness fixes for the flow import scripts,"This changeset contains three significant commits:
+
+* `flow_metadata.flow_id` is promoted to `DISTKEY`, to match `flow_events.flow_id`. This fixes #40.
+
+* Compression is disabled on `flow_metadata.begin_time` and `flow_events.timestamp`. This is a partial fix for #43.
+
+* Sane deletion logic for overlapping flow data is implemented via `flow_metadata.export_date` and `flow_events.export_date` columns. This a combination of #39 and #34, with a couple of fixes for stupid syntax errors (my fault). Fixes #33.
+
+For expediency, or perhaps it was just laziness, I tested the effects of these changes all together. I hope that's okay, because they can still be measured independently to some extent.
+
+The import time should only be affected by the `export_date` commit. Performance of the analytical queries is affected by both the `DISTKEY` and the `SORTKEY` commits, but it seemed like the latter was the only one we were unsure about there so I opted to measure them together. And we can get independent validation of the `SORTKEY` change by further measuring its impact against a subset of the activity event data, which I plan to do tomorrow.
+
+So the results, based on 104 days of data (2nd September until 16th December), are like so:
+
+**Complete import duration:** ~9.5 hours
+**Of which, vacuuming duration:** ~45 minutes
+
+**Independently clearing the 104th day:**  ~20 seconds
+**Independently importing the 104th day:** ~7.5 minutes
+
+**Executing the engagement ratio/multi-device query:** ~1.5 hours
+
+The import time is a huge improvement on my original ham-fisted attempt to fix duplicate events in #34. It's a little bit worse than the last timing I have for importing without the fix, which was ~6 hours for 84 days of data. The single-day clear/import figures seem eminently reasonable too.
+
+The performance of the engagement ratio query is a significant improvement over what we currently have. My last timing was ~2 hours when run against 96 days of data.
+
+In terms of correctness, everything seems to look okay. I can conceive of one theoretical problem but it shouldn't harm us in practice. Before the content server implemented flow event timestamp validation (train 74), we emitted events that were more than one day removed from their `export_date`. In such cases, were we to clear and then import a single day, it would lead to duplicating those events with the current logic.
+
+However, in practice, I don't expect us to re-import any of that historical data on a per-day basis and the  described problem does not occur when re-importing wholesale. Furthermore, given that we know the data prior to train 74 contains garbage, I fully expect us to permanently delete it all once we've built up a bit more history to show longer trends in the charts.
+
+All told, I believe these changes are a big improvement on what we currently have. @rfk, r?",philbooth,64367,2016-12-17T16:54:53Z,CONTRIBUTOR,True,45,27,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,73631a146e9dca1c479d21d647abfc7920e80489,fix(db): add export_date column and sane deletion logic for flow data
+63,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/44,44,Performance and correctness fixes for the flow import scripts,"This changeset contains three significant commits:
+
+* `flow_metadata.flow_id` is promoted to `DISTKEY`, to match `flow_events.flow_id`. This fixes #40.
+
+* Compression is disabled on `flow_metadata.begin_time` and `flow_events.timestamp`. This is a partial fix for #43.
+
+* Sane deletion logic for overlapping flow data is implemented via `flow_metadata.export_date` and `flow_events.export_date` columns. This a combination of #39 and #34, with a couple of fixes for stupid syntax errors (my fault). Fixes #33.
+
+For expediency, or perhaps it was just laziness, I tested the effects of these changes all together. I hope that's okay, because they can still be measured independently to some extent.
+
+The import time should only be affected by the `export_date` commit. Performance of the analytical queries is affected by both the `DISTKEY` and the `SORTKEY` commits, but it seemed like the latter was the only one we were unsure about there so I opted to measure them together. And we can get independent validation of the `SORTKEY` change by further measuring its impact against a subset of the activity event data, which I plan to do tomorrow.
+
+So the results, based on 104 days of data (2nd September until 16th December), are like so:
+
+**Complete import duration:** ~9.5 hours
+**Of which, vacuuming duration:** ~45 minutes
+
+**Independently clearing the 104th day:**  ~20 seconds
+**Independently importing the 104th day:** ~7.5 minutes
+
+**Executing the engagement ratio/multi-device query:** ~1.5 hours
+
+The import time is a huge improvement on my original ham-fisted attempt to fix duplicate events in #34. It's a little bit worse than the last timing I have for importing without the fix, which was ~6 hours for 84 days of data. The single-day clear/import figures seem eminently reasonable too.
+
+The performance of the engagement ratio query is a significant improvement over what we currently have. My last timing was ~2 hours when run against 96 days of data.
+
+In terms of correctness, everything seems to look okay. I can conceive of one theoretical problem but it shouldn't harm us in practice. Before the content server implemented flow event timestamp validation (train 74), we emitted events that were more than one day removed from their `export_date`. In such cases, were we to clear and then import a single day, it would lead to duplicating those events with the current logic.
+
+However, in practice, I don't expect us to re-import any of that historical data on a per-day basis and the  described problem does not occur when re-importing wholesale. Furthermore, given that we know the data prior to train 74 contains garbage, I fully expect us to permanently delete it all once we've built up a bit more history to show longer trends in the charts.
+
+All told, I believe these changes are a big improvement on what we currently have. @rfk, r?",philbooth,64367,2016-12-17T16:54:53Z,CONTRIBUTOR,True,45,27,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,e85ecb7de7e8fff65d72095fa287faf09113381a,chore(scripts): consistently indent flow import queries
+64,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/44,44,Performance and correctness fixes for the flow import scripts,"This changeset contains three significant commits:
+
+* `flow_metadata.flow_id` is promoted to `DISTKEY`, to match `flow_events.flow_id`. This fixes #40.
+
+* Compression is disabled on `flow_metadata.begin_time` and `flow_events.timestamp`. This is a partial fix for #43.
+
+* Sane deletion logic for overlapping flow data is implemented via `flow_metadata.export_date` and `flow_events.export_date` columns. This a combination of #39 and #34, with a couple of fixes for stupid syntax errors (my fault). Fixes #33.
+
+For expediency, or perhaps it was just laziness, I tested the effects of these changes all together. I hope that's okay, because they can still be measured independently to some extent.
+
+The import time should only be affected by the `export_date` commit. Performance of the analytical queries is affected by both the `DISTKEY` and the `SORTKEY` commits, but it seemed like the latter was the only one we were unsure about there so I opted to measure them together. And we can get independent validation of the `SORTKEY` change by further measuring its impact against a subset of the activity event data, which I plan to do tomorrow.
+
+So the results, based on 104 days of data (2nd September until 16th December), are like so:
+
+**Complete import duration:** ~9.5 hours
+**Of which, vacuuming duration:** ~45 minutes
+
+**Independently clearing the 104th day:**  ~20 seconds
+**Independently importing the 104th day:** ~7.5 minutes
+
+**Executing the engagement ratio/multi-device query:** ~1.5 hours
+
+The import time is a huge improvement on my original ham-fisted attempt to fix duplicate events in #34. It's a little bit worse than the last timing I have for importing without the fix, which was ~6 hours for 84 days of data. The single-day clear/import figures seem eminently reasonable too.
+
+The performance of the engagement ratio query is a significant improvement over what we currently have. My last timing was ~2 hours when run against 96 days of data.
+
+In terms of correctness, everything seems to look okay. I can conceive of one theoretical problem but it shouldn't harm us in practice. Before the content server implemented flow event timestamp validation (train 74), we emitted events that were more than one day removed from their `export_date`. In such cases, were we to clear and then import a single day, it would lead to duplicating those events with the current logic.
+
+However, in practice, I don't expect us to re-import any of that historical data on a per-day basis and the  described problem does not occur when re-importing wholesale. Furthermore, given that we know the data prior to train 74 contains garbage, I fully expect us to permanently delete it all once we've built up a bit more history to show longer trends in the charts.
+
+All told, I believe these changes are a big improvement on what we currently have. @rfk, r?",philbooth,64367,2016-12-17T16:54:53Z,CONTRIBUTOR,True,45,27,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,cb4d05036b065ef880c472011816c2208497801c,fix(scripts): marshall flow.${viewName}.begin to flow.begin on import
+65,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/39,39,Suggested tweak to data re-import logic,"@philbooth to make it more concrete, this is the sort of thing I was suggesting over in https://github.com/mozilla/fxa-activity-metrics/pull/34#discussion_r92091613
+
+* Tag the rows in `flow_metadata` with the `export_date` of their `flow.begin` event
+* Delete from that table whenever we're going to re-import that `flow.begin` event
+* Update the properties of `flow_metadata` based on all events within a time period, not just on the events we're importing
+
+It's my hope that the point would help us ensure we have the correct properties for flows that cross a day boundary.",rfk,34695,2016-12-14T01:11:10Z,MEMBER,False,17,17,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,26add83a89beac6289c1f3ecc1954e6fa00508a0,Suggested tweak to data re-import logic
+66,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/38,38,fix(flow-events): Use `flow.complete` to indicate flow completion.,@philbooth r?,rfk,34695,2016-12-13T06:40:46Z,MEMBER,True,3,3,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,e1a1e7375f93c830aa45c4cc9988134f4fccbd4c,fix(flow-events): Use `flow.complete` to indicate flow completion.
+67,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/37,37,fix(flow-events): Use timestamp filters on flow metadata update queries.,"This helps them scan less of the flow_metadata table and hence to run faster - on a test of importing the latest 5 days of events, it dropped the load time from around 30mins to around 20mins.
+
+@philbooth r?",rfk,34695,2016-12-13T06:39:32Z,MEMBER,True,16,8,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,11a0db4bf9b675ab7b42f9baf56df1cacf7ef09d,"fix(flow-events): Use timestamp filters on flow metadata update queries.
+
+This helps them scan less of the flow_metadata table
+and hence to run faster."
+68,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/34,34,fix(db): sanely delete rows to avoid duplicate event data,"Fixes #33.
+
+I haven't tested this out at all yet, so there may be syntax errors, logic errors and lord knows what else. But I wanted to propose something concrete-ish as an approach to fix the duplicate events problem.
+
+@rfk, what do you think?",philbooth,64367,2016-11-24T11:37:55Z,CONTRIBUTOR,False,28,13,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,0bf431e7493fdac8ac181a7cfc218c227860df87,fix(db): sanely delete rows to avoid duplicate event data
+69,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/31,31,feat(summaries): Maintain 28-day rollup summaries of daily activity.,"Putting this up for discussion only - I haven't tried running it and it's certainly not ready for merge.
+
+As noted in https://github.com/mozilla/fxa-activity-metrics/issues/20#issuecomment-259004981, we commonly need to calculate ""monthly X"" summaries and it involves a pretty expensive join.  This change would maintain those as a rollup table that we can query directly.
+
+@philbooth thoughts?",rfk,34695,2016-11-10T03:05:53Z,MEMBER,False,185,0,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,b2477f5a4077a822c59deb451faf4e005e86d3bd,feat(summaries): Maintain 28-day rollup summaries of daily activity.
+70,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/28,28,fix(flow): Allow any 'flow%begin' event to start a flow.,@philbooth r?,rfk,34695,2016-11-10T00:24:24Z,MEMBER,True,1,1,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,0d06393dd370ea7a49459c91cc5f17b83009a096,fix(flow): Allow any 'flow%begin' event to start a flow.
+71,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/27,27,fix(scripts): truncate VARCHAR data on copy from csv files,"Fixes #24. Replaces #26.
+
+There is a `TRUNCATECOLUMNS` argument to `COPY`, which tells redshift to truncate `VARCHAR` columns if they exceed the defined length. It is manifestly preferable to lean on that rather than add truncation logic to our own code.
+
+To test, I dropped the flow data tables and reimported everything using this version of the script, it worked well.
+
+@rfk r?",philbooth,64367,2016-11-09T13:42:19Z,CONTRIBUTOR,True,4,2,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,b16650e66c6a2e066fd9b3521fddcbcd4eb50e90,fix(scripts): truncate VARCHAR data on copy from csv files
+72,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/26,26,fix(scripts): increase metrics context property length,"Fixes #24, restricting all metrics context properties to `VARCHAR(100)`.
+
+Although it's only the `entrypoint` and `utm_content` columns that are currently causing problems for us, a uniform length makes implementation of truncation for mozilla/fxa-auth-server#1539 and mozilla/fxa-content-server#4378 far simpler.",philbooth,64367,2016-11-08T12:26:59Z,CONTRIBUTOR,False,18,18,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,f4d46514b7445f040e27eeddea22b2b540cca121,fix(scripts): increase metrics context property length
+73,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/23,23,feat(scripts): vacuum tables after import,"Related to https://github.com/mozilla/fxa-activity-metrics/issues/20#issuecomment-258583986, adds `VACUUM` commands for each table after data is added to them.
+
+Strictly speaking, in most cases we only need `SORT ONLY` rather than `FULL`. However the scripts do `DELETE` rows if `force_reload` is set, and the redshift docs state that the saving for `SORT ONLY` isn't normally huge, so it seems prudent to opt for `FULL`.
+
+I timed some `VACUUM` commands earlier and they took about five seconds to complete. I didn't check the stats beforehand though to see whether they had much to do, so that may not be a fair indication of how the import scripts will be affected in practice.
+
+You'll notice the weird extra `END;` that each `VACUUM` block starts with. This is the only way I found to work around the error `VACUUM cannot run inside a transaction block`. I also tried `SET AUTOCOMMIT`, which didn't work.
+
+@rfk, r?",philbooth,64367,2016-11-07T16:15:04Z,CONTRIBUTOR,True,23,0,3,A server for managing the Firefox Accounts metrics database and pipeline,Python,9b75fb7c84a75d5fc010894cb8ad802f68dfedc4,feat(scripts): vacuum tables after import
+74,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/22,22,fix(db): increase VARCHAR length for flow_events.type,"Fixes #21, the new flow event type `account.login.confirmedUnblockCode` exceeds our defined length.
+
+From what I can make out, you can't `ALTER COLUMN` directly in redshift. I guess I could rename the table then copy everything into a new table with the correct column definition, but it seems just as easy to drop the tables then recreate them tbh. We don't have all the historical flow event data like we do for activity events so it won't take long.
+
+Anyway, either way, this script needs updating, I figure a length of 64 characters should be plenty for `type`?
+
+@rfk r?",philbooth,64367,2016-11-07T14:13:43Z,CONTRIBUTOR,True,2,2,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,b3b975d865605a8ac8f768720291b371188832e0,fix(db): increase VARCHAR length for flow_events.type
+75,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/17,17,fix(db): eliminate schema mismatches,"Fixes the discrepancy you pointed out in https://github.com/mozilla/fxa-activity-metrics/issues/16#issuecomment-256288256, @rfk.
+
+I figured it was better to bring these two up in length, rather than bring the temporary table down, for consistency with the lengths specified on the `flow_metadata` table.
+
+And also bigger is better, right? 💪
+
+r?
+",philbooth,64367,2016-10-27T12:03:02Z,CONTRIBUTOR,True,169,10,4,A server for managing the Firefox Accounts metrics database and pipeline,Python,92aba8f7dfdbd2687f45a7ac4c280920425f8f3c,fix(db): eliminate mismatched VARCHAR lengths in schema
+76,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/17,17,fix(db): eliminate schema mismatches,"Fixes the discrepancy you pointed out in https://github.com/mozilla/fxa-activity-metrics/issues/16#issuecomment-256288256, @rfk.
+
+I figured it was better to bring these two up in length, rather than bring the temporary table down, for consistency with the lengths specified on the `flow_metadata` table.
+
+And also bigger is better, right? 💪
+
+r?
+",philbooth,64367,2016-10-27T12:03:02Z,CONTRIBUTOR,True,169,10,4,A server for managing the Firefox Accounts metrics database and pipeline,Python,ab7782911cdfa0d77be7a44e2006b03bc5fde7c3,feat(scripts): add script for retrospective activity event import
+77,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/17,17,fix(db): eliminate schema mismatches,"Fixes the discrepancy you pointed out in https://github.com/mozilla/fxa-activity-metrics/issues/16#issuecomment-256288256, @rfk.
+
+I figured it was better to bring these two up in length, rather than bring the temporary table down, for consistency with the lengths specified on the `flow_metadata` table.
+
+And also bigger is better, right? 💪
+
+r?
+",philbooth,64367,2016-10-27T12:03:02Z,CONTRIBUTOR,True,169,10,4,A server for managing the Firefox Accounts metrics database and pipeline,Python,db90f8e3415e8e3fb1549b57fec0f35249215cea,fix(db): eliminate mismatch in flow event schema
+78,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/14,14,feat(devices): Include more device metadata in daily device activity rollup,"Fixes #7, and Fixes #12 
+
+@philbooth like we discussed last week, this would just include more device meta-data in the daily activity rollup.  Will it be enough to enable the required segmentation?
+
+It also adds table compression, and changes the multi-device period to 7 days.
+",rfk,34695,2016-10-25T08:02:17Z,MEMBER,True,22,13,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,bcf6694cf686f6a8831720971c46033ecefa78f4,feat(devices): Include more device metadata in daily device activity rollup.
+79,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/13,13,feat(compression): Use column compression in activity_events table.,"Connects to #9; @philbooth r?
+
+I've done this on the existing DB by copying into a new table with compression enabled, and renaming it to replace the old table.
+",rfk,34695,2016-10-20T05:43:35Z,MEMBER,True,29,29,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,9628406e6305456bc7b87221c70d8734cd47eb0e,feat(compression): Use column compression in activity_events table.
+80,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/13,13,feat(compression): Use column compression in activity_events table.,"Connects to #9; @philbooth r?
+
+I've done this on the existing DB by copying into a new table with compression enabled, and renaming it to replace the old table.
+",rfk,34695,2016-10-20T05:43:35Z,MEMBER,True,29,29,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,fb8fd59ce0c3966204ca7318755601ef6937dd55,feat(compression): Use column compression in flow-event tables.
+81,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/5,5,fix(scripts): calculate daily summaries against new schema,"Updated schema for daily summaries, available to play with now in re:dash and enabled in crontab. Tested both with and without the `day_from` and `day_until` arguments set.
+
+@rfk r?
+",philbooth,64367,2016-09-13T17:31:02Z,CONTRIBUTOR,True,62,57,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,64f6bddabc7736b561270333f070c7c9dffff372,fix(scripts): calculate daily summaries against new schema
+82,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/4,4,feat(scripts): insert all activity events into one big table,"@rfk, this inserts the activity events with the following changes to the schema
+- All the events are inserted into one table, called `activity_events`.
+- The `device_id` column is added.
+- `timestamp` is now a `TIMESTAMP` rather than a `BIGINT`.
+
+The import is running at the moment, but I've watched the first few days go in without failing.
+
+r?
+",philbooth,64367,2016-09-12T15:18:40Z,CONTRIBUTOR,True,103,124,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,3026778e6012132ca77d3b463ceb64858ca3aad6,feat(scripts): insert all activity events into one big table
+83,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/4,4,feat(scripts): insert all activity events into one big table,"@rfk, this inserts the activity events with the following changes to the schema
+- All the events are inserted into one table, called `activity_events`.
+- The `device_id` column is added.
+- `timestamp` is now a `TIMESTAMP` rather than a `BIGINT`.
+
+The import is running at the moment, but I've watched the first few days go in without failing.
+
+r?
+",philbooth,64367,2016-09-12T15:18:40Z,CONTRIBUTOR,True,103,124,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,2fb3a36bce7fcaa24a925af35fa69041ed75d488,fix(scripts): don't try to process old activity event CSVs
+84,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/3,3,Normalise flow event metadata,"@rfk, this is just the changes for the flow event import script.
+
+These now import cleanly into redshift, having fixed all of my stupid syntax errors and typos that were getting in the way last week. I imported the events again just now so there are 9 days of event data available in redshift with this schema, if you want to have a play around.
+
+One of the many things I learned in getting it to work was that redshift automatically lower-cases identifiers in queries, so I've switched from camelCase to snake_case for the column names. Not sure how that sits with you stylistically, I'm happy to change if you find it abhorrent.
+
+Tested both with and without the `force_reload` flag set to `True`.
+
+Sample log output:
+
+```
+net-mozaws-prod-us-west-2-pipeline-analysis fxa-flow/data/
+2016-09-02
+2016-09-03
+2016-09-04
+2016-09-05
+2016-09-06
+2016-09-07
+2016-09-08
+2016-09-09
+2016-09-10
+LOADING 9 DAYS OF DATA
+LOADING 2016-09-10
+  MIN TIMESTAMP 1473465600
+  MAX TIMESTAMP 1473551999
+LOADING 2016-09-09
+  MIN TIMESTAMP 1473379200
+  MAX TIMESTAMP 1473465599
+LOADING 2016-09-08
+  MIN TIMESTAMP 1473292800
+  MAX TIMESTAMP 1473379199
+LOADING 2016-09-07
+  MIN TIMESTAMP 1473206400
+  MAX TIMESTAMP 1473292799
+LOADING 2016-09-06
+  MIN TIMESTAMP 1473120000
+  MAX TIMESTAMP 1473206399
+LOADING 2016-09-05
+  MIN TIMESTAMP 1473033600
+  MAX TIMESTAMP 1473119999
+LOADING 2016-09-04
+  MIN TIMESTAMP 1472947200
+  MAX TIMESTAMP 1473033599
+LOADING 2016-09-03
+  MIN TIMESTAMP 1472860800
+  MAX TIMESTAMP 1472947199
+LOADING 2016-09-02
+  MIN TIMESTAMP 1472774660
+  MAX TIMESTAMP 1472860799
+```
+
+Can I get an r?
+",philbooth,64367,2016-09-11T14:15:28Z,CONTRIBUTOR,True,211,51,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,9b0e1ad330f427184f54ebde31a1397b8569a39d,feat(scripts): normalise flow event metadata into separate table
+85,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/3,3,Normalise flow event metadata,"@rfk, this is just the changes for the flow event import script.
+
+These now import cleanly into redshift, having fixed all of my stupid syntax errors and typos that were getting in the way last week. I imported the events again just now so there are 9 days of event data available in redshift with this schema, if you want to have a play around.
+
+One of the many things I learned in getting it to work was that redshift automatically lower-cases identifiers in queries, so I've switched from camelCase to snake_case for the column names. Not sure how that sits with you stylistically, I'm happy to change if you find it abhorrent.
+
+Tested both with and without the `force_reload` flag set to `True`.
+
+Sample log output:
+
+```
+net-mozaws-prod-us-west-2-pipeline-analysis fxa-flow/data/
+2016-09-02
+2016-09-03
+2016-09-04
+2016-09-05
+2016-09-06
+2016-09-07
+2016-09-08
+2016-09-09
+2016-09-10
+LOADING 9 DAYS OF DATA
+LOADING 2016-09-10
+  MIN TIMESTAMP 1473465600
+  MAX TIMESTAMP 1473551999
+LOADING 2016-09-09
+  MIN TIMESTAMP 1473379200
+  MAX TIMESTAMP 1473465599
+LOADING 2016-09-08
+  MIN TIMESTAMP 1473292800
+  MAX TIMESTAMP 1473379199
+LOADING 2016-09-07
+  MIN TIMESTAMP 1473206400
+  MAX TIMESTAMP 1473292799
+LOADING 2016-09-06
+  MIN TIMESTAMP 1473120000
+  MAX TIMESTAMP 1473206399
+LOADING 2016-09-05
+  MIN TIMESTAMP 1473033600
+  MAX TIMESTAMP 1473119999
+LOADING 2016-09-04
+  MIN TIMESTAMP 1472947200
+  MAX TIMESTAMP 1473033599
+LOADING 2016-09-03
+  MIN TIMESTAMP 1472860800
+  MAX TIMESTAMP 1472947199
+LOADING 2016-09-02
+  MIN TIMESTAMP 1472774660
+  MAX TIMESTAMP 1472860799
+```
+
+Can I get an r?
+",philbooth,64367,2016-09-11T14:15:28Z,CONTRIBUTOR,True,211,51,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,0029af619de307775e959f58cd92d48775d72016,fix(scripts): disable forced refresh in flow event import
+86,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/3,3,Normalise flow event metadata,"@rfk, this is just the changes for the flow event import script.
+
+These now import cleanly into redshift, having fixed all of my stupid syntax errors and typos that were getting in the way last week. I imported the events again just now so there are 9 days of event data available in redshift with this schema, if you want to have a play around.
+
+One of the many things I learned in getting it to work was that redshift automatically lower-cases identifiers in queries, so I've switched from camelCase to snake_case for the column names. Not sure how that sits with you stylistically, I'm happy to change if you find it abhorrent.
+
+Tested both with and without the `force_reload` flag set to `True`.
+
+Sample log output:
+
+```
+net-mozaws-prod-us-west-2-pipeline-analysis fxa-flow/data/
+2016-09-02
+2016-09-03
+2016-09-04
+2016-09-05
+2016-09-06
+2016-09-07
+2016-09-08
+2016-09-09
+2016-09-10
+LOADING 9 DAYS OF DATA
+LOADING 2016-09-10
+  MIN TIMESTAMP 1473465600
+  MAX TIMESTAMP 1473551999
+LOADING 2016-09-09
+  MIN TIMESTAMP 1473379200
+  MAX TIMESTAMP 1473465599
+LOADING 2016-09-08
+  MIN TIMESTAMP 1473292800
+  MAX TIMESTAMP 1473379199
+LOADING 2016-09-07
+  MIN TIMESTAMP 1473206400
+  MAX TIMESTAMP 1473292799
+LOADING 2016-09-06
+  MIN TIMESTAMP 1473120000
+  MAX TIMESTAMP 1473206399
+LOADING 2016-09-05
+  MIN TIMESTAMP 1473033600
+  MAX TIMESTAMP 1473119999
+LOADING 2016-09-04
+  MIN TIMESTAMP 1472947200
+  MAX TIMESTAMP 1473033599
+LOADING 2016-09-03
+  MIN TIMESTAMP 1472860800
+  MAX TIMESTAMP 1472947199
+LOADING 2016-09-02
+  MIN TIMESTAMP 1472774660
+  MAX TIMESTAMP 1472860799
+```
+
+Can I get an r?
+",philbooth,64367,2016-09-11T14:15:28Z,CONTRIBUTOR,True,211,51,1,A server for managing the Firefox Accounts metrics database and pipeline,Python,f8afab2a27fbb6b958478f4c2728365dc73cc9e2,fix(scripts): pull missing metrics context data from other events
+87,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,5c0e2cb6ff847aa5b94408d9b251b4153d49393b,feat(scripts): add deviceId to activity event data
+88,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,28683642086037970e5f9a48a694b601b78f9ae0,fix(scripts): activity events are now emitted daily
+89,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,250593779a7f34eb04d94249bae28e59cb8db938,feat(scripts): add a script for importing flow events
+90,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,36ebffc5c05ad818fd83f0d6e6e50fcb00544c8c,fix(scripts): quote strings in SQL
+91,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,7c58a830a567c15d65fe95083b7eece9840502f7,"fix(scripts): add ""ua"" prefix to user-agent-derived fields"
+92,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,e6ca104b82b703d88304f24ab6d51f79f7df9f0c,fix(scripts): fix table names
+93,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,cea6e3f54e6e9cb3d88788df56c84aa25447a35d,fix(scripts): add explantory comment for timestamp multiplication
+94,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,41a5a8ea55ae28ffb668f6d494c0777f358758d7,fix(scripts): flow_metadata SORTKEY shoud be beginTime
+95,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,d98da095cd6b1b4a63f1a3a03bad1d7c30ea6168,fix(scripts): fix some syntax errors
+96,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,42e8c48fe30fb7f6df2d86a07bfe90a76a25171a,fix(scripts): consistent capitalisation
+97,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,ab139517ee5e12655294a776a6054af10a18b44e,fix(scripts): insert then update
+98,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,2d7b5271618490f279966e3b67ee0bf5314a4b20,fix(scripts): add missing semicolons to SQL
+99,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,d5de0ff7babe4ad0fc4543aeba2cf147c9d6b3ef,fix(scripts): drop the csv table after each iteration of the loop
+100,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,b6f504c4fece85383c435200889a4ea8f111df7c,wip: try ditching default values to fix ROW expression problem
+101,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,504988ece9dfd8252dcdece8a72353c9734345e8,wip: try replacing TIMESTAMP columns with BIGINT
+102,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,290f3e5ed93929fcd3903ed6367ef9d0008229f8,"Revert ""wip: try replacing TIMESTAMP columns with BIGINT""
+
+This reverts commit 504988ece9dfd8252dcdece8a72353c9734345e8."
+103,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,e40bbf771aafc95d0b2012cf6f7137651a8b3768,"Revert ""wip: try ditching default values to fix ROW expression problem""
+
+This reverts commit b6f504c4fece85383c435200889a4ea8f111df7c."
+104,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,0cbb198c50bb44f0cec7aee28bf493848f58f40f,fix(scripts): delete spurious parentheses
+105,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,953bed1c6e28b6e230de09df9c30c7e8ae40dd50,fix(scripts): TIL that redshift lower-cases all identifier names
+106,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,e177fdd6fb74dc7f44e08fc2251e089864529eee,fix(scripts): correct utm_contents to utm_content
+107,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,138a2f387eff9813a31f6a51152f3d07fef8d5a0,fix(scripts): eliminate unnecessary update queries
+108,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,fed4eb233b47944ab8396ff9a0ebfc5aa1caf45c,fix(scripts): add missing column alias
+109,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,b7758fc6ab62e39e575345f2f2a680f70612d54d,fix(scripts): create the temporary table on each iteration
+110,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/2,2,WIP: Update redshift import scripts,"@rfk, these are my import script changes finished off and rebased against latest master.
+
+I've literally only just finished them, so I'm sure there's still heaps of syntax and logical errors. But I wanted to take advantage of the time difference to get early feedback on a few things, if you get the time to eyeball it.
+
+I'll call out the items of interest inline (go alliteration!), but to summarise:
+- `import_activity_events.py` is updated with `deviceId`.
+- References to `week` in `import_activity_events.py` have been updated to `day`.
+- `import_flow_events.py` splits the data into `flow_metadata` and `flow_events`.
+- The flow tables use TIMESTAMP and INTERVAL rather than BIGINT (I think this makes queries and graphs nicer).
+- It uses a temporary `flow_csv` table for importing the raw data from CSV file (conversions happen on subsequent `INSERT`).
+
+More detail inline.
+",philbooth,64367,2016-09-07T18:30:58Z,CONTRIBUTOR,False,216,81,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,6d50b9f73419a768b5aa0d4e79f45d6ff17f552f,fix(scripts): log sanity checks before dropping the temporary table
+111,https://api.github.com/repos/mozilla/fxa-activity-metrics/pulls/1,1,Add script to import flow events,"A super-simple script to import the new ""flow events"" being exported as of https://bugzilla.mozilla.org/show_bug.cgi?id=1289474; @philbooth r?
+",rfk,34695,2016-09-06T03:38:30Z,MEMBER,True,144,0,2,A server for managing the Firefox Accounts metrics database and pipeline,Python,9e45440ae2dc754173d0fba148c9c64fb46b3655,Add script to import flow events

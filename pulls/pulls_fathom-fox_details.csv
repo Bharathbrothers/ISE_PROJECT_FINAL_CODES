@@ -1,0 +1,863 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/fathom-fox/pulls/76,76,Sort vector files by filename so we can compare them for troubleshoot…,"…ing.
+
+The parallelization otherwise makes them nondeterministic.",erikrose,295816,2020-03-13T18:53:04Z,MEMBER,True,19,0,1,In-Firefox tools for developing Fathom rulesets,JavaScript,487781c9f3e6bbce76dd70b34ec64216702542f7,"Sort vector files by filename so we can compare them for troubleshooting.
+
+The parallelization otherwise makes them nondeterministic."
+1,https://api.github.com/repos/mozilla/fathom-fox/pulls/75,75,Emit a bit of the candidate tags' markup when vectorizing.,This helps with chasing down failures.,erikrose,295816,2020-03-12T13:05:56Z,MEMBER,False,20,1,1,In-Firefox tools for developing Fathom rulesets,JavaScript,483dad23b17769328ecf8bc32a1739532383e20e,"Emit a bit of the candidate tags' markup when vectorizing.
+
+This helps with chasing down failures."
+2,https://api.github.com/repos/mozilla/fathom-fox/pulls/73,73,Increases the sleep between errors from 1s to 2s,I ran into an issue with the validation set created by https://github.com/mozilla-services/fathom-login-forms/pull/18 where I had to either increase the number of retries or increase the delay between errors. I chose to increase the delay between errors. I'm making a followup issue to investigate further at a later time.,danielhertenstein,5586735,2020-03-09T15:47:13Z,CONTRIBUTOR,True,2,2,1,In-Firefox tools for developing Fathom rulesets,JavaScript,15594dc59b6e93448137b0c97af50c1d69d36c54,Increases the sleep between errors from 1s to 2s
+3,https://api.github.com/repos/mozilla/fathom-fox/pulls/71,71,Record how long it takes the ruleset to run on each page.,Did I make any mistakes?,erikrose,295816,2020-03-05T15:42:17Z,MEMBER,True,4,1,1,In-Firefox tools for developing Fathom rulesets,JavaScript,307e513dba96cb078c819e577fe9f2798cc8f708,Record how long it takes the ruleset to run on each page.
+4,https://api.github.com/repos/mozilla/fathom-fox/pulls/70,70,Add an isTarget hook for the Vectorizer,"So we can accept both ""new"" and ""confirm"" fields as targets of a single Fathom type",erikrose,295816,2020-02-21T17:12:54Z,MEMBER,True,17,5,3,In-Firefox tools for developing Fathom rulesets,JavaScript,bbc742ad1ed5b1835cb4d62a048dd1bb16dd16d5,"Move ruleset.js comments above the things they document, for consistency with the functions in rulesetMaker."
+5,https://api.github.com/repos/mozilla/fathom-fox/pulls/70,70,Add an isTarget hook for the Vectorizer,"So we can accept both ""new"" and ""confirm"" fields as targets of a single Fathom type",erikrose,295816,2020-02-21T17:12:54Z,MEMBER,True,17,5,3,In-Firefox tools for developing Fathom rulesets,JavaScript,9274f738a1bc7d33eb99cded54a5717624c060ea,"It returns fancy objects, not just bools anymore."
+6,https://api.github.com/repos/mozilla/fathom-fox/pulls/70,70,Add an isTarget hook for the Vectorizer,"So we can accept both ""new"" and ""confirm"" fields as targets of a single Fathom type",erikrose,295816,2020-02-21T17:12:54Z,MEMBER,True,17,5,3,In-Firefox tools for developing Fathom rulesets,JavaScript,36ef6ca21c465978b3425deeffe2fbf2ac7cd1d9,Add a hook to customize what the Vectorizer considers a target.
+7,https://api.github.com/repos/mozilla/fathom-fox/pulls/68,68,Merge fathom-trainees into FathomFox,"As per https://github.com/mozilla/fathom-trainees/issues/8
+
+Still have to…
+
+- [x] Update the docs
+- [x] Blank out the included ruleset, maybe. (Decided against it because it's nice to have *something* working in there for the sake of our testing and others' orientation, but I did cut it way down.)
+
+After merging…
+- [x] Update the occurrences of ""link"" (symlink, etc.) in https://mozilla.github.io/fathom/training.html.
+- [ ] Ultimately (maybe even soon), I'd like to merge the FathomFox repo into Fathom so we don't have so much push to maintain 2 parallel pieces of documentation. The FathomFox readme would largely be absorbed into the Fathom manual.
+- [x] Hang a sign on fathom-trainees saying it's obsolete.
+- [x] Remove trainees.js from Fathom itself.
+
+Review notes:
+* I recommend skimming all the commit messages before descending into a detailed review. (The first commit is big and messy and gets overwritten in a few spots later.)
+* We had talked about renaming trainees.js to ruleset.js. I almost did it but then wavered. Is it a big enough gain to bother?",erikrose,295816,2019-12-17T18:11:45Z,MEMBER,True,1261,943,14,In-Firefox tools for developing Fathom rulesets,JavaScript,639d98a00b0d4981188804d331b4b399ca2cad22,"Take a rough first whack at moving fathom-trainees into FathomFox.
+
+It ""should"" work but doesn't yet.
+
+* Copy trainees.js over from fathom-trainees.
+* Add it as a content script so content scripts can get at its `trainees` symbol directly. Replace several message passings with direct access.
+* FathomFox now depends on Fathom directly so trainees can be compiled.
+* Copy much of the fathom/trainees.js module into FathomFox's content script. We'll be able to delete this code from Fathom."
+8,https://api.github.com/repos/mozilla/fathom-fox/pulls/68,68,Merge fathom-trainees into FathomFox,"As per https://github.com/mozilla/fathom-trainees/issues/8
+
+Still have to…
+
+- [x] Update the docs
+- [x] Blank out the included ruleset, maybe. (Decided against it because it's nice to have *something* working in there for the sake of our testing and others' orientation, but I did cut it way down.)
+
+After merging…
+- [x] Update the occurrences of ""link"" (symlink, etc.) in https://mozilla.github.io/fathom/training.html.
+- [ ] Ultimately (maybe even soon), I'd like to merge the FathomFox repo into Fathom so we don't have so much push to maintain 2 parallel pieces of documentation. The FathomFox readme would largely be absorbed into the Fathom manual.
+- [x] Hang a sign on fathom-trainees saying it's obsolete.
+- [x] Remove trainees.js from Fathom itself.
+
+Review notes:
+* I recommend skimming all the commit messages before descending into a detailed review. (The first commit is big and messy and gets overwritten in a few spots later.)
+* We had talked about renaming trainees.js to ruleset.js. I almost did it but then wavered. Is it a big enough gain to bother?",erikrose,295816,2019-12-17T18:11:45Z,MEMBER,True,1261,943,14,In-Firefox tools for developing Fathom rulesets,JavaScript,144a5133fa2d25c1970c7b642a0653fea2adb4b4,Evaluator now works.
+9,https://api.github.com/repos/mozilla/fathom-fox/pulls/68,68,Merge fathom-trainees into FathomFox,"As per https://github.com/mozilla/fathom-trainees/issues/8
+
+Still have to…
+
+- [x] Update the docs
+- [x] Blank out the included ruleset, maybe. (Decided against it because it's nice to have *something* working in there for the sake of our testing and others' orientation, but I did cut it way down.)
+
+After merging…
+- [x] Update the occurrences of ""link"" (symlink, etc.) in https://mozilla.github.io/fathom/training.html.
+- [ ] Ultimately (maybe even soon), I'd like to merge the FathomFox repo into Fathom so we don't have so much push to maintain 2 parallel pieces of documentation. The FathomFox readme would largely be absorbed into the Fathom manual.
+- [x] Hang a sign on fathom-trainees saying it's obsolete.
+- [x] Remove trainees.js from Fathom itself.
+
+Review notes:
+* I recommend skimming all the commit messages before descending into a detailed review. (The first commit is big and messy and gets overwritten in a few spots later.)
+* We had talked about renaming trainees.js to ruleset.js. I almost did it but then wavered. Is it a big enough gain to bother?",erikrose,295816,2019-12-17T18:11:45Z,MEMBER,True,1261,943,14,In-Firefox tools for developing Fathom rulesets,JavaScript,bda8f3b479d69cd1997ce70f8538b87b87f723e2,Get BAD labeling working.
+10,https://api.github.com/repos/mozilla/fathom-fox/pulls/68,68,Merge fathom-trainees into FathomFox,"As per https://github.com/mozilla/fathom-trainees/issues/8
+
+Still have to…
+
+- [x] Update the docs
+- [x] Blank out the included ruleset, maybe. (Decided against it because it's nice to have *something* working in there for the sake of our testing and others' orientation, but I did cut it way down.)
+
+After merging…
+- [x] Update the occurrences of ""link"" (symlink, etc.) in https://mozilla.github.io/fathom/training.html.
+- [ ] Ultimately (maybe even soon), I'd like to merge the FathomFox repo into Fathom so we don't have so much push to maintain 2 parallel pieces of documentation. The FathomFox readme would largely be absorbed into the Fathom manual.
+- [x] Hang a sign on fathom-trainees saying it's obsolete.
+- [x] Remove trainees.js from Fathom itself.
+
+Review notes:
+* I recommend skimming all the commit messages before descending into a detailed review. (The first commit is big and messy and gets overwritten in a few spots later.)
+* We had talked about renaming trainees.js to ruleset.js. I almost did it but then wavered. Is it a big enough gain to bother?",erikrose,295816,2019-12-17T18:11:45Z,MEMBER,True,1261,943,14,In-Firefox tools for developing Fathom rulesets,JavaScript,395484e38940a2fd62110bc54a7ed36674239b7c,Vectorizing works now.
+11,https://api.github.com/repos/mozilla/fathom-fox/pulls/68,68,Merge fathom-trainees into FathomFox,"As per https://github.com/mozilla/fathom-trainees/issues/8
+
+Still have to…
+
+- [x] Update the docs
+- [x] Blank out the included ruleset, maybe. (Decided against it because it's nice to have *something* working in there for the sake of our testing and others' orientation, but I did cut it way down.)
+
+After merging…
+- [x] Update the occurrences of ""link"" (symlink, etc.) in https://mozilla.github.io/fathom/training.html.
+- [ ] Ultimately (maybe even soon), I'd like to merge the FathomFox repo into Fathom so we don't have so much push to maintain 2 parallel pieces of documentation. The FathomFox readme would largely be absorbed into the Fathom manual.
+- [x] Hang a sign on fathom-trainees saying it's obsolete.
+- [x] Remove trainees.js from Fathom itself.
+
+Review notes:
+* I recommend skimming all the commit messages before descending into a detailed review. (The first commit is big and messy and gets overwritten in a few spots later.)
+* We had talked about renaming trainees.js to ruleset.js. I almost did it but then wavered. Is it a big enough gain to bother?",erikrose,295816,2019-12-17T18:11:45Z,MEMBER,True,1261,943,14,In-Firefox tools for developing Fathom rulesets,JavaScript,eb29bfb3c59e05af6982a76174ea9974e642c085,Cut out the background-script middle man in vectorization.
+12,https://api.github.com/repos/mozilla/fathom-fox/pulls/68,68,Merge fathom-trainees into FathomFox,"As per https://github.com/mozilla/fathom-trainees/issues/8
+
+Still have to…
+
+- [x] Update the docs
+- [x] Blank out the included ruleset, maybe. (Decided against it because it's nice to have *something* working in there for the sake of our testing and others' orientation, but I did cut it way down.)
+
+After merging…
+- [x] Update the occurrences of ""link"" (symlink, etc.) in https://mozilla.github.io/fathom/training.html.
+- [ ] Ultimately (maybe even soon), I'd like to merge the FathomFox repo into Fathom so we don't have so much push to maintain 2 parallel pieces of documentation. The FathomFox readme would largely be absorbed into the Fathom manual.
+- [x] Hang a sign on fathom-trainees saying it's obsolete.
+- [x] Remove trainees.js from Fathom itself.
+
+Review notes:
+* I recommend skimming all the commit messages before descending into a detailed review. (The first commit is big and messy and gets overwritten in a few spots later.)
+* We had talked about renaming trainees.js to ruleset.js. I almost did it but then wavered. Is it a big enough gain to bother?",erikrose,295816,2019-12-17T18:11:45Z,MEMBER,True,1261,943,14,In-Firefox tools for developing Fathom rulesets,JavaScript,528ca0da8e9b4e3e9c7417bd156fe4a774c75a57,"Cut out the background-script middleman for BAD labeling.
+
+Cut out the rest of them, long since unused, as well."
+13,https://api.github.com/repos/mozilla/fathom-fox/pulls/68,68,Merge fathom-trainees into FathomFox,"As per https://github.com/mozilla/fathom-trainees/issues/8
+
+Still have to…
+
+- [x] Update the docs
+- [x] Blank out the included ruleset, maybe. (Decided against it because it's nice to have *something* working in there for the sake of our testing and others' orientation, but I did cut it way down.)
+
+After merging…
+- [x] Update the occurrences of ""link"" (symlink, etc.) in https://mozilla.github.io/fathom/training.html.
+- [ ] Ultimately (maybe even soon), I'd like to merge the FathomFox repo into Fathom so we don't have so much push to maintain 2 parallel pieces of documentation. The FathomFox readme would largely be absorbed into the Fathom manual.
+- [x] Hang a sign on fathom-trainees saying it's obsolete.
+- [x] Remove trainees.js from Fathom itself.
+
+Review notes:
+* I recommend skimming all the commit messages before descending into a detailed review. (The first commit is big and messy and gets overwritten in a few spots later.)
+* We had talked about renaming trainees.js to ruleset.js. I almost did it but then wavered. Is it a big enough gain to bother?",erikrose,295816,2019-12-17T18:11:45Z,MEMBER,True,1261,943,14,In-Firefox tools for developing Fathom rulesets,JavaScript,c8978001b11b7ba4b5fb55546ae8a96ac7ff6bea,"Merge master into bye-bye-trainees to get the parallel vectorizer, which I assume is going to throw things off.
+
+But it doesn't; everything works!"
+14,https://api.github.com/repos/mozilla/fathom-fox/pulls/68,68,Merge fathom-trainees into FathomFox,"As per https://github.com/mozilla/fathom-trainees/issues/8
+
+Still have to…
+
+- [x] Update the docs
+- [x] Blank out the included ruleset, maybe. (Decided against it because it's nice to have *something* working in there for the sake of our testing and others' orientation, but I did cut it way down.)
+
+After merging…
+- [x] Update the occurrences of ""link"" (symlink, etc.) in https://mozilla.github.io/fathom/training.html.
+- [ ] Ultimately (maybe even soon), I'd like to merge the FathomFox repo into Fathom so we don't have so much push to maintain 2 parallel pieces of documentation. The FathomFox readme would largely be absorbed into the Fathom manual.
+- [x] Hang a sign on fathom-trainees saying it's obsolete.
+- [x] Remove trainees.js from Fathom itself.
+
+Review notes:
+* I recommend skimming all the commit messages before descending into a detailed review. (The first commit is big and messy and gets overwritten in a few spots later.)
+* We had talked about renaming trainees.js to ruleset.js. I almost did it but then wavered. Is it a big enough gain to bother?",erikrose,295816,2019-12-17T18:11:45Z,MEMBER,True,1261,943,14,In-Firefox tools for developing Fathom rulesets,JavaScript,cfdb26f1b1d5a39ae7cd27d688e8cafa13f208ad,Spruce up trainee comments.
+15,https://api.github.com/repos/mozilla/fathom-fox/pulls/68,68,Merge fathom-trainees into FathomFox,"As per https://github.com/mozilla/fathom-trainees/issues/8
+
+Still have to…
+
+- [x] Update the docs
+- [x] Blank out the included ruleset, maybe. (Decided against it because it's nice to have *something* working in there for the sake of our testing and others' orientation, but I did cut it way down.)
+
+After merging…
+- [x] Update the occurrences of ""link"" (symlink, etc.) in https://mozilla.github.io/fathom/training.html.
+- [ ] Ultimately (maybe even soon), I'd like to merge the FathomFox repo into Fathom so we don't have so much push to maintain 2 parallel pieces of documentation. The FathomFox readme would largely be absorbed into the Fathom manual.
+- [x] Hang a sign on fathom-trainees saying it's obsolete.
+- [x] Remove trainees.js from Fathom itself.
+
+Review notes:
+* I recommend skimming all the commit messages before descending into a detailed review. (The first commit is big and messy and gets overwritten in a few spots later.)
+* We had talked about renaming trainees.js to ruleset.js. I almost did it but then wavered. Is it a big enough gain to bother?",erikrose,295816,2019-12-17T18:11:45Z,MEMBER,True,1261,943,14,In-Firefox tools for developing Fathom rulesets,JavaScript,cee99d8c3fe7eec926881f612e04fa630c54ab8f,Remove the duplicates of things we've since lifted into Fathom proper.
+16,https://api.github.com/repos/mozilla/fathom-fox/pulls/68,68,Merge fathom-trainees into FathomFox,"As per https://github.com/mozilla/fathom-trainees/issues/8
+
+Still have to…
+
+- [x] Update the docs
+- [x] Blank out the included ruleset, maybe. (Decided against it because it's nice to have *something* working in there for the sake of our testing and others' orientation, but I did cut it way down.)
+
+After merging…
+- [x] Update the occurrences of ""link"" (symlink, etc.) in https://mozilla.github.io/fathom/training.html.
+- [ ] Ultimately (maybe even soon), I'd like to merge the FathomFox repo into Fathom so we don't have so much push to maintain 2 parallel pieces of documentation. The FathomFox readme would largely be absorbed into the Fathom manual.
+- [x] Hang a sign on fathom-trainees saying it's obsolete.
+- [x] Remove trainees.js from Fathom itself.
+
+Review notes:
+* I recommend skimming all the commit messages before descending into a detailed review. (The first commit is big and messy and gets overwritten in a few spots later.)
+* We had talked about renaming trainees.js to ruleset.js. I almost did it but then wavered. Is it a big enough gain to bother?",erikrose,295816,2019-12-17T18:11:45Z,MEMBER,True,1261,943,14,In-Firefox tools for developing Fathom rulesets,JavaScript,f059109e085732abee0bbcfc783ea3072313ad89,"Ensure that `yarn run watch` works with hard links.
+
+Copied from https://github.com/mozilla/fathom-trainees/commit/d3bb9dd34bca014f9673c13dd047e7d1194aa95d."
+17,https://api.github.com/repos/mozilla/fathom-fox/pulls/68,68,Merge fathom-trainees into FathomFox,"As per https://github.com/mozilla/fathom-trainees/issues/8
+
+Still have to…
+
+- [x] Update the docs
+- [x] Blank out the included ruleset, maybe. (Decided against it because it's nice to have *something* working in there for the sake of our testing and others' orientation, but I did cut it way down.)
+
+After merging…
+- [x] Update the occurrences of ""link"" (symlink, etc.) in https://mozilla.github.io/fathom/training.html.
+- [ ] Ultimately (maybe even soon), I'd like to merge the FathomFox repo into Fathom so we don't have so much push to maintain 2 parallel pieces of documentation. The FathomFox readme would largely be absorbed into the Fathom manual.
+- [x] Hang a sign on fathom-trainees saying it's obsolete.
+- [x] Remove trainees.js from Fathom itself.
+
+Review notes:
+* I recommend skimming all the commit messages before descending into a detailed review. (The first commit is big and messy and gets overwritten in a few spots later.)
+* We had talked about renaming trainees.js to ruleset.js. I almost did it but then wavered. Is it a big enough gain to bother?",erikrose,295816,2019-12-17T18:11:45Z,MEMBER,True,1261,943,14,In-Firefox tools for developing Fathom rulesets,JavaScript,cda2642b5d935bc52b84e180cab08796df693961,"Update readme.
+
+* Remove all mention of fathom-trainees.
+* Remove the Development section, which is now just the same as the Getting Started instructions, since we're pushing most people toward a source checkout. You don't even need to use Dev Edition or Nightly anymore; `web-ext run` seems to work even with Release."
+18,https://api.github.com/repos/mozilla/fathom-fox/pulls/68,68,Merge fathom-trainees into FathomFox,"As per https://github.com/mozilla/fathom-trainees/issues/8
+
+Still have to…
+
+- [x] Update the docs
+- [x] Blank out the included ruleset, maybe. (Decided against it because it's nice to have *something* working in there for the sake of our testing and others' orientation, but I did cut it way down.)
+
+After merging…
+- [x] Update the occurrences of ""link"" (symlink, etc.) in https://mozilla.github.io/fathom/training.html.
+- [ ] Ultimately (maybe even soon), I'd like to merge the FathomFox repo into Fathom so we don't have so much push to maintain 2 parallel pieces of documentation. The FathomFox readme would largely be absorbed into the Fathom manual.
+- [x] Hang a sign on fathom-trainees saying it's obsolete.
+- [x] Remove trainees.js from Fathom itself.
+
+Review notes:
+* I recommend skimming all the commit messages before descending into a detailed review. (The first commit is big and messy and gets overwritten in a few spots later.)
+* We had talked about renaming trainees.js to ruleset.js. I almost did it but then wavered. Is it a big enough gain to bother?",erikrose,295816,2019-12-17T18:11:45Z,MEMBER,True,1261,943,14,In-Firefox tools for developing Fathom rulesets,JavaScript,381226c056dcd542bdf4d081b207ae3a839e5586,Combine the 2 onMessage handlers.
+19,https://api.github.com/repos/mozilla/fathom-fox/pulls/68,68,Merge fathom-trainees into FathomFox,"As per https://github.com/mozilla/fathom-trainees/issues/8
+
+Still have to…
+
+- [x] Update the docs
+- [x] Blank out the included ruleset, maybe. (Decided against it because it's nice to have *something* working in there for the sake of our testing and others' orientation, but I did cut it way down.)
+
+After merging…
+- [x] Update the occurrences of ""link"" (symlink, etc.) in https://mozilla.github.io/fathom/training.html.
+- [ ] Ultimately (maybe even soon), I'd like to merge the FathomFox repo into Fathom so we don't have so much push to maintain 2 parallel pieces of documentation. The FathomFox readme would largely be absorbed into the Fathom manual.
+- [x] Hang a sign on fathom-trainees saying it's obsolete.
+- [x] Remove trainees.js from Fathom itself.
+
+Review notes:
+* I recommend skimming all the commit messages before descending into a detailed review. (The first commit is big and messy and gets overwritten in a few spots later.)
+* We had talked about renaming trainees.js to ruleset.js. I almost did it but then wavered. Is it a big enough gain to bother?",erikrose,295816,2019-12-17T18:11:45Z,MEMBER,True,1261,943,14,In-Firefox tools for developing Fathom rulesets,JavaScript,0ba6134b91b3280008de52125a4dbf65143f1da7,"Rename trainees.js to rulesets.js.
+
+We think ruleset authors will find this clearer. For now, I didn't rename the vars (`trainees`, `traineeId`, etc.) because having a var called `rulesets` point to a thing other than a collection of rulesets would be confusing. And we already have plenty of variables called `ruleset` more deservedly which would collide. However, I did spruce up the top comment in rulesets.js, which should help orient newcomers."
+20,https://api.github.com/repos/mozilla/fathom-fox/pulls/68,68,Merge fathom-trainees into FathomFox,"As per https://github.com/mozilla/fathom-trainees/issues/8
+
+Still have to…
+
+- [x] Update the docs
+- [x] Blank out the included ruleset, maybe. (Decided against it because it's nice to have *something* working in there for the sake of our testing and others' orientation, but I did cut it way down.)
+
+After merging…
+- [x] Update the occurrences of ""link"" (symlink, etc.) in https://mozilla.github.io/fathom/training.html.
+- [ ] Ultimately (maybe even soon), I'd like to merge the FathomFox repo into Fathom so we don't have so much push to maintain 2 parallel pieces of documentation. The FathomFox readme would largely be absorbed into the Fathom manual.
+- [x] Hang a sign on fathom-trainees saying it's obsolete.
+- [x] Remove trainees.js from Fathom itself.
+
+Review notes:
+* I recommend skimming all the commit messages before descending into a detailed review. (The first commit is big and messy and gets overwritten in a few spots later.)
+* We had talked about renaming trainees.js to ruleset.js. I almost did it but then wavered. Is it a big enough gain to bother?",erikrose,295816,2019-12-17T18:11:45Z,MEMBER,True,1261,943,14,In-Firefox tools for developing Fathom rulesets,JavaScript,5ea31cca24d13b57468b22a7e37ff2ed249d15f2,"Put the Development section back, just in case anybody searches for it."
+21,https://api.github.com/repos/mozilla/fathom-fox/pulls/63,63,Misc changes for fathom vectorize,"There are a couple changes I'd like to see in FathomFox that make life easier for `fathom-vectorize`.
+1. Giving the addon an id allows me to figure out its internal UUID which is needed to navigate to the addon's vectorizer page.
+2. The default base URL for the vectorizer has assumed `/training/` for a long time, and I think removing that portion of the URL makes it easier for users using `fathom-list` and for `fathom-vectorize` (which uses `fathom-list`.",danielhertenstein,5586735,2019-11-08T16:06:51Z,CONTRIBUTOR,True,6,1,2,In-Firefox tools for developing Fathom rulesets,JavaScript,c2985c6722b7166edc699baab834b2f0aff6b20e,Changes the default base path for the vectorizer
+22,https://api.github.com/repos/mozilla/fathom-fox/pulls/63,63,Misc changes for fathom vectorize,"There are a couple changes I'd like to see in FathomFox that make life easier for `fathom-vectorize`.
+1. Giving the addon an id allows me to figure out its internal UUID which is needed to navigate to the addon's vectorizer page.
+2. The default base URL for the vectorizer has assumed `/training/` for a long time, and I think removing that portion of the URL makes it easier for users using `fathom-list` and for `fathom-vectorize` (which uses `fathom-list`.",danielhertenstein,5586735,2019-11-08T16:06:51Z,CONTRIBUTOR,True,6,1,2,In-Firefox tools for developing Fathom rulesets,JavaScript,7773a45e8ec8ff6571f6d129f1febb8d606a617e,Gives the addon an id so we can get its UUID from through selenium
+23,https://api.github.com/repos/mozilla/fathom-fox/pulls/60,60,Bump extend from 3.0.1 to 3.0.2,"Bumps [extend](https://github.com/justmoon/node-extend) from 3.0.1 to 3.0.2.
+<details>
+<summary>Changelog</summary>
+
+*Sourced from [extend's changelog](https://github.com/justmoon/node-extend/blob/master/CHANGELOG.md).*
+
+> 3.0.2 / 2018-07-19
+> ==================
+>   * [Fix] Prevent merging `__proto__` property ([#48](https://github-redirect.dependabot.com/justmoon/node-extend/issues/48))
+>   * [Dev Deps] update `eslint`, `@ljharb/eslint-config`, `tape`
+>   * [Tests] up to `node` `v10.7`, `v9.11`, `v8.11`, `v7.10`, `v6.14`, `v4.9`; use `nvm install-latest-npm`
+</details>
+<details>
+<summary>Commits</summary>
+
+- [`8d106d2`](https://github.com/justmoon/node-extend/commit/8d106d23931c0802e8b88188b0aac433e13358d9) v3.0.2
+- [`e97091f`](https://github.com/justmoon/node-extend/commit/e97091fa7557e106042e475ef59e654fa9d2c7ab) [Dev Deps] update `tape`
+- [`e841aac`](https://github.com/justmoon/node-extend/commit/e841aac7ce7119606345b440b0a9e7668e848985) [Tests] up to `node` `v10.7`
+- [`0e68e71`](https://github.com/justmoon/node-extend/commit/0e68e71d93507fcc391e398bc84abd0666b28190) [Fix] Prevent merging __proto__ property
+- [`a689700`](https://github.com/justmoon/node-extend/commit/a689700740b44846e76f8f1dc4bdf230a2cb5c0d) Only apps should have lockfiles
+- [`f13c1c4`](https://github.com/justmoon/node-extend/commit/f13c1c4e51c47b90604eb2dc56cc60561e497d36) [Dev Deps] update `eslint`, `@ljharb/eslint-config`, `tape`
+- [`f3570fe`](https://github.com/justmoon/node-extend/commit/f3570fe5582dbfba47e60c0cd75b4fb6f01cd3fe) [Tests] up to `node` `v10.0`, `v9.11`, `v8.11`, `v7.10`, `v6.14`, `v4.9`; use...
+- See full diff in [compare view](https://github.com/justmoon/node-extend/compare/v3.0.1...v3.0.2)
+</details>
+<br />
+
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=extend&package-manager=npm_and_yarn&previous-version=3.0.1&new-version=3.0.2)](https://help.github.com/articles/configuring-automated-security-fixes)
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.
+
+[//]: # (dependabot-automerge-start)
+[//]: # (dependabot-automerge-end)
+
+---
+
+<details>
+<summary>Dependabot commands and options</summary>
+<br />
+
+You can trigger Dependabot actions by commenting on this PR:
+- `@dependabot rebase` will rebase this PR
+- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it
+- `@dependabot merge` will merge this PR after your CI passes on it
+- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it
+- `@dependabot cancel merge` will cancel a previously requested merge and block automerging
+- `@dependabot reopen` will reopen this PR if it is closed
+- `@dependabot ignore this [patch|minor|major] version` will close this PR and stop Dependabot creating any more for this minor/major version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot use these labels` will set the current labels as the default for future PRs for this repo and language
+- `@dependabot use these reviewers` will set the current reviewers as the default for future PRs for this repo and language
+- `@dependabot use these assignees` will set the current assignees as the default for future PRs for this repo and language
+- `@dependabot use this milestone` will set the current milestone as the default for future PRs for this repo and language
+
+You can disable automated security fix PRs for this repo from the [Security Alerts page](https://github.com/mozilla/fathom-fox/network/alerts).
+
+</details>",dependabot[bot],49699333,2019-11-05T01:20:28Z,CONTRIBUTOR,False,5,5,1,In-Firefox tools for developing Fathom rulesets,JavaScript,f6fd4f6656f570b4f801f9662e3e0862ca7cf589,"Bump extend from 3.0.1 to 3.0.2
+
+Bumps [extend](https://github.com/justmoon/node-extend) from 3.0.1 to 3.0.2.
+- [Release notes](https://github.com/justmoon/node-extend/releases)
+- [Changelog](https://github.com/justmoon/node-extend/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/justmoon/node-extend/compare/v3.0.1...v3.0.2)
+
+Signed-off-by: dependabot[bot] <support@github.com>"
+24,https://api.github.com/repos/mozilla/fathom-fox/pulls/59,59,Bump js-yaml from 3.12.0 to 3.13.1,"Bumps [js-yaml](https://github.com/nodeca/js-yaml) from 3.12.0 to 3.13.1.
+<details>
+<summary>Changelog</summary>
+
+*Sourced from [js-yaml's changelog](https://github.com/nodeca/js-yaml/blob/master/CHANGELOG.md).*
+
+> 3.13.1 / 2019-04-05
+> -------------------
+> 
+> - Fix possible code execution in (already unsafe) `.load()`, [#480](https://github-redirect.dependabot.com/nodeca/js-yaml/issues/480).
+> 
+> 
+> 3.13.0 / 2019-03-20
+> -------------------
+> 
+> - Security fix: `safeLoad()` can hang when arrays with nested refs
+>   used as key. Now throws exception for nested arrays. [#475](https://github-redirect.dependabot.com/nodeca/js-yaml/issues/475).
+> 
+> 
+> 3.12.2 / 2019-02-26
+> -------------------
+> 
+> - Fix `noArrayIndent` option for root level, [#468](https://github-redirect.dependabot.com/nodeca/js-yaml/issues/468).
+> 
+> 
+> 3.12.1 / 2019-01-05
+> -------------------
+> 
+> - Added `noArrayIndent` option, [#432](https://github-redirect.dependabot.com/nodeca/js-yaml/issues/432).
+</details>
+<details>
+<summary>Commits</summary>
+
+- [`665aadd`](https://github.com/nodeca/js-yaml/commit/665aadda42349dcae869f12040d9b10ef18d12da) 3.13.1 released
+- [`da8ecf2`](https://github.com/nodeca/js-yaml/commit/da8ecf24b63d2307015e75ee8bd1da1977071e35) Browser files rebuild
+- [`b2f9e88`](https://github.com/nodeca/js-yaml/commit/b2f9e882397660da37c5c5bb92e8ccc7bb9eb668) Merge pull request [#480](https://github-redirect.dependabot.com/nodeca/js-yaml/issues/480) from nodeca/toString
+- [`e18afbf`](https://github.com/nodeca/js-yaml/commit/e18afbf1edcafb7add2c4c7b22abc8d6ebc2fa61) Fix possible code execution in (already unsafe) load()
+- [`9d4ce5e`](https://github.com/nodeca/js-yaml/commit/9d4ce5e2895365c943d2bdf7e7c8ac1be3ec51a3) 3.13.0 released
+- [`f64c673`](https://github.com/nodeca/js-yaml/commit/f64c6737dbe24d110f53152d142d01e64520a193) Browser files rebuild
+- [`a567ef3`](https://github.com/nodeca/js-yaml/commit/a567ef3c6e61eb319f0bfc2671d91061afb01235) Restrict data types for object keys
+- [`59b6e76`](https://github.com/nodeca/js-yaml/commit/59b6e76b712350e9e6aad7773e7375a1de009cf9) Fix test name
+- [`e4267fc`](https://github.com/nodeca/js-yaml/commit/e4267fc733452d074a3e494fb5cab2a07c7e6b87) 3.12.2 released
+- [`7231a49`](https://github.com/nodeca/js-yaml/commit/7231a491788ecb289cee52e854574e7271c34350) Browser files rebuild
+- Additional commits viewable in [compare view](https://github.com/nodeca/js-yaml/compare/3.12.0...3.13.1)
+</details>
+<br />
+
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=js-yaml&package-manager=npm_and_yarn&previous-version=3.12.0&new-version=3.13.1)](https://help.github.com/articles/configuring-automated-security-fixes)
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.
+
+[//]: # (dependabot-automerge-start)
+[//]: # (dependabot-automerge-end)
+
+---
+
+<details>
+<summary>Dependabot commands and options</summary>
+<br />
+
+You can trigger Dependabot actions by commenting on this PR:
+- `@dependabot rebase` will rebase this PR
+- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it
+- `@dependabot merge` will merge this PR after your CI passes on it
+- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it
+- `@dependabot cancel merge` will cancel a previously requested merge and block automerging
+- `@dependabot reopen` will reopen this PR if it is closed
+- `@dependabot ignore this [patch|minor|major] version` will close this PR and stop Dependabot creating any more for this minor/major version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot use these labels` will set the current labels as the default for future PRs for this repo and language
+- `@dependabot use these reviewers` will set the current reviewers as the default for future PRs for this repo and language
+- `@dependabot use these assignees` will set the current assignees as the default for future PRs for this repo and language
+- `@dependabot use this milestone` will set the current milestone as the default for future PRs for this repo and language
+
+You can disable automated security fix PRs for this repo from the [Security Alerts page](https://github.com/mozilla/fathom-fox/network/alerts).
+
+</details>",dependabot[bot],49699333,2019-11-05T01:20:23Z,CONTRIBUTOR,False,2,15,1,In-Firefox tools for developing Fathom rulesets,JavaScript,340f666220a44b72085a8191dee57c31c4b71338,"Bump js-yaml from 3.12.0 to 3.13.1
+
+Bumps [js-yaml](https://github.com/nodeca/js-yaml) from 3.12.0 to 3.13.1.
+- [Release notes](https://github.com/nodeca/js-yaml/releases)
+- [Changelog](https://github.com/nodeca/js-yaml/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/nodeca/js-yaml/compare/3.12.0...3.13.1)
+
+Signed-off-by: dependabot[bot] <support@github.com>"
+25,https://api.github.com/repos/mozilla/fathom-fox/pulls/58,58,Bump eslint-utils from 1.4.0 to 1.4.3,"Bumps [eslint-utils](https://github.com/mysticatea/eslint-utils) from 1.4.0 to 1.4.3.
+<details>
+<summary>Commits</summary>
+
+- [`23f4ddc`](https://github.com/mysticatea/eslint-utils/commit/23f4ddc58eda5e6aec3d6a43c6266acbe19345cd) 🔖 1.4.3
+- [`8f9e481`](https://github.com/mysticatea/eslint-utils/commit/8f9e481ecc1204c7a1331b697f97903f90c75154) 🐛 fix reference tracker false positive
+- [`6633278`](https://github.com/mysticatea/eslint-utils/commit/663327835abfb1f62fc6fc5d69028457e11b5f80) ⚒ fix test scripts
+- [`7c8e67c`](https://github.com/mysticatea/eslint-utils/commit/7c8e67c22f7222685a6a9154ba5eec2ac4896a3e) ⚒ fix build scripts
+- [`41ff95e`](https://github.com/mysticatea/eslint-utils/commit/41ff95e728db2c52122ae3dad42997dccd223388) ⚒ update dependencies
+- [`4942012`](https://github.com/mysticatea/eslint-utils/commit/49420121ff4d2b4758d4016848055c1631389faa) ⚒ fix build scripts
+- [`f1c8d02`](https://github.com/mysticatea/eslint-utils/commit/f1c8d02b3fd190a97e39603929c0aabe36c9904f) ⚒ update build scripts
+- [`a88598a`](https://github.com/mysticatea/eslint-utils/commit/a88598a74f0d71376447c4ecb6b56b27272f3992) Create FUNDING.yml
+- [`4e1bc07`](https://github.com/mysticatea/eslint-utils/commit/4e1bc077c2a6bb00538d66b69a63c24de3463bed) 1.4.2
+- [`e4cb014`](https://github.com/mysticatea/eslint-utils/commit/e4cb01498df6096b66edb0c78965ee6f47d3ac77) 🐛 add null test
+- Additional commits viewable in [compare view](https://github.com/mysticatea/eslint-utils/compare/v1.4.0...v1.4.3)
+</details>
+<br />
+
+[![Dependabot compatibility score](https://dependabot-badges.githubapp.com/badges/compatibility_score?dependency-name=eslint-utils&package-manager=npm_and_yarn&previous-version=1.4.0&new-version=1.4.3)](https://help.github.com/articles/configuring-automated-security-fixes)
+
+Dependabot will resolve any conflicts with this PR as long as you don't alter it yourself. You can also trigger a rebase manually by commenting `@dependabot rebase`.
+
+[//]: # (dependabot-automerge-start)
+[//]: # (dependabot-automerge-end)
+
+---
+
+<details>
+<summary>Dependabot commands and options</summary>
+<br />
+
+You can trigger Dependabot actions by commenting on this PR:
+- `@dependabot rebase` will rebase this PR
+- `@dependabot recreate` will recreate this PR, overwriting any edits that have been made to it
+- `@dependabot merge` will merge this PR after your CI passes on it
+- `@dependabot squash and merge` will squash and merge this PR after your CI passes on it
+- `@dependabot cancel merge` will cancel a previously requested merge and block automerging
+- `@dependabot reopen` will reopen this PR if it is closed
+- `@dependabot ignore this [patch|minor|major] version` will close this PR and stop Dependabot creating any more for this minor/major version (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot ignore this dependency` will close this PR and stop Dependabot creating any more for this dependency (unless you reopen the PR or upgrade to it yourself)
+- `@dependabot use these labels` will set the current labels as the default for future PRs for this repo and language
+- `@dependabot use these reviewers` will set the current reviewers as the default for future PRs for this repo and language
+- `@dependabot use these assignees` will set the current assignees as the default for future PRs for this repo and language
+- `@dependabot use this milestone` will set the current milestone as the default for future PRs for this repo and language
+
+You can disable automated security fix PRs for this repo from the [Security Alerts page](https://github.com/mozilla/fathom-fox/network/alerts).
+
+</details>",dependabot[bot],49699333,2019-11-01T12:42:17Z,CONTRIBUTOR,True,594,1481,1,In-Firefox tools for developing Fathom rulesets,JavaScript,9e6dcc164e0d4aec68c921b3fde17a2e3f737304,"Bump eslint-utils from 1.4.0 to 1.4.3
+
+Bumps [eslint-utils](https://github.com/mysticatea/eslint-utils) from 1.4.0 to 1.4.3.
+- [Release notes](https://github.com/mysticatea/eslint-utils/releases)
+- [Commits](https://github.com/mysticatea/eslint-utils/compare/v1.4.0...v1.4.3)
+
+Signed-off-by: dependabot[bot] <support@github.com>"
+26,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,d5edd65ca39f45debfb41ce2759b3798f4cd0d66,First version that works if you have infinite RAM
+27,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,1b49e4f15f8f2562769cfdc92d1cb71cac3781cb,Second version that has a max number of tabs in flight
+28,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,9867cad6e46c5026a4b3bf6376bc3906fd5f6262,Fixes indexing problem for status display
+29,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,223157fe30f9691e378af73bb98cd4b54107a36b,Stops vectorizer when there are null vectors
+30,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,a76555796b946861d2563b87d5d7ec41ae21c97c,Fixes missing function argument
+31,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,af86e6dba0b3920cdebd57bf71c5a3f7cb51df15,Allows vectorizer to be run multiple times again
+32,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,eff8aef2c0d4a1f62b603b7ebca3230bb4332e9b,Fixes corpus collector status indexing problem
+33,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,55ce635d291b8c097b5c0f1c32cb2cff9a4c2110,Fixes not completely reverted indexing change
+34,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,a7ac704da99d9f00e0d88d6e546934c836483c99,Makes new tabs not active
+35,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,8482dca515aa24082d3c5202c61db96bffaf3944,Solves status indexing problem for URL collisions
+36,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,57dc5f0877f5f04fdb1a911bef63d7444a487df7,Add explanatory comment and note about error handling
+37,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,02cbb8a3abf074a30d496712799bee8e1238bc47,Fixes error I introduced by renaming
+38,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,1e543947e343ddcc9398e45c32691a209e424a2f,Stops vectorizer on maxTries error
+39,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,65d978f16c159a91cdc8e9bc9db0be565cb7900c,Remove console.log()s that shouldn't be there
+40,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,9989779b1ac1d83c373ee21fe585e506a92867ea,"Increase the number of maxTries as parallelization causes more occurrences of ""receiving end does not exist"".
+
+This doesn't feel good. I will be investigating the cause of the error to see if we can make this unnecessary."
+41,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,a52b3d5aa85317fd0a42041e2db1a595b7b151a5,Factor out error and stop pattern
+42,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,f44c39cd38d8b461ec4c5cc8674793431a7777cf,Fixes non-determinism by making the tab active and waiting before vectorizing
+43,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,319925442b3ff724f598de3407d5f9ddc7c07652,Move a status message from visit.js to corpus.js and vector.js and tailor it to the file
+44,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,4c69745e548db90f497f293b9b4a73641682b2b7,Fixes error logging error
+45,https://api.github.com/repos/mozilla/fathom-fox/pulls/55,55,Parallelize vectorizer,"This PR parallelizes the vectorizer and the corpus collector. This version will load 16 tabs at a time (assuming you're trying to load more than 16 URLs). It is a draft though because I have run into a couple issues I'd like help with.
+
+1. When you first run the vectorizer, you have to accept Firefox's warning about the self signed certificate. When one tab is loaded at a time, this is fine. However, when 16 tabs are loaded, all of them display the warning. When you accept the warning on the tab, that tab runs and then starts loading new tabs, but the other 15 tabs are still waiting for you to accept the warning. Right now, you have to go to each of the 16 tabs to accept the warning. I've found it easier to accept one, refresh the page, and then run the vectorizer again so the warning doesn't come up anymore. Any ideas on how to reduce the friction here? We could open one tab the first time to accept the warning and then launch the rest of the windows, but I'd love a simpler way.
+2. Indexing for the status list items used to be done with `urlIndex`. Now, `urlIndex` cannot be relied upon since it can be changes by multiple tabs. Instead, I'm using the URL to index into the list of URLs to figure out which item it was in the array. Unfortunately, if someone has a duplicate URL in their list, the indexing doesn't work. I can't find a way to create a unique ID associating the tab to the URL.
+3. I think the corpus collector defaults for `wait` and `timeout` need to be increased.
+4. I have a `TODO` in `visit.js` that I am unsure of.",danielhertenstein,5586735,2019-09-25T17:34:17Z,CONTRIBUTOR,True,131,75,4,In-Firefox tools for developing Fathom rulesets,JavaScript,808263e004f05be1591f88217563663554f8df58,Removes completed TODO
+46,https://api.github.com/repos/mozilla/fathom-fox/pulls/49,49,Adds a command for freezing a page via keypress,"Addresses #41 
+
+This PR adds the ability to freeze a page by pressing `Ctrl+Shift+F`. This is useful for pages that have hover elements that you want visible when the page is saved. To my knowledge, this keypress does not conflict with anything else, but let me know if you run into an issue or know of a potential issue.
+
+Also, I have two TODOs in here that are questions on Javascript particulars I am unsure of. I'd love some help in answering those.",danielhertenstein,5586735,2019-07-31T18:59:16Z,CONTRIBUTOR,True,39,1,3,In-Firefox tools for developing Fathom rulesets,JavaScript,761a5f25b11fc2910512e54e1e202feb8d620377,Adds a command for freezing a page via keypress
+47,https://api.github.com/repos/mozilla/fathom-fox/pulls/49,49,Adds a command for freezing a page via keypress,"Addresses #41 
+
+This PR adds the ability to freeze a page by pressing `Ctrl+Shift+F`. This is useful for pages that have hover elements that you want visible when the page is saved. To my knowledge, this keypress does not conflict with anything else, but let me know if you run into an issue or know of a potential issue.
+
+Also, I have two TODOs in here that are questions on Javascript particulars I am unsure of. I'd love some help in answering those.",danielhertenstein,5586735,2019-07-31T18:59:16Z,CONTRIBUTOR,True,39,1,3,In-Firefox tools for developing Fathom rulesets,JavaScript,050e25fb5567ed0df0604a4dd1956c2c30ff482f,Addresses PR review comments
+48,https://api.github.com/repos/mozilla/fathom-fox/pulls/49,49,Adds a command for freezing a page via keypress,"Addresses #41 
+
+This PR adds the ability to freeze a page by pressing `Ctrl+Shift+F`. This is useful for pages that have hover elements that you want visible when the page is saved. To my knowledge, this keypress does not conflict with anything else, but let me know if you run into an issue or know of a potential issue.
+
+Also, I have two TODOs in here that are questions on Javascript particulars I am unsure of. I'd love some help in answering those.",danielhertenstein,5586735,2019-07-31T18:59:16Z,CONTRIBUTOR,True,39,1,3,In-Firefox tools for developing Fathom rulesets,JavaScript,69781217e92cf2701bbfab7a6ea96f5d6a6471f6,Changes download keystroke to Ctrl+Shift+O
+49,https://api.github.com/repos/mozilla/fathom-fox/pulls/47,47,Removes ability to Train and Pause on the Trainer page,"Addresses #43.
+
+This PR rips out the ability to Train and Pause on the Trainer page.
+
+There is certainly work that could be done to clean and re-frame the code as an `Evaluator` instead of a `Tuner`, but I don't know how worth it that is considering #43's end goal is to get rid of the page in the future anyway. If it would be valuable, I'm happy to make the necessary changes.
+
+Regardless, I do think the page itself should be renamed from Trainer to either Tester or Evaluator.",danielhertenstein,5586735,2019-07-23T15:03:43Z,CONTRIBUTOR,True,198,347,9,In-Firefox tools for developing Fathom rulesets,JavaScript,49270dcaa0460084499d30f42a6e41955b9b8d39,Removes ability to Train and Pause on the Trainer page
+50,https://api.github.com/repos/mozilla/fathom-fox/pulls/47,47,Removes ability to Train and Pause on the Trainer page,"Addresses #43.
+
+This PR rips out the ability to Train and Pause on the Trainer page.
+
+There is certainly work that could be done to clean and re-frame the code as an `Evaluator` instead of a `Tuner`, but I don't know how worth it that is considering #43's end goal is to get rid of the page in the future anyway. If it would be valuable, I'm happy to make the necessary changes.
+
+Regardless, I do think the page itself should be renamed from Trainer to either Tester or Evaluator.",danielhertenstein,5586735,2019-07-23T15:03:43Z,CONTRIBUTOR,True,198,347,9,In-Firefox tools for developing Fathom rulesets,JavaScript,fe21b695aee8291e66fbb026de722578c564f153,First wave of renaming trainer to evaluator
+51,https://api.github.com/repos/mozilla/fathom-fox/pulls/47,47,Removes ability to Train and Pause on the Trainer page,"Addresses #43.
+
+This PR rips out the ability to Train and Pause on the Trainer page.
+
+There is certainly work that could be done to clean and re-frame the code as an `Evaluator` instead of a `Tuner`, but I don't know how worth it that is considering #43's end goal is to get rid of the page in the future anyway. If it would be valuable, I'm happy to make the necessary changes.
+
+Regardless, I do think the page itself should be renamed from Trainer to either Tester or Evaluator.",danielhertenstein,5586735,2019-07-23T15:03:43Z,CONTRIBUTOR,True,198,347,9,In-Firefox tools for developing Fathom rulesets,JavaScript,46714c56ef8b3dad23801473a501797faaa60d15,Refactors evaluate.js to be more consistent with evaluation instead of training
+52,https://api.github.com/repos/mozilla/fathom-fox/pulls/47,47,Removes ability to Train and Pause on the Trainer page,"Addresses #43.
+
+This PR rips out the ability to Train and Pause on the Trainer page.
+
+There is certainly work that could be done to clean and re-frame the code as an `Evaluator` instead of a `Tuner`, but I don't know how worth it that is considering #43's end goal is to get rid of the page in the future anyway. If it would be valuable, I'm happy to make the necessary changes.
+
+Regardless, I do think the page itself should be renamed from Trainer to either Tester or Evaluator.",danielhertenstein,5586735,2019-07-23T15:03:43Z,CONTRIBUTOR,True,198,347,9,In-Firefox tools for developing Fathom rulesets,JavaScript,2fa515a3a466e003be6a1d48eea01e4db02167c7,Eliminates extra call to `resultsForPages()`
+53,https://api.github.com/repos/mozilla/fathom-fox/pulls/46,46,Check for nulls,"Addresses #35 
+
+This PR adds a check for `undefined` feature values during vectorization. This allows you to notice a certain class of ruleset errors during vectorization instead of during training.
+
+If an `undefined` value is seen, the vectorizer will output a failure message and tell you what rules had `undefined` values.
+
+One thing I do not like about this is that I am requesting the feature names every time an `undefined` value is seen. We could get the feature names sooner and make them class attributes. This increases the size of the class a little, and though we do need the feature names regardless in `visit.js`'s `processAtEndOfRun()`, `corpus.js` doesn't need the feature names at all.",danielhertenstein,5586735,2019-07-22T19:09:25Z,CONTRIBUTOR,True,54,27,3,In-Firefox tools for developing Fathom rulesets,JavaScript,4e0ddce7c643481bd8a0c06de01222fbe0a47cab,Adds vectorizer check for rules that don't run or return null
+54,https://api.github.com/repos/mozilla/fathom-fox/pulls/46,46,Check for nulls,"Addresses #35 
+
+This PR adds a check for `undefined` feature values during vectorization. This allows you to notice a certain class of ruleset errors during vectorization instead of during training.
+
+If an `undefined` value is seen, the vectorizer will output a failure message and tell you what rules had `undefined` values.
+
+One thing I do not like about this is that I am requesting the feature names every time an `undefined` value is seen. We could get the feature names sooner and make them class attributes. This increases the size of the class a little, and though we do need the feature names regardless in `visit.js`'s `processAtEndOfRun()`, `corpus.js` doesn't need the feature names at all.",danielhertenstein,5586735,2019-07-22T19:09:25Z,CONTRIBUTOR,True,54,27,3,In-Firefox tools for developing Fathom rulesets,JavaScript,c929245f9f36b87338aab3ad3698daf541631b87,Adds rule names to the warning
+55,https://api.github.com/repos/mozilla/fathom-fox/pulls/46,46,Check for nulls,"Addresses #35 
+
+This PR adds a check for `undefined` feature values during vectorization. This allows you to notice a certain class of ruleset errors during vectorization instead of during training.
+
+If an `undefined` value is seen, the vectorizer will output a failure message and tell you what rules had `undefined` values.
+
+One thing I do not like about this is that I am requesting the feature names every time an `undefined` value is seen. We could get the feature names sooner and make them class attributes. This increases the size of the class a little, and though we do need the feature names regardless in `visit.js`'s `processAtEndOfRun()`, `corpus.js` doesn't need the feature names at all.",danielhertenstein,5586735,2019-07-22T19:09:25Z,CONTRIBUTOR,True,54,27,3,In-Firefox tools for developing Fathom rulesets,JavaScript,6e8562e4c6672e035b9a51509706af5747eddc21,Changes warning to failure message
+56,https://api.github.com/repos/mozilla/fathom-fox/pulls/46,46,Check for nulls,"Addresses #35 
+
+This PR adds a check for `undefined` feature values during vectorization. This allows you to notice a certain class of ruleset errors during vectorization instead of during training.
+
+If an `undefined` value is seen, the vectorizer will output a failure message and tell you what rules had `undefined` values.
+
+One thing I do not like about this is that I am requesting the feature names every time an `undefined` value is seen. We could get the feature names sooner and make them class attributes. This increases the size of the class a little, and though we do need the feature names regardless in `visit.js`'s `processAtEndOfRun()`, `corpus.js` doesn't need the feature names at all.",danielhertenstein,5586735,2019-07-22T19:09:25Z,CONTRIBUTOR,True,54,27,3,In-Firefox tools for developing Fathom rulesets,JavaScript,c4a2330603d485e626d34def4ae48b454be3b2d0,Addresses PR review comments
+57,https://api.github.com/repos/mozilla/fathom-fox/pulls/46,46,Check for nulls,"Addresses #35 
+
+This PR adds a check for `undefined` feature values during vectorization. This allows you to notice a certain class of ruleset errors during vectorization instead of during training.
+
+If an `undefined` value is seen, the vectorizer will output a failure message and tell you what rules had `undefined` values.
+
+One thing I do not like about this is that I am requesting the feature names every time an `undefined` value is seen. We could get the feature names sooner and make them class attributes. This increases the size of the class a little, and though we do need the feature names regardless in `visit.js`'s `processAtEndOfRun()`, `corpus.js` doesn't need the feature names at all.",danielhertenstein,5586735,2019-07-22T19:09:25Z,CONTRIBUTOR,True,54,27,3,In-Firefox tools for developing Fathom rulesets,JavaScript,4aebc94b4a4603b85564d5cf20a84e89e2bfecaf,Gets traineeId immediately after vectorize button is pressed
+58,https://api.github.com/repos/mozilla/fathom-fox/pulls/45,45,Updates freeze-dry to 0.2.4,"Addresses issue #34 
+
+This pull request's main goal is to update freeze-dry from 0.2.0 to 0.2.4. freeze-dry 0.2.1 introduces postcss as a dependency, which rollup does not like due to a circular dependency postcss contains (see the linked issue in #34). A potential solution to this problem is using a rollup plugin that bundles postcss using webpack (eliminating the circular dependency) before rollup then bundles postcss up along with the rest of the codebase. The rollup plugin comes from the issue linked in #34 and [feels awkward](https://gist.github.com/tivac/d3dd0142e7c52d0d0a5a05b6686340e3). But it does work.
+
+I updated the other dependencies before stumbling across this rollup plugin solution and had hoped simply updating them would solve the problem. It did not, but I have not gone back to see if the plugin solution works without updating the other dependencies. Since everything is working with the dependencies updated (though the syntax for the copy plugin needed to change), I think we should be okay with updating them. The naive assumption being that the dependencies are better in their newer versions.
+
+freeze-dry 0.2.4 does bring immense performance increases (as I will post in #38).
+
+Also, I wanted to add @biancadanforth as a reviewer but github didn't show her as an option.",danielhertenstein,5586735,2019-07-17T19:20:07Z,CONTRIBUTOR,True,4346,1170,6,In-Firefox tools for developing Fathom rulesets,JavaScript,b6c371237a4a896eb3b07201d3e26e26b7d5e72c,"Updates freeze-dry to 0.2.4 and adds rollup plugin to support postcss
+
+This commit also updates all the other dependencies we use and adds
+webpack to the list"
+59,https://api.github.com/repos/mozilla/fathom-fox/pulls/42,42,Automatically retrieves viewport size from trainee instead of manually,"Addresses issue #32 
+
+Currently, users have to fill in the size of the viewport for vectorizing in the form on the vectoizer page. The user usually references the values in their `trainees.js` file, and has to re-enter the values every time they reopen the vectorizer (not refresh though).
+
+This pull request uses the message passing already contained in FathomFox to automatically retrieve the viewport size from `trainees.js` so the user never has to worry about potential mismatches. This pull request also removes the viewport fields from the form on the vectorizer page since they are no longer needed.
+
+An implementation note/question for @erikrose : I am unsure about making the `sendMessage()` call in `visit.js`. It feels like it belongs in `vector.js`, but there isn't a great place for it. My first inclination was to put the call in `visit.js`'s `processAtBeginningOfRun()` method, but the `traineeId` has not yet been retrieved at that point (this occurs in `formOptions()`). So, the other option I see is to create a new method within `CorpusCollector` to get the viewport size and call that method from `visit.js`.",danielhertenstein,5586735,2019-07-02T14:53:02Z,CONTRIBUTOR,True,42,27,4,In-Firefox tools for developing Fathom rulesets,JavaScript,9d529947a50fcab223ce7d386426bb3d1470c19a,Automatically retrieves viewport size from trainee instead of manually
+60,https://api.github.com/repos/mozilla/fathom-fox/pulls/42,42,Automatically retrieves viewport size from trainee instead of manually,"Addresses issue #32 
+
+Currently, users have to fill in the size of the viewport for vectorizing in the form on the vectoizer page. The user usually references the values in their `trainees.js` file, and has to re-enter the values every time they reopen the vectorizer (not refresh though).
+
+This pull request uses the message passing already contained in FathomFox to automatically retrieve the viewport size from `trainees.js` so the user never has to worry about potential mismatches. This pull request also removes the viewport fields from the form on the vectorizer page since they are no longer needed.
+
+An implementation note/question for @erikrose : I am unsure about making the `sendMessage()` call in `visit.js`. It feels like it belongs in `vector.js`, but there isn't a great place for it. My first inclination was to put the call in `visit.js`'s `processAtBeginningOfRun()` method, but the `traineeId` has not yet been retrieved at that point (this occurs in `formOptions()`). So, the other option I see is to create a new method within `CorpusCollector` to get the viewport size and call that method from `visit.js`.",danielhertenstein,5586735,2019-07-02T14:53:02Z,CONTRIBUTOR,True,42,27,4,In-Firefox tools for developing Fathom rulesets,JavaScript,d9710b12dc09feefc6b20255c4efe01486d26827,Adds separate method to get viewport size
+61,https://api.github.com/repos/mozilla/fathom-fox/pulls/42,42,Automatically retrieves viewport size from trainee instead of manually,"Addresses issue #32 
+
+Currently, users have to fill in the size of the viewport for vectorizing in the form on the vectoizer page. The user usually references the values in their `trainees.js` file, and has to re-enter the values every time they reopen the vectorizer (not refresh though).
+
+This pull request uses the message passing already contained in FathomFox to automatically retrieve the viewport size from `trainees.js` so the user never has to worry about potential mismatches. This pull request also removes the viewport fields from the form on the vectorizer page since they are no longer needed.
+
+An implementation note/question for @erikrose : I am unsure about making the `sendMessage()` call in `visit.js`. It feels like it belongs in `vector.js`, but there isn't a great place for it. My first inclination was to put the call in `visit.js`'s `processAtBeginningOfRun()` method, but the `traineeId` has not yet been retrieved at that point (this occurs in `formOptions()`). So, the other option I see is to create a new method within `CorpusCollector` to get the viewport size and call that method from `visit.js`.",danielhertenstein,5586735,2019-07-02T14:53:02Z,CONTRIBUTOR,True,42,27,4,In-Firefox tools for developing Fathom rulesets,JavaScript,b4f3c07032d7903c1cb387ce2c31e352fd344aad,Fixes funny indent
+62,https://api.github.com/repos/mozilla/fathom-fox/pulls/42,42,Automatically retrieves viewport size from trainee instead of manually,"Addresses issue #32 
+
+Currently, users have to fill in the size of the viewport for vectorizing in the form on the vectoizer page. The user usually references the values in their `trainees.js` file, and has to re-enter the values every time they reopen the vectorizer (not refresh though).
+
+This pull request uses the message passing already contained in FathomFox to automatically retrieve the viewport size from `trainees.js` so the user never has to worry about potential mismatches. This pull request also removes the viewport fields from the form on the vectorizer page since they are no longer needed.
+
+An implementation note/question for @erikrose : I am unsure about making the `sendMessage()` call in `visit.js`. It feels like it belongs in `vector.js`, but there isn't a great place for it. My first inclination was to put the call in `visit.js`'s `processAtBeginningOfRun()` method, but the `traineeId` has not yet been retrieved at that point (this occurs in `formOptions()`). So, the other option I see is to create a new method within `CorpusCollector` to get the viewport size and call that method from `visit.js`.",danielhertenstein,5586735,2019-07-02T14:53:02Z,CONTRIBUTOR,True,42,27,4,In-Firefox tools for developing Fathom rulesets,JavaScript,b86ce43971b5a0ed1553b525cd5e9c21b068cea2,Adds `getViewportHeightAndWidth()` to corpus.js
+63,https://api.github.com/repos/mozilla/fathom-fox/pulls/42,42,Automatically retrieves viewport size from trainee instead of manually,"Addresses issue #32 
+
+Currently, users have to fill in the size of the viewport for vectorizing in the form on the vectoizer page. The user usually references the values in their `trainees.js` file, and has to re-enter the values every time they reopen the vectorizer (not refresh though).
+
+This pull request uses the message passing already contained in FathomFox to automatically retrieve the viewport size from `trainees.js` so the user never has to worry about potential mismatches. This pull request also removes the viewport fields from the form on the vectorizer page since they are no longer needed.
+
+An implementation note/question for @erikrose : I am unsure about making the `sendMessage()` call in `visit.js`. It feels like it belongs in `vector.js`, but there isn't a great place for it. My first inclination was to put the call in `visit.js`'s `processAtBeginningOfRun()` method, but the `traineeId` has not yet been retrieved at that point (this occurs in `formOptions()`). So, the other option I see is to create a new method within `CorpusCollector` to get the viewport size and call that method from `visit.js`.",danielhertenstein,5586735,2019-07-02T14:53:02Z,CONTRIBUTOR,True,42,27,4,In-Firefox tools for developing Fathom rulesets,JavaScript,fe2eedfa2a532d95587091228dcc97d3cd7c3020,Fixes indent
+64,https://api.github.com/repos/mozilla/fathom-fox/pulls/42,42,Automatically retrieves viewport size from trainee instead of manually,"Addresses issue #32 
+
+Currently, users have to fill in the size of the viewport for vectorizing in the form on the vectoizer page. The user usually references the values in their `trainees.js` file, and has to re-enter the values every time they reopen the vectorizer (not refresh though).
+
+This pull request uses the message passing already contained in FathomFox to automatically retrieve the viewport size from `trainees.js` so the user never has to worry about potential mismatches. This pull request also removes the viewport fields from the form on the vectorizer page since they are no longer needed.
+
+An implementation note/question for @erikrose : I am unsure about making the `sendMessage()` call in `visit.js`. It feels like it belongs in `vector.js`, but there isn't a great place for it. My first inclination was to put the call in `visit.js`'s `processAtBeginningOfRun()` method, but the `traineeId` has not yet been retrieved at that point (this occurs in `formOptions()`). So, the other option I see is to create a new method within `CorpusCollector` to get the viewport size and call that method from `visit.js`.",danielhertenstein,5586735,2019-07-02T14:53:02Z,CONTRIBUTOR,True,42,27,4,In-Firefox tools for developing Fathom rulesets,JavaScript,5a00a248e6dcd4405f0affe79a2751a631205342,Makes `formOptions()` and `getViewportHeightAndWidth()` abstract
+65,https://api.github.com/repos/mozilla/fathom-fox/pulls/30,30,Add Mozilla Code of Conduct,"Fixes #29
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-30T06:58:53Z,CONTRIBUTOR,True,15,0,1,In-Firefox tools for developing Fathom rulesets,JavaScript,a7ae4e29b8f0c0a2883d21d12525c70cbf115904,"Add Mozilla Code of Conduct file
+
+Fixes #29.
+
+_(Message COC002)_"
+66,https://api.github.com/repos/mozilla/fathom-fox/pulls/17,17,rework corpus collection to add timeout (fixes #8),,globau,872825,2018-09-03T17:22:03Z,COLLABORATOR,True,315,120,8,In-Firefox tools for developing Fathom rulesets,JavaScript,6dae22314e5eafb7da5e36a7c6db002a76a6b191,update freeze-dry version to 0.2.0
+67,https://api.github.com/repos/mozilla/fathom-fox/pulls/17,17,rework corpus collection to add timeout (fixes #8),,globau,872825,2018-09-03T17:22:03Z,COLLABORATOR,True,315,120,8,In-Firefox tools for developing Fathom rulesets,JavaScript,d1933db0738054c9837052aa8328041c1fc2d58d,Rework corpus collection
+68,https://api.github.com/repos/mozilla/fathom-fox/pulls/17,17,rework corpus collection to add timeout (fixes #8),,globau,872825,2018-09-03T17:22:03Z,COLLABORATOR,True,315,120,8,In-Firefox tools for developing Fathom rulesets,JavaScript,15a2c5c94c414ff13041eec727c71d3b68bfcb47,address review points
+69,https://api.github.com/repos/mozilla/fathom-fox/pulls/17,17,rework corpus collection to add timeout (fixes #8),,globau,872825,2018-09-03T17:22:03Z,COLLABORATOR,True,315,120,8,In-Firefox tools for developing Fathom rulesets,JavaScript,24463ab668b4f389032c1bd21c584ebefd6cee7d,"fix async issues, improve download naming
+
+- ensure errors triggered after a successful download don't overwrite
+  the 'downloaded' message in the ui
+- when revoking the download url listen for the download completion
+  event instead of always waiting 10 seconds
+- show the final filename in the 'downloaded' message
+- change the default filename from 'Untitled' to the url's hostname
+  (my download folder had hundreds of 'Untitled(NNN).html' files)"
+70,https://api.github.com/repos/mozilla/fathom-fox/pulls/17,17,rework corpus collection to add timeout (fixes #8),,globau,872825,2018-09-03T17:22:03Z,COLLABORATOR,True,315,120,8,In-Firefox tools for developing Fathom rulesets,JavaScript,cb8eeda6cfc25379c82c9af30e8da65a8d0897db,oops: don't remove download onChanged listener until download has completed
+71,https://api.github.com/repos/mozilla/fathom-fox/pulls/17,17,rework corpus collection to add timeout (fixes #8),,globau,872825,2018-09-03T17:22:03Z,COLLABORATOR,True,315,120,8,In-Firefox tools for developing Fathom rulesets,JavaScript,4e1c335196c4eb60aa6def4629d0ff40d171f89d,revert revokeObjectURL logic
+72,https://api.github.com/repos/mozilla/fathom-fox/pulls/16,16,Use browser menu style in popup menu.,"> I wish there were a reasonable default appearance/behavior for buttons available to extensions so I didn't have to make my own half-baked one. Ideally, this would look like a Photon menu.
+
+[there is!](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/user_interface/Browser_styles)
+
+<img width=""164"" alt=""screenshot 2018-09-03 12 08 46"" src=""https://user-images.githubusercontent.com/872825/44967237-53b05e00-af72-11e8-8f33-769577e92ae1.png"">
+
+",globau,872825,2018-09-03T04:13:08Z,COLLABORATOR,True,7,29,1,In-Firefox tools for developing Fathom rulesets,JavaScript,2ea0912d32657c8fcaec3c5ba892172f321af0d0,Use browser menu style in popup menu.
+73,https://api.github.com/repos/mozilla/fathom-fox/pulls/16,16,Use browser menu style in popup menu.,"> I wish there were a reasonable default appearance/behavior for buttons available to extensions so I didn't have to make my own half-baked one. Ideally, this would look like a Photon menu.
+
+[there is!](https://developer.mozilla.org/en-US/docs/Mozilla/Add-ons/WebExtensions/user_interface/Browser_styles)
+
+<img width=""164"" alt=""screenshot 2018-09-03 12 08 46"" src=""https://user-images.githubusercontent.com/872825/44967237-53b05e00-af72-11e8-8f33-769577e92ae1.png"">
+
+",globau,872825,2018-09-03T04:13:08Z,COLLABORATOR,True,7,29,1,In-Firefox tools for developing Fathom rulesets,JavaScript,68b303f2134cbf5988ce450fcff45cab10076db4,Update actionMenu.html
+74,https://api.github.com/repos/mozilla/fathom-fox/pulls/15,15,Increase the max CSS selector depth (fixes #13),"- increase Simmer's max CSS selector depth from 3 to 25
+- if Simmer fails, show an error message instead of `false`",globau,872825,2018-08-31T05:11:43Z,COLLABORATOR,True,26,2,2,In-Firefox tools for developing Fathom rulesets,JavaScript,48c2c2c96bcc68b4f6d7064e8b077c246f923c11,"Increase the max CSS selector depth (fixes #13)
+
+- increase Simmer's max CSS selector depth from 3 to 25
+- if Simmer fails, show an error message instead of `false`"
+75,https://api.github.com/repos/mozilla/fathom-fox/pulls/11,11,rework fathom devtools panel (fixes #4),"- change ui for labeling inspected element
+- add list of already labeled elements, with ability to edit/clear inline
+- switch from oid style selectors to css path (via the simmer library)
+- add spinner to freeze action",globau,872825,2018-08-21T15:43:51Z,COLLABORATOR,True,579,152,12,In-Firefox tools for developing Fathom rulesets,JavaScript,4550449243f550f72522c704152563c257e8f5ee,"Merge readme fix. Close #3.
+
+Update README instructions to start in the browser."
+76,https://api.github.com/repos/mozilla/fathom-fox/pulls/11,11,rework fathom devtools panel (fixes #4),"- change ui for labeling inspected element
+- add list of already labeled elements, with ability to edit/clear inline
+- switch from oid style selectors to css path (via the simmer library)
+- add spinner to freeze action",globau,872825,2018-08-21T15:43:51Z,COLLABORATOR,True,579,152,12,In-Firefox tools for developing Fathom rulesets,JavaScript,263c10cd8b8e880a112c9796edca809e9ff5b929,Merge remote-tracking branch 'upstream/master'
+77,https://api.github.com/repos/mozilla/fathom-fox/pulls/11,11,rework fathom devtools panel (fixes #4),"- change ui for labeling inspected element
+- add list of already labeled elements, with ability to edit/clear inline
+- switch from oid style selectors to css path (via the simmer library)
+- add spinner to freeze action",globau,872825,2018-08-21T15:43:51Z,COLLABORATOR,True,579,152,12,In-Firefox tools for developing Fathom rulesets,JavaScript,010e75779e04c51b9fc04dec2cf5520f361b92c8,Merge remote-tracking branch 'upstream/master'
+78,https://api.github.com/repos/mozilla/fathom-fox/pulls/11,11,rework fathom devtools panel (fixes #4),"- change ui for labeling inspected element
+- add list of already labeled elements, with ability to edit/clear inline
+- switch from oid style selectors to css path (via the simmer library)
+- add spinner to freeze action",globau,872825,2018-08-21T15:43:51Z,COLLABORATOR,True,579,152,12,In-Firefox tools for developing Fathom rulesets,JavaScript,27733e672108162e7140617532d3450ac2e3f80e,"rework fathom devtools panel (fixes #4)
+
+- change ui for labeling inspected element
+- add list of already labeled elements, with ability to edit/clear
+  inline
+- switch from oid style selectors to css path (via the simmer library)
+- add spinner to freeze action"
+79,https://api.github.com/repos/mozilla/fathom-fox/pulls/11,11,rework fathom devtools panel (fixes #4),"- change ui for labeling inspected element
+- add list of already labeled elements, with ability to edit/clear inline
+- switch from oid style selectors to css path (via the simmer library)
+- add spinner to freeze action",globau,872825,2018-08-21T15:43:51Z,COLLABORATOR,True,579,152,12,In-Firefox tools for developing Fathom rulesets,JavaScript,1e337450bee598003728a99d8d31d7d7875286be,address review points
+80,https://api.github.com/repos/mozilla/fathom-fox/pulls/9,9,optimise updateProgress (fixes #2),"Make updateProgress faster by minimising the times elements are added
+and removed from the DOM, and cache the element objects instead of
+looking them up for each call.",globau,872825,2018-08-09T05:15:07Z,COLLABORATOR,True,72,46,2,In-Firefox tools for developing Fathom rulesets,JavaScript,4550449243f550f72522c704152563c257e8f5ee,"Merge readme fix. Close #3.
+
+Update README instructions to start in the browser."
+81,https://api.github.com/repos/mozilla/fathom-fox/pulls/9,9,optimise updateProgress (fixes #2),"Make updateProgress faster by minimising the times elements are added
+and removed from the DOM, and cache the element objects instead of
+looking them up for each call.",globau,872825,2018-08-09T05:15:07Z,COLLABORATOR,True,72,46,2,In-Firefox tools for developing Fathom rulesets,JavaScript,d48166a4969e8bba05b785668526975f2050df05,"optimise updateProgress (fixes #2)
+
+Make updateProgress faster by minimising the times elements are added
+and removed from the DOM, and cache the element objects instead of
+looking them up for each call."
+82,https://api.github.com/repos/mozilla/fathom-fox/pulls/9,9,optimise updateProgress (fixes #2),"Make updateProgress faster by minimising the times elements are added
+and removed from the DOM, and cache the element objects instead of
+looking them up for each call.",globau,872825,2018-08-09T05:15:07Z,COLLABORATOR,True,72,46,2,In-Firefox tools for developing Fathom rulesets,JavaScript,263c10cd8b8e880a112c9796edca809e9ff5b929,Merge remote-tracking branch 'upstream/master'
+83,https://api.github.com/repos/mozilla/fathom-fox/pulls/9,9,optimise updateProgress (fixes #2),"Make updateProgress faster by minimising the times elements are added
+and removed from the DOM, and cache the element objects instead of
+looking them up for each call.",globau,872825,2018-08-09T05:15:07Z,COLLABORATOR,True,72,46,2,In-Firefox tools for developing Fathom rulesets,JavaScript,0bb0074448dea197ba9bad4cc7cf42caea578daf,Merge branch 'master' into issue-2-progress-perf
+84,https://api.github.com/repos/mozilla/fathom-fox/pulls/9,9,optimise updateProgress (fixes #2),"Make updateProgress faster by minimising the times elements are added
+and removed from the DOM, and cache the element objects instead of
+looking them up for each call.",globau,872825,2018-08-09T05:15:07Z,COLLABORATOR,True,72,46,2,In-Firefox tools for developing Fathom rulesets,JavaScript,d2d43918cbba4896dca28e66ba5f1053f756abf1,address review points
+85,https://api.github.com/repos/mozilla/fathom-fox/pulls/9,9,optimise updateProgress (fixes #2),"Make updateProgress faster by minimising the times elements are added
+and removed from the DOM, and cache the element objects instead of
+looking them up for each call.",globau,872825,2018-08-09T05:15:07Z,COLLABORATOR,True,72,46,2,In-Firefox tools for developing Fathom rulesets,JavaScript,d5dd812bfdcd949f956760fa0e2aff77fc797362,"change `const` to `let` (const works, but let reads better)"
+86,https://api.github.com/repos/mozilla/fathom-fox/pulls/5,5,"Add a ""Quick Start"" guide to the README","The quick start aims to highlight the key points of fathom-fox, which
+can be lost in the more informative text in the rest of the document.
+
+I also fixed the `yarn browser` docs, and hard wrapped the text to
+improve readability outside of GitHub.",globau,872825,2018-08-08T06:50:52Z,COLLABORATOR,True,74,13,1,In-Firefox tools for developing Fathom rulesets,JavaScript,6faebb01f5b4689261872e618684d52546f41d84,"Add a ""Quick Start"" guide to the README
+
+The quick start aims to highlight the key points of fathom-fox, which
+can be lost in the more informative text in the rest of the document.
+
+I also fixed the `yarn browser` docs, and hard wrapped the text to
+improve readability outside of GitHub."
+87,https://api.github.com/repos/mozilla/fathom-fox/pulls/5,5,"Add a ""Quick Start"" guide to the README","The quick start aims to highlight the key points of fathom-fox, which
+can be lost in the more informative text in the rest of the document.
+
+I also fixed the `yarn browser` docs, and hard wrapped the text to
+improve readability outside of GitHub.",globau,872825,2018-08-08T06:50:52Z,COLLABORATOR,True,74,13,1,In-Firefox tools for developing Fathom rulesets,JavaScript,4550449243f550f72522c704152563c257e8f5ee,"Merge readme fix. Close #3.
+
+Update README instructions to start in the browser."
+88,https://api.github.com/repos/mozilla/fathom-fox/pulls/5,5,"Add a ""Quick Start"" guide to the README","The quick start aims to highlight the key points of fathom-fox, which
+can be lost in the more informative text in the rest of the document.
+
+I also fixed the `yarn browser` docs, and hard wrapped the text to
+improve readability outside of GitHub.",globau,872825,2018-08-08T06:50:52Z,COLLABORATOR,True,74,13,1,In-Firefox tools for developing Fathom rulesets,JavaScript,abfe28eb3e08cd0d0a3848d3c76048f780ef9f46,Merge branch 'master' into improve-readme
+89,https://api.github.com/repos/mozilla/fathom-fox/pulls/5,5,"Add a ""Quick Start"" guide to the README","The quick start aims to highlight the key points of fathom-fox, which
+can be lost in the more informative text in the rest of the document.
+
+I also fixed the `yarn browser` docs, and hard wrapped the text to
+improve readability outside of GitHub.",globau,872825,2018-08-08T06:50:52Z,COLLABORATOR,True,74,13,1,In-Firefox tools for developing Fathom rulesets,JavaScript,ae746408a64be3bd95df737d8b0822e701f73c59,address review points
+90,https://api.github.com/repos/mozilla/fathom-fox/pulls/5,5,"Add a ""Quick Start"" guide to the README","The quick start aims to highlight the key points of fathom-fox, which
+can be lost in the more informative text in the rest of the document.
+
+I also fixed the `yarn browser` docs, and hard wrapped the text to
+improve readability outside of GitHub.",globau,872825,2018-08-08T06:50:52Z,COLLABORATOR,True,74,13,1,In-Firefox tools for developing Fathom rulesets,JavaScript,99e18fc3605a7f063fa1c2b85ff387d55dd66905,Merge branch 'improve-readme' of github.com:globau/fathom-fox into improve-readme
+91,https://api.github.com/repos/mozilla/fathom-fox/pulls/5,5,"Add a ""Quick Start"" guide to the README","The quick start aims to highlight the key points of fathom-fox, which
+can be lost in the more informative text in the rest of the document.
+
+I also fixed the `yarn browser` docs, and hard wrapped the text to
+improve readability outside of GitHub.",globau,872825,2018-08-08T06:50:52Z,COLLABORATOR,True,74,13,1,In-Firefox tools for developing Fathom rulesets,JavaScript,a6ec3f6b8bde37ff9b9afdb84ef34000e541743b,Merge branch 'master' into improve-readme
+92,https://api.github.com/repos/mozilla/fathom-fox/pulls/5,5,"Add a ""Quick Start"" guide to the README","The quick start aims to highlight the key points of fathom-fox, which
+can be lost in the more informative text in the rest of the document.
+
+I also fixed the `yarn browser` docs, and hard wrapped the text to
+improve readability outside of GitHub.",globau,872825,2018-08-08T06:50:52Z,COLLABORATOR,True,74,13,1,In-Firefox tools for developing Fathom rulesets,JavaScript,d5380c6a6e57ebbe16ac8063205303a4fb7fdd60,address review points
+93,https://api.github.com/repos/mozilla/fathom-fox/pulls/3,3,Update README instructions to start in the browser.,Updated `yarn run build` to be `yarn run browser`.,nchapman,3095,2018-08-07T23:13:35Z,CONTRIBUTOR,True,1,1,1,In-Firefox tools for developing Fathom rulesets,JavaScript,a407af67602d2d19395e63571f35059d13888349,"Update README instructions to start in the browser.
+
+Updated `yarn run build` to be `yarn run browser`."

@@ -1,0 +1,374 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/97,97,Add Mozilla Code of Conduct,"Fixes #96
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-29T22:00:49Z,CONTRIBUTOR,True,15,0,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,f5dd5a438f07e0cf8eed77aa9e8a0bd297776e85,"Add Mozilla Code of Conduct file
+
+Fixes #96.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/93,93,Delete simple-storage on cleanup,"I'm able to remove simple storage data, as requested in #90.
+
+However, I haven't been able to find a way to delete addon preferences. The [simple-prefs docs](https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/simple-prefs) doesn't mention any way to do this. @mythmon @gregglind do you know of a way to delete preferences? 
+
+@mythmon r?
+",casebenton,12304716,2016-10-03T16:51:13Z,CONTRIBUTOR,True,3,0,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,318fd9ada4e7a476264109e564ea419733ed0526,Delete simple-storage on cleanup
+2,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/93,93,Delete simple-storage on cleanup,"I'm able to remove simple storage data, as requested in #90.
+
+However, I haven't been able to find a way to delete addon preferences. The [simple-prefs docs](https://developer.mozilla.org/en-US/Add-ons/SDK/High-Level_APIs/simple-prefs) doesn't mention any way to do this. @mythmon @gregglind do you know of a way to delete preferences? 
+
+@mythmon r?
+",casebenton,12304716,2016-10-03T16:51:13Z,CONTRIBUTOR,True,3,0,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,093dece080e27ede01f0f92720d0335580df7553,"reset prefs with low-level library, remove incorrect simple storage code"
+3,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/92,92,Refactoring of onboarding code (better fix for #91),"There are several methods that rely on the simple pref that marks the onboarding as complete. #91 alters the way the simple pref is used, which causes several issues. This commit fixes the issue that #91 fixes, but in a way which does not break the methods that depend specific usage of the onboarding pref.
+
+The key change is that the tabs event listener that calls the endOnboard method is now the onOpen listener, rather than the onReady. onOpen fires immediately when the tab opens, while onReady fires once the page is completely loaded. Use of onReady contributed to the repeated onboarding events some users expirienced, as closing the tab before it loads completely would mean the onboarding complete pref was never set to true.
+
+Testing using the same procedures as #91, namely simulating a 100% loss network on my computer and installing the addon on a fresh firefox build (to test closing the onboarding tab before it fully loads), showed that this commit fixes the issue of repeated onboarding events. Additionally, the methods that rely on the onboarding pref are not broken in this commit, as the usage of the pref is returned to the way it was previously.
+
+@mythmon r?
+",casebenton,12304716,2016-09-26T21:48:15Z,CONTRIBUTOR,True,2,2,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,b8ecd1d1d6b6bd9fa80aa448a659cf93170cb41d,"Refactoring of onboarding code
+
+There are several methods that rely on the simple pref that marks the onboarding as complete. #91 alters the way the simple pref is used, which causes several issues. This commit fixes the issue that #91 fixes, but in a way which does not break the methods that depend specific usage of the onboarding pref.
+
+The key change is that the tabs event listener that calls the endOnboard method is now the onOpen listener, rather than the onReady. onOpen fires immediately when the tab opens, while onReady fires once the page is completely loaded. Use of onReady contributed to the repeated onboarding events some users expirienced, as closing the tab before it loads completely would mean the onboarding complete pref was never set to true.
+
+Testing using the same procedures as #91, namely simulating a 100% loss network on my computer and installing the addon on a fresh firefox build (to test closing the onboarding tab before it fully loads), showed that this commit fixes the issue of repeated onboarding events. Additionally, the methods that rely on the onboarding pref are not broken in this commit, as the usage of the pref is returned to the way it was previously."
+4,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/91,91,Resolve onboarding bug where wikipedia is opened on every startup,"This is a clean solution to the issue in #89.
+
+@mythmon r?
+",casebenton,12304716,2016-09-21T19:58:50Z,CONTRIBUTOR,True,1,1,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,ab005b036770a2116667fcaec0cc9a0358878711,"Resolve onboarding bug where wikipedia is opened on every startup
+
+I'm using simple prefs to note that the onboarding event (where wikipedia is opened) has occurred. Previously the pref was set after the page had fully loaded, meaning that if users closed the wikipedia tab early (on a slow internet connection), the onboarding event would not be marked as complete. Therefore I've moved the pref set to as soon as the onboard method is called, eliminating this race condition.
+
+I replicated the issue by simulating a very slow internet connection on my computer and testing the addon. This PR fixes the issue in my testing."
+5,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/89,89,User feedback indicates that wikipedia tab is opened on every startup,"This bug is likely in the onboarding event. In this event, a new tab of wikipedia is opened, and users are shown how to use addon recommendation. The feedback suggests that this event is happening on every startup when it should only happen when the addon is installed. 
+",gregglind,163983,2016-08-29T20:47:45Z,NONE,False,70,15,4,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,51522db8b7c9ca758ad13ae6767cc2c8a767bdfa,"Fix #89 onboarding seen more than once.
+
+- remove dependency on simple-prefs (re: Kamyar)
+- use loadReason rather than pref.
+- add `test/test-recommend.js` to check some cases.  Not perfect at all."
+6,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/87,87,Don't show button if addons already installed,"@mythmon r?
+",casebenton,12304716,2016-08-17T20:56:03Z,CONTRIBUTOR,True,21,10,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,94171b9a12b788054836cd42b7f8c372b16a540f,"Don't show button if addons already installed
+
+Closes #83"
+7,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/87,87,Don't show button if addons already installed,"@mythmon r?
+",casebenton,12304716,2016-08-17T20:56:03Z,CONTRIBUTOR,True,21,10,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,a46722a8126615790ea56d4beb87dc6f5e5c21c5,shorten allInstalledAlready using filter
+8,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/86,86,stronger domain matching using sdk/url,"@Osmose or @mythmon r?
+",casebenton,12304716,2016-08-17T20:11:27Z,CONTRIBUTOR,True,9,7,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,ef90099bc336424a40d577a2f10c8be81e1a0498,"stronger domain matching using sdk/url
+
+Closes #79"
+9,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/85,85,clean up build script,,casebenton,12304716,2016-08-17T18:11:28Z,CONTRIBUTOR,True,1,1,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,61a09804c384823cadfac738555b5886a1a074c5,clean up build script
+10,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/84,84,"Add stylesheet for button, remove mouseover / mouseout","@mythmon r?
+",casebenton,12304716,2016-08-17T17:19:08Z,CONTRIBUTOR,True,28,26,4,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,22f116a785efc6bd4a2eb84ea091da868905aea8,"Add stylesheet for button, remove mouseover / mouseout
+
+The styles for the enhance button were moved into a css file that is applied using the sdk style sheet service. This means that the button styles no longer need to be applied with js, and in particular, :hover can be used, so that the mouseover / mouseout listeners can be removed from the js."
+11,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/82,82,Specify addon is multiprocess compatible,"@mythmon r?
+",casebenton,12304716,2016-08-17T15:32:20Z,CONTRIBUTOR,True,3,0,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,e423fa7b9fd633bce44f5ca8dd720dfcab47e633,mark as e10s compatible
+12,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/81,81,AMO Feedback: Remove innerHTML assignments,"@mythmon r?
+",casebenton,12304716,2016-08-17T15:24:45Z,CONTRIBUTOR,True,4,4,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,84e71875e6020d0c3b029b1568c0afdee0435116,"Remove innerHTML assignments (XSS vulnerability)
+
+innerHTML assignment has been replaced with textContent assignment to remove XSS attack vector
+
+Closes #80"
+13,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/78,78,Fix Cleanup Function so that addon can uninstall itself,"thanks so much to @gregglind for figuring this issue out. @Osmose r?
+",casebenton,12304716,2016-08-16T20:50:26Z,CONTRIBUTOR,True,5,3,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,c13d0ee3f04c842c694c42b03f25b02f86e4db8f,"Only call Rec.destroy if Rec != null
+
+Previously Rec.destroy was being called on every call to cleanup function. The cleanup function is used in the uninstall process. When rec.destroy was called when Rec == null (set to null on first pass of cleanup function), the cleanup function would fail and the addon would not uninstall itself. The survey would then be displayed on the next startup, the cleanup function would fail again. There is now a check to only call Rec.destroy if it is not null (where if rec == null, rec.destroy has already been called)
+
+Closes #77"
+14,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/76,76,AMO Review Correction: Remove unneeded console logging file,"@Osmose r?
+",casebenton,12304716,2016-08-15T04:09:30Z,CONTRIBUTOR,True,0,23,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,7d84b8bfa01f274b8cd1bba291841d79ee29fb32,Remove unneeded consoleLog.js file Closes #74
+15,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/75,75,AMO Review Correction: Remove hidden files from xpi,"@Osmose r? 
+",casebenton,12304716,2016-08-15T04:06:30Z,CONTRIBUTOR,True,7,18,5,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,261ef3285c2417931b0dc481183001156d733206,"Remove extra files from xpi
+
+The jpmignore file has been updated to not include sass or other extra files in the xpi. Extra svg files, from previous versions but are no longer in use, have been removed from the repo.
+
+Closes #73"
+16,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/72,72,"Change study name for logging, change author name","@Osmose r?
+",casebenton,12304716,2016-08-12T16:09:16Z,CONTRIBUTOR,True,2,2,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,45fe496a9a51f6eb09f40059656d303e7db0eb8c,Change study name for logging; change author name
+17,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/72,72,"Change study name for logging, change author name","@Osmose r?
+",casebenton,12304716,2016-08-12T16:09:16Z,CONTRIBUTOR,True,2,2,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,119b1a59c764b1d98deff097d98526d18ce77fe3,change author to mozilla foundation
+18,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/71,71,"Add txt file with list of domains, Closes #70","@gregglind r?
+",casebenton,12304716,2016-08-12T16:05:41Z,CONTRIBUTOR,True,7,0,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,fd5a07a3b0032a716b433c3d7bb249049e47c111,"Add txt file with list of domains, Closes #70"
+19,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/68,68,"Keep track of panel state, don't always call ""showPanel""","@Osmose r? 
+",casebenton,12304716,2016-08-09T17:28:47Z,CONTRIBUTOR,True,6,2,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,4fc20345be5207d1ddcdb571ea12e84bf7d401cd,"Use sdk/panel onOpen event listener
+
+When the panel is constructed, Recommend.js's handlePanelOpen is specified as the callback function for whenever the panel opens. The telemetry logging for panel open events is done here. This way, Recommend.js does not have to keep track of the state of the panel.
+
+Closes #66"
+20,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/67,67,"Hide items with 'hidden' class, not attribute","I'm now using the hidden class as we discussed yesterday. Also, no more styling by id or using the className property. Now only style by class is used, and the classList property is used for much more elegant class management. 
+
+@Osmose r? 
+",casebenton,12304716,2016-08-09T16:39:20Z,CONTRIBUTOR,True,21,19,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,506e1a8fb6fa8f5011494ef8b7225d1e18d8e8a7,"Hide items with 'hidden' class, not attribute
+
+Elements that are hidden now have a hidden class applied. Style selection by id has also been removed and replaced with style selection by class. The 'classList' property is now used for adding and removing classes.
+
+Closes #65"
+21,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/64,64,TelemetryLog use simpleData; no longer a singleton,"TelemetryLog counts of events are now stored persistently in simpleStorage. Class is now exported to be instatiated by Recommender class. Closes #58
+
+@Osmose r?
+",casebenton,12304716,2016-08-08T17:45:45Z,CONTRIBUTOR,True,38,24,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,dc5286be466dcdfbf18c2d2d78d9f2751a87e692,"TelemetryLog use simpleData, not be a singleton
+
+TelemetryLog counts of events are now stored persistently in simpleStorage. Class is now exported to be instatiated by Recommender class.
+
+Closes #58"
+22,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/64,64,TelemetryLog use simpleData; no longer a singleton,"TelemetryLog counts of events are now stored persistently in simpleStorage. Class is now exported to be instatiated by Recommender class. Closes #58
+
+@Osmose r?
+",casebenton,12304716,2016-08-08T17:45:45Z,CONTRIBUTOR,True,38,24,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,c1ce23e58a8fcb6f38333396d2b93c16c015cb97,"Use camelCase on telemetryLog variable, not TitleCase"
+23,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/64,64,TelemetryLog use simpleData; no longer a singleton,"TelemetryLog counts of events are now stored persistently in simpleStorage. Class is now exported to be instatiated by Recommender class. Closes #58
+
+@Osmose r?
+",casebenton,12304716,2016-08-08T17:45:45Z,CONTRIBUTOR,True,38,24,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,e96538017abd4c7d13fce3c5373712028bd86d12,Simplify declaration of simpleStorage properties
+24,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/64,64,TelemetryLog use simpleData; no longer a singleton,"TelemetryLog counts of events are now stored persistently in simpleStorage. Class is now exported to be instatiated by Recommender class. Closes #58
+
+@Osmose r?
+",casebenton,12304716,2016-08-08T17:45:45Z,CONTRIBUTOR,True,38,24,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,0cc3d40735ac4b9e3ea60ffcbf1a52655afb59dd,"use camelCase correctly, use getters and setters"
+25,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/64,64,TelemetryLog use simpleData; no longer a singleton,"TelemetryLog counts of events are now stored persistently in simpleStorage. Class is now exported to be instatiated by Recommender class. Closes #58
+
+@Osmose r?
+",casebenton,12304716,2016-08-08T17:45:45Z,CONTRIBUTOR,True,38,24,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,4c37f3ee868b866006b0d41685a55cfa211c4733,remove unnecessary incrementor method
+26,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/63,63,Fix short title / description styling issue,"@mythmon r?
+",casebenton,12304716,2016-08-08T16:49:35Z,CONTRIBUTOR,True,5,3,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,734a35303cd50ec9d01f24bd77792dd6f9d6203e,Remove flex styles that were not necessary Closes #62
+27,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/61,61,Add event listener for tab close,"@Osmose r?
+",casebenton,12304716,2016-08-05T23:10:50Z,CONTRIBUTOR,True,2,0,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,b149d0859e173bdf15bd97523d36d79133fe4e19,"Add event listener for tab close
+
+When a tab closes, hide the panel if it is visible
+
+Closes #60"
+28,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/59,59,Update Onboarding Addon,"wikipedia peek is the new recommended addon for onboarding, as recommended by Scott.
+
+@Osmose r? 
+",casebenton,12304716,2016-08-05T22:38:36Z,CONTRIBUTOR,True,15,2,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,a38bf798b4afb8ec8949ea8911092ab9a3a2e285,"onboard site is now wikipedia
+
+wikipedia peek is the new recommended addon for onboarding
+
+Closes #42"
+29,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/59,59,Update Onboarding Addon,"wikipedia peek is the new recommended addon for onboarding, as recommended by Scott.
+
+@Osmose r? 
+",casebenton,12304716,2016-08-05T22:38:36Z,CONTRIBUTOR,True,15,2,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,d86e4df0bed3cd73ece1c8f8b356d1cfebf9fc5b,change tld of wikipedia from .com to .org
+30,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/56,56,"Set study length, set exit survey url","@gregglind r?
+",casebenton,12304716,2016-08-05T22:30:28Z,CONTRIBUTOR,True,2,2,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,5199aea585585f47085ea58fa64d9af440b026e3,set study length to 14 days Closes #55
+31,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/56,56,"Set study length, set exit survey url","@gregglind r?
+",casebenton,12304716,2016-08-05T22:30:28Z,CONTRIBUTOR,True,2,2,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,b6a31c6bf27c18948f83250b521810423723de3d,set survery url Closes #57
+32,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/54,54,Simplify listener creation,"I rewrote the large and convoluted method for adding request listeners from the content script. 
+
+@Osmose r? 
+",casebenton,12304716,2016-08-05T20:18:57Z,CONTRIBUTOR,True,52,42,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,b31d168f97b8983af6b1738b930b79c590ad3ef1,Simplified listener creation
+33,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/53,53,Rename add-on for AMO,"Made the changes suggested in #44 
+@gregglind r?
+",casebenton,12304716,2016-08-05T19:47:54Z,CONTRIBUTOR,True,5,5,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,f4d2a9affb64d7cd6f8c3a57d28906d9eccb644d,rename add-on in package.json Closes #44
+34,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/53,53,Rename add-on for AMO,"Made the changes suggested in #44 
+@gregglind r?
+",casebenton,12304716,2016-08-05T19:47:54Z,CONTRIBUTOR,True,5,5,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,f7ea7147726ff9fc6ffbf2481cde976ea4a5dc33,fix typo in build tests
+35,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/52,52,Change button to enhance,"@gregglind r?
+
+<img width=""242"" alt=""screen shot 2016-08-05 at 10 37 46 am"" src=""https://cloud.githubusercontent.com/assets/12304716/17445243/cb1ced62-5af8-11e6-936a-de0d148bb526.png"">
+",casebenton,12304716,2016-08-05T17:39:05Z,CONTRIBUTOR,True,1,1,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,b613b947d2956f41bdea3a300eaacccd6e829d26,"Change button to enhance, Closes #50"
+36,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/51,51,Create new npm scripts,"@Osmose What do you think of the new npm scripts that @gregglind suggested? r?
+",casebenton,12304716,2016-08-05T17:32:41Z,CONTRIBUTOR,True,11,6,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,66de68b39a777d2e2a9c37360bb9edd16e3ebb2f,"Create new npm scripts, update Readme
+
+Closes #47"
+37,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/48,48,Onboarding fix,"The onboarding event now uses RES as the default recommendation (for now, until Wikiwand is approved / denied). Onboarding event is also cleaned up to not force a panel open before it is ready. Now uses waitForWindow method that all other panel open events use. 
+
+@gregglind r? 
+",casebenton,12304716,2016-08-05T17:19:20Z,CONTRIBUTOR,True,5,5,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,a821c877b7f1a1a1baac4a59ce962fcbb9c0829a,"Fix onboarding event bugs
+
+The onboarding event was trying to provide a recommendation for weather.com, when the weather.com add-on had been removed from the set of recommendations.
+
+Additionally, the onboarding event now uses the waitForWindow method for showing the panel at the correct time, rather than trying to manually force open a panel.
+
+Closes #46"
+38,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/48,48,Onboarding fix,"The onboarding event now uses RES as the default recommendation (for now, until Wikiwand is approved / denied). Onboarding event is also cleaned up to not force a panel open before it is ready. Now uses waitForWindow method that all other panel open events use. 
+
+@gregglind r? 
+",casebenton,12304716,2016-08-05T17:19:20Z,CONTRIBUTOR,True,5,5,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,606938c9540c9e16b4c68c1f6e58dbfe6de036a1,fix typo
+39,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/43,43,Restyle welcome box,"<img width=""411"" alt=""screen shot 2016-08-04 at 3 39 55 pm"" src=""https://cloud.githubusercontent.com/assets/12304716/17420796/f4eb7c8e-5a59-11e6-9d75-377231652351.png"">
+
+@Osmose here's how it looks now. r?
+",casebenton,12304716,2016-08-04T22:42:07Z,CONTRIBUTOR,True,7,3,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,2c23ebf43c52ca785cca94b2f607917ab3dfc8f6,"Use consistent padding in welcome box, add bottom border. Closes #41"
+40,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/40,40,Add circleci automation,"IT WORKED!! @mythmon r?
+",casebenton,12304716,2016-08-03T19:57:28Z,CONTRIBUTOR,True,20,7,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,5a7be69ee0b4d6812d80b13818e64c0fa6dfa447,add circleci automation
+41,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/40,40,Add circleci automation,"IT WORKED!! @mythmon r?
+",casebenton,12304716,2016-08-03T19:57:28Z,CONTRIBUTOR,True,20,7,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,4e7dd3b2bce0c268bd6a99180a4f6a09937ed535,fix bug in autotesting
+42,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/40,40,Add circleci automation,"IT WORKED!! @mythmon r?
+",casebenton,12304716,2016-08-03T19:57:28Z,CONTRIBUTOR,True,20,7,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,e94c9ac55763b616771762966426a83d91b82810,added required node modules for eslint
+43,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/40,40,Add circleci automation,"IT WORKED!! @mythmon r?
+",casebenton,12304716,2016-08-03T19:57:28Z,CONTRIBUTOR,True,20,7,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,8690f3d2632f87f50caefeee50d11d4458fc0f47,require node 6 in machine
+44,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/40,40,Add circleci automation,"IT WORKED!! @mythmon r?
+",casebenton,12304716,2016-08-03T19:57:28Z,CONTRIBUTOR,True,20,7,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,1a4e987fc015c7ade6bcd259cd388d8e5ac5d140,fixed package.json again
+45,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/40,40,Add circleci automation,"IT WORKED!! @mythmon r?
+",casebenton,12304716,2016-08-03T19:57:28Z,CONTRIBUTOR,True,20,7,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,46f95b9e47a3d19000c2e3883fdb7475f52e4fb9,fixed build string
+46,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/40,40,Add circleci automation,"IT WORKED!! @mythmon r?
+",casebenton,12304716,2016-08-03T19:57:28Z,CONTRIBUTOR,True,20,7,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,09f2e8b7373c7d9379cf535768ed6aec8f797401,fix script
+47,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/39,39,Fix #37: shield-studies-addon-utils now pulled in over npm,"@Osmose r?
+",casebenton,12304716,2016-08-03T17:42:36Z,CONTRIBUTOR,True,7,351,5,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,2f678a5a18a03042dbac64e281351b46d2a8391e,Fix #37: shield-studies-addon-utils now pulled in over npm
+48,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/39,39,Fix #37: shield-studies-addon-utils now pulled in over npm,"@Osmose r?
+",casebenton,12304716,2016-08-03T17:42:36Z,CONTRIBUTOR,True,7,351,5,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,c13aa4b5b149fac3ca885dfd608e5ee463771e91,Pin version of shield-utils
+49,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/38,38,Fix #36: Add node-sass and npm commands for building.,"@casebenton r?
+",Osmose,193106,2016-08-03T17:34:16Z,CONTRIBUTOR,True,10,5,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,713b710a41c3a8d45fcdc793b54214fea98b41c4,Fix #36: Add node-sass and npm commands for building.
+50,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/35,35,"Apply ""box-sizing: border-box"" to all elements","This is something that I should have done from the beginning. I thought that the effects of this rule were already in place by default, so I was confused several times when margins did not behave in a way that I expected. I didn't think that this was why though. 
+
+Most notably, when I brought in `_installButton.scss` originally, the install button did not look as expected because the writers had assumed that border-box was applied somewhere else. I made some adjustments to it a while ago, not knowing that I should have used border box. I've now brought the original verison of _installButton from the disco page back in.
+
+There were several css adjustments I had to make the switch to border-box. 
+
+@mythmon r?
+",casebenton,12304716,2016-08-03T16:17:38Z,CONTRIBUTOR,True,18,10,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,0ff686ae1c462379ca3294f34699df8b928c3f7c,apply box-sizing: border-box to all elements. Adjusted styling issues that resulted from this switch
+51,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/34,34,New line for disable,"I placed the disable button on its own line as requested in #17. This has dependencies on the other css PRs
+",casebenton,12304716,2016-08-02T23:09:13Z,CONTRIBUTOR,True,2,2,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,8b662422c084ee262842e7090c2a507e793a8679,disable all button now has its own line. Closes #17
+52,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/34,34,New line for disable,"I placed the disable button on its own line as requested in #17. This has dependencies on the other css PRs
+",casebenton,12304716,2016-08-02T23:09:13Z,CONTRIBUTOR,True,2,2,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,50e85fd5d5f23a26a654826b2e80f281e7804dc1,fixed typo
+53,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/33,33,Use High Contrast Colors for Text,"Text colors now meet WebAIM standards.
+
+@Osmose r?
+",casebenton,12304716,2016-08-02T22:51:17Z,CONTRIBUTOR,True,6,3,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,0063885b135d840583e54ab426bc916a60b6086d,"text colors now meet WebAIM standards
+Closes #16"
+54,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/32,32,Add Study Variations,"@gregglind how do these variations look? 
+r?
+",casebenton,12304716,2016-08-02T22:39:05Z,CONTRIBUTOR,True,8,3,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,3e158b128ce48613c4e5f07f458494359362b0e2,add variations to study
+55,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/32,32,Add Study Variations,"@gregglind how do these variations look? 
+r?
+",casebenton,12304716,2016-08-02T22:39:05Z,CONTRIBUTOR,True,8,3,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,4e8e9e464c99ffa8aa6748756da5cf9f323c6b09,"Rename variation branches
+
+Names are now more descriptive. A typo was also fixed."
+56,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/31,31,Fix issue where uninstall and reinstall of addon breaks panel show,"Issue isn't yet fixed for the window that handles the uninstall. Seems to work now for windows other than the window that initiated the uninstall. 
+",casebenton,12304716,2016-08-02T22:18:31Z,CONTRIBUTOR,True,34,12,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,d8992f7b71bc745e2e9f545cbf99283b3a80fa38,added cleanup function to remove buttons on uninstall
+57,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/31,31,Fix issue where uninstall and reinstall of addon breaks panel show,"Issue isn't yet fixed for the window that handles the uninstall. Seems to work now for windows other than the window that initiated the uninstall. 
+",casebenton,12304716,2016-08-02T22:18:31Z,CONTRIBUTOR,True,34,12,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,36ec1f6717bfde6c032486d9f6bfa2feab98fbfe,fixed issues with removing listeners
+58,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/31,31,Fix issue where uninstall and reinstall of addon breaks panel show,"Issue isn't yet fixed for the window that handles the uninstall. Seems to work now for windows other than the window that initiated the uninstall. 
+",casebenton,12304716,2016-08-02T22:18:31Z,CONTRIBUTOR,True,34,12,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,203737f6ee4798820a1f129493d9a722fbbe7bba,"clear out customizeableUI widget cache
+
+The CustomizableUI cache of button nodes on uninstall by using CustomizableUI destroyWidget method. Notably, the createWidget method is NOT use since this has undesirable side-effects such as listing the button in the customize panel.
+
+Closes #18"
+59,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/30,30,Update Telemetry Logging,"@gregglind I've made all of the changes that we just discussed:
+
+1) Xutils logging wrapped up into TelemetryLog method that appends property labeling the logging as ""addon"" level
+
+2) Additional loggin methods for disable for site, disable forever, and hide panel
+
+3) Additional parameters for logging methods (mostly domain) to log addition information in situations like panel open.
+
+r?
+",casebenton,12304716,2016-08-02T20:46:51Z,CONTRIBUTOR,True,82,14,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,dc97d7fff1b45b0baaf8d5474df41ed2e161d935,"add additional loggin information, and conditions for logging"
+60,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/30,30,Update Telemetry Logging,"@gregglind I've made all of the changes that we just discussed:
+
+1) Xutils logging wrapped up into TelemetryLog method that appends property labeling the logging as ""addon"" level
+
+2) Additional loggin methods for disable for site, disable forever, and hide panel
+
+3) Additional parameters for logging methods (mostly domain) to log addition information in situations like panel open.
+
+r?
+",casebenton,12304716,2016-08-02T20:46:51Z,CONTRIBUTOR,True,82,14,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,eb96de8ec1fa51673878b1bee88bc69ead2da59f,Add addon.id to logging data Closes #49
+61,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/30,30,Update Telemetry Logging,"@gregglind I've made all of the changes that we just discussed:
+
+1) Xutils logging wrapped up into TelemetryLog method that appends property labeling the logging as ""addon"" level
+
+2) Additional loggin methods for disable for site, disable forever, and hide panel
+
+3) Additional parameters for logging methods (mostly domain) to log addition information in situations like panel open.
+
+r?
+",casebenton,12304716,2016-08-02T20:46:51Z,CONTRIBUTOR,True,82,14,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,7ec49a3ea5c4d0cc47d4585fc191b2c3468b4e0e,Log domain in onboarding ping
+62,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/30,30,Update Telemetry Logging,"@gregglind I've made all of the changes that we just discussed:
+
+1) Xutils logging wrapped up into TelemetryLog method that appends property labeling the logging as ""addon"" level
+
+2) Additional loggin methods for disable for site, disable forever, and hide panel
+
+3) Additional parameters for logging methods (mostly domain) to log addition information in situations like panel open.
+
+r?
+",casebenton,12304716,2016-08-02T20:46:51Z,CONTRIBUTOR,True,82,14,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,42fa3ebaec25ab67a2be9e22a0eec9b05190f838,fix copypaste bug
+63,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/30,30,Update Telemetry Logging,"@gregglind I've made all of the changes that we just discussed:
+
+1) Xutils logging wrapped up into TelemetryLog method that appends property labeling the logging as ""addon"" level
+
+2) Additional loggin methods for disable for site, disable forever, and hide panel
+
+3) Additional parameters for logging methods (mostly domain) to log addition information in situations like panel open.
+
+r?
+",casebenton,12304716,2016-08-02T20:46:51Z,CONTRIBUTOR,True,82,14,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,dcb1ac343b9d52785c467b51a47e049029b771e5,log why button clicks
+64,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/30,30,Update Telemetry Logging,"@gregglind I've made all of the changes that we just discussed:
+
+1) Xutils logging wrapped up into TelemetryLog method that appends property labeling the logging as ""addon"" level
+
+2) Additional loggin methods for disable for site, disable forever, and hide panel
+
+3) Additional parameters for logging methods (mostly domain) to log addition information in situations like panel open.
+
+r?
+",casebenton,12304716,2016-08-02T20:46:51Z,CONTRIBUTOR,True,82,14,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,c35cd395000a3fd1c94fa08ffb1855d5ec1d72c0,fix typo
+65,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/28,28,Use headers correctly,"Only look at most recent commit, as other two commits are included in another PR currently.
+
+@mythmon r? 
+",casebenton,12304716,2016-08-02T18:21:43Z,CONTRIBUTOR,True,8,7,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,8b016a22299b6f601ce2819464cab9d785a9cf79,replace h3 with p
+66,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/28,28,Use headers correctly,"Only look at most recent commit, as other two commits are included in another PR currently.
+
+@mythmon r? 
+",casebenton,12304716,2016-08-02T18:21:43Z,CONTRIBUTOR,True,8,7,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,faf202b98cf03c0175290470ce35ff144f3f57bb,use h1 properly instead of p
+67,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/28,28,Use headers correctly,"Only look at most recent commit, as other two commits are included in another PR currently.
+
+@mythmon r? 
+",casebenton,12304716,2016-08-02T18:21:43Z,CONTRIBUTOR,True,8,7,2,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,22b748205c22f054c37c068a96551b305aeabe59,actually changed the html
+68,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/27,27,Use flexbox better to fix icon stretching,"Styles are now applied in a more clean way. Closes #15 
+
+@mythmon do you think this is an appropriate way to use flexbox rules?
+",casebenton,12304716,2016-08-02T17:04:32Z,CONTRIBUTOR,True,39,51,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,11baac5d3847d0932604df3c582e51ec28ef19f8,Use flexbox properly to fix icon stretching. Closes #15
+69,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/27,27,Use flexbox better to fix icon stretching,"Styles are now applied in a more clean way. Closes #15 
+
+@mythmon do you think this is an appropriate way to use flexbox rules?
+",casebenton,12304716,2016-08-02T17:04:32Z,CONTRIBUTOR,True,39,51,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,a84e413166d1e5c2032296b4e83b61672e551f01,"condense 2 classes into 1, fix way flexbox is used on image"
+70,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/27,27,Use flexbox better to fix icon stretching,"Styles are now applied in a more clean way. Closes #15 
+
+@mythmon do you think this is an appropriate way to use flexbox rules?
+",casebenton,12304716,2016-08-02T17:04:32Z,CONTRIBUTOR,True,39,51,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,fab3165c2dc673ab6e499e88ac154ab437e99c14,"use class, not id, to target css rules to image"
+71,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/27,27,Use flexbox better to fix icon stretching,"Styles are now applied in a more clean way. Closes #15 
+
+@mythmon do you think this is an appropriate way to use flexbox rules?
+",casebenton,12304716,2016-08-02T17:04:32Z,CONTRIBUTOR,True,39,51,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,56196d12d6a041dee37acfd006318db89bd0b9d1,removed extraneous flexbox rules
+72,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/27,27,Use flexbox better to fix icon stretching,"Styles are now applied in a more clean way. Closes #15 
+
+@mythmon do you think this is an appropriate way to use flexbox rules?
+",casebenton,12304716,2016-08-02T17:04:32Z,CONTRIBUTOR,True,39,51,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,be6938ce1c598c941e0b8ea3f3e93154a9b97fc0,"icons size properly, padding for elements is much better, fixed contrast of info icon
+Closes #13 #15"
+73,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/26,26,Fix panel close listener that didn't remove itself properly,"The panel close listener that evoked the ""endOnboard"" function previously didn't remove itself properly, so the ""endOnboard"" function would be called on every panel close (instead of just the first one).
+
+@mythmon r? 
+",casebenton,12304716,2016-08-01T20:36:00Z,CONTRIBUTOR,True,3,2,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,d18cbfa568bb37e1a287ea92c4f27329f441b507,endOnboard listener now removes istelf properly
+74,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/25,25,Remove Built CSS,"I updated the build instructions in the readme to deal with Sass in the build process. 
+
+r?
+",casebenton,12304716,2016-08-01T19:40:29Z,CONTRIBUTOR,True,5,706,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,77da0aa1c7bb027542446086b0c1f9e4da380bc8,"built css was previously included in the repo, and this has now been removed
+Closes #23"
+75,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/25,25,Remove Built CSS,"I updated the build instructions in the readme to deal with Sass in the build process. 
+
+r?
+",casebenton,12304716,2016-08-01T19:40:29Z,CONTRIBUTOR,True,5,706,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,dac4f2f80e50aef3893160a6d91343ec59b5c406,fix readme
+76,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/24,24,Remove all recommendations which open tabs with sketchy malware ads,"This constraint removes a lot of the recommendations. There are only 7 left if we remove all of these, so we should probably find some new ones. None of the 7 remaining add-ons open new tabs on install. 
+
+r? 
+",casebenton,12304716,2016-07-29T22:24:08Z,CONTRIBUTOR,True,0,89,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,70947de54dde4174656c30e03e1678dba15ce328,"remove all recommendations where, on install of addon, a new tab opens which contains malware ads. Closes mozilla/addon-recommendation-shield-study#20"
+77,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/21,21,Fix up addon icon styling and recommendation padding,"The icons are no longer stretched in appearance. Fixing styling of the images also fixed the overflow issue with the ""why am I seeing this?"" panel. I also fixed up issues with the padding of the items in the panel, so that they are more centered.
+
+@Osmose r?
+",casebenton,12304716,2016-07-29T21:12:34Z,CONTRIBUTOR,False,15,12,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,f45747ed4d5b018b6e0184cdb320ba281d5e2c88,"Some small changes to padding of elements within panel, to ensure that they are centered and look clean.
+Closes #15 Closes mozilla/addon-recommendation-shield-study#13"
+78,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/21,21,Fix up addon icon styling and recommendation padding,"The icons are no longer stretched in appearance. Fixing styling of the images also fixed the overflow issue with the ""why am I seeing this?"" panel. I also fixed up issues with the padding of the items in the panel, so that they are more centered.
+
+@Osmose r?
+",casebenton,12304716,2016-07-29T21:12:34Z,CONTRIBUTOR,False,15,12,3,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,9fe96322a1dd8e5d8070d87a04149b74cb0bba52,fixed padding of welcome message
+79,https://api.github.com/repos/mozilla/addon-recommendation-shield-study/pulls/19,19,Closes mozilla/addon-recommendation-shield-study#12,"r?
+",casebenton,12304716,2016-07-29T19:56:30Z,CONTRIBUTOR,True,5,2,1,Stand-alone verison of Add-on Recommendation for Shield Study,JavaScript,07f43e82ffce1e595f02c236b22ab86593529bbd,"Add tab listener that hides panel, if showing, whenever the active tab changes.
+Closes mozilla/addon-recommendation-shield-study#12"

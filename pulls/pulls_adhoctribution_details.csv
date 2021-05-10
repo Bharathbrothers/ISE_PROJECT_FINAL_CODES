@@ -1,0 +1,68 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/adhoctribution/pulls/8,8,Improve error handling.,"This pull requests improves the error handling, and fixes potential fall-through problems in some cases.
+
+I'll try to annotate the code more specifically, but generally you should get into the habit of early `return`ing your callbacks. As an example, 
+
+``` js
+someAsyncMethod(function(err, result) {
+  if (err) {
+    console.error(err);
+    callback(err); // should `return callback(err)` here
+  }
+  // Execution continues after the if-block and this line will crash your process
+  // because `result` will likely be `null`. Even if we didn't try to use a method
+  // on the result and just passed it back, the callback would trigger twice, which
+  // will have unexpected results.
+  callback(null, result.doSomething());
+})
+```
+
+Early `returns` on callbacks also mean you don't have to have a giant `else {..}` block. In this PR I removed the `else` blocks where applicable, but I _didn't_ fix the whitespace so as not to unnecessarily obfuscate the diff. I can make a followup PR fixing the whitespace if you accept this one.
+
+Another general fix that I did was on the API routes, I made them always JSON and use a proper status code. Previously they would only return JSON on success, and plain strings on failure, but they were also still returning HTTP 200 on failure. This would cause any tool that consumes those API endpoints possibly fail if they always assumed JSON on a 200 response.
+",brianloveswords,166258,2014-06-23T15:03:22Z,CONTRIBUTOR,True,66,41,3,[Archived] A tool for logging ad-hoc contribution activities that we can't count elsewhere,JavaScript,6d099d8933dd4dd9a7f574a807b098e956b558d0,Improve error handling.
+1,https://api.github.com/repos/mozilla/adhoctribution/pulls/8,8,Improve error handling.,"This pull requests improves the error handling, and fixes potential fall-through problems in some cases.
+
+I'll try to annotate the code more specifically, but generally you should get into the habit of early `return`ing your callbacks. As an example, 
+
+``` js
+someAsyncMethod(function(err, result) {
+  if (err) {
+    console.error(err);
+    callback(err); // should `return callback(err)` here
+  }
+  // Execution continues after the if-block and this line will crash your process
+  // because `result` will likely be `null`. Even if we didn't try to use a method
+  // on the result and just passed it back, the callback would trigger twice, which
+  // will have unexpected results.
+  callback(null, result.doSomething());
+})
+```
+
+Early `returns` on callbacks also mean you don't have to have a giant `else {..}` block. In this PR I removed the `else` blocks where applicable, but I _didn't_ fix the whitespace so as not to unnecessarily obfuscate the diff. I can make a followup PR fixing the whitespace if you accept this one.
+
+Another general fix that I did was on the API routes, I made them always JSON and use a proper status code. Previously they would only return JSON on success, and plain strings on failure, but they were also still returning HTTP 200 on failure. This would cause any tool that consumes those API endpoints possibly fail if they always assumed JSON on a 200 response.
+",brianloveswords,166258,2014-06-23T15:03:22Z,CONTRIBUTOR,True,66,41,3,[Archived] A tool for logging ad-hoc contribution activities that we can't count elsewhere,JavaScript,a49d4df84bb641859ae5e916d9c17487d6e35021,Consistency in property name.
+2,https://api.github.com/repos/mozilla/adhoctribution/pulls/7,7,Poll badgekit,"This adds support for polling badgekit-api to detect new instances of ""contributor"" badges.  When found, the recipients of the badges will be added to the contributions table.
+
+The contributor badges themselves are defined in the new contributorBadges table.  Each entry must be associated with a particular system and badge slug in badgekit API.  The entry also described the team, bucket, and description that will be logged in the contributions table when a new badge instance is detected.  
+",ghost,10137,2014-06-10T19:06:59Z,NONE,True,138,2,6,[Archived] A tool for logging ad-hoc contribution activities that we can't count elsewhere,JavaScript,86953415382f28eac25b443623ffdd83b76cbf60,Adding support for polling badgekit for contributor badges
+3,https://api.github.com/repos/mozilla/adhoctribution/pulls/7,7,Poll badgekit,"This adds support for polling badgekit-api to detect new instances of ""contributor"" badges.  When found, the recipients of the badges will be added to the contributions table.
+
+The contributor badges themselves are defined in the new contributorBadges table.  Each entry must be associated with a particular system and badge slug in badgekit API.  The entry also described the team, bucket, and description that will be logged in the contributions table when a new badge instance is detected.  
+",ghost,10137,2014-06-10T19:06:59Z,NONE,True,138,2,6,[Archived] A tool for logging ad-hoc contribution activities that we can't count elsewhere,JavaScript,00d7e31ad7bc75a36ee53ca38e209aa152928b46,Do not poll if no frequency is set
+4,https://api.github.com/repos/mozilla/adhoctribution/pulls/7,7,Poll badgekit,"This adds support for polling badgekit-api to detect new instances of ""contributor"" badges.  When found, the recipients of the badges will be added to the contributions table.
+
+The contributor badges themselves are defined in the new contributorBadges table.  Each entry must be associated with a particular system and badge slug in badgekit API.  The entry also described the team, bucket, and description that will be logged in the contributions table when a new badge instance is detected.  
+",ghost,10137,2014-06-10T19:06:59Z,NONE,True,138,2,6,[Archived] A tool for logging ad-hoc contribution activities that we can't count elsewhere,JavaScript,582923997d45c393d716300ac26a90ba145747a9,Newline at EOF
+5,https://api.github.com/repos/mozilla/adhoctribution/pulls/7,7,Poll badgekit,"This adds support for polling badgekit-api to detect new instances of ""contributor"" badges.  When found, the recipients of the badges will be added to the contributions table.
+
+The contributor badges themselves are defined in the new contributorBadges table.  Each entry must be associated with a particular system and badge slug in badgekit API.  The entry also described the team, bucket, and description that will be logged in the contributions table when a new badge instance is detected.  
+",ghost,10137,2014-06-10T19:06:59Z,NONE,True,138,2,6,[Archived] A tool for logging ad-hoc contribution activities that we can't count elsewhere,JavaScript,2ce09c5807dce0879c8569e1d1a11effd1821e61,Fixing uppercase character
+6,https://api.github.com/repos/mozilla/adhoctribution/pulls/7,7,Poll badgekit,"This adds support for polling badgekit-api to detect new instances of ""contributor"" badges.  When found, the recipients of the badges will be added to the contributions table.
+
+The contributor badges themselves are defined in the new contributorBadges table.  Each entry must be associated with a particular system and badge slug in badgekit API.  The entry also described the team, bucket, and description that will be logged in the contributions table when a new badge instance is detected.  
+",ghost,10137,2014-06-10T19:06:59Z,NONE,True,138,2,6,[Archived] A tool for logging ad-hoc contribution activities that we can't count elsewhere,JavaScript,dfd6a49a7e2c791b5390f962577bd18ef77dad58,Fixing bug when badge has no instances
+7,https://api.github.com/repos/mozilla/adhoctribution/pulls/6,6,Update select-type.handlebars,,ppapadeas,498592,2014-06-10T12:56:52Z,CONTRIBUTOR,True,2,0,1,[Archived] A tool for logging ad-hoc contribution activities that we can't count elsewhere,JavaScript,4509fe1b454ab7dcb40db719352c0be9d4155413,Update select-type.handlebars
+8,https://api.github.com/repos/mozilla/adhoctribution/pulls/5,5,Add newrelic,"![thisisinternet](https://cloud.githubusercontent.com/assets/1373628/3067399/6dfa5f20-e282-11e3-860c-de954c84201c.gif)
+",jdotpz,1373628,2014-05-23T13:59:18Z,NONE,True,5,0,2,[Archived] A tool for logging ad-hoc contribution activities that we can't count elsewhere,JavaScript,52efa80f8674c697a578a8d9ac7660d6094bdcec,Add newrelic

@@ -1,0 +1,232 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/connect-cachify/pulls/45,45,missing comma,,askhogan,635449,2014-07-25T05:28:44Z,CONTRIBUTOR,True,1,1,1,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,1b5efaf96e63d002b698b639dc2ba44573da3beb,missing comma
+1,https://api.github.com/repos/mozilla/connect-cachify/pulls/44,44,Added support for express 4.x,"Core code comes from https://github.com/mozilla/connect-cachify/pull/42. I took his PR and manually merged the relevant parts. Additional tests added to ensure all of the expresses are _really_ being tested.
+
+Original commits:
+- 587518018b73c7acc39f411b918635081485d240
+- 62a5bd69a9c8ae1a413da2616ab0b7894e2ddbf2
+- 5a9b544b7266009dda3edcf0d6cab4ef0bb770a5
+- 8ae7c94a48b95838bef130af10cf4337556a665c
+- 9c219d1e19cce5944c55816e6b61333c1c4250ca
+
+Thank you very much @kmchugh!
+",shane-tomlinson,848085,2014-05-09T15:55:50Z,MEMBER,True,110,52,2,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,a161c998d969dfc94fe1f758d81daf29fe9f3cb2,"Added support for express 4.x
+
+Core code comes from https://github.com/mozilla/connect-cachify/pull/42. I took his PR and manually merged the relevant parts. Additional tests added to ensure all of the expresses are *really* being tested.
+
+Original commits:
+* 587518018b73c7acc39f411b918635081485d240
+* 62a5bd69a9c8ae1a413da2616ab0b7894e2ddbf2
+* 5a9b544b7266009dda3edcf0d6cab4ef0bb770a5
+* 8ae7c94a48b95838bef130af10cf4337556a665c
+* 9c219d1e19cce5944c55816e6b61333c1c4250ca
+
+Thank you very much @kmchugh!"
+2,https://api.github.com/repos/mozilla/connect-cachify/pulls/43,43,Refactor simplify extract,"Yo @ozten, I was trying to figure out why my integration of connect-cachify wasn't working today and ended up doing a lot of cleanup while I was trying to noodle on what various parts are doing.
+
+Would you do a review? If an r+, mind `npm publish`ing?
+
+Note, no tests were modified, this is a pure refactor.
+
+Now, if I could just figure out why travis hates me.
+",shane-tomlinson,848085,2014-05-09T14:57:27Z,MEMBER,True,282,162,2,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,6e5cc4c3d01219aace0e309e3f8caece8e2a22ba,"refactor: Large refactor of the middleware, mostly extracting functions and clarifying names.
+
+Extract helper functions:
+* is_cachified_uri
+* remove_prefix
+* get_true_path
+* check_exists
+* get_expected_hash
+* do_contents_match_expected_hash
+* clean_options
+* set_locals
+* set_cache_headers
+* remove_other_cache_headers"
+3,https://api.github.com/repos/mozilla/connect-cachify/pulls/43,43,Refactor simplify extract,"Yo @ozten, I was trying to figure out why my integration of connect-cachify wasn't working today and ended up doing a lot of cleanup while I was trying to noodle on what various parts are doing.
+
+Would you do a review? If an r+, mind `npm publish`ing?
+
+Note, no tests were modified, this is a pure refactor.
+
+Now, if I could just figure out why travis hates me.
+",shane-tomlinson,848085,2014-05-09T14:57:27Z,MEMBER,True,282,162,2,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,b08d441fa3708017c74f2c56cc6c0f12d14597c4,"refactor: More cleanup and simplification.
+
+* Rename `opts` to `_opts` to be consistent with other global variables.
+
+Add more helper functions:
+* does_file_match_expected_hash
+* get_uri
+* should_skip_hashification
+* get_predefined_hash
+* url_to_filename
+* get_resource_hash
+* generate_hashed_url
+* should_use_development_resources
+* generate_tags_for_resources
+* rename prod_or_dev_tags to generate_tags_for_filename"
+4,https://api.github.com/repos/mozilla/connect-cachify/pulls/43,43,Refactor simplify extract,"Yo @ozten, I was trying to figure out why my integration of connect-cachify wasn't working today and ended up doing a lot of cleanup while I was trying to noodle on what various parts are doing.
+
+Would you do a review? If an r+, mind `npm publish`ing?
+
+Note, no tests were modified, this is a pure refactor.
+
+Now, if I could just figure out why travis hates me.
+",shane-tomlinson,848085,2014-05-09T14:57:27Z,MEMBER,True,282,162,2,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,bda79bb72c92063e4a03221845d66b6775b63c70,"Drop node 0.6 from testing, add node 0.10"
+5,https://api.github.com/repos/mozilla/connect-cachify/pulls/42,42,Updated to support Express 4.x,"Express 4.x no longer represents res.locals as a function, this fix allows the treatment of res.locals as an object for 4.x and keeps backwards compatibility in 3.x and 2.x.
+
+This also fixes up race conditions in express-test.js
+",kmchugh,1219541,2014-04-15T05:19:36Z,NONE,False,352,314,3,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,587518018b73c7acc39f411b918635081485d240,Added support for express 4.x
+6,https://api.github.com/repos/mozilla/connect-cachify/pulls/42,42,Updated to support Express 4.x,"Express 4.x no longer represents res.locals as a function, this fix allows the treatment of res.locals as an object for 4.x and keeps backwards compatibility in 3.x and 2.x.
+
+This also fixes up race conditions in express-test.js
+",kmchugh,1219541,2014-04-15T05:19:36Z,NONE,False,352,314,3,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,62a5bd69a9c8ae1a413da2616ab0b7894e2ddbf2,Fix for test failing in travis
+7,https://api.github.com/repos/mozilla/connect-cachify/pulls/42,42,Updated to support Express 4.x,"Express 4.x no longer represents res.locals as a function, this fix allows the treatment of res.locals as an object for 4.x and keeps backwards compatibility in 3.x and 2.x.
+
+This also fixes up race conditions in express-test.js
+",kmchugh,1219541,2014-04-15T05:19:36Z,NONE,False,352,314,3,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,5a9b544b7266009dda3edcf0d6cab4ef0bb770a5,Update for test cleanup
+8,https://api.github.com/repos/mozilla/connect-cachify/pulls/42,42,Updated to support Express 4.x,"Express 4.x no longer represents res.locals as a function, this fix allows the treatment of res.locals as an object for 4.x and keeps backwards compatibility in 3.x and 2.x.
+
+This also fixes up race conditions in express-test.js
+",kmchugh,1219541,2014-04-15T05:19:36Z,NONE,False,352,314,3,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,8ae7c94a48b95838bef130af10cf4337556a665c,Update for spawned function completing in unexpected order
+9,https://api.github.com/repos/mozilla/connect-cachify/pulls/42,42,Updated to support Express 4.x,"Express 4.x no longer represents res.locals as a function, this fix allows the treatment of res.locals as an object for 4.x and keeps backwards compatibility in 3.x and 2.x.
+
+This also fixes up race conditions in express-test.js
+",kmchugh,1219541,2014-04-15T05:19:36Z,NONE,False,352,314,3,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,9c219d1e19cce5944c55816e6b61333c1c4250ca,Update version number
+10,https://api.github.com/repos/mozilla/connect-cachify/pulls/41,41,Added support for express 4.x,"Express 4.x no longer uses a function to represent res.locals.  This is a fix for supporting 4.x and remains backwards compatible with 3 and 2.
+",kmchugh,1219541,2014-04-15T00:09:08Z,NONE,False,311,279,2,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,587518018b73c7acc39f411b918635081485d240,Added support for express 4.x
+11,https://api.github.com/repos/mozilla/connect-cachify/pulls/41,41,Added support for express 4.x,"Express 4.x no longer uses a function to represent res.locals.  This is a fix for supporting 4.x and remains backwards compatible with 3 and 2.
+",kmchugh,1219541,2014-04-15T00:09:08Z,NONE,False,311,279,2,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,62a5bd69a9c8ae1a413da2616ab0b7894e2ddbf2,Fix for test failing in travis
+12,https://api.github.com/repos/mozilla/connect-cachify/pulls/40,40,Update package.json,"Adding license info
+",pdehaan,557895,2013-09-19T20:05:23Z,CONTRIBUTOR,True,4,0,1,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,7385e0b4f0b3861eb76ef514af6a526883ce3839,"Update package.json
+
+Adding license info"
+13,https://api.github.com/repos/mozilla/connect-cachify/pulls/38,38,Simplify 'invalid cashes' verification,"Instead of checking cachify prefix against the md5 hash of the file content we just check if the said prefix is among the ones that we previously generated.
+
+It provides a safeguard against someone maliciously attempting to clog the downstream cache by sending us a great number of invalid URLs and has an added benefit of beeing much simpler than 'recalculate the hash' method.
+
+Fixes #37
+",pirxpilot,3240,2013-09-15T12:28:54Z,NONE,False,17,25,1,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,b0d8b5e71d133adace8b899d9c678b192a6d02f7,"Simplify 'invalid cashes' verification
+
+Instead of checking cachify prefix against the md5 hash of the file
+content we just check if the said prefix is among the ones that we
+previously generated.
+
+It provides a safeguard against someone maliciously attempting to clog
+the downstream cache by sending us a great number of invalid URLs and
+has an added benefit of beeing much simpler than 'recalculate the hash'
+method.
+
+Fixes #37"
+14,https://api.github.com/repos/mozilla/connect-cachify/pulls/36,36,Fix to handle weird scenarios where the request urls to assets contain query string,,infindex,2105610,2013-07-31T22:51:04Z,CONTRIBUTOR,True,119,12,2,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,6a792d3cf26358735893716f7d7f3af44b6eeb49,"Fix to handle weird scenarios where the request urls contain query
+parameters"
+15,https://api.github.com/repos/mozilla/connect-cachify/pulls/36,36,Fix to handle weird scenarios where the request urls to assets contain query string,,infindex,2105610,2013-07-31T22:51:04Z,CONTRIBUTOR,True,119,12,2,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,3ea6980fa7ee2374f02cd53a5ea76dc794b6ee22,Merge remote-tracking branch 'upstream/master'
+16,https://api.github.com/repos/mozilla/connect-cachify/pulls/36,36,Fix to handle weird scenarios where the request urls to assets contain query string,,infindex,2105610,2013-07-31T22:51:04Z,CONTRIBUTOR,True,119,12,2,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,ee1bf95802befe55ac5aa4de21480fd1ec411695,"- Fixed test failures
+- Handle query parameter in development mode
+- Adding tests to demonstrates the problem when query string parameters
+  Are introduced"
+17,https://api.github.com/repos/mozilla/connect-cachify/pulls/34,34,"Correct misspelling of ""Cachify"" in readme",,machuga,182000,2013-07-12T19:53:36Z,CONTRIBUTOR,True,1,1,1,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,a89846112cd089f4e89a2c328034be8314abcdc9,"Correct misspelling of ""Cachify"" in readme"
+18,https://api.github.com/repos/mozilla/connect-cachify/pulls/33,33,Add the ability to add the `defer` or `async` attributes to scripts.,"@ozten, could you review this?
+
+Helpers for mozilla/browserid#3454
+",shane-tomlinson,848085,2013-05-29T15:45:14Z,MEMBER,True,48,3,3,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,f059fcc172d5ae3d85b80b2de5b8ae912d19c3de,"Add the ability to add the `defer` or `async` attributes to scripts.
+
+Helpers for mozilla/browserid#3454"
+19,https://api.github.com/repos/mozilla/connect-cachify/pulls/33,33,Add the ability to add the `defer` or `async` attributes to scripts.,"@ozten, could you review this?
+
+Helpers for mozilla/browserid#3454
+",shane-tomlinson,848085,2013-05-29T15:45:14Z,MEMBER,True,48,3,3,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,e2e2a57871db491aa3d46c5ead98104eb29b6955,"Simplify the defer/async API options.
+
+* defer and async are only added to scripts in production mode."
+20,https://api.github.com/repos/mozilla/connect-cachify/pulls/33,33,Add the ability to add the `defer` or `async` attributes to scripts.,"@ozten, could you review this?
+
+Helpers for mozilla/browserid#3454
+",shane-tomlinson,848085,2013-05-29T15:45:14Z,MEMBER,True,48,3,3,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,594d9185d6b3f5405fa9959e0479846cfdd61706,Add default value docs for async and defer
+21,https://api.github.com/repos/mozilla/connect-cachify/pulls/32,32,always check file checksum and ensure that in-url hash matches file cont...,"...ents. issue #31
+",lloyd,39411,2013-04-24T22:59:34Z,CONTRIBUTOR,True,47,16,3,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,c9b04320ae46758d3112c56a69c5c6054b6ccec3,always check file checksum and ensure that in-url hash matches file contents. issue #31
+22,https://api.github.com/repos/mozilla/connect-cachify/pulls/32,32,always check file checksum and ensure that in-url hash matches file cont...,"...ents. issue #31
+",lloyd,39411,2013-04-24T22:59:34Z,CONTRIBUTOR,True,47,16,3,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,f2f175a34c283b64177578baefb34618ebe2381d,"make the file read that happens on every request async, and document the test that verifies mismatched checksums don't result in url re-writing"
+23,https://api.github.com/repos/mozilla/connect-cachify/pulls/27,27,Add the ability to specify a url_to_path table.,"This allows files to be looked up in the table that may not be in the root path.
+",shane-tomlinson,848085,2013-01-28T11:50:40Z,MEMBER,True,98,14,5,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,a12c9a6e896c48dbbdc617b901f252dab474ec17,"Add the ability to specify a url_to_path table.
+
+This allows files to be looked up that may not be in the root path."
+24,https://api.github.com/repos/mozilla/connect-cachify/pulls/27,27,Add the ability to specify a url_to_path table.,"This allows files to be looked up in the table that may not be in the root path.
+",shane-tomlinson,848085,2013-01-28T11:50:40Z,MEMBER,True,98,14,5,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,a876c343c1ccd742e308ccc2556fbe5c1c959755,Clean up the test for url_to_paths functionality.
+25,https://api.github.com/repos/mozilla/connect-cachify/pulls/27,27,Add the ability to specify a url_to_path table.,"This allows files to be looked up in the table that may not be in the root path.
+",shane-tomlinson,848085,2013-01-28T11:50:40Z,MEMBER,True,98,14,5,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,eafa4a2fc806b1a88702f338e4d34f90f5a1bffd,Update docs for the new url_to_paths option.
+26,https://api.github.com/repos/mozilla/connect-cachify/pulls/27,27,Add the ability to specify a url_to_path table.,"This allows files to be looked up in the table that may not be in the root path.
+",shane-tomlinson,848085,2013-01-28T11:50:40Z,MEMBER,True,98,14,5,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,f3c1c406db2352df5e331f9d358f5c42fd245400,Add url_to_paths to initial example in README.md
+27,https://api.github.com/repos/mozilla/connect-cachify/pulls/27,27,Add the ability to specify a url_to_path table.,"This allows files to be looked up in the table that may not be in the root path.
+",shane-tomlinson,848085,2013-01-28T11:50:40Z,MEMBER,True,98,14,5,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,44cfcf60f87e015fe23418808f0bd1ca043b700b,"Beef up the test for url_to_paths.
+
+* Add a file to the repo, test/test-data/test-file.js which is used as a stable file from which to calculate the md5. This is used to make sure url_to_paths is operating as expected."
+28,https://api.github.com/repos/mozilla/connect-cachify/pulls/26,26,"Remove duplicate resp code in unit tests by creating a generic ""get_resp"" funciton.","@ozten - mind reviewing? The code that created the resp object was identical across all tests, so I created one generic function to do it.
+",shane-tomlinson,848085,2013-01-27T08:57:09Z,MEMBER,True,22,56,1,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,f2ec7c64e3bb43073282257d445fc2d0a3c83ede,"Remove duplicate resp code by creating a generic ""get_resp"" funciton."
+29,https://api.github.com/repos/mozilla/connect-cachify/pulls/25,25,Allow development resources to contain fragment identifiers.,"@ozten - mind reviewing?
+
+When looking for the filename, strip the fragment identifier (#partofurl) from the resource name.
+
+The part that I am most concerned about is the exports.uncached_resources that I added. Is there a better way to check whether a resource cannot be found and no hash can be created?
+",shane-tomlinson,848085,2013-01-23T17:41:11Z,MEMBER,True,45,18,2,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,fd49baf2a7cc35a04aba0a7a20b58c9ff595846a,"Allow development resources to contain fragment identifiers.
+
+When looking for the filename, strip the fragment identifier (#partofurl) from the resource name."
+30,https://api.github.com/repos/mozilla/connect-cachify/pulls/23,23,Prefetch,"Add a new helper function to generate prefetch hints for the page head.
+
+This is related to https://github.com/mozilla/browserid/pull/2777 since it would make that patch somewhat cleaner: https://github.com/fmarier/browserid/commit/e78a8a69307a6eb7bd159bbc0d9a8a80742860b5
+",fmarier,167821,2012-11-28T02:43:49Z,CONTRIBUTOR,True,24,1,3,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,162423e97a3693b853d4ce702fa470e1bd92663c,"Add a new cachify_prefetch helper
+
+This generates <link rel=""prefetch""> tags which provide prefetching
+hints to browsers that support this HTML5 feature."
+31,https://api.github.com/repos/mozilla/connect-cachify/pulls/23,23,Prefetch,"Add a new helper function to generate prefetch hints for the page head.
+
+This is related to https://github.com/mozilla/browserid/pull/2777 since it would make that patch somewhat cleaner: https://github.com/fmarier/browserid/commit/e78a8a69307a6eb7bd159bbc0d9a8a80742860b5
+",fmarier,167821,2012-11-28T02:43:49Z,CONTRIBUTOR,True,24,1,3,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,0e2abd3be16e015bc70d4889362311b89740589c,Add tests for the new prefetch helper function
+32,https://api.github.com/repos/mozilla/connect-cachify/pulls/22,22,Added example for use in Jade templates,"Just started messing with this module and thought this mite be helpful for others in the future.
+",wolfeidau,50636,2012-11-21T23:55:54Z,CONTRIBUTOR,True,12,0,1,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,e38444c7b3a8c1997a4c616d0afaf34c1c313ca2,Added jade template example.
+33,https://api.github.com/repos/mozilla/connect-cachify/pulls/22,22,Added example for use in Jade templates,"Just started messing with this module and thought this mite be helpful for others in the future.
+",wolfeidau,50636,2012-11-21T23:55:54Z,CONTRIBUTOR,True,12,0,1,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,c402c0ff77b5d02270700182efbc833d7dd46e36,Few updates to match sample data.
+34,https://api.github.com/repos/mozilla/connect-cachify/pulls/20,20,Use resp.locals instead of resp.local for express 3.x,,blindsey,340526,2012-10-18T17:25:41Z,NONE,False,9,3,1,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,6044bcfa6caa249a9e5489ebcd346ba84d8b4a8f,added support for Express 3.x
+35,https://api.github.com/repos/mozilla/connect-cachify/pulls/19,19,"remove globals, fixes from jshint","fixes #16
+
+some clean-up if we're going to be showing this stuff off with nodejitsu!
+
+side note: would anyone possibly have relied on the globals? is this a big-deal incompatible change?
+",seanmonstar,51479,2012-09-21T19:24:24Z,MEMBER,True,11,12,1,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,2f782ec362d4ba3fe723a40ce01c4ae7907e7e75,"remove globals, fixes from jshint
+
+fixes #16"
+36,https://api.github.com/repos/mozilla/connect-cachify/pulls/18,18,Express3 support,"Hi,
+
+I want to use cachify in an express 3 project but I get this error : 
+
+> TypeError: Object #<ServerResponse> has no method 'local'
+> at Object.exports.setup [as handle] (node_modules/connect-cachify/lib/connect-cachify.js:54:10)
+
+_resp.local_ does not exist anymore in express3, it has been replaced with _resp.locals_
+So I replaced the 3 lines using resp.local with the following code and it works  :
+
+```
+resp.locals({
+      'cachify_js': cachify_js,
+      'cachify_css': cachify_css,
+      'cachify': cachify
+    });
+```
+
+Is it possible to support express 3 without breaking compatibility with older versions ?
+
+Thanks
+",madmatah,2926,2012-09-02T00:51:50Z,CONTRIBUTOR,True,12,3,1,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,337d20dd5b16e40ac4433dea27d51d4f4565052e,Fix compatibility with express 3
+37,https://api.github.com/repos/mozilla/connect-cachify/pulls/15,15,"add a test for prefixes with url's, fix a formatting bug where filename ...","...starts with '/'
+
+This fixes a bug when using absolute urls in prefixes where cachify puts a double slash before the filename (i.e. `https://static.personatest.org/v/5cb95f4060//production/browserid.css`)
+
+mind reviewing, merging, and pushing a new version?
+",lloyd,39411,2012-06-13T13:39:51Z,CONTRIBUTOR,True,40,1,2,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,4cdd4179c26f200a5ed232881c3345b189396b0a,"add a test for prefixes with url's, fix a formatting bug where filename starts with '/'"
+38,https://api.github.com/repos/mozilla/connect-cachify/pulls/10,10,only manipulate headers once we're sure this is a cachified resource,,lloyd,39411,2012-02-17T01:49:40Z,CONTRIBUTOR,False,9,7,1,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,4ee17c60a58a619017079a6dac8d046f03c1f818,only manipulate headers once we're sure this is a cachified resource
+39,https://api.github.com/repos/mozilla/connect-cachify/pulls/7,7,Use a 10 digit hex instead of raw MD5. Fixes Issue#6. Adding feedback fr...,"Adding feedback from @lloyd.
+",ozten,18924,2012-02-17T00:53:35Z,MEMBER,True,18,14,2,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,b6957c475902fb224d75e6e21399622cb083d7ca,Use a 10 digit hex instead of raw MD5. Fixes Issue#6. Adding feedback from @lloyd
+40,https://api.github.com/repos/mozilla/connect-cachify/pulls/6,6,write a minimal in-tree example,"this demonstrates the simplest possible usage, and also is an easy way to manually inspect headers and stuff.
+",lloyd,39411,2012-02-15T23:06:22Z,CONTRIBUTOR,True,78,1,12,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,e45d58161cd9e4d296d94d8063a750fb409dddea,write a minimal in-tree example
+41,https://api.github.com/repos/mozilla/connect-cachify/pulls/6,6,write a minimal in-tree example,"this demonstrates the simplest possible usage, and also is an easy way to manually inspect headers and stuff.
+",lloyd,39411,2012-02-15T23:06:22Z,CONTRIBUTOR,True,78,1,12,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,60e1970a12fef18689b5cb6928b163f4a0016b53,language and typos
+42,https://api.github.com/repos/mozilla/connect-cachify/pulls/1,1,readme tweaks,"more to assert I understand the mechanism than anything else
+",lloyd,39411,2012-02-10T20:27:20Z,CONTRIBUTOR,True,3,3,1,Express connect middleware to provide easy frontend caching for Node.js,JavaScript,e1df97c45e0882e48c2df896ccd84ebc68cd909d,shouldn't CSS resources have absolute paths in the readme?

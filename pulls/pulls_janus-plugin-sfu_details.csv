@@ -1,0 +1,426 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/82,82,switch back to original networked-aframe,"Now that I'm the new maintainer of networked-aframe, you can now use the original networked-aframe repository. :)",vincentfretin,112249,2021-03-01T07:47:06Z,CONTRIBUTOR,True,1,1,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,aeeac7c9c3a9bd43c6bc26597ea37930e130f736,switch back to original networked-aframe and reference the adapters table there
+1,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/81,81,Add optional room_ids to JWT,"Implements #78. Now if JWT authorization is enabled, you may join a room only if you send a JWT containing `join_hub = true` and with either no `room_ids` (i.e. like all old tokens; you can join any room) or a `room_ids` array containing the room ID you're trying to join.
+
+Not yet tested, so not merging yet.",mqp,428637,2021-02-16T09:46:26Z,COLLABORATOR,True,33,7,2,Janus plugin to act as a kind of SFU for game networking data.,Rust,1834c2178f516bd25c1c5ede6947bd438ea44d09,Add optional room_ids to JWT
+2,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/79,79,Upgrade JWT library,Relevant to adding new JWT functionality e.g. #78.,mqp,428637,2021-02-16T05:51:55Z,COLLABORATOR,True,172,32,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,9973063d3dcd88995d382c1f76314834ed4b34f3,Upgrade JWT library
+3,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/75,75,Make zero values in config work as documented,Fixes #56. (Also fixes off-by-one on the room size configuration.),mqp,428637,2021-02-11T04:35:33Z,COLLABORATOR,True,4,4,2,Janus plugin to act as a kind of SFU for game networking data.,Rust,a2fffd126e42d1518f6719ab825ec965efc2d9e6,Make zero values in config work as documented
+4,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/74,74,"Make max_ccu based on users, not sessions",Fixes #57. (It was also off by one.),mqp,428637,2021-02-11T04:26:54Z,COLLABORATOR,True,14,16,2,Janus plugin to act as a kind of SFU for game networking data.,Rust,ab97435719e5a54f667f9b0aa8cc9ba96b9d63b6,"Make max_ccu based on users, not sessions"
+5,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/73,73,End old publisher session sooner when publisher reconnect,"I create this PR in draft so this has some visibility, if anyone is interested by this change. This is what I have currently in production.
+See discussion starting at https://github.com/mozilla/janus-plugin-sfu/issues/62#issuecomment-770877418
+
+If a user has a network failure and they reconnects, you could have with naf-janus-adapter the message
+""Janus still has previous session for this client. Reconnecting in 10s."" three times.
+With this changes ending the old publisher session sooner (not waiting that janus detects the RTCPeerConnection is dead), the message ""Janus still has previous session for this client. Reconnecting in 10s."" only appears once, so the user really reconnect sooner so that the other participants can hear them again.",vincentfretin,112249,2021-02-09T10:26:11Z,CONTRIBUTOR,False,18,5,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,f30fa9004b164fdd2740ec681d6db66f2a5a4ae5,"In case of publisher reconnecting and the session is still there, end the old publisher session and don't notify the others"
+6,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/73,73,End old publisher session sooner when publisher reconnect,"I create this PR in draft so this has some visibility, if anyone is interested by this change. This is what I have currently in production.
+See discussion starting at https://github.com/mozilla/janus-plugin-sfu/issues/62#issuecomment-770877418
+
+If a user has a network failure and they reconnects, you could have with naf-janus-adapter the message
+""Janus still has previous session for this client. Reconnecting in 10s."" three times.
+With this changes ending the old publisher session sooner (not waiting that janus detects the RTCPeerConnection is dead), the message ""Janus still has previous session for this client. Reconnecting in 10s."" only appears once, so the user really reconnect sooner so that the other participants can hear them again.",vincentfretin,112249,2021-02-09T10:26:11Z,CONTRIBUTOR,False,18,5,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,f4e55f617f62dbfac1aaefd477bb43187ee7c4b0,Use level verb instead of info for the 'Queueing signalling message' log
+7,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/72,72,Using it with networked-aframe,Add links in README to maintained networked-aframe and naf-janus-adapter.,vincentfretin,112249,2021-02-09T09:31:04Z,CONTRIBUTOR,True,4,0,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,6687932346483caa5000aa564bd90ac8a5a5098d,Using it with networked-aframe
+8,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/71,71,Use level verb instead of info for the 'Queueing signalling message' log,"Using log level info (level 4) and using websocket for naf components update, you can really have a lot of logs, several times per second for an user. Lower it to verb (level 5)",vincentfretin,112249,2021-02-09T09:07:06Z,CONTRIBUTOR,True,1,1,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,04adef9b2459b35b7309840181e22c1ef9b4b9da,Use level verb instead of info for the 'Queueing signalling message' log
+9,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/70,70,Update comments in config file,This fixes https://github.com/mozilla/janus-plugin-sfu/issues/57 and https://github.com/mozilla/janus-plugin-sfu/issues/56,vincentfretin,112249,2021-02-09T09:01:36Z,CONTRIBUTOR,False,2,2,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,516dad6b7a3dfbde8aeed7bac488cdfc7e2fff96,Update comments in config file
+10,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/69,69,Make PLUGIN static instead of const,"I think when I first wrote this I misunderstood how `const` works in Rust. `const` makes the compiler just do a compile-time substitution of the value into each of its references, so it was making a new temporary `Plugin` object every time it needed to create a plugin handle pointer to pass into Janus. `static` is what we actually want.",mqp,428637,2021-02-03T04:59:30Z,COLLABORATOR,True,4,4,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,6b835d3074d9c3a01a7afc766c84d8f504eb9398,Make PLUGIN static instead of const
+11,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/68,68,Remove multimap dependency,"This wasn't really pulling its weight, and killing it decreases the surface area for bugs like #62.
+
+Also now we don't leak an empty vec in maps for every user and room that ever exists which is nice.",mqp,428637,2021-02-01T04:43:50Z,COLLABORATOR,True,31,36,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,ee1bd32d02e234cf849b8769c0c423180024f7d2,Remove multimap dependency
+12,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/67,67,Log how many message threads will be created,"This shows:
+```
+Loaded SFU plugin configuration: Config { auth_key: None, max_room_size: 30, max_ccu: 1000, message_threads: 0 }
+message_threads is set to 0, setting it to 8 (number of cpus)
+```",vincentfretin,112249,2021-01-31T17:38:54Z,CONTRIBUTOR,True,7,1,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,3f06f2b8708b8277891d022f046ad9c34ef548f1,Log how many message threads will be created
+13,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/66,66,Use SWITCHBOARD.read() instead of SWITCHBOARD.write() in process_data,"See my comment https://github.com/mozilla/janus-plugin-sfu/issues/62#issuecomment-770406570
+We don't seem to change anything in process_data, using `read()` instead of `write()` is better to not block concurrent execution with message_threads > 1.
+
+Or is there something I'm missing?",vincentfretin,112249,2021-01-31T17:19:33Z,CONTRIBUTOR,True,1,1,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,9baf44b32bb025008667443ebf8e29616ababd59,Use SWITCHBOARD.read() instead of SWITCHBOARD.write() in process_data
+14,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/65,65,Use AtomicUsize to count messages,This is better in every way. See #64.,mqp,428637,2021-01-28T21:53:15Z,COLLABORATOR,True,5,10,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,a5104a6f9fb3cc43d1125dee2c795efa69f6f3dc,Use AtomicUsize to count messages
+15,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/63,63,Fix room param type,"Doesn't change anything because UserId and RoomId are both string, but it's better to have the right type.",vincentfretin,112249,2021-01-25T09:50:40Z,CONTRIBUTOR,True,2,2,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,4655dca240e822f9fae3ee13b7e3fcb1795045ae,Fix room param type
+16,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/61,61,Update to latest janus 0.10.x (api v15),"See discussion on https://github.com/mozilla/janus-plugin-sfu/issues/58
+I started from @feymartynov work and made additional changes in janus-plugin-rs https://github.com/netology-group/janus-plugin-rs/pull/1
+The code compile but not currently fully working, I still have an issue generating the sdp offer based on the sdp answer where ` answer.get_payload_type(VIDEO_CODEC.to_cstr())` is returning None.",vincentfretin,112249,2021-01-23T08:34:00Z,CONTRIBUTOR,True,27,13,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,4f3572207e49dc8311ca002eb7aec16a191b809b,Use janus-plugin-rs branch feature/api-v15 to be able to update to latest janus 0.10.x
+17,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/61,61,Update to latest janus 0.10.x (api v15),"See discussion on https://github.com/mozilla/janus-plugin-sfu/issues/58
+I started from @feymartynov work and made additional changes in janus-plugin-rs https://github.com/netology-group/janus-plugin-rs/pull/1
+The code compile but not currently fully working, I still have an issue generating the sdp offer based on the sdp answer where ` answer.get_payload_type(VIDEO_CODEC.to_cstr())` is returning None.",vincentfretin,112249,2021-01-23T08:34:00Z,CONTRIBUTOR,True,27,13,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,b0968c6e9df8f4c69e2e80ceb4b0fabf6ca91734,"Specify the h264 42e01f profile when creating the answer and offer, this
+was previously done by default because h264_fmtp was true by default."
+18,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/54,54,Refactor & fix switchboard join/leave tracking,"**WIP -- haven't tested yet. Just putting it here in case it's useful to you.**
+
+This fixes #52 and changes the switchboard data structures to be more sympathetic to how we're using them. We can now do `get_publisher` in constant time and kicking users also got faster. Hopefully the code also got cleaner and harder to mess up.
+
+To do still:
+
+- [ ] Change ""user"" terminology to ""client"" to be less misleading.
+- [x] Tag whether a session is a publisher or a subscriber in the session state.",mqp,428637,2020-04-09T07:24:21Z,COLLABORATOR,True,102,95,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,31b47e1cd52bc0b10e5f8fdaa016575ef08f7f4e,Refactor & fix switchboard join/leave tracking
+19,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/54,54,Refactor & fix switchboard join/leave tracking,"**WIP -- haven't tested yet. Just putting it here in case it's useful to you.**
+
+This fixes #52 and changes the switchboard data structures to be more sympathetic to how we're using them. We can now do `get_publisher` in constant time and kicking users also got faster. Hopefully the code also got cleaner and harder to mess up.
+
+To do still:
+
+- [ ] Change ""user"" terminology to ""client"" to be less misleading.
+- [x] Tag whether a session is a publisher or a subscriber in the session state.",mqp,428637,2020-04-09T07:24:21Z,COLLABORATOR,True,102,95,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,b735add5e63d99eeb89531675b84dee6d73d6a0f,Establish explicit `join_kind` field
+20,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/54,54,Refactor & fix switchboard join/leave tracking,"**WIP -- haven't tested yet. Just putting it here in case it's useful to you.**
+
+This fixes #52 and changes the switchboard data structures to be more sympathetic to how we're using them. We can now do `get_publisher` in constant time and kicking users also got faster. Hopefully the code also got cleaner and harder to mess up.
+
+To do still:
+
+- [ ] Change ""user"" terminology to ""client"" to be less misleading.
+- [x] Tag whether a session is a publisher or a subscriber in the session state.",mqp,428637,2020-04-09T07:24:21Z,COLLABORATOR,True,102,95,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,598359f4339e08f43c2781488f457582113c8aab,"Remove obsolete comment
+
+This was true when it was written, but now there is no dependency
+between these two processes. Sending the FIR happens after message
+processing is finished, in the `setup_media` callback."
+21,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/53,53,Store a one to many map for users to rooms,"Update switchboard to handle cases where a user may join multiple rooms, but may not be publishing in some of them.",gfodor,220020,2020-04-07T03:35:15Z,CONTRIBUTOR,False,17,13,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,7a28b8f5edac16f00468e1082463133641a7ac85,Store a one to many map for users to rooms
+22,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/50,50,Attempt faster lookup of publishers,"Refactors `get_publisher` to use a new hashmap to reduce the need to walk all sessions when fetching publishers. Instead, we now only walk the sessions in the first room the user joined. `get_sessions` could also be refactored but proved challenging for me.
+
+Also it seems that `get_publisher` assumes a user is only publishing in one room (ie, has one subscriber offer across all of their joined rooms), but `get_sessions` assumes a user can be joined in several rooms. So this PR may be a bad idea, since the new hashmap now assumes a user is going to publish from the first room they join. I wasn't sure of the original assumptions being made in switchboard - in practice users only join one room in hubs for both publishing and subscribing. This PR assumes that the first room a user joins is the one they will be publishing in - if that isn't the case (ie they join two rooms, and publish in the second one), the hashmap will register them in the wrong room and their publisher will not be discoverable. However I believe currently the SFU requires publishing in all joined rooms for other reasons, so maybe this is a moot point. If not a better but more complex approach would be to have the hashmap be registered into if/when the user begins publishing.",gfodor,220020,2020-04-04T18:52:54Z,CONTRIBUTOR,True,30,15,2,Janus plugin to act as a kind of SFU for game networking data.,Rust,a4a023079b13e9a369ddb99b6a4009272a176b99,Attempt O(1) lookup of publishers
+23,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/50,50,Attempt faster lookup of publishers,"Refactors `get_publisher` to use a new hashmap to reduce the need to walk all sessions when fetching publishers. Instead, we now only walk the sessions in the first room the user joined. `get_sessions` could also be refactored but proved challenging for me.
+
+Also it seems that `get_publisher` assumes a user is only publishing in one room (ie, has one subscriber offer across all of their joined rooms), but `get_sessions` assumes a user can be joined in several rooms. So this PR may be a bad idea, since the new hashmap now assumes a user is going to publish from the first room they join. I wasn't sure of the original assumptions being made in switchboard - in practice users only join one room in hubs for both publishing and subscribing. This PR assumes that the first room a user joins is the one they will be publishing in - if that isn't the case (ie they join two rooms, and publish in the second one), the hashmap will register them in the wrong room and their publisher will not be discoverable. However I believe currently the SFU requires publishing in all joined rooms for other reasons, so maybe this is a moot point. If not a better but more complex approach would be to have the hashmap be registered into if/when the user begins publishing.",gfodor,220020,2020-04-04T18:52:54Z,CONTRIBUTOR,True,30,15,2,Janus plugin to act as a kind of SFU for game networking data.,Rust,13498f9ff5f659a6565e076e695fc2c5c7899ed1,Merge branch 'feature/multi-message-threading' of github.com:mozilla/janus-plugin-sfu into feature/faster-publisher-lookup
+24,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/50,50,Attempt faster lookup of publishers,"Refactors `get_publisher` to use a new hashmap to reduce the need to walk all sessions when fetching publishers. Instead, we now only walk the sessions in the first room the user joined. `get_sessions` could also be refactored but proved challenging for me.
+
+Also it seems that `get_publisher` assumes a user is only publishing in one room (ie, has one subscriber offer across all of their joined rooms), but `get_sessions` assumes a user can be joined in several rooms. So this PR may be a bad idea, since the new hashmap now assumes a user is going to publish from the first room they join. I wasn't sure of the original assumptions being made in switchboard - in practice users only join one room in hubs for both publishing and subscribing. This PR assumes that the first room a user joins is the one they will be publishing in - if that isn't the case (ie they join two rooms, and publish in the second one), the hashmap will register them in the wrong room and their publisher will not be discoverable. However I believe currently the SFU requires publishing in all joined rooms for other reasons, so maybe this is a moot point. If not a better but more complex approach would be to have the hashmap be registered into if/when the user begins publishing.",gfodor,220020,2020-04-04T18:52:54Z,CONTRIBUTOR,True,30,15,2,Janus plugin to act as a kind of SFU for game networking data.,Rust,5cfd16d8b4023d3eb010ce8413b41160900ec41d,Merge branch 'feature/multi-message-threading' of github.com:mozilla/janus-plugin-sfu into feature/faster-publisher-lookup
+25,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/49,49,Feature/multi message threading,Runs one message thread per CPU.,gfodor,220020,2020-04-04T17:50:37Z,CONTRIBUTOR,True,84,28,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,5cf5f3490929a936dd4d95ff011c5d62c409a41e,Add multiple message threads
+26,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/49,49,Feature/multi message threading,Runs one message thread per CPU.,gfodor,220020,2020-04-04T17:50:37Z,CONTRIBUTOR,True,84,28,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,436bb0f382bb5ae0e94479d4cd791d52689c1cd7,Run one message thread per CPU
+27,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/49,49,Feature/multi message threading,Runs one message thread per CPU.,gfodor,220020,2020-04-04T17:50:37Z,CONTRIBUTOR,True,84,28,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,ec94c2030c2f4bed5ad4af6516faec148d5e1e59,Off-by-one CPU count
+28,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/49,49,Feature/multi message threading,Runs one message thread per CPU.,gfodor,220020,2020-04-04T17:50:37Z,CONTRIBUTOR,True,84,28,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,420220e3669fb6bee289cc4e81ea7d4d884594aa,Give threads a nice name
+29,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/49,49,Feature/multi message threading,Runs one message thread per CPU.,gfodor,220020,2020-04-04T17:50:37Z,CONTRIBUTOR,True,84,28,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,a4a023079b13e9a369ddb99b6a4009272a176b99,Attempt O(1) lookup of publishers
+30,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/49,49,Feature/multi message threading,Runs one message thread per CPU.,gfodor,220020,2020-04-04T17:50:37Z,CONTRIBUTOR,True,84,28,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,0876589772f4e33774cf87c7efed8f8b6e00ae40,Set configurable message_threads
+31,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/49,49,Feature/multi message threading,Runs one message thread per CPU.,gfodor,220020,2020-04-04T17:50:37Z,CONTRIBUTOR,True,84,28,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,13498f9ff5f659a6565e076e695fc2c5c7899ed1,Merge branch 'feature/multi-message-threading' of github.com:mozilla/janus-plugin-sfu into feature/faster-publisher-lookup
+32,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/49,49,Feature/multi message threading,Runs one message thread per CPU.,gfodor,220020,2020-04-04T17:50:37Z,CONTRIBUTOR,True,84,28,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,d3e995b7d140fc74e243a7c6bd8d48328ca6fc9b,Rename variable
+33,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/49,49,Feature/multi message threading,Runs one message thread per CPU.,gfodor,220020,2020-04-04T17:50:37Z,CONTRIBUTOR,True,84,28,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,5cfd16d8b4023d3eb010ce8413b41160900ec41d,Merge branch 'feature/multi-message-threading' of github.com:mozilla/janus-plugin-sfu into feature/faster-publisher-lookup
+34,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/49,49,Feature/multi message threading,Runs one message thread per CPU.,gfodor,220020,2020-04-04T17:50:37Z,CONTRIBUTOR,True,84,28,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,d0f3bae43d4b91bbd79086b231b347cc74a82414,"Merge pull request #50 from mozilla/feature/faster-publisher-lookup
+
+Attempt faster lookup of publishers"
+35,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/48,48,Upgrade to compatibility with Janus 0.9.3 (API version 14),Relatively minor change -- functionality should not be impacted.,mqp,428637,2020-04-01T10:05:18Z,COLLABORATOR,True,120,108,2,Janus plugin to act as a kind of SFU for game networking data.,Rust,5a395593dc7883b3035aa554c5226279d52d987a,Bump deps & plugin bindings
+36,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/48,48,Upgrade to compatibility with Janus 0.9.3 (API version 14),Relatively minor change -- functionality should not be impacted.,mqp,428637,2020-04-01T10:05:18Z,COLLABORATOR,True,120,108,2,Janus plugin to act as a kind of SFU for game networking data.,Rust,e945813a488d591ab122db8f77ad378eb4c25862,Fix up per new Janus plugin API
+37,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/43,43,"Remove out-of-date helper script, add more docs","Having a helper script like this is OK, but this one is a bit out of date and my box no longer runs Ubuntu, so it's hard for me to test. A replacement would be fine.",mqp,428637,2019-12-11T00:22:52Z,COLLABORATOR,True,22,183,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,bd4afa6b27ea98e5437ba506cbf278253379f8aa,"Remove out-of-date helper script, add more docs"
+38,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/41,41,Modernize laziness,"This is the fancy Rust state of the art for the stuff related to threadsafe lazy initialization we were doing hackily before. (The join subscription part even looked actually vulnerable to race conditions, which is embarrassing.)",mqp,428637,2019-12-10T01:15:01Z,COLLABORATOR,True,49,61,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,57e68c9eb0229e1b0ab5e0183b03c2c6540865fd,Use once_cell instead of lazy_static
+39,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/41,41,Modernize laziness,"This is the fancy Rust state of the art for the stuff related to threadsafe lazy initialization we were doing hackily before. (The join subscription part even looked actually vulnerable to race conditions, which is embarrassing.)",mqp,428637,2019-12-10T01:15:01Z,COLLABORATOR,True,49,61,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,7df3af8a412b0ec5497c427c96deeaa08652e407,Use once_cell instead of atom
+40,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/41,41,Modernize laziness,"This is the fancy Rust state of the art for the stuff related to threadsafe lazy initialization we were doing hackily before. (The join subscription part even looked actually vulnerable to race conditions, which is embarrassing.)",mqp,428637,2019-12-10T01:15:01Z,COLLABORATOR,True,49,61,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,de79374c717b4880000f076c8debbb86e13afe05,Tack on some docstrings
+41,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/40,40,Update to be compatible with Rust 2018,"Simple changes -- module loading updates, and fixing serde to use its new style of getting derive macros to work.",mqp,428637,2019-12-10T00:09:31Z,COLLABORATOR,True,30,45,7,Janus plugin to act as a kind of SFU for game networking data.,Rust,3e0a278ce5d036a7b747a300ab83536950fe480c,Update to be compatible with Rust 2018
+42,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/40,40,Update to be compatible with Rust 2018,"Simple changes -- module loading updates, and fixing serde to use its new style of getting derive macros to work.",mqp,428637,2019-12-10T00:09:31Z,COLLABORATOR,True,30,45,7,Janus plugin to act as a kind of SFU for game networking data.,Rust,2aa21ca8aac24c15169c1104a5ff61eca601f341,Use new standard library transpose
+43,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/39,39,Fix some metadata in Cargo.toml,Self-explanatory.,mqp,428637,2019-12-09T23:54:56Z,COLLABORATOR,True,2,1,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,1adb1ad4198340bffb40dee51bc45c53036974ad,Fix author
+44,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/39,39,Fix some metadata in Cargo.toml,Self-explanatory.,mqp,428637,2019-12-09T23:54:56Z,COLLABORATOR,True,2,1,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,6236472eb7aa8bb9ae07b01e352da728d43cee4b,Link to README in Cargo.toml
+45,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/38,38,Bump dependencies to latest,"Nothing important, just keeping things real.",mqp,428637,2019-12-09T21:16:17Z,COLLABORATOR,True,38,37,2,Janus plugin to act as a kind of SFU for game networking data.,Rust,803269265f7ff0f42fb4f85840c579d6445ea34b,Bump dependencies to latest
+46,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/37,37,Upgrade to accommodate Janus 0.7.6,"What it says on the tin. Trivial upgrade, but backwards-incompatible with older versions.",mqp,428637,2019-12-09T20:03:33Z,COLLABORATOR,True,118,94,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,25dca7d9ada4b23e3eec2c996dd90be010b7d7e5,Point at bleeding-edge janus-plugin-rs
+47,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/37,37,Upgrade to accommodate Janus 0.7.6,"What it says on the tin. Trivial upgrade, but backwards-incompatible with older versions.",mqp,428637,2019-12-09T20:03:33Z,COLLABORATOR,True,118,94,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,26e93eb62c619ec931430eafe061dc5569080b67,Handle data channel stream labels
+48,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/37,37,Upgrade to accommodate Janus 0.7.6,"What it says on the tin. Trivial upgrade, but backwards-incompatible with older versions.",mqp,428637,2019-12-09T20:03:33Z,COLLABORATOR,True,118,94,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,d83d0a7d79f87c3e3e9e599505c3f5285a9dd2cd,Add no-op handle_admin_message handler
+49,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/37,37,Upgrade to accommodate Janus 0.7.6,"What it says on the tin. Trivial upgrade, but backwards-incompatible with older versions.",mqp,428637,2019-12-09T20:03:33Z,COLLABORATOR,True,118,94,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,6ece15360597e9dd36df5f46bf4b3453df5172d5,Bump API version to 13
+50,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/37,37,Upgrade to accommodate Janus 0.7.6,"What it says on the tin. Trivial upgrade, but backwards-incompatible with older versions.",mqp,428637,2019-12-09T20:03:33Z,COLLABORATOR,True,118,94,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,ad04710bc14743c973c199febb31953004da99dc,Send data channel messages down appropriate channel
+51,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/36,36,Box<Error> -> Box<dyn Error>,Self-explanatory -- just fixing it up for newer versions of Rust.,mqp,428637,2019-08-22T02:10:34Z,COLLABORATOR,True,8,8,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,b18d34bb59f441bc0886d769817ebca884c0ee82,Box<Error> -> Box<dyn Error>
+52,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/35,35,Clean up join authorization logic,"This version seems more readable to me. Also, fixed log messages to not warn in the common case of allowed joins.",mqp,428637,2019-04-01T19:59:00Z,COLLABORATOR,True,20,23,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,d3301cf57005644fbe8f77de537a1d3a13342621,Clean up join authorization logic
+53,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/34,34,Add Mozilla Code of Conduct,"Fixes #33
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-30T06:42:43Z,CONTRIBUTOR,True,15,0,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,232e5e2514dbf3e877512b5ddb6206103d4f2249,"Add Mozilla Code of Conduct file
+
+Fixes #33.
+
+_(Message COC002)_"
+54,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/32,32,Respect join_hub permission,,brianpeiris,79419,2019-03-27T18:38:02Z,MEMBER,True,23,11,2,Janus plugin to act as a kind of SFU for game networking data.,Rust,92a757f65fcab1c154b0b85880820418ac48cc27,-b Actually reject joins with no join_hub permission
+55,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/32,32,Respect join_hub permission,,brianpeiris,79419,2019-03-27T18:38:02Z,MEMBER,True,23,11,2,Janus plugin to act as a kind of SFU for game networking data.,Rust,41137267c4dba1806119ac7a3ad8cbcc660d652e,Build in debug mode when using local code
+56,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/32,32,Respect join_hub permission,,brianpeiris,79419,2019-03-27T18:38:02Z,MEMBER,True,23,11,2,Janus plugin to act as a kind of SFU for game networking data.,Rust,cab5f85ca190c4b169925f0d4494372d7360def0,Split key and token matching
+57,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/30,30,Authorize and kick,"- Just extract join and kick claims from JWT, instead of trying to parse subject.
+- Actually act on kick message by verifying claim and calling `end_session` on given publisher",brianpeiris,79419,2019-01-31T07:12:09Z,MEMBER,True,57,46,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,ea1b6cee8ab428bff32003aae2bedd2376b5fac9,temp changes to script for testing
+58,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/30,30,Authorize and kick,"- Just extract join and kick claims from JWT, instead of trying to parse subject.
+- Actually act on kick message by verifying claim and calling `end_session` on given publisher",brianpeiris,79419,2019-01-31T07:12:09Z,MEMBER,True,57,46,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,04770ab12eb1fb1b187a0b23ef0121ae3bd69043,Remove subject validation. Extract permissions
+59,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/30,30,Authorize and kick,"- Just extract join and kick claims from JWT, instead of trying to parse subject.
+- Actually act on kick message by verifying claim and calling `end_session` on given publisher",brianpeiris,79419,2019-01-31T07:12:09Z,MEMBER,True,57,46,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,b665087d4e18e36f10c63a17f10a7f8ccec271c0,End session when kicked
+60,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/30,30,Authorize and kick,"- Just extract join and kick claims from JWT, instead of trying to parse subject.
+- Actually act on kick message by verifying claim and calling `end_session` on given publisher",brianpeiris,79419,2019-01-31T07:12:09Z,MEMBER,True,57,46,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,358636dcb5240ccf85bc437a1a7220023369996f,Teach build script to build local code
+61,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/30,30,Authorize and kick,"- Just extract join and kick claims from JWT, instead of trying to parse subject.
+- Actually act on kick message by verifying claim and calling `end_session` on given publisher",brianpeiris,79419,2019-01-31T07:12:09Z,MEMBER,True,57,46,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,b884a86f4b6f8786bb97bfad11f155879675abef,"Kick all sessions for user, not just publisher"
+62,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/29,29,"Accept JWT tokens authorizing kick, join messages","You can now send a JWT token with join and (brand new) kick signalling messages. The tokens currently have no effect, and the kick message does nothing yet. However, if provided, they will be validated against the signing key provided in the configuration file, and the log will show whether validation succeeded or failed. This should help us test things out before we actually start putting things behind auth barriers.
+
+The signing key should be provided in DER format in a path given by the `auth_key` configuration key. For example, to generate a keypair [(via)](https://github.com/Keats/jsonwebtoken#rsa):
+
+```
+ssh-keygen -t rsa -b 2048 -f key.pem -N ''
+openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+openssl rsa -in key.pem -outform DER -out key.der
+openssl rsa -in key.der -inform DER -RSAPublicKey_out -outform DER -out public.der
+# sign JWTs with private key, point your config file to public.der
+```
+",mqp,428637,2019-01-16T00:20:24Z,COLLABORATOR,True,274,91,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,209eaf481689d00447ad4d4a4764f2430c60ef78,Update dependencies
+63,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/29,29,"Accept JWT tokens authorizing kick, join messages","You can now send a JWT token with join and (brand new) kick signalling messages. The tokens currently have no effect, and the kick message does nothing yet. However, if provided, they will be validated against the signing key provided in the configuration file, and the log will show whether validation succeeded or failed. This should help us test things out before we actually start putting things behind auth barriers.
+
+The signing key should be provided in DER format in a path given by the `auth_key` configuration key. For example, to generate a keypair [(via)](https://github.com/Keats/jsonwebtoken#rsa):
+
+```
+ssh-keygen -t rsa -b 2048 -f key.pem -N ''
+openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+openssl rsa -in key.pem -outform DER -out key.der
+openssl rsa -in key.der -inform DER -RSAPublicKey_out -outform DER -out public.der
+# sign JWTs with private key, point your config file to public.der
+```
+",mqp,428637,2019-01-16T00:20:24Z,COLLABORATOR,True,274,91,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,a207f3305c9f2bb2c329a8b30b58be404ccd1e29,Add JWT library
+64,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/29,29,"Accept JWT tokens authorizing kick, join messages","You can now send a JWT token with join and (brand new) kick signalling messages. The tokens currently have no effect, and the kick message does nothing yet. However, if provided, they will be validated against the signing key provided in the configuration file, and the log will show whether validation succeeded or failed. This should help us test things out before we actually start putting things behind auth barriers.
+
+The signing key should be provided in DER format in a path given by the `auth_key` configuration key. For example, to generate a keypair [(via)](https://github.com/Keats/jsonwebtoken#rsa):
+
+```
+ssh-keygen -t rsa -b 2048 -f key.pem -N ''
+openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+openssl rsa -in key.pem -outform DER -out key.der
+openssl rsa -in key.der -inform DER -RSAPublicKey_out -outform DER -out public.der
+# sign JWTs with private key, point your config file to public.der
+```
+",mqp,428637,2019-01-16T00:20:24Z,COLLABORATOR,True,274,91,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,6bf0e3047d9d85212767b660ba12bb29d440cb7e,"First shot at JWT auth for join, kick"
+65,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/29,29,"Accept JWT tokens authorizing kick, join messages","You can now send a JWT token with join and (brand new) kick signalling messages. The tokens currently have no effect, and the kick message does nothing yet. However, if provided, they will be validated against the signing key provided in the configuration file, and the log will show whether validation succeeded or failed. This should help us test things out before we actually start putting things behind auth barriers.
+
+The signing key should be provided in DER format in a path given by the `auth_key` configuration key. For example, to generate a keypair [(via)](https://github.com/Keats/jsonwebtoken#rsa):
+
+```
+ssh-keygen -t rsa -b 2048 -f key.pem -N ''
+openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+openssl rsa -in key.pem -outform DER -out key.der
+openssl rsa -in key.der -inform DER -RSAPublicKey_out -outform DER -out public.der
+# sign JWTs with private key, point your config file to public.der
+```
+",mqp,428637,2019-01-16T00:20:24Z,COLLABORATOR,True,274,91,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,ea1b6cee8ab428bff32003aae2bedd2376b5fac9,temp changes to script for testing
+66,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/29,29,"Accept JWT tokens authorizing kick, join messages","You can now send a JWT token with join and (brand new) kick signalling messages. The tokens currently have no effect, and the kick message does nothing yet. However, if provided, they will be validated against the signing key provided in the configuration file, and the log will show whether validation succeeded or failed. This should help us test things out before we actually start putting things behind auth barriers.
+
+The signing key should be provided in DER format in a path given by the `auth_key` configuration key. For example, to generate a keypair [(via)](https://github.com/Keats/jsonwebtoken#rsa):
+
+```
+ssh-keygen -t rsa -b 2048 -f key.pem -N ''
+openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+openssl rsa -in key.pem -outform DER -out key.der
+openssl rsa -in key.der -inform DER -RSAPublicKey_out -outform DER -out public.der
+# sign JWTs with private key, point your config file to public.der
+```
+",mqp,428637,2019-01-16T00:20:24Z,COLLABORATOR,True,274,91,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,04770ab12eb1fb1b187a0b23ef0121ae3bd69043,Remove subject validation. Extract permissions
+67,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/29,29,"Accept JWT tokens authorizing kick, join messages","You can now send a JWT token with join and (brand new) kick signalling messages. The tokens currently have no effect, and the kick message does nothing yet. However, if provided, they will be validated against the signing key provided in the configuration file, and the log will show whether validation succeeded or failed. This should help us test things out before we actually start putting things behind auth barriers.
+
+The signing key should be provided in DER format in a path given by the `auth_key` configuration key. For example, to generate a keypair [(via)](https://github.com/Keats/jsonwebtoken#rsa):
+
+```
+ssh-keygen -t rsa -b 2048 -f key.pem -N ''
+openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+openssl rsa -in key.pem -outform DER -out key.der
+openssl rsa -in key.der -inform DER -RSAPublicKey_out -outform DER -out public.der
+# sign JWTs with private key, point your config file to public.der
+```
+",mqp,428637,2019-01-16T00:20:24Z,COLLABORATOR,True,274,91,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,b665087d4e18e36f10c63a17f10a7f8ccec271c0,End session when kicked
+68,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/29,29,"Accept JWT tokens authorizing kick, join messages","You can now send a JWT token with join and (brand new) kick signalling messages. The tokens currently have no effect, and the kick message does nothing yet. However, if provided, they will be validated against the signing key provided in the configuration file, and the log will show whether validation succeeded or failed. This should help us test things out before we actually start putting things behind auth barriers.
+
+The signing key should be provided in DER format in a path given by the `auth_key` configuration key. For example, to generate a keypair [(via)](https://github.com/Keats/jsonwebtoken#rsa):
+
+```
+ssh-keygen -t rsa -b 2048 -f key.pem -N ''
+openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+openssl rsa -in key.pem -outform DER -out key.der
+openssl rsa -in key.der -inform DER -RSAPublicKey_out -outform DER -out public.der
+# sign JWTs with private key, point your config file to public.der
+```
+",mqp,428637,2019-01-16T00:20:24Z,COLLABORATOR,True,274,91,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,358636dcb5240ccf85bc437a1a7220023369996f,Teach build script to build local code
+69,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/29,29,"Accept JWT tokens authorizing kick, join messages","You can now send a JWT token with join and (brand new) kick signalling messages. The tokens currently have no effect, and the kick message does nothing yet. However, if provided, they will be validated against the signing key provided in the configuration file, and the log will show whether validation succeeded or failed. This should help us test things out before we actually start putting things behind auth barriers.
+
+The signing key should be provided in DER format in a path given by the `auth_key` configuration key. For example, to generate a keypair [(via)](https://github.com/Keats/jsonwebtoken#rsa):
+
+```
+ssh-keygen -t rsa -b 2048 -f key.pem -N ''
+openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+openssl rsa -in key.pem -outform DER -out key.der
+openssl rsa -in key.der -inform DER -RSAPublicKey_out -outform DER -out public.der
+# sign JWTs with private key, point your config file to public.der
+```
+",mqp,428637,2019-01-16T00:20:24Z,COLLABORATOR,True,274,91,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,b884a86f4b6f8786bb97bfad11f155879675abef,"Kick all sessions for user, not just publisher"
+70,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/29,29,"Accept JWT tokens authorizing kick, join messages","You can now send a JWT token with join and (brand new) kick signalling messages. The tokens currently have no effect, and the kick message does nothing yet. However, if provided, they will be validated against the signing key provided in the configuration file, and the log will show whether validation succeeded or failed. This should help us test things out before we actually start putting things behind auth barriers.
+
+The signing key should be provided in DER format in a path given by the `auth_key` configuration key. For example, to generate a keypair [(via)](https://github.com/Keats/jsonwebtoken#rsa):
+
+```
+ssh-keygen -t rsa -b 2048 -f key.pem -N ''
+openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+openssl rsa -in key.pem -outform DER -out key.der
+openssl rsa -in key.der -inform DER -RSAPublicKey_out -outform DER -out public.der
+# sign JWTs with private key, point your config file to public.der
+```
+",mqp,428637,2019-01-16T00:20:24Z,COLLABORATOR,True,274,91,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,8fa8d6ab6a335f1bedd9c7be92bdc02eb9bfda81,"Merge pull request #30 from mozilla/jwt-auth-test
+
+Authorize and kick"
+71,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/29,29,"Accept JWT tokens authorizing kick, join messages","You can now send a JWT token with join and (brand new) kick signalling messages. The tokens currently have no effect, and the kick message does nothing yet. However, if provided, they will be validated against the signing key provided in the configuration file, and the log will show whether validation succeeded or failed. This should help us test things out before we actually start putting things behind auth barriers.
+
+The signing key should be provided in DER format in a path given by the `auth_key` configuration key. For example, to generate a keypair [(via)](https://github.com/Keats/jsonwebtoken#rsa):
+
+```
+ssh-keygen -t rsa -b 2048 -f key.pem -N ''
+openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+openssl rsa -in key.pem -outform DER -out key.der
+openssl rsa -in key.der -inform DER -RSAPublicKey_out -outform DER -out public.der
+# sign JWTs with private key, point your config file to public.der
+```
+",mqp,428637,2019-01-16T00:20:24Z,COLLABORATOR,True,274,91,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,8611900efef36c092b6b2c852adaf4453bda008f,Make demo port configurable
+72,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/29,29,"Accept JWT tokens authorizing kick, join messages","You can now send a JWT token with join and (brand new) kick signalling messages. The tokens currently have no effect, and the kick message does nothing yet. However, if provided, they will be validated against the signing key provided in the configuration file, and the log will show whether validation succeeded or failed. This should help us test things out before we actually start putting things behind auth barriers.
+
+The signing key should be provided in DER format in a path given by the `auth_key` configuration key. For example, to generate a keypair [(via)](https://github.com/Keats/jsonwebtoken#rsa):
+
+```
+ssh-keygen -t rsa -b 2048 -f key.pem -N ''
+openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+openssl rsa -in key.pem -outform DER -out key.der
+openssl rsa -in key.der -inform DER -RSAPublicKey_out -outform DER -out public.der
+# sign JWTs with private key, point your config file to public.der
+```
+",mqp,428637,2019-01-16T00:20:24Z,COLLABORATOR,True,274,91,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,eea454e8ff4715fdee7b96b345c15e61b577685c,Merge branch 'jwt-auth-test' into jwt-auth
+73,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/29,29,"Accept JWT tokens authorizing kick, join messages","You can now send a JWT token with join and (brand new) kick signalling messages. The tokens currently have no effect, and the kick message does nothing yet. However, if provided, they will be validated against the signing key provided in the configuration file, and the log will show whether validation succeeded or failed. This should help us test things out before we actually start putting things behind auth barriers.
+
+The signing key should be provided in DER format in a path given by the `auth_key` configuration key. For example, to generate a keypair [(via)](https://github.com/Keats/jsonwebtoken#rsa):
+
+```
+ssh-keygen -t rsa -b 2048 -f key.pem -N ''
+openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+openssl rsa -in key.pem -outform DER -out key.der
+openssl rsa -in key.der -inform DER -RSAPublicKey_out -outform DER -out public.der
+# sign JWTs with private key, point your config file to public.der
+```
+",mqp,428637,2019-01-16T00:20:24Z,COLLABORATOR,True,274,91,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,c44d9ef0d03243ffcfbd92ad677d233b0c669239,Always build local
+74,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/29,29,"Accept JWT tokens authorizing kick, join messages","You can now send a JWT token with join and (brand new) kick signalling messages. The tokens currently have no effect, and the kick message does nothing yet. However, if provided, they will be validated against the signing key provided in the configuration file, and the log will show whether validation succeeded or failed. This should help us test things out before we actually start putting things behind auth barriers.
+
+The signing key should be provided in DER format in a path given by the `auth_key` configuration key. For example, to generate a keypair [(via)](https://github.com/Keats/jsonwebtoken#rsa):
+
+```
+ssh-keygen -t rsa -b 2048 -f key.pem -N ''
+openssl rsa -in key.pem -outform PEM -pubout -out public.pem
+openssl rsa -in key.pem -outform DER -out key.der
+openssl rsa -in key.der -inform DER -RSAPublicKey_out -outform DER -out public.der
+# sign JWTs with private key, point your config file to public.der
+```
+",mqp,428637,2019-01-16T00:20:24Z,COLLABORATOR,True,274,91,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,9721daa93e664bf6016114c360292ebcb4cb0154,Match against room_id as well when kicking
+75,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/25,25,Support sending arbitrary data over signalling transport,"This is immediately useful to us because SCTP is the cause of some bugginess and we need end-to-end reliability, but it's easy to see how it could be generally useful for anyone.",mqp,428637,2018-09-13T23:39:45Z,COLLABORATOR,True,111,41,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,b327379d9edfe876aa97b291aa95cb2405abc6ee,Make signalling message sending more robust to errors
+76,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/25,25,Support sending arbitrary data over signalling transport,"This is immediately useful to us because SCTP is the cause of some bugginess and we need end-to-end reliability, but it's easy to see how it could be generally useful for anyone.",mqp,428637,2018-09-13T23:39:45Z,COLLABORATOR,True,111,41,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,4557be684278729b56dc84a9dd3df20ca764a8b0,Support sending data between clients over signalling transport
+77,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/25,25,Support sending arbitrary data over signalling transport,"This is immediately useful to us because SCTP is the cause of some bugginess and we need end-to-end reliability, but it's easy to see how it could be generally useful for anyone.",mqp,428637,2018-09-13T23:39:45Z,COLLABORATOR,True,111,41,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,2394ce5869e9efc38581541e76495948a6e6494c,"Change logging for signalling messages
+
+Now that we have a category of signalling message which is potentially
+high-volume but less interesting, we need to not log it at the same level
+as the other more interesting ones."
+78,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/24,24,Negotiate mono and DTX with clients,"This is important for Hubs, and I think it should be good for basically anyone who wants to ever use this plugin, although this SDP negotiation is getting very fiddly so a refactoring to make it more flexible/configurable is probably in order someday.",mqp,428637,2018-08-01T02:58:53Z,COLLABORATOR,True,22,11,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,f6f134e065be7bd9ba5c3e153007509a5a4445dc,Negotiate mono and DTX with clients
+79,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/23,23,Remove outdated squawkers stuff,"Resolves #20. We don't really endorse maintaining this anymore, because we use bots via the hubs client for this same work.",mqp,428637,2018-06-22T00:17:44Z,COLLABORATOR,True,0,698,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,5e1d9ef2fbebd717492bfd28bff6a83486e72f5e,"Remove outdated squawkers stuff
+
+We don't really endorse maintaining this anymore, because we use bots
+via the hubs client for this same work."
+80,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/22,22,"Update deps, fix up some logging",Just some small improvements.,mqp,428637,2018-06-21T22:25:42Z,COLLABORATOR,True,78,86,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,e987126d8e8c34455d1eb2bdc14bc0ed6d405c32,"Update deps, fix up some logging"
+81,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/21,21,Miscellaneous fixes,"This is mostly aimed at making logging output much more useful and readable, by waiting until things are dereferenced/parsed to log them. To accomplish that sanely a reasonable amount of refactoring in the signalling message parsing was necessary.
+
+Also snuck in the use of new `impl Trait` stuff to make switchboard interface not allocate per-packet.",mqp,428637,2018-05-22T19:00:10Z,COLLABORATOR,True,151,118,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,58270971aeac23e2b936c595619a7c07206b66db,Better switchboard internals
+82,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/21,21,Miscellaneous fixes,"This is mostly aimed at making logging output much more useful and readable, by waiting until things are dereferenced/parsed to log them. To accomplish that sanely a reasonable amount of refactoring in the signalling message parsing was necessary.
+
+Also snuck in the use of new `impl Trait` stuff to make switchboard interface not allocate per-packet.",mqp,428637,2018-05-22T19:00:10Z,COLLABORATOR,True,151,118,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,b129b0edb428e80d9adc46f7bf4f4e12544bd7d2,Dramatically improve logging output
+83,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/21,21,Miscellaneous fixes,"This is mostly aimed at making logging output much more useful and readable, by waiting until things are dereferenced/parsed to log them. To accomplish that sanely a reasonable amount of refactoring in the signalling message parsing was necessary.
+
+Also snuck in the use of new `impl Trait` stuff to make switchboard interface not allocate per-packet.",mqp,428637,2018-05-22T19:00:10Z,COLLABORATOR,True,151,118,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,b622ce81214dc21f9dc427a89baec23c64668de5,Rearrange things up a bit
+84,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/19,19,Only support string room and user IDs,"Ever since https://github.com/mozilla/naf-janus-adapter/pull/37 was deployed, all of our clients are sending us string IDs, so we can drop support for numeric IDs.",mqp,428637,2018-05-04T00:17:45Z,COLLABORATOR,True,5,45,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,6cd3e3bd6de24d023545aebbb247abaf69c99aa7,Only accept string room and user IDs
+85,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/19,19,Only support string room and user IDs,"Ever since https://github.com/mozilla/naf-janus-adapter/pull/37 was deployed, all of our clients are sending us string IDs, so we can drop support for numeric IDs.",mqp,428637,2018-05-04T00:17:45Z,COLLABORATOR,True,5,45,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,b8f046426e75b17715e46a4d8e542f459f24858c,Remove unnecessary derive
+86,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/18,18,Adjustment to build-related stuff,"Enabling LTO cuts the binary size in half, go figure. Maybe it makes it faster too.",mqp,428637,2018-04-25T22:12:15Z,COLLABORATOR,True,8,5,2,Janus plugin to act as a kind of SFU for game networking data.,Rust,08bb57196edb96feed805a5312278f1802b9011a,Enable LTO on release builds
+87,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/18,18,Adjustment to build-related stuff,"Enabling LTO cuts the binary size in half, go figure. Maybe it makes it faster too.",mqp,428637,2018-04-25T22:12:15Z,COLLABORATOR,True,8,5,2,Janus plugin to act as a kind of SFU for game networking data.,Rust,39416af67eaed8dbebaf5ee1c3b88c46498a3222,Fix up outdated parts of build script
+88,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/17,17,Implement configurable maximum server-wide CCU,"This is a nice failsafe to have around in case we have some kind of load-related problem after launch.
+
+Also, `max_room_size` is now an inclusive instead of exclusive upper bound, which seems to make more sense.",mqp,428637,2018-04-25T01:12:15Z,COLLABORATOR,True,20,4,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,85d80a4fd8921c03bb74b3358432b1d193d02a02,Implement configurable maximum server-wide CCU
+89,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/16,16,Switchboard improving,"Clean up switchboard interface to return slices instead of vectors, do less per-packet work cloning `Arc`s, other small efficiencies.",mqp,428637,2018-04-24T23:52:28Z,COLLABORATOR,True,88,64,5,Janus plugin to act as a kind of SFU for game networking data.,Rust,5bacf5a51b19e2253d3d832f9555671c7d432d97,"Improve switchboard efficiency, use multimap crate"
+90,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/16,16,Switchboard improving,"Clean up switchboard interface to return slices instead of vectors, do less per-packet work cloning `Arc`s, other small efficiencies.",mqp,428637,2018-04-24T23:52:28Z,COLLABORATOR,True,88,64,5,Janus plugin to act as a kind of SFU for game networking data.,Rust,ba1aac89f98a41c0d057d5e01e035a6d4ea30c97,Remove some redundant explicit lifetimes
+91,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/16,16,Switchboard improving,"Clean up switchboard interface to return slices instead of vectors, do less per-packet work cloning `Arc`s, other small efficiencies.",mqp,428637,2018-04-24T23:52:28Z,COLLABORATOR,True,88,64,5,Janus plugin to act as a kind of SFU for game networking data.,Rust,60db64e1e269cfceb16f42fab916d2c046953cad,Small tidying
+92,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/15,15,Misc cleanup,"Highlights:
+
+- Fixes a bug where reblocking someone that you blocked and then unblocked could fail.
+- Throws out JWT stuff for now since we aren't using it.
+- Better organization of switchboard manipulation code.
+- Small efficiencies all over.",mqp,428637,2018-04-19T23:47:19Z,COLLABORATOR,True,236,467,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,8d928a25d020780b371f919c0c3d8242276b1f8b,WIP localizing more state into Switchboard struct
+93,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/15,15,Misc cleanup,"Highlights:
+
+- Fixes a bug where reblocking someone that you blocked and then unblocked could fail.
+- Throws out JWT stuff for now since we aren't using it.
+- Better organization of switchboard manipulation code.
+- Small efficiencies all over.",mqp,428637,2018-04-19T23:47:19Z,COLLABORATOR,True,236,467,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,84be6c344e9bf413c0f79100cf8cad08b42cb7e4,Further adjustment on switchboard data structure
+94,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/15,15,Misc cleanup,"Highlights:
+
+- Fixes a bug where reblocking someone that you blocked and then unblocked could fail.
+- Throws out JWT stuff for now since we aren't using it.
+- Better organization of switchboard manipulation code.
+- Small efficiencies all over.",mqp,428637,2018-04-19T23:47:19Z,COLLABORATOR,True,236,467,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,57f5c3cb986a44802f1b508bd965f4086126b671,Fix up some error handling stuff
+95,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/15,15,Misc cleanup,"Highlights:
+
+- Fixes a bug where reblocking someone that you blocked and then unblocked could fail.
+- Throws out JWT stuff for now since we aren't using it.
+- Better organization of switchboard manipulation code.
+- Small efficiencies all over.",mqp,428637,2018-04-19T23:47:19Z,COLLABORATOR,True,236,467,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,28233bd309594a089b035c5b120de5d86043d4e0,Ditch JWT-related stuff
+96,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/15,15,Misc cleanup,"Highlights:
+
+- Fixes a bug where reblocking someone that you blocked and then unblocked could fail.
+- Throws out JWT stuff for now since we aren't using it.
+- Better organization of switchboard manipulation code.
+- Small efficiencies all over.",mqp,428637,2018-04-19T23:47:19Z,COLLABORATOR,True,236,467,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,b2b1bc65c4c44aa57c46d44a5de55c87c737b3fb,"Fix bug, simplify BidirectionalMultimap"
+97,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/14,14,Don't allow clients to see rooms they aren't in,"We don't have a use case for this in the current product, and we don't want to allow it anyway unless we have a use case since we want rooms to be private unless their ID is shared.",mqp,428637,2018-04-12T02:21:15Z,COLLABORATOR,True,9,60,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,1e97e38bff3836bb9cfeffc66fa65c21e127ffe8,Don't allow clients to see rooms they aren't in
+98,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/13,13,Implement user-to-user blocking,"This is still rough, but should be sufficient to get started on client-side work. To wit:
+
+- You can now send ""block"" and ""unblock"" signalling messages to the server, specifying a user ID you wish to block or unblock.
+- These manipulate the state of an in-memory database of blocks, and send an event to the target user that they have been blocked or unblocked.
+- When forwarding packets, we respect these blocks. No audio, video, or data will be sent from blockers to their blockees, or from blockees to their blockers.
+
+There is a known issue with video transmission, where when a blocked video stream is unblocked Janus will interpret the gap as packet loss and start sending a ton of NACKs. I'm researching the best approach to this. It could be that we will want to advise clients to unsubscribe from media traffic of blockers or blockees. The code surrounding the block data structures is also a little messy. Other than that, things should be working.",mqp,428637,2018-04-11T23:20:37Z,COLLABORATOR,True,377,198,5,Janus plugin to act as a kind of SFU for game networking data.,Rust,c4d31d6b2fa63feaf61cb1d354a963e64392c331,WIP blocking stuff
+99,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/13,13,Implement user-to-user blocking,"This is still rough, but should be sufficient to get started on client-side work. To wit:
+
+- You can now send ""block"" and ""unblock"" signalling messages to the server, specifying a user ID you wish to block or unblock.
+- These manipulate the state of an in-memory database of blocks, and send an event to the target user that they have been blocked or unblocked.
+- When forwarding packets, we respect these blocks. No audio, video, or data will be sent from blockers to their blockees, or from blockees to their blockers.
+
+There is a known issue with video transmission, where when a blocked video stream is unblocked Janus will interpret the gap as packet loss and start sending a ton of NACKs. I'm researching the best approach to this. It could be that we will want to advise clients to unsubscribe from media traffic of blockers or blockees. The code surrounding the block data structures is also a little messy. Other than that, things should be working.",mqp,428637,2018-04-11T23:20:37Z,COLLABORATOR,True,377,198,5,Janus plugin to act as a kind of SFU for game networking data.,Rust,51d2fa902cbe3a1d2057ddf547ff723a1ceaba1b,Finish blocking MVP
+100,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/13,13,Implement user-to-user blocking,"This is still rough, but should be sufficient to get started on client-side work. To wit:
+
+- You can now send ""block"" and ""unblock"" signalling messages to the server, specifying a user ID you wish to block or unblock.
+- These manipulate the state of an in-memory database of blocks, and send an event to the target user that they have been blocked or unblocked.
+- When forwarding packets, we respect these blocks. No audio, video, or data will be sent from blockers to their blockees, or from blockees to their blockers.
+
+There is a known issue with video transmission, where when a blocked video stream is unblocked Janus will interpret the gap as packet loss and start sending a ton of NACKs. I'm researching the best approach to this. It could be that we will want to advise clients to unsubscribe from media traffic of blockers or blockees. The code surrounding the block data structures is also a little messy. Other than that, things should be working.",mqp,428637,2018-04-11T23:20:37Z,COLLABORATOR,True,377,198,5,Janus plugin to act as a kind of SFU for game networking data.,Rust,91a91701f0a274a8a54d3428997eca6fb20a8280,Update deps
+101,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/12,12,"Store, accept string room and user IDs","Now room IDs and user IDs are arbitrary strings. Would be nice to fix unnecessary copying but this implementation should be OK for now.
+
+For the moment, we continue to accept numeric JSON IDs in signalling messages; later, once client code is updated, we'll break backwards compatibility. This change does make the user IDs returned in signalling responses into strings, which could break client code, but ours is resilient to that (and since IDs are opaque and only good for comparing equality probably other code is also resilient to that.)",mqp,428637,2018-04-10T02:11:30Z,COLLABORATOR,True,84,43,5,Janus plugin to act as a kind of SFU for game networking data.,Rust,11c92f24e328780127477b31c1a3030a5992bb72,"Store, accept string room and user IDs"
+102,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/11,11,Implement max room size option,Does what it says on the tin. Users attempting to join when the room is at capacity will receive an error response to their join signalling message.,mqp,428637,2018-04-09T22:50:41Z,COLLABORATOR,True,92,15,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,0f4cf9cb52eeea58966b3b6c60bee9ea3e734e03,Implement max room size option
+103,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/11,11,Implement max room size option,Does what it says on the tin. Users attempting to join when the room is at capacity will receive an error response to their join signalling message.,mqp,428637,2018-04-09T22:50:41Z,COLLABORATOR,True,92,15,4,Janus plugin to act as a kind of SFU for game networking data.,Rust,5ef8ecc39c1a66e06e2a217c72c2962d7a4ed956,More correct join error handling
+104,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/9,9,Update Cargo.toml for janus-plugin-rs 0.9.1,,arpu,14173,2018-04-05T19:55:43Z,CONTRIBUTOR,True,1,1,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,0ee670750f573645f744ffd0af83aff6c4100fd6,Update Cargo.toml
+105,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/9,9,Update Cargo.toml for janus-plugin-rs 0.9.1,,arpu,14173,2018-04-05T19:55:43Z,CONTRIBUTOR,True,1,1,1,Janus plugin to act as a kind of SFU for game networking data.,Rust,d3d6696d332e4ca22e311347b9ad181d447b49d3,Merge branch 'master' into master
+106,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/8,8,fix and update squawkers,,brianpeiris,79419,2018-03-31T02:49:12Z,MEMBER,True,104,74,5,Janus plugin to act as a kind of SFU for game networking data.,Rust,b9b81a7b44daf35a159cdc7c81599ef51bfef37b,fix and update squawkers
+107,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/7,7,update and fix janus script and tiny client,,brianpeiris,79419,2018-03-01T05:39:54Z,MEMBER,True,8,4,2,Janus plugin to act as a kind of SFU for game networking data.,Rust,f2c7b2b29bf8e1c268986f1ac0ace43b737951fd,update and fix janus script and tiny client
+108,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/6,6,Renegotiation support,"Now publishers can renegotiate the streams they will publish. When they do, subscribers to them will get a new offer over the signalling channel.",mqp,428637,2018-02-13T22:54:13Z,COLLABORATOR,True,289,293,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,8e4f4047188b58a6b5dbc4abc5cc20d647b9290b,Bump dependencies
+109,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/6,6,Renegotiation support,"Now publishers can renegotiate the streams they will publish. When they do, subscribers to them will get a new offer over the signalling channel.",mqp,428637,2018-02-13T22:54:13Z,COLLABORATOR,True,289,293,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,aaa7be35d0995702408825a49b9ead5a930f6757,Support renegotiation of existing media publications
+110,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/6,6,Renegotiation support,"Now publishers can renegotiate the streams they will publish. When they do, subscribers to them will get a new offer over the signalling channel.",mqp,428637,2018-02-13T22:54:13Z,COLLABORATOR,True,289,293,8,Janus plugin to act as a kind of SFU for game networking data.,Rust,e9c5c4426dc81b95d38ab388998a5647e7858b9c,Tidy up squawkers HTML
+111,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/5,5,Add a connection status display to the tiny example. Also improve style a bit,,brianpeiris,79419,2017-11-28T18:42:29Z,MEMBER,True,28,5,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,d9abceeb2c6790d2e4ab60fe54829968d3e8174d,Add status indicator
+112,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/5,5,Add a connection status display to the tiny example. Also improve style a bit,,brianpeiris,79419,2017-11-28T18:42:29Z,MEMBER,True,28,5,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,3773f3f1534c74c1f6e68887137b0cbd86bb1ec1,sans-serif makes things a bit better
+113,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/5,5,Add a connection status display to the tiny example. Also improve style a bit,,brianpeiris,79419,2017-11-28T18:42:29Z,MEMBER,True,28,5,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,4833513c3840f14dfe38321d7846b9b49166d6ab,Merge branch 'master' of github.com:mquander/janus-plugin-sfu
+114,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/5,5,Add a connection status display to the tiny example. Also improve style a bit,,brianpeiris,79419,2017-11-28T18:42:29Z,MEMBER,True,28,5,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,bc6f027981f4574190b00c7ac1336352996d2b7c,Merge branch 'master' of github.com:mquander/janus-plugin-sfu into connection-status
+115,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/5,5,Add a connection status display to the tiny example. Also improve style a bit,,brianpeiris,79419,2017-11-28T18:42:29Z,MEMBER,True,28,5,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,d98600bf317992702f94d1933c3aeca8cf67d118,Merge branch 'master' of github.com:mozilla/janus-plugin-sfu into connection-status
+116,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/5,5,Add a connection status display to the tiny example. Also improve style a bit,,brianpeiris,79419,2017-11-28T18:42:29Z,MEMBER,True,28,5,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,0680e8c26e965341b26e0e35e67447f3105a9785,add form and query param for janus server
+117,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/4,4,command line and squawker automation,,brianpeiris,79419,2017-11-22T00:52:32Z,MEMBER,True,372,34,5,Janus plugin to act as a kind of SFU for game networking data.,Rust,d3b169ec7605525fd2da83852be16085451fe982,command line and squawker automation
+118,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/4,4,command line and squawker automation,,brianpeiris,79419,2017-11-22T00:52:32Z,MEMBER,True,372,34,5,Janus plugin to act as a kind of SFU for game networking data.,Rust,babf3cb9440ef896def6930be3df3676ca46218f,avoid re-modifying messages. restart timestamp
+119,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/4,4,command line and squawker automation,,brianpeiris,79419,2017-11-22T00:52:32Z,MEMBER,True,372,34,5,Janus plugin to act as a kind of SFU for game networking data.,Rust,b280b01513f6888cb73788016309cdcefc839e1e,fix messages and audio looping
+120,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/4,4,command line and squawker automation,,brianpeiris,79419,2017-11-22T00:52:32Z,MEMBER,True,372,34,5,Janus plugin to act as a kind of SFU for game networking data.,Rust,70b08aec30eb87ad918dc596117bdb89e19c095f,refresh option
+121,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/3,3,Data squawkers,,brianpeiris,79419,2017-11-09T21:37:01Z,MEMBER,True,172,26,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,f4bcbf04a91042a634b889a8217944d2b84e17a5,let squawkers send data from a json file
+122,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/3,3,Data squawkers,,brianpeiris,79419,2017-11-09T21:37:01Z,MEMBER,True,172,26,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,f1f72d6d07840aeec158c08a91f6d3fcb0530f2d,tiny can now record and save data channel messages
+123,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/3,3,Data squawkers,,brianpeiris,79419,2017-11-09T21:37:01Z,MEMBER,True,172,26,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,a60f98660e03cefa0d44f01e6931c9ed20b03190,add back default room id
+124,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/3,3,Data squawkers,,brianpeiris,79419,2017-11-09T21:37:01Z,MEMBER,True,172,26,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,80a27a69f4c2a8796c48b4dc57fcf736b8ec020f,simplify media mic flag
+125,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/3,3,Data squawkers,,brianpeiris,79419,2017-11-09T21:37:01Z,MEMBER,True,172,26,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,c047d43115fc72004d695382801e2ce4870e9621,ignore key and cert created for twistd server
+126,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/3,3,Data squawkers,,brianpeiris,79419,2017-11-09T21:37:01Z,MEMBER,True,172,26,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,02e70b90c04e4e5d0b54d8a38939150b6ac84bae,accidentally removed media stream
+127,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/3,3,Data squawkers,,brianpeiris,79419,2017-11-09T21:37:01Z,MEMBER,True,172,26,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,8df2fcf432b722835abc552835ae75210dc37a2d,use refcount branch
+128,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/3,3,Data squawkers,,brianpeiris,79419,2017-11-09T21:37:01Z,MEMBER,True,172,26,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,90254f7595bfc63d2321ccbbc75cf552d25dd06b,UI improvements and instructional text
+129,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/3,3,Data squawkers,,brianpeiris,79419,2017-11-09T21:37:01Z,MEMBER,True,172,26,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,d0ec638a56b5465199241639ce4195e0b3b97a8e,support both reliable and unreliable data
+130,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/3,3,Data squawkers,,brianpeiris,79419,2017-11-09T21:37:01Z,MEMBER,True,172,26,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,2bd92683afa5547b96c61210ec92d2b1af131808,differentiate squawker data from previous squawkers
+131,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/3,3,Data squawkers,,brianpeiris,79419,2017-11-09T21:37:01Z,MEMBER,True,172,26,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,0c6cd3c42ca7b70028823d1cdda910f14fb72f28,Adjust script build flags for libwebsockets
+132,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/3,3,Data squawkers,,brianpeiris,79419,2017-11-09T21:37:01Z,MEMBER,True,172,26,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,ab5ae35e2acdc697635ce875ce6ec50cffd46584,Don't build other plugins w/Janus
+133,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/3,3,Data squawkers,,brianpeiris,79419,2017-11-09T21:37:01Z,MEMBER,True,172,26,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,5a7638fdacc927b01cb0cd6d9d694d2930b230a6,wait for data channels to open
+134,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/3,3,Data squawkers,,brianpeiris,79419,2017-11-09T21:37:01Z,MEMBER,True,172,26,6,Janus plugin to act as a kind of SFU for game networking data.,Rust,789a81f02a2f5d1c70e83ea7b32befa328a6a219,Merge branch 'data-squawkers' of github.com:mquander/janus-plugin-sfu into data-squawkers
+135,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/2,2,Setup script now runs a secure server + associated client changes,"Makes it easier to setup a local janus server that mr-social-client can use without insecure connection errors.
+Also important for Google Chrome support since Chrome doesn't allow getUserMedia from non-secure pages.",brianpeiris,79419,2017-11-06T22:28:09Z,MEMBER,True,23,6,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,8fa3293b4d8278dd201db25830e7da3e7f8f0c40,add ssl support to setup script
+136,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/2,2,Setup script now runs a secure server + associated client changes,"Makes it easier to setup a local janus server that mr-social-client can use without insecure connection errors.
+Also important for Google Chrome support since Chrome doesn't allow getUserMedia from non-secure pages.",brianpeiris,79419,2017-11-06T22:28:09Z,MEMBER,True,23,6,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,b3cc89460ab7b881636d491a6a12604efccf7956,use secure wss and dynamic hostname for squawkers as well
+137,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/1,1,Fixes and cleanup for the setup script.,,brianpeiris,79419,2017-11-01T16:12:51Z,MEMBER,True,36,23,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,c5a3c0ad7d861db187b0a2181e01f3209096cb85,fix and cleanup setup script
+138,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/1,1,Fixes and cleanup for the setup script.,,brianpeiris,79419,2017-11-01T16:12:51Z,MEMBER,True,36,23,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,8dcac7feeb036d4949528c95812bb698a8ca8569,move stuff to scripts
+139,https://api.github.com/repos/mozilla/janus-plugin-sfu/pulls/1,1,Fixes and cleanup for the setup script.,,brianpeiris,79419,2017-11-01T16:12:51Z,MEMBER,True,36,23,3,Janus plugin to act as a kind of SFU for game networking data.,Rust,3106800b051ae01e05bf140a71cd1b04614f538a,upgrade to janus 0.2.5

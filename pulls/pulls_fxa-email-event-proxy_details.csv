@@ -1,0 +1,156 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/21,21,chore(docs): Point README at monorepo,@mozilla/fxa-devs - r?,shane-tomlinson,848085,2019-04-03T06:01:45Z,MEMBER,True,2,129,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,058939c86cd9a7821ee48ea8f69ff739b64fda00,chore(docs): Point README at monorepo
+1,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/20,20,Add Mozilla Code of Conduct,"Fixes #19
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-30T06:56:46Z,NONE,False,15,0,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,e41c272895e75528b7cb877e794dc3dca6fb7332,"Add Mozilla Code of Conduct file
+
+Fixes #19.
+
+_(Message COC002)_"
+2,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/17,17,fix(lambda): stop swallowing internal errors,"Fixes #15.
+
+You may want to review with `?w=1`, most of the changed lines here are indentation due to the eliminated try/catch.
+
+Note that `401` responses are still returned cleanly, the old way. I figure that makes sense but happy to change it if you disagree.
+
+@jrgm @mozilla/fxa-devs r?",philbooth,64367,2018-11-29T09:12:26Z,CONTRIBUTOR,True,376,1098,5,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,010a206209c37d6ace3de06a0e6166384fdcfd3a,fix(lambda): stop swallowing internal errors
+3,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/17,17,fix(lambda): stop swallowing internal errors,"Fixes #15.
+
+You may want to review with `?w=1`, most of the changed lines here are indentation due to the eliminated try/catch.
+
+Note that `401` responses are still returned cleanly, the old way. I figure that makes sense but happy to change it if you disagree.
+
+@jrgm @mozilla/fxa-devs r?",philbooth,64367,2018-11-29T09:12:26Z,CONTRIBUTOR,True,376,1098,5,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,87da4a58b01d4c3b4703faf36d739ac3215f28e6,chore(package): update deps
+4,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/13,13,fix(authentication): use the `aws-sdk` module for role-based authentication,"Stupid me was assuming the underlying SQS modules was based on aws-sdk. But it's not and requires access tokens for authn/authz which is fine for some use cases, but it's better to add policies to grant access to resources. So this switches to using `aws-sdk`. Apologies Phil. Was there some particular reason this should use the `sqs` module and this replacement is the wrong thing to do? (In the process of switching over, I didn't try to replace the niceness of just specifying the queue name and `sqs` would work out the rest, so that's one thing).
+
+/cc @vbudhram who nicely volunteered to work out the test changes to mock AWS.SQS that I didn't do.",jrgm,758162,2018-11-19T23:05:23Z,CONTRIBUTOR,True,414,225,6,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,25019825938a406f5c70df699949180aac03866f,fix(authentication): use the `aws-sdk` module for role-based authentication
+5,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/11,11,fix(socketlabs): add the ValidationKey to all responses,"I was looking at the docs for the Socktlabs API and my reading of that is that the ValidationKey is supposed to be returned on each response. e.g., https://notify.docs.socketlabs.com/v1/example-post-events/failure-notification-example
+
+So this PR adds an `annotate` method to each provider (no-op for SendGrid). If there's a better naming choice, or if I've read the docs wrong, let me know. (I'm not really sure if this is actually enforced by socketlabs, except on the validation, where they will take it anywhere in the response body. ¯\_(ツ)_/¯)
+
+",jrgm,758162,2018-11-18T06:07:13Z,CONTRIBUTOR,True,33,9,4,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,a12a0b1b63f18d7a948d99b0b09c9c17616b6b52,fix(socketlabs): add the ValidationKey to all responses
+6,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/10,10,"fix(package): ""-y"": store symbolic links as the link instead of the referenced file","Minor nit. Usually only means files in ./node_modules/.bin, but seems more correct.
+
+r? - @philbooth ",jrgm,758162,2018-11-16T22:48:49Z,CONTRIBUTOR,True,1,1,1,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,2b860637f6ceea98439e04329ac46edda06eff81,"fix(package): ""-y"": store symbolic links as the link instead of the referenced file"
+7,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/8,8,feat(deploy): build a zip archive for lambda deployment,"(it's only enabled for tags, like our other repos)
+
+@mozilla/fxa-devs r?",philbooth,64367,2018-09-18T16:48:23Z,CONTRIBUTOR,True,70,7,3,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,7fd7b30312cbb3b7ad8abdb110d5cad7c9fe3658,feat(deploy): build a zip archive for lambda deployment
+8,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/8,8,feat(deploy): build a zip archive for lambda deployment,"(it's only enabled for tags, like our other repos)
+
+@mozilla/fxa-devs r?",philbooth,64367,2018-09-18T16:48:23Z,CONTRIBUTOR,True,70,7,3,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,499ca6f7f4bf2c6b4065662eb6428a3b9574fd24,fix(package): link to correct repo in package.json properties
+9,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/7,7,feat(docs): include more dev/setup info in the readme,"Fixes #5.
+
+I already updated the repo name, this changes the readme to match and includes some extra information about setting up the dev environment and Lambda.
+
+I also opted to tweak the name of a couple of SocketLabs-specific environment variables, just to make it clearer they're not needed when setting up for Sendgrid.
+
+@mozilla/fxa-devs r?",philbooth,64367,2018-09-18T15:19:50Z,CONTRIBUTOR,True,109,10,3,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,43f014fb51dedfe32ae48cdc9e3c6cd2ffa8a630,chore(socketlabs): prefix the socketlabs-only env vars
+10,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/7,7,feat(docs): include more dev/setup info in the readme,"Fixes #5.
+
+I already updated the repo name, this changes the readme to match and includes some extra information about setting up the dev environment and Lambda.
+
+I also opted to tweak the name of a couple of SocketLabs-specific environment variables, just to make it clearer they're not needed when setting up for Sendgrid.
+
+@mozilla/fxa-devs r?",philbooth,64367,2018-09-18T15:19:50Z,CONTRIBUTOR,True,109,10,3,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,f0a265e3479d9b91f91253fe7c466ad3130d03b6,feat(docs): include more dev/setup info in the readme
+11,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/4,4,fix(response): change notification structure to be like sns,"See discussion in https://github.com/mozilla/fxa-email-service/pull/177#issuecomment-414394797
+
+r? @philbooth @vladikoff ",brizental,25176023,2018-08-21T00:49:46Z,MEMBER,True,48,38,3,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,8b08a22d3c9af4ae7b91733974fed77825339f40,fix(response): change notification structure to be like sns
+12,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/3,3,feat(socketlabs): add event proxy for socketlabs,"Right now I only have the Sendgrid logic isolated and depending on an environment variable. I will add the SocketLabs logic now, but I wanted to check that this is a good way to do things.
+
+**Update**
+
+- I created the SocketLabs parser and added the validation stuff they require. I'm not really sure about code organization, but you can take a look and let me know, specially where I put the validation stuff inside `index.js`, that doesn't seem right. 
+- I also created a lambda in AWS to test everything, that was alright and it works properly. Unfortunately SocketLabs is not able to validate using the validation key I provided. I tried returning it in the headers and in the body and none of those work, even though SocketLabs claims that we can return that key ""anywhere in the response message"" (https://support.socketlabs.com/index.php/Knowledgebase/Article/View/106). Probably I am misunderstanding something though, so let me know if you have any better ideas.
+- I have been using some local unit tests for the parser stuff which I will organize into a commit and send soon.
+
+**Update 2**
+
+- SocketLabs sends the request in `x-www-form-urlencoded` format, that is why the validation was not working... Turns out the function was failing in `JSON.parse(body)` and returning an Internal Server Error to SocketLabs all this time. That was fixed.
+
+r? @vladikoff @philbooth ",brizental,25176023,2018-08-09T20:37:56Z,MEMBER,True,712,145,7,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,07e6f82b943009c79f424bf9ee43346731decf7e,feat(project): isolate specific provider logic
+13,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/3,3,feat(socketlabs): add event proxy for socketlabs,"Right now I only have the Sendgrid logic isolated and depending on an environment variable. I will add the SocketLabs logic now, but I wanted to check that this is a good way to do things.
+
+**Update**
+
+- I created the SocketLabs parser and added the validation stuff they require. I'm not really sure about code organization, but you can take a look and let me know, specially where I put the validation stuff inside `index.js`, that doesn't seem right. 
+- I also created a lambda in AWS to test everything, that was alright and it works properly. Unfortunately SocketLabs is not able to validate using the validation key I provided. I tried returning it in the headers and in the body and none of those work, even though SocketLabs claims that we can return that key ""anywhere in the response message"" (https://support.socketlabs.com/index.php/Knowledgebase/Article/View/106). Probably I am misunderstanding something though, so let me know if you have any better ideas.
+- I have been using some local unit tests for the parser stuff which I will organize into a commit and send soon.
+
+**Update 2**
+
+- SocketLabs sends the request in `x-www-form-urlencoded` format, that is why the validation was not working... Turns out the function was failing in `JSON.parse(body)` and returning an Internal Server Error to SocketLabs all this time. That was fixed.
+
+r? @vladikoff @philbooth ",brizental,25176023,2018-08-09T20:37:56Z,MEMBER,True,712,145,7,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,1ee039ab723625da668f91e3b90268cead6208ab,feat(project): validate provider name
+14,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/3,3,feat(socketlabs): add event proxy for socketlabs,"Right now I only have the Sendgrid logic isolated and depending on an environment variable. I will add the SocketLabs logic now, but I wanted to check that this is a good way to do things.
+
+**Update**
+
+- I created the SocketLabs parser and added the validation stuff they require. I'm not really sure about code organization, but you can take a look and let me know, specially where I put the validation stuff inside `index.js`, that doesn't seem right. 
+- I also created a lambda in AWS to test everything, that was alright and it works properly. Unfortunately SocketLabs is not able to validate using the validation key I provided. I tried returning it in the headers and in the body and none of those work, even though SocketLabs claims that we can return that key ""anywhere in the response message"" (https://support.socketlabs.com/index.php/Knowledgebase/Article/View/106). Probably I am misunderstanding something though, so let me know if you have any better ideas.
+- I have been using some local unit tests for the parser stuff which I will organize into a commit and send soon.
+
+**Update 2**
+
+- SocketLabs sends the request in `x-www-form-urlencoded` format, that is why the validation was not working... Turns out the function was failing in `JSON.parse(body)` and returning an Internal Server Error to SocketLabs all this time. That was fixed.
+
+r? @vladikoff @philbooth ",brizental,25176023,2018-08-09T20:37:56Z,MEMBER,True,712,145,7,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,1c851b7f6e42af388cb442d423126003557aadb8,feat(socketlabs): initial socketlabs support
+15,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/3,3,feat(socketlabs): add event proxy for socketlabs,"Right now I only have the Sendgrid logic isolated and depending on an environment variable. I will add the SocketLabs logic now, but I wanted to check that this is a good way to do things.
+
+**Update**
+
+- I created the SocketLabs parser and added the validation stuff they require. I'm not really sure about code organization, but you can take a look and let me know, specially where I put the validation stuff inside `index.js`, that doesn't seem right. 
+- I also created a lambda in AWS to test everything, that was alright and it works properly. Unfortunately SocketLabs is not able to validate using the validation key I provided. I tried returning it in the headers and in the body and none of those work, even though SocketLabs claims that we can return that key ""anywhere in the response message"" (https://support.socketlabs.com/index.php/Knowledgebase/Article/View/106). Probably I am misunderstanding something though, so let me know if you have any better ideas.
+- I have been using some local unit tests for the parser stuff which I will organize into a commit and send soon.
+
+**Update 2**
+
+- SocketLabs sends the request in `x-www-form-urlencoded` format, that is why the validation was not working... Turns out the function was failing in `JSON.parse(body)` and returning an Internal Server Error to SocketLabs all this time. That was fixed.
+
+r? @vladikoff @philbooth ",brizental,25176023,2018-08-09T20:37:56Z,MEMBER,True,712,145,7,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,cf085c62743329f96fd49a0bbf64837d6d55f181,feat(socketlabs): add special return response for validation event
+16,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/3,3,feat(socketlabs): add event proxy for socketlabs,"Right now I only have the Sendgrid logic isolated and depending on an environment variable. I will add the SocketLabs logic now, but I wanted to check that this is a good way to do things.
+
+**Update**
+
+- I created the SocketLabs parser and added the validation stuff they require. I'm not really sure about code organization, but you can take a look and let me know, specially where I put the validation stuff inside `index.js`, that doesn't seem right. 
+- I also created a lambda in AWS to test everything, that was alright and it works properly. Unfortunately SocketLabs is not able to validate using the validation key I provided. I tried returning it in the headers and in the body and none of those work, even though SocketLabs claims that we can return that key ""anywhere in the response message"" (https://support.socketlabs.com/index.php/Knowledgebase/Article/View/106). Probably I am misunderstanding something though, so let me know if you have any better ideas.
+- I have been using some local unit tests for the parser stuff which I will organize into a commit and send soon.
+
+**Update 2**
+
+- SocketLabs sends the request in `x-www-form-urlencoded` format, that is why the validation was not working... Turns out the function was failing in `JSON.parse(body)` and returning an Internal Server Error to SocketLabs all this time. That was fixed.
+
+r? @vladikoff @philbooth ",brizental,25176023,2018-08-09T20:37:56Z,MEMBER,True,712,145,7,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,bd2c62eacaa4e3053b0ae01dda08cac0b927bc9b,chore(tests): add tests for socketlabs provider
+17,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/3,3,feat(socketlabs): add event proxy for socketlabs,"Right now I only have the Sendgrid logic isolated and depending on an environment variable. I will add the SocketLabs logic now, but I wanted to check that this is a good way to do things.
+
+**Update**
+
+- I created the SocketLabs parser and added the validation stuff they require. I'm not really sure about code organization, but you can take a look and let me know, specially where I put the validation stuff inside `index.js`, that doesn't seem right. 
+- I also created a lambda in AWS to test everything, that was alright and it works properly. Unfortunately SocketLabs is not able to validate using the validation key I provided. I tried returning it in the headers and in the body and none of those work, even though SocketLabs claims that we can return that key ""anywhere in the response message"" (https://support.socketlabs.com/index.php/Knowledgebase/Article/View/106). Probably I am misunderstanding something though, so let me know if you have any better ideas.
+- I have been using some local unit tests for the parser stuff which I will organize into a commit and send soon.
+
+**Update 2**
+
+- SocketLabs sends the request in `x-www-form-urlencoded` format, that is why the validation was not working... Turns out the function was failing in `JSON.parse(body)` and returning an Internal Server Error to SocketLabs all this time. That was fixed.
+
+r? @vladikoff @philbooth ",brizental,25176023,2018-08-09T20:37:56Z,MEMBER,True,712,145,7,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,ad9c8bc519419f2185aaed89813da6f26c85e07a,chore(formatting): fix lint errors
+18,https://api.github.com/repos/mozilla/fxa-email-event-proxy/pulls/3,3,feat(socketlabs): add event proxy for socketlabs,"Right now I only have the Sendgrid logic isolated and depending on an environment variable. I will add the SocketLabs logic now, but I wanted to check that this is a good way to do things.
+
+**Update**
+
+- I created the SocketLabs parser and added the validation stuff they require. I'm not really sure about code organization, but you can take a look and let me know, specially where I put the validation stuff inside `index.js`, that doesn't seem right. 
+- I also created a lambda in AWS to test everything, that was alright and it works properly. Unfortunately SocketLabs is not able to validate using the validation key I provided. I tried returning it in the headers and in the body and none of those work, even though SocketLabs claims that we can return that key ""anywhere in the response message"" (https://support.socketlabs.com/index.php/Knowledgebase/Article/View/106). Probably I am misunderstanding something though, so let me know if you have any better ideas.
+- I have been using some local unit tests for the parser stuff which I will organize into a commit and send soon.
+
+**Update 2**
+
+- SocketLabs sends the request in `x-www-form-urlencoded` format, that is why the validation was not working... Turns out the function was failing in `JSON.parse(body)` and returning an Internal Server Error to SocketLabs all this time. That was fixed.
+
+r? @vladikoff @philbooth ",brizental,25176023,2018-08-09T20:37:56Z,MEMBER,True,712,145,7,DEPRECATED - Migrated to https://github.com/mozilla/fxa,JavaScript,1ace6c35ee693668840d52997db25dbe858d603e,feat(logging): return a valid json in the response body

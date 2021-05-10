@@ -1,0 +1,651 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/56,56,Add Mozilla Code of Conduct,"Fixes #55
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-28T04:21:24Z,CONTRIBUTOR,True,15,0,1,BrowserID library used by the Firefox Accounts verifier,JavaScript,e73e8d33d254c311c1746bce7eb1651a54203f12,"Add Mozilla Code of Conduct file
+
+Fixes #55.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/49,49,fix(deps): Update to node10-compatible browserid-crypto,"This won't pass until we release a new version of browserid-crypto to include https://github.com/mozilla/browserid-crypto/pull/113, but prepping it in the meantime...",rfk,34695,2018-09-05T03:04:59Z,MEMBER,True,3,3,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,566fe66c1b66232f424278226064a1a9ba8f1639,fix(deps): Update to node10-compatible browserid-crypto
+2,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/47,47,"feat(lookup): Allow forcing lookup over http, for testing purposes.",For https://github.com/mozilla/browserid-verifier/issues/106,rfk,34695,2018-06-20T04:39:12Z,MEMBER,True,5,2,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,2bca2936d45b81622a919b59ef0cdc7e8d2ee9ab,"feat(lookup): Allow forcing lookup over http, for testing purposes."
+3,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/47,47,"feat(lookup): Allow forcing lookup over http, for testing purposes.",For https://github.com/mozilla/browserid-verifier/issues/106,rfk,34695,2018-06-20T04:39:12Z,MEMBER,True,5,2,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,71cbbc36fe5049df10ab53ca048b765550f08c54,feat(lookup): safe guard options
+4,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/46,46,chore(ci): Remove coveralls from travis config,Per https://bugzilla.mozilla.org/show_bug.cgi?id=1455339,rfk,34695,2018-05-23T00:19:32Z,MEMBER,True,1,3,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,986bd85ae6d5742e01a9fcd373bf4945aa1ff98e,chore(ci): Remove coveralls from travis config
+5,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/45,45,Update browserid-crypto dependency,"@jrgm the chain of dependency updates continues; r?
+",rfk,34695,2016-10-11T02:33:58Z,MEMBER,True,1,1,1,BrowserID library used by the Firefox Accounts verifier,JavaScript,17e289c958fbec4af9cdc1067ecb8d7c2c8285a9,"chore(deps): Update dependencies to latest versions.
+
+This also makes some compatibility fixes for API changes."
+6,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/44,44,fix(tests): add COVERALLS_REPO_TOKEN for coverage status updates,,vladikoff,128755,2016-10-04T20:39:04Z,CONTRIBUTOR,True,6,2,1,BrowserID library used by the Firefox Accounts verifier,JavaScript,72520eee2cef85da4b27ff5c58106852e33a7800,fix(tests): add COVERALLS_REPO_TOKEN for coverage status updates
+7,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/43,43,"fix(tests): switch coverage tool, use coveralls",,vladikoff,128755,2016-10-04T20:24:48Z,CONTRIBUTOR,True,19,41,5,BrowserID library used by the Firefox Accounts verifier,JavaScript,140ad0de1e5b2c5f5056a01c3059f8507b2c6b73,"fix(tests): switch coverage tool, user coveralls"
+8,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/43,43,"fix(tests): switch coverage tool, use coveralls",,vladikoff,128755,2016-10-04T20:24:48Z,CONTRIBUTOR,True,19,41,5,BrowserID library used by the Firefox Accounts verifier,JavaScript,96289fbf6d6ab7ae236e65c93eb5c97ec15e876d,fix(tests): add g++ 4.8
+9,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/42,42,chore(deps): Update dependencies to latest versions.,"This also makes some compatibility fixes for API changes.  @vladikoff r?
+",rfk,34695,2016-10-04T06:29:47Z,MEMBER,True,33,41,11,BrowserID library used by the Firefox Accounts verifier,JavaScript,7b602c73cb8d255dfe52fef9bdf17c22fd395d89,"chore(deps): Update dependencies to latest versions.
+
+This also makes some compatibility fixes for API changes."
+10,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/41,41,Explicitly guard against port <= 0 in URL validation,"The url parser itself will not accept negative port values, but it allows zero.  So we may as well put in a full explicit check for ourselves.  This also copies over some testcases from the urlparse library, which naturally identified a bug in the port-handling code anyway...
+
+@vladikoff r?
+",rfk,34695,2016-02-28T23:15:33Z,MEMBER,True,32,2,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,ae4122ddc104875a0fd71ed11a6c2c1dbf17232b,Explicitly guard against port <= 0 in URL validation
+11,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/40,40,"Cache checks on whether to use a proxy, rather than checking each time.","Sorry @mostlygeek, but you sent me down a Freaky Friday rabbit hole...
+
+Here's something that might help with the CPU usage issue identified in https://github.com/mozilla/browserid-verifier/issues/80.  The current code checks for and validates proxy-related environment variables on every remote request.  This version generates a specialized checking function based on the current env var values, and only changes it if it finds that the env vars have mysteriously changed.
+
+In a simple local test calling `shouldUseProxy` 1000000 times in a loop, this version is very slightly slower when there's no `HTTPS_PROXY` env var, and more than five times faster when there is.
+
+Kinda complicated, but good fun and might be worth it to save a few pennies a day :-P
+",rfk,34695,2016-02-26T04:14:51Z,MEMBER,False,84,20,1,BrowserID library used by the Firefox Accounts verifier,JavaScript,d0cfa46fb151796b7b04bdfe956176b8f0302a12,"Cache checks on whether to use a proxy, rather than checking each time."
+12,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/39,39,Remove additional uses of 'urlparse' module,"@fmarier this removes some additional uses of the old `urlparse` module, replacing them with some straightforward extra checks on the result of the builtin `url.parse` function.  I'm going to merge and release it when travis goes green, because I forgot to do this as part of the v0.3.0 release, so current release version is busted :-(
+
+But if you get a chance, an r? would still be appreciated.
+",rfk,34695,2016-02-24T07:20:17Z,MEMBER,True,47,12,4,BrowserID library used by the Firefox Accounts verifier,JavaScript,35dffebb2fe7f15e7cce1ec20497c7eeaff49fda,Remove additional uses of 'urlparse' module
+13,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/38,38,Allow IdPs to publish multiple public keys.,"This allows the IdP support document to include a 'keys' property containing a list of public keys, any of which could be used to produce a valid signature.  IdPs might like to use this during e.g. key rotation events.
+
+Depends on a new release of browserid-crypto incorporating https://github.com/mozilla/browserid-verifier/issues/69 (so the tests might fail here for a bit...)
+",rfk,34695,2016-02-08T04:52:51Z,MEMBER,True,99,15,7,BrowserID library used by the Firefox Accounts verifier,JavaScript,30dbded9c4ab3c37a679ffa843e0964cb7592d26,"Allow IdPs to publish multiple public keys.
+
+This allows the IdP support document to include a 'keys'
+property containing a list of public keys, any of which
+could be used to produce a valid signature.  IdPs might like
+to use this during e.g. key rotation events."
+14,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/37,37,Update to latest browserid-crypto.,"The latest browserid-crypto removed support for ""new format""
+certificates and assertions, which required some slight tweaks to the
+tests.
+
+We _could_ keep the ""RSA""/""DSA"" compatability hooks for algorithm name as part of browserid-crypto, which would make this PR just a version bump.  But IIUC they were never used in the wild, so it seems prudent to be strict and catch potential incompatibilities early.
+
+@fmarier r? in combination with https://github.com/mozilla/browserid-crypto/pull/103
+",rfk,34695,2014-11-05T10:42:34Z,MEMBER,True,12,12,5,BrowserID library used by the Firefox Accounts verifier,JavaScript,6c8909bd502d26fcb55fdba324241f71ff257b1a,"Update to latest browserid-crypto.
+
+The latest browserid-crypto removed support for ""new format""
+certificates and assertions, which required some slight tweaks to the
+tests."
+15,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/36,36,Browserid crypto,,fmarier,167821,2014-10-09T05:04:37Z,CONTRIBUTOR,True,17,37,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,3f97fef32663418e247a72d275da2004d71852f4,Remove jwcrypto where it's not needed
+16,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/36,36,Browserid crypto,,fmarier,167821,2014-10-09T05:04:37Z,CONTRIBUTOR,True,17,37,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,30f799007527e519f7a34bdd9bd5d9d7ee232282,Switch from jwcrypto to browserid-crypto
+17,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/35,35,Update jwcrypto dependency to v0.5.1,"This updates the jwcrypto dependency to v0.5.1, which includes some changes to the way errors are reported:
+- It returns Error objects rather than strings; we should do the same here but for this deployment let's just normalize them back to strings
+- It no longer distinguishes between ""certificate expired"" and ""assertion expired"" in the error message
+
+Let's get the latest into prod and then file a follow-up bug to keep improving the error/logging situation across all these projects.
+
+@francois r?
+",rfk,34695,2014-09-05T03:57:21Z,MEMBER,True,10,6,4,BrowserID library used by the Firefox Accounts verifier,JavaScript,dc0453b349f622796672922d35b3ded6e7f07c5d,Update jwcrypto dependency to v0.5.1
+18,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/35,35,Update jwcrypto dependency to v0.5.1,"This updates the jwcrypto dependency to v0.5.1, which includes some changes to the way errors are reported:
+- It returns Error objects rather than strings; we should do the same here but for this deployment let's just normalize them back to strings
+- It no longer distinguishes between ""certificate expired"" and ""assertion expired"" in the error message
+
+Let's get the latest into prod and then file a follow-up bug to keep improving the error/logging situation across all these projects.
+
+@francois r?
+",rfk,34695,2014-09-05T03:57:21Z,MEMBER,True,10,6,4,BrowserID library used by the Firefox Accounts verifier,JavaScript,3eb52d65050455f0f39c2d52c0ba8ee7aa45cc5b,Add TMPDIR hack to workaround travis build issue
+19,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/34,34,Remove no-longer-needed 'allowURLOmission' flag.,"Fixes #5.  @fmarier r?
+",rfk,34695,2014-07-02T04:27:54Z,MEMBER,True,7,76,4,BrowserID library used by the Firefox Accounts verifier,JavaScript,378531ac5797b1a1185ce7cf2ccde54c83701157,Remove no-longer-needed 'allowURLOmission' flag.
+20,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/34,34,Remove no-longer-needed 'allowURLOmission' flag.,"Fixes #5.  @fmarier r?
+",rfk,34695,2014-07-02T04:27:54Z,MEMBER,True,7,76,4,BrowserID library used by the Firefox Accounts verifier,JavaScript,01660d017415957282a211d97c508db3511d5280,Fix typo in comment
+21,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/34,34,Remove no-longer-needed 'allowURLOmission' flag.,"Fixes #5.  @fmarier r?
+",rfk,34695,2014-07-02T04:27:54Z,MEMBER,True,7,76,4,BrowserID library used by the Firefox Accounts verifier,JavaScript,f50de31e3601728936fa2261c24e199b229681ce,"Drop node 0.8, add node 0.11 in travis config"
+22,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/34,34,Remove no-longer-needed 'allowURLOmission' flag.,"Fixes #5.  @fmarier r?
+",rfk,34695,2014-07-02T04:27:54Z,MEMBER,True,7,76,4,BrowserID library used by the Firefox Accounts verifier,JavaScript,3c0b2cffeb10cae7feae6c25b274620b203db109,"Nope, node 0.11 gives an error, avoiding for now.."
+23,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/33,33,Restore audience mismatch error messages,"A recent change caused audience mismatch error messages to go from this:
+
+```
+""audience mismatch: domain mismatch""
+```
+
+To this:
+
+```
+""audience misatch: Error: domain mismatch""
+```
+
+This repo didn't have tests for the error message, but browserid-verify does and they started failing when I updated the dependency there.  This PR restores the messages to their previous value, which IMHO is nicer.  It also adds some tests and fixes a test that should have been failing, but wasn't.
+
+@fmarier r?
+",rfk,34695,2014-04-12T21:57:42Z,MEMBER,True,20,8,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,ccb8d0ba88388854a5e8d097edf55bae6ec78c83,"Restore audience-mismatch errors to previous behaviour, add tests."
+24,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/33,33,Restore audience mismatch error messages,"A recent change caused audience mismatch error messages to go from this:
+
+```
+""audience mismatch: domain mismatch""
+```
+
+To this:
+
+```
+""audience misatch: Error: domain mismatch""
+```
+
+This repo didn't have tests for the error message, but browserid-verify does and they started failing when I updated the dependency there.  This PR restores the messages to their previous value, which IMHO is nicer.  It also adds some tests and fixes a test that should have been failing, but wasn't.
+
+@fmarier r?
+",rfk,34695,2014-04-12T21:57:42Z,MEMBER,True,20,8,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,59b0fea4c6ee80c40e31c58d868c1a9fe83a8dd7,Reject audience if it has non-empty path component.
+25,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/31,31,Add missing require for urlparse,"This was removed as part of a refactoring in 5ecb9318a95ce5ac4b945f493cd2644e63a5e4ee
+but it should have been kept since dd1b6ec9eda3a81ead2bdf3662d849b3d2ee5c8c
+introduced extra uses of that module.
+",fmarier,167821,2014-04-09T06:19:20Z,CONTRIBUTOR,True,1,0,1,BrowserID library used by the Firefox Accounts verifier,JavaScript,f7881f24c5f49d6ec12b4b161d302b4bcbef92e7,"Add missing require for urlparse
+
+This was removed as part of a refactoring in 5ecb9318a95ce5ac4b945f493cd2644e63a5e4ee
+but it should have been kept since dd1b6ec9eda3a81ead2bdf3662d849b3d2ee5c8c
+introduced extra uses of that module."
+26,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/30,30,Link to the verifier that uses this library,"Also remove the ""status: experimental"" since this library is used
+in production now.
+",fmarier,167821,2014-04-09T05:29:04Z,CONTRIBUTOR,True,1,3,1,BrowserID library used by the Firefox Accounts verifier,JavaScript,7cbe992958024620135373eaa2fd4091f147653d,"Link to the verifier that uses this library
+
+Also remove the ""status: experimental"" since this library is used
+in production now."
+27,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,f0036558748bdb72f8ff4087af81cbf090a7c8cd,"Validate provisioning and authentication endpoints
+
+Let's do this closer to the data, not deep into the callers of the
+well-known parser."
+28,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,5741a9497126c23794e6ffaeb8f15ea91061e530,"Eliminate a variable reuse in claims extraction
+
+These two sets of claims should always be kept completely separate
+so let's use separate variables at all times when handling them."
+29,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,d52bee65e619a92ef1a34df72323a7a74cb551db,Remove bogus comments (copy/paste leftovers)
+30,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,d48653a91e5f960374c358ffb575810781c50acd,"Validate the authority field for delegating IdPs
+
+The validation of that field should happen in the parser so that
+invalid values never make it to the callers."
+31,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,f918f591827cf0c484f1d40af6ee92cd5749f44a,"Convert string exceptions to Error objects
+
+http://www.devthought.com/2011/12/22/a-string-is-not-an-error/"
+32,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,451f49a5ba12d41d7aa87c9987e523cabeefd155,"Add a test to make sure that ""disabled: false"" works"
+33,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,ecc73c9031e7753693b44c8a86be0d700d8c6acf,"Be more strict about the format of ""disabled""
+
+While we could be more tolerant here than in the spec, the risk is
+that the majority of developers will not read the spec and will
+instead try something with our verifier and expect that it will
+always continue to work the same way.
+
+In other words, if we're too lenient at the start, we will be
+stuck supporting an alternative syntax forever and will impose that
+on third-party verifiers as well."
+34,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,5e309568f7333c3233581bdaf5a556e28bb55fa1,Remove lie in comment
+35,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,c3cdd79214c876755da0796398be5423a6155cd9,Test invalid schemes when comparing audiences
+36,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,43ffbdbae1688c8d3eb0dfd466af33c6944550ec,"Fix broken test
+
+The ports need to match. This test was wrong."
+37,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,dcc95fe4a204a698ea90cbe2e2736ce7054720f5,"Simplify the audience comparison logic
+
+Remove the regular expression-based parsing and replace it with
+url.parse().
+
+Add the default scheme when it's not provided."
+38,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,f5aeba84518213a561db2fac245c0577ccba4673,Fix typo in comment
+39,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,9fdcb8dbcd45d8d93b394c7b5ec86d49b7465a15,Test that chained assertions are rejected
+40,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,dc6a0d129b3d63bca4b00f9297934d4e90036f32,"Validate the domain that's extracted from the cert email
+
+The verifier makes use of the domain extracted from the email
+address in a few places and so it should ensure that it's valid."
+41,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,f78fa1af907ee63922cc3aa4cc437d59b4657447,Merge branch 'validate_authority' into merge_all_the_things
+42,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,51268d5e3f3929b1f38e893620ed6552ec3b113e,Merge branch 'test_comment_cleanup' into merge_all_the_things
+43,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,90ff2b438055348465c05c412867c122983ef3a0,Merge branch 'avoid_variable_reuse' into merge_all_the_things
+44,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,f33d61943eb2d080bc8d1266d8415763446c1921,"Merge branch 'validate_paths' into merge_all_the_things
+
+Conflicts:
+	lib/lookup.js
+	lib/well-known-parser.js"
+45,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,3b9b1543c541c3243790c4c6e849fe67f3a9da71,"Merge branch 'throwing_objects' into merge_all_the_things
+
+Conflicts:
+	lib/well-known-parser.js"
+46,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,b0f4f529db8b4d0035190f6e1bfe43c8bea41071,Merge branch 'stricter_disabled' into merge_all_the_things
+47,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,715775b39175948b5a12dba2467cb3780c8f76df,"Merge branch 'simpler_compare_audience' into merge_all_the_things
+
+Conflicts:
+	lib/compare-audiences.js"
+48,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,6c04bcd4d9aac855784885c14ec498a9a35e2cfc,Merge branch 'chained_assertion_check' into merge_all_the_things
+49,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,e99e5e934a75183c7e4d0e078f93ef19828015d3,"Merge branch 'validate_extracted_domain' into merge_all_the_things
+
+Conflicts:
+	tests/assertion.js"
+50,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/29,29,Merge all the things,"This is the same as https://github.com/mozilla/browserid-local-verify/pull/25 to hopefully work-around the bogus test failures seen by Travis.
+",fmarier,167821,2014-04-09T05:10:35Z,CONTRIBUTOR,False,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,5ecb9318a95ce5ac4b945f493cd2644e63a5e4ee,"Move ""validateAuthority"" to a common file
+
+Both verify.js and well-known-parser.js must perform the same
+validation checks on hostnames."
+51,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/27,27,Transparently support $https_proxy and $no_proxy environment variables.,"This is a proposal for dealing with https://github.com/mozilla/browserid-verifier/issues/13 in a mildly generic way, by implementing support for the $https_proxy and $no_proxy environment variables.  These are used by at least `wget` and the python standard library to control proxying behaviour so using them here seems at least semi-standards-compliant.
+
+Thoughts?
+
+Possible improvements might include:  add a config option to explicitly disable them; process them once at startup rather than string-munging for each request.
+",rfk,34695,2014-03-04T06:18:21Z,MEMBER,True,252,4,3,BrowserID library used by the Firefox Accounts verifier,JavaScript,dd1b6ec9eda3a81ead2bdf3662d849b3d2ee5c8c,Transparently support $https_proxy and $no_proxy environment variables.
+52,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/27,27,Transparently support $https_proxy and $no_proxy environment variables.,"This is a proposal for dealing with https://github.com/mozilla/browserid-verifier/issues/13 in a mildly generic way, by implementing support for the $https_proxy and $no_proxy environment variables.  These are used by at least `wget` and the python standard library to control proxying behaviour so using them here seems at least semi-standards-compliant.
+
+Thoughts?
+
+Possible improvements might include:  add a config option to explicitly disable them; process them once at startup rather than string-munging for each request.
+",rfk,34695,2014-03-04T06:18:21Z,MEMBER,True,252,4,3,BrowserID library used by the Firefox Accounts verifier,JavaScript,901bbd59fcc44ee488ad16ee2532dff941119b45,Add more tests for correct $HTTPS_PROXY use.
+53,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,f0036558748bdb72f8ff4087af81cbf090a7c8cd,"Validate provisioning and authentication endpoints
+
+Let's do this closer to the data, not deep into the callers of the
+well-known parser."
+54,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,5741a9497126c23794e6ffaeb8f15ea91061e530,"Eliminate a variable reuse in claims extraction
+
+These two sets of claims should always be kept completely separate
+so let's use separate variables at all times when handling them."
+55,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,d52bee65e619a92ef1a34df72323a7a74cb551db,Remove bogus comments (copy/paste leftovers)
+56,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,d48653a91e5f960374c358ffb575810781c50acd,"Validate the authority field for delegating IdPs
+
+The validation of that field should happen in the parser so that
+invalid values never make it to the callers."
+57,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,f918f591827cf0c484f1d40af6ee92cd5749f44a,"Convert string exceptions to Error objects
+
+http://www.devthought.com/2011/12/22/a-string-is-not-an-error/"
+58,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,451f49a5ba12d41d7aa87c9987e523cabeefd155,"Add a test to make sure that ""disabled: false"" works"
+59,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,ecc73c9031e7753693b44c8a86be0d700d8c6acf,"Be more strict about the format of ""disabled""
+
+While we could be more tolerant here than in the spec, the risk is
+that the majority of developers will not read the spec and will
+instead try something with our verifier and expect that it will
+always continue to work the same way.
+
+In other words, if we're too lenient at the start, we will be
+stuck supporting an alternative syntax forever and will impose that
+on third-party verifiers as well."
+60,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,5e309568f7333c3233581bdaf5a556e28bb55fa1,Remove lie in comment
+61,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,c3cdd79214c876755da0796398be5423a6155cd9,Test invalid schemes when comparing audiences
+62,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,43ffbdbae1688c8d3eb0dfd466af33c6944550ec,"Fix broken test
+
+The ports need to match. This test was wrong."
+63,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,dcc95fe4a204a698ea90cbe2e2736ce7054720f5,"Simplify the audience comparison logic
+
+Remove the regular expression-based parsing and replace it with
+url.parse().
+
+Add the default scheme when it's not provided."
+64,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,f5aeba84518213a561db2fac245c0577ccba4673,Fix typo in comment
+65,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,9fdcb8dbcd45d8d93b394c7b5ec86d49b7465a15,Test that chained assertions are rejected
+66,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,dc6a0d129b3d63bca4b00f9297934d4e90036f32,"Validate the domain that's extracted from the cert email
+
+The verifier makes use of the domain extracted from the email
+address in a few places and so it should ensure that it's valid."
+67,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,f78fa1af907ee63922cc3aa4cc437d59b4657447,Merge branch 'validate_authority' into merge_all_the_things
+68,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,51268d5e3f3929b1f38e893620ed6552ec3b113e,Merge branch 'test_comment_cleanup' into merge_all_the_things
+69,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,90ff2b438055348465c05c412867c122983ef3a0,Merge branch 'avoid_variable_reuse' into merge_all_the_things
+70,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,f33d61943eb2d080bc8d1266d8415763446c1921,"Merge branch 'validate_paths' into merge_all_the_things
+
+Conflicts:
+	lib/lookup.js
+	lib/well-known-parser.js"
+71,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,3b9b1543c541c3243790c4c6e849fe67f3a9da71,"Merge branch 'throwing_objects' into merge_all_the_things
+
+Conflicts:
+	lib/well-known-parser.js"
+72,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,b0f4f529db8b4d0035190f6e1bfe43c8bea41071,Merge branch 'stricter_disabled' into merge_all_the_things
+73,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,715775b39175948b5a12dba2467cb3780c8f76df,"Merge branch 'simpler_compare_audience' into merge_all_the_things
+
+Conflicts:
+	lib/compare-audiences.js"
+74,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,6c04bcd4d9aac855784885c14ec498a9a35e2cfc,Merge branch 'chained_assertion_check' into merge_all_the_things
+75,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,e99e5e934a75183c7e4d0e078f93ef19828015d3,"Merge branch 'validate_extracted_domain' into merge_all_the_things
+
+Conflicts:
+	tests/assertion.js"
+76,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/25,25,Merge all the things,"This is a merge of all of these patches:
+- https://github.com/mozilla/browserid-local-verify/pull/10
+- https://github.com/mozilla/browserid-local-verify/pull/11
+- https://github.com/mozilla/browserid-local-verify/pull/12
+- https://github.com/mozilla/browserid-local-verify/pull/13
+- https://github.com/mozilla/browserid-local-verify/pull/14
+- https://github.com/mozilla/browserid-local-verify/pull/15
+- https://github.com/mozilla/browserid-local-verify/pull/20
+- https://github.com/mozilla/browserid-local-verify/pull/22
+- https://github.com/mozilla/browserid-local-verify/pull/23
+",fmarier,167821,2014-02-11T03:58:43Z,CONTRIBUTOR,True,263,61,10,BrowserID library used by the Firefox Accounts verifier,JavaScript,5ecb9318a95ce5ac4b945f493cd2644e63a5e4ee,"Move ""validateAuthority"" to a common file
+
+Both verify.js and well-known-parser.js must perform the same
+validation checks on hostnames."
+77,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/24,24,Add a test for the other two types of audiences we support,"The audience sent by users of this library should use one of these
+schemes:
+- http://
+- https://
+- app://
+",fmarier,167821,2014-02-11T03:15:18Z,CONTRIBUTOR,False,44,0,1,BrowserID library used by the Firefox Accounts verifier,JavaScript,f7f8358a3ce856a2e6ce7541f432f14b66f4b23c,"Add a test for the other two types of audiences we support
+
+The audience sent by users of this library should use one of these
+schemes:
+
+- http://
+- https://
+- app://"
+78,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/23,23,Validate the domain that's extracted from the cert email,"As in #21, this patch includes a copy of the validateAuthority function introduced in #10 and so it will need to be refactored once/if both of these patches are merged.
+",fmarier,167821,2013-12-11T05:46:50Z,CONTRIBUTOR,True,41,1,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,dc6a0d129b3d63bca4b00f9297934d4e90036f32,"Validate the domain that's extracted from the cert email
+
+The verifier makes use of the domain extracted from the email
+address in a few places and so it should ensure that it's valid."
+79,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/22,22,Chained assertion check,,fmarier,167821,2013-12-11T04:59:13Z,CONTRIBUTOR,True,81,1,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,f5aeba84518213a561db2fac245c0577ccba4673,Fix typo in comment
+80,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/22,22,Chained assertion check,,fmarier,167821,2013-12-11T04:59:13Z,CONTRIBUTOR,True,81,1,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,9fdcb8dbcd45d8d93b394c7b5ec86d49b7465a15,Test that chained assertions are rejected
+81,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/21,21,Validate the princpal and current domains in lookup,"This patch includes a copy of the `validateAuthority` function introduced in #10 and so it will need to be refactored once/if both of these patches are merged.
+",fmarier,167821,2013-12-11T02:24:48Z,CONTRIBUTOR,True,22,0,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,6eea957a421c74cd6d3a0e823b3964471fe2a05f,Validate the princpal and current domains in lookup
+82,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/20,20,Simpler compare audience,,fmarier,167821,2013-12-10T04:14:06Z,CONTRIBUTOR,True,18,29,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,5e309568f7333c3233581bdaf5a556e28bb55fa1,Remove lie in comment
+83,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/20,20,Simpler compare audience,,fmarier,167821,2013-12-10T04:14:06Z,CONTRIBUTOR,True,18,29,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,c3cdd79214c876755da0796398be5423a6155cd9,Test invalid schemes when comparing audiences
+84,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/20,20,Simpler compare audience,,fmarier,167821,2013-12-10T04:14:06Z,CONTRIBUTOR,True,18,29,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,43ffbdbae1688c8d3eb0dfd466af33c6944550ec,"Fix broken test
+
+The ports need to match. This test was wrong."
+85,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/20,20,Simpler compare audience,,fmarier,167821,2013-12-10T04:14:06Z,CONTRIBUTOR,True,18,29,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,dcc95fe4a204a698ea90cbe2e2736ce7054720f5,"Simplify the audience comparison logic
+
+Remove the regular expression-based parsing and replace it with
+url.parse().
+
+Add the default scheme when it's not provided."
+86,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/17,17,debug more easily with dbug(),"you know, if you want. makes things pretty easy, and when not debugging, it becomes a noop, so fast!
+
+http://seanmonstar.com/post/65083195617/dbug-v0-1
+
+`DEBUG=browserid-local-verify npm test`
+",seanmonstar,51479,2013-12-04T01:24:42Z,MEMBER,True,12,2,3,BrowserID library used by the Firefox Accounts verifier,JavaScript,bb876b814f9803f5af0dcfd3d36cc8b898b46e79,debug more easily with dbug()
+87,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/16,16,always throw Errors instead of Strings,"<3
+",seanmonstar,51479,2013-12-04T01:22:06Z,MEMBER,False,14,14,3,BrowserID library used by the Firefox Accounts verifier,JavaScript,0cc50c1bc062c63862558507f36fa224d1dd16d0,always throw Errors instead of Strings
+88,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/15,15,Stricter disabled,"While we could be more tolerant here than in the spec, the risk is
+that the majority of developers will not read the spec and will
+instead try something with our verifier and expect that it will
+always continue to work the same way.
+
+In other words, if we're too lenient at the start, we will be
+stuck supporting an alternative syntax forever and will impose that
+on third-party verifiers as well.
+",fmarier,167821,2013-12-02T03:56:02Z,CONTRIBUTOR,True,50,5,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,451f49a5ba12d41d7aa87c9987e523cabeefd155,"Add a test to make sure that ""disabled: false"" works"
+89,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/15,15,Stricter disabled,"While we could be more tolerant here than in the spec, the risk is
+that the majority of developers will not read the spec and will
+instead try something with our verifier and expect that it will
+always continue to work the same way.
+
+In other words, if we're too lenient at the start, we will be
+stuck supporting an alternative syntax forever and will impose that
+on third-party verifiers as well.
+",fmarier,167821,2013-12-02T03:56:02Z,CONTRIBUTOR,True,50,5,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,ecc73c9031e7753693b44c8a86be0d700d8c6acf,"Be more strict about the format of ""disabled""
+
+While we could be more tolerant here than in the spec, the risk is
+that the majority of developers will not read the spec and will
+instead try something with our verifier and expect that it will
+always continue to work the same way.
+
+In other words, if we're too lenient at the start, we will be
+stuck supporting an alternative syntax forever and will impose that
+on third-party verifiers as well."
+90,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/14,14,Convert string exceptions to Error objects,"http://www.devthought.com/2011/12/22/a-string-is-not-an-error/
+",fmarier,167821,2013-12-02T01:08:28Z,CONTRIBUTOR,True,14,14,3,BrowserID library used by the Firefox Accounts verifier,JavaScript,f918f591827cf0c484f1d40af6ee92cd5749f44a,"Convert string exceptions to Error objects
+
+http://www.devthought.com/2011/12/22/a-string-is-not-an-error/"
+91,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/13,13,Validate provisioning and authentication endpoints,"Let's do this closer to the data, not deep into the callers of the
+well-known parser.
+",fmarier,167821,2013-12-02T00:51:09Z,CONTRIBUTOR,True,24,3,3,BrowserID library used by the Firefox Accounts verifier,JavaScript,f0036558748bdb72f8ff4087af81cbf090a7c8cd,"Validate provisioning and authentication endpoints
+
+Let's do this closer to the data, not deep into the callers of the
+well-known parser."
+92,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/12,12,Eliminate a variable reuse in claims extraction,"These two sets of claims should always be kept completely separate
+so let's use separate variables at all times when handling them.
+",fmarier,167821,2013-12-02T00:49:59Z,CONTRIBUTOR,True,6,6,1,BrowserID library used by the Firefox Accounts verifier,JavaScript,5741a9497126c23794e6ffaeb8f15ea91061e530,"Eliminate a variable reuse in claims extraction
+
+These two sets of claims should always be kept completely separate
+so let's use separate variables at all times when handling them."
+93,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/11,11,Remove bogus comments (copy/paste leftovers),,fmarier,167821,2013-12-02T00:49:40Z,CONTRIBUTOR,True,0,2,1,BrowserID library used by the Firefox Accounts verifier,JavaScript,d52bee65e619a92ef1a34df72323a7a74cb551db,Remove bogus comments (copy/paste leftovers)
+94,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/10,10,Validate the authority field for delegating IdPs,"The validation of that field should happen in the parser so that
+invalid values never make it to the callers.
+",fmarier,167821,2013-12-02T00:49:22Z,CONTRIBUTOR,True,38,0,2,BrowserID library used by the Firefox Accounts verifier,JavaScript,d48653a91e5f960374c358ffb575810781c50acd,"Validate the authority field for delegating IdPs
+
+The validation of that field should happen in the parser so that
+invalid values never make it to the callers."
+95,https://api.github.com/repos/mozilla/browserid-local-verify/pulls/8,8,Make the redirect check more precise,"HTTP 304 (Not Modified) and 305 (Use Proxy) are not redirects so
+they should probably not get the ""redirects not allowed"" error
+message.
+
+Not sure about 300 (Multiple Choices), but I left it out as well.
+",fmarier,167821,2013-11-29T03:18:23Z,CONTRIBUTOR,True,1,1,1,BrowserID library used by the Firefox Accounts verifier,JavaScript,1769cb393154fd4cbfe97e37445d968e04ee7951,"Make the redirect check more precise
+
+HTTP 304 (Not Modified) and 305 (Use Proxy) are not redirects so
+they should probably not get the ""redirects not allowed"" error
+message.
+
+Not sure about 300 (Multiple Choices), but I left it out as well."

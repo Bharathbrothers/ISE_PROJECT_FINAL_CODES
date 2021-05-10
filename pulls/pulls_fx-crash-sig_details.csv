@@ -1,0 +1,473 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/34,34,Version 0.1.12,,willkg,820826,2021-03-19T18:11:31Z,MEMBER,True,1,1,1,Get Firefox crash signature from raw crash trace,Python,1f61e3322ecab7537a5d70b2f761bfeeab52d92a,Version 0.1.12
+1,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/33,33,Fix symbolication issues (#32),"This is a big set of changes.
+
+It looks like the structure of crash pings have changed over the last few years. This updates the code to handle the current version. Plus it changes the code to work with the whole crash ping rather than pieces of it. It specifies which pieces it needs in the comments.
+
+This gets rid of the ""windows flag"" in favor of looking at the `normalized_os` field of the crash ping.
+
+This creates a `SYMBOLICATION_API` constant and moves it to the top level.
+
+This fixes `fx-crash-sig` and `sample.json` so those work. This also updates the examples in `README.md`.
+
+Finally, it fixes the issue where the output of symbolication puts the debug_file (e.g. xul.pdb) in the module field of frames. Signature generation expects that field to be the filename (e.g. xul.dll). I claim that's a bug in the symbolication API code, but until it's fixed there, we have to fix it in fx-crash-sig.",willkg,820826,2021-03-18T23:16:37Z,MEMBER,True,1122,1018,8,Get Firefox crash signature from raw crash trace,Python,77459a451dc5d724a412849fed53e7b71495d31d,"Fix symbolication issues (#32)
+
+This is a big set of changes.
+
+It looks like the structure of crash pings have changed over the last
+few years. This updates the code to handle the current version. Plus it
+changes the code to work with the whole crash ping rather than pieces of
+it. It specifies which pieces it needs in the comments.
+
+This gets rid of the ""windows flag"" in favor of looking at the
+normalized_os field of the crash ping.
+
+This creates a SYMBOLICATION_API constant and moves it to the top level.
+
+This fixes fx-crash-sig and sample.json so those work. This also updates
+the examples in README.md.
+
+This updates setup.py--this is a Python 3 library.
+
+Finally, it fixes the issue where the output of symbolication puts the
+debug_file (e.g. xul.pdb) in the module field of frames. Signature
+generation expects that field to be the filename (e.g. xul.dll). I claim
+that's a bug in the symbolication API code, but until it's fixed there,
+we have to fix it in fx-crash-sig."
+2,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/30,30,Set up CI to test with Python 3.9,Fixes #29,willkg,820826,2020-12-24T00:07:57Z,MEMBER,True,49,9,1,Get Firefox crash signature from raw crash trace,Python,613a54051e2230c59639e0c45db316af7bdffddc,Set up CI to test with Python 3.9
+3,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/30,30,Set up CI to test with Python 3.9,Fixes #29,willkg,820826,2020-12-24T00:07:57Z,MEMBER,True,49,9,1,Get Firefox crash signature from raw crash trace,Python,07b57e4844b3dbc166a0851be5ae84c897c48687,Rework Python testing to use CircleCI Python images
+4,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/28,28,Python3 cleanup,"This removes `__future__` imports since this only supports Python 3 now.
+
+This adds some of the bits we need to support Python 3.6 -> 3.9: a tox configuration and tweaks to scripts to run in a tox environment.
+
+This doesn't change CircleCI to run tox as part of the CI run. Since CircleCI is currently configured to run tests and linting in the Docker image, I'm not sure offhand how best to also run tox in a different environment that has Python 3.6 through 3.9 installed. I'm thinking I may add another job that uses `themattrix/tox` image. It just feels clunky.",willkg,820826,2020-12-23T17:13:37Z,MEMBER,True,74,34,12,Get Firefox crash signature from raw crash trace,Python,3e7cc544b5b4b206ab5816375b3c4620eb3fbf61,"Remove __future__ use and reorder some imports
+
+This removes __future__ use. We don't need that anymore since this is
+Python 3 only now.
+
+This reorders some imports so it's stdlib, then 3rd-party, then
+fx-crash-sig things."
+5,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/28,28,Python3 cleanup,"This removes `__future__` imports since this only supports Python 3 now.
+
+This adds some of the bits we need to support Python 3.6 -> 3.9: a tox configuration and tweaks to scripts to run in a tox environment.
+
+This doesn't change CircleCI to run tox as part of the CI run. Since CircleCI is currently configured to run tests and linting in the Docker image, I'm not sure offhand how best to also run tox in a different environment that has Python 3.6 through 3.9 installed. I'm thinking I may add another job that uses `themattrix/tox` image. It just feels clunky.",willkg,820826,2020-12-23T17:13:37Z,MEMBER,True,74,34,12,Get Firefox crash signature from raw crash trace,Python,459e26755fa085202b9322de2812ca09205810e8,"Support python 3.6, 3.7, 3.8, 3.9
+
+This adds tox so it's easier to run all the tests in all the supported
+environments."
+6,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/28,28,Python3 cleanup,"This removes `__future__` imports since this only supports Python 3 now.
+
+This adds some of the bits we need to support Python 3.6 -> 3.9: a tox configuration and tweaks to scripts to run in a tox environment.
+
+This doesn't change CircleCI to run tox as part of the CI run. Since CircleCI is currently configured to run tests and linting in the Docker image, I'm not sure offhand how best to also run tox in a different environment that has Python 3.6 through 3.9 installed. I'm thinking I may add another job that uses `themattrix/tox` image. It just feels clunky.",willkg,820826,2020-12-23T17:13:37Z,MEMBER,True,74,34,12,Get Firefox crash signature from raw crash trace,Python,26591c703bf0c12d839a137c8408c5e06448183f,Add Python environmen testing to CircleCI
+7,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/28,28,Python3 cleanup,"This removes `__future__` imports since this only supports Python 3 now.
+
+This adds some of the bits we need to support Python 3.6 -> 3.9: a tox configuration and tweaks to scripts to run in a tox environment.
+
+This doesn't change CircleCI to run tox as part of the CI run. Since CircleCI is currently configured to run tests and linting in the Docker image, I'm not sure offhand how best to also run tox in a different environment that has Python 3.6 through 3.9 installed. I'm thinking I may add another job that uses `themattrix/tox` image. It just feels clunky.",willkg,820826,2020-12-23T17:13:37Z,MEMBER,True,74,34,12,Get Firefox crash signature from raw crash trace,Python,052d77a8c0827486721da59675b5fe9171c743c9,"Restrict CircleCI from testing with Python 3.9
+
+The image we're using doesn't have Python 3.9 installed, so we can't use
+it until that's fixed."
+8,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/28,28,Python3 cleanup,"This removes `__future__` imports since this only supports Python 3 now.
+
+This adds some of the bits we need to support Python 3.6 -> 3.9: a tox configuration and tweaks to scripts to run in a tox environment.
+
+This doesn't change CircleCI to run tox as part of the CI run. Since CircleCI is currently configured to run tests and linting in the Docker image, I'm not sure offhand how best to also run tox in a different environment that has Python 3.6 through 3.9 installed. I'm thinking I may add another job that uses `themattrix/tox` image. It just feels clunky.",willkg,820826,2020-12-23T17:13:37Z,MEMBER,True,74,34,12,Get Firefox crash signature from raw crash trace,Python,1ed1879bf691a2dbcc99034fcb48ea2a3881efce,Fix linting step in CI
+9,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/27,27,Fix AttributeErrors (#23),"This fixes an attribute error when printing out details of an unhandled exception when using the fx-crash-sig command.
+
+This fixes the attribute error caused by some parts of the code still using a non-existent `__postprocess` method.
+
+This fixes the problem where siggen now returns a Result object which isn't serializable and so it doesn't work with json.dumps.
+
+Fixes #23",willkg,820826,2020-12-23T16:05:04Z,MEMBER,True,24,14,4,Get Firefox crash signature from raw crash trace,Python,82edcb7acb9afc9378a3afeb2be853ae121a4d1f,"Fix AttributeErrors (#23)
+
+This fixes an attribute error when printing out details of an unhandled
+exception when using the fx-crash-sig command.
+
+This fixes the attribute error caused by some parts of the code still
+using a non-existent `__postprocess` method.
+
+This fixes the problem where siggen now returns a Result object which
+isn't serializable and so it doesn't work with json.dumps."
+10,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/26,26,Update dependencies,"This updates the install and dev dependencies to recent versions of
+things.",willkg,820826,2020-12-03T20:56:45Z,MEMBER,True,79,30,6,Get Firefox crash signature from raw crash trace,Python,7023fce926f8e5758a27ccd761ba6a75730424c0,"Update dependencies
+
+This updates the install and dev dependencies to recent versions of
+things."
+11,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/26,26,Update dependencies,"This updates the install and dev dependencies to recent versions of
+things.",willkg,820826,2020-12-03T20:56:45Z,MEMBER,True,79,30,6,Get Firefox crash signature from raw crash trace,Python,20993d2d9ef45ef0cd9d3a1dde75a64b46595a2a,"Rework requirements to fix version restrictions and bigquery
+
+Basic use of fx-crash-sig shouldn't require installing
+google-cloud-bigquery, so I moved that to extras_require. I updated
+documentation and the Dockerfile accordingly.
+
+Instead of pinning requirements on specific versions which isn't
+flexible, this pins them on ranges with the assumption that these
+requirements use semver versioning."
+12,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/26,26,Update dependencies,"This updates the install and dev dependencies to recent versions of
+things.",willkg,820826,2020-12-03T20:56:45Z,MEMBER,True,79,30,6,Get Firefox crash signature from raw crash trace,Python,75bdda4a00eeacf3ec3cc22248c6cfa08871efc8,"Update setup.py values; document release process
+
+This moves the version information to fx_crash_sig/__init__.py rather
+than rely on pkg_resources.
+
+This updates the package url to the correct value and removes the
+maintainer because there are a bunch of us maintaining.
+
+This documents a release process to make it easier for all of us."
+13,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/22,22,Update docker version,"This explicitly sets the Docker version. If we don't set the version, CircleCI defaults to using 17.03.0 which is a version that CircleCI is deprecating.
+
+https://discuss.circleci.com/t/old-linux-machine-image-remote-docker-deprecation/37572",willkg,820826,2020-10-06T18:54:24Z,MEMBER,True,4,1,1,Get Firefox crash signature from raw crash trace,Python,9e59e61ca5effd2ca8aac34f583900c3669177cf,"Update docker version
+
+This explicitly sets the Docker version. If we don't set the version,
+CircleCI defaults to using 17.03.0 which is a version that CircleCI is
+deprecating."
+14,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/21,21,"Enable linting in CI, reformat code","This is mostly Python reformatting fixes from running black.
+
+Fixes #17",willkg,820826,2020-09-02T17:04:14Z,MEMBER,True,1939,697,9,Get Firefox crash signature from raw crash trace,Python,c8b0add696b1690b82e24e0641aa2e009086a798,"Enable linting in CI, reformat code
+
+Fixes #17"
+15,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/20,20,dockerize fx-crash-sig,"This adds some scaffolding to make it easier to maintain fx-crash-sig and also to generate a docker image and use it for development things.
+
+What works:
+
+1. `make build`
+2. setting `USER_ID` and `GROUP_ID` in `.env` so that `make build` builds the docker image using specified uid/gid easing file permission issues on Linux
+3. `make test`
+4. CI
+
+What doesn't work:
+
+1. `make lint` and `make reformat` don't work--that'll get covered in another PR since it involves a lot of reformatting changes
+2. `make lint` isn't run in CI
+3. all the GCR stuff
+
+Fixes #19.",willkg,820826,2020-08-27T16:42:47Z,MEMBER,True,289,66,15,Get Firefox crash signature from raw crash trace,Python,50a73544d6de9d10b7c3f7556793bba83392f007,"Initial pass at dockerization (#19)
+
+* add Makefile for easier maintenance
+* add Dockerfile for building a docker image
+* tweak how requirements are required and add dev requirements
+* move tests to their own directory outside of the fx_crash_sig module
+* update .gitignore accordingly"
+16,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/20,20,dockerize fx-crash-sig,"This adds some scaffolding to make it easier to maintain fx-crash-sig and also to generate a docker image and use it for development things.
+
+What works:
+
+1. `make build`
+2. setting `USER_ID` and `GROUP_ID` in `.env` so that `make build` builds the docker image using specified uid/gid easing file permission issues on Linux
+3. `make test`
+4. CI
+
+What doesn't work:
+
+1. `make lint` and `make reformat` don't work--that'll get covered in another PR since it involves a lot of reformatting changes
+2. `make lint` isn't run in CI
+3. all the GCR stuff
+
+Fixes #19.",willkg,820826,2020-08-27T16:42:47Z,MEMBER,True,289,66,15,Get Firefox crash signature from raw crash trace,Python,01edf806883608a35144d1189dcfe6b5f231feb9,Rework tests to work in pytest (#19)
+17,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/20,20,dockerize fx-crash-sig,"This adds some scaffolding to make it easier to maintain fx-crash-sig and also to generate a docker image and use it for development things.
+
+What works:
+
+1. `make build`
+2. setting `USER_ID` and `GROUP_ID` in `.env` so that `make build` builds the docker image using specified uid/gid easing file permission issues on Linux
+3. `make test`
+4. CI
+
+What doesn't work:
+
+1. `make lint` and `make reformat` don't work--that'll get covered in another PR since it involves a lot of reformatting changes
+2. `make lint` isn't run in CI
+3. all the GCR stuff
+
+Fixes #19.",willkg,820826,2020-08-27T16:42:47Z,MEMBER,True,289,66,15,Get Firefox crash signature from raw crash trace,Python,9b349cbdb31f6e27a5f0f30287766ed3027c435f,Add .cache to .gitignore (#19)
+18,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/20,20,dockerize fx-crash-sig,"This adds some scaffolding to make it easier to maintain fx-crash-sig and also to generate a docker image and use it for development things.
+
+What works:
+
+1. `make build`
+2. setting `USER_ID` and `GROUP_ID` in `.env` so that `make build` builds the docker image using specified uid/gid easing file permission issues on Linux
+3. `make test`
+4. CI
+
+What doesn't work:
+
+1. `make lint` and `make reformat` don't work--that'll get covered in another PR since it involves a lot of reformatting changes
+2. `make lint` isn't run in CI
+3. all the GCR stuff
+
+Fixes #19.",willkg,820826,2020-08-27T16:42:47Z,MEMBER,True,289,66,15,Get Firefox crash signature from raw crash trace,Python,683a04c3693b5a81164904fe533b6293fa2342be,Update README (#19)
+19,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/20,20,dockerize fx-crash-sig,"This adds some scaffolding to make it easier to maintain fx-crash-sig and also to generate a docker image and use it for development things.
+
+What works:
+
+1. `make build`
+2. setting `USER_ID` and `GROUP_ID` in `.env` so that `make build` builds the docker image using specified uid/gid easing file permission issues on Linux
+3. `make test`
+4. CI
+
+What doesn't work:
+
+1. `make lint` and `make reformat` don't work--that'll get covered in another PR since it involves a lot of reformatting changes
+2. `make lint` isn't run in CI
+3. all the GCR stuff
+
+Fixes #19.",willkg,820826,2020-08-27T16:42:47Z,MEMBER,True,289,66,15,Get Firefox crash signature from raw crash trace,Python,6fd25f0612d40cc23473ac2b0699b2a6a958a5e7,"Update CI to build docker image and test with it (#19)
+
+Note that this doesn't run linting in CI--going to do that in a future
+PR."
+20,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/20,20,dockerize fx-crash-sig,"This adds some scaffolding to make it easier to maintain fx-crash-sig and also to generate a docker image and use it for development things.
+
+What works:
+
+1. `make build`
+2. setting `USER_ID` and `GROUP_ID` in `.env` so that `make build` builds the docker image using specified uid/gid easing file permission issues on Linux
+3. `make test`
+4. CI
+
+What doesn't work:
+
+1. `make lint` and `make reformat` don't work--that'll get covered in another PR since it involves a lot of reformatting changes
+2. `make lint` isn't run in CI
+3. all the GCR stuff
+
+Fixes #19.",willkg,820826,2020-08-27T16:42:47Z,MEMBER,True,289,66,15,Get Firefox crash signature from raw crash trace,Python,c30e3c4981dcf59f705bdf164e6adc5d5761a6ea,"Fix input handling and add exit codes
+
+This fixes input handling in fx-crash-sig command so that if there's
+nothing in stdin to slurp, it raises an error rather than hangs.
+
+This also changes fx-crash-sig command to return an error exit code when
+it doesn't work."
+21,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/20,20,dockerize fx-crash-sig,"This adds some scaffolding to make it easier to maintain fx-crash-sig and also to generate a docker image and use it for development things.
+
+What works:
+
+1. `make build`
+2. setting `USER_ID` and `GROUP_ID` in `.env` so that `make build` builds the docker image using specified uid/gid easing file permission issues on Linux
+3. `make test`
+4. CI
+
+What doesn't work:
+
+1. `make lint` and `make reformat` don't work--that'll get covered in another PR since it involves a lot of reformatting changes
+2. `make lint` isn't run in CI
+3. all the GCR stuff
+
+Fixes #19.",willkg,820826,2020-08-27T16:42:47Z,MEMBER,True,289,66,15,Get Firefox crash signature from raw crash trace,Python,1e6547de008ed3f03c14bd47f02508047b723fd7,Fix inadvertently commented out line
+22,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/20,20,dockerize fx-crash-sig,"This adds some scaffolding to make it easier to maintain fx-crash-sig and also to generate a docker image and use it for development things.
+
+What works:
+
+1. `make build`
+2. setting `USER_ID` and `GROUP_ID` in `.env` so that `make build` builds the docker image using specified uid/gid easing file permission issues on Linux
+3. `make test`
+4. CI
+
+What doesn't work:
+
+1. `make lint` and `make reformat` don't work--that'll get covered in another PR since it involves a lot of reformatting changes
+2. `make lint` isn't run in CI
+3. all the GCR stuff
+
+Fixes #19.",willkg,820826,2020-08-27T16:42:47Z,MEMBER,True,289,66,15,Get Firefox crash signature from raw crash trace,Python,9721e0be972233dbe75003be56d3ec9fd1cd920a,Add versioning to config.yml file
+23,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/20,20,dockerize fx-crash-sig,"This adds some scaffolding to make it easier to maintain fx-crash-sig and also to generate a docker image and use it for development things.
+
+What works:
+
+1. `make build`
+2. setting `USER_ID` and `GROUP_ID` in `.env` so that `make build` builds the docker image using specified uid/gid easing file permission issues on Linux
+3. `make test`
+4. CI
+
+What doesn't work:
+
+1. `make lint` and `make reformat` don't work--that'll get covered in another PR since it involves a lot of reformatting changes
+2. `make lint` isn't run in CI
+3. all the GCR stuff
+
+Fixes #19.",willkg,820826,2020-08-27T16:42:47Z,MEMBER,True,289,66,15,Get Firefox crash signature from raw crash trace,Python,2a529ad4e24c2ad3161b8cdaeda5e6e44eb04de4,Nix maintainer from Dockerfile
+24,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/20,20,dockerize fx-crash-sig,"This adds some scaffolding to make it easier to maintain fx-crash-sig and also to generate a docker image and use it for development things.
+
+What works:
+
+1. `make build`
+2. setting `USER_ID` and `GROUP_ID` in `.env` so that `make build` builds the docker image using specified uid/gid easing file permission issues on Linux
+3. `make test`
+4. CI
+
+What doesn't work:
+
+1. `make lint` and `make reformat` don't work--that'll get covered in another PR since it involves a lot of reformatting changes
+2. `make lint` isn't run in CI
+3. all the GCR stuff
+
+Fixes #19.",willkg,820826,2020-08-27T16:42:47Z,MEMBER,True,289,66,15,Get Firefox crash signature from raw crash trace,Python,e52176b0dafab521bfb3919c07dcef7ddf2e8095,Rework lint and test so they work in Makefile and CI
+25,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/20,20,dockerize fx-crash-sig,"This adds some scaffolding to make it easier to maintain fx-crash-sig and also to generate a docker image and use it for development things.
+
+What works:
+
+1. `make build`
+2. setting `USER_ID` and `GROUP_ID` in `.env` so that `make build` builds the docker image using specified uid/gid easing file permission issues on Linux
+3. `make test`
+4. CI
+
+What doesn't work:
+
+1. `make lint` and `make reformat` don't work--that'll get covered in another PR since it involves a lot of reformatting changes
+2. `make lint` isn't run in CI
+3. all the GCR stuff
+
+Fixes #19.",willkg,820826,2020-08-27T16:42:47Z,MEMBER,True,289,66,15,Get Firefox crash signature from raw crash trace,Python,5d0411c4795a1726b19ad9b53fef69a1bf0e4909,Add apt cleanup to reduce image size
+26,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/16,16,Add basic circleci configuration (fixes #8),,wlach,20569,2020-08-26T19:31:49Z,MEMBER,True,21,0,1,Get Firefox crash signature from raw crash trace,Python,2864ec3e70618babc09c06296aed21fbdf6eccce,Add .circleci/config.yml
+27,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/15,15,Add a script to generate signatures from crash pings,This is the cleaned-up work we were discussing in https://github.com/mozilla/fx-crash-sig/pull/11,staktrace,485789,2020-08-24T16:41:21Z,CONTRIBUTOR,True,128,21,4,Get Firefox crash signature from raw crash trace,Python,14109091b96ecc6262a42f50119a95643b87e4d5,Remove some unnecessary python2 compat shim
+28,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/15,15,Add a script to generate signatures from crash pings,This is the cleaned-up work we were discussing in https://github.com/mozilla/fx-crash-sig/pull/11,staktrace,485789,2020-08-24T16:41:21Z,CONTRIBUTOR,True,128,21,4,Get Firefox crash signature from raw crash trace,Python,f57f9740ebe44bbaafe4ba9b0de9617f318ee9c3,Handle missing data in crash pings
+29,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/15,15,Add a script to generate signatures from crash pings,This is the cleaned-up work we were discussing in https://github.com/mozilla/fx-crash-sig/pull/11,staktrace,485789,2020-08-24T16:41:21Z,CONTRIBUTOR,True,128,21,4,Get Firefox crash signature from raw crash trace,Python,9974d11f94b911b69f5e46c46fc2674131337128,Add CrashProcessor::get_signatures_multi to batch process payloads
+30,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/15,15,Add a script to generate signatures from crash pings,This is the cleaned-up work we were discussing in https://github.com/mozilla/fx-crash-sig/pull/11,staktrace,485789,2020-08-24T16:41:21Z,CONTRIBUTOR,True,128,21,4,Get Firefox crash signature from raw crash trace,Python,7e71c83bd217cbbb4d0028730a7841bd2b153a41,"Send error logging to stderr
+
+Also add some more detailed error logging on errors returned by tecken, so
+that we can diagnose errors and make fixes accordingly."
+31,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/15,15,Add a script to generate signatures from crash pings,This is the cleaned-up work we were discussing in https://github.com/mozilla/fx-crash-sig/pull/11,staktrace,485789,2020-08-24T16:41:21Z,CONTRIBUTOR,True,128,21,4,Get Firefox crash signature from raw crash trace,Python,9d2986ceafc04a950f770f84a1c396e12f13c9bc,"Avoid errors appending ints to strings
+
+This is likely from python version migration."
+32,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/15,15,Add a script to generate signatures from crash pings,This is the cleaned-up work we were discussing in https://github.com/mozilla/fx-crash-sig/pull/11,staktrace,485789,2020-08-24T16:41:21Z,CONTRIBUTOR,True,128,21,4,Get Firefox crash signature from raw crash trace,Python,d87d07a913aa7bfa20e4356273f9b3de5767a930,"Add a script for generating signatures from crash pings.
+
+This script generates a CSV file of the format ""document_id, crash_signature""
+by pulling from the `telemetry.crash` table in BigQuery.
+
+The script parallelizes operations internally to reduce total wall-clock time."
+33,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/14,14,Add user-agent to symbolication requests,"This makes it easier for us to track down issues in Symbols related to
+fx-crash-sig usage.
+
+Fixes #13 ",willkg,820826,2020-06-26T20:00:56Z,MEMBER,True,7,1,1,Get Firefox crash signature from raw crash trace,Python,0b6b7c047a81a593e5e6ce0ea58b78d5de4d056b,"Add user-agent to symbolication requests
+
+This makes it easier for us to track down issues in Symbols related to
+fx-crash-sig usage."
+34,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/14,14,Add user-agent to symbolication requests,"This makes it easier for us to track down issues in Symbols related to
+fx-crash-sig usage.
+
+Fixes #13 ",willkg,820826,2020-06-26T20:00:56Z,MEMBER,True,7,1,1,Get Firefox crash signature from raw crash trace,Python,9b56effefd262b0efe317cbef212141ba27e64f8,Inline the header
+35,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/12,12,Avoid erroring out if the crashing_thread is malformed somehow,,staktrace,485789,2020-06-04T17:21:22Z,CONTRIBUTOR,True,2,0,1,Get Firefox crash signature from raw crash trace,Python,34d6bd14d00c874a0a8af269dc48970ad8ccd732,Avoid erroring out if the crashing_thread is malformed somehow
+36,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/11,11,WIP: First draft of integrating this with BigQuery,"This is a first attempt-- not sure if this is the right approach. But basically:
+
+* Set GOOGLE_APPLICATION_CREDENTIALS=/path/to/service/account/file.json (the service account should be one on the `fx-crash-sig-bigquery-project`)
+* Run `python bigquery-etl.py 2020-05-20 > out.csv` (this will take a while) 
+* Insert CSV into BigQuery using the [bq command-line tool](https://docs.telemetry.mozilla.org/cookbooks/bigquery/access.html#from-bq-command-line-tool): `bq load test.crash_signature out.csv document_id:string,crash_signature:string`
+
+Then from the BigQuery console in the `fx-crash-sig-bigquery-project`, you should be able to
+do things like:
+
+```sql
+SELECT
+  crash.application.build_id,
+  crash_signature.crash_signature
+FROM
+  test.crash_signature
+INNER JOIN
+  `moz-fx-data-shared-prod`.telemetry.crash
+ON
+  crash.document_id = crash_signature.document_id
+  AND DATE(submission_timestamp) = '2020-05-20';
+```
+
+And you'll get a map of build ids to (credible looking?) crash signatures. Note
+this will only work after some point in mid-May, due to some schema issues (we can
+backfill fixes at some point in the future if needed)
+
+Still todo:
+- [ ] Validate these crash signatures are remotely valid, fix any problems in fx-crash-sig
+- [ ] Figure out if @willkg's symbolic might be useful here (he mentioned it when he found out I was working on this): https://bluesock.org/~willkg/blog/mozilla/experimenting_with_symbolic.html
+- [ ] Run this as an actual airflow job (I can handle this horrible task once we're happy with the above)",wlach,20569,2020-05-21T21:25:06Z,MEMBER,False,34,10,3,Get Firefox crash signature from raw crash trace,Python,02dfbe211ca5544bb8110e5907a0fa3de1046dee,Remove some unnecessary python2 compat shim
+37,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/11,11,WIP: First draft of integrating this with BigQuery,"This is a first attempt-- not sure if this is the right approach. But basically:
+
+* Set GOOGLE_APPLICATION_CREDENTIALS=/path/to/service/account/file.json (the service account should be one on the `fx-crash-sig-bigquery-project`)
+* Run `python bigquery-etl.py 2020-05-20 > out.csv` (this will take a while) 
+* Insert CSV into BigQuery using the [bq command-line tool](https://docs.telemetry.mozilla.org/cookbooks/bigquery/access.html#from-bq-command-line-tool): `bq load test.crash_signature out.csv document_id:string,crash_signature:string`
+
+Then from the BigQuery console in the `fx-crash-sig-bigquery-project`, you should be able to
+do things like:
+
+```sql
+SELECT
+  crash.application.build_id,
+  crash_signature.crash_signature
+FROM
+  test.crash_signature
+INNER JOIN
+  `moz-fx-data-shared-prod`.telemetry.crash
+ON
+  crash.document_id = crash_signature.document_id
+  AND DATE(submission_timestamp) = '2020-05-20';
+```
+
+And you'll get a map of build ids to (credible looking?) crash signatures. Note
+this will only work after some point in mid-May, due to some schema issues (we can
+backfill fixes at some point in the future if needed)
+
+Still todo:
+- [ ] Validate these crash signatures are remotely valid, fix any problems in fx-crash-sig
+- [ ] Figure out if @willkg's symbolic might be useful here (he mentioned it when he found out I was working on this): https://bluesock.org/~willkg/blog/mozilla/experimenting_with_symbolic.html
+- [ ] Run this as an actual airflow job (I can handle this horrible task once we're happy with the above)",wlach,20569,2020-05-21T21:25:06Z,MEMBER,False,34,10,3,Get Firefox crash signature from raw crash trace,Python,0390fff99e76b42df584ae5816ab7d3f79c1dfb3,"WIP: Handle missing data in crash pings
+
+We should double check this isn't an ingestion problem
+before landing these changes."
+38,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/11,11,WIP: First draft of integrating this with BigQuery,"This is a first attempt-- not sure if this is the right approach. But basically:
+
+* Set GOOGLE_APPLICATION_CREDENTIALS=/path/to/service/account/file.json (the service account should be one on the `fx-crash-sig-bigquery-project`)
+* Run `python bigquery-etl.py 2020-05-20 > out.csv` (this will take a while) 
+* Insert CSV into BigQuery using the [bq command-line tool](https://docs.telemetry.mozilla.org/cookbooks/bigquery/access.html#from-bq-command-line-tool): `bq load test.crash_signature out.csv document_id:string,crash_signature:string`
+
+Then from the BigQuery console in the `fx-crash-sig-bigquery-project`, you should be able to
+do things like:
+
+```sql
+SELECT
+  crash.application.build_id,
+  crash_signature.crash_signature
+FROM
+  test.crash_signature
+INNER JOIN
+  `moz-fx-data-shared-prod`.telemetry.crash
+ON
+  crash.document_id = crash_signature.document_id
+  AND DATE(submission_timestamp) = '2020-05-20';
+```
+
+And you'll get a map of build ids to (credible looking?) crash signatures. Note
+this will only work after some point in mid-May, due to some schema issues (we can
+backfill fixes at some point in the future if needed)
+
+Still todo:
+- [ ] Validate these crash signatures are remotely valid, fix any problems in fx-crash-sig
+- [ ] Figure out if @willkg's symbolic might be useful here (he mentioned it when he found out I was working on this): https://bluesock.org/~willkg/blog/mozilla/experimenting_with_symbolic.html
+- [ ] Run this as an actual airflow job (I can handle this horrible task once we're happy with the above)",wlach,20569,2020-05-21T21:25:06Z,MEMBER,False,34,10,3,Get Firefox crash signature from raw crash trace,Python,a88107fe914b2e5fa41402a325bccecab26a1c46,"WIP: Add an example script for generating signatures from bigquery
+
+This script generates a CSV file of the format ""document_id, crash_signature""
+by pulling from the `telemetry.crash` table in BigQuery."
+39,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/7,7,Upgrade requests to >= 2.20.0 to fix vulnerability,https://nvd.nist.gov/vuln/detail/CVE-2018-18074,BenWu,12437227,2019-06-01T19:24:39Z,COLLABORATOR,True,1,1,1,Get Firefox crash signature from raw crash trace,Python,8ee25dbbc802cd1846557cbabefc2cd718518233,"Upgrade requests to >= 2.20.0 to fix vulnerability
+
+https://nvd.nist.gov/vuln/detail/CVE-2018-18074"
+40,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/5,5,python 3 and siggen 1.0.0+ support,"Fixes #3, #4.",willkg,820826,2019-05-23T21:14:20Z,MEMBER,True,85,25,11,Get Firefox crash signature from raw crash trace,Python,f8511245a9c5c8ddb5225d1a19b276e035d815ce,Add setup.cfg with flake8 linting configuration
+41,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/5,5,python 3 and siggen 1.0.0+ support,"Fixes #3, #4.",willkg,820826,2019-05-23T21:14:20Z,MEMBER,True,85,25,11,Get Firefox crash signature from raw crash trace,Python,6c6d8c5a679d8c77ec1a2be82fe0fc55422520a2,Add .gitignore
+42,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/5,5,python 3 and siggen 1.0.0+ support,"Fixes #3, #4.",willkg,820826,2019-05-23T21:14:20Z,MEMBER,True,85,25,11,Get Firefox crash signature from raw crash trace,Python,a06f5f32e750ccb0c8cd1067345c8c6043356a85,"Update to Python 3, fix example
+
+* update to support Python 3 and siggen 1.0.0+
+* fixes example so it works
+* adds test and example to README"
+43,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/5,5,python 3 and siggen 1.0.0+ support,"Fixes #3, #4.",willkg,820826,2019-05-23T21:14:20Z,MEMBER,True,85,25,11,Get Firefox crash signature from raw crash trace,Python,1e951c81b90b98cd41882a9d5a22e20674496914,Remove commented out bits in setup.cfg
+44,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/5,5,python 3 and siggen 1.0.0+ support,"Fixes #3, #4.",willkg,820826,2019-05-23T21:14:20Z,MEMBER,True,85,25,11,Get Firefox crash signature from raw crash trace,Python,34835a7b51266f2f506ae360f15800ce2466cdd8,"Add get_version_info and --version flag
+
+This adds get_version_info() which returns the versions for siggen,
+fix-crash-sig and Python. This will greatly ease debugging issues.
+
+This also adds a --version flag to fx-crash-sig command which spits those
+things out to stdout."
+45,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/5,5,python 3 and siggen 1.0.0+ support,"Fixes #3, #4.",willkg,820826,2019-05-23T21:14:20Z,MEMBER,True,85,25,11,Get Firefox crash signature from raw crash trace,Python,06a6968bb7c306b401e9bfac14516ac2e053ad70,Move get_version_info() to __init__.py
+46,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/5,5,python 3 and siggen 1.0.0+ support,"Fixes #3, #4.",willkg,820826,2019-05-23T21:14:20Z,MEMBER,True,85,25,11,Get Firefox crash signature from raw crash trace,Python,03774944a408a7c97c7e45a85fbbbfa0299c9feb,Switch from % to .format()
+47,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/5,5,python 3 and siggen 1.0.0+ support,"Fixes #3, #4.",willkg,820826,2019-05-23T21:14:20Z,MEMBER,True,85,25,11,Get Firefox crash signature from raw crash trace,Python,b78dbff9aa912f59c02678484ff9a7e749ac026c,Switch % for .format() and fix link in README
+48,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/2,2,Return an empty dict instead of None,"If we return None then the CrashProcessor can throw an exception while
+trying to update the 'os' property on it.
+
+(Note: I haven't actually tested this in the setup that I ran into the problem, because it's on a databricks cluster and I'm pulling this library from PyPi)",staktrace,485789,2019-04-16T20:36:54Z,CONTRIBUTOR,True,1,1,1,Get Firefox crash signature from raw crash trace,Python,d955605a5db7de9eb2b8e12a1e39e53a91df39de,"Return an empty dict instead of None
+
+If we return None then the CrashProcessor can throw an exception while
+trying to update the 'os' property on it."
+49,https://api.github.com/repos/mozilla/fx-crash-sig/pulls/1,1,Release 0.1.3,,BenWu,12437227,2018-07-12T03:13:06Z,COLLABORATOR,True,2,2,2,Get Firefox crash signature from raw crash trace,Python,6f09cc9ef85c3e3aa9f4a117a688b80554803a4d,Release 0.1.3

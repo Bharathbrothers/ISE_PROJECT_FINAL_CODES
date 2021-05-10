@@ -1,0 +1,47 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/megazord-gradle/pulls/4,4,Add Mozilla Code of Conduct,"Fixes #3
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-30T07:12:10Z,NONE,False,15,0,1,Gradle plugin for consuming Mozilla Application Services megazord native libraries,Kotlin,706784159109a7ba98453e022173c6ed74999994,"Add Mozilla Code of Conduct file
+
+Fixes #3.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/megazord-gradle/pulls/1,1,Initial implementation.,"This is basically doing what I expect locally... save for the fact that since it's not yet published, it doesn't work to do the `includeBuild` substitution.  So I apply the following diff and it does work:
+```diff
+diff --git a/samples/app/build.gradle b/samples/app/build.gradle
+index 18a46f6..67bd07a 100644
+--- a/samples/app/build.gradle
++++ b/samples/app/build.gradle
+@@ -8,7 +8,7 @@ buildscript {
+     }
+     dependencies {
+         classpath 'com.android.tools.build:gradle:3.2.1'
+-        classpath 'org.mozilla.appservices.megazord-gradle.megazord-gradle:+'
++        classpath 'org.mozilla.rust-android-gradle:rust-android:+'
+     }
+ }
+ 
+diff --git a/samples/app/settings.gradle b/samples/app/settings.gradle
+index 993873c..7047559 100644
+--- a/samples/app/settings.gradle
++++ b/samples/app/settings.gradle
+@@ -1,6 +1,6 @@
+ includeBuild('../..') {
+     dependencySubstitution {
+         // As required.
+-        substitute module('org.mozilla.appservices.megazord-gradle:megazord-gradle') with project(':plugin')
++        substitute module('org.mozilla.rust-android-gradle:rust-android') with project(':plugin')
+     }
+ }
+```
+This could use some unit tests, and I've structured the code to make it fairly easy to do that testing, but I've not written them yet.
+
+@pocmo care to take a look?",ncalexan,1097182,2018-11-30T00:55:21Z,MEMBER,False,455,3,11,Gradle plugin for consuming Mozilla Application Services megazord native libraries,Kotlin,a959d3414273cd075095666f3589cdeadfcf09d7,Initial implementation.

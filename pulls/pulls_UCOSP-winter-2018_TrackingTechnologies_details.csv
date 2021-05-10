@@ -1,0 +1,188 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/16,16,Add Mozilla Code of Conduct,"Fixes #15
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-30T06:52:06Z,NONE,False,15,0,1,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,27b6c385d2dfe78569f433181231fb50acaa24e0,"Add Mozilla Code of Conduct file
+
+Fixes #15.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/13,13,Notebook refactor,"I've reviewed the 4 Spark notebooks and done some refactoring, mostly minor. For each notebook:
+
+- reran in Mozilla's Databricks instance, with minor code changes to get the data to load and ensure compatibility with Python 2
+- made sure each notebook has a `.ipynb`, `.md`, and `.html` version, the last of which includes all the cell outputs
+- removed the .py versions (redundant given the other versions)
+- minor code cleanup
+- added some more descriptive md cells to make the analyses easier to follow
+
+Notebook-specific comments:
+
+- __Cryptojacking:__ fixed the `.distinct()` call on the base dataset to apply to the union rather than the components. This changes counts, but not by much. The summary sections have been updated to include the new numbers.
+- __Session replay:__ deduplicated (page URL, script URL) pairs in computing counts of calls. Rather than counting total function calls (ie. occurrences of scripts weighted by number of calls made to each), this now counts unique occurrences of scripts, which is more appropriate. This changes the values of most numbers in the summary section, but the conclusions remain very similar.
+- __Evercookie analysis:__ this analysis currently appears to be incomplete. Only the compatibility code is added, but the notebook was not rerun.
+
+Once this is landed, we should move files for each analysis into dedicated subdirectories. Not doing this yet so as not to break file diffs.",dzeber,2326524,2018-05-10T23:02:54Z,COLLABORATOR,True,634,918,16,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,05a6bba7929cb9f779aed7e01b3cf107fc62f730,Minor cleanup of the cryptojacking notebook
+2,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/13,13,Notebook refactor,"I've reviewed the 4 Spark notebooks and done some refactoring, mostly minor. For each notebook:
+
+- reran in Mozilla's Databricks instance, with minor code changes to get the data to load and ensure compatibility with Python 2
+- made sure each notebook has a `.ipynb`, `.md`, and `.html` version, the last of which includes all the cell outputs
+- removed the .py versions (redundant given the other versions)
+- minor code cleanup
+- added some more descriptive md cells to make the analyses easier to follow
+
+Notebook-specific comments:
+
+- __Cryptojacking:__ fixed the `.distinct()` call on the base dataset to apply to the union rather than the components. This changes counts, but not by much. The summary sections have been updated to include the new numbers.
+- __Session replay:__ deduplicated (page URL, script URL) pairs in computing counts of calls. Rather than counting total function calls (ie. occurrences of scripts weighted by number of calls made to each), this now counts unique occurrences of scripts, which is more appropriate. This changes the values of most numbers in the summary section, but the conclusions remain very similar.
+- __Evercookie analysis:__ this analysis currently appears to be incomplete. Only the compatibility code is added, but the notebook was not rerun.
+
+Once this is landed, we should move files for each analysis into dedicated subdirectories. Not doing this yet so as not to break file diffs.",dzeber,2326524,2018-05-10T23:02:54Z,COLLABORATOR,True,634,918,16,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,cc8e0b6fed0e16be3d2d41ff6d9cae4eb6ee21f5,"Updates to session replay notebook:
+
+- reran so as to capture outputs
+- added compatibility code to run from Python 2
+- refactored analysis to create a cached base dataset at the start and run analyses against that
+- load session replay sites from file rather than Spark temp table
+- refactored analysis to drop (page, script) duplicates at the top level
+- restructured the top summary section and updated all the numbers
+- refactored the suffix analysis to use a single joined DF"
+3,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/13,13,Notebook refactor,"I've reviewed the 4 Spark notebooks and done some refactoring, mostly minor. For each notebook:
+
+- reran in Mozilla's Databricks instance, with minor code changes to get the data to load and ensure compatibility with Python 2
+- made sure each notebook has a `.ipynb`, `.md`, and `.html` version, the last of which includes all the cell outputs
+- removed the .py versions (redundant given the other versions)
+- minor code cleanup
+- added some more descriptive md cells to make the analyses easier to follow
+
+Notebook-specific comments:
+
+- __Cryptojacking:__ fixed the `.distinct()` call on the base dataset to apply to the union rather than the components. This changes counts, but not by much. The summary sections have been updated to include the new numbers.
+- __Session replay:__ deduplicated (page URL, script URL) pairs in computing counts of calls. Rather than counting total function calls (ie. occurrences of scripts weighted by number of calls made to each), this now counts unique occurrences of scripts, which is more appropriate. This changes the values of most numbers in the summary section, but the conclusions remain very similar.
+- __Evercookie analysis:__ this analysis currently appears to be incomplete. Only the compatibility code is added, but the notebook was not rerun.
+
+Once this is landed, we should move files for each analysis into dedicated subdirectories. Not doing this yet so as not to break file diffs.",dzeber,2326524,2018-05-10T23:02:54Z,COLLABORATOR,True,634,918,16,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,40425fafe02eee5bae42148793447e59240d77bd,"Minor updates to Spark eval analysis notebook:
+
+- reran on our DataBricks cluster
+- added compatibility code to run from Python 2
+- added some description
+- print out each count as they are computed
+- cleaned up final print statements"
+4,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/13,13,Notebook refactor,"I've reviewed the 4 Spark notebooks and done some refactoring, mostly minor. For each notebook:
+
+- reran in Mozilla's Databricks instance, with minor code changes to get the data to load and ensure compatibility with Python 2
+- made sure each notebook has a `.ipynb`, `.md`, and `.html` version, the last of which includes all the cell outputs
+- removed the .py versions (redundant given the other versions)
+- minor code cleanup
+- added some more descriptive md cells to make the analyses easier to follow
+
+Notebook-specific comments:
+
+- __Cryptojacking:__ fixed the `.distinct()` call on the base dataset to apply to the union rather than the components. This changes counts, but not by much. The summary sections have been updated to include the new numbers.
+- __Session replay:__ deduplicated (page URL, script URL) pairs in computing counts of calls. Rather than counting total function calls (ie. occurrences of scripts weighted by number of calls made to each), this now counts unique occurrences of scripts, which is more appropriate. This changes the values of most numbers in the summary section, but the conclusions remain very similar.
+- __Evercookie analysis:__ this analysis currently appears to be incomplete. Only the compatibility code is added, but the notebook was not rerun.
+
+Once this is landed, we should move files for each analysis into dedicated subdirectories. Not doing this yet so as not to break file diffs.",dzeber,2326524,2018-05-10T23:02:54Z,COLLABORATOR,True,634,918,16,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,a1137d50541e83bdd3c71903649b675ddd19ce09,"Minor updates to evercookie notebook
+
+- added compatibility code to run from Python 2
+- updated code for running on our DB cluster"
+5,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/13,13,Notebook refactor,"I've reviewed the 4 Spark notebooks and done some refactoring, mostly minor. For each notebook:
+
+- reran in Mozilla's Databricks instance, with minor code changes to get the data to load and ensure compatibility with Python 2
+- made sure each notebook has a `.ipynb`, `.md`, and `.html` version, the last of which includes all the cell outputs
+- removed the .py versions (redundant given the other versions)
+- minor code cleanup
+- added some more descriptive md cells to make the analyses easier to follow
+
+Notebook-specific comments:
+
+- __Cryptojacking:__ fixed the `.distinct()` call on the base dataset to apply to the union rather than the components. This changes counts, but not by much. The summary sections have been updated to include the new numbers.
+- __Session replay:__ deduplicated (page URL, script URL) pairs in computing counts of calls. Rather than counting total function calls (ie. occurrences of scripts weighted by number of calls made to each), this now counts unique occurrences of scripts, which is more appropriate. This changes the values of most numbers in the summary section, but the conclusions remain very similar.
+- __Evercookie analysis:__ this analysis currently appears to be incomplete. Only the compatibility code is added, but the notebook was not rerun.
+
+Once this is landed, we should move files for each analysis into dedicated subdirectories. Not doing this yet so as not to break file diffs.",dzeber,2326524,2018-05-10T23:02:54Z,COLLABORATOR,True,634,918,16,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,2b9f1331a28c4f9fde3bba41d326eea0fd351172,Removed .py file for cryptojacking analysis
+6,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/13,13,Notebook refactor,"I've reviewed the 4 Spark notebooks and done some refactoring, mostly minor. For each notebook:
+
+- reran in Mozilla's Databricks instance, with minor code changes to get the data to load and ensure compatibility with Python 2
+- made sure each notebook has a `.ipynb`, `.md`, and `.html` version, the last of which includes all the cell outputs
+- removed the .py versions (redundant given the other versions)
+- minor code cleanup
+- added some more descriptive md cells to make the analyses easier to follow
+
+Notebook-specific comments:
+
+- __Cryptojacking:__ fixed the `.distinct()` call on the base dataset to apply to the union rather than the components. This changes counts, but not by much. The summary sections have been updated to include the new numbers.
+- __Session replay:__ deduplicated (page URL, script URL) pairs in computing counts of calls. Rather than counting total function calls (ie. occurrences of scripts weighted by number of calls made to each), this now counts unique occurrences of scripts, which is more appropriate. This changes the values of most numbers in the summary section, but the conclusions remain very similar.
+- __Evercookie analysis:__ this analysis currently appears to be incomplete. Only the compatibility code is added, but the notebook was not rerun.
+
+Once this is landed, we should move files for each analysis into dedicated subdirectories. Not doing this yet so as not to break file diffs.",dzeber,2326524,2018-05-10T23:02:54Z,COLLABORATOR,True,634,918,16,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,b1e1c28d2edb508c984aa0e3ef8e456bdbe755b0,Fixed typo in replay notebook
+7,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/10,10,Fix miscounting of scripts URLs.,,Tyler-R,3678054,2018-04-21T10:24:43Z,COLLABORATOR,True,295,222,9,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,63b1de6ea071bc318add3fb7db9b878f5a25c2de,"Fix miscounting of scripts URLs and corfirm spark analysis.
+
+Script urls were not being counted correctly so a number of analysis
+results were incorrect.  This fixes those errors.
+
+Also adds an analysis that looks at the % of function calls that are
+created using eval in the sample to compare with the spark results."
+8,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/9,9,Modify the session replay analysis to use spark and databricks,This is the replay session analysis now scaled up to the entire data set. Most of the finding that was found on samples of the dataset turned out to hold true over the entire data set. ,koosoku,9094367,2018-04-19T16:00:15Z,COLLABORATOR,True,43,1217,4,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,efb71a9ef0431c77a986d27578b32a99bddbe3ac,Modify the session replay analysis to use spark and databricks
+9,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/7,7,"Add analysis of eval usage for the whole data set, using Spark.","The analysis looks at the following aspects and compared them to what was found in the previous sample based analysis:
+- How many function calls are created using eval.
+- How many web pages use eval.
+- How many scripts with function created using eval are hosted on different domains than the web page that uses them.",Tyler-R,3678054,2018-04-14T05:21:21Z,COLLABORATOR,True,216,0,3,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,55423a5b36b67df2f1ab73772c838d5b7aac0006,"Add analysis of eval usage, using Spark, that examines:
+
+- How many function calls are created using eval.
+- How many web pages use eval.
+- How many scripts with function created using eval are hosted on
+different domains than the web page that uses them."
+10,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/6,6,Databricks evercookie search script added,,Alexander1994,11392391,2018-04-13T14:30:40Z,CONTRIBUTOR,True,772,0,3,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,4e1f491c6c0f1083ee58e39d2b7a6186f44e10bd,data bricks evercookie search script added
+11,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/5,5,Add finished cryptojacking analysis notebook with markdown and source…,… files.,vvnjin,8904343,2018-04-13T00:13:39Z,COLLABORATOR,True,708,0,3,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,c6e067a5c0843b281bf2e4cfdb7052f1aab19dd6,Add finished cryptojacking analysis notebook with markdown and source files.
+12,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/5,5,Add finished cryptojacking analysis notebook with markdown and source…,… files.,vvnjin,8904343,2018-04-13T00:13:39Z,COLLABORATOR,True,708,0,3,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,de957ea139db145211345dc556d22c4737480d69,Fix typo in notebook.
+13,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/4,4,Cleaned up Extract cookie notebook and added scraper to pull cookie info with a simple cache,branch from private repo moved over. I covered most changes requested by David. Except I didn't get to those pertaining to the vision of the branch going forward. I covered all the clean up request though.,Alexander1994,11392391,2018-04-12T14:19:38Z,CONTRIBUTOR,True,14987,883,4,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,85946e745d0674124726065611a9739aff4552f3,cookie data analysis cleaned up and md added
+14,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/3,3,Update the analysis of eval usage.,"This change addresses issues that were brought up with the initial creation of the eval analysis including:
+
+- Adding a preamble explaining what eval usage is and providing a justification for why it should be analyzed.
+- Adding multiple webpage samples to look for sampling bias.
+- Using domain entities from the disconnectme entity list to compare web pages, in addition to using their base domains for comparisons.
+
+Additionally the following sections were added to make the analysis easier to read and understand:
+
+- A summary of results in the analysis introduction section.
+- justification for why each analysis is being performed after the analysis header.
+- An interpretation of the results so that their significance can be more easily understood after each result is presented.",Tyler-R,3678054,2018-04-04T08:31:15Z,COLLABORATOR,True,1339,347,12,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,a7f96446cf45e7b568d629108b68bbaba9a30623,"Update the analysis of eval usage.
+
+The previous analysis of eval usage was lacking an initial preamble and
+problem justification, only looked at 1 sample, and was comparing
+website domains instead of comparing what company controlled the domains. This change fixes those issues and makes a number of other improvements including:
+
+- Adding a sumamry of results in the analysis introduction section to
+make the analysis easier to read.
+- Giving justification for why each analysis is being performed.
+- Giving an interpretation of the results so that their significance can be
+more easily understood."
+15,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/2,2,[WIP] Update dask script to work with index,"Latest dask data processing updates.
+
+May have problems (see discovery doing spark work). 
+
+But that caveat aside, this update:
+* adds index
+* does ingest via dask delayed",birdsarah,1796208,2018-03-27T08:10:07Z,MEMBER,False,22446,1590,14,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,2fff90fc57a590ded5438c0b04757fa2b0a0b720,Update dask script to work with index
+16,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/2,2,[WIP] Update dask script to work with index,"Latest dask data processing updates.
+
+May have problems (see discovery doing spark work). 
+
+But that caveat aside, this update:
+* adds index
+* does ingest via dask delayed",birdsarah,1796208,2018-03-27T08:10:07Z,MEMBER,False,22446,1590,14,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,42763d9b515cf479fcb7368154cec6791e36e16d,Move dask files into folder
+17,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/2,2,[WIP] Update dask script to work with index,"Latest dask data processing updates.
+
+May have problems (see discovery doing spark work). 
+
+But that caveat aside, this update:
+* adds index
+* does ingest via dask delayed",birdsarah,1796208,2018-03-27T08:10:07Z,MEMBER,False,22446,1590,14,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,76ecfecb51865d876ce0204fa30229794c569752,Add new spark processing notebooks
+18,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/1,1,Spark data processing,Remove all dask work and include just the notebook that did spark data processing.,birdsarah,1796208,2018-03-27T08:05:03Z,MEMBER,False,1650,3042,7,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,d2920e8d7c80c82470cbdbc2770878e6904af49d,"Remove dask processing, add spark processing"
+19,https://api.github.com/repos/mozilla/UCOSP-winter-2018_TrackingTechnologies/pulls/1,1,Spark data processing,Remove all dask work and include just the notebook that did spark data processing.,birdsarah,1796208,2018-03-27T08:05:03Z,MEMBER,False,1650,3042,7,UCOSP winter cohort internship project to perform exploratory data analysis on tracking technologies on the Web.,Jupyter Notebook,4012fedcfae0bc1968de32a33efde611bd6c29d6,Add markdown version

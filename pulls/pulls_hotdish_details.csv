@@ -1,0 +1,123 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/hotdish/pulls/325,325,Add Mozilla Code of Conduct,"Fixes #324
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-28T04:22:22Z,NONE,False,15,0,1,Explorations on being together in the browser,JavaScript,3d733c8830756954948444436252c34796701375,"Add Mozilla Code of Conduct file
+
+Fixes #324.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/hotdish/pulls/322,322,Fix the email link,,mortonfox,495892,2016-08-02T04:32:34Z,CONTRIBUTOR,True,1,1,1,Explorations on being together in the browser,JavaScript,dcee9de162147340692df5a62e9a237569e9b4dc,Fix the email link
+2,https://api.github.com/repos/mozilla/hotdish/pulls/186,186,update user presence on a shared tab,"When you are Presenting a Tab:
+- there should be a Growl notification ""You are presenting this tab to [user]""
+- the browser tab should have a Presenting icon, color (green?) and maybe avatars of the people on the page are in the tab.
+- the content window should have a light green outline too?
+
+When you are Spectating on a Tab:
+- there should be a Growl notification ""You spectating on this tab by [user]""
+- the browser tab should have a Spectating icon, color (blue?) and maybe avatars of the people on the page are in the tab.
+- the content window should have a light blue outline too?
+
+When are on a Shared Tab with another user:
+- there should be a Growl notification ""You are live-sharing on this tab with [user]""
+- the browser tab should have a Share icon, color (?) and maybe avatars of the people on the page are in the tab.
+
+When a user joins your tab you are Presenting on:
+- there should be a Growl notification ""[user] is spectating on your page.""
+- the browser tab should have a Presenting icon, color (green?) and maybe avatars of the people on the page are in the tab.
+- the content window should have a light green outline too?
+
+When a user joins a tab you are Spectating on:
+- there should be a Growl notification ""[user] is now spectating on this page too.""
+- the browser tab should have a Spectating icon, color (blue?) and maybe avatars of the people on the page are in the tab.
+- the content window should have a light blue outline too?
+
+When a user joins a page you are Sharing on:
+- there should be a Growl notification ""[user] has joined this page with you.""
+- the browser tab should have a Share icon, color (?) and maybe avatars of the people on the page are in the tab.
+",gregglind,163983,2014-02-06T22:25:44Z,CONTRIBUTOR,True,42,18,3,Explorations on being together in the browser,JavaScript,b9501443514f7ff45a058a684cc951e736843d3c,"Solution chosen:
+- hot-tabs ""Tab"" add `xulTab` during creation
+- add attributes to xulTab during `stateChange`
+- styling in hotdish.css
+
+Ideas about styling live in these places:
+
+  chrome://browser/content/browser.css"
+3,https://api.github.com/repos/mozilla/hotdish/pulls/179,179,Wire toolbarbutton,"Not clear how this should work.  
+- Create button could see 'groups', I guess, but gross!
+- button could send signal back, and take a signal handle.
+- should there be different states depending on if a toolbar is already open?
+",gregglind,163983,2014-01-30T23:12:22Z,CONTRIBUTOR,True,112,16,5,Explorations on being together in the browser,JavaScript,038ccf8d7a4b8227de8f2d11fc170e995452d9b7,"Re #179 Wire sidebar button.
+
+to be discussed:
+- right now, I have the button always open ""hotdish"" unless it's not.
+- groupManager is gross
+- should the button 'toggle' and existing hotish?
+
+Nits / wontfix:
+- styling is RAD in UXBranch, but meh in aurora"
+4,https://api.github.com/repos/mozilla/hotdish/pulls/157,157,can the hotdish button go in the main toolbar in the top of the FF chrome?,"it's hard to see in the lower right corner of the chrome.  can it go in the top toolbar?
+![screen shot 2014-01-24 at 3 04 07 pm](https://f.cloud.github.com/assets/2692810/1999873/d977ad5a-854b-11e3-95b1-473283536874.png)
+",gregglind,163983,2014-01-30T17:15:17Z,CONTRIBUTOR,True,712,23,7,Explorations on being together in the browser,JavaScript,e8f7e3a998a3c5ceeae3d2f9edd6c56f9ecdf37e,"Fix #157, toolbarbutton in all versions.
+
+Note:  wiring for action still not there."
+5,https://api.github.com/repos/mozilla/hotdish/pulls/158,158,"create an ""Activity Log""","create a panel for your activity log for a session.  Lists all actions that have taken place.
+",gregglind,163983,2014-01-29T20:55:16Z,CONTRIBUTOR,True,7,0,1,Explorations on being together in the browser,JavaScript,cee47845c3dfd8910af71ec5fef0a30d25d0fc8a,"#158, super super fake activity log
+
+In my mind this should feel like a pinterest / evernote of your session, and reflect
+local state / perception.  Fantasy world, this would store *somewhere else* as a
+value add and be a good reason to use Hotdish.
+
+hotdish - remember the awesome dinner party conversation you had."
+6,https://api.github.com/repos/mozilla/hotdish/pulls/168,168,Remove title bar from hotdish sidebar,"Remove this thing:
+
+![screen shot 2014-01-28 at 5 32 19 pm](https://f.cloud.github.com/assets/44390/2025100/794addfe-8874-11e3-8ee3-dd6d28ede85b.png)
+",gregglind,163983,2014-01-29T15:50:05Z,CONTRIBUTOR,True,26,0,1,Explorations on being together in the browser,JavaScript,f47ebdb2e6ce39d628243434332d2e823d2feaad,"Fix #168 sidebar title shows.  -has-issues
+
+1.  The `sidebarheader` briefly shows.
+2.  *all sidebars* in a hotdish window will be shown without titles.
+
+If we want to get more aggro on this, we have to remove the element from
+the sidebar on construction, before show."
+7,https://api.github.com/repos/mozilla/hotdish/pulls/131,131,"Your avatar image should be just one image, not the grid","![screen shot 2014-01-16 at 4 43 31 pm](https://f.cloud.github.com/assets/2692810/1936674/8b1ba94a-7f10-11e3-920d-17ef16f42160.png)
+",gregglind,163983,2014-01-24T18:13:50Z,CONTRIBUTOR,True,2,0,1,Explorations on being together in the browser,JavaScript,1f114ccf7545992c11882abbfb3567f2f26666c8,"Fix #131 (partial) image should not repeat.
+
+Should we send bigger images over the wire for this?  Or should 'new image' be a msg type?  Maybe next rev?"
+8,https://api.github.com/repos/mozilla/hotdish/pulls/151,151,window styles for 'in hotdish' aren't very nice,"The tabbrowser style isn't very good.
+",gregglind,163983,2014-01-24T17:33:20Z,CONTRIBUTOR,True,5,3,3,Explorations on being together in the browser,JavaScript,6d7a420fbf6240bdf1acdfb20eb7f4b7bc7f8ad0,"Fix #151:  better xul styles for hotdished windows
+
+Not perfect, because it's hard to get the 'background' tab style to override.
+
+Setting 'tabs: background-color' isn't enough (isn't rounded, etc.)"
+9,https://api.github.com/repos/mozilla/hotdish/pulls/88,88,Get icon for chat,"The chat notifications should be clearly linked to hotdish, and an icon would be helpful.
+",gregglind,163983,2014-01-24T16:21:58Z,CONTRIBUTOR,True,13,5,1,Explorations on being together in the browser,JavaScript,6d5189cced25092a27964fcad8346ee574f222c2,Fix #88.  Orange hotish notification icons
+10,https://api.github.com/repos/mozilla/hotdish/pulls/150,150,sidebar shouldn't show on child / forked window from hotdish page.,"reproduce:
+1.  hotdish
+2.  ctrl +n 
+3.  new window also has hotdish.
+",gregglind,163983,2014-01-23T23:12:03Z,CONTRIBUTOR,True,7,8,1,Explorations on being together in the browser,JavaScript,570d33dff2f3085d94fbb3fc819118bb9711c08f,"WIP #150, multiple sidebar.
+
+I am not happy with this solution (which uses counters).
+
+The implied model here is 'closing the sidebar for a group closes it forever'.
+
+Is that what we want?
+
+Otherwise, it's 'good enough'."
+11,https://api.github.com/repos/mozilla/hotdish/pulls/124,124,create a Toolbar button to start a Hotdish session,"For now, we are just creating a Toolbar button to Start a Hotdish session which goes to this invite screen
+
+![img_0408](https://f.cloud.github.com/assets/2692810/1926553/9a722aca-7e45-11e3-87dd-c1263f86945b.JPG)
+",gregglind,163983,2014-01-22T22:57:55Z,CONTRIBUTOR,True,43,0,2,Explorations on being together in the browser,JavaScript,f96a946467e637c409d35340e459ba5e71922034,"WIP #124 button, needs assets, actions, thinking"
+12,https://api.github.com/repos/mozilla/hotdish/pulls/127,127,timestamps should be correct format,"here's how they currently look
+
+![screen shot 2014-01-16 at 4 19 42 pm](https://f.cloud.github.com/assets/2692810/1936525/22d90e70-7f0d-11e3-9851-3b35350570e5.png)
+",gregglind,163983,2014-01-22T21:51:38Z,CONTRIBUTOR,True,33,3,3,Explorations on being together in the browser,JavaScript,cb4ca089885eea14d5ea050ca1a7c189a0701856,WIP #127 humanizing dates
+13,https://api.github.com/repos/mozilla/hotdish/pulls/127,127,timestamps should be correct format,"here's how they currently look
+
+![screen shot 2014-01-16 at 4 19 42 pm](https://f.cloud.github.com/assets/2692810/1936525/22d90e70-7f0d-11e3-9851-3b35350570e5.png)
+",gregglind,163983,2014-01-22T21:51:38Z,CONTRIBUTOR,True,33,3,3,Explorations on being together in the browser,JavaScript,ea9b15cf5f648a85794343de3f1bb12a43314114,WIP v2 #127 humanizing dates
+14,https://api.github.com/repos/mozilla/hotdish/pulls/144,144,Figure out when the window is in the foreground,"`windows.activeWindow` only tells you if some other Firefox window is in the foreground, not if Firefox itself is entirely in the background.  I'd like to know when we're in the foreground.
+
+Would help with #88 and notification in general.
+
+We might be able to tell this from tracking the window inactive event.
+",gregglind,163983,2014-01-21T22:29:56Z,CONTRIBUTOR,True,129,1,5,Explorations on being together in the browser,JavaScript,3f966a1c28108835c8528097bc9eec74aae16291,Fix #144.  Know whether tabset is in background.

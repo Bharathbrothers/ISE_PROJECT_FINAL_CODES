@@ -1,0 +1,51 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/briar-patch/pulls/7,7,Add Mozilla Code of Conduct,"Fixes #6
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-28T03:51:52Z,CONTRIBUTOR,True,15,0,1,[deprecated] event and alert framework for RelEng systems,Python,ca6b16fec964f65b343d815036b5ae7f861a7ec9,"Add Mozilla Code of Conduct file
+
+Fixes #6.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/briar-patch/pulls/4,4,Dev,"move to production the latest changes
+",bear,1267,2012-07-18T06:57:56Z,CONTRIBUTOR,True,367,214,8,[deprecated] event and alert framework for RelEng systems,Python,915b39eb8e5b5352402d044c020bf32a8d939611,added some error logging to rebootIPMI() and also changed the reboot code to try ipmi/pdu more aggressively when --reboot option is given
+2,https://api.github.com/repos/mozilla/briar-patch/pulls/4,4,Dev,"move to production the latest changes
+",bear,1267,2012-07-18T06:57:56Z,CONTRIBUTOR,True,367,214,8,[deprecated] event and alert framework for RelEng systems,Python,33abf5e145cbbc9cc23921c7dab2bdea9f1d1e9f,"- added to remote host management for tegras a reformat SDcard helper
+- adding to AWS support code the start of pending job metrics so that kittenherder can know when to stop/start EC2 instances"
+3,https://api.github.com/repos/mozilla/briar-patch/pulls/4,4,Dev,"move to production the latest changes
+",bear,1267,2012-07-18T06:57:56Z,CONTRIBUTOR,True,367,214,8,[deprecated] event and alert framework for RelEng systems,Python,9a99807ce122d113e83a7601563e9a5e6155691c,Change kittenmonitor to gather pending job counts by platform and also by hostname (as defined by buildermap)
+4,https://api.github.com/repos/mozilla/briar-patch/pulls/4,4,Dev,"move to production the latest changes
+",bear,1267,2012-07-18T06:57:56Z,CONTRIBUTOR,True,367,214,8,[deprecated] event and alert framework for RelEng systems,Python,1648e8a4f8eee72d8f73d30f79e9aa329f530f57,"worked thru a nasty glitch where ssh/paramiko (when run against an ec2 host) was not always returning the current commands output if that command's output was smaller than the stdout buffer because the .wait() code was sending keystrokes and not letting the lower level code flush the output buffers.  (ok, yea, that last bit is a hunch but man did it take a lot of tests to get to that hunch and working code.)"
+5,https://api.github.com/repos/mozilla/briar-patch/pulls/4,4,Dev,"move to production the latest changes
+",bear,1267,2012-07-18T06:57:56Z,CONTRIBUTOR,True,367,214,8,[deprecated] event and alert framework for RelEng systems,Python,b98f3e8b6afec21d864e461d15561455d2b31603,"make the Pulse appname unique - this was causing the production PulseBroker
+to not receive all possible messages because it shared the same appname with staging."
+6,https://api.github.com/repos/mozilla/briar-patch/pulls/4,4,Dev,"move to production the latest changes
+",bear,1267,2012-07-18T06:57:56Z,CONTRIBUTOR,True,367,214,8,[deprecated] event and alert framework for RelEng systems,Python,31501ffc986d471871901a14254128c15797f71e,"add helper routines to determine os, platform and other step related items"
+7,https://api.github.com/repos/mozilla/briar-patch/pulls/4,4,Dev,"move to production the latest changes
+",bear,1267,2012-07-18T06:57:56Z,CONTRIBUTOR,True,367,214,8,[deprecated] event and alert framework for RelEng systems,Python,0a42a469b541a1266814ec4cbfbd2b7662535bed,"store into a jobs hash any step timings that getWorksteps() determines are interesting
+(currently this is a list of compile/build steps)"
+8,https://api.github.com/repos/mozilla/briar-patch/pulls/4,4,Dev,"move to production the latest changes
+",bear,1267,2012-07-18T06:57:56Z,CONTRIBUTOR,True,367,214,8,[deprecated] event and alert framework for RelEng systems,Python,744b5662f5d84c94b32583c7534a92cb457596fb,"nice subtle bug, setting bbdir in __init__ works except for those child classes
+that don't *have* __init__"
+9,https://api.github.com/repos/mozilla/briar-patch/pulls/3,3,Don't hardcode OS in bug template,"I still had 'Mac OS X' hardcoded in there.
+",ccooper,609786,2012-06-28T23:05:28Z,CONTRIBUTOR,True,23,13,2,[deprecated] event and alert framework for RelEng systems,Python,e1631f7c1166fe456b9cce86db640b14b8444fc3,Bug 748563 - don't hardcode OS in bug template
+10,https://api.github.com/repos/mozilla/briar-patch/pulls/3,3,Don't hardcode OS in bug template,"I still had 'Mac OS X' hardcoded in there.
+",ccooper,609786,2012-06-28T23:05:28Z,CONTRIBUTOR,True,23,13,2,[deprecated] event and alert framework for RelEng systems,Python,4a14d1653d1e125d552f2c51a9f6b11d0ca51980,"Bug 748563
+- renamed generate() to generateTextList()
+- make previouslySeen() return a host list so the HTML report can reuse it
+- report previously seen hosts in HTML report
+- add a subtle line break between the HTML report sections"
+11,https://api.github.com/repos/mozilla/briar-patch/pulls/3,3,Don't hardcode OS in bug template,"I still had 'Mac OS X' hardcoded in there.
+",ccooper,609786,2012-06-28T23:05:28Z,CONTRIBUTOR,True,23,13,2,[deprecated] event and alert framework for RelEng systems,Python,e737ed1ff7141392123ec0f5be8791ee8ca6ba13,"Bug 748563
+- ignore emacs auto-saves (*~)
+- make HTML line breaks between logical sections rather than every section"
+12,https://api.github.com/repos/mozilla/briar-patch/pulls/2,2,"Bug 748563 - send HTML mail, add bug links","This is the first part to bug 748563.
+- sends multi-part mail, so we don't lose any of the test additions bear has added recently
+  *_...while adding an HTML tabular output with links to bugs
+  *_ I don't find the historical timestamp useful, at least not until it is used to determine a next step and not displayed itself
+- changes parsing on centos slaves so we actually cover centos5 VMs
+
+The platform and OS detection for creating the bug links is ugly. If there's a better way to do those comparisons, please do suggest it.
+",ccooper,609786,2012-06-28T22:05:16Z,CONTRIBUTOR,True,117,4,2,[deprecated] event and alert framework for RelEng systems,Python,ec362f277659a24e151dc239937a5bb26a3ea4eb,"Bug 748563 - send HTML mail, add bug links"
+13,https://api.github.com/repos/mozilla/briar-patch/pulls/1,1,- always add all ec2 values to the redis hash for the instance,"- process all ec2 instances but only try to shutdown an instance if it is currently running
+",bear,1267,2012-06-28T21:49:52Z,CONTRIBUTOR,True,17,14,2,[deprecated] event and alert framework for RelEng systems,Python,419103a0e4ed7c05c39b95ec68708707db644c79,"- always add all ec2 values to the redis hash for the instance
+- process all ec2 instances but only try to shutdown an instance if it is currently running"

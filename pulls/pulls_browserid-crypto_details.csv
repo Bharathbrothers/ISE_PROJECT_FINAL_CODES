@@ -1,0 +1,788 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/browserid-crypto/pulls/119,119,Add Mozilla Code of Conduct,"Fixes #118
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-28T03:47:07Z,CONTRIBUTOR,True,15,0,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,a5059bf090e7d7f5fef1090205abe25d18f6e1e0,"Add Mozilla Code of Conduct file
+
+Fixes #118.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/browserid-crypto/pulls/113,113,fix(deps): Update bignum dependency to build on node10,In service of https://github.com/mozilla/browserid-verifier/issues/113; @vladikoff r?,rfk,34695,2018-09-05T02:57:23Z,MEMBER,True,3,5,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,331e10c6785e7c442459ba479d2c415361286020,fix(deps): Update bignum dependency to build on node10
+2,https://api.github.com/repos/mozilla/browserid-crypto/pulls/112,112,adding syntax highlighting to readme code blocks,,thomasburguiere,1648283,2018-04-19T07:43:52Z,CONTRIBUTOR,True,129,124,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,118b9043087f49eca6978814807f3b6481c56d10,adding syntax highlighting to readme code blocks
+3,https://api.github.com/repos/mozilla/browserid-crypto/pulls/111,111,fix(deps): Update deps to resolve NSP warnings.,"Unfortunately the latest release version of `vows` is two years old and has vulnerable dependencies.  I worked around this by publishing a renamed version with updated deps.
+
+@jrgm r?
+",rfk,34695,2016-10-11T00:52:19Z,MEMBER,True,19,14,10,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,aff16d97e41052178ea984226832a43a0fe7a467,"fix(deps): Update deps to resolve NSP warnings.
+
+Unfortunately the latest release version of `vows` is two
+years old and has vulnerable dependencies.  I worked around
+this by publishing a renamed version with updated deps."
+4,https://api.github.com/repos/mozilla/browserid-crypto/pulls/110,110,fix(deps): use bignum@0.12.5; add node 6 on travis; add package.json license field (MPL-2.0),"- use bignum@0.12.5
+- add node 6 on travis
+- add package.json license field (MPL-2.0)
+- also upgrade npm iff npm === 1.x
+
+r? - @rfk and can you publish a new release if this looks good to you.
+",jrgm,758162,2016-10-07T23:55:13Z,CONTRIBUTOR,True,8,6,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,49c425e71f87df91e4b84b1f071b96406c771b44,fix(deps): use bignum@0.12.5; add node 6 on travis; add package.json license field (MPL-2.0)
+5,https://api.github.com/repos/mozilla/browserid-crypto/pulls/109,109,Fix for postinstall bundle.js issues,"This patch addresses some issues with the postinstall bundle.js script, which was failing if the bignum optional dependency was missing and was also creating an invalid minified file.
+",nickel-chrome,4708734,2016-03-27T06:44:47Z,NONE,False,74,64,8,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,eb77fc7ed1bb222af70f97d46cc9bfdcda005d33,Browserify bundle now handles optional module dependencies (bignum) and produces valid minified code
+6,https://api.github.com/repos/mozilla/browserid-crypto/pulls/109,109,Fix for postinstall bundle.js issues,"This patch addresses some issues with the postinstall bundle.js script, which was failing if the bignum optional dependency was missing and was also creating an invalid minified file.
+",nickel-chrome,4708734,2016-03-27T06:44:47Z,NONE,False,74,64,8,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,b23c71d26fd0c3bc4b3c5cbae18ff6ef5cd1a24a,Browserify bundle now handily works in browser
+7,https://api.github.com/repos/mozilla/browserid-crypto/pulls/108,108,feat(cert): Support checking multiple root pubkeys when verifying a bundle.,"This change provides the ability to verify a bundle against multiple candidate public keys, succeeding if any one of them verifies the signature.  It will allow IdPs to publish multiple active keys during e.g. a key rotation event.  It's backwards-compatible with existing callers that return only a single pubkey.
+
+As a bonus it fixes an issue with two of the existing tests, which were returning an error as expected, but the error was for the wrong reason.
+
+Will be used in support of https://github.com/mozilla/browserid-verifier/issues/69
+
+@vladikoff r?
+",rfk,34695,2016-02-08T04:14:27Z,MEMBER,True,102,10,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,493a266bd2a7670d2db0b0fc82767063e049493c,"feat(cert): Support checking multiple root pubkeys when verifying a bundle.
+
+This change provides the ability to verify a bundle against multiple
+candidate public keys, succeeding if any one of them verifies the
+signature.  It will allow IdPs to publish multiple active keys during
+e.g. a key rotation event."
+8,https://api.github.com/repos/mozilla/browserid-crypto/pulls/107,107,feat(keys): Add ability to load keys from JWK-compatible format.,"This adds the ability to deserialize keys from the (newer, but never used in production in persona) JWK data format in addition to the existing BrowserID data format.  It's required in order to support the fxa-auth-server's new ability to publish multiple active pubkeys (ref https://github.com/mozilla/browserid-verifier/issues/69, https://github.com/mozilla/fxa-auth-server/pull/1064).
+
+This is a partial re-introduction of code that was _removed_ over in https://github.com/mozilla/browserid-crypto/pull/103/ in the interests of simplifying the codebase.  Which is lucky because it means the data formats come with existing tests that I just coped back over :-)
+
+The scope of the data format changes is:
+- Use of ""kty"" rather than ""algorithm"" to specify the algorithm in use
+- Use of base64-encoding rather than base10 or base16 for the numbers
+
+@vladikoff r?
+",rfk,34695,2016-02-08T03:26:23Z,MEMBER,True,98,14,4,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,3d26408bacb9d32013912c6b906d641675eda774,feat(keys): Add ability to load keys from JWK-compatible format.
+9,https://api.github.com/repos/mozilla/browserid-crypto/pulls/105,105,"fix(deps): switch to bignum, add Node 4 testing",,vladikoff,128755,2015-12-14T20:39:43Z,CONTRIBUTOR,True,29,11,4,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,000aacff9f020d672095b51a1ca4ca45b513ce61,"fix(deps): switch to bignum, add Node 4 testing"
+10,https://api.github.com/repos/mozilla/browserid-crypto/pulls/104,104,switch bigint dependency to bignum,"#69 back from the grave in order to support node v0.12 and iojs.
+",dannycoates,87619,2015-03-05T23:08:23Z,MEMBER,False,3,3,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,d9f04805b1889051550b7c9139a7c74e04cd5d3d,"switch bigint dependency to bignum
+
+closes #61"
+11,https://api.github.com/repos/mozilla/browserid-crypto/pulls/103,103,Revert to old-style data formats,"Here's my attempt at  #97, removing the new-style JWT-compatible formats and reverting to the old-style format as the only option.
+
+A rough list of the changes made to accomplish this:
+- Revert ""kty"" field to ""algorithm""
+- Revert ""pubkey"" field to ""public-key""
+- Revert ""sub"" field to ""principal""
+- Revert ""DSA"" to ""DS"" and ""RSA"" to ""RS"", removing notion of algorithm name aliases
+- Revert all timestamps to milliseconds rather than seconds
+- Revert b64-encoded field values to previous decimal or hex encoding
+- Remove ""newFormat"" and ""version"" switches in code and docs
+
+@callahad what have I missed? :-)
+
+I will test this with https://github.com/mozilla/fxa-auth-server/pull/831 and a full fxa+sync stack deploy and report back.
+",rfk,34695,2014-10-31T04:04:11Z,MEMBER,True,108,249,13,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,045a65c74d41a3c1b9f772f634fd8c2dbbcc60fc,"Revert to stable data formats as deployed on persona.org.
+
+This removes a bunch of work on ""new format"" certificates and
+assertions, which was designed to bring things into closer compliance
+with the JWT spec but was ultimately never deployed.  It reduces
+complexity and maintenance burden by remove formats that will not be
+seen in the wild."
+12,https://api.github.com/repos/mozilla/browserid-crypto/pulls/102,102,Dont forcibly upgrade old-format keys during serialization,"As noted in:
+
+  https://github.com/mozilla/fxa-auth-server/pull/831
+
+It is currently impossible to upgrade fxa-auth-server to use the latest version of browserid-crypto, due to a bad interaction in handling old-format data.  When the server signs a client's old-format pubkey, it converts the serialized version into the new format.  When the client then goes to use that signed certificate with an old-format assertion, confusion happens.
+
+Given that we're not going to push for new-format structures any time soon, it seems like the simplest solution is to preserve the original formatting during serialization - old-format keys should get old-format serialization, new-format keys should be new-format serialization.
+
+@callahad @fmarier thoughts?
+
+Oh, and as an added bonus, this PR also removes an accidental duplicate serialization of the pubkey when signing a certificate.
+",rfk,34695,2014-10-24T06:39:32Z,MEMBER,False,60,16,5,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,eeeb8e5f2df9a32f6f79c7e9bd2f1e50a84b8be3,"Preserve data format version when serializing keys.
+
+Previously, keys were always serialized into the new data format.
+This can cause confusion when e.g. a client submits an old-format
+certificate to a server for signing, and received it back serialized
+in the new format."
+13,https://api.github.com/repos/mozilla/browserid-crypto/pulls/102,102,Dont forcibly upgrade old-format keys during serialization,"As noted in:
+
+  https://github.com/mozilla/fxa-auth-server/pull/831
+
+It is currently impossible to upgrade fxa-auth-server to use the latest version of browserid-crypto, due to a bad interaction in handling old-format data.  When the server signs a client's old-format pubkey, it converts the serialized version into the new format.  When the client then goes to use that signed certificate with an old-format assertion, confusion happens.
+
+Given that we're not going to push for new-format structures any time soon, it seems like the simplest solution is to preserve the original formatting during serialization - old-format keys should get old-format serialization, new-format keys should be new-format serialization.
+
+@callahad @fmarier thoughts?
+
+Oh, and as an added bonus, this PR also removes an accidental duplicate serialization of the pubkey when signing a certificate.
+",rfk,34695,2014-10-24T06:39:32Z,MEMBER,False,60,16,5,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,35ddfcdb403c75c00a80c9c925fb0b14661813d5,"Don't include 'publicKey' object when serializing a certificate.
+
+This field contains the actual PublicKey object, whose data has already
+been included in the 'pubkey' field."
+14,https://api.github.com/repos/mozilla/browserid-crypto/pulls/101,101,Bump the version number to fix npm publishing fuckup,,fmarier,167821,2014-10-09T05:16:05Z,CONTRIBUTOR,True,1,1,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,22f5017bfd9d090c900d04a71b7d7dbb4786e1d3,Bump the version number to fix npm publishing fuckup
+15,https://api.github.com/repos/mozilla/browserid-crypto/pulls/100,100,Rename module to browserid-crypto,,fmarier,167821,2014-10-09T04:46:58Z,CONTRIBUTOR,True,14,14,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,33d0a47b4ba6aa1b0757ddc2e531910f1db1c199,Deprecate jwcrypto in favour of browserid-crypto
+16,https://api.github.com/repos/mozilla/browserid-crypto/pulls/100,100,Rename module to browserid-crypto,,fmarier,167821,2014-10-09T04:46:58Z,CONTRIBUTOR,True,14,14,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,2f5d9188d8dc683af247e292e3b58b903ed6a279,Rename module to browserid-crypto (fix #96)
+17,https://api.github.com/repos/mozilla/browserid-crypto/pulls/100,100,Rename module to browserid-crypto,,fmarier,167821,2014-10-09T04:46:58Z,CONTRIBUTOR,True,14,14,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,e433352c32dd2c3dc4de022c067a2b01f1c5f858,Tweak description to emphasize that it's for BrowserID
+18,https://api.github.com/repos/mozilla/browserid-crypto/pulls/100,100,Rename module to browserid-crypto,,fmarier,167821,2014-10-09T04:46:58Z,CONTRIBUTOR,True,14,14,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,4b3579fcdb8b5256c940412aa95338bb3a64b1ea,"Bump version number since the API is broken
+
+People now have to require('browserid-crypto')."
+19,https://api.github.com/repos/mozilla/browserid-crypto/pulls/99,99,Travis config,,fmarier,167821,2014-10-09T04:34:33Z,CONTRIBUTOR,True,5,5,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,b92d1eaf3250d505e5f6b1324eb9ae29626ca165,Remove 0.8 support since it's broken
+20,https://api.github.com/repos/mozilla/browserid-crypto/pulls/99,99,Travis config,,fmarier,167821,2014-10-09T04:34:33Z,CONTRIBUTOR,True,5,5,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,ba4946abc6fa40d669b5c91c4af6a4b5120bfd88,Replace email notifications with IRC ones
+21,https://api.github.com/repos/mozilla/browserid-crypto/pulls/98,98,Make the README example actually work,,fmarier,167821,2014-10-09T04:07:21Z,CONTRIBUTOR,True,22,11,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,e8aeb9258a7a3afcd83a6be79273c533c5e18f80,Make the README example actually work
+22,https://api.github.com/repos/mozilla/browserid-crypto/pulls/91,91,tolerate configurable amount of clock skew,"This is not yet complete, but should be a good direction to go for adding tolerance of clock skew. It still needs a way to get the 'options' value into the `verify()` call, and some tests.
+
+@seanmonstar, is the way I'm testing for function-ness of `cb` the right way to do it? I'm still a bit fuzzy on this crazy argument polymorphism that the JS world seems to think is normal :).
+
+refs #58 and #59
+",warner,27146,2014-07-30T05:00:03Z,CONTRIBUTOR,False,57,10,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,0fd1f0e7fe35981930729c1a85f997cb64cc5425,"Add clock skew tolerance for assertions. Fixes Issue#58
+
+* We'll tolerate 120 seconds off into the past
+* We'll tolerate 10 seconds off into the future"
+23,https://api.github.com/repos/mozilla/browserid-crypto/pulls/91,91,tolerate configurable amount of clock skew,"This is not yet complete, but should be a good direction to go for adding tolerance of clock skew. It still needs a way to get the 'options' value into the `verify()` call, and some tests.
+
+@seanmonstar, is the way I'm testing for function-ness of `cb` the right way to do it? I'm still a bit fuzzy on this crazy argument polymorphism that the JS world seems to think is normal :).
+
+refs #58 and #59
+",warner,27146,2014-07-30T05:00:03Z,CONTRIBUTOR,False,57,10,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,ee991753efa646c95386806c3fb2f927cdbbf3ed,"assertion.verify(): allow clock-skew tolerance to be overridden
+
+We still need to support the new options object in cert.verify(),
+cert.verifyBundle(), and jwcrypto.verify(). Also tests."
+24,https://api.github.com/repos/mozilla/browserid-crypto/pulls/91,91,tolerate configurable amount of clock skew,"This is not yet complete, but should be a good direction to go for adding tolerance of clock skew. It still needs a way to get the 'options' value into the `verify()` call, and some tests.
+
+@seanmonstar, is the way I'm testing for function-ness of `cb` the right way to do it? I'm still a bit fuzzy on this crazy argument polymorphism that the JS world seems to think is normal :).
+
+refs #58 and #59
+",warner,27146,2014-07-30T05:00:03Z,CONTRIBUTOR,False,57,10,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,b38a282168937b8e1b23e89b2a985ff65da2919d,minor comment on test
+25,https://api.github.com/repos/mozilla/browserid-crypto/pulls/90,90,bump dependencies galore,"changes to bundle script are because of changes in browserify/uglify API.
+",seanmonstar,51479,2014-07-28T21:40:45Z,MEMBER,True,21,17,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,b44829e3d335ac1a611240a813e6462d091e1d19,bump dependencies galore
+26,https://api.github.com/repos/mozilla/browserid-crypto/pulls/89,89,no more Strings as Errors!,"So we can see stack traces of what part of the assertion sucked.
+
+Also, stops ghosting the real errors with generic `malformed signature`, because https://github.com/mozilla/browserid-verifier/issues/59 wants to know what is actually wrong.
+",seanmonstar,51479,2014-07-28T18:18:19Z,MEMBER,True,68,46,8,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,7a04e6d5fa785266fdab34587c8d0958364da004,no more Strings as Errors!
+27,https://api.github.com/repos/mozilla/browserid-crypto/pulls/89,89,no more Strings as Errors!,"So we can see stack traces of what part of the assertion sucked.
+
+Also, stops ghosting the real errors with generic `malformed signature`, because https://github.com/mozilla/browserid-verifier/issues/59 wants to know what is actually wrong.
+",seanmonstar,51479,2014-07-28T18:18:19Z,MEMBER,True,68,46,8,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,7cfd9f5c16af342cefed3ca7709c656d10555699,test for Error class
+28,https://api.github.com/repos/mozilla/browserid-crypto/pulls/89,89,no more Strings as Errors!,"So we can see stack traces of what part of the assertion sucked.
+
+Also, stops ghosting the real errors with generic `malformed signature`, because https://github.com/mozilla/browserid-verifier/issues/59 wants to know what is actually wrong.
+",seanmonstar,51479,2014-07-28T18:18:19Z,MEMBER,True,68,46,8,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,12f766871295cc327437a3c9d2d6e105aa626d2c,steal stack from new Error if no captureStackTrace
+29,https://api.github.com/repos/mozilla/browserid-crypto/pulls/85,85,Base64url decode,"new formats include the numbers being base64 encoded, likely to save
+bytes. They were being created with .toBase64URL(), which also
+url-encodes them. Seems sensible.
+
+On deserializing, the numbers are run through fromBase64(). If native
+bigint exists, then fromBase64 is replaced to use Buffer(n, 'base64'),
+which correctly url decodes it as well. If it doesn't exist, like on
+windows or in the browser, then window.atob is used. It doesn't know
+about urlencoded values.
+
+This patch urldecodes the string before passing it to window.atob.
+",seanmonstar,51479,2014-05-16T01:15:19Z,MEMBER,True,3,1,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,7ff5d8427562bbe007d895d154a4325d275b520e,"fix jsBigInteger
+
+new formats include the numbers being base64 encoded, likely to save
+bytes. They were being created with .toBase64URL(), which also
+url-encodes them. Seems sensible.
+
+On deserializing, the numbers are run through fromBase64(). If native
+bigint exists, then fromBase64 is replaced to use Buffer(n, 'base64'),
+which correctly url decodes it as well. If it doesn't exist, like on
+windows or in the browser, then window.atob is used. It doesn't know
+about urlencoded values.
+
+This patch urldecodes the string before passing it to window.atob."
+30,https://api.github.com/repos/mozilla/browserid-crypto/pulls/84,84,Stacktraces,"we use custom errors (cool!), but they don't extend from Error (boo!),
+nor have stack traces. This adds them.
+",seanmonstar,51479,2014-05-16T01:15:00Z,MEMBER,True,46,30,6,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,69515793a3d87e19dbbf28c6cccaa9a3826bc061,"this makes all Error classes have stacks
+
+we use custom errors (cool!), but they don't extend from Error (boo!),
+nor have stack traces. This adds them."
+31,https://api.github.com/repos/mozilla/browserid-crypto/pulls/78,78,new data formats - jwcrypto 0.5.x,"This implements almost the entirety of new data formats support describe in https://github.com/djc/id-specs/blob/prod/browserid/json-formats.md.
+
+One tweak left is the changed property for `pubkey`.  currently this work is published on npm under the `dev` tag.
+
+Strategy here is this version of jwcrypto parses old or new formats, and always generates new formats.  It should be integrated into:
+1. verifier
+2. all environments that generate browserid artifacts.
+
+It must be done in this order. 
+",lloyd,39411,2013-12-20T12:23:56Z,CONTRIBUTOR,True,0,0,0,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,592cb543bb542e0730e490ac3a271dc9711089aa,"Merge pull request #89 from seanmonstar/no-string-errors
+
+no more Strings as Errors!"
+32,https://api.github.com/repos/mozilla/browserid-crypto/pulls/77,77,fix base64url decoding in jsbn BigInteger,"The `b64tohex` function doesn't handle base64url encoding correctly,
+whereas the `Buffer` `base64` codec handles it fine.  The bigint
+patch uses `Buffer` whereas the jsbn patch uses `b64tohex`, leading
+to inconsistent behaviour between the native and pure-js BigInteger
+implementations.
+
+Since more recent versions of the JOSE specifications use base64url
+encodings of key parameters, it is important to handle base64url
+correctly.  Therefore use `Buffer` rather than `b64tohex` in the
+jsbn wrapper.
+",frasertweedale,2331938,2013-12-07T10:15:11Z,NONE,False,1,1,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,e66e3f4f548038d6da8da882d17a35223f7375ac,"fix base64url decoding in jsbn BigInteger
+
+The `b64tohex` function doesn't handle base64url encoding correctly,
+whereas the `Buffer` `base64` codec handles it fine.  The bigint
+patch uses `Buffer` whereas the jsbn patch uses `b64tohex`, leading
+to inconsistent behaviour between the native and pure-js BigInteger
+implementations.
+
+Since more recent versions of the JOSE specifications use base64url
+encodings of key parameters, it is important to handle base64url
+correctly.  Therefore use `Buffer` rather than `b64tohex` in the
+jsbn wrapper."
+33,https://api.github.com/repos/mozilla/browserid-crypto/pulls/76,76,advise size on KeySizeNotSupportedException,,frasertweedale,2331938,2013-12-05T13:40:51Z,NONE,False,1,1,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,19c294c494b1d21fbf1c0588c05a6cbed507df96,advise size on KeySizeNotSupportedException
+34,https://api.github.com/repos/mozilla/browserid-crypto/pulls/74,74,"for expired certificates or assertions, specify which in error messages ...","...for simplified debugging.
+
+Specifically, these tests which test expiration of certificate or assertion pass with this PR: https://github.com/lloyd/browserid-local-verify/blob/03d9440/tests/assertion-time.js
+",lloyd,39411,2013-11-20T14:49:39Z,CONTRIBUTOR,True,28,22,4,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,f314d2ffa86fe0938706884d96bf654212e1bcca,"for expired certificates or assertions, specify which in error messages for simplified debugging"
+35,https://api.github.com/repos/mozilla/browserid-crypto/pulls/73,73,Issue 72 - support DS160 as alg name,"Issue #72
+",jedp,532953,2013-11-08T15:53:17Z,CONTRIBUTOR,True,13,5,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,be97aed831bfc90c48eb9cf4a6e1235302f2e205,Issue 72 - support DS160 as alg name
+36,https://api.github.com/repos/mozilla/browserid-crypto/pulls/71,71,"add jshint tests, all code passing","This fixes a couple globals and shaves 10k from bidbundle-min.js, as an errant copy of underscore was being shipped.
+
+/cc @shane-tomlinson this needs to be verified on our old buddy, ie8
+
+/cc @fmarier @warner some review from you guys would be highly worthwhile as well :)
+",lloyd,39411,2013-10-29T14:36:36Z,CONTRIBUTOR,True,264,143,14,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,46bd75f58a1861b5c7a49d5043320a55b35635a0,run jshint across source files
+37,https://api.github.com/repos/mozilla/browserid-crypto/pulls/71,71,"add jshint tests, all code passing","This fixes a couple globals and shaves 10k from bidbundle-min.js, as an errant copy of underscore was being shipped.
+
+/cc @shane-tomlinson this needs to be verified on our old buddy, ie8
+
+/cc @fmarier @warner some review from you guys would be highly worthwhile as well :)
+",lloyd,39411,2013-10-29T14:36:36Z,CONTRIBUTOR,True,264,143,14,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,ec292379af03dbc74dfab0c53fdc51a4be5739b1,fix all jshint errors
+38,https://api.github.com/repos/mozilla/browserid-crypto/pulls/71,71,"add jshint tests, all code passing","This fixes a couple globals and shaves 10k from bidbundle-min.js, as an errant copy of underscore was being shipped.
+
+/cc @shane-tomlinson this needs to be verified on our old buddy, ie8
+
+/cc @fmarier @warner some review from you guys would be highly worthwhile as well :)
+",lloyd,39411,2013-10-29T14:36:36Z,CONTRIBUTOR,True,264,143,14,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,ba8b55fbb4c55b46cd6d98ed81ec123eb3f7d5bd,"remove dep on should, no need to introduce another assertion library dep"
+39,https://api.github.com/repos/mozilla/browserid-crypto/pulls/71,71,"add jshint tests, all code passing","This fixes a couple globals and shaves 10k from bidbundle-min.js, as an errant copy of underscore was being shipped.
+
+/cc @shane-tomlinson this needs to be verified on our old buddy, ie8
+
+/cc @fmarier @warner some review from you guys would be highly worthwhile as well :)
+",lloyd,39411,2013-10-29T14:36:36Z,CONTRIBUTOR,True,264,143,14,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,3b7a61da419394972670e9b8d6fb9afa709a5bbd,"exact versions in package.json, proper falsey matching, correctly test if a parameter is a string"
+40,https://api.github.com/repos/mozilla/browserid-crypto/pulls/70,70,more flexible parsing of public keys in bin/check-assertion,"handle case where it's the public-key property of an object
+",lloyd,39411,2013-10-11T08:10:57Z,CONTRIBUTOR,True,2,0,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,b8c50e84cf8b7b49345a813528677aab3c733cf7,more flexible parsing of public keys - handle case where it's the public-key property of an object
+41,https://api.github.com/repos/mozilla/browserid-crypto/pulls/69,69,switch bigint dependency to bignum,"`bigint` and `bignum` have one minor difference in their implementation of `toString(16)`. `bignum` pads to an even number of characters, while `bigint` does not. The difference causes several tests to fail. Instead of changing the behavior elsewhere this patch simply strips the leading `0` from the string if it's present.
+
+see #61
+",dannycoates,87619,2013-08-07T01:56:12Z,MEMBER,False,3,3,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,2a85081dad01dc5f7088761e1dfd01e2aa3c0f63,"switch bigint dependency to bignum
+
+closes #61"
+42,https://api.github.com/repos/mozilla/browserid-crypto/pulls/68,68,Add an extra field to the assertion for arbitrary application data,"For webrtc, we are presented with the need to embed an extra field in the assertion, namely the fingerprint of the peer connection key.
+
+See [Section 5.6.5.2.2 of the security architecture draft spec](https://tools.ietf.org/html/draft-ietf-rtcweb-security-arch-06#section-5.6.5.2.2).
+
+I propose we add a field to the assertion called `extra` which can contain an arbitrary object.  To provide a namespace and avoid possible collisions, the first field of the `extra` object should be the name of the application from or to which the user agent is declaring the assertion.  The meaning of the contents of the `extra` param is up to the application to interpret.  It can be ignored by applications that are not expecting it.
+
+So for the webrtc key fingerprint case, the `extra` param might be: `extra.webrtc.fingerprint = ""DE:AD:BE:EF""`.
+",jedp,532953,2013-06-26T22:16:09Z,CONTRIBUTOR,False,38,4,3,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,b384430dd0f22aafec1dd71dabe5dde42aa72005,Add an extra field to the assertion for arbitrary application data
+43,https://api.github.com/repos/mozilla/browserid-crypto/pulls/66,66,fix leaked global sPaddedMessageHex,"Mocha test runner was complaining about leaked globals, so I'm cleaning up.
+",seanmonstar,51479,2013-05-28T22:52:09Z,MEMBER,True,1,1,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,7bdae8354fef7468a1567fac9be64fce7a594938,fix leaked global sPaddedMessageHex
+44,https://api.github.com/repos/mozilla/browserid-crypto/pulls/64,64,"bundle.sh fix, proper usage of newer browserify","Adapted bundle.js and test pages along.
+Fixes #63 
+",makemeunsee,180648,2013-05-07T14:52:49Z,NONE,False,6,5,4,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,15fff68c8e09177d47d5ea82c2b736bc43e7a29d,"Fixed bundle.sh to work with newer browserify.
+Adapted bundle.js and test pages along."
+45,https://api.github.com/repos/mozilla/browserid-crypto/pulls/60,60,port to node.js 0.10.x," and include 0.10 build in travis, and install libgmp during travis testing so we're running tests with native bigint support.
+",lloyd,39411,2013-04-18T02:44:20Z,CONTRIBUTOR,True,5,1,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,3aca1b02e7ca6ad8450159381620fb5e414b3c96,port to node.js 0.10.x - include 0.10 build in travis
+46,https://api.github.com/repos/mozilla/browserid-crypto/pulls/60,60,port to node.js 0.10.x," and include 0.10 build in travis, and install libgmp during travis testing so we're running tests with native bigint support.
+",lloyd,39411,2013-04-18T02:44:20Z,CONTRIBUTOR,True,5,1,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,1413b56008b9bc1df2b66559c070b0012b99547f,install libgmp3-dev in travis to test with bigint
+47,https://api.github.com/repos/mozilla/browserid-crypto/pulls/59,59,Add clock skew tolerance for assertions. Fixes Issue#58,"- We'll tolerate 120 seconds off into the past
+- We'll tolerate 10 seconds off into the future
+",ozten,18924,2013-03-14T21:10:06Z,MEMBER,False,46,13,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,26b9098c8bdaf297ed95b6081d8fe35c6fa8a6e9,"Add clock skew tolerance for assertions. Fixes Issue#58
+
+* We'll tolerate 120 seconds off into the past
+* We'll tolerate 10 seconds off into the future"
+48,https://api.github.com/repos/mozilla/browserid-crypto/pulls/57,57,"README fix: log publicKey with .serialize(), not .toString()",".toString() produces ""[object Object]"" ...
+",jmandel,313089,2013-02-14T01:31:40Z,CONTRIBUTOR,True,1,2,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,8ffc6e18c41cc2072bc012477021984ecb5d6c8c,"log publicKey with .serialize(), not .toString()
+
+.toString() produces ""[object Object]"" ..."
+49,https://api.github.com/repos/mozilla/browserid-crypto/pulls/56,56,Add missing LICENSE file,"I believe this is the default license for Mozilla projects.
+",fmarier,167821,2012-12-03T03:23:07Z,CONTRIBUTOR,True,373,0,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,4e3d79150efe79cbda0bccf4a1026e020a89b45a,Add missing LICENSE file
+50,https://api.github.com/repos/mozilla/browserid-crypto/pulls/55,55,Fixed exceptions in RS algorithm file,"I don't see an obvious way to convert an issue into a pull request, so...
+
+Implemented exception referenced in RS algorithm file.
+Removed duplicate declaration of an exception.
+
+Fixes GH-43 in mozilla/jwcrypto.
+",malept,11417,2012-11-28T06:02:16Z,CONTRIBUTOR,True,8,7,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,4c3f068be8e71a9cafed9917554e81c74c99dd08,"Fixed exceptions in RS algorithm file
+
+Implemented exception referenced in RS algorithm file.
+Removed duplicate declaration of an exception.
+
+Fixes GH-43 in mozilla/jwcrypto."
+51,https://api.github.com/repos/mozilla/browserid-crypto/pulls/51,51,"README: JWT specs timestamps as seconds-since-epoch, but we use milliseconds","This documents our use of ms. Addresses id-specs#21.
+
+@benadida: this needs updating in id-specs too. Which way do you want to go.. leave our implementation alone, or conform to upstream JWT?
+",warner,27146,2012-08-08T22:09:05Z,CONTRIBUTOR,True,2,1,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,93aa4dced632dd6155be638848d665cdd6abf6d3,"README: JWT specs timestamps as seconds-since-epoch, but we use milliseconds
+
+This documents our use of ms. Addresses PR #21."
+52,https://api.github.com/repos/mozilla/browserid-crypto/pulls/50,50,Include ./lib/algs/rs in bundle.js,"Because MockMyID needs to be able to manipulate RS keys, it can't use the normal `bidbundle.js` generated by `bundle.sh`.
+
+This change includes `./lib/algs/rs` in the generated `bidbundle.js`
+",callahad,24193,2012-08-08T19:31:29Z,CONTRIBUTOR,False,1,0,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,68041d03960449b6842d9d9109b6fbf32ae950be,Include ./lib/algs/rs in bundle.js
+53,https://api.github.com/repos/mozilla/browserid-crypto/pulls/49,49,Anti-Shrinkwrap,"- revert shrinkwrap, since it ignores optional dependencies
+- revert extra commands for travis
+- depend on http-browserify@0.1.1: this fulfills browserify's dependency, without letting it download 0.1.2
+",seanmonstar,51479,2012-08-06T22:58:53Z,MEMBER,True,1,79,3,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,fcda60b7aa0b539fa0f4b4189671d63568f9f112,"Revert ""add shrinkwrap""
+
+This reverts commit 7cc44d5b05fb43da3c29a6c5dbe47104fefc3182."
+54,https://api.github.com/repos/mozilla/browserid-crypto/pulls/49,49,Anti-Shrinkwrap,"- revert shrinkwrap, since it ignores optional dependencies
+- revert extra commands for travis
+- depend on http-browserify@0.1.1: this fulfills browserify's dependency, without letting it download 0.1.2
+",seanmonstar,51479,2012-08-06T22:58:53Z,MEMBER,True,1,79,3,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,b902d7787edddff11f97ea94ecf233bfeee3fc99,"Revert ""explicitly install bigint to get around optionalDependencies""
+
+This reverts commit 0ee9a4a6c3c987f8bfe1197a2846a553d5f14089."
+55,https://api.github.com/repos/mozilla/browserid-crypto/pulls/49,49,Anti-Shrinkwrap,"- revert shrinkwrap, since it ignores optional dependencies
+- revert extra commands for travis
+- depend on http-browserify@0.1.1: this fulfills browserify's dependency, without letting it download 0.1.2
+",seanmonstar,51479,2012-08-06T22:58:53Z,MEMBER,True,1,79,3,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,e68ae795bbdc0f3ee7294bf739478e23068be6b0,"Revert ""make travis install libgmp so we can test with bigint""
+
+This reverts commit 8fcc844eda183b354c9e82f67ef54357840365a0."
+56,https://api.github.com/repos/mozilla/browserid-crypto/pulls/49,49,Anti-Shrinkwrap,"- revert shrinkwrap, since it ignores optional dependencies
+- revert extra commands for travis
+- depend on http-browserify@0.1.1: this fulfills browserify's dependency, without letting it download 0.1.2
+",seanmonstar,51479,2012-08-06T22:58:53Z,MEMBER,True,1,79,3,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,100f40b1ffaceba39420e5f756907ae683f199cf,"depend on http-browserify@0.1.1
+
+this fulfills browserify's dependency, without letting it download 0.1.2"
+57,https://api.github.com/repos/mozilla/browserid-crypto/pulls/46,46,add shrinkwrap,"browserify has loose dependencies, and that broke us, since
+a newer version requires node 0.8. now we are in control.
+",seanmonstar,51479,2012-08-06T17:58:59Z,MEMBER,True,75,0,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,7cc44d5b05fb43da3c29a6c5dbe47104fefc3182,"add shrinkwrap
+
+browserify has loose dependencies, and that broke us, since
+a newer version requires node 0.8. now we are in control."
+58,https://api.github.com/repos/mozilla/browserid-crypto/pulls/45,45,Fixing public key property,"I've found a bug with check-assertions. It was saying an assertion had a malformed signature, when really the script used the wrong key for the public key.
+
+This was discovered while troubleshooting https://github.com/mozilla/browserid/issues/2205
+",ozten,18924,2012-08-04T22:26:46Z,MEMBER,True,1,1,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,2692f4916d0a062187bcdbf42bc30d89036c0aa3,Fixing public key property
+59,https://api.github.com/repos/mozilla/browserid-crypto/pulls/44,44,Adding protocol field,"This sketches out adding protocol.
+
+npm test fails (but it failed for me before I added this patch).
+
+Defaults to 'SMTP', not sure if that is right.
+Not sure if extracting this should be conditional.
+",ozten,18924,2012-08-03T14:29:36Z,MEMBER,False,9,0,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,97fa3240806c02ba48b413fc3086de6c13d51902,"Adding protocol field
+
+Defaults to 'SMTP', not sure if that is right.
+Not sure if extracting this should be conditional."
+60,https://api.github.com/repos/mozilla/browserid-crypto/pulls/41,41,don't let stubs silently return empty strings: throw NotImplemented,,warner,27146,2012-07-31T17:51:53Z,CONTRIBUTOR,True,4,3,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,e8806ad225ee4eabf673378db921b880e8cf9f98,don't let stubs silently return empty strings: throw NotImplemented instead
+61,https://api.github.com/repos/mozilla/browserid-crypto/pulls/40,40,Cleanups (no functional changes),"algs/ds: add safety note about our deserialization code vs. future extensions like DH
+
+also remove trailing whitespace, no functional changes
+",warner,27146,2012-07-31T17:42:55Z,CONTRIBUTOR,True,50,37,3,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,b26c42da72237cf0555c238074bad8cefba9f33f,algs/ds: add safety note about our deserialization code vs. future extensions like DH
+62,https://api.github.com/repos/mozilla/browserid-crypto/pulls/40,40,Cleanups (no functional changes),"algs/ds: add safety note about our deserialization code vs. future extensions like DH
+
+also remove trailing whitespace, no functional changes
+",warner,27146,2012-07-31T17:42:55Z,CONTRIBUTOR,True,50,37,3,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,10714d9410f30cd37bfb25400d61f04b725891ff,"remove trailing whitespace, no functional changes"
+63,https://api.github.com/repos/mozilla/browserid-crypto/pulls/39,39,Cleanups,"remove dead code, fix some no-newline-at-EOFs
+",warner,27146,2012-07-27T19:09:26Z,CONTRIBUTOR,True,5,40,5,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,38187848bb72892dd1cf2af03f95ae0316c66de2,add missing newlines at end of file
+64,https://api.github.com/repos/mozilla/browserid-crypto/pulls/39,39,Cleanups,"remove dead code, fix some no-newline-at-EOFs
+",warner,27146,2012-07-27T19:09:26Z,CONTRIBUTOR,True,5,40,5,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,ce6c8ad8ed52c1fb0e9e6487df4e1ad80fdb3f02,"algs/ds: remove unused code (serializeParamsToObject, keysizeFromObject)"
+65,https://api.github.com/repos/mozilla/browserid-crypto/pulls/38,38,Invalid const,"IE8 breaks wherever const is used.  Removing all instances of const and replacing with var.
+",shane-tomlinson,848085,2012-07-27T11:54:54Z,MEMBER,True,11,11,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,b9a927fabca9aa530d59eb8a7043d9c358623aa3,Replace instances of const with var.  IE8 does not support const.
+66,https://api.github.com/repos/mozilla/browserid-crypto/pulls/37,37,"jwcrypto-test.js: improve forged-signature tests (munge payload, not signature)","while trying to learn how jwcrypto is structured, I noticed that the low-level JWS tests aren't covering the error cases as well as they might. The test that confirms we reject bad signatures is modifying the _signature_, not the payload, which wouldn't catch a bug like if `sha256()` were returning ""undefined"" all the time (thus causing both sign and verify to use a constant string instead of the real message).
+
+This updates the test to unpack the payload, modify it (by adding a new field), then repack it, before handing it to `verify()` and expecting failure. All tests still pass, fortunately :).
+",warner,27146,2012-07-25T18:24:40Z,CONTRIBUTOR,True,12,2,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,0e527f6e0e6ee78b377d4831ae0b54f2ab74bcf2,"jwcrypto-test.js: improve forged-signature tests (munge payload, not sig)"
+67,https://api.github.com/repos/mozilla/browserid-crypto/pulls/33,33,versioning support and new data format implementation,"tweaked DSA to accept parameter sets other than the default ones, added parameters to the pubkey/privkey data structures, added a whole bunch of conformance tests to prepare for data format changes, added beginning of data format new APIs, and upgrade some support packages
+added base64 support to biginteger, started adding dispatching based on version
+added formats for RSA and DSA keys
+minimal bundle still includes native bigint
+b64 fix by bwarner
+added versioning support for assertions and certificates
+added new format test vectors
+fixed binaries
+default version is old format
+",benadida,18057,2012-07-21T00:11:43Z,CONTRIBUTOR,True,936,172,24,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,04a7a2a18a64be873e539d3ca5abe0449418447d,"versioning and conformance tests
+tweaked DSA to accept parameter sets other than the default ones, added parameters to the pubkey/privkey data structures, added a whole bunch of conformance tests to prepare for data format changes, added beginning of data format new APIs, and upgrade some support packages
+added base64 support to biginteger, started adding dispatching based on version
+added formats for RSA and DSA keys
+minimal bundle still includes native bigint
+b64 fix by bwarner
+added versioning support for assertions and certificates
+added new format test vectors
+fixed binaries
+default version is old format"
+68,https://api.github.com/repos/mozilla/browserid-crypto/pulls/33,33,versioning support and new data format implementation,"tweaked DSA to accept parameter sets other than the default ones, added parameters to the pubkey/privkey data structures, added a whole bunch of conformance tests to prepare for data format changes, added beginning of data format new APIs, and upgrade some support packages
+added base64 support to biginteger, started adding dispatching based on version
+added formats for RSA and DSA keys
+minimal bundle still includes native bigint
+b64 fix by bwarner
+added versioning support for assertions and certificates
+added new format test vectors
+fixed binaries
+default version is old format
+",benadida,18057,2012-07-21T00:11:43Z,CONTRIBUTOR,True,936,172,24,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,6d4988005212c404db73688b5fa084fbec0848d6,removed unnecessary include as per bwarner
+69,https://api.github.com/repos/mozilla/browserid-crypto/pulls/33,33,versioning support and new data format implementation,"tweaked DSA to accept parameter sets other than the default ones, added parameters to the pubkey/privkey data structures, added a whole bunch of conformance tests to prepare for data format changes, added beginning of data format new APIs, and upgrade some support packages
+added base64 support to biginteger, started adding dispatching based on version
+added formats for RSA and DSA keys
+minimal bundle still includes native bigint
+b64 fix by bwarner
+added versioning support for assertions and certificates
+added new format test vectors
+fixed binaries
+default version is old format
+",benadida,18057,2012-07-21T00:11:43Z,CONTRIBUTOR,True,936,172,24,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,b9a927fabca9aa530d59eb8a7043d9c358623aa3,Replace instances of const with var.  IE8 does not support const.
+70,https://api.github.com/repos/mozilla/browserid-crypto/pulls/33,33,versioning support and new data format implementation,"tweaked DSA to accept parameter sets other than the default ones, added parameters to the pubkey/privkey data structures, added a whole bunch of conformance tests to prepare for data format changes, added beginning of data format new APIs, and upgrade some support packages
+added base64 support to biginteger, started adding dispatching based on version
+added formats for RSA and DSA keys
+minimal bundle still includes native bigint
+b64 fix by bwarner
+added versioning support for assertions and certificates
+added new format test vectors
+fixed binaries
+default version is old format
+",benadida,18057,2012-07-21T00:11:43Z,CONTRIBUTOR,True,936,172,24,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,4f41365a5732cce2201b462a7a3526cfccac124c,"Merge pull request #38 from shane-tomlinson/invalid_const
+
+Invalid const"
+71,https://api.github.com/repos/mozilla/browserid-crypto/pulls/33,33,versioning support and new data format implementation,"tweaked DSA to accept parameter sets other than the default ones, added parameters to the pubkey/privkey data structures, added a whole bunch of conformance tests to prepare for data format changes, added beginning of data format new APIs, and upgrade some support packages
+added base64 support to biginteger, started adding dispatching based on version
+added formats for RSA and DSA keys
+minimal bundle still includes native bigint
+b64 fix by bwarner
+added versioning support for assertions and certificates
+added new format test vectors
+fixed binaries
+default version is old format
+",benadida,18057,2012-07-21T00:11:43Z,CONTRIBUTOR,True,936,172,24,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,38187848bb72892dd1cf2af03f95ae0316c66de2,add missing newlines at end of file
+72,https://api.github.com/repos/mozilla/browserid-crypto/pulls/33,33,versioning support and new data format implementation,"tweaked DSA to accept parameter sets other than the default ones, added parameters to the pubkey/privkey data structures, added a whole bunch of conformance tests to prepare for data format changes, added beginning of data format new APIs, and upgrade some support packages
+added base64 support to biginteger, started adding dispatching based on version
+added formats for RSA and DSA keys
+minimal bundle still includes native bigint
+b64 fix by bwarner
+added versioning support for assertions and certificates
+added new format test vectors
+fixed binaries
+default version is old format
+",benadida,18057,2012-07-21T00:11:43Z,CONTRIBUTOR,True,936,172,24,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,ce6c8ad8ed52c1fb0e9e6487df4e1ad80fdb3f02,"algs/ds: remove unused code (serializeParamsToObject, keysizeFromObject)"
+73,https://api.github.com/repos/mozilla/browserid-crypto/pulls/33,33,versioning support and new data format implementation,"tweaked DSA to accept parameter sets other than the default ones, added parameters to the pubkey/privkey data structures, added a whole bunch of conformance tests to prepare for data format changes, added beginning of data format new APIs, and upgrade some support packages
+added base64 support to biginteger, started adding dispatching based on version
+added formats for RSA and DSA keys
+minimal bundle still includes native bigint
+b64 fix by bwarner
+added versioning support for assertions and certificates
+added new format test vectors
+fixed binaries
+default version is old format
+",benadida,18057,2012-07-21T00:11:43Z,CONTRIBUTOR,True,936,172,24,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,58fbe1f9d9e0d0258426d101b2d7f994c138f847,"Merge pull request #39 from warner/cleanups
+
+Cleanups"
+74,https://api.github.com/repos/mozilla/browserid-crypto/pulls/33,33,versioning support and new data format implementation,"tweaked DSA to accept parameter sets other than the default ones, added parameters to the pubkey/privkey data structures, added a whole bunch of conformance tests to prepare for data format changes, added beginning of data format new APIs, and upgrade some support packages
+added base64 support to biginteger, started adding dispatching based on version
+added formats for RSA and DSA keys
+minimal bundle still includes native bigint
+b64 fix by bwarner
+added versioning support for assertions and certificates
+added new format test vectors
+fixed binaries
+default version is old format
+",benadida,18057,2012-07-21T00:11:43Z,CONTRIBUTOR,True,936,172,24,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,2831d2d0d5bbae10fe4a60ab7f5fa8f88e5e5f18,fixed merge
+75,https://api.github.com/repos/mozilla/browserid-crypto/pulls/33,33,versioning support and new data format implementation,"tweaked DSA to accept parameter sets other than the default ones, added parameters to the pubkey/privkey data structures, added a whole bunch of conformance tests to prepare for data format changes, added beginning of data format new APIs, and upgrade some support packages
+added base64 support to biginteger, started adding dispatching based on version
+added formats for RSA and DSA keys
+minimal bundle still includes native bigint
+b64 fix by bwarner
+added versioning support for assertions and certificates
+added new format test vectors
+fixed binaries
+default version is old format
+",benadida,18057,2012-07-21T00:11:43Z,CONTRIBUTOR,True,936,172,24,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,b26c42da72237cf0555c238074bad8cefba9f33f,algs/ds: add safety note about our deserialization code vs. future extensions like DH
+76,https://api.github.com/repos/mozilla/browserid-crypto/pulls/33,33,versioning support and new data format implementation,"tweaked DSA to accept parameter sets other than the default ones, added parameters to the pubkey/privkey data structures, added a whole bunch of conformance tests to prepare for data format changes, added beginning of data format new APIs, and upgrade some support packages
+added base64 support to biginteger, started adding dispatching based on version
+added formats for RSA and DSA keys
+minimal bundle still includes native bigint
+b64 fix by bwarner
+added versioning support for assertions and certificates
+added new format test vectors
+fixed binaries
+default version is old format
+",benadida,18057,2012-07-21T00:11:43Z,CONTRIBUTOR,True,936,172,24,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,10714d9410f30cd37bfb25400d61f04b725891ff,"remove trailing whitespace, no functional changes"
+77,https://api.github.com/repos/mozilla/browserid-crypto/pulls/33,33,versioning support and new data format implementation,"tweaked DSA to accept parameter sets other than the default ones, added parameters to the pubkey/privkey data structures, added a whole bunch of conformance tests to prepare for data format changes, added beginning of data format new APIs, and upgrade some support packages
+added base64 support to biginteger, started adding dispatching based on version
+added formats for RSA and DSA keys
+minimal bundle still includes native bigint
+b64 fix by bwarner
+added versioning support for assertions and certificates
+added new format test vectors
+fixed binaries
+default version is old format
+",benadida,18057,2012-07-21T00:11:43Z,CONTRIBUTOR,True,936,172,24,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,ce5459b9347f689130bac4610f9fd8ff610b80b5,"removed all const, even from tests, so we can eventually do everything in browser"
+78,https://api.github.com/repos/mozilla/browserid-crypto/pulls/33,33,versioning support and new data format implementation,"tweaked DSA to accept parameter sets other than the default ones, added parameters to the pubkey/privkey data structures, added a whole bunch of conformance tests to prepare for data format changes, added beginning of data format new APIs, and upgrade some support packages
+added base64 support to biginteger, started adding dispatching based on version
+added formats for RSA and DSA keys
+minimal bundle still includes native bigint
+b64 fix by bwarner
+added versioning support for assertions and certificates
+added new format test vectors
+fixed binaries
+default version is old format
+",benadida,18057,2012-07-21T00:11:43Z,CONTRIBUTOR,True,936,172,24,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,0905c9446b73ffe85a28226357fbd08117765f54,"Merge pull request #40 from warner/cleanups
+
+Cleanups (no functional changes)"
+79,https://api.github.com/repos/mozilla/browserid-crypto/pulls/33,33,versioning support and new data format implementation,"tweaked DSA to accept parameter sets other than the default ones, added parameters to the pubkey/privkey data structures, added a whole bunch of conformance tests to prepare for data format changes, added beginning of data format new APIs, and upgrade some support packages
+added base64 support to biginteger, started adding dispatching based on version
+added formats for RSA and DSA keys
+minimal bundle still includes native bigint
+b64 fix by bwarner
+added versioning support for assertions and certificates
+added new format test vectors
+fixed binaries
+default version is old format
+",benadida,18057,2012-07-21T00:11:43Z,CONTRIBUTOR,True,936,172,24,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,e8806ad225ee4eabf673378db921b880e8cf9f98,don't let stubs silently return empty strings: throw NotImplemented instead
+80,https://api.github.com/repos/mozilla/browserid-crypto/pulls/33,33,versioning support and new data format implementation,"tweaked DSA to accept parameter sets other than the default ones, added parameters to the pubkey/privkey data structures, added a whole bunch of conformance tests to prepare for data format changes, added beginning of data format new APIs, and upgrade some support packages
+added base64 support to biginteger, started adding dispatching based on version
+added formats for RSA and DSA keys
+minimal bundle still includes native bigint
+b64 fix by bwarner
+added versioning support for assertions and certificates
+added new format test vectors
+fixed binaries
+default version is old format
+",benadida,18057,2012-07-21T00:11:43Z,CONTRIBUTOR,True,936,172,24,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,379b0a535bfc3f16f2e18d0cb426b5cc75a762e0,"Merge pull request #41 from warner/cleanups
+
+don't let stubs silently return empty strings: throw NotImplemented"
+81,https://api.github.com/repos/mozilla/browserid-crypto/pulls/32,32,Windows,"We work in Windows now!
+
+Making bigint optional, jwcrypto can just run in pure JS. Also replaces the shell scripts with node scripts, to play nice on Windows.
+
+fixes #28
+",seanmonstar,51479,2012-07-20T23:34:16Z,MEMBER,True,106,4,4,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,efff0fdad98ca74c731dfa76bfc57a82068340db,"moved bigint to optionalDependencies
+
+since jwcrypto can function in pure JS, making bigint optional
+lets jwcrypto install on Windows machines, and still works"
+82,https://api.github.com/repos/mozilla/browserid-crypto/pulls/32,32,Windows,"We work in Windows now!
+
+Making bigint optional, jwcrypto can just run in pure JS. Also replaces the shell scripts with node scripts, to play nice on Windows.
+
+fixes #28
+",seanmonstar,51479,2012-07-20T23:34:16Z,MEMBER,True,106,4,4,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,ce4e7237af7b85dd2ff2f6d0923bb0884a90b0fd,"converting postinstall script into js files
+
+bundle.sh can't run on windows, so since we have so much
+javascript, whats a little more? and now Windows can
+come out to play."
+83,https://api.github.com/repos/mozilla/browserid-crypto/pulls/32,32,Windows,"We work in Windows now!
+
+Making bigint optional, jwcrypto can just run in pure JS. Also replaces the shell scripts with node scripts, to play nice on Windows.
+
+fixes #28
+",seanmonstar,51479,2012-07-20T23:34:16Z,MEMBER,True,106,4,4,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,f9349e43070d6514eab6bf8d59bfb7b6de14bde3,"increasing timeout in cert-test to 2 minutes
+
+without bigint, jwcrypto is slower. enough so that the
+1 minute cert was expiring before the tests completed."
+84,https://api.github.com/repos/mozilla/browserid-crypto/pulls/32,32,Windows,"We work in Windows now!
+
+Making bigint optional, jwcrypto can just run in pure JS. Also replaces the shell scripts with node scripts, to play nice on Windows.
+
+fixes #28
+",seanmonstar,51479,2012-07-20T23:34:16Z,MEMBER,True,106,4,4,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,c4464e02b0a1c8db884caf4053d4547d5e9dd592,"exports the 'require' function with browserify
+
+the newer browserify doesn't expose require by default,
+instead making the entire bundle self-contained. passing
+this option in makes it so require is available globally."
+85,https://api.github.com/repos/mozilla/browserid-crypto/pulls/31,31,Windows support,"We work in Windows now!
+
+Making bigint optional, jwcrypto can just run in pure JS. Also replaces the shell scripts with node scripts, to play nice on Windows.
+
+fixes #28
+",seanmonstar,51479,2012-07-18T01:05:59Z,MEMBER,True,106,4,4,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,efff0fdad98ca74c731dfa76bfc57a82068340db,"moved bigint to optionalDependencies
+
+since jwcrypto can function in pure JS, making bigint optional
+lets jwcrypto install on Windows machines, and still works"
+86,https://api.github.com/repos/mozilla/browserid-crypto/pulls/31,31,Windows support,"We work in Windows now!
+
+Making bigint optional, jwcrypto can just run in pure JS. Also replaces the shell scripts with node scripts, to play nice on Windows.
+
+fixes #28
+",seanmonstar,51479,2012-07-18T01:05:59Z,MEMBER,True,106,4,4,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,ce4e7237af7b85dd2ff2f6d0923bb0884a90b0fd,"converting postinstall script into js files
+
+bundle.sh can't run on windows, so since we have so much
+javascript, whats a little more? and now Windows can
+come out to play."
+87,https://api.github.com/repos/mozilla/browserid-crypto/pulls/31,31,Windows support,"We work in Windows now!
+
+Making bigint optional, jwcrypto can just run in pure JS. Also replaces the shell scripts with node scripts, to play nice on Windows.
+
+fixes #28
+",seanmonstar,51479,2012-07-18T01:05:59Z,MEMBER,True,106,4,4,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,f9349e43070d6514eab6bf8d59bfb7b6de14bde3,"increasing timeout in cert-test to 2 minutes
+
+without bigint, jwcrypto is slower. enough so that the
+1 minute cert was expiring before the tests completed."
+88,https://api.github.com/repos/mozilla/browserid-crypto/pulls/30,30,make check-assertion more pleasing to humans and more useful in tracking...,"... down problems. issue #29
+",lloyd,39411,2012-07-17T21:08:13Z,CONTRIBUTOR,True,225,63,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,2b911f45a0f5f9014b0bb75f12296a64fe861827,make check-assertion more pleasing to humans and more useful in tracking down problems. issue #29
+89,https://api.github.com/repos/mozilla/browserid-crypto/pulls/27,27,Fixing typo in test issuser -> issuer,"The issuer field of the intermediary was misspelled.
+
+Aside:
+Either this is not critical for cert chaining, or the test isn't extensive enough to fail, since issuer was null.
+",ozten,18924,2012-07-01T19:16:31Z,MEMBER,True,1,1,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,ed12825b5bd1cfc7e3235c8553458ad6c9ec24a9,Fixing typo in test issuser -> issuer
+90,https://api.github.com/repos/mozilla/browserid-crypto/pulls/26,26,"check-cert tries to verify a cert object, instead of a string.","Simple fix, use raw cert, instead of cert object. Fixes check-cert.
+",ozten,18924,2012-06-27T15:08:13Z,MEMBER,True,1,1,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,7e1e75584182806e07e5df904ae7888bf082574d,"check-cert tries to verify a cert object, instead of a string. Fixed."
+91,https://api.github.com/repos/mozilla/browserid-crypto/pulls/25,25,"Fixing check-cert algorithms, adding CLI arguments support","I was unable to run `bin/check-cert` against a newly generated chained cert.
+
+I found the ergonomics of using certs and public keys directly in the CLI challenging.
+
+This PR does a couple things:
+1) require DS and RS modules
+2) Add optimist and
+
+```
+Check certificate
+Usage: node ./bin/check-cert.js
+
+Options:
+  -p, --public       public key to sign                               [required]
+  -h, --help         display this usage message                     
+  -c, --certificate  A certificate which you want to examine.         [required]
+  -d, --debug        Debug mode, useful for development of this tool  [boolean]  [default: false]
+```
+
+3) Minor style cleanup
+",ozten,18924,2012-06-26T17:35:56Z,MEMBER,True,41,5,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,259d204edc9f19d3938a5aba0c60ead79fe2e812,"Fixing check-cert algorithms, adding CLI arguments support"
+92,https://api.github.com/repos/mozilla/browserid-crypto/pulls/25,25,"Fixing check-cert algorithms, adding CLI arguments support","I was unable to run `bin/check-cert` against a newly generated chained cert.
+
+I found the ergonomics of using certs and public keys directly in the CLI challenging.
+
+This PR does a couple things:
+1) require DS and RS modules
+2) Add optimist and
+
+```
+Check certificate
+Usage: node ./bin/check-cert.js
+
+Options:
+  -p, --public       public key to sign                               [required]
+  -h, --help         display this usage message                     
+  -c, --certificate  A certificate which you want to examine.         [required]
+  -d, --debug        Debug mode, useful for development of this tool  [boolean]  [default: false]
+```
+
+3) Minor style cleanup
+",ozten,18924,2012-06-26T17:35:56Z,MEMBER,True,41,5,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,1e593d3cc535f6e7da22972ceb02218d1dfe7c64,Adding support for help flag
+93,https://api.github.com/repos/mozilla/browserid-crypto/pulls/25,25,"Fixing check-cert algorithms, adding CLI arguments support","I was unable to run `bin/check-cert` against a newly generated chained cert.
+
+I found the ergonomics of using certs and public keys directly in the CLI challenging.
+
+This PR does a couple things:
+1) require DS and RS modules
+2) Add optimist and
+
+```
+Check certificate
+Usage: node ./bin/check-cert.js
+
+Options:
+  -p, --public       public key to sign                               [required]
+  -h, --help         display this usage message                     
+  -c, --certificate  A certificate which you want to examine.         [required]
+  -d, --debug        Debug mode, useful for development of this tool  [boolean]  [default: false]
+```
+
+3) Minor style cleanup
+",ozten,18924,2012-06-26T17:35:56Z,MEMBER,True,41,5,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,bb8bd9632820792165ceafe768eed2e1f9b753f6,"check-cert tries to verify a cert object, instead of a string. Fixed."
+94,https://api.github.com/repos/mozilla/browserid-crypto/pulls/22,22,Encrypt decrypt,"These are the crypto functions that key wrapping uses.
+
+(None of these functions are async.)
+",fmarier,167821,2012-06-22T04:31:38Z,CONTRIBUTOR,False,19,10,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,29374eb085bb5b7200f0da5ea7bde0c438e70343,Add basic encryption/decryption support using SJCL
+95,https://api.github.com/repos/mozilla/browserid-crypto/pulls/22,22,Encrypt decrypt,"These are the crypto functions that key wrapping uses.
+
+(None of these functions are async.)
+",fmarier,167821,2012-06-22T04:31:38Z,CONTRIBUTOR,False,19,10,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,5c965d87a52dc82036f22cd336f5f0c01d7d15ca,Switch to JSON keys and Base64URL payloads for encrypt/decrypt
+96,https://api.github.com/repos/mozilla/browserid-crypto/pulls/22,22,Encrypt decrypt,"These are the crypto functions that key wrapping uses.
+
+(None of these functions are async.)
+",fmarier,167821,2012-06-22T04:31:38Z,CONTRIBUTOR,False,19,10,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,a621f6542acdbfe8eaf9cecd7375719b9a4edbe1,Implement keygeneration and PRNG seeding using SJCL
+97,https://api.github.com/repos/mozilla/browserid-crypto/pulls/22,22,Encrypt decrypt,"These are the crypto functions that key wrapping uses.
+
+(None of these functions are async.)
+",fmarier,167821,2012-06-22T04:31:38Z,CONTRIBUTOR,False,19,10,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,46338441ab46616421a70fa3ff2d7db279b6e03e,"Add a PBKDF2 key derivation function
+
+This simply exposes SJCL's pbkdf2 function. The burden is on the
+user to provide a secure salt value for this."
+98,https://api.github.com/repos/mozilla/browserid-crypto/pulls/20,20,new approach to randomness,"provide more consistent approach to randomness on client and server, with better client-side randomness thanks to sjcl, which uses window.crypto.getRandomValues() when available.
+",benadida,18057,2012-06-14T00:17:06Z,CONTRIBUTOR,True,209,16,8,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,eee08ac2b8aae44cd9cd37bb885992bd28899e9c,new approach to randomness
+99,https://api.github.com/repos/mozilla/browserid-crypto/pulls/20,20,new approach to randomness,"provide more consistent approach to randomness on client and server, with better client-side randomness thanks to sjcl, which uses window.crypto.getRandomValues() when available.
+",benadida,18057,2012-06-14T00:17:06Z,CONTRIBUTOR,True,209,16,8,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,e297e3ad93b977be9b847897e6cd954970bc520a,small tweaks as per mhanson's comments
+100,https://api.github.com/repos/mozilla/browserid-crypto/pulls/20,20,new approach to randomness,"provide more consistent approach to randomness on client and server, with better client-side randomness thanks to sjcl, which uses window.crypto.getRandomValues() when available.
+",benadida,18057,2012-06-14T00:17:06Z,CONTRIBUTOR,True,209,16,8,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,73dfa1e5069b8ff19450d77ee18fbf4698fe4458,added waitForSeed queueing
+101,https://api.github.com/repos/mozilla/browserid-crypto/pulls/20,20,new approach to randomness,"provide more consistent approach to randomness on client and server, with better client-side randomness thanks to sjcl, which uses window.crypto.getRandomValues() when available.
+",benadida,18057,2012-06-14T00:17:06Z,CONTRIBUTOR,True,209,16,8,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,583f58b2b2cd12e251a9356c45cec745c72b56a4,small tweaks as per lloyd's latest comments
+102,https://api.github.com/repos/mozilla/browserid-crypto/pulls/19,19,Fixing wrong default for duration,"Default duration of 31536000 was being set on secret instead of duration.
+",ozten,18924,2012-06-01T17:05:03Z,MEMBER,True,1,1,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,15dc7a96a6481bad5b4a774a9522bde94bb062ef,"Fixing wrong default for duration.
+
+Default duration of 31536000 was being set on secret instead of duration."
+103,https://api.github.com/repos/mozilla/browserid-crypto/pulls/17,17,Ie8 compat,"utils.copyInto() used `Object.keys()` and `Array.forEach()` - IE8 hates that.
+",lloyd,39411,2012-05-10T21:47:30Z,CONTRIBUTOR,True,7,5,3,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,7f0e01c100a8ddaaff6d01057298777c1eed38e6,fix some javascript that's incompatible with IE8
+104,https://api.github.com/repos/mozilla/browserid-crypto/pulls/17,17,Ie8 compat,"utils.copyInto() used `Object.keys()` and `Array.forEach()` - IE8 hates that.
+",lloyd,39411,2012-05-10T21:47:30Z,CONTRIBUTOR,True,7,5,3,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,8cc654d606042bc038f9d7415b89ddab54550549,"bump to v0.2.2, update ChangeLog"
+105,https://api.github.com/repos/mozilla/browserid-crypto/pulls/16,16,"Replace the use of ""const"" with ""var"".  const causes IE to throw an exception.","issue #15
+",shane-tomlinson,848085,2012-05-08T16:38:36Z,MEMBER,True,3,3,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,3ae8d2c0a8dfa811c3a18dbe03a6e5e1adafba96,"Replace the use of ""const"" with ""var"".  const causes IE to throw an exception.
+
+issue #15"
+106,https://api.github.com/repos/mozilla/browserid-crypto/pulls/14,14,V0.2,"tweaks requested by @lloyd 
+",benadida,18057,2012-05-03T23:53:17Z,CONTRIBUTOR,True,159,184,15,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,0ee4e111e8f781c78c57bb88a8a4d88b3b1edeaa,fixes for binaries
+107,https://api.github.com/repos/mozilla/browserid-crypto/pulls/14,14,V0.2,"tweaks requested by @lloyd 
+",benadida,18057,2012-05-03T23:53:17Z,CONTRIBUTOR,True,159,184,15,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,b4731cf78b4b3cfb1d29605a6f461879827b2232,delayed all callbacks
+108,https://api.github.com/repos/mozilla/browserid-crypto/pulls/14,14,V0.2,"tweaks requested by @lloyd 
+",benadida,18057,2012-05-03T23:53:17Z,CONTRIBUTOR,True,159,184,15,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,43ef3846813882cb67ade10e79b04a3b6828c974,"surface field names that are understandable by mere mortals, rather than things like iat,aud,exp which are the JWT spec details that need not be visible to the developer using the API."
+109,https://api.github.com/repos/mozilla/browserid-crypto/pulls/13,13,"updated jwcrypto API, readme, tests, and added conformance tests. Everyt...","...hing is now async. Backwards INcompatible.
+",benadida,18057,2012-05-02T02:59:22Z,CONTRIBUTOR,True,1773,2050,43,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,978614f01c17739b507f7fabf9bc9b713e5a7257,"updated jwcrypto API, readme, tests, and added conformance tests. Everything is now async. Backwards INcompatible."
+110,https://api.github.com/repos/mozilla/browserid-crypto/pulls/12,12,Adding very basic sanity check,"Adding very basic sanity check and ERROR logging for all properties of JWT and Cert Chain of an assertion.
+
+Tested with @ringe's bad assertion which would have displayed:
+
+`ERROR: Missing cert_0.cryptoSegment`
+",ozten,18924,2012-03-27T00:32:37Z,MEMBER,False,23,2,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,1df6f39e89a4b0b0b4a051745eae34788a6dd84f,Adding very basic sanity check and ERROR logging for all properties of JWT and Cert Chain of an assertion.
+111,https://api.github.com/repos/mozilla/browserid-crypto/pulls/12,12,Adding very basic sanity check,"Adding very basic sanity check and ERROR logging for all properties of JWT and Cert Chain of an assertion.
+
+Tested with @ringe's bad assertion which would have displayed:
+
+`ERROR: Missing cert_0.cryptoSegment`
+",ozten,18924,2012-03-27T00:32:37Z,MEMBER,False,23,2,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,022b794e69bc330c8e2258167622ca70d00dbeb8,Using Node's forEach properly per benadida
+112,https://api.github.com/repos/mozilla/browserid-crypto/pulls/9,9,Copy InputException from jws.js,"This is used in the utils.base64urldecode() function but not
+defined there.
+
+Because of this, the vep.unbundleCertsAndAssertion() function (used
+in the BrowserID verifier) returns this exception message:
+
+  ReferenceError: InputException is not defined
+
+instead of:
+
+  Malformed input: Illegal base64url string!
+",fmarier,167821,2012-01-05T08:42:42Z,CONTRIBUTOR,True,5,0,1,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,7da82d3114649ad686695f12e3abbc5cd379c02e,"Copy InputException from jws.js
+
+This is used in the utils.base64urldecode() function but not
+defined there.
+
+Because of this, the vep.unbundleCertsAndAssertion() function (used
+in the BrowserID verifier) returns this exception message:
+
+  ReferenceError: InputException is not defined
+
+instead of:
+
+  Malformed input: Illegal base64url string!"
+113,https://api.github.com/repos/mozilla/browserid-crypto/pulls/8,8,Add missing semicolons,"I noticed these while browsing the files with js2-mode.
+",fmarier,167821,2012-01-05T08:05:25Z,CONTRIBUTOR,True,3,3,3,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,c5746242785776a32721358fce9acc73d8c5a00a,"Add missing semicolons
+
+I noticed these while browsing the files with js2-mode."
+114,https://api.github.com/repos/mozilla/browserid-crypto/pulls/7,7,implement a new assertion format that concatenates JWS structures (asser...,"...tion and certificates) with tildes.  bundleCertsAndAssertion takes a flag, unbundle supports either format.
+",lloyd,39411,2011-12-16T20:08:40Z,CONTRIBUTOR,True,81,8,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,d17943a026a623ca98015d6ddf0488c992d2cad3,"implement a new assertion format that concatenates JWS structures (assertion and certificates) with tildes.  bundleCertsAndAssertion takes a flag, unbundle supports either format."
+115,https://api.github.com/repos/mozilla/browserid-crypto/pulls/7,7,implement a new assertion format that concatenates JWS structures (asser...,"...tion and certificates) with tildes.  bundleCertsAndAssertion takes a flag, unbundle supports either format.
+",lloyd,39411,2011-12-16T20:08:40Z,CONTRIBUTOR,True,81,8,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,3907994bd35aa6e3377cd91222f4abff5291dd22,"don't use Array.isArray(), ie8 will hate that.  also pass args to split as a string, not an array containing a string. that's silly"
+116,https://api.github.com/repos/mozilla/browserid-crypto/pulls/7,7,implement a new assertion format that concatenates JWS structures (asser...,"...tion and certificates) with tildes.  bundleCertsAndAssertion takes a flag, unbundle supports either format.
+",lloyd,39411,2011-12-16T20:08:40Z,CONTRIBUTOR,True,81,8,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,0af8f9db89c56de4814147ed8db9e0ab09b62874,"put assertion JWS last, certs first.  because 'that's the order in which you verify stuff'"
+117,https://api.github.com/repos/mozilla/browserid-crypto/pulls/4,4,make keylength a command line parameter for generate-keypair.js. issue #3,"make keylength a command line parameter for generate-keypair.js. closes #3
+
+By doing this we don't have to change this repository every time we want to change the key length in repositories that depend on it (like browserid!).
+",lloyd,39411,2011-09-22T00:09:19Z,CONTRIBUTOR,True,21,2,2,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,d13ab2395fbb2a35aa155d00b82c6e70c162a917,make keylength a command line parameter for generate-keypair.js. issue #3
+118,https://api.github.com/repos/mozilla/browserid-crypto/pulls/1,1,improve usage of browserify,"currently jwcrypto is authored to require a global install of browserify.  by including a `package.json` file we can allow npm install to handle the acquisition and local installation of browserify.  Additionally, we can run the `bundle.sh` script as a `postinstall` hook in npm.  These patches provide several benefits:
+1. if another repo is relying on this thing (like browserid) it can `npm install` it instead of the six commands: `git submodule init`, `git submodule update`, `cd lib/jwcrypto`, `sudo npm install browserify`, `./bundle.sh`
+2. by locking to a specific version of browserify we remove a bug vector (i.e. a browserify version doesn't work with jwcrypto).
+3. a developer can use jwcrypto without being encouraged to sudo or really even caring what browserify is.
+",lloyd,39411,2011-09-14T20:13:42Z,CONTRIBUTOR,True,29,1,3,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,1465129d4839d5fed0c5a00ba1fab3350e850000,add a package.json that explicitly declares dependencies and runs the postinstall script upon installation (which in turn invokes browserify)
+119,https://api.github.com/repos/mozilla/browserid-crypto/pulls/1,1,improve usage of browserify,"currently jwcrypto is authored to require a global install of browserify.  by including a `package.json` file we can allow npm install to handle the acquisition and local installation of browserify.  Additionally, we can run the `bundle.sh` script as a `postinstall` hook in npm.  These patches provide several benefits:
+1. if another repo is relying on this thing (like browserid) it can `npm install` it instead of the six commands: `git submodule init`, `git submodule update`, `cd lib/jwcrypto`, `sudo npm install browserify`, `./bundle.sh`
+2. by locking to a specific version of browserify we remove a bug vector (i.e. a browserify version doesn't work with jwcrypto).
+3. a developer can use jwcrypto without being encouraged to sudo or really even caring what browserify is.
+",lloyd,39411,2011-09-14T20:13:42Z,CONTRIBUTOR,True,29,1,3,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,1d4a7e62afacf75696861fb39f82be26791e20fc,add some checks in bundle.sh to emit a nice error message if browserify isn't available
+120,https://api.github.com/repos/mozilla/browserid-crypto/pulls/1,1,improve usage of browserify,"currently jwcrypto is authored to require a global install of browserify.  by including a `package.json` file we can allow npm install to handle the acquisition and local installation of browserify.  Additionally, we can run the `bundle.sh` script as a `postinstall` hook in npm.  These patches provide several benefits:
+1. if another repo is relying on this thing (like browserid) it can `npm install` it instead of the six commands: `git submodule init`, `git submodule update`, `cd lib/jwcrypto`, `sudo npm install browserify`, `./bundle.sh`
+2. by locking to a specific version of browserify we remove a bug vector (i.e. a browserify version doesn't work with jwcrypto).
+3. a developer can use jwcrypto without being encouraged to sudo or really even caring what browserify is.
+",lloyd,39411,2011-09-14T20:13:42Z,CONTRIBUTOR,True,29,1,3,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,8edb08b01c170f2c09a2ec64d35172825c392780,"add a 'test' key to the package.json hash, and include a dependency on vows"
+121,https://api.github.com/repos/mozilla/browserid-crypto/pulls/1,1,improve usage of browserify,"currently jwcrypto is authored to require a global install of browserify.  by including a `package.json` file we can allow npm install to handle the acquisition and local installation of browserify.  Additionally, we can run the `bundle.sh` script as a `postinstall` hook in npm.  These patches provide several benefits:
+1. if another repo is relying on this thing (like browserid) it can `npm install` it instead of the six commands: `git submodule init`, `git submodule update`, `cd lib/jwcrypto`, `sudo npm install browserify`, `./bundle.sh`
+2. by locking to a specific version of browserify we remove a bug vector (i.e. a browserify version doesn't work with jwcrypto).
+3. a developer can use jwcrypto without being encouraged to sudo or really even caring what browserify is.
+",lloyd,39411,2011-09-14T20:13:42Z,CONTRIBUTOR,True,29,1,3,"JavaScript implementation of JSON Web Signatures, JSON Web Tokens, and JSON Web Certificates",JavaScript,ace1013d5b4c0ac141393c6e64cf380ad1ed8d07,"export generate-keypair as a binary from the package, so it's more convenient to invoke from code using the npm package."

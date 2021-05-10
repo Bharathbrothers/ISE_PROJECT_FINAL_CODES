@@ -1,0 +1,814 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/git-bz-moz/pulls/98,98,Mention that this project depends on an external library.,"On Ubuntu, at least, the Requests library isn't installed by default and has
+to be installed manually. It took me a minute to realize this, so mentioning
+it in the README might save others some time.",mrbkap,132419,2017-12-07T22:05:59Z,NONE,True,3,1,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,1ddd2b08182ad9be38bb338b54f78f52ac8279c9,"Mention that this depends on an external library.
+
+On Ubuntu, at least, the Requests library isn't installed by default and has
+to be installed manually. It took me a minute to realize this, so mentioning
+it in the README might save others some time."
+1,https://api.github.com/repos/mozilla/git-bz-moz/pulls/96,96,Escape username when getting user details.,"Fixes #95.
+
+Please let me know if you'd like some Unicode parsing on top of that (something like `urllib2.parse.quote` or `unicode(name).encode('utf-8')`) and/or if you'd like this fix applied to other code locations.
+
+(I don't actually know Python well, so I took inspiration from [here](https://stackoverflow.com/a/6618858)).",jankeromnes,599268,2017-09-28T07:13:36Z,NONE,True,1,1,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,199ea406694e47b9ace9d3db166823d2316bfdd8,Escape username when getting user details.
+2,https://api.github.com/repos/mozilla/git-bz-moz/pulls/93,93,Prepend the right authorship for the attachment,"Bugzilla actually provides users' detail information. Let's get these
+information through the REST API and use a more accurate authorship.
+
+To do so, we can either (a) use brackets to split the real name,
+or (b) use regex to extract the real name. Since usernames could be
+various, I think using (a) is more fault-tolerant.
+
+Fixed #90.",chenpighead,10356583,2017-03-12T13:53:31Z,NONE,True,19,4,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,49a3e659136dc188c2ba409fecd4047998f42562,"Prepend the right authorship for the attachment
+
+Bugzilla actually provides users' detail information. Let's get these
+information through the REST API and use a more accurate authorship.
+
+To do so, we can either (a) use brackets to split the real name,
+or (b) use regex to extract the real name. Since usernames could be
+various, I think using (a) is more fault-tolerant.
+
+Fixed #90."
+3,https://api.github.com/repos/mozilla/git-bz-moz/pulls/92,92,Explicitly encode/decode utf-8 when applying patch diff,Fixed #88.,aethanyc,102858,2017-03-01T03:11:12Z,NONE,True,2,2,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,40bfa4332efd87f7816f529af4f0d3eb4f843b23,"Explicitly encode/decode utf-8 when applying patch diff
+
+Fixed #88."
+4,https://api.github.com/repos/mozilla/git-bz-moz/pulls/86,86,Always prepend From/Date/Subject if the attachment is a raw diff.,"This reorganizes where the From/Date/Subject pieces are automatically added to a patch. I tested this with a MozReview patch (bug 1252931), an hg diff (bug 908038), a git diff (bug 1242663), and a raw patch (bug 1209559). The raw patch now works where it previously gave a ""Patch format detection failed."" The other 3 work both before and after these changes.
+
+I wouldn't be completely surprised if there are other cases where this doesn't behave as expected. It just looks if the patch data starts with ""diff "" and assumes it must be a raw patch.
+",mshal,3036386,2016-03-17T19:06:19Z,NONE,True,20,26,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,25a54c3006c0969da4fbd54c6a98238bc0e288ce,"Move _process_reviewboard_request into the BugAttachment class.
+
+This is just a minor refactoring so that we can share the bare patch
+conversion logic."
+5,https://api.github.com/repos/mozilla/git-bz-moz/pulls/86,86,Always prepend From/Date/Subject if the attachment is a raw diff.,"This reorganizes where the From/Date/Subject pieces are automatically added to a patch. I tested this with a MozReview patch (bug 1252931), an hg diff (bug 908038), a git diff (bug 1242663), and a raw patch (bug 1209559). The raw patch now works where it previously gave a ""Patch format detection failed."" The other 3 work both before and after these changes.
+
+I wouldn't be completely surprised if there are other cases where this doesn't behave as expected. It just looks if the patch data starts with ""diff "" and assumes it must be a raw patch.
+",mshal,3036386,2016-03-17T19:06:19Z,NONE,True,20,26,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,0c7270d66f3974d019c49836b6ce3ac9d1def00f,"Always prepend From/Date/Subject if the attachment is a raw diff.
+
+Fixes #81."
+6,https://api.github.com/repos/mozilla/git-bz-moz/pulls/85,85,Allow MozReview patches without a 'data' field.,"In some cases, such as 'git bz attach', we don't pull down the data
+field of the MozReview patch. We should just have an empty data field
+for the bug rather than failing with KeyError: 'data'
+
+Fixes #84
+",mshal,3036386,2016-03-15T21:07:51Z,NONE,True,13,12,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,1c1b71b3823929b80993988a9125d9acfaf83181,"Allow MozReview patches without a 'data' field.
+
+In some cases, such as 'git bz attach', we don't pull down the data
+field of the MozReview patch. We should just have an empty data field
+for the bug rather than failing with KeyError: 'data'
+
+Fixes #84"
+7,https://api.github.com/repos/mozilla/git-bz-moz/pulls/83,83,Document 'git bz apply -r <requestee>',,mshal,3036386,2016-02-26T18:30:17Z,NONE,True,16,2,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,f78fb35bce56a457c9bf531c94c5789b2bf7a462,Document 'git bz apply -r <requestee>'
+8,https://api.github.com/repos/mozilla/git-bz-moz/pulls/82,82,Add support for MozReview requests in 'git bz apply',"Fixes #48
+",mshal,3036386,2016-02-26T18:27:35Z,NONE,True,26,4,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,b7db366b712a4c2f936bb23bf622dc14e505365a,"Add support for MozReview requests in 'git bz apply'
+
+Fixes #48"
+9,https://api.github.com/repos/mozilla/git-bz-moz/pulls/79,79,Add support for bz.auto-add-reviewers,"This is handy so that git-bz would pick up the reviewer from your commit
+message, and you can just immediately close the editor that pops up when
+using commands such as git-bz attach or git-bz file to get the default
+behavior of asking for review depending on what the commit message
+specifies.
+
+@amccreight can you please review?  thanks!
+",ehsan,168508,2016-01-28T03:06:10Z,MEMBER,True,18,1,2,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,c82148d4cba68343caa1214bce53267bc5e9d80a,"Add support for bz.auto-add-reviewers
+
+This is handy so that git-bz would pick up the reviewer from your commit
+message, and you can just immediately close the editor that pops up when
+using commands such as git-bz attach or git-bz file to get the default
+behavior of asking for review depending on what the commit message
+specifies."
+10,https://api.github.com/repos/mozilla/git-bz-moz/pulls/76,76,Ignore any bug references in a commit past the first one.,"This fixes the problem where you have a bug at the start of the patch, as with the standard Mozilla style, but also reference another bug in your commit message.
+
+Fixes #23.
+",amccreight,841072,2015-12-17T19:12:25Z,NONE,True,4,0,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,d106d3089f2ba3d0d18034718cfc82d1924d1437,"Ignore any bug references in a commit past the first one.
+
+This fixes the problem where you have a bug at the start of the patch, as with the standard Mozilla style, but also
+reference another bug in your commit message.
+
+Fixes #23."
+11,https://api.github.com/repos/mozilla/git-bz-moz/pulls/72,72,fix spelling of RuntimeError,"Kind of unsurprising that this hasn't been hit, but...
+",froydnj,151096,2015-10-15T17:53:23Z,NONE,True,2,2,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,9807220b636abd279ede8bd83bbd88ef887404de,fix spelling of RuntimeError
+12,https://api.github.com/repos/mozilla/git-bz-moz/pulls/70,70,Remove spurious import that causes an error.,"The import from auth causes an exception. That and the import from
+pickle are unused, so I removed them.
+
+Fixes #67.
+",amccreight,841072,2015-09-28T18:04:03Z,NONE,True,0,9,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,cbb73fce55e53b4652b111643306bffac3a9e069,"Remove spurious import that causes an error.
+
+The import from auth causes an exception. That and the import from
+pickle are unused, so I removed them.
+
+Fixes #67."
+13,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,efaf08f8a8b1c9bad9506488ddf76d0f6b7af8af,Add more convenient ways to create a BugServer.
+14,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,382e4500212bd459bff4e5492df755dfb506b109,"Remove the edit --pushed option.
+
+It is only used in do_edit, but we immediately exit before do_edit if
+it is set.
+
+This removes the only place that calls edit_bug with a non-None
+applied_commits, which lets us in turn remove the only place that
+calls filter_patches()."
+15,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,9df425a3d8ec5b599563c841d4d39d12875ae578,"Remove 'push' command.
+
+Closes #54.
+
+This shouldn't really be needed because we have Pulsebot to update bugs"
+16,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,a70e3b7ea0731909f24a4cec9b05b2d38c98bc88,"Remove edit --fix option.
+
+This sets up bug edit defaults to comment and close a bug after
+pushing commits. Again, this is superceded by pulsebot.
+
+This removes the only use of the fix_commits argument to edit_bug.
+
+That in turn removes the only use of the status argument to
+attach_commits, which in turn is the only caller of create_patch, so
+we can remove the status argument to that, too."
+17,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,caa6bec1f9578fce5596f9c5d26bee21e615c0c4,"Remove support for attachment status.
+
+bugzilla.mozilla.org does not use attachment status. Instead, the only
+thing we can do is mark patches obsolete. Removing this capability
+simplifies the code."
+18,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,badc86dd9f79bae15c948812cae73519a1b0a713,"Simplify map of changed_attachments into a list obsoleted_attachments.
+
+Now that the generality is removed, this data structure can be simplified further."
+19,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,9f0930d9f6f99780045d92f1c8c12c28e8610de0,Import various code from version-control-tools.
+20,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,4782d9e960b431dda7f5d313f619876379325037,Remove the implementation of the xmlrpc proxy on BugServer.
+21,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,9e3c3bea8752a0530c5b16195aa414b23ed50fd3,"Remove the implementation of BugServer.get_cookie_string().
+
+Also remove everything that is only called by it."
+22,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,0863860a43ea05aa57165cee893cab6af44d53b6,Remove encode_multipart_formdata and the implementation of send_post.
+23,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,2e26c6a893a7c7faa58b02a6241dcd19b1e3cf1d,"Remove the implementation of BugServer.send_request.
+
+Also remove everything that is only called by it."
+24,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,450acd2e3ef12f8500fe096a42c9c508e626d9b9,"Remove the implementation of BugServer.product_id.
+
+My later rewrite of product component getting will not use it."
+25,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,f649f6ffc3db13422fad029bbb032f20eb796609,"Remove the implementation of BugServer.legal_values.
+
+This will get reimplemented later using the REST API."
+26,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,ada89b0040a05045578322d95609f2f3b6f67f02,Remove the now-unused implementation of the cache.
+27,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,4413af22d465a569907e1f6a85fed041b66277e0,"Remove the implementation of check_for_success.
+
+Also remove a nearby comment that seems out of date."
+28,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,d7566b82de261723d6cb9e209c536e04a2afa55a,Remove the implementation of get_attachment_token.
+29,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,97a779f18a86beec107eaef10b7b01e744adac52,Implement shim for Mercurial's ui object.
+30,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,b1668c246d86346c839ff9704d340c77f2913bb9,Implement BugServer authentication using bzauth.
+31,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,a6bf8b5c7effa32927652e90a1686ca16f7fded3,"Remove auth_user and auth_password.
+
+These are no longer needed now that we are using bzexport's bugzilla
+authentication."
+32,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,b70a127ebfd4964bbf7cbedc0bb97ca527a88cb3,"Fix |git bz components|.
+
+This also gets rid of the last uses of the xmlrpc stuff."
+33,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,6e64dcc6c448837e17f7b62cc30f4eab5c719764,Rename attachmentdata to attachment_data for consistency.
+34,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,81137c5061a508752aa5d5b69b8c664533fa4b88,"Fix the code that retrieves bug and attachment information from the server.
+
+This is enough to get |git bz apply| to work.
+
+Fixes issue #30."
+35,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,38ef120293ea4c97647f4e6ce449837761fd5ffa,Fix |git bz edit|
+36,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,8f1095aa175c65e60c983f75e76838cf0d08d3e0,"Use lambdas for append_matching_group.
+
+This will allow us to do other things for these flags."
+37,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,86d5e8c5c0472727ca7f3d1ba1ced873d84b8d70,"Bundle up attachment requestee flags.
+
+This changes the attachment flag information to be stored in a single
+dictionary rather than a bunch of lists, and also stores the special
+"":me+"" value that indicates a + separately. This will make it easier
+to support more flags in the future.
+
+I did not update the code in create_patch that actually sets the flags
+in the request because that is all going to be completely removed
+later."
+38,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,61818497a51861b8f3dd31872d535d35d712158a,"Fix |git bz attach|.
+
+Fixes issue #52."
+39,https://api.github.com/repos/mozilla/git-bz-moz/pulls/64,64,REST API,"This is a series of patches that replaces the current git bz backend that uses a combination of XML RPC and direct https interaction with one that uses the new REST API.
+
+The general structure of the code is that there are a number of files I import from bzexport that do the actual interaction with github. Then, in git-bz, there is a class BugServer that provides a wrapper around those functions. The class Bug then provides a per-bug interface to those where appropriate. At the top level, there are a number of do_foo functions that implement the various commands.
+
+The first few patches do some generic refactoring and remove a few commands that seem obsolete. Then a patch copies over code from bzexport that we will call later.
+
+Then there are a number of patches that remove all of the generic networking backend. This should not include any real ""application logic"". I did this because there is just so much code to remove it was hard to deal with things otherwise. Each patch basically removes one function, and everything that remains that is exclusively called by that function. This leaves the code in a non-functional state, but the points of failure are explicitly marked with ""die(""unimplemented"")"" that will exit when run. These are all gone by the end.
+
+Next, I implement a shim for the Mercurial UI object, which the bzexport backend requires. These functions are all simple. One oddity is that I map bugzilla.foo preferences to bz.foo because that is what git bz was doing. (And obviously I look them up in the git config, not the hg config.)
+
+The rest of the patches implement the various commands. They also remove various little function stubs if they are the last user of that function. The documentation of the Bugzilla REST API lives here: http://bugzilla.readthedocs.org/en/latest/api/
+
+There is a brief interlude to change the representation of review etc. flags to a single map rather than an absurd number of lists.
+",amccreight,841072,2015-09-24T15:24:25Z,NONE,True,1210,1153,7,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,1379594ed2480971b31327da618e00919a8e1c7b,Fix |git bz file|.
+40,https://api.github.com/repos/mozilla/git-bz-moz/pulls/62,62,Wrap up creating a BugServer a little more nicely.,"Not a huge deal, but I think this is nicer. I'd appreciate it if somebody looks it over. It isn't too complex.
+",amccreight,841072,2015-09-18T15:02:01Z,NONE,False,16,16,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,16a6a367414c82fcb4f761add1c79325de113634,Wrap up creating a BugServer a little more nicely.
+41,https://api.github.com/repos/mozilla/git-bz-moz/pulls/61,61,Fix up alphabetization of import statements.,"Another trivial cleanup.
+",amccreight,841072,2015-09-18T15:01:14Z,NONE,True,6,5,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,4b2232ff48d003270879e7bddf810d09daf0dea0,Fix up alphabetization of import statements.
+42,https://api.github.com/repos/mozilla/git-bz-moz/pulls/60,60,fix indentation in commit_needs_url,,amccreight,841072,2015-09-17T17:09:21Z,NONE,True,3,3,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,fce6dfc05875be2c00102f862ff3fc059482346f,fix indentation in commit_needs_url
+43,https://api.github.com/repos/mozilla/git-bz-moz/pulls/59,59,BugHandle.get_url() should account for a blank path.,"Closes #24. I just implemented what johns suggested.
+",amccreight,841072,2015-09-17T15:00:51Z,NONE,True,1,1,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,2a2bc50d98770cfb81b8736a9b2234dbbcb08237,"BugHandle.get_url() should account for a blank path.
+
+Closes #24. I just implemented what johns suggested."
+44,https://api.github.com/repos/mozilla/git-bz-moz/pulls/58,58,handle invalid products for do_file better,"If product_component does not contain a /, then the pattern match
+(product, component) ends up throwing an exception, so explicitly test
+for that case.
+
+Also, the error message isn't quite right: it is possible you
+specified a product but not a revision.
+",amccreight,841072,2015-09-17T14:56:00Z,NONE,True,7,8,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,293353f845581dfde9f55723a7929c52df5a0907,"handle invalid products for do_file better
+
+If product_component does not contain a /, then the pattern match
+(product, component) ends up throwing an exception, so explicitly test
+for that case.
+
+Also, the error message isn't quite right: it is possible you
+specified a product but not a revision."
+45,https://api.github.com/repos/mozilla/git-bz-moz/pulls/57,57,Make add_url do something useful by default (not REST API related),"Closes #49.
+",amccreight,841072,2015-09-17T14:50:39Z,NONE,True,1,1,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,dc7b0afc4aca17d1607d6b9cb3962ec9e414bde1,"Make add_url do something useful by default (not REST API related)
+
+Closes #49."
+46,https://api.github.com/repos/mozilla/git-bz-moz/pulls/50,50,Save the last git-bz file instead of deleting it,"There have been a few times recently where I've been trying to attach a file
+using 'git bz attach -e' where the upload will fail for one reason or another
+(most often to do with entering the reviewer's email wrong). In some cases,
+I'll have entered a long comment about my patch, which will be lost forever.
+
+This patch saves the last file in $TMPDIR/git-bz-last.txt (I hope in a
+platform-agnostic manner) so that it can be recovered if needed.
+",mrbkap,132419,2015-09-04T22:21:02Z,NONE,True,7,1,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,a6abee0d20a9618b488fbda869714e285a60faff,"Save the last git-bz file instead of deleting it
+
+There's have been a few times recently where I've been trying to attach a file
+using 'git bz attach -e' where the upload will fail for one reason or another
+(most often to do with entering the reviewer's email wrong). In some cases,
+I'll have entered a long comment about my patch, which will be lost forever.
+
+This patch saves the last file in $TMPDIR/git-bz-last.txt (I hope in a
+platform-agnostic manner) so that it can be recovered if needed."
+47,https://api.github.com/repos/mozilla/git-bz-moz/pulls/47,47,Add newline to the patch when uploading,"My patch upload by 'git bz attach' often cannot be applied by 'git bz
+apply'. The reason is that the patch being corrupt at the end of the
+file. Adding a blank line at the patch will fix this issue.
+",aethanyc,102858,2015-05-12T06:59:26Z,NONE,True,1,1,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,7643f412ef5e69ead48a7b5ad36b265a55e88208,"Add newline to the patch when uploading
+
+My patch upload by 'git bz attach' often cannot be applied by 'git bz
+apply'. The reason is that the patch being corrupt at the end of the
+file. Adding a blank line at the patch will fix this issue."
+48,https://api.github.com/repos/mozilla/git-bz-moz/pulls/45,45,provide a UI to select bugzilla users,"Currently git-bz will error out if the user entry for a field such as
+review or feedback doesn't match exactly 1 bugzilla user.  A nicer interface is
+to provide the user with a list of matching bugzilla accounts and let them
+select one to use.
+",tbsaunde,349840,2015-04-17T21:05:07Z,NONE,False,32,4,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,63703c672ef58d27fa43841973ce1733c7ad01e1,"provide a UI to select bugzilla users
+
+Currently git-bz will error out if the user entry for a field such as
+review or feedback doesn't match exactly 1 bugzilla user.  A nicer interface is
+to provide the user with a list of matching bugzilla accounts and let them
+select one to use."
+49,https://api.github.com/repos/mozilla/git-bz-moz/pulls/44,44,Force using default Bugzilla presentation,,lissyx,1645737,2015-04-14T13:39:44Z,NONE,True,1,1,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,130c0f26fcea53e898c9668577a893696573bb83,Force using default Bugzilla presentation
+50,https://api.github.com/repos/mozilla/git-bz-moz/pulls/42,42,Style cleanups,"Just a few small Python cleanups, r? @amccreight 
+",froydnj,151096,2015-03-09T18:29:57Z,NONE,True,4,9,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,db32d3413f6b4b83088ff49a30cfe5f927dddcf4,"modernize extract_and_collate_bugs
+
+- The `if` dance is a clumsy way of saying `.setdefault()`.
+- The final `yield` loop is a verbose way of saying `.iteritems()`.
+- Fixing the previous two points means we don't need the `bugs` list anymore."
+51,https://api.github.com/repos/mozilla/git-bz-moz/pulls/42,42,Style cleanups,"Just a few small Python cleanups, r? @amccreight 
+",froydnj,151096,2015-03-09T18:29:57Z,NONE,True,4,9,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,986d6c6e5d37f6fe78dd325dd80b849a18ee6184,use `list` instead of a list comprehension in do_file
+52,https://api.github.com/repos/mozilla/git-bz-moz/pulls/41,41,Add --use-first-bug option to bz attach disambiguate when multiple bugs ...,"...are referenced in a commit message.
+
+With the standard Mozilla style, the first one is almost certainly the one we want.
+
+I did not make this the default because I think we hit this case if there are multiple attachments, each with their
+own bug, and in that case I think it is better to fail.
+
+I referenced the new option in the error message so that people are made aware of it when they need it.
+",amccreight,841072,2015-02-10T16:45:29Z,NONE,False,14,4,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,1c96c5039ec092b1781ebbe37131e0445442c12f,"Add --use-first-bug option to bz attach disambiguate when multiple bugs are referenced in a commit message.
+
+With the standard Mozilla style, the first one is almost certainly the one we want.
+
+I did not make this the default because I think we hit this case if there are multiple attachments, each with their
+own bug, and in that case I think it is better to fail.
+
+I referenced the new option in the error message so that people are made aware of it when they need it."
+53,https://api.github.com/repos/mozilla/git-bz-moz/pulls/40,40,Remove the reviewer name from the summary when filing a new bug.,"Also, fix a comment.
+",amccreight,841072,2015-01-20T20:57:41Z,NONE,True,5,4,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,e89fedd04fe152b4aed488b0322c4184e0494f2b,fix comment in do_file
+54,https://api.github.com/repos/mozilla/git-bz-moz/pulls/40,40,Remove the reviewer name from the summary when filing a new bug.,"Also, fix a comment.
+",amccreight,841072,2015-01-20T20:57:41Z,NONE,True,5,4,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,993fc7090c493bf31be22acfd9aae30480c4fff4,"Remove the reviewer from the subject for a single commit bz file.
+
+Closes #39."
+55,https://api.github.com/repos/mozilla/git-bz-moz/pulls/38,38,Add an option to bypass checking for remote commits in add-url,"git branch --contains -r is extremely slow, so by default things such as
+filing a bug with an attachment while using the add-url option can be
+very slow.  This patch adds a config variable for making things faster
+by skipping this check.
+
+r? @froydnj or @amccreight.
+",ehsan,168508,2014-12-30T19:43:28Z,MEMBER,True,26,11,2,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,ae1e7db26b5df204e535fb3cbfe18047358fe60a,"Add an option to bypass checking for remote commits in add-url
+
+git branch --contains -r is extremely slow, so by default things such as
+filing a bug with an attachment while using the add-url option can be
+very slow.  This patch adds a config variable for making things faster
+by skipping this check."
+56,https://api.github.com/repos/mozilla/git-bz-moz/pulls/37,37,Parse the revlist after rebase in order to get the commits to attach,"When the user invokes the file or attach commands with symbolic names
+to specify the commits to attach, they probably expect the symbolic
+names to be parsed after the rebase that is required to edit the
+commit message.  This patch causes us to reparse the revlist after
+rebasing when performing an add-url operation during the file and
+attach commands.
+
+Opting out of this behavior is always possible by using a commit SHA1.
+",ehsan,168508,2014-12-13T20:59:00Z,MEMBER,True,12,4,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,20166b5a97918e64110c3487027a3dc6b8b19e5b,"Parse the revlist after rebase in order to get the commits to attach
+
+When the user invokes the file or attach commands with symbolic names
+to specify the commits to attach, they probably expect the symbolic
+names to be parsed after the rebase that is required to edit the
+commit message.  This patch causes us to reparse the revlist after
+rebasing when performing an add-url operation during the file and
+attach commands.
+
+Opting out of this behavior is always possible by using a commit SHA1."
+57,https://api.github.com/repos/mozilla/git-bz-moz/pulls/36,36,add missing whitespace option to |git bz file|,"Pull request #17 added a -w option, but failed to add the appropriate
+option to the |git bz file| command.  |git bz file| fails without this
+option, as other code complains about the unknown `ignore_all_spaces'
+option.
+",froydnj,151096,2014-12-08T21:13:37Z,NONE,True,1,0,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,7d9f28f29d4c4602ab3d559d437495554363deb7,"add missing whitespace option to |git bz file|
+
+Pull request #17 added a -w option, but failed to add the appropriate
+option to the |git bz file| command.  |git bz file| fails without this
+option, as other code complains about the unknown `ignore_all_spaces'
+option."
+58,https://api.github.com/repos/mozilla/git-bz-moz/pulls/35,35,Remove the temp file in edit_template after we're done with it,,amccreight,841072,2014-10-31T23:50:34Z,NONE,True,2,0,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,26c3f395ca510b87a2dc4fcc0d94ad86a376279b,Remove the temp file in edit_template after we're done with it
+59,https://api.github.com/repos/mozilla/git-bz-moz/pulls/33,33,Add bugzilla path to xmlrpc.cgi requests.,"Add the self.path to the xmlrpc.cgi request so bugzilla site like:
+
+http://www.example.com/bugzilla/xmlrpc.cgi
+
+could be served.
+",lazyparser,1802104,2014-08-24T15:02:06Z,NONE,True,2,2,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,ff1395e03180d3c70383fe6afd9fef9a7e5564dc,Add bugzilla path to xmlrpc.cgi requests.
+60,https://api.github.com/repos/mozilla/git-bz-moz/pulls/32,32,Fix splitting product/component,"Core/Video/Audio should parse to product Core, component Video/Audio
+",Nephyrin,965090,2014-08-18T19:11:12Z,NONE,True,7,5,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,b9635dd46e974810ba288a14a07d69aa612b9ca9,"Fix splitting product/component
+
+Core/Video/Audio should parse to product Core, component Video/Audio"
+61,https://api.github.com/repos/mozilla/git-bz-moz/pulls/29,29,"If we fail to attach a patch, try to find the title of the page bugzilla...","... returns and print that out, rather than the entire HTML page.
+",amccreight,841072,2014-08-14T23:55:21Z,NONE,True,6,2,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,2ec135762d74adbd4c2924d8fee76fa76053e65a,"If we fail to attach a patch, try to find the title of the page bugzilla returns and print that out, rather than the entire HTML page."
+62,https://api.github.com/repos/mozilla/git-bz-moz/pulls/25,25,Support ui-review flags when attaching patches,"This adds support for setting ui-review on patches when attaching them.
+",Standard8,520844,2014-06-16T09:31:21Z,MEMBER,True,22,5,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,8f189cc011d882eb6351dd5aa5a22d626112fac0,Support ui-review flags when attaching patches
+63,https://api.github.com/repos/mozilla/git-bz-moz/pulls/21,21,Split out reviewers from the description,,amccreight,841072,2014-04-25T21:26:19Z,NONE,True,96,1,3,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,38563a37129ae8ba0c3c2d9a1b93cab5dc3b242a,Add *~ and *.pyc to .gitignore
+64,https://api.github.com/repos/mozilla/git-bz-moz/pulls/21,21,Split out reviewers from the description,,amccreight,841072,2014-04-25T21:26:19Z,NONE,True,96,1,3,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,50fa7309bfd7048a10c59609104bd3860c495961,add reviewer splitting
+65,https://api.github.com/repos/mozilla/git-bz-moz/pulls/20,20,Strip off leading commas for attachments,"With a patch description like
+Bug 12354, part 1 - Foo
+The current behavior is that it gets turned into
+, part 1 - Foo
+when being turned into a bugzilla description.
+With this mighty patch, it will instead be turned into
+part 1 - Foo
+",amccreight,841072,2014-04-08T21:32:04Z,NONE,True,1,1,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,0c9d49043dd9ec483a1810e09d131eb18761d685,Strip off leading commas for attachments
+66,https://api.github.com/repos/mozilla/git-bz-moz/pulls/18,18,Allow user to interactively edit the list of commits to attach.,"After the fact, I see this in the TODO file :)
+",ncalexan,1097182,2014-02-08T23:58:25Z,MEMBER,True,23,7,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,589b940e35cd0d058758d77953860260f30f0791,Allow user to interactively edit the list of commits to attach.
+67,https://api.github.com/repos/mozilla/git-bz-moz/pulls/17,17,add -w option for |git bz attach| to ignore whitespace,"Generating patches that ignore whitespace is occasionally helpful when
+patches reindent large chunks of code.  Doing so helps the reviewer focus
+on important code changes, rather than verifying that blocks of code were
+copied appropriately.
+",froydnj,151096,2014-02-04T18:44:36Z,NONE,True,13,1,2,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,4e2eb59638edca9f328318015bdaa4a5a47f216b,"add -w option for |git bz attach| to ignore whitespace
+
+Generating patches that ignore whitespace is occasionally helpful when
+patches reindent large chunks of code.  Doing so helps the reviewer focus
+on important code changes, rather than verifying that blocks of code were
+copied appropriately."
+68,https://api.github.com/repos/mozilla/git-bz-moz/pulls/17,17,add -w option for |git bz attach| to ignore whitespace,"Generating patches that ignore whitespace is occasionally helpful when
+patches reindent large chunks of code.  Doing so helps the reviewer focus
+on important code changes, rather than verifying that blocks of code were
+copied appropriately.
+",froydnj,151096,2014-02-04T18:44:36Z,NONE,True,13,1,2,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,501522a38d174e150bed48f0f466f3df9001201d,add documentation for |git bz attach -w|
+69,https://api.github.com/repos/mozilla/git-bz-moz/pulls/16,16,add -w option for |git bz attach| to ignore whitespace,"Generating patches that ignore whitespace is occasionally helpful when
+patches reindent large chunks of code.  Doing so helps the reviewer focus
+on important code changes, rather than verifying that blocks of code were
+copied appropriately.
+",froydnj,151096,2014-02-04T15:44:22Z,NONE,False,6,0,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,2635ebb61c65b33de6950efcf8801e17a626a71c,"add -w option for |git bz attach| to ignore whitespace
+
+Generating patches that ignore whitespace is occasionally helpful when
+patches reindent large chunks of code.  Doing so helps the reviewer focus
+on important code changes, rather than verifying that blocks of code were
+copied appropriately."
+70,https://api.github.com/repos/mozilla/git-bz-moz/pulls/15,15,"Add docs for reviewer config, etc.","I keep finding things to fix :)
+",djmitche,28673,2013-12-17T21:50:13Z,NONE,True,17,0,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,f0d1fdd40184226142b58d449ac82f70dc7ef9f8,"Add docs for reviewer config, etc."
+71,https://api.github.com/repos/mozilla/git-bz-moz/pulls/14,14,Fixes for path support,"1. fix auth functions to look at correct config var
+2. include path in get_url
+",djmitche,28673,2013-12-17T21:35:49Z,NONE,True,6,5,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,4feb55651c9f253bc6c0c2617bd78c30f8e85a84,"Fixes for path support
+
+1. fix auth functions to look at correct config var
+2. include path in get_url"
+72,https://api.github.com/repos/mozilla/git-bz-moz/pulls/13,13,fix unused/duplicate imports,,djmitche,28673,2013-12-17T21:18:43Z,NONE,True,0,2,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,6d69eb9531ec7350f60a764c51c7070ea7c8034c,fix unused/duplicate imports
+73,https://api.github.com/repos/mozilla/git-bz-moz/pulls/12,12,add browser 'manual' with manually specified cookies,"This allows me to use `git bz` on my server, albiet with a little manual fiddling around to find the cookies.  The cookies expire in 2037, so I assume they're reasonably long-term..
+",djmitche,28673,2013-12-17T21:15:14Z,NONE,True,25,4,2,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,9f6305f3c53c613372948e3560f14adf80a0deee,add browser 'manual' with manually specified cookies
+74,https://api.github.com/repos/mozilla/git-bz-moz/pulls/11,11,More --requstee changes,"Per comments in https://github.com/mozilla/git-bz-moz/pull/10, this adds support for a username match, and simplifies the flag_requestees construction.
+
+I'm not sure if the requestees are case-sensitive or not. Apparently the username part of an email address is technically case sensitive, so I've left it matching the exact case for now.
+",mshal,3036386,2013-09-25T19:08:29Z,NONE,True,23,9,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,41b6502845aae568ea40374d9804aaccf2f03376,Simplify flag_requestees construction with a generator.
+75,https://api.github.com/repos/mozilla/git-bz-moz/pulls/11,11,More --requstee changes,"Per comments in https://github.com/mozilla/git-bz-moz/pull/10, this adds support for a username match, and simplifies the flag_requestees construction.
+
+I'm not sure if the requestees are case-sensitive or not. Apparently the username part of an email address is technically case sensitive, so I've left it matching the exact case for now.
+",mshal,3036386,2013-09-25T19:08:29Z,NONE,True,23,9,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,e79e93875345368f3c80b472cb2e29666bd854a3,"Allow username matches for --requestee
+
+Now you can do '-r foo' or '-r foo@example.com' to make foo@example.com"
+76,https://api.github.com/repos/mozilla/git-bz-moz/pulls/10,10,Add --requestee flag for 'apply'.,"For bugs with lots of patches assigned to different reviewers, this helps to prune out only the ones assigned to you.
+",mshal,3036386,2013-09-18T16:19:46Z,NONE,True,15,0,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,2e086648c351a5dfd89c53497709ff17aa89b462,"Add --requestee flag for 'apply'.
+
+For bugs with lots of patches assigned to different reviewers, this helps to prune out only the ones assigned to you."
+77,https://api.github.com/repos/mozilla/git-bz-moz/pulls/9,9,Use env in interpreter shebang.,"Ensures that this will work on systems where Python doesn't necessarily reside in /usr/bin.
+",hellojwilde,44190,2013-07-25T04:48:51Z,NONE,True,1,1,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,a0986e778cbeaf4ce5a54680f763801c5700fea5,"Use env in interpreter shebang.
+
+Ensures that this will work on systems where Python doesn't necessarily reside in /usr/bin."
+78,https://api.github.com/repos/mozilla/git-bz-moz/pulls/8,8,"Cleanup the attachment template, allow separate bug comment/commit body","This makes the first part of ""edit attachment"" template the attachment name and comment, and text following the ""Commit-Message"" line to be included as the commit body. Both of these are pre-filled from the commit subject/body for convenience.
+
+Example of new template:
+
+```
+# Attachment to Bug 11383 - Test bug °!\""§$%&/()=?`^²³{[]}\ß´+*~'#;:_,.-€@©\.|<br><li><img src=""http://www.mozilla.org/favicon.ico""/>
+
+# Please edit the attachment description (first line) and comment (other lines).
+# Lines starting with '#' will be ignored.  Delete everything to abort.
+
+Cleanup plugin_focus_helper test events to try and fix intermittent orange
+
+Bug body from git
+
+# Lines following 'Commit-Message:' will be included as the extended commit message
+# in the attached patch. Comment this out to re-use the attachment name/description.
+
+Commit-Message: Bug 11383 - Cleanup plugin_focus_helper test events to try and fix intermittent orange
+
+Bug body from git
+
+#Review: reviewer1@example.com
+#Review: reviewer2@example.com
+#Review: :me+
+
+#Super-Review: superreviewer@example.com
+#Super-Review: :me+
+
+#Feedback: feedbacker@example.com
+#Feedback: :me+
+
+#Obsoletes: 122479 - test
+#Obsoletes: 408420 - u-umlaut test (unix, utf-8)
+#Obsoletes: 541503 - Add bar.
+#Obsoletes: 648949 - Bug 11383 - 780351 - Tests for mozbrowser acting as a window name namespace barrier.
+#Obsoletes: 776817 - Cleanup plugin_focus_helper test events to try and fix intermittent orange
+
+# To obsolete existing patches, uncomment the appropriate lines.
+```
+",Nephyrin,965090,2013-07-17T00:21:49Z,NONE,True,88,57,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,34eb8c83fd1943148ad8c8b87adeff72e18958d1,"Cleanup the attachment template, allow separate bug comment from commit body"
+79,https://api.github.com/repos/mozilla/git-bz-moz/pulls/7,7,enable comments to be added when filing a bug with patches,"I always want to file a bug and attach the patch series with asking for r? all in one go.  This patch lets me do that with 'git bz file -e'.
+",froydnj,151096,2013-06-21T15:41:23Z,NONE,True,3,1,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,327b4587b2c787106b4436525a9be71759fbdcd7,enable comments to be added when filing a bug with patches
+80,https://api.github.com/repos/mozilla/git-bz-moz/pulls/6,6,"Add Feedback field, parallel to Review and Super-Review.",,ncalexan,1097182,2013-05-30T21:26:50Z,MEMBER,True,37,15,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,186e14d83647dab29d8887a2150a30d4e329649a,"Add Feedback field, parallel to Review and Super-Review."
+81,https://api.github.com/repos/mozilla/git-bz-moz/pulls/5,5,Include long commit messages in uploaded patches.,"...omment.
+
+This makes long/informative patch descriptions show up in the overview page when
+doing a splinter review, which is a good thing.
+",bholley,377435,2013-04-26T22:17:46Z,NONE,True,3,0,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,e518ebd6f052ad6e0a81353115c07110aaec1957,"Include the body of the commit in the uploaded patch as well as in the comment.
+
+This makes long/informative patch descriptions show up in the overview page when
+doing a splinter review, which is a good thing."
+82,https://api.github.com/repos/mozilla/git-bz-moz/pulls/4,4,Default to the bugzilla.mozilla.org tracker,,dnarvaez,1846600,2013-02-11T19:19:14Z,NONE,True,1,1,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,61cb4aa34c4050611432c20775e4d16c17aa2990,Default to the bugzilla.mozilla.org tracker
+83,https://api.github.com/repos/mozilla/git-bz-moz/pulls/3,3,Strip Bug XXXXXX prefixes from attachment descriptions,"Many of my patches already have ""Bug XXXXXX - "" prepended, which is annoying and redundant in the attachment description.
+
+Regex should match Bug #### or b#### or b=##### etc.
+",Nephyrin,965090,2012-12-14T20:15:29Z,NONE,True,7,2,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,55676b9a7840821f7605a0f9f67814a8c4c4eacb,Strip any |Bug XXXXXX| prefix from attachment descriptions
+84,https://api.github.com/repos/mozilla/git-bz-moz/pulls/2,2,Add configurable reviewers to template,,eeejay,5764,2012-05-01T19:21:04Z,NONE,True,14,5,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,514fe9441c7b5619086b1e85d7e440f0f05abb5c,Add reviewers and super reviewers to config.
+85,https://api.github.com/repos/mozilla/git-bz-moz/pulls/1,1,Fix OS X git-bz to make it read the sqlite db's correctly,"The MacPorts python-sqlite module comes with an old sqlite binding,
+which makes it impossible for that code to read the newer Firefox cookie
+databases.  In order to fix this we add a fallback path to use the
+sqlite3 command line tool if available.
+",ehsan,168508,2012-03-21T20:19:12Z,MEMBER,True,33,5,1,"git-bz with a few tweaks for bugzilla.mozilla.org, and other fixes not upstreamed.",Python,4157bb875b021a40500ed02a827c824f47fc3e13,"Fix OS X git-bz to make it read the sqlite db's correctly
+
+The MacPorts python-sqlite module comes with an old sqlite binding,
+which makes it impossible for that code to read the newer Firefox cookie
+databases.  In order to fix this we add a fallback path to use the
+sqlite3 command line tool if available."

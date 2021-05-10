@@ -1,0 +1,647 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/autolander/pulls/43,43,Bug 1278997 - Skip creating an integration branch if no taskgraph,"The integration branch is unused if not scheduling jobs, so the check for a taskgraph.json file should be performed before creating the branch and not after.
+",edmorley,501702,2016-06-08T18:41:37Z,CONTRIBUTOR,True,16,16,1,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,1e2497390195c6ba731fe44d39f84157a774c4bb,"Bug 1278997 - Skip creating an integration branch if no taskgraph
+
+The integration branch is unused if not scheduling jobs, so the check
+for a taskgraph.json file should be performed before creating the branch
+and not after."
+1,https://api.github.com/repos/mozilla/autolander/pulls/42,42,Bug 1235619 - Only warn about missing bug numbers on PR creation,"Previously if a PR was missing a bug number from it's title, upon every PR change/event Autolander would spam the PR with a comment saying:
+
+> Autolander could not find a bug number in your pull request title. All pull requests should be in the format of: Bug [number] - [description].
+
+Rather than trying to scrape a PR's comments to see if a warning has already been left, it's much easier to only leave a warning when the PR is first created. It's highly unlikely that someone would add a bug number initially and then remove it later.
+",edmorley,501702,2016-05-25T16:20:17Z,CONTRIBUTOR,True,8,4,2,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,e8ea76f274f6d5c6dc052c075f5fbdb0a8f67cf8,"Bug 1235619 - Only warn about missing bug numbers on PR creation
+
+Previously if a PR was missing a bug number from it's title, upon every
+PR change/event Autolander would spam the PR with a comment saying:
+
+""""""
+Autolander could not find a bug number in your pull request title. All
+pull requests should be in the format of: Bug [number] - [description].
+""""""
+
+Rather than trying to scrape a PR's comments to see if a warning has
+already been left, it's much easier to only leave a warning when the PR
+is first created. It's highly unlikely that someone would add a bug
+number initially and then remove it later."
+2,https://api.github.com/repos/mozilla/autolander/pulls/41,41,Bug 1238884 - Perform post-merge bug updates as a single action,"Previously the comment addition, keyword removal and bug closure were performed as three separate actions, resulting in unnecessary email spam as well as making the bug thread harder to read.
+
+The previous `addLandingComment`, `removeCheckinNeeded` and `resolveFix` steps have been combined into a new `updateBugAfterMerge`. The original `removeCheckinNeeded` has to be left as-is, since unlike the other functions, is used elsewhere on its own (eg in error cases).
+
+The comment addition is now performed via the bug endpoint, rather than the comment endpoint. The `comment` object is described here:
+http://bugzilla.readthedocs.io/en/latest/api/core/v1/bug.html#update-bug
+",edmorley,501702,2016-05-25T14:48:28Z,CONTRIBUTOR,True,14,24,2,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,e59ee76727146d68ca1cabf164540f903412ce9a,"Bug 1238884 - Perform post-merge bug updates as a single action
+
+Previously the comment addition, keyword removal and bug closure were
+performed as three separate actions, resulting in unnecessary email
+spam as well as making the bug thread harder to read.
+
+The previous `addLandingComment`, `removeCheckinNeeded` and
+`resolveFix` steps have been combined into a new `updateBugAfterMerge`.
+The original `removeCheckinNeeded` has to be left as-is, since unlike
+the other functions, is used elsewhere on its own (eg in error cases).
+
+The comment addition is now performed via the bug endpoint, rather than
+the comment endpoint. The `comment` object is described here:
+http://bugzilla.readthedocs.io/en/latest/api/core/v1/bug.html#update-bug"
+3,https://api.github.com/repos/mozilla/autolander/pulls/40,40,Bug 1237261 - Only process certain pull request events,"When autolander receives a pull request event from GitHub, it may do one of two things:
+1) Comment on the PR if a bug number was not found
+2) If a bug number was found, create an attachment on that bug if it does not already exist.
+
+As such, only events that either create a new PR, or update the PR's title or commit messages are relevant.
+
+In addition, this helps avoid race conditions in cases where multiple events are generated at the same time (for example when a PR has an assignee set at the time of creation, both ""opened"" and ""assigned"" events are sent).
+",edmorley,501702,2016-05-25T10:53:12Z,CONTRIBUTOR,True,20,1,2,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,5fbfcc0c9ae247c858df0405e14f0edc42636188,"Bug 1237261 - Only process certain pull request events
+
+When autolander receives a pull request event from GitHub, it may do one
+of two things:
+1) Comment on the PR if a bug number was not found
+2) If a bug number was found, create an attachment on that bug if it
+   does not already exist.
+
+As such, only events that either create a new PR, or update the PR's
+title or commit messages are relevant.
+
+In addition, this helps avoid race conditions in cases where multiple
+events are generated at the same time (for example when a PR has an
+assignee set at the time of creation, both ""opened"" and ""assigned""
+events are sent)."
+4,https://api.github.com/repos/mozilla/autolander/pulls/39,39,Bug 1248676 - Upgrade treeherder-node client to 0.7.0,"To pick up bug 1191403.
+",edmorley,501702,2016-02-16T18:41:03Z,CONTRIBUTOR,False,1,1,1,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,c97240f8f1a7644d0498f3599ac75d005a869ffd,"Bug 1248676 - Upgrade treeherder-node client to 0.7.0
+
+To pick up bug 1191403."
+5,https://api.github.com/repos/mozilla/autolander/pulls/38,38,Correct the Treeherder jobs URL,"The 'ui/' was removed in bug 1063411 and the redirects were removed some time after, so the old style URLs now 404.
+",edmorley,501702,2016-02-15T16:10:30Z,CONTRIBUTOR,True,1,1,1,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,581655ecbeddad734bec86887f6b548694ed935f,"Correct the Treeherder jobs URL
+
+The 'ui/' was removed in bug 1063411 and the redirects were removed
+some time after, so the old style URLs now 404."
+6,https://api.github.com/repos/mozilla/autolander/pulls/37,37,Bug 1233745 - Test cedar upgrade,"Just a test.
+",KevinGrandon,122602,2016-01-13T16:02:38Z,CONTRIBUTOR,False,0,0,0,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,476ea2e2b64e492de517d8f0b01db71c174ee717,Bug 1233745 - Test cedar upgrade
+7,https://api.github.com/repos/mozilla/autolander/pulls/36,36,Bug 1233745 - Update to newer nodejs to fix Heroku build,"Also adds a WIP Travis config that confirms `npm install` now succeeds. It doesn't yet run `npm test` since the tests require actual credentials, which we can either enter securely via Travis settings, or else the tests could be rewritten to be entirely mocked.
+
+Once this lands, someone with admin access to the autolander repo will need to enable the Travis hook via:
+https://travis-ci.org/profile
+
+Finally, I've also added some david-dm.org badges to make it easier to see which dependencies are out of date.
+
+See individual commit messages for more detail.
+",edmorley,501702,2016-01-13T12:34:10Z,CONTRIBUTOR,True,23,6,3,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,755596549cbdf87a10a35cf7e961f898848b900a,"Bug 1233745 - Clean up package.json metadata
+
+Fixes repo URL, description and non-existent main file."
+8,https://api.github.com/repos/mozilla/autolander/pulls/36,36,Bug 1233745 - Update to newer nodejs to fix Heroku build,"Also adds a WIP Travis config that confirms `npm install` now succeeds. It doesn't yet run `npm test` since the tests require actual credentials, which we can either enter securely via Travis settings, or else the tests could be rewritten to be entirely mocked.
+
+Once this lands, someone with admin access to the autolander repo will need to enable the Travis hook via:
+https://travis-ci.org/profile
+
+Finally, I've also added some david-dm.org badges to make it easier to see which dependencies are out of date.
+
+See individual commit messages for more detail.
+",edmorley,501702,2016-01-13T12:34:10Z,CONTRIBUTOR,True,23,6,3,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,6ff09a8635ce187ec069d6505833d67b5a7bb6b8,"Bug 1233745 - Update Heroku nodejs version from v0.11 to v4.2 LTS
+
+Since some of the node dependencies are now no longer compatible with
+nodejs v0.11.x."
+9,https://api.github.com/repos/mozilla/autolander/pulls/36,36,Bug 1233745 - Update to newer nodejs to fix Heroku build,"Also adds a WIP Travis config that confirms `npm install` now succeeds. It doesn't yet run `npm test` since the tests require actual credentials, which we can either enter securely via Travis settings, or else the tests could be rewritten to be entirely mocked.
+
+Once this lands, someone with admin access to the autolander repo will need to enable the Travis hook via:
+https://travis-ci.org/profile
+
+Finally, I've also added some david-dm.org badges to make it easier to see which dependencies are out of date.
+
+See individual commit messages for more detail.
+",edmorley,501702,2016-01-13T12:34:10Z,CONTRIBUTOR,True,23,6,3,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,d9ab4b90af539056ab225a64a55a11d6d2ba8113,"Bug 1233745 - Add a Travis config file & README badge
+
+So we can check that `npm install` now succeeds under the new version of
+nodejs, before we try it under the cedar-14 stack on Heroku.
+
+It doesn't yet run `npm test` since the tests require actual
+credentials, which we can either enter securely via Travis settings, or
+else the tests could be rewritten to be entirely mocked.
+
+Once this lands, someone with admin access to the autolander repo will
+need to enable the Travis hook via:
+https://travis-ci.org/profile"
+10,https://api.github.com/repos/mozilla/autolander/pulls/36,36,Bug 1233745 - Update to newer nodejs to fix Heroku build,"Also adds a WIP Travis config that confirms `npm install` now succeeds. It doesn't yet run `npm test` since the tests require actual credentials, which we can either enter securely via Travis settings, or else the tests could be rewritten to be entirely mocked.
+
+Once this lands, someone with admin access to the autolander repo will need to enable the Travis hook via:
+https://travis-ci.org/profile
+
+Finally, I've also added some david-dm.org badges to make it easier to see which dependencies are out of date.
+
+See individual commit messages for more detail.
+",edmorley,501702,2016-01-13T12:34:10Z,CONTRIBUTOR,True,23,6,3,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,eac325098ed23da3a263fe2ab87698d6424d77e7,Bug 1233745 - Add david-dm.org badge to track node dependencies
+11,https://api.github.com/repos/mozilla/autolander/pulls/35,35,Bug 1194767 - use slugid.nice() instead of slugid.v4(),"See bug for context, essentially this just avoids that slugids start with a '-' char - see e.g. https://treeherder.mozilla.org/#/jobs?repo=gaia&revision=47c5f2a1abc1c50e397ded8b4b25e5e343bebcf5 that caused @wilsonpage some problems earlier today.
+
+Ideally docker worker should still be able to handle such slugids, since we only recommend that ""nice"" slugids are used, and don't mandate it. I'll raise a separate bug about that, but in the meantime we might as well use safe ones, which further protects any downstream tools.
+",petemoore,190790,2015-10-23T13:46:48Z,MEMBER,True,19,19,14,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,6ec17143a6cb146b1415f135c1942b7308326b1e,Bug 1194767 - use slugid.nice() instead of slugid.v4() for generating slugids
+12,https://api.github.com/repos/mozilla/autolander/pulls/34,34,Bug 1146621 - Add branch filtering when rebuilding autoland integration branch,"https://bugzilla.mozilla.org/show_bug.cgi?id=1146621
+",KevinGrandon,122602,2015-03-23T21:24:40Z,CONTRIBUTOR,True,18,15,6,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,780c3a6054a8e2b8ea762462782c0e0acf293947,Bug 1146621 - Add branch filtering when rebuilding autoland integration branch
+13,https://api.github.com/repos/mozilla/autolander/pulls/34,34,Bug 1146621 - Add branch filtering when rebuilding autoland integration branch,"https://bugzilla.mozilla.org/show_bug.cgi?id=1146621
+",KevinGrandon,122602,2015-03-23T21:24:40Z,CONTRIBUTOR,True,18,15,6,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,cd69669a94df64c46a98ec95338acc4d4444a852,Bug 1146621 - Update route for local development testing
+14,https://api.github.com/repos/mozilla/autolander/pulls/33,33,Bug 1141658 - Use queueName for PulseListener,"https://bugzilla.mozilla.org/show_bug.cgi?id=1141658
+",KevinGrandon,122602,2015-03-10T17:47:32Z,CONTRIBUTOR,True,11,6,3,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,21bb84f377bac1fc4963689da669131f62d1b48a,Bug 1141658 - Use queueName for PulseListener
+15,https://api.github.com/repos/mozilla/autolander/pulls/32,32,Bug 1132066 - Add landing comment support for multiple commits in pull request,"https://bugzilla.mozilla.org/show_bug.cgi?id=1132066
+",KevinGrandon,122602,2015-02-12T17:09:54Z,CONTRIBUTOR,True,70,1,2,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,0ddcef58826786da546b69bdd25390b6deea1383,Bug 1132066 - Add landing comment support for multiple commits in pull request
+16,https://api.github.com/repos/mozilla/autolander/pulls/31,31,Bug 1131906 - Include repo name in bug attachment,"https://bugzilla.mozilla.org/show_bug.cgi?id=1131906
+",KevinGrandon,122602,2015-02-11T06:02:21Z,CONTRIBUTOR,True,2,2,1,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,586e28ffd5bdd7a1a644b0ec6dd8e99b5dda912e,Bug 1131906 - Include repo name in bug attachment
+17,https://api.github.com/repos/mozilla/autolander/pulls/30,30,Bug 1130433 - Create a specific comment when the tree is closed and autolander does not have access,"https://bugzilla.mozilla.org/show_bug.cgi?id=1130433
+",KevinGrandon,122602,2015-02-06T19:31:59Z,CONTRIBUTOR,True,93,1,4,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,75409d4c22dfa3ebcc4c74953bcc5d28723a3236,Bug 1130433 - Create a specific comment when the tree is closed and autolander does not have access
+18,https://api.github.com/repos/mozilla/autolander/pulls/29,29,Bug 1125684 - Disable required +autoland tag check,"https://bugzilla.mozilla.org/show_bug.cgi?id=1125684
+",KevinGrandon,122602,2015-01-30T22:31:47Z,CONTRIBUTOR,True,2,0,1,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,f26b8af520bb1e981cff084c42a06939b37ad599,Bug 1125684 - Disable required +autoland tag check
+19,https://api.github.com/repos/mozilla/autolander/pulls/28,28,Bug 1095028 - Allow autolanding for non-suggested reviewers if the patch is authored by a suggested reviewer +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1095028
+",KevinGrandon,122602,2015-01-27T17:32:52Z,CONTRIBUTOR,True,128,6,6,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,569db308486033dc13f1936115ff32791c80580a,Bug 1095028 - Allow autolanding for non-suggested reviewers if the patch is authored by a suggested reviewer
+20,https://api.github.com/repos/mozilla/autolander/pulls/28,28,Bug 1095028 - Allow autolanding for non-suggested reviewers if the patch is authored by a suggested reviewer +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1095028
+",KevinGrandon,122602,2015-01-27T17:32:52Z,CONTRIBUTOR,True,128,6,6,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,d17e923c5be8a5c991b0211322db722197cb807c,Bug 1095028 - Use forked bz.js
+21,https://api.github.com/repos/mozilla/autolander/pulls/28,28,Bug 1095028 - Allow autolanding for non-suggested reviewers if the patch is authored by a suggested reviewer +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1095028
+",KevinGrandon,122602,2015-01-27T17:32:52Z,CONTRIBUTOR,True,128,6,6,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,06f0055cd21acf4d82ea27ffbcdffe2520f671cb,Bug 1095028 - Remove old bugzilla comment
+22,https://api.github.com/repos/mozilla/autolander/pulls/27,27,use new treeherder route,"This is production TH + the new push logic which handles platform/machine types as well as new throttling model treeherder uses
+",lightsofapollo,322957,2015-01-20T18:20:23Z,CONTRIBUTOR,True,3,3,3,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,f8dacbadc770c88ff83b0acafc4ddfb2a733e0e4,use new treeherder route
+23,https://api.github.com/repos/mozilla/autolander/pulls/27,27,use new treeherder route,"This is production TH + the new push logic which handles platform/machine types as well as new throttling model treeherder uses
+",lightsofapollo,322957,2015-01-20T18:20:23Z,CONTRIBUTOR,True,3,3,3,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,0154fd2050046ff15e7447d5a0fabd5a528c2bfb,Use config for treeherder route.
+24,https://api.github.com/repos/mozilla/autolander/pulls/26,26,Bug 1113254 - Don't crash when treeherder times out +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1113254
+",KevinGrandon,122602,2014-12-18T19:17:28Z,CONTRIBUTOR,True,79,2,3,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,316618cf025d2f93f88f9f132b6f410afa501bc3,Bug 1113254 - Don't crash when treeherder times out
+25,https://api.github.com/repos/mozilla/autolander/pulls/26,26,Bug 1113254 - Don't crash when treeherder times out +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1113254
+",KevinGrandon,122602,2014-12-18T19:17:28Z,CONTRIBUTOR,True,79,2,3,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,3524e5d8644c66a41e4407b82d1a352d7bd2ed39,Bug 1113254 - Add test for TH timeout case
+26,https://api.github.com/repos/mozilla/autolander/pulls/25,25,Bug 1109162 - Do not validate commit names for non-landable patches +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1109162
+
+Tests passing:
+![screen shot 2014-12-09 at 6 25 29 pm](https://cloud.githubusercontent.com/assets/122602/5369995/cebb4fe0-7fd0-11e4-9c52-cb33be1c038b.png)
+",KevinGrandon,122602,2014-12-09T21:58:44Z,CONTRIBUTOR,True,68,6,2,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,0a6ef3e7f1a40f5821fe3c570f58cedb6f230d3a,Bug 1109162 - Do not validate commit names for non-landable patches
+27,https://api.github.com/repos/mozilla/autolander/pulls/24,24,Bug 1105440 - Store integration branch merge sha and fast-forward from that +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1105440
+",KevinGrandon,122602,2014-11-26T20:07:18Z,CONTRIBUTOR,True,68,53,19,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,9d5ef5b90f5b74788c2e3982e75f928592be728a,Bug 1105440 - Store integration branch merge sha and fast-forward from that
+28,https://api.github.com/repos/mozilla/autolander/pulls/23,23,Bug 1104299 - Authenticate via PulseGuardian +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1104299
+",KevinGrandon,122602,2014-11-25T01:20:28Z,CONTRIBUTOR,True,14,4,3,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,3d4d1b0a9fd8aca3b5b6b2908b5d4a770c58c2be,Bug 1104299 - Authenticate via PulseGuardian
+29,https://api.github.com/repos/mozilla/autolander/pulls/23,23,Bug 1104299 - Authenticate via PulseGuardian +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1104299
+",KevinGrandon,122602,2014-11-25T01:20:28Z,CONTRIBUTOR,True,14,4,3,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,645fbd1c7c9ba221d5a81171f2cde7873ef0f348,Bug 1104299 - Update routing key when publishing
+30,https://api.github.com/repos/mozilla/autolander/pulls/22,22,Bug 1103383 - Use remote store for integration tracking +autoland,"This is needed to be able to properly deploy and keep current integrations going. It is also needed in order to properly rebuild the integration branch after a deploy or restart.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1103383
+
+Tests passing with change:
+![screen shot 2014-11-24 at 6 26 51 am](https://cloud.githubusercontent.com/assets/122602/5166201/e9486e54-73a2-11e4-9929-5fb38073d240.png)
+",KevinGrandon,122602,2014-11-24T05:52:02Z,CONTRIBUTOR,True,392,124,10,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,ce94905755a4d24e6c768dbfe6bd17cb32382bd8,"Bug 1103383 - Use remote store for integration tracking.
+
+This is needed to be able to properly deploy and keep current integrations going. It is also needed in order to properly rebuild the integration branch after a deploy or restart."
+31,https://api.github.com/repos/mozilla/autolander/pulls/22,22,Bug 1103383 - Use remote store for integration tracking +autoland,"This is needed to be able to properly deploy and keep current integrations going. It is also needed in order to properly rebuild the integration branch after a deploy or restart.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1103383
+
+Tests passing with change:
+![screen shot 2014-11-24 at 6 26 51 am](https://cloud.githubusercontent.com/assets/122602/5166201/e9486e54-73a2-11e4-9929-5fb38073d240.png)
+",KevinGrandon,122602,2014-11-24T05:52:02Z,CONTRIBUTOR,True,392,124,10,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,6277bd586e1a873c178610655ca6d2c91d424fcc,Bug 1103383 - Make a note about us potentially being sad in the future
+32,https://api.github.com/repos/mozilla/autolander/pulls/21,21,Bug 1103381 - Update NOT_SUGGESTED_REVIEWER comment +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1103381
+",KevinGrandon,122602,2014-11-22T15:53:47Z,CONTRIBUTOR,True,3,1,1,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,b8b6fcccb8edfbcc35348960c7b7a1a7ab8d83ae,Bug 1103381 - Update NOT_SUGGESTED_REVIEWER comment
+33,https://api.github.com/repos/mozilla/autolander/pulls/20,20,Bug 1101414 - Build taskgraph from autolander.json if it exists +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1101414
+",KevinGrandon,122602,2014-11-19T09:34:15Z,CONTRIBUTOR,True,121,6,4,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,21af15dcd7967231a80b4cfd94e05b1e21a9a2ab,Bug 1101414 - Build taskgraph from autolander.json if it exists
+34,https://api.github.com/repos/mozilla/autolander/pulls/19,19,Bug 1097751 - Remove checkin-needed keyword immediately when integrating a pull request +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1097751
+",KevinGrandon,122602,2014-11-18T10:58:50Z,CONTRIBUTOR,True,41,25,8,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,0a3858bccfc0387c892d90fd0764df46ccabc4df,Bug 1097751 - Remove checkin-needed keyword immediately when integrating a pull request
+35,https://api.github.com/repos/mozilla/autolander/pulls/19,19,Bug 1097751 - Remove checkin-needed keyword immediately when integrating a pull request +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1097751
+",KevinGrandon,122602,2014-11-18T10:58:50Z,CONTRIBUTOR,True,41,25,8,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,37c1296c5ca70604e9e3b4e94a615acf96be4a12,"Bug 1097751 - Update re-trigger method to call github integration directly instead of going through bug update (this does not check the checkin-needed keyword)
+
+Also remove the concept of 'pullInfo' and just use params."
+36,https://api.github.com/repos/mozilla/autolander/pulls/19,19,Bug 1097751 - Remove checkin-needed keyword immediately when integrating a pull request +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1097751
+",KevinGrandon,122602,2014-11-18T10:58:50Z,CONTRIBUTOR,True,41,25,8,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,d7f3c840a511e5face62d8888951416f6f5a1c88,"Bug 1097751 - Update tests. Now that checkin-needed is removed earlier than normal, we also need to wait for the landing commit"
+37,https://api.github.com/repos/mozilla/autolander/pulls/19,19,Bug 1097751 - Remove checkin-needed keyword immediately when integrating a pull request +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1097751
+",KevinGrandon,122602,2014-11-18T10:58:50Z,CONTRIBUTOR,True,41,25,8,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,647fd95c79a24a9434a2c971c92ccb559a3049a9,Bug 1097751 - Fix bugId lookup
+38,https://api.github.com/repos/mozilla/autolander/pulls/18,18,Bug 1096945 - [Autolander] Prevent double processing of pull requests +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1096945
+",KevinGrandon,122602,2014-11-12T09:15:13Z,CONTRIBUTOR,True,120,4,6,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,e2b49b5402275bb02130e5fc91d63cd2383ab5d1,Bug 1096945 - [Autolander] Prevent double processing of pull requests
+39,https://api.github.com/repos/mozilla/autolander/pulls/17,17,Bug 1095632 - Use integration branch merge as revision_sha +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1095632
+",KevinGrandon,122602,2014-11-07T19:02:02Z,CONTRIBUTOR,True,9,6,1,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,3f126b6fd17e25915fd349de3639d10f0d08efb8,Bug 1095632 - Use integration branch merge as revision_sha
+40,https://api.github.com/repos/mozilla/autolander/pulls/16,16,Bug 1095250 - Build proper resultset for treeherder +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1095250
+",KevinGrandon,122602,2014-11-07T05:13:01Z,CONTRIBUTOR,True,14,7,2,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,3f32810e3afda1092979d551bb3083b69981b010,Bug 1095250 - Build proper resultset for treeherder
+41,https://api.github.com/repos/mozilla/autolander/pulls/15,15,Bug 1095250 - Use integration branch sha for treeherder revision_hash +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1095250
+",KevinGrandon,122602,2014-11-07T03:44:19Z,CONTRIBUTOR,False,12,6,3,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,dad3e10a41c3078f3aee3448a3293feea0b8ca37,Bug 1095250 - Use integration branch sha for treeherder revision_hash
+42,https://api.github.com/repos/mozilla/autolander/pulls/14,14,Bug 1095110 - Harden stability by making autolander not crash for simple routes +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1095110
+",KevinGrandon,122602,2014-11-06T21:09:23Z,CONTRIBUTOR,True,16,3,2,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,40db541990b5c72b5fbcbf4e2a9df0834be0e874,Bug 1095110 - Harden stability by making autolander not crash for simple routes
+43,https://api.github.com/repos/mozilla/autolander/pulls/13,13,Bug 999999999 - test bug +autoland,,KevinGrandon,122602,2014-11-06T21:01:11Z,CONTRIBUTOR,False,1,0,1,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,defbade2009e065899fb12c9d8fce952d7eb258a,Bug 999999999 - test bug
+44,https://api.github.com/repos/mozilla/autolander/pulls/12,12,Bug 1094933 - Whitelist supported products +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1094933
+",KevinGrandon,122602,2014-11-06T17:18:01Z,CONTRIBUTOR,True,24,2,5,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,403ef05927b8b1d0f4a6eb235cf371dc70567594,Bug 1094933 - Whitelist supported products
+45,https://api.github.com/repos/mozilla/autolander/pulls/11,11,Bug 1094064 - More descriptive names for merges +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1094064
+",KevinGrandon,122602,2014-11-05T07:45:31Z,CONTRIBUTOR,True,19,4,6,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,0ffd7a42a7b3b4edea8dbb6ae04e7ad3904090cf,Bug 1094064 - More descriptive names for merges
+46,https://api.github.com/repos/mozilla/autolander/pulls/10,10,Bug 1080280 - Validate commit messages +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1080280
+
+![screen shot 2014-11-04 at 9 39 13 pm](https://cloud.githubusercontent.com/assets/122602/4913275/22760f14-64ae-11e4-9793-d240a4752d5e.png)
+",KevinGrandon,122602,2014-11-05T04:39:09Z,CONTRIBUTOR,True,164,47,19,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,4a0d7f9767c20faaad3e603a0935c3b68f61299f,Bug 1080280 - Validate commit messages
+47,https://api.github.com/repos/mozilla/autolander/pulls/10,10,Bug 1080280 - Validate commit messages +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1080280
+
+![screen shot 2014-11-04 at 9 39 13 pm](https://cloud.githubusercontent.com/assets/122602/4913275/22760f14-64ae-11e4-9793-d240a4752d5e.png)
+",KevinGrandon,122602,2014-11-05T04:39:09Z,CONTRIBUTOR,True,164,47,19,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,9cc5741ad41f4f0467ff29695fa72a99cea65ff2,Bug 1080280 - Update tests with bug numbers for creating commits
+48,https://api.github.com/repos/mozilla/autolander/pulls/10,10,Bug 1080280 - Validate commit messages +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1080280
+
+![screen shot 2014-11-04 at 9 39 13 pm](https://cloud.githubusercontent.com/assets/122602/4913275/22760f14-64ae-11e4-9793-d240a4752d5e.png)
+",KevinGrandon,122602,2014-11-05T04:39:09Z,CONTRIBUTOR,True,164,47,19,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,6e15cb8828e8d10246b546213144a2a2e2f0002b,Bug 1080280 - Update readme for validation changes.
+49,https://api.github.com/repos/mozilla/autolander/pulls/9,9,Bug 1093759 - Use fast-forward when landing from integration branch +autoland,"This adds fast-forward support. Whenever a taskgraph passes we fast-forward the target branch to the passing commit. This adds support for a few things:
+- Adds logic for notifying all bugs which were coalesced into a successful landing.
+- Adds retry logic in the case we can't fast-forward. In this case we re-create the integration branch, and retry all pending jobs on top of the integration branch.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1093759
+",KevinGrandon,122602,2014-11-04T19:39:58Z,CONTRIBUTOR,True,355,50,11,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,b28cb4ea0fc7c257089fccbd6cae2d94edf5db71,Bug 1093759 - Use fast-forward when landing from integration branch
+50,https://api.github.com/repos/mozilla/autolander/pulls/8,8,Bug 1093337 - Come up with a better naming schema for attachments +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1093337
+",KevinGrandon,122602,2014-11-04T19:07:53Z,CONTRIBUTOR,True,4,1,1,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,994f1b095d2be29efef0e01e48af4c7886e54b76,Bug 1093337 - Come up with a better naming schema for attachments
+51,https://api.github.com/repos/mozilla/autolander/pulls/7,7,Bug 1093332 - Explode when we can't create a taskgraph +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1093332
+",KevinGrandon,122602,2014-11-04T18:46:34Z,CONTRIBUTOR,True,167,37,6,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,c22578e6660f7a94695c731ec043a51a05dbdd36,Bug 1093332 - Explode when we can't create a taskgraph
+52,https://api.github.com/repos/mozilla/autolander/pulls/6,6,Bug 1093365 - Use github status API +autoland,"https://bugzilla.mozilla.org/show_bug.cgi?id=1093365
+",KevinGrandon,122602,2014-11-04T01:31:46Z,CONTRIBUTOR,True,86,5,9,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,96d6fac7be8d8817f4606917d202d0606967fe01,Bug 1093365 - Use github status API
+53,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,77d8ff37b67062d4077a670a25a4b3be435e2bab,Bug 1087630 - Create method to get active pull requests for a bug
+54,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,be043ec1a48253c93c38ce38ae1d62d060ffae19,Bug 1087630 - Use newer github package
+55,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,fa6f46690aa2f31ca68035516364859a4e83cbcc,Bug 1087630 - Try creating an integration branch if needed
+56,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,6aaedbd48310b7f7eeb71b42a099067e2143f677,"Bug 1087630 - Do not automatically merge PRs, instead update the integration branch ref."
+57,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,6e76fb937e6d24f61d0dc19e1113d3443ac10295,Bug 1087630 - Submit a taskgraph
+58,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,6169a130a7753d55367c29a62ddbc967aef33209,Bug 1087630 - Listen to taskgraph events
+59,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,52bbee06f25729161e6754865f80a2e105c2d07e,Bug 1087630 - Update base branch ref on successful run
+60,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,2df9c07dd26b9e20fda609766c84bb5a20182f00,Bug 1087630 - Comment on bug with landed commit
+61,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,08115745b51d5ad3c261311183fc1224fe6e00a1,Bug 1087630 - Add testing skeleton
+62,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,6de420b6b811db22b3a86457beb7fec9567923d1,Bug 1087630 - Add Pull Request test.
+63,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,112c1057d2f6ca56a6408e92bdac82c6a9a97226,Bug 1087630 - Add test for invalid pull request title.
+64,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,82c427427ace95c9bf057fdc2e36d9c6ed8d4906,Bug 1087630 - Add taskgraph success integration test.
+65,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,8ef410af578809fec1ecf3fb270e5b2fbe1be1d6,Bug 1087630 - Remove checkin-needed from bug after taskgraph finishes.
+66,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,91fa2072b6c602b214f45da768306fc75b1c5d87,Bug 1087630 - Notify the user when they have a pull request which can not be applied to the integration branch.
+67,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,2a9ad00b4fccbe2638a862b209e44b3f818e60f1,Bug 1087630 - Add a test for merging in repos without taskgraphs.
+68,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,e00f6342910db06fb1c103e97e2fa53f4a7d4520,Bug 1087630 - Add a test for a taskgraph failure
+69,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,f6da4814a9f1d7c66f7700eebda3eb05f1698bc0,Bug 1087630 - Try using gitdata tree api for integrating. Fail.
+70,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,f76ad84bb7e9a28e35a7326bf7628b2882f3cab9,Bug 1087630 - Replay merges after a taskgraph failure
+71,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,e3a1bebe1ca4ad736080377c45fb7c074b88076c, Bug 1087630 - Add taskgraph failed comment to pull request as well as bugzilla
+72,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,cc7333d2365b1bc94de15dfae7c7c4dad29560ab,Bug 1087630 - Add a test for multiple pull requests
+73,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,32a26c6e8d32c0a97c53faf28196e32c38147a13,Bug 1087630 - Use gaia workerType instead of v2
+74,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,dd6d1ae212a4dc69323b743fe0d37afda6028a67,Bug 1087630 - Address github comments.
+75,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,d656b28450262ecd759630bdfe48a766ce3963a0,Bug 1091231 - Add Procfile for heroku
+76,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,4fa4c31d690b769103478bbb7d7a3d9e392f9a76,Bug 1091231 - Split app into web and worker for deployment
+77,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,fc94c801b9bb337c77d52adcecda0c35eaca5bf0,Bug 1091218 - Spin up server and worker instances in integration test
+78,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,0155011cb6e1e4daf8934c4a4d10f6797d19b7fd,"Bug 1087630 - Unsubscribe from bug if there are no remaining pull requests, add test."
+79,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,c7e7e2fe42a636ce9a719e0a85f0804aa1d44e98,Bug 1087630 - Add logic for subscribing/unsubscribing to closed/reopened pull reqs.
+80,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,0783766ff55c3f31eca008fd5c86305b1dcd3b4d,Bug 1087630 - Add a 5s sleep before github calls in APIs to avoid GH slowness
+81,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,c8321b9de5456219e2aa0169ad208b084dbcf60c,Bug 1091233 - [Autolander] Use suggested reviewers on bugzilla
+82,https://api.github.com/repos/mozilla/autolander/pulls/5,5,"Bug 1087630 - [Autolander] use integration branch, add tests","This is not perfect and we can make it better, but some feedback would be good if you guys have any. Here is a few things at a high-level of what's done here:
+- Taskgraphs - Schedules tasksgraphs if the project contains a taskgraph.json. Will wait until a ""finished"" state to land. If there is no taskgraph.json, lands when the bug has checkin-needed and a review. 
+- Integration Branch - Commits are applied to the integration branch. In the case of a taskgraph failure the integration branch is re-built and commits are re-played on top of it.
+- Integration Tests - End-to-end integration tests have been implemented. Each test currently destroys and re-creates a test repo on github. Run tests using `npm test`.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1087630
+",KevinGrandon,122602,2014-10-28T21:26:52Z,CONTRIBUTOR,True,2504,188,64,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,c6762375b5bc5ac8ee4793e31d883b74bebe635c,Bug 1092598 - [Autolander] Require a +autoland tag for processing
+83,https://api.github.com/repos/mozilla/autolander/pulls/4,4,"Bug 1079578 - [Autolander] Persist ""subscribed"" bugs in azure table storage",".https://bugzilla.mozilla.org/show_bug.cgi?id=1079578
+",KevinGrandon,122602,2014-10-07T23:53:46Z,CONTRIBUTOR,True,124,27,9,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,51aac7ca2589f9faa786e6324be81c51c2b0e7cf,"Bug 1079578 - [Autolander] Persist ""subscribed"" bugs in azure table storage"
+84,https://api.github.com/repos/mozilla/autolander/pulls/4,4,"Bug 1079578 - [Autolander] Persist ""subscribed"" bugs in azure table storage",".https://bugzilla.mozilla.org/show_bug.cgi?id=1079578
+",KevinGrandon,122602,2014-10-07T23:53:46Z,CONTRIBUTOR,True,124,27,9,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,efcf5ae8251251f51db5820a76b4be352a8579c1,Bug 1079578 - Remove entity when unsubscribing from bugs after a bug is fixed.
+85,https://api.github.com/repos/mozilla/autolander/pulls/4,4,"Bug 1079578 - [Autolander] Persist ""subscribed"" bugs in azure table storage",".https://bugzilla.mozilla.org/show_bug.cgi?id=1079578
+",KevinGrandon,122602,2014-10-07T23:53:46Z,CONTRIBUTOR,True,124,27,9,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,f6c58d98bdef3e8d923a8d056059889d75d8afa6,Bug 1079578 - Move all azure calls into their own file. This should let us change datastores easily if desired.
+86,https://api.github.com/repos/mozilla/autolander/pulls/4,4,"Bug 1079578 - [Autolander] Persist ""subscribed"" bugs in azure table storage",".https://bugzilla.mozilla.org/show_bug.cgi?id=1079578
+",KevinGrandon,122602,2014-10-07T23:53:46Z,CONTRIBUTOR,True,124,27,9,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,9b2476f1c5626d419b733b5bb264eb54975a4a4b,"Bug 1079578 - Query azure for every bug update instead of keeping an in-memory store. This is slightly more expensive, but should scale better."
+87,https://api.github.com/repos/mozilla/autolander/pulls/4,4,"Bug 1079578 - [Autolander] Persist ""subscribed"" bugs in azure table storage",".https://bugzilla.mozilla.org/show_bug.cgi?id=1079578
+",KevinGrandon,122602,2014-10-07T23:53:46Z,CONTRIBUTOR,True,124,27,9,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,2352be8b54075bfcc111e512d996b1d29f98028e,Bug 1079578 - Use a hash of the bugId for partition key.
+88,https://api.github.com/repos/mozilla/autolander/pulls/4,4,"Bug 1079578 - [Autolander] Persist ""subscribed"" bugs in azure table storage",".https://bugzilla.mozilla.org/show_bug.cgi?id=1079578
+",KevinGrandon,122602,2014-10-07T23:53:46Z,CONTRIBUTOR,True,124,27,9,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,ebb600d95a94615ee1882f60daafa7bf0b37d51c,Bug 1079578 - Fix whitespace
+89,https://api.github.com/repos/mozilla/autolander/pulls/4,4,"Bug 1079578 - [Autolander] Persist ""subscribed"" bugs in azure table storage",".https://bugzilla.mozilla.org/show_bug.cgi?id=1079578
+",KevinGrandon,122602,2014-10-07T23:53:46Z,CONTRIBUTOR,True,124,27,9,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,ae92ab0e1890fa9d4701af2d90e490ca48b3aa18,Bug 1079578 - Turn BugStore into a class
+90,https://api.github.com/repos/mozilla/autolander/pulls/3,3,Bug 1073628 - Comment with full URL of merged pull request,"https://bugzilla.mozilla.org/show_bug.cgi?id=1073628
+",KevinGrandon,122602,2014-09-26T18:56:51Z,CONTRIBUTOR,True,2,1,1,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,f54637fa237c5eddb287b89b7f7c723716333e4e,Bug 1073628 - Comment with full URL of merged pull request
+91,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,9ae8d5fe2360c6ccc835a21a6819f57ad1910f65,Attach things to bugzilla.
+92,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,bf081f6f5fac48489c2dd55807f049786385f33d,Subscribe to bugzilla via bugsfeed after pull request.
+93,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,9292c4e49c963395c020697c2d75f25b0680229d,Prevent multiple attachments.
+94,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,4feb95b689c951c094878ac9f282abb6bf5dbb66,"Add amqp, rename bugsfeed."
+95,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,0002af0712e50c92877682b24f30aa5860accfe2,Start using amqp
+96,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,13b8e32ecf5850a3a17be228ff49b009c2331991,Use amqp /w generators.
+97,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,ecce45810f0201292655604ac0ab13faf52fc4e9,"Use queueName from config, do not consider obsolete attachments."
+98,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,9ab7daab66f11d66686a64a97df108e1edbdcf80,Simple queue sending
+99,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,171b4fcf30bf72bd4642ac35d504f5fcce51f3d7,Play with queues.
+100,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,cc6de57a7bc490fe2183a8a9e5d4a5a20df34345,Rename bugzfeed -> pulse.
+101,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,d3b9a304217a2affbbbf2169b11232d260aa5d34,Move api intiialization into libraries.
+102,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,c3f65787bee0fe481495e78a269af5e8df4d90e8,Add a pulse_update route.
+103,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,eee2d26a5434ae6c6084de3b371745c977f4632d,Merge pull request on R+.
+104,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,4d28935630dd82326138661a22aaacdaf1975e1d,Update readme.
+105,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,02dac28a57d0db5c4aa1053193fd548c5fc20af0,Comment on bug after a merge.
+106,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,c540b221893c688702b3018d498d84deb4828f0e,Remove checkin-needed from landed bugs.
+107,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,8e7ee435840f8a5016fa3f59658734f8f0a41af4,Prefer amqp promise api.
+108,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,7a21f26b8a8a0a26b272423725bcdeab3c9b6a20,Use debug module for logging.
+109,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,535fe1c8d11c74b1369fd76620785c4fe0898fa7,Do not comment if PR is merged.
+110,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,a4de15ed3fa4b5d4b1956d0d220ff2229ad21874,Update readme with config key changes
+111,https://api.github.com/repos/mozilla/autolander/pulls/2,2,Bug 1067647 - Attach pull requests to bugs,"- Attaches a pull request to bugzilla after a notification from the github webhook.
+- Listens to the pulse amqp simple bugzilla exchange.
+- On bug updates, if we are ""subscribed"" to a bug in memory (from a pull request detection), listens for an R+ flag on a github attachment.
+- Merges a pull request if it receives R+ and has checkin-needed, and comments in the bug with the SHA.
+- Removes checkin-needed from the bug and comments with the commit.
+
+Example of an auto-landed bug: https://bugzilla.mozilla.org/show_bug.cgi?id=1068317
+",KevinGrandon,122602,2014-09-12T23:41:31Z,CONTRIBUTOR,True,321,26,12,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,754561e8960c721956b413458001da69612c38ab,Update readme.
+112,https://api.github.com/repos/mozilla/autolander/pulls/1,1,Add pull request title validation,"@lightsofapollo @gregarndt - This is a fairly simple pull request to kick start this effort, wondering if you have time to give this a review? Thanks!
+",KevinGrandon,122602,2014-09-12T22:01:13Z,CONTRIBUTOR,True,76,12,9,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,1449e5755b45d83af707a1fee67ee5b9f42e1bd6,Basic bug number validation.
+113,https://api.github.com/repos/mozilla/autolander/pulls/1,1,Add pull request title validation,"@lightsofapollo @gregarndt - This is a fairly simple pull request to kick start this effort, wondering if you have time to give this a review? Thanks!
+",KevinGrandon,122602,2014-09-12T22:01:13Z,CONTRIBUTOR,True,76,12,9,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,e3bf6cfe01a5c3ae05e1493fab8e7c574326b72c,Comment on pull requests if bug number validation fails.
+114,https://api.github.com/repos/mozilla/autolander/pulls/1,1,Add pull request title validation,"@lightsofapollo @gregarndt - This is a fairly simple pull request to kick start this effort, wondering if you have time to give this a review? Thanks!
+",KevinGrandon,122602,2014-09-12T22:01:13Z,CONTRIBUTOR,True,76,12,9,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,ef57eb25ef3ecff5bfa9be4a0bb315ea5bdc119e,Add template config file.
+115,https://api.github.com/repos/mozilla/autolander/pulls/1,1,Add pull request title validation,"@lightsofapollo @gregarndt - This is a fairly simple pull request to kick start this effort, wondering if you have time to give this a review? Thanks!
+",KevinGrandon,122602,2014-09-12T22:01:13Z,CONTRIBUTOR,True,76,12,9,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,53306c4015ba865cf62bf27391e72f5ffff9b64a,Get user/repo from pull request data.
+116,https://api.github.com/repos/mozilla/autolander/pulls/1,1,Add pull request title validation,"@lightsofapollo @gregarndt - This is a fairly simple pull request to kick start this effort, wondering if you have time to give this a review? Thanks!
+",KevinGrandon,122602,2014-09-12T22:01:13Z,CONTRIBUTOR,True,76,12,9,*DEPRECATED* Tools for integrating bugzilla and github workflows.,JavaScript,d20270ab57c45c6151469c94ec7149a1d349488f,Use host from config.

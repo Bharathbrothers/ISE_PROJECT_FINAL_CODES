@@ -1,0 +1,72 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/build-vcs2aws/pulls/26,26,Add Mozilla Code of Conduct,"Fixes #25
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-29T16:57:08Z,NONE,False,15,0,1,Playbooks to deploy and manage VCS-Sync in AWS,Python,0343e5458ad0a9f35b36a5dd1e3b739c9b504bbc,"Add Mozilla Code of Conduct file
+
+Fixes #25.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/build-vcs2aws/pulls/21,21,Cleanup for pip version check,"See https://bugzil.la/1152749 for details. Only ""all version"" approach
+is to add the pip.conf file
+
+Also some package cleanup to reflect email needs slipped in.
+",hwine,132412,2015-06-10T03:38:13Z,COLLABORATOR,True,10,9,2,Playbooks to deploy and manage VCS-Sync in AWS,Python,d0102bacee3eb7a33115d533f8c3a79cc62c919c,"Cleanup for pip version check
+
+See https://bugzil.la/1152749 for details. Only ""all version"" approach
+is to add the pip.conf file"
+2,https://api.github.com/repos/mozilla/build-vcs2aws/pulls/20,20,No generic names in files/,"Too many different levels of accounts to leave config files generically
+named. I just renamed, since legacy should be disappearing, rather than
+add to the directory depth.
+
+Passes --syntax-check & --check
+",hwine,132412,2015-06-08T21:47:34Z,COLLABORATOR,True,2,2,3,Playbooks to deploy and manage VCS-Sync in AWS,Python,e88d28ed0a76d97250dc1d0d1299393b36f36529,"No generic names in files/
+
+Too many different levels of accounts to leave config files generically
+named. I just renamed, since legacy should be disappearing, rather than
+add to the directory depth.
+
+Passes --syntax-check & --check"
+3,https://api.github.com/repos/mozilla/build-vcs2aws/pulls/19,19,Reorganized key handling,"Renamed several files to better convey contents:
+    files/user_keys -> files/host_user_keys
+    files/data_keys -> files/vcs_sync_user_keys
+    install_keys.playbook.yml -> tasks/install_keys.yml
+
+Created a new playbook, `update_secrets.yml` which includes
+`tasks/install_keys.yml` so it can be run separately.
+
+Added git.mozilla.org to the new file files/vcs_sync_known_hosts, which
+is what started this reorg. :)
+",hwine,132412,2015-06-06T22:43:42Z,COLLABORATOR,True,52,23,7,Playbooks to deploy and manage VCS-Sync in AWS,Python,873114537a8068bc1a37162fd0d0334369466340,"Reorganized key handling
+
+Renamed several files to better convey contents:
+    files/user_keys -> files/host_user_keys
+    files/data_keys -> files/vcs_sync_user_keys
+    install_keys.playbook.yml -> tasks/install_keys.yml
+
+Created a new playbook, `update_secrets.yml` which includes
+`tasks/install_keys.yml` so it can be run separately.
+
+Added git.mozilla.org to the new file files/vcs_sync_known_hosts, which
+is what started this reorg. :)"
+4,https://api.github.com/repos/mozilla/build-vcs2aws/pulls/17,17,Fix check modern,"Address 2 issues:
+- error output suppressed too soon
+- osx 10.10 ships with bash 3
+",hwine,132412,2015-06-05T19:41:09Z,COLLABORATOR,True,11,2,1,Playbooks to deploy and manage VCS-Sync in AWS,Python,0e0e77f08e4d449dbbce9b7a899a6bc6cd5dee32,"Ensure user/script errors displayed.
+
+Closing stderr is needed for the remote communication part of the
+script. Closing it earlier masks bash errors, and script generated
+errors."
+5,https://api.github.com/repos/mozilla/build-vcs2aws/pulls/17,17,Fix check modern,"Address 2 issues:
+- error output suppressed too soon
+- osx 10.10 ships with bash 3
+",hwine,132412,2015-06-05T19:41:09Z,COLLABORATOR,True,11,2,1,Playbooks to deploy and manage VCS-Sync in AWS,Python,af82841402252cb86d90db6636a9313ef77babcd,"Deal with OSX 10.10 bash version
+
+Script needs 4, osx ships with 3. Allow user to supply upgraded bash."

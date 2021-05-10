@@ -1,0 +1,966 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/blok/pulls/228,228,Replace informal spelling of through,,Jason-Cooke,5185660,2019-10-16T20:59:09Z,NONE,False,1,1,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,f72abefd3f445520ed92bb2eeee775dc578b8d83,Replace informal spelling of through
+1,https://api.github.com/repos/mozilla/blok/pulls/227,227,Add Mozilla Code of Conduct,"Fixes #226
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-29T21:58:58Z,NONE,False,15,0,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,64f7d5e235708d321214249d418c54fbf9100264,"Add Mozilla Code of Conduct file
+
+Fixes #226.
+
+_(Message COC002)_"
+2,https://api.github.com/repos/mozilla/blok/pulls/217,217,fix #180: add extension comparison & link to README,,groovecoder,71928,2016-11-14T16:03:52Z,MEMBER,True,14,2,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,cb12c7a3a9c7ec43d2c913410601d97aef8cc4bb,fix #180: add extension comparison & link to README
+3,https://api.github.com/repos/mozilla/blok/pulls/208,208,fix #175: new pageAction icon for dark & light UI,Lighter purple color looks great in both dark- and light-colored UIs. Thanks again to @fangshih for the assets!,groovecoder,71928,2016-11-02T18:21:04Z,MEMBER,True,0,0,4,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,83a62b31e6fec8f338bc24640c3dc637e8e8412d,fix #175: new pageAction icon for dark & light UI
+4,https://api.github.com/repos/mozilla/blok/pulls/207,207,change textarea label,Fixes #205 ,johngruen,3323249,2016-11-02T09:58:59Z,CONTRIBUTOR,True,1,1,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,9f4429b8200171b9d1ec9b7d18340fbf0abfa86f,change textarea label
+5,https://api.github.com/repos/mozilla/blok/pulls/206,206,fix some minor style and copy issues,"oh, this already got done :(",johngruen,3323249,2016-11-02T09:54:21Z,CONTRIBUTOR,False,5,5,7,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,19926559f390f436a8964274b28206f572b72b80,fix some minor style and copy issues
+6,https://api.github.com/repos/mozilla/blok/pulls/203,203,fix #166: use hidpi images for hidpi screens,@pdehaan or @rbillings - who wants to spot-check this on a HiDPI screen now?,groovecoder,71928,2016-11-01T20:11:41Z,MEMBER,True,14,4,4,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,7bb81f3200eccd4107e3c240d547a75178c6d629,fix #166: use hidpi images for hidpi screens
+7,https://api.github.com/repos/mozilla/blok/pulls/200,200,fix #193: update|change|restore toggle text,"Screenshots with the changed text:
+
+<img width=""363"" alt=""txp-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/19445767/4c6680f4-945b-11e6-84d3-10babc1e08dd.png"">
+
+<img width=""363"" alt=""txp-enabled"" src=""https://cloud.githubusercontent.com/assets/71928/19445773/4f721416-945b-11e6-8812-9917ac69fc0f.png"">
+",groovecoder,71928,2016-10-17T16:18:03Z,MEMBER,True,2,2,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,11e80fd183f75b9664ceebadbaf70f0d0859ea32,fix #193: update|change|restore toggle text
+8,https://api.github.com/repos/mozilla/blok/pulls/192,192,fix #147: use table-cell to fix linux display,"Using `display: table-cell` fixes the `radio-form` display for Linux, and preserves the display for others.
+",groovecoder,71928,2016-10-11T17:04:22Z,MEMBER,True,1,0,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,b9f5dd9eecbec577da502f9c6154af345d7e6df7,fix #147: use table-cell to fix linux display
+9,https://api.github.com/repos/mozilla/blok/pulls/191,191,fix #150: remove ALL matching allowedHosts items,"I couldn't actually reproduce the original state of #150. I.e., I think it was caused by a previous bug in the add-on that added multiple items of the same host into the `allowedHosts` array. That bug has since been closed, but those of us (like @pdehaan) who had the add-on running before it was closed likely got into a state where we had multiple items of the same host in our `allowedHosts` array.
+
+To fix, I wrapped the `allowedHosts.splice` call in a `do...while` loop to clear out **ALL** matching items from the `allowedHosts` array.
+
+To test:
+1. Run the add-on and disable protection for a few different sites.
+2. Go back to at least one of the sites where you disabled protection, and re-enable it.
+
+Verify:
+
+Refresh each of the sites and verify that their protection state is what you expect. I.e., the disabled sites are still disabled, and the re-enabled site(s) is enabled.
+",groovecoder,71928,2016-10-11T15:45:41Z,MEMBER,False,9,1,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,06f76916a0368f795ab4a91738bd495f6a396134,fix #150: remove ALL matching allowedHosts items
+10,https://api.github.com/repos/mozilla/blok/pulls/190,190,fix #182: explicitly set browser_style false,,groovecoder,71928,2016-10-11T14:43:36Z,MEMBER,True,2,1,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,efd98ce3c4205f525030af803a375717a2fd98f1,fix #182: explicitly set browser_style false
+11,https://api.github.com/repos/mozilla/blok/pulls/183,183,Get rid of back button,"Fixes #159. 
+
+This removes all instances of the back button. 
+",hoosteeno,94519,2016-10-05T22:12:43Z,CONTRIBUTOR,True,6,33,3,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,1c206eb864434701ea02e65ef5db9e18574816e3,Get rid of back button
+12,https://api.github.com/repos/mozilla/blok/pulls/183,183,Get rid of back button,"Fixes #159. 
+
+This removes all instances of the back button. 
+",hoosteeno,94519,2016-10-05T22:12:43Z,CONTRIBUTOR,True,6,33,3,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,e4c6c74f1928a93cccd177fa3eb58520561c70c2,Get rid of back-arrow-specific JS
+13,https://api.github.com/repos/mozilla/blok/pulls/173,173,Add nsp security checker,,pdehaan,557895,2016-09-29T23:20:17Z,COLLABORATOR,True,34,30,2,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,98d4fbe0a8b3480e66cce0f610b416ad38e31615,Add nsp security checker
+14,https://api.github.com/repos/mozilla/blok/pulls/167,167,Adds Test Pilot badge to README.,"We've been sticking little Test Pilot badges in READMEs of the various experiment repositories. Available for you too, if you'd like!
+",chuckharmston,23885,2016-09-27T12:14:45Z,CONTRIBUTOR,True,1,0,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,3c66fe225b80c66b1ff0f0f51288bbe875d3bdd1,"Adds Test Pilot badge to README.
+
+We've been sticking little Test Pilot badges in READMEs of the various experiment repositories. Available for you too, if you'd like!"
+15,https://api.github.com/repos/mozilla/blok/pulls/164,164,Fix 'npm run firefox' and 'npm run build-dev' so they use src dir,"Fixes #157
+
+Rebased https://github.com/mozilla/blok/pull/158 
+",groovecoder,71928,2016-09-23T17:47:40Z,MEMBER,True,2,2,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,919312ce39836849f9701fe497a9a73a8fcefc61,Fix 'npm run firefox' and 'npm run build-dev' so they use src dir
+16,https://api.github.com/repos/mozilla/blok/pulls/163,163,add update_url to manifest,"1.0.1 with updateurl
+",groovecoder,71928,2016-09-22T19:18:56Z,MEMBER,True,4,3,3,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,dfccc99f9a9ddc040503f5574797f02c67f19521,add update_url to manifest
+17,https://api.github.com/repos/mozilla/blok/pulls/163,163,add update_url to manifest,"1.0.1 with updateurl
+",groovecoder,71928,2016-09-22T19:18:56Z,MEMBER,True,4,3,3,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,6f40249e474ddad7eb410e28226d44da968c2cc7,1.0.1 with updateurl
+18,https://api.github.com/repos/mozilla/blok/pulls/162,162,add update_url to manifest,,clouserw,80098,2016-09-22T19:11:41Z,MEMBER,False,3,2,2,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,dfccc99f9a9ddc040503f5574797f02c67f19521,add update_url to manifest
+19,https://api.github.com/repos/mozilla/blok/pulls/161,161,Add an update URL to the manifest,,wresuolc,16946141,2016-09-22T18:57:51Z,NONE,False,2,1,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,1500304c144a37c7b1697b3894dd6365b97a7162,Add an update URL to the manifest
+20,https://api.github.com/repos/mozilla/blok/pulls/160,160,update xpi icon,"Just a  little housekeeping to make this matchy w/other test pilot stuff
+",johngruen,3323249,2016-09-22T15:27:17Z,CONTRIBUTOR,True,3,2,5,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,3502239e729616a651650266c03acf2a8ae988a1,update xpi icon
+21,https://api.github.com/repos/mozilla/blok/pulls/160,160,update xpi icon,"Just a  little housekeeping to make this matchy w/other test pilot stuff
+",johngruen,3323249,2016-09-22T15:27:17Z,CONTRIBUTOR,True,3,2,5,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,3bb55cbe304fda6511cd92edf861a43ab17b3890,blok-1.0.xpi
+22,https://api.github.com/repos/mozilla/blok/pulls/158,158,Fix 'npm run firefox' and 'npm run build-dev' so they use src dir,"Fixes #157 
+",pdehaan,557895,2016-09-20T22:51:52Z,COLLABORATOR,False,2,2,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,968a9143ab975a313e6c9105c022b39fa899161d,Fix 'npm run firefox' and 'npm run build-dev' so they use src dir
+23,https://api.github.com/repos/mozilla/blok/pulls/156,156,fix #155: allow main_frame requests for links,,groovecoder,71928,2016-09-20T19:35:31Z,MEMBER,True,6,1,3,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,eb00dfbbd61073f5431a4b444c81a5076fd5ba14,fix #155: allow main_frame requests for links
+24,https://api.github.com/repos/mozilla/blok/pulls/154,154,Back button's arrow char vertically centered,"Fixes #112.
+",hoosteeno,94519,2016-09-20T02:41:42Z,CONTRIBUTOR,True,11,8,2,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,1d4c9e3dd4c3b028c7e2726f7c26ffd55677e3eb,Back button's arrow char vertically centered
+25,https://api.github.com/repos/mozilla/blok/pulls/153,153,  Document dev environment in README,,hoosteeno,94519,2016-09-16T20:35:32Z,CONTRIBUTOR,True,26,8,2,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,10e4b0b2ca45fb511a6f69e16b95fa3aca407957,Document dev environment in README.
+26,https://api.github.com/repos/mozilla/blok/pulls/152,152,fix #142: updated README and screenshots,,groovecoder,71928,2016-09-15T16:05:51Z,MEMBER,True,6,1,4,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,5e323978258d555749e04d8fd8af9c5eb4a2b8d4,fix #142: updated README and screenshots
+27,https://api.github.com/repos/mozilla/blok/pulls/148,148,fix #147: breakage-notes-panel for single height,"This fixes #147 by moving the ""breakage notes"" text area into a new 3rd panel that is shown after the user submits the first breakage feedback.
+
+This also means there are now 2 separate `event: ""submit""` telemetry pings sent for feedback. E.g.,
+
+```
+{""originDomain"":""github.com"",""trackerDomains"":[""www.google-analytics.com""],""event"":""submit"",""breakage"":""images"",""notes"":""""}
+```
+
+and
+
+```
+{""originDomain"":""github.com"",""trackerDomains"":[""www.google-analytics.com""],""event"":""submit"",""breakage"":""images"",""notes"":""All the avatars are missing.""}
+```
+
+So if this solution looks good for Fx 49, we will need to update `docs/metrics.md` and get fresh approvals there. (@clouserw)
+",groovecoder,71928,2016-09-13T18:48:33Z,MEMBER,True,100,33,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,52d4c5350f6744100408692ccd1e1cf03bbf4317,fix #147: breakage-notes-panel for single height
+28,https://api.github.com/repos/mozilla/blok/pulls/148,148,fix #147: breakage-notes-panel for single height,"This fixes #147 by moving the ""breakage notes"" text area into a new 3rd panel that is shown after the user submits the first breakage feedback.
+
+This also means there are now 2 separate `event: ""submit""` telemetry pings sent for feedback. E.g.,
+
+```
+{""originDomain"":""github.com"",""trackerDomains"":[""www.google-analytics.com""],""event"":""submit"",""breakage"":""images"",""notes"":""""}
+```
+
+and
+
+```
+{""originDomain"":""github.com"",""trackerDomains"":[""www.google-analytics.com""],""event"":""submit"",""breakage"":""images"",""notes"":""All the avatars are missing.""}
+```
+
+So if this solution looks good for Fx 49, we will need to update `docs/metrics.md` and get fresh approvals there. (@clouserw)
+",groovecoder,71928,2016-09-13T18:48:33Z,MEMBER,True,100,33,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,17a4c94f41baf3faad6a16c04ba8d8aa964b6ae1,fix #147: add 1.0rc7 .xpi
+29,https://api.github.com/repos/mozilla/blok/pulls/148,148,fix #147: breakage-notes-panel for single height,"This fixes #147 by moving the ""breakage notes"" text area into a new 3rd panel that is shown after the user submits the first breakage feedback.
+
+This also means there are now 2 separate `event: ""submit""` telemetry pings sent for feedback. E.g.,
+
+```
+{""originDomain"":""github.com"",""trackerDomains"":[""www.google-analytics.com""],""event"":""submit"",""breakage"":""images"",""notes"":""""}
+```
+
+and
+
+```
+{""originDomain"":""github.com"",""trackerDomains"":[""www.google-analytics.com""],""event"":""submit"",""breakage"":""images"",""notes"":""All the avatars are missing.""}
+```
+
+So if this solution looks good for Fx 49, we will need to update `docs/metrics.md` and get fresh approvals there. (@clouserw)
+",groovecoder,71928,2016-09-13T18:48:33Z,MEMBER,True,100,33,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,4ed057cd9f884b2e88b1e17da83b11c6400042ec,for #147: update metrics docs to match 3-panel UI
+30,https://api.github.com/repos/mozilla/blok/pulls/148,148,fix #147: breakage-notes-panel for single height,"This fixes #147 by moving the ""breakage notes"" text area into a new 3rd panel that is shown after the user submits the first breakage feedback.
+
+This also means there are now 2 separate `event: ""submit""` telemetry pings sent for feedback. E.g.,
+
+```
+{""originDomain"":""github.com"",""trackerDomains"":[""www.google-analytics.com""],""event"":""submit"",""breakage"":""images"",""notes"":""""}
+```
+
+and
+
+```
+{""originDomain"":""github.com"",""trackerDomains"":[""www.google-analytics.com""],""event"":""submit"",""breakage"":""images"",""notes"":""All the avatars are missing.""}
+```
+
+So if this solution looks good for Fx 49, we will need to update `docs/metrics.md` and get fresh approvals there. (@clouserw)
+",groovecoder,71928,2016-09-13T18:48:33Z,MEMBER,True,100,33,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,44f47c4b4fc6633657e7bc0755e8c640b4c51841,fix #149: only log objects that exist; duh.
+31,https://api.github.com/repos/mozilla/blok/pulls/148,148,fix #147: breakage-notes-panel for single height,"This fixes #147 by moving the ""breakage notes"" text area into a new 3rd panel that is shown after the user submits the first breakage feedback.
+
+This also means there are now 2 separate `event: ""submit""` telemetry pings sent for feedback. E.g.,
+
+```
+{""originDomain"":""github.com"",""trackerDomains"":[""www.google-analytics.com""],""event"":""submit"",""breakage"":""images"",""notes"":""""}
+```
+
+and
+
+```
+{""originDomain"":""github.com"",""trackerDomains"":[""www.google-analytics.com""],""event"":""submit"",""breakage"":""images"",""notes"":""All the avatars are missing.""}
+```
+
+So if this solution looks good for Fx 49, we will need to update `docs/metrics.md` and get fresh approvals there. (@clouserw)
+",groovecoder,71928,2016-09-13T18:48:33Z,MEMBER,True,100,33,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,b8f35caceae9ee81edcfb3faa3a7a4191cd994db,1.0rc8
+32,https://api.github.com/repos/mozilla/blok/pulls/148,148,fix #147: breakage-notes-panel for single height,"This fixes #147 by moving the ""breakage notes"" text area into a new 3rd panel that is shown after the user submits the first breakage feedback.
+
+This also means there are now 2 separate `event: ""submit""` telemetry pings sent for feedback. E.g.,
+
+```
+{""originDomain"":""github.com"",""trackerDomains"":[""www.google-analytics.com""],""event"":""submit"",""breakage"":""images"",""notes"":""""}
+```
+
+and
+
+```
+{""originDomain"":""github.com"",""trackerDomains"":[""www.google-analytics.com""],""event"":""submit"",""breakage"":""images"",""notes"":""All the avatars are missing.""}
+```
+
+So if this solution looks good for Fx 49, we will need to update `docs/metrics.md` and get fresh approvals there. (@clouserw)
+",groovecoder,71928,2016-09-13T18:48:33Z,MEMBER,True,100,33,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,cdaad50a2d08d94ac1467b85c55b4a839faf0533,"for #147: fix ""back"" button to feedback from notes"
+33,https://api.github.com/repos/mozilla/blok/pulls/145,145,for #69: trim out more images,"Saves another 26K
+
+```
+-rw-r--r--  1 lcrouch  staff   157K Sep  8 17:20 blok-1.0rc2.xpi
+-rw-r--r--  1 lcrouch  staff   131K Sep  8 17:24 blok-1.0rc3.xpi
+```
+",groovecoder,71928,2016-09-08T22:29:15Z,MEMBER,True,1,27,5,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,14d95c745d0b3a0df68cf141b26b16ab2d33b7a7,for #69: trim out more images
+34,https://api.github.com/repos/mozilla/blok/pulls/144,144,fix #69: move code into src/ for web-ext build,"Moving the extension source files into `src/` and using `web-ext build -s src` trims out about 600K from the file-size:
+
+```
+-rw-r--r--  1 lcrouch  staff   753K Sep  8 13:52 blok-1.0rc1.xpi
+-rw-r--r--  1 lcrouch  staff   157K Sep  8 14:06 blok-1.0rc2.xpi
+```
+",groovecoder,71928,2016-09-08T19:09:33Z,MEMBER,True,11,12,24,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,4afc9d8bd7349a7b1c52a65e3b0d330648cebd47,fix #69: move code into src/ for web-ext build
+35,https://api.github.com/repos/mozilla/blok/pulls/140,140,finalize strings and styles,"fixes #136 and fixes #139 
+",johngruen,3323249,2016-09-08T10:53:58Z,CONTRIBUTOR,True,116,40,7,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,d4a08c36bb9ef8b1a9ff50cba2db3e2431f89505,finalize strings and styles
+36,https://api.github.com/repos/mozilla/blok/pulls/140,140,finalize strings and styles,"fixes #136 and fixes #139 
+",johngruen,3323249,2016-09-08T10:53:58Z,CONTRIBUTOR,True,116,40,7,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,197e6e488d35c570fa761c2f7bedff46d739d6a1,build and sign 1.0rc1 .xpi
+37,https://api.github.com/repos/mozilla/blok/pulls/138,138,fix #111: 500 maxlimit on feedback textarea,,groovecoder,71928,2016-09-07T17:56:35Z,MEMBER,True,1,1,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,e8aba91f7ead81fadbb0d65abd48ace9886041de,fix #111: 500 maxlimit on feedback textarea
+38,https://api.github.com/repos/mozilla/blok/pulls/135,135,fix #132: allow ALL requests when origin disabled,,groovecoder,71928,2016-09-06T19:03:00Z,MEMBER,True,80,48,2,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,3009a448066b6232f2aef9148610df6b7868ea53,fix #132: allow ALL requests when origin disabled
+39,https://api.github.com/repos/mozilla/blok/pulls/135,135,fix #132: allow ALL requests when origin disabled,,groovecoder,71928,2016-09-06T19:03:00Z,MEMBER,True,80,48,2,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,ee87aee61fb8a12fdd08636b185acd149db81eb9,for #132: memo-ize hostEntity when possible
+40,https://api.github.com/repos/mozilla/blok/pulls/135,135,fix #132: allow ALL requests when origin disabled,,groovecoder,71928,2016-09-06T19:03:00Z,MEMBER,True,80,48,2,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,61992a50db122840ee5b982eddbc3bb22474b599,for #132: skip allowedEntities log when disabled
+41,https://api.github.com/repos/mozilla/blok/pulls/134,134,update entity list from shavar-prod-lists,"Build & Sign 0.1.14 release
+",groovecoder,71928,2016-09-06T18:54:05Z,MEMBER,True,26,45,3,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,ab6f2495b6701a3d74ccd1cea60b84ccad5c66db,"update entity list from shavar-prod-lists
+
+Build & Sign 0.1.14 release"
+42,https://api.github.com/repos/mozilla/blok/pulls/131,131,fix #130: use main frame origin as originDomain,,groovecoder,71928,2016-09-06T13:53:52Z,MEMBER,True,4,4,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,0ae6774df62a8c9e3a5e90a224489616a1761842,fix #130: use main frame origin as originDomain
+43,https://api.github.com/repos/mozilla/blok/pulls/129,129,fix #113: show host report immediately,,groovecoder,71928,2016-09-02T19:22:17Z,MEMBER,True,25,18,3,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,0c9aa61741787e365c8d246c834d7fc8138bacc3,fix #113: show host report immediately
+44,https://api.github.com/repos/mozilla/blok/pulls/128,128,fix #116: allow all requests in PBM windows,,groovecoder,71928,2016-09-02T18:40:04Z,MEMBER,True,14,0,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,729c15a036da7d4878539495fd5ca234fa21029e,fix #116: allow all requests in PBM windows
+45,https://api.github.com/repos/mozilla/blok/pulls/127,127,fix #123: short required message to stop overflow,,groovecoder,71928,2016-09-01T19:54:48Z,MEMBER,True,1,1,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,7dc1e06d08f09bfe6958ee6eef069427720dd6be,fix #123: short required message to stop overflow
+46,https://api.github.com/repos/mozilla/blok/pulls/126,126,"fix #115: ""refresh"" popup UI when tab activated",,groovecoder,71928,2016-09-01T19:47:12Z,MEMBER,True,44,19,3,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,2911a31f52fc18d6cf78eb16658ee841f8f9d976,"fix #115: ""refresh"" popup UI when tab activated"
+47,https://api.github.com/repos/mozilla/blok/pulls/109,109,for #103: change to page action UI,"Changing to a page action UI ...
+# Main Panel
+
+<img width=""1117"" alt=""blok-page-action"" src=""https://cloud.githubusercontent.com/assets/71928/17678088/4f8491ea-62fb-11e6-9f4a-13c1c4dfffc0.png"">
+# Report problem
+
+<img width=""1117"" alt=""blok-page-action-report-problem"" src=""https://cloud.githubusercontent.com/assets/71928/17678109/715a08c2-62fb-11e6-9565-48c2a9d48241.png"">
+# Disabled
+
+<img width=""1117"" alt=""blok-page-action-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/17678152/919a5088-62fb-11e6-9e4f-43172e0e808a.png"">
+# Still TODO
+- Fix middle-alignment of left angle arrow in feedback panel
+- [x] Store last report for each site
+- [x] Show last report for each site in main panel
+",groovecoder,71928,2016-08-15T20:19:38Z,MEMBER,True,329,435,22,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,507c68e9421f21f2a15654716cc138de71e8fd0c,for #103: checkpoint window.topFrameHostDisabled
+48,https://api.github.com/repos/mozilla/blok/pulls/109,109,for #103: change to page action UI,"Changing to a page action UI ...
+# Main Panel
+
+<img width=""1117"" alt=""blok-page-action"" src=""https://cloud.githubusercontent.com/assets/71928/17678088/4f8491ea-62fb-11e6-9f4a-13c1c4dfffc0.png"">
+# Report problem
+
+<img width=""1117"" alt=""blok-page-action-report-problem"" src=""https://cloud.githubusercontent.com/assets/71928/17678109/715a08c2-62fb-11e6-9565-48c2a9d48241.png"">
+# Disabled
+
+<img width=""1117"" alt=""blok-page-action-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/17678152/919a5088-62fb-11e6-9e4f-43172e0e808a.png"">
+# Still TODO
+- Fix middle-alignment of left angle arrow in feedback panel
+- [x] Store last report for each site
+- [x] Show last report for each site in main panel
+",groovecoder,71928,2016-08-15T20:19:38Z,MEMBER,True,329,435,22,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,ab7ecec4dcfab337b812d72f797af0163e777d51,for #103: toolbar to popup and first styles
+49,https://api.github.com/repos/mozilla/blok/pulls/109,109,for #103: change to page action UI,"Changing to a page action UI ...
+# Main Panel
+
+<img width=""1117"" alt=""blok-page-action"" src=""https://cloud.githubusercontent.com/assets/71928/17678088/4f8491ea-62fb-11e6-9f4a-13c1c4dfffc0.png"">
+# Report problem
+
+<img width=""1117"" alt=""blok-page-action-report-problem"" src=""https://cloud.githubusercontent.com/assets/71928/17678109/715a08c2-62fb-11e6-9565-48c2a9d48241.png"">
+# Disabled
+
+<img width=""1117"" alt=""blok-page-action-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/17678152/919a5088-62fb-11e6-9e4f-43172e0e808a.png"">
+# Still TODO
+- Fix middle-alignment of left angle arrow in feedback panel
+- [x] Store last report for each site
+- [x] Show last report for each site in main panel
+",groovecoder,71928,2016-08-15T20:19:38Z,MEMBER,True,329,435,22,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,199a421ccd3d6683307dece6d9a8316abe2d3fa0,"for #103: toggle styles and first functionality
+
+Note: Had to restore a custom foundation.min.css with flex"
+50,https://api.github.com/repos/mozilla/blok/pulls/109,109,for #103: change to page action UI,"Changing to a page action UI ...
+# Main Panel
+
+<img width=""1117"" alt=""blok-page-action"" src=""https://cloud.githubusercontent.com/assets/71928/17678088/4f8491ea-62fb-11e6-9f4a-13c1c4dfffc0.png"">
+# Report problem
+
+<img width=""1117"" alt=""blok-page-action-report-problem"" src=""https://cloud.githubusercontent.com/assets/71928/17678109/715a08c2-62fb-11e6-9565-48c2a9d48241.png"">
+# Disabled
+
+<img width=""1117"" alt=""blok-page-action-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/17678152/919a5088-62fb-11e6-9e4f-43172e0e808a.png"">
+# Still TODO
+- Fix middle-alignment of left angle arrow in feedback panel
+- [x] Store last report for each site
+- [x] Show last report for each site in main panel
+",groovecoder,71928,2016-08-15T20:19:38Z,MEMBER,True,329,435,22,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,1577175e82d6c59ddb694e6db10944da0e638810,"for #103: implement feedback panel ""back"" arrow"
+51,https://api.github.com/repos/mozilla/blok/pulls/109,109,for #103: change to page action UI,"Changing to a page action UI ...
+# Main Panel
+
+<img width=""1117"" alt=""blok-page-action"" src=""https://cloud.githubusercontent.com/assets/71928/17678088/4f8491ea-62fb-11e6-9f4a-13c1c4dfffc0.png"">
+# Report problem
+
+<img width=""1117"" alt=""blok-page-action-report-problem"" src=""https://cloud.githubusercontent.com/assets/71928/17678109/715a08c2-62fb-11e6-9565-48c2a9d48241.png"">
+# Disabled
+
+<img width=""1117"" alt=""blok-page-action-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/17678152/919a5088-62fb-11e6-9e4f-43172e0e808a.png"">
+# Still TODO
+- Fix middle-alignment of left angle arrow in feedback panel
+- [x] Store last report for each site
+- [x] Show last report for each site in main panel
+",groovecoder,71928,2016-08-15T20:19:38Z,MEMBER,True,329,435,22,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,af33a49b164f0cf80a68335fedb947a05796ad80,for #103: implement breakage submit-btn
+52,https://api.github.com/repos/mozilla/blok/pulls/109,109,for #103: change to page action UI,"Changing to a page action UI ...
+# Main Panel
+
+<img width=""1117"" alt=""blok-page-action"" src=""https://cloud.githubusercontent.com/assets/71928/17678088/4f8491ea-62fb-11e6-9f4a-13c1c4dfffc0.png"">
+# Report problem
+
+<img width=""1117"" alt=""blok-page-action-report-problem"" src=""https://cloud.githubusercontent.com/assets/71928/17678109/715a08c2-62fb-11e6-9565-48c2a9d48241.png"">
+# Disabled
+
+<img width=""1117"" alt=""blok-page-action-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/17678152/919a5088-62fb-11e6-9e4f-43172e0e808a.png"">
+# Still TODO
+- Fix middle-alignment of left angle arrow in feedback panel
+- [x] Store last report for each site
+- [x] Show last report for each site in main panel
+",groovecoder,71928,2016-08-15T20:19:38Z,MEMBER,True,329,435,22,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,7d8da100c83e0ba8a330784555fae45c7775c751,for #103: fix main-panel title alignment
+53,https://api.github.com/repos/mozilla/blok/pulls/109,109,for #103: change to page action UI,"Changing to a page action UI ...
+# Main Panel
+
+<img width=""1117"" alt=""blok-page-action"" src=""https://cloud.githubusercontent.com/assets/71928/17678088/4f8491ea-62fb-11e6-9f4a-13c1c4dfffc0.png"">
+# Report problem
+
+<img width=""1117"" alt=""blok-page-action-report-problem"" src=""https://cloud.githubusercontent.com/assets/71928/17678109/715a08c2-62fb-11e6-9565-48c2a9d48241.png"">
+# Disabled
+
+<img width=""1117"" alt=""blok-page-action-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/17678152/919a5088-62fb-11e6-9e4f-43172e0e808a.png"">
+# Still TODO
+- Fix middle-alignment of left angle arrow in feedback panel
+- [x] Store last report for each site
+- [x] Show last report for each site in main panel
+",groovecoder,71928,2016-08-15T20:19:38Z,MEMBER,True,329,435,22,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,00c9fef9457d5f89cc3f141f22fa922019fb8276,"for #103: remove un-used feedback, contentscript"
+54,https://api.github.com/repos/mozilla/blok/pulls/109,109,for #103: change to page action UI,"Changing to a page action UI ...
+# Main Panel
+
+<img width=""1117"" alt=""blok-page-action"" src=""https://cloud.githubusercontent.com/assets/71928/17678088/4f8491ea-62fb-11e6-9f4a-13c1c4dfffc0.png"">
+# Report problem
+
+<img width=""1117"" alt=""blok-page-action-report-problem"" src=""https://cloud.githubusercontent.com/assets/71928/17678109/715a08c2-62fb-11e6-9565-48c2a9d48241.png"">
+# Disabled
+
+<img width=""1117"" alt=""blok-page-action-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/17678152/919a5088-62fb-11e6-9e4f-43172e0e808a.png"">
+# Still TODO
+- Fix middle-alignment of left angle arrow in feedback panel
+- [x] Store last report for each site
+- [x] Show last report for each site in main panel
+",groovecoder,71928,2016-08-15T20:19:38Z,MEMBER,True,329,435,22,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,ea52f4eb0ff4ddf45dcc1f858d88617fc5fe6934,for #103: remove un-used close-[toolbar|feedback]
+55,https://api.github.com/repos/mozilla/blok/pulls/109,109,for #103: change to page action UI,"Changing to a page action UI ...
+# Main Panel
+
+<img width=""1117"" alt=""blok-page-action"" src=""https://cloud.githubusercontent.com/assets/71928/17678088/4f8491ea-62fb-11e6-9f4a-13c1c4dfffc0.png"">
+# Report problem
+
+<img width=""1117"" alt=""blok-page-action-report-problem"" src=""https://cloud.githubusercontent.com/assets/71928/17678109/715a08c2-62fb-11e6-9565-48c2a9d48241.png"">
+# Disabled
+
+<img width=""1117"" alt=""blok-page-action-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/17678152/919a5088-62fb-11e6-9e4f-43172e0e808a.png"">
+# Still TODO
+- Fix middle-alignment of left angle arrow in feedback panel
+- [x] Store last report for each site
+- [x] Show last report for each site in main panel
+",groovecoder,71928,2016-08-15T20:19:38Z,MEMBER,True,329,435,22,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,8a670b2eaa948cf0c27186620bfbdbdcc0f87467,for #103: move showMainPanel up in file
+56,https://api.github.com/repos/mozilla/blok/pulls/109,109,for #103: change to page action UI,"Changing to a page action UI ...
+# Main Panel
+
+<img width=""1117"" alt=""blok-page-action"" src=""https://cloud.githubusercontent.com/assets/71928/17678088/4f8491ea-62fb-11e6-9f4a-13c1c4dfffc0.png"">
+# Report problem
+
+<img width=""1117"" alt=""blok-page-action-report-problem"" src=""https://cloud.githubusercontent.com/assets/71928/17678109/715a08c2-62fb-11e6-9565-48c2a9d48241.png"">
+# Disabled
+
+<img width=""1117"" alt=""blok-page-action-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/17678152/919a5088-62fb-11e6-9e4f-43172e0e808a.png"">
+# Still TODO
+- Fix middle-alignment of left angle arrow in feedback panel
+- [x] Store last report for each site
+- [x] Show last report for each site in main panel
+",groovecoder,71928,2016-08-15T20:19:38Z,MEMBER,True,329,435,22,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,e9d8ecf2fc3c69905bcca13cbed549f9635320db,for #103: align toggle and notes elements
+57,https://api.github.com/repos/mozilla/blok/pulls/109,109,for #103: change to page action UI,"Changing to a page action UI ...
+# Main Panel
+
+<img width=""1117"" alt=""blok-page-action"" src=""https://cloud.githubusercontent.com/assets/71928/17678088/4f8491ea-62fb-11e6-9f4a-13c1c4dfffc0.png"">
+# Report problem
+
+<img width=""1117"" alt=""blok-page-action-report-problem"" src=""https://cloud.githubusercontent.com/assets/71928/17678109/715a08c2-62fb-11e6-9565-48c2a9d48241.png"">
+# Disabled
+
+<img width=""1117"" alt=""blok-page-action-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/17678152/919a5088-62fb-11e6-9e4f-43172e0e808a.png"">
+# Still TODO
+- Fix middle-alignment of left angle arrow in feedback panel
+- [x] Store last report for each site
+- [x] Show last report for each site in main panel
+",groovecoder,71928,2016-08-15T20:19:38Z,MEMBER,True,329,435,22,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,5fa4f4e5bb6fa6b8002e2ab006e66ca61010df94,fix strict_min_version to 48.0
+58,https://api.github.com/repos/mozilla/blok/pulls/109,109,for #103: change to page action UI,"Changing to a page action UI ...
+# Main Panel
+
+<img width=""1117"" alt=""blok-page-action"" src=""https://cloud.githubusercontent.com/assets/71928/17678088/4f8491ea-62fb-11e6-9f4a-13c1c4dfffc0.png"">
+# Report problem
+
+<img width=""1117"" alt=""blok-page-action-report-problem"" src=""https://cloud.githubusercontent.com/assets/71928/17678109/715a08c2-62fb-11e6-9565-48c2a9d48241.png"">
+# Disabled
+
+<img width=""1117"" alt=""blok-page-action-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/17678152/919a5088-62fb-11e6-9e4f-43172e0e808a.png"">
+# Still TODO
+- Fix middle-alignment of left angle arrow in feedback panel
+- [x] Store last report for each site
+- [x] Show last report for each site in main panel
+",groovecoder,71928,2016-08-15T20:19:38Z,MEMBER,True,329,435,22,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,c24d3948390ee36ffa3a2586c8e243548f12adce,for #103: padding and font size fixes
+59,https://api.github.com/repos/mozilla/blok/pulls/109,109,for #103: change to page action UI,"Changing to a page action UI ...
+# Main Panel
+
+<img width=""1117"" alt=""blok-page-action"" src=""https://cloud.githubusercontent.com/assets/71928/17678088/4f8491ea-62fb-11e6-9f4a-13c1c4dfffc0.png"">
+# Report problem
+
+<img width=""1117"" alt=""blok-page-action-report-problem"" src=""https://cloud.githubusercontent.com/assets/71928/17678109/715a08c2-62fb-11e6-9565-48c2a9d48241.png"">
+# Disabled
+
+<img width=""1117"" alt=""blok-page-action-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/17678152/919a5088-62fb-11e6-9e4f-43172e0e808a.png"">
+# Still TODO
+- Fix middle-alignment of left angle arrow in feedback panel
+- [x] Store last report for each site
+- [x] Show last report for each site in main panel
+",groovecoder,71928,2016-08-15T20:19:38Z,MEMBER,True,329,435,22,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,16c60f38f9bf42acfb2f0c91e119c25da53fce8e,fix #103: showing host report message
+60,https://api.github.com/repos/mozilla/blok/pulls/109,109,for #103: change to page action UI,"Changing to a page action UI ...
+# Main Panel
+
+<img width=""1117"" alt=""blok-page-action"" src=""https://cloud.githubusercontent.com/assets/71928/17678088/4f8491ea-62fb-11e6-9f4a-13c1c4dfffc0.png"">
+# Report problem
+
+<img width=""1117"" alt=""blok-page-action-report-problem"" src=""https://cloud.githubusercontent.com/assets/71928/17678109/715a08c2-62fb-11e6-9565-48c2a9d48241.png"">
+# Disabled
+
+<img width=""1117"" alt=""blok-page-action-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/17678152/919a5088-62fb-11e6-9e4f-43172e0e808a.png"">
+# Still TODO
+- Fix middle-alignment of left angle arrow in feedback panel
+- [x] Store last report for each site
+- [x] Show last report for each site in main panel
+",groovecoder,71928,2016-08-15T20:19:38Z,MEMBER,True,329,435,22,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,51754c35ab67aa023b4f1c9f1b3683e967e1ecf7,fix #103: set version 0.1.12 and sign xpi
+61,https://api.github.com/repos/mozilla/blok/pulls/105,105,move .html into html/; .json into js/,,groovecoder,71928,2016-08-11T14:38:24Z,MEMBER,True,12,12,7,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,2002d4f5a708b477148b8100c37abe84ceed925f,move .html into html/; .json into js/
+62,https://api.github.com/repos/mozilla/blok/pulls/104,104,for #26: refactor: new getRequestEntity function,"@rpl - r?
+",groovecoder,71928,2016-08-11T14:03:25Z,MEMBER,True,121,58,6,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,51df52f80130949133e610a7353ee4fada81903b,for #26: requestAllower to reduce function args
+63,https://api.github.com/repos/mozilla/blok/pulls/104,104,for #26: refactor: new getRequestEntity function,"@rpl - r?
+",groovecoder,71928,2016-08-11T14:03:25Z,MEMBER,True,121,58,6,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,3c3704e5da0e649348ed2f6de1bc2bee6e105ca2,"for #26: refactor: new getRequestEntity function
+
+Also, tests and coverage reporting!"
+64,https://api.github.com/repos/mozilla/blok/pulls/104,104,for #26: refactor: new getRequestEntity function,"@rpl - r?
+",groovecoder,71928,2016-08-11T14:03:25Z,MEMBER,True,121,58,6,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,38848f2c94b9a8df322afc89752259ac8e6ecbc8,"for #26: break out of entity loop ASAP ...
+
+Return entityName: null if not found"
+65,https://api.github.com/repos/mozilla/blok/pulls/104,104,for #26: refactor: new getRequestEntity function,"@rpl - r?
+",groovecoder,71928,2016-08-11T14:03:25Z,MEMBER,True,121,58,6,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,af602f8315083fac6ba6f022b7a6f2af73434b40,for #26: let the let party begin
+66,https://api.github.com/repos/mozilla/blok/pulls/104,104,for #26: refactor: new getRequestEntity function,"@rpl - r?
+",groovecoder,71928,2016-08-11T14:03:25Z,MEMBER,True,121,58,6,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,ac455525f90498cb616e15e0f784c83d89ce4383,for #26: flags bug from merge
+67,https://api.github.com/repos/mozilla/blok/pulls/102,102,for #99: notification toolbar style nits,"Hits 3/5 of https://github.com/mozilla/blok/issues/99
+",groovecoder,71928,2016-08-10T18:16:14Z,MEMBER,True,3,2,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,8de3ab2b4e02da7f5bc5f613b9a504f6ff805d81,for #99: notification toolbar style nits
+68,https://api.github.com/repos/mozilla/blok/pulls/100,100,fix #98: move notification bar to bottom,,groovecoder,71928,2016-08-09T16:37:21Z,MEMBER,True,2,2,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,1b6c740eb80ccad0ddbde859b2a5e487fdf890d9,fix #98: move notification bar to bottom
+69,https://api.github.com/repos/mozilla/blok/pulls/97,97,Redirect README to wiki,,rbillings,737878,2016-08-08T20:38:36Z,COLLABORATOR,True,2,64,2,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,773915d4fc1bcc3afe273c69bb6e4aac31f419de,Redirect README to wiki
+70,https://api.github.com/repos/mozilla/blok/pulls/97,97,Redirect README to wiki,,rbillings,737878,2016-08-08T20:38:36Z,COLLABORATOR,True,2,64,2,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,250491795e4d385a5dd612e43a1ee001357751b1,"Returned README, updated testplan to link to wiki"
+71,https://api.github.com/repos/mozilla/blok/pulls/96,96,Updated readme to redirect to the wiki,"Link now points to the officially maintain wiki test plan.
+",rbillings,737878,2016-08-08T20:31:07Z,COLLABORATOR,False,1,53,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,84790eff939cabb66f34032c6c3f63b304396c56,Updated readme to redirect to the wiki
+72,https://api.github.com/repos/mozilla/blok/pulls/94,94,for #28: add metrics doc and final implementation,"See also: https://bugzilla.mozilla.org/show_bug.cgi?id=1288196
+
+Supersedes https://github.com/mozilla/blok/pull/89 with:
+- A branch from here on the mozilla repo (on which @clouserw is now a collaborator)
+- https://github.com/mozilla/blok/commit/efa4b5cf3ca3344c899c3497eb5d646dbacdace7 which includes documentation for the ""page-problem"" telemetry payload
+",groovecoder,71928,2016-08-08T14:37:59Z,MEMBER,True,160,14,7,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,974d19bf0d1b2af133c7dfe4dc743b639de623a6,add metrics documentation
+73,https://api.github.com/repos/mozilla/blok/pulls/94,94,for #28: add metrics doc and final implementation,"See also: https://bugzilla.mozilla.org/show_bug.cgi?id=1288196
+
+Supersedes https://github.com/mozilla/blok/pull/89 with:
+- A branch from here on the mozilla repo (on which @clouserw is now a collaborator)
+- https://github.com/mozilla/blok/commit/efa4b5cf3ca3344c899c3497eb5d646dbacdace7 which includes documentation for the ""page-problem"" telemetry payload
+",groovecoder,71928,2016-08-08T14:37:59Z,MEMBER,True,160,14,7,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,964091e657948fb7baaac03c9bc767ceac300af4,for #28: add page-problem payload to metrics doc
+74,https://api.github.com/repos/mozilla/blok/pulls/94,94,for #28: add metrics doc and final implementation,"See also: https://bugzilla.mozilla.org/show_bug.cgi?id=1288196
+
+Supersedes https://github.com/mozilla/blok/pull/89 with:
+- A branch from here on the mozilla repo (on which @clouserw is now a collaborator)
+- https://github.com/mozilla/blok/commit/efa4b5cf3ca3344c899c3497eb5d646dbacdace7 which includes documentation for the ""page-problem"" telemetry payload
+",groovecoder,71928,2016-08-08T14:37:59Z,MEMBER,True,160,14,7,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,b4d5a03d66c1665a0c008ee98bf32c0a9e0ba538,for #28: breakage and notes metrics fields
+75,https://api.github.com/repos/mozilla/blok/pulls/94,94,for #28: add metrics doc and final implementation,"See also: https://bugzilla.mozilla.org/show_bug.cgi?id=1288196
+
+Supersedes https://github.com/mozilla/blok/pull/89 with:
+- A branch from here on the mozilla repo (on which @clouserw is now a collaborator)
+- https://github.com/mozilla/blok/commit/efa4b5cf3ca3344c899c3497eb5d646dbacdace7 which includes documentation for the ""page-problem"" telemetry payload
+",groovecoder,71928,2016-08-08T14:37:59Z,MEMBER,True,160,14,7,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,f7a64d4ccf94f9cfb555868d72fc7afde362c2d0,for #28: blok-enabled and blok-disabled events
+76,https://api.github.com/repos/mozilla/blok/pulls/94,94,for #28: add metrics doc and final implementation,"See also: https://bugzilla.mozilla.org/show_bug.cgi?id=1288196
+
+Supersedes https://github.com/mozilla/blok/pull/89 with:
+- A branch from here on the mozilla repo (on which @clouserw is now a collaborator)
+- https://github.com/mozilla/blok/commit/efa4b5cf3ca3344c899c3497eb5d646dbacdace7 which includes documentation for the ""page-problem"" telemetry payload
+",groovecoder,71928,2016-08-08T14:37:59Z,MEMBER,True,160,14,7,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,9cd7b7f56be145bc147f811ae5a96f01d4c5cdc1,fix #28: 0.1.13 with telemetry payloads
+77,https://api.github.com/repos/mozilla/blok/pulls/91,91,Replace addons-linter with 'web-ext lint',"Yay for removing dependencies!
+
+r? @groovecoder 
+",pdehaan,557895,2016-08-04T20:34:50Z,COLLABORATOR,True,2,3,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,372f6dd9b86247a6f4456b94d2d6278d693562ee,Replace addons-linter with 'web-ext lint'
+78,https://api.github.com/repos/mozilla/blok/pulls/90,90,fix #88: update feedback copy,"Make it clear issue was reported on button press of notification
+bar.
+",groovecoder,71928,2016-08-04T19:31:10Z,MEMBER,True,4,3,2,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,6f842a94db31187aba3668767b4f349ac4cb2f9a,"fix #88: update feedback copy
+
+Make it clear issue was reported on button press of notification
+bar."
+79,https://api.github.com/repos/mozilla/blok/pulls/89,89,add metrics documentation,,clouserw,80098,2016-08-03T23:15:31Z,MEMBER,False,87,0,2,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,456743a2af5c360dcf4778d3698dc9fc35e1045d,add metrics documentation
+80,https://api.github.com/repos/mozilla/blok/pulls/87,87,fix #81: restore close button to toolbar,"<img width=""1065"" alt=""blok-close-btn"" src=""https://cloud.githubusercontent.com/assets/71928/17380118/13822848-598b-11e6-8245-6863f4012698.png"">
+",groovecoder,71928,2016-08-03T20:00:59Z,MEMBER,True,44,11,8,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,e3c1d19a56b7797078854a408b75aab2626b93fb,fix #81: restore close button to toolbar
+81,https://api.github.com/repos/mozilla/blok/pulls/87,87,fix #81: restore close button to toolbar,"<img width=""1065"" alt=""blok-close-btn"" src=""https://cloud.githubusercontent.com/assets/71928/17380118/13822848-598b-11e6-8245-6863f4012698.png"">
+",groovecoder,71928,2016-08-03T20:00:59Z,MEMBER,True,44,11,8,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,f9179b3da0a257f1701c7d8676b6796f4a5b95ed,for #81: create toolbar when iframe is missing
+82,https://api.github.com/repos/mozilla/blok/pulls/82,82,fix #72: feedback: breakage required error message,,groovecoder,71928,2016-08-01T21:12:14Z,MEMBER,True,20,7,5,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,1bdaf5f14826badaf284c7543790b05356e66449,fix #72: feedback: breakage required error message
+83,https://api.github.com/repos/mozilla/blok/pulls/80,80,Fix typo in toolbar,"Fixes #79 
+",pdehaan,557895,2016-08-01T16:02:30Z,COLLABORATOR,True,1,1,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,1ce3d6f0844909ccb242ab64b102ea2a8a26aeb9,Fix typo in toolbar
+84,https://api.github.com/repos/mozilla/blok/pulls/77,77,Update link to the .xpi download,,mortonfox,495892,2016-08-01T05:10:00Z,NONE,False,1,1,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,42887058231f854a35d46fbb67b06755c7419e0b,Update link to the .xpi download
+85,https://api.github.com/repos/mozilla/blok/pulls/76,76,for #74: set currentActiveTabID when window focus changes,,groovecoder,71928,2016-07-29T19:03:24Z,MEMBER,True,9,3,3,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,3cb4bb4209553e0d94f56e0b096558830e800362,for #74: set currentActiveTabID when window focus changes
+86,https://api.github.com/repos/mozilla/blok/pulls/75,75,for #26: refactor (some) filterRequest code into modules and test,"This doesn't do everything, but it helps ...
+- New `allowRequest` function in a new `requests` module covered by tests
+- New `hostInBlocklist` function in `lists` module covered by tests
+- New `hostInEntity` function in `lists` module covered by tests using new `entitylist-fixture.json`
+- New `initTestPilotPingChannel` function in `background.js` to reduce window/global abuse/dependency
+- Move `allHosts` function from `canonicalize` module to `lists` module where it's used more
+
+Total of 8 new tests with 14 new assertions.
+",groovecoder,71928,2016-07-29T16:18:07Z,MEMBER,True,443,87,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,3e40c6b173cb51d7f7645b9fbb9ad8948559ee55,for #26: allowRequest function
+87,https://api.github.com/repos/mozilla/blok/pulls/75,75,for #26: refactor (some) filterRequest code into modules and test,"This doesn't do everything, but it helps ...
+- New `allowRequest` function in a new `requests` module covered by tests
+- New `hostInBlocklist` function in `lists` module covered by tests
+- New `hostInEntity` function in `lists` module covered by tests using new `entitylist-fixture.json`
+- New `initTestPilotPingChannel` function in `background.js` to reduce window/global abuse/dependency
+- Move `allHosts` function from `canonicalize` module to `lists` module where it's used more
+
+Total of 8 new tests with 14 new assertions.
+",groovecoder,71928,2016-07-29T16:18:07Z,MEMBER,True,443,87,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,dd6636867282aba54459cd079caba0e20e8f6339,for #26: hostInBlocklist and hostInEntity
+88,https://api.github.com/repos/mozilla/blok/pulls/75,75,for #26: refactor (some) filterRequest code into modules and test,"This doesn't do everything, but it helps ...
+- New `allowRequest` function in a new `requests` module covered by tests
+- New `hostInBlocklist` function in `lists` module covered by tests
+- New `hostInEntity` function in `lists` module covered by tests using new `entitylist-fixture.json`
+- New `initTestPilotPingChannel` function in `background.js` to reduce window/global abuse/dependency
+- Move `allHosts` function from `canonicalize` module to `lists` module where it's used more
+
+Total of 8 new tests with 14 new assertions.
+",groovecoder,71928,2016-07-29T16:18:07Z,MEMBER,True,443,87,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,e5fd2859f13d35c0c44b9dc59e2ed1cf0ffbb482,for #26: move more code into lists module and test it
+89,https://api.github.com/repos/mozilla/blok/pulls/68,68,Tweak XPI instructions in README,"Fixes #66
+
+At least sort of. It improves the documentation by 1-2% (at best), but we'll still need a better solution of hosting the ""latest.xpi"" and ""update.rdf"" on people.mozilla.org or S3 or something.
+",pdehaan,557895,2016-07-28T22:05:22Z,COLLABORATOR,True,14,11,3,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,176a0844e97a5758b3cd048e53783c4570d20c95,"Tweak XPI instructions in README
+
+Move reference to xpinstall
+
+Clarify Running web extension from /Users/pdehaan/dev/github/mozilla/blok
+Running Firefox with profile at /var/folders/qc/g_f0szh95k1fzph34rhmf5jw0000gp/T/7c87e3d6-f2f7-463e-8d67-dd1326468821
+Use --verbose or open Tools > Web Developer > Browser Console to see logging
+Connecting to the remote Firefox debugger
+
+run: WebExtError: Temporary add-on installation is not supported in this version of Firefox (you need Firefox 49 or higher). For older Firefox versions, use --pre-install
+    at /Users/pdehaan/.npm-packages/lib/node_modules/web-ext/dist/webpack:/src/cmd/run.js:9:16939
+    at /Users/pdehaan/.npm-packages/lib/node_modules/web-ext/dist/webpack:/src/errors.js:9:4820
+    at process._tickCallback (internal/process/next_tick.js:103:7) steps"
+90,https://api.github.com/repos/mozilla/blok/pulls/65,65,Add LICENSE file,"Adding top level LICENSE file.
+
+Approvals received from:
+- [x] @groovecoder
+- [x] @pdehaan 
+- [x] @rbillings 
+",pdehaan,557895,2016-07-28T17:10:27Z,COLLABORATOR,True,373,0,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,23643136bbd8043afdfa5dd964952eca21c19b74,Add LICENSE file
+91,https://api.github.com/repos/mozilla/blok/pulls/64,64,Add testpilot homepage_url to manifest.json,"![blok-addon-homepage](https://cloud.githubusercontent.com/assets/71928/17194812/cc352a5a-541f-11e6-8350-fb1590df9b69.png)
+",groovecoder,71928,2016-07-27T22:30:35Z,MEMBER,True,2,0,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,1a665e14121381dbdf70cc2f44497a893c7c8ceb,Add TestPilot link to manifest.json
+92,https://api.github.com/repos/mozilla/blok/pulls/64,64,Add testpilot homepage_url to manifest.json,"![blok-addon-homepage](https://cloud.githubusercontent.com/assets/71928/17194812/cc352a5a-541f-11e6-8350-fb1590df9b69.png)
+",groovecoder,71928,2016-07-27T22:30:35Z,MEMBER,True,2,0,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,542ecd904c1f21cf88153fe39fea8554d62f87e5,Add homepage_url to manifest.json
+93,https://api.github.com/repos/mozilla/blok/pulls/64,64,Add testpilot homepage_url to manifest.json,"![blok-addon-homepage](https://cloud.githubusercontent.com/assets/71928/17194812/cc352a5a-541f-11e6-8350-fb1590df9b69.png)
+",groovecoder,71928,2016-07-27T22:30:35Z,MEMBER,True,2,0,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,a0e8162a6922f775d15b5373c0628797a9b9a93e,remove un-linked url from description
+94,https://api.github.com/repos/mozilla/blok/pulls/63,63,mv icons/ to img/,,groovecoder,71928,2016-07-27T19:49:01Z,MEMBER,True,4,4,6,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,50eed39193f82313980739618604fc55359d5600,mv icons/ to img/
+95,https://api.github.com/repos/mozilla/blok/pulls/62,62,Add TestPilot link to manifest.json,"Totally looks like:
+
+![add-ons_manager](https://cloud.githubusercontent.com/assets/557895/17185812/7a5d816a-53e7-11e6-83c8-079944f82f51.png)
+",pdehaan,557895,2016-07-27T17:47:23Z,COLLABORATOR,False,3,1,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,1a665e14121381dbdf70cc2f44497a893c7c8ceb,Add TestPilot link to manifest.json
+96,https://api.github.com/repos/mozilla/blok/pulls/62,62,Add TestPilot link to manifest.json,"Totally looks like:
+
+![add-ons_manager](https://cloud.githubusercontent.com/assets/557895/17185812/7a5d816a-53e7-11e6-83c8-079944f82f51.png)
+",pdehaan,557895,2016-07-27T17:47:23Z,COLLABORATOR,False,3,1,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,542ecd904c1f21cf88153fe39fea8554d62f87e5,Add homepage_url to manifest.json
+97,https://api.github.com/repos/mozilla/blok/pulls/61,61,remove foundation.min.js; not using reveal anymore,,groovecoder,71928,2016-07-27T16:23:31Z,MEMBER,True,0,4,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,379dbf7dc170b8292d24501a8cbe554aee73053a,remove foundation.min.js; not using reveal anymore
+98,https://api.github.com/repos/mozilla/blok/pulls/60,60,fix #53: tests for processBlockListJSON,,groovecoder,71928,2016-07-27T16:11:17Z,MEMBER,True,75,1,4,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,6e2ab9613e39ad4a5e5c0bcd535ff66c1ed94048,fix #53: tests for processBlockListJSON
+99,https://api.github.com/repos/mozilla/blok/pulls/59,59,fix #45: install foundation CSS via npm,"This works, but I'm not 100% sure we need to do this ... what do we gain?
+",groovecoder,71928,2016-07-27T13:55:04Z,MEMBER,True,14,2,4,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,b5a3bacb26348c194269c04587023d3c4e7fc758,fix #45: install foundation CSS via npm
+100,https://api.github.com/repos/mozilla/blok/pulls/58,58,fix #54 #55 #56: button labels & padding; toolbar shadow,"@ashgrigas - how does this look?
+
+<img width=""1440"" alt=""blok-reddit-toolbar"" src=""https://cloud.githubusercontent.com/assets/71928/17176984/c1f89d4c-53d4-11e6-982f-d48a5dac3b43.png"">
+",groovecoder,71928,2016-07-26T19:10:04Z,MEMBER,True,11,11,6,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,d53340e49bbe3a530ef1fd94a4585529e521c134,fix #54 #55 #56: button labels & padding; toolbar shadow
+101,https://api.github.com/repos/mozilla/blok/pulls/57,57,fix #50: return {} for undefined origin URLs,,groovecoder,71928,2016-07-26T18:32:48Z,MEMBER,True,7,1,3,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,c4f7b5f70bd7b15e1929ee4a5f07e5a2ab0695d4,fix #50: return {} for undefined origin URLs
+102,https://api.github.com/repos/mozilla/blok/pulls/49,49,fix #25: use Map for blocklist,"Also clean out old web-ext-artifacts
+",groovecoder,71928,2016-07-26T16:24:27Z,MEMBER,True,10,6,7,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,356b1b6c977fa6af21c8874f78e5ef5f96e9b998,"fix #25: use Map for blocklist
+
+Also clean out old web-ext-artifacts"
+103,https://api.github.com/repos/mozilla/blok/pulls/48,48,for #22: final copy updates,,groovecoder,71928,2016-07-26T15:12:38Z,MEMBER,True,8,15,5,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,633fb9186e52ba7c510e0248cf05ac9833b458cb,for #22: final copy updates
+104,https://api.github.com/repos/mozilla/blok/pulls/46,46,fix #35: add addons-linter to Travis CI,,groovecoder,71928,2016-07-26T14:37:39Z,MEMBER,True,11,2,3,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,49816f5f7fa68c200ee39e9ab66987d2928927f2,Build and lint web-extension on Travis using addons-linter
+105,https://api.github.com/repos/mozilla/blok/pulls/46,46,fix #35: add addons-linter to Travis CI,,groovecoder,71928,2016-07-26T14:37:39Z,MEMBER,True,11,2,3,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,0d8d361bb508bbbad3f0361b303af32bfea3cf0f,fix #35: add addons-linter to Travis CI
+106,https://api.github.com/repos/mozilla/blok/pulls/44,44,Build and lint web-extension on Travis using addons-linter,,pdehaan,557895,2016-07-25T23:47:18Z,COLLABORATOR,False,8,0,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,2365ae730d804f6712bdc24c413819940732c9d1,Build and lint web-extension on Travis using addons-linter
+107,https://api.github.com/repos/mozilla/blok/pulls/43,43,QA Test plan,,rbillings,737878,2016-07-25T21:55:41Z,COLLABORATOR,True,63,0,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,0e7e8757b2746611b32a282b89121ab250303024,QA Test plan
+108,https://api.github.com/repos/mozilla/blok/pulls/43,43,QA Test plan,,rbillings,737878,2016-07-25T21:55:41Z,COLLABORATOR,True,63,0,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,fa692abd0f900d1fc730eecd40b04a727cffa324,Updated test plan
+109,https://api.github.com/repos/mozilla/blok/pulls/43,43,QA Test plan,,rbillings,737878,2016-07-25T21:55:41Z,COLLABORATOR,True,63,0,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,59329f9ad676894da911db1905a51cecb51f411c,Removed duplicate test plan
+110,https://api.github.com/repos/mozilla/blok/pulls/43,43,QA Test plan,,rbillings,737878,2016-07-25T21:55:41Z,COLLABORATOR,True,63,0,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,261b8385edae8e038784c0701c970e612937b6b0,And deleted .DS_Store
+111,https://api.github.com/repos/mozilla/blok/pulls/42,42,fix #40: switch to Standard for code formatting,,groovecoder,71928,2016-07-25T21:53:20Z,MEMBER,True,325,330,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,33f7f283f0deec1d5e80a4b1d4bb42fedaf5a636,Switch from ESLint to Standard for code formatting
+112,https://api.github.com/repos/mozilla/blok/pulls/42,42,fix #40: switch to Standard for code formatting,,groovecoder,71928,2016-07-25T21:53:20Z,MEMBER,True,325,330,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,874cdc0896d17056be25d879f2c0ba3c66b8417e,fix #40: switch vars to camelCase
+113,https://api.github.com/repos/mozilla/blok/pulls/42,42,fix #40: switch to Standard for code formatting,,groovecoder,71928,2016-07-25T21:53:20Z,MEMBER,True,325,330,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,3a2506cc9c13669fc27a4d7cb448f63d934b20f5,for #40: have to use let in for loop declarations
+114,https://api.github.com/repos/mozilla/blok/pulls/41,41,Switch from ESLint to Standard for code formatting,"I ran this through [**standard-format**](http://npm.im/standard-format), which auto-formatted everything, which is why there was oodles of churn with single-vs-double quotes, and removal of semicolons.
+",pdehaan,557895,2016-07-25T18:40:35Z,COLLABORATOR,False,313,317,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,33f7f283f0deec1d5e80a4b1d4bb42fedaf5a636,Switch from ESLint to Standard for code formatting
+115,https://api.github.com/repos/mozilla/blok/pulls/39,39,Add ESLint and fix a few formatting errors,"Supersedes https://github.com/mozilla/blok/pull/33 with a rebase.
+",groovecoder,71928,2016-07-25T15:09:55Z,MEMBER,False,110,76,10,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,03169c8a8296126c0c6834ea3b94711435a4bcc8,Add ESLint and fix a few formatting errors
+116,https://api.github.com/repos/mozilla/blok/pulls/39,39,Add ESLint and fix a few formatting errors,"Supersedes https://github.com/mozilla/blok/pull/33 with a rebase.
+",groovecoder,71928,2016-07-25T15:09:55Z,MEMBER,False,110,76,10,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,ad469542512bf2a0907c35ff8303219616d1433e,Add web-ext as devDependency
+117,https://api.github.com/repos/mozilla/blok/pulls/39,39,Add ESLint and fix a few formatting errors,"Supersedes https://github.com/mozilla/blok/pull/33 with a rebase.
+",groovecoder,71928,2016-07-25T15:09:55Z,MEMBER,False,110,76,10,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,7ced9e2c9f430c5d554006a9049685cde0a5c062,Add bundle file to .eslintignore
+118,https://api.github.com/repos/mozilla/blok/pulls/39,39,Add ESLint and fix a few formatting errors,"Supersedes https://github.com/mozilla/blok/pull/33 with a rebase.
+",groovecoder,71928,2016-07-25T15:09:55Z,MEMBER,False,110,76,10,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,fa12f9927877f7611cd55bd01d6e51dff3b39fc3,Fix a few more ESLint warnings
+119,https://api.github.com/repos/mozilla/blok/pulls/38,38,fix #31: use disabled icon when disabled,"<img width=""510"" alt=""blok-toolbar-enabled-icon"" src=""https://cloud.githubusercontent.com/assets/71928/17105449/e67407d0-524c-11e6-8922-7281c5f99462.png"">
+
+<img width=""543"" alt=""blok-toolbar-disabled-icon"" src=""https://cloud.githubusercontent.com/assets/71928/17105452/e9519cba-524c-11e6-9ef3-b6153530f981.png"">
+",groovecoder,71928,2016-07-25T14:46:33Z,MEMBER,True,24,17,3,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,8d6797639a4bf069d53f42a261c53d6e6dad1d0e,fix #31: use disabled icon when disabled
+120,https://api.github.com/repos/mozilla/blok/pulls/36,36,Switch from XHR to Fetch API,"Fixes #24 
+",pdehaan,557895,2016-07-23T23:22:53Z,COLLABORATOR,True,6,12,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,f1920e8b1d043bca9f3cf0bbd795fb444720df18,Switch from XHR to Fetch API
+121,https://api.github.com/repos/mozilla/blok/pulls/33,33,Add ESLint and fix a few formatting errors,"Currently `✖ 2 problems (0 errors, 2 warnings)`.
+
+~~Once we land this and get the ESLint hook passing, we may want to add a npm script `pretest` hook that runs `""pretest"": ""npm run lint""` so ESLint will run automatically every time you run `$ npm test` or the build runs on Travis-CI.~~ Done.
+### How to:
+
+``` sh
+$ npm run lint
+
+> blok@1.0.0 lint /Users/pdehaan/dev/github/mozilla/blok
+> eslint .
+
+
+/Users/pdehaan/dev/github/mozilla/blok/js/background.js
+  185:11  warning  'actionPerformed' is defined but never used  no-unused-vars
+
+/Users/pdehaan/dev/github/mozilla/blok/js/canonicalize.js
+  28:7  warning  'isIP4Decimal' is defined but never used  no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+```
+
+r? @groovecoder 
+",pdehaan,557895,2016-07-23T17:35:15Z,COLLABORATOR,False,112,78,10,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,98b1ccbb1e70548b4cdeca6cec507b5135511306,Add ESLint and fix a few formatting errors
+122,https://api.github.com/repos/mozilla/blok/pulls/33,33,Add ESLint and fix a few formatting errors,"Currently `✖ 2 problems (0 errors, 2 warnings)`.
+
+~~Once we land this and get the ESLint hook passing, we may want to add a npm script `pretest` hook that runs `""pretest"": ""npm run lint""` so ESLint will run automatically every time you run `$ npm test` or the build runs on Travis-CI.~~ Done.
+### How to:
+
+``` sh
+$ npm run lint
+
+> blok@1.0.0 lint /Users/pdehaan/dev/github/mozilla/blok
+> eslint .
+
+
+/Users/pdehaan/dev/github/mozilla/blok/js/background.js
+  185:11  warning  'actionPerformed' is defined but never used  no-unused-vars
+
+/Users/pdehaan/dev/github/mozilla/blok/js/canonicalize.js
+  28:7  warning  'isIP4Decimal' is defined but never used  no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+```
+
+r? @groovecoder 
+",pdehaan,557895,2016-07-23T17:35:15Z,COLLABORATOR,False,112,78,10,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,0d4273e041a19ab44f7cc98d9a8231b3376a28e9,Add web-ext as devDependency
+123,https://api.github.com/repos/mozilla/blok/pulls/33,33,Add ESLint and fix a few formatting errors,"Currently `✖ 2 problems (0 errors, 2 warnings)`.
+
+~~Once we land this and get the ESLint hook passing, we may want to add a npm script `pretest` hook that runs `""pretest"": ""npm run lint""` so ESLint will run automatically every time you run `$ npm test` or the build runs on Travis-CI.~~ Done.
+### How to:
+
+``` sh
+$ npm run lint
+
+> blok@1.0.0 lint /Users/pdehaan/dev/github/mozilla/blok
+> eslint .
+
+
+/Users/pdehaan/dev/github/mozilla/blok/js/background.js
+  185:11  warning  'actionPerformed' is defined but never used  no-unused-vars
+
+/Users/pdehaan/dev/github/mozilla/blok/js/canonicalize.js
+  28:7  warning  'isIP4Decimal' is defined but never used  no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+```
+
+r? @groovecoder 
+",pdehaan,557895,2016-07-23T17:35:15Z,COLLABORATOR,False,112,78,10,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,b054f14a19232c15cea2f0df4e27c8acf767aba4,Add bundle file to .eslintignore
+124,https://api.github.com/repos/mozilla/blok/pulls/33,33,Add ESLint and fix a few formatting errors,"Currently `✖ 2 problems (0 errors, 2 warnings)`.
+
+~~Once we land this and get the ESLint hook passing, we may want to add a npm script `pretest` hook that runs `""pretest"": ""npm run lint""` so ESLint will run automatically every time you run `$ npm test` or the build runs on Travis-CI.~~ Done.
+### How to:
+
+``` sh
+$ npm run lint
+
+> blok@1.0.0 lint /Users/pdehaan/dev/github/mozilla/blok
+> eslint .
+
+
+/Users/pdehaan/dev/github/mozilla/blok/js/background.js
+  185:11  warning  'actionPerformed' is defined but never used  no-unused-vars
+
+/Users/pdehaan/dev/github/mozilla/blok/js/canonicalize.js
+  28:7  warning  'isIP4Decimal' is defined but never used  no-unused-vars
+
+✖ 2 problems (0 errors, 2 warnings)
+```
+
+r? @groovecoder 
+",pdehaan,557895,2016-07-23T17:35:15Z,COLLABORATOR,False,112,78,10,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,3b06b7b7a8ef4cae50011892759168a0f492495f,Fix a few more ESLint warnings
+125,https://api.github.com/repos/mozilla/blok/pulls/32,32,fix #30: add signed .xpi,,groovecoder,71928,2016-07-22T21:30:20Z,MEMBER,True,7,0,2,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,c637b8843851b814e45186ae6eec99e9b4b33201,fix #30: add signed .xpi
+126,https://api.github.com/repos/mozilla/blok/pulls/29,29,fix #22: Update notification bar styling and behavior to match updated design spec,"<img width=""1070"" alt=""blok-cnn-toolbar"" src=""https://cloud.githubusercontent.com/assets/71928/16993650/d8104f32-4e69-11e6-9331-be523d1e32b8.png"">
+
+<img width=""1167"" alt=""blok-cnn-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/16993658/dbe9c61a-4e69-11e6-9a69-b26560ef6685.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-page-works"" src=""https://cloud.githubusercontent.com/assets/71928/16993666/e0bb0366-4e69-11e6-95f7-5fb8b88aa61d.png"">
+
+<img width=""1167"" alt=""blok-cnn-feedback-modal"" src=""https://cloud.githubusercontent.com/assets/71928/16993670/e4fd931c-4e69-11e6-90b1-7bd8e6cdf997.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-broken-feedback"" src=""https://cloud.githubusercontent.com/assets/71928/16993675/e92e7f1e-4e69-11e6-981f-2e057044217f.png"">
+",groovecoder,71928,2016-07-20T15:43:15Z,MEMBER,True,358,929,55,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,9dff8b50e9bb805700996f0cdf9f27e5d16d9245,for #22: begin notification bar style updates
+127,https://api.github.com/repos/mozilla/blok/pulls/29,29,fix #22: Update notification bar styling and behavior to match updated design spec,"<img width=""1070"" alt=""blok-cnn-toolbar"" src=""https://cloud.githubusercontent.com/assets/71928/16993650/d8104f32-4e69-11e6-9331-be523d1e32b8.png"">
+
+<img width=""1167"" alt=""blok-cnn-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/16993658/dbe9c61a-4e69-11e6-9a69-b26560ef6685.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-page-works"" src=""https://cloud.githubusercontent.com/assets/71928/16993666/e0bb0366-4e69-11e6-95f7-5fb8b88aa61d.png"">
+
+<img width=""1167"" alt=""blok-cnn-feedback-modal"" src=""https://cloud.githubusercontent.com/assets/71928/16993670/e4fd931c-4e69-11e6-90b1-7bd8e6cdf997.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-broken-feedback"" src=""https://cloud.githubusercontent.com/assets/71928/16993675/e92e7f1e-4e69-11e6-981f-2e057044217f.png"">
+",groovecoder,71928,2016-07-20T15:43:15Z,MEMBER,True,358,929,55,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,9e30d9844e4666478b758a5a9f418a39ef825ff7,for #22: add page-problem modal to contentscript
+128,https://api.github.com/repos/mozilla/blok/pulls/29,29,fix #22: Update notification bar styling and behavior to match updated design spec,"<img width=""1070"" alt=""blok-cnn-toolbar"" src=""https://cloud.githubusercontent.com/assets/71928/16993650/d8104f32-4e69-11e6-9331-be523d1e32b8.png"">
+
+<img width=""1167"" alt=""blok-cnn-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/16993658/dbe9c61a-4e69-11e6-9a69-b26560ef6685.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-page-works"" src=""https://cloud.githubusercontent.com/assets/71928/16993666/e0bb0366-4e69-11e6-95f7-5fb8b88aa61d.png"">
+
+<img width=""1167"" alt=""blok-cnn-feedback-modal"" src=""https://cloud.githubusercontent.com/assets/71928/16993670/e4fd931c-4e69-11e6-90b1-7bd8e6cdf997.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-broken-feedback"" src=""https://cloud.githubusercontent.com/assets/71928/16993675/e92e7f1e-4e69-11e6-981f-2e057044217f.png"">
+",groovecoder,71928,2016-07-20T15:43:15Z,MEMBER,True,358,929,55,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,03ec9872f202b28ef37442ea73c18523ce000f9e,for #22: continue modal feedback: add telemetry
+129,https://api.github.com/repos/mozilla/blok/pulls/29,29,fix #22: Update notification bar styling and behavior to match updated design spec,"<img width=""1070"" alt=""blok-cnn-toolbar"" src=""https://cloud.githubusercontent.com/assets/71928/16993650/d8104f32-4e69-11e6-9331-be523d1e32b8.png"">
+
+<img width=""1167"" alt=""blok-cnn-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/16993658/dbe9c61a-4e69-11e6-9a69-b26560ef6685.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-page-works"" src=""https://cloud.githubusercontent.com/assets/71928/16993666/e0bb0366-4e69-11e6-95f7-5fb8b88aa61d.png"">
+
+<img width=""1167"" alt=""blok-cnn-feedback-modal"" src=""https://cloud.githubusercontent.com/assets/71928/16993670/e4fd931c-4e69-11e6-90b1-7bd8e6cdf997.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-broken-feedback"" src=""https://cloud.githubusercontent.com/assets/71928/16993675/e92e7f1e-4e69-11e6-981f-2e057044217f.png"">
+",groovecoder,71928,2016-07-20T15:43:15Z,MEMBER,True,358,929,55,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,037d4198331b07700c181a65aa3c8010a08fd7b5,for #22: clean out styles; feedback modal title
+130,https://api.github.com/repos/mozilla/blok/pulls/29,29,fix #22: Update notification bar styling and behavior to match updated design spec,"<img width=""1070"" alt=""blok-cnn-toolbar"" src=""https://cloud.githubusercontent.com/assets/71928/16993650/d8104f32-4e69-11e6-9331-be523d1e32b8.png"">
+
+<img width=""1167"" alt=""blok-cnn-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/16993658/dbe9c61a-4e69-11e6-9a69-b26560ef6685.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-page-works"" src=""https://cloud.githubusercontent.com/assets/71928/16993666/e0bb0366-4e69-11e6-95f7-5fb8b88aa61d.png"">
+
+<img width=""1167"" alt=""blok-cnn-feedback-modal"" src=""https://cloud.githubusercontent.com/assets/71928/16993670/e4fd931c-4e69-11e6-90b1-7bd8e6cdf997.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-broken-feedback"" src=""https://cloud.githubusercontent.com/assets/71928/16993675/e92e7f1e-4e69-11e6-981f-2e057044217f.png"">
+",groovecoder,71928,2016-07-20T15:43:15Z,MEMBER,True,358,929,55,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,a2aeaac39c8ee7ca326778ed1b5ddfb62594d5f3,for #22: feedbackDiv and modal fixes
+131,https://api.github.com/repos/mozilla/blok/pulls/29,29,fix #22: Update notification bar styling and behavior to match updated design spec,"<img width=""1070"" alt=""blok-cnn-toolbar"" src=""https://cloud.githubusercontent.com/assets/71928/16993650/d8104f32-4e69-11e6-9331-be523d1e32b8.png"">
+
+<img width=""1167"" alt=""blok-cnn-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/16993658/dbe9c61a-4e69-11e6-9a69-b26560ef6685.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-page-works"" src=""https://cloud.githubusercontent.com/assets/71928/16993666/e0bb0366-4e69-11e6-95f7-5fb8b88aa61d.png"">
+
+<img width=""1167"" alt=""blok-cnn-feedback-modal"" src=""https://cloud.githubusercontent.com/assets/71928/16993670/e4fd931c-4e69-11e6-90b1-7bd8e6cdf997.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-broken-feedback"" src=""https://cloud.githubusercontent.com/assets/71928/16993675/e92e7f1e-4e69-11e6-981f-2e057044217f.png"">
+",groovecoder,71928,2016-07-20T15:43:15Z,MEMBER,True,358,929,55,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,28489558e04bd46e1e5f78bd74dcb4f61fd2d7e8,fix #22: update .xpi; remove jquery.js
+132,https://api.github.com/repos/mozilla/blok/pulls/29,29,fix #22: Update notification bar styling and behavior to match updated design spec,"<img width=""1070"" alt=""blok-cnn-toolbar"" src=""https://cloud.githubusercontent.com/assets/71928/16993650/d8104f32-4e69-11e6-9331-be523d1e32b8.png"">
+
+<img width=""1167"" alt=""blok-cnn-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/16993658/dbe9c61a-4e69-11e6-9a69-b26560ef6685.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-page-works"" src=""https://cloud.githubusercontent.com/assets/71928/16993666/e0bb0366-4e69-11e6-95f7-5fb8b88aa61d.png"">
+
+<img width=""1167"" alt=""blok-cnn-feedback-modal"" src=""https://cloud.githubusercontent.com/assets/71928/16993670/e4fd931c-4e69-11e6-90b1-7bd8e6cdf997.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-broken-feedback"" src=""https://cloud.githubusercontent.com/assets/71928/16993675/e92e7f1e-4e69-11e6-981f-2e057044217f.png"">
+",groovecoder,71928,2016-07-20T15:43:15Z,MEMBER,True,358,929,55,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,7414a2421ef7db777e296a07b0f26cfa675bc118,for #22: .blok-hide class to avoid altering content
+133,https://api.github.com/repos/mozilla/blok/pulls/29,29,fix #22: Update notification bar styling and behavior to match updated design spec,"<img width=""1070"" alt=""blok-cnn-toolbar"" src=""https://cloud.githubusercontent.com/assets/71928/16993650/d8104f32-4e69-11e6-9331-be523d1e32b8.png"">
+
+<img width=""1167"" alt=""blok-cnn-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/16993658/dbe9c61a-4e69-11e6-9a69-b26560ef6685.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-page-works"" src=""https://cloud.githubusercontent.com/assets/71928/16993666/e0bb0366-4e69-11e6-95f7-5fb8b88aa61d.png"">
+
+<img width=""1167"" alt=""blok-cnn-feedback-modal"" src=""https://cloud.githubusercontent.com/assets/71928/16993670/e4fd931c-4e69-11e6-90b1-7bd8e6cdf997.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-broken-feedback"" src=""https://cloud.githubusercontent.com/assets/71928/16993675/e92e7f1e-4e69-11e6-981f-2e057044217f.png"">
+",groovecoder,71928,2016-07-20T15:43:15Z,MEMBER,True,358,929,55,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,8beb5c85db991fc8f8b4df66c45768ae470d2eae,"for #22: review cleanups
+
+drop unnecessary window.parent check
+
+drop un-used var declarations and function params
+
+explicit variable declarations in for loops
+
+https://github.com/mozilla/blok/pull/29"
+134,https://api.github.com/repos/mozilla/blok/pulls/29,29,fix #22: Update notification bar styling and behavior to match updated design spec,"<img width=""1070"" alt=""blok-cnn-toolbar"" src=""https://cloud.githubusercontent.com/assets/71928/16993650/d8104f32-4e69-11e6-9331-be523d1e32b8.png"">
+
+<img width=""1167"" alt=""blok-cnn-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/16993658/dbe9c61a-4e69-11e6-9a69-b26560ef6685.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-page-works"" src=""https://cloud.githubusercontent.com/assets/71928/16993666/e0bb0366-4e69-11e6-95f7-5fb8b88aa61d.png"">
+
+<img width=""1167"" alt=""blok-cnn-feedback-modal"" src=""https://cloud.githubusercontent.com/assets/71928/16993670/e4fd931c-4e69-11e6-90b1-7bd8e6cdf997.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-broken-feedback"" src=""https://cloud.githubusercontent.com/assets/71928/16993675/e92e7f1e-4e69-11e6-981f-2e057044217f.png"">
+",groovecoder,71928,2016-07-20T15:43:15Z,MEMBER,True,358,929,55,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,f66e6c9b874a7212ca57835ee96640f708956338,use envify to no-op log messages in .xpi
+135,https://api.github.com/repos/mozilla/blok/pulls/29,29,fix #22: Update notification bar styling and behavior to match updated design spec,"<img width=""1070"" alt=""blok-cnn-toolbar"" src=""https://cloud.githubusercontent.com/assets/71928/16993650/d8104f32-4e69-11e6-9331-be523d1e32b8.png"">
+
+<img width=""1167"" alt=""blok-cnn-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/16993658/dbe9c61a-4e69-11e6-9a69-b26560ef6685.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-page-works"" src=""https://cloud.githubusercontent.com/assets/71928/16993666/e0bb0366-4e69-11e6-95f7-5fb8b88aa61d.png"">
+
+<img width=""1167"" alt=""blok-cnn-feedback-modal"" src=""https://cloud.githubusercontent.com/assets/71928/16993670/e4fd931c-4e69-11e6-90b1-7bd8e6cdf997.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-broken-feedback"" src=""https://cloud.githubusercontent.com/assets/71928/16993675/e92e7f1e-4e69-11e6-981f-2e057044217f.png"">
+",groovecoder,71928,2016-07-20T15:43:15Z,MEMBER,True,358,929,55,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,f6174b7a91aafc495d303977be7a8afb37003c2c,for #22: show # of tracked entities - not requests
+136,https://api.github.com/repos/mozilla/blok/pulls/29,29,fix #22: Update notification bar styling and behavior to match updated design spec,"<img width=""1070"" alt=""blok-cnn-toolbar"" src=""https://cloud.githubusercontent.com/assets/71928/16993650/d8104f32-4e69-11e6-9331-be523d1e32b8.png"">
+
+<img width=""1167"" alt=""blok-cnn-disabled"" src=""https://cloud.githubusercontent.com/assets/71928/16993658/dbe9c61a-4e69-11e6-9a69-b26560ef6685.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-page-works"" src=""https://cloud.githubusercontent.com/assets/71928/16993666/e0bb0366-4e69-11e6-95f7-5fb8b88aa61d.png"">
+
+<img width=""1167"" alt=""blok-cnn-feedback-modal"" src=""https://cloud.githubusercontent.com/assets/71928/16993670/e4fd931c-4e69-11e6-90b1-7bd8e6cdf997.png"">
+
+<img width=""1167"" alt=""blok-cnn-toolbar-broken-feedback"" src=""https://cloud.githubusercontent.com/assets/71928/16993675/e92e7f1e-4e69-11e6-981f-2e057044217f.png"">
+",groovecoder,71928,2016-07-20T15:43:15Z,MEMBER,True,358,929,55,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,a8d5ede40825e54f0e65de9859c86d6356d75344,for #22: npm run build-dev script with MODE=dev
+137,https://api.github.com/repos/mozilla/blok/pulls/23,23,for #1: entityList property+resource check,,groovecoder,71928,2016-07-14T14:28:25Z,MEMBER,True,9969,135,11,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,1e2403e939c4ec2fe0c37fc26007ac6ab30956df,for #1: move block & allow lists into lists module
+138,https://api.github.com/repos/mozilla/blok/pulls/23,23,for #1: entityList property+resource check,,groovecoder,71928,2016-07-14T14:28:25Z,MEMBER,True,9969,135,11,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,5f490279a2634a98d4461768402515fd179736bc,for #1: loadJSON promises and entitylist.json
+139,https://api.github.com/repos/mozilla/blok/pulls/23,23,for #1: entityList property+resource check,,groovecoder,71928,2016-07-14T14:28:25Z,MEMBER,True,9969,135,11,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,9b81fbd02f81b12218ca73d2f45a3ca26e91e121,for #1: entityList property+resource check
+140,https://api.github.com/repos/mozilla/blok/pulls/23,23,for #1: entityList property+resource check,,groovecoder,71928,2016-07-14T14:28:25Z,MEMBER,True,9969,135,11,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,bd2261160274d63f0a5ed9729d5be946c6f0303f,for #1: simplify lists code
+141,https://api.github.com/repos/mozilla/blok/pulls/23,23,for #1: entityList property+resource check,,groovecoder,71928,2016-07-14T14:28:25Z,MEMBER,True,9969,135,11,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,3d8ab1a2dec6229bd3b080432b9a29a9e71a5730,for #1: allHosts in canonicalize; use on origins
+142,https://api.github.com/repos/mozilla/blok/pulls/23,23,for #1: entityList property+resource check,,groovecoder,71928,2016-07-14T14:28:25Z,MEMBER,True,9969,135,11,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,cff90a7811ef891355d87e535c0ec2708a1415e5,for #1: first round of review cleanups
+143,https://api.github.com/repos/mozilla/blok/pulls/23,23,for #1: entityList property+resource check,,groovecoder,71928,2016-07-14T14:28:25Z,MEMBER,True,9969,135,11,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,7db2c7bf8f126235e96b26e8672dab260a07f5a8,add nyc for coverage reporting
+144,https://api.github.com/repos/mozilla/blok/pulls/23,23,for #1: entityList property+resource check,,groovecoder,71928,2016-07-14T14:28:25Z,MEMBER,True,9969,135,11,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,b51a6039f7c066de8f4dadab02df643ebe7432ea,note the Node version requirement for testing
+145,https://api.github.com/repos/mozilla/blok/pulls/20,20,fix #17: style notification bar like native bars,,groovecoder,71928,2016-07-12T16:33:34Z,MEMBER,True,9,18,4,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,4d64931521f71b633ce168a871fc270a250c38aa,fix #17: style notification bar like native bars
+146,https://api.github.com/repos/mozilla/blok/pulls/19,19,build prs and merges to master,,groovecoder,71928,2016-07-12T14:12:28Z,MEMBER,True,4,0,1,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,0021c01b52d1cab986d4733193db61652bde4d46,build prs and merges to master
+147,https://api.github.com/repos/mozilla/blok/pulls/18,18,for #16: allow child requests to main frame domain,,groovecoder,71928,2016-07-12T14:06:59Z,MEMBER,True,25,3,2,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,840554a035f54ae6b44e4e9f7b6907efc2706714,for #16: allow child requests to main frame domain
+148,https://api.github.com/repos/mozilla/blok/pulls/15,15,for #2: canonicalize hosts per SafeBrowsing protocol,,groovecoder,71928,2016-07-07T20:31:07Z,MEMBER,True,164,12,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,78d1a98f0824b2d72c67cc271300ebbed3569c71,for #2: 3/4 of SafeBrowsing host canonicalization
+149,https://api.github.com/repos/mozilla/blok/pulls/15,15,for #2: canonicalize hosts per SafeBrowsing protocol,,groovecoder,71928,2016-07-07T20:31:07Z,MEMBER,True,164,12,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,6482adfdef9992044212e42cb3168f1c63b59724,for #2: check all hosts from lowest- to top-level
+150,https://api.github.com/repos/mozilla/blok/pulls/15,15,for #2: canonicalize hosts per SafeBrowsing protocol,,groovecoder,71928,2016-07-07T20:31:07Z,MEMBER,True,164,12,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,6b72aa745e3a29dfc36055c392e8b4ca2b9ed9f5,for #2: 3.9/4 SafeBrowsing IP host canonicalization
+151,https://api.github.com/repos/mozilla/blok/pulls/15,15,for #2: canonicalize hosts per SafeBrowsing protocol,,groovecoder,71928,2016-07-07T20:31:07Z,MEMBER,True,164,12,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,72577ab74894529065eb35c455e50822113c93bd,for #2: canonicalize module & tests
+152,https://api.github.com/repos/mozilla/blok/pulls/15,15,for #2: canonicalize hosts per SafeBrowsing protocol,,groovecoder,71928,2016-07-07T20:31:07Z,MEMBER,True,164,12,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,d7746ead4b070c122f7b13298c12f1a6c10f4dd3,for #2: add bundle to package and README
+153,https://api.github.com/repos/mozilla/blok/pulls/15,15,for #2: canonicalize hosts per SafeBrowsing protocol,,groovecoder,71928,2016-07-07T20:31:07Z,MEMBER,True,164,12,9,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,406373edad508c2ba208b439b2c36986d1691513,add .travis.yml
+154,https://api.github.com/repos/mozilla/blok/pulls/14,14,for #6: web extension artifacts to enable test pilot experiment,"Recording testing steps here, as they are extensive, and I'm moving onto more issues.
+1. Clone testpilot repo locally
+   - For now, need to clone the [lmorchard/433-webextension-telemetry-2 fork/branch](https://github.com/lmorchard/testpilot/tree/433-webextension-telemetry-2)
+2. Follow the [testpilot quickstart](https://github.com/mozilla/testpilot#quickstart) to set up http://testpilot.dev:8000
+3. Open Firefox 48+ to http://testpilot.dev:8000 and click ""Install Test Pilot""
+4. Go to http://testpilot.dev:8000/admin/experiments/experiment/add/ (user: admin, pass: admin)
+5. Create an experiment for blok, the only specific values you need are:
+   - xpi url: https://github.com/mozilla/blok/raw/master/web-ext-artifacts/blok-0.1.xpi
+   - addon id: blok@mozilla.org
+6. Go to http://testpilot.dev:8000/experiments
+   - Should see the blok experiment
+7. Click the experiment, and click ""Enable""
+
+To verify the broadcast channel is working:
+1. Open the browser toolbox debugger
+2. Place a breakpoint at `lib/webextension-channels.js:144` (`Metrics.onExperimentPing`)
+3. In the browser, visit a site on which Blok blocks trackers (e.g., economist.com)
+4. Click ""Disable blok""
+   - When the page reloads, it should ask why you disabled blok
+5. Click ""The page was broken""
+6. You should see the browser toolbox debugger paused at the `Metrics.onExperimentPing` line - this means the disable reason message was successfully sent via the broadcast channel to the test pilot add-on to send a telemetry ping.
+
+The pixels of victory:
+
+![blok-testpilot-telemetry-debugger](https://cloud.githubusercontent.com/assets/71928/16656256/9ec49cc4-4423-11e6-9eb1-344ffb6a6d9b.png)
+",groovecoder,71928,2016-07-06T20:32:51Z,MEMBER,True,24,6,5,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,05048988a3627d45865908dce4bc7b5a46257071,for #6: update addon id and publicize .xpi
+155,https://api.github.com/repos/mozilla/blok/pulls/14,14,for #6: web extension artifacts to enable test pilot experiment,"Recording testing steps here, as they are extensive, and I'm moving onto more issues.
+1. Clone testpilot repo locally
+   - For now, need to clone the [lmorchard/433-webextension-telemetry-2 fork/branch](https://github.com/lmorchard/testpilot/tree/433-webextension-telemetry-2)
+2. Follow the [testpilot quickstart](https://github.com/mozilla/testpilot#quickstart) to set up http://testpilot.dev:8000
+3. Open Firefox 48+ to http://testpilot.dev:8000 and click ""Install Test Pilot""
+4. Go to http://testpilot.dev:8000/admin/experiments/experiment/add/ (user: admin, pass: admin)
+5. Create an experiment for blok, the only specific values you need are:
+   - xpi url: https://github.com/mozilla/blok/raw/master/web-ext-artifacts/blok-0.1.xpi
+   - addon id: blok@mozilla.org
+6. Go to http://testpilot.dev:8000/experiments
+   - Should see the blok experiment
+7. Click the experiment, and click ""Enable""
+
+To verify the broadcast channel is working:
+1. Open the browser toolbox debugger
+2. Place a breakpoint at `lib/webextension-channels.js:144` (`Metrics.onExperimentPing`)
+3. In the browser, visit a site on which Blok blocks trackers (e.g., economist.com)
+4. Click ""Disable blok""
+   - When the page reloads, it should ask why you disabled blok
+5. Click ""The page was broken""
+6. You should see the browser toolbox debugger paused at the `Metrics.onExperimentPing` line - this means the disable reason message was successfully sent via the broadcast channel to the test pilot add-on to send a telemetry ping.
+
+The pixels of victory:
+
+![blok-testpilot-telemetry-debugger](https://cloud.githubusercontent.com/assets/71928/16656256/9ec49cc4-4423-11e6-9eb1-344ffb6a6d9b.png)
+",groovecoder,71928,2016-07-06T20:32:51Z,MEMBER,True,24,6,5,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,bb269dc4788fe69ac05c0e2ed039670810632ab5,for #6: disable-reason-thankyou and updated .xpi
+156,https://api.github.com/repos/mozilla/blok/pulls/14,14,for #6: web extension artifacts to enable test pilot experiment,"Recording testing steps here, as they are extensive, and I'm moving onto more issues.
+1. Clone testpilot repo locally
+   - For now, need to clone the [lmorchard/433-webextension-telemetry-2 fork/branch](https://github.com/lmorchard/testpilot/tree/433-webextension-telemetry-2)
+2. Follow the [testpilot quickstart](https://github.com/mozilla/testpilot#quickstart) to set up http://testpilot.dev:8000
+3. Open Firefox 48+ to http://testpilot.dev:8000 and click ""Install Test Pilot""
+4. Go to http://testpilot.dev:8000/admin/experiments/experiment/add/ (user: admin, pass: admin)
+5. Create an experiment for blok, the only specific values you need are:
+   - xpi url: https://github.com/mozilla/blok/raw/master/web-ext-artifacts/blok-0.1.xpi
+   - addon id: blok@mozilla.org
+6. Go to http://testpilot.dev:8000/experiments
+   - Should see the blok experiment
+7. Click the experiment, and click ""Enable""
+
+To verify the broadcast channel is working:
+1. Open the browser toolbox debugger
+2. Place a breakpoint at `lib/webextension-channels.js:144` (`Metrics.onExperimentPing`)
+3. In the browser, visit a site on which Blok blocks trackers (e.g., economist.com)
+4. Click ""Disable blok""
+   - When the page reloads, it should ask why you disabled blok
+5. Click ""The page was broken""
+6. You should see the browser toolbox debugger paused at the `Metrics.onExperimentPing` line - this means the disable reason message was successfully sent via the broadcast channel to the test pilot add-on to send a telemetry ping.
+
+The pixels of victory:
+
+![blok-testpilot-telemetry-debugger](https://cloud.githubusercontent.com/assets/71928/16656256/9ec49cc4-4423-11e6-9eb1-344ffb6a6d9b.png)
+",groovecoder,71928,2016-07-06T20:32:51Z,MEMBER,True,24,6,5,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,11e5a51cae69c842d2a39f4fb088e2a86281e951,for #6: fix disable-reason and reason-given messages
+157,https://api.github.com/repos/mozilla/blok/pulls/14,14,for #6: web extension artifacts to enable test pilot experiment,"Recording testing steps here, as they are extensive, and I'm moving onto more issues.
+1. Clone testpilot repo locally
+   - For now, need to clone the [lmorchard/433-webextension-telemetry-2 fork/branch](https://github.com/lmorchard/testpilot/tree/433-webextension-telemetry-2)
+2. Follow the [testpilot quickstart](https://github.com/mozilla/testpilot#quickstart) to set up http://testpilot.dev:8000
+3. Open Firefox 48+ to http://testpilot.dev:8000 and click ""Install Test Pilot""
+4. Go to http://testpilot.dev:8000/admin/experiments/experiment/add/ (user: admin, pass: admin)
+5. Create an experiment for blok, the only specific values you need are:
+   - xpi url: https://github.com/mozilla/blok/raw/master/web-ext-artifacts/blok-0.1.xpi
+   - addon id: blok@mozilla.org
+6. Go to http://testpilot.dev:8000/experiments
+   - Should see the blok experiment
+7. Click the experiment, and click ""Enable""
+
+To verify the broadcast channel is working:
+1. Open the browser toolbox debugger
+2. Place a breakpoint at `lib/webextension-channels.js:144` (`Metrics.onExperimentPing`)
+3. In the browser, visit a site on which Blok blocks trackers (e.g., economist.com)
+4. Click ""Disable blok""
+   - When the page reloads, it should ask why you disabled blok
+5. Click ""The page was broken""
+6. You should see the browser toolbox debugger paused at the `Metrics.onExperimentPing` line - this means the disable reason message was successfully sent via the broadcast channel to the test pilot add-on to send a telemetry ping.
+
+The pixels of victory:
+
+![blok-testpilot-telemetry-debugger](https://cloud.githubusercontent.com/assets/71928/16656256/9ec49cc4-4423-11e6-9eb1-344ffb6a6d9b.png)
+",groovecoder,71928,2016-07-06T20:32:51Z,MEMBER,True,24,6,5,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,1a381734b0ae78a7036ca626ae69b9da403baaf8,fix #6: .xpi with test pilot broadcast channel
+158,https://api.github.com/repos/mozilla/blok/pulls/13,13,Change to notification bar,"For https://github.com/mozilla/blok/issues/8, https://github.com/mozilla/blok/issues/9, and https://github.com/mozilla/blok/issues/4, changing the UI to a XUL-like notification bar with design copied from the pop-up blocker.
+
+There's still more polish to do on this UI, but this is a big change and improvement from the page action, and we can file follow-up issues for future improvement.
+",groovecoder,71928,2016-07-05T13:39:43Z,MEMBER,True,834,126,14,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,9a6404f14e9ffd371c11505759eaffbf68f87501,for #8: start switch to content script
+159,https://api.github.com/repos/mozilla/blok/pulls/13,13,Change to notification bar,"For https://github.com/mozilla/blok/issues/8, https://github.com/mozilla/blok/issues/9, and https://github.com/mozilla/blok/issues/4, changing the UI to a XUL-like notification bar with design copied from the pop-up blocker.
+
+There's still more polish to do on this UI, but this is a big change and improvement from the page action, and we can file follow-up issues for future improvement.
+",groovecoder,71928,2016-07-05T13:39:43Z,MEMBER,True,834,126,14,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,3a41af264e92b1b2071e7076c60cc1fc0bd1aabd,for #8: big changes from page action to infobar
+160,https://api.github.com/repos/mozilla/blok/pulls/13,13,Change to notification bar,"For https://github.com/mozilla/blok/issues/8, https://github.com/mozilla/blok/issues/9, and https://github.com/mozilla/blok/issues/4, changing the UI to a XUL-like notification bar with design copied from the pop-up blocker.
+
+There's still more polish to do on this UI, but this is a big change and improvement from the page action, and we can file follow-up issues for future improvement.
+",groovecoder,71928,2016-07-05T13:39:43Z,MEMBER,True,834,126,14,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,bd281458136cb0482bd63375158005722b495e1f,for #8: messages for disable-reason and close-toolbar
+161,https://api.github.com/repos/mozilla/blok/pulls/13,13,Change to notification bar,"For https://github.com/mozilla/blok/issues/8, https://github.com/mozilla/blok/issues/9, and https://github.com/mozilla/blok/issues/4, changing the UI to a XUL-like notification bar with design copied from the pop-up blocker.
+
+There's still more polish to do on this UI, but this is a big change and improvement from the page action, and we can file follow-up issues for future improvement.
+",groovecoder,71928,2016-07-05T13:39:43Z,MEMBER,True,834,126,14,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,3eb3958da2cf9d6b0ba0b86b7a1974151595a046,for #8: fix icons and toolbar styles
+162,https://api.github.com/repos/mozilla/blok/pulls/13,13,Change to notification bar,"For https://github.com/mozilla/blok/issues/8, https://github.com/mozilla/blok/issues/9, and https://github.com/mozilla/blok/issues/4, changing the UI to a XUL-like notification bar with design copied from the pop-up blocker.
+
+There's still more polish to do on this UI, but this is a big change and improvement from the page action, and we can file follow-up issues for future improvement.
+",groovecoder,71928,2016-07-05T13:39:43Z,MEMBER,True,834,126,14,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,aba4bbccdd77358c37e4841276404f14c59add2d,for #8: add close-toolbar message to all close-btn
+163,https://api.github.com/repos/mozilla/blok/pulls/13,13,Change to notification bar,"For https://github.com/mozilla/blok/issues/8, https://github.com/mozilla/blok/issues/9, and https://github.com/mozilla/blok/issues/4, changing the UI to a XUL-like notification bar with design copied from the pop-up blocker.
+
+There's still more polish to do on this UI, but this is a big change and improvement from the page action, and we can file follow-up issues for future improvement.
+",groovecoder,71928,2016-07-05T13:39:43Z,MEMBER,True,834,126,14,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,f436a39a227fb5e07cd21551f63bb449eb6aa523,for #8: style infobar like xul notification bar
+164,https://api.github.com/repos/mozilla/blok/pulls/10,10,fix #7: keep allowed hosts in local storage,"To preserve hosts where the user has disabled tracking protection,
+store the allowed hosts in extension local storage.
+
+To show accurate block stats in each tab, use requestDetails.tabId
+when recording block stats.
+",groovecoder,71928,2016-06-28T15:29:07Z,MEMBER,True,90,82,4,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,7ae2790a17925dfa379c6e684595f47646029e13,"fix #7: keep allowed hosts in local storage
+
+To preserve hosts where the user has disabled tracking protection,
+store the allowed hosts in extension local storage.
+
+To show accurate block stats in each tab, use requestDetails.tabId
+when recording block stats."
+165,https://api.github.com/repos/mozilla/blok/pulls/5,5,Disable and ask why 4,,groovecoder,71928,2016-06-23T14:15:45Z,MEMBER,True,104,26,7,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,ca4aeea3afb8d50a3328e7a3e4d5e6b1dc541967,for #4: disable feature and UI updates
+166,https://api.github.com/repos/mozilla/blok/pulls/5,5,Disable and ask why 4,,groovecoder,71928,2016-06-23T14:15:45Z,MEMBER,True,104,26,7,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,f3e1f34ac5f59e4fca19200c347bbe703f47ad21,for #4: send reason to testpilot.firefox.com
+167,https://api.github.com/repos/mozilla/blok/pulls/5,5,Disable and ask why 4,,groovecoder,71928,2016-06-23T14:15:45Z,MEMBER,True,104,26,7,Web Extension implementation of Firefox tracking protection for experimental development,JavaScript,7ffee485617c33bbc419bfa551cbf67759d5da91,"for #4: re-enable tab protection when changing domains
+
+proper disable reason event binding for metrics"

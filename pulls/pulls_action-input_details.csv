@@ -1,0 +1,237 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/action-input/pulls/20,20,Add Mozilla Code of Conduct,"Fixes #19
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-30T06:49:12Z,CONTRIBUTOR,True,15,0,1,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,5a36dcb50e50832b712c38d3eb6a4d9467274c3f,"Add Mozilla Code of Conduct file
+
+Fixes #19.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/action-input/pulls/18,18,Rearchitected to avoid per-frame memory allocation.,"I use action-input in [PotassiumES](https://potassiumes.org/) and (as @fernandojsg predicted) quickly ran into problems with per-frame heap allocation causing GC pauses in rendering.
+
+The main code is ready for review but I need to update the example code.
+
+This PR eliminates heap allocations during the `poll` by:
+- passing reusable data structures instead of ephemeral new ones
+- rewriting loops to use iteration methods that do not create new arrays or iterators
+- creating per-module reusable (aka working) data structures instead of recreating them in methods
+- filter and action parameters are passed instead of copying their values into new data structures
+
+",TrevorFSmith,34779,2019-01-12T15:24:44Z,CONTRIBUTOR,False,517,193,13,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,5166dfe161b923e841522766b93617cf5ff689b7,Rearchitected to avoid per-frame memory allocation.
+2,https://api.github.com/repos/mozilla/action-input/pulls/18,18,Rearchitected to avoid per-frame memory allocation.,"I use action-input in [PotassiumES](https://potassiumes.org/) and (as @fernandojsg predicted) quickly ran into problems with per-frame heap allocation causing GC pauses in rendering.
+
+The main code is ready for review but I need to update the example code.
+
+This PR eliminates heap allocations during the `poll` by:
+- passing reusable data structures instead of ephemeral new ones
+- rewriting loops to use iteration methods that do not create new arrays or iterators
+- creating per-module reusable (aka working) data structures instead of recreating them in methods
+- filter and action parameters are passed instead of copying their values into new data structures
+
+",TrevorFSmith,34779,2019-01-12T15:24:44Z,CONTRIBUTOR,False,517,193,13,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,03b94b224f4885589eac9eb218067aad48255882,Temporarily publish to potassium-action-input and update version to 1.0.0
+3,https://api.github.com/repos/mozilla/action-input/pulls/18,18,Rearchitected to avoid per-frame memory allocation.,"I use action-input in [PotassiumES](https://potassiumes.org/) and (as @fernandojsg predicted) quickly ran into problems with per-frame heap allocation causing GC pauses in rendering.
+
+The main code is ready for review but I need to update the example code.
+
+This PR eliminates heap allocations during the `poll` by:
+- passing reusable data structures instead of ephemeral new ones
+- rewriting loops to use iteration methods that do not create new arrays or iterators
+- creating per-module reusable (aka working) data structures instead of recreating them in methods
+- filter and action parameters are passed instead of copying their values into new data structures
+
+",TrevorFSmith,34779,2019-01-12T15:24:44Z,CONTRIBUTOR,False,517,193,13,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,31c2165aa617161e6df02a37e086da5b3aa16f4d,Revert back to action-input name
+4,https://api.github.com/repos/mozilla/action-input/pulls/17,17,Add pretty printing for easier debugging.,It can be pretty hard to tell what's happening with the ActionManager so ActionManager.prettyPrint is a handy method for dumping the hierarchy to the console log.,TrevorFSmith,34779,2018-10-21T04:47:33Z,CONTRIBUTOR,True,67,1,11,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,9caa6f9d75f45ae64ddc252867842edcb20b3f1e,Add pretty printing for easier debugging.
+5,https://api.github.com/repos/mozilla/action-input/pulls/17,17,Add pretty printing for easier debugging.,It can be pretty hard to tell what's happening with the ActionManager so ActionManager.prettyPrint is a handy method for dumping the hierarchy to the console log.,TrevorFSmith,34779,2018-10-21T04:47:33Z,CONTRIBUTOR,True,67,1,11,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,ffb1a2fe47603fa7dc8abd1e87712bf162a8443b,Typo
+6,https://api.github.com/repos/mozilla/action-input/pulls/16,16,Bump more dependencies. Fix the license string in package.json.,"Another run at fixing the vulnerability warnings.
+Also, make SPDX compliant the license string.",TrevorFSmith,34779,2018-08-02T23:39:42Z,CONTRIBUTOR,True,10,10,2,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,e1890f830a31067946bf7508589748cd45ae2f87,Bump more dependencies. Fix the license string in package.json.
+7,https://api.github.com/repos/mozilla/action-input/pulls/15,15,"Update packages, hopefully fixing the github indicated vulnerabilities.","I just ran npm update to see if that clears up the dependency vulnerabilities indicated by GitHub, all of which were pretty deep in the dependency hierarchy.",TrevorFSmith,34779,2018-08-02T20:44:40Z,CONTRIBUTOR,True,1818,1364,2,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,7ed919e6c7c74fcb734bc49ac19296f184b50aa9,"Update packages, hopefully fixing the github indicated vulnerabilities."
+8,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,6a399ac99035e4f9e1b408b4fe4d311abe5cd0d1,Add rough idea of action manager API.
+9,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,327ff26f47447e7bd51bdf0bc516e98ab1a2836f,Updated pseudocode based on feedback.
+10,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,a238e7cfa8429cd115ed8b776e858400acfc8a8e,Add haptic feedback.
+11,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,ea9d3d261b82e61147390528f88268ec07ab1b15,"Rough out the ActionManager, ActionMap, a simple default binding map, and KeyboardInputSource."
+12,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,e17c0686fe1497b02acc929d3d2ebd8ec404f526,Remove unused example.
+13,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,0266f544cf8c6f7abbdff3b285b663fac570219c,Fix the esdoc warnings.
+14,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,38e4cc1aabaddb981bc87dbed326e080ae119301,"Hook up haptic feedback and make simplest show rotate actions, too."
+15,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,ed6e87c03c38e138e8177b09cd6382681e1640d5,"Add an example of all custom input sources, filters, and maps."
+16,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,f322125fc8d1534c8768f059b0cc0357f62fc6b6,Add the ability to query an input path
+17,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,e8df9b2407884d33ce41e039ae4341ec4b7f538a,Tweak the doc for ActionMap
+18,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,d3d352f6daeb1e918b6470717e7f39651a8d950a,Removed much of the listener pattern and replaced it with updates during poll.
+19,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,4d8c56d2d1d4f1685f261cab9e167ee5763de432,Updated the README to reflect the new design.
+20,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,a659f46ab1eeeb234bd4caa102c3328e23f706b4,README tweak
+21,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,8490ce645e2f7af29b9afae30722c6dfdd676811,"Implement GamepadInputSource, MouseInputSource, and TouchInputSource. Add a MinMaxFilter and a ClickFilter. Remote Type, since it is not used (yet?)."
+22,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,140068df8577f73d0b3ec3f62ab511da83fe760c,Update package name
+23,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,049aa234c77e8c521f218ae039ff394b6f0c4550,Update from TodoMVC work.
+24,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,9ed29a7ff03ec3b3f3aaca18042efacf536bd662,"Addressed review concerns:
+Fixed some language in the README.
+Cleaned up indexing in Touch- and MouseInputSources
+Removed the unimplemented ReverseAxisFilter."
+25,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,c30aec4a9913b026295566238bcb1b4f008a2b18,Remove old references.
+26,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,ac1d6d13ac39dc4e4dcf1ecf8bfd1e388131b018,Remove reference to removed filter.
+27,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,ac0d4441058459c3f082761504af9979adbf9882,Fix a bug introduced in the latest MouseInputSource tweak.
+28,https://api.github.com/repos/mozilla/action-input/pulls/14,14,ActionManager API for discussion,"This is a bit of pseudocode demonstrating the rough idea of how I envision an app writer using the action-input lib.
+
+The basic idea is that the app writer declares (perhaps extends) how to map low level inputs to high level actions (perhaps via filters) in JSON files (in this code they're *.map files) and then uses the event or polling API to track events.
+
+The app writer is also responsible for the logic of which maps are active at any time, so they'll probably have maps for different XR modes (flat, portal, and immersive) and for different situations like when the game is running, paused, or in a configuration menu.
+
+I don't expect to merge this PR, just putting it here for discussion.",TrevorFSmith,34779,2018-02-27T22:24:43Z,CONTRIBUTOR,True,1363,74,27,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,2e28ca39b2482a9d7a3dc03e847445615133c5c9,Address more feedback. Removed default action map. Add helper functions to ActionManager. Update samples.
+29,https://api.github.com/repos/mozilla/action-input/pulls/13,13,Added lint command with eslinter,"I've just added a `lint` command if you want to run it manually or from the CI, so we could close https://github.com/mozilla/xr-input/issues/4",fernandojsg,782511,2018-02-16T10:21:12Z,CONTRIBUTOR,True,1,0,1,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,9d10ebb2d19d07c99cefc72f694794963b6306c1,Added lint command with eslinter
+30,https://api.github.com/repos/mozilla/action-input/pulls/12,12,Fixed inputSource import,,fernandojsg,782511,2018-02-15T23:19:09Z,CONTRIBUTOR,True,4,4,4,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,48d5faf176a92efbaf8dacf2bc82ae7b76894ad6,Fixed inputSource import
+31,https://api.github.com/repos/mozilla/action-input/pulls/11,11,apply prettier,from https://github.com/mozilla/xr-input/pull/9,fernandojsg,782511,2018-02-15T12:49:28Z,CONTRIBUTOR,True,145,237,20,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,f3ef99d65ecfcb528f793bdafbf1e9a8cb40b265,apply prettier
+32,https://api.github.com/repos/mozilla/action-input/pulls/9,9,Added the same eslint and prettier config as mr-social-client.,,TrevorFSmith,34779,2018-02-14T22:14:58Z,CONTRIBUTOR,True,1296,782,3,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,48f2d09cd8769455091a75b3d081f475a58b293d,Added the same eslint and prettier config as mr-social-client.
+33,https://api.github.com/repos/mozilla/action-input/pulls/8,8,Remove prettier single-quotes rule :_(,As discussed on https://github.com/mozilla/xr-input/pull/7#discussion_r168289962,fernandojsg,782511,2018-02-14T19:58:29Z,CONTRIBUTOR,True,0,3,1,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,e12ea6438027856f5b0e876fe5ea5346067c4242,"Remove prettier single-quotes rule :_(
+
+As discussed on https://github.com/mozilla/xr-input/pull/7#discussion_r168289962"
+34,https://api.github.com/repos/mozilla/action-input/pulls/7,7,Prettier,"None of the sources are actually prettier'ed in this PR. This is just the config for Prettier.
+
+The only change I made to the default Prettier formatting was to add singleQuote. (see package.json)",TrevorFSmith,34779,2018-02-14T19:45:03Z,CONTRIBUTOR,True,952,396,2,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,3b41f422e3872ca63df5b144bf4a021504d78b39,Added prettier to the build and precommit
+35,https://api.github.com/repos/mozilla/action-input/pulls/7,7,Prettier,"None of the sources are actually prettier'ed in this PR. This is just the config for Prettier.
+
+The only change I made to the default Prettier formatting was to add singleQuote. (see package.json)",TrevorFSmith,34779,2018-02-14T19:45:03Z,CONTRIBUTOR,True,952,396,2,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,86fc569606f64ae0093227b1eb343938e3377d4b,Add back those beloved semicolons.
+36,https://api.github.com/repos/mozilla/action-input/pulls/5,5,Testing framework,"Before we start actually implementing anything, I wanted to suggest that we use [Potassium's bare-bones, in-browser testing framework](https://github.com/TrevorFSmith/potassium/tree/master/test) since most of the functionality will need the browser APIs and our needs are pretty simple.
+
+But, if someone has strong opinions about testing, I'm open to other frameworks, especially if they make it easy to run tests in a headless browser from the command line and using CI.
+
+I added a simple event and listener system, also [pulled in from Potassium](https://github.com/TrevorFSmith/potassium/tree/master/test), that I think we can use to avoid causing GC. The tacitc I took with the KeyboarInputSource was to create a single instance of InputEvent for each event type and then pass context using parameters. I think that this will keep events and context data on the stack, but it's a weird pattern so I'm looking for feedback on that, too.",TrevorFSmith,34779,2018-02-13T15:35:55Z,CONTRIBUTOR,False,18072,155,15,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,949374d5b3227c5928c1ad08c0eb15476a336ca0,Stub out testing. Added a simple event system. Create an example unit test for keyboard events sent through KeyboardInputSource
+37,https://api.github.com/repos/mozilla/action-input/pulls/5,5,Testing framework,"Before we start actually implementing anything, I wanted to suggest that we use [Potassium's bare-bones, in-browser testing framework](https://github.com/TrevorFSmith/potassium/tree/master/test) since most of the functionality will need the browser APIs and our needs are pretty simple.
+
+But, if someone has strong opinions about testing, I'm open to other frameworks, especially if they make it easy to run tests in a headless browser from the command line and using CI.
+
+I added a simple event and listener system, also [pulled in from Potassium](https://github.com/TrevorFSmith/potassium/tree/master/test), that I think we can use to avoid causing GC. The tacitc I took with the KeyboarInputSource was to create a single instance of InputEvent for each event type and then pass context using parameters. I think that this will keep events and context data on the stack, but it's a weird pattern so I'm looking for feedback on that, too.",TrevorFSmith,34779,2018-02-13T15:35:55Z,CONTRIBUTOR,False,18072,155,15,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,3225ce5f84ca0aecab4ad180cd8a8e4c9a7ca9e0,Switch to mocha and chai
+38,https://api.github.com/repos/mozilla/action-input/pulls/5,5,Testing framework,"Before we start actually implementing anything, I wanted to suggest that we use [Potassium's bare-bones, in-browser testing framework](https://github.com/TrevorFSmith/potassium/tree/master/test) since most of the functionality will need the browser APIs and our needs are pretty simple.
+
+But, if someone has strong opinions about testing, I'm open to other frameworks, especially if they make it easy to run tests in a headless browser from the command line and using CI.
+
+I added a simple event and listener system, also [pulled in from Potassium](https://github.com/TrevorFSmith/potassium/tree/master/test), that I think we can use to avoid causing GC. The tacitc I took with the KeyboarInputSource was to create a single instance of InputEvent for each event type and then pass context using parameters. I think that this will keep events and context data on the stack, but it's a weird pattern so I'm looking for feedback on that, too.",TrevorFSmith,34779,2018-02-13T15:35:55Z,CONTRIBUTOR,False,18072,155,15,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,6a56bddc52dd72ef9ff27fac95c1906516eed54f,Remove mocha and chai from the npm packages. Include mocha and chai files in the test dir.
+39,https://api.github.com/repos/mozilla/action-input/pulls/5,5,Testing framework,"Before we start actually implementing anything, I wanted to suggest that we use [Potassium's bare-bones, in-browser testing framework](https://github.com/TrevorFSmith/potassium/tree/master/test) since most of the functionality will need the browser APIs and our needs are pretty simple.
+
+But, if someone has strong opinions about testing, I'm open to other frameworks, especially if they make it easy to run tests in a headless browser from the command line and using CI.
+
+I added a simple event and listener system, also [pulled in from Potassium](https://github.com/TrevorFSmith/potassium/tree/master/test), that I think we can use to avoid causing GC. The tacitc I took with the KeyboarInputSource was to create a single instance of InputEvent for each event type and then pass context using parameters. I think that this will keep events and context data on the stack, but it's a weird pattern so I'm looking for feedback on that, too.",TrevorFSmith,34779,2018-02-13T15:35:55Z,CONTRIBUTOR,False,18072,155,15,"A framework-agnostic input library that progressively handles flat, portal, and immersive web apps.",JavaScript,00917d4be0567bdc462417092ebf392a27492428,Merge branch 'master' into tfs-test-stub

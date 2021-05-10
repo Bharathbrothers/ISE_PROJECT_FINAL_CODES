@@ -1,0 +1,199 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/dryice/pulls/33,33,Support Simplified CommonJS Wrappers,"Add explicit support for CJS Wrappers which look like the following:
+
+```
+define(function(require, exports, module){
+    var foo = require('foo'),
+        bar = require('foo/bar');
+
+    exports.doSomething = function(){
+        console.log(foo + bar);
+    };
+});
+```
+
+A module is only treated as a CJS module if it doesn't contain a dependency array and the definition function contains at least one parameter.
+
+More information:
+- http://requirejs.org/docs/api.html#cjsmodule
+- https://github.com/jrburke/requirejs/wiki/Differences-between-the-simplified-CommonJS-wrapper-and-standard-AMD-define
+",stasm,265818,2013-06-12T10:16:04Z,CONTRIBUTOR,False,12,1,1,CommonJS/RequireJS build tool,JavaScript,a0cdb595ec17fe1938ac5d338a602414d0de396c,"Support Simplified CommonJS Wrappers
+
+Add explicit support for CJS Wrappers which look like the following:
+
+    define(function(require, exports, module){
+        var foo = require('foo'),
+            bar = require('foo/bar');
+
+        exports.doSomething = function(){
+            console.log(foo + bar);
+        };
+    });
+
+A module is only treated as a CJS module if it doesn't contain a dependency
+array and the definition function contain at least one parameter.
+
+More information:
+
+    http://requirejs.org/docs/api.html#cjsmodule
+    https://github.com/jrburke/requirejs/wiki/Differences-between-the-simplified-CommonJS-wrapper-and-standard-AMD-define"
+1,https://api.github.com/repos/mozilla/dryice/pulls/31,31,lower the NodeJS version requirement,"Is there a specific reason for the strict dependency on NodeJS >= 0.8.0?
+
+We are in the process of migrating to 0.8, but are still running on 0.6 at the moment. Since this is a helper library, it might be good to support a wider range of environments.
+
+Thanks!
+",mikedeboer,141571,2012-11-21T19:04:46Z,CONTRIBUTOR,True,5,1,2,CommonJS/RequireJS build tool,JavaScript,87728b051c6d503a3cae9fd17a26e387092eebc0,lower the NodeJS version requirement
+2,https://api.github.com/repos/mozilla/dryice/pulls/31,31,lower the NodeJS version requirement,"Is there a specific reason for the strict dependency on NodeJS >= 0.8.0?
+
+We are in the process of migrating to 0.8, but are still running on 0.6 at the moment. Since this is a helper library, it might be good to support a wider range of environments.
+
+Thanks!
+",mikedeboer,141571,2012-11-21T19:04:46Z,CONTRIBUTOR,True,5,1,2,CommonJS/RequireJS build tool,JavaScript,f536bc6d9aa6d6546668de2de409d52606bd6cda,ensure backward compatibility with older node versions
+3,https://api.github.com/repos/mozilla/dryice/pulls/30,30,"UglifyJS moved to version 2, which is NOT backward compatible.","Additionally, it depends on a package called `source-map`, which only supports NodeJS >= 0.8, which is breaking our setup at Cloud9 :unamused: 
+
+I hope you are able to take a look at this quickly and publish a new version of dryice as soon as possible!
+
+Thanks!
+",mikedeboer,141571,2012-11-21T17:21:12Z,CONTRIBUTOR,True,1,1,1,CommonJS/RequireJS build tool,JavaScript,e9fe460a349c28273910803dda2cc8dbd153b818,fixed version of uglify-js to NOT use uglify-js2
+4,https://api.github.com/repos/mozilla/dryice/pulls/29,29,Pinned uglifyJS to 1.3.4,"UglifyJS 2.2.0 is breaking everything. This fix pins it down to version 1.3.4
+",timgl,1727427,2012-11-21T15:26:22Z,NONE,False,1,1,1,CommonJS/RequireJS build tool,JavaScript,a2af6a394cee8dec460c3eebebf73612b6cad8ac,Pinned uglifyJS to 1.3.4
+5,https://api.github.com/repos/mozilla/dryice/pulls/28,28,Fix typos in code sample of the README on calling uglifyjs filter,,tonistiigi,585223,2012-09-11T08:29:38Z,CONTRIBUTOR,True,2,2,1,CommonJS/RequireJS build tool,JavaScript,d6707649a93308b5da1669b749977e3110eff943,Fix typos in code sample of the README on calling uglifyjs filter
+6,https://api.github.com/repos/mozilla/dryice/pulls/26,26,Hi! I fixed some code for you!,"Hi!
+
+I am migrationBot!
+
+Did you know that `path.{exists,existsSync}` was moved to `fs.{exists,existsSync}`,  and that `tty.setRawMode(mode)` was moved to `tty.ReadStream#setRawMode()` (i.e. `process.stdin.setRawMode()`)  in node v0.8.0? Read more @[API changes between v0.6 and v0.8](https://github.com/joyent/node/wiki/API-changes-between-v0.6-and-v0.8) 
+
+I automatically made some changes I think will help you migrate your codebase to node v0.8.0, please review these changes and merge them if you feel they are useful, If they are not you can ignore this Pull Request.
+
+Have a Nice Day!
+
+--[migrationBot](https://github.com/blakmatrix/node-migrator-bot)
+",node-migrator-bot,1855799,2012-07-07T05:09:57Z,NONE,False,6,6,1,CommonJS/RequireJS build tool,JavaScript,6f12712e4d4a446da50177a5a1ef7366e7700b89,[fix] fs.existsSync was moved to fs.existsSync
+7,https://api.github.com/repos/mozilla/dryice/pulls/25,25,allow the second argument of define() to hold the array of requirements,"As discussed on IRC, here is the pull request. This code works for me with Orion's codebase. Please let me know if further changes are needed. Thanks!
+",mihaisucan,107945,2012-05-25T09:48:46Z,CONTRIBUTOR,True,13,5,1,CommonJS/RequireJS build tool,JavaScript,a0f456423463a77923e4cd036e2172e78ef5d93f,add support for specifying dependencies in the second argument of module define() calls within findRequires() - used by CommonJS projects
+8,https://api.github.com/repos/mozilla/dryice/pulls/24,24,add support for windows path separator,,nightwing,341801,2012-04-23T17:11:49Z,CONTRIBUTOR,True,2,2,1,CommonJS/RequireJS build tool,JavaScript,57f89596d94e567988b086bd071f4efa478e9ee2,add support for windows path separator
+9,https://api.github.com/repos/mozilla/dryice/pulls/20,20,make text module regexp configurable,"e.g. ace and dojo use custom text modules
+",fjakobs,40952,2011-11-09T10:28:55Z,CONTRIBUTOR,True,31,20,2,CommonJS/RequireJS build tool,JavaScript,a2ce7c305b06a8444a33e8f78280c3fe8eca3463,"make text module regexp configurable since e.g.
+ace and dojo use custom text modules"
+10,https://api.github.com/repos/mozilla/dryice/pulls/20,20,make text module regexp configurable,"e.g. ace and dojo use custom text modules
+",fjakobs,40952,2011-11-09T10:28:55Z,CONTRIBUTOR,True,31,20,2,CommonJS/RequireJS build tool,JavaScript,902f45a61fcfbfc7c18b6b3f4e9826a8875e07e3,npm is complaining about bugs.web
+11,https://api.github.com/repos/mozilla/dryice/pulls/20,20,make text module regexp configurable,"e.g. ace and dojo use custom text modules
+",fjakobs,40952,2011-11-09T10:28:55Z,CONTRIBUTOR,True,31,20,2,CommonJS/RequireJS build tool,JavaScript,6459eaeac57f633705915dd6851ed8596c544eb2,also normalize modules id's with plugins
+12,https://api.github.com/repos/mozilla/dryice/pulls/19,19,update naming,,fjakobs,40952,2011-11-09T09:59:28Z,CONTRIBUTOR,True,2,2,1,CommonJS/RequireJS build tool,JavaScript,e264aa85c36395951b0e87296f62bed2f23703eb,update naming
+13,https://api.github.com/repos/mozilla/dryice/pulls/18,18,CommonJsProject.prototype.clone broke since the arguments to the CommonJs,"CommonJsProject.prototype.clone broke since the arguments to the CommonJsProject class changed.
+
+As always I'd appreciate a npm update :)
+",fjakobs,40952,2011-11-09T09:54:30Z,CONTRIBUTOR,True,4,1,1,CommonJS/RequireJS build tool,JavaScript,29e627a89ae24a4048c590508415c0d5bb98dfa4,CommonJsProject.prototype.clone broke since the arguments to the CommonJsProject class changes.
+14,https://api.github.com/repos/mozilla/dryice/pulls/16,16,Proper escaping in text modules,,fjakobs,40952,2011-11-02T17:20:38Z,CONTRIBUTOR,True,2,2,1,CommonJS/RequireJS build tool,JavaScript,ba16c806477bc0b0e6aabb1bb14183b7b4acf754,fix new line handling of text modules
+15,https://api.github.com/repos/mozilla/dryice/pulls/16,16,Proper escaping in text modules,,fjakobs,40952,2011-11-02T17:20:38Z,CONTRIBUTOR,True,2,2,1,CommonJS/RequireJS build tool,JavaScript,375d9a339646d70846ad40eddaad406198dd9d40,escape \ in text module
+16,https://api.github.com/repos/mozilla/dryice/pulls/15,15,Added install section to README and fixed spelling errors,"Added install section to README and fixed spelling errors: Javascript -> JavaScript.
+",berkerpeksag,26338,2011-10-14T06:25:17Z,CONTRIBUTOR,True,8,3,1,CommonJS/RequireJS build tool,JavaScript,a8889864bdf5ae90ed11731bf32ba1a0d25738b5,Added install section to README and fixed spelling errors: Javascript -> JavaScript.
+17,https://api.github.com/repos/mozilla/dryice/pulls/14,14,Make moduleDefines more space tolerant,"Support the syntax ""define (function(require, exports, module) {"".  Note the space between 'define' and '('
+",paulb777,73870,2011-09-27T17:09:13Z,CONTRIBUTOR,True,1,1,1,CommonJS/RequireJS build tool,JavaScript,c811b88f659642251935d33e3798c2c40644cbcf,Make moduleDefines more space tolerant
+18,https://api.github.com/repos/mozilla/dryice/pulls/13,13,Adds relative require support,"My test case is that it successfully builds my example app: https://github.com/seanmonstar/Shipyard/tree/master/examples/tasks
+
+For example, the file `lib/shipyard/view/ListView` requires `./Container`, like so:
+
+```
+var Container = require('./Container');
+```
+
+This correctly includes the `lib/shipyard/view/Container.js` file as `shipyard/view/Container` in the addDefines filter.
+",seanmonstar,51479,2011-08-25T23:35:17Z,MEMBER,False,25,25,1,CommonJS/RequireJS build tool,JavaScript,1ffcc8502614fc49b4234dc324f8bd247ec72589,adds support for relative requires
+19,https://api.github.com/repos/mozilla/dryice/pulls/12,12,Adding support for relative and absolute requires,"Right now dryice will fail on relative and absolute requires. This pull request fixes that.
+
+r? @joewalker
+",fitzgen,74571,2011-08-10T00:50:55Z,CONTRIBUTOR,True,59,21,2,CommonJS/RequireJS build tool,JavaScript,ec93976f049d97c267974da67d4a578845f6bef4,Adding support for relative and absolute requires
+20,https://api.github.com/repos/mozilla/dryice/pulls/12,12,Adding support for relative and absolute requires,"Right now dryice will fail on relative and absolute requires. This pull request fixes that.
+
+r? @joewalker
+",fitzgen,74571,2011-08-10T00:50:55Z,CONTRIBUTOR,True,59,21,2,CommonJS/RequireJS build tool,JavaScript,916477ed54647f86e62fdf88974b89a7197e433a,Fix support for relative requires
+21,https://api.github.com/repos/mozilla/dryice/pulls/12,12,Adding support for relative and absolute requires,"Right now dryice will fail on relative and absolute requires. This pull request fixes that.
+
+r? @joewalker
+",fitzgen,74571,2011-08-10T00:50:55Z,CONTRIBUTOR,True,59,21,2,CommonJS/RequireJS build tool,JavaScript,3991a2d5d51e7ce35e474db5e88b84d1378e87f7,Changing isFile and isSync to be less verbose
+22,https://api.github.com/repos/mozilla/dryice/pulls/12,12,Adding support for relative and absolute requires,"Right now dryice will fail on relative and absolute requires. This pull request fixes that.
+
+r? @joewalker
+",fitzgen,74571,2011-08-10T00:50:55Z,CONTRIBUTOR,True,59,21,2,CommonJS/RequireJS build tool,JavaScript,1aa242c928fa5a64adad942c344702b6d03ae460,Changing pathJoin to path.join etc. Which involved renaming a couple function parameters.
+23,https://api.github.com/repos/mozilla/dryice/pulls/12,12,Adding support for relative and absolute requires,"Right now dryice will fail on relative and absolute requires. This pull request fixes that.
+
+r? @joewalker
+",fitzgen,74571,2011-08-10T00:50:55Z,CONTRIBUTOR,True,59,21,2,CommonJS/RequireJS build tool,JavaScript,0698f17062057626ad98e9a9f16cd4043567a440,Adding the node_modules directory to the ignore file
+24,https://api.github.com/repos/mozilla/dryice/pulls/12,12,Adding support for relative and absolute requires,"Right now dryice will fail on relative and absolute requires. This pull request fixes that.
+
+r? @joewalker
+",fitzgen,74571,2011-08-10T00:50:55Z,CONTRIBUTOR,True,59,21,2,CommonJS/RequireJS build tool,JavaScript,88753c565559992e11e72762688a4b8168c011e0,"Adding missing var's, changing filter(Boolean) to filter(instEmptyString) per review feedback"
+25,https://api.github.com/repos/mozilla/dryice/pulls/11,11,Adding documentation about the new api changes to creating commonjs projects,"Title says everything.
+",fitzgen,74571,2011-06-30T17:28:36Z,CONTRIBUTOR,True,29,6,2,CommonJS/RequireJS build tool,JavaScript,9e0f3d1ab80e53c90c49fd3348fa91331f68321f,Updating README with documentation on the new commonjs project interface
+26,https://api.github.com/repos/mozilla/dryice/pulls/11,11,Adding documentation about the new api changes to creating commonjs projects,"Title says everything.
+",fitzgen,74571,2011-06-30T17:28:36Z,CONTRIBUTOR,True,29,6,2,CommonJS/RequireJS build tool,JavaScript,9f5a114b004cbd3da1642869f9a25b71f0dc1b20,Adding a zero or more space between function and paren
+27,https://api.github.com/repos/mozilla/dryice/pulls/10,10,Fix bug 666578 - text dependencies in commonjs projects were being treated as normal commonjs modules,"Text files required within a commonjs project were being treated as normal commonjs modules, when in fact they needed to be treated slightly differently.
+
+This bug caused this other bug in GCLI: https://bugzilla.mozilla.org/show_bug.cgi?id=666578
+",fitzgen,74571,2011-06-24T21:41:25Z,CONTRIBUTOR,True,56,15,1,CommonJS/RequireJS build tool,JavaScript,9fb83fab78930236b513c4103c06353816a8c4c6,Fix bug 666578 - text dependencies in commonjs projects were being treated as normal commonjs modules
+28,https://api.github.com/repos/mozilla/dryice/pulls/10,10,Fix bug 666578 - text dependencies in commonjs projects were being treated as normal commonjs modules,"Text files required within a commonjs project were being treated as normal commonjs modules, when in fact they needed to be treated slightly differently.
+
+This bug caused this other bug in GCLI: https://bugzilla.mozilla.org/show_bug.cgi?id=666578
+",fitzgen,74571,2011-06-24T21:41:25Z,CONTRIBUTOR,True,56,15,1,CommonJS/RequireJS build tool,JavaScript,45f645245c58d3ee91f02e6a081ad3d88e340ce7,Changing the interface to creating common js projects so that you can define certain requires which should just be ignored.
+29,https://api.github.com/repos/mozilla/dryice/pulls/10,10,Fix bug 666578 - text dependencies in commonjs projects were being treated as normal commonjs modules,"Text files required within a commonjs project were being treated as normal commonjs modules, when in fact they needed to be treated slightly differently.
+
+This bug caused this other bug in GCLI: https://bugzilla.mozilla.org/show_bug.cgi?id=666578
+",fitzgen,74571,2011-06-24T21:41:25Z,CONTRIBUTOR,True,56,15,1,CommonJS/RequireJS build tool,JavaScript,a075978996417d48c59e25259e67efea173857d2,Adding empty dependencies to the null module because there is code that expects modules to have dependencies
+30,https://api.github.com/repos/mozilla/dryice/pulls/9,9,Ability to ignore certain modules from require(),"Working on the Ace integration into Workspace, I found it problematic to unwrap the entanglement of requirements. So, it came very handy to add the ability of ignoring certain modules from being included in builds, Basically, ignore the require() calls to the specified modules.
+
+mini_require.js doesn't mind at all if the code still tries to call require(""some-module-that-does-not-exist""). This really suits the situation of Ace integration into Workspace.
+
+Thoughts? Better solutions? This is pretty much a quick hack. ;)
+
+To see how this is used, take a look at the Ace build script for Workspace:
+
+https://github.com/mihaisucan/workspace/blob/ace/content/ace/Makefile.ace.js
+",mihaisucan,107945,2011-02-21T18:00:28Z,CONTRIBUTOR,True,7,1,2,CommonJS/RequireJS build tool,JavaScript,fc81886bb47d6f72204cce45ba4a236a26d071d6,incrementing version number to 0.2.2
+31,https://api.github.com/repos/mozilla/dryice/pulls/9,9,Ability to ignore certain modules from require(),"Working on the Ace integration into Workspace, I found it problematic to unwrap the entanglement of requirements. So, it came very handy to add the ability of ignoring certain modules from being included in builds, Basically, ignore the require() calls to the specified modules.
+
+mini_require.js doesn't mind at all if the code still tries to call require(""some-module-that-does-not-exist""). This really suits the situation of Ace integration into Workspace.
+
+Thoughts? Better solutions? This is pretty much a quick hack. ;)
+
+To see how this is used, take a look at the Ace build script for Workspace:
+
+https://github.com/mihaisucan/workspace/blob/ace/content/ace/Makefile.ace.js
+",mihaisucan,107945,2011-02-21T18:00:28Z,CONTRIBUTOR,True,7,1,2,CommonJS/RequireJS build tool,JavaScript,6f24b9169c9c32d064694e67e89baa04ebd607f8,add ability to ignore requires
+32,https://api.github.com/repos/mozilla/dryice/pulls/9,9,Ability to ignore certain modules from require(),"Working on the Ace integration into Workspace, I found it problematic to unwrap the entanglement of requirements. So, it came very handy to add the ability of ignoring certain modules from being included in builds, Basically, ignore the require() calls to the specified modules.
+
+mini_require.js doesn't mind at all if the code still tries to call require(""some-module-that-does-not-exist""). This really suits the situation of Ace integration into Workspace.
+
+Thoughts? Better solutions? This is pretty much a quick hack. ;)
+
+To see how this is used, take a look at the Ace build script for Workspace:
+
+https://github.com/mihaisucan/workspace/blob/ace/content/ace/Makefile.ace.js
+",mihaisucan,107945,2011-02-21T18:00:28Z,CONTRIBUTOR,True,7,1,2,CommonJS/RequireJS build tool,JavaScript,b3fc8067c76e436b041d60b2ea52edabee7a6b00,add changes from ajaxorg
+33,https://api.github.com/repos/mozilla/dryice/pulls/8,8,write commonjs dependencies to the generated file,"Dryice generates AMD modules which are incompatible with requireJS. The format generated by dryice is
+
+define(""moduleid"", function(require, exports, module) { .. })
+
+while the AMD transport format is supposed to be http://wiki.commonjs.org/wiki/Modules/AsynchronousDefinition
+
+define(""moduleid"", [""require"", ""exports"", ""module"" /_,""other"", ""deps"", ..._/], function(require, exports, module) { .. });
+
+This patch changes dryice to generate this kind of code. The upside is that the generated file can be directly used ba requireJS.
+",fjakobs,40952,2011-02-21T12:01:20Z,CONTRIBUTOR,True,12,7,1,CommonJS/RequireJS build tool,JavaScript,526081177013d46d6a80c0e581412e4279296360,declare commonjs dependencies in AMD style
+34,https://api.github.com/repos/mozilla/dryice/pulls/7,7,Make it possible to use plain functions as filter,"please pull and update npm
+",fjakobs,40952,2011-01-28T08:31:50Z,CONTRIBUTOR,True,16,2,1,CommonJS/RequireJS build tool,JavaScript,4457dc4c240ec7cc05d33adfe140b899a120d2ac,treat onRead always as boolean
+35,https://api.github.com/repos/mozilla/dryice/pulls/7,7,Make it possible to use plain functions as filter,"please pull and update npm
+",fjakobs,40952,2011-01-28T08:31:50Z,CONTRIBUTOR,True,16,2,1,CommonJS/RequireJS build tool,JavaScript,7833d53e7ff4db7e1e48f85d2a45805980e25a5a,bump version number
+36,https://api.github.com/repos/mozilla/dryice/pulls/7,7,Make it possible to use plain functions as filter,"please pull and update npm
+",fjakobs,40952,2011-01-28T08:31:50Z,CONTRIBUTOR,True,16,2,1,CommonJS/RequireJS build tool,JavaScript,5838e5580f5c8dd128a834303f96fa84e632b31b,"Merge remote branch 'mozilla/master'
+
+Conflicts:
+	package.json"
+37,https://api.github.com/repos/mozilla/dryice/pulls/7,7,Make it possible to use plain functions as filter,"please pull and update npm
+",fjakobs,40952,2011-01-28T08:31:50Z,CONTRIBUTOR,True,16,2,1,CommonJS/RequireJS build tool,JavaScript,64ad48dbb698b3d912306726768414c113cff2d8,Merge remote branch 'mozilla/master'
+38,https://api.github.com/repos/mozilla/dryice/pulls/7,7,Make it possible to use plain functions as filter,"please pull and update npm
+",fjakobs,40952,2011-01-28T08:31:50Z,CONTRIBUTOR,True,16,2,1,CommonJS/RequireJS build tool,JavaScript,bef51bee2662068025f3f47a833348541cce4ace,fix typo
+39,https://api.github.com/repos/mozilla/dryice/pulls/7,7,Make it possible to use plain functions as filter,"please pull and update npm
+",fjakobs,40952,2011-01-28T08:31:50Z,CONTRIBUTOR,True,16,2,1,CommonJS/RequireJS build tool,JavaScript,cf529b0702065ed766b1bcbb27bc92ef3210ae40,add clone function to the CommonJSProject class
+40,https://api.github.com/repos/mozilla/dryice/pulls/3,3,Untitled,,fjakobs,40952,2011-01-22T15:45:06Z,CONTRIBUTOR,True,3,2,1,CommonJS/RequireJS build tool,JavaScript,4ec67e2a968d23b436928937a45d96a57739af38,update package.json

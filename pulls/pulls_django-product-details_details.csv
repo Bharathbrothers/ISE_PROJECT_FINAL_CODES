@@ -1,0 +1,345 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/django-product-details/pulls/75,75,Remove the release script and requirements files,Travis CI does all of the releases and the requirements were out of date.,pmac,19176817,2019-11-25T20:10:25Z,MEMBER,True,5,39,3,Product and locale details for Mozilla products,Python,4e8844ede5859876dc7627e52763cf9ba87fa904,"Remove the release script and requirements files
+
+Travis CI does all of the releases and the requirements were out of date."
+1,https://api.github.com/repos/mozilla/django-product-details/pulls/74,74,Upgrade Django to 1.11,"* Mitigate [CVE-2019-6975](https://github.com/advisories/GHSA-wh4h-v3f2-r2pp) which allows Uncontrolled Memory Consumption via a malicious attacker-supplied value to the `django.utils.numberformat.format()` function. 
+* Mitigate [CVE-2019-3498](https://github.com/advisories/GHSA-337x-4q8g-prc5). Improper Neutralization of Special Elements in Output Used by a Downstream Component issue exists in `django.views.defaults.page_not_found()`, leading to content spoofing (in a 404 error page) if a user fails to recognize that a crafted URL has malicious content.
+
+Though `django-product-details` doesn't use the `django.utils.numberformat.format()` or `django.views.defaults.page_not_found()` functions, updating Django would prevent these vulnerabilities if the code does end up using them in the future.
+
+If django-product-details won't work with Django newer than 1.9 then we can close and not merge this PR and I can mark these vulnerabilities as not applicable with the existing code.",gene1wood,1134034,2019-11-25T17:32:19Z,MEMBER,False,1,1,1,Product and locale details for Mozilla products,Python,5552929e01bc44321aabe09d0f798d70255b1dc7,"Upgrade Django to 1.11
+
+* Mitigate [CVE-2019-6975](https://github.com/advisories/GHSA-wh4h-v3f2-r2pp) which allows Uncontrolled Memory Consumption via a malicious attacker-supplied value to the `django.utils.numberformat.format()` function. 
+* Mitigate [CVE-2019-3498](https://github.com/advisories/GHSA-337x-4q8g-prc5). Improper Neutralization of Special Elements in Output Used by a Downstream Component issue exists in `django.views.defaults.page_not_found()`, leading to content spoofing (in a 404 error page) if a user fails to recognize that a crafted URL has malicious content.
+
+Though `django-product-details` doesn't use the `django.utils.numberformat.format()` or `django.views.defaults.page_not_found()` functions, updating Django would prevent these vulnerabilities if the code does end up using them in the future.
+
+If django-product-details won't work with Django newer than 1.9 then we can close and not merge this PR and I can mark these vulnerabilities as not applicable with the existing code."
+2,https://api.github.com/repos/mozilla/django-product-details/pulls/73,73,Remove last-modified check for directory listing requests,Fix #72,pmac,19176817,2019-05-28T16:13:53Z,MEMBER,True,11,40,3,Product and locale details for Mozilla products,Python,79ac9a11bfabf4f0943e63c84470bc0e2eb44604,Remove Django 1.9 and 1.10 from testing and add 2.2
+3,https://api.github.com/repos/mozilla/django-product-details/pulls/73,73,Remove last-modified check for directory listing requests,Fix #72,pmac,19176817,2019-05-28T16:13:53Z,MEMBER,True,11,40,3,Product and locale details for Mozilla products,Python,1c89110a79bbe26baa88b27cb1ef9fa11cc785b0,"Remove last-modified check for directory listing requests
+
+Fix #72"
+4,https://api.github.com/repos/mozilla/django-product-details/pulls/73,73,Remove last-modified check for directory listing requests,Fix #72,pmac,19176817,2019-05-28T16:13:53Z,MEMBER,True,11,40,3,Product and locale details for Mozilla products,Python,94707376f62e179744024c502ad14d177e842e34,"Switch Travis dist to xenial for all tests
+
+And fix a typo"
+5,https://api.github.com/repos/mozilla/django-product-details/pulls/71,71,Add Mozilla Code of Conduct,"Fixes #70
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-28T03:35:54Z,CONTRIBUTOR,True,15,0,1,Product and locale details for Mozilla products,Python,7636f4bb039f534e7d0b3ebc12dd53b1e836518d,"Add Mozilla Code of Conduct file
+
+Fixes #70.
+
+_(Message COC002)_"
+6,https://api.github.com/repos/mozilla/django-product-details/pulls/69,69,Migration,"Fixes #68 
+
+Here's how I tested this:
+
+I created a brand new virtualenv (python 3.7) and `pip install Django django-mozilla-product-details`. Then I added `product_details` to the `INSTALLED_APPS` and ran `./manage.py migrate`. 
+
+```
+▶ ./manage.py migrate
+Operations to perform:
+  Apply all migrations: admin, auth, contenttypes, product_details, sessions
+Running migrations:
+  Applying product_details.0001_initial... OK
+  Applying product_details.0002_auto_20151006_1348... OK
+```
+
+And it still wants to create another migration:
+```
+▶ ./manage.py makemigrations --check
+Migrations for 'product_details':
+  /private/tmp/dpd/lib/python3.7/site-packages/product_details/migrations/0003_auto_20190301_2016.py
+    - Alter field last_modified on productdetailsfile
+```
+
+So I delete `/private/tmp/dpd/lib/python3.7/site-packages/product_details/migrations/0003_auto_20190301_2016.py` and edit `/private/tmp/dpd/lib/python3.7/site-packages/product_details/migrations/0001_initial.py` and all I did was remove the `b` for a binary string. 
+
+Now:
+
+```
+▶ ./manage.py makemigrations --check
+No changes detected
+```
+
+So yay! It works. ",peterbe,26739,2019-03-01T20:24:07Z,CONTRIBUTOR,True,1,1,1,Product and locale details for Mozilla products,Python,78f9ca300e19446fc2433751241308791f3b2e93,"Migration
+
+Fixes #68"
+7,https://api.github.com/repos/mozilla/django-product-details/pulls/66,66, Test against Django 2.0 and Django 2.1 ,"Tests against Django 2.0 and 2.1
+
+Had to change travis configuration to get support for 3.6 and 3.7. ",glogiotatidis,584352,2018-11-19T14:13:32Z,CONTRIBUTOR,True,22,4,2,Product and locale details for Mozilla products,Python,0339fad092fbe6bc75a97d1f8ca4c1f1615820ea,Test against Django 2.0 and Django 2.1
+8,https://api.github.com/repos/mozilla/django-product-details/pulls/65,65,Fix typo DBFileStorage -> PDFileStorage.,,glogiotatidis,584352,2018-11-12T09:36:08Z,CONTRIBUTOR,True,1,1,1,Product and locale details for Mozilla products,Python,726a9890b9b12ea9301f4c635589be0f8ea522ed,Fix typo DBFileStorage -> PDFileStorage.
+9,https://api.github.com/repos/mozilla/django-product-details/pulls/64,64,Test Django 1.11,,glogiotatidis,584352,2017-08-30T08:55:32Z,CONTRIBUTOR,True,2,1,1,Product and locale details for Mozilla products,Python,08d89d1814beb448b18ea10aba4126821df745c7,Test Django 1.11
+10,https://api.github.com/repos/mozilla/django-product-details/pulls/63,63,Fix #62: Lazily initialize storage.,"In Django versions >1.9 initializing storage on application load raises
+django.core.exceptions.AppRegistryNotReady when using PDDatabaseStorage storage
+class.
+
+This patch makes the initialization happen on first request to product details.
+Requests should happen after Django has finished initializing.",glogiotatidis,584352,2017-08-30T08:42:03Z,CONTRIBUTOR,True,19,4,3,Product and locale details for Mozilla products,Python,dda79a3af3985ed7fe022cb9d4b2c1a4f24e20c6,"Fix #62: Lazily initialize storage.
+
+In Django versions >1.9 initializing storage on application load raises
+django.core.exceptions.AppRegistryNotReady when using PDDatabaseStorage storage
+class.
+
+This patch makes the initialization happen on first request to product details.
+Requests should happen after Django has finished initializing."
+11,https://api.github.com/repos/mozilla/django-product-details/pulls/60,60,Add --database option to management command,,pmac,19176817,2016-08-18T18:33:01Z,MEMBER,True,19,12,3,Product and locale details for Mozilla products,Python,621910bf59357c79292db2b4e38dc1287bb926dd,Add --database option to management command
+12,https://api.github.com/repos/mozilla/django-product-details/pulls/58,58,Cache a directory of file data at a time,"Product version data in the files are interdependent. We therefore need to cache the entire state of all of the files to avoid an update breaking everything due to staggered cache expirations.
+",pmclanahan,19934,2016-04-26T21:09:41Z,MEMBER,True,154,69,3,Product and locale details for Mozilla products,Python,bc16506ef1ddac1f131a88269ac568c2c1de3bde,"Cache a directory of file data at a time
+
+Product version data in the files are interdependent. We
+therefore need to cache the entire state of all of the files
+to avoid an update breaking everything due to staggered cache
+expirations."
+13,https://api.github.com/repos/mozilla/django-product-details/pulls/57,57,Wrap update method in transaction: bug 1254664,,jgmize,161718,2016-03-09T05:47:47Z,CONTRIBUTOR,True,2,0,1,Product and locale details for Mozilla products,Python,1aa73b537a35c4b3daee326edfdd434208ac589e,Wrap update method in transaction: bug 1254664
+14,https://api.github.com/repos/mozilla/django-product-details/pulls/56,56,Do not cache empty data: bug 1254664,,jgmize,161718,2016-03-09T05:29:22Z,CONTRIBUTOR,True,10,1,2,Product and locale details for Mozilla products,Python,75083dcc42929848f25ba6e70c4eac02cc57418c,Do not cache empty data: bug 1254664
+15,https://api.github.com/repos/mozilla/django-product-details/pulls/55,55,Fix Django 1.9/1.10 deprecation notices.,"Fixes some issues with features going away in Django 1.10. As a result, this also bumps us up to Django 1.8 as the minimum Django version supported.
+
+This depends on #54. @pmclanahan r?
+",Osmose,193106,2016-01-22T18:59:51Z,CONTRIBUTOR,True,16,21,4,Product and locale details for Mozilla products,Python,324ad564a46f98ea343dd80bb0001c17bda9b86a,"Update management command to fix Django 1.9 deprecation notices.
+
+Moves our minimum Django version up to 1.8."
+16,https://api.github.com/repos/mozilla/django-product-details/pulls/54,54,Use requests for fetching remote data.,"The existing stdlib use failed on Python 3 due to the returned data being
+a bytes object instead of a string that json.loads could accept. Requests
+handles the decoding for us!
+
+@pmclanahan r? I also added a very small test of the management command, we could add more tests later but this basically solves all my own needs.
+",Osmose,193106,2016-01-20T19:19:13Z,CONTRIBUTOR,True,110,34,9,Product and locale details for Mozilla products,Python,0897ceba0cf229791db8015acb4e90ed64190032,"Use requests for fetching remote data.
+
+The existing stdlib use failed on Python 3 due to the returned data being
+a bytes object instead of a string that json.loads could accept. Requests
+handles the decoding for us!"
+17,https://api.github.com/repos/mozilla/django-product-details/pulls/54,54,Use requests for fetching remote data.,"The existing stdlib use failed on Python 3 due to the returned data being
+a bytes object instead of a string that json.loads could accept. Requests
+handles the decoding for us!
+
+@pmclanahan r? I also added a very small test of the management command, we could add more tests later but this basically solves all my own needs.
+",Osmose,193106,2016-01-20T19:19:13Z,CONTRIBUTOR,True,110,34,9,Product and locale details for Mozilla products,Python,ac867513c698abcd3cef38ce5e9874a5987e7bf6,Add responses to tox deps and pin flake8 (+flake8 fixes).
+18,https://api.github.com/repos/mozilla/django-product-details/pulls/52,52,Fix #48: Add Django 1.9 support.,"We can't import models in **init**.py anymore, so let's just do the
+easy fix for now.
+
+@pmclanahan r?
+",Osmose,193106,2015-12-28T19:40:31Z,CONTRIBUTOR,True,10,4,3,Product and locale details for Mozilla products,Python,aaa8aa55860daaf9ac02e222eb7d594fcdf08f53,"Fix #48: Add Django 1.9 support.
+
+We can't import models in __init__.py anymore, so let's just do the
+easy fix for now."
+19,https://api.github.com/repos/mozilla/django-product-details/pulls/50,50,Fix #49: fix product_details.last_update,"Was calling a non-existant method of the storage class,
+thus raising an exception, thus returning a defaultdict.
+Now returns the expected datetime object again.
+",pmclanahan,19934,2015-12-18T18:57:47Z,MEMBER,True,23,2,3,Product and locale details for Mozilla products,Python,21a03e56037d5058886e441b41a160a8864d8472,"Fix #49: fix product_details.last_update
+
+Was calling a non-existant method of the storage class,
+thus raising an exception, thus returning a defaultdict.
+Now returns the expected datetime object again."
+20,https://api.github.com/repos/mozilla/django-product-details/pulls/47,47,Support Python 2 and 3,"First attempt at simultaneous py2 and py3 support.
+",pmclanahan,19934,2015-11-06T20:39:01Z,MEMBER,True,88,39,12,Product and locale details for Mozilla products,Python,efddb2c1fd55e6ee0df43ba61d9901b6049be6b1,Support Python 2 and 3
+21,https://api.github.com/repos/mozilla/django-product-details/pulls/46,46,Use HTTPS when fetching JSON files,,jvehent,415617,2015-10-27T22:03:02Z,CONTRIBUTOR,True,1,1,1,Product and locale details for Mozilla products,Python,cdd6bc5258a21a1447c6313fad87056163b58a45,Use HTTPS when fetching JSON files
+22,https://api.github.com/repos/mozilla/django-product-details/pulls/45,45,Add data migration to import json file data to db.,"- Fix bug with support for older file data.
+- Add more tests for file storage.
+- Bump version to 0.8.1 and update changelog.
+- Improve tests file layout and update the README.
+- Add data migration to import json file data to db.
+",pmclanahan,19934,2015-10-07T17:36:54Z,MEMBER,True,331,134,14,Product and locale details for Mozilla products,Python,c92ab8dc2d2aadea0a46ded56da04a5912fbf8fc,Add data migration to import json file data to db.
+23,https://api.github.com/repos/mozilla/django-product-details/pulls/45,45,Add data migration to import json file data to db.,"- Fix bug with support for older file data.
+- Add more tests for file storage.
+- Bump version to 0.8.1 and update changelog.
+- Improve tests file layout and update the README.
+- Add data migration to import json file data to db.
+",pmclanahan,19934,2015-10-07T17:36:54Z,MEMBER,True,331,134,14,Product and locale details for Mozilla products,Python,bcd4ae6494454a34db1cf04f3382ebfdfbef200a,Improve tests file layout and update the README.
+24,https://api.github.com/repos/mozilla/django-product-details/pulls/45,45,Add data migration to import json file data to db.,"- Fix bug with support for older file data.
+- Add more tests for file storage.
+- Bump version to 0.8.1 and update changelog.
+- Improve tests file layout and update the README.
+- Add data migration to import json file data to db.
+",pmclanahan,19934,2015-10-07T17:36:54Z,MEMBER,True,331,134,14,Product and locale details for Mozilla products,Python,c41a9a431d56ae5b8e65c413b564c06f6776c356,Bump version to 0.8.1 and update changelog.
+25,https://api.github.com/repos/mozilla/django-product-details/pulls/45,45,Add data migration to import json file data to db.,"- Fix bug with support for older file data.
+- Add more tests for file storage.
+- Bump version to 0.8.1 and update changelog.
+- Improve tests file layout and update the README.
+- Add data migration to import json file data to db.
+",pmclanahan,19934,2015-10-07T17:36:54Z,MEMBER,True,331,134,14,Product and locale details for Mozilla products,Python,4d75ba3dcc89dec6f895bf1148820470afac2f6c,"Fix bug with support for older file data.
+
+Add more tests for file storage."
+26,https://api.github.com/repos/mozilla/django-product-details/pulls/44,44,Add json data storage backends.,"Default backend is filesystem that works the way the current version does.
+The other built-in backend is for the Database. Switching among them is a
+setting with the dotted path to the backend class.
+
+This also adds to our test coverage and greatly compartmentalizes and
+simplifies the code in the ProductDetails class itself.
+",pmclanahan,19934,2015-09-30T21:23:20Z,MEMBER,True,575,323,20,Product and locale details for Mozilla products,Python,b278b8068d102474a92d5742c58bd64a47793faa,"Fix #42: Add json data storage backends.
+
+Default backend is filesystem that works the way
+the current version does. The other built-in backend
+is for the Database. Switching among them is a setting
+with the dotted path to the backend class.
+
+This also adds to our test coverage and greatly compartmentalizes
+and simplifies the code in the ProductDetails class itself.
+
+Also support for Django < 1.7 and Python < 2.7 is dropped."
+27,https://api.github.com/repos/mozilla/django-product-details/pulls/44,44,Add json data storage backends.,"Default backend is filesystem that works the way the current version does.
+The other built-in backend is for the Database. Switching among them is a
+setting with the dotted path to the backend class.
+
+This also adds to our test coverage and greatly compartmentalizes and
+simplifies the code in the ProductDetails class itself.
+",pmclanahan,19934,2015-09-30T21:23:20Z,MEMBER,True,575,323,20,Product and locale details for Mozilla products,Python,ead321bb3415105117100110dc3ec7c20ca59006,Update README and bump version.
+28,https://api.github.com/repos/mozilla/django-product-details/pulls/44,44,Add json data storage backends.,"Default backend is filesystem that works the way the current version does.
+The other built-in backend is for the Database. Switching among them is a
+setting with the dotted path to the backend class.
+
+This also adds to our test coverage and greatly compartmentalizes and
+simplifies the code in the ProductDetails class itself.
+",pmclanahan,19934,2015-09-30T21:23:20Z,MEMBER,True,575,323,20,Product and locale details for Mozilla products,Python,e205bfcfff926b9acc2377df38a264f59d55f56c,Fix flake8 issues and add flake8 to travis run.
+29,https://api.github.com/repos/mozilla/django-product-details/pulls/43,43,Do not cache a file miss or corrupt file.,"This could have been caused by a temporary condition,
+and you'd want to recover as quickly as possible.
+",pmclanahan,19934,2015-06-15T17:08:17Z,MEMBER,True,30,20,3,Product and locale details for Mozilla products,Python,932109531055432c8088ff12059248eb701cd0f5,"Do not cache a file miss or corrupt file.
+
+This could have been caused by a temporary condition,
+and you'd want to recover as quickly as possible."
+30,https://api.github.com/repos/mozilla/django-product-details/pulls/41,41,Convert README to reStructuredText.,"This is mostly so that PyPI will display the formatting correctly.
+",pmclanahan,19934,2015-05-21T20:54:58Z,MEMBER,True,186,160,4,Product and locale details for Mozilla products,Python,68dd76501193b0ff6534a148896450ff268e2870,"Convert README to reStructuredText.
+
+This is mostly so that PyPI will display the formatting correctly."
+31,https://api.github.com/repos/mozilla/django-product-details/pulls/40,40,Convert README.md to rST.,"This was done automatically using pandoc, and was
+mainly done because currently reStructured Text
+is the only format supported by PyPI.
+",pmclanahan,19934,2015-05-11T18:38:01Z,MEMBER,False,164,143,4,Product and locale details for Mozilla products,Python,221e8270ffeaddd6955900ecb1b3fa952371adf4,"Convert README.md to rST.
+
+This was done automatically using pandoc, and was
+mainly done because currently reStructured Text
+is the only format supported by PyPI."
+32,https://api.github.com/repos/mozilla/django-product-details/pulls/39,39,Add cache support (again).,"This is another try at this, and should replace #32, which I don't seem to be
+able to reopen now that I've force-pushed my branch.
+- Make it more testable and add basic tests.
+- Add tox for testing in 2.6 and 2.7 with Django 1.6 - 1.8.
+- Have Travis-CI run the tox configs.
+",pmclanahan,19934,2015-05-11T18:32:08Z,MEMBER,True,332,151,11,Product and locale details for Mozilla products,Python,ecc94491ac370df0aeaf58e58feadf8e2f7734d4,"Add django cache support.
+
+* Make it more testable and add basic tests.
+* Add tox for testing in 2.6 and 2.7 with Django 1.6 - 1.8.
+* Have Travis-CI run the tox configs.
+* Add PyPI and Travis badges to README.
+* Move version_compare tests to main test file."
+33,https://api.github.com/repos/mozilla/django-product-details/pulls/38,38,Use pypandoc to convert README.md to RST for PyPI.,"Got the idea from http://stackoverflow.com/a/23265673/107114
+",pmclanahan,19934,2015-05-11T15:57:41Z,MEMBER,False,11,1,2,Product and locale details for Mozilla products,Python,1d6560d0d3fb0ea567d6e02081d379db2c20d10c,Use pypandoc to convert README.md to RST for PyPI.
+34,https://api.github.com/repos/mozilla/django-product-details/pulls/37,37,Avoid using a mutable type as a class attribute.,"This caused much confusion in bedrock as subclasses were
+getting strange data in tests when other subclasses were
+instantiated. This was because all of the class instances
+were using the same dict for data storage.
+",pmclanahan,19934,2015-05-08T15:02:14Z,MEMBER,True,2,3,1,Product and locale details for Mozilla products,Python,241d51cd7f822581307102de9b957ed49a729b8c,"Avoid using a mutable type as a class attribute.
+
+This caused much confusion in bedrock as subclasses were
+getting strange data in tests when other subclasses were
+instantiated. This was because all of the class instances
+were using the same dict for data storage."
+35,https://api.github.com/repos/mozilla/django-product-details/pulls/36,36,Decode double-escaped region names in some locales for Bug 1018447,"Tested locally for Bedrock.
+",kyoshino,2929505,2014-11-20T20:58:36Z,NONE,False,11,2,1,Product and locale details for Mozilla products,Python,c39c0e059f3f260b8807d9070b1ca00ee4f7ef7c,Decode double-escaped region names in some locales for Bug 1018447
+36,https://api.github.com/repos/mozilla/django-product-details/pulls/35,35,Fix OSError: No such file or directory,"If you import product_details, in `__init__.py` it goes to build a
+ProductDetails instance. If the json_dir doesn't exist, that fails with
+an OSError.
+
+That's problematic because then it becomes difficult in some situations
+to run `./manage.py update_product_details`.
+
+This fixes that so that it checks to see if the directory exists first.
+
+Fixes #34 
+
+r?
+",willkg,820826,2014-09-16T20:13:00Z,MEMBER,True,6,5,1,Product and locale details for Mozilla products,Python,2458e18add32530f2bffde7ddfe446d8c84822c0,"Fix OSError: No such file or directory
+
+If you import product_details, in __init__.py it goes to build a
+ProductDetails instance. If the json_dir doesn't exist, that fails with
+an OSError.
+
+That's problematic because then it becomes difficult in some situations
+to run ""./manage.py update_product_details"".
+
+This fixes that so that it checks to see if the directory exists first.
+
+Fixes #34"
+37,https://api.github.com/repos/mozilla/django-product-details/pulls/33,33,Fix problem with json when installed via pip.,"Currently the json folder doesn't get created, which causes a file not found when it looks for the product detail location.
+
+This will ensure the folder is created during a pip install.
+",dean,1235347,2014-08-21T23:51:04Z,CONTRIBUTOR,True,1,0,1,Product and locale details for Mozilla products,Python,d8b7f84c127c11853cd57cf972d9fdab273037c3,Fix for pip install to keep json folder.
+38,https://api.github.com/repos/mozilla/django-product-details/pulls/32,32,Add cache support.,"- Make it more testable and add basic tests.
+- Add tox for testing in 2.6 and 2.7.
+",pmclanahan,19934,2014-07-23T20:17:46Z,MEMBER,False,185,45,9,Product and locale details for Mozilla products,Python,643b7b10b8de66aba706c1e2ca2001c7b090d672,"Add cache support.
+
+* Make it more testable and add basic tests.
+* Add tox for testing in 2.6 and 2.7."
+39,https://api.github.com/repos/mozilla/django-product-details/pulls/31,31,Fix setup.py to find all packages.,"My install via the github url wouldn't work without this.
+
+@fwenzel r?
+",pmclanahan,19934,2014-04-22T05:12:30Z,MEMBER,True,2,2,1,Product and locale details for Mozilla products,Python,a801ec5fe51980e57dac4a5e488979ada349a300,Fix setup.py to find all packages.
+40,https://api.github.com/repos/mozilla/django-product-details/pulls/30,30,Add ability to auto reload the JSON data from disk.,"This is the preliminary work on this. Consider it my proposal. I've
+manually tested it in my local bedrock clone and it works great. It
+does need more tests before I can feel really good about it, but I
+wanted to go ahead and get a PR in so we can discuss direction just
+in case there are things with which you disagree.
+",pmclanahan,19934,2013-05-23T04:53:10Z,MEMBER,False,195,36,6,Product and locale details for Mozilla products,Python,f2bb97595904c5c305fd3af28da47a7c8d53a10e,Add ability to auto reload the JSON data from disk.
+41,https://api.github.com/repos/mozilla/django-product-details/pulls/30,30,Add ability to auto reload the JSON data from disk.,"This is the preliminary work on this. Consider it my proposal. I've
+manually tested it in my local bedrock clone and it works great. It
+does need more tests before I can feel really good about it, but I
+wanted to go ahead and get a PR in so we can discuss direction just
+in case there are things with which you disagree.
+",pmclanahan,19934,2013-05-23T04:53:10Z,MEMBER,False,195,36,6,Product and locale details for Mozilla products,Python,83db5f50d09b7075c74df695ff6cfbfd57662e3a,Change settings pattern and cleanup from review.
+42,https://api.github.com/repos/mozilla/django-product-details/pulls/29,29,fix django 1.5 style settings import,"Django 1.5 will happily let you import settings, then will later blow up when you try to access it with `django.core.exceptions.ImproperlyConfigured` so this library is unable to be installed on Django 1.5 without this patch.
+",wraithan,90898,2013-05-13T18:25:44Z,CONTRIBUTOR,True,3,1,1,Product and locale details for Mozilla products,Python,233b4eabd0d0795fa74b7e16da7ed104d5f06b5d,fix django 1.5 style settings import
+43,https://api.github.com/repos/mozilla/django-product-details/pulls/25,25,Give more progress information by default,"fixes issue #22
+",rik,3653,2012-06-21T21:58:53Z,CONTRIBUTOR,True,2,2,2,Product and locale details for Mozilla products,Python,90c90214ee03f31157b71e4ad28da1d9562b8f8e,Give more progress information by default
+44,https://api.github.com/repos/mozilla/django-product-details/pulls/23,23,Validate,"Skip model validation because we don't care about any of the models. Just work.
+",jsocol,180459,2012-06-19T18:17:43Z,MEMBER,True,7,1,2,Product and locale details for Mozilla products,Python,2deeefc4aba16e11b2e42fe5e08f8dd3f8f41e28,"Skip model validation.
+
+The update_product_details management command doesn't touch any model in
+any app. If we want to encourage people to not keep all of the
+product_details JSON in their repo (and I think we do) or if they need
+to bootstrap at all, and any of their models depend on product_details
+data, update_product_details fails.
+
+For example, in Mozillians, the `choices` field for which country you
+can list in your profile comes from
+`product_details.get_region('en-US')`. Which means trying to run
+update_product_details with no `en-US.json` file fails validation, so it
+can't run the command.
+
+This just tells Django that it can skip model validation for this
+management command."
+45,https://api.github.com/repos/mozilla/django-product-details/pulls/23,23,Validate,"Skip model validation because we don't care about any of the models. Just work.
+",jsocol,180459,2012-06-19T18:17:43Z,MEMBER,True,7,1,2,Product and locale details for Mozilla products,Python,f5080b0fa7e92bff22e49b7d5c4cde135a8469e7,"Use a more specific error for missing data.
+
+IOError is a little vague. This exception class (which is still an
+IOError subclass, so no backwards compatibility changes) provides a
+touch more data for helping folks debug."
+46,https://api.github.com/repos/mozilla/django-product-details/pulls/20,20,Support memcache by using django's caching framework,"This uses django's caching framework instead of setting the data straight into memory. We can control how this data is persisted.
+
+This is necessary for mozilla.org because we need to refresh it every 15 minutes. With how it is currently, we would need to restart all the wsgi process which incurs too much of a performance hit.
+",jlongster,17031,2012-06-11T18:31:38Z,MEMBER,False,43,13,3,Product and locale details for Mozilla products,Python,05217fa691adca6a53f78da3515f8ddd3501b837,use django's caching framework
+47,https://api.github.com/repos/mozilla/django-product-details/pulls/19,19,When fallback isn't defined.,,jsocol,180459,2012-06-11T17:08:46Z,MEMBER,True,3,1,1,Product and locale details for Mozilla products,Python,bfc753b2420184b6bc8bd5a3ea9f8c1099a4fe2e,When fallback isn't defined.
+48,https://api.github.com/repos/mozilla/django-product-details/pulls/17,17,Make a fallback guess on locales.,,jsocol,180459,2012-06-11T14:47:00Z,MEMBER,True,3,1,1,Product and locale details for Mozilla products,Python,d91ed20c6debd98d348aa644f252ac568b86fc33,Make a fallback guess on locales.
+49,https://api.github.com/repos/mozilla/django-product-details/pulls/16,16,Make .gitkeep into useful .gitignore.,"Fix issue #15. Use the .gitignore in product_details/json to ignore json
+files and .last_update.
+",jsocol,180459,2012-06-11T14:18:57Z,MEMBER,True,2,0,2,Product and locale details for Mozilla products,Python,6eb5d62c57ae586a815fc4b69565538c6cf3091b,"Make .gitkeep into useful .gitignore.
+
+Fix issue #15. Use the .gitignore in product_details/json to ignore json
+files and .last_update."
+50,https://api.github.com/repos/mozilla/django-product-details/pulls/14,14, Add instructions when no JSON files could be loaded ,"Hopefully, those are useful instructions.
+",rik,3653,2012-06-09T12:47:12Z,CONTRIBUTOR,False,4,0,1,Product and locale details for Mozilla products,Python,9a83288df959214866367d9dc9eed88acb375634,Add instructions when no JSON files could be loaded
+51,https://api.github.com/repos/mozilla/django-product-details/pulls/13,13,region support second pass,"following from feedback, places regions into memory with fallback to en-US, but only when needed
+",andymckay,74699,2011-07-20T17:04:18Z,CONTRIBUTOR,True,57,28,2,Product and locale details for Mozilla products,Python,950020bd2e9f671f6420f2831d89afa5a2b3ccc3,add in region support
+52,https://api.github.com/repos/mozilla/django-product-details/pulls/12,12,also pull down the regions json,,andymckay,74699,2011-07-19T05:32:21Z,CONTRIBUTOR,False,43,16,2,Product and locale details for Mozilla products,Python,13e7fa1f6cdee7954be471209a159ba6768eb60b,add in region support
+53,https://api.github.com/repos/mozilla/django-product-details/pulls/11,11,shim to enable the xx-testing locale,"l10n already has an xx-testing locale registered in verbatim. this shim intercepts requests for languages and adds the xx-testing locale so a requesting django app (i.e., on dev or staging) can asks for the 'xx-testing' language. 
+
+combining this with settings.DEV_LANGUAGES and a locale/xx_testing directory lets a developer create a testing locale with a tool like podebug.
+",groovecoder,71928,2011-06-30T23:23:26Z,MEMBER,False,2,0,1,Product and locale details for Mozilla products,Python,fb581015a294ce2f6f00dfc0f045c346f07be40a,bug 664330 shim the xx-testing locale for testing l10n
+54,https://api.github.com/repos/mozilla/django-product-details/pulls/5,5,lchmod fix,"Hi Fred,
+Can you fold in this lchmod patch for oremj?
+
+thanks.
+",ozten,18924,2010-10-19T21:44:34Z,MEMBER,False,4,1,1,Product and locale details for Mozilla products,Python,1ac9f38dde06037f2062e0d93a3e6ef79af1769f,Bug#602897 Making use of lchmod conditional and using chmod as fallback
+55,https://api.github.com/repos/mozilla/django-product-details/pulls/4,4,JSON permission fix.,"I haven't tested this, but I'm pretty sure this is all you need to fix the permissions problem I mentioned earlier.
+",oremj,45590,2010-09-14T22:26:12Z,CONTRIBUTOR,False,1,0,1,Product and locale details for Mozilla products,Python,6f408b82cfaf8f969e404ad59909394628d5e9cb,Change file mode to 644.
+56,https://api.github.com/repos/mozilla/django-product-details/pulls/3,3,Exposing last_update data through the module,"I ran into a situation where it would be useful to know the last update--using dmpd to generate JS in a view and wanting to send far-future expires. Like the jsi18n buildid or the jingo-minify build parameter, knowing the last update timestamp gives you the ability to generate a consistent hash.
+
+It's a relatively naive implementation: every access touches the disk. I wasn't sure how to get around that without something like memcache or a thread-locale with an expiry, so if you have a suggestion on how to do that, I'd like to hear it.
+",jsocol,180459,2010-09-11T00:50:48Z,MEMBER,False,20,0,1,Product and locale details for Mozilla products,Python,87a0bc1dec63795c667435c6455b418699a8b45b,Expose last_update.

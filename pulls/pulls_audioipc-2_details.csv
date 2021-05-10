@@ -1,0 +1,1514 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/audioipc-2/pulls/121,121,"Use a single SharedMem per stream, rather than per stream direction","This addresses https://github.com/mozilla/audioipc-2/issues/45 by configuring a single SharedMem per stream and using it for both directions of data transport.  Handling this is simple on the server side, as access is sequenced to the SharedMem by the interaction with the client via IPC (copy to input, call and wait on client, copy to output).  On the client side, an extra copy for the input is required for duplex streams to preserve cubeb data_callback's API requirements.
+
+To allow Gecko to control the SharedMem region size via a pref, the SHM_AREA_SIZE constant is removed and a per-server configurable value is used.  This value is passed to the client during SharedMem setup rather than assuming a fixed size.  SharedMem setup between server and client is now handled via a new CallbackReq/CallbackResp message.
+
+This also addresses https://github.com/mozilla/audioipc-2/issues/68 by reducing the file descriptor passing requirement to one per message.  Framed becomes obsolete as all transports are now FramedWithPlatformHandles, so frame.rs is removed.
+
+PlatformHandle is simplified into a owning only handle for internal use. RemoteHandle is introduced to message.rs to accurately represent the OS-specific serialized state of a remote handle.
+
+SharedMem is simplified, removing the non-owning variant.  new() now returns a single SharedMem, with handle access via make_handle() with clearer handle ownership.
+
+9adae9e is unrelated, but I noticed it while handling the SharedMem setup confirmation on the server side.
+",kinetiknz,67343,2021-03-25T04:25:10Z,CONTRIBUTOR,False,437,491,12,Cubeb Audio Remoting For Gecko,Rust,2c73d03f38ea13d9c4867d90e6ea92dbca649b07,"Use a single SharedMem rather than one per direction.
+
+This saves server resources at the small cost of a copy in the client.
+The SharedMem configuration is now handled directly on the callback
+threads in each process.
+
+These changes reduce the file descriptor transport requirement from 3 to
+1, simplifying various parts of the IPC code.  Framed becomes obsolete
+as all transports are now FramedWithPlatformHandles, so frame.rs is
+removed.
+
+PlatformHandle is simplified into a owning only handle for internal use.
+RemoteHandle is introduced to message.rs to accurately represent the
+OS-specific serialized state of a remote handle.
+
+SharedMem is simplified, removing the non-owning variant.  new() now
+returns a single SharedMem, with handle access via make_handle() with
+clearer handle ownership."
+1,https://api.github.com/repos/mozilla/audioipc-2/pulls/121,121,"Use a single SharedMem per stream, rather than per stream direction","This addresses https://github.com/mozilla/audioipc-2/issues/45 by configuring a single SharedMem per stream and using it for both directions of data transport.  Handling this is simple on the server side, as access is sequenced to the SharedMem by the interaction with the client via IPC (copy to input, call and wait on client, copy to output).  On the client side, an extra copy for the input is required for duplex streams to preserve cubeb data_callback's API requirements.
+
+To allow Gecko to control the SharedMem region size via a pref, the SHM_AREA_SIZE constant is removed and a per-server configurable value is used.  This value is passed to the client during SharedMem setup rather than assuming a fixed size.  SharedMem setup between server and client is now handled via a new CallbackReq/CallbackResp message.
+
+This also addresses https://github.com/mozilla/audioipc-2/issues/68 by reducing the file descriptor passing requirement to one per message.  Framed becomes obsolete as all transports are now FramedWithPlatformHandles, so frame.rs is removed.
+
+PlatformHandle is simplified into a owning only handle for internal use. RemoteHandle is introduced to message.rs to accurately represent the OS-specific serialized state of a remote handle.
+
+SharedMem is simplified, removing the non-owning variant.  new() now returns a single SharedMem, with handle access via make_handle() with clearer handle ownership.
+
+9adae9e is unrelated, but I noticed it while handling the SharedMem setup confirmation on the server side.
+",kinetiknz,67343,2021-03-25T04:25:10Z,CONTRIBUTOR,False,437,491,12,Cubeb Audio Remoting For Gecko,Rust,9adae9e5217a28906d7efc3430db990276570ce1,"client: Fix potential race causing lost RT thread promotion.
+
+Discarding the result of `call()` could cause the RPC request to be
+cancelled before it has a chance to run on the executor.  There should
+be no issue with blocking here as this only runs once on thread
+initialization."
+2,https://api.github.com/repos/mozilla/audioipc-2/pulls/121,121,"Use a single SharedMem per stream, rather than per stream direction","This addresses https://github.com/mozilla/audioipc-2/issues/45 by configuring a single SharedMem per stream and using it for both directions of data transport.  Handling this is simple on the server side, as access is sequenced to the SharedMem by the interaction with the client via IPC (copy to input, call and wait on client, copy to output).  On the client side, an extra copy for the input is required for duplex streams to preserve cubeb data_callback's API requirements.
+
+To allow Gecko to control the SharedMem region size via a pref, the SHM_AREA_SIZE constant is removed and a per-server configurable value is used.  This value is passed to the client during SharedMem setup rather than assuming a fixed size.  SharedMem setup between server and client is now handled via a new CallbackReq/CallbackResp message.
+
+This also addresses https://github.com/mozilla/audioipc-2/issues/68 by reducing the file descriptor passing requirement to one per message.  Framed becomes obsolete as all transports are now FramedWithPlatformHandles, so frame.rs is removed.
+
+PlatformHandle is simplified into a owning only handle for internal use. RemoteHandle is introduced to message.rs to accurately represent the OS-specific serialized state of a remote handle.
+
+SharedMem is simplified, removing the non-owning variant.  new() now returns a single SharedMem, with handle access via make_handle() with clearer handle ownership.
+
+9adae9e is unrelated, but I noticed it while handling the SharedMem setup confirmation on the server side.
+",kinetiknz,67343,2021-03-25T04:25:10Z,CONTRIBUTOR,False,437,491,12,Cubeb Audio Remoting For Gecko,Rust,43d250cc3b1463883505eaf64d023491242b1b7f,Make RemoteHandle states clearer by switching to enum.
+3,https://api.github.com/repos/mozilla/audioipc-2/pulls/120,120,audioipc: Add support for ashmem to shm.rs.,Add support for Android's [ASharedMemory](https://developer.android.com/ndk/reference/group/memory) to shm.rs.,kinetiknz,67343,2021-03-24T08:23:09Z,CONTRIBUTOR,True,33,5,2,Cubeb Audio Remoting For Gecko,Rust,199a651a3b906a615dd76b7a0e10998fbdb4bfee,audioipc: Add support for ashmem to shm.rs.
+4,https://api.github.com/repos/mozilla/audioipc-2/pulls/119,119,audioipc: Try `shm_open` before falling back to temp file.,"Try creating a shared memory segment via [`shm_open`](https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man2/shm_open.2.html) before falling back to a temporary file.  This is a better approach for macOS and other systems lacking memfd.
+
+[`shm_unlink`](https://developer.apple.com/library/archive/documentation/System/Conceptual/ManPages_iPhoneOS/man2/shm_unlink.2.html) is called immediately after a successful `shm_open` to minimize the lifetime of the shared memory segment `name`; the underlying shared memory segment is kept alive by the fd returned by `shm_open` and the fd we later clone to the client to use in `SharedMem::from`.",kinetiknz,67343,2021-03-18T01:12:42Z,CONTRIBUTOR,True,14,2,1,Cubeb Audio Remoting For Gecko,Rust,c0a03907a158419932bab4bf56a0a10b24eb7fa4,audioipc: Try `shm_open` before falling back to temp file.
+5,https://api.github.com/repos/mozilla/audioipc-2/pulls/118,118,Add clippy to build action.,,kinetiknz,67343,2021-03-16T22:22:47Z,CONTRIBUTOR,True,61,71,19,Cubeb Audio Remoting For Gecko,Rust,723148f784ca2cfafda0fca1e15cf07d5bd2659f,Various clippy fixes.
+6,https://api.github.com/repos/mozilla/audioipc-2/pulls/118,118,Add clippy to build action.,,kinetiknz,67343,2021-03-16T22:22:47Z,CONTRIBUTOR,True,61,71,19,Cubeb Audio Remoting For Gecko,Rust,d4ce9e7358c29dfa1a6411db1a1730f48627cc12,Run clippy on CI.
+7,https://api.github.com/repos/mozilla/audioipc-2/pulls/117,117,WIP: Start porting to futures + tokio 1.0 or something.,"This is as far as I got, pretty mechanical changes. Not sure I'll have
+the time to finish it.
+
+cc @kinetiknz ",emilio,1323194,2021-03-11T18:14:14Z,NONE,False,244,222,13,Cubeb Audio Remoting For Gecko,Rust,a0730a96668026e67a1ac3aff142a68023f1672f,"WIP: Start porting to futures + tokio 1.0 or something.
+
+This is as far as I got, pretty mechanical changes. Not sure I'll have
+the time to finish it."
+8,https://api.github.com/repos/mozilla/audioipc-2/pulls/116,116,server: Drop unused SharedMem after RPC setup.,This avoids keeping unused `SharedMem` alive in the AudioIPC server for unused stream directions.,kinetiknz,67343,2021-02-24T09:02:50Z,CONTRIBUTOR,True,15,8,1,Cubeb Audio Remoting For Gecko,Rust,0f62fee3a65fa2b11445e1dab0a52bc6abdadc20,server: Drop unused SharedMem after RPC setup.
+9,https://api.github.com/repos/mozilla/audioipc-2/pulls/115,115,Use VM-backed anonymous shmem regions on Windows,"The existing `shm.rs` attempts to be portable by using the `sharedmem` crate to create and open shared memory regions in an  OS-agnostic way.  This requires creating and removing temporary files, which can run into various issues due to interactions with other processes in the filesystem.  We've already partially changed that on Linux by using memfd as the first preference, which allows an anonymous mapping to be created without a temporary file.
+
+* e8b41a6  simplifies the SharedMem interfaces by removing `SharedMemReader`, `SharedMemWriter`, `SharedMemSlice`, `SharedMemMutSlice` and replacing them with a single `SharedMem` that implements the core API required.
+
+* 63c256f introduces a Windows-specific `SharedMem` that allows anonymous mappings to be created via Win32's `CreateFileMapping` and `MapViewOfFile` APIs.  This also drops the `sharedmem` crate dependency for Windows builds.
+
+* dc3437e clarifies a few `PlatformHandle` uses and adds some additional comments.
+
+These changes are intended to address https://bugzilla.mozilla.org/show_bug.cgi?id=1679500
+
+",kinetiknz,67343,2021-02-17T05:23:21Z,CONTRIBUTOR,True,318,284,8,Cubeb Audio Remoting For Gecko,Rust,c1dffd9a91913c4ec2ef43705c3081fbfe0d1ba4,audioipc: Simplify SharedMem API wrapper.
+10,https://api.github.com/repos/mozilla/audioipc-2/pulls/115,115,Use VM-backed anonymous shmem regions on Windows,"The existing `shm.rs` attempts to be portable by using the `sharedmem` crate to create and open shared memory regions in an  OS-agnostic way.  This requires creating and removing temporary files, which can run into various issues due to interactions with other processes in the filesystem.  We've already partially changed that on Linux by using memfd as the first preference, which allows an anonymous mapping to be created without a temporary file.
+
+* e8b41a6  simplifies the SharedMem interfaces by removing `SharedMemReader`, `SharedMemWriter`, `SharedMemSlice`, `SharedMemMutSlice` and replacing them with a single `SharedMem` that implements the core API required.
+
+* 63c256f introduces a Windows-specific `SharedMem` that allows anonymous mappings to be created via Win32's `CreateFileMapping` and `MapViewOfFile` APIs.  This also drops the `sharedmem` crate dependency for Windows builds.
+
+* dc3437e clarifies a few `PlatformHandle` uses and adds some additional comments.
+
+These changes are intended to address https://bugzilla.mozilla.org/show_bug.cgi?id=1679500
+
+",kinetiknz,67343,2021-02-17T05:23:21Z,CONTRIBUTOR,True,318,284,8,Cubeb Audio Remoting For Gecko,Rust,6a9f7c774170b4d73f50adcf972f18129350c7bd,audioipc: Add custom Windows SharedMem using VM-backed regions.
+11,https://api.github.com/repos/mozilla/audioipc-2/pulls/115,115,Use VM-backed anonymous shmem regions on Windows,"The existing `shm.rs` attempts to be portable by using the `sharedmem` crate to create and open shared memory regions in an  OS-agnostic way.  This requires creating and removing temporary files, which can run into various issues due to interactions with other processes in the filesystem.  We've already partially changed that on Linux by using memfd as the first preference, which allows an anonymous mapping to be created without a temporary file.
+
+* e8b41a6  simplifies the SharedMem interfaces by removing `SharedMemReader`, `SharedMemWriter`, `SharedMemSlice`, `SharedMemMutSlice` and replacing them with a single `SharedMem` that implements the core API required.
+
+* 63c256f introduces a Windows-specific `SharedMem` that allows anonymous mappings to be created via Win32's `CreateFileMapping` and `MapViewOfFile` APIs.  This also drops the `sharedmem` crate dependency for Windows builds.
+
+* dc3437e clarifies a few `PlatformHandle` uses and adds some additional comments.
+
+These changes are intended to address https://bugzilla.mozilla.org/show_bug.cgi?id=1679500
+
+",kinetiknz,67343,2021-02-17T05:23:21Z,CONTRIBUTOR,True,318,284,8,Cubeb Audio Remoting For Gecko,Rust,7ab24bed62d896d19578f8de145deba71fb073ce,"audioipc: Various handle-related tidyups.
+
+- duplicate_platformhandle now closes source handle only if
+  `close_source` is true
+- Remove explicit `into_file` drop of handles where normal
+  drop handling will close anyway."
+12,https://api.github.com/repos/mozilla/audioipc-2/pulls/115,115,Use VM-backed anonymous shmem regions on Windows,"The existing `shm.rs` attempts to be portable by using the `sharedmem` crate to create and open shared memory regions in an  OS-agnostic way.  This requires creating and removing temporary files, which can run into various issues due to interactions with other processes in the filesystem.  We've already partially changed that on Linux by using memfd as the first preference, which allows an anonymous mapping to be created without a temporary file.
+
+* e8b41a6  simplifies the SharedMem interfaces by removing `SharedMemReader`, `SharedMemWriter`, `SharedMemSlice`, `SharedMemMutSlice` and replacing them with a single `SharedMem` that implements the core API required.
+
+* 63c256f introduces a Windows-specific `SharedMem` that allows anonymous mappings to be created via Win32's `CreateFileMapping` and `MapViewOfFile` APIs.  This also drops the `sharedmem` crate dependency for Windows builds.
+
+* dc3437e clarifies a few `PlatformHandle` uses and adds some additional comments.
+
+These changes are intended to address https://bugzilla.mozilla.org/show_bug.cgi?id=1679500
+
+",kinetiknz,67343,2021-02-17T05:23:21Z,CONTRIBUTOR,True,318,284,8,Cubeb Audio Remoting For Gecko,Rust,2b170f7184e1ca68cdd80927d51660e6e9754819,Address review comments.
+13,https://api.github.com/repos/mozilla/audioipc-2/pulls/115,115,Use VM-backed anonymous shmem regions on Windows,"The existing `shm.rs` attempts to be portable by using the `sharedmem` crate to create and open shared memory regions in an  OS-agnostic way.  This requires creating and removing temporary files, which can run into various issues due to interactions with other processes in the filesystem.  We've already partially changed that on Linux by using memfd as the first preference, which allows an anonymous mapping to be created without a temporary file.
+
+* e8b41a6  simplifies the SharedMem interfaces by removing `SharedMemReader`, `SharedMemWriter`, `SharedMemSlice`, `SharedMemMutSlice` and replacing them with a single `SharedMem` that implements the core API required.
+
+* 63c256f introduces a Windows-specific `SharedMem` that allows anonymous mappings to be created via Win32's `CreateFileMapping` and `MapViewOfFile` APIs.  This also drops the `sharedmem` crate dependency for Windows builds.
+
+* dc3437e clarifies a few `PlatformHandle` uses and adds some additional comments.
+
+These changes are intended to address https://bugzilla.mozilla.org/show_bug.cgi?id=1679500
+
+",kinetiknz,67343,2021-02-17T05:23:21Z,CONTRIBUTOR,True,318,284,8,Cubeb Audio Remoting For Gecko,Rust,cb671ace38bfd8f750d30433478f54a0aa3a6e30,Address review comments.
+14,https://api.github.com/repos/mozilla/audioipc-2/pulls/114,114,server: Clean up ServerStream if stream_init fails.,"If `stream_init` fails, there is a partially initialized `ServerStream` left behind in the `CubebServer`'s stream slab.  Since this will never be used again, we need to remove it explicitly rather than relying on a `stream_destroy`.
+
+Follow up to e925e82ca9887af9b04d92a5e304b5df94942c79.  I had noted this with a comment, but forgot to fix it before finishing e925e82ca9887af9b04d92a5e304b5df94942c79.",kinetiknz,67343,2021-02-17T04:34:39Z,CONTRIBUTOR,True,5,1,1,Cubeb Audio Remoting For Gecko,Rust,e191c649b061bfeb2d6e8ea12fa5531cbb93a522,server: Clean up ServerStream if stream_init fails.
+15,https://api.github.com/repos/mozilla/audioipc-2/pulls/113,113,Remove cubeb_stream_reset_default_device API.,See mozilla/cubeb#641,kinetiknz,67343,2021-02-17T01:06:47Z,CONTRIBUTOR,True,4,17,7,Cubeb Audio Remoting For Gecko,Rust,ecc9329160da2379998188beff30ab623bfe84db,Remove cubeb_stream_reset_default_device API.
+16,https://api.github.com/repos/mozilla/audioipc-2/pulls/112,112,client: wait for CallbackServer to drop before finishing ClientStream drop.,"Synchronize ClientStream drop on CallbackServer channel drop.  This ties the lifetime of the CallbackServer directly to the ClientStream, closing a small window during drop where CallbackServer could race and continue executing cubeb user callbacks.",kinetiknz,67343,2021-02-03T01:54:24Z,CONTRIBUTOR,True,17,1,1,Cubeb Audio Remoting For Gecko,Rust,08a6412c14e4200b57687829583a3fb1dc8a3425,client: wait for CallbackServer to drop before finishing ClientStream drop.
+17,https://api.github.com/repos/mozilla/audioipc-2/pulls/111,111,audioipc: Update to bincode 1.3 again.,"This was attempted in https://github.com/mozilla/audioipc-2/commit/b0f2a7a9325a8866be13875260df2dceb1de2388, but reverted due to both local breakage and issues landing bincode 1.3 in Gecko ([BMO 1675534](https://bugzilla.mozilla.org/show_bug.cgi?id=1675534)).
+
+For backwards compat reasons, bincode's standalone `serialize`, `deserialize`, and `serialized_size` functions use a different set of options to the default returned by `bincode::options`.  codec.rs used the bare `deserialize` but called `serialize` via `bincode::options`, resulting in an incompatible serialization between encode and decode.
+
+Leaving this PR as a draft, since may still be other issues blocking bincode 1.3 in Gecko.",kinetiknz,67343,2021-02-03T01:49:52Z,CONTRIBUTOR,False,11,9,2,Cubeb Audio Remoting For Gecko,Rust,12dced58e6f985b84477dedc9f3075c961a0c004,audioipc: Update to bincode 1.3 again.
+18,https://api.github.com/repos/mozilla/audioipc-2/pulls/109,109,Fix some clippy warnings,,sylvestre,733326,2020-11-11T09:07:43Z,CONTRIBUTOR,True,7,21,7,Cubeb Audio Remoting For Gecko,Rust,f6223ce1840c43e6c2eaef742d1f4504a232e66f,Fix some clippy warnings
+19,https://api.github.com/repos/mozilla/audioipc-2/pulls/108,108,Split stream initialization into two phases.,"Split StreamCreate into StreamCreate and StreamInit.  StreamCreate performs
+the pre-libcubeb IPC setup and StreamInit completes the libcubeb stream
+initialization.  This avoids a circular dependency where a server-side
+StreamInit needed to send messages back to the client before the client
+could progress far enough to receive and process them.
+
+Fix for [BMO 1661398](https://bugzilla.mozilla.org/show_bug.cgi?id=1661398).
+
+r? @ChunMinChang please",kinetiknz,67343,2020-10-14T09:45:30Z,CONTRIBUTOR,True,94,98,6,Cubeb Audio Remoting For Gecko,Rust,55eb86478cb4aa48a2d6226789415c1dcfa6dc3b,"Split stream initialization into two phases.
+
+Split StreamCreate into StreamCreate and StreamInit.  StreamCreate performs
+the pre-libcubeb IPC setup and StreamInit completes the libcubeb stream
+initialization.  This avoids a circular dependency where a server-side
+StreamInit needed to send messages back to the client before the client
+could progress far enough to receive and process them.
+
+Fix for BMO 1661398."
+20,https://api.github.com/repos/mozilla/audioipc-2/pulls/107,107,server: Fix potential race in CubebDeviceCollectionManager.,r? @ChunMinChang please,kinetiknz,67343,2020-10-14T09:44:46Z,CONTRIBUTOR,True,30,51,1,Cubeb Audio Remoting For Gecko,Rust,1b986b8d25d9b70ea6108167792c9131479b6262,server: Fix potential race in CubebDeviceCollectionManager.
+21,https://api.github.com/repos/mozilla/audioipc-2/pulls/106,106,Implement remoting for cubeb_stream_set_name.,"Related to kinetiknz/cubeb#615
+
+r? @ChunMinChang please",kinetiknz,67343,2020-10-06T22:26:37Z,CONTRIBUTOR,True,19,5,7,Cubeb Audio Remoting For Gecko,Rust,651ce17728c35b4bba1f9eb604d130f5a73fbb13,"Implement remoting for cubeb_stream_set_name.
+
+Related to kinetiknz/cubeb#615"
+22,https://api.github.com/repos/mozilla/audioipc-2/pulls/105,105,audio_thread_priority 0.23.4,This is just a build fix for android x86.,padenot,270485,2020-07-15T09:39:29Z,CONTRIBUTOR,True,3,3,3,Cubeb Audio Remoting For Gecko,Rust,f0767b6b974878fa7213048dc46ed6871b9c8121,audio_thread_priority 0.23.4
+23,https://api.github.com/repos/mozilla/audioipc-2/pulls/104,104,Update audio_thread_priority to 0.23.3,,padenot,270485,2020-07-09T15:40:47Z,CONTRIBUTOR,True,3,3,3,Cubeb Audio Remoting For Gecko,Rust,a2b7c5e12c1a0a670183c8f6a89f0e977f0beef5,Update audio_thread_priority to 0.23.3
+24,https://api.github.com/repos/mozilla/audioipc-2/pulls/102,102,audioipc: Avoid calling poll_complete when dropped outside task context.,"`ServerHandler` is being dropped inside Tokio via `release_node` as part of the internal runtime shutdown.  When `ServerHandler` is dropped, we call `Sink::close` primarily for the side effect of closing the underlying I/O stream.  [The docs for `Sink`](https://docs.rs/futures/0.1.23/futures/sink/trait.Sink.html#panics-2) state that a panic may occur if ""it is called outside the context of a future's task"", which is what's happening here.
+Tokio manages the futures task executor TLS for us, and it's not clear if it's a bug or intentional that the task drop is run outside the task context here.
+
+In either case, we can use `futures::task::is_in_task` (added in futures 0.1.27) inside our `Sink::close` impl to avoid calling `poll_complete` in the situation where it'd panic.
+
+Addresses [BMO 1644227](https://bugzilla.mozilla.org/show_bug.cgi?id=1644227).
+
+r? @ChunMinChang please",kinetiknz,67343,2020-06-10T03:47:22Z,CONTRIBUTOR,True,14,8,5,Cubeb Audio Remoting For Gecko,Rust,1b4e4ecf13185e7d1a61244fff35fbd1919b0f3a,audioipc: Avoid calling poll_complete when dropped outside task context.
+25,https://api.github.com/repos/mozilla/audioipc-2/pulls/101,101,audioipc: Close process handle after use.,"Unlike the pseudo-handle returned by [`GetCurrentProcess`](https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-getcurrentprocess#remarks), the handle returned by [`OpenProcess`](https://docs.microsoft.com/en-us/windows/win32/api/processthreadsapi/nf-processthreadsapi-openprocess#remarks) must be closed after use.
+
+Addresses [BMO 1644522](https://bugzilla.mozilla.org/show_bug.cgi?id=1644522).
+
+r? @ChunMinChang please",kinetiknz,67343,2020-06-10T00:06:23Z,CONTRIBUTOR,True,9,5,2,Cubeb Audio Remoting For Gecko,Rust,5819439f8a3b7f609bb2d3ec6328e40c80b79a07,audioipc: Close process handle after use.
+26,https://api.github.com/repos/mozilla/audioipc-2/pulls/100,100,server: Re-init libcubeb rather than caching failure.,"Re-attempt `cubeb_init` when a new client attaches, if the last initialization failed.
+
+Addresses [BMO 1636722](https://bugzilla.mozilla.org/show_bug.cgi?id=1636722).
+
+r? @ChunMinChang please",kinetiknz,67343,2020-06-09T03:23:00Z,CONTRIBUTOR,True,43,20,2,Cubeb Audio Remoting For Gecko,Rust,0b7ccde7d90780dc74bed10385e0e8dfa0495ea2,server: Re-init libcubeb rather than caching failure.
+27,https://api.github.com/repos/mozilla/audioipc-2/pulls/99,99,Return the correct message when getting input latency,Copy paste error...,padenot,270485,2020-05-13T13:55:31Z,CONTRIBUTOR,True,1,1,1,Cubeb Audio Remoting For Gecko,Rust,336e9d4020561e33b8158bd777f5bf1ee963604c,Return the correct message when getting input latency
+28,https://api.github.com/repos/mozilla/audioipc-2/pulls/98,98,Add the stream_get_input_latency member and bump cubeb to 0.7 accordingly,,padenot,270485,2020-04-30T17:17:26Z,CONTRIBUTOR,True,18,4,7,Cubeb Audio Remoting For Gecko,Rust,cbacc058dfcd2cf88bdaa8179ec786ba357f9355,Add the stream_get_input_latency member and bump cubeb to 0.7 accordingly
+29,https://api.github.com/repos/mozilla/audioipc-2/pulls/96,96,reformat recent changes with rustfmt,,sylvestre,733326,2020-03-24T11:37:17Z,CONTRIBUTOR,True,18,20,3,Cubeb Audio Remoting For Gecko,Rust,aaf7dc2bf1366e755bef7a78c5bc9c9600dbe8e8,reformat recent changes with rustfmt
+30,https://api.github.com/repos/mozilla/audioipc-2/pulls/95,95,client: Handle shmem setup error gracefully.,"This could fail due to low available address space (for example), so unwrapping the Result is inappropriate.
+
+This is intended to be a fix for [BMO 1621360](https://bugzilla.mozilla.org/show_bug.cgi?id=1621360).
+
+r? @ChunMinChang please",kinetiknz,67343,2020-03-17T04:47:32Z,CONTRIBUTOR,True,14,2,1,Cubeb Audio Remoting For Gecko,Rust,024a9e2b13a9e27c8be47f72ff4b2d2a82130561,"client: Handle shmem setup error gracefully.
+
+This could fail due to low available address space (for example), so
+unwrapping the Result is inappropriate."
+31,https://api.github.com/repos/mozilla/audioipc-2/pulls/94,94,Avoid using the pointer of a temporary variable,"The `std::ffi::CString::new(id).unwrap()` will create a temporary
+variable. `std::ffi::CString::new(id).unwrap().as_ptr()` is a pointer
+pointing to a temporary variable. Using this pointer directly is unsafe
+since we cannot make sure the variable is alive when the pointer is
+referred. It's better to save the variable returned from `CString::new()`
+and use its pointer (in the same scope of the variable) when we need.
+
+Run `cargo clippy` with `CString::new(text).unwrap().as_ptr()` will 
+lead to a `temporary_cstring_as_ptr` error. Here is a [playground test](https://play.rust-lang.org/?version=stable&mode=debug&edition=2018&gist=a45431ff7366612aa266b69cfbd3d308).
+
+r? @kinetiknz 
+
+",ChunMinChang,5111652,2020-03-12T18:15:39Z,MEMBER,True,2,1,1,Cubeb Audio Remoting For Gecko,Rust,9a624182bc72e57e4634a492164c4e74fed97a8d,"Avoid using the pointer of a temporary variable
+
+The `std::ffi::CString::new(id).unwrap()` will create a temporary
+variable. `std::ffi::CString::new(id).unwrap().as_ptr()` is a pointer
+pointing to a temporary variable. Using this pointer directly is unsafe
+since we cannot make sure the variable is alive when the pointer is
+referred. It's save the variable returned from `CString::new()` and use
+its pointer (in the same scope of the variable) when we need."
+32,https://api.github.com/repos/mozilla/audioipc-2/pulls/93,93,audioipc: Try memfd before /dev/shm in open_shm_file.,"[`memfd`](http://man7.org/linux/man-pages/man2/memfd_create.2.html), available in recent Linux kernels, provides a way to create anonymous shared memory mappings referenced by an fd.  This avoids needing to preallocate and then unlink files in the filesystem to acquire an fd.
+
+r? @ChunMinChang please",kinetiknz,67343,2020-03-06T12:53:04Z,CONTRIBUTOR,True,14,4,1,Cubeb Audio Remoting For Gecko,Rust,ef8568f58f7cb141a2f32947ad4c9bdde46ed6da,audioipc: Try memfd before /dev/shm in open_shm_file.
+33,https://api.github.com/repos/mozilla/audioipc-2/pulls/92,92,server: Don't reset DevIdMap on enumerate.,"The existing code had the lifetime of a cubeb_devid slightly wrong.  It
+doesn't start and stop at each enumerate, it belongs to a fixed set of
+possible cubeb_devids tied to the lifetime of the cubeb context.
+enumerate presents a (possibly incomplete, due to device removal) view of
+that set.
+
+- Remove DevIdMap::reset
+- DevIdMap::to_handle checks for existing mapping before inserting
+
+r? @ChunMinChang please",kinetiknz,67343,2020-03-06T11:51:20Z,CONTRIBUTOR,True,5,8,1,Cubeb Audio Remoting For Gecko,Rust,8a855be7be18d0c75a87a180dd0659366eae7d56,"server: Don't reset DevIdMap on enumerate.
+
+The existing code had the lifetime of a cubeb_devid slightly wrong.  It
+doesn't start and stop at each enumerate, it belongs to a fixed set of
+possible cubeb_devids tied to the lifetime of the cubeb context.
+enumerate presents a (possibly incomplete, due to device removal) view of
+that set.
+
+- Remove DevIdMap::reset
+- DevIdMap::to_handle checks for existing mapping before inserting"
+34,https://api.github.com/repos/mozilla/audioipc-2/pulls/91,91,Rustfmt the code,"Done with:
+```
+rustfmt $(fd \.rs$)
+```
+with rustfmt 1.4.11-stable (1838235 2019-12-03)",sylvestre,733326,2020-02-27T09:15:27Z,CONTRIBUTOR,True,97,67,8,Cubeb Audio Remoting For Gecko,Rust,b1497b9c7d39b49bd85ed5cb751d93b0935e633c,"Rustfmt the code
+
+rustfmt $(fd \.rs$)
+with rustfmt 1.4.11-stable (1838235 2019-12-03)"
+35,https://api.github.com/repos/mozilla/audioipc-2/pulls/90,90,audioipc: Preallocate shm area before mapping to avoid late faults.,"The existing code attempts to preallocate the shm area with
+File::set_len, but that approach doesn't work on filesystems that
+allow sparse files.  Accessing a mapped page in a shm area where the
+backing file is lazily allocated can fault with SIGBUS (on Unix-like
+platforms) due to low disk space.  To avoid this difficult to handle
+failure mode, preallocate the entire shm area using OS-specific
+techniques before mapping.
+
+This change also also reworks the shm API slightly to take a path
+fragment rather than a complete path.  This allows the shm code to try
+creating the shm via preferential paths (e.g. /dev/shm on Linux)
+before falling back to safe defaults.
+
+r? @ChunMinChang please",kinetiknz,67343,2020-02-24T07:50:21Z,CONTRIBUTOR,True,128,40,3,Cubeb Audio Remoting For Gecko,Rust,98fa128c1465d1c61b3ecd3ab08032eae148d8df,"audioipc: Preallocate shm area before mapping to avoid late faults.
+
+The existing code attempts to preallocate the shm area with
+File::set_len, but that approach doesn't work on filesystems that
+allow sparse files.  Accessing a mapped page in a shm area where the
+backing file is lazily allocated can fault with SIGBUS (on Unix-like
+platforms) due to low disk space.  To avoid this difficult to handle
+failure mode, preallocate the entire shm area using OS-specific
+techniques before mapping.
+
+This change also also reworks the shm API slightly to take a path
+fragment rather than a complete path.  This allows the shm code to try
+creating the shm via preferential paths (e.g. /dev/shm on Linux)
+before falling back to safe defaults."
+36,https://api.github.com/repos/mozilla/audioipc-2/pulls/90,90,audioipc: Preallocate shm area before mapping to avoid late faults.,"The existing code attempts to preallocate the shm area with
+File::set_len, but that approach doesn't work on filesystems that
+allow sparse files.  Accessing a mapped page in a shm area where the
+backing file is lazily allocated can fault with SIGBUS (on Unix-like
+platforms) due to low disk space.  To avoid this difficult to handle
+failure mode, preallocate the entire shm area using OS-specific
+techniques before mapping.
+
+This change also also reworks the shm API slightly to take a path
+fragment rather than a complete path.  This allows the shm code to try
+creating the shm via preferential paths (e.g. /dev/shm on Linux)
+before falling back to safe defaults.
+
+r? @ChunMinChang please",kinetiknz,67343,2020-02-24T07:50:21Z,CONTRIBUTOR,True,128,40,3,Cubeb Audio Remoting For Gecko,Rust,767d3b12138002ce0bf00658edc0737b98bfec55,audioipc: Hard-error on ENOSPC when preallocating.
+37,https://api.github.com/repos/mozilla/audioipc-2/pulls/89,89,server: Map cubeb_devids to IPC-portable handles.,r? @ChunMinChang please,kinetiknz,67343,2020-02-20T04:30:21Z,CONTRIBUTOR,True,52,3,1,Cubeb Audio Remoting For Gecko,Rust,003f83983016954c8be87b297e9a6d26a16bf19b,server: Map cubeb_devids to IPC-portable handles.
+38,https://api.github.com/repos/mozilla/audioipc-2/pulls/88,88,audioipc: Add thread_destroy_callback for unregistering profiler.,"`thread_create_callback` is used to register AudioIPC threads with Gecko's profiler.  Per [BMO 1614547](https://bugzilla.mozilla.org/show_bug.cgi?id=1614547) and related bugs, we also need to ensure threads unregister when destroyed.  This adds `thread_destroy_callback` and arranges for it to be called in the appropriate places.
+
+r? @ChunMinChang please",kinetiknz,67343,2020-02-11T04:34:42Z,CONTRIBUTOR,True,19,6,5,Cubeb Audio Remoting For Gecko,Rust,c569c426dd2bb374c3c45fe3fcf2189321619929,audioipc: Add thread shutdown callback to CoreThread.
+39,https://api.github.com/repos/mozilla/audioipc-2/pulls/87,87,ipctest: Fix random hang during startup.,"Observed on macOS: sometimes during startup, ipctest would hang after
+printing the startup banner.
+
+It turns out that the ipctest child could hang waiting for a lock deep
+inside tokio; however the lock had been taken (and dropped) in the
+parent during initialization.  fork() would just happen to clone the
+process at a bad time, leaving tokio's internal state unusable in the
+child.
+
+To avoid this entire class of problem, ipctest on Unix now uses a
+similar technique to Windows to bootstrap - after the client fd is
+allocated, ipctest forks and then execs to reset its process state
+before continuing with the audioipc tests.
+
+r? @ChunMinChang please",kinetiknz,67343,2020-01-22T02:48:30Z,CONTRIBUTOR,True,32,8,1,Cubeb Audio Remoting For Gecko,Rust,d718130dd3e5d4fdd272f4456c2e8c68cae2db25,"ipctest: Fix random hang during startup.
+
+Observed on macOS: sometimes during startup, ipctest would hang after
+printing the startup banner.
+
+It turns out that the ipctest child could hang waiting for a lock deep
+inside tokio; however the lock had been taken (and dropped) in the
+parent during initialization.  fork() would just happen to clone the
+process at a bad time, leaving tokio's internal state unusable in the
+child.
+
+To avoid this entire class of problem, ipctest on Unix now uses a
+similar technique to Windows to bootstrap - after the client fd is
+allocated, ipctest forks and then execs to reset its process state
+before continuing with the audioipc tests."
+40,https://api.github.com/repos/mozilla/audioipc-2/pulls/86,86,Rework cmsg.rs internals to address portability issues.,"- Replace our versions of CMSG_SPACE and CMSG_LEN with libc implementations.
+- Avoid depending on our version of CMSG_ALIGN, since it's non-portable.
+- Avoid need for align_buf, since we always leave the buffer correctly aligned now.
+
+Tested on x86_64: Linux, FreeBSD, OpenBSD, macOS.
+
+This fixes issue #83.
+
+r? @ChunMinChang please",kinetiknz,67343,2020-01-22T01:21:36Z,CONTRIBUTOR,True,24,38,1,Cubeb Audio Remoting For Gecko,Rust,6ee6cde872c9de3a3980a080a2d0e1d6673fd04e,"Rework cmsg.rs internals to address portability issues.
+
+- Replace our versions of CMSG_SPACE and CMSG_LEN with libc implementations.
+- Avoid depending on our version of CMSG_ALIGN, since it's non-portable.
+- Avoid need for align_buf, since we always leave the buffer correctly aligned now."
+41,https://api.github.com/repos/mozilla/audioipc-2/pulls/85,85,Don't leak IPC connections in error/shutdown path,"This fixes BMO 1607802, see https://bugzilla.mozilla.org/show_bug.cgi?id=1607802#c4 for bug analysis.
+
+r? @ChunMinChang please",kinetiknz,67343,2020-01-22T01:09:19Z,CONTRIBUTOR,True,86,57,7,Cubeb Audio Remoting For Gecko,Rust,fd2d4a5ebd5fe7ddbf40744d2d60b67e44a0b28a,rpc: Clear in_flight requests on drop.
+42,https://api.github.com/repos/mozilla/audioipc-2/pulls/85,85,Don't leak IPC connections in error/shutdown path,"This fixes BMO 1607802, see https://bugzilla.mozilla.org/show_bug.cgi?id=1607802#c4 for bug analysis.
+
+r? @ChunMinChang please",kinetiknz,67343,2020-01-22T01:09:19Z,CONTRIBUTOR,True,86,57,7,Cubeb Audio Remoting For Gecko,Rust,b13c26e92711a07a590d501ca80fc363a304dd77,"audioipc: Make PlatformHandle non-Copy, close handles on drop."
+43,https://api.github.com/repos/mozilla/audioipc-2/pulls/84,84,Windows pipe fixes,"This is the same changes included in BMO 1590249:
+- Fix tokio_named_pipes::NamedPipe shutdown
+- Shutdown ClientHandler and ServerHandler correctly on drop
+- Clarify server/client pipe ends and use appropriate end in appropriate location
+
+r? @ChunMinChang please",kinetiknz,67343,2020-01-22T00:46:19Z,CONTRIBUTOR,True,188,30,9,Cubeb Audio Remoting For Gecko,Rust,08ac8ac7c4821b0726bbbbf496d3b5c8141a855b,"Import tokio_named_pipes from upstream.
+
+This is a verbatim import of https://github.com/NikVolf/tokio-named-pipes/blob/0afa6247222a7aa6e8b370e949a0f4007f0018b6/src/lib.rs"
+44,https://api.github.com/repos/mozilla/audioipc-2/pulls/84,84,Windows pipe fixes,"This is the same changes included in BMO 1590249:
+- Fix tokio_named_pipes::NamedPipe shutdown
+- Shutdown ClientHandler and ServerHandler correctly on drop
+- Clarify server/client pipe ends and use appropriate end in appropriate location
+
+r? @ChunMinChang please",kinetiknz,67343,2020-01-22T00:46:19Z,CONTRIBUTOR,True,188,30,9,Cubeb Audio Remoting For Gecko,Rust,8f96ec2eabf0f50e47e03d15961049af6598923e,"Switch to local fork of tokio-named-pipes.
+
+Local changes to tokio-named-pipes included.  Most importantly, calling
+shutdown correctly.  Other changes are build fixes only."
+45,https://api.github.com/repos/mozilla/audioipc-2/pulls/84,84,Windows pipe fixes,"This is the same changes included in BMO 1590249:
+- Fix tokio_named_pipes::NamedPipe shutdown
+- Shutdown ClientHandler and ServerHandler correctly on drop
+- Clarify server/client pipe ends and use appropriate end in appropriate location
+
+r? @ChunMinChang please",kinetiknz,67343,2020-01-22T00:46:19Z,CONTRIBUTOR,True,188,30,9,Cubeb Audio Remoting For Gecko,Rust,7744fcd0c9326fea1cd54ced434b921515a39f6c,"Ensure {Client,Server}Handler's transport is closed on drop."
+46,https://api.github.com/repos/mozilla/audioipc-2/pulls/84,84,Windows pipe fixes,"This is the same changes included in BMO 1590249:
+- Fix tokio_named_pipes::NamedPipe shutdown
+- Shutdown ClientHandler and ServerHandler correctly on drop
+- Clarify server/client pipe ends and use appropriate end in appropriate location
+
+r? @ChunMinChang please",kinetiknz,67343,2020-01-22T00:46:19Z,CONTRIBUTOR,True,188,30,9,Cubeb Audio Remoting For Gecko,Rust,ff2e4a81f38ea6cd31b39caa0b1ad8b9167dd50b,"Use correct end of IPC transport in appropriate place.
+
+On some platforms, IPC connections are asymmetric and may have different
+behaviour on the ""server"" and ""client"" ends.  Ensure we correctly pass
+the ""client"" end to the ""client"" and use the ""server"" end in the
+""server""."
+47,https://api.github.com/repos/mozilla/audioipc-2/pulls/82,82,Add debug logging to gather data about BMO 1594216 and 1612044,r? @ChunMinChang please,kinetiknz,67343,2019-11-07T03:44:02Z,CONTRIBUTOR,True,29,11,1,Cubeb Audio Remoting For Gecko,Rust,d0c724781d3e6ba560a348f1acd18242b69916ce,server: Downgrade ServerStreamCallbacks::data_callback error! logging to debug!.
+48,https://api.github.com/repos/mozilla/audioipc-2/pulls/82,82,Add debug logging to gather data about BMO 1594216 and 1612044,r? @ChunMinChang please,kinetiknz,67343,2019-11-07T03:44:02Z,CONTRIBUTOR,True,29,11,1,Cubeb Audio Remoting For Gecko,Rust,447848422483fbfcd7795bdc40f2a35581dfd0c8,server: Debug logging for BMO 1594216.
+49,https://api.github.com/repos/mozilla/audioipc-2/pulls/82,82,Add debug logging to gather data about BMO 1594216 and 1612044,r? @ChunMinChang please,kinetiknz,67343,2019-11-07T03:44:02Z,CONTRIBUTOR,True,29,11,1,Cubeb Audio Remoting For Gecko,Rust,fe1409e51cb5b58c521ee78b8aed17c39800a17f,server: Error rather than panic in debug logging.
+50,https://api.github.com/repos/mozilla/audioipc-2/pulls/82,82,Add debug logging to gather data about BMO 1594216 and 1612044,r? @ChunMinChang please,kinetiknz,67343,2019-11-07T03:44:02Z,CONTRIBUTOR,True,29,11,1,Cubeb Audio Remoting For Gecko,Rust,5fef2ef397ae98111128175a55be79c8f4d6b9a3,server: Rename stream macro to try_stream.
+51,https://api.github.com/repos/mozilla/audioipc-2/pulls/81,81,Use audio_thread_priority version 0.21 to fix a compilation issue on Linux when using musl,This fixes https://github.com/djg/audioipc-2/issues/80.,padenot,270485,2019-11-04T10:52:27Z,CONTRIBUTOR,True,3,3,3,Cubeb Audio Remoting For Gecko,Rust,0ccd1a27595bb8500cccc70eba5208cfee4f9b99,"Use audio_thread_priority version 0.21 to fix a compilation issue on Linux when using musl
+
+This fixes https://github.com/djg/audioipc-2/issues/80."
+52,https://api.github.com/repos/mozilla/audioipc-2/pulls/79,79,More minor fixes,r? @ChunMinChang please,kinetiknz,67343,2019-10-16T08:12:18Z,CONTRIBUTOR,True,89,135,10,Cubeb Audio Remoting For Gecko,Rust,07ea7995e56394cfe43c6c8b76b17b525690bbef,audioipc: Bump message size limit to 1MB.
+53,https://api.github.com/repos/mozilla/audioipc-2/pulls/79,79,More minor fixes,r? @ChunMinChang please,kinetiknz,67343,2019-10-16T08:12:18Z,CONTRIBUTOR,True,89,135,10,Cubeb Audio Remoting For Gecko,Rust,6b79f18b6545549dfb3a022feb0bf086f0d03ee2,audioipc: Use unique shm temp filename to avoid file in use races on Windows.
+54,https://api.github.com/repos/mozilla/audioipc-2/pulls/79,79,More minor fixes,r? @ChunMinChang please,kinetiknz,67343,2019-10-16T08:12:18Z,CONTRIBUTOR,True,89,135,10,Cubeb Audio Remoting For Gecko,Rust,8b9bd52e209290751178b13eb3c0ef538ddfb34d,client: Avoid double-closing server connection on shutdown.
+55,https://api.github.com/repos/mozilla/audioipc-2/pulls/79,79,More minor fixes,r? @ChunMinChang please,kinetiknz,67343,2019-10-16T08:12:18Z,CONTRIBUTOR,True,89,135,10,Cubeb Audio Remoting For Gecko,Rust,74d30883670c55be54ebc3516852f6b32a17f60e,server: Treat data_callback error as drain to work around cubeb_wasapi bug.
+56,https://api.github.com/repos/mozilla/audioipc-2/pulls/79,79,More minor fixes,r? @ChunMinChang please,kinetiknz,67343,2019-10-16T08:12:18Z,CONTRIBUTOR,True,89,135,10,Cubeb Audio Remoting For Gecko,Rust,d4e33dab5267ff62669e195b0cfc32feaae0997e,server: Prefer once_cell over lazy_static.
+57,https://api.github.com/repos/mozilla/audioipc-2/pulls/79,79,More minor fixes,r? @ChunMinChang please,kinetiknz,67343,2019-10-16T08:12:18Z,CONTRIBUTOR,True,89,135,10,Cubeb Audio Remoting For Gecko,Rust,834d44a74843ec2bd52ef28945a22e28c377f4e3,"client: Use CpuPoolInitParams mechanism to communicate server_connection fd to ClientContext.
+
+Replace CpuPoolInitParams with AudioIpcInitParams so the G_SERVER_FD global can be removed."
+58,https://api.github.com/repos/mozilla/audioipc-2/pulls/79,79,More minor fixes,r? @ChunMinChang please,kinetiknz,67343,2019-10-16T08:12:18Z,CONTRIBUTOR,True,89,135,10,Cubeb Audio Remoting For Gecko,Rust,c2fd1ac9a94817e1970c92ac472dba2dbae5dcf8,server: Slightly clean up CONTEXT_KEY definition.
+59,https://api.github.com/repos/mozilla/audioipc-2/pulls/79,79,More minor fixes,r? @ChunMinChang please,kinetiknz,67343,2019-10-16T08:12:18Z,CONTRIBUTOR,True,89,135,10,Cubeb Audio Remoting For Gecko,Rust,57e84d755ca8e6aa55999faca10b06bcaeda8dfd,cargo fmt
+60,https://api.github.com/repos/mozilla/audioipc-2/pulls/78,78,Don't wait for the answer when asking for the render thread to be promoted,,padenot,270485,2019-10-10T13:16:31Z,CONTRIBUTOR,True,2,8,1,Cubeb Audio Remoting For Gecko,Rust,1d0d9a70fc6231a29632fd7757429c965a73413a,Don't wait for the answer when asking for the render thread to be promoted.
+61,https://api.github.com/repos/mozilla/audioipc-2/pulls/77,77,Various minor fixes,r? @ChunMinChang please,kinetiknz,67343,2019-10-08T05:48:08Z,CONTRIBUTOR,True,100,45,9,Cubeb Audio Remoting For Gecko,Rust,4551c5a16bea6f9f58009e426f216547963ca242,client: Replace set_in_callback pairs with run_in_callback closure wrapper.
+62,https://api.github.com/repos/mozilla/audioipc-2/pulls/77,77,Various minor fixes,r? @ChunMinChang please,kinetiknz,67343,2019-10-08T05:48:08Z,CONTRIBUTOR,True,100,45,9,Cubeb Audio Remoting For Gecko,Rust,7ad03b46f0e0255dbd7a298219776446bb531120,client: Also use run_in_callback during DeviceCollectionServer's callback.
+63,https://api.github.com/repos/mozilla/audioipc-2/pulls/77,77,Various minor fixes,r? @ChunMinChang please,kinetiknz,67343,2019-10-08T05:48:08Z,CONTRIBUTOR,True,100,45,9,Cubeb Audio Remoting For Gecko,Rust,c6e805d6324a8dcfb75328616255557b997628b4,"server: Add a platform initialization hook that runs before cubeb_init.
+
+So far, we only use this to initialize COM on Windows."
+64,https://api.github.com/repos/mozilla/audioipc-2/pulls/77,77,Various minor fixes,r? @ChunMinChang please,kinetiknz,67343,2019-10-08T05:48:08Z,CONTRIBUTOR,True,100,45,9,Cubeb Audio Remoting For Gecko,Rust,3ed665c3bea96e6806be18c2d51e1141ae159cc3,"audioipc: Work around tokio_named_pipes assuming at least 1kB available.
+
+NamedPipe::read_buf uses a 1kB temporary internally, but fails to handle the
+situation where the buffer passed in via buf is smaller than 1kB.
+
+https://github.com/NikVolf/tokio-named-pipes/blob/0afa6247222a7aa6e8b370e949a0f4007f0018b6/src/lib.rs#L103"
+65,https://api.github.com/repos/mozilla/audioipc-2/pulls/77,77,Various minor fixes,r? @ChunMinChang please,kinetiknz,67343,2019-10-08T05:48:08Z,CONTRIBUTOR,True,100,45,9,Cubeb Audio Remoting For Gecko,Rust,d40fefab866f3a421f5c1cf88454209ebe86ac65,"audioipc: Rework Windows implementation of MessageStream.
+
+Fixes a bug where abusing as_raw_handle() (since mio_named_pipes lacks
+into_raw_handle()) resulted in double closing or early closing of named
+pipe handles."
+66,https://api.github.com/repos/mozilla/audioipc-2/pulls/76,76,Build fix on non-linux platforms,,padenot,270485,2019-09-27T13:53:37Z,CONTRIBUTOR,True,2,3,3,Cubeb Audio Remoting For Gecko,Rust,b1c3fd733dd4137e9024725fc997847488940c39,Build fix on non-linux platforms
+67,https://api.github.com/repos/mozilla/audioipc-2/pulls/75,75,Gecko re-sync: use the right `audio_thread_priority` version,0.20.2 just got published with a fix for musl.,padenot,270485,2019-09-26T12:48:10Z,CONTRIBUTOR,True,3,2,3,Cubeb Audio Remoting For Gecko,Rust,14d32b39d06931e797b839eac0a6cc046dc554bb,Gecko re-sync: use the right audio_thread_priority version
+68,https://api.github.com/repos/mozilla/audioipc-2/pulls/74,74,"Remove the code to start the audio callback threads early, and add a message to promote a thread to RT from the server process.","With `audio_thread_priority` version `0.20` it's possible to promote a
+thread to real-time from another process. This allows removing the
+workaround that was previously done to create the threads early before
+the sandbox lockdown.
+
+Additionaly, this patch adds a new message that allows passing a
+`RtPriorityThreadInfo` struct via IPC, so that the server can promote
+a client thread in a sandboxed process.
+
+This is part of [BMO#1575883](https://bugzilla.mozilla.org/show_bug.cgi?id=1575883).",padenot,270485,2019-09-25T14:47:01Z,CONTRIBUTOR,True,70,106,5,Cubeb Audio Remoting For Gecko,Rust,8f075d62ba485a955f4a8251efc7d416febed683,"Remove the code to start the audio callback threads early, and add a message to promote a thread to RT from the server process.
+
+With `audio_thread_priority` version `0.20` it's possible to promote a
+thread to real-time from another process. This allows removing the
+workaround that was previously done to create the threads early before
+the sandbox lockdown.
+
+Additionaly, this patch adds a new message that allows passing a
+`RtPriorityThreadInfo` struct via IPC, so that the server can promote
+a client thread in a sandboxed process.
+
+This is part of BMO#1575883."
+69,https://api.github.com/repos/mozilla/audioipc-2/pulls/73,73,Update scoped-tls to 1.0 and slab to 0.4,,Eijebong,3650385,2019-09-06T18:28:27Z,CONTRIBUTOR,True,13,21,3,Cubeb Audio Remoting For Gecko,Rust,fdb50a03a14f1ca54fffd6ef97bf4b47162abb40,Update scoped-tls to 1.0
+70,https://api.github.com/repos/mozilla/audioipc-2/pulls/73,73,Update scoped-tls to 1.0 and slab to 0.4,,Eijebong,3650385,2019-09-06T18:28:27Z,CONTRIBUTOR,True,13,21,3,Cubeb Audio Remoting For Gecko,Rust,694e4b3a8ef5df51529b6902ab6114eb12f38c62,Update slab to 0.4
+71,https://api.github.com/repos/mozilla/audioipc-2/pulls/72,72,Update to cubeb-rs 0.6.0; remove panning API.,"Part of https://github.com/kinetiknz/cubeb/pull/532
+
+r? @ChunMinChang please",kinetiknz,67343,2019-08-21T22:19:29Z,CONTRIBUTOR,True,4,18,7,Cubeb Audio Remoting For Gecko,Rust,31ca7a430fef003030e1cc27e82e3587746199a9,Update to cubeb-rs 0.6.0; remove panning API.
+72,https://api.github.com/repos/mozilla/audioipc-2/pulls/71,71,server: Don't swallow errors in register_device_collection_changed.,"Swallowing errors (by converting them to panics via `expect`) in CubebDeviceCollectionManager::internal_register is a bad idea: registration can fail for legitimate reasons plus we need to report CUBEB_ERROR_NOT_SUPPORTED correctly for unimplemented backends.
+
+This fixes https://bugzilla.mozilla.org/show_bug.cgi?id=1569460
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-29T04:36:39Z,CONTRIBUTOR,True,26,20,1,Cubeb Audio Remoting For Gecko,Rust,097c9effc6bb705ca70850318206df822008c313,server: Don't swallow errors in register_device_collection_changed.
+73,https://api.github.com/repos/mozilla/audioipc-2/pulls/71,71,server: Don't swallow errors in register_device_collection_changed.,"Swallowing errors (by converting them to panics via `expect`) in CubebDeviceCollectionManager::internal_register is a bad idea: registration can fail for legitimate reasons plus we need to report CUBEB_ERROR_NOT_SUPPORTED correctly for unimplemented backends.
+
+This fixes https://bugzilla.mozilla.org/show_bug.cgi?id=1569460
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-29T04:36:39Z,CONTRIBUTOR,True,26,20,1,Cubeb Audio Remoting For Gecko,Rust,65e0be1d2d2847daea78a8dc8d6cfc4f865eed20,Refactor CubebDeviceCollectionManager::update slightly.
+74,https://api.github.com/repos/mozilla/audioipc-2/pulls/70,70,"Format, clippy, and minor tidy ups","These changes are renames/formatting or minor clippy fixes that don't intend to change the behaviour of the code. Apologies for the large amount of code touched - it's all automated changes so should not need close review.
+
+- `cargo fmt`  was run with the simple included rustfmt.toml.
+- The 2018 conversion was done with `cargo fix --edition` and a couple of minor fixups to the resulting crate imports.
+- Our `async` module was renamed to `async_msg` to avoid clashing with the `async` keyword.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-23T21:57:40Z,CONTRIBUTOR,True,509,447,31,Cubeb Audio Remoting For Gecko,Rust,7050de7eeecbb7cc8ba2d811ba1afe56f439d62a,ipctest: Fix build on Windows.
+75,https://api.github.com/repos/mozilla/audioipc-2/pulls/70,70,"Format, clippy, and minor tidy ups","These changes are renames/formatting or minor clippy fixes that don't intend to change the behaviour of the code. Apologies for the large amount of code touched - it's all automated changes so should not need close review.
+
+- `cargo fmt`  was run with the simple included rustfmt.toml.
+- The 2018 conversion was done with `cargo fix --edition` and a couple of minor fixups to the resulting crate imports.
+- Our `async` module was renamed to `async_msg` to avoid clashing with the `async` keyword.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-23T21:57:40Z,CONTRIBUTOR,True,509,447,31,Cubeb Audio Remoting For Gecko,Rust,06cb6b8873b418f49415163848bfa13677a0893a,Warn about unused crate imports.
+76,https://api.github.com/repos/mozilla/audioipc-2/pulls/70,70,"Format, clippy, and minor tidy ups","These changes are renames/formatting or minor clippy fixes that don't intend to change the behaviour of the code. Apologies for the large amount of code touched - it's all automated changes so should not need close review.
+
+- `cargo fmt`  was run with the simple included rustfmt.toml.
+- The 2018 conversion was done with `cargo fix --edition` and a couple of minor fixups to the resulting crate imports.
+- Our `async` module was renamed to `async_msg` to avoid clashing with the `async` keyword.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-23T21:57:40Z,CONTRIBUTOR,True,509,447,31,Cubeb Audio Remoting For Gecko,Rust,3cb3fae14c8fa087cd71e61a924e73567e6b66a5,"Clean up crate imports.
+
+- Drop several unused crates.
+- Mark platform-specific crates as necessary on import.
+- Mark platform-specific crates in Cargo.toml."
+77,https://api.github.com/repos/mozilla/audioipc-2/pulls/70,70,"Format, clippy, and minor tidy ups","These changes are renames/formatting or minor clippy fixes that don't intend to change the behaviour of the code. Apologies for the large amount of code touched - it's all automated changes so should not need close review.
+
+- `cargo fmt`  was run with the simple included rustfmt.toml.
+- The 2018 conversion was done with `cargo fix --edition` and a couple of minor fixups to the resulting crate imports.
+- Our `async` module was renamed to `async_msg` to avoid clashing with the `async` keyword.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-23T21:57:40Z,CONTRIBUTOR,True,509,447,31,Cubeb Audio Remoting For Gecko,Rust,3033102f625d57478d299a8db640b440e26e71d5,Address most clippy issues.
+78,https://api.github.com/repos/mozilla/audioipc-2/pulls/70,70,"Format, clippy, and minor tidy ups","These changes are renames/formatting or minor clippy fixes that don't intend to change the behaviour of the code. Apologies for the large amount of code touched - it's all automated changes so should not need close review.
+
+- `cargo fmt`  was run with the simple included rustfmt.toml.
+- The 2018 conversion was done with `cargo fix --edition` and a couple of minor fixups to the resulting crate imports.
+- Our `async` module was renamed to `async_msg` to avoid clashing with the `async` keyword.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-23T21:57:40Z,CONTRIBUTOR,True,509,447,31,Cubeb Audio Remoting For Gecko,Rust,7dec2a8bb5d7c6979cd28932621f4f40f32a8d84,cargo fmt pass.
+79,https://api.github.com/repos/mozilla/audioipc-2/pulls/70,70,"Format, clippy, and minor tidy ups","These changes are renames/formatting or minor clippy fixes that don't intend to change the behaviour of the code. Apologies for the large amount of code touched - it's all automated changes so should not need close review.
+
+- `cargo fmt`  was run with the simple included rustfmt.toml.
+- The 2018 conversion was done with `cargo fix --edition` and a couple of minor fixups to the resulting crate imports.
+- Our `async` module was renamed to `async_msg` to avoid clashing with the `async` keyword.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-23T21:57:40Z,CONTRIBUTOR,True,509,447,31,Cubeb Audio Remoting For Gecko,Rust,0a97cb6081a1642e0298ba856fbd4ed2e419bf35,Update to Rust 2018 edition.
+80,https://api.github.com/repos/mozilla/audioipc-2/pulls/70,70,"Format, clippy, and minor tidy ups","These changes are renames/formatting or minor clippy fixes that don't intend to change the behaviour of the code. Apologies for the large amount of code touched - it's all automated changes so should not need close review.
+
+- `cargo fmt`  was run with the simple included rustfmt.toml.
+- The 2018 conversion was done with `cargo fix --edition` and a couple of minor fixups to the resulting crate imports.
+- Our `async` module was renamed to `async_msg` to avoid clashing with the `async` keyword.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-23T21:57:40Z,CONTRIBUTOR,True,509,447,31,Cubeb Audio Remoting For Gecko,Rust,8ce240a88cc8652bf5f85eb9b326082d1bb5e54d,cargo fmt after 2018 conversion.
+81,https://api.github.com/repos/mozilla/audioipc-2/pulls/70,70,"Format, clippy, and minor tidy ups","These changes are renames/formatting or minor clippy fixes that don't intend to change the behaviour of the code. Apologies for the large amount of code touched - it's all automated changes so should not need close review.
+
+- `cargo fmt`  was run with the simple included rustfmt.toml.
+- The 2018 conversion was done with `cargo fix --edition` and a couple of minor fixups to the resulting crate imports.
+- Our `async` module was renamed to `async_msg` to avoid clashing with the `async` keyword.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-23T21:57:40Z,CONTRIBUTOR,True,509,447,31,Cubeb Audio Remoting For Gecko,Rust,88321a2da6a21221a4bce582a11c1ad211a0217f,Sort crate imports in Cargo.toml.
+82,https://api.github.com/repos/mozilla/audioipc-2/pulls/70,70,"Format, clippy, and minor tidy ups","These changes are renames/formatting or minor clippy fixes that don't intend to change the behaviour of the code. Apologies for the large amount of code touched - it's all automated changes so should not need close review.
+
+- `cargo fmt`  was run with the simple included rustfmt.toml.
+- The 2018 conversion was done with `cargo fix --edition` and a couple of minor fixups to the resulting crate imports.
+- Our `async` module was renamed to `async_msg` to avoid clashing with the `async` keyword.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-23T21:57:40Z,CONTRIBUTOR,True,509,447,31,Cubeb Audio Remoting For Gecko,Rust,806a9b9bc7b9420c0a6248b7b190b4a0f2463d4e,Rename async.rs to async_msg.rs.
+83,https://api.github.com/repos/mozilla/audioipc-2/pulls/70,70,"Format, clippy, and minor tidy ups","These changes are renames/formatting or minor clippy fixes that don't intend to change the behaviour of the code. Apologies for the large amount of code touched - it's all automated changes so should not need close review.
+
+- `cargo fmt`  was run with the simple included rustfmt.toml.
+- The 2018 conversion was done with `cargo fix --edition` and a couple of minor fixups to the resulting crate imports.
+- Our `async` module was renamed to `async_msg` to avoid clashing with the `async` keyword.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-23T21:57:40Z,CONTRIBUTOR,True,509,447,31,Cubeb Audio Remoting For Gecko,Rust,1f99014e4fce989bd1ebe6d0976a4317910b69fa,Update ipctest to log 0.4 to match other crates.
+84,https://api.github.com/repos/mozilla/audioipc-2/pulls/70,70,"Format, clippy, and minor tidy ups","These changes are renames/formatting or minor clippy fixes that don't intend to change the behaviour of the code. Apologies for the large amount of code touched - it's all automated changes so should not need close review.
+
+- `cargo fmt`  was run with the simple included rustfmt.toml.
+- The 2018 conversion was done with `cargo fix --edition` and a couple of minor fixups to the resulting crate imports.
+- Our `async` module was renamed to `async_msg` to avoid clashing with the `async` keyword.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-23T21:57:40Z,CONTRIBUTOR,True,509,447,31,Cubeb Audio Remoting For Gecko,Rust,1a6e82c32d854a99a3fd759b5cddb71216ef27fc,Rename 'remote' to 'handle' in places we replaced a Tokio Remote with a Handle.
+85,https://api.github.com/repos/mozilla/audioipc-2/pulls/70,70,"Format, clippy, and minor tidy ups","These changes are renames/formatting or minor clippy fixes that don't intend to change the behaviour of the code. Apologies for the large amount of code touched - it's all automated changes so should not need close review.
+
+- `cargo fmt`  was run with the simple included rustfmt.toml.
+- The 2018 conversion was done with `cargo fix --edition` and a couple of minor fixups to the resulting crate imports.
+- Our `async` module was renamed to `async_msg` to avoid clashing with the `async` keyword.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-23T21:57:40Z,CONTRIBUTOR,True,509,447,31,Cubeb Audio Remoting For Gecko,Rust,309ead84258865a61e65fb21c8dd8066114b05fe,cargo fix --edition-idioms
+86,https://api.github.com/repos/mozilla/audioipc-2/pulls/69,69,Add CubebDeviceCollectionManager to handle mapping between CubebServer and shared cubeb context.,"The previous implementation of cubeb_register_device_collection_changed in https://github.com/djg/audioipc-2/pull/62 applied the registration directly to the cubeb context.  CubebServer logically represents a cubeb context, but the underlying cubeb context is actually shared (via TLS) to multiple CubebServers (with one CubebServer per attached client).
+
+The fix requires introducing a layer to manage device collection changed callbacks for multiple CubebServers using a single cubeb context.  This PR introduces a CubebDeviceCollectionManager that rides along with the shared TLS cubeb context and maps multiple CubebServer registrations to the shared cubeb context.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-23T20:47:43Z,CONTRIBUTOR,True,146,44,1,Cubeb Audio Remoting For Gecko,Rust,c03b00facf29e758919de923b507981b1267da7e,Add CubebDeviceCollectionManager to handle mapping between CubebServer and shared cubeb context.
+87,https://api.github.com/repos/mozilla/audioipc-2/pulls/69,69,Add CubebDeviceCollectionManager to handle mapping between CubebServer and shared cubeb context.,"The previous implementation of cubeb_register_device_collection_changed in https://github.com/djg/audioipc-2/pull/62 applied the registration directly to the cubeb context.  CubebServer logically represents a cubeb context, but the underlying cubeb context is actually shared (via TLS) to multiple CubebServers (with one CubebServer per attached client).
+
+The fix requires introducing a layer to manage device collection changed callbacks for multiple CubebServers using a single cubeb context.  This PR introduces a CubebDeviceCollectionManager that rides along with the shared TLS cubeb context and maps multiple CubebServer registrations to the shared cubeb context.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-23T20:47:43Z,CONTRIBUTOR,True,146,44,1,Cubeb Audio Remoting For Gecko,Rust,a5ce4228e243952302d1dc0634c49de20d165c08,Reduce duplication of IN/OUT enable/disable cases in CubebDeviceCollectionManager.
+88,https://api.github.com/repos/mozilla/audioipc-2/pulls/66,66,Extend audioipc_server_start to accept a context name to be passed to cubeb_init.,"This is needed for BMO #14886666.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-12T06:14:24Z,CONTRIBUTOR,True,22,11,3,Cubeb Audio Remoting For Gecko,Rust,9447f9427f86da5853d368e901d9eb342f4fb074,"Extend audioipc_server_start to accept a context name to be passed to cubeb_init.
+
+This allows fixing BMO #1488666."
+89,https://api.github.com/repos/mozilla/audioipc-2/pulls/65,65,Support libcubeb backend selection via new parameter to audioipc_server_start(),"This is needed for BMO #1539225.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-12T02:08:59Z,CONTRIBUTOR,True,25,4,4,Cubeb Audio Remoting For Gecko,Rust,3490b1d89ef5d207bcd4fe143c2930b697ea926c,"Support libcubeb backend selection via new parameter to audioipc_server_start().
+
+This is needed for BMO #1439925."
+90,https://api.github.com/repos/mozilla/audioipc-2/pulls/64,64,Switch from tokio_core to tokio 0.1,"tokio_core is the old API for tokio which is now deprecated (and is currently implemented as a compatibility shim over tokio 0.1).  We need to migrate to tokio 0.1 to use recent tokio related crates (e.g. for https://github.com/djg/audioipc-2/issues/46 and a maintained version of tokio-named-pipes).
+
+Note that the tokio-uds changes rely on a minor fork of tokio-uds's UnixStream to expose clear_{read,write}_ready, so we can't merge this just yet.  I'll work on solving this in parallel with this PR: https://github.com/tokio-rs/tokio/pull/1294
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-12T00:56:58Z,CONTRIBUTOR,True,477,337,18,Cubeb Audio Remoting For Gecko,Rust,26e47e32b96257616deaec442a04348c288d41dc,"Remove unused core::spawn{,_fn}."
+91,https://api.github.com/repos/mozilla/audioipc-2/pulls/64,64,Switch from tokio_core to tokio 0.1,"tokio_core is the old API for tokio which is now deprecated (and is currently implemented as a compatibility shim over tokio 0.1).  We need to migrate to tokio 0.1 to use recent tokio related crates (e.g. for https://github.com/djg/audioipc-2/issues/46 and a maintained version of tokio-named-pipes).
+
+Note that the tokio-uds changes rely on a minor fork of tokio-uds's UnixStream to expose clear_{read,write}_ready, so we can't merge this just yet.  I'll work on solving this in parallel with this PR: https://github.com/tokio-rs/tokio/pull/1294
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-12T00:56:58Z,CONTRIBUTOR,True,477,337,18,Cubeb Audio Remoting For Gecko,Rust,4bb041298bab4e2b47b556f0084b512686fd3ebb,client: Clean up error handling in client RPC setup.
+92,https://api.github.com/repos/mozilla/audioipc-2/pulls/64,64,Switch from tokio_core to tokio 0.1,"tokio_core is the old API for tokio which is now deprecated (and is currently implemented as a compatibility shim over tokio 0.1).  We need to migrate to tokio 0.1 to use recent tokio related crates (e.g. for https://github.com/djg/audioipc-2/issues/46 and a maintained version of tokio-named-pipes).
+
+Note that the tokio-uds changes rely on a minor fork of tokio-uds's UnixStream to expose clear_{read,write}_ready, so we can't merge this just yet.  I'll work on solving this in parallel with this PR: https://github.com/tokio-rs/tokio/pull/1294
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-12T00:56:58Z,CONTRIBUTOR,True,477,337,18,Cubeb Audio Remoting For Gecko,Rust,0fb964ceacc8173cf2fdfa759e767e37cea2224e,client: Remove t! macro.
+93,https://api.github.com/repos/mozilla/audioipc-2/pulls/64,64,Switch from tokio_core to tokio 0.1,"tokio_core is the old API for tokio which is now deprecated (and is currently implemented as a compatibility shim over tokio 0.1).  We need to migrate to tokio 0.1 to use recent tokio related crates (e.g. for https://github.com/djg/audioipc-2/issues/46 and a maintained version of tokio-named-pipes).
+
+Note that the tokio-uds changes rely on a minor fork of tokio-uds's UnixStream to expose clear_{read,write}_ready, so we can't merge this just yet.  I'll work on solving this in parallel with this PR: https://github.com/tokio-rs/tokio/pull/1294
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-12T00:56:58Z,CONTRIBUTOR,True,477,337,18,Cubeb Audio Remoting For Gecko,Rust,6b40e1280c65a3e1a88d4fb51d2292363cacbe2c,"Switch to tokio-uds 0.2.5.  Requires patched tokio-uds to export clear_*_ready.
+
+Modified-by: Matthew Gregan <kinetik@flim.org>"
+94,https://api.github.com/repos/mozilla/audioipc-2/pulls/64,64,Switch from tokio_core to tokio 0.1,"tokio_core is the old API for tokio which is now deprecated (and is currently implemented as a compatibility shim over tokio 0.1).  We need to migrate to tokio 0.1 to use recent tokio related crates (e.g. for https://github.com/djg/audioipc-2/issues/46 and a maintained version of tokio-named-pipes).
+
+Note that the tokio-uds changes rely on a minor fork of tokio-uds's UnixStream to expose clear_{read,write}_ready, so we can't merge this just yet.  I'll work on solving this in parallel with this PR: https://github.com/tokio-rs/tokio/pull/1294
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-12T00:56:58Z,CONTRIBUTOR,True,477,337,18,Cubeb Audio Remoting For Gecko,Rust,4f4a9042c90c78cf6bb1ab9bce42fd19f63dc0fc,Switch from tokio_core Handle to tokio_reactor Handle.
+95,https://api.github.com/repos/mozilla/audioipc-2/pulls/64,64,Switch from tokio_core to tokio 0.1,"tokio_core is the old API for tokio which is now deprecated (and is currently implemented as a compatibility shim over tokio 0.1).  We need to migrate to tokio 0.1 to use recent tokio related crates (e.g. for https://github.com/djg/audioipc-2/issues/46 and a maintained version of tokio-named-pipes).
+
+Note that the tokio-uds changes rely on a minor fork of tokio-uds's UnixStream to expose clear_{read,write}_ready, so we can't merge this just yet.  I'll work on solving this in parallel with this PR: https://github.com/tokio-rs/tokio/pull/1294
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-12T00:56:58Z,CONTRIBUTOR,True,477,337,18,Cubeb Audio Remoting For Gecko,Rust,13920d588d1497b86fc95e84df58ec451775d11b,Switch from tokio_core Core to Tokio 0.1 (current_thread) Runtime.
+96,https://api.github.com/repos/mozilla/audioipc-2/pulls/64,64,Switch from tokio_core to tokio 0.1,"tokio_core is the old API for tokio which is now deprecated (and is currently implemented as a compatibility shim over tokio 0.1).  We need to migrate to tokio 0.1 to use recent tokio related crates (e.g. for https://github.com/djg/audioipc-2/issues/46 and a maintained version of tokio-named-pipes).
+
+Note that the tokio-uds changes rely on a minor fork of tokio-uds's UnixStream to expose clear_{read,write}_ready, so we can't merge this just yet.  I'll work on solving this in parallel with this PR: https://github.com/tokio-rs/tokio/pull/1294
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-12T00:56:58Z,CONTRIBUTOR,True,477,337,18,Cubeb Audio Remoting For Gecko,Rust,ffee76ad93495ddbd5bb2f5c3a017b036c81c0c5,"Update Windows-specific code for Tokio 0.1.
+
+This allows us to drop our local fork of tokio_named_pipes in favour
+of the maintained upstream version (which has not yet been released on
+crates.io since maintainership changed)."
+97,https://api.github.com/repos/mozilla/audioipc-2/pulls/64,64,Switch from tokio_core to tokio 0.1,"tokio_core is the old API for tokio which is now deprecated (and is currently implemented as a compatibility shim over tokio 0.1).  We need to migrate to tokio 0.1 to use recent tokio related crates (e.g. for https://github.com/djg/audioipc-2/issues/46 and a maintained version of tokio-named-pipes).
+
+Note that the tokio-uds changes rely on a minor fork of tokio-uds's UnixStream to expose clear_{read,write}_ready, so we can't merge this just yet.  I'll work on solving this in parallel with this PR: https://github.com/tokio-rs/tokio/pull/1294
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-12T00:56:58Z,CONTRIBUTOR,True,477,337,18,Cubeb Audio Remoting For Gecko,Rust,f95ce3a64c76ad3027bc7466308b8e3d0c7ce108,Use kinetiknz/tokio's v0.1.x-uds branch temporarily.
+98,https://api.github.com/repos/mozilla/audioipc-2/pulls/64,64,Switch from tokio_core to tokio 0.1,"tokio_core is the old API for tokio which is now deprecated (and is currently implemented as a compatibility shim over tokio 0.1).  We need to migrate to tokio 0.1 to use recent tokio related crates (e.g. for https://github.com/djg/audioipc-2/issues/46 and a maintained version of tokio-named-pipes).
+
+Note that the tokio-uds changes rely on a minor fork of tokio-uds's UnixStream to expose clear_{read,write}_ready, so we can't merge this just yet.  I'll work on solving this in parallel with this PR: https://github.com/tokio-rs/tokio/pull/1294
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-12T00:56:58Z,CONTRIBUTOR,True,477,337,18,Cubeb Audio Remoting For Gecko,Rust,1a3763964a5b76f8801f4e11ccf9d43ba32651c1,"audioipc: Add copy of tokio-uds/src/stream.rs as tokio_uds_stream.rs.
+
+Copied from upstream revision
+25e835c5b7e2cfeb9c22b1fd576844f6814a9477 (tokio-uds 0.2.5)."
+99,https://api.github.com/repos/mozilla/audioipc-2/pulls/64,64,Switch from tokio_core to tokio 0.1,"tokio_core is the old API for tokio which is now deprecated (and is currently implemented as a compatibility shim over tokio 0.1).  We need to migrate to tokio 0.1 to use recent tokio related crates (e.g. for https://github.com/djg/audioipc-2/issues/46 and a maintained version of tokio-named-pipes).
+
+Note that the tokio-uds changes rely on a minor fork of tokio-uds's UnixStream to expose clear_{read,write}_ready, so we can't merge this just yet.  I'll work on solving this in parallel with this PR: https://github.com/tokio-rs/tokio/pull/1294
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-12T00:56:58Z,CONTRIBUTOR,True,477,337,18,Cubeb Audio Remoting For Gecko,Rust,54cb4ef8bf08c91fe57ef57fec49896d833d1eff,Temporarily switch to local fork of tokio-uds's stream.rs until upstream PR 1294 is resolved.
+100,https://api.github.com/repos/mozilla/audioipc-2/pulls/63,63,Update to memmap 0.7.,"Closes #47.
+
+The MmapViewSync type was removed (memmap-rs/issues/33), so we need to reimplement the small part of it that we needed for the SharedMem{,Mut}Slice types locally.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-11T23:34:15Z,CONTRIBUTOR,True,46,37,3,Cubeb Audio Remoting For Gecko,Rust,42c4f270110293409e828ea507ae1947463b998a,"Update to memmap 0.7.
+
+Closes #47."
+101,https://api.github.com/repos/mozilla/audioipc-2/pulls/63,63,Update to memmap 0.7.,"Closes #47.
+
+The MmapViewSync type was removed (memmap-rs/issues/33), so we need to reimplement the small part of it that we needed for the SharedMem{,Mut}Slice types locally.
+
+r? @ChunMinChang please",kinetiknz,67343,2019-07-11T23:34:15Z,CONTRIBUTOR,True,46,37,3,Cubeb Audio Remoting For Gecko,Rust,55afe6261387c5783a241cdd6518951ce7647784,Remove unnecessary UnsafeCell from SharedMemSlice.
+102,https://api.github.com/repos/mozilla/audioipc-2/pulls/62,62,Implement remoting for remaining unimplemented API ,"This fixes issue #50.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/62)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-06-26T12:03:48Z,CONTRIBUTOR,True,382,37,11,Cubeb Audio Remoting For Gecko,Rust,249f15502bca384973e6cba1060443f16960b7c8,Implement remoting for cubeb_get_backend_id.
+103,https://api.github.com/repos/mozilla/audioipc-2/pulls/62,62,Implement remoting for remaining unimplemented API ,"This fixes issue #50.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/62)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-06-26T12:03:48Z,CONTRIBUTOR,True,382,37,11,Cubeb Audio Remoting For Gecko,Rust,0550ed7b433d01219d198e2364a3bbfb68183e9e,Return appropriate error from unimplemented cubeb_stream_register_device_changed_callback.
+104,https://api.github.com/repos/mozilla/audioipc-2/pulls/62,62,Implement remoting for remaining unimplemented API ,"This fixes issue #50.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/62)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-06-26T12:03:48Z,CONTRIBUTOR,True,382,37,11,Cubeb Audio Remoting For Gecko,Rust,34ed19dbacb40c3ddddcd550395be7fcb9462e47,Use u8 instead of libc::uint8_t to avoid deprecation warning.
+105,https://api.github.com/repos/mozilla/audioipc-2/pulls/62,62,Implement remoting for remaining unimplemented API ,"This fixes issue #50.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/62)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-06-26T12:03:48Z,CONTRIBUTOR,True,382,37,11,Cubeb Audio Remoting For Gecko,Rust,04314912c3e9a0aa394f27dd2b51586ef8d752e5,Implement remoting for cubeb_register_device_collection_changed.
+106,https://api.github.com/repos/mozilla/audioipc-2/pulls/62,62,Implement remoting for remaining unimplemented API ,"This fixes issue #50.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/62)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-06-26T12:03:48Z,CONTRIBUTOR,True,382,37,11,Cubeb Audio Remoting For Gecko,Rust,d851bb6c0e4768daf8a525ce86452a8029e5b87c,Make SHM_AREA_SIZE const common between client and server.
+107,https://api.github.com/repos/mozilla/audioipc-2/pulls/62,62,Implement remoting for remaining unimplemented API ,"This fixes issue #50.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/62)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-06-26T12:03:48Z,CONTRIBUTOR,True,382,37,11,Cubeb Audio Remoting For Gecko,Rust,19ee4e80ad2e7d06fb10465f787d2068e8fae51a,Implement remoting for cubeb_stream_register_device_changed_callback.
+108,https://api.github.com/repos/mozilla/audioipc-2/pulls/62,62,Implement remoting for remaining unimplemented API ,"This fixes issue #50.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/62)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-06-26T12:03:48Z,CONTRIBUTOR,True,382,37,11,Cubeb Audio Remoting For Gecko,Rust,723cfc1e34b466ec2abaef89153d10db7976d706,"Drop unsafe lifetime hackery from ClientContext::backend_id.
+
+Relies on https://github.com/djg/cubeb-rs/pull/42"
+109,https://api.github.com/repos/mozilla/audioipc-2/pulls/62,62,Implement remoting for remaining unimplemented API ,"This fixes issue #50.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/62)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-06-26T12:03:48Z,CONTRIBUTOR,True,382,37,11,Cubeb Audio Remoting For Gecko,Rust,94ee1fb7230ffb28064b38ea46a25ac6b0952778,Update to cubeb-rs 0.5.5.
+110,https://api.github.com/repos/mozilla/audioipc-2/pulls/62,62,Implement remoting for remaining unimplemented API ,"This fixes issue #50.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/62)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-06-26T12:03:48Z,CONTRIBUTOR,True,382,37,11,Cubeb Audio Remoting For Gecko,Rust,c25c3fd7689b5c0c16806e5457075f24fbe36266,Reformat ContextRegisterDeviceCollectionChanged slightly.
+111,https://api.github.com/repos/mozilla/audioipc-2/pulls/62,62,Implement remoting for remaining unimplemented API ,"This fixes issue #50.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/62)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-06-26T12:03:48Z,CONTRIBUTOR,True,382,37,11,Cubeb Audio Remoting For Gecko,Rust,ec193f87bd66ba28e2d58236bc57bf7e7ac732f1,Rename CubebServer.rpc to make its purpose clearer.
+112,https://api.github.com/repos/mozilla/audioipc-2/pulls/62,62,Implement remoting for remaining unimplemented API ,"This fixes issue #50.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/62)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-06-26T12:03:48Z,CONTRIBUTOR,True,382,37,11,Cubeb Audio Remoting For Gecko,Rust,a216a530f530c8e12594eccde866ecc30578ea55,Clarify error reporting in ContextSetupDeviceCollectionCallback.
+113,https://api.github.com/repos/mozilla/audioipc-2/pulls/62,62,Implement remoting for remaining unimplemented API ,"This fixes issue #50.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/62)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-06-26T12:03:48Z,CONTRIBUTOR,True,382,37,11,Cubeb Audio Remoting For Gecko,Rust,ca604848dff377a5c73998c892df1d7632cd9039,Correctly handle multiple callback registration in register_device_collection_changed remoting.
+114,https://api.github.com/repos/mozilla/audioipc-2/pulls/62,62,Implement remoting for remaining unimplemented API ,"This fixes issue #50.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/62)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-06-26T12:03:48Z,CONTRIBUTOR,True,382,37,11,Cubeb Audio Remoting For Gecko,Rust,4c5d1a4a37e56ad3585bc89aa1aef3ecef26c718,Return invalid_parameter error from process_register_device_collection_changed when device type is unknown.
+115,https://api.github.com/repos/mozilla/audioipc-2/pulls/62,62,Implement remoting for remaining unimplemented API ,"This fixes issue #50.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/62)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-06-26T12:03:48Z,CONTRIBUTOR,True,382,37,11,Cubeb Audio Remoting For Gecko,Rust,31b98bdd86ded36f3bc5a9d72efe32b002427607,Move device_collection_changed handling to CubebServerCallbacks.
+116,https://api.github.com/repos/mozilla/audioipc-2/pulls/61,61,remove unnecessary `mut`,"Newer versions of Rust complain about this by default.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/61)
+<!-- Reviewable:end -->
+",froydnj,151096,2019-05-09T20:03:38Z,CONTRIBUTOR,True,1,1,1,Cubeb Audio Remoting For Gecko,Rust,df93e2eb96734f0b2d2894fa4e790355ff5d75e6,"remove unnecessary `mut`
+
+Newer versions of Rust complain about this by default."
+117,https://api.github.com/repos/mozilla/audioipc-2/pulls/60,60,Bmo1533539,"
+
+<!-- Reviewable:start -->
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/60)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-03-21T21:50:11Z,CONTRIBUTOR,True,16,8,4,Cubeb Audio Remoting For Gecko,Rust,8f4d67166fa5c68a089a1524977011fa58ec8477,"Revert ClientContext::init error handling behaviour.
+
+ClientContext::init would previously always succeed, even if later calls
+against the context would fail.  The addition of the ClientConnect message
+to ClientContext::init could cause an early error return without providing
+the caller with a valid context."
+118,https://api.github.com/repos/mozilla/audioipc-2/pulls/60,60,Bmo1533539,"
+
+<!-- Reviewable:start -->
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/60)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-03-21T21:50:11Z,CONTRIBUTOR,True,16,8,4,Cubeb Audio Remoting For Gecko,Rust,256dd4914603a085868a874aa5f6ec266061ec86,"Only build cmsghdr.c on Unix-like platforms.
+
+Closes #57."
+119,https://api.github.com/repos/mozilla/audioipc-2/pulls/60,60,Bmo1533539,"
+
+<!-- Reviewable:start -->
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/60)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-03-21T21:50:11Z,CONTRIBUTOR,True,16,8,4,Cubeb Audio Remoting For Gecko,Rust,69273d5f8fdd57cf86af52197f337c6d33327b4a,"Use AtomicUsize::new instead of deprecated ATOMIC_USIZE_INIT.
+
+Closes #56."
+120,https://api.github.com/repos/mozilla/audioipc-2/pulls/60,60,Bmo1533539,"
+
+<!-- Reviewable:start -->
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/60)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-03-21T21:50:11Z,CONTRIBUTOR,True,16,8,4,Cubeb Audio Remoting For Gecko,Rust,6ae8073599d523861181b0ab4eb507067adc6cb1,"Handle optional cmsghdr padding by initializing remaining fields with zero-initialized cmsghdr.
+
+Fixes BMO #1536613."
+121,https://api.github.com/repos/mozilla/audioipc-2/pulls/59,59,"Fixes for #56, #57, and BMO #1536613","- Issue #56: Avoid warning when building with rustc >= 1.34.
+- Issue #57: Don't build cmsghdr.c test on non-Unix.
+- [BMO #1536613](https://bugzilla.mozilla.org/show_bug.cgi?id=1536613): Fix build failure on 32-bit MUSL targets.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/59)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-03-20T22:37:02Z,CONTRIBUTOR,True,13,7,3,Cubeb Audio Remoting For Gecko,Rust,dbc59f55437675040cea461917fa4f3229180f49,"Only build cmsghdr.c on Unix-like platforms.
+
+Closes #57."
+122,https://api.github.com/repos/mozilla/audioipc-2/pulls/59,59,"Fixes for #56, #57, and BMO #1536613","- Issue #56: Avoid warning when building with rustc >= 1.34.
+- Issue #57: Don't build cmsghdr.c test on non-Unix.
+- [BMO #1536613](https://bugzilla.mozilla.org/show_bug.cgi?id=1536613): Fix build failure on 32-bit MUSL targets.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/59)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-03-20T22:37:02Z,CONTRIBUTOR,True,13,7,3,Cubeb Audio Remoting For Gecko,Rust,e8c9ba3cb9e82acc4d6125094e3e134702cfe77a,"Use AtomicUsize::new instead of deprecated ATOMIC_USIZE_INIT.
+
+Closes #56."
+123,https://api.github.com/repos/mozilla/audioipc-2/pulls/59,59,"Fixes for #56, #57, and BMO #1536613","- Issue #56: Avoid warning when building with rustc >= 1.34.
+- Issue #57: Don't build cmsghdr.c test on non-Unix.
+- [BMO #1536613](https://bugzilla.mozilla.org/show_bug.cgi?id=1536613): Fix build failure on 32-bit MUSL targets.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/59)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-03-20T22:37:02Z,CONTRIBUTOR,True,13,7,3,Cubeb Audio Remoting For Gecko,Rust,4c0c9af1416d1b5a2f4b6512ffd3a650011e0936,"Handle optional cmsghdr padding by initializing remaining fields with zero-initialized cmsghdr.
+
+Fixes BMO #1536613."
+124,https://api.github.com/repos/mozilla/audioipc-2/pulls/58,58,Revert ClientContext::init error handling behaviour.,"ClientContext::init would previously always succeed, even if later calls against the context would fail.  The addition of the ClientConnect message to ClientContext::init could cause an early error return without providing the caller with a valid context.
+
+This is a simple fix for [BMO 1533539](https://bugzilla.mozilla.org/show_bug.cgi?id=1533539), suitable for uplifting to beta (67).  While investigating this I found several cleanups that I'd like to make to the error handling, but I'll leave them for a later bug to avoid complicating the beta (67) uplift patch.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/58)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-03-20T21:01:13Z,CONTRIBUTOR,True,3,1,1,Cubeb Audio Remoting For Gecko,Rust,8f4d67166fa5c68a089a1524977011fa58ec8477,"Revert ClientContext::init error handling behaviour.
+
+ClientContext::init would previously always succeed, even if later calls
+against the context would fail.  The addition of the ClientConnect message
+to ClientContext::init could cause an early error return without providing
+the caller with a valid context."
+125,https://api.github.com/repos/mozilla/audioipc-2/pulls/55,55,Fix cross-platform cmsghdr tests by generating valid cmsghdr in C.,"The static CMSG_BYTES assumes a particular layout for struct cmsghdr, but different platforms may have a different layout resulting in test failures.  Use some native C code to generate a platform-specific CMSG_BYTES equivalent for the tests.
+
+r? @chunminchang
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/55)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-02-27T00:30:02Z,CONTRIBUTOR,True,53,8,4,Cubeb Audio Remoting For Gecko,Rust,488386ff6312a29922eab1dc4fd80190dc75b3b8,Fix cross-platform cmsghdr tests by generating valid cmsghdr in C.
+126,https://api.github.com/repos/mozilla/audioipc-2/pulls/54,54,Silence error_chain deprecation warnings to fix build on nightly compiler.,"Fixes [BMO 1524818](https://bugzilla.mozilla.org/show_bug.cgi?id=1524818).
+
+r? @chunminchang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/54)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2019-02-04T21:46:45Z,CONTRIBUTOR,True,2,0,2,Cubeb Audio Remoting For Gecko,Rust,0e6bce82b0b4f247f91730439855269428c47554,Silence error_chain deprecation warnings to fix build on nightly compiler.
+127,https://api.github.com/repos/mozilla/audioipc-2/pulls/53,53,Clean up reslicing of audio buffers in AudioIPC's server data callback.,"Rather than sizing the input and output buffer slices in bytes in the FFI wrapper and rewrapping the slice in data_callback based on the frame size, just create the buffer slice with the correct size in the FFI wrapper.
+
+This also fixes a potential bug for input-only streams where we would pass the output frame size (0) and try to use it as the input frame size, causing input-only streams to fail to capture any data.
+
+r? @ChunMinChang please
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/53)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2018-12-19T20:02:04Z,CONTRIBUTOR,True,23,28,3,Cubeb Audio Remoting For Gecko,Rust,b83c3d85ef812c1daca80ede05e2da6298488a14,"Clean up reslicing of audio buffers in AudioIPC's server data callback.
+
+This also fixes a bug for input-only streams where we would pass the output
+frame size (0) and try to use it as the input frame size, causing input-only
+streams to fail to capture any data."
+128,https://api.github.com/repos/mozilla/audioipc-2/pulls/51,51,Fixed a deprecation warning due to an API change in serializing integers,"Resolves https://bugzilla.mozilla.org/show_bug.cgi?id=1498244
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/51)
+<!-- Reviewable:end -->
+",alex,772,2018-10-12T16:14:40Z,CONTRIBUTOR,True,1,1,1,Cubeb Audio Remoting For Gecko,Rust,0f77ee4074a44e38dd1873ddd343c06e8b1ce361,"Fixed a deprecation warning due to an API change in serializing integers
+
+Resolves https://bugzilla.mozilla.org/show_bug.cgi?id=1498244"
+129,https://api.github.com/repos/mozilla/audioipc-2/pulls/49,49,Fix compile error in ipctest,"
+
+<!-- Reviewable:start -->
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/49)
+<!-- Reviewable:end -->
+",mbrubeck,5920,2018-09-18T17:25:54Z,CONTRIBUTOR,True,1,0,1,Cubeb Audio Remoting For Gecko,Rust,4818267ab2f0217fa269bd4b082fe63471c100b7,Fix compile error in ipctest
+130,https://api.github.com/repos/mozilla/audioipc-2/pulls/44,44,Avoid passing the shm ptr for stream directions that weren't configured.,"This fixes issue #42.
+
+I also had to bump the thread stack size in ipctest as it was failing to run on macOS, even before I made any changes to the code.  I've made it 64kB, but Gecko is actually using 256kB.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/44)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2018-05-30T01:17:08Z,CONTRIBUTOR,True,38,15,2,Cubeb Audio Remoting For Gecko,Rust,ee75cf423e76f33708c2ecbf3ed39e17139b3bc9,ipctest stack size is too small on macOS.
+131,https://api.github.com/repos/mozilla/audioipc-2/pulls/44,44,Avoid passing the shm ptr for stream directions that weren't configured.,"This fixes issue #42.
+
+I also had to bump the thread stack size in ipctest as it was failing to run on macOS, even before I made any changes to the code.  I've made it 64kB, but Gecko is actually using 256kB.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/44)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2018-05-30T01:17:08Z,CONTRIBUTOR,True,38,15,2,Cubeb Audio Remoting For Gecko,Rust,0766bdb893be5d41820d1944c1c2d9503b6f3d69,client: Don't pass shm pointers to data callback for unconfigured stream directions.
+132,https://api.github.com/repos/mozilla/audioipc-2/pulls/41,41,Mem leak,"Results of investigating memory leak for [BMO 1445067](https://bugzil.la/1445067)
+
+Tokio-based RPC channels weren't being shutdown down correctly and were staying open, resulting in leaking of shmem and socket fds.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/41)
+<!-- Reviewable:end -->
+",djg,156077,2018-04-18T01:32:40Z,COLLABORATOR,True,224,121,9,Cubeb Audio Remoting For Gecko,Rust,ba5a72dc2358372d263d10024b701212591e1309,"Adjust logging levels.
+
+Make debug level less spammy."
+133,https://api.github.com/repos/mozilla/audioipc-2/pulls/41,41,Mem leak,"Results of investigating memory leak for [BMO 1445067](https://bugzil.la/1445067)
+
+Tokio-based RPC channels weren't being shutdown down correctly and were staying open, resulting in leaking of shmem and socket fds.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/41)
+<!-- Reviewable:end -->
+",djg,156077,2018-04-18T01:32:40Z,COLLABORATOR,True,224,121,9,Cubeb Audio Remoting For Gecko,Rust,e4c9b94a8f0661887ac461963d87038a6802f73b,"audioipc: Mark messages::StreamParams as #[repr(C)]
+
+This struct needs to match the memory layout of cubeb_stream_params."
+134,https://api.github.com/repos/mozilla/audioipc-2/pulls/41,41,Mem leak,"Results of investigating memory leak for [BMO 1445067](https://bugzil.la/1445067)
+
+Tokio-based RPC channels weren't being shutdown down correctly and were staying open, resulting in leaking of shmem and socket fds.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/41)
+<!-- Reviewable:end -->
+",djg,156077,2018-04-18T01:32:40Z,COLLABORATOR,True,224,121,9,Cubeb Audio Remoting For Gecko,Rust,9a0b1acef5f72c4a9e7ebe1db78be8f879961a96,"audioipc: Shutdown RPC when request queue is finished.
+
+Rust futures mark the end of Stream with Async::Ready(None).  When all
+outstanding handles to the RPC channel are closed, self.requests
+returns Async::Ready(None) and we mark that Driver as not running.
+This causes the task running on the tokio core to finish, causing a
+cascade of drops, resulting in the transport socket being closed,
+which the other end detects, causing it to shutdown too."
+135,https://api.github.com/repos/mozilla/audioipc-2/pulls/41,41,Mem leak,"Results of investigating memory leak for [BMO 1445067](https://bugzil.la/1445067)
+
+Tokio-based RPC channels weren't being shutdown down correctly and were staying open, resulting in leaking of shmem and socket fds.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/41)
+<!-- Reviewable:end -->
+",djg,156077,2018-04-18T01:32:40Z,COLLABORATOR,True,224,121,9,Cubeb Audio Remoting For Gecko,Rust,e28081a71dcf2c586de7118713638db368937ddb,audioipc: Bump version to 0.2.4.
+136,https://api.github.com/repos/mozilla/audioipc-2/pulls/41,41,Mem leak,"Results of investigating memory leak for [BMO 1445067](https://bugzil.la/1445067)
+
+Tokio-based RPC channels weren't being shutdown down correctly and were staying open, resulting in leaking of shmem and socket fds.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/41)
+<!-- Reviewable:end -->
+",djg,156077,2018-04-18T01:32:40Z,COLLABORATOR,True,224,121,9,Cubeb Audio Remoting For Gecko,Rust,dd6cfe99acb93d859ca25c4d732ff42d490ea582,"server: Remove the use of cubeb::Stream helper class.
+
+The cubeb::Stream wrapper, around cubeb_core::Stream, which provides
+the convenience of supplying data and state callbacks as closures,
+makes it hard to debug the shutdown of streams.
+
+This change effectively reverts the stream init code to pre cubeb-0.4
+version and keeps all the related state in ServerStreamCallbacks."
+137,https://api.github.com/repos/mozilla/audioipc-2/pulls/41,41,Mem leak,"Results of investigating memory leak for [BMO 1445067](https://bugzil.la/1445067)
+
+Tokio-based RPC channels weren't being shutdown down correctly and were staying open, resulting in leaking of shmem and socket fds.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/41)
+<!-- Reviewable:end -->
+",djg,156077,2018-04-18T01:32:40Z,COLLABORATOR,True,224,121,9,Cubeb Audio Remoting For Gecko,Rust,78a2f38aaee7e6723efde9bbfcf6c87066434eb6,server: Bump version to 0.2.3.
+138,https://api.github.com/repos/mozilla/audioipc-2/pulls/40,40,Ipctest crash,"Make ipctest fail if forked client process crashes.
+Add debug assert that self.user_ptr() matches the user_ptr passed to stream_init.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/40)
+<!-- Reviewable:end -->
+",djg,156077,2018-04-17T08:53:22Z,COLLABORATOR,True,24,4,2,Cubeb Audio Remoting For Gecko,Rust,b296057f8ffaf482b806e77145dc05c2c5ead4ca,"ipctest: Check the status result from libc::waitpid.
+
+If the forked process died from a signal, eg. SIGSEGV, the result was
+silently ignored and it appeared that the test worked successfully."
+139,https://api.github.com/repos/mozilla/audioipc-2/pulls/40,40,Ipctest crash,"Make ipctest fail if forked client process crashes.
+Add debug assert that self.user_ptr() matches the user_ptr passed to stream_init.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/40)
+<!-- Reviewable:end -->
+",djg,156077,2018-04-17T08:53:22Z,COLLABORATOR,True,24,4,2,Cubeb Audio Remoting For Gecko,Rust,e546c4f8aedd4e2c5d6be950f9a5240d8f3cf81f,"client: ClientStream didn't implement user_ptr correctly.
+
+cubeb streams must start with a context and user ptr. ClientStream
+wasn't updated when the rest of cubeb was. This resulted in trying to
+drop a Box<...> to a NULL ptr because self.token was being used as the
+value of user_ptr."
+140,https://api.github.com/repos/mozilla/audioipc-2/pulls/39,39,client: Add user_ptr field to ClientStream for cubeb_stream_user_ptr.,"Also mark ClientContext and ClientStream #[repr(C)] to ensure the field layout matches what the libcubeb C ABI expects.
+
+Before this, we were likely leaking the StreamCallbacks because cubeb_stream_user_ptr would return whatever value was in ClientStream.tokens... although I'm not sure why this wasn't crashing in Gecko.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/39)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2018-04-17T07:23:40Z,CONTRIBUTOR,True,8,0,2,Cubeb Audio Remoting For Gecko,Rust,b7cccd8a1e7e473f191340bb02f8c44367e333c7,"client: Add user_ptr field to ClientStream for cubeb_stream_user_ptr.
+
+Also mark ClientContext and ClientStream #[repr(C)] to ensure the field
+layout matches what the libcubeb C ABI expects."
+141,https://api.github.com/repos/mozilla/audioipc-2/pulls/38,38,Cubeb mixer,"Import changes from Gecko [Bug 1432779](https://bugzil.la/1432779).
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/38)
+<!-- Reviewable:end -->
+",djg,156077,2018-03-13T03:50:59Z,COLLABORATOR,False,10,27,8,Cubeb Audio Remoting For Gecko,Rust,2a48416231f906ad797d3a94ca4719963c7b9fb4,"Remove the concept of preferred layout.
+
+Channel layout is derived by the content being played. The concept of
+preferred layout is meaningless. Either we have a layout defined, or
+we don't. There's no in-between.
+
+So we remove it."
+142,https://api.github.com/repos/mozilla/audioipc-2/pulls/38,38,Cubeb mixer,"Import changes from Gecko [Bug 1432779](https://bugzil.la/1432779).
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/38)
+<!-- Reviewable:end -->
+",djg,156077,2018-03-13T03:50:59Z,COLLABORATOR,False,10,27,8,Cubeb Audio Remoting For Gecko,Rust,7b3af8982153afaff4028a4ba5ffc66a9f2fe01a,Cubeb version update for channel layout and mixer changes.
+143,https://api.github.com/repos/mozilla/audioipc-2/pulls/37,37,Update cpupool version and add cpupool thread control.,"Change audioipc_client_init to take extra params.
+
+Added `pool_size` (thread count) and `stack_size` params to `server_connection` as parameters to initialize AudioIPC client.
+
+* pool_size: Controls the number of threads created in the pool.
+* stack_size: Controls the size of the stack allocated per thread in the pool.
+
+Because `audioipc_context_init` is a thin wrapper on `cubeb_context_init` style init, the extra params are passed via a thread local global variable.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/37)
+<!-- Reviewable:end -->
+",djg,156077,2018-03-08T05:15:31Z,COLLABORATOR,True,68,12,4,Cubeb Audio Remoting For Gecko,Rust,ec3981eaca90470d94b9644aacc2e0d9df8aabb4,Bump futures-cpupool minimum to 0.1.8 for stack_size API.
+144,https://api.github.com/repos/mozilla/audioipc-2/pulls/37,37,Update cpupool version and add cpupool thread control.,"Change audioipc_client_init to take extra params.
+
+Added `pool_size` (thread count) and `stack_size` params to `server_connection` as parameters to initialize AudioIPC client.
+
+* pool_size: Controls the number of threads created in the pool.
+* stack_size: Controls the size of the stack allocated per thread in the pool.
+
+Because `audioipc_context_init` is a thin wrapper on `cubeb_context_init` style init, the extra params are passed via a thread local global variable.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/37)
+<!-- Reviewable:end -->
+",djg,156077,2018-03-08T05:15:31Z,COLLABORATOR,True,68,12,4,Cubeb Audio Remoting For Gecko,Rust,85c593e1c80c1874cfc5246fb31debe703879786,"client: Change audioipc_client_init to take extra params.
+
+Added `pool_size` (thread count) and `stack_size` params to
+`server_connection` as parameters to initialize AudioIPC client.
+
+* pool_size: Controls the number of threads created in the pool.
+* stack_size: Controls the size of the stack allocated per thread
+              in the pool.
+
+Because `audioipc_context_init` is a thin wrapper on
+`cubeb_context_init` style init, the extra params are passed via a
+thread local global variable."
+145,https://api.github.com/repos/mozilla/audioipc-2/pulls/37,37,Update cpupool version and add cpupool thread control.,"Change audioipc_client_init to take extra params.
+
+Added `pool_size` (thread count) and `stack_size` params to `server_connection` as parameters to initialize AudioIPC client.
+
+* pool_size: Controls the number of threads created in the pool.
+* stack_size: Controls the size of the stack allocated per thread in the pool.
+
+Because `audioipc_context_init` is a thin wrapper on `cubeb_context_init` style init, the extra params are passed via a thread local global variable.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/37)
+<!-- Reviewable:end -->
+",djg,156077,2018-03-08T05:15:31Z,COLLABORATOR,True,68,12,4,Cubeb Audio Remoting For Gecko,Rust,3abf722fed5d4422acf56304fb5c7f405615d0a4,"client: Bump version to 0.4.0
+
+Because of breaking interface change to audioipc_client_init."
+146,https://api.github.com/repos/mozilla/audioipc-2/pulls/37,37,Update cpupool version and add cpupool thread control.,"Change audioipc_client_init to take extra params.
+
+Added `pool_size` (thread count) and `stack_size` params to `server_connection` as parameters to initialize AudioIPC client.
+
+* pool_size: Controls the number of threads created in the pool.
+* stack_size: Controls the size of the stack allocated per thread in the pool.
+
+Because `audioipc_context_init` is a thin wrapper on `cubeb_context_init` style init, the extra params are passed via a thread local global variable.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/37)
+<!-- Reviewable:end -->
+",djg,156077,2018-03-08T05:15:31Z,COLLABORATOR,True,68,12,4,Cubeb Audio Remoting For Gecko,Rust,c010aba85f64351512655d0c2e3bb9638e2fd9ec,ipctest: Setup audio client with 1 thread with 4kB stack.
+147,https://api.github.com/repos/mozilla/audioipc-2/pulls/35,35,Update bincode to 1.0 and bump version,"
+
+<!-- Reviewable:start -->
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/35)
+<!-- Reviewable:end -->
+",Eijebong,3650385,2018-03-07T19:25:58Z,CONTRIBUTOR,False,7,6,2,Cubeb Audio Remoting For Gecko,Rust,f6c4829f826950fc059dbf7b33e8aa9e20c447a5,Update bincode to 1.0 and bump version
+148,https://api.github.com/repos/mozilla/audioipc-2/pulls/34,34,Update to futures 0.1.18.,"One code change was required to fix a deprecation warning.
+
+It shouldn't be necessary anymore to pin to a specific version used by Gecko.  The Gecko `mach vendor rust` script will automatically pull in a version that satisfies the requirements from all dependencies.  Relaxing the pinning here will make it easier to upgrade other crates in Gecko's dependency graph.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/34)
+<!-- Reviewable:end -->
+",mbrubeck,5920,2018-03-05T17:03:34Z,CONTRIBUTOR,True,7,11,4,Cubeb Audio Remoting For Gecko,Rust,c04b55153c0a4845175e4518472071998dea44da,"Update to futures 0.1.18.
+
+It shouldn't be necessary anymore to pin to a specific version used by
+Gecko.  The Gecko `mach vendor rust` script will automatically pull in a
+version that satisfies the requirements from all dependencies.  Relaxing
+the pinning here will make it easier to upgrade other crates in Gecko's
+dependency graph."
+149,https://api.github.com/repos/mozilla/audioipc-2/pulls/33,33,Fix error handling,"Results weren't being handled correctly.  Errors were being reported as success.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/33)
+<!-- Reviewable:end -->
+",djg,156077,2018-03-02T23:12:01Z,COLLABORATOR,True,13,13,2,Cubeb Audio Remoting For Gecko,Rust,5b0edb27c5d9c314958315868333e25e87eb04ae,server: Map stream errors correctly.
+150,https://api.github.com/repos/mozilla/audioipc-2/pulls/33,33,Fix error handling,"Results weren't being handled correctly.  Errors were being reported as success.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/33)
+<!-- Reviewable:end -->
+",djg,156077,2018-03-02T23:12:01Z,COLLABORATOR,True,13,13,2,Cubeb Audio Remoting For Gecko,Rust,79c1622259b03ef58744da5e6501f95be81272cb,server: Bump version to 0.2.2
+151,https://api.github.com/repos/mozilla/audioipc-2/pulls/32,32,Update to bincode 0.9,"This matches the version used by webrender, so it reduces the amount of code in the Firefox build.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/32)
+<!-- Reviewable:end -->
+",mbrubeck,5920,2018-03-02T18:19:52Z,CONTRIBUTOR,True,4,4,2,Cubeb Audio Remoting For Gecko,Rust,8268dfeffb357952c40335705a743d56747c31ff,Update to bincode 0.9
+152,https://api.github.com/repos/mozilla/audioipc-2/pulls/31,31,Refactor to cubeb rs 0.4,"As it says on the tin. Refactor required for `cubeb-rs` 0.4 changes.
+
+This depends on djg/cubeb-rs#29
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/31)
+<!-- Reviewable:end -->
+",djg,156077,2018-02-13T03:53:11Z,COLLABORATOR,True,483,561,27,Cubeb Audio Remoting For Gecko,Rust,6ba98cf8f3e19bcbdccbf1987b28873086e2fd7c,Update to working with cubeb-backend 0.3.
+153,https://api.github.com/repos/mozilla/audioipc-2/pulls/31,31,Refactor to cubeb rs 0.4,"As it says on the tin. Refactor required for `cubeb-rs` 0.4 changes.
+
+This depends on djg/cubeb-rs#29
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/31)
+<!-- Reviewable:end -->
+",djg,156077,2018-02-13T03:53:11Z,COLLABORATOR,True,483,561,27,Cubeb Audio Remoting For Gecko,Rust,3efe6fd5be2c724a426b051747c463abb5306cac,Update to work with cubeb-rs 0.4
+154,https://api.github.com/repos/mozilla/audioipc-2/pulls/31,31,Refactor to cubeb rs 0.4,"As it says on the tin. Refactor required for `cubeb-rs` 0.4 changes.
+
+This depends on djg/cubeb-rs#29
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/31)
+<!-- Reviewable:end -->
+",djg,156077,2018-02-13T03:53:11Z,COLLABORATOR,True,483,561,27,Cubeb Audio Remoting For Gecko,Rust,933fb48b252a10569ba8d598541577c6f2dc308f,Format all the code with default rustfmt settings.
+155,https://api.github.com/repos/mozilla/audioipc-2/pulls/30,30,Address issue #28,"
+
+<!-- Reviewable:start -->
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/30)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2018-01-30T03:06:39Z,CONTRIBUTOR,True,13,13,4,Cubeb Audio Remoting For Gecko,Rust,166113965988357211fdcc6ab4d0ee75e9ba06de,Build fixes after cubeb-rs version bump.
+156,https://api.github.com/repos/mozilla/audioipc-2/pulls/30,30,Address issue #28,"
+
+<!-- Reviewable:start -->
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/30)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2018-01-30T03:06:39Z,CONTRIBUTOR,True,13,13,4,Cubeb Audio Remoting For Gecko,Rust,9d9d477908ae35557b341c3edd8c42e4d6149225,Avoid using '{:?}' in log levels other than debug! and trace!.  Closes #28.
+157,https://api.github.com/repos/mozilla/audioipc-2/pulls/29,29,Add stream params preferences member for compat with cubeb. Bump versions.,"Update stream params to handle new prefs member. Bump versions as prefs member has been added. Could this please be tested? I'm having issues with local building in a VM (This is Linux only ATM, yes?), but will continue to try get it working.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/29)
+<!-- Reviewable:end -->
+",SingingTree,3637370,2018-01-26T16:59:07Z,CONTRIBUTOR,True,10,7,4,Cubeb Audio Remoting For Gecko,Rust,fca6e5e5885af25dfb31ddb56924e43a498218cb,Add stream params preferences member for compat with cubeb. Bump versions.
+158,https://api.github.com/repos/mozilla/audioipc-2/pulls/27,27,Bump the audio threads to real-time priority,"This does what it says. It also adds two more streams in the test, don't know if it's necessary really.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/27)
+<!-- Reviewable:end -->
+",padenot,270485,2018-01-25T16:50:52Z,CONTRIBUTOR,False,51,5,5,Cubeb Audio Remoting For Gecko,Rust,084787c4580cf0b1f751e7893c7cfdfb54f9747a,Add the new `prefs` field StreamParams.
+159,https://api.github.com/repos/mozilla/audioipc-2/pulls/27,27,Bump the audio threads to real-time priority,"This does what it says. It also adds two more streams in the test, don't know if it's necessary really.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/27)
+<!-- Reviewable:end -->
+",padenot,270485,2018-01-25T16:50:52Z,CONTRIBUTOR,False,51,5,5,Cubeb Audio Remoting For Gecko,Rust,82f74b836c3e3de8e124743c2089d0e5aad6df62,create multiple clients in ipctest
+160,https://api.github.com/repos/mozilla/audioipc-2/pulls/27,27,Bump the audio threads to real-time priority,"This does what it says. It also adds two more streams in the test, don't know if it's necessary really.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/27)
+<!-- Reviewable:end -->
+",padenot,270485,2018-01-25T16:50:52Z,CONTRIBUTOR,False,51,5,5,Cubeb Audio Remoting For Gecko,Rust,36328e538827193162d440317f3ca472aa4c071d,Promote audio thread priority to real-time.
+161,https://api.github.com/repos/mozilla/audioipc-2/pulls/26,26,Add the new `prefs` field StreamParams.,"I needed this to compile. Bryce recently has added this to cubeb_stream_params.
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/26)
+<!-- Reviewable:end -->
+",padenot,270485,2018-01-25T16:49:04Z,CONTRIBUTOR,False,6,3,1,Cubeb Audio Remoting For Gecko,Rust,084787c4580cf0b1f751e7893c7cfdfb54f9747a,Add the new `prefs` field StreamParams.
+162,https://api.github.com/repos/mozilla/audioipc-2/pulls/25,25,server: Wait for Quit response in ServerWrapper::shutdown.,"
+
+<!-- Reviewable:start -->
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/25)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2017-12-18T03:18:48Z,CONTRIBUTOR,True,7,0,1,Cubeb Audio Remoting For Gecko,Rust,b82162e7912ddb7e8a9e27d64a09b1f80b19a823,server: Wait for Quit response in ServerWrapper::shutdown.
+163,https://api.github.com/repos/mozilla/audioipc-2/pulls/24,24,Allow bootstrapping client connections from an existing file descriptor,"I can't PR from https://github.com/kinetiknz/audioipc/tree/fd_passing_init since it's not a fork of this repo, according to GitHub.
+
+This is the audioipc side of the work for https://bugzilla.mozilla.org/show_bug.cgi?id=1405877
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/24)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2017-11-30T00:32:25Z,CONTRIBUTOR,True,328,248,12,Cubeb Audio Remoting For Gecko,Rust,5340626f6e22a7c3eae0219083b266b1d01e6f7e,Update to error-chain 0.11.0 to fix rustc nightly warning spam.
+164,https://api.github.com/repos/mozilla/audioipc-2/pulls/24,24,Allow bootstrapping client connections from an existing file descriptor,"I can't PR from https://github.com/kinetiknz/audioipc/tree/fd_passing_init since it's not a fork of this repo, according to GitHub.
+
+This is the audioipc side of the work for https://bugzilla.mozilla.org/show_bug.cgi?id=1405877
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/24)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2017-11-30T00:32:25Z,CONTRIBUTOR,True,328,248,12,Cubeb Audio Remoting For Gecko,Rust,a4b155a77a437de251931d995f6bdec38639b413,"Import (deprecated) mio::channel code from upstream.
+
+This is a reimport that drops any local changes and brings in the entire
+file.  A follow-up commit will apply the minimal local changes to fix the
+in-tree build.
+
+Imported from https://github.com/carllerche/mio/tree/0da987e21e0b4d71fa0607f779d979a615f3dbc7"
+165,https://api.github.com/repos/mozilla/audioipc-2/pulls/24,24,Allow bootstrapping client connections from an existing file descriptor,"I can't PR from https://github.com/kinetiknz/audioipc/tree/fd_passing_init since it's not a fork of this repo, according to GitHub.
+
+This is the audioipc side of the work for https://bugzilla.mozilla.org/show_bug.cgi?id=1405877
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/24)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2017-11-30T00:32:25Z,CONTRIBUTOR,True,328,248,12,Cubeb Audio Remoting For Gecko,Rust,147e8e6de13a841423c00f4022f889ce5ff616d2,Minimal changes to server/src/channel.rs to make it build in-tree.
+166,https://api.github.com/repos/mozilla/audioipc-2/pulls/24,24,Allow bootstrapping client connections from an existing file descriptor,"I can't PR from https://github.com/kinetiknz/audioipc/tree/fd_passing_init since it's not a fork of this repo, according to GitHub.
+
+This is the audioipc side of the work for https://bugzilla.mozilla.org/show_bug.cgi?id=1405877
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/24)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2017-11-30T00:32:25Z,CONTRIBUTOR,True,328,248,12,Cubeb Audio Remoting For Gecko,Rust,a690e7fef5211593e55eab5064ed29c7a0a7d5a7,"Add support for bootstrapping IPC connections via an existing file descriptor.
+
+To avoid issues with sandboxed temporary directories and support tighter
+sandboxing, add support to the client to instantiate a connection from a
+file descriptor passed in via the C API.
+
+On the server side, add a new C API for creating a new connection via a
+socket pair, allowing Gecko to deal with passing the client side file
+descriptor to the content process as necessary.
+
+This effectively obsoletes the existing server connection method based on
+get_uds_path, and that code can be removed in the near future."
+167,https://api.github.com/repos/mozilla/audioipc-2/pulls/24,24,Allow bootstrapping client connections from an existing file descriptor,"I can't PR from https://github.com/kinetiknz/audioipc/tree/fd_passing_init since it's not a fork of this repo, according to GitHub.
+
+This is the audioipc side of the work for https://bugzilla.mozilla.org/show_bug.cgi?id=1405877
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/24)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2017-11-30T00:32:25Z,CONTRIBUTOR,True,328,248,12,Cubeb Audio Remoting For Gecko,Rust,db5fea804f86468b4044cf2f1ea30053825598da,"audioserver: Switch to using C API and remove server::run.
+
+This also removes the pid-based get_uds_path handling, leaving fd-based
+connections for Gecko and the old path-based connection for the local test
+server and client."
+168,https://api.github.com/repos/mozilla/audioipc-2/pulls/24,24,Allow bootstrapping client connections from an existing file descriptor,"I can't PR from https://github.com/kinetiknz/audioipc/tree/fd_passing_init since it's not a fork of this repo, according to GitHub.
+
+This is the audioipc side of the work for https://bugzilla.mozilla.org/show_bug.cgi?id=1405877
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/24)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2017-11-30T00:32:25Z,CONTRIBUTOR,True,328,248,12,Cubeb Audio Remoting For Gecko,Rust,6941e23dd14ba865d0be0e6d74efae9cff60cd86,"Remove path-based connection support.
+
+This removes audioclient and integrates it into audioserver (now renamed to
+ipctest) and removes any remaining path-based connection support that was
+only used for the local test server/client."
+169,https://api.github.com/repos/mozilla/audioipc-2/pulls/24,24,Allow bootstrapping client connections from an existing file descriptor,"I can't PR from https://github.com/kinetiknz/audioipc/tree/fd_passing_init since it's not a fork of this repo, according to GitHub.
+
+This is the audioipc side of the work for https://bugzilla.mozilla.org/show_bug.cgi?id=1405877
+
+<!-- Reviewable:start -->
+---
+This change is [<img src=""https://reviewable.io/review_button.svg"" height=""34"" align=""absmiddle"" alt=""Reviewable""/>](https://reviewable.io/reviews/djg/audioipc-2/24)
+<!-- Reviewable:end -->
+",kinetiknz,67343,2017-11-30T00:32:25Z,CONTRIBUTOR,True,328,248,12,Cubeb Audio Remoting For Gecko,Rust,3eb382696ccfce2d72cdc11f2290b60a7cec060e,ipctest: Use fork() to move client side of test into separate process.
+170,https://api.github.com/repos/mozilla/audioipc-2/pulls/23,23,"server: Don't warn! on EINTR, just return to the caller.",See https://bugzilla.mozilla.org/show_bug.cgi?id=1409904#c8,kinetiknz,67343,2017-11-14T23:51:47Z,CONTRIBUTOR,True,1,0,1,Cubeb Audio Remoting For Gecko,Rust,067e4746ab2769fda668ed871bd0286df2abac35,"server: Don't warn! on EINTR, just return to the caller."
+171,https://api.github.com/repos/mozilla/audioipc-2/pulls/22,22,Connect callback send/receive with Mutex.,"state_callback() and data_callback() can be called from multiple
+threads.  To protect the send/receive pair of calls, a Mutex is added
+to Connection to prevent one thread from starving when two threads try
+to wait on the socket in recvmsg.
+
+(From bugzil.la/1414623)",djg,156077,2017-11-14T00:12:42Z,COLLABORATOR,True,19,11,1,Cubeb Audio Remoting For Gecko,Rust,0fe5781567b99397d421215c4efc4e3dd6f74f55,"Connect callback send/receive with Mutex.
+
+state_callback() and data_callback() can be called from multiple
+threads.  To protect the send/receive pair of calls, a Mutex is added
+to Connection to prevent one thread from starving when two threads try
+to wait on the socket in recvmsg.
+
+(From bugzil.la/1414623)"
+172,https://api.github.com/repos/mozilla/audioipc-2/pulls/21,21,Convert some error!s into warn!s.,"Mainly this is to stop ""ERROR:audioipc_server: server poll error:
+Interrupted system call (os error 4)"" appearing in unrelated Gecko test
+logs.
+
+https://bugzilla.mozilla.org/show_bug.cgi?id=1409904",kinetiknz,67343,2017-11-03T01:59:38Z,CONTRIBUTOR,True,3,3,1,Cubeb Audio Remoting For Gecko,Rust,546933805d95d33d451731debae6ac3c37bc53d7,"Convert some error!s into warn!s.
+
+Mainly this is to stop ""ERROR:audioipc_server: server poll error:
+Interrupted system call (os error 4)"" appearing in unrelated Gecko test
+logs."
+173,https://api.github.com/repos/mozilla/audioipc-2/pulls/19,19,Drop any live ServerConns first when dropping Server.,This should address BMO bug 1411849.,kinetiknz,67343,2017-10-26T05:12:54Z,CONTRIBUTOR,True,11,0,1,Cubeb Audio Remoting For Gecko,Rust,f289e51a99863921ccba4a6030fba2abb35e027a,Drop any live ServerConns first when dropping Server.
+174,https://api.github.com/repos/mozilla/audioipc-2/pulls/18,18,audioipc: Handle EINTR from recvmsg/sendmsg calls.,"This is probably the cause of the ""socket write"" failures that we have seen reported in https://bugzil.la/1410702",djg,156077,2017-10-25T05:00:45Z,COLLABORATOR,True,29,20,1,Cubeb Audio Remoting For Gecko,Rust,2e119465958209508f4266a827458cc574797179,audioipc: Handle EINTR from recvmsg/sendmsg calls.
+175,https://api.github.com/repos/mozilla/audioipc-2/pulls/17,17,Bug 1410702,,djg,156077,2017-10-25T01:26:14Z,COLLABORATOR,True,30,17,4,Cubeb Audio Remoting For Gecko,Rust,194cc2f0b3f462607f2099473fdad1cd1c26e148,audioipc: Replace 3 error types with 1.
+176,https://api.github.com/repos/mozilla/audioipc-2/pulls/17,17,Bug 1410702,,djg,156077,2017-10-25T01:26:14Z,COLLABORATOR,True,30,17,4,Cubeb Audio Remoting For Gecko,Rust,b54786d8fbc955e5a72373c896555d81a6eb47b9,"audioipc: ""socket write"" is wrong.
+
+The error is coming from a recvmsg on the socket, not a write. Change
+the error message to better reflect the situation."
+177,https://api.github.com/repos/mozilla/audioipc-2/pulls/17,17,Bug 1410702,,djg,156077,2017-10-25T01:26:14Z,COLLABORATOR,True,30,17,4,Cubeb Audio Remoting For Gecko,Rust,52064cd055c15ad9c802d201a77630e1964060b4,client: Handle all the error cases in send_recv! macro.
+178,https://api.github.com/repos/mozilla/audioipc-2/pulls/16,16,Make BMO bug 1410702 (and dupes) a soft error,"This partially addresses BMO bug 1410702 (and dupes) by converting client panics into errors.  The underlying cause/issue where the server connection is lost remains, although in some cases this may simply be differing ordering of chrome/content process shutdown which we can't control.",kinetiknz,67343,2017-10-25T01:10:24Z,CONTRIBUTOR,False,5,5,2,Cubeb Audio Remoting For Gecko,Rust,2a58b145e48191a3be88803a4cff2968c30bc847,"Return actual error from receive_with_fd rather than incorrect ""socket write"" string."
+179,https://api.github.com/repos/mozilla/audioipc-2/pulls/16,16,Make BMO bug 1410702 (and dupes) a soft error,"This partially addresses BMO bug 1410702 (and dupes) by converting client panics into errors.  The underlying cause/issue where the server connection is lost remains, although in some cases this may simply be differing ordering of chrome/content process shutdown which we can't control.",kinetiknz,67343,2017-10-25T01:10:24Z,CONTRIBUTOR,False,5,5,2,Cubeb Audio Remoting For Gecko,Rust,cbe3a824d03ac6cb444ccbc917f0a3b9db54c79c,Don't panic-by-unwrap on client receive errors.
+180,https://api.github.com/repos/mozilla/audioipc-2/pulls/15,15,Grow slabs as needed.,Fix panic reported in gecko bug 1410107 but growing the slabs that hold client connections and streams.,djg,156077,2017-10-24T05:13:33Z,COLLABORATOR,True,25,2,1,Cubeb Audio Remoting For Gecko,Rust,99593fa90f0e0c431620c5ce55bbd5a68a1219a5,"server: Grow slabs as needed.
+
+Fix panic reported in gecko bug 1410107 but growing the slabs that
+hold client connections and streams."
+181,https://api.github.com/repos/mozilla/audioipc-2/pulls/14,14,client: Try connecting to in-process server if parent process server …,"…doesn't exist.
+
+This is a follow up to pull #13 to unbreak the case where the server and
+client are running in the same process, such as when Gecko's chrome process
+needs an audio stream.
+
+It may be worth handling this situation in a different way (i.e. with a fast
+path that avoids IPC) in the future.",kinetiknz,67343,2017-10-19T03:56:39Z,CONTRIBUTOR,True,8,3,1,Cubeb Audio Remoting For Gecko,Rust,bd006e4392bef7cdaaac1594de3f6158b57788bf,"client: Try connecting to in-process server if parent process server doesn't exist.
+
+This is a follow up to pull #13 to unbreak the case where the server and
+client are running in the same process, such as when Gecko's chrome process
+needs an audio stream.
+
+It may be worth handling this situation in a different way (i.e. with a fast
+path that avoids IPC) in the future."
+182,https://api.github.com/repos/mozilla/audioipc-2/pulls/13,13,Use a unique UDS path when running inside Gecko,This addresses BMO bug 1407490.  Make get_uds_path take an id argument and pass the server PID.  This allows separate servers for each running Gecko process as a temporary fix until BMO bug 1405877 is addressed.,kinetiknz,67343,2017-10-16T03:07:43Z,CONTRIBUTOR,True,34,10,6,Cubeb Audio Remoting For Gecko,Rust,549b1836a1e735f156c40c819a57f12842a4c750,audioipc: Make temporary shm paths unique per-process.
+183,https://api.github.com/repos/mozilla/audioipc-2/pulls/13,13,Use a unique UDS path when running inside Gecko,This addresses BMO bug 1407490.  Make get_uds_path take an id argument and pass the server PID.  This allows separate servers for each running Gecko process as a temporary fix until BMO bug 1405877 is addressed.,kinetiknz,67343,2017-10-16T03:07:43Z,CONTRIBUTOR,True,34,10,6,Cubeb Audio Remoting For Gecko,Rust,22fef4ca047a7028d53d38edd771ed2428b94fb5,"Make get_uds_path take an id argument and use this for unique socket paths.
+
+Inside Gecko, this'll use the chrome process pid as the unique ID and the
+content processes can fetch this via getppid.  This works as long as the
+connection is established before the sandbox is enabled, but we already rely
+on that by using the FS visible socket path.
+
+The test programs audioserver/audioclient don't run in a process hierarchy,
+so we simply use an id of 1 for this case.
+
+This is a temporary solution for BMO bug 1407490 until we have a chance to
+do something nicer along the lines discussed in BMO bug 1405877."
+184,https://api.github.com/repos/mozilla/audioipc-2/pulls/12,12,Revert the reentrancy hacks for max_channel_count and get_backend_id.,"BMO bugs 1403041 and 1403043 have fixes for this, so we can revert the hacks in the remoting code.
+
+The fixes haven't landed yet, so we'll need to sequence merging this/updating the Gecko import with the patches in those bugs landing.",kinetiknz,67343,2017-09-28T01:57:24Z,CONTRIBUTOR,True,4,8,1,Cubeb Audio Remoting For Gecko,Rust,65304858ff973ec9e3160100c2d8549d44926270,"Revert the reentrancy hacks for max_channel_count and get_backend_id.
+
+BMO bugs 1403041 and 1403043 have fixes for this, so we can revert the hacks
+in the remoting code."
+185,https://api.github.com/repos/mozilla/audioipc-2/pulls/11,11,Intern enumerated devids and verify them when using stream_init.,"We're currently passing devids across IPC as (effectively) pointers, which
+is unsafe since it's impossible to verify they're valid when received.  As a
+short-term fix, turn the devids into opaque ""tokens"" by interning the
+pointer value on the server and verifying they're valid before use when
+received.
+
+This solution isn't ideal from a security/auditability perspective, since a
+missing verification at any point of use could result in memory unsafety.
+At some stage this solution will be replaced by something more robust.",kinetiknz,67343,2017-09-25T04:03:39Z,CONTRIBUTOR,True,28,9,1,Cubeb Audio Remoting For Gecko,Rust,f9dea6f1428e05d9504baaf5c78952844a223bed,"Intern enumerated devids and verify them when using stream_init.
+
+We're currently passing devids across IPC as (effectively) pointers, which
+is unsafe since it's impossible to verify they're valid when received.  As a
+short-term fix, turn the devids into opaque ""tokens"" by interning the
+pointer value on the server and verifying they're valid before use when
+received.
+
+This solution isn't ideal from a security/auditability perspective, since a
+missing verification at any point of use could result in memory unsafety.
+At some stage this solution will be replaced by something more robust."
+186,https://api.github.com/repos/mozilla/audioipc-2/pulls/10,10,Various fixes,"This is the remaining set of changes used to get a green Try run from last week's sprint.
+
+
+",kinetiknz,67343,2017-09-25T01:46:02Z,CONTRIBUTOR,True,142,41,6,Cubeb Audio Remoting For Gecko,Rust,379e866da87ab1f5839825e63dce3045a55e2e50,Wait for poll thread to actually stop in audioipc_server_stop to avoid shutdown races.
+187,https://api.github.com/repos/mozilla/audioipc-2/pulls/10,10,Various fixes,"This is the remaining set of changes used to get a green Try run from last week's sprint.
+
+
+",kinetiknz,67343,2017-09-25T01:46:02Z,CONTRIBUTOR,True,142,41,6,Cubeb Audio Remoting For Gecko,Rust,a41a017658f400e0b6923b6232ac122b526cd573,Drop the noisiest logs down to trace level.
+188,https://api.github.com/repos/mozilla/audioipc-2/pulls/10,10,Various fixes,"This is the remaining set of changes used to get a green Try run from last week's sprint.
+
+
+",kinetiknz,67343,2017-09-25T01:46:02Z,CONTRIBUTOR,True,142,41,6,Cubeb Audio Remoting For Gecko,Rust,1fa77d05c0bbc37bb2be337d865a95b34623314c,Convert a number of unwrap/panic cases into error returns.
+189,https://api.github.com/repos/mozilla/audioipc-2/pulls/10,10,Various fixes,"This is the remaining set of changes used to get a green Try run from last week's sprint.
+
+
+",kinetiknz,67343,2017-09-25T01:46:02Z,CONTRIBUTOR,True,142,41,6,Cubeb Audio Remoting For Gecko,Rust,efaf55d22dffaa8618d7bca2ea33ba964b891d1e,"Assert that cubeb is not being used reentrantly from within the {data,state}_callback."
+190,https://api.github.com/repos/mozilla/audioipc-2/pulls/10,10,Various fixes,"This is the remaining set of changes used to get a green Try run from last week's sprint.
+
+
+",kinetiknz,67343,2017-09-25T01:46:02Z,CONTRIBUTOR,True,142,41,6,Cubeb Audio Remoting For Gecko,Rust,9e8948038a5cc4b0fb45397853866210641341de,"Temporarily disable in_callback assert for Context::backend_id.
+
+This is used from Gecko's AudioStream::DataCallback to work around a bug in
+the winmm backend."
+191,https://api.github.com/repos/mozilla/audioipc-2/pulls/10,10,Various fixes,"This is the remaining set of changes used to get a green Try run from last week's sprint.
+
+
+",kinetiknz,67343,2017-09-25T01:46:02Z,CONTRIBUTOR,True,142,41,6,Cubeb Audio Remoting For Gecko,Rust,3bad24a824391dcf45ddf73f5e1de4689e95d50f,"Temporarily disable in_callback assert for Context::max_channel_count.
+
+This is used reentrantly from Gecko's MSG via CloseAudioInputImpl creating a
+new AudioCallbackDriver, which calls this to size various data structures
+within the class.
+
+This also adds a temporary hack to lie about the max channel count to avoid
+a real deadlock."
+192,https://api.github.com/repos/mozilla/audioipc-2/pulls/10,10,Various fixes,"This is the remaining set of changes used to get a green Try run from last week's sprint.
+
+
+",kinetiknz,67343,2017-09-25T01:46:02Z,CONTRIBUTOR,True,142,41,6,Cubeb Audio Remoting For Gecko,Rust,1d84f33da4788914ec58ae41c5cb8a9b0ab33285,Quit stream_thread on receive error rather than continuing.
+193,https://api.github.com/repos/mozilla/audioipc-2/pulls/9,9,Fix sendmsg fd leak.,"sendmsg and recvmsg incorrectly used the equivalent of sys/socket.h's CMSG_SPACE macro to compute both the space and the length, but the length must be computed with CMSG_LEN.  The results of the two macros may differ depending on alignment/platform/struct definition differences.
+
+On 64-bit Linux, this resulted in cmsg_len indicating that there were two fds being sent/received, and since there was sufficient space in struct CmsgSpace due to trailing padding, a second fd  (always zeroed, aka stdin) would be sent/received on every sendmsg/recvmsg call where fd_to_send was Some(_).
+
+Tests pass on x86 -  macOS 64-bit (32-bit should be identical), Linux 32/64, and FreeBSD 64-bit.",kinetiknz,67343,2017-09-14T05:40:43Z,CONTRIBUTOR,True,84,5,1,Cubeb Audio Remoting For Gecko,Rust,2cc6ce579a92d092ba65dd831734fe4ccf9fff6f,Fix sendmsg fd leak.
+194,https://api.github.com/repos/mozilla/audioipc-2/pulls/8,8,server: Remote state_callback calls to client.,,kinetiknz,67343,2017-09-06T02:58:35Z,CONTRIBUTOR,True,8,0,1,Cubeb Audio Remoting For Gecko,Rust,f9f17e0059b804bc4aac32d08291c23f7fef2aea,server: Remote state_callback calls to client.
+195,https://api.github.com/repos/mozilla/audioipc-2/pulls/7,7,Async message buffering,,djg,156077,2017-09-06T02:17:14Z,COLLABORATOR,True,882,462,13,Cubeb Audio Remoting For Gecko,Rust,aea179a81f6bf937c7586dd5ebd16887b57c52eb,audioipc: Remove kludge to handle EAGAIN/EWOULDBLOCK.
+196,https://api.github.com/repos/mozilla/audioipc-2/pulls/7,7,Async message buffering,,djg,156077,2017-09-06T02:17:14Z,COLLABORATOR,True,882,462,13,Cubeb Audio Remoting For Gecko,Rust,ea48c9ac73624eb9e9eee0890e3669e7718e0645,"audioipc: Reorganize RecvFd,SendFd a little."
+197,https://api.github.com/repos/mozilla/audioipc-2/pulls/7,7,Async message buffering,,djg,156077,2017-09-06T02:17:14Z,COLLABORATOR,True,882,462,13,Cubeb Audio Remoting For Gecko,Rust,45dd7fc29ec01ec43346e10165d08c31ed3a68ed,audioipc: Add helpers for working with non-blocking streams.
+198,https://api.github.com/repos/mozilla/audioipc-2/pulls/7,7,Async message buffering,,djg,156077,2017-09-06T02:17:14Z,COLLABORATOR,True,882,462,13,Cubeb Audio Remoting For Gecko,Rust,c27d0473cb43355ab89496aa0bbad15722d146b2,audioipc: Add bincode-based codecs that work with BytesMut.
+199,https://api.github.com/repos/mozilla/audioipc-2/pulls/7,7,Async message buffering,,djg,156077,2017-09-06T02:17:14Z,COLLABORATOR,True,882,462,13,Cubeb Audio Remoting For Gecko,Rust,15847a789b4c6def86fb448995043d7dc8a3e8f7,audioipc: Implement SendFd/RecvFd for both UnixStreams.
+200,https://api.github.com/repos/mozilla/audioipc-2/pulls/7,7,Async message buffering,,djg,156077,2017-09-06T02:17:14Z,COLLABORATOR,True,882,462,13,Cubeb Audio Remoting For Gecko,Rust,38b66e9db1af726ec4eab2edde7701856904c1b4,"server: Integrate async send/recv into server loop.
+
+Did a fair bit of refactoring."
+201,https://api.github.com/repos/mozilla/audioipc-2/pulls/7,7,Async message buffering,,djg,156077,2017-09-06T02:17:14Z,COLLABORATOR,True,882,462,13,Cubeb Audio Remoting For Gecko,Rust,6a136ab013f095614a06c26afb099aaf255cd57e,"audioipc: Hack in length prefix messages.
+
+So the receiving end in the server doesn't get confused."
+202,https://api.github.com/repos/mozilla/audioipc-2/pulls/7,7,Async message buffering,,djg,156077,2017-09-06T02:17:14Z,COLLABORATOR,True,882,462,13,Cubeb Audio Remoting For Gecko,Rust,3bac092df06fa3413ee3ee67b3ddc116fe8f3978,clippy suggested improvements.
+203,https://api.github.com/repos/mozilla/audioipc-2/pulls/6,6,Hold ClientContext lock over entire send/recv transaction.,Resolves streams receiving unexpected messages caused by interleaving of client requests on the shared connection to the server.,kinetiknz,67343,2017-08-30T23:43:27Z,CONTRIBUTOR,True,38,32,3,Cubeb Audio Remoting For Gecko,Rust,67d0d2a4532e795673194fa7905d755f9f60269f,Hold ClientContext lock over entire send/recv transaction.
+204,https://api.github.com/repos/mozilla/audioipc-2/pulls/6,6,Hold ClientContext lock over entire send/recv transaction.,Resolves streams receiving unexpected messages caused by interleaving of client requests on the shared connection to the server.,kinetiknz,67343,2017-08-30T23:43:27Z,CONTRIBUTOR,True,38,32,3,Cubeb Audio Remoting For Gecko,Rust,11e15feaff879cd85314bb4daeb2c45b3129b914,client: Update send_recv! macro to hold connection across send and recv.
+205,https://api.github.com/repos/mozilla/audioipc-2/pulls/5,5,Mini mio uds,"Temporarily work around issues with crates.io version of mio-uds, 'til @alexcrichton can republish.",djg,156077,2017-08-23T02:14:42Z,COLLABORATOR,True,775,4,11,Cubeb Audio Remoting For Gecko,Rust,3fdb79ac95354bde2dccaac37dc2e19c449a45e4,"mini-mio-uds: Import mio-uds.
+
+To work around vendoring issues in gecko, import mio-uds code and trim
+down the files to the pieces that are required."
+206,https://api.github.com/repos/mozilla/audioipc-2/pulls/5,5,Mini mio uds,"Temporarily work around issues with crates.io version of mio-uds, 'til @alexcrichton can republish.",djg,156077,2017-08-23T02:14:42Z,COLLABORATOR,True,775,4,11,Cubeb Audio Remoting For Gecko,Rust,4b4b8dcf8bcc1357f4e2d5eb9fa70519ce15f1ec,server: Replace mio-uds with mini-mio-uds.
+207,https://api.github.com/repos/mozilla/audioipc-2/pulls/4,4,Create cubeb::Context on demand.,"Create cubeb context on first connection to server. This delays creation of cubeb context until it's going to be required. If Context creation fails, all commands return error instead of causing a panic!",djg,156077,2017-08-22T03:40:01Z,COLLABORATOR,True,42,35,2,Cubeb Audio Remoting For Gecko,Rust,4a83c08dc09ba5efebba12095f98309e4d6c57fb,"Create cubeb::Context on demand.
+
+MozReview-Commit-ID: 1fIbwYj1Qqq"
+208,https://api.github.com/repos/mozilla/audioipc-2/pulls/3,3,Simple first pass at shared memory for data_callback," Add a simple shared memory wrapper and replace Vec copies across socket with shm updates.
+
+When a client connects, the server creates two files to be used shared memory mappings, immediately deletes them (retaining the fds), then mmap()s the fds.  The retained fds are then sent to the client to be mmap()ed into the client's address space.",kinetiknz,67343,2017-08-18T01:06:46Z,CONTRIBUTOR,True,245,42,7,Cubeb Audio Remoting For Gecko,Rust,1e42ca1fa355249ab96447c2744f0eddb4ee4af9,"Add a simple shared memory wrapper and replace Vec copies across socket with shm updates.
+
+When a client connects, the server creates two files to be used shared
+memory mappings, immediately deletes them (retaining the fds), then mmap()s
+the fds.  The retained fds are then sent to the client to be mmap()ed into
+the client's address space."
+209,https://api.github.com/repos/mozilla/audioipc-2/pulls/2,2,HACK: retry sendmsg/recvmsg on EAGAIN.,"This is the wrong approach since it wastes resources spinning on an fd, but it's sufficient to get IPC working within Gecko until a complete fix where the server pays attention to the poll status of the fds is ready.
+
+I'm working on a proper fix, which I'll submit once it's ready.  It'll render this hack obsolete (i.e. it won't trigger and becomes harmless), at which point we can remove it.",kinetiknz,67343,2017-08-18T01:04:02Z,CONTRIBUTOR,True,25,2,1,Cubeb Audio Remoting For Gecko,Rust,5600235232ee5fc123ad35a5e6084b905a3dd178,"HACK: retry sendmsg/recvmsg on EAGAIN.
+
+This is the wrong approach since it wastes resources spinning on an fd, but
+it's sufficient to get IPC working within Gecko until a complete fix where
+the server pays attention to the poll status of the fds is ready."
+210,https://api.github.com/repos/mozilla/audioipc-2/pulls/1,1,Misc fixes,,kinetiknz,67343,2017-08-15T02:39:08Z,CONTRIBUTOR,True,115,57,6,Cubeb Audio Remoting For Gecko,Rust,481602f8ec5f3dea4c8db7856dbfa1924ca4c33d,Minor cleanup in callback buffer reinterpretation.
+211,https://api.github.com/repos/mozilla/audioipc-2/pulls/1,1,Misc fixes,,kinetiknz,67343,2017-08-15T02:39:08Z,CONTRIBUTOR,True,115,57,6,Cubeb Audio Remoting For Gecko,Rust,a1bcd67d24a8530667a6f39069663323d054b651,Push IntoRawFd conversion as deep as possible to reduce the number of locations carrying a RawFd directly.
+212,https://api.github.com/repos/mozilla/audioipc-2/pulls/1,1,Misc fixes,,kinetiknz,67343,2017-08-15T02:39:08Z,CONTRIBUTOR,True,115,57,6,Cubeb Audio Remoting For Gecko,Rust,1acd6a2b6c6fd516a5a1fe486c854e92bc88ba17,"Close fd after sendmsg to avoid a resource leak.
+
+We take ownership of the fd in SendFd::send_fd and it's duplicated into the
+receiving side, so it's our responsibility to close it on the sending side
+once we're done with it."
+213,https://api.github.com/repos/mozilla/audioipc-2/pulls/1,1,Misc fixes,,kinetiknz,67343,2017-08-15T02:39:08Z,CONTRIBUTOR,True,115,57,6,Cubeb Audio Remoting For Gecko,Rust,05a7bff4f95f338f88fc200f26bbe5dfcffabf6d,Typo fix.
+214,https://api.github.com/repos/mozilla/audioipc-2/pulls/1,1,Misc fixes,,kinetiknz,67343,2017-08-15T02:39:08Z,CONTRIBUTOR,True,115,57,6,Cubeb Audio Remoting For Gecko,Rust,bcdb4dc8ccd848001d7580b6f8d731d3757187f9,Turn two invalid-ish unreachables into panics.
+215,https://api.github.com/repos/mozilla/audioipc-2/pulls/1,1,Misc fixes,,kinetiknz,67343,2017-08-15T02:39:08Z,CONTRIBUTOR,True,115,57,6,Cubeb Audio Remoting For Gecko,Rust,3c95d174f28c0bb905049534f98886620d080174,length-prefix messages to handle buffer coalescing.
+216,https://api.github.com/repos/mozilla/audioipc-2/pulls/1,1,Misc fixes,,kinetiknz,67343,2017-08-15T02:39:08Z,CONTRIBUTOR,True,115,57,6,Cubeb Audio Remoting For Gecko,Rust,0c197cdf454237664ddf48b5c55ca7bcf1d3a64c,"Temporarily remove nix dependency on sendmsg and recvmsg.
+
+This includes limited implementations of sendmsg/recvmsg to suit our
+need, allowing the removal of the nix dependency.
+
+nix 0.9 is removed because it requires glibc symbols later than
+2.12 (specifically, setns) and therefore is unusable within Gecko."

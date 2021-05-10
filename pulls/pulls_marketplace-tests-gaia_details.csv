@@ -1,0 +1,604 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/129,129,Deactivate project and add note to README,"@mozilla/web-qa-sorcerers r?
+",davehunt,122800,2016-05-20T11:00:09Z,MEMBER,True,5,1772,49,Marketplace UI tests for Firefox OS,,7c0da50b6f5eb71f9aaf584ef9e2f2a26bfe2717,Deactivate project and add note to README
+1,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/128,128,Mark test_marketplace_purchase_app as expected to pass,"This test has been passing since at least 11-Jul-2015. Let's mark it as expected to pass, and revisit if the original issue returns. Pinging @krupa for review.
+
+See [bug 1157317](https://bugzilla.mozilla.org/show_bug.cgi?id=1157317) and [bug 1196162](https://bugzilla.mozilla.org/show_bug.cgi?id=1196162) for more details.
+",davehunt,122800,2015-08-19T10:10:39Z,MEMBER,True,0,2,1,Marketplace UI tests for Firefox OS,,fb8e3432c197baed853fc51b64f6e33d56358f72,Mark test_marketplace_purchase_app as expected to pass
+2,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/126,126,Update marketplace-tests-gaia to use FxAPom 1.4,"@davehunt This update is pretty much the same simple change as was needed in https://github.com/mozilla/marketplace-tests/pull/701, but there are more changes because:
+1. We don't have pytest fixtures, so we are creating the account in each test.
+2. This code was still using fxapom 1.2, so it was still using the `base_url` so that needed to be changed as well.
+
+As with the other PR, this needs to wait for fxapom 1.4 to be released, and I'll wait on that until you've had a chance to look over this PR as well.
+",bobsilverberg,142755,2015-07-22T15:33:26Z,COLLABORATOR,True,33,51,13,Marketplace UI tests for Firefox OS,,66cf52f0a7963fb25f3222b9ff39f2efdcba9f69,Update marketplace-tests-gaia to use FxAPom 1.4
+3,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/125,125,Update locator and expected message for test_marketplace_without_connectivity,"This test is currently failing and needs this fix.
+
+@krupa r?
+",bobsilverberg,142755,2015-07-08T12:52:17Z,COLLABORATOR,True,2,2,2,Marketplace UI tests for Firefox OS,,54ddacf49953453bcc03978d832229752a5391dc,Update locator and expected message for test_marketplace_without_connectivity
+4,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/124,124,Hack to deal with Bug 1177852 - Apps with unicode names install with an invalid name,"This will avoid trying to install an app with a non-ascii name
+
+This approach was suggested by @krupa, as she feels that the failure is finding a problem that only exists in dev due to fake data. I'm not crazy about implementing a temporary hack, but it will allow the tests to keep passing, rather than having the install test be an intermittent failure.
+
+@davehunt r?
+",bobsilverberg,142755,2015-06-26T23:13:22Z,COLLABORATOR,True,15,4,1,Marketplace UI tests for Firefox OS,,321460808eb8bc6c7abd793472d44d1069b1a6a7,"Hack to deal with Bug 1177852 - Apps with unicode names install with an invalid name
+
+This will avoid trying to install an app with a non-ascii name"
+5,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/123,123,Fixes issue #115 - test_search_and_install_app will fail until flag flips which changes button text,"Unxfail test_marketplace_search_and_install_app because the flag has flipped
+
+@davehunt r?
+",bobsilverberg,142755,2015-06-26T17:35:20Z,COLLABORATOR,True,0,2,1,Marketplace UI tests for Firefox OS,,9d8095f84d160dda42ed5f3b742381fe83102fa1,"Fixes issue #115 - test_search_and_install_app will fail until flag flips which changes button text
+
+Unxfail test_marketplace_search_and_install_app because the flag has flipped"
+6,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/122,122,Fixes #121 - Add a test to open a website from the details page,"@davehunt r?
+",bobsilverberg,142755,2015-06-24T19:45:01Z,COLLABORATOR,True,84,8,5,Marketplace UI tests for Firefox OS,,4abda21f20945459e67a9465653c34fc3746d098,Fixes #121 - Add a test to open a website from the details page
+7,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/119,119,Fix flake8 issue,"This should fix the failure on Travis
+",bobsilverberg,142755,2015-06-15T19:29:00Z,COLLABORATOR,True,1,1,1,Marketplace UI tests for Firefox OS,,b14366e926428f2b14876bfd19d5b4b6bf1cf895,Fix flake8 issue
+8,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/118,118,Use full name of country for set_region(),"This should restore coverage for they payments tests on FxOS. 
+
+@krupa r? for this simple change
+",bobsilverberg,142755,2015-06-15T18:25:16Z,COLLABORATOR,True,2,2,2,Marketplace UI tests for Firefox OS,,095221019a2b102be2a6a0e4e5f979f232d3f1cd,Use full name of country for set_region()
+9,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/116,116,Restore coverage for Marketplace tests on FxOS,"This PR includes a number of changes which should fix most of the tests, and xfails a couple of others.
+
+This addresses issue #114 and includes the xfail mentioned in issue #115, it also includes some refactoring as mentioned in issue #96 
+
+Among the changes:
+Use first paid app rather than a specific app
+Fix back button locator
+",bobsilverberg,142755,2015-05-29T11:53:55Z,COLLABORATOR,True,83,97,14,Marketplace UI tests for Firefox OS,,53fb243a737751772daa7c3534e484c0971b765b,"Restore coverage for Marketplace tests on FxOS
+
+Use first paid app rather than a specific app
+Fix back button locator
+Refactor steps required for payment tests"
+10,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/113,113,Un-xfail test_marketplace_search_and_install_app due to Bug 1157317 being fixed,"Also:
+Update locator for install button
+Change expected button text
+
+@davehunt r?
+",bobsilverberg,142755,2015-05-18T20:34:06Z,COLLABORATOR,True,4,6,5,Marketplace UI tests for Firefox OS,,a61bca9c7946db06c0acc0bf3018c39aa27777a9,"Un-xfail test_marketplace_search_and_install_app due to Bug 1157317 being fixed
+Update locator for install button
+Change expected button text"
+11,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/112,112,Use two-letter region code for set_region(),"This fixes all the failures as currently seen at https://webqa-ci.mozilla.com/job/marketplace.mozilla-b2g32_v2_0.nightly/206/testReport/
+
+The code for the region select has changed to use two character country codes instead of the full country name.
+
+@davehunt r?
+",bobsilverberg,142755,2015-05-13T11:58:42Z,COLLABORATOR,True,6,6,6,Marketplace UI tests for Firefox OS,,8bc706bda742bb25c7a18ca2ed82ba95b8cfcf12,Use two-letter region code for set_region()
+12,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/111,111,Xfail the in-app payments tests,"Change test_marketplace_search_and_install_app from disabled to xfailed
+
+All three of these tests should be xfailed as there are bugs open for fixes for them.
+
+@davehunt r?
+",bobsilverberg,142755,2015-05-12T12:32:40Z,COLLABORATOR,True,6,1,1,Marketplace UI tests for Firefox OS,,6922c804cc74e6498a18dfe6dc92ce365ca74982,"Xfail the in-app payments tests
+Change test_marketplace_search_and_install_app from disabled to xfailed"
+13,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/110,110,.travis.yml and setup.cfg,"Added two files.
+",tarun1992,4682201,2015-05-12T04:41:23Z,CONTRIBUTOR,False,6,1,3,Marketplace UI tests for Firefox OS,,6b2ad54816f5c3083ea63cda2510153605ef034c,Create .travis.yml
+14,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/110,110,.travis.yml and setup.cfg,"Added two files.
+",tarun1992,4682201,2015-05-12T04:41:23Z,CONTRIBUTOR,False,6,1,3,Marketplace UI tests for Firefox OS,,37b04d560ca1301d7403cb41183865225b7a62a8,Create setup.cfg
+15,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/110,110,.travis.yml and setup.cfg,"Added two files.
+",tarun1992,4682201,2015-05-12T04:41:23Z,CONTRIBUTOR,False,6,1,3,Marketplace UI tests for Firefox OS,,185e99e796b62d234f179a473b7254d294dceaa4,Update marketplace_gaia_test.py
+16,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/109,109,Scroll to Submit Review button before clicking,"This fixes failures of `test_add_review` and `test_marketplace_login_from_app_details_page`
+
+This addresses the failures as seen at https://webqa-ci.mozilla.com/view/Buildmaster/job/marketplace.mozilla-b2g32_v2_0.nightly/201/HTML_Report/
+",bobsilverberg,142755,2015-05-11T21:12:11Z,COLLABORATOR,True,6,1,1,Marketplace UI tests for Firefox OS,,6b294253897ec6a60f4046fdc3aeacde54db59fd,"Scroll to Submit Review button before clicking
+
+This fixes failures of test_add_review and test_marketplace_login_from_app_details_page"
+17,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/108,108,Fixes an intermittent failure by waiting for the login success notification,"Otherwise the submit review button tap often hits the notification.
+
+Ping @bobsilverberg for review.
+",davehunt,122800,2015-04-29T14:59:31Z,MEMBER,True,1,0,1,Marketplace UI tests for Firefox OS,,46498ba78b41e53c5d251da70e829d839c0eadf3,Fixes an intermittent failure by waiting for the login success notification
+18,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/107,107,Update code to deal with new Marketplace nav,"This addresses issue #106 
+
+Also includes:
+Refactor - rename regions to pages
+Refactor - move code from marketplace app object to base page object
+
+Note that `test_marketplace_login_from_my_apps.py` was removed as the test is no longer relevant. It is not possible to go to the My Apps page without first being logged in.
+
+@davehunt r?
+",bobsilverberg,142755,2015-04-23T13:27:35Z,COLLABORATOR,False,290,391,25,Marketplace UI tests for Firefox OS,,08c01bf973b6e2519eb22945c65b4d8b499dcd97,"Update code to deal with new Marketplace nav
+Refactor - rename regions to pages
+Refactor - move code from marketplace app object to base page object"
+19,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/107,107,Update code to deal with new Marketplace nav,"This addresses issue #106 
+
+Also includes:
+Refactor - rename regions to pages
+Refactor - move code from marketplace app object to base page object
+
+Note that `test_marketplace_login_from_my_apps.py` was removed as the test is no longer relevant. It is not possible to go to the My Apps page without first being logged in.
+
+@davehunt r?
+",bobsilverberg,142755,2015-04-23T13:27:35Z,COLLABORATOR,False,290,391,25,Marketplace UI tests for Firefox OS,,18b34a51345063795a5612768cafd03506193b36,"Address review comments
+
+Update comment on disabled test in manifest
+Replace open() and nav_menu property with show_menu() method"
+20,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/104,104,Add informative failure message to wait_for_notification_message,"We are still seeing some failures where `wait_for_notification_message` is timing out, and it doesn't really make much sense. I checked one recent failure [1], and, looking at the html source that was captured when the test failed, I do see the expected message in the markup [2](which is from [3]), so I'm not sure why the wait timed out.
+
+This PR will allow us to have a more explicit failure message, which I hope will help us to figure out what is happening.
+
+[1] http://jenkins1.qa.scl3.mozilla.com/view/Marketplace/job/flame-kk-319.mozilla-b2g32_v2_0.nightly.ui.marketplace/262/testReport/junit/test_marketplace_add_review/TestMarketplaceAddReview/test_add_review/
+[2] https://gist.github.com/bobsilverberg/18ad764bd385603ac883#file-gistfile1-html-L1133
+[3] http://jenkins1.qa.scl3.mozilla.com/view/Marketplace/job/flame-kk-319.mozilla-b2g32_v2_0.nightly.ui.marketplace/262/HTML_Report/
+",bobsilverberg,142755,2015-04-09T18:30:11Z,COLLABORATOR,True,22,4,1,Marketplace UI tests for Firefox OS,,516804374848dd5f221061ad41fe2d4a427548f6,Change wait_for_notification_message to check the innerHTML of the notification element
+21,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/103,103,Fix failing test test_marketplace_sign_in_and_sign_out_from_my_apps,"This fixes the final failing test. I also went through and changed the code in a number of tests so that, instead of uninstalling an app if it is already installed, they raise an exception. I also made sure that any apps that are installed during the running of a test do an uninstall during tearDown.
+
+Note that I built this on top of PR #99 to take advantage of those improvements, so the only commit that needs to be reviewed, for now is https://github.com/mozilla/marketplace-tests-gaia/commit/63158527b87a246c8d8ec7f0a8d0e3f45733e459
+
+@davehunt r?
+",bobsilverberg,142755,2015-04-09T14:58:05Z,COLLABORATOR,False,215,127,17,Marketplace UI tests for Firefox OS,,5821fd5a2d094e654a83694149ccf17460a25250,"Fix failing in app payments tests
+
+Conflicts:
+	marketplacetests/marketplace_gaia_test.py
+	marketplacetests/tests/test_marketplace_in_app_not_you_login_feature.py
+	marketplacetests/tests/test_marketplace_make_an_in_app_payment.py"
+22,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/103,103,Fix failing test test_marketplace_sign_in_and_sign_out_from_my_apps,"This fixes the final failing test. I also went through and changed the code in a number of tests so that, instead of uninstalling an app if it is already installed, they raise an exception. I also made sure that any apps that are installed during the running of a test do an uninstall during tearDown.
+
+Note that I built this on top of PR #99 to take advantage of those improvements, so the only commit that needs to be reviewed, for now is https://github.com/mozilla/marketplace-tests-gaia/commit/63158527b87a246c8d8ec7f0a8d0e3f45733e459
+
+@davehunt r?
+",bobsilverberg,142755,2015-04-09T14:58:05Z,COLLABORATOR,False,215,127,17,Marketplace UI tests for Firefox OS,,701154053893806b4ed325e20dcb802db835b29e,"Address review comments
+
+Create a Product region for InAppPayments app
+Use a default server
+Create an InAppPayment subclass of Payment"
+23,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/103,103,Fix failing test test_marketplace_sign_in_and_sign_out_from_my_apps,"This fixes the final failing test. I also went through and changed the code in a number of tests so that, instead of uninstalling an app if it is already installed, they raise an exception. I also made sure that any apps that are installed during the running of a test do an uninstall during tearDown.
+
+Note that I built this on top of PR #99 to take advantage of those improvements, so the only commit that needs to be reviewed, for now is https://github.com/mozilla/marketplace-tests-gaia/commit/63158527b87a246c8d8ec7f0a8d0e3f45733e459
+
+@davehunt r?
+",bobsilverberg,142755,2015-04-09T14:58:05Z,COLLABORATOR,False,215,127,17,Marketplace UI tests for Firefox OS,,132541caf31b0c31d9d7a0044091ed30c5fa894b,"Address further review comments
+
+Move uninstall into teardown
+Raise exception when app is already installed
+Rename test method
+Remove unnecessary locator
+Improve code for InAppPaymentTester.products"
+24,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/103,103,Fix failing test test_marketplace_sign_in_and_sign_out_from_my_apps,"This fixes the final failing test. I also went through and changed the code in a number of tests so that, instead of uninstalling an app if it is already installed, they raise an exception. I also made sure that any apps that are installed during the running of a test do an uninstall during tearDown.
+
+Note that I built this on top of PR #99 to take advantage of those improvements, so the only commit that needs to be reviewed, for now is https://github.com/mozilla/marketplace-tests-gaia/commit/63158527b87a246c8d8ec7f0a8d0e3f45733e459
+
+@davehunt r?
+",bobsilverberg,142755,2015-04-09T14:58:05Z,COLLABORATOR,False,215,127,17,Marketplace UI tests for Firefox OS,,63158527b87a246c8d8ec7f0a8d0e3f45733e459,"Fix failing test test_marketplace_sign_in_and_sign_out_from_my_apps
+
+Change all tests to raise an exception if an app is installed that shouldn't be
+Remove installed apps in tearDown in tests"
+25,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/102,102,Update tests to wait for a particular notification message to be present,"Fixes issue #97. We will now be always waiting for a specific notification message to be present, rather than just for any notification to be displayed. More details in issue #97.
+
+@davehunt r?
+",bobsilverberg,142755,2015-04-07T13:40:35Z,COLLABORATOR,True,33,31,11,Marketplace UI tests for Firefox OS,,5b39adc3cccc162350b0ac40994b6aeabab847a7,Update tests to wait for a particular notification message to be present
+26,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/100,100,Refactor tests to make page flow more explicit and to add waits for pages to be ready,"After experimenting and talking to a marketplace dev, it seems to make sense to introduce waits for each page, so that we can know when the page has finished loading.
+
+I also took this opportunity to address the inconsistent casing used for variable names.
+
+There is more refactoring to be done. There are a number of opportunities to reduce code duplication, but I would like to get this in first to see if it improves the intermittent failures that seem to plague us on CI.
+
+Note that some tests which are currently failing will continue to fail with this PR until they are explicitly fixed. Those are:
+`test_make_an_in_app_payment`
+`test_marketplace_sign_in_and_sign_out_from_my_apps`
+`test_not_you_link_in_app_payment`
+
+@davehunt r?
+",bobsilverberg,142755,2015-04-01T21:27:14Z,COLLABORATOR,True,256,255,24,Marketplace UI tests for Firefox OS,,8f5b4bd17a033ec8a3aa13dbc0f038ce550134b9,Refactor tests to make page flow more explicit and to waits for pages to be ready
+27,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/100,100,Refactor tests to make page flow more explicit and to add waits for pages to be ready,"After experimenting and talking to a marketplace dev, it seems to make sense to introduce waits for each page, so that we can know when the page has finished loading.
+
+I also took this opportunity to address the inconsistent casing used for variable names.
+
+There is more refactoring to be done. There are a number of opportunities to reduce code duplication, but I would like to get this in first to see if it improves the intermittent failures that seem to plague us on CI.
+
+Note that some tests which are currently failing will continue to fail with this PR until they are explicitly fixed. Those are:
+`test_make_an_in_app_payment`
+`test_marketplace_sign_in_and_sign_out_from_my_apps`
+`test_not_you_link_in_app_payment`
+
+@davehunt r?
+",bobsilverberg,142755,2015-04-01T21:27:14Z,COLLABORATOR,True,256,255,24,Marketplace UI tests for Firefox OS,,4fb1e589812dc04690ed49bcfb260c231b1a5391,"Address review comments
+
+Remove __init__ duplication
+Fix errors and nits"
+28,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/100,100,Refactor tests to make page flow more explicit and to add waits for pages to be ready,"After experimenting and talking to a marketplace dev, it seems to make sense to introduce waits for each page, so that we can know when the page has finished loading.
+
+I also took this opportunity to address the inconsistent casing used for variable names.
+
+There is more refactoring to be done. There are a number of opportunities to reduce code duplication, but I would like to get this in first to see if it improves the intermittent failures that seem to plague us on CI.
+
+Note that some tests which are currently failing will continue to fail with this PR until they are explicitly fixed. Those are:
+`test_make_an_in_app_payment`
+`test_marketplace_sign_in_and_sign_out_from_my_apps`
+`test_not_you_link_in_app_payment`
+
+@davehunt r?
+",bobsilverberg,142755,2015-04-01T21:27:14Z,COLLABORATOR,True,256,255,24,Marketplace UI tests for Firefox OS,,0c441e23ae36e80617e8348383fd73935b4e229b,"Change locator for debug screen back button
+Remove other back buttons that are incorrect and not used"
+29,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/99,99,Fix failing in app payments tests,"This fixes the tests for in-app payments that have been failing since last week. Both in-app tests (`test_make_an_in_app_payment` and `test_not_you_link_in_app_payment`) have been failing.
+",bobsilverberg,142755,2015-03-30T21:16:06Z,COLLABORATOR,False,150,99,7,Marketplace UI tests for Firefox OS,,5821fd5a2d094e654a83694149ccf17460a25250,"Fix failing in app payments tests
+
+Conflicts:
+	marketplacetests/marketplace_gaia_test.py
+	marketplacetests/tests/test_marketplace_in_app_not_you_login_feature.py
+	marketplacetests/tests/test_marketplace_make_an_in_app_payment.py"
+30,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/99,99,Fix failing in app payments tests,"This fixes the tests for in-app payments that have been failing since last week. Both in-app tests (`test_make_an_in_app_payment` and `test_not_you_link_in_app_payment`) have been failing.
+",bobsilverberg,142755,2015-03-30T21:16:06Z,COLLABORATOR,False,150,99,7,Marketplace UI tests for Firefox OS,,701154053893806b4ed325e20dcb802db835b29e,"Address review comments
+
+Create a Product region for InAppPayments app
+Use a default server
+Create an InAppPayment subclass of Payment"
+31,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/99,99,Fix failing in app payments tests,"This fixes the tests for in-app payments that have been failing since last week. Both in-app tests (`test_make_an_in_app_payment` and `test_not_you_link_in_app_payment`) have been failing.
+",bobsilverberg,142755,2015-03-30T21:16:06Z,COLLABORATOR,False,150,99,7,Marketplace UI tests for Firefox OS,,132541caf31b0c31d9d7a0044091ed30c5fa894b,"Address further review comments
+
+Move uninstall into teardown
+Raise exception when app is already installed
+Rename test method
+Remove unnecessary locator
+Improve code for InAppPaymentTester.products"
+32,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/95,95,Unpin fxapom as we are in full control of it,"This will mean we won't need to update this project every time fxapom is updated
+
+`fxapom` was also to pick up a new version of `PyFxA`, so this project needs to be updated to pick up the new `fxapom`. I think it makes sense to unpin `fxapom` as only this project and marketplace-tests (desktop tests) use it, and we are in full control of all 3 projects.
+
+@davehunt r?
+",bobsilverberg,142755,2015-03-23T14:48:58Z,COLLABORATOR,True,1,1,1,Marketplace UI tests for Firefox OS,,78a7ff559cd2f00abe4819fdc2d17bae10f69eb6,"Unpin fxapom as we are in full control of it
+
+This will mean we won't need to update this project every time fxapom is updated"
+33,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/94,94, Bug 1014171 - [marketplace-tests-gaia] Add a test to check the 'Forgot your PIN' flow,"This includes the commit from the PR for test_incorrect_pin (#93) because it builds on that.
+
+@davehunt r?
+",bobsilverberg,142755,2015-03-21T18:36:40Z,COLLABORATOR,True,76,6,4,Marketplace UI tests for Firefox OS,,2655ed8a5f9670601b12ad22337621b88b945e1b,Bug 1014171 - [marketplace-tests-gaia] Add a test to check the 'Forgot your PIN' flow
+34,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/93,93,Bug 1014170 - [marketplace-tests-gaia] Add a test to check that entering an incorrrect PIN throws an error message,"This adds a new test that is part of a Q1 goal.
+
+It also includes a bit of refactoring, as we need to be able to call `switch_to_marketplace_frame` from both the marketplace app object and the payment app object.
+
+@davehunt r?
+",bobsilverberg,142755,2015-03-20T01:57:25Z,COLLABORATOR,True,68,10,4,Marketplace UI tests for Firefox OS,,89e07ee1ff59189bab1fe9f4e57b1eb8cbe6efca,Bug 1014170 - [marketplace-tests-gaia] Add a test to check that entering an incorrrect PIN throws an error message
+35,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/92,92,Experiment with fixing the PIN continue button issue,"As per our discussion in IRC, @davehunt, I tried to implement a similar solution to the one we used for Login for the fact that we often fail to click on the PIN ""Continue"" or ""Submit"" button after entering the PIN. 
+
+As you will see in the attached diff, I removed the previous code which did:
+`Wait(marionette=self.marionette).until(lambda m: button.is_enabled())`
+
+and replaced it with a sequence that waits for the element to be present, then displayed, then enabled, and then scrolls it into view.
+
+When I did that, without the sleep at line 87, it _never_ works. The tap _always_ fails, whereas with the old code it only fails sometimes. With the added sleep it always seems to work.
+
+This suggests to me that the old code was taking a bit longer to execute than the new code, which is why it worked sometimes. It was like a sleep. I am a bit surprised that the old code takes longer to execute than the new code, as it's essentially doing the same thing (it's doing even less, in fact), but I guess the way each method is implemented in Marionette is different.
+
+So right now the only working solution I have is the `sleep`. Do you have any other suggestions for better things to do/wait for in this case?
+
+To reproduce, run https://github.com/mozilla/marketplace-tests-gaia/blob/master/marketplacetests/tests/test_marketplace_create_confirm_pin.py
+",bobsilverberg,142755,2015-03-19T15:07:10Z,COLLABORATOR,True,32,16,1,Marketplace UI tests for Firefox OS,,c0f7a09c91e3a1bfaf953d2b3551d8301ac9bac3,Use the on screen keyboard to enter the PIN which seems to fix the button tapping issue
+36,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/91,91,Add dependencies to setup.py and remove requirements.txt,,davehunt,122800,2015-03-18T15:05:06Z,MEMBER,True,4,3,2,Marketplace UI tests for Firefox OS,,6817afb73280018e6dba22bed6c260ac71bfcac7,Add dependencies to setup.py and remove requirements.txt. Fixes issue #82
+37,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/90,90,Access region select by name not id,"Fixes #87 
+",mstriemer,211578,2015-03-16T20:55:08Z,MEMBER,False,1,1,1,Marketplace UI tests for Firefox OS,,31c5dc089926be0f4e74e68af870c161248bda78,Access region select by name not id
+38,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/89,89,Improve the wait and add scrollIntoView to address login failures ,"I hate to do this, but adding a sleep before tapping the sign in button seems to be the only way to reliably tap on the button for now.
+
+This is yet another example of a `tap` failing silently. I have tried all kinds of waits and conditions, but none of them seem to allow the tap on the sign in button to work reliably.
+
+Sorry to bother you again, @davehunt, but if you can r? this when you have a chance it would be appreciated. 
+",bobsilverberg,142755,2015-03-16T20:43:38Z,COLLABORATOR,True,9,5,1,Marketplace UI tests for Firefox OS,,bea0b83f56b42ca39c16e17c7b136363c4623e5d,Improve the wait and add scrollIntoView to address login failures
+39,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/88,88,Update the locator for the region select,"Change tap() to send_keys() as tap() no longer works
+
+This is discussed in issue #87. We may have to accept this workaround for now, in order to restore coverage, but it deserves more investigation.
+
+@davehunt r?
+",bobsilverberg,142755,2015-03-16T20:02:35Z,COLLABORATOR,True,7,2,1,Marketplace UI tests for Firefox OS,,be1dab22d16b76efe503286326db36c9d070e323,"Update the locator for the region select
+Add scrollIntoView before trying to tap on the region select"
+40,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/85,85,"Use first popular app, rather than SoundCloud","There have been tests which are failing because SoundCloud is not found.
+While this may be due to a different issue, it seems a better approach to
+use an app we know can currently be found, rather than one we assume
+can be found.
+
+Note that I sent an email to the mailing list about this, so we should hold off on merging this until @krupa gives us an answer.
+
+A review would still be appreciated. :)
+",bobsilverberg,142755,2015-03-05T15:09:31Z,COLLABORATOR,False,7,4,2,Marketplace UI tests for Firefox OS,,d4ea5333dc8acb1c9d0c63903eb639bbab9800da,"Use first popular app, rather than SoundCloud
+
+There have been tests which are failing because SoundCloud is not found.
+While this may be due to a different issue, it seems a better approach to
+use an app we know can currently be found, rather than one we assume
+can be found."
+41,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/84,84,Wait for search input to be displayed before interacting with it,"I noticed when trying to reproduce issue #83, that the send_keys was happening before the input became visible. This still allowed the tests to pass locally for me, but I am guessing this might be the cause of issue #83. So (hopefully) this fixes #83 - Tests are failing because of an issue setting the region
+
+@davehunt / @m8ttyB r?
+",bobsilverberg,142755,2015-03-05T13:47:57Z,COLLABORATOR,True,2,0,1,Marketplace UI tests for Firefox OS,,d7a533f7c980352e83cdc828e76efa6a86415a1e,"Wait for search input to be displayed before interacting with it
+
+This (hopefully) fixes #83 - Tests are failing because of an issue setting the region"
+42,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/81,81,Update wait_for_notification_message_displayed to allow specifying a message for which to wait,"This fixes #80 - test_marketplace_login_from_app_details_page.py is failing on CI
+",bobsilverberg,142755,2015-02-24T14:09:13Z,COLLABORATOR,True,6,3,2,Marketplace UI tests for Firefox OS,,f5ff4e315c5484df0c6d392f12478de0208851f8,"Update wait_for_notification_message_displayed to allow specifying a message for which to wait
+
+This fixes #80 - test_marketplace_login_from_app_details_page.py is failing on CI"
+43,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/78,78,Fix test_purchase_app by adding an appropriate wait/switch_to,"This should fix the failure as currently seen at https://webqa-ci.mozilla.com/view/Marketplace/job/flame-kk-319.mozilla-b2g32_v2_0.nightly.ui.marketplace-tests/110/testReport/test_marketplace_purchase_app/TestMarketplacePurchaseApp/test_purchase_app/
+
+@m8ttyB / @davehunt r?
+",bobsilverberg,142755,2015-02-20T21:42:21Z,COLLABORATOR,True,1,0,1,Marketplace UI tests for Firefox OS,,faa47fa273b703e3d4224cc02c461c56cbdab1c6,Fix test_purchase_app by adding an appropriate wait/switch_to
+44,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/77,77,Use fxapom from PyPI,"@m8ttyB / @davehunt r?
+",bobsilverberg,142755,2015-02-20T17:09:19Z,COLLABORATOR,True,1,1,1,Marketplace UI tests for Firefox OS,,b73c1908db6acd896bc688733aab16b8c7da4739,Use fxapom from PyPI
+45,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/76,76,Xfail paymets tests because Bug 1132040,"I investigated the 2 failures on http://jenkins1.qa.scl3.mozilla.com/job/flame-kk-319.mozilla-b2g32_v2_0.ui.marketplace-tests/96/HTML_Report/
+
+Opened Bug https://bugzilla.mozilla.org/show_bug.cgi?id=1132040
+",AndreiH,2787766,2015-02-11T15:53:24Z,CONTRIBUTOR,False,4,0,1,Marketplace UI tests for Firefox OS,,8392804152f83706f8323b075d9c21aa1c20e2de,Xfail paymets tests because Bug 1132040
+46,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/75,75,Fix remaining failures with the new UI,"@bobsilverberg r?
+Here is the adhoc run http://jenkins1.qa.scl3.mozilla.com/job/flame-kk-319.mozilla-b2g32_v2_0.ui.marketplace-tests.adhoc/40/
+
+Here is the second run: http://jenkins1.qa.scl3.mozilla.com/job/flame-kk-319.mozilla-b2g32_v2_0.ui.marketplace-tests.adhoc/41/
+",AndreiH,2787766,2015-02-02T15:39:58Z,CONTRIBUTOR,True,2,5,3,Marketplace UI tests for Firefox OS,,4f1f39ca74256dcb340a42f29e67ed97301375a1,Fix remaining failures with the new UI
+47,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/74,74,Update tests to work with the new Marketplace UI,"@AndreiH This is almost ready to go. I still have 2 tests failing. Perhaps you could take this and see if you can get the final 2 tests passing?
+",bobsilverberg,142755,2015-01-30T21:59:57Z,COLLABORATOR,True,20,14,7,Marketplace UI tests for Firefox OS,,bd27818465d17737bf3fc9fe3fbe93ab3a06e02b,Update tests to work with the new Marketplace UI
+48,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/73,73,Add a tests that checks the 'Forgot your PIN' flow,,viorelaioia,5293100,2015-01-23T10:15:06Z,CONTRIBUTOR,False,87,1,4,Marketplace UI tests for Firefox OS,,0ca7a935a3e9e2e45e6d90e6362c301b86fb6de7,Add a tests that checks the 'Forgot your PIN' flow
+49,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/72,72,Add test for entering a wrong pin number,"Issue https://github.com/mozilla/marketplace-tests-gaia/issues/24
+",AndreiH,2787766,2015-01-09T14:25:52Z,CONTRIBUTOR,False,78,0,3,Marketplace UI tests for Firefox OS,,a0cd70d5bed6790bd1fe56d94c38c9dd6acfd0ea,Add test for entering a wrong pin number
+50,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/72,72,Add test for entering a wrong pin number,"Issue https://github.com/mozilla/marketplace-tests-gaia/issues/24
+",AndreiH,2787766,2015-01-09T14:25:52Z,CONTRIBUTOR,False,78,0,3,Marketplace UI tests for Firefox OS,,0bec2532cb74ee5580b9002d58c5b39fb5084d48,manifest
+51,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/72,72,Add test for entering a wrong pin number,"Issue https://github.com/mozilla/marketplace-tests-gaia/issues/24
+",AndreiH,2787766,2015-01-09T14:25:52Z,CONTRIBUTOR,False,78,0,3,Marketplace UI tests for Firefox OS,,f972aaee54cf41a84e85c3956eb4283af970f8d9,adjust waits
+52,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/72,72,Add test for entering a wrong pin number,"Issue https://github.com/mozilla/marketplace-tests-gaia/issues/24
+",AndreiH,2787766,2015-01-09T14:25:52Z,CONTRIBUTOR,False,78,0,3,Marketplace UI tests for Firefox OS,,ebe1cf811227eeaa3a5098c66c785fd894aef40e,"Merge remote-tracking branch 'origin/master' into wrong_pin
+
+Conflicts:
+	marketplacetests/payment/app.py"
+53,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/72,72,Add test for entering a wrong pin number,"Issue https://github.com/mozilla/marketplace-tests-gaia/issues/24
+",AndreiH,2787766,2015-01-09T14:25:52Z,CONTRIBUTOR,False,78,0,3,Marketplace UI tests for Firefox OS,,3f6ee84dd664042a8fa9d05e52a4f233e56401f4,update to master
+54,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/71,71,Add uninstall app in test_search_and_install_app,"This is for https://github.com/mozilla/marketplace-tests-gaia/issues/69
+",AndreiH,2787766,2015-01-09T11:29:05Z,CONTRIBUTOR,True,9,1,1,Marketplace UI tests for Firefox OS,,a72a07e3c63aa3f78682727108807f358c4dda2b,Add teardown at the end on test_search_and_install_app
+55,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/70,70,Coverage for in-app Payments,,AndreiH,2787766,2015-01-08T17:32:18Z,CONTRIBUTOR,True,252,26,15,Marketplace UI tests for Firefox OS,,e39b0c2a0ac3061d9d511ba9010e09ceece8ac31,First two tests for coverage for in-app Payments
+56,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/67,67,Changes needed to restore Payments coverage,"These changes are also from @bobsilverberg 's PR https://github.com/mozilla/marketplace-tests-gaia/pull/66
+First adhoc run here: http://jenkins1.qa.scl3.mozilla.com/view/Marketplace/job/flame-kk-319.mozilla-b2g32_v2_0.ui.marketplace-tests.adhoc/22/console
+",AndreiH,2787766,2014-12-19T15:43:15Z,CONTRIBUTOR,True,43,31,4,Marketplace UI tests for Firefox OS,,92a57c7fb49da66ee66938ea38190fb2270d8d8e,Trying to get PIN screen working
+57,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/67,67,Changes needed to restore Payments coverage,"These changes are also from @bobsilverberg 's PR https://github.com/mozilla/marketplace-tests-gaia/pull/66
+First adhoc run here: http://jenkins1.qa.scl3.mozilla.com/view/Marketplace/job/flame-kk-319.mozilla-b2g32_v2_0.ui.marketplace-tests.adhoc/22/console
+",AndreiH,2787766,2014-12-19T15:43:15Z,CONTRIBUTOR,True,43,31,4,Marketplace UI tests for Firefox OS,,dbb29c7ee8108b0605076779602a235130bfede9,Merge remote-tracking branch 'bob/pin_screen' into rev_bob_66
+58,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/67,67,Changes needed to restore Payments coverage,"These changes are also from @bobsilverberg 's PR https://github.com/mozilla/marketplace-tests-gaia/pull/66
+First adhoc run here: http://jenkins1.qa.scl3.mozilla.com/view/Marketplace/job/flame-kk-319.mozilla-b2g32_v2_0.ui.marketplace-tests.adhoc/22/console
+",AndreiH,2787766,2014-12-19T15:43:15Z,CONTRIBUTOR,True,43,31,4,Marketplace UI tests for Firefox OS,,697dc13e1645362d3accb0fdec2c063e0231de98,Changes needed to restore Payments tests
+59,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/66,66,Pin screen,"These changes build on those in PR #65 and are trying to get Payments working again, so only the 2nd commit is relevant. I am able to get through the ""Create PIN"" screen, but cannot seem to automate the ""Confirm PIN"" screen, which is quite strange.
+
+What seems to be happening is that when the ""Continue"" button is tapped, taking us to the Confirm screen, they keyboard goes away and I cannot seem to make it come back no matter what elements I tap on the screen via Marionette.
+
+I need to abandon this for now, but hopefully @AndreiH, perhaps with some help from @davehunt, will be able to get past this issue which will bring us very close to having payment testing reenabled.
+",bobsilverberg,142755,2014-12-18T19:25:53Z,COLLABORATOR,True,45,52,12,Marketplace UI tests for Firefox OS,,825696131311778f2164a0c33c80841154356524,Enable more tests by creating an FxA for each test
+60,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/66,66,Pin screen,"These changes build on those in PR #65 and are trying to get Payments working again, so only the 2nd commit is relevant. I am able to get through the ""Create PIN"" screen, but cannot seem to automate the ""Confirm PIN"" screen, which is quite strange.
+
+What seems to be happening is that when the ""Continue"" button is tapped, taking us to the Confirm screen, they keyboard goes away and I cannot seem to make it come back no matter what elements I tap on the screen via Marionette.
+
+I need to abandon this for now, but hopefully @AndreiH, perhaps with some help from @davehunt, will be able to get past this issue which will bring us very close to having payment testing reenabled.
+",bobsilverberg,142755,2014-12-18T19:25:53Z,COLLABORATOR,True,45,52,12,Marketplace UI tests for Firefox OS,,92a57c7fb49da66ee66938ea38190fb2270d8d8e,Trying to get PIN screen working
+61,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/65,65,Enable more tests by creating an FxA for each test,"Note that in order to run this you need to install the requirements from the `requirements.txt` file via `pip`, as opposed to `setup.py`.
+
+@AndreiH r?
+",bobsilverberg,142755,2014-12-18T16:54:52Z,COLLABORATOR,True,26,32,11,Marketplace UI tests for Firefox OS,,825696131311778f2164a0c33c80841154356524,Enable more tests by creating an FxA for each test
+62,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/64,64,Enable tests to run on gaia v2.0,"@AndreiH r?
+",bobsilverberg,142755,2014-12-16T14:25:43Z,COLLABORATOR,True,8,6,5,Marketplace UI tests for Firefox OS,,ae1d5a6239fbb2f2e0915e52f0cf4363b271b841,Enable tests to run on gaia v2.0
+63,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/63,63,Update tests to run with gaiatest v2.0,,AndreiH,2787766,2014-12-11T13:48:47Z,CONTRIBUTOR,False,3,3,2,Marketplace UI tests for Firefox OS,,f3445f18c86e1022a58f27e79ca450c928c78d6b,Update tests to run with gaiatest v2.0
+64,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/62,62,Login/Logout durin in-app Payments,"This is a test for issue https://github.com/mozilla/marketplace-tests-gaia/issues/61
+See https://bugzilla.mozilla.org/show_bug.cgi?id=1103072 for more details
+
+The test currently installs an app from resources and launches it. 
+This needs more modifications, because I am currently trying to run this with our resource app.
+When running the test command line needs <code>--server-root=marketplacetests/resources/webapps/packaged1</code>
+",AndreiH,2787766,2014-12-04T16:41:23Z,CONTRIBUTOR,False,83,1,4,Marketplace UI tests for Firefox OS,,fb34513c5223805bd18c2191a44eeebec822f6c3,Login and Logout when using In-app Payments
+65,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/62,62,Login/Logout durin in-app Payments,"This is a test for issue https://github.com/mozilla/marketplace-tests-gaia/issues/61
+See https://bugzilla.mozilla.org/show_bug.cgi?id=1103072 for more details
+
+The test currently installs an app from resources and launches it. 
+This needs more modifications, because I am currently trying to run this with our resource app.
+When running the test command line needs <code>--server-root=marketplacetests/resources/webapps/packaged1</code>
+",AndreiH,2787766,2014-12-04T16:41:23Z,CONTRIBUTOR,False,83,1,4,Marketplace UI tests for Firefox OS,,74c05a7dee6d28322a54db87ffeadebb971a5569,update
+66,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/62,62,Login/Logout durin in-app Payments,"This is a test for issue https://github.com/mozilla/marketplace-tests-gaia/issues/61
+See https://bugzilla.mozilla.org/show_bug.cgi?id=1103072 for more details
+
+The test currently installs an app from resources and launches it. 
+This needs more modifications, because I am currently trying to run this with our resource app.
+When running the test command line needs <code>--server-root=marketplacetests/resources/webapps/packaged1</code>
+",AndreiH,2787766,2014-12-04T16:41:23Z,CONTRIBUTOR,False,83,1,4,Marketplace UI tests for Firefox OS,,7944362f57ffd670a4077443878dfe295cee237d,add resources
+67,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/62,62,Login/Logout durin in-app Payments,"This is a test for issue https://github.com/mozilla/marketplace-tests-gaia/issues/61
+See https://bugzilla.mozilla.org/show_bug.cgi?id=1103072 for more details
+
+The test currently installs an app from resources and launches it. 
+This needs more modifications, because I am currently trying to run this with our resource app.
+When running the test command line needs <code>--server-root=marketplacetests/resources/webapps/packaged1</code>
+",AndreiH,2787766,2014-12-04T16:41:23Z,CONTRIBUTOR,False,83,1,4,Marketplace UI tests for Firefox OS,,a51653971957ab425e5a4763cdf080d79005f5fe,Marketplacetestsgaia
+68,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/62,62,Login/Logout durin in-app Payments,"This is a test for issue https://github.com/mozilla/marketplace-tests-gaia/issues/61
+See https://bugzilla.mozilla.org/show_bug.cgi?id=1103072 for more details
+
+The test currently installs an app from resources and launches it. 
+This needs more modifications, because I am currently trying to run this with our resource app.
+When running the test command line needs <code>--server-root=marketplacetests/resources/webapps/packaged1</code>
+",AndreiH,2787766,2014-12-04T16:41:23Z,CONTRIBUTOR,False,83,1,4,Marketplace UI tests for Firefox OS,,60929a440267c7f78b3c0de6296abe1561d5a48b,update
+69,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/62,62,Login/Logout durin in-app Payments,"This is a test for issue https://github.com/mozilla/marketplace-tests-gaia/issues/61
+See https://bugzilla.mozilla.org/show_bug.cgi?id=1103072 for more details
+
+The test currently installs an app from resources and launches it. 
+This needs more modifications, because I am currently trying to run this with our resource app.
+When running the test command line needs <code>--server-root=marketplacetests/resources/webapps/packaged1</code>
+",AndreiH,2787766,2014-12-04T16:41:23Z,CONTRIBUTOR,False,83,1,4,Marketplace UI tests for Firefox OS,,23816c884f62c65b6d523a0191e66fa5eb08a694,readd
+70,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/62,62,Login/Logout durin in-app Payments,"This is a test for issue https://github.com/mozilla/marketplace-tests-gaia/issues/61
+See https://bugzilla.mozilla.org/show_bug.cgi?id=1103072 for more details
+
+The test currently installs an app from resources and launches it. 
+This needs more modifications, because I am currently trying to run this with our resource app.
+When running the test command line needs <code>--server-root=marketplacetests/resources/webapps/packaged1</code>
+",AndreiH,2787766,2014-12-04T16:41:23Z,CONTRIBUTOR,False,83,1,4,Marketplace UI tests for Firefox OS,,ba4aedab9a6c13e8986e15fabf252203c010483d,update the packaged app
+71,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/62,62,Login/Logout durin in-app Payments,"This is a test for issue https://github.com/mozilla/marketplace-tests-gaia/issues/61
+See https://bugzilla.mozilla.org/show_bug.cgi?id=1103072 for more details
+
+The test currently installs an app from resources and launches it. 
+This needs more modifications, because I am currently trying to run this with our resource app.
+When running the test command line needs <code>--server-root=marketplacetests/resources/webapps/packaged1</code>
+",AndreiH,2787766,2014-12-04T16:41:23Z,CONTRIBUTOR,False,83,1,4,Marketplace UI tests for Firefox OS,,f8e884a30fb1b7e1eef5b5dbe05c5b2445fa0b60,update packaged to privileged again
+72,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/62,62,Login/Logout durin in-app Payments,"This is a test for issue https://github.com/mozilla/marketplace-tests-gaia/issues/61
+See https://bugzilla.mozilla.org/show_bug.cgi?id=1103072 for more details
+
+The test currently installs an app from resources and launches it. 
+This needs more modifications, because I am currently trying to run this with our resource app.
+When running the test command line needs <code>--server-root=marketplacetests/resources/webapps/packaged1</code>
+",AndreiH,2787766,2014-12-04T16:41:23Z,CONTRIBUTOR,False,83,1,4,Marketplace UI tests for Firefox OS,,f2524500a46c98cf212498a74f85aa88fb8cfd86,update app and certs
+73,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/60,60,Add a test that opens each category from category section,,viorelaioia,5293100,2014-12-04T10:49:18Z,CONTRIBUTOR,False,48,0,2,Marketplace UI tests for Firefox OS,,e363392d3bca2517a69dedb84e6a9dc79aa32317,Add a test that opens each category from category section
+74,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/58,58,Add sign in scenarios for FXA,,viorelaioia,5293100,2014-11-12T16:09:20Z,CONTRIBUTOR,True,118,3,5,Marketplace UI tests for Firefox OS,,26151cc2a52627ead67a04b1aa5d1fa6d60fe96d,Add sign in scenarios for FXA
+75,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/57,57,"Switch tests to login using Firefox Accounts, instead of Persona",,viorelaioia,5293100,2014-09-30T12:56:13Z,CONTRIBUTOR,True,95,183,16,Marketplace UI tests for Firefox OS,,49911b1d337af1adbedc19a515b38144c6e3ef16,"Switch tests to login using Firefox Accounts, instead of Persona"
+76,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/56,56,New/Popular app names locator is not the same as the Search Results app ...,"...names locator
+
+Also https://bugzilla.mozilla.org/show_bug.cgi?id=1033503 is fixed!
+",AndreiH,2787766,2014-09-19T11:29:30Z,CONTRIBUTOR,False,10,7,4,Marketplace UI tests for Firefox OS,,d693d747132455fa11d247651cd6de522e226cbd,New/Popular app names locator is not the same as the Search Results app names locator
+77,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/55,55,Xfail test_marketplace_login_during_purchase.py with Bug 1058529 - [mark...,"...etplace-tests-gaia] Investigate test_purchase_app is failing on Jenkins
+",AndreiH,2787766,2014-08-28T13:37:46Z,CONTRIBUTOR,True,2,0,1,Marketplace UI tests for Firefox OS,,1ecc7084b55cfe4cd79005a4dec87a4d6f5a9a2b,Xfail test_marketplace_login_during_purchase.py with Bug 1058529 - [marketplace-tests-gaia] Investigate test_purchase_app is failing on Jenkins
+78,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/54,54,Settings button locator changed on new UI,,AndreiH,2787766,2014-08-25T14:30:13Z,CONTRIBUTOR,True,1,1,1,Marketplace UI tests for Firefox OS,,03436f4b53f14952400142ec0b35cc2521b8c5b6,Settings button locator changed on new UI
+79,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/53,53,Unxfail tests that reply on Test Zippy with Me app,"Bug 1043838 has been fixed
+
+The tests are passing locally and on CI [1] 
+
+[1] http://selenium.qa.mtv2.mozilla.com:8080/job/b2g.hamachi.mozilla-b2g28_v1_3.v1.3.marketplace/1867/HTML_Report/
+",bobsilverberg,142755,2014-08-12T20:06:12Z,COLLABORATOR,True,0,4,1,Marketplace UI tests for Firefox OS,,232ae92d9d96b7499bf4aae528d6a8cf86158b54,"Unxfail tests that reply on Test Zippy with Me app
+
+Bug 1043838 has been fixed"
+80,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/52,52,Xfail tests that use Zippy app because Bug 1043838 - [marketplace-te...,"...sts-gaia] Re-create ""Test Zippy With Me"" app
+",AndreiH,2787766,2014-07-30T08:01:47Z,CONTRIBUTOR,True,4,0,1,Marketplace UI tests for Firefox OS,,f302d9d70126c79c4ca0de8a1031376b35ed77df,"Xfail tests that use Zippy app because bug Bug 1043838 - [marketplace-tests-gaia] Re-create ""Test Zippy With Me"" app"
+81,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/51,51,Unxfail review tests because the patch that broke them was backed out.,,chirarobert,6347849,2014-07-10T16:02:07Z,CONTRIBUTOR,True,0,2,1,Marketplace UI tests for Firefox OS,,a1d73dcf62b24df3ff529a33c4ac4f399a6dcf06,Unxfail review tests because the patch that broke them was backed out.
+82,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/50,50,Xfail test_marketplace_add_review because of Bug 1036304,,chirarobert,6347849,2014-07-09T13:20:10Z,CONTRIBUTOR,True,2,0,1,Marketplace UI tests for Firefox OS,,d5c71778f0534b46df46ab81b6532d9cb7c6653e,Xfail test_marketplace_add_review because of Bug 1036304
+83,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/49,49,"Bug 1033263 - [marketplace-tests-gaia] ""test_marketplace_search_and_inst...","...all_app"" is failing with ""MANIFEST_URL_ERROR""
+",AndreiH,2787766,2014-07-02T11:37:25Z,CONTRIBUTOR,True,2,0,1,Marketplace UI tests for Firefox OS,,6547542dddd63a8c026514c0ffb2bc11a8696b34,"XFAIL Bug 1033263 - [marketplace-tests-gaia] ""test_marketplace_search_and_install_app"" is failing with ""MANIFEST_URL_ERROR"""
+84,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/48,48,Update gaiatest version,,viorelaioia,5293100,2014-06-27T15:07:09Z,CONTRIBUTOR,True,1,1,1,Marketplace UI tests for Firefox OS,,967da195fb43e03f3171b489b7ef0fff36df24b3,Update gaiatest version
+85,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/46,46,Bug 1013918 - [marketplace-tests-gaia] Use the Marketplace-dev app that is already installed on v1.3,"All the tests pass locally for me on v1.3
+",bobsilverberg,142755,2014-06-11T22:22:45Z,COLLABORATOR,True,39,53,14,Marketplace UI tests for Firefox OS,,d07a1194fccde768eff1632ec2f79ce9bcaa4e1b,Bug 1013918 - [marketplace-tests-gaia] Use the Marketplace-dev app that is already installed on v1.3
+86,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/45,45,Bug 1006219 - [marketplace-tests-gaia] Remove nasty hacks from test_search_paid_app when price becomes visible,"This uses a different element to find the price and hence removes the nasty hacks. I also took the opportunity to remove code related to filtering the search results which is unused because the feature no longer exists.
+",bobsilverberg,142755,2014-06-04T16:09:43Z,COLLABORATOR,True,1,42,2,Marketplace UI tests for Firefox OS,,a012e40607d413a689d9de1c5ff44b79b74483aa,"Bug 1006219 - [marketplace-tests-gaia] Remove nasty hacks from test_search_paid_app when price becomes visible
+
+Also remove unused search result filter"
+87,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/44,44,Bug 1017587 - [marketplace-tests-gaia] Add a wait into tap_sign_out to address intermittent failure,,bobsilverberg,142755,2014-05-29T14:05:10Z,COLLABORATOR,True,1,0,1,Marketplace UI tests for Firefox OS,,605062669d983eb16390a2acc11ad01d6777b44b,Bug 1017587 - [marketplace-tests-gaia] Add a wait into tap_sign_out to address intermittent failure
+88,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/42,42,Bug 1006219 - [marketplace-tests-gaia] Re-enable test_search_paid_app when price becomes visible,"Although the price has not become visible, an additional hack has been added which allows the test to pass
+",bobsilverberg,142755,2014-05-21T01:55:36Z,COLLABORATOR,True,2,3,2,Marketplace UI tests for Firefox OS,,c528c23a8eca1f6eb3ff54a197385596b7c37b59,"Bug 1006219 - [marketplace-tests-gaia] Re-enable test_search_paid_app when price becomes visible
+
+Although the price has not become visible, an additional hack has been added which allows the test to pass"
+89,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/41,41,Bug 1013569 - [marketplace-tests-gaia] Add a test to log in during the purchase of an app,"This addresses issue #21
+",bobsilverberg,142755,2014-05-20T20:51:32Z,COLLABORATOR,True,47,6,3,Marketplace UI tests for Firefox OS,,a35a7d446aedd1981c3c46337913849f228ff73a,Bug 1013569 - [marketplace-tests-gaia] Add a test to log in during the purchase of an app
+90,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/41,41,Bug 1013569 - [marketplace-tests-gaia] Add a test to log in during the purchase of an app,"This addresses issue #21
+",bobsilverberg,142755,2014-05-20T20:51:32Z,COLLABORATOR,True,47,6,3,Marketplace UI tests for Firefox OS,,3c326c47fc5f09cf58535233c13de629025fe447,Remove unused imports
+91,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/40,40,Bug 1013451 - [marketplace-tests-gaia] Xfail payments tests due to bug after confirming pin,,bobsilverberg,142755,2014-05-20T17:58:50Z,COLLABORATOR,True,4,0,1,Marketplace UI tests for Firefox OS,,8ef7d128a4b9f2829e6ac6f12295e6c7f9058f70,Bug 1013451 - [marketplace-tests-gaia] Xfail payments tests due to bug after confirming pin
+92,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/39,39,Bug 1007100 - [marketplace-tests-gaia] Add an extra wait for Marketplace to be fully loaded,"Also add a settle time to attempt to address intermittent failures
+",bobsilverberg,142755,2014-05-08T13:13:29Z,COLLABORATOR,False,17,5,3,Marketplace UI tests for Firefox OS,,ecb0634c90b26c1d7f936d075568db97fc2cdf15,"Bug 1007100 - [marketplace-tests-gaia] Add an extra wait for Marketplace to be fully loaded
+
+Also add a settle time to attempt to address intermittent failures"
+93,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/39,39,Bug 1007100 - [marketplace-tests-gaia] Add an extra wait for Marketplace to be fully loaded,"Also add a settle time to attempt to address intermittent failures
+",bobsilverberg,142755,2014-05-08T13:13:29Z,COLLABORATOR,False,17,5,3,Marketplace UI tests for Firefox OS,,2ce7f11f843883bdfa8737a46625ff3d9be81c45,Change the loading wait and add an extra wait
+94,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/38,38,Fix intermittent failures,,viorelaioia,5293100,2014-05-08T08:03:15Z,CONTRIBUTOR,False,14,2,9,Marketplace UI tests for Firefox OS,,4d45ac7977936bf1a85ad813c129a919cfd4eb92,Fix intermittent failures
+95,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/37,37,Bug 1007100 - [marketplace-tests-gaia] Add an extra wait for Marketplace to be fully loaded,,bobsilverberg,142755,2014-05-07T13:14:53Z,COLLABORATOR,True,1,0,1,Marketplace UI tests for Firefox OS,,d90b6e63441fb85ed6e94c7b899a61a1e99f9264,Bug 1007100 - [marketplace-tests-gaia] Add an extra wait for Marketplace to be fully loaded
+96,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/36,36,Bug 1006509 - [marketplace-tests-gaia] Remove code for setting timeouts and use the command line option instead,,bobsilverberg,142755,2014-05-06T13:14:58Z,COLLABORATOR,True,0,4,1,Marketplace UI tests for Firefox OS,,ed1e9f75af858560fbe7d39ac5686353ffd27b62,Bug 1006509 - [marketplace-tests-gaia] Remove code for setting timeouts and use the command line option instead
+97,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/35,35,Bug 1006241 - [marketplace-tests-gaia] Address intermittent failure of test_marketplace_search_and_install_app by cleaning it up,,bobsilverberg,142755,2014-05-06T01:52:45Z,COLLABORATOR,True,18,14,2,Marketplace UI tests for Firefox OS,,6eb6fb299d23e733b6f433d029d9f010ed5ead9b,Bug 1006241 - [marketplace-tests-gaia] Address intermittent failure of test_marketplace_search_and_install_app by cleaning it up
+98,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/34,34,Bug 1006226 - [marketplace-tests-gaia] Address intermittent failure of test_marketplace_feedback_login by improving waits,"Adhoc running at http://selenium.qa.mtv2.mozilla.com:8080/view/B2G%20Hamachi/job/b2g.hamachi.mozilla-b2g28_v1_3.v1.3.marketplace.adhoc/21/console
+",bobsilverberg,142755,2014-05-06T01:32:53Z,COLLABORATOR,True,3,7,3,Marketplace UI tests for Firefox OS,,02f50164833ae502e65e9651873c08eed8c7e78a,Bug 1006226 - [marketplace-tests-gaia] Address intermittent failure of test_marketplace_feedback_login by improving waits
+99,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/33,33,Bug 993114 - [marketplace-tests-gaia] Add a test to purchase an app using Zippy,,bobsilverberg,142755,2014-05-05T19:52:45Z,COLLABORATOR,True,49,0,3,Marketplace UI tests for Firefox OS,,31ee147e370948de286052345c3ea3e02fe59307,"Bug 993114 - [marketplace-tests-gaia] Add a test to purchase an app using Zippy
+
+Conflicts:
+	marketplacetests/marketplace/app.py"
+100,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/32,32,Bug 997951 - [marketplace-tests-gaia] Clean up and bolster some tests which are failing intermittently,"Add compatibility with current gaiatest
+
+Note that this will require a new release of gaiatest which includes a new release of marionette, so it is waiting on:
+https://bugzilla.mozilla.org/show_bug.cgi?id=1002541 and 
+https://bugzilla.mozilla.org/show_bug.cgi?id=1001461
+",bobsilverberg,142755,2014-04-29T15:15:43Z,COLLABORATOR,True,162,68,16,Marketplace UI tests for Firefox OS,,4b630cf5d8153f72e46418894fea4cf08bf515c2,"Bug 997951 - [marketplace-tests-gaia] Clean up and bolster some tests which are failing intermittently
+
+Add compatibility with current gaiatest"
+101,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/30,30,Xfail tests that rely on 'Test Zippy With Me' being available,,bobsilverberg,142755,2014-04-25T15:01:55Z,COLLABORATOR,True,4,0,1,Marketplace UI tests for Firefox OS,,c79eba423bd2e48ea0bebdc00ac4cf2ee42af15f,Xfail tests that rely on 'Test Zippy With Me' being available
+102,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/29,29,Bug 997951 - [marketplace-tests-gaia] Clean up and bolster some tests which are failing intermittently,"This includes setting the default marionette timeouts to 60 seconds as we frequently see timeouts as intermittents.
+Also includes some new waits and some general code cleanup.
+",bobsilverberg,142755,2014-04-17T19:37:23Z,COLLABORATOR,False,15,37,6,Marketplace UI tests for Firefox OS,,fadccb65ffe90071200af962e9ba78f5585f0b0e,Bug 997951 - [marketplace-tests-gaia] Clean up and bolster some tests which are failing intermittently
+103,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/28,28,Bug 993114 - [marketplace-tests-gaia] Add a test to purchase an app using Zippy,"This includes a commit from issue #22 as some of the same things were needed, so that should be merged first and then I'll rebase this if necessary.
+
+This is also quite a bit of duplication in this test from the other test, and there is some more cleanup/refactoring to do of the code in this repo, but I wanted to get this coverage in for now, and then deal with cleaning the other stuff up later.
+",bobsilverberg,142755,2014-04-07T21:13:49Z,COLLABORATOR,False,61,4,5,Marketplace UI tests for Firefox OS,,d3460bfa78881420b9d2ecc995a17b40d7c7e43b,Bug 993114 - [marketplace-tests-gaia] Add a test to purchase an app using Zippy
+104,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/27,27,Bug 993078 - [marketplace-tests-gaia] Add a test to create and confirm a PIN,"Addresses issue #22
+",bobsilverberg,142755,2014-04-07T20:09:57Z,COLLABORATOR,True,204,661,15,Marketplace UI tests for Firefox OS,,a74d9aa12797e5d0d022aaeb29d6e9c3c648131d,Bug 993078 - [marketplace-tests-gaia] Add a test to create and confirm a PIN
+105,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/26,26,Bug 985739 - [marketplace-tests-gaia] Update the test to search for a paid app so it can be run,,bobsilverberg,142755,2014-03-20T20:55:01Z,COLLABORATOR,True,91,49,8,Marketplace UI tests for Firefox OS,,9243c4cf549c97172f506fb939585e3192e14d19,Bug 985739 - [marketplace-tests-gaia] Update the test to search for a paid app so it can be run
+106,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/26,26,Bug 985739 - [marketplace-tests-gaia] Update the test to search for a paid app so it can be run,,bobsilverberg,142755,2014-03-20T20:55:01Z,COLLABORATOR,True,91,49,8,Marketplace UI tests for Firefox OS,,2d4817657d431dd6433f3ced1b8bbcaed4bde285,Add a step to change the region to US via the :debug screen
+107,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/19,19,"Bug 966283 - Pin the version of gaiatest that marketplace-tests-gaia uses, r=zac","This will fix the current failures as seen at http://qa-selenium.mv.mozilla.com:8080/view/B2G%20Hamachi/job/b2g.hamachi.mozilla-aurora.marketplace/75/
+",bobsilverberg,142755,2014-01-31T16:01:23Z,COLLABORATOR,True,2,3,1,Marketplace UI tests for Firefox OS,,5faf9335b1e7d84189c442c31c5c2126d1191009,"Bug 966283 - Pin the version of gaiatest that marketplace-tests-gaia uses, r=zac"
+108,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/18,18,Bug 965876 - Update marketplace-tests-gaia suite to install certs before test runs,"Add step to install certs and set pref needed for accessing marketplace-dev
+Add cert files to be pushed
+",bobsilverberg,142755,2014-01-30T18:28:51Z,COLLABORATOR,True,21,0,4,Marketplace UI tests for Firefox OS,,bc608e0c271c5703cbf6b38d999a9c8ddfed4d14,"Bug 965876 - Update marketplace-tests-gaia suite to install certs before test runs
+
+Add step to install certs and set pref needed for accessing marketplace-dev
+Add cert files to be pushed"
+109,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/17,17,Bug 965813 - [Marketplace] Add code to check that the app was successful...,"...ly installed in test_marketplace_search_and_install_app.py
+",viorelaioia,5293100,2014-01-30T17:32:18Z,CONTRIBUTOR,True,9,0,1,Marketplace UI tests for Firefox OS,,075c1045b75332aabffbf4843a1ec83dd84c1b77,Bug 965813 - [Marketplace] Add code to check that the app was successfully installed in test_marketplace_search_and_install_app.py
+110,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/16,16,Bug 965260 - [Marketplace] Xfail test_marketplace_search_and_install_app...,"...py with bug Bug 965258 and added code that checks if the app is installed
+",viorelaioia,5293100,2014-01-29T16:12:28Z,CONTRIBUTOR,False,6,0,2,Marketplace UI tests for Firefox OS,,70ab4bd5cb45acf17c42b8d50b219def4ca74ee5,Bug 965260 - [Marketplace] Xfail test_marketplace_search_and_install_apppy with bug Bug 965258 and added code that checks if the app is installed
+111,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/15,15,Bug 965260 - [Marketplace] Xfail test_marketplace_search_and_install_apppy with bug Bug 965258 and added code that checks if the app is installed,,viorelaioia,5293100,2014-01-29T15:56:52Z,CONTRIBUTOR,False,6,0,2,Marketplace UI tests for Firefox OS,,2d5389d6887ee7dc5ae5b8811af1b1b186a544c4,Bug 965260 - [Marketplace] Xfail test_marketplace_search_and_install_app.py with bug Bug 965258 and added code that checks if the app is installed
+112,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/14,14,Bug 958434 - [Marketplace][v1.3] Remove xfail for test_marketplace_witho...,"...ut_connectivity
+",AndreiH,2787766,2014-01-16T12:44:07Z,CONTRIBUTOR,True,1,3,2,Marketplace UI tests for Firefox OS,,172ac18268ebc98a141fc480d8be3cb5d7f8620c,Bug 958434 - [Marketplace][v1.3] Remove xfail for test_marketplace_without_connectivity
+113,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/13,13,Bug 958429 - [Marketplace] Update URL in Readme file,,viorelaioia,5293100,2014-01-10T09:00:50Z,CONTRIBUTOR,True,1,1,1,Marketplace UI tests for Firefox OS,,fc7e6fbb0139f8c9367d04788bd29f3338762bef,Bug 958429 - [Marketplace] Update URL in Readme file
+114,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/12,12,Bug 958125 - [Marketplace] Disable Marketplace gaia UI tests that are expected to fail,,bobsilverberg,142755,2014-01-09T18:11:59Z,COLLABORATOR,True,5,10,1,Marketplace UI tests for Firefox OS,,b9c27d00c7765f2367cc356655205799a3c03b56,Bug 958125 - [Marketplace] Disable Marketplace gaia UI tests that are expected to fail
+115,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/11,11,Launch Marketplace via the app icon instead of via Javascript,"This is an alternative to PR #10. The code is much simpler, but it will take a bit longer to execute as it has to scroll through homescreen pages.
+
+I also took this opportunity to do a bit of refactoring with the Marketplace app name, which was unnecessarily being set all over the place. It can still be overridden in an individual test, but doesn't need to be set for every test.
+
+Tbh, this is probably a better approach than PR #10, unless there is a specific reason that we'd rather not launch the app via the icon.
+",bobsilverberg,142755,2014-01-09T01:49:47Z,COLLABORATOR,False,32,39,15,Marketplace UI tests for Firefox OS,,5422d36c3d66ab769d5fac04ce8fed40cfff7af9,"Launch Marketplace via the app icon instead of via Javascript
+Refactor app name variables
+Remove explicit switch_to_frame calls and unneeded launch calls"
+116,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/10,10,Bug 958123 - [marketplace-tests-gaia] Override the launch method in GaiaApps to ignore pesky Javascript errors,"There have been a lot of errors on `b2g.hamachi.mozilla-aurora.marketplace`, most of which have been a JavascriptException that is thrown during the launch of the Marketplace app, which Marionette then catches and causes the launch to fail. This is a non-critical JS exception, but it causes the test to fail.
+
+A sample stack trace is:
+
+```
+test_marketplace_feedback_user (test_marketplace_feedback_login.TestMarketplaceFeedback) ... ERROR
+
+======================================================================
+ERROR: None
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File ""/var/jenkins/workspace/b2g.hamachi.mozilla-aurora.marketplace/.env/local/lib/python2.7/site-packages/marionette_client-0.7.1-py2.7.egg/marionette/marionette_test.py"", line 143, in run
+    testMethod()
+  File ""/var/jenkins/workspace/b2g.hamachi.mozilla-aurora.marketplace/marketplacetests/tests/test_marketplace_feedback_login.py"", line 24, in test_marketplace_feedback_user
+    self.marketplace.launch()
+  File ""/var/jenkins/workspace/b2g.hamachi.mozilla-aurora.marketplace/marketplacetests/marketplace/app.py"", line 48, in launch
+    Base.launch(self, launch_timeout=120000)
+  File ""/var/jenkins/workspace/b2g.hamachi.mozilla-aurora.marketplace/.env/local/lib/python2.7/site-packages/gaiatest-0.21.2-py2.7.egg/gaiatest/apps/base.py"", line 26, in launch
+    self.app = self.apps.launch(self.name, launch_timeout=launch_timeout)
+  File ""/var/jenkins/workspace/b2g.hamachi.mozilla-aurora.marketplace/.env/local/lib/python2.7/site-packages/gaiatest-0.21.2-py2.7.egg/gaiatest/gaia_test.py"", line 75, in launch
+    result = self.marionette.execute_async_script(""GaiaApps.launchWithName('%s')"" % name, script_timeout=launch_timeout)
+  File ""/var/jenkins/workspace/b2g.hamachi.mozilla-aurora.marketplace/.env/local/lib/python2.7/site-packages/marionette_client-0.7.1-py2.7.egg/marionette/marionette.py"", line 1073, in execute_async_script
+    filename=os.path.basename(frame[0]))
+  File ""/var/jenkins/workspace/b2g.hamachi.mozilla-aurora.marketplace/.env/local/lib/python2.7/site-packages/marionette_client-0.7.1-py2.7.egg/marionette/marionette.py"", line 577, in _send_message
+    self._handle_error(response)
+  File ""/var/jenkins/workspace/b2g.hamachi.mozilla-aurora.marketplace/.env/local/lib/python2.7/site-packages/marionette_client-0.7.1-py2.7.egg/marionette/marionette.py"", line 612, in _handle_error
+    raise JavascriptException(message=message, status=status, stacktrace=stacktrace)
+JavascriptException: TypeError: widgetFrame is null
+    stacktrace:
+    @app://system.gaiamobile.org/js/cost_control.js, line 70
+TEST-UNEXPECTED-FAIL | test_marketplace_feedback_login.py test_marketplace_feedback_login.TestMarketplaceFeedback.test_marketplace_feedback_user | 
+----------------------------------------------------------------------
+Ran 1 test in 74.436s
+
+FAILED (errors=1)
+```
+
+We saw something similar in the gaia-ui-tests job awhile back and had to wait for a developer to address it.
+
+Because this repo is small and focussed on testing Marketplace functionality, as opposed to general gaia reliability, it was suggested that maybe we should just ignore these errors. I believe that Bebe proposed a similar approach at the time and it wasn't favoured, but I discussed this with Zac on IRC and we thought it might be appropriate for this repo.
+
+Hence, I bring you this pull request. It is a bit ugly as I had to override the launch method in `GaiaApps`, but the plus side is that, if we do decide to accept this patch, we now have a template going forward for any other times we need to customize the behaviour of gaiatest for this repo.
+
+I'm not convinced that this is the best approach, and I'm going to try something simpler as well, and probably submit that as a second PR, so I am interested in people's feedback on this.
+
+Pinging @zacc @davehunt @bebef1987 for feedback.
+",bobsilverberg,142755,2014-01-09T01:02:32Z,COLLABORATOR,True,6,1,1,Marketplace UI tests for Firefox OS,,c37f1926566d7e2fd7777f8a260396762852c309,Override the launch method in marketplace.app to ignore pesky Javascript errors
+117,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/9,9,Bug 957613 - [B2G][v1.3][Marketplace] Test Marketplace app without inter...,"...net connectivity message
+",AndreiH,2787766,2014-01-08T14:41:31Z,CONTRIBUTOR,True,2,0,1,Marketplace UI tests for Firefox OS,,265d74dcc189eaf3520ed3548c568f1a02999ce1,Bug 957613 - [B2G][v1.3][Marketplace] Test Marketplace app without internet connectivity message
+118,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/8,8,This resolves test_marketplace_search_and_install_app.py fail,"http://qa-selenium.mv.mozilla.com:8080/job/b2g.inari.mozilla-b2g26_v1_2.marketplace/lastCompletedBuild/testReport/test_marketplace_search_and_install_app/TestSearchMarketplaceAndInstallApp/test_search_and_install_app/
+",AndreiH,2787766,2014-01-07T14:01:46Z,CONTRIBUTOR,True,1,1,1,Marketplace UI tests for Firefox OS,,b4fd8d24f5165ccc47f26984e932f017a7a2e242,This resolves test_marketplace_search_and_install_app.py fail
+119,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/6,6,Bug 948936  fix gaia test install_marketplace,"Issue #5 
+",bebef1987,703611,2013-12-11T13:51:37Z,CONTRIBUTOR,True,59,76,13,Marketplace UI tests for Firefox OS,,d0463c38a63b73a4adf9d7f0a97ac992cc62d2da,Bug 948936 - [marketplace-tests] Fix Marketplace tests fail object has no attribute 'install_marketplace'
+120,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/4,4,Xfail region,"As per bug comment https://bugzilla.mozilla.org/show_bug.cgi?id=941307#c1 we have to change our tests:
+## QA
+- On desktop: search for "":debug"" (or hold the logo for 3 seconds) and a <select> menus for Region/Carrier appear.
+- On mobile: hold the logo for 3 seconds and <select> menus for Region/Carrier appear.
+",AndreiH,2787766,2013-11-28T14:12:39Z,CONTRIBUTOR,True,4,0,1,Marketplace UI tests for Firefox OS,,cc82ea9fde4f139765838e19a29e138721719e65,Fix TestMarketplaceWithoutConnectivity
+121,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/4,4,Xfail region,"As per bug comment https://bugzilla.mozilla.org/show_bug.cgi?id=941307#c1 we have to change our tests:
+## QA
+- On desktop: search for "":debug"" (or hold the logo for 3 seconds) and a <select> menus for Region/Carrier appear.
+- On mobile: hold the logo for 3 seconds and <select> menus for Region/Carrier appear.
+",AndreiH,2787766,2013-11-28T14:12:39Z,CONTRIBUTOR,True,4,0,1,Marketplace UI tests for Firefox OS,,521be98967051c15d3630b15794a54b715aa4e06,Merge remote-tracking branch 'origin/master'
+122,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/4,4,Xfail region,"As per bug comment https://bugzilla.mozilla.org/show_bug.cgi?id=941307#c1 we have to change our tests:
+## QA
+- On desktop: search for "":debug"" (or hold the logo for 3 seconds) and a <select> menus for Region/Carrier appear.
+- On mobile: hold the logo for 3 seconds and <select> menus for Region/Carrier appear.
+",AndreiH,2787766,2013-11-28T14:12:39Z,CONTRIBUTOR,True,4,0,1,Marketplace UI tests for Firefox OS,,71746d6b52cb20fbc44bbc1c751c97afb3749d58,Xfail region change tests
+123,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/3,3,fix marketplace settings,,bebef1987,703611,2013-11-27T15:56:55Z,CONTRIBUTOR,True,1,1,1,Marketplace UI tests for Firefox OS,,3491551f60ab769ff3dba61a99f43803ec0278fb,fix marketplace settings
+124,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/2,2,Fix TestMarketplaceWithoutConnectivity,"and I unxfailed Unexpected to pass tests
+http://qa-selenium.mv.mozilla.com:8080/view/B2G%20v1.2/job/b2g.inari.mozilla-b2g26_v1_2.marketplace/lastCompletedBuild/HTML_Report/?
+",AndreiH,2787766,2013-11-20T15:55:09Z,CONTRIBUTOR,True,6,10,3,Marketplace UI tests for Firefox OS,,75d521013d7618617e73f86747070b9de6502155,Fix TestMarketplaceWithoutConnectivity
+125,https://api.github.com/repos/mozilla/marketplace-tests-gaia/pulls/1,1,update test app,,bebef1987,703611,2013-11-06T13:54:22Z,CONTRIBUTOR,True,4,4,3,Marketplace UI tests for Firefox OS,,2627020b86e373ceda73d7a427e72b57d24b3776,update test app

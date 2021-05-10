@@ -1,0 +1,195 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/36,36,Add Mozilla Code of Conduct,"Fixes #35
+
+
+As of January 1 2019, Mozilla requires that all GitHub projects include this [CODE_OF_CONDUCT.md](https://github.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md) file in the project root. The file has two parts:
+
+1. Required Text - All text under the headings *Community Participation Guidelines and How to Report*, are required, and should not be altered.
+2. Optional Text - The Project Specific Etiquette heading provides a space to speak more specifically about ways people can work effectively and inclusively together. Some examples of those can be found on the [Firefox Debugger](https://github.com/devtools-html/debugger.html/blob/master/CODE_OF_CONDUCT.md) project, and [Common Voice](https://github.com/mozilla/voice-web/blob/master/CODE_OF_CONDUCT.md). (The optional part is commented out in the [raw template file](https://raw.githubusercontent.com/mozilla/repo-templates/blob/master/templates/CODE_OF_CONDUCT.md), and will not be visible until you modify and uncomment that part.)
+
+If you have any questions about this file, or Code of Conduct policies and procedures, please see [Mozilla-GitHub-Standards](https://wiki.mozilla.org/GitHub/Repository_Requirements) or email Mozilla-GitHub-Standards+CoC@mozilla.com.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,48073334,2019-03-29T22:04:36Z,NONE,False,15,0,1,,Clojure,523d4f08f7889aa7e42fb17faf4ce6849ce7f639,"Add Mozilla Code of Conduct file
+
+Fixes #35.
+
+_(Message COC002)_"
+1,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/28,28,Use Datomish 0.3.2.,,rnewman,91722,2016-11-23T17:45:32Z,CONTRIBUTOR,True,1,1,1,,Clojure,9a323d9ed576e19feb1eca9ca30d12c5a1c641fd,Use Datomish 0.3.2.
+2,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/23,23,Rework <pages-matching-string. Fixes #9.,,rnewman,91722,2016-11-03T00:59:20Z,CONTRIBUTOR,False,23,32,1,,Clojure,0b98ed961056d4c107a03618ff683e95fcf77751,WIP: begin reworking <pages-matching-string.
+3,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/23,23,Rework <pages-matching-string. Fixes #9.,,rnewman,91722,2016-11-03T00:59:20Z,CONTRIBUTOR,False,23,32,1,,Clojure,4217ffc2632af3d91c2316fa940844c90cd4c0be,Remove max.
+4,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/22,22,Rework <pages-matching-string.,"This uses `or-join`. Note that this depends on https://github.com/mozilla/datomish/pull/100 for `ground`.
+
+I also added a commit to fix a wait-for-start issue in tests. Your choice if you want this pulled up to the server itself, @ncalexan.
+",rnewman,91722,2016-10-18T04:03:42Z,CONTRIBUTOR,False,41,33,2,,Clojure,28ad02cb39e7112d388a16c51cc1d5ef01edfe85,"Wait for the server to start before proceeding with tests.
+
+Without this change, some tests will fail with timing-related errors, like
+
+   POST /v1/sessions/end 200 15.903 ms - 2
+
+   FAIL in (test-visits) (at /Users/rnewman/moz/git/datomish-user-agent-service/target/test/cljs/core/async/impl/channels.js:195:22)
+   expected: (clojure.core/= e__41737__auto__ nil)
+     actual: (not (clojure.core/= #object[FetchError FetchError: request to http://localhost:3002/v1/sessions/start failed, reason: connect ECONNREFUSED 127.0.0.1:3002] nil))
+   POST /v1/sessions/start 200 269.530 ms - 17
+
+We might consider shifting this change into server.cljs."
+5,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/22,22,Rework <pages-matching-string.,"This uses `or-join`. Note that this depends on https://github.com/mozilla/datomish/pull/100 for `ground`.
+
+I also added a commit to fix a wait-for-start issue in tests. Your choice if you want this pulled up to the server itself, @ncalexan.
+",rnewman,91722,2016-10-18T04:03:42Z,CONTRIBUTOR,False,41,33,2,,Clojure,37d8a9a40f4a087c5b62b659a2f1a83cb6dd31be,Rework <pages-matching-string.
+6,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/20,20,Use bunyan for optional logging. (#19),"The default settings in bin/user-agent-service are for local developers,
+so they log aggressively to stdout.  There's a corresponding Tofino
+patch to pipe the UAS process stdout to the Tofino main process stdout,
+and to turn the amount of logging down in that situation.
+
+I elected to make the logger optional rather than get it working in
+core.cljs for now; it's not hard, but I'll do it when I next want to
+develop using figwheel.
+",ncalexan,1097182,2016-10-14T23:24:39Z,MEMBER,False,98,39,5,,Clojure,187e55b473176c62e8400d676129bac944c8911c,"Use bunyan for optional logging. (#19)
+
+The default settings in bin/user-agent-service are for local developers,
+so they log aggressively to stdout.  There's a corresponding Tofino
+patch to pipe the UAS process stdout to the Tofino main process stdout,
+and to turn the amount of logging down in that situation.
+
+I elected to make the logger optional rather than get it working in
+core.cljs for now; it's not hard, but I'll do it when I next want to
+develop using figwheel."
+7,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/14,14,Listen on localhost only by default. (#5),,ncalexan,1097182,2016-10-12T17:28:08Z,MEMBER,True,4,3,1,,Clojure,b8626ef69a42584dcb0d299d36e33418c736d75a,Listen on localhost only by default. (#5)
+8,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/12,12,Fix a bunch of issues.,"This fixes #6, #8, #9, #10, #11.
+
+Note that I haven't finished reworking `<pages-matching-string` yet — it's not a regression because we were never returning a last modified time or a snippet, and the excerpt we extracted was never used, but I still need to flesh it out.
+
+I haven't run tests, because the repo depends on an unreleased version of `cljs-promises`. Paging @ncalexan!
+",rnewman,91722,2016-10-11T00:51:02Z,CONTRIBUTOR,False,23,32,1,,Clojure,0b98ed961056d4c107a03618ff683e95fcf77751,WIP: begin reworking <pages-matching-string.
+9,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/12,12,Fix a bunch of issues.,"This fixes #6, #8, #9, #10, #11.
+
+Note that I haven't finished reworking `<pages-matching-string` yet — it's not a regression because we were never returning a last modified time or a snippet, and the excerpt we extracted was never used, but I still need to flesh it out.
+
+I haven't run tests, because the repo depends on an unreleased version of `cljs-promises`. Paging @ncalexan!
+",rnewman,91722,2016-10-11T00:51:02Z,CONTRIBUTOR,False,23,32,1,,Clojure,4217ffc2632af3d91c2316fa940844c90cd4c0be,Remove max.
+10,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/1,1,First version,"@rnewman this tree is a bit of a mess, so you might just want to look at the final diff.  Totally your call.  Might as well get something landed and polish from there.
+
+After applying https://github.com/mozilla/tofino/pull/1262, Tofino runs locally against this.
+
+For testing against Tofino, modify the Tofino `app/packages.json` to point at your local package directory and run `lein cljsbuild auto release-node`.  That'll update the `target/release-node/datomish-user-agent-service.js` in place, which will get picked up by the bin script used by Tofino.  It works pretty well.
+
+For testing with cURL, run `lein figwheel dev` in one terminal, and then `node target/release-node/datomish_user_agent_service.js` in another terminal.  That'll hot reload the server code, taking care to maintain the same HTTP server while swapping out the Express router.  (With a little work we'll be able to preserve the WS clients across swaps too.)
+
+For running the (minimal) tests, `lein doo node test` hot reloads the tests.
+
+There's lots of work to be done, including getting those instructions into the README; I'll file a roadmap issue to dump some of those issues when I get energy.  Onwards!
+",ncalexan,1097182,2016-09-28T17:26:35Z,MEMBER,True,701,318,11,,Clojure,56061f76e57a96ea84ab40efee6f10c7b7045987,Package.json.
+11,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/1,1,First version,"@rnewman this tree is a bit of a mess, so you might just want to look at the final diff.  Totally your call.  Might as well get something landed and polish from there.
+
+After applying https://github.com/mozilla/tofino/pull/1262, Tofino runs locally against this.
+
+For testing against Tofino, modify the Tofino `app/packages.json` to point at your local package directory and run `lein cljsbuild auto release-node`.  That'll update the `target/release-node/datomish-user-agent-service.js` in place, which will get picked up by the bin script used by Tofino.  It works pretty well.
+
+For testing with cURL, run `lein figwheel dev` in one terminal, and then `node target/release-node/datomish_user_agent_service.js` in another terminal.  That'll hot reload the server code, taking care to maintain the same HTTP server while swapping out the Express router.  (With a little work we'll be able to preserve the WS clients across swaps too.)
+
+For running the (minimal) tests, `lein doo node test` hot reloads the tests.
+
+There's lots of work to be done, including getting those instructions into the README; I'll file a roadmap issue to dump some of those issues when I get energy.  Onwards!
+",ncalexan,1097182,2016-09-28T17:26:35Z,MEMBER,True,701,318,11,,Clojure,0565073e656b452edd9be14e776f3b27d32f2aab,Export bin/user-agent-service.
+12,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/1,1,First version,"@rnewman this tree is a bit of a mess, so you might just want to look at the final diff.  Totally your call.  Might as well get something landed and polish from there.
+
+After applying https://github.com/mozilla/tofino/pull/1262, Tofino runs locally against this.
+
+For testing against Tofino, modify the Tofino `app/packages.json` to point at your local package directory and run `lein cljsbuild auto release-node`.  That'll update the `target/release-node/datomish-user-agent-service.js` in place, which will get picked up by the bin script used by Tofino.  It works pretty well.
+
+For testing with cURL, run `lein figwheel dev` in one terminal, and then `node target/release-node/datomish_user_agent_service.js` in another terminal.  That'll hot reload the server code, taking care to maintain the same HTTP server while swapping out the Express router.  (With a little work we'll be able to preserve the WS clients across swaps too.)
+
+For running the (minimal) tests, `lein doo node test` hot reloads the tests.
+
+There's lots of work to be done, including getting those instructions into the README; I'll file a roadmap issue to dump some of those issues when I get energy.  Onwards!
+",ncalexan,1097182,2016-09-28T17:26:35Z,MEMBER,True,701,318,11,,Clojure,75d8691bd9921bb1985bc261066284a3611bc13c,Make it pass Tofino's test-server.
+13,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/1,1,First version,"@rnewman this tree is a bit of a mess, so you might just want to look at the final diff.  Totally your call.  Might as well get something landed and polish from there.
+
+After applying https://github.com/mozilla/tofino/pull/1262, Tofino runs locally against this.
+
+For testing against Tofino, modify the Tofino `app/packages.json` to point at your local package directory and run `lein cljsbuild auto release-node`.  That'll update the `target/release-node/datomish-user-agent-service.js` in place, which will get picked up by the bin script used by Tofino.  It works pretty well.
+
+For testing with cURL, run `lein figwheel dev` in one terminal, and then `node target/release-node/datomish_user_agent_service.js` in another terminal.  That'll hot reload the server code, taking care to maintain the same HTTP server while swapping out the Express router.  (With a little work we'll be able to preserve the WS clients across swaps too.)
+
+For running the (minimal) tests, `lein doo node test` hot reloads the tests.
+
+There's lots of work to be done, including getting those instructions into the README; I'll file a roadmap issue to dump some of those issues when I get energy.  Onwards!
+",ncalexan,1097182,2016-09-28T17:26:35Z,MEMBER,True,701,318,11,,Clojure,89bb1eee4f8e984d3aaee06927632d8b98c67a13,"Make /query consider :page/* and :save/*.
+
+This requires two queries for now; in the future, we'll be able to do it
+with `or-join`."
+14,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/1,1,First version,"@rnewman this tree is a bit of a mess, so you might just want to look at the final diff.  Totally your call.  Might as well get something landed and polish from there.
+
+After applying https://github.com/mozilla/tofino/pull/1262, Tofino runs locally against this.
+
+For testing against Tofino, modify the Tofino `app/packages.json` to point at your local package directory and run `lein cljsbuild auto release-node`.  That'll update the `target/release-node/datomish-user-agent-service.js` in place, which will get picked up by the bin script used by Tofino.  It works pretty well.
+
+For testing with cURL, run `lein figwheel dev` in one terminal, and then `node target/release-node/datomish_user_agent_service.js` in another terminal.  That'll hot reload the server code, taking care to maintain the same HTTP server while swapping out the Express router.  (With a little work we'll be able to preserve the WS clients across swaps too.)
+
+For running the (minimal) tests, `lein doo node test` hot reloads the tests.
+
+There's lots of work to be done, including getting those instructions into the README; I'll file a roadmap issue to dump some of those issues when I get energy.  Onwards!
+",ncalexan,1097182,2016-09-28T17:26:35Z,MEMBER,True,701,318,11,,Clojure,22ffff2065a0990cc8294607c402c3824073bb1c,Implement User Agent Service WebSocket API.
+15,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/1,1,First version,"@rnewman this tree is a bit of a mess, so you might just want to look at the final diff.  Totally your call.  Might as well get something landed and polish from there.
+
+After applying https://github.com/mozilla/tofino/pull/1262, Tofino runs locally against this.
+
+For testing against Tofino, modify the Tofino `app/packages.json` to point at your local package directory and run `lein cljsbuild auto release-node`.  That'll update the `target/release-node/datomish-user-agent-service.js` in place, which will get picked up by the bin script used by Tofino.  It works pretty well.
+
+For testing with cURL, run `lein figwheel dev` in one terminal, and then `node target/release-node/datomish_user_agent_service.js` in another terminal.  That'll hot reload the server code, taking care to maintain the same HTTP server while swapping out the Express router.  (With a little work we'll be able to preserve the WS clients across swaps too.)
+
+For running the (minimal) tests, `lein doo node test` hot reloads the tests.
+
+There's lots of work to be done, including getting those instructions into the README; I'll file a roadmap issue to dump some of those issues when I get energy.  Onwards!
+",ncalexan,1097182,2016-09-28T17:26:35Z,MEMBER,True,701,318,11,,Clojure,14e44cabf1f9960f37665f26017d9694b0e05cec,Allow cross origin requests.
+16,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/1,1,First version,"@rnewman this tree is a bit of a mess, so you might just want to look at the final diff.  Totally your call.  Might as well get something landed and polish from there.
+
+After applying https://github.com/mozilla/tofino/pull/1262, Tofino runs locally against this.
+
+For testing against Tofino, modify the Tofino `app/packages.json` to point at your local package directory and run `lein cljsbuild auto release-node`.  That'll update the `target/release-node/datomish-user-agent-service.js` in place, which will get picked up by the bin script used by Tofino.  It works pretty well.
+
+For testing with cURL, run `lein figwheel dev` in one terminal, and then `node target/release-node/datomish_user_agent_service.js` in another terminal.  That'll hot reload the server code, taking care to maintain the same HTTP server while swapping out the Express router.  (With a little work we'll be able to preserve the WS clients across swaps too.)
+
+For running the (minimal) tests, `lein doo node test` hot reloads the tests.
+
+There's lots of work to be done, including getting those instructions into the README; I'll file a roadmap issue to dump some of those issues when I get energy.  Onwards!
+",ncalexan,1097182,2016-09-28T17:26:35Z,MEMBER,True,701,318,11,,Clojure,3b0e3bea4ab5330af1287138da337fa902c8a7fc,Use morgan to log requests.
+17,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/1,1,First version,"@rnewman this tree is a bit of a mess, so you might just want to look at the final diff.  Totally your call.  Might as well get something landed and polish from there.
+
+After applying https://github.com/mozilla/tofino/pull/1262, Tofino runs locally against this.
+
+For testing against Tofino, modify the Tofino `app/packages.json` to point at your local package directory and run `lein cljsbuild auto release-node`.  That'll update the `target/release-node/datomish-user-agent-service.js` in place, which will get picked up by the bin script used by Tofino.  It works pretty well.
+
+For testing with cURL, run `lein figwheel dev` in one terminal, and then `node target/release-node/datomish_user_agent_service.js` in another terminal.  That'll hot reload the server code, taking care to maintain the same HTTP server while swapping out the Express router.  (With a little work we'll be able to preserve the WS clients across swaps too.)
+
+For running the (minimal) tests, `lein doo node test` hot reloads the tests.
+
+There's lots of work to be done, including getting those instructions into the README; I'll file a roadmap issue to dump some of those issues when I get energy.  Onwards!
+",ncalexan,1097182,2016-09-28T17:26:35Z,MEMBER,True,701,318,11,,Clojure,7d1acbcf767ea98c3a538548e7ebd1142fd499af,Push to NPM.
+18,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/1,1,First version,"@rnewman this tree is a bit of a mess, so you might just want to look at the final diff.  Totally your call.  Might as well get something landed and polish from there.
+
+After applying https://github.com/mozilla/tofino/pull/1262, Tofino runs locally against this.
+
+For testing against Tofino, modify the Tofino `app/packages.json` to point at your local package directory and run `lein cljsbuild auto release-node`.  That'll update the `target/release-node/datomish-user-agent-service.js` in place, which will get picked up by the bin script used by Tofino.  It works pretty well.
+
+For testing with cURL, run `lein figwheel dev` in one terminal, and then `node target/release-node/datomish_user_agent_service.js` in another terminal.  That'll hot reload the server code, taking care to maintain the same HTTP server while swapping out the Express router.  (With a little work we'll be able to preserve the WS clients across swaps too.)
+
+For running the (minimal) tests, `lein doo node test` hot reloads the tests.
+
+There's lots of work to be done, including getting those instructions into the README; I'll file a roadmap issue to dump some of those issues when I get energy.  Onwards!
+",ncalexan,1097182,2016-09-28T17:26:35Z,MEMBER,True,701,318,11,,Clojure,86af79b3bf7e964044b64a0c03b2c1c47c52b956,Fix tests.
+19,https://api.github.com/repos/mozilla/datomish-user-agent-service/pulls/1,1,First version,"@rnewman this tree is a bit of a mess, so you might just want to look at the final diff.  Totally your call.  Might as well get something landed and polish from there.
+
+After applying https://github.com/mozilla/tofino/pull/1262, Tofino runs locally against this.
+
+For testing against Tofino, modify the Tofino `app/packages.json` to point at your local package directory and run `lein cljsbuild auto release-node`.  That'll update the `target/release-node/datomish-user-agent-service.js` in place, which will get picked up by the bin script used by Tofino.  It works pretty well.
+
+For testing with cURL, run `lein figwheel dev` in one terminal, and then `node target/release-node/datomish_user_agent_service.js` in another terminal.  That'll hot reload the server code, taking care to maintain the same HTTP server while swapping out the Express router.  (With a little work we'll be able to preserve the WS clients across swaps too.)
+
+For running the (minimal) tests, `lein doo node test` hot reloads the tests.
+
+There's lots of work to be done, including getting those instructions into the README; I'll file a roadmap issue to dump some of those issues when I get energy.  Onwards!
+",ncalexan,1097182,2016-09-28T17:26:35Z,MEMBER,True,701,318,11,,Clojure,30a637a0c8f6570e14b74fbff60f41c4720afdaf,"Add /query and /transact endpoints.
+
+These offer raw access to the underlying Datomish knowledge base, so
+I've elected not to put them in the /v1 namespace."

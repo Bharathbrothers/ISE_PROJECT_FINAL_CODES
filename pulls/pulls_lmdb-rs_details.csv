@@ -1,0 +1,829 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/lmdb-rs/pulls/91,91,Bump lmdb to the official 0.9.28,"Maybe I am wrong, but it seems that it could be a good idea to come back to the official LMDB release stream finally. This brings some fixes for windows (dynamic file growth) and multiple speed improvements and bug fixes. There also is new encryption function support.
+
+Note that make the crate to be able to compile with warnings as, now that rustdoc tries to parse `@param [in/out]`, it emits warnings, and I didn't find any way to escape those `[`, `]` automatically. But if this is a problem, I could easily do that by hand (sed will help me).
+
+I hope this PR finds you well. Please tell me if there is something wrong here.",Kerollmops,3610253,2021-03-20T12:07:12Z,NONE,False,6,7,6,Safe Rust bindings for LMDB,Rust,2e7a8b4215793edf3e08c678547669d19d8aede3,Bump the lmdb submodule to the official 0.9.28 release
+1,https://api.github.com/repos/mozilla/lmdb-rs/pulls/91,91,Bump lmdb to the official 0.9.28,"Maybe I am wrong, but it seems that it could be a good idea to come back to the official LMDB release stream finally. This brings some fixes for windows (dynamic file growth) and multiple speed improvements and bug fixes. There also is new encryption function support.
+
+Note that make the crate to be able to compile with warnings as, now that rustdoc tries to parse `@param [in/out]`, it emits warnings, and I didn't find any way to escape those `[`, `]` automatically. But if this is a problem, I could easily do that by hand (sed will help me).
+
+I hope this PR finds you well. Please tell me if there is something wrong here.",Kerollmops,3610253,2021-03-20T12:07:12Z,NONE,False,6,7,6,Safe Rust bindings for LMDB,Rust,3aad583bd7aff9aeb85e490b487199e4f988e222,Bump the lmdb-sys crate to 0.12.0
+2,https://api.github.com/repos/mozilla/lmdb-rs/pulls/90,90,Check in Cargo.lock for reproducible builds (fixes build on Apple Silicon),"This ensures the latest version of the `cc` crate is used.
+
+We are currently trying to build `ripgrep-all` on Apple Silicon for Homebrew (https://github.com/phiresky/ripgrep-all/issues/96), but the build fails due to a failure in the `lmdb-rkv-sys` crate:
+
+```
+The following warnings were emitted during compilation:
+
+warning: error: unknown target triple 'unknown-apple-macosx11.0.0', please use -triple or -arch
+warning: error: unknown target triple 'unknown-apple-macosx11.0.0', please use -triple or -arch
+
+error: failed to run custom build command for `lmdb-rkv-sys v0.11.0`
+
+Caused by:
+  process didn't exit successfully: `/private/tmp/ripgrep-all-20210108-20170-1y2jt66/ripgrep-all-0.9.6/target/release/build/lmdb-rkv-sys-664251cca3dc46db/build-script-build` (exit code: 1)
+```
+
+This is because of the difference between the Rust target `aarch64-apple-darwin` and the Clang/LLVM target `arm64-apple-darwin`. When `clang` is called with `aarch64-apple-darwin` as target, it errors with `warning: error: unknown target triple 'unknown-apple-macosx11.0.0', please use -triple or -arch`. 
+
+This issue was fixed in a recent version of the `cc` crate.
+
+Update: after creating this PR, I realized that downstream Cargo.lock files need to be updated, since ""lmdb-rkv-sys"" does not pin a specific minor version of `cc`. I'll keep this PR open as a draft, then close it if it is not fixed by updating Cargo.lock downstream. ",richiksc,8939680,2021-01-10T18:12:19Z,NONE,False,290,1,2,Safe Rust bindings for LMDB,Rust,7ebdf4c560e91d745aec4c2e7298543faa1c8e59,"Check in Cargo.lock for reproducible builds
+
+This ensures the latest version of cc is used, fixes build on Apple Silicon"
+3,https://api.github.com/repos/mozilla/lmdb-rs/pulls/88,88,Update minimal supported version of pkg-config dependency,"I tested our Glean build with `cargo +nightly update -Z minimal-versions` and it broke.
+`pkg-config 0.3.0` doesn't compile. The earliest working version seems to be 0.3.3 (and that's still from 2015).
+Feel free to bump further.",badboy,2129,2020-11-09T13:31:59Z,MEMBER,False,1,1,1,Safe Rust bindings for LMDB,Rust,791be11719fe0427abb8e6d428d2b9b60c28bfba,Update minimal supported version of pkg-config dependency
+4,https://api.github.com/repos/mozilla/lmdb-rs/pulls/86,86,Backwards Iterators,"I implemented backwards iterators which mirror the normal iterators:
+
+`iter` -> `iter_backwarads`
+`iter_start` -> `iter_end_backwards`
+`iter_dup` -> `iter_dup_backwards`
+`iter_dup_start` -> `iter_dup_end_backwards`
+
+I added some tests for those too. I did not implement the remaining routines, because they are not straightforwards to implement, and I don't need them right now:
+
+`iter_from` -> unimplemented
+`iter_dup_from` -> unimplemented
+
+These are problematic because LMDB can find a key greater-or-equal, but can't find one less-or-equal. It would have to be emulated by finding greater-or-equal, and stepping backwards if the returned key is greater than the searched key. There would be corner-cases around the first/last elements. An alternative is to have some asymmetric semantics.
+
+It may be best to discuss this separately, since the ""easy"" backwards iterators cover most use-cases.",potocpav,4094619,2020-10-30T10:47:27Z,NONE,False,95,6,1,Safe Rust bindings for LMDB,Rust,420e00699ac6991d8affb8f81525322c0b861d39,"Implement backwards iterators, add tests"
+5,https://api.github.com/repos/mozilla/lmdb-rs/pulls/86,86,Backwards Iterators,"I implemented backwards iterators which mirror the normal iterators:
+
+`iter` -> `iter_backwarads`
+`iter_start` -> `iter_end_backwards`
+`iter_dup` -> `iter_dup_backwards`
+`iter_dup_start` -> `iter_dup_end_backwards`
+
+I added some tests for those too. I did not implement the remaining routines, because they are not straightforwards to implement, and I don't need them right now:
+
+`iter_from` -> unimplemented
+`iter_dup_from` -> unimplemented
+
+These are problematic because LMDB can find a key greater-or-equal, but can't find one less-or-equal. It would have to be emulated by finding greater-or-equal, and stepping backwards if the returned key is greater than the searched key. There would be corner-cases around the first/last elements. An alternative is to have some asymmetric semantics.
+
+It may be best to discuss this separately, since the ""easy"" backwards iterators cover most use-cases.",potocpav,4094619,2020-10-30T10:47:27Z,NONE,False,95,6,1,Safe Rust bindings for LMDB,Rust,8cd8e951c425c9d63ce5ea9195087c1257c76c71,Improve comments
+6,https://api.github.com/repos/mozilla/lmdb-rs/pulls/85,85,Fix octal mode literal,"`0664` is actually a decimal constant in Rust, and needs to be `0o664` for octal.
+
+A hard habit to break, especially with all the surrounding FFI. Thanks to Clippy for spotting this.",ScottKevill,1425200,2020-07-07T18:35:18Z,NONE,False,1,1,1,Safe Rust bindings for LMDB,Rust,7877a0b195324392679cbb2c07b8e2fc3af68157,Fix octal mode literal
+7,https://api.github.com/repos/mozilla/lmdb-rs/pulls/84,84,Use AsRef<Path> for EnvironmentBuilder::open,"For added convenience, as `std::fs` does.",ScottKevill,1425200,2020-07-07T18:18:19Z,NONE,False,9,3,1,Safe Rust bindings for LMDB,Rust,62303baf19ef8111a84d5992fc580c73f112d861,Use AsRef<Path> for EnvironmentBuilder::open
+8,https://api.github.com/repos/mozilla/lmdb-rs/pulls/82,82,Add feature to make using local system liblmdb optional,"This adds a `use-local-lib` feature that makes it possible to disable using local system `libmdb` and always build LMDB from source for users that want to guarantee the exact version of LMDB used.
+
+Made it enabled by default to not change existing behavior, but would prefer it to be something crate users opt into instead.",repi,1262692,2020-05-07T10:15:41Z,NONE,False,33,23,3,Safe Rust bindings for LMDB,Rust,25d98760490134c2d3edd2f277cc699124ac713b,Add feature to make using local lib optional
+9,https://api.github.com/repos/mozilla/lmdb-rs/pulls/82,82,Add feature to make using local system liblmdb optional,"This adds a `use-local-lib` feature that makes it possible to disable using local system `libmdb` and always build LMDB from source for users that want to guarantee the exact version of LMDB used.
+
+Made it enabled by default to not change existing behavior, but would prefer it to be something crate users opt into instead.",repi,1262692,2020-05-07T10:15:41Z,NONE,False,33,23,3,Safe Rust bindings for LMDB,Rust,26680a981882cfd2ddcb2d931f19975eb7554f71,Fix #cfg compile on older Rust versions
+10,https://api.github.com/repos/mozilla/lmdb-rs/pulls/81,81,Fix tk 01180,,freesig,7286454,2020-04-03T05:14:06Z,NONE,False,55,6,2,Safe Rust bindings for LMDB,Rust,dbc47747f45d1c813aca2ec51fc88c46a2728518,Add iter-end for reverse iteration
+11,https://api.github.com/repos/mozilla/lmdb-rs/pulls/81,81,Fix tk 01180,,freesig,7286454,2020-04-03T05:14:06Z,NONE,False,55,6,2,Safe Rust bindings for LMDB,Rust,ea2d74710c1e7e9e09b48547b7e508eef35a36c7,Fix warnings
+12,https://api.github.com/repos/mozilla/lmdb-rs/pulls/81,81,Fix tk 01180,,freesig,7286454,2020-04-03T05:14:06Z,NONE,False,55,6,2,Safe Rust bindings for LMDB,Rust,3c3f5340531acf00e0b25e1381d250cf4d991d96,failing iter_dup_of
+13,https://api.github.com/repos/mozilla/lmdb-rs/pulls/81,81,Fix tk 01180,,freesig,7286454,2020-04-03T05:14:06Z,NONE,False,55,6,2,Safe Rust bindings for LMDB,Rust,428999d617a274afdb4210b9753043f6dfa433b3,fix compile errors
+14,https://api.github.com/repos/mozilla/lmdb-rs/pulls/81,81,Fix tk 01180,,freesig,7286454,2020-04-03T05:14:06Z,NONE,False,55,6,2,Safe Rust bindings for LMDB,Rust,5f7b74e41c2db4c8168063ace8be1fdce100b4e6,a way to fix this bug
+15,https://api.github.com/repos/mozilla/lmdb-rs/pulls/81,81,Fix tk 01180,,freesig,7286454,2020-04-03T05:14:06Z,NONE,False,55,6,2,Safe Rust bindings for LMDB,Rust,efb5fbeeaf4cc3b1d464ca4a87d967de9ce3e37f,Merge branch 'get_bug_test' of https://github.com/holochain/lmdb-rs into fix_TK-01180
+16,https://api.github.com/repos/mozilla/lmdb-rs/pulls/80,80,iter_dup_of returns other values after a delete,I've created this test to show a bug when calling `iter_dup_of` on a deleted item it returns the next item not an empty Vec as expected.,freesig,7286454,2020-04-03T00:18:02Z,NONE,True,43,1,1,Safe Rust bindings for LMDB,Rust,3c3f5340531acf00e0b25e1381d250cf4d991d96,failing iter_dup_of
+17,https://api.github.com/repos/mozilla/lmdb-rs/pulls/80,80,iter_dup_of returns other values after a delete,I've created this test to show a bug when calling `iter_dup_of` on a deleted item it returns the next item not an empty Vec as expected.,freesig,7286454,2020-04-03T00:18:02Z,NONE,True,43,1,1,Safe Rust bindings for LMDB,Rust,428999d617a274afdb4210b9753043f6dfa433b3,fix compile errors
+18,https://api.github.com/repos/mozilla/lmdb-rs/pulls/80,80,iter_dup_of returns other values after a delete,I've created this test to show a bug when calling `iter_dup_of` on a deleted item it returns the next item not an empty Vec as expected.,freesig,7286454,2020-04-03T00:18:02Z,NONE,True,43,1,1,Safe Rust bindings for LMDB,Rust,5f7b74e41c2db4c8168063ace8be1fdce100b4e6,a way to fix this bug
+19,https://api.github.com/repos/mozilla/lmdb-rs/pulls/78,78,Fix type `mode_t` type errors after updating bindings,Signed-off-by: Victor <victor.porof@gmail.com>,victorporof,248899,2020-03-10T11:27:03Z,COLLABORATOR,True,1,1,1,Safe Rust bindings for LMDB,Rust,20f1b65822892ca8bb44a24fd27421d2f1ea1f97,"Fix type `mode_t` type errors after updating bindings
+
+Signed-off-by: Victor <victor.porof@gmail.com>"
+20,https://api.github.com/repos/mozilla/lmdb-rs/pulls/77,77,Fix bindings.,"PR #74 introduced a manually-generated change to the bindings that I
+accidentally broke in #76.",emilio,1323194,2020-03-10T10:46:07Z,COLLABORATOR,True,8,9,4,Safe Rust bindings for LMDB,Rust,3f1067ab6cabb705709af4df9a0ddd272e010d92,"Fix bindings.
+
+PR #74 introduced a manually-generated change to the bindings that I
+accidentally broke in #76."
+21,https://api.github.com/repos/mozilla/lmdb-rs/pulls/77,77,Fix bindings.,"PR #74 introduced a manually-generated change to the bindings that I
+accidentally broke in #76.",emilio,1323194,2020-03-10T10:46:07Z,COLLABORATOR,True,8,9,4,Safe Rust bindings for LMDB,Rust,0eaa4e98b904747cab3bee0a343d97ea628e4a7c,"Specify the ""runtime"" feature of bindgen.
+
+As it became non-default in https://github.com/rust-lang/rust-bindgen/pull/1620."
+22,https://api.github.com/repos/mozilla/lmdb-rs/pulls/77,77,Fix bindings.,"PR #74 introduced a manually-generated change to the bindings that I
+accidentally broke in #76.",emilio,1323194,2020-03-10T10:46:07Z,COLLABORATOR,True,8,9,4,Safe Rust bindings for LMDB,Rust,39063b8113d43433b632c4b5d117814cacff314a,Make binding generation work properly on Windows too.
+23,https://api.github.com/repos/mozilla/lmdb-rs/pulls/76,76,Update bindgen.,,emilio,1323194,2020-03-09T23:54:31Z,COLLABORATOR,True,6,2,3,Safe Rust bindings for LMDB,Rust,4511f1c6057ab730f3ac4b083cb990baa1a77e51,Update bindgen.
+24,https://api.github.com/repos/mozilla/lmdb-rs/pulls/74,74,Support windows FileHandle types,Currently the windows support is not completely full as it didn't correctly support the windows file handles. I changed the type to make it relative to the running platform like for the `mode_t` type.,Kerollmops,3610253,2019-11-25T18:03:57Z,NONE,True,29,1,4,Safe Rust bindings for LMDB,Rust,30a4fba21e38170e2b11d514e51ba66a4c89d69e,Support windows FileHandle types
+25,https://api.github.com/repos/mozilla/lmdb-rs/pulls/74,74,Support windows FileHandle types,Currently the windows support is not completely full as it didn't correctly support the windows file handles. I changed the type to make it relative to the running platform like for the `mode_t` type.,Kerollmops,3610253,2019-11-25T18:03:57Z,NONE,True,29,1,4,Safe Rust bindings for LMDB,Rust,6252e1efee9b94e5b7b0a27133de2244e3378d37,Add a test to check that copy works on windows
+26,https://api.github.com/repos/mozilla/lmdb-rs/pulls/73,73,Add feature to compile lmdb with NDEBUG,"The `with-ndebug` features sets `NDEBUG` at compile time, which disables `mdb_assert_fail`.
+Otherwise this prints directly to `stderr`, causing problems on old Android versions.",badboy,2129,2019-10-29T11:05:52Z,MEMBER,False,6,0,2,Safe Rust bindings for LMDB,Rust,71b3b169faace7e45a56146d0c632b9620f40e2c,"Add feature to compile lmdb with NDEBUG
+
+The `with-ndebug` features sets `NDEBUG` at compile time, which disables `mdb_assert_fail`.
+Otherwise this prints directly to `stderr`, causing problems on old Android versions."
+27,https://api.github.com/repos/mozilla/lmdb-rs/pulls/72,72,test with 32-bit database on 32-bit systems,"I took another look at https://github.com/mozilla/lmdb-rs/pull/59 and realized that the ""simple"" test is testing against a 64-bit database even on 32-bit Windows, which is why it's failing. I dumped and reloaded the ""testdb"" database on a 32-bit (Ubuntu) system and updated the test to use that database on 32-bit systems, after which it started working.",mykmelez,305455,2019-10-26T13:39:36Z,COLLABORATOR,True,8,9,3,Safe Rust bindings for LMDB,Rust,1c28d088ae459dc7aa8ec473012a48607280de40,test with 32-bit database on 32-bit systems
+28,https://api.github.com/repos/mozilla/lmdb-rs/pulls/71,71,Don't depend on bindgen if not needed,"We're using rkv, and thus lmdb-rs, in Glean on Android and iOS.
+For us final binary size is a bit of an issue to keep an eye on and one big contender was regex, luckily recently regex got `featur-ized`, meaning we can disable most of its features to reduce size.
+
+However, in Cargo features for dependencies are unified across all dependencies, dev-dependencies, build-dependencies and platform-specific dependencies.
+
+Now, with lmdb-rs (build-)depending on bindgen and bindgen depending on regex, this will pull back in all the default features of regex and thus blow up our binary and there's no way for us to stop this.
+
+Now to this change:
+bindgen is only required to regenerate [the bindings](https://github.com/mozilla/lmdb-rs/blob/master/lmdb-sys/src/bindings.rs), but otherwise these are committed to the repository.
+It should therefore be fine to not depend on it for a general release.
+This will certainly work for all consumers through crates.io
+I expect mozilla-central to just be another consumer (vendoring it all in), so I guess even those don't need it.
+
+What do you think?
+After this change we should be able to upgrade the version we use (unless any other dependency causes similar issues, but that's on me to trace down and fix then)",badboy,2129,2019-10-24T13:37:42Z,MEMBER,False,3,1,1,Safe Rust bindings for LMDB,Rust,61faea6e14ba69ccf15e95272226d8829b271027,Don't depend on bindgen if not needed
+29,https://api.github.com/repos/mozilla/lmdb-rs/pulls/70,70,Make bindgen optional,"This PR makes `bindgen` optional, so we don't need to compile unnecessary `bindgen` and avoid `clang-sys` version conflicts in some cases.",quininer,6286761,2019-10-11T03:37:04Z,NONE,True,13,6,3,Safe Rust bindings for LMDB,Rust,ecfba91d56ef037ed94c18f7d87fde0ace347890,Make bindgen optional
+30,https://api.github.com/repos/mozilla/lmdb-rs/pulls/69,69,Fix an embarrassing typo in #68.,"Sigh. The line as it is is just 0.51, which is fine, kinda, but doesn't
+accomplish what I want :(",emilio,1323194,2019-09-26T15:44:13Z,COLLABORATOR,True,3,3,2,Safe Rust bindings for LMDB,Rust,aad80958a25b694c10fb9e9d580a53709d57d27d,"Fix an embarrassing typo in #68.
+
+Sigh. The line as it is is just 0.51, which is fine, kinda, but doesn't
+accomplish what I want :("
+31,https://api.github.com/repos/mozilla/lmdb-rs/pulls/68,68,Don't use bindgen's default features.,"And use old syn until the rest of mozilla-central is updated.
+
+This prevents dependencies like which to be built, which is unnecessary, and
+avoids duplicate versions of syn / quote in Gecko, which slow down build times.",emilio,1323194,2019-09-26T12:20:54Z,COLLABORATOR,True,3,3,2,Safe Rust bindings for LMDB,Rust,0d1644099ae5002a4e9b186edfda7b97216b14f8,"Don't use bindgen's default features, and use old syn and quote until the rest of mozilla-central updates to 1.0.
+
+This prevents dependencies like which to be built, which is unnecessary, and
+avoids duplicate versions of syn / quote in Gecko."
+32,https://api.github.com/repos/mozilla/lmdb-rs/pulls/67,67,Remove with-clang feature in favor of using $CC,"Signed-off-by: Victor Porof <victor.porof@gmail.com>
+
+We need this to avoid build failures such as https://treeherder.mozilla.org/#/jobs?repo=try&revision=ea6e31b7bb68c785fc6a61efa79a69fd296d5893",victorporof,248899,2019-09-24T16:08:51Z,COLLABORATOR,True,14,16,4,Safe Rust bindings for LMDB,Rust,bfc6137aecc222a1995476af2ea467256b5d21a6,"Remove with-clang feature in favor of using $CC
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+33,https://api.github.com/repos/mozilla/lmdb-rs/pulls/67,67,Remove with-clang feature in favor of using $CC,"Signed-off-by: Victor Porof <victor.porof@gmail.com>
+
+We need this to avoid build failures such as https://treeherder.mozilla.org/#/jobs?repo=try&revision=ea6e31b7bb68c785fc6a61efa79a69fd296d5893",victorporof,248899,2019-09-24T16:08:51Z,COLLABORATOR,True,14,16,4,Safe Rust bindings for LMDB,Rust,ab1d7117a7e1a2fdb4e6fe607ba567390226bc63,"Temporarily work around CI failure on linux nightlies
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+34,https://api.github.com/repos/mozilla/lmdb-rs/pulls/66,66,Use relaxed dependency versions (pre 0.12) for better build compat with m-c,Signed-off-by: Victor Porof <victor.porof@gmail.com>,victorporof,248899,2019-09-23T15:12:45Z,COLLABORATOR,True,9,9,2,Safe Rust bindings for LMDB,Rust,b4b190748f8fa87076ef37c7377e1c6afd2d2996,"Use relaxed dependency versions (pre 0.12) for better build compat with m-c
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+35,https://api.github.com/repos/mozilla/lmdb-rs/pulls/65,65,Use libfuzzer instrumentation options for building,"@choller, @jschwartzentruber care to take a look?",victorporof,248899,2019-09-13T08:24:30Z,COLLABORATOR,True,56,4,4,Safe Rust bindings for LMDB,Rust,0603615a2dc2a0073d3a2f6c65b6b9a35165ea2e,"Add features for building with asan and fuzzing
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+36,https://api.github.com/repos/mozilla/lmdb-rs/pulls/65,65,Use libfuzzer instrumentation options for building,"@choller, @jschwartzentruber care to take a look?",victorporof,248899,2019-09-13T08:24:30Z,COLLABORATOR,True,56,4,4,Safe Rust bindings for LMDB,Rust,b92f9a2053293e50cbf9aad31edb9107e2db16d8,"Add features for building with fuzzing but not linking libfuzzer
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+37,https://api.github.com/repos/mozilla/lmdb-rs/pulls/65,65,Use libfuzzer instrumentation options for building,"@choller, @jschwartzentruber care to take a look?",victorporof,248899,2019-09-13T08:24:30Z,COLLABORATOR,True,56,4,4,Safe Rust bindings for LMDB,Rust,7372e414224de0a492bd4563528faf3f811b4ea0,"Test instrumentation features on CI on linux and osx
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+38,https://api.github.com/repos/mozilla/lmdb-rs/pulls/65,65,Use libfuzzer instrumentation options for building,"@choller, @jschwartzentruber care to take a look?",victorporof,248899,2019-09-13T08:24:30Z,COLLABORATOR,True,56,4,4,Safe Rust bindings for LMDB,Rust,28f17aac0e6c3da49cbc5d7df556e9fdbb2e470a,"Use official clang on osx
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+39,https://api.github.com/repos/mozilla/lmdb-rs/pulls/65,65,Use libfuzzer instrumentation options for building,"@choller, @jschwartzentruber care to take a look?",victorporof,248899,2019-09-13T08:24:30Z,COLLABORATOR,True,56,4,4,Safe Rust bindings for LMDB,Rust,c79ced82068ccdd8d378c688956ee84aa4a660d6,"Use more recent versions of distro and clang on linux
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+40,https://api.github.com/repos/mozilla/lmdb-rs/pulls/64,64,Use all compiler flags from the makefile when building,Signed-off-by: Victor Porof <victor.porof@gmail.com>,victorporof,248899,2019-09-13T07:18:51Z,COLLABORATOR,True,3,0,1,Safe Rust bindings for LMDB,Rust,918138ef92057d6294f9177217fdcd91378eb94c,"Use all compiler flags from the makefile when building
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+41,https://api.github.com/repos/mozilla/lmdb-rs/pulls/63,63,Toml updates,,victorporof,248899,2019-09-12T12:38:37Z,COLLABORATOR,True,17,12,7,Safe Rust bindings for LMDB,Rust,358f4284505428836790a1efdc729e41859e359d,"Use a simple lib name for lmdb-rkv-sys, mirroring what lmdb-rkv does
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+42,https://api.github.com/repos/mozilla/lmdb-rs/pulls/63,63,Toml updates,,victorporof,248899,2019-09-12T12:38:37Z,COLLABORATOR,True,17,12,7,Safe Rust bindings for LMDB,Rust,76767e9e75703eb584dd10fde6b92a5005c5e0a5,"Use CI badges for the crates.io page, mirroring what lmdb-rkv does
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+43,https://api.github.com/repos/mozilla/lmdb-rs/pulls/63,63,Toml updates,,victorporof,248899,2019-09-12T12:38:37Z,COLLABORATOR,True,17,12,7,Safe Rust bindings for LMDB,Rust,928f3c8af326c7f139172b6eb1f46d85e09b2d1a,"Have documentation and homepage urls for the crates.io page
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+44,https://api.github.com/repos/mozilla/lmdb-rs/pulls/62,62,[CI WIP] Test on more platforms (take 2),WIP,victorporof,248899,2019-09-12T09:25:44Z,COLLABORATOR,False,17,2,1,Safe Rust bindings for LMDB,Rust,e12fb5e6d3ec57abd73a4e980bb03ac271194261,"Test on more platforms
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+45,https://api.github.com/repos/mozilla/lmdb-rs/pulls/61,61,[CI WIP] Test on more platforms,WIP,victorporof,248899,2019-09-12T09:13:17Z,COLLABORATOR,False,17,2,1,Safe Rust bindings for LMDB,Rust,356862ae74f4a3739c5bbdd699b89fcead50ade4,"Test on more platforms
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+46,https://api.github.com/repos/mozilla/lmdb-rs/pulls/60,60,Formatting passes and enable linting on CI,,victorporof,248899,2019-09-11T08:52:15Z,COLLABORATOR,True,628,462,14,Safe Rust bindings for LMDB,Rust,ea60c303fe7c238a1b4354d797d4a874fff23b93,"Enable rustfmt and copy config from the rkv project
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+47,https://api.github.com/repos/mozilla/lmdb-rs/pulls/60,60,Formatting passes and enable linting on CI,,victorporof,248899,2019-09-11T08:52:15Z,COLLABORATOR,True,628,462,14,Safe Rust bindings for LMDB,Rust,2acd21c52929725ab3093b93c835992682acaa69,"Rustfmt pass (cargo +nightly fmt --all)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+48,https://api.github.com/repos/mozilla/lmdb-rs/pulls/60,60,Formatting passes and enable linting on CI,,victorporof,248899,2019-09-11T08:52:15Z,COLLABORATOR,True,628,462,14,Safe Rust bindings for LMDB,Rust,bca20c45c4a4c87726f3dd0237ae0d6a68e9ef69,"Clippy pass (cargo clippy -- -D warnings -A clippy::match-ref-pats -A clippy::needless-lifetimes)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+49,https://api.github.com/repos/mozilla/lmdb-rs/pulls/60,60,Formatting passes and enable linting on CI,,victorporof,248899,2019-09-11T08:52:15Z,COLLABORATOR,True,628,462,14,Safe Rust bindings for LMDB,Rust,2970b17c715d81f5462f1b3d3495d62b7b54a821,"More clippy passes on all targets (cargo clippy --all-targets --all-features -- -D warnings -A clippy::match-ref-pats -A clippy::needless-lifetimes)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+50,https://api.github.com/repos/mozilla/lmdb-rs/pulls/60,60,Formatting passes and enable linting on CI,,victorporof,248899,2019-09-11T08:52:15Z,COLLABORATOR,True,628,462,14,Safe Rust bindings for LMDB,Rust,2622fb2ebf738e4610859792d7ebf0d84f689205,"Disable clippy on generated bindings
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+51,https://api.github.com/repos/mozilla/lmdb-rs/pulls/60,60,Formatting passes and enable linting on CI,,victorporof,248899,2019-09-11T08:52:15Z,COLLABORATOR,True,628,462,14,Safe Rust bindings for LMDB,Rust,f05f1c1cce0e245022caed36b4a490f3844ccd8a,"Run rustfmt and clippy on CI
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+52,https://api.github.com/repos/mozilla/lmdb-rs/pulls/59,59,More testing,This imports the test from https://gist.github.com/victorporof/d1f98b8a52f79c7ff99f361d3a2adc3e but without the assertion.,victorporof,248899,2019-09-10T08:01:38Z,COLLABORATOR,True,76,2,5,Safe Rust bindings for LMDB,Rust,b3fe3714052d3b90913471aef40b4149f38887e4,"Add test program from https://gist.github.com/mykmelez/ac75a7ab0a0d09a7d709be63806d01d7
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+53,https://api.github.com/repos/mozilla/lmdb-rs/pulls/59,59,More testing,This imports the test from https://gist.github.com/victorporof/d1f98b8a52f79c7ff99f361d3a2adc3e but without the assertion.,victorporof,248899,2019-09-10T08:01:38Z,COLLABORATOR,True,76,2,5,Safe Rust bindings for LMDB,Rust,d7d448f2650c3531844a57851a47492d40580367,"Expect failure on win 32
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+54,https://api.github.com/repos/mozilla/lmdb-rs/pulls/59,59,More testing,This imports the test from https://gist.github.com/victorporof/d1f98b8a52f79c7ff99f361d3a2adc3e but without the assertion.,victorporof,248899,2019-09-10T08:01:38Z,COLLABORATOR,True,76,2,5,Safe Rust bindings for LMDB,Rust,77c0ee393e6a877096a562bdbf28d5233da6bf93,"Display verbose cargo version in logs
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+55,https://api.github.com/repos/mozilla/lmdb-rs/pulls/58,58,Run lmdb tests alongside `cargo test`,"Fixes #57
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",victorporof,248899,2019-09-05T09:33:50Z,COLLABORATOR,True,33,0,2,Safe Rust bindings for LMDB,Rust,05dd05998dc6970a349746c4bc6f687be19fc862,"Run lmdb tests alongside `cargo test`
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+56,https://api.github.com/repos/mozilla/lmdb-rs/pulls/58,58,Run lmdb tests alongside `cargo test`,"Fixes #57
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",victorporof,248899,2019-09-05T09:33:50Z,COLLABORATOR,True,33,0,2,Safe Rust bindings for LMDB,Rust,af9500bfd90207cc665866b4f052c994dd7892dc,"Install make on appveyor CI
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+57,https://api.github.com/repos/mozilla/lmdb-rs/pulls/58,58,Run lmdb tests alongside `cargo test`,"Fixes #57
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",victorporof,248899,2019-09-05T09:33:50Z,COLLABORATOR,True,33,0,2,Safe Rust bindings for LMDB,Rust,11dee0bfc211d2d44efe3c904328b305fd097303,"Install gcc on appveyor CI
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+58,https://api.github.com/repos/mozilla/lmdb-rs/pulls/58,58,Run lmdb tests alongside `cargo test`,"Fixes #57
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",victorporof,248899,2019-09-05T09:33:50Z,COLLABORATOR,True,33,0,2,Safe Rust bindings for LMDB,Rust,1436ed3e08ff983f022b70aa2921291f3f0fe945,"Refresh environment variables before attempting to build lmdb
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+59,https://api.github.com/repos/mozilla/lmdb-rs/pulls/56,56,Update lmdb to latest version and other goodies,"This PR:
+* Updates lmdb to 0.9.24 (with MOZ changes on top)
+* Makes the sys crate create bindings automatically using rust-bindgen
+* Allows cc to handle build optimizations, fixes #54 
+* Hides unused parameter warnings while building lmdb",victorporof,248899,2019-08-30T15:58:23Z,COLLABORATOR,True,1559,341,12,Safe Rust bindings for LMDB,Rust,596539ce728c0be7b02df249ec08260d727097b5,"Update lmdb and to latest version of mdb.RE/0.9.24-moz branch
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+60,https://api.github.com/repos/mozilla/lmdb-rs/pulls/56,56,Update lmdb to latest version and other goodies,"This PR:
+* Updates lmdb to 0.9.24 (with MOZ changes on top)
+* Makes the sys crate create bindings automatically using rust-bindgen
+* Allows cc to handle build optimizations, fixes #54 
+* Hides unused parameter warnings while building lmdb",victorporof,248899,2019-08-30T15:58:23Z,COLLABORATOR,True,1559,341,12,Safe Rust bindings for LMDB,Rust,b6720b8937e847637b894bbb7008d1c46a852960,"Create bindings automatically using rust-bindgen
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+61,https://api.github.com/repos/mozilla/lmdb-rs/pulls/56,56,Update lmdb to latest version and other goodies,"This PR:
+* Updates lmdb to 0.9.24 (with MOZ changes on top)
+* Makes the sys crate create bindings automatically using rust-bindgen
+* Allows cc to handle build optimizations, fixes #54 
+* Hides unused parameter warnings while building lmdb",victorporof,248899,2019-08-30T15:58:23Z,COLLABORATOR,True,1559,341,12,Safe Rust bindings for LMDB,Rust,208992590eb18376c8a8fd35bdb7d03a7207e1a4,"Allow cc to handle build optimizations
+
+Fixes #54
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+62,https://api.github.com/repos/mozilla/lmdb-rs/pulls/56,56,Update lmdb to latest version and other goodies,"This PR:
+* Updates lmdb to 0.9.24 (with MOZ changes on top)
+* Makes the sys crate create bindings automatically using rust-bindgen
+* Allows cc to handle build optimizations, fixes #54 
+* Hides unused parameter warnings while building lmdb",victorporof,248899,2019-08-30T15:58:23Z,COLLABORATOR,True,1559,341,12,Safe Rust bindings for LMDB,Rust,a07f50b3981ce0e03c531719401ba5791a7e466a,"Hide warnings while building
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+63,https://api.github.com/repos/mozilla/lmdb-rs/pulls/56,56,Update lmdb to latest version and other goodies,"This PR:
+* Updates lmdb to 0.9.24 (with MOZ changes on top)
+* Makes the sys crate create bindings automatically using rust-bindgen
+* Allows cc to handle build optimizations, fixes #54 
+* Hides unused parameter warnings while building lmdb",victorporof,248899,2019-08-30T15:58:23Z,COLLABORATOR,True,1559,341,12,Safe Rust bindings for LMDB,Rust,bd45823f11cb86234830b7989dfab0fbebf3fc32,"Use `flag_if_supported` instead of `flag` when compiling liblmdb
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+64,https://api.github.com/repos/mozilla/lmdb-rs/pulls/56,56,Update lmdb to latest version and other goodies,"This PR:
+* Updates lmdb to 0.9.24 (with MOZ changes on top)
+* Makes the sys crate create bindings automatically using rust-bindgen
+* Allows cc to handle build optimizations, fixes #54 
+* Hides unused parameter warnings while building lmdb",victorporof,248899,2019-08-30T15:58:23Z,COLLABORATOR,True,1559,341,12,Safe Rust bindings for LMDB,Rust,cac5b8d5d124e509e4c671390b04e9f9882aa0fd,"Update all dependencies to their latest version for the sys crate
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+65,https://api.github.com/repos/mozilla/lmdb-rs/pulls/56,56,Update lmdb to latest version and other goodies,"This PR:
+* Updates lmdb to 0.9.24 (with MOZ changes on top)
+* Makes the sys crate create bindings automatically using rust-bindgen
+* Allows cc to handle build optimizations, fixes #54 
+* Hides unused parameter warnings while building lmdb",victorporof,248899,2019-08-30T15:58:23Z,COLLABORATOR,True,1559,341,12,Safe Rust bindings for LMDB,Rust,13d77dd00469336358a231eb1da510ec6bd0cea8,"Update all dependencies to their latest version for the main crate
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+66,https://api.github.com/repos/mozilla/lmdb-rs/pulls/56,56,Update lmdb to latest version and other goodies,"This PR:
+* Updates lmdb to 0.9.24 (with MOZ changes on top)
+* Makes the sys crate create bindings automatically using rust-bindgen
+* Allows cc to handle build optimizations, fixes #54 
+* Hides unused parameter warnings while building lmdb",victorporof,248899,2019-08-30T15:58:23Z,COLLABORATOR,True,1559,341,12,Safe Rust bindings for LMDB,Rust,a5ceeb29d50e682c2bbdc29267b05c81aeea8580,"Bump version to 0.9.0
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+67,https://api.github.com/repos/mozilla/lmdb-rs/pulls/56,56,Update lmdb to latest version and other goodies,"This PR:
+* Updates lmdb to 0.9.24 (with MOZ changes on top)
+* Makes the sys crate create bindings automatically using rust-bindgen
+* Allows cc to handle build optimizations, fixes #54 
+* Hides unused parameter warnings while building lmdb",victorporof,248899,2019-08-30T15:58:23Z,COLLABORATOR,True,1559,341,12,Safe Rust bindings for LMDB,Rust,577228969eef4d5983ead6a2e189cb69cda146c3,"Remove explicit support for rust 1.30 on travis
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+68,https://api.github.com/repos/mozilla/lmdb-rs/pulls/56,56,Update lmdb to latest version and other goodies,"This PR:
+* Updates lmdb to 0.9.24 (with MOZ changes on top)
+* Makes the sys crate create bindings automatically using rust-bindgen
+* Allows cc to handle build optimizations, fixes #54 
+* Hides unused parameter warnings while building lmdb",victorporof,248899,2019-08-30T15:58:23Z,COLLABORATOR,True,1559,341,12,Safe Rust bindings for LMDB,Rust,a4776c095718be954a1ee316a88381d1721456ce,"Format yml files
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+69,https://api.github.com/repos/mozilla/lmdb-rs/pulls/56,56,Update lmdb to latest version and other goodies,"This PR:
+* Updates lmdb to 0.9.24 (with MOZ changes on top)
+* Makes the sys crate create bindings automatically using rust-bindgen
+* Allows cc to handle build optimizations, fixes #54 
+* Hides unused parameter warnings while building lmdb",victorporof,248899,2019-08-30T15:58:23Z,COLLABORATOR,True,1559,341,12,Safe Rust bindings for LMDB,Rust,6bd379824c16354500ad285e8b357ebee126ffe6,"Don't generate bindings as part of the build phase
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>"
+70,https://api.github.com/repos/mozilla/lmdb-rs/pulls/55,55,update patch version for lmdb-rkv-sys 0.8.6,,mykmelez,305455,2019-06-22T07:40:28Z,COLLABORATOR,True,2,2,2,Safe Rust bindings for LMDB,Rust,0983b3188b78a9338a13e1a5bc4240dbf7dd85d0,update patch version for lmdb-rkv-sys 0.8.6
+71,https://api.github.com/repos/mozilla/lmdb-rs/pulls/53,53,prioritize testing lmdb-rkv with in-tree lmdb-rkv-sys; document publication,"@ncloudioj In order to ensure that we test lmdb-rkv in CI against the in-tree version of lmdb-rkv-sys, we should specify the dependency as a path.
+
+We can't publish the lmdb-rkv crate to crates.io with a path dependency, so we'll have to temporarily change it to point to the current version of lmdb-rkv-sys on crates.io when publishing lmdb-rkv to that crate registry.
+
+But that shouldn't be too cumbersome. And it seems better to optimize the dependency for testing in CI, which happens on every pull request, rather than optimizing for publishing, which only happens occasionally.
+
+Regardless, it occurred to me that it would also be useful to document the process of publishing these crates to crates.io, so I've also added instructions to the README. Let me know how those look (or if you think we should put them somewhere else).
+",mykmelez,305455,2019-06-21T22:10:55Z,COLLABORATOR,True,38,2,3,Safe Rust bindings for LMDB,Rust,3f8057bfe2e4b1b2bf1c4868f78f6e4ff7deb8c4,prioritize testing lmdb-rkv with in-tree lmdb-rkv-sys; document publication
+72,https://api.github.com/repos/mozilla/lmdb-rs/pulls/53,53,prioritize testing lmdb-rkv with in-tree lmdb-rkv-sys; document publication,"@ncloudioj In order to ensure that we test lmdb-rkv in CI against the in-tree version of lmdb-rkv-sys, we should specify the dependency as a path.
+
+We can't publish the lmdb-rkv crate to crates.io with a path dependency, so we'll have to temporarily change it to point to the current version of lmdb-rkv-sys on crates.io when publishing lmdb-rkv to that crate registry.
+
+But that shouldn't be too cumbersome. And it seems better to optimize the dependency for testing in CI, which happens on every pull request, rather than optimizing for publishing, which only happens occasionally.
+
+Regardless, it occurred to me that it would also be useful to document the process of publishing these crates to crates.io, so I've also added instructions to the README. Let me know how those look (or if you think we should put them somewhere else).
+",mykmelez,305455,2019-06-21T22:10:55Z,COLLABORATOR,True,38,2,3,Safe Rust bindings for LMDB,Rust,81982782a49b7d5f398e8f19aec5cddf334ad5b6,update lmdb-sys/lmdb to tip of mdb.RE/0.9-moz branch
+73,https://api.github.com/repos/mozilla/lmdb-rs/pulls/52,52,Separate benches from tests,"@ncloudioj The lmdb-rs tests have begun failing due to #50, although the test failures didn't show up in that PR (nor in #51), presumably because the test infrastructure was pulling the latest version of lmdb-rkv-sys from crates.io rather than compiling it from the source code in the project itself.
+
+I'm not sure exactly what to do about that, but in the meantime, while testing locally, I was reminded that we can't test against stable Rust because the benchmarks use unstable features. So this branch separates those benchmarks into the benches/ directory, which enables us to run them separately.
+
+I've also updated the CI configurations now that we can test on multiple toolchains.
+
+Note: this branch will fail in CI because of #50, which is unrelated to these changes. I'll look at that failure next.
+",mykmelez,305455,2019-06-20T23:32:58Z,COLLABORATOR,True,287,242,9,Safe Rust bindings for LMDB,Rust,5849f37f314add0b44027fd9dc53a9031f2fe5bd,separate benches from tests
+74,https://api.github.com/repos/mozilla/lmdb-rs/pulls/52,52,Separate benches from tests,"@ncloudioj The lmdb-rs tests have begun failing due to #50, although the test failures didn't show up in that PR (nor in #51), presumably because the test infrastructure was pulling the latest version of lmdb-rkv-sys from crates.io rather than compiling it from the source code in the project itself.
+
+I'm not sure exactly what to do about that, but in the meantime, while testing locally, I was reminded that we can't test against stable Rust because the benchmarks use unstable features. So this branch separates those benchmarks into the benches/ directory, which enables us to run them separately.
+
+I've also updated the CI configurations now that we can test on multiple toolchains.
+
+Note: this branch will fail in CI because of #50, which is unrelated to these changes. I'll look at that failure next.
+",mykmelez,305455,2019-06-20T23:32:58Z,COLLABORATOR,True,287,242,9,Safe Rust bindings for LMDB,Rust,e51b36e8a9278bcd1bb5f44a1f8275f2ac441588,update CI configurations
+75,https://api.github.com/repos/mozilla/lmdb-rs/pulls/52,52,Separate benches from tests,"@ncloudioj The lmdb-rs tests have begun failing due to #50, although the test failures didn't show up in that PR (nor in #51), presumably because the test infrastructure was pulling the latest version of lmdb-rkv-sys from crates.io rather than compiling it from the source code in the project itself.
+
+I'm not sure exactly what to do about that, but in the meantime, while testing locally, I was reminded that we can't test against stable Rust because the benchmarks use unstable features. So this branch separates those benchmarks into the benches/ directory, which enables us to run them separately.
+
+I've also updated the CI configurations now that we can test on multiple toolchains.
+
+Note: this branch will fail in CI because of #50, which is unrelated to these changes. I'll look at that failure next.
+",mykmelez,305455,2019-06-20T23:32:58Z,COLLABORATOR,True,287,242,9,Safe Rust bindings for LMDB,Rust,71dcd1b4e0ffb2a3dbaaa38163c25145e53defbf,Merge branch 'master' into separate-benches-from-tests
+76,https://api.github.com/repos/mozilla/lmdb-rs/pulls/51,51,update patch version for lmdb-rkv-sys 0.8.5,,mykmelez,305455,2019-06-20T18:57:15Z,COLLABORATOR,True,2,2,2,Safe Rust bindings for LMDB,Rust,cf1c2338992e7af3001d00110d15665d2266ad98,update patch version for lmdb-rkv-sys 0.8.5
+77,https://api.github.com/repos/mozilla/lmdb-rs/pulls/50,50,update lmdb-sys/lmdb submodule to tip of mdb.RE/0.9-moz branch,"This branch updates the lmdb-sys/lmdb submodule to the tip of mdb.RE/0.9-moz branch, which includes one change: an assertion in mdb_cursor_init if mdb_page_search returns an error code.",mykmelez,305455,2019-06-20T18:34:35Z,COLLABORATOR,True,1,1,1,Safe Rust bindings for LMDB,Rust,f7cdbda6c948031862934a08c72c9371a5ec1e1f,update lmdb-sys/lmdb submodule to tip of mdb.RE/0.9-moz branch
+78,https://api.github.com/repos/mozilla/lmdb-rs/pulls/49,49,publish lmdb-rkv-sys 0.8.4,"@glandium After I merge this branch, I'll publish lmdb-rkv-sys 0.8.4 to crates.io.",mykmelez,305455,2019-06-06T22:51:27Z,COLLABORATOR,True,3,3,3,Safe Rust bindings for LMDB,Rust,d54b8f218bacb3e004793799d6ddc4435627de68,update to latest version of mdb.RE/0.9-moz branch
+79,https://api.github.com/repos/mozilla/lmdb-rs/pulls/49,49,publish lmdb-rkv-sys 0.8.4,"@glandium After I merge this branch, I'll publish lmdb-rkv-sys 0.8.4 to crates.io.",mykmelez,305455,2019-06-06T22:51:27Z,COLLABORATOR,True,3,3,3,Safe Rust bindings for LMDB,Rust,6bfec5736ad328b17334f0984de73d9a1df7666b,update patch version for lmdb-rkv-sys 0.8.4
+80,https://api.github.com/repos/mozilla/lmdb-rs/pulls/48,48,Fix typo,"When I'm reading [the document on Docs.rs](https://docs.rs/lmdb-rkv/0.11.4/lmdb/struct.EnvironmentBuilder.html#method.set_max_dbs), I find this typo.",yangby-cryptape,30993023,2019-05-13T14:28:30Z,NONE,True,2,2,1,Safe Rust bindings for LMDB,Rust,c85d3657a7ae2e2ea040944e864b763981373fa0,Fix typo
+81,https://api.github.com/repos/mozilla/lmdb-rs/pulls/45,45,update lmdb-rkv-sys dependency to 0.8.3 and patch version for lmdb-rkv to 0.11.4,,mykmelez,305455,2019-04-15T18:23:04Z,COLLABORATOR,True,3,3,2,Safe Rust bindings for LMDB,Rust,f9f619f8d75019f3baed025ded121cc370e08d69,update lmdb-rkv-sys dependency to 0.8.3 and patch version for lmdb-rkv to 0.11.4
+82,https://api.github.com/repos/mozilla/lmdb-rs/pulls/44,44,update patch version for lmdb-rkv-sys 0.8.3,,mykmelez,305455,2019-04-15T17:39:00Z,COLLABORATOR,True,2,2,2,Safe Rust bindings for LMDB,Rust,0a69d027f339ddf2d63cd532275e8c840fc965fe,update patch version for lmdb-rkv-sys 0.8.3
+83,https://api.github.com/repos/mozilla/lmdb-rs/pulls/43,43,enable configuration of MDB_IDL_LOGN,"Over in [bug 1543795](https://bugzilla.mozilla.org/show_bug.cgi?id=1543795), @glandium and @alexcrichton suggest using Rust feature flags to configure `MDB_IDL_LOGN`. Since there are a limited number of reasonable values for that macro, this approach is feasible, even though Rust feature flags are simple toggles, so we have to create a unique one for each possible value.
+
+This branch does that for integer values `8`–`15` inclusive, with the default value—if no flag is set—being `16` (the same as the default value in the LMDB source).
+
+These flags should allow Firefox and other consumers to configure `MDB_IDL_LOGN` to best suit their needs and constraints.
+
+Note: we can't simply define `MDB_IDL_LOGN=16` if `#[cfg(feature = ""default"")]`, since the ""default"" feature is enabled by, well, default; and specifying another feature would then try to define `MDB_IDL_LOGN` as both `16` and the other value. (Well, we could, if we forced the users of these flags to also specify `default-features = false`; but that complicates usage.)
+
+@ncloudioj Does this seem reasonable?
+",mykmelez,305455,2019-04-12T21:58:50Z,COLLABORATOR,True,52,1,3,Safe Rust bindings for LMDB,Rust,babc0594df116906c86674299ea13e6d96b2c54e,add feature flags to define MDB_IDL_LOGN macro
+84,https://api.github.com/repos/mozilla/lmdb-rs/pulls/43,43,enable configuration of MDB_IDL_LOGN,"Over in [bug 1543795](https://bugzilla.mozilla.org/show_bug.cgi?id=1543795), @glandium and @alexcrichton suggest using Rust feature flags to configure `MDB_IDL_LOGN`. Since there are a limited number of reasonable values for that macro, this approach is feasible, even though Rust feature flags are simple toggles, so we have to create a unique one for each possible value.
+
+This branch does that for integer values `8`–`15` inclusive, with the default value—if no flag is set—being `16` (the same as the default value in the LMDB source).
+
+These flags should allow Firefox and other consumers to configure `MDB_IDL_LOGN` to best suit their needs and constraints.
+
+Note: we can't simply define `MDB_IDL_LOGN=16` if `#[cfg(feature = ""default"")]`, since the ""default"" feature is enabled by, well, default; and specifying another feature would then try to define `MDB_IDL_LOGN` as both `16` and the other value. (Well, we could, if we forced the users of these flags to also specify `default-features = false`; but that complicates usage.)
+
+@ncloudioj Does this seem reasonable?
+",mykmelez,305455,2019-04-12T21:58:50Z,COLLABORATOR,True,52,1,3,Safe Rust bindings for LMDB,Rust,0c37ccb2d374d6c0904e6816b303ed64f8c8b7d6,update to latest version of mdb.RE/0.9-moz branch
+85,https://api.github.com/repos/mozilla/lmdb-rs/pulls/42,42,Add database level stat function,"Realizing that we could also fetch statistics for the specific database in the environment. We might find it handy as it includes the metadata, such as entries (more efficient than iterating thru the database), page consumption etc, for each individual database.
+
+With this addition, I think we have exposed all metadata available from LMDB. 
+
+",ncloudioj,1455254,2019-04-04T16:25:13Z,MEMBER,True,117,4,2,Safe Rust bindings for LMDB,Rust,10697cda7b2e023d968c6dd6a85ba1c5e6fb84c1,Add database level stat function
+86,https://api.github.com/repos/mozilla/lmdb-rs/pulls/42,42,Add database level stat function,"Realizing that we could also fetch statistics for the specific database in the environment. We might find it handy as it includes the metadata, such as entries (more efficient than iterating thru the database), page consumption etc, for each individual database.
+
+With this addition, I think we have exposed all metadata available from LMDB. 
+
+",ncloudioj,1455254,2019-04-04T16:25:13Z,MEMBER,True,117,4,2,Safe Rust bindings for LMDB,Rust,8a46f68f5fab8de8cc41ca227707dfb310184290,Refactor Stat
+87,https://api.github.com/repos/mozilla/lmdb-rs/pulls/41,41,Add freelist to environment,"This allows the consumer to query the total # of pages on the freelist for each LMDB environment, then they can use it with `env.info()` to precisely check the space usage of that environment. 
+
+Note: the approach that I used to query the freelist was not documented in LMDB but a direct copy from its utility [mdb_stat](https://github.com/LMDB/lmdb/blob/mdb.master/libraries/liblmdb/mdb_stat.c#L157). I won't feel bad if we decide to not use the uncharted stuff from LMDB. 😉",ncloudioj,1455254,2019-04-03T15:50:37Z,MEMBER,True,85,5,4,Safe Rust bindings for LMDB,Rust,a078cc4af54e74c573efed1cb898624ebac54b3b,Add freelist to environment
+88,https://api.github.com/repos/mozilla/lmdb-rs/pulls/39,39,update patch version for lmdb-rkv 0.11.3,,mykmelez,305455,2019-03-28T19:26:48Z,COLLABORATOR,True,2,2,2,Safe Rust bindings for LMDB,Rust,8f50c35fdc61b53de5ad6470fbadf5977b640029,update patch version for lmdb-rkv 0.11.3
+89,https://api.github.com/repos/mozilla/lmdb-rs/pulls/36,36,Expose set_map_size from environment,"This fixes #35 
+
+It also adds a new API to fetch environment information.",ncloudioj,1455254,2019-03-13T23:48:25Z,MEMBER,True,119,1,2,Safe Rust bindings for LMDB,Rust,2f46b83cb8dca76d5451d514bfb0984115b1ddd4,Expose set_map_size from environment
+90,https://api.github.com/repos/mozilla/lmdb-rs/pulls/36,36,Expose set_map_size from environment,"This fixes #35 
+
+It also adds a new API to fetch environment information.",ncloudioj,1455254,2019-03-13T23:48:25Z,MEMBER,True,119,1,2,Safe Rust bindings for LMDB,Rust,e7bb8732673e7de100fe76666885af2609abfc38,Export EnvInfo
+91,https://api.github.com/repos/mozilla/lmdb-rs/pulls/36,36,Expose set_map_size from environment,"This fixes #35 
+
+It also adds a new API to fetch environment information.",ncloudioj,1455254,2019-03-13T23:48:25Z,MEMBER,True,119,1,2,Safe Rust bindings for LMDB,Rust,0747a8ce72d08c15203b97a760eaf6e2f49d0cc7,Review fixes
+92,https://api.github.com/repos/mozilla/lmdb-rs/pulls/34,34,exclude CI config files from package,"I noticed when vendoring lmdb-rkv into mozilla-central that its crate includes the CI configuration files, which aren't useful to its consumers and just take up space in the package.
+
+Is there anything else we should exclude, such as _.gitignore_, _.gitmodules_, and _.rustfmt.toml_?
+",mykmelez,305455,2019-02-07T22:48:42Z,COLLABORATOR,True,8,0,1,Safe Rust bindings for LMDB,Rust,e383eb0dbef419a5945c37afdc982e395b67296a,exclude CI config files from package
+93,https://api.github.com/repos/mozilla/lmdb-rs/pulls/33,33,update patch version for lmdb-rkv 0.11.2,Update the patch version for lmdb-rkv to 0.11.2 and the lmdb-rkv-sys dependency version to 0.8.2 in preparation for publishing lmdb-rkv 0.11.2.,mykmelez,305455,2019-02-06T21:47:19Z,COLLABORATOR,True,3,3,2,Safe Rust bindings for LMDB,Rust,d3ff0039d6271dd35347790a829a9b562dce467a,"update patch version for lmdb-rkv 0.11.2
+
+Update the patch version for lmdb-rkv to 0.11.2 and the lmdb-rkv-sys dependency version to 0.8.2 in preparation for publishing lmdb-rkv 0.11.2."
+94,https://api.github.com/repos/mozilla/lmdb-rs/pulls/32,32,update patch version for lmdb-rkv-sys 0.8.2,"Update the patch version for lmdb-rkv-sys to 0.8.2 in preparation for publishing lmdb-rkv version 0.11.2.
+
+(We don't yet update lmdb-rkv-sys's dependency entry in lmdb-rkv's Cargo.toml file because the new version of lmdb-rkv-sys has to be published to crates.io before lmdb-rkv can depend on it.)
+",mykmelez,305455,2019-02-06T21:32:40Z,COLLABORATOR,True,2,2,2,Safe Rust bindings for LMDB,Rust,d5963565f47dbcf78d964fc84eb0092621de9754,update patch version for lmdb-rkv-sys 0.8.2
+95,https://api.github.com/repos/mozilla/lmdb-rs/pulls/31,31,"Revert ""Fix Android cross-compile build: `cargo build --target armv7-linux-androideabi`""","Now that we've backported https://github.com/mozilla/lmdb/commit/0a954f1a67410dceb0fafe202bd6c2f2f409cb4a to the release branch of LMDB that this crate is using (in https://github.com/mozilla/lmdb/commit/4d36c60963e65aa1a753483fd1cfca305a9002cf), it's no longer necessary (and it's ineffectual) to set *ANDROID* in the build.rs script, so this branch reverts the commit that added it (ef250445c192c5fd8630e9b29f2589b467b80e81).
+",mykmelez,305455,2019-02-05T21:23:37Z,COLLABORATOR,True,6,11,1,Safe Rust bindings for LMDB,Rust,4e86c7e476366161372eb0922e5a93bae3b380e6,"Revert ""Fix Android cross-compile build: `cargo build --target armv7-linux-androideabi`""
+
+This reverts commit ef250445c192c5fd8630e9b29f2589b467b80e81."
+96,https://api.github.com/repos/mozilla/lmdb-rs/pulls/30,30,use the mdb.RE/0.9-moz branch,"In order to make downstream changes to LMDB, switch the lmdb-sys/lmdb submodule to its mdb.RE/0.9-moz branch, which is based on the upstream mdb.RE/0.9 (i.e. 0.9 release) branch of LMDB.",mykmelez,305455,2019-02-05T18:11:25Z,COLLABORATOR,True,1,1,1,Safe Rust bindings for LMDB,Rust,6760948a3885b24c0bdc0e52628f4a2a11b3b78e,"use the mdb.RE/0.9-moz branch
+
+In order to make downstream changes to LMDB, switch the lmdb-sys/lmdb submodule to its mdb.RE/0.9-moz branch, which is based on the upstream mdb.RE/0.9 (i.e. 0.9 release) branch of LMDB."
+97,https://api.github.com/repos/mozilla/lmdb-rs/pulls/29,29,switch to mozilla/lmdb submodule,"In order to apply downstream changes to LMDB itself, we need to maintain our own submodule of that project. So I forked https://github.com/LMDB/lmdb to https://github.com/mozilla/lmdb, and this branch switches the lmdb-sys/lmdb submodule to use that fork.",mykmelez,305455,2019-02-05T17:34:06Z,COLLABORATOR,True,1,1,1,Safe Rust bindings for LMDB,Rust,575a4cec9d7c65f84a0cc749b8647609576d5527,switch to mozilla/lmdb submodule
+98,https://api.github.com/repos/mozilla/lmdb-rs/pulls/28,28,undefine HAVE_MEMALIGN before compiling mdb.c,"This branch undefines _HAVE_MEMALIGN_, as mdb.c expects it to be undefined and calls `memalign()` without including alloc.h if it's defined in the environment, even if _HAVE_POSIX_MEMALIGN_ is also defined; and unfortunately some build environments define _HAVE_MEMALIGN_ even if they _HAVE_POSIX_MEMALIGN_, which triggers an implicit function declaration and linker bustage on some systems.
+
+We undefine _HAVE_MEMALIGN_ by including a header file rather than a compiler flag (-UHAVE_MEMALIGN) because the aforementioned build environment defines it via a header file (mozilla-config.h), which would override the command-line flag.
+
+@luser Per [this tryserver run](https://treeherder.mozilla.org/#/jobs?repo=try&revision=2f78d415affe5330a9950c387ed3034ef000e5b7), it looks like this change resolves the linker bustage in [bug 1512541](https://bugzilla.mozilla.org/show_bug.cgi?id=1512541). Does it seem like a reasonable workaround, or would you prefer to fix this either upstream (in LMDB proper) or downstream (in Firefox)?
+",mykmelez,305455,2019-01-31T21:55:26Z,COLLABORATOR,False,33,2,2,Safe Rust bindings for LMDB,Rust,1984d16b5be05b8f5c0ec365973a17fb45adbc9d,"undefine HAVE_MEMALIGN before compiling mdb.c
+
+This branch undefines _HAVE_MEMALIGN_, as mdb.c expects it to be undefined and calls `memalign()` without including alloc.h if it's defined in the environment, even if _HAVE_POSIX_MEMALIGN_ is also defined; and unfortunately some build environments define _HAVE_MEMALIGN_ even if they _HAVE_POSIX_MEMALIGN_ (per https://bugzilla.mozilla.org/show_bug.cgi?id=1512541), which triggers an implicit function declaration and linker bustage on some systems.
+
+We undefine _HAVE_MEMALIGN_ by including a header file rather than setting a compiler flag (`-UHAVE_MEMALIGN`) because the aforementioned build environment defines it via a header file (mozilla-config.h), which would override the command-line flag."
+99,https://api.github.com/repos/mozilla/lmdb-rs/pulls/28,28,undefine HAVE_MEMALIGN before compiling mdb.c,"This branch undefines _HAVE_MEMALIGN_, as mdb.c expects it to be undefined and calls `memalign()` without including alloc.h if it's defined in the environment, even if _HAVE_POSIX_MEMALIGN_ is also defined; and unfortunately some build environments define _HAVE_MEMALIGN_ even if they _HAVE_POSIX_MEMALIGN_, which triggers an implicit function declaration and linker bustage on some systems.
+
+We undefine _HAVE_MEMALIGN_ by including a header file rather than a compiler flag (-UHAVE_MEMALIGN) because the aforementioned build environment defines it via a header file (mozilla-config.h), which would override the command-line flag.
+
+@luser Per [this tryserver run](https://treeherder.mozilla.org/#/jobs?repo=try&revision=2f78d415affe5330a9950c387ed3034ef000e5b7), it looks like this change resolves the linker bustage in [bug 1512541](https://bugzilla.mozilla.org/show_bug.cgi?id=1512541). Does it seem like a reasonable workaround, or would you prefer to fix this either upstream (in LMDB proper) or downstream (in Firefox)?
+",mykmelez,305455,2019-01-31T21:55:26Z,COLLABORATOR,False,33,2,2,Safe Rust bindings for LMDB,Rust,1ce4bc62954ce501662c7881cf9b6664ae1dca21,avoid adding -include flag on Windows
+100,https://api.github.com/repos/mozilla/lmdb-rs/pulls/27,27,use newly published lmdb-rkv-sys crate with upgraded LMDB version 0.9.23,"After #26 landed, I could publish https://crates.io/crates/lmdb-rkv-sys, which then enables us to upgrade lmdb-rkv to use lmdb-rkv-sys and thus actually upgrade lmdb-rkv to LMDB version 0.9.23.
+
+Along the way, I also updated the *repository* and *documentation* fields for the lmdb-rkv-sys crate.",mykmelez,305455,2019-01-29T01:14:52Z,COLLABORATOR,True,4,4,3,Safe Rust bindings for LMDB,Rust,ce8b7dd9e45a8ccf4cf6420988e15463de767ed8,use newly published lmdb-rkv-sys crate with upgraded LMDB version 0.9.23
+101,https://api.github.com/repos/mozilla/lmdb-rs/pulls/26,26,update LMDB to latest stable release version 0.9.23,This'll also require publishing lmdb-rkv-sys for the first time (until now we've been relying on lmdb-sys from the upstream lmdb-rs project).,mykmelez,305455,2019-01-29T00:30:10Z,COLLABORATOR,True,6,6,5,Safe Rust bindings for LMDB,Rust,7456a07993b86a5fab22fee764cb482ccbc91e5e,update LMDB to latest stable release version 0.9.23
+102,https://api.github.com/repos/mozilla/lmdb-rs/pulls/24,24, Fix support for larger than 2 GB databases on Windows,"This was discussed and allegedly fixed in LMDB in January 2016 by defining `_FILE_OFFSET_BITS` but that doesn't work because Windows headers do not support that POSIX define ([link](https://developercommunity.visualstudio.com/content/problem/308714/in-c-header-systypesh-off-t-is-defined-as-32-bit-s.html?inRegister=true)).
+
+In this fix I re-define `off_t` in build.rs to `int64` instead.
+
+Original discussion and non-working fix:
+https://www.openldap.org/lists/openldap-bugs/201605/msg00015.htm
+https://github.com/LMDB/lmdb/commit/20dec1f69bf4860202c764ce92b1fbbe3d11a065
+
+Should be fixed properly in upstream LMDB though, this is a workaround until then.
+
+This PR is based on https://github.com/mozilla/lmdb-rs/pull/23 which uses the latest LMDB version.",repi,1262692,2018-12-31T12:51:02Z,NONE,False,70,2,4,Safe Rust bindings for LMDB,Rust,d51b3c87073c201a7b187077145ff37db2de8def,"Add test to verify that the file is allocated sparsly.
+This will fail on older versions of LMDB on Windows
+that doesn't have the ITS#3824 fix"
+103,https://api.github.com/repos/mozilla/lmdb-rs/pulls/24,24, Fix support for larger than 2 GB databases on Windows,"This was discussed and allegedly fixed in LMDB in January 2016 by defining `_FILE_OFFSET_BITS` but that doesn't work because Windows headers do not support that POSIX define ([link](https://developercommunity.visualstudio.com/content/problem/308714/in-c-header-systypesh-off-t-is-defined-as-32-bit-s.html?inRegister=true)).
+
+In this fix I re-define `off_t` in build.rs to `int64` instead.
+
+Original discussion and non-working fix:
+https://www.openldap.org/lists/openldap-bugs/201605/msg00015.htm
+https://github.com/LMDB/lmdb/commit/20dec1f69bf4860202c764ce92b1fbbe3d11a065
+
+Should be fixed properly in upstream LMDB though, this is a workaround until then.
+
+This PR is based on https://github.com/mozilla/lmdb-rs/pull/23 which uses the latest LMDB version.",repi,1262692,2018-12-31T12:51:02Z,NONE,False,70,2,4,Safe Rust bindings for LMDB,Rust,bca6f3e7a9eb8fc5acac829ee53a70e71f98430c,"Update to latest master version of LMDB (2018-09-19).
+This includes important improvements such as ITS#8324
+which enables sparse file allocation on Windows"
+104,https://api.github.com/repos/mozilla/lmdb-rs/pulls/24,24, Fix support for larger than 2 GB databases on Windows,"This was discussed and allegedly fixed in LMDB in January 2016 by defining `_FILE_OFFSET_BITS` but that doesn't work because Windows headers do not support that POSIX define ([link](https://developercommunity.visualstudio.com/content/problem/308714/in-c-header-systypesh-off-t-is-defined-as-32-bit-s.html?inRegister=true)).
+
+In this fix I re-define `off_t` in build.rs to `int64` instead.
+
+Original discussion and non-working fix:
+https://www.openldap.org/lists/openldap-bugs/201605/msg00015.htm
+https://github.com/LMDB/lmdb/commit/20dec1f69bf4860202c764ce92b1fbbe3d11a065
+
+Should be fixed properly in upstream LMDB though, this is a workaround until then.
+
+This PR is based on https://github.com/mozilla/lmdb-rs/pull/23 which uses the latest LMDB version.",repi,1262692,2018-12-31T12:51:02Z,NONE,False,70,2,4,Safe Rust bindings for LMDB,Rust,c5abf05a9e11ef187ef22d6941ae1c4a6a747f4b,Switch to use our lmdb-sys from this repo instead of creates.io version
+105,https://api.github.com/repos/mozilla/lmdb-rs/pulls/24,24, Fix support for larger than 2 GB databases on Windows,"This was discussed and allegedly fixed in LMDB in January 2016 by defining `_FILE_OFFSET_BITS` but that doesn't work because Windows headers do not support that POSIX define ([link](https://developercommunity.visualstudio.com/content/problem/308714/in-c-header-systypesh-off-t-is-defined-as-32-bit-s.html?inRegister=true)).
+
+In this fix I re-define `off_t` in build.rs to `int64` instead.
+
+Original discussion and non-working fix:
+https://www.openldap.org/lists/openldap-bugs/201605/msg00015.htm
+https://github.com/LMDB/lmdb/commit/20dec1f69bf4860202c764ce92b1fbbe3d11a065
+
+Should be fixed properly in upstream LMDB though, this is a workaround until then.
+
+This PR is based on https://github.com/mozilla/lmdb-rs/pull/23 which uses the latest LMDB version.",repi,1262692,2018-12-31T12:51:02Z,NONE,False,70,2,4,Safe Rust bindings for LMDB,Rust,738bc40e669dc40f09d63f56ec2aac6d1c64c3fb,Add test to verify that one can create DB larger than 2 GB.
+106,https://api.github.com/repos/mozilla/lmdb-rs/pulls/24,24, Fix support for larger than 2 GB databases on Windows,"This was discussed and allegedly fixed in LMDB in January 2016 by defining `_FILE_OFFSET_BITS` but that doesn't work because Windows headers do not support that POSIX define ([link](https://developercommunity.visualstudio.com/content/problem/308714/in-c-header-systypesh-off-t-is-defined-as-32-bit-s.html?inRegister=true)).
+
+In this fix I re-define `off_t` in build.rs to `int64` instead.
+
+Original discussion and non-working fix:
+https://www.openldap.org/lists/openldap-bugs/201605/msg00015.htm
+https://github.com/LMDB/lmdb/commit/20dec1f69bf4860202c764ce92b1fbbe3d11a065
+
+Should be fixed properly in upstream LMDB though, this is a workaround until then.
+
+This PR is based on https://github.com/mozilla/lmdb-rs/pull/23 which uses the latest LMDB version.",repi,1262692,2018-12-31T12:51:02Z,NONE,False,70,2,4,Safe Rust bindings for LMDB,Rust,5ad796258ae549af4e04878f0664ccf955e942cd,"Fix support for larger than 2 GB databases on Windows.
+
+This was discussed and allegedly fixed in LMDB in January 2016 by defining
+_FILE_OFFSET_BITS but that doesn't work because Windows headers do not
+support that POSIX define.
+
+In this fix I re-define `off_t` in build.rs to int64 instead.
+
+Original discussion and non-working fix:
+
+https://www.openldap.org/lists/openldap-bugs/201605/msg00015.htm
+
+https://github.com/LMDB/lmdb/commit/20dec1f69bf4860202c764ce92b1fbbe3d11a065
+
+Should be fixed properly in upstream LMDB though, this is a workaround until then."
+107,https://api.github.com/repos/mozilla/lmdb-rs/pulls/24,24, Fix support for larger than 2 GB databases on Windows,"This was discussed and allegedly fixed in LMDB in January 2016 by defining `_FILE_OFFSET_BITS` but that doesn't work because Windows headers do not support that POSIX define ([link](https://developercommunity.visualstudio.com/content/problem/308714/in-c-header-systypesh-off-t-is-defined-as-32-bit-s.html?inRegister=true)).
+
+In this fix I re-define `off_t` in build.rs to `int64` instead.
+
+Original discussion and non-working fix:
+https://www.openldap.org/lists/openldap-bugs/201605/msg00015.htm
+https://github.com/LMDB/lmdb/commit/20dec1f69bf4860202c764ce92b1fbbe3d11a065
+
+Should be fixed properly in upstream LMDB though, this is a workaround until then.
+
+This PR is based on https://github.com/mozilla/lmdb-rs/pull/23 which uses the latest LMDB version.",repi,1262692,2018-12-31T12:51:02Z,NONE,False,70,2,4,Safe Rust bindings for LMDB,Rust,0d9c6047fe5181e87711302a0641913aed74eac4,Upgrade lmdb to latest from mdb.master
+108,https://api.github.com/repos/mozilla/lmdb-rs/pulls/23,23,Update LMDB version to latest from master,"Ran into issue on Windows with that the LMDB database files were created up front at the full map_size, instead of incrementally and sparsely. This was fixed in LMDB on master quite a while ago in ITS#8324 and realized this crate was using a 2 year old version of LMDB which I here have updated to the latest available on master.
+
+Unfortunately this fix is not available on the LMDB release branch (`mdb.RE/0.9`) or the recent release from it 0.9.23 two weeks ago. Not fully sure why.
+
+But feel the ITS#8324 fix is critical for many large-scale LMDB database use cases, including our own at Embark, so filing this PR. But would understand if this crate would prefer to be on the the main release line of LMDB instead, but in that case it should at least update to [0.9.23](https://github.com/LMDB/lmdb/commit/2a5eaad6919ce6941dec4f0d5cce370707a00ba7).
+
+Also added a test that verifies if the database map file was created sparsely or not.",repi,1262692,2018-12-30T17:01:06Z,NONE,False,34,2,3,Safe Rust bindings for LMDB,Rust,d51b3c87073c201a7b187077145ff37db2de8def,"Add test to verify that the file is allocated sparsly.
+This will fail on older versions of LMDB on Windows
+that doesn't have the ITS#3824 fix"
+109,https://api.github.com/repos/mozilla/lmdb-rs/pulls/23,23,Update LMDB version to latest from master,"Ran into issue on Windows with that the LMDB database files were created up front at the full map_size, instead of incrementally and sparsely. This was fixed in LMDB on master quite a while ago in ITS#8324 and realized this crate was using a 2 year old version of LMDB which I here have updated to the latest available on master.
+
+Unfortunately this fix is not available on the LMDB release branch (`mdb.RE/0.9`) or the recent release from it 0.9.23 two weeks ago. Not fully sure why.
+
+But feel the ITS#8324 fix is critical for many large-scale LMDB database use cases, including our own at Embark, so filing this PR. But would understand if this crate would prefer to be on the the main release line of LMDB instead, but in that case it should at least update to [0.9.23](https://github.com/LMDB/lmdb/commit/2a5eaad6919ce6941dec4f0d5cce370707a00ba7).
+
+Also added a test that verifies if the database map file was created sparsely or not.",repi,1262692,2018-12-30T17:01:06Z,NONE,False,34,2,3,Safe Rust bindings for LMDB,Rust,bca6f3e7a9eb8fc5acac829ee53a70e71f98430c,"Update to latest master version of LMDB (2018-09-19).
+This includes important improvements such as ITS#8324
+which enables sparse file allocation on Windows"
+110,https://api.github.com/repos/mozilla/lmdb-rs/pulls/23,23,Update LMDB version to latest from master,"Ran into issue on Windows with that the LMDB database files were created up front at the full map_size, instead of incrementally and sparsely. This was fixed in LMDB on master quite a while ago in ITS#8324 and realized this crate was using a 2 year old version of LMDB which I here have updated to the latest available on master.
+
+Unfortunately this fix is not available on the LMDB release branch (`mdb.RE/0.9`) or the recent release from it 0.9.23 two weeks ago. Not fully sure why.
+
+But feel the ITS#8324 fix is critical for many large-scale LMDB database use cases, including our own at Embark, so filing this PR. But would understand if this crate would prefer to be on the the main release line of LMDB instead, but in that case it should at least update to [0.9.23](https://github.com/LMDB/lmdb/commit/2a5eaad6919ce6941dec4f0d5cce370707a00ba7).
+
+Also added a test that verifies if the database map file was created sparsely or not.",repi,1262692,2018-12-30T17:01:06Z,NONE,False,34,2,3,Safe Rust bindings for LMDB,Rust,c5abf05a9e11ef187ef22d6941ae1c4a6a747f4b,Switch to use our lmdb-sys from this repo instead of creates.io version
+111,https://api.github.com/repos/mozilla/lmdb-rs/pulls/22,22,fix build bustage on obsolete and nightly Rust,"The latest version of cc, version [1.0.27](https://crates.io/crates/cc/1.0.27), requires [str.trim_end_matches()](https://doc.rust-lang.org/nightly/std/primitive.str.html#method.trim_end_matches), which was introduced in Rust 1.30, so this project won't build anymore with Rust 1.20. Thus we should stop building it with that version in automation.
+",mykmelez,305455,2018-12-19T22:36:25Z,COLLABORATOR,True,3,3,2,Safe Rust bindings for LMDB,Rust,0c04ac7ea08a6ed6046efb50e20e74aced4fcbb3,require Rust 1.30
+112,https://api.github.com/repos/mozilla/lmdb-rs/pulls/22,22,fix build bustage on obsolete and nightly Rust,"The latest version of cc, version [1.0.27](https://crates.io/crates/cc/1.0.27), requires [str.trim_end_matches()](https://doc.rust-lang.org/nightly/std/primitive.str.html#method.trim_end_matches), which was introduced in Rust 1.30, so this project won't build anymore with Rust 1.20. Thus we should stop building it with that version in automation.
+",mykmelez,305455,2018-12-19T22:36:25Z,COLLABORATOR,True,3,3,2,Safe Rust bindings for LMDB,Rust,6a3bee7cea15379bcadf2570190775fdbd038737,explicitly destructure Ok result
+113,https://api.github.com/repos/mozilla/lmdb-rs/pulls/22,22,fix build bustage on obsolete and nightly Rust,"The latest version of cc, version [1.0.27](https://crates.io/crates/cc/1.0.27), requires [str.trim_end_matches()](https://doc.rust-lang.org/nightly/std/primitive.str.html#method.trim_end_matches), which was introduced in Rust 1.30, so this project won't build anymore with Rust 1.20. Thus we should stop building it with that version in automation.
+",mykmelez,305455,2018-12-19T22:36:25Z,COLLABORATOR,True,3,3,2,Safe Rust bindings for LMDB,Rust,846268ef92b9c05baa5338ed535ed6c15799e130,panic instead of ignoring error
+114,https://api.github.com/repos/mozilla/lmdb-rs/pulls/21,21,update minor version for breaking change in #14,,mykmelez,305455,2018-12-19T22:15:53Z,COLLABORATOR,True,2,2,2,Safe Rust bindings for LMDB,Rust,67d627cb04453d16f1e600c65cab34068e0b60c2,update minor version for breaking change in #14
+115,https://api.github.com/repos/mozilla/lmdb-rs/pulls/21,21,update minor version for breaking change in #14,,mykmelez,305455,2018-12-19T22:15:53Z,COLLABORATOR,True,2,2,2,Safe Rust bindings for LMDB,Rust,8dfcf0ec7124f7fd2b6e75feb5a663a28b7cae15,Merge branch 'master' into publish-0.11.0
+116,https://api.github.com/repos/mozilla/lmdb-rs/pulls/20,20,update minor version to 0.10.0 for breaking change in #18,"After publishing 0.9.1 with the fix for #18, I realized that it contains a breaking change to the API: the `Cursor.iter_dup_of()` and `Cursor.iter_dup_from()` methods now take a `K` key argument rather than a `&K` key argument.
+
+So we should rev the minor version rather than just the patch version of the version string.
+",mykmelez,305455,2018-12-05T15:31:18Z,COLLABORATOR,True,2,2,2,Safe Rust bindings for LMDB,Rust,0b2cff0c83fb5c6b78afc36c71ff8b8da0ebca2b,update minor version for breaking change in #18
+117,https://api.github.com/repos/mozilla/lmdb-rs/pulls/19,19,Publish 0.9.1,In preparation for publishing a new version after the fix to RwTransaction.del() in #17. I also removed a bit of trailing whitespace from that fix.,mykmelez,305455,2018-12-05T02:59:13Z,COLLABORATOR,True,4,4,3,Safe Rust bindings for LMDB,Rust,65507bde0aca4a6998e28f8e2a660a03ea3308f2,remove trailing whitespace
+118,https://api.github.com/repos/mozilla/lmdb-rs/pulls/19,19,Publish 0.9.1,In preparation for publishing a new version after the fix to RwTransaction.del() in #17. I also removed a bit of trailing whitespace from that fix.,mykmelez,305455,2018-12-05T02:59:13Z,COLLABORATOR,True,4,4,3,Safe Rust bindings for LMDB,Rust,f4e45a2f3a807953a4c2ea7237c03b96d31269f8,"update patch version to 0.9.1
+
+In preparation for publishing a new version after the fix to RwTransaction.del() in #17."
+119,https://api.github.com/repos/mozilla/lmdb-rs/pulls/19,19,Publish 0.9.1,In preparation for publishing a new version after the fix to RwTransaction.del() in #17. I also removed a bit of trailing whitespace from that fix.,mykmelez,305455,2018-12-05T02:59:13Z,COLLABORATOR,True,4,4,3,Safe Rust bindings for LMDB,Rust,f6444786cfed495b5d6d81d9cf70bf385359245b,also modify html_root_url in lib.rs
+120,https://api.github.com/repos/mozilla/lmdb-rs/pulls/18,18,fix for #17 - deleting values from an iter_dup db fails,A test for the bug defined in : https://github.com/mozilla/lmdb-rs/issues/17,rrichardson,124171,2018-12-03T03:06:30Z,NONE,True,66,8,2,Safe Rust bindings for LMDB,Rust,8599e4051ebe152e77795635e95b601d6e9815c2,added test for deleting values from an iter_dup db
+121,https://api.github.com/repos/mozilla/lmdb-rs/pulls/18,18,fix for #17 - deleting values from an iter_dup db fails,A test for the bug defined in : https://github.com/mozilla/lmdb-rs/issues/17,rrichardson,124171,2018-12-03T03:06:30Z,NONE,True,66,8,2,Safe Rust bindings for LMDB,Rust,5aa123cdbc06ba498ece32f3d3b579ae94dec173,updated Transaction::del. Fixes #17
+122,https://api.github.com/repos/mozilla/lmdb-rs/pulls/18,18,fix for #17 - deleting values from an iter_dup db fails,A test for the bug defined in : https://github.com/mozilla/lmdb-rs/issues/17,rrichardson,124171,2018-12-03T03:06:30Z,NONE,True,66,8,2,Safe Rust bindings for LMDB,Rust,8ff1b47e26a704e90b4549a7da451afc78439c34,verifying that None passed to del in ITER_DUP dbs will delete all matching keys
+123,https://api.github.com/repos/mozilla/lmdb-rs/pulls/16,16,Set up CI with Azure Pipelines,"@ncalexan Appveyor has been slow to build this project on Windows (and Linux, for that matter), and Azure Pipelines seems to be much quicker, so we should use it to tighten the feedback loop.
+
+The YAML configuration files on this branch are adapted from the ones that @LegNeato landed for https://github.com/graphql-rust/juniper/issues/259, which may have themselves been adapted from the ones in https://github.com/parcel-bundler/parcel/pull/2047.
+
+The primary difference is that I moved _azure-pipelines.yml_ to _.azure-pipelines.yml_ (leading period) to hide it from default directory listings like we do with the other CI service configuration files (_.travis.yml_, _.appveyor.yml_). Azure assumes the in-repo configuration file for a web-configured ""project"" is called _azure-pipelines.yml_ without a leading period, but the project can be configured to use any filename.
+
+I spent a bunch of time trying to figure out how to define the `cargo test` script only if _rustup_toolchain_ is `nightly`, since lmdb-rs tests use `#![cfg_attr(test, feature(test))]`, which requires a nightly build of Rust.
+
+But I couldn't figure out how to test for that value in an Azure conditional, so I replaced it with a bash/cmd.exe conditional within the script, which is what we do on Travis. There might be a more elegant solution, however.
+
+There appears to be a [""mozilla"" organization in Azure](https://dev.azure.com/mozilla), but I haven't yet figured out who owns it, so I'm currently [piping this line in my ""mykzilla"" organization](https://dev.azure.com/mykzilla/lmdb-rkv/_build?definitionId=3). Probably the CI should move to a more general Azure org, although I think that's orthogonal to the configuration files themselves, which is what we're landing here.
+",azure-pipelines[bot],36771401,2018-11-21T18:35:44Z,NONE,True,64,0,2,Safe Rust bindings for LMDB,Rust,7dc94e470b794dccb1b145c558285b75579d3678,Set up CI with Azure Pipelines
+124,https://api.github.com/repos/mozilla/lmdb-rs/pulls/16,16,Set up CI with Azure Pipelines,"@ncalexan Appveyor has been slow to build this project on Windows (and Linux, for that matter), and Azure Pipelines seems to be much quicker, so we should use it to tighten the feedback loop.
+
+The YAML configuration files on this branch are adapted from the ones that @LegNeato landed for https://github.com/graphql-rust/juniper/issues/259, which may have themselves been adapted from the ones in https://github.com/parcel-bundler/parcel/pull/2047.
+
+The primary difference is that I moved _azure-pipelines.yml_ to _.azure-pipelines.yml_ (leading period) to hide it from default directory listings like we do with the other CI service configuration files (_.travis.yml_, _.appveyor.yml_). Azure assumes the in-repo configuration file for a web-configured ""project"" is called _azure-pipelines.yml_ without a leading period, but the project can be configured to use any filename.
+
+I spent a bunch of time trying to figure out how to define the `cargo test` script only if _rustup_toolchain_ is `nightly`, since lmdb-rs tests use `#![cfg_attr(test, feature(test))]`, which requires a nightly build of Rust.
+
+But I couldn't figure out how to test for that value in an Azure conditional, so I replaced it with a bash/cmd.exe conditional within the script, which is what we do on Travis. There might be a more elegant solution, however.
+
+There appears to be a [""mozilla"" organization in Azure](https://dev.azure.com/mozilla), but I haven't yet figured out who owns it, so I'm currently [piping this line in my ""mykzilla"" organization](https://dev.azure.com/mykzilla/lmdb-rkv/_build?definitionId=3). Probably the CI should move to a more general Azure org, although I think that's orthogonal to the configuration files themselves, which is what we're landing here.
+",azure-pipelines[bot],36771401,2018-11-21T18:35:44Z,NONE,True,64,0,2,Safe Rust bindings for LMDB,Rust,1b6cef9c3b7af1a86d1fa90eddacc909d0ede44c,move back to default azure-pipelines.yml config file
+125,https://api.github.com/repos/mozilla/lmdb-rs/pulls/15,15,also update version in html_root_url in lib.rs,,mykmelez,305455,2018-11-19T22:43:04Z,COLLABORATOR,True,1,1,1,Safe Rust bindings for LMDB,Rust,7f2ab01e09d939fa5432ff21d9bba5535a3236e7,also update version in html_root_url in lib.rs
+126,https://api.github.com/repos/mozilla/lmdb-rs/pulls/14,14,return error result only from Iterator.next(),"This is an alternative to #13 that minimizes the number of methods that return an error result down to just the `Iterator.next()` implementation in `Iter` by using `std::iter::once()` to create an iterator that returns an error result when a failure occurs in the `Cursor.iter*()` methods.
+
+A potential downside of this approach is that it returns an Iterator trait object from the `Cursor.iter*()` methods, which could have runtime performance implications in theory (although I'm unsure that it does in practice).
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/45 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:29:17Z,COLLABORATOR,True,127,55,1,Safe Rust bindings for LMDB,Rust,3fcf9306df3b63ddff39e97023c42ded83301ec7,make Cursor::iter_*() methods return Result instead of panicking
+127,https://api.github.com/repos/mozilla/lmdb-rs/pulls/14,14,return error result only from Iterator.next(),"This is an alternative to #13 that minimizes the number of methods that return an error result down to just the `Iterator.next()` implementation in `Iter` by using `std::iter::once()` to create an iterator that returns an error result when a failure occurs in the `Cursor.iter*()` methods.
+
+A potential downside of this approach is that it returns an Iterator trait object from the `Cursor.iter*()` methods, which could have runtime performance implications in theory (although I'm unsure that it does in practice).
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/45 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:29:17Z,COLLABORATOR,True,127,55,1,Safe Rust bindings for LMDB,Rust,c3cb55c8255134f38dc70b997683acac32b6a1b4,demonstrate various uses of API
+128,https://api.github.com/repos/mozilla/lmdb-rs/pulls/14,14,return error result only from Iterator.next(),"This is an alternative to #13 that minimizes the number of methods that return an error result down to just the `Iterator.next()` implementation in `Iter` by using `std::iter::once()` to create an iterator that returns an error result when a failure occurs in the `Cursor.iter*()` methods.
+
+A potential downside of this approach is that it returns an Iterator trait object from the `Cursor.iter*()` methods, which could have runtime performance implications in theory (although I'm unsure that it does in practice).
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/45 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:29:17Z,COLLABORATOR,True,127,55,1,Safe Rust bindings for LMDB,Rust,99f24f745d9506ea8ecf0b8012dc20d5d5b14ed9,fix test failure; clarify iterator collection type
+129,https://api.github.com/repos/mozilla/lmdb-rs/pulls/14,14,return error result only from Iterator.next(),"This is an alternative to #13 that minimizes the number of methods that return an error result down to just the `Iterator.next()` implementation in `Iter` by using `std::iter::once()` to create an iterator that returns an error result when a failure occurs in the `Cursor.iter*()` methods.
+
+A potential downside of this approach is that it returns an Iterator trait object from the `Cursor.iter*()` methods, which could have runtime performance implications in theory (although I'm unsure that it does in practice).
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/45 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:29:17Z,COLLABORATOR,True,127,55,1,Safe Rust bindings for LMDB,Rust,58d46ec4d94e5df980086c78cd4a69173c4c78e6,return Iter that produces error result from Cursor.iter*
+130,https://api.github.com/repos/mozilla/lmdb-rs/pulls/14,14,return error result only from Iterator.next(),"This is an alternative to #13 that minimizes the number of methods that return an error result down to just the `Iterator.next()` implementation in `Iter` by using `std::iter::once()` to create an iterator that returns an error result when a failure occurs in the `Cursor.iter*()` methods.
+
+A potential downside of this approach is that it returns an Iterator trait object from the `Cursor.iter*()` methods, which could have runtime performance implications in theory (although I'm unsure that it does in practice).
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/45 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:29:17Z,COLLABORATOR,True,127,55,1,Safe Rust bindings for LMDB,Rust,6414b83a10c00311b19dc59365942c1c590c6def,alias Box<Iter> type to BoxedIter; make iter_dup_from return iterator too
+131,https://api.github.com/repos/mozilla/lmdb-rs/pulls/14,14,return error result only from Iterator.next(),"This is an alternative to #13 that minimizes the number of methods that return an error result down to just the `Iterator.next()` implementation in `Iter` by using `std::iter::once()` to create an iterator that returns an error result when a failure occurs in the `Cursor.iter*()` methods.
+
+A potential downside of this approach is that it returns an Iterator trait object from the `Cursor.iter*()` methods, which could have runtime performance implications in theory (although I'm unsure that it does in practice).
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/45 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:29:17Z,COLLABORATOR,True,127,55,1,Safe Rust bindings for LMDB,Rust,7f4395918997583cb3461b3f8db5c308e86aa775,empty commit to force CI rebuild
+132,https://api.github.com/repos/mozilla/lmdb-rs/pulls/14,14,return error result only from Iterator.next(),"This is an alternative to #13 that minimizes the number of methods that return an error result down to just the `Iterator.next()` implementation in `Iter` by using `std::iter::once()` to create an iterator that returns an error result when a failure occurs in the `Cursor.iter*()` methods.
+
+A potential downside of this approach is that it returns an Iterator trait object from the `Cursor.iter*()` methods, which could have runtime performance implications in theory (although I'm unsure that it does in practice).
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/45 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:29:17Z,COLLABORATOR,True,127,55,1,Safe Rust bindings for LMDB,Rust,04c7de8b37ec5206eea25b72d3e7d0602ba5d31a,empty commit to force CI rebuild
+133,https://api.github.com/repos/mozilla/lmdb-rs/pulls/14,14,return error result only from Iterator.next(),"This is an alternative to #13 that minimizes the number of methods that return an error result down to just the `Iterator.next()` implementation in `Iter` by using `std::iter::once()` to create an iterator that returns an error result when a failure occurs in the `Cursor.iter*()` methods.
+
+A potential downside of this approach is that it returns an Iterator trait object from the `Cursor.iter*()` methods, which could have runtime performance implications in theory (although I'm unsure that it does in practice).
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/45 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:29:17Z,COLLABORATOR,True,127,55,1,Safe Rust bindings for LMDB,Rust,6f06c1c1e9e815909699b5f6e3c122e9e7ed17eb,remove test that is no longer relevant
+134,https://api.github.com/repos/mozilla/lmdb-rs/pulls/14,14,return error result only from Iterator.next(),"This is an alternative to #13 that minimizes the number of methods that return an error result down to just the `Iterator.next()` implementation in `Iter` by using `std::iter::once()` to create an iterator that returns an error result when a failure occurs in the `Cursor.iter*()` methods.
+
+A potential downside of this approach is that it returns an Iterator trait object from the `Cursor.iter*()` methods, which could have runtime performance implications in theory (although I'm unsure that it does in practice).
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/45 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:29:17Z,COLLABORATOR,True,127,55,1,Safe Rust bindings for LMDB,Rust,09bd1de39b3f2069d9387005d85ddd4b49c92b96,remove unnecessary commented-out code
+135,https://api.github.com/repos/mozilla/lmdb-rs/pulls/14,14,return error result only from Iterator.next(),"This is an alternative to #13 that minimizes the number of methods that return an error result down to just the `Iterator.next()` implementation in `Iter` by using `std::iter::once()` to create an iterator that returns an error result when a failure occurs in the `Cursor.iter*()` methods.
+
+A potential downside of this approach is that it returns an Iterator trait object from the `Cursor.iter*()` methods, which could have runtime performance implications in theory (although I'm unsure that it does in practice).
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/45 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:29:17Z,COLLABORATOR,True,127,55,1,Safe Rust bindings for LMDB,Rust,a32a67310f69fa3cdda5c67eb3cca7e2d8645d7b,Merge branch 'return-error-result' into return-error-result-from-iter
+136,https://api.github.com/repos/mozilla/lmdb-rs/pulls/14,14,return error result only from Iterator.next(),"This is an alternative to #13 that minimizes the number of methods that return an error result down to just the `Iterator.next()` implementation in `Iter` by using `std::iter::once()` to create an iterator that returns an error result when a failure occurs in the `Cursor.iter*()` methods.
+
+A potential downside of this approach is that it returns an Iterator trait object from the `Cursor.iter*()` methods, which could have runtime performance implications in theory (although I'm unsure that it does in practice).
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/45 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:29:17Z,COLLABORATOR,True,127,55,1,Safe Rust bindings for LMDB,Rust,ea1386f8da7a44ba5578fc36f8c97804baf5ff91,Merge branch 'master' into return-error-result-from-iter
+137,https://api.github.com/repos/mozilla/lmdb-rs/pulls/14,14,return error result only from Iterator.next(),"This is an alternative to #13 that minimizes the number of methods that return an error result down to just the `Iterator.next()` implementation in `Iter` by using `std::iter::once()` to create an iterator that returns an error result when a failure occurs in the `Cursor.iter*()` methods.
+
+A potential downside of this approach is that it returns an Iterator trait object from the `Cursor.iter*()` methods, which could have runtime performance implications in theory (although I'm unsure that it does in practice).
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/45 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:29:17Z,COLLABORATOR,True,127,55,1,Safe Rust bindings for LMDB,Rust,a558fab5908ac8f09dbd0eb63fd599c97d570c0e,"convert Iter/IterDup to enums
+
+Instead of boxing Iter/IterDup to generalize across both successful and failed attempts to get an iterator, we make Iter and IterDup be enums with Ok and Err variants, where the Ok variant behaves like the current implementations, and the Err variant always returns an error."
+138,https://api.github.com/repos/mozilla/lmdb-rs/pulls/14,14,return error result only from Iterator.next(),"This is an alternative to #13 that minimizes the number of methods that return an error result down to just the `Iterator.next()` implementation in `Iter` by using `std::iter::once()` to create an iterator that returns an error result when a failure occurs in the `Cursor.iter*()` methods.
+
+A potential downside of this approach is that it returns an Iterator trait object from the `Cursor.iter*()` methods, which could have runtime performance implications in theory (although I'm unsure that it does in practice).
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/45 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:29:17Z,COLLABORATOR,True,127,55,1,Safe Rust bindings for LMDB,Rust,09d76561f53aed060276b16d2b270b91c6a9eb32,Merge branch 'master' into return-error-result-from-iter
+139,https://api.github.com/repos/mozilla/lmdb-rs/pulls/14,14,return error result only from Iterator.next(),"This is an alternative to #13 that minimizes the number of methods that return an error result down to just the `Iterator.next()` implementation in `Iter` by using `std::iter::once()` to create an iterator that returns an error result when a failure occurs in the `Cursor.iter*()` methods.
+
+A potential downside of this approach is that it returns an Iterator trait object from the `Cursor.iter*()` methods, which could have runtime performance implications in theory (although I'm unsure that it does in practice).
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/45 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:29:17Z,COLLABORATOR,True,127,55,1,Safe Rust bindings for LMDB,Rust,af923dc62dc95eb833a552e391f52bf37a30dc60,explicitly identify reference in match patterns
+140,https://api.github.com/repos/mozilla/lmdb-rs/pulls/13,13, return error result from fallible iteration methods,"This branch implements the suggestion in https://github.com/danburkert/lmdb-rs/issues/42 by returning an error result from fallible iteration methods (`Cursor.iter*()` and `Iterator.next()`) when those methods fail. See that issue for more info about the changes.
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/44 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:25:49Z,COLLABORATOR,False,67,33,1,Safe Rust bindings for LMDB,Rust,3fcf9306df3b63ddff39e97023c42ded83301ec7,make Cursor::iter_*() methods return Result instead of panicking
+141,https://api.github.com/repos/mozilla/lmdb-rs/pulls/13,13, return error result from fallible iteration methods,"This branch implements the suggestion in https://github.com/danburkert/lmdb-rs/issues/42 by returning an error result from fallible iteration methods (`Cursor.iter*()` and `Iterator.next()`) when those methods fail. See that issue for more info about the changes.
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/44 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:25:49Z,COLLABORATOR,False,67,33,1,Safe Rust bindings for LMDB,Rust,c3cb55c8255134f38dc70b997683acac32b6a1b4,demonstrate various uses of API
+142,https://api.github.com/repos/mozilla/lmdb-rs/pulls/13,13, return error result from fallible iteration methods,"This branch implements the suggestion in https://github.com/danburkert/lmdb-rs/issues/42 by returning an error result from fallible iteration methods (`Cursor.iter*()` and `Iterator.next()`) when those methods fail. See that issue for more info about the changes.
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/44 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:25:49Z,COLLABORATOR,False,67,33,1,Safe Rust bindings for LMDB,Rust,99f24f745d9506ea8ecf0b8012dc20d5d5b14ed9,fix test failure; clarify iterator collection type
+143,https://api.github.com/repos/mozilla/lmdb-rs/pulls/13,13, return error result from fallible iteration methods,"This branch implements the suggestion in https://github.com/danburkert/lmdb-rs/issues/42 by returning an error result from fallible iteration methods (`Cursor.iter*()` and `Iterator.next()`) when those methods fail. See that issue for more info about the changes.
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/44 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:25:49Z,COLLABORATOR,False,67,33,1,Safe Rust bindings for LMDB,Rust,7f4395918997583cb3461b3f8db5c308e86aa775,empty commit to force CI rebuild
+144,https://api.github.com/repos/mozilla/lmdb-rs/pulls/13,13, return error result from fallible iteration methods,"This branch implements the suggestion in https://github.com/danburkert/lmdb-rs/issues/42 by returning an error result from fallible iteration methods (`Cursor.iter*()` and `Iterator.next()`) when those methods fail. See that issue for more info about the changes.
+
+(I've previously requested integration of these changes upstream in https://github.com/danburkert/lmdb-rs/pull/44 and would like to move forward with these changes downstream while awaiting that integration.)
+",mykmelez,305455,2018-11-19T22:25:49Z,COLLABORATOR,False,67,33,1,Safe Rust bindings for LMDB,Rust,09bd1de39b3f2069d9387005d85ddd4b49c92b96,remove unnecessary commented-out code
+145,https://api.github.com/repos/mozilla/lmdb-rs/pulls/12,12,update minor version for breaking change to Cursor::iter_dup_of,,mykmelez,305455,2018-11-19T22:16:19Z,COLLABORATOR,True,1,1,1,Safe Rust bindings for LMDB,Rust,e1b3a8ecce54f31ea7b5c49d8cd7937babbc7785,update minor version for breaking change to Cursor::iter_dup_of
+146,https://api.github.com/repos/mozilla/lmdb-rs/pulls/11,11,correct size of default memory map,"The LMDB docs for [mdb_env_set_mapsize](http://www.lmdb.tech/doc/group__mdb.html#gaa2506ec8dab3d969b0e609cd82e619e5) says that the default map size is 10,485,760 bytes, i.e. 10MiB. But the [`DEFAULT_MAPSIZE` define](https://github.com/LMDB/lmdb/blob/26c7df88e44e31623d0802a564f24781acdefde3/libraries/liblmdb/mdb.c#L729) in the LMDB code sets the default map size to 1,048,576 bytes, i.e. 1MiB.
+
+I submitted a patch to fix the LMDB docs in [issue 8322](https://www.openldap.org/its/index.cgi/Incoming?id=8322). That issue has been open for several years, and it isn't clear whether it's the docs or the `DEFAULT_MAPSIZE` define that is incorrect. But I suspect the former, since the comment above `DEFAULT_MAPSIZE` says it's ""certainly too small for any actual applications,"" which suggests that the smaller size was intentional.
+
+In any case, it's worth fixing the lmdb-rs docs to specify the correct value (even if the LMDB docs specify an incorrect one).
+",mykmelez,305455,2018-10-22T23:22:19Z,COLLABORATOR,True,1,1,1,Safe Rust bindings for LMDB,Rust,6ff053db6a0d6fe95380fe8dc7330f02ef3c413e,correct size of default memory map
+147,https://api.github.com/repos/mozilla/lmdb-rs/pulls/10,10,merge danburkert/master,"Merges the changes recently landed to danburkert/master, including the fixes for #1 and #2.",mykmelez,305455,2018-08-06T17:16:53Z,COLLABORATOR,True,85,64,5,Safe Rust bindings for LMDB,Rust,12b4611006d5ba3bf80840faaa31a8b2e2bb6e88,Add a note for windows UNC path
+148,https://api.github.com/repos/mozilla/lmdb-rs/pulls/10,10,merge danburkert/master,"Merges the changes recently landed to danburkert/master, including the fixes for #1 and #2.",mykmelez,305455,2018-08-06T17:16:53Z,COLLABORATOR,True,85,64,5,Safe Rust bindings for LMDB,Rust,2f5a1c26156b0e0b0434a3ee0fc0269d971d49b4,"Update .appveyor.yml
+
+Linking lmdb with MinGW has begun failing due to [1], so this commit
+disables it.
+
+[1]: https://github.com/rust-lang/rust/issues/47048"
+149,https://api.github.com/repos/mozilla/lmdb-rs/pulls/10,10,merge danburkert/master,"Merges the changes recently landed to danburkert/master, including the fixes for #1 and #2.",mykmelez,305455,2018-08-06T17:16:53Z,COLLABORATOR,True,85,64,5,Safe Rust bindings for LMDB,Rust,c240c9243bc738d251df583f4ac64194ee7ff5cd,"Update pkg-config dependency to 0.3.2
+
+Earlier versions of pkg-config don't build with any post-1.0 rust
+compiler.
+
+This is an attempt to get lmdb, and some non-trivial crates which depend
+on it, building with `-Z minimal-versions`. See
+https://github.com/rust-lang/cargo/issues/5657 for more information."
+150,https://api.github.com/repos/mozilla/lmdb-rs/pulls/10,10,merge danburkert/master,"Merges the changes recently landed to danburkert/master, including the fixes for #1 and #2.",mykmelez,305455,2018-08-06T17:16:53Z,COLLABORATOR,True,85,64,5,Safe Rust bindings for LMDB,Rust,ef250445c192c5fd8630e9b29f2589b467b80e81,Fix Android cross-compile build: `cargo build --target armv7-linux-androideabi`
+151,https://api.github.com/repos/mozilla/lmdb-rs/pulls/10,10,merge danburkert/master,"Merges the changes recently landed to danburkert/master, including the fixes for #1 and #2.",mykmelez,305455,2018-08-06T17:16:53Z,COLLABORATOR,True,85,64,5,Safe Rust bindings for LMDB,Rust,869e16d1d2ded035dd776b4d4a53ce846b76a2ef,"Have iter_from/iter_dup_from return a Result
+
+It previously called unwrap() which panics if a key isn't found"
+152,https://api.github.com/repos/mozilla/lmdb-rs/pulls/10,10,merge danburkert/master,"Merges the changes recently landed to danburkert/master, including the fixes for #1 and #2.",mykmelez,305455,2018-08-06T17:16:53Z,COLLABORATOR,True,85,64,5,Safe Rust bindings for LMDB,Rust,126aa4cd6c1a6c8d06861ecb9181e61b1775ca94,Test iter_from/iter_dup_from with nonexistent keys
+153,https://api.github.com/repos/mozilla/lmdb-rs/pulls/10,10,merge danburkert/master,"Merges the changes recently landed to danburkert/master, including the fixes for #1 and #2.",mykmelez,305455,2018-08-06T17:16:53Z,COLLABORATOR,True,85,64,5,Safe Rust bindings for LMDB,Rust,984d53b2cd10a6019debeca3965e4c376534fa75,confirm that iter_from/iter_dup_from seek to first key >= specified key
+154,https://api.github.com/repos/mozilla/lmdb-rs/pulls/10,10,merge danburkert/master,"Merges the changes recently landed to danburkert/master, including the fixes for #1 and #2.",mykmelez,305455,2018-08-06T17:16:53Z,COLLABORATOR,True,85,64,5,Safe Rust bindings for LMDB,Rust,342e50d387dcb46f398dbf44f965f6ff49a303df,ignore NotFound error when seeking to key in iter_from/iter_dup_from
+155,https://api.github.com/repos/mozilla/lmdb-rs/pulls/10,10,merge danburkert/master,"Merges the changes recently landed to danburkert/master, including the fixes for #1 and #2.",mykmelez,305455,2018-08-06T17:16:53Z,COLLABORATOR,True,85,64,5,Safe Rust bindings for LMDB,Rust,c616e3d51e9de4b07b3c97345ba66b358a6a7cb7,Don't panic on iter_start() on an empty db.
+156,https://api.github.com/repos/mozilla/lmdb-rs/pulls/10,10,merge danburkert/master,"Merges the changes recently landed to danburkert/master, including the fixes for #1 and #2.",mykmelez,305455,2018-08-06T17:16:53Z,COLLABORATOR,True,85,64,5,Safe Rust bindings for LMDB,Rust,c64f0b4f8280190525a6430388e714739f18976b,"Simplify empty database iter handling
+
+This commit changes the API of Cursor::iter_dup_of, and is thus a
+breaking change."
+157,https://api.github.com/repos/mozilla/lmdb-rs/pulls/10,10,merge danburkert/master,"Merges the changes recently landed to danburkert/master, including the fixes for #1 and #2.",mykmelez,305455,2018-08-06T17:16:53Z,COLLABORATOR,True,85,64,5,Safe Rust bindings for LMDB,Rust,023997c715e2a3629e986a7a8f74f48a14c151ad,Merge remote-tracking branch 'danburkert/master' into merge-danburkert-master
+158,https://api.github.com/repos/mozilla/lmdb-rs/pulls/9,9,update patch version for crate name change,,mykmelez,305455,2018-08-02T23:14:58Z,COLLABORATOR,True,1,1,1,Safe Rust bindings for LMDB,Rust,4b3cbdc0f5090e788901f64854b32c5fda318719,update patch version for crate name change
+159,https://api.github.com/repos/mozilla/lmdb-rs/pulls/8,8,retain crate name for backward-compatibility,"When switching rkv's dependency on lmdb from the lmdb package to lmdb-rkv, I realized that we can avoid requiring source changes in such cases (i.e. `extern crate lmdb; use lmdb::*;` -> `extern crate lmdb_rkv; use lmdb_rkv::*;`) by specifying that the crate name of the lmdb-rkv package remains ""lmdb"".
+",mykmelez,305455,2018-08-02T23:02:17Z,COLLABORATOR,True,3,0,1,Safe Rust bindings for LMDB,Rust,64781cb66c87ff69639f74ef0e2e108031481126,retain crate name for backward-compatibility
+160,https://api.github.com/repos/mozilla/lmdb-rs/pulls/7,7,prepare to publish on crates.io as lmdb-rkv package,"@ncalexan This branch renames the package in the mozilla/lmdb-rs fork to enable it to be published on crates.io as lmdb-rkv.
+
+I've also incremented the patch number in the version string to reflect the (non-breaking) changes we've landed in the fork. And I replaced the dependency on an internal lmdb-sys with a dependency on the lmdb-sys on crates.io.
+
+(I didn't change the description of the package, but I previously added this statement to the README, which will be reflected in the package listing on crates.io: ""This repo is a fork of [danburkert/lmdb-rs](https://github.com/danburkert/lmdb-rs)
+with fixes for issues encountered by [mozilla/rkv](https://github.com/mozilla/rkv)."")
+
+I know you suggested that I vendor directly from the Git repository. And I've requested https://github.com/alexcrichton/cargo-vendor/pull/92 to fix the cargo-vendor issue that prevents me from doing so. But I'm now leaning toward publishing on crates.io, which is a better-worn cowpath and also unblocks updates to the rkv crate in that repository.
+
+Do you see any significant issues with this approach?
+",mykmelez,305455,2018-08-02T21:21:52Z,COLLABORATOR,True,8,8,2,Safe Rust bindings for LMDB,Rust,6d345e6ceb062a7f345f9502b068adbabacf6131,prepare to publish on crates.io as lmdb-rkv package
+161,https://api.github.com/repos/mozilla/lmdb-rs/pulls/5,5,iter getter test that segfaults,"This test demonstrates a segfault when returning an Iter from a function that also creates (and then drops) the Cursor with which the Iter is created. Presumably the issue is that dropping the Cursor calls `mdb_cursor_close()` on the MDB_cursor pointer, after which the Iter tries to use that pointer.
+
+`Cursor.cursor()` says that ""the caller **must** ensure that the pointer is not used after the lifetime of the cursor."" But the Iter implementation doesn't enforce that constraint. And while direct consumers of `Cursor.cursor()` can't say they weren't warned, the same isn't true for indirect consumers who are calling the iter getters like `Cursor.iter()` (and potentially wrapping them in their own getter functions). Which makes them a footgun.
+
+@ncloudioj This PR just demonstrates the problem; I don't have a solution for it yet, so this branch isn't ready to merge.",mykmelez,305455,2018-07-31T20:24:34Z,COLLABORATOR,False,18,0,1,Safe Rust bindings for LMDB,Rust,81cc443fbb89be2e4dc5c32078b7e5be4ed06618,iter getter test that segfaults
+162,https://api.github.com/repos/mozilla/lmdb-rs/pulls/4,4,update URLs and credit upstream repo,,mykmelez,305455,2018-07-24T23:48:43Z,COLLABORATOR,True,6,5,1,Safe Rust bindings for LMDB,Rust,2b9ab786b008c4b223036a9e3879c9556b17d784,update URLs and credit upstream repo
+163,https://api.github.com/repos/mozilla/lmdb-rs/pulls/4,4,update URLs and credit upstream repo,,mykmelez,305455,2018-07-24T23:48:43Z,COLLABORATOR,True,6,5,1,Safe Rust bindings for LMDB,Rust,a8f46056043afe6e13bf9bad7f7d4d8499da7aa3,Merge branch 'master' into fork-readme
+164,https://api.github.com/repos/mozilla/lmdb-rs/pulls/3,3,temporarily disable MinGW builds,"Temporarily disable MinGW builds due to https://github.com/rust-lang/rust/issues/47048 to fix bustage on Appveyor. Once that issue is fixed, presumably by https://github.com/rust-lang/rust/pull/51989, we should reenable them.
+",mykmelez,305455,2018-07-24T23:24:34Z,COLLABORATOR,True,7,4,1,Safe Rust bindings for LMDB,Rust,0dde7307c593f1156276a2697cd1ae3371ffe6c2,temporarily disable MinGW builds
+165,https://api.github.com/repos/mozilla/lmdb-rs/pulls/3,3,temporarily disable MinGW builds,"Temporarily disable MinGW builds due to https://github.com/rust-lang/rust/issues/47048 to fix bustage on Appveyor. Once that issue is fixed, presumably by https://github.com/rust-lang/rust/pull/51989, we should reenable them.
+",mykmelez,305455,2018-07-24T23:24:34Z,COLLABORATOR,True,7,4,1,Safe Rust bindings for LMDB,Rust,ab1b1f67eec59398a423eed29e3f9127b33824ee,Merge branch 'master' into work-around-appveyor-bustage
+166,https://api.github.com/repos/mozilla/lmdb-rs/pulls/2,2,Iter from ignore not found,"Per #1  (from which this branches), this makes _iter_from_ and _iter_dup_from_ behave consistently when seeking to a key that may or may not exist and may or may not be greater than any key in the store, which is more usable for callers whose behavior doesn't depend on the presence of the given key (nor any greater ones).
+",mykmelez,305455,2018-07-24T22:48:18Z,COLLABORATOR,True,28,4,1,Safe Rust bindings for LMDB,Rust,a5200104dcc5ffdbe400a2ae660ce4f9a9573976,"Have iter_from/iter_dup_from return a Result
+
+It previously called unwrap() which panics if a key isn't found"
+167,https://api.github.com/repos/mozilla/lmdb-rs/pulls/2,2,Iter from ignore not found,"Per #1  (from which this branches), this makes _iter_from_ and _iter_dup_from_ behave consistently when seeking to a key that may or may not exist and may or may not be greater than any key in the store, which is more usable for callers whose behavior doesn't depend on the presence of the given key (nor any greater ones).
+",mykmelez,305455,2018-07-24T22:48:18Z,COLLABORATOR,True,28,4,1,Safe Rust bindings for LMDB,Rust,53fd6afdb6a88ef81fe03fcce07bb3ec9ecff5b9,Test iter_from/iter_dup_from with nonexistent keys
+168,https://api.github.com/repos/mozilla/lmdb-rs/pulls/2,2,Iter from ignore not found,"Per #1  (from which this branches), this makes _iter_from_ and _iter_dup_from_ behave consistently when seeking to a key that may or may not exist and may or may not be greater than any key in the store, which is more usable for callers whose behavior doesn't depend on the presence of the given key (nor any greater ones).
+",mykmelez,305455,2018-07-24T22:48:18Z,COLLABORATOR,True,28,4,1,Safe Rust bindings for LMDB,Rust,e274651f5ffc046bccfd4e15be1e6880170a53b4,Merge branch 'master' into iter-from-result
+169,https://api.github.com/repos/mozilla/lmdb-rs/pulls/2,2,Iter from ignore not found,"Per #1  (from which this branches), this makes _iter_from_ and _iter_dup_from_ behave consistently when seeking to a key that may or may not exist and may or may not be greater than any key in the store, which is more usable for callers whose behavior doesn't depend on the presence of the given key (nor any greater ones).
+",mykmelez,305455,2018-07-24T22:48:18Z,COLLABORATOR,True,28,4,1,Safe Rust bindings for LMDB,Rust,d6dad15f3ec6ec662822ee87ae586c18a004c744,confirm that iter_from/iter_dup_from seek to first key >= specified key
+170,https://api.github.com/repos/mozilla/lmdb-rs/pulls/2,2,Iter from ignore not found,"Per #1  (from which this branches), this makes _iter_from_ and _iter_dup_from_ behave consistently when seeking to a key that may or may not exist and may or may not be greater than any key in the store, which is more usable for callers whose behavior doesn't depend on the presence of the given key (nor any greater ones).
+",mykmelez,305455,2018-07-24T22:48:18Z,COLLABORATOR,True,28,4,1,Safe Rust bindings for LMDB,Rust,fe6bcde6c24ec75046a46eb3e3d52700689245f1,ignore NotFound error when seeking to key in iter_from/iter_dup_from
+171,https://api.github.com/repos/mozilla/lmdb-rs/pulls/1,1, Have iter_from/iter_dup_from return a Result,"(This issue is a clone of https://github.com/danburkert/lmdb-rs/pull/29.)
+
+The _iter_from_ test in https://github.com/danburkert/lmdb-rs/pull/7 is failing because [MDB_SET_RANGE](http://www.lmdb.tech/doc/group__mdb.html#gga1206b2af8b95e7f6b0ef6b28708c9127af9feb0557c2954dbf7732eee5e1b59e7) sets the ""Position at first key greater than or equal to specified key."" And `foo` is less than `key1`, the first key in the test store; so `cursor.iter_from(b""foo"")` sets the cursor position to the first key and returns _Ok_ instead of _Err(NotFound)_.
+
+(The _iter_dup_from_ test doesn't fail in the same way because `foo` is greater than `c`, the greatest key in that test's store.)
+
+This branch fixes the test by seeking to `key6`, which is greater than any key in the store, instead of `foo`. It also adds tests to confirm that seeking to an intermediate key that doesn't exist (`key4` in a store with `key3` and `key5` keys) will move the cursor's position to the next key greater than or equal to that key.
+
+NB: given LMDB's behavior when seeking to a nonexistent but intermediate key (which is actually quite useful for my use case), it isn't clear to me that an _Err(NotFound)_ is the most ergonomic result of seeking to a nonexistent key that is greater than any in the store.
+
+Returning an iterator over an empty set in that case would make the behavior more consistent, and it would be more usable for callers whose behavior doesn't depend on the presence of the given key (nor any greater ones).
+
+Nevertheless, I haven't made that change in this branch. I'll request a pull with it on another branch for your consideration.
+",mykmelez,305455,2018-07-24T22:45:48Z,COLLABORATOR,True,24,11,1,Safe Rust bindings for LMDB,Rust,a5200104dcc5ffdbe400a2ae660ce4f9a9573976,"Have iter_from/iter_dup_from return a Result
+
+It previously called unwrap() which panics if a key isn't found"
+172,https://api.github.com/repos/mozilla/lmdb-rs/pulls/1,1, Have iter_from/iter_dup_from return a Result,"(This issue is a clone of https://github.com/danburkert/lmdb-rs/pull/29.)
+
+The _iter_from_ test in https://github.com/danburkert/lmdb-rs/pull/7 is failing because [MDB_SET_RANGE](http://www.lmdb.tech/doc/group__mdb.html#gga1206b2af8b95e7f6b0ef6b28708c9127af9feb0557c2954dbf7732eee5e1b59e7) sets the ""Position at first key greater than or equal to specified key."" And `foo` is less than `key1`, the first key in the test store; so `cursor.iter_from(b""foo"")` sets the cursor position to the first key and returns _Ok_ instead of _Err(NotFound)_.
+
+(The _iter_dup_from_ test doesn't fail in the same way because `foo` is greater than `c`, the greatest key in that test's store.)
+
+This branch fixes the test by seeking to `key6`, which is greater than any key in the store, instead of `foo`. It also adds tests to confirm that seeking to an intermediate key that doesn't exist (`key4` in a store with `key3` and `key5` keys) will move the cursor's position to the next key greater than or equal to that key.
+
+NB: given LMDB's behavior when seeking to a nonexistent but intermediate key (which is actually quite useful for my use case), it isn't clear to me that an _Err(NotFound)_ is the most ergonomic result of seeking to a nonexistent key that is greater than any in the store.
+
+Returning an iterator over an empty set in that case would make the behavior more consistent, and it would be more usable for callers whose behavior doesn't depend on the presence of the given key (nor any greater ones).
+
+Nevertheless, I haven't made that change in this branch. I'll request a pull with it on another branch for your consideration.
+",mykmelez,305455,2018-07-24T22:45:48Z,COLLABORATOR,True,24,11,1,Safe Rust bindings for LMDB,Rust,53fd6afdb6a88ef81fe03fcce07bb3ec9ecff5b9,Test iter_from/iter_dup_from with nonexistent keys
+173,https://api.github.com/repos/mozilla/lmdb-rs/pulls/1,1, Have iter_from/iter_dup_from return a Result,"(This issue is a clone of https://github.com/danburkert/lmdb-rs/pull/29.)
+
+The _iter_from_ test in https://github.com/danburkert/lmdb-rs/pull/7 is failing because [MDB_SET_RANGE](http://www.lmdb.tech/doc/group__mdb.html#gga1206b2af8b95e7f6b0ef6b28708c9127af9feb0557c2954dbf7732eee5e1b59e7) sets the ""Position at first key greater than or equal to specified key."" And `foo` is less than `key1`, the first key in the test store; so `cursor.iter_from(b""foo"")` sets the cursor position to the first key and returns _Ok_ instead of _Err(NotFound)_.
+
+(The _iter_dup_from_ test doesn't fail in the same way because `foo` is greater than `c`, the greatest key in that test's store.)
+
+This branch fixes the test by seeking to `key6`, which is greater than any key in the store, instead of `foo`. It also adds tests to confirm that seeking to an intermediate key that doesn't exist (`key4` in a store with `key3` and `key5` keys) will move the cursor's position to the next key greater than or equal to that key.
+
+NB: given LMDB's behavior when seeking to a nonexistent but intermediate key (which is actually quite useful for my use case), it isn't clear to me that an _Err(NotFound)_ is the most ergonomic result of seeking to a nonexistent key that is greater than any in the store.
+
+Returning an iterator over an empty set in that case would make the behavior more consistent, and it would be more usable for callers whose behavior doesn't depend on the presence of the given key (nor any greater ones).
+
+Nevertheless, I haven't made that change in this branch. I'll request a pull with it on another branch for your consideration.
+",mykmelez,305455,2018-07-24T22:45:48Z,COLLABORATOR,True,24,11,1,Safe Rust bindings for LMDB,Rust,e274651f5ffc046bccfd4e15be1e6880170a53b4,Merge branch 'master' into iter-from-result
+174,https://api.github.com/repos/mozilla/lmdb-rs/pulls/1,1, Have iter_from/iter_dup_from return a Result,"(This issue is a clone of https://github.com/danburkert/lmdb-rs/pull/29.)
+
+The _iter_from_ test in https://github.com/danburkert/lmdb-rs/pull/7 is failing because [MDB_SET_RANGE](http://www.lmdb.tech/doc/group__mdb.html#gga1206b2af8b95e7f6b0ef6b28708c9127af9feb0557c2954dbf7732eee5e1b59e7) sets the ""Position at first key greater than or equal to specified key."" And `foo` is less than `key1`, the first key in the test store; so `cursor.iter_from(b""foo"")` sets the cursor position to the first key and returns _Ok_ instead of _Err(NotFound)_.
+
+(The _iter_dup_from_ test doesn't fail in the same way because `foo` is greater than `c`, the greatest key in that test's store.)
+
+This branch fixes the test by seeking to `key6`, which is greater than any key in the store, instead of `foo`. It also adds tests to confirm that seeking to an intermediate key that doesn't exist (`key4` in a store with `key3` and `key5` keys) will move the cursor's position to the next key greater than or equal to that key.
+
+NB: given LMDB's behavior when seeking to a nonexistent but intermediate key (which is actually quite useful for my use case), it isn't clear to me that an _Err(NotFound)_ is the most ergonomic result of seeking to a nonexistent key that is greater than any in the store.
+
+Returning an iterator over an empty set in that case would make the behavior more consistent, and it would be more usable for callers whose behavior doesn't depend on the presence of the given key (nor any greater ones).
+
+Nevertheless, I haven't made that change in this branch. I'll request a pull with it on another branch for your consideration.
+",mykmelez,305455,2018-07-24T22:45:48Z,COLLABORATOR,True,24,11,1,Safe Rust bindings for LMDB,Rust,d6dad15f3ec6ec662822ee87ae586c18a004c744,confirm that iter_from/iter_dup_from seek to first key >= specified key

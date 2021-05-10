@@ -1,0 +1,709 @@
+,pullid,pulls_number,pulltitle,pullsbody,pullsuserlogin,pullsuserid,pullauthordate,author_association,merged_status,stats_addns,stats_delns,stats_changed_files,pull_repo_desc,pull_repo_lang,pull_commit_sha,pull_commit_message
+0,https://api.github.com/repos/mozilla/areweslimyet/pulls/132,132,Updating dependencies and using requirements.txt,"@EricRahm , simply updating current dependencies.",zapion,734529,2017-02-13T08:24:13Z,NONE,False,14,13,4,Code behind areweslimyet.com,JavaScript,18346d3126fc2e7eb64804e975fac3e94c6f0696,Updating dependencies and using requirements.txt
+1,https://api.github.com/repos/mozilla/areweslimyet/pulls/131,131,Just use the e10s flag instead of prefs,This uses MarionetteTestRunner's e10s flag instead of our hardcoded pref names. Additionally issue #130 is fixed. ,EricRahm,426919,2016-12-22T22:28:25Z,CONTRIBUTOR,True,7,16,4,Code behind areweslimyet.com,JavaScript,7d83a7d8b6cc1fb36dc89b681cadb96521dd21a9,Use marionette's e10s flag
+2,https://api.github.com/repos/mozilla/areweslimyet/pulls/131,131,Just use the e10s flag instead of prefs,This uses MarionetteTestRunner's e10s flag instead of our hardcoded pref names. Additionally issue #130 is fixed. ,EricRahm,426919,2016-12-22T22:28:25Z,CONTRIBUTOR,True,7,16,4,Code behind areweslimyet.com,JavaScript,a436b592c63eb0fb7b163b2b49a4fe8fa0557047,Switch to marionette-harness package
+3,https://api.github.com/repos/mozilla/areweslimyet/pulls/128,128,Submit jobs to Treeherder using revision not revision hash,"Since the client no longer accepts `revision_hash` after bug 1199364.
+",edmorley,501702,2016-07-20T19:39:48Z,CONTRIBUTOR,True,1,17,1,Code behind areweslimyet.com,JavaScript,531a54b7064635c2dfcb6365537a460cb409615d,"Submit jobs to Treeherder using revision not revision hash
+
+Since the client no longer accepts revision_hash after bug 1199364."
+4,https://api.github.com/repos/mozilla/areweslimyet/pulls/127,127,Update to treeherder-client 3.0.0,"Notable changes:
+- Performance benefit from connection pooling, if the same `TreeherderClient` instance is re-used for multiple requests.
+- The separate `host` and `protocol` arguments have been combined into a single `server_url` argument.
+
+See here for more details:
+https://bugzilla.mozilla.org/show_bug.cgi?id=1286240
+",edmorley,501702,2016-07-12T23:02:51Z,CONTRIBUTOR,True,11,17,4,Code behind areweslimyet.com,JavaScript,7fbc6b07bd5d0095e3e8375eeaab334917c61e63,"Update to treeherder-client 3.0.0
+
+Notable changes:
+* Performance benefit from connection pooling, if the same
+`TreeherderClient` instance is re-used for multiple requests.
+* The separate `host` and `protocol` arguments have been combined into a
+single `server_url` argument.
+
+See here for more details:
+https://bugzilla.mozilla.org/show_bug.cgi?id=1286240"
+5,https://api.github.com/repos/mozilla/areweslimyet/pulls/123,123,Added documentation on how to use trywatcher #84,"Resolves issue #84
+",Ashwin02,10715177,2016-03-29T21:39:27Z,CONTRIBUTOR,False,33,0,2,Code behind areweslimyet.com,JavaScript,30fb346ab7b234b3eefa72bad3cfba9bee58e3e7,Add documentation on how to use trywatcher
+6,https://api.github.com/repos/mozilla/areweslimyet/pulls/123,123,Added documentation on how to use trywatcher #84,"Resolves issue #84
+",Ashwin02,10715177,2016-03-29T21:39:27Z,CONTRIBUTOR,False,33,0,2,Code behind areweslimyet.com,JavaScript,dcae805fa9a9a4b464599a30323536176b85452b,Add documentation on how to use trywatcher to faq.md
+7,https://api.github.com/repos/mozilla/areweslimyet/pulls/123,123,Added documentation on how to use trywatcher #84,"Resolves issue #84
+",Ashwin02,10715177,2016-03-29T21:39:27Z,CONTRIBUTOR,False,33,0,2,Code behind areweslimyet.com,JavaScript,536a02db6be8f7a6810f15d3dccd51b261e99762,Fixed the content
+8,https://api.github.com/repos/mozilla/areweslimyet/pulls/122,122,Better handling for perf job failures,"The job guid is now comprised of a hash of the revision and perfdata.
+This helps treeherder understand if we are reposting the same job data.
+
+The job posting logic is also updated to continue processing other
+builds even if there is a failure posting the current job.
+",EricRahm,426919,2016-03-22T21:34:13Z,CONTRIBUTOR,False,21,12,1,Code behind areweslimyet.com,JavaScript,d0bf04aca6dec3cf88a4abe61e4704bf8e9b0de0,"Better handling for perf job failures
+
+The job guid is now comprised of a hash of the revision and perfdata.
+This helps treeherder understand if we are reposting the same job data.
+
+The job posting logic is also updated to continue processing other
+builds even if there is a failure posting the current job."
+9,https://api.github.com/repos/mozilla/areweslimyet/pulls/122,122,Better handling for perf job failures,"The job guid is now comprised of a hash of the revision and perfdata.
+This helps treeherder understand if we are reposting the same job data.
+
+The job posting logic is also updated to continue processing other
+builds even if there is a failure posting the current job.
+",EricRahm,426919,2016-03-22T21:34:13Z,CONTRIBUTOR,False,21,12,1,Code behind areweslimyet.com,JavaScript,8af3736e96e9c60dfd4405ff3850ac9ce3993c3a,Use treeherder job guid for S3
+10,https://api.github.com/repos/mozilla/areweslimyet/pulls/119,119,Store logs in S3 and report them to treeherder (#116),"This adds support for posting the logs for a test run to S3 and
+treeherder. Both the unit test log and gecko log (what's actually output
+from the Firefox session) are included.
+
+Logs are stored under the following path:
+    `http://<S3_bucket>/<repo>/<revision>/<guid>/`
+
+@nnethercote Can you take a look?
+",EricRahm,426919,2016-03-03T23:34:37Z,CONTRIBUTOR,False,139,14,2,Code behind areweslimyet.com,JavaScript,0ae196a270b88f33d361e532b290b2acba5d494f,"Store logs in S3 and report them to treeherder (#116)
+
+This adds support for posting the logs for a test run to S3 and
+treeherder. Both the unit test log and gecko log (what's actually output
+from the Firefox session) are included.
+
+Logs are stored under the following path:
+    http://<S3_bucket>/<repo>/<revision>/<guid>/"
+11,https://api.github.com/repos/mozilla/areweslimyet/pulls/118,118,Use a single mozlog for each test (#116),"This unifies the log used by BenchTester, BenchTest, MarionetteTest, and
+test_memory_usage. It defaults to mach-style output and switches over to
+using ""raw"" logs (aka structured logging) if a logfile is specified.
+
+This gives a much more thorough test log as the output from the marionette test is included.
+
+@nnethercote can you take a look?
+",EricRahm,426919,2016-03-03T00:47:42Z,CONTRIBUTOR,True,32,51,4,Code behind areweslimyet.com,JavaScript,a5c5639c189d31e861a54f6ad4a6cf58d16f1379,"Use a single mozlog for each test (#116)
+
+This unifies the log used by BenchTester, BenchTest, MarionetteTest, and
+test_memory_usage. It defaults to mach-style output and switches over to
+using ""raw"" logs (aka structured logging) if a logfile is specified."
+12,https://api.github.com/repos/mozilla/areweslimyet/pulls/117,117,Support submitting perf data to prod and staging (#115),"This splits out the logic to filter revisions so that we can reuse the
+submission code for multiple treeherder clients. Submission to an
+optional 'treeherder_staging' target is added.
+
+@nnethercote Does this look reasonable to you?
+",EricRahm,426919,2016-03-01T00:40:38Z,CONTRIBUTOR,True,60,22,2,Code behind areweslimyet.com,JavaScript,6af6e57d80c46927f4e6db499da6096d9e887fa1,"Support submitting perf data to prod and staging (#115)
+
+This splits out the logic to filter revisions so that we can reuse the
+submission code for multiple treeherder clients. Submission to an
+optional 'treeherder_staging' target is added."
+13,https://api.github.com/repos/mozilla/areweslimyet/pulls/114,114,Keep track of revision posted to treeherder,"This tracks the last 100 revisions of data posted to treeherder in
+order to avoid double-posting data.
+
+@nnethercote can you take a look?
+",EricRahm,426919,2016-02-17T00:58:54Z,CONTRIBUTOR,False,27,2,1,Code behind areweslimyet.com,JavaScript,dc5c855f2ad3bb946340352592f7b6aed973c220,"Keep track of revision posted to treeherder
+
+This tracks the last 100 revisions of data posted to treeherder in
+order to avoid double-posting dataa."
+14,https://api.github.com/repos/mozilla/areweslimyet/pulls/112,112,Lookup full revision for try builds (#111),"|mozdownload| now requires the full length revision when requesting a
+try build. TryBuilder is updated to look that up if a short revision is
+provided. Additionally the 12 character limit is removed when requesting
+a try build. Tests have been updated for both styles.
+",EricRahm,426919,2016-01-19T21:52:31Z,CONTRIBUTOR,True,39,11,8,Code behind areweslimyet.com,JavaScript,1f0ed5c9cda51a4752ca59a2916169e5516643e1,"Lookup full revision for try builds (#111)
+
+|mozdownload| now requires the full length revision when requesting a
+try build. TryBuilder is updated to look that up if a short revision is
+provided. Additionally the 12 character limit is removed when requesting
+a try build. Tests have been updated for both styles."
+15,https://api.github.com/repos/mozilla/areweslimyet/pulls/110,110,Treeherder integrataion,"@nnethercote Do you mind sanity checking this?
+@wlach Can you take a look as well?
+",EricRahm,426919,2016-01-13T01:08:28Z,CONTRIBUTOR,False,229,0,3,Code behind areweslimyet.com,JavaScript,2249323e475af26b970e6346f6cac8fbbb1b8dbc,Add script for posting performance data to treeherder
+16,https://api.github.com/repos/mozilla/areweslimyet/pulls/110,110,Treeherder integrataion,"@nnethercote Do you mind sanity checking this?
+@wlach Can you take a look as well?
+",EricRahm,426919,2016-01-13T01:08:28Z,CONTRIBUTOR,False,229,0,3,Code behind areweslimyet.com,JavaScript,1aea0e58bdc605f32ba33664783ff75a0fe83285,Add performance data posting to cron script
+17,https://api.github.com/repos/mozilla/areweslimyet/pulls/110,110,Treeherder integrataion,"@nnethercote Do you mind sanity checking this?
+@wlach Can you take a look as well?
+",EricRahm,426919,2016-01-13T01:08:28Z,CONTRIBUTOR,False,229,0,3,Code behind areweslimyet.com,JavaScript,e6a9e3fef34e57883ef12a85d93bb3b09e2f6a3c,"Fix grep used in cron script, cleanup comments"
+18,https://api.github.com/repos/mozilla/areweslimyet/pulls/110,110,Treeherder integrataion,"@nnethercote Do you mind sanity checking this?
+@wlach Can you take a look as well?
+",EricRahm,426919,2016-01-13T01:08:28Z,CONTRIBUTOR,False,229,0,3,Code behind areweslimyet.com,JavaScript,7a977377e22e8e32240a98938fa5084a79632724,Updates per CR
+19,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,3b43a463dd1e21c03b96cc8ff1f77c74056bb9d3,Enable e10s
+20,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,2087e30e4b29f4abf8738eba655a524ed4ec901b,"Update DB schemas to support e10s
+
+- Breaks out metadata into it's own columns/tables
+- Stores value type and kind in data table
+- Adds process name to data table"
+21,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,1627924cffc4be5f1f34600458cd8639cf1ea182,"Make checkpoint always include kind and unit
+
+- Always report kind and unit
+- Don't convert to strings, just report the integer value"
+22,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,9432382d709706bb097893ca4c0667a4e32725d5,"Keep memory reports in checkpoint format
+
+Removes intermediate conversion step."
+23,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,43496f795f8300e1d7235b93c6132f0d2b717efa,"Properly insert data into new database format
+
+- Process and checkpoint names are properly inserted
+- All new columns in benchtester_data are filled"
+24,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,44fafdd1d502ba75ac99d4543b5339f6057e4083,"Handle new DB format in create_graph_json.py
+
+Uses new DB fields. Currently only handles the Main process and ignores
+the 'kind' field."
+25,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,d866329d89fc4d3049f590ec601111efb1a79c67,"v0 to v1 update script
+
+Based on the original update_database.py script."
+26,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,ac493e8f868e68cbda738ff7e20d3710f1f9b356,Add note about supported versions
+27,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,806e9aee5a37a0d84cf328d132fae6fea686857a,Rename 'memory' => 'reports'
+28,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,defd51c6a89a0b000d57c00abd9b1b621769fc53,Explicitly set version to 0 when upgrading old DBs
+29,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,ae88a34fc359c29e51a9231b4ccb54951bdbb0ea,"Merge pull request #80 from EricRahm/db_cleanup
+
+DB cleanup in preparation of e10s support"
+30,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,18c3c48126c4b56e5e2291d86207ea9958e8f5ab,Merge branch 'master' into e10s
+31,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,ed1dddbad15b100a50da2a33b21beb257998b414,Cleanup create_graph_json.py formatting
+32,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,0d873be4f8d40b6927c251531e6829f7a890d365,"Fix calculating heap-unclassified
+
+heap-unclassified wasn't updated to take into account the new reporting
+format. This just wraps it in the proper object format."
+33,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,277bf2f9ae548bbf90d5d18e5e2656437720fae6,"Add process name to node path
+
+This adds the process name to the node path, ie:
+    'Iteration 5/StartSettled/*Main*/heap-allocated'
+Note: e10s currently only has one 'Main' process and one 'Web Content'
+process."
+34,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,deb1e39d06c59bc68dc6972074627a2ee34003aa,"Update series datapoints to handle process names
+
+This also adds series datapoints of the 'Web Content' process."
+35,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,eac108defc8fff6d52676804aac34a802c221f5d,"Add e10s graphs
+
+Updates to handle the new datapoint format. Adds series for 'Web
+Content' and specifies the existing graphs are for 'Main'."
+36,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,02d56432854ea207d241a64e9e6769d4d59f3b5b,"Support e10s in the about memory exporter
+
+Adds handling of the process name name in the datapoint tree."
+37,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,a11f3ec4b069377a7a036706b05eb54cb611aaf1,"Merge pull request #87 from EricRahm/export_e10s_data
+
+Export e10s data"
+38,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,797177e4238ee9a896d257c52618e5380cd7262c,"Add proper wait for new tab to open
+
+Use built in |wait_for_condition| to check if the the new tab has been
+opened rather than a short sleep."
+39,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,9b8e871f248bcfa8f2a48d7c2cb314d5e490af6c,"Disable e10s first time user banner
+
+Prevent 'Thanks for using e10s' message from showing up. Also adds a few
+more e10s prefs just in case."
+40,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,0c166311172fa8159fdfe43d1d78d353c2ac0025,Merge branch 'master' into e10s
+41,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,86d2b33f2062bf6bf4e274c153642c0bd3585bbd,Merge branch 'master' into e10s
+42,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,cb39fe9d1d814f64a38d8c9930fcf133382cc55f,Merge branch 'master' into e10s
+43,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,b9895ab7252facbc76c2e53a6d9d299df2bda135,Specify startup timeout to work around marionette bug
+44,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,5637f17d8c6c76324eecc5e13aa1db920840a560,Merge branch 'master' into e10s
+45,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,f53030c275006c0dbb65ba03e0da946295a97d6e,"Update window handles after opening a new tab
+
+It's possible for the window handle to change after opening a new tab
+and then navigating to a real URL when e10s is enabled."
+46,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,33dca13e064b2ece2238d6982b3107ea910d6db3,Merge branch 'master' into e10s
+47,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,5ab874443d71844a546c1ea14a6c45ed44ab1c23,"Add support for multiple content processes
+
+A '--process_count' argument is added to specify the amount of content
+processes to use with e10s enabled. The value defaults to 1."
+48,https://api.github.com/repos/mozilla/areweslimyet/pulls/109,109,Use mozinstall to extract builds (#76),"This switches over some of our hardcoded paths and extensions by using [mozinstall](http://mozbase.readthedocs.org/en/latest/mozinstall.html). This gets us one step closer to cross-platform support.
+
+@nnethercote Can you please review?
+",EricRahm,426919,2015-11-12T01:28:40Z,CONTRIBUTOR,False,688,133,12,Code behind areweslimyet.com,JavaScript,f39f6441b598e9af49470c294e1401f65577b5ae,"Handle multiple instances of the same process type
+
+Normalize process names to include a process number if there are
+multiple instances.
+
+Example mapping:
+  [ ""Main"" => ""Main"",
+    ""Web Content (123)"" => ""Web Content"",
+    ""Web Content (234)"" => ""Web Content 2"",
+    ""Web Content (345)"" => ""Web Content 3"" ]
+
+The first instance of the process name excludes the number so as to
+avoid breaking graph generation for the AWSY website which expects names
+without numbers."
+49,https://api.github.com/repos/mozilla/areweslimyet/pulls/108,108,Support mutilple content processes,"@nnethercote do you mind doing a quick review?
+",EricRahm,426919,2015-11-09T21:41:50Z,CONTRIBUTOR,True,146,6,3,Code behind areweslimyet.com,JavaScript,5ab874443d71844a546c1ea14a6c45ed44ab1c23,"Add support for multiple content processes
+
+A '--process_count' argument is added to specify the amount of content
+processes to use with e10s enabled. The value defaults to 1."
+50,https://api.github.com/repos/mozilla/areweslimyet/pulls/108,108,Support mutilple content processes,"@nnethercote do you mind doing a quick review?
+",EricRahm,426919,2015-11-09T21:41:50Z,CONTRIBUTOR,True,146,6,3,Code behind areweslimyet.com,JavaScript,f39f6441b598e9af49470c294e1401f65577b5ae,"Handle multiple instances of the same process type
+
+Normalize process names to include a process number if there are
+multiple instances.
+
+Example mapping:
+  [ ""Main"" => ""Main"",
+    ""Web Content (123)"" => ""Web Content"",
+    ""Web Content (234)"" => ""Web Content 2"",
+    ""Web Content (345)"" => ""Web Content 3"" ]
+
+The first instance of the process name excludes the number so as to
+avoid breaking graph generation for the AWSY website which expects names
+without numbers."
+51,https://api.github.com/repos/mozilla/areweslimyet/pulls/106,106,Update to new mozdownload API (#105),,EricRahm,426919,2015-10-23T00:05:52Z,CONTRIBUTOR,True,5,6,2,Code behind areweslimyet.com,JavaScript,0b29e602c9c01d46c35d9821b3eef5883fe18df0,Update to new mozdownload API (#105)
+52,https://api.github.com/repos/mozilla/areweslimyet/pulls/104,104,Work arounds for various things that broke this month,"@Nephyrin can you do a quick review?
+",EricRahm,426919,2015-10-22T22:04:48Z,CONTRIBUTOR,True,3,2,3,Code behind areweslimyet.com,JavaScript,5c733902747063287eacf1fd832208cfac9e98fd,Add support for a configurable proxy port (#102)
+53,https://api.github.com/repos/mozilla/areweslimyet/pulls/104,104,Work arounds for various things that broke this month,"@Nephyrin can you do a quick review?
+",EricRahm,426919,2015-10-22T22:04:48Z,CONTRIBUTOR,True,3,2,3,Code behind areweslimyet.com,JavaScript,2785fee415a5341f272171edd09d05fb38d7303d,"Use alternate ftp root compatible with mozdownload (#103)
+
+ftp.mozilla.org is being migrated to archive.mozilla.org. This seems to
+have broken mozdownload's ability to generate a list of available
+builds. Until that is fixed we can use the backup ftp server that
+preserves the old directory listing format."
+54,https://api.github.com/repos/mozilla/areweslimyet/pulls/101,101,Convert tinderbox build links from ftp:// to https://,"The FTP-Protocol has recently been disabled on ftp.mozilla.org.
+",johnp,314391,2015-09-04T14:59:02Z,CONTRIBUTOR,False,2,2,2,Code behind areweslimyet.com,JavaScript,ab587a2ce5a20bd32a9a6c34d8ef3e72d955f111,"FTP-Protocol is disabled on ftp.mozilla.org [1/2]
+
+Switch to https instead."
+55,https://api.github.com/repos/mozilla/areweslimyet/pulls/101,101,Convert tinderbox build links from ftp:// to https://,"The FTP-Protocol has recently been disabled on ftp.mozilla.org.
+",johnp,314391,2015-09-04T14:59:02Z,CONTRIBUTOR,False,2,2,2,Code behind areweslimyet.com,JavaScript,41a58d792754713a616b17629bc5fe3e5936525f,"FTP-Protocol is disabled on ftp.mozilla.org [2/2]
+
+Switch to https instead."
+56,https://api.github.com/repos/mozilla/areweslimyet/pulls/100,100,Update window handles after opening a new tab,"It's possible for the window handle to change after opening a new tab
+and then navigating to a real URL when e10s is enabled.
+",EricRahm,426919,2015-09-02T22:39:35Z,CONTRIBUTOR,True,13,0,1,Code behind areweslimyet.com,JavaScript,f53030c275006c0dbb65ba03e0da946295a97d6e,"Update window handles after opening a new tab
+
+It's possible for the window handle to change after opening a new tab
+and then navigating to a real URL when e10s is enabled."
+57,https://api.github.com/repos/mozilla/areweslimyet/pulls/98,98,Make the browser's user inactivity detection and more representative of real use,"Use fake key presses to make the browser's user inactivity detection and hence GC scheduling more representative of real use
+",jonco3,861138,2015-04-28T10:24:12Z,CONTRIBUTOR,True,26,0,1,Code behind areweslimyet.com,JavaScript,09475505930c8ee806be9ac6700e1b43eeb00bac,Use fake keypresses to make the browser's user inactivity detection and hence GC scheduling more represetative or real use
+58,https://api.github.com/repos/mozilla/areweslimyet/pulls/97,97,Cleanup cron tasks (#91),"- Check that custom files exist
+- Don't try to rsync if there isn't a key
+- Print out proper error message if DB isn't found
+",EricRahm,426919,2015-04-08T16:57:51Z,CONTRIBUTOR,True,12,4,2,Code behind areweslimyet.com,JavaScript,2a444af9e707d8c35276c3e8e2c3908705a1d1d5,"Cleanup cron tasks (#91)
+
+- Check that custom files exist
+- Don't try to rsync if there isn't a key
+- Print out proper error message if DB isn't found"
+59,https://api.github.com/repos/mozilla/areweslimyet/pulls/94,94,Just use the marionette-env (#88),"This consilidates to using just one python virtual environment.
+",EricRahm,426919,2015-04-01T22:52:06Z,CONTRIBUTOR,False,4,7,3,Code behind areweslimyet.com,JavaScript,d32605d65aa3549391a37766ddb01bca8c198430,"Just use the marionette-env (#88)
+
+This consilidates to using just one python virtual environment."
+60,https://api.github.com/repos/mozilla/areweslimyet/pulls/93,93,Use cpu_count as the default number of processors (#89),"@Nephyrin Does this seem reasonable? For arcus the value would remain 8, for the VM it would be 2.
+",EricRahm,426919,2015-04-01T19:04:32Z,CONTRIBUTOR,True,2,2,2,Code behind areweslimyet.com,JavaScript,434b0bcb097908a9e414511131cdd2a93e316f88,Use cpu_count as the default number of processors (#89)
+61,https://api.github.com/repos/mozilla/areweslimyet/pulls/87,87,Export e10s data,"This adds graphs for both e10s processes in arweslimyet. Fixing up the about:memory exporter will be done in a follow up.
+
+@Nephyrin can you take a look?
+",EricRahm,426919,2015-03-27T19:21:30Z,CONTRIBUTOR,True,180,35,4,Code behind areweslimyet.com,JavaScript,0d873be4f8d40b6927c251531e6829f7a890d365,"Fix calculating heap-unclassified
+
+heap-unclassified wasn't updated to take into account the new reporting
+format. This just wraps it in the proper object format."
+62,https://api.github.com/repos/mozilla/areweslimyet/pulls/87,87,Export e10s data,"This adds graphs for both e10s processes in arweslimyet. Fixing up the about:memory exporter will be done in a follow up.
+
+@Nephyrin can you take a look?
+",EricRahm,426919,2015-03-27T19:21:30Z,CONTRIBUTOR,True,180,35,4,Code behind areweslimyet.com,JavaScript,277bf2f9ae548bbf90d5d18e5e2656437720fae6,"Add process name to node path
+
+This adds the process name to the node path, ie:
+    'Iteration 5/StartSettled/*Main*/heap-allocated'
+Note: e10s currently only has one 'Main' process and one 'Web Content'
+process."
+63,https://api.github.com/repos/mozilla/areweslimyet/pulls/87,87,Export e10s data,"This adds graphs for both e10s processes in arweslimyet. Fixing up the about:memory exporter will be done in a follow up.
+
+@Nephyrin can you take a look?
+",EricRahm,426919,2015-03-27T19:21:30Z,CONTRIBUTOR,True,180,35,4,Code behind areweslimyet.com,JavaScript,deb1e39d06c59bc68dc6972074627a2ee34003aa,"Update series datapoints to handle process names
+
+This also adds series datapoints of the 'Web Content' process."
+64,https://api.github.com/repos/mozilla/areweslimyet/pulls/87,87,Export e10s data,"This adds graphs for both e10s processes in arweslimyet. Fixing up the about:memory exporter will be done in a follow up.
+
+@Nephyrin can you take a look?
+",EricRahm,426919,2015-03-27T19:21:30Z,CONTRIBUTOR,True,180,35,4,Code behind areweslimyet.com,JavaScript,eac108defc8fff6d52676804aac34a802c221f5d,"Add e10s graphs
+
+Updates to handle the new datapoint format. Adds series for 'Web
+Content' and specifies the existing graphs are for 'Main'."
+65,https://api.github.com/repos/mozilla/areweslimyet/pulls/87,87,Export e10s data,"This adds graphs for both e10s processes in arweslimyet. Fixing up the about:memory exporter will be done in a follow up.
+
+@Nephyrin can you take a look?
+",EricRahm,426919,2015-03-27T19:21:30Z,CONTRIBUTOR,True,180,35,4,Code behind areweslimyet.com,JavaScript,02d56432854ea207d241a64e9e6769d4d59f3b5b,"Support e10s in the about memory exporter
+
+Adds handling of the process name name in the datapoint tree."
+66,https://api.github.com/repos/mozilla/areweslimyet/pulls/82,82,Setup script,"This adds a script that can be used to simplify the server setup process handling a few gotchyas I ran into setting the awsy clone. It intentionally leaves out setting up the crontab and nginx, which should probably be handled in a separate script.
+",EricRahm,426919,2015-03-03T21:46:20Z,CONTRIBUTOR,False,115,0,2,Code behind areweslimyet.com,JavaScript,f8284571d5806c5b7f92f5f701fb56662a4abcfc,"Add a pip requirements file
+
+This can be used to install awsy's python dependencies. Usage:
+  |pip install -r requirements.txt|"
+67,https://api.github.com/repos/mozilla/areweslimyet/pulls/82,82,Setup script,"This adds a script that can be used to simplify the server setup process handling a few gotchyas I ran into setting the awsy clone. It intentionally leaves out setting up the crontab and nginx, which should probably be handled in a separate script.
+",EricRahm,426919,2015-03-03T21:46:20Z,CONTRIBUTOR,False,115,0,2,Code behind areweslimyet.com,JavaScript,080d09562aa540c9f04d18ffa50d0405d076e9d8,"Add basic server setup script
+
+Basic script that sets up a standard AWSY installation. This does not
+cover setting up the webserver nor the standard cronjobs. Example usage:
+  mkdir install_root && cd install_root
+  wget bootstrap.sh && bash bootstrap.sh"
+68,https://api.github.com/repos/mozilla/areweslimyet/pulls/80,80,DB cleanup in preparation of e10s support,"This adds further DB normalization (process table, checkpoint table), removes the metadata column, adds columns for process, checkpoint, iteration and kind.
+
+`create_graph_json.py` is updated to handled the new DB format, but still only generates data for the main process.
+
+@Nephyrin can you take a look?
+",EricRahm,426919,2015-02-25T23:46:19Z,CONTRIBUTOR,True,350,91,6,Code behind areweslimyet.com,JavaScript,2087e30e4b29f4abf8738eba655a524ed4ec901b,"Update DB schemas to support e10s
+
+- Breaks out metadata into it's own columns/tables
+- Stores value type and kind in data table
+- Adds process name to data table"
+69,https://api.github.com/repos/mozilla/areweslimyet/pulls/80,80,DB cleanup in preparation of e10s support,"This adds further DB normalization (process table, checkpoint table), removes the metadata column, adds columns for process, checkpoint, iteration and kind.
+
+`create_graph_json.py` is updated to handled the new DB format, but still only generates data for the main process.
+
+@Nephyrin can you take a look?
+",EricRahm,426919,2015-02-25T23:46:19Z,CONTRIBUTOR,True,350,91,6,Code behind areweslimyet.com,JavaScript,1627924cffc4be5f1f34600458cd8639cf1ea182,"Make checkpoint always include kind and unit
+
+- Always report kind and unit
+- Don't convert to strings, just report the integer value"
+70,https://api.github.com/repos/mozilla/areweslimyet/pulls/80,80,DB cleanup in preparation of e10s support,"This adds further DB normalization (process table, checkpoint table), removes the metadata column, adds columns for process, checkpoint, iteration and kind.
+
+`create_graph_json.py` is updated to handled the new DB format, but still only generates data for the main process.
+
+@Nephyrin can you take a look?
+",EricRahm,426919,2015-02-25T23:46:19Z,CONTRIBUTOR,True,350,91,6,Code behind areweslimyet.com,JavaScript,9432382d709706bb097893ca4c0667a4e32725d5,"Keep memory reports in checkpoint format
+
+Removes intermediate conversion step."
+71,https://api.github.com/repos/mozilla/areweslimyet/pulls/80,80,DB cleanup in preparation of e10s support,"This adds further DB normalization (process table, checkpoint table), removes the metadata column, adds columns for process, checkpoint, iteration and kind.
+
+`create_graph_json.py` is updated to handled the new DB format, but still only generates data for the main process.
+
+@Nephyrin can you take a look?
+",EricRahm,426919,2015-02-25T23:46:19Z,CONTRIBUTOR,True,350,91,6,Code behind areweslimyet.com,JavaScript,43496f795f8300e1d7235b93c6132f0d2b717efa,"Properly insert data into new database format
+
+- Process and checkpoint names are properly inserted
+- All new columns in benchtester_data are filled"
+72,https://api.github.com/repos/mozilla/areweslimyet/pulls/80,80,DB cleanup in preparation of e10s support,"This adds further DB normalization (process table, checkpoint table), removes the metadata column, adds columns for process, checkpoint, iteration and kind.
+
+`create_graph_json.py` is updated to handled the new DB format, but still only generates data for the main process.
+
+@Nephyrin can you take a look?
+",EricRahm,426919,2015-02-25T23:46:19Z,CONTRIBUTOR,True,350,91,6,Code behind areweslimyet.com,JavaScript,44fafdd1d502ba75ac99d4543b5339f6057e4083,"Handle new DB format in create_graph_json.py
+
+Uses new DB fields. Currently only handles the Main process and ignores
+the 'kind' field."
+73,https://api.github.com/repos/mozilla/areweslimyet/pulls/80,80,DB cleanup in preparation of e10s support,"This adds further DB normalization (process table, checkpoint table), removes the metadata column, adds columns for process, checkpoint, iteration and kind.
+
+`create_graph_json.py` is updated to handled the new DB format, but still only generates data for the main process.
+
+@Nephyrin can you take a look?
+",EricRahm,426919,2015-02-25T23:46:19Z,CONTRIBUTOR,True,350,91,6,Code behind areweslimyet.com,JavaScript,d866329d89fc4d3049f590ec601111efb1a79c67,"v0 to v1 update script
+
+Based on the original update_database.py script."
+74,https://api.github.com/repos/mozilla/areweslimyet/pulls/80,80,DB cleanup in preparation of e10s support,"This adds further DB normalization (process table, checkpoint table), removes the metadata column, adds columns for process, checkpoint, iteration and kind.
+
+`create_graph_json.py` is updated to handled the new DB format, but still only generates data for the main process.
+
+@Nephyrin can you take a look?
+",EricRahm,426919,2015-02-25T23:46:19Z,CONTRIBUTOR,True,350,91,6,Code behind areweslimyet.com,JavaScript,ac493e8f868e68cbda738ff7e20d3710f1f9b356,Add note about supported versions
+75,https://api.github.com/repos/mozilla/areweslimyet/pulls/80,80,DB cleanup in preparation of e10s support,"This adds further DB normalization (process table, checkpoint table), removes the metadata column, adds columns for process, checkpoint, iteration and kind.
+
+`create_graph_json.py` is updated to handled the new DB format, but still only generates data for the main process.
+
+@Nephyrin can you take a look?
+",EricRahm,426919,2015-02-25T23:46:19Z,CONTRIBUTOR,True,350,91,6,Code behind areweslimyet.com,JavaScript,806e9aee5a37a0d84cf328d132fae6fea686857a,Rename 'memory' => 'reports'
+76,https://api.github.com/repos/mozilla/areweslimyet/pulls/80,80,DB cleanup in preparation of e10s support,"This adds further DB normalization (process table, checkpoint table), removes the metadata column, adds columns for process, checkpoint, iteration and kind.
+
+`create_graph_json.py` is updated to handled the new DB format, but still only generates data for the main process.
+
+@Nephyrin can you take a look?
+",EricRahm,426919,2015-02-25T23:46:19Z,CONTRIBUTOR,True,350,91,6,Code behind areweslimyet.com,JavaScript,defd51c6a89a0b000d57c00abd9b1b621769fc53,Explicitly set version to 0 when upgrading old DBs
+77,https://api.github.com/repos/mozilla/areweslimyet/pulls/75,75,Load the checkpoint script for marionette (#74),"Marionette's import_script occasionally fails to to do the right thing.
+Instead we'll go ahead and load it for them.
+",EricRahm,426919,2015-02-11T21:00:43Z,CONTRIBUTOR,False,11,3,1,Code behind areweslimyet.com,JavaScript,dccbb05601617c2812d1def6746508b2f2157651,"Load the checkpoint script for marionette (#74)
+
+Marionettes import_script occasionally fails to to do the right thing.
+Instead we'll go ahead and load it for them."
+78,https://api.github.com/repos/mozilla/areweslimyet/pulls/70,70,Add a proper try mode (#69),"Currently we prefix try requests with ""try:"" to differentiate them from ""ftp"" requests. This updates try watcher, the cgi script, and the status page to just specify a try mode instead.
+
+@nnethercote can you review this?
+",EricRahm,426919,2015-02-11T00:38:57Z,CONTRIBUTOR,True,14,15,4,Code behind areweslimyet.com,JavaScript,4db260b46c462c36ad91d03decabefb6aa53d62c,Add a proper try mode (#69)
+79,https://api.github.com/repos/mozilla/areweslimyet/pulls/66,66,Implement try watcher script (#51),"This script uses mozillapulse to watch for linux64 opt try builds to
+complete and checks if an awsy run is requested via the try message. Try
+usage is of the form:
+  'try: -b o -p linux64 -u none -t none -awsy <series_name>'
+",EricRahm,426919,2015-02-06T03:51:01Z,CONTRIBUTOR,True,310,0,3,Code behind areweslimyet.com,JavaScript,0e95d1625064106f7b78056edb432d0e6866dbe4,"Implement try watcher script (#51)
+
+This script uses mozillapulse to watch for linux64 opt try builds to
+complete and checks if an awsy run is requested via the try message. Try
+usage is of the form:
+  'try: -b o -p linux64 -u none -t none -awsy <series_name>'"
+80,https://api.github.com/repos/mozilla/areweslimyet/pulls/65,65,[FAQ] Fix a link's target anchor,,yfdyh000,1769875,2015-02-04T15:57:23Z,CONTRIBUTOR,True,1,1,1,Code behind areweslimyet.com,JavaScript,6f863aa2e433f7c945cce007a20ed88ad44c0c92,[FAQ] Fix a link's target anchor
+81,https://api.github.com/repos/mozilla/areweslimyet/pulls/64,64,Cleanup BuildGetter,"This disables the CompileBuild type and fixes part 1 of #47. @Nephyrin can you please review?
+",EricRahm,426919,2015-02-03T20:55:19Z,CONTRIBUTOR,True,409,485,18,Code behind areweslimyet.com,JavaScript,e308cbd299470d57c81be64ef09b7d92ebfef46d,"Remove support for CompileBuild (#47)
+
+CompileBuild currently does not work, this removes the implementation
+and adds exceptions if attempts are made to use it. Stubs were left in
+place so that it should be easy to add back in with an alternate
+implentation."
+82,https://api.github.com/repos/mozilla/areweslimyet/pulls/64,64,Cleanup BuildGetter,"This disables the CompileBuild type and fixes part 1 of #47. @Nephyrin can you please review?
+",EricRahm,426919,2015-02-03T20:55:19Z,CONTRIBUTOR,True,409,485,18,Code behind areweslimyet.com,JavaScript,9892f65b43122e94c59da206c3263fb57e6b801b,"Convert BuildGetter over to mozdownload (#59)
+
+- BuildGetter now uses mozdownload rather than connecting to FTP
+  directly
+- hg and ftp servers are made configurable so that we can start testing
+  against a local instance
+- Various bits of dead code were removed
+- Some PEP-8 cleanup was included as well"
+83,https://api.github.com/repos/mozilla/areweslimyet/pulls/64,64,Cleanup BuildGetter,"This disables the CompileBuild type and fixes part 1 of #47. @Nephyrin can you please review?
+",EricRahm,426919,2015-02-03T20:55:19Z,CONTRIBUTOR,True,409,485,18,Code behind areweslimyet.com,JavaScript,28d7cef3c3b78fa27dd962a1a865135d16b982a2,"Add very basic tests for BuildGetter (#59)
+
+- mozhttpd_base_test.py is copied over from mozdownload
+- a set of fake builds are provided so that mozdownload can have
+  something to download
+- tests are added for each BuildGetter build type as well as
+  list_tinderbox_builds"
+84,https://api.github.com/repos/mozilla/areweslimyet/pulls/63,63,Use marionette,"Creating a marionette branch on the upstream server.
+",EricRahm,426919,2015-02-03T20:41:04Z,CONTRIBUTOR,True,621,2701,16,Code behind areweslimyet.com,JavaScript,e29e43b7fb580b5da965ce1c9f5124e10653b439,"Add a marionette version of the endurance test (#55)
+
+- Switch over to a MarionetteTestCase
+- Updated GC function to use about:memory's method
+- Split out checkpoint code to separate js file
+  - Updated to handle multiprocess data
+- Slightly updated results format
+- Allow inserting failures without results
+- Updates EnduranceTest to use the marionette test case
+  - Switches over to marionette test runner
+  - Tweaks to process the new result format
+  - Update jsbridge_port to marionette_port
+- Updates batchtester_hook to use marionette_port
+- Updates slimtest_config
+  - Removed the old Slimtest-TalosTP5 entry
+  - Added new params to quick example
+  - Point to the proper test path
+- Remove mozmill_endurance_test
+- Use marionette virtualenv
+- Move the launch_tester script over to marionette
+- Adds a '--gecko_log' parameter to specify where to put the gecko log
+- Updated batchtester to specify a log location"
+85,https://api.github.com/repos/mozilla/areweslimyet/pulls/63,63,Use marionette,"Creating a marionette branch on the upstream server.
+",EricRahm,426919,2015-02-03T20:41:04Z,CONTRIBUTOR,True,621,2701,16,Code behind areweslimyet.com,JavaScript,351db94cb3a5618c43c4fec08edcefb61478e19c,Fix param overloading
+86,https://api.github.com/repos/mozilla/areweslimyet/pulls/62,62,Fix param overloading,,EricRahm,426919,2015-02-03T20:24:34Z,CONTRIBUTOR,False,4,4,1,Code behind areweslimyet.com,JavaScript,8f91144b64774a12f13a7f304d5b738b9555ac27,Fix param overloading
+87,https://api.github.com/repos/mozilla/areweslimyet/pulls/61,61,"Revert ""Merge pull request #57 from EricRahm/marionette""","This reverts commit 8e87837afb64e9c86b7caa005f9839b55828798f, reversing
+changes made to eff6a183680124c470b77651afbbd92ddc730f9d.
+",EricRahm,426919,2015-02-02T23:38:43Z,CONTRIBUTOR,True,2701,621,16,Code behind areweslimyet.com,JavaScript,2f9cceac545299636a7d0ebb79ccacde496d2c38,"Revert ""Merge pull request #57 from EricRahm/marionette""
+
+This reverts commit 8e87837afb64e9c86b7caa005f9839b55828798f, reversing
+changes made to eff6a183680124c470b77651afbbd92ddc730f9d."
+88,https://api.github.com/repos/mozilla/areweslimyet/pulls/60,60,Make sure try changesets are valid,"This just makes sure the changeset provided for a try build is 12 characters long. Part one of issue #48 
+@Nephyrin Does this look good?
+",EricRahm,426919,2015-01-29T19:58:53Z,CONTRIBUTOR,True,4,0,1,Code behind areweslimyet.com,JavaScript,db88e50d7cb7bbb54a4584cd08a45472986ab6c4,Make sure try changesets are valid
+89,https://api.github.com/repos/mozilla/areweslimyet/pulls/57,57,Switch to marionette,"This switches us over to a marionette version of our previous mozmill test. It also lays the groundwork for enabling e10s once various marionette bugs are ironed out.
+
+@Nephyrin Would you mind doing a review?
+",EricRahm,426919,2015-01-24T00:37:28Z,CONTRIBUTOR,True,621,2701,16,Code behind areweslimyet.com,JavaScript,670df5c3c6c8d63a1a3c1d5e09fd4f8b31b60a3d,"Add a marionette version of the endurance test (#55)
+
+- Switch over to a MarionetteTestCase
+- Updated GC function to use about:memory's method
+- Split out checkpoint code to separate js file
+  - Updated to handle multiprocess data
+- Slightly updated results format
+- Allow inserting failures without results
+- Updates EnduranceTest to use the marionette test case
+  - Switches over to marionette test runner
+  - Tweaks to process the new result format
+  - Update jsbridge_port to marionette_port
+- Updates batchtester_hook to use marionette_port
+- Updates slimtest_config
+  - Removed the old Slimtest-TalosTP5 entry
+  - Added new params to quick example
+  - Point to the proper test path
+- Remove mozmill_endurance_test
+- Use marionette virtualenv
+- Move the launch_tester script over to marionette
+- Adds a '--gecko_log' parameter to specify where to put the gecko log
+- Updated batchtester to specify a log location"
+90,https://api.github.com/repos/mozilla/areweslimyet/pulls/53,53,Annotation for fixing bug 1100253,,EricRahm,426919,2015-01-22T22:37:37Z,CONTRIBUTOR,True,4,0,1,Code behind areweslimyet.com,JavaScript,4e7f26a9d3be1abbbaf3eeb2da318fad6f48b15c,Annotation for fixing bug 1100253
+91,https://api.github.com/repos/mozilla/areweslimyet/pulls/50,50,Annot2,"I added a new patch that adds a line to the readme about the AWSY regression tracking bug.
+",amccreight,841072,2015-01-12T21:51:16Z,CONTRIBUTOR,True,35,1,2,Code behind areweslimyet.com,JavaScript,4a9029e9e347eba8a092da2a08e0ed9379596c29,add a bit to the readme about where annotations are defined
+92,https://api.github.com/repos/mozilla/areweslimyet/pulls/50,50,Annot2,"I added a new patch that adds a line to the readme about the AWSY regression tracking bug.
+",amccreight,841072,2015-01-12T21:51:16Z,CONTRIBUTOR,True,35,1,2,Code behind areweslimyet.com,JavaScript,12a62aebb167bcdd2a0589b681364d1602b7c70a,Add annotations about bug 1052793 regression and backout.
+93,https://api.github.com/repos/mozilla/areweslimyet/pulls/50,50,Annot2,"I added a new patch that adds a line to the readme about the AWSY regression tracking bug.
+",amccreight,841072,2015-01-12T21:51:16Z,CONTRIBUTOR,True,35,1,2,Code behind areweslimyet.com,JavaScript,4d93dcfac987da5fcfaa057e4549556e0f5dc304,Add annotation about bug 1084136 regression.
+94,https://api.github.com/repos/mozilla/areweslimyet/pulls/50,50,Annot2,"I added a new patch that adds a line to the readme about the AWSY regression tracking bug.
+",amccreight,841072,2015-01-12T21:51:16Z,CONTRIBUTOR,True,35,1,2,Code behind areweslimyet.com,JavaScript,7a5eebf672269a5a1caef0a027de8760fdb08931,Annotation for Bug 947044 regression and backout.
+95,https://api.github.com/repos/mozilla/areweslimyet/pulls/50,50,Annot2,"I added a new patch that adds a line to the readme about the AWSY regression tracking bug.
+",amccreight,841072,2015-01-12T21:51:16Z,CONTRIBUTOR,True,35,1,2,Code behind areweslimyet.com,JavaScript,b2bccac63715644c8400fb108fbe4b67f6231af3,Annotations for resource timing leak and fix.
+96,https://api.github.com/repos/mozilla/areweslimyet/pulls/50,50,Annot2,"I added a new patch that adds a line to the readme about the AWSY regression tracking bug.
+",amccreight,841072,2015-01-12T21:51:16Z,CONTRIBUTOR,True,35,1,2,Code behind areweslimyet.com,JavaScript,472b512a14fa3567fb714ddb6e532b01203c2fec,Mention where regressions are tracked
+97,https://api.github.com/repos/mozilla/areweslimyet/pulls/49,49,Annot,"I added a comment about annotations to the readme, and also annotated a number of recent regressions.
+",amccreight,841072,2015-01-12T19:58:50Z,CONTRIBUTOR,False,35,1,2,Code behind areweslimyet.com,JavaScript,4a9029e9e347eba8a092da2a08e0ed9379596c29,add a bit to the readme about where annotations are defined
+98,https://api.github.com/repos/mozilla/areweslimyet/pulls/49,49,Annot,"I added a comment about annotations to the readme, and also annotated a number of recent regressions.
+",amccreight,841072,2015-01-12T19:58:50Z,CONTRIBUTOR,False,35,1,2,Code behind areweslimyet.com,JavaScript,12a62aebb167bcdd2a0589b681364d1602b7c70a,Add annotations about bug 1052793 regression and backout.
+99,https://api.github.com/repos/mozilla/areweslimyet/pulls/49,49,Annot,"I added a comment about annotations to the readme, and also annotated a number of recent regressions.
+",amccreight,841072,2015-01-12T19:58:50Z,CONTRIBUTOR,False,35,1,2,Code behind areweslimyet.com,JavaScript,4d93dcfac987da5fcfaa057e4549556e0f5dc304,Add annotation about bug 1084136 regression.
+100,https://api.github.com/repos/mozilla/areweslimyet/pulls/49,49,Annot,"I added a comment about annotations to the readme, and also annotated a number of recent regressions.
+",amccreight,841072,2015-01-12T19:58:50Z,CONTRIBUTOR,False,35,1,2,Code behind areweslimyet.com,JavaScript,7a5eebf672269a5a1caef0a027de8760fdb08931,Annotation for Bug 947044 regression and backout.
+101,https://api.github.com/repos/mozilla/areweslimyet/pulls/49,49,Annot,"I added a comment about annotations to the readme, and also annotated a number of recent regressions.
+",amccreight,841072,2015-01-12T19:58:50Z,CONTRIBUTOR,False,35,1,2,Code behind areweslimyet.com,JavaScript,b2bccac63715644c8400fb108fbe4b67f6231af3,Annotations for resource timing leak and fix.
+102,https://api.github.com/repos/mozilla/areweslimyet/pulls/49,49,Annot,"I added a comment about annotations to the readme, and also annotated a number of recent regressions.
+",amccreight,841072,2015-01-12T19:58:50Z,CONTRIBUTOR,False,35,1,2,Code behind areweslimyet.com,JavaScript,472b512a14fa3567fb714ddb6e532b01203c2fec,Mention where regressions are tracked
+103,https://api.github.com/repos/mozilla/areweslimyet/pulls/46,46,Add support for mozmill-2.0,"- Update test config to point to full test file path
+- Update closeTab and openTab to use new mozmill-2.0 methods
+- Update test1 to use new assertions, remove unnecessary checks
+",EricRahm,426919,2014-11-14T20:29:41Z,CONTRIBUTOR,True,13,14,4,Code behind areweslimyet.com,JavaScript,96cc25d63c82908ff4b56ccead25407d81eba341,"Add support for mozmill-2.0
+
+- Update test config to point to full test file path
+- Update closeTab and openTab to use new mozmill-2.0 methods
+- Update test1 to use new assertions, remove unnecessary checks"
+104,https://api.github.com/repos/mozilla/areweslimyet/pulls/46,46,Add support for mozmill-2.0,"- Update test config to point to full test file path
+- Update closeTab and openTab to use new mozmill-2.0 methods
+- Update test1 to use new assertions, remove unnecessary checks
+",EricRahm,426919,2014-11-14T20:29:41Z,CONTRIBUTOR,True,13,14,4,Code behind areweslimyet.com,JavaScript,be6f1aecad011f524a8f99c3690d48a4bc61ca9f,Updated benchtester reference
+105,https://api.github.com/repos/mozilla/areweslimyet/pulls/43,43,Add evenspacing parameter.,"When this parameter is set, series will be equally spaced in the
+x axis of each graph, instead of obeying the distances between the
+timestamps.
+",eggpi,489134,2014-10-14T22:07:47Z,CONTRIBUTOR,True,8,2,1,Code behind areweslimyet.com,JavaScript,49c0ccd8ef2f7c2eaa9f26d81203e91225123cea,"Add evenspacing parameter.
+
+When this parameter is set, series will be equally spaced in the
+x axis of each graph, instead of obeying the distances between the
+timestamps."
+106,https://api.github.com/repos/mozilla/areweslimyet/pulls/42,42,Update Fx release dates,,EricRahm,426919,2014-08-22T21:03:35Z,CONTRIBUTOR,True,5,3,1,Code behind areweslimyet.com,JavaScript,a22e8e55acefe2f564b62329d591dda898e69881,Update Fx release dates
+107,https://api.github.com/repos/mozilla/areweslimyet/pulls/41,41,Updated latest mozmil github repo link,,swarnava,1162991,2014-07-25T20:14:50Z,CONTRIBUTOR,True,2,2,2,Code behind areweslimyet.com,JavaScript,dd0e648f438cebe97fdcd182092a8828262f8ddf,updated latest mozmil github repo link
+108,https://api.github.com/repos/mozilla/areweslimyet/pulls/40,40,Exportlink,"Visual tweaks - add the button class, and change the text while export is in progress
+",Nephyrin,965090,2014-06-06T20:49:26Z,CONTRIBUTOR,True,4,1,1,Code behind areweslimyet.com,JavaScript,db97b8a0704caa6ff38220c065142bec91582123,[html] Use button class for [export] link
+109,https://api.github.com/repos/mozilla/areweslimyet/pulls/40,40,Exportlink,"Visual tweaks - add the button class, and change the text while export is in progress
+",Nephyrin,965090,2014-06-06T20:49:26Z,CONTRIBUTOR,True,4,1,1,Code behind areweslimyet.com,JavaScript,901c5c3ff5b15d25a6ce4b631a1029fa0526b0d5,"[html] on click, change [export] to [exporting...]"
+110,https://api.github.com/repos/mozilla/areweslimyet/pulls/38,38,Add support for exporting to about:memory format,"This adds an [export] link to each checkpoint in the detailed view as requested
+in issue #29. Once the data as exported the the [export] link will be replaced
+with a [download] link.
+
+zee.js is an emscriptened gzip, it originates from https://github.com/kripken/zee.js
+",EricRahm,426919,2014-06-06T18:26:11Z,CONTRIBUTOR,True,2720,8,3,Code behind areweslimyet.com,JavaScript,a52df4d495880a49d2e2ecf3f61c42337753a07a,"Add support for exporting to about:memory format
+
+This adds an [export] link to each checkpoint in the detailed view as requested
+in issue #29. Once the data as exported the the [export] link will be replaced
+with a [download] link."
+111,https://api.github.com/repos/mozilla/areweslimyet/pulls/32,32,FAQ update,"In case you want to review the changes prior to merging.
+",staktrace,485789,2013-03-26T21:01:10Z,CONTRIBUTOR,True,2,1,1,Code behind areweslimyet.com,JavaScript,cf85ca86ba8c86e86d5d5c3eb62edc4afe17d244,[faq] Note the device switchover for mobile AWSY.
+112,https://api.github.com/repos/mozilla/areweslimyet/pulls/20,20,Faq,"Update faq with stuff on mobile. Now with fixed link.
+",staktrace,485789,2013-01-31T20:30:06Z,CONTRIBUTOR,True,18,5,1,Code behind areweslimyet.com,JavaScript,66a46ba039b4e6dc3e55dfbdaf617aca7786686d,[FAQ] Fix typo
+113,https://api.github.com/repos/mozilla/areweslimyet/pulls/20,20,Faq,"Update faq with stuff on mobile. Now with fixed link.
+",staktrace,485789,2013-01-31T20:30:06Z,CONTRIBUTOR,True,18,5,1,Code behind areweslimyet.com,JavaScript,6093d580c5b323e9409ca8dc7193a295ee0f7605,[FAQ] Add mobile-specific notes to FAQ
+114,https://api.github.com/repos/mozilla/areweslimyet/pulls/19,19,Faq,"Add stuff to the FAQ for mobile.
+",staktrace,485789,2013-01-31T20:23:47Z,CONTRIBUTOR,False,23,6,1,Code behind areweslimyet.com,JavaScript,9209eb7c5bfd3ee06a9961bebac9438df1f11c65,[FAQ] Add mobile-specific notes to FAQ
+115,https://api.github.com/repos/mozilla/areweslimyet/pulls/19,19,Faq,"Add stuff to the FAQ for mobile.
+",staktrace,485789,2013-01-31T20:23:47Z,CONTRIBUTOR,False,23,6,1,Code behind areweslimyet.com,JavaScript,bccabaf119bbcfdcd313e72372d20010581b7e6d,[FAQ] Fix typo
+116,https://api.github.com/repos/mozilla/areweslimyet/pulls/16,16,Hoverdialog,"Fixes issue #14 (again untested beyond a little fiddling in firebug to see if this does what I think it does). Note that the first commit should also fix the tooltip always appearing above the mouse cursor rather than what was intended.
+",staktrace,485789,2013-01-29T06:14:08Z,CONTRIBUTOR,True,3,3,1,Code behind areweslimyet.com,JavaScript,f923268e0eea361edfc9ba8bd3499988a4b0431d,[html] Fix error in tooltip placement; document.body.scrollTop is always zero
+117,https://api.github.com/repos/mozilla/areweslimyet/pulls/16,16,Hoverdialog,"Fixes issue #14 (again untested beyond a little fiddling in firebug to see if this does what I think it does). Note that the first commit should also fix the tooltip always appearing above the mouse cursor rather than what was intended.
+",staktrace,485789,2013-01-29T06:14:08Z,CONTRIBUTOR,True,3,3,1,Code behind areweslimyet.com,JavaScript,506e11017631a9bdbeeafa1040ed166bd89e88bf,[html] Increase padding between mouse cursor and the tooltip
+118,https://api.github.com/repos/mozilla/areweslimyet/pulls/15,15,[html] Use inbound hg links for the Android data,"This commit fixes issue #13 (I haven't tested it though)
+",staktrace,485789,2013-01-29T05:54:35Z,CONTRIBUTOR,True,6,2,1,Code behind areweslimyet.com,JavaScript,713a3f1a8d4abb35867863c0ba4829d81766145a,[html] Use inbound hg links for the Android data
+119,https://api.github.com/repos/mozilla/areweslimyet/pulls/12,12,Add link to telemetry data next to FAQ.,"I dunno if you want to feature this link so prominently, and without explanation.
+
+We could put a link down at the bottom if you prefer.
+
+I don't know what njn's name is on github, but I'll e-mail him in case he has an opinion.
+",jlebar,150663,2012-06-05T05:39:05Z,CONTRIBUTOR,False,1,0,1,Code behind areweslimyet.com,JavaScript,697de663c216be5ace70d1ff9b1b848c5a4ba7c3,Add link to telemetry data.
+120,https://api.github.com/repos/mozilla/areweslimyet/pulls/11,11,Copyediting,"I had to delete the |faq| branch because I couldn't figure out how to check out the branch now that there's a directory called ""faq"".  :)
+",jlebar,150663,2012-04-05T18:14:22Z,CONTRIBUTOR,True,111,89,3,Code behind areweslimyet.com,JavaScript,905579d9df18a4a763c1cea59aa8fbf41fc74ebb,Fix build.sh so it works on my machine.
+121,https://api.github.com/repos/mozilla/areweslimyet/pulls/11,11,Copyediting,"I had to delete the |faq| branch because I couldn't figure out how to check out the branch now that there's a directory called ""faq"".  :)
+",jlebar,150663,2012-04-05T18:14:22Z,CONTRIBUTOR,True,111,89,3,Code behind areweslimyet.com,JavaScript,4623e4fd79a8cc0260428e0524f584ce6d7f3322,"Update |file a bug| links in FAQ to auto-fill-in [MemShrink].  But we need to figure out how to auto-show-advanced-fields, because otherwise, you can't even see the whiteboard!"
+122,https://api.github.com/repos/mozilla/areweslimyet/pulls/11,11,Copyediting,"I had to delete the |faq| branch because I couldn't figure out how to check out the branch now that there's a directory called ""faq"".  :)
+",jlebar,150663,2012-04-05T18:14:22Z,CONTRIBUTOR,True,111,89,3,Code behind areweslimyet.com,JavaScript,9fd7d493e65433f7f0ff7fab02bcf4256729fa4b,Copyediting faq.
+123,https://api.github.com/repos/mozilla/areweslimyet/pulls/10,10,Reorder colors so the important lines get darker colors.,"We want people to focus on the line which has gone down the most, RSS: After TP5, tabs closed [+30s].  This pull makes it dark red, rather than light green.
+",jlebar,150663,2012-03-31T19:21:28Z,CONTRIBUTOR,True,25,11,1,Code behind areweslimyet.com,JavaScript,996f3d533ce312cb9a310f1cc41ba516ec78081d,Reorder colors so the important lines get darker colors.
+124,https://api.github.com/repos/mozilla/areweslimyet/pulls/9,9,Hack to avoid wrapping lines in the legend.,,jlebar,150663,2012-03-23T23:10:50Z,CONTRIBUTOR,True,10,6,3,Code behind areweslimyet.com,JavaScript,24290c07f6210d950beb387b43edfe76a6ff43d5,Hack to avoid wrapping lines in the legend.
+125,https://api.github.com/repos/mozilla/areweslimyet/pulls/9,9,Hack to avoid wrapping lines in the legend.,,jlebar,150663,2012-03-23T23:10:50Z,CONTRIBUTOR,True,10,6,3,Code behind areweslimyet.com,JavaScript,6c18b67e0828dc0debc6e537c3019077566f956c,"Center headings over the graphs.
+
+Unfortunately, this centers the headings over the graph + y-axis label, not over the graph itself.  But the latter looks hard to do."
+126,https://api.github.com/repos/mozilla/areweslimyet/pulls/9,9,Hack to avoid wrapping lines in the legend.,,jlebar,150663,2012-03-23T23:10:50Z,CONTRIBUTOR,True,10,6,3,Code behind areweslimyet.com,JavaScript,fbdf8875c6437847a3925e3d7d9bfc2c09a777cd,Bump benchtester
+127,https://api.github.com/repos/mozilla/areweslimyet/pulls/5,5,"Switch to a white background, plus some minor tweaks","I think it looks cleaner this way, but don't feel compelled to take this change!
+",jlebar,150663,2012-03-19T04:42:42Z,CONTRIBUTOR,True,509,48,12,Code behind areweslimyet.com,JavaScript,dad03fb2fa0a9c37848c95fa317a0032477d908f,Don't scale the Y axis down below 32mb (when e.g. there are no points to show in the selected range).
+128,https://api.github.com/repos/mozilla/areweslimyet/pulls/5,5,"Switch to a white background, plus some minor tweaks","I think it looks cleaner this way, but don't feel compelled to take this change!
+",jlebar,150663,2012-03-19T04:42:42Z,CONTRIBUTOR,True,509,48,12,Code behind areweslimyet.com,JavaScript,73e6efb91d3ff138c7fc02c8caf737ddb6d453c3,Switch to a white background.
+129,https://api.github.com/repos/mozilla/areweslimyet/pulls/5,5,"Switch to a white background, plus some minor tweaks","I think it looks cleaner this way, but don't feel compelled to take this change!
+",jlebar,150663,2012-03-19T04:42:42Z,CONTRIBUTOR,True,509,48,12,Code behind areweslimyet.com,JavaScript,e523b947130f471d528b3fc2967cc2a81309bea2,Use a sans-serif font.
+130,https://api.github.com/repos/mozilla/areweslimyet/pulls/5,5,"Switch to a white background, plus some minor tweaks","I think it looks cleaner this way, but don't feel compelled to take this change!
+",jlebar,150663,2012-03-19T04:42:42Z,CONTRIBUTOR,True,509,48,12,Code behind areweslimyet.com,JavaScript,e39d72a74dd5c662a391a65fa2adb47d703374a7,"Use Quicksand web font for ""Slim"" in header."
+131,https://api.github.com/repos/mozilla/areweslimyet/pulls/5,5,"Switch to a white background, plus some minor tweaks","I think it looks cleaner this way, but don't feel compelled to take this change!
+",jlebar,150663,2012-03-19T04:42:42Z,CONTRIBUTOR,True,509,48,12,Code behind areweslimyet.com,JavaScript,ec49c265eb2e7eec4553b4f322c9a0edd0294d2c,"Rename ""Possibly Interesting Things"" to ""Misc. Measurements"""
+132,https://api.github.com/repos/mozilla/areweslimyet/pulls/5,5,"Switch to a white background, plus some minor tweaks","I think it looks cleaner this way, but don't feel compelled to take this change!
+",jlebar,150663,2012-03-19T04:42:42Z,CONTRIBUTOR,True,509,48,12,Code behind areweslimyet.com,JavaScript,801dd68dd3134e38c6ad148ae2fbb18daddaf0f7,Display Firefox version numbers on x-axis.
+133,https://api.github.com/repos/mozilla/areweslimyet/pulls/5,5,"Switch to a white background, plus some minor tweaks","I think it looks cleaner this way, but don't feel compelled to take this change!
+",jlebar,150663,2012-03-19T04:42:42Z,CONTRIBUTOR,True,509,48,12,Code behind areweslimyet.com,JavaScript,6736ce980ecb154e22cc1b785d90ca9c149aea93,Make FF release bold in x-axis.
+134,https://api.github.com/repos/mozilla/areweslimyet/pulls/5,5,"Switch to a white background, plus some minor tweaks","I think it looks cleaner this way, but don't feel compelled to take this change!
+",jlebar,150663,2012-03-19T04:42:42Z,CONTRIBUTOR,True,509,48,12,Code behind areweslimyet.com,JavaScript,a6f6cde7640ef8df78bee47273d1f08a2226407e,Enforce max zoom (3 days).
+135,https://api.github.com/repos/mozilla/areweslimyet/pulls/5,5,"Switch to a white background, plus some minor tweaks","I think it looks cleaner this way, but don't feel compelled to take this change!
+",jlebar,150663,2012-03-19T04:42:42Z,CONTRIBUTOR,True,509,48,12,Code behind areweslimyet.com,JavaScript,ddbe4fd6949badd2c870e745f6719a2efb5bc040,Move legend off RHS of graph.
+136,https://api.github.com/repos/mozilla/areweslimyet/pulls/5,5,"Switch to a white background, plus some minor tweaks","I think it looks cleaner this way, but don't feel compelled to take this change!
+",jlebar,150663,2012-03-19T04:42:42Z,CONTRIBUTOR,True,509,48,12,Code behind areweslimyet.com,JavaScript,9f505d5f480974ac9e54e8fe032b79c9e3e09d9e,Move zoom out button to RHS of graph.
+137,https://api.github.com/repos/mozilla/areweslimyet/pulls/5,5,"Switch to a white background, plus some minor tweaks","I think it looks cleaner this way, but don't feel compelled to take this change!
+",jlebar,150663,2012-03-19T04:42:42Z,CONTRIBUTOR,True,509,48,12,Code behind areweslimyet.com,JavaScript,ca3e7f08fe84cde18281803e5bcbe92305c1d06a,[html] Fixup zoom out button and page centering
+138,https://api.github.com/repos/mozilla/areweslimyet/pulls/3,3,Use cursor:pointer for [zoom out] button.,,jlebar,150663,2012-03-15T22:15:30Z,CONTRIBUTOR,True,1,0,1,Code behind areweslimyet.com,JavaScript,6db1365df94614b2cf69023acb148020b8f66320,Use cursor:pointer for [zoom out] button.
+139,https://api.github.com/repos/mozilla/areweslimyet/pulls/2,2,Some aesthetic changes,,jlebar,150663,2012-03-14T21:31:54Z,CONTRIBUTOR,True,83,38,3,Code behind areweslimyet.com,JavaScript,ed51da24134684fbf85ddfeba06ee96a73282305,"Use colors from http://colorbrewer2.org/.
+
+They're not great, but they're a lot better than what we had.  As an additional bonus, each of the colors is easily nameable ({light,dark} {blue,green,red,orange,purple})."
+140,https://api.github.com/repos/mozilla/areweslimyet/pulls/2,2,Some aesthetic changes,,jlebar,150663,2012-03-14T21:31:54Z,CONTRIBUTOR,True,83,38,3,Code behind areweslimyet.com,JavaScript,c381265fc762b4837e433960e8dc556ca943aab4,Use friendly names for plotted lines.
+141,https://api.github.com/repos/mozilla/areweslimyet/pulls/2,2,Some aesthetic changes,,jlebar,150663,2012-03-14T21:31:54Z,CONTRIBUTOR,True,83,38,3,Code behind areweslimyet.com,JavaScript,f2ec44dcb35cc390aae270e1e3cf2bb2e7d3fa86,Don't center the graph legend.
+142,https://api.github.com/repos/mozilla/areweslimyet/pulls/2,2,Some aesthetic changes,,jlebar,150663,2012-03-14T21:31:54Z,CONTRIBUTOR,True,83,38,3,Code behind areweslimyet.com,JavaScript,8cf05a68e62408fdf0cdcc98ed33c4b6248a2a7d,Renaming legend items.
+143,https://api.github.com/repos/mozilla/areweslimyet/pulls/2,2,Some aesthetic changes,,jlebar,150663,2012-03-14T21:31:54Z,CONTRIBUTOR,True,83,38,3,Code behind areweslimyet.com,JavaScript,440b14c57133be0156117748066d06e857875359,Use a power of 2 for the y-axis tick interval.
+144,https://api.github.com/repos/mozilla/areweslimyet/pulls/2,2,Some aesthetic changes,,jlebar,150663,2012-03-14T21:31:54Z,CONTRIBUTOR,True,83,38,3,Code behind areweslimyet.com,JavaScript,aaa096e8e80e0579bff5109bc4dc105345e780e5,Don't display decimal points on axis labels.
+145,https://api.github.com/repos/mozilla/areweslimyet/pulls/2,2,Some aesthetic changes,,jlebar,150663,2012-03-14T21:31:54Z,CONTRIBUTOR,True,83,38,3,Code behind areweslimyet.com,JavaScript,27e486d816b5375c0a567a47a804a4fbec915a42,Don't display day of week in x-axis label.
+146,https://api.github.com/repos/mozilla/areweslimyet/pulls/2,2,Some aesthetic changes,,jlebar,150663,2012-03-14T21:31:54Z,CONTRIBUTOR,True,83,38,3,Code behind areweslimyet.com,JavaScript,240f7998354fd3a5a03077f14e4c5142fbadb765,Changing the axis labels I'd previously forgotten to change.
