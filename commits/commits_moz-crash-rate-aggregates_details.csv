@@ -1,0 +1,49 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,moz-crash-rate-aggregates,9b3c80e1767208be5c95d0e8405872f4ff5549b7,Update README.md with a reference to the new repo,Mauro Doglio,2016-05-25T10:45:34Z,maurodoglio,maurodoglio,5,5,0
+1,moz-crash-rate-aggregates,21f02b2c70c258542c85575f5e2c31cfe2ec0e9f,"Merge pull request #8 from Uberi/master
+
+Misc. Updates",Roberto Agostino Vitillo,2016-05-10T10:24:09Z,vitillo,vitillo,175,168,7
+2,moz-crash-rate-aggregates,427c6f115652e17bf4164eedcb62b234e4ecf3a8,"Merge pull request #11 from bsmedberg/bug1270547-p2
+
+Bug 1270547 - Map SUBPROCESS_SHUTDOWN_KILL to content_shutdown_crashes in the stability aggregates",Roberto Agostino Vitillo,2016-05-09T12:46:29Z,vitillo,vitillo,22,22,0
+3,moz-crash-rate-aggregates,261178204edd8840a7a68ea92bc4789881cdaa5b,"Add tests for the content shutdown crash stats, courtesy of Anthony",Benjamin Smedberg,2016-05-06T16:20:38Z,bsmedberg,bsmedberg,2,2,0
+4,moz-crash-rate-aggregates,e6e85f1fa1c40f213ae1ee1b2b5a63778b104877,Bug 1270547 - Map SUBPROCESS_KILL_HARD to content_shutdown_crashes in the stability aggregates,Benjamin Smedberg,2016-05-05T17:20:33Z,bsmedberg,bsmedberg,20,20,0
+5,moz-crash-rate-aggregates,46a4de4e5caea42e0f4f4dd40bb90025bd080b89,Fix tests,Anthony Zhang,2016-04-27T19:56:08Z,Uberi,Uberi,2,1,1
+6,moz-crash-rate-aggregates,9d0773d459807fa143782cbab874543dedeab853,"Various updates - change ping count values, add watchdog notebook",Anthony Zhang,2016-04-27T19:44:50Z,Uberi,Uberi,171,165,6
+7,moz-crash-rate-aggregates,6757a43e884a787484c3437f298ac79d264ba1f8,Add note about the watchdog,Anthony Zhang,2016-04-15T14:42:53Z,Uberi,Uberi,2,2,0
+8,moz-crash-rate-aggregates,a8d31cd0269386776fa7602dd69e139b75733098,Update README with new field,Anthony Zhang,2016-04-14T19:22:55Z,Uberi,Uberi,9,5,4
+9,moz-crash-rate-aggregates,4027da6776d1dff9e62b3efd5fe66f0bef05a157,"Merge pull request #7 from Uberi/data-tweaks
+
+Update bucket and bootstrap notebook",Roberto Agostino Vitillo,2016-04-14T15:59:38Z,vitillo,vitillo,44,36,8
+10,moz-crash-rate-aggregates,e3d3c033ead3dab0892e7275ba07c9dd2bb7ac1a,Switch over to the telemetry-parquet bucket now that we're confident it won't break anything else,Anthony Zhang,2016-04-14T15:54:09Z,Uberi,Uberi,2,1,1
+11,moz-crash-rate-aggregates,2825ff3c41e1122ee609bc6ef953c03bc47ddebd,Update the aggregator notebook with some documentation,Anthony Zhang,2016-04-14T15:53:39Z,Uberi,Uberi,42,35,7
+12,moz-crash-rate-aggregates,41083e3117ce3457b6e486fc3a0dbffbca772244,"Merge pull request #5 from Uberi/data-tweaks
+
+* Ignored and processed count for main and crash pings.
+* Remove port bind in Vagrant so we don't take up a port we're not using - we don't need 5432 anymore since we moved away from Postgresql.
+* Certain days have very small numbers of corrupted pings (<20 by my estimate). This causes errors on days like April 9. With these fixes in place, we either reject or handle these pings without stopping the job.",Roberto Agostino Vitillo,2016-04-14T10:21:20Z,vitillo,vitillo,69,50,19
+13,moz-crash-rate-aggregates,6ebe0fb64f1f9afe6036080971666ad787c50fad,"Merge pull request #6 from Uberi/add-cohort
+
+Add e10s cohort dimension",Roberto Agostino Vitillo,2016-04-13T22:33:56Z,vitillo,vitillo,8,8,0
+14,moz-crash-rate-aggregates,028bfef438397dc8ec00eb882970e33201686c6d,Improve success message to be per-day,Anthony Zhang,2016-04-13T22:26:07Z,Uberi,Uberi,6,3,3
+15,moz-crash-rate-aggregates,68f1fd748c203f6c07d56c6687acbf14446a853f,"Add a few more checks and counters to the aggregator:
+
+* Ignored and processed count for main and crash pings.
+* Remove port bind in Vagrant so we don't take up a port we're not using - we don't need 5432 anymore since we switched away from postgres.
+* Certain days have very small numbers of corrupted pings (<20 by my estimate). This causes errors on days like April 9. With these fixes in place, we either reject or handle these pings without erroring out the job.",Anthony Zhang,2016-04-11T15:30:33Z,Uberi,Uberi,67,49,18
+16,moz-crash-rate-aggregates,ccadc243c7bfefe5dd39529da74b04aa408098ff,Add e10s cohort dimension,Anthony Zhang,2016-04-13T18:54:03Z,Uberi,Uberi,8,8,0
+17,moz-crash-rate-aggregates,6a83e6a7706a480ed6c5d98525c6d59a9507bade,"Merge pull request #3 from Uberi/parquet-integration
+
+Implement aggregator service to upload crash aggregates",Anthony Zhang,2016-04-08T15:59:03Z,Uberi,Uberi,893,893,0
+18,moz-crash-rate-aggregates,bd9a1929cbad512983d55bc165600f57e61d8768,"Implement aggregator service to upload crash aggregates as Parquet to S3.
+
+This service is meant to be run daily, to aggregate crash pings and crash stats from main pings into an easily queryable format.
+
+The resulting Parquet files are uploaded to S3, and a different machine runs parquet2hive to import them daily into Presto.
+
+Data stored in Presto can then be queried via re:dash, which is available at [1].
+
+Refer to https://github.com/mozilla/moz-crash-rate-aggregates/pull/2 for the full review history and a summary of changes.
+
+[1]: https://sql.telemetry.mozilla.org/",anthony,2016-03-11T22:05:53Z,Uberi,Uberi,893,893,0
+19,moz-crash-rate-aggregates,ac441de567a506ab869b34914f9f29abe8739a49,Initial commit,Anthony Zhang,2016-04-06T15:10:34Z,Uberi,Uberi,0,0,0

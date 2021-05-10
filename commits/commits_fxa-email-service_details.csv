@@ -1,0 +1,1267 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,fxa-email-service,02965a0b4253d513c706f281083dcc0c060e1448,chore(project): pin rust to nightly-2018-06-10,Phil Booth,2018-06-11T06:41:29Z,philbooth,philbooth,16,7,9
+1,fxa-email-service,49ed73cd346eab1f47a1e553c142747ed22d43f0,"fix(logging): add mozlog logging for requests
+
+https://github.com/mozilla/fxa-email-service/pull/65
+r=philbooth",Beatriz Rizental,2018-06-11T06:02:10Z,brizental,brizental,313,312,1
+2,fxa-email-service,50f8d523a458a72b0f3954b5388d4658f20e0786,"fix(config): inject config in rocket managed state
+
+https://github.com/mozilla/fxa-email-service/pull/66
+r=philbooth",Beatriz Rizental,2018-06-10T21:46:07Z,brizental,brizental,233,135,98
+3,fxa-email-service,5986e841cec8daf03a6eaf2004ffb18da6ebc1a9,fix(bounces): ensure db errors don't get converted to 429 responses (#59) r=@vladikoff,Phil Booth,2018-06-08T04:37:43Z,philbooth,philbooth,23,18,5
+4,fxa-email-service,44dcffd364b74fbc2e04bb20c9f722bb987e4eb8,"chore(project): remove the validator dependency
+
+https://github.com/mozilla/fxa-email-service/pull/60
+r=vladikoff",Phil Booth,2018-06-06T11:42:18Z,philbooth,philbooth,26,7,19
+5,fxa-email-service,145df00ffc287d11e9ec9932d4d8d70a1d42c713,chore(project): limit futures to < 0.2 (#58) r=@vladikoff,Phil Booth,2018-06-05T21:16:02Z,philbooth,philbooth,29,9,20
+6,fxa-email-service,2beab894585d51a1badae48455abe9aea1521747,"chore(project): loosen dependencies version numbers
+
+https://github.com/mozilla/fxa-email-service/pull/57
+r=philbooth",Beatriz Rizental,2018-06-05T20:50:02Z,brizental,brizental,42,21,21
+7,fxa-email-service,008f119137defd7ebaaedc85e098857fecf352a8,"fix(validation): relax the sendgrid API key validation regex (#55) r=@vbudhram,@vladikoff",Phil Booth,2018-06-05T19:45:09Z,philbooth,philbooth,14,4,10
+8,fxa-email-service,66f5d5c049940f3ff83a69db56a4ee5205ca34ea,"fix(validation): allow RFC5321 compliant email addresses
+
+email address validation is a pain, and you can use a surprising variety
+of characters in an address.
+
+(At least we're drawing the line at no quoted characters...)
+
+Closes #44
+
+https://github.com/mozilla/fxa-email-service/pull/45
+r=philbooth",JR Conlin,2018-06-05T17:00:11Z,jrconlin,jrconlin,12,9,3
+9,fxa-email-service,7427318aafb60fac9ee037181fe3a38210782198,refactor(queues): simplify lifetimes for queue objects,Phil Booth,2018-05-27T17:57:34Z,philbooth,philbooth,197,98,99
+10,fxa-email-service,6c154a04f8a29f01c852e714b1fbb034b278795f,feat(queues): return futures instead of blocking for queue handling,Phil Booth,2018-05-26T08:17:51Z,philbooth,philbooth,400,241,159
+11,fxa-email-service,4b05fd3dc34413a08961479a1ac82a3dab5858d5,chore(queues): marshall SES notifications to our own generic type,Phil Booth,2018-05-30T06:40:51Z,philbooth,philbooth,232,164,68
+12,fxa-email-service,4338f24cbe9e0e27098fec2763c29b5183b052ce,"feat(queues): handle SES bounce, complaint and delivery notifications
+
+A direct mapping of functionality from the auth server, so the different
+notification types are expected on three different queues. Long-term it
+makes sense to simplify that down to a single queue, but this way we can
+ease the new service in alongside the existing auth server.
+
+As a first cut, the methods on queues::sqs::Queue all block the thread
+in this implementation. A subsequent change will transition to futures.",Phil Booth,2018-05-17T09:50:55Z,philbooth,philbooth,1589,1511,78
+13,fxa-email-service,f18a5bc60e4248bda27e3b063c71e8fd73d8b761,"chore(code): eliminate some if-lets in favour of combinators
+
+https://github.com/mozilla/fxa-email-service/pull/43
+r=vladikoff",Phil Booth,2018-06-05T12:23:01Z,philbooth,philbooth,21,4,17
+14,fxa-email-service,bc62a046d75d450694ae22f07fd7c06d534df4df,"chore(project): delete errant src/queues/sendgrid/mod.rs
+
+Accidentally added as part of fe8ec12 when I switched branches from the
+in-progress Sengrid queue implementation and did `git add .`.",Phil Booth,2018-06-05T08:51:23Z,philbooth,philbooth,200,0,200
+15,fxa-email-service,fe8ec12f55d13f8d5c4810b1e62e0a046b4b1188,"fix(sendgrid): return message id from the sendgrid provider
+
+https://github.com/mozilla/fxa-email-service/pull/37
+r=rfk,shane-tomlinson",Phil Booth,2018-06-05T08:15:40Z,philbooth,philbooth,397,314,83
+16,fxa-email-service,82acb10ed602c4860a9fbbb2b101abd633e99fd0,"chore(errors): don't serialize nulls in error payloads
+
+https://github.com/mozilla/fxa-email-service/pull/39
+r=shane-tomlinson",Phil Booth,2018-06-04T11:34:33Z,philbooth,philbooth,3,3,0
+17,fxa-email-service,b5343d54b28ca9405a0abacc02d8235230e7a680,"fix(errors): return JSON payloads for error responses
+
+https://github.com/mozilla/fxa-email-service/pull/36
+r=vbudhram",Phil Booth,2018-06-01T17:25:11Z,philbooth,philbooth,173,166,7
+18,fxa-email-service,1d5d100d20847f12da7704c29a43916fca2ea4f0,"chore(project): update rocket, unpin from nightly-2018-05-29",Phil Booth,2018-06-01T09:24:13Z,philbooth,philbooth,57,29,28
+19,fxa-email-service,25947a96d7d1e41eb47b21252d70af06d6637b8d,"feat(sendgrid): implement basic sending via sendgrid
+
+https://github.com/mozilla/fxa-email-service/pull/34
+r=vbudhram",Phil Booth,2018-05-31T16:31:14Z,philbooth,philbooth,426,367,59
+20,fxa-email-service,e114385c0338f16c454ee171d295f9fdaf767072,"chore(project): cargo update + pin to nightly-2018-05-29
+
+Rocket 0.3.11 doesn't compile in Rust nightly-2018-05-30.",Phil Booth,2018-05-31T09:03:11Z,philbooth,philbooth,139,69,70
+21,fxa-email-service,fc612632e3cd7c1725b65d840a2330fa2f47206b,"chore(queues): split out a separate process for queue-handling
+
+https://github.com/mozilla/fxa-email-service/pull/32
+r=rfk",Phil Booth,2018-05-29T08:01:54Z,philbooth,philbooth,103,78,25
+22,fxa-email-service,ca44a94b8db463ed56a071f849713df437f6d600,"feat(db): implement AuthDb::create_bounce
+
+https://github.com/mozilla/fxa-email-service/pull/31
+r=rfk",Phil Booth,2018-05-29T07:20:34Z,philbooth,philbooth,192,190,2
+23,fxa-email-service,58bf9bec33fd055cf9ebd63b13cce31f2f0eaa21,"fix(errors): include more useful messages in wrapping errors
+
+Error types commonly print the most helpful information via the Debug
+trait, which can be accessed using the {:?} format specifier. This
+change just ensures we propagate that more useful information when
+wrapping other error types.
+
+https://github.com/mozilla/fxa-email-service/pull/30
+r=rfk",Phil Booth,2018-05-28T21:46:50Z,philbooth,philbooth,4,2,2
+24,fxa-email-service,fa796dfe038d37d3b2bfa28412f81823702b39e7,"fix(db): fix broken BounceSubtype deserialization
+
+I was missing some tests for BounceSubtype deserialization, which meant
+I hadn't realised that the derived implementation of Deserialize was
+mapping values to strings rather than numbers. This change fixes that
+and adds the corresponding test coverage.
+
+https://github.com/mozilla/fxa-email-service/pull/29
+r=rfk",Phil Booth,2018-05-28T21:43:47Z,philbooth,philbooth,156,116,40
+25,fxa-email-service,848890b90765612544194904695cfc2ec0610be0,refactor(db): rename get_email_bounces => get_bounces,Phil Booth,2018-05-23T14:32:12Z,philbooth,philbooth,40,20,20
+26,fxa-email-service,da70321dc21ae16ca00a871188e0bd1c245440d6,fix(db): add missing derive(Debug),Phil Booth,2018-05-23T14:27:14Z,philbooth,philbooth,2,2,0
+27,fxa-email-service,79e0ea314ca48df66aad92a8118a8096cf1e8a0b,fix(db): add missing fields/values to auth_db::BounceRecord,Phil Booth,2018-05-23T14:26:20Z,philbooth,philbooth,291,217,74
+28,fxa-email-service,00b536321fde26ef45bedb52a3730c4e39c37a1c,chore(project): rustup update + cargo update + cargo fmt,Phil Booth,2018-05-18T13:59:42Z,philbooth,philbooth,61,37,24
+29,fxa-email-service,b716e04abb749f8999701e02b0db2f75f095a565,chore(ci): disable ci on non-master branches,Phil Booth,2018-05-18T13:28:10Z,philbooth,philbooth,3,3,0
+30,fxa-email-service,798d534b0b0cac540a6f937006e35da167f36b46,chore(docs): fix license link,Phil Booth,2018-05-16T07:37:05Z,philbooth,philbooth,2,1,1
+31,fxa-email-service,39877b45dae7a59e588e21911f47e96382f4fda6,chore(project): inch closer towards the default rustfmt config,Phil Booth,2018-05-16T07:34:04Z,philbooth,philbooth,2745,1292,1453
+32,fxa-email-service,5fd4e6aafd66cbe6ed2bf08d33c2c17484b051b6,feat(docs): add a readme doc,Phil Booth,2018-05-16T05:52:51Z,philbooth,philbooth,179,179,0
+33,fxa-email-service,579bca8c5b16c9349d3ed15a61952d065ee0173e,chore(config): run rocket on port 8001 in dev,Phil Booth,2018-05-16T05:57:23Z,philbooth,philbooth,2,2,0
+34,fxa-email-service,490a69e1002b19eb53f320c6fb3550396392d320,"feat(db): check the emailBounces table before sending email
+
+Loads bounce limits from config and then checks email addresses against
+those limits before sending the email. If any address violates a limit,
+the request will fail with status 429 and email will not be sent.
+
+As it introduces a dependency on the fxa-auth-db-mysql repo, some extra
+scripting has been thrown in to make working with node.js easier.
+
+Running `./tdb` will check whether an `fxa-auth-db-mysql` directory
+exists and, if not, clone the repo. Then it will check for running db
+server processes and, if none are found, run `npm i`, run the db patcher
+and start the db server in a background process. Then it finishes by
+invoking the existing `./t` script.
+
+This is not ideal because it leaves the node process running in the
+background after tests have finished. But I figure it's good enough for
+now because it only leaves one of them running, they don't multiply with
+subsequent test runs. And you don't have to use the new script of
+course, if you already have the db server running in fxa-local-dev, you
+can just run `./t` and the tests should pass. The new script is mostly
+there for Travis' benefit.
+
+https://github.com/mozilla/fxa-email-service/pull/22
+r=rfk,vbudhram",Phil Booth,2018-05-16T04:25:08Z,philbooth,philbooth,1411,1329,82
+35,fxa-email-service,17a36759ec21baba189b782aafa73b85fe2be48d,chore(project): update regex dependency,Phil Booth,2018-05-08T08:08:50Z,philbooth,philbooth,84,48,36
+36,fxa-email-service,451702121a34dd68cc91da606ef1dab0255ed885,chore(tests): remove mutex hack,Phil Booth,2018-05-04T14:05:53Z,philbooth,philbooth,14,3,11
+37,fxa-email-service,da3cdf69fdbb573e3d8c8707eab09ea876bf68d7,feat(ses): add support for aws access and secret keys,Phil Booth,2018-05-04T13:59:13Z,philbooth,philbooth,158,145,13
+38,fxa-email-service,4ab1d9ce039073f26c96f090fd1e68f13c7a7040,feat(ses): implement basic ses-based email sending,Phil Booth,2018-05-04T08:49:53Z,philbooth,philbooth,1294,1251,43
+39,fxa-email-service,106edd8e2b5a2e2a754bcada23ff568822b52bb9,chore(project): update rocket and unpin from nightly-2018-04-28,Phil Booth,2018-05-05T08:22:00Z,philbooth,philbooth,146,78,68
+40,fxa-email-service,c08434beb9ca6a642cfa167755d59dcf41bacf2f,chore(project): add the MPL,Phil Booth,2018-05-04T06:08:26Z,philbooth,philbooth,397,397,0
+41,fxa-email-service,f7dd71456e11553eef906df625b6e172e76b10ba,"refactor(settings): extract common functions for deserialization
+
+Extracts the inline validation code from the settings module to a
+dedicated deserialize module, so that the validation rules can be better
+re-used elsewhere.
+
+Uses functions rather than newtype structs, for 2 reasons:
+
+1. There's an issue in the config crate where newtype structs aren't
+   deserialized. An unmerged PR exists to fix it, but in the meantime
+   this changeset works round the problem.
+
+2. When using newtype structs, the tests aren't able to create fresh
+   instances of the Settings struct unless it is flattened to a single
+   level.
+
+Maybe we can revisit the newtype struct approach down the line when both
+of the above are resolved.
+
+https://github.com/mozilla/fxa-email-service/pull/15
+r=rfk",Phil Booth,2018-05-04T05:27:33Z,philbooth,philbooth,133,80,53
+42,fxa-email-service,04e33b0afc48ce9fb1f50a2a1039ec04e478bdb1,"chore(ci): fix to rust nightly 2018-04-28
+
+Related to https://github.com/SergioBenitez/Rocket/pull/624",Phil Booth,2018-05-03T16:28:39Z,philbooth,philbooth,2,1,1
+43,fxa-email-service,a86015fb49b2b40a84fb6c7dacb3db23ec442812,"feat(config): add configuration
+
+Imitates, as closely as possible, the convict-based approach we use in
+our node repos. The major difference is that validation here has to
+happen in the code, we can't define it in config.
+
+Settings are applied in the following order:
+
+* config/default.json
+* config/${NODE_ENV}.json (optional)
+* config/local.json (optional, git-ignored)
+* environment variables
+
+I opted to re-use $NODE_ENV instead of some rust-specific environment
+variable so that our dev setups will work with minimal changes. If that
+seems too weird though I can change it.
+
+Uses the `config` crate, which was the convictiest dependency I could
+find.",Phil Booth,2018-04-28T09:36:24Z,philbooth,philbooth,412,412,0
+44,fxa-email-service,4d1a265c40209abc459a61b7c40b4c50838fa179,chore(project): turn off reorder_impl_items rustfmt setting,Phil Booth,2018-04-29T07:15:11Z,philbooth,philbooth,1,0,1
+45,fxa-email-service,13ffd015944403338077c0418363f0fe11ec1c85,chore(project): revert a bunch of custom rustfmt settings,Phil Booth,2018-04-27T10:16:45Z,philbooth,philbooth,31,8,23
+46,fxa-email-service,b6dad7217ce6073f7c35d85061483a500ea78fed,fix(api): limit `to` field to a single recipient,Phil Booth,2018-04-27T08:21:28Z,philbooth,philbooth,88,30,58
+47,fxa-email-service,6c3361c2a1e75c8477cc7ce437aa9529cdbccf5f,"feat(api): implement a basic /send endpoint
+
+Not wired in to any behaviour, just does some crude validation and then
+returns a hard-coded message id. There is some test coverage, but also
+some gaps where I haven't figured out how we should do stuff yet:
+
+* The validation code is punishingly verbose. I evauated a couple of
+  crates to implement validation, `accord` and `validator`, and opted
+  for `validator`. However they both seem quite simple, for instance
+  there's no support for nested objects or values packed inside arrays.
+  This meant we couldn't lean on the nice, readable macro syntax that's
+  available and have to explitly validate fields using Rocket's FromData
+  trait instead.
+
+* Rocket has a feature called error catchers, which I couldn't get to
+  work. These are supposed to let you return custom error data but, no
+  matter what I tried, it always seemed to return the default error
+  response for each type (which is an html string). And even if I could
+  get those to work, I couldn't see a way to propagate rich error
+  information, e.g. names of invalid parameters, into the catcher
+  without having to validate all of the parameters a second time inside
+  the catcher.
+
+* I tried to write a test case that fired unicode at the endpoint and it
+  failed.
+
+I'm sure the root cause of these problems is just my own lack of
+expertise and we'll figure it out eventually. In the meantime, this
+seemed like enough to get us started. I'll open issues to cover the
+above.
+
+In terms of code structure, I've just lumped most stuff in to the send
+module for now. As we add more functionality, I expect the natural
+boundaries to reveal themselves. No point agonising over it yet.",Phil Booth,2018-04-25T18:40:13Z,philbooth,philbooth,593,571,22
+48,fxa-email-service,b616c36ca399c408d118dba00c7bb1c2c6c2d30f,chore(project): add ci config,Phil Booth,2018-04-25T13:40:46Z,philbooth,philbooth,30,28,2
+49,fxa-email-service,a7b1f5101348044fa3de6b0f90298bdd07b8eda4,chore(project): add rocket dependency,Phil Booth,2018-04-24T15:50:09Z,philbooth,philbooth,539,538,1
+50,fxa-email-service,88897ee78cba0a9f5f8edb665cb5d1d2e85b97d1,chore(project): initial boilerplate,Phil Booth,2018-04-24T15:30:50Z,philbooth,philbooth,10,10,0
+51,fxa-email-service,31da83bb39075f63bc24e707fa22e1a447ac5d5b,"feat(db): serialize to JSON on write and deserialize from JSON on read
+
+Previously, our Redis abstraction only worked with strings because it
+only dealt with the somewhat nebulous concept of message metadata. Now
+that we also want to use it for concrete types, it makes sense to bake
+in automatic serialization from and deserialization to those types. This
+frees consumers from the responsibility of having to serialize to a
+Redis-friendly format manually.
+
+This change achieves that aim by making the db methods generic. `db.set`
+gets a type parameter that is `Serialize` and the getters get one that
+is `DeserializeOwned`.",Phil Booth,2018-10-05T17:55:27Z,philbooth,philbooth,47,36,11
+52,fxa-email-service,6a43ce4048699204031f6f0c8151c79aff39165d,"Merge pull request #196 from mozilla/pb/strongly-typed-email-addresses
+
+https://github.com/mozilla/fxa-email-service/pull/196
+r=shane-tomlinson",Phil Booth,2018-10-06T12:51:08Z,philbooth,philbooth,358,186,172
+53,fxa-email-service,dc08356f38e96964a2fc071b7718d5dd789cd220,"refactor(types): prefer EmailAddress type to raw strings
+
+The EmailAddress type was only being used in some places, which meant
+some places that weren't using it had to call `validate::email_address`
+manually. This change spreads it throughout most of the project, so
+that almost everywhere gets to benefit from strong typing.
+
+The only place I decided to leave it alone was the provider layer, where
+some providers have their own `EmailAddress` struct. I could have
+aliased it at that layer too, but by that point addresses are just dumb
+strings anyway so it didn't seem worth it.",Phil Booth,2018-10-04T17:51:49Z,philbooth,philbooth,358,186,172
+54,fxa-email-service,d409f3755bb5000dbcb3396c455b6e8667a8894a,"Merge pull request #199 from mozilla/pb/update-readme
+
+https://github.com/mozilla/fxa-email-service/pull/199
+r=shane-tomlinson",Phil Booth,2018-10-05T13:17:28Z,philbooth,philbooth,102,44,58
+55,fxa-email-service,6d04dcc9ba5eef7e751bc8f565aa709b98ef79ec,feat(docs): mention command-line shortcuts for running binaries,Phil Booth,2018-10-05T08:14:55Z,philbooth,philbooth,12,12,0
+56,fxa-email-service,80bb986418eb9a9e33a5d70ba3414a3d12924e93,feat(docs): promote fxa-local-dev as a first class way to run locally,Phil Booth,2018-10-05T08:14:16Z,philbooth,philbooth,18,16,2
+57,fxa-email-service,c1928df500fc4a0595f7f3f182ed7d89017c8183,chore(docs): update the readme to match current reality,Phil Booth,2018-10-05T08:08:48Z,philbooth,philbooth,72,16,56
+58,fxa-email-service,1ebe354736c711ff863a449240b531076467593c,chore(docs): make circleci build badge match its peers,Phil Booth,2018-10-05T07:42:07Z,philbooth,philbooth,2,1,1
+59,fxa-email-service,c8a42f7f0bdcdfbaf25379cd84bb0b81d74837d0,"Merge pull request #197 from mozilla/pb/195
+
+https://github.com/mozilla/fxa-email-service/pull/197
+r=shane-tomlinson",Phil Booth,2018-10-05T12:45:44Z,philbooth,philbooth,5,4,1
+60,fxa-email-service,95e20e074059ad6dc4aa20f8643ccf9b34c8dc73,fix(ci): only build deployment artifacts for tags,Phil Booth,2018-10-04T18:56:07Z,philbooth,philbooth,5,4,1
+61,fxa-email-service,12c2e325e9ed6a91d19f9172a49cc463e5322bc1,"Merge pull request #193 from mozilla/pb/166
+
+https://github.com/mozilla/fxa-email-service/pull/193
+r=shane-tomlinson,brizental",Phil Booth,2018-10-04T06:49:29Z,philbooth,philbooth,221,152,69
+62,fxa-email-service,a644d18ca56aa7148b05642ab91863fe8b24503b,refactor(redis): extract redis code to a dedicated db module,Phil Booth,2018-10-01T15:27:58Z,philbooth,philbooth,221,152,69
+63,fxa-email-service,cf79a894d6a429c67426f97563f79651f427e043,"Merge pull request #194 from mozilla/train-122 r=@shane-tomlinson
+
+Release v1.122.0",Shane Tomlinson,2018-10-03T06:49:05Z,Shane Tomlinson,Shane Tomlinson,17,15,2
+64,fxa-email-service,9cc6880b16b025fcc089146430d262125d12cac7,Release v1.122.0,Vlad Filippov,2018-10-02T21:57:57Z,vladikoff,vladikoff,17,15,2
+65,fxa-email-service,7dbc8ade5b3d2e626d6c5cc3d91101dfa9e14958,"Merge pull request #192 from mozilla/pb/191
+
+https://github.com/mozilla/fxa-email-service/pull/192
+r=shane-tomlinson",Phil Booth,2018-09-26T10:52:39Z,philbooth,philbooth,19,14,5
+66,fxa-email-service,85529f7f945ec7408a87d96040b517c2e5a1fa3f,fix(config): ignore empty environment variables,Phil Booth,2018-09-26T07:22:10Z,philbooth,philbooth,19,14,5
+67,fxa-email-service,35eaefd3e22e7964fa4d9d7426c4391f6a0b128b,"Merge pull request #190 from brizental/brizental/189
+
+https://github.com/mozilla/fxa-email-service/pull/190
+r=philbooth",Phil Booth,2018-09-25T18:13:34Z,philbooth,philbooth,31,1,30
+68,fxa-email-service,0f2b5740c374b41c0d352b8d93d34ff217042390,fix(queues): remove unused fields from notification structs,Beatriz Rizental,2018-09-25T17:53:36Z,brizental,brizental,31,1,30
+69,fxa-email-service,f20841662a94e96afdbc669fc939b033cfd87372,"Merge pull request #188 from brizental/brizental/162
+
+https://github.com/mozilla/fxa-email-service/pull/188
+r=philbooth",Phil Booth,2018-09-24T18:58:55Z,philbooth,philbooth,210,209,1
+70,fxa-email-service,588f0d6740eab032977e852531f9e28b87fb3630,chore(tests): add tests for message parsing in the queues,Beatriz Rizental,2018-09-21T01:48:21Z,brizental,brizental,208,208,0
+71,fxa-email-service,9a882094a6ff6d72db0c44e04f00a976cba1a9ea,fix(config): update config version in Cargo.toml,Beatriz Rizental,2018-09-20T16:47:58Z,brizental,brizental,2,1,1
+72,fxa-email-service,97595afe3ff60f1954e5666005ddc3aa4b3d70d6,Merge pull request #187 from mozilla/train-121,Vijay Budhram,2018-09-19T15:35:46Z,vbudhram,vbudhram,13,11,2
+73,fxa-email-service,d548d5ecc4e502bdfc14ebe1a9089215e6660046,Release v1.121.0,vladikoff,2018-09-18T17:43:22Z,vladikoff,vladikoff,13,11,2
+74,fxa-email-service,5192acf3192034998a00740dab97a6a7466b62de,"Merge pull request #184 from pjenvey/chore/rust-toolchain
+
+https://github.com/mozilla/fxa-email-service/pull/184
+r=philbooth",Phil Booth,2018-09-18T04:54:24Z,philbooth,philbooth,6,1,5
+75,fxa-email-service,3903f0b94fd3d7b30b58fe22db0fc4811b9b5fd4,"chore: utilize a rust-toolchain file
+
+moves the toolchain spec to solely one file",Philip Jenvey,2018-09-17T22:56:03Z,pjenvey,pjenvey,6,1,5
+76,fxa-email-service,9fce06a919a2cc7065b57c33d0ec43fffcfda777,"Merge pull request #183 from mozilla/train-120
+
+https://github.com/mozilla/fxa-email-service/pull/183
+r=philbooth",Phil Booth,2018-09-06T06:20:37Z,philbooth,philbooth,15,13,2
+77,fxa-email-service,b72ff78202fec34c1d6b0f2399933fc465b3da01,Release v1.120.0,vladikoff,2018-09-06T02:38:44Z,vladikoff,vladikoff,15,13,2
+78,fxa-email-service,e5b82c7a7c36df70a18795e876eac32648e39f22,"Merge pull request #182 from brizental/brizental/98
+
+https://github.com/mozilla/fxa-email-service/pull/182
+r=philbooth",Phil Booth,2018-08-25T06:53:05Z,philbooth,philbooth,58,58,0
+79,fxa-email-service,482f69cebf454876e5329f0953241854453f293b,feat(docs): document errors and errno,Beatriz Rizental,2018-08-24T20:20:49Z,brizental,brizental,58,58,0
+80,fxa-email-service,06cd3ad6725ba517436f9c16245c0b06aa0bb7a3,"Merge pull request #180 from brizental/brizental/157
+
+https://github.com/mozilla/fxa-email-service/pull/180
+r=philbooth",Phil Booth,2018-08-23T05:51:08Z,philbooth,philbooth,39,27,12
+81,fxa-email-service,d74eaec97f8d214661589c58904dfd8617b856a3,feat(errors): return bouncedAt field in bounce error message,Beatriz Rizental,2018-08-22T17:26:26Z,brizental,brizental,39,27,12
+82,fxa-email-service,f7eb9f65bbb33f29236875a075b996330c764980,Release v1.119.0 (#179),Beatriz Rizental,2018-08-22T16:15:25Z,brizental,brizental,22,20,2
+83,fxa-email-service,7beca536e688c6ed6676f97ff24e27475f986c09,fix(queues): make queue parsing logic follow the sns format (#178) r=@vladikoff,Beatriz Rizental,2018-08-21T22:48:23Z,brizental,brizental,57,26,31
+84,fxa-email-service,0f790c1647df8850b951a916c7af72ee85a7dc62,"fix(logging): remove unnecessary and add debug logs in queues (#177) r=@vladikoff
+
+There is a bunch of minor fixes going on in this PR.
+
+Fix #173
+
+Add some debug logs for notifications in case we need it (probably would be good to only show them when we have some debug flag on or something)
+Notification JSON may come in different shapes, nested or not nested, so I added functionality to accept both. That logic might me a little fragile so let me know what you think.",Beatriz Rizental,2018-08-21T00:22:57Z,brizental,brizental,77,42,35
+85,fxa-email-service,73d07bd7cc89181f759f7cbc99be2687f9b88331,"feat(logging): add sentry support (#176) r=@vladikoff
+
+Fix #155
+
+I added support for Sentry. For that to work we just need to set FXA_EMAIL_SENTRY_DSN.",Beatriz Rizental,2018-08-16T21:06:14Z,brizental,brizental,271,271,0
+86,fxa-email-service,5e9f268826a3abadc81714866dd68a9098d8de5c,"fix(queues): fix executor error on queues process (#174) r=@vladikoff,@philbooth",Beatriz Rizental,2018-08-16T20:40:14Z,brizental,brizental,11,8,3
+87,fxa-email-service,ac2bfa2626636b09efc4a251a75f845f38d6a681,"Merge pull request #175 from mozilla/brizental-patch-1
+
+chore(docs): remove under construction badge",Beatriz Rizental,2018-08-16T17:30:27Z,brizental,brizental,1,0,1
+88,fxa-email-service,0851f8ca1237a23a0ec3f72029fb9f9265a9f1c0,chore(docs): remove under construction badge,Beatriz Rizental,2018-08-16T15:12:51Z,brizental,brizental,1,0,1
+89,fxa-email-service,6fc6c31043598b246102cd1fdd27fc325f4514fb,"Merge pull request #171 from brizental/brizental/socketlabs-message-id
+
+r=philbooth",Phil Booth,2018-08-14T07:37:07Z,philbooth,philbooth,8,7,1
+90,fxa-email-service,30639fc3bc09067554ea08061772391542c775f4,feat(socketlabs): create and return id for socketlabs messages,Beatriz Rizental,2018-08-13T20:08:19Z,brizental,brizental,8,7,1
+91,fxa-email-service,eddeb9a97e9a3f02b36e4d11ed7d29c082e26c5a,Release v1.118.0 (#165),Beatriz Rizental,2018-08-09T18:55:55Z,brizental,brizental,14,12,2
+92,fxa-email-service,c085cbb3f3941e88890a9a899fbf517ec849f0cc,"fix(ses): use updated rusoto version that sends message in body (#164) r=@vladikoff
+
+Fixes https://github.com/mozilla/fxa-email-service/issues/139",Beatriz Rizental,2018-08-09T18:21:32Z,brizental,brizental,521,279,242
+93,fxa-email-service,501a59167c31dff9b31f9c48f5228e19f9891f34,"chore(queues): use mozlog and failure in queues process (#161) r=@vladikoff,@philbooth
+
+Fixes #10
+Fixes #99
+Connects to #116
+
+This was my first experience messing with the queues part of the service, I thought dealing with these issues first would make the experience smoother. I added the standard logging and error handling with the failure crate just like the rest of the lib.
+
+Since our errors were very much centered around requests and rocket, we have some fields that don't really make sense for the queues process, like the http code, so let me know what you think about that and if the queues process should have a different error format. I also did another minor change to the errors: now the response JSON will return a number for code and errno, instead of a string.
+
+For logging, I implemented an AppErrorFields so that we get better structured logs for our AppErrors. I used slog_scope to make it easier to have a global logger for the queues process, let me know what you think about that... In the README.md for that crate, they have some warnings about it not being the best idea all the time, but anyways, I thought it was neat and worked well for our case.
+
+Finally, when I started working in the queues they were not really working due to parsing errors, you will see that I changed a little bit the SQS Notification struct, that was for parsing to work, also I created a notification-dev queue in the AWS Console, because it didn't exist yet, I think everything is working fine now.",Beatriz Rizental,2018-08-09T00:24:14Z,brizental,brizental,661,388,273
+94,fxa-email-service,95acb7c99ec0da5606182d40c661dd041e88b427,"Merge pull request #160 from brizental/brizental/updates
+
+chore(deps): update rocket, failure, rusoto and rust versions
+r=philbooth",Phil Booth,2018-08-08T18:02:09Z,philbooth,philbooth,512,304,208
+95,fxa-email-service,9854cc99a070f57b19597566fdeb1bc68d957891,"chore(deps): update rocket, failure, rusoto and rust versions",Beatriz Rizental,2018-08-07T22:39:24Z,brizental,brizental,512,304,208
+96,fxa-email-service,e0a283915af8f956ee2895e5025a393f98902068,"chore(config): change aws region defaults for dev and prod (#154) r=@vladikoff,@philbooth
+
+Fixes #153",Beatriz Rizental,2018-08-02T20:41:28Z,brizental,brizental,5,4,1
+97,fxa-email-service,bed6a93f9dee4ab35ea485f04f54056173299ad1,Release v1.117.0 (#152),Beatriz Rizental,2018-08-01T17:42:20Z,brizental,brizental,16,14,2
+98,fxa-email-service,3e3d6cf72e222f977b282233c079fb8f13bc3f85,"chore(tests): add tests for request unicode handling (#151) r=@vladikoff,@philbooth
+
+Fixes #9",Beatriz Rizental,2018-08-01T15:52:07Z,brizental,brizental,129,120,9
+99,fxa-email-service,0e7957a8787524b6e482cef4657c799edf56a4fb,"Merge pull request #142 from mozilla/pb/enforce-default-provider
+
+https://github.com/mozilla/fxa-email-service/pull/142
+r=brizental,vladikoff",Phil Booth,2018-07-30T07:04:05Z,philbooth,philbooth,153,120,33
+100,fxa-email-service,c115318dfa7a848021cc28343a979b69e3439cfc,refactor(settings): group provider-related settings together,Phil Booth,2018-07-27T12:28:26Z,philbooth,philbooth,104,60,44
+101,fxa-email-service,ca4b201156e198e5b87b68d2b2092983769a7c62,"feat(settings): enable the default provider to override requests
+
+Over in https://github.com/mozilla/fxa-auth-server/pull/2535, work is
+being done to enable the auth server to specify the provider for
+specific requests. This causes a problem in fxa-local-dev, because we
+always want to use the local smtp provider there.
+
+As a hackish approach to resolving that conflict, this change introduces
+a new boolean setting called `forceprovider`. If `forceprovider` is
+`true`, the default provider may not be overridden by individual
+requests.",Phil Booth,2018-07-25T10:43:54Z,philbooth,philbooth,101,86,15
+102,fxa-email-service,1db8d4490934f4398140cd59afb7762dda9e9a3c,"feat(settings): add secret_key to settings (#147) r=@vladikoff
+
+Fixes #146
+
+When I changed to use Rocket::custom instead of Rocket.toml for creating configuration, I forgot about ROCKET_SECRET_KEY.
+
+It's good to note that, because we are using Rocket::custom none of the ROCKET_ env vars will work, so if ever we need to set any of the fields in config, we need to add to our config and to our rocket config builder function.
+
+These are the possible fields in rocket config: https://api.rocket.rs/rocket/config/struct.ConfigBuilder.html#fields",Beatriz Rizental,2018-07-27T19:35:05Z,brizental,brizental,25,23,2
+103,fxa-email-service,f35e1298c8b06da637d59af2f07703902e0c0114,chore(providers): lock socketlabs to a crates.io version (#149),Beatriz Rizental,2018-07-27T18:27:02Z,brizental,brizental,12,6,6
+104,fxa-email-service,9cec32c61a73c5d68b56e4fa80a0eae4df5b8e04,chore(docs): improve release doc (#144),Vlad Filippov,2018-07-26T04:35:51Z,vladikoff,vladikoff,2,2,0
+105,fxa-email-service,cfdb2583e7d8b9df273678ca84afd899582fdb87,Release v1.116.3 (#143),Vlad Filippov,2018-07-26T01:06:11Z,vladikoff,vladikoff,19,16,3
+106,fxa-email-service,ff07bb9cc6e1375917633ad4d531b089fb263ece,"refactor(settings): drop NODE_ENV and add LOG_LEVEL (#141) r=@vladikoff
+
+Fixes #138
+Connects to #139",Beatriz Rizental,2018-07-26T00:50:32Z,brizental,brizental,184,137,47
+107,fxa-email-service,13cd22139f77ba6bbdadd6c2631e75c1e752171f,"feat(providers): create socketlabs provider
+
+https://github.com/mozilla/fxa-email-service/pull/140
+r=philbooth",Beatriz Rizental,2018-07-25T22:24:09Z,brizental,brizental,202,185,17
+108,fxa-email-service,1dd223a0178694583c57ff8e40c04a85ea169fa0,Release v1.116.2 (#137),Vlad Filippov,2018-07-19T14:19:07Z,vladikoff,vladikoff,14,12,2
+109,fxa-email-service,b915b7e8d320c5f6c5ba564efe724e0db288b52b,"fix(docker): Rocket.toml no longer exists, so don't copy it (#136)",John Morrison,2018-07-19T02:47:34Z,jrgm,jrgm,1,0,1
+110,fxa-email-service,09a8c5df1d44a96a0f7f16e7b867c80a33ffdbd0,Release v1.116.1 (#135),Vlad Filippov,2018-07-18T16:43:58Z,vladikoff,vladikoff,19,17,2
+111,fxa-email-service,b69cfb5365629bbd2923e2b6a99f07186ad071ce,"feat(project): create healthcheck endpoints and make $PORT an env variable (#134) r=@philbooth,@vladikoff
+
+Fixes #132
+Fixes #133",Beatriz Rizental,2018-07-18T16:37:30Z,brizental,brizental,209,191,18
+112,fxa-email-service,7159ca30abd868dd100d6312f0fad6461d49fd57,"chore(tests): add tests for ses provider and mime message building
+
+https://github.com/mozilla/fxa-email-service/pull/128
+r=vladikoff,philbooth",Beatriz Rizental,2018-07-16T19:13:26Z,brizental,brizental,374,285,89
+113,fxa-email-service,7512acf0b841448d9262f061ecfe6ad0861831b1,"fix(deploy): pin to a known compatible rust version in docker and ci (#131) r=@vladikoff
+
+Fixes #130.
+
+We don't want the regular cycle of conflicts between Rust nightlies and (usually) rocket codegen to affect us in prod. And, funnily enough, the version that I first tried pinning to contains one of those of conflicts, so good reminder there. (nightly 2018-07-15 works with Rocket 0.3.15, but we're pinned to a specific commit on master for now)",Phil Booth,2018-07-16T12:53:44Z,philbooth,philbooth,416,214,202
+114,fxa-email-service,16f7630f814ff24f7e79d9fa76f47525541dcb05,fix(docker): include /app/version.json in final image (dockerflow required) (#129),John Morrison,2018-07-14T12:04:30Z,jrgm,jrgm,2,2,0
+115,fxa-email-service,e12daf876a809b262af115cec8d0b672f8ad9e8d,Release v1.116.0,vladikoff,2018-07-12T16:54:37Z,vladikoff,vladikoff,36,33,3
+116,fxa-email-service,825e39933330a410677e93029cf5aeb2cbf3f1f3,"feat(logging): turn off rocket logs for production (#125) r=@vladikoff
+
+Fixes #111
+
+In order to do this I had to point our rocket version to the Rocket repo and that introduced some breaking changes which I also fixed in this PR. Mostly they were variable name changes",Beatriz Rizental,2018-07-12T16:46:14Z,brizental,brizental,381,185,196
+117,fxa-email-service,019f6b7153e73b96e25114879c056ebd7a0d9afc,"chore(config): make smtp provider the default for dev env
+
+https://github.com/mozilla/fxa-email-service/pull/126
+r=philbooth",Beatriz Rizental,2018-07-12T06:25:59Z,brizental,brizental,6,5,1
+118,fxa-email-service,20b7fc08ee95802dbaa330fac72668ab4ac09b8a,"feat(providers): implement smtp provider
+
+https://github.com/mozilla/fxa-email-service/pull/122
+r=philbooth",Beatriz Rizental,2018-07-11T06:07:50Z,brizental,brizental,343,339,4
+119,fxa-email-service,2102e32c75cdac511d56011358bdbd72d7c9dc11,"refactor(types): extract the EmailAddress type to its own module
+
+https://github.com/mozilla/fxa-email-service/pull/120
+r=shane-tomlinson,brizental",Phil Booth,2018-07-06T16:53:36Z,philbooth,philbooth,145,81,64
+120,fxa-email-service,ba9f8b88e262bbf1386bdae297c1172ec85f4f15,"fix(docs): better docs for the settings module
+
+https://github.com/mozilla/fxa-email-service/pull/121
+r=shane-tomlinson,brizental",Phil Booth,2018-07-06T16:52:26Z,philbooth,philbooth,44,28,16
+121,fxa-email-service,d54b46ab690df93785083345435f1d7b7a5e52e6,"refactor(settings): refactor settings properties to types
+
+https://github.com/mozilla/fxa-email-service/pull/114
+r=philbooth,vladikoff",Beatriz Rizental,2018-07-06T04:43:05Z,brizental,brizental,470,208,262
+122,fxa-email-service,e6e3350cbc01a5c568eea7018153a52779452aa9,fix(scripts): don't try to deploy docs if they haven't changed,Phil Booth,2018-07-05T06:53:08Z,philbooth,philbooth,51,34,17
+123,fxa-email-service,8e48f36ead0625b899740250fe1ab175b7338fe2,"fix(scripts): stop gh-pages script from failing for pull requests
+
+https://github.com/mozilla/fxa-email-service/pull/118
+r=vladikoff",Phil Booth,2018-07-04T22:32:25Z,philbooth,philbooth,39,18,21
+124,fxa-email-service,b47e2f9d4ab13dd375917246aa83881b5ebacbe2,chore(docs): automatically publish rustdoc output to github pages,Phil Booth,2018-07-04T20:52:27Z,philbooth,philbooth,35,35,0
+125,fxa-email-service,f2edb78c7903319823106427f65159fe64179738,feat(docs): generate developer docs with rustdoc,Phil Booth,2018-07-03T17:13:43Z,philbooth,philbooth,391,353,38
+126,fxa-email-service,fb56a2090b78073a2c186dd45e9533a3069dba13,fix(scripts): update references to bin names with `fxa-email-` prefix,Phil Booth,2018-07-03T14:09:02Z,philbooth,philbooth,10,5,5
+127,fxa-email-service,90bec93fc6471980d3a146adca4236b4e7cdd329,"fix(settings): get message data hmac key setting to work with env variables (#110) r=@philbooth,@vladikoff
+
+Fixes #109",Beatriz Rizental,2018-06-28T18:56:13Z,brizental,brizental,23,15,8
+128,fxa-email-service,05f93b9da556286218e12453b4d5faea06c1b9df,"feat(docker): copy Rocket.toml in the docker image (#107) r=@brizental
+
+Fixes #106",Vlad Filippov,2018-06-27T20:27:14Z,vladikoff,vladikoff,1,1,0
+129,fxa-email-service,b3e3ac298a3c53a001b02e847b2ca0c53ed65844,feat(docker): set ROCKET_ENV to prod (#105) r=@brizental,Vlad Filippov,2018-06-27T20:07:57Z,vladikoff,vladikoff,2,2,0
+130,fxa-email-service,c2c7e1372a3a5a113544d666e1793e396b97a28d,"chore(settings): prepare prod and stage configs for deployment (#104) r=@vladikoff
+
+Fixes #100
+Fixes #24
+
+As mentioned in #24 we still need to see about ROCKET_WORKERS.
+
+Also, in production, rocket sends a warning about not having set a secret_key, but I decided to leave it without anything for now. Anyways that would be something that probably we wouldn't ""hard code"" here.",Beatriz Rizental,2018-06-27T17:57:41Z,brizental,brizental,18,17,1
+131,fxa-email-service,199cd82570843ba53cc75cc9acc94f9943ce8bc7,"feat(logging): add null logger for testing environment (#102) r=@philbooth,@vladikoff
+
+Fixes #82
+
+When we are in a testing environment (which means when NODE_ENV=test) the logger won't show anything.
+
+So now, instead of having mozlog:true | false in the config, we have logging: null | pretty | mozlog.",Beatriz Rizental,2018-06-27T16:02:15Z,brizental,brizental,53,35,18
+132,fxa-email-service,fe5cae057c77d38baa2f9a383bb0af831c85da4d,Release v1.115.0 (#103),Vlad Filippov,2018-06-27T15:07:48Z,vladikoff,vladikoff,81,79,2
+133,fxa-email-service,45c8247532d1feaef06d70e9797ada727491e9e3,chore(ci): add circle ci badge (#101) r=@brizental,Vlad Filippov,2018-06-26T22:18:42Z,vladikoff,vladikoff,1,1,0
+134,fxa-email-service,0e172a9c4877409f9577bb69d0cca1be45775ddb,"Setup Circle CI to create docker images (#87) r=@jrgm
+
+Fixes #47",Vlad Filippov,2018-06-26T21:50:40Z,vladikoff,vladikoff,114,114,0
+135,fxa-email-service,1797317231c9306cde868d0be5c54f1ff665dd1b,"refactor(errors): use failure crate to handle errors (#94) r=@vladikoff,@pjenvey
+
+Fixes #48
+Fixes #77 
+
+I had to change basically everything since my last PR (#85) about this, so I thought it would be best to just create a new PR.
+
+To get the failure errors working I needed to get at least providers, bounces and db to also work with the failure errors, not just the Rocket and HTTP errors. That's what I'm doing in this PR. Since this is kind of a big change, I thought it would be best to send this in before adapting the tests to the new error type, so, right now, many tests are commented.
+
+Let me know what you guys think. If you think this is a good change I still would need to adapt all tests and also there are some error types specially for the queues bin that need to be changed as well.
+
+I personally think this is a good change. It is abstracting all the errors to one single place in the code. While working on this refactoring, I saw a bunch of repeated code for error handling. This ends that, which means it will be easier to maintain and create new error types with this way of doing things. Also, we are now getting much more information about each error, not just the HTTP status and message and it's very easy to customize this even further.",Beatriz Rizental,2018-06-26T21:29:21Z,brizental,brizental,806,476,330
+136,fxa-email-service,59280fac1d25759c8d307d0c1662cbba8138ddcb,"refactor(bin): Make final binary names more verbose (#96) r=@philbooth
+
+Fixes #93",Vlad Filippov,2018-06-25T15:26:52Z,vladikoff,vladikoff,8,8,0
+137,fxa-email-service,8f91388d19b58d584b586a18c9e899d3e54b0d62,chore(project): update rocket to work with latest nightly,Phil Booth,2018-06-25T07:41:02Z,philbooth,philbooth,128,64,64
+138,fxa-email-service,0cc089e93e5f80f83c79fb86faceea807c771071,fix(queues): use correct name when deserializing bouncedRecipients,Phil Booth,2018-06-21T10:39:55Z,philbooth,philbooth,1,1,0
+139,fxa-email-service,0a6c04328fb53c53ae9f2326b69dbe894158348b,fix(queues): accept partially-filled notifications from sendgrid,Phil Booth,2018-06-21T09:12:14Z,philbooth,philbooth,34,21,13
+140,fxa-email-service,1c21d6eca1b41a02141852fe7d1122d5fb31a7a4,fix(queues): fix nonsensical parse logic for sqs notifications,Phil Booth,2018-06-21T09:11:47Z,philbooth,philbooth,4,2,2
+141,fxa-email-service,efb8f0d7821eafbe40de0cd9c14e0f54679958bc,"feat(providers): add custom headers option
+
+https://github.com/mozilla/fxa-email-service/pull/89
+r=vladikoff,philbooth",Beatriz Rizental,2018-06-21T18:30:11Z,brizental,brizental,150,122,28
+142,fxa-email-service,3ec3e039ed265b410b5486621633e788d554f0e7,"fix(validation): make email regex less restrictive (#86) r=@vladikoff,@rfk,@philbooth
+
+Fixes #81
+
+Inspired by: https://github.com/mozilla/fxa-content-server/blob/master/app/scripts/lib/validate.js#L30
+Tested with: https://github.com/mozilla/fxa-content-server/blob/master/app/tests/spec/lib/validate.js#L18 and also https://blogs.msdn.microsoft.com/testing123/2009/02/06/email-address-test-cases/",Beatriz Rizental,2018-06-20T18:11:20Z,brizental,brizental,112,109,3
+143,fxa-email-service,2aa1459d2ed62e852e2ca73ef88328039c2a653c,"feat(metadata): send message metadata in outgoing notifications (#73) r=@vladikoff,@brizental
+
+Depends on #72. Fixes #4.
+
+Adds the ability to consume stored metadata from Redis and add it to the outgoing notification.",Phil Booth,2018-06-20T17:41:08Z,philbooth,philbooth,98,78,20
+144,fxa-email-service,98b738a9c648813bd3605cdd2cad58a7bc75879f,"feat(metadata): store caller-specific metadata with the message id
+
+Stores a ""metadata"" string from the caller in Redis, keyed by a hash of
+the message id. In practice the metadata is JSON in the auth server's
+case, but this repo neither knows or cares about that. No functionality
+is added here to read or clear the data from Redis, that's coming in a
+separate changeset for the queues process.
+
+The HMAC key for hashing the message id comes from config, obviously,
+because it's secret. It has a very specific name at the moment, but we
+should feel free to rename it to something more generic than that if we
+have other data that we'd like to hash with it in the future.
+
+https://github.com/mozilla/fxa-email-service/pull/72
+r=vladikoff",Phil Booth,2018-06-19T07:28:02Z,philbooth,philbooth,267,256,11
+145,fxa-email-service,f4271b9e6bfa4a40f0cd18ca68a0145746bba67b,"feat(logging): add mozlog to settings and scrub sensitive data (#74) r=@philbooth,@vladikoff
+
+Fixes #18
+Connects to #10",Beatriz Rizental,2018-06-18T16:09:35Z,brizental,brizental,163,142,21
+146,fxa-email-service,723457c840036a6f23be949303524d75f83d4ec3,"refactor(db): hide queues db access behind bounces interface (#80) r=@vladikoff,@brizental
+
+Fixes #68.
+
+We don't want to let knowledge about the auth db leak into any unrelated application logic, because it's both temporary and in possession of capabilities that this repo has no business knowing about.",Phil Booth,2018-06-18T00:39:00Z,philbooth,philbooth,265,174,91
+147,fxa-email-service,22bd45fd48e0a01b13a79286fa4663f2876d23c3,chore(project): unpin rust from nightly-2018-06-10,Phil Booth,2018-06-17T06:09:17Z,philbooth,philbooth,142,77,65
+148,fxa-email-service,cecf4d3940c91a22b71b6276539e49374b7547dd,"refactor(project): push core code into a common lib (#78)
+
+Fixes #76",Phil Booth,2018-06-14T16:18:14Z,philbooth,philbooth,153,68,85
+149,fxa-email-service,931ae45fc53f2372c306b6ebb50c3be73a2fd697,"refactor(clippy): refactor job based on some clippy lints
+
+Fixes #52 
+https://github.com/mozilla/fxa-email-service/pull/71
+r=philboth",Beatriz Rizental,2018-06-12T06:02:49Z,brizental,brizental,35,18,17
+150,fxa-email-service,3d5397aa7aa7032a1944d63d60d9b20f15de391f,"refactor(service): remove smtp settings (#70) r=@vladikoff
+
+Fixes #61 .
+
+Not much to talk about here, just deleted the settings and adjusted the tests.
+
+The Cargo.lock file was updated as well, I think that's because some of the crates were updated. Since we got >= in the cargo versions right now, I think when crates are updated we just grab the new versions on cargo build, thus updating the Cargo.lock file.",Beatriz Rizental,2018-06-11T16:24:04Z,brizental,brizental,143,6,137
+151,fxa-email-service,27ebcbe775a3299825fadae1965649842c13339a,Update README.md,Shane Tomlinson,2019-04-03T06:03:33Z,Shane Tomlinson,Shane Tomlinson,300,2,298
+152,fxa-email-service,3e8c9f82831ba1a0c945d092d1e40de72b369050,"Merge train-130 into master
+
+https://github.com/mozilla/fxa-email-service/pull/275
+r=shane-tomlinson",Phil Booth,2019-02-12T09:58:19Z,philbooth,philbooth,10,8,2
+153,fxa-email-service,1a3ed5788a65ff7cf8f4ef505690f015430de208,release: 1.130.0,Phil Booth,2019-02-11T20:10:27Z,philbooth,philbooth,10,8,2
+154,fxa-email-service,f114c7864f86c970e5a56bdf8255fba4056c8471,"Merge pull request #274 from mozilla/pb/273-email-address-regex
+
+https://github.com/mozilla/fxa-email-service/pull/274
+r=vladikoff",Phil Booth,2019-02-11T20:08:55Z,philbooth,philbooth,4,3,1
+155,fxa-email-service,b16f52e97da5fd1665654abc0a952f9502853c2a,fix(api): use correct apostrophe character in email address regex,Phil Booth,2019-02-11T18:01:32Z,philbooth,philbooth,4,3,1
+156,fxa-email-service,8527be4de3b87d6c195345ca7d58663be3a6c3d8,"Merge train-127 into master
+
+https://github.com/mozilla/fxa-email-service/pull/268
+r=vladikoff",Phil Booth,2018-12-12T14:55:27Z,philbooth,philbooth,27,25,2
+157,fxa-email-service,8a681898e946cbce667e585e625c3727d86d6cf7,release: 1.127.0,Phil Booth,2018-12-12T14:24:36Z,philbooth,philbooth,27,25,2
+158,fxa-email-service,f1c1b41d78bc89b34a73ac000e06f8bf0b69e201,"Merge pull request #267 from mozilla/pb/252
+
+https://github.com/mozilla/fxa-email-service/pull/267
+r=vladikoff",Phil Booth,2018-12-12T14:21:38Z,philbooth,philbooth,3,3,0
+159,fxa-email-service,489306b39802fe3bd53c7ea98969cabea04a3b38,fix(scripts): ignore merge commits when generating changelog,Phil Booth,2018-12-12T12:42:58Z,philbooth,philbooth,3,3,0
+160,fxa-email-service,8dcf44ea48d7c2ce2ec0ffa5508a31772fb66863,"Merge pull request #261 from mozilla/pb/serializable-regex
+
+https://github.com/mozilla/fxa-email-service/pull/261
+r=vladikoff",Phil Booth,2018-12-10T23:22:50Z,philbooth,philbooth,62,62,0
+161,fxa-email-service,5eeb3b3a6bfc9a3d1b04f9b55d0c63c9f8b8bde3,"Merge pull request #260 from mozilla/pb/248
+
+https://github.com/mozilla/fxa-email-service/pull/260
+r=vladikoff",Phil Booth,2018-12-10T21:35:36Z,philbooth,philbooth,111,107,4
+162,fxa-email-service,83d46aecd6dcc4ce8b2291b1cab2172221b14368,feat(types): implement a serializable regex type,Phil Booth,2018-12-06T18:40:34Z,philbooth,philbooth,62,62,0
+163,fxa-email-service,5926a06e6dcf002922611dc1e41796d4c0a32ec2,fix(errors): convert ses invalid domain error into a 400,Phil Booth,2018-12-06T17:23:39Z,philbooth,philbooth,111,107,4
+164,fxa-email-service,b8c65bdb8e7dc54ecde3d6ea8b752ee8750e1776,"Merge pull request #262 from mozilla/pb/rust-2018
+
+https://github.com/mozilla/fxa-email-service/pull/262
+r=vladikoff",Phil Booth,2018-12-07T16:04:49Z,philbooth,philbooth,191,108,83
+165,fxa-email-service,e8e185cce640e4002e3a33a396257834aa3302e2,"Merge pull request #263 from mozilla/pb/readme-tweaks
+
+https://github.com/mozilla/fxa-email-service/pull/263
+r=vladikoff",Phil Booth,2018-12-07T15:35:05Z,philbooth,philbooth,4,1,3
+166,fxa-email-service,e77ea7a771f7e0b39f4b03d5962f1b2cd1d414d0,feat(code): update to rust 2018,Phil Booth,2018-12-06T20:27:45Z,philbooth,philbooth,191,108,83
+167,fxa-email-service,8c8e29a7accccf9ea7ca03fbe4c0da9f2e264043,chore(docs): minor readme editorialisation,Phil Booth,2018-12-07T15:10:41Z,philbooth,philbooth,4,1,3
+168,fxa-email-service,37a6baffb5b8d874b647a173e113c54aa042f6f6,"Merge pull request #259 from mozilla/pb/update-sendgrid
+
+https://github.com/mozilla/fxa-email-service/pull/259
+r=vladikoff",Phil Booth,2018-12-06T16:14:25Z,philbooth,philbooth,53,28,25
+169,fxa-email-service,bf5486fc8efacfb42eb983fcff35155334c30d87,chore(deps): update sendgrid,Phil Booth,2018-12-06T14:24:03Z,philbooth,philbooth,53,28,25
+170,fxa-email-service,659ad5547362f6b028931b07b5ecc18a95d32a01,"Merge pull request #256 from mozilla/pb/refactor-enum-defaults
+
+https://github.com/mozilla/fxa-email-service/pull/256
+r=vladikoff",Phil Booth,2018-11-29T18:35:12Z,philbooth,philbooth,40,11,29
+171,fxa-email-service,a9c9a1bf6fbde83c257f808bc42b73d567cd6ab9,refactor(settings): implement Default in enum_boilerplate!,Phil Booth,2018-11-29T17:31:12Z,philbooth,philbooth,40,11,29
+172,fxa-email-service,0a02f99133e1f25798290580f023e751a377805c,"Merge pull request #255 from mozilla/pb/logging-enums
+
+https://github.com/mozilla/fxa-email-service/pull/255
+r=vbudhram",Phil Booth,2018-11-29T14:57:50Z,philbooth,philbooth,241,163,78
+173,fxa-email-service,754abe38ac0fed766655eeb9a20c083827c17251,"Merge train-126 into master
+
+https://github.com/mozilla/fxa-email-service/pull/254
+r=vbudhram",Phil Booth,2018-11-28T20:40:24Z,philbooth,philbooth,16,14,2
+174,fxa-email-service,1ec10e9197f23a7c75803688825de23aa79dcc8c,refactor(settings): promote LogFormat and LogLevel to enums,Phil Booth,2018-11-28T14:01:16Z,philbooth,philbooth,241,163,78
+175,fxa-email-service,5d6db332d68ba95e89ed8ffb716a623fda1b1d60,"Merge pull request #253 from mozilla/deadcode-config
+
+fix(db): remove unused DataType",Vlad Filippov,2018-11-28T13:03:35Z,vladikoff,vladikoff,2,0,2
+176,fxa-email-service,d807e215e9bd293ca9b2161b660cd50acaaeb4a1,fix(db): remove unused DataType,vladikoff,2018-11-27T21:49:17Z,vladikoff,vladikoff,2,0,2
+177,fxa-email-service,bd3a58246b3de20b268ceb17e07e179d3240e502,release: 1.126.0,Phil Booth,2018-11-27T17:43:24Z,philbooth,philbooth,16,14,2
+178,fxa-email-service,e8e0f6d07261f9d40287a505977ebaa64801056f,"Merge pull request #251 from mozilla/issue-217, r=@vladikoff",Vijay Budhram,2018-11-27T15:11:32Z,vbudhram,vbudhram,69,39,30
+179,fxa-email-service,1d5e817cc1a10013309b1632a1a87656e170ffe1,refactor(settings): rename `BounceLimit(s)` to `DeliveryProblemLimit(s)`,Vijay Budhram,2018-11-27T14:10:06Z,vbudhram,vbudhram,69,39,30
+180,fxa-email-service,abf44560989f824a62fa7efb14b3f192c89ccdf7,"Merge pull request #249 from mozilla/pb/env-enum-type
+
+https://github.com/mozilla/fxa-email-service/pull/249
+r=vladikoff",Phil Booth,2018-11-26T15:58:01Z,philbooth,philbooth,305,170,135
+181,fxa-email-service,dba93f0dbf0ee1fc6a23f50c9337174f8873a412,refactor(settings): promote Env to an enum from a wrapped string,Phil Booth,2018-11-21T18:01:29Z,philbooth,philbooth,305,170,135
+182,fxa-email-service,592b4d38b238e8bb65c376414a7e9825d583902c,"Merge pull request #250 from mozilla/pb/less-debug-info
+
+https://github.com/mozilla/fxa-email-service/pull/250
+r=vladikoff",Phil Booth,2018-11-22T14:56:32Z,philbooth,philbooth,2,1,1
+183,fxa-email-service,91a51730296e65f8cc897618323f3548bc38705f,chore(build): lower the debug level to decrease binary size,Phil Booth,2018-11-22T07:34:50Z,philbooth,philbooth,2,1,1
+184,fxa-email-service,bede88da56d084a25f943e27c4407b801a7c295b,"Merge pull request #246 from mozilla/pb/214
+
+https://github.com/mozilla/fxa-email-service/pull/246
+r=vladikoff,vbudhram",Phil Booth,2018-11-20T20:31:43Z,philbooth,philbooth,211,158,53
+185,fxa-email-service,05acce118cb6b1963dddd1d23daf1ed7cb25de36,chore(package): create an automated release script,Phil Booth,2018-11-20T12:52:33Z,philbooth,philbooth,211,158,53
+186,fxa-email-service,2649bbf634d563ef73a4c49384e8fe5edfaf6be9,"Merge pull request #247 from mozilla/train-125
+
+Uplift Train 125 to master",Vlad Filippov,2018-11-20T17:02:28Z,vladikoff,vladikoff,22,19,3
+187,fxa-email-service,283a2840d9524f0e9c19d8cb9d5e7832c092ded0,"chore(package): bump version, update changelog",Phil Booth,2018-11-20T14:23:13Z,philbooth,philbooth,14,12,2
+188,fxa-email-service,7a3d60ec759ae17155722c8d9f90525709e4f9c6,"Merge pull request #245 from mozilla/pb/244
+
+https://github.com/mozilla/fxa-email-service/pull/245
+r=vladikoff",Phil Booth,2018-11-20T14:15:44Z,philbooth,philbooth,8,7,1
+189,fxa-email-service,3fed10523fe0554919fad091980df957a57b6445,fix(sentry): stop passing 4xx errors to Sentry,Phil Booth,2018-11-20T12:16:07Z,philbooth,philbooth,8,7,1
+190,fxa-email-service,ecb7c38da0fc8a88a8f6960ccd40d0750d500aac,"Merge train-125 into master
+
+https://github.com/mozilla/fxa-email-service/pull/241
+r=vladikoff",Phil Booth,2018-11-15T14:33:58Z,philbooth,philbooth,150,97,53
+191,fxa-email-service,3d73bee8576f76c73a03347ce69bdea514c1c55a,"chore(package): bump version, update changelog",Phil Booth,2018-11-15T07:55:24Z,philbooth,philbooth,18,16,2
+192,fxa-email-service,5bd956cf30ddfac13d998a20501c36cf58ace4d6,"Merge pull request #240 from mozilla/pb/239
+
+https://github.com/mozilla/fxa-email-service/pull/240
+r=rfk",Phil Booth,2018-11-15T07:54:16Z,philbooth,philbooth,132,81,51
+193,fxa-email-service,14491612619dd4e58b775aa837e8e9cf7dcee10d,fix(ci): enable branch builds in travis,Phil Booth,2018-11-15T07:18:06Z,philbooth,philbooth,3,0,3
+194,fxa-email-service,67ebf3fe77369b751794053d780e90f6f3a3400d,fix(headers): propagate the Content-Language header,Phil Booth,2018-11-15T07:14:34Z,philbooth,philbooth,26,22,4
+195,fxa-email-service,3e2786676339db8dc45d3bf7723f37317adae5d1,fix(ses): add Sender header,Phil Booth,2018-11-15T06:52:52Z,philbooth,philbooth,105,59,46
+196,fxa-email-service,67320d2830bf0ce7c3f5e630d9e9093a0c9be225,fix(ses): ensure html part gets charset=utf-8 content type,Phil Booth,2018-11-15T06:33:48Z,philbooth,philbooth,6,4,2
+197,fxa-email-service,b74a56f0d9ccfe709eb599ad55dba8e95701c1ff,"Merge pull request #238 from mozilla/train-125, r=@vladikoff
+
+chore(package): bump version to 1.125.0",Vijay Budhram,2018-11-14T17:51:58Z,vbudhram,vbudhram,22,20,2
+198,fxa-email-service,54ce16c65c60991747d90d453fb0478c741c1931,chore(package): bump version to 1.125.0,Vijay Budhram,2018-11-14T12:46:53Z,vbudhram,vbudhram,22,20,2
+199,fxa-email-service,c9c62459c845c6b3907367f5c5340862bb89355c,"Merge pull request #218 from mozilla/pb/provider-type
+
+https://github.com/mozilla/fxa-email-service/pull/218
+r=vbudhram",Phil Booth,2018-11-10T09:12:20Z,philbooth,philbooth,233,176,57
+200,fxa-email-service,3a13ef456125bda8f567e6e540e1ce4390cacf45,"Merge pull request #237 from mozilla/pb/update-rust
+
+https://github.com/mozilla/fxa-email-service/pull/237
+r=shane-tomlinson",Phil Booth,2018-11-09T16:20:22Z,philbooth,philbooth,2,1,1
+201,fxa-email-service,0bd766d4310ef8c16af355785c3058af9b1aa3bf,"feat(settings): extract provider type to a fully-fledged enum
+
+The provider type was modelled as a newtype struct around a `String` but
+there's a finite number of values, so really it should be an enum. This
+wasn't too pressing until now but will shortly come in useful for the
+configuration stuff, which needs a provider type too.",Phil Booth,2018-10-31T14:24:42Z,philbooth,philbooth,233,176,57
+202,fxa-email-service,664222cd27a03046ec6c47229f5d872ad23f0e53,chore(deploy): update rust version,Phil Booth,2018-11-09T15:18:47Z,philbooth,philbooth,2,1,1
+203,fxa-email-service,8268f4697ef20043061b47aaec2e6bb0ef6bc5d9,"Merge pull request #236 from mozilla/pb/210
+
+https://github.com/mozilla/fxa-email-service/pull/236
+r=brizental",Phil Booth,2018-11-09T15:23:17Z,philbooth,philbooth,879,357,522
+204,fxa-email-service,4297ed2fad47d6fdb3bb19797fc444daab72b097,"refactor(api): reduce the number of different error kinds we return
+
+The error-handling in this repo grew pretty organically without us
+giving much thought to an over-arching strategy. The end result of that
+was a proliferation of different error types that weren't really adding
+much value.
+
+The API here is simple and the 4xx responses are really limited to bad
+requests and bounce/complaint limit violations. Everything else is an
+internal server error. As such, the `error` module could be simplified
+by employing a blanket `Internal` error type to cover the multitude of
+niche errors that should never occur during normal conditions. The
+detail for those errors is still available in the `message` property and
+Sentry will still log the backtrace of course.
+
+I also noticed that the Rocket catcher stuff wasn't really being used,
+so pulled that out too. We have a standard JSON error format like the
+rest of the FxA ecosystem, and we always want the response payload to be
+the serialisation of that structure.
+
+One side-effect of all these changes is that the errno value has changed
+in most cases. However, I took care to preserve the errno for the bounce
+and complaint violations, because it's hard-coded in the auth server. It
+wouldn't have been that onerous to open a PR for commensurate changes
+over there, but the number of errors left here worked out in such a way
+that made sense not to bother.",Phil Booth,2018-11-08T22:37:24Z,philbooth,philbooth,879,357,522
+205,fxa-email-service,1ef739242c89b5d34c18c1bbd6dd204597501e94,"Merge pull request #234 from mozilla/comment-rm
+
+fix(cargo): remove old rocket comment",Vlad Filippov,2018-11-08T20:57:22Z,vladikoff,vladikoff,1,0,1
+206,fxa-email-service,c706d760f7075c866c1e34211f745e4d4f55efe0,fix(cargo): remove old rocket comment,Vlad Filippov,2018-11-08T19:31:23Z,vladikoff,vladikoff,1,0,1
+207,fxa-email-service,785e2b3161db8d90347d5eddb273eb559ed7e300,"Merge pull request #233 from mozilla/pb/allow-sentry-disabled
+
+https://github.com/mozilla/fxa-email-service/pull/233
+r=vladikoff",Phil Booth,2018-11-08T14:07:17Z,philbooth,philbooth,12,6,6
+208,fxa-email-service,4f47e93b6a4aea65e275d986c263c40aef96ae36,fix(settings): fix panic when sentry is disabled,Phil Booth,2018-11-08T09:18:48Z,philbooth,philbooth,12,6,6
+209,fxa-email-service,321fd721d5c49d8dc0b82cd83e501c6ff69d0afe,"Merge train-124 into master
+
+https://github.com/mozilla/fxa-email-service/pull/232
+r=vladikoff",Phil Booth,2018-11-07T18:53:57Z,philbooth,philbooth,457,348,109
+210,fxa-email-service,6f795044cefaecb01595db495b81a38a18eb73b4,Merge branch 'master' into train-124,Phil Booth,2018-11-07T18:13:06Z,philbooth,philbooth,882,498,384
+211,fxa-email-service,a5c9c1f5b88275222a9c434f2e66d67585a632f7,"Merge pull request #229 from mozilla/pb/201
+
+https://github.com/mozilla/fxa-email-service/pull/229
+r=vladikoff",Phil Booth,2018-11-07T16:37:49Z,philbooth,philbooth,90,65,25
+212,fxa-email-service,d6d01b32c4f324e98158363885789d69532f0200,"chore(package): bump version, update changelog",Phil Booth,2018-11-07T16:34:01Z,philbooth,philbooth,14,12,2
+213,fxa-email-service,1302edf987643a883d0d3394a0a0bb5f533ccc3b,"Merge pull request #228 from mozilla/pb/emailmessage-dep
+
+https://github.com/mozilla/fxa-email-service/pull/228
+r=vladikoff",Phil Booth,2018-11-07T16:32:13Z,philbooth,philbooth,443,336,107
+214,fxa-email-service,5d5ae603dee9eb7f68a97f7746d4a42da1ecce94,"feat(types): ignore display name part when parsing email addresses
+
+Fixes #201.
+
+Email addresses that we receive from bounce, complaint and delivery
+notifications may not be identical matches to what we set on messages.
+We already did some normalization by lower-casing the address when
+parsing. This change extends that normalization process by trimming
+whitespace and unwrapping the address part if it has been wrapped in
+angle bracket delimiters to separate it from the display name. This
+matches the behaviour of the auth server.",Phil Booth,2018-11-07T11:32:05Z,philbooth,philbooth,90,65,25
+215,fxa-email-service,d7aaf59ea4a467444ebad3a7a4c90cec10698381,"Merge pull request #230 from mozilla/pb/sentry-updates
+
+https://github.com/mozilla/fxa-email-service/pull/230
+r=vladikoff",Phil Booth,2018-11-07T16:02:25Z,philbooth,philbooth,349,206,143
+216,fxa-email-service,0a2d39a33dc4353c026a22d56a87edd75ff42ad0,chore(package): include debug symbols in release builds,Phil Booth,2018-11-07T12:51:27Z,philbooth,philbooth,4,4,0
+217,fxa-email-service,02408f590a5745f30da66e8e5f26dfd5110b7b67,"fix(sentry): capture errors at point of creation rather than when logged
+
+We were sending errors to Sentry at the point where they are logged,
+but there are a number of paths where an error is raised without being
+logged. Instead, this change captures them at the point of creation,
+which should mean we now capture every error.",Phil Booth,2018-11-07T12:48:20Z,philbooth,philbooth,6,3,3
+218,fxa-email-service,608c07eb7ed4a7110b9e690f57ff46fc08262c09,chore(deps): update sentry,Phil Booth,2018-11-07T12:45:39Z,philbooth,philbooth,339,199,140
+219,fxa-email-service,c403c3fb81c051378800863bf6c50e929fe56c0e,"Merge pull request #231 from mozilla/pb/205
+
+https://github.com/mozilla/fxa-email-service/pull/231
+r=vladikoff",Phil Booth,2018-11-07T15:38:51Z,philbooth,philbooth,52,34,18
+220,fxa-email-service,906f3911518ec260be79ad8c3c383f6f283bfaed,"feat(bounces): use timestamps from ses instead of the current time
+
+Fixes #205.
+
+SES provides a UTC-based timestamp for bounce and complaint events but
+the auth server opted to ignore it. I'm not sure that was the optimal
+decision because messages might linger on a queue (either ours or the
+provider's) for a length of time before we process it. Given that we
+already trust SES et al to deliver sane notifications, it doesn't seem
+too great a stretch to also trust the timestamp on those notifications.",Phil Booth,2018-11-07T14:01:54Z,philbooth,philbooth,52,34,18
+221,fxa-email-service,5d03a48dad4b14e1e037d84819bec2125098d093,fix(mime): use base64 encoding instead of 8bit,Phil Booth,2018-11-07T06:43:45Z,philbooth,philbooth,6,3,3
+222,fxa-email-service,5966d6252d2516ad083be01f0e8ff0e959b370e8,refactor(providers): eliminate format! invocations in ses send method,Phil Booth,2018-11-01T15:07:53Z,philbooth,philbooth,6,3,3
+223,fxa-email-service,85ffe3ebe893813afbff9d75da947f7198f3c252,refactor(ses): upgrade the emailmessage crate,Phil Booth,2018-11-05T13:45:00Z,philbooth,philbooth,431,330,101
+224,fxa-email-service,f5023c2f23d6bd482b97352157824e4a94a2c1d5,"Merge pull request #221 from mozilla/pb/tidy-app-errors
+
+https://github.com/mozilla/fxa-email-service/pull/221
+r=rfk",Phil Booth,2018-11-01T21:13:34Z,philbooth,philbooth,405,200,205
+225,fxa-email-service,90c6a0110e740601c9bc2731c55949ca4c3090fb,"refactor(errors): stop exposing AppErrorKind directly from AppError
+
+There was a minor violation of the law of Demeter in our `AppError`
+struct, where it was directly exposing its inner `AppErrorKind` to
+callers. Not a huge deal, but it meant that any changes made to the
+inner structure would leak out and require corresponding changes to the
+consuming code (and I am planning some of those inner changes as part of
+issue #210). Better to expose just the parts that are necessary via its
+own API.
+
+At the same time, I opted to replace the home-baked `AppError::json()`
+method with a more conventional `impl Serialize`, because it's less
+astonishing and just as easy to use with `serde_json::to_string`.",Phil Booth,2018-11-01T10:51:31Z,philbooth,philbooth,405,200,205
+226,fxa-email-service,12e4a4c37b42fea2685c36fba373f04f0355c440,"Merge train-124 into master
+
+https://github.com/mozilla/fxa-email-service/pull/215
+r=shane-tomlinson",Phil Booth,2018-10-30T15:51:01Z,philbooth,philbooth,29,27,2
+227,fxa-email-service,c0dfd7a3827948dafbe29236ee71abca733b83bf,"chore(package): bump version, update changelog",Phil Booth,2018-10-30T14:09:55Z,philbooth,philbooth,29,27,2
+228,fxa-email-service,cb5ccbf78da9d43ed7f966de45b7de67642bd5a1,"Merge pull request #213 from mozilla/pb/tidy-src-tree
+
+https://github.com/mozilla/fxa-email-service/pull/213
+r=shane-tomlinson",Phil Booth,2018-10-30T13:29:02Z,philbooth,philbooth,476,255,221
+229,fxa-email-service,cf32a4362d629e9b42323202f8f12c129dd7838f,"refactor(project): tidy up the directory structure a bit
+
+We've grown a lot of modules in this repo and it's hard to see the wood
+for the trees when you look in the `src` directory. This commit attempts
+to neaten everything up a bit by scoping some of them under collective
+parent modules:
+
+* `auth_db`, `delivery_problems` and `message_data` have moved to `db`,
+  and the old `db` has moved to `db/core`.
+
+* `healthcheck` and `send` have moved to `api`.
+
+* `app_errors`, `duration`, `email_address` and `validate` have moved to
+  `types`, and `app_errors` is now just `error`.
+
+* `serialize` has moved to `settings` as it was only referenced there.
+
+Hopefully the end result makes it easier to zero in on modules of
+interest when working in the repo.",Phil Booth,2018-10-29T21:21:15Z,philbooth,philbooth,476,255,221
+230,fxa-email-service,eeb4b604784c194cf201930be0e0239fdc95f562,"Merge pull request #209 from mozilla/pb/update-deps
+
+https://github.com/mozilla/fxa-email-service/pull/209
+r=rfk",Phil Booth,2018-10-29T22:04:36Z,philbooth,philbooth,730,445,285
+231,fxa-email-service,c152bc876562a422ddc7c0f31de07a237c8ffb37,fix(code): remove references to old rocket_contrib::JsonValue struct,Phil Booth,2018-10-29T10:25:28Z,philbooth,philbooth,17,8,9
+232,fxa-email-service,5530fddb9667e69b7c6549fa29b5af5d1169432f,fix(settings): remove references to RocketLoggingLevel::Off enum variant,Phil Booth,2018-10-29T10:13:01Z,philbooth,philbooth,11,5,6
+233,fxa-email-service,afe8713277142c21e25b572bfdfb30f3c4b65c30,chore(deps): update rocket and rusoto versions from pinned git hashes,Phil Booth,2018-10-29T10:04:29Z,philbooth,philbooth,488,300,188
+234,fxa-email-service,2057d57ac7f21b562fe892d8306d3ac86ae02e67,chore(code): cargo fmt,Phil Booth,2018-10-29T10:48:01Z,philbooth,philbooth,212,131,81
+235,fxa-email-service,03f19145e714117c2a06b48114ce6600023dd505,chore(toolchain): update to latest rust nightly,Phil Booth,2018-10-29T09:54:45Z,philbooth,philbooth,2,1,1
+236,fxa-email-service,36d0486bfe51c4563b848010aee0f392431e1da0,"Merge pull request #212 from mozilla/pb/asref-str
+
+https://github.com/mozilla/fxa-email-service/pull/212
+r=rfk",Phil Booth,2018-10-29T21:30:59Z,philbooth,philbooth,49,30,19
+237,fxa-email-service,48cff692090270a967d1ba78c772c134f4dc7c75,"fix(code): implement AsRef<str> for cheaper/cleaner &str access
+
+Fixes #211.
+
+For a bunch of types in `src/settings.rs` and for `NotificationType` in
+`src/queues/sqs/notification/mod.rs`, we were allocating `String`
+instances when it wasn't always necessary. Where an existing slice can
+be used, it's preferable.
+
+At the same time, I removed a load of `.0` inner type access for the
+newtype structs in `Settings`, because that notation is leaky (if we
+want to refactor the struct to something else, all the usage must change
+too).",Phil Booth,2018-10-29T14:49:41Z,philbooth,philbooth,49,30,19
+238,fxa-email-service,06eb6a652b894511de9d3f808d4356876df57f74,"Merge pull request #208 from mozilla/pb/fix-generic-notification-structure
+
+https://github.com/mozilla/fxa-email-service/pull/208
+r=rfk",Phil Booth,2018-10-29T21:21:03Z,philbooth,philbooth,60,59,1
+239,fxa-email-service,e3e361c667eabc8010f1dd26efa4a2808a2f9747,"fix(queues): fix the serialized format of outgoing notifications
+
+The `bounced_recipients` property of the outgoing notification structure
+was missing a serde `rename` attribute. That problem went undetected
+because we had no test coverage for the outgoing structure, which was a
+pretty large hole in our coverage. This change fixes the issue and adds
+some serialization assertions.",Phil Booth,2018-10-29T06:45:47Z,philbooth,philbooth,60,59,1
+240,fxa-email-service,18a9584dd1a9947ae0f2648ce935c1b941ec234e,"Merge pull request #203 from mozilla/pb/166
+
+https://github.com/mozilla/fxa-email-service/pull/203
+r=brizental,vbudhram",Phil Booth,2018-10-17T18:42:37Z,philbooth,philbooth,408,280,128
+241,fxa-email-service,68a1def7dcaa978d05dbbc1d7d8b009f96d44cac,fix(redis): don't pollute our data store with old bounce nomenclature,Phil Booth,2018-10-16T21:16:14Z,philbooth,philbooth,123,76,47
+242,fxa-email-service,1093258f70bc0673a1d64b3de015d1144a6077e5,refactor(redis): store delivery problems in reverse order,Phil Booth,2018-10-16T20:20:14Z,philbooth,philbooth,26,17,9
+243,fxa-email-service,ed83e5b1da923c5f8014bd8e62e4c051486f3fe0,"feat(db): write bounce and complaint records to our own db
+
+This is the first step towards migrating away from the FxA auth db.
+We'll start by dual-writing to both databases. Then, after we've got
+sufficient history to fully evaluate limit violations, we can switch
+over to read from our own datastore and ditch the auth db.",Phil Booth,2018-10-05T16:38:40Z,philbooth,philbooth,287,201,86
+244,fxa-email-service,0330c43738beaae64a6dbfc4ddcbb6a4d4e14d2e,"Merge pull request #204 from mozilla/pb/delivery-problem-order
+
+https://github.com/mozilla/fxa-email-service/pull/204
+r=vladikoff",Phil Booth,2018-10-16T15:21:40Z,philbooth,philbooth,44,37,7
+245,fxa-email-service,14a5eb774a57f15b66a078c092d17c0136bb1ddc,chore(tests): add test coverage for the order of delivery problems,Phil Booth,2018-10-16T13:07:00Z,philbooth,philbooth,44,37,7
+246,fxa-email-service,fcb250ce186e9a08d56bfb27b86c157035774969,"Merge pull request #198 from mozilla/pb/delivery-problems
+
+https://github.com/mozilla/fxa-email-service/pull/198
+r=rfk",Phil Booth,2018-10-16T06:22:42Z,philbooth,philbooth,2131,1063,1068
+247,fxa-email-service,3b32fe021b55419531c8aa88ec577ba580376b95,"refactor(bounces): pull all bounce/complaint code into one module
+
+This change does two things:
+
+1. The old `BounceRecord`, `BounceType` and `BounceSubtype` types are
+   removed from the `auth_db` module into `bounces`, so that they can
+   more easily be re-used when writing bounce/complaint data to Redis.
+
+2. Those types are renamed to `DeliveryProblem`, `ProblemType` and
+   `ProblemSubtype` respectively, and the `bounces` module is renamed to
+   `delivery_problems`. That may seem weird at first, but I have good
+   reason for it and am open to alternative names if anyone can suggest
+   something better.
+
+   Historically we've always treated complaints as a type of bounce
+   event, but that's inaccurate because bounces are never preceded by a
+   delivery event whereas complaints are always preceded by one. This
+   has caught me out in the past when analysing metrics and expecting a
+   blanket sum of `deliveries + bounces = sends` to be true. It isn't.
+   It's only true if you filter complaints from bounces before
+   calculating the sum.
+
+   Because of that, I wanted some different nomenclature that didn't use
+   ""bounces"" as an umbrella term for ""bounces and complaints"". It won't
+   affect the names we use in the metrics but I think it's important for
+   language we use in the codebase to be as precise as possible. Things
+   like ""delivery error"" or ""delivery failure"" also seemed inaccurate
+   for the same reason; a complaint implies that the actual delivery
+   succeeded. Hence ""delivery problems"", which seems generic enough to
+   legitimately include both event types.",Phil Booth,2018-10-05T05:24:30Z,philbooth,philbooth,2131,1063,1068
+248,fxa-email-service,edc09f137ae2ba98e825a2b154beb05b4a0a0b58,"Merge pull request #202 from mozilla/pb/redis-optional-result
+
+https://github.com/mozilla/fxa-email-service/pull/202
+r=vladikoff",Phil Booth,2018-10-15T14:08:11Z,philbooth,philbooth,38,25,13
+249,fxa-email-service,8031ff6f57047ba109369653e3e0c903edee6224,refactor(redis): stop treating no data as an error in the getters,Phil Booth,2018-10-15T11:21:29Z,philbooth,philbooth,38,25,13
+250,fxa-email-service,636e44f79616899b4e059152dd087c649f02390d,"Merge pull request #200 from mozilla/pb/db-json-serialize
+
+https://github.com/mozilla/fxa-email-service/pull/200
+r=rfk",Phil Booth,2018-10-08T05:51:19Z,philbooth,philbooth,47,36,11
+251,fxa-email-service,27ebcbe775a3299825fadae1965649842c13339a,Update README.md,Shane Tomlinson,2019-04-03T06:03:33Z,Shane Tomlinson,Shane Tomlinson,300,2,298
+252,fxa-email-service,3e8c9f82831ba1a0c945d092d1e40de72b369050,"Merge train-130 into master
+
+https://github.com/mozilla/fxa-email-service/pull/275
+r=shane-tomlinson",Phil Booth,2019-02-12T09:58:19Z,philbooth,philbooth,10,8,2
+253,fxa-email-service,1a3ed5788a65ff7cf8f4ef505690f015430de208,release: 1.130.0,Phil Booth,2019-02-11T20:10:27Z,philbooth,philbooth,10,8,2
+254,fxa-email-service,f114c7864f86c970e5a56bdf8255fba4056c8471,"Merge pull request #274 from mozilla/pb/273-email-address-regex
+
+https://github.com/mozilla/fxa-email-service/pull/274
+r=vladikoff",Phil Booth,2019-02-11T20:08:55Z,philbooth,philbooth,4,3,1
+255,fxa-email-service,b16f52e97da5fd1665654abc0a952f9502853c2a,fix(api): use correct apostrophe character in email address regex,Phil Booth,2019-02-11T18:01:32Z,philbooth,philbooth,4,3,1
+256,fxa-email-service,8527be4de3b87d6c195345ca7d58663be3a6c3d8,"Merge train-127 into master
+
+https://github.com/mozilla/fxa-email-service/pull/268
+r=vladikoff",Phil Booth,2018-12-12T14:55:27Z,philbooth,philbooth,27,25,2
+257,fxa-email-service,8a681898e946cbce667e585e625c3727d86d6cf7,release: 1.127.0,Phil Booth,2018-12-12T14:24:36Z,philbooth,philbooth,27,25,2
+258,fxa-email-service,f1c1b41d78bc89b34a73ac000e06f8bf0b69e201,"Merge pull request #267 from mozilla/pb/252
+
+https://github.com/mozilla/fxa-email-service/pull/267
+r=vladikoff",Phil Booth,2018-12-12T14:21:38Z,philbooth,philbooth,3,3,0
+259,fxa-email-service,489306b39802fe3bd53c7ea98969cabea04a3b38,fix(scripts): ignore merge commits when generating changelog,Phil Booth,2018-12-12T12:42:58Z,philbooth,philbooth,3,3,0
+260,fxa-email-service,8dcf44ea48d7c2ce2ec0ffa5508a31772fb66863,"Merge pull request #261 from mozilla/pb/serializable-regex
+
+https://github.com/mozilla/fxa-email-service/pull/261
+r=vladikoff",Phil Booth,2018-12-10T23:22:50Z,philbooth,philbooth,62,62,0
+261,fxa-email-service,5eeb3b3a6bfc9a3d1b04f9b55d0c63c9f8b8bde3,"Merge pull request #260 from mozilla/pb/248
+
+https://github.com/mozilla/fxa-email-service/pull/260
+r=vladikoff",Phil Booth,2018-12-10T21:35:36Z,philbooth,philbooth,111,107,4
+262,fxa-email-service,83d46aecd6dcc4ce8b2291b1cab2172221b14368,feat(types): implement a serializable regex type,Phil Booth,2018-12-06T18:40:34Z,philbooth,philbooth,62,62,0
+263,fxa-email-service,5926a06e6dcf002922611dc1e41796d4c0a32ec2,fix(errors): convert ses invalid domain error into a 400,Phil Booth,2018-12-06T17:23:39Z,philbooth,philbooth,111,107,4
+264,fxa-email-service,b8c65bdb8e7dc54ecde3d6ea8b752ee8750e1776,"Merge pull request #262 from mozilla/pb/rust-2018
+
+https://github.com/mozilla/fxa-email-service/pull/262
+r=vladikoff",Phil Booth,2018-12-07T16:04:49Z,philbooth,philbooth,191,108,83
+265,fxa-email-service,e8e185cce640e4002e3a33a396257834aa3302e2,"Merge pull request #263 from mozilla/pb/readme-tweaks
+
+https://github.com/mozilla/fxa-email-service/pull/263
+r=vladikoff",Phil Booth,2018-12-07T15:35:05Z,philbooth,philbooth,4,1,3
+266,fxa-email-service,e77ea7a771f7e0b39f4b03d5962f1b2cd1d414d0,feat(code): update to rust 2018,Phil Booth,2018-12-06T20:27:45Z,philbooth,philbooth,191,108,83
+267,fxa-email-service,8c8e29a7accccf9ea7ca03fbe4c0da9f2e264043,chore(docs): minor readme editorialisation,Phil Booth,2018-12-07T15:10:41Z,philbooth,philbooth,4,1,3
+268,fxa-email-service,37a6baffb5b8d874b647a173e113c54aa042f6f6,"Merge pull request #259 from mozilla/pb/update-sendgrid
+
+https://github.com/mozilla/fxa-email-service/pull/259
+r=vladikoff",Phil Booth,2018-12-06T16:14:25Z,philbooth,philbooth,53,28,25
+269,fxa-email-service,bf5486fc8efacfb42eb983fcff35155334c30d87,chore(deps): update sendgrid,Phil Booth,2018-12-06T14:24:03Z,philbooth,philbooth,53,28,25
+270,fxa-email-service,659ad5547362f6b028931b07b5ecc18a95d32a01,"Merge pull request #256 from mozilla/pb/refactor-enum-defaults
+
+https://github.com/mozilla/fxa-email-service/pull/256
+r=vladikoff",Phil Booth,2018-11-29T18:35:12Z,philbooth,philbooth,40,11,29
+271,fxa-email-service,a9c9a1bf6fbde83c257f808bc42b73d567cd6ab9,refactor(settings): implement Default in enum_boilerplate!,Phil Booth,2018-11-29T17:31:12Z,philbooth,philbooth,40,11,29
+272,fxa-email-service,0a02f99133e1f25798290580f023e751a377805c,"Merge pull request #255 from mozilla/pb/logging-enums
+
+https://github.com/mozilla/fxa-email-service/pull/255
+r=vbudhram",Phil Booth,2018-11-29T14:57:50Z,philbooth,philbooth,241,163,78
+273,fxa-email-service,754abe38ac0fed766655eeb9a20c083827c17251,"Merge train-126 into master
+
+https://github.com/mozilla/fxa-email-service/pull/254
+r=vbudhram",Phil Booth,2018-11-28T20:40:24Z,philbooth,philbooth,16,14,2
+274,fxa-email-service,1ec10e9197f23a7c75803688825de23aa79dcc8c,refactor(settings): promote LogFormat and LogLevel to enums,Phil Booth,2018-11-28T14:01:16Z,philbooth,philbooth,241,163,78
+275,fxa-email-service,5d6db332d68ba95e89ed8ffb716a623fda1b1d60,"Merge pull request #253 from mozilla/deadcode-config
+
+fix(db): remove unused DataType",Vlad Filippov,2018-11-28T13:03:35Z,vladikoff,vladikoff,2,0,2
+276,fxa-email-service,d807e215e9bd293ca9b2161b660cd50acaaeb4a1,fix(db): remove unused DataType,vladikoff,2018-11-27T21:49:17Z,vladikoff,vladikoff,2,0,2
+277,fxa-email-service,bd3a58246b3de20b268ceb17e07e179d3240e502,release: 1.126.0,Phil Booth,2018-11-27T17:43:24Z,philbooth,philbooth,16,14,2
+278,fxa-email-service,e8e0f6d07261f9d40287a505977ebaa64801056f,"Merge pull request #251 from mozilla/issue-217, r=@vladikoff",Vijay Budhram,2018-11-27T15:11:32Z,vbudhram,vbudhram,69,39,30
+279,fxa-email-service,1d5e817cc1a10013309b1632a1a87656e170ffe1,refactor(settings): rename `BounceLimit(s)` to `DeliveryProblemLimit(s)`,Vijay Budhram,2018-11-27T14:10:06Z,vbudhram,vbudhram,69,39,30
+280,fxa-email-service,abf44560989f824a62fa7efb14b3f192c89ccdf7,"Merge pull request #249 from mozilla/pb/env-enum-type
+
+https://github.com/mozilla/fxa-email-service/pull/249
+r=vladikoff",Phil Booth,2018-11-26T15:58:01Z,philbooth,philbooth,305,170,135
+281,fxa-email-service,dba93f0dbf0ee1fc6a23f50c9337174f8873a412,refactor(settings): promote Env to an enum from a wrapped string,Phil Booth,2018-11-21T18:01:29Z,philbooth,philbooth,305,170,135
+282,fxa-email-service,592b4d38b238e8bb65c376414a7e9825d583902c,"Merge pull request #250 from mozilla/pb/less-debug-info
+
+https://github.com/mozilla/fxa-email-service/pull/250
+r=vladikoff",Phil Booth,2018-11-22T14:56:32Z,philbooth,philbooth,2,1,1
+283,fxa-email-service,91a51730296e65f8cc897618323f3548bc38705f,chore(build): lower the debug level to decrease binary size,Phil Booth,2018-11-22T07:34:50Z,philbooth,philbooth,2,1,1
+284,fxa-email-service,bede88da56d084a25f943e27c4407b801a7c295b,"Merge pull request #246 from mozilla/pb/214
+
+https://github.com/mozilla/fxa-email-service/pull/246
+r=vladikoff,vbudhram",Phil Booth,2018-11-20T20:31:43Z,philbooth,philbooth,211,158,53
+285,fxa-email-service,05acce118cb6b1963dddd1d23daf1ed7cb25de36,chore(package): create an automated release script,Phil Booth,2018-11-20T12:52:33Z,philbooth,philbooth,211,158,53
+286,fxa-email-service,2649bbf634d563ef73a4c49384e8fe5edfaf6be9,"Merge pull request #247 from mozilla/train-125
+
+Uplift Train 125 to master",Vlad Filippov,2018-11-20T17:02:28Z,vladikoff,vladikoff,22,19,3
+287,fxa-email-service,283a2840d9524f0e9c19d8cb9d5e7832c092ded0,"chore(package): bump version, update changelog",Phil Booth,2018-11-20T14:23:13Z,philbooth,philbooth,14,12,2
+288,fxa-email-service,7a3d60ec759ae17155722c8d9f90525709e4f9c6,"Merge pull request #245 from mozilla/pb/244
+
+https://github.com/mozilla/fxa-email-service/pull/245
+r=vladikoff",Phil Booth,2018-11-20T14:15:44Z,philbooth,philbooth,8,7,1
+289,fxa-email-service,3fed10523fe0554919fad091980df957a57b6445,fix(sentry): stop passing 4xx errors to Sentry,Phil Booth,2018-11-20T12:16:07Z,philbooth,philbooth,8,7,1
+290,fxa-email-service,ecb7c38da0fc8a88a8f6960ccd40d0750d500aac,"Merge train-125 into master
+
+https://github.com/mozilla/fxa-email-service/pull/241
+r=vladikoff",Phil Booth,2018-11-15T14:33:58Z,philbooth,philbooth,150,97,53
+291,fxa-email-service,3d73bee8576f76c73a03347ce69bdea514c1c55a,"chore(package): bump version, update changelog",Phil Booth,2018-11-15T07:55:24Z,philbooth,philbooth,18,16,2
+292,fxa-email-service,5bd956cf30ddfac13d998a20501c36cf58ace4d6,"Merge pull request #240 from mozilla/pb/239
+
+https://github.com/mozilla/fxa-email-service/pull/240
+r=rfk",Phil Booth,2018-11-15T07:54:16Z,philbooth,philbooth,132,81,51
+293,fxa-email-service,14491612619dd4e58b775aa837e8e9cf7dcee10d,fix(ci): enable branch builds in travis,Phil Booth,2018-11-15T07:18:06Z,philbooth,philbooth,3,0,3
+294,fxa-email-service,67ebf3fe77369b751794053d780e90f6f3a3400d,fix(headers): propagate the Content-Language header,Phil Booth,2018-11-15T07:14:34Z,philbooth,philbooth,26,22,4
+295,fxa-email-service,3e2786676339db8dc45d3bf7723f37317adae5d1,fix(ses): add Sender header,Phil Booth,2018-11-15T06:52:52Z,philbooth,philbooth,105,59,46
+296,fxa-email-service,67320d2830bf0ce7c3f5e630d9e9093a0c9be225,fix(ses): ensure html part gets charset=utf-8 content type,Phil Booth,2018-11-15T06:33:48Z,philbooth,philbooth,6,4,2
+297,fxa-email-service,b74a56f0d9ccfe709eb599ad55dba8e95701c1ff,"Merge pull request #238 from mozilla/train-125, r=@vladikoff
+
+chore(package): bump version to 1.125.0",Vijay Budhram,2018-11-14T17:51:58Z,vbudhram,vbudhram,22,20,2
+298,fxa-email-service,54ce16c65c60991747d90d453fb0478c741c1931,chore(package): bump version to 1.125.0,Vijay Budhram,2018-11-14T12:46:53Z,vbudhram,vbudhram,22,20,2
+299,fxa-email-service,c9c62459c845c6b3907367f5c5340862bb89355c,"Merge pull request #218 from mozilla/pb/provider-type
+
+https://github.com/mozilla/fxa-email-service/pull/218
+r=vbudhram",Phil Booth,2018-11-10T09:12:20Z,philbooth,philbooth,233,176,57
+300,fxa-email-service,3a13ef456125bda8f567e6e540e1ce4390cacf45,"Merge pull request #237 from mozilla/pb/update-rust
+
+https://github.com/mozilla/fxa-email-service/pull/237
+r=shane-tomlinson",Phil Booth,2018-11-09T16:20:22Z,philbooth,philbooth,2,1,1
+301,fxa-email-service,0bd766d4310ef8c16af355785c3058af9b1aa3bf,"feat(settings): extract provider type to a fully-fledged enum
+
+The provider type was modelled as a newtype struct around a `String` but
+there's a finite number of values, so really it should be an enum. This
+wasn't too pressing until now but will shortly come in useful for the
+configuration stuff, which needs a provider type too.",Phil Booth,2018-10-31T14:24:42Z,philbooth,philbooth,233,176,57
+302,fxa-email-service,664222cd27a03046ec6c47229f5d872ad23f0e53,chore(deploy): update rust version,Phil Booth,2018-11-09T15:18:47Z,philbooth,philbooth,2,1,1
+303,fxa-email-service,8268f4697ef20043061b47aaec2e6bb0ef6bc5d9,"Merge pull request #236 from mozilla/pb/210
+
+https://github.com/mozilla/fxa-email-service/pull/236
+r=brizental",Phil Booth,2018-11-09T15:23:17Z,philbooth,philbooth,879,357,522
+304,fxa-email-service,4297ed2fad47d6fdb3bb19797fc444daab72b097,"refactor(api): reduce the number of different error kinds we return
+
+The error-handling in this repo grew pretty organically without us
+giving much thought to an over-arching strategy. The end result of that
+was a proliferation of different error types that weren't really adding
+much value.
+
+The API here is simple and the 4xx responses are really limited to bad
+requests and bounce/complaint limit violations. Everything else is an
+internal server error. As such, the `error` module could be simplified
+by employing a blanket `Internal` error type to cover the multitude of
+niche errors that should never occur during normal conditions. The
+detail for those errors is still available in the `message` property and
+Sentry will still log the backtrace of course.
+
+I also noticed that the Rocket catcher stuff wasn't really being used,
+so pulled that out too. We have a standard JSON error format like the
+rest of the FxA ecosystem, and we always want the response payload to be
+the serialisation of that structure.
+
+One side-effect of all these changes is that the errno value has changed
+in most cases. However, I took care to preserve the errno for the bounce
+and complaint violations, because it's hard-coded in the auth server. It
+wouldn't have been that onerous to open a PR for commensurate changes
+over there, but the number of errors left here worked out in such a way
+that made sense not to bother.",Phil Booth,2018-11-08T22:37:24Z,philbooth,philbooth,879,357,522
+305,fxa-email-service,1ef739242c89b5d34c18c1bbd6dd204597501e94,"Merge pull request #234 from mozilla/comment-rm
+
+fix(cargo): remove old rocket comment",Vlad Filippov,2018-11-08T20:57:22Z,vladikoff,vladikoff,1,0,1
+306,fxa-email-service,c706d760f7075c866c1e34211f745e4d4f55efe0,fix(cargo): remove old rocket comment,Vlad Filippov,2018-11-08T19:31:23Z,vladikoff,vladikoff,1,0,1
+307,fxa-email-service,785e2b3161db8d90347d5eddb273eb559ed7e300,"Merge pull request #233 from mozilla/pb/allow-sentry-disabled
+
+https://github.com/mozilla/fxa-email-service/pull/233
+r=vladikoff",Phil Booth,2018-11-08T14:07:17Z,philbooth,philbooth,12,6,6
+308,fxa-email-service,4f47e93b6a4aea65e275d986c263c40aef96ae36,fix(settings): fix panic when sentry is disabled,Phil Booth,2018-11-08T09:18:48Z,philbooth,philbooth,12,6,6
+309,fxa-email-service,321fd721d5c49d8dc0b82cd83e501c6ff69d0afe,"Merge train-124 into master
+
+https://github.com/mozilla/fxa-email-service/pull/232
+r=vladikoff",Phil Booth,2018-11-07T18:53:57Z,philbooth,philbooth,457,348,109
+310,fxa-email-service,6f795044cefaecb01595db495b81a38a18eb73b4,Merge branch 'master' into train-124,Phil Booth,2018-11-07T18:13:06Z,philbooth,philbooth,882,498,384
+311,fxa-email-service,a5c9c1f5b88275222a9c434f2e66d67585a632f7,"Merge pull request #229 from mozilla/pb/201
+
+https://github.com/mozilla/fxa-email-service/pull/229
+r=vladikoff",Phil Booth,2018-11-07T16:37:49Z,philbooth,philbooth,90,65,25
+312,fxa-email-service,d6d01b32c4f324e98158363885789d69532f0200,"chore(package): bump version, update changelog",Phil Booth,2018-11-07T16:34:01Z,philbooth,philbooth,14,12,2
+313,fxa-email-service,1302edf987643a883d0d3394a0a0bb5f533ccc3b,"Merge pull request #228 from mozilla/pb/emailmessage-dep
+
+https://github.com/mozilla/fxa-email-service/pull/228
+r=vladikoff",Phil Booth,2018-11-07T16:32:13Z,philbooth,philbooth,443,336,107
+314,fxa-email-service,5d5ae603dee9eb7f68a97f7746d4a42da1ecce94,"feat(types): ignore display name part when parsing email addresses
+
+Fixes #201.
+
+Email addresses that we receive from bounce, complaint and delivery
+notifications may not be identical matches to what we set on messages.
+We already did some normalization by lower-casing the address when
+parsing. This change extends that normalization process by trimming
+whitespace and unwrapping the address part if it has been wrapped in
+angle bracket delimiters to separate it from the display name. This
+matches the behaviour of the auth server.",Phil Booth,2018-11-07T11:32:05Z,philbooth,philbooth,90,65,25
+315,fxa-email-service,d7aaf59ea4a467444ebad3a7a4c90cec10698381,"Merge pull request #230 from mozilla/pb/sentry-updates
+
+https://github.com/mozilla/fxa-email-service/pull/230
+r=vladikoff",Phil Booth,2018-11-07T16:02:25Z,philbooth,philbooth,349,206,143
+316,fxa-email-service,0a2d39a33dc4353c026a22d56a87edd75ff42ad0,chore(package): include debug symbols in release builds,Phil Booth,2018-11-07T12:51:27Z,philbooth,philbooth,4,4,0
+317,fxa-email-service,02408f590a5745f30da66e8e5f26dfd5110b7b67,"fix(sentry): capture errors at point of creation rather than when logged
+
+We were sending errors to Sentry at the point where they are logged,
+but there are a number of paths where an error is raised without being
+logged. Instead, this change captures them at the point of creation,
+which should mean we now capture every error.",Phil Booth,2018-11-07T12:48:20Z,philbooth,philbooth,6,3,3
+318,fxa-email-service,608c07eb7ed4a7110b9e690f57ff46fc08262c09,chore(deps): update sentry,Phil Booth,2018-11-07T12:45:39Z,philbooth,philbooth,339,199,140
+319,fxa-email-service,c403c3fb81c051378800863bf6c50e929fe56c0e,"Merge pull request #231 from mozilla/pb/205
+
+https://github.com/mozilla/fxa-email-service/pull/231
+r=vladikoff",Phil Booth,2018-11-07T15:38:51Z,philbooth,philbooth,52,34,18
+320,fxa-email-service,906f3911518ec260be79ad8c3c383f6f283bfaed,"feat(bounces): use timestamps from ses instead of the current time
+
+Fixes #205.
+
+SES provides a UTC-based timestamp for bounce and complaint events but
+the auth server opted to ignore it. I'm not sure that was the optimal
+decision because messages might linger on a queue (either ours or the
+provider's) for a length of time before we process it. Given that we
+already trust SES et al to deliver sane notifications, it doesn't seem
+too great a stretch to also trust the timestamp on those notifications.",Phil Booth,2018-11-07T14:01:54Z,philbooth,philbooth,52,34,18
+321,fxa-email-service,5d03a48dad4b14e1e037d84819bec2125098d093,fix(mime): use base64 encoding instead of 8bit,Phil Booth,2018-11-07T06:43:45Z,philbooth,philbooth,6,3,3
+322,fxa-email-service,5966d6252d2516ad083be01f0e8ff0e959b370e8,refactor(providers): eliminate format! invocations in ses send method,Phil Booth,2018-11-01T15:07:53Z,philbooth,philbooth,6,3,3
+323,fxa-email-service,85ffe3ebe893813afbff9d75da947f7198f3c252,refactor(ses): upgrade the emailmessage crate,Phil Booth,2018-11-05T13:45:00Z,philbooth,philbooth,431,330,101
+324,fxa-email-service,f5023c2f23d6bd482b97352157824e4a94a2c1d5,"Merge pull request #221 from mozilla/pb/tidy-app-errors
+
+https://github.com/mozilla/fxa-email-service/pull/221
+r=rfk",Phil Booth,2018-11-01T21:13:34Z,philbooth,philbooth,405,200,205
+325,fxa-email-service,90c6a0110e740601c9bc2731c55949ca4c3090fb,"refactor(errors): stop exposing AppErrorKind directly from AppError
+
+There was a minor violation of the law of Demeter in our `AppError`
+struct, where it was directly exposing its inner `AppErrorKind` to
+callers. Not a huge deal, but it meant that any changes made to the
+inner structure would leak out and require corresponding changes to the
+consuming code (and I am planning some of those inner changes as part of
+issue #210). Better to expose just the parts that are necessary via its
+own API.
+
+At the same time, I opted to replace the home-baked `AppError::json()`
+method with a more conventional `impl Serialize`, because it's less
+astonishing and just as easy to use with `serde_json::to_string`.",Phil Booth,2018-11-01T10:51:31Z,philbooth,philbooth,405,200,205
+326,fxa-email-service,12e4a4c37b42fea2685c36fba373f04f0355c440,"Merge train-124 into master
+
+https://github.com/mozilla/fxa-email-service/pull/215
+r=shane-tomlinson",Phil Booth,2018-10-30T15:51:01Z,philbooth,philbooth,29,27,2
+327,fxa-email-service,c0dfd7a3827948dafbe29236ee71abca733b83bf,"chore(package): bump version, update changelog",Phil Booth,2018-10-30T14:09:55Z,philbooth,philbooth,29,27,2
+328,fxa-email-service,cb5ccbf78da9d43ed7f966de45b7de67642bd5a1,"Merge pull request #213 from mozilla/pb/tidy-src-tree
+
+https://github.com/mozilla/fxa-email-service/pull/213
+r=shane-tomlinson",Phil Booth,2018-10-30T13:29:02Z,philbooth,philbooth,476,255,221
+329,fxa-email-service,cf32a4362d629e9b42323202f8f12c129dd7838f,"refactor(project): tidy up the directory structure a bit
+
+We've grown a lot of modules in this repo and it's hard to see the wood
+for the trees when you look in the `src` directory. This commit attempts
+to neaten everything up a bit by scoping some of them under collective
+parent modules:
+
+* `auth_db`, `delivery_problems` and `message_data` have moved to `db`,
+  and the old `db` has moved to `db/core`.
+
+* `healthcheck` and `send` have moved to `api`.
+
+* `app_errors`, `duration`, `email_address` and `validate` have moved to
+  `types`, and `app_errors` is now just `error`.
+
+* `serialize` has moved to `settings` as it was only referenced there.
+
+Hopefully the end result makes it easier to zero in on modules of
+interest when working in the repo.",Phil Booth,2018-10-29T21:21:15Z,philbooth,philbooth,476,255,221
+330,fxa-email-service,eeb4b604784c194cf201930be0e0239fdc95f562,"Merge pull request #209 from mozilla/pb/update-deps
+
+https://github.com/mozilla/fxa-email-service/pull/209
+r=rfk",Phil Booth,2018-10-29T22:04:36Z,philbooth,philbooth,730,445,285
+331,fxa-email-service,c152bc876562a422ddc7c0f31de07a237c8ffb37,fix(code): remove references to old rocket_contrib::JsonValue struct,Phil Booth,2018-10-29T10:25:28Z,philbooth,philbooth,17,8,9
+332,fxa-email-service,5530fddb9667e69b7c6549fa29b5af5d1169432f,fix(settings): remove references to RocketLoggingLevel::Off enum variant,Phil Booth,2018-10-29T10:13:01Z,philbooth,philbooth,11,5,6
+333,fxa-email-service,afe8713277142c21e25b572bfdfb30f3c4b65c30,chore(deps): update rocket and rusoto versions from pinned git hashes,Phil Booth,2018-10-29T10:04:29Z,philbooth,philbooth,488,300,188
+334,fxa-email-service,2057d57ac7f21b562fe892d8306d3ac86ae02e67,chore(code): cargo fmt,Phil Booth,2018-10-29T10:48:01Z,philbooth,philbooth,212,131,81
+335,fxa-email-service,03f19145e714117c2a06b48114ce6600023dd505,chore(toolchain): update to latest rust nightly,Phil Booth,2018-10-29T09:54:45Z,philbooth,philbooth,2,1,1
+336,fxa-email-service,36d0486bfe51c4563b848010aee0f392431e1da0,"Merge pull request #212 from mozilla/pb/asref-str
+
+https://github.com/mozilla/fxa-email-service/pull/212
+r=rfk",Phil Booth,2018-10-29T21:30:59Z,philbooth,philbooth,49,30,19
+337,fxa-email-service,48cff692090270a967d1ba78c772c134f4dc7c75,"fix(code): implement AsRef<str> for cheaper/cleaner &str access
+
+Fixes #211.
+
+For a bunch of types in `src/settings.rs` and for `NotificationType` in
+`src/queues/sqs/notification/mod.rs`, we were allocating `String`
+instances when it wasn't always necessary. Where an existing slice can
+be used, it's preferable.
+
+At the same time, I removed a load of `.0` inner type access for the
+newtype structs in `Settings`, because that notation is leaky (if we
+want to refactor the struct to something else, all the usage must change
+too).",Phil Booth,2018-10-29T14:49:41Z,philbooth,philbooth,49,30,19
+338,fxa-email-service,06eb6a652b894511de9d3f808d4356876df57f74,"Merge pull request #208 from mozilla/pb/fix-generic-notification-structure
+
+https://github.com/mozilla/fxa-email-service/pull/208
+r=rfk",Phil Booth,2018-10-29T21:21:03Z,philbooth,philbooth,60,59,1
+339,fxa-email-service,e3e361c667eabc8010f1dd26efa4a2808a2f9747,"fix(queues): fix the serialized format of outgoing notifications
+
+The `bounced_recipients` property of the outgoing notification structure
+was missing a serde `rename` attribute. That problem went undetected
+because we had no test coverage for the outgoing structure, which was a
+pretty large hole in our coverage. This change fixes the issue and adds
+some serialization assertions.",Phil Booth,2018-10-29T06:45:47Z,philbooth,philbooth,60,59,1
+340,fxa-email-service,18a9584dd1a9947ae0f2648ce935c1b941ec234e,"Merge pull request #203 from mozilla/pb/166
+
+https://github.com/mozilla/fxa-email-service/pull/203
+r=brizental,vbudhram",Phil Booth,2018-10-17T18:42:37Z,philbooth,philbooth,408,280,128
+341,fxa-email-service,68a1def7dcaa978d05dbbc1d7d8b009f96d44cac,fix(redis): don't pollute our data store with old bounce nomenclature,Phil Booth,2018-10-16T21:16:14Z,philbooth,philbooth,123,76,47
+342,fxa-email-service,1093258f70bc0673a1d64b3de015d1144a6077e5,refactor(redis): store delivery problems in reverse order,Phil Booth,2018-10-16T20:20:14Z,philbooth,philbooth,26,17,9
+343,fxa-email-service,ed83e5b1da923c5f8014bd8e62e4c051486f3fe0,"feat(db): write bounce and complaint records to our own db
+
+This is the first step towards migrating away from the FxA auth db.
+We'll start by dual-writing to both databases. Then, after we've got
+sufficient history to fully evaluate limit violations, we can switch
+over to read from our own datastore and ditch the auth db.",Phil Booth,2018-10-05T16:38:40Z,philbooth,philbooth,287,201,86
+344,fxa-email-service,0330c43738beaae64a6dbfc4ddcbb6a4d4e14d2e,"Merge pull request #204 from mozilla/pb/delivery-problem-order
+
+https://github.com/mozilla/fxa-email-service/pull/204
+r=vladikoff",Phil Booth,2018-10-16T15:21:40Z,philbooth,philbooth,44,37,7
+345,fxa-email-service,14a5eb774a57f15b66a078c092d17c0136bb1ddc,chore(tests): add test coverage for the order of delivery problems,Phil Booth,2018-10-16T13:07:00Z,philbooth,philbooth,44,37,7
+346,fxa-email-service,fcb250ce186e9a08d56bfb27b86c157035774969,"Merge pull request #198 from mozilla/pb/delivery-problems
+
+https://github.com/mozilla/fxa-email-service/pull/198
+r=rfk",Phil Booth,2018-10-16T06:22:42Z,philbooth,philbooth,2131,1063,1068
+347,fxa-email-service,3b32fe021b55419531c8aa88ec577ba580376b95,"refactor(bounces): pull all bounce/complaint code into one module
+
+This change does two things:
+
+1. The old `BounceRecord`, `BounceType` and `BounceSubtype` types are
+   removed from the `auth_db` module into `bounces`, so that they can
+   more easily be re-used when writing bounce/complaint data to Redis.
+
+2. Those types are renamed to `DeliveryProblem`, `ProblemType` and
+   `ProblemSubtype` respectively, and the `bounces` module is renamed to
+   `delivery_problems`. That may seem weird at first, but I have good
+   reason for it and am open to alternative names if anyone can suggest
+   something better.
+
+   Historically we've always treated complaints as a type of bounce
+   event, but that's inaccurate because bounces are never preceded by a
+   delivery event whereas complaints are always preceded by one. This
+   has caught me out in the past when analysing metrics and expecting a
+   blanket sum of `deliveries + bounces = sends` to be true. It isn't.
+   It's only true if you filter complaints from bounces before
+   calculating the sum.
+
+   Because of that, I wanted some different nomenclature that didn't use
+   ""bounces"" as an umbrella term for ""bounces and complaints"". It won't
+   affect the names we use in the metrics but I think it's important for
+   language we use in the codebase to be as precise as possible. Things
+   like ""delivery error"" or ""delivery failure"" also seemed inaccurate
+   for the same reason; a complaint implies that the actual delivery
+   succeeded. Hence ""delivery problems"", which seems generic enough to
+   legitimately include both event types.",Phil Booth,2018-10-05T05:24:30Z,philbooth,philbooth,2131,1063,1068
+348,fxa-email-service,edc09f137ae2ba98e825a2b154beb05b4a0a0b58,"Merge pull request #202 from mozilla/pb/redis-optional-result
+
+https://github.com/mozilla/fxa-email-service/pull/202
+r=vladikoff",Phil Booth,2018-10-15T14:08:11Z,philbooth,philbooth,38,25,13
+349,fxa-email-service,8031ff6f57047ba109369653e3e0c903edee6224,refactor(redis): stop treating no data as an error in the getters,Phil Booth,2018-10-15T11:21:29Z,philbooth,philbooth,38,25,13
+350,fxa-email-service,636e44f79616899b4e059152dd087c649f02390d,"Merge pull request #200 from mozilla/pb/db-json-serialize
+
+https://github.com/mozilla/fxa-email-service/pull/200
+r=rfk",Phil Booth,2018-10-08T05:51:19Z,philbooth,philbooth,47,36,11

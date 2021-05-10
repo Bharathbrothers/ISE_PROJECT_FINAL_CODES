@@ -1,0 +1,975 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,fxa-customs-server,d7ee39319c6f4a5aae895474798a23f9fb517546,Steal README and CONTRIBUTING from fxa-auth-server,Francois Marier,2014-05-21T04:48:34Z,Francois Marier,Francois Marier,210,208,2
+1,fxa-customs-server,2319e511127b2f6a724b5fb37b28ef99874de30d,"Remove unused badAgent code
+
+This stuff was never actually implemented and it sounds like a
+different approach should be taken (see #25).",Francois Marier,2014-05-20T04:48:10Z,Francois Marier,Francois Marier,75,29,46
+2,fxa-customs-server,1cf359fe8d78a96b300f5c9c96482af057b305b6,"Merge pull request #29 from fmarier/moar_comments
+
+Add a few useful comments to describe what's going on",Andrew Chilton,2014-05-20T04:00:03Z,chilts,chilts,17,10,7
+3,fxa-customs-server,cfd5eb4b8d98a6ac629c13b5774787dc5af8e885,Add a few useful comments to describe what's going on,Francois Marier,2014-05-20T03:50:16Z,Francois Marier,Francois Marier,17,10,7
+4,fxa-customs-server,66437da3159d99479bff376ce355a9f1e566f13d,"Merge pull request #13 from fmarier/functional_tests
+
+Functional tests",Francois Marier,2014-05-19T00:19:53Z,fmarier,fmarier,843,833,10
+5,fxa-customs-server,039457f98f4701a2ad85069b0c81c08f876aa455,"Functional test: simulating a few bad logins and emails
+
+The test looks like this:
+
+1. clear all blocked emails and bad logins
+2. check that the account is not blocked or over the bad login limit
+3. use the /check endpoint to simulate password resets via email
+4. check that the email is not blocked
+5. use the /failedLoginAttempt endpoint to go up to the limit
+6. check that we're still under the limit
+7. check that we can still login",Francois Marier,2014-05-14T10:26:51Z,Francois Marier,Francois Marier,179,179,0
+6,fxa-customs-server,ce9840f738d0806da0fbe1d8b0495094e8be58bb,"Functional test: blocking an email that was sent too many messages
+
+The test looks like this:
+
+1. clear all blocked emails
+2. check that the account is not blocked
+3. use the /check endpoint to simulate password resets via email
+4. check that the email gets blocked
+5. wait until the block expires
+6. check that we're no longer blocked",Francois Marier,2014-05-14T10:23:31Z,Francois Marier,Francois Marier,145,145,0
+7,fxa-customs-server,92c462dd472034b969d6228a15031a7f17f1268c,"Functional test: blocking an email with too many failed logins
+
+The test looks like this:
+
+1. clear all bad logins
+2. check that the account is not over the limit
+3. use the /failedLoginAttempt endpoint to go over that limit
+4. check that we are over the limit
+5. wait until the bad logins expire
+6. check that we're no longer over the limit",Francois Marier,2014-05-13T08:24:15Z,Francois Marier,Francois Marier,134,134,0
+8,fxa-customs-server,6b2ce3674016a297aec8b4b4bc37acdd2eabb398,Travis needs to run memcached for the functional tests to work,Francois Marier,2014-05-15T23:31:34Z,Francois Marier,Francois Marier,3,3,0
+9,fxa-customs-server,8ea5ad03231656be0e8183e98768c2e002d1c686,Remove unreachable return statement,Francois Marier,2014-05-13T04:21:11Z,Francois Marier,Francois Marier,1,0,1
+10,fxa-customs-server,9732e563275b927dabc087ffd35eb22dbfdc1553,Include all parameters in the logging of /check,Francois Marier,2014-05-13T04:20:24Z,Francois Marier,Francois Marier,4,2,2
+11,fxa-customs-server,9e319d2093e94cfd2f1d6f34cecd2bbb2d5ab949,Basic testing of the /check endpoint,Francois Marier,2014-05-13T04:18:07Z,Francois Marier,Francois Marier,82,82,0
+12,fxa-customs-server,17e302e48a8d5eab697d7371f262c5bffbec6b6b,Basic testing of the `/failedLoginAttempt` and `/passwordReset` endpoints,Francois Marier,2014-05-09T06:33:38Z,Francois Marier,Francois Marier,143,143,0
+13,fxa-customs-server,6b2bb8b69a88ac364697b67d256d85774ebc6b8d,Add error checking to all API endpoints,Francois Marier,2014-05-09T06:30:56Z,Francois Marier,Francois Marier,23,22,1
+14,fxa-customs-server,1174f369dce00875e6f62300c14043a1cd1d904a,Full test of the / API endpoint,Francois Marier,2014-05-09T06:29:29Z,Francois Marier,Francois Marier,23,21,2
+15,fxa-customs-server,ebae35fee80f281e3c696cd3430b05931e6a1707,"Add basic framework for tests against the API
+
+Unit tests are now in `test/local` and API tests in `test/remote`.",Francois Marier,2014-05-08T08:00:53Z,Francois Marier,Francois Marier,110,104,6
+16,fxa-customs-server,151a62ccb0b8b36c9758ef9cff3d13ceed82b4a0,"Merge pull request #19 from fmarier/issue17
+
+Use grunt to run jshint and check for copyright headers (fix #17)",Peter deHaan,2014-05-16T16:47:54Z,pdehaan,pdehaan,163,74,89
+17,fxa-customs-server,38a12b1c5de88e7ef3b0bf3693df3f7046f3daa5,Use grunt to run jshint and check for copyright headers,Francois Marier,2014-05-16T05:00:03Z,Francois Marier,Francois Marier,140,62,78
+18,fxa-customs-server,1648f1216a7dad80eb7b07d0cfb92c361a7def91,Get rid of reserved words,Francois Marier,2014-05-16T04:26:46Z,Francois Marier,Francois Marier,14,7,7
+19,fxa-customs-server,b29c44ff99fb22319ebf61b962ba4969ca8e2c6f,"Check for unused variables
+
+Dirty hack to silence a warning that is already fixed in #18.",Francois Marier,2014-05-16T04:13:16Z,Francois Marier,Francois Marier,4,2,2
+20,fxa-customs-server,194a1b97e32e7d81fbb443e9c4b4931ca39a9bae,"Add a few more jshint option suggested by @pdehaan
+
+https://github.com/mozilla/fxa-customs-server/issues/17#issuecomment-43251627",Francois Marier,2014-05-16T04:09:33Z,Francois Marier,Francois Marier,4,3,1
+21,fxa-customs-server,f95b7e257c574168adcdf09c5669b2058c582947,"Take `trailing` out since it got removed in jshint 2.5.0
+
+https://github.com/jshint/jshint/releases/tag/2.5.0",Francois Marier,2014-05-16T04:04:52Z,Francois Marier,Francois Marier,1,0,1
+22,fxa-customs-server,3964443d1dc4e5f94138ee963dc6b9d8f8b33549,"Merge pull request #15 from pdehaan/nice-package-bro
+
+adding a few missing fields to package.json",Francois Marier,2014-05-15T23:28:06Z,fmarier,fmarier,21,16,5
+23,fxa-customs-server,f38d324e287e8d3b440056afdb6a9256d21b0474,adding a few missing fields to package.json,Peter deHaan,2014-05-15T16:58:57Z,pdehaan,pdehaan,21,16,5
+24,fxa-customs-server,1603bea5aa739e8e70b23560e90b1920d383642c,"Merge pull request #14 from fmarier/npm-start
+
+Run the main server on ""npm start""",Peter deHaan,2014-05-15T16:45:01Z,pdehaan,pdehaan,1,1,0
+25,fxa-customs-server,278ee584a5f3d5d3b77ab1a773b0558b9f9e46a9,"Run the main server on ""npm start""",Francois Marier,2014-05-15T06:12:55Z,Francois Marier,Francois Marier,1,1,0
+26,fxa-customs-server,b8499ada2d5cf854758f9a13b54085d5e6e94c72,"Merge pull request #9 from fmarier/ip_email_record_tests
+
+ip_email_record tests",Francois Marier,2014-05-09T06:47:45Z,fmarier,fmarier,225,212,13
+27,fxa-customs-server,669e077fc7d92386407eab35fcb0412dea0ed805,Add unit tests for ip_email_record.js,Francois Marier,2014-05-06T05:17:59Z,Francois Marier,Francois Marier,193,193,0
+28,fxa-customs-server,390c2db2acd7c07a442467417615ac79050cdbf6,"Move allowed actions to an array
+
+This is similar to how it's done in `email_record.js`.",Francois Marier,2014-05-09T02:43:26Z,Francois Marier,Francois Marier,15,10,5
+29,fxa-customs-server,57900f50eb7d6b28cbf865c2199b99ca932273fb,Copy the retryAfter function from email_record.js,Francois Marier,2014-05-06T04:38:01Z,Francois Marier,Francois Marier,2,1,1
+30,fxa-customs-server,34ade928a19655758ccc7369c58d7f025f326b28,Make the now() function configurable to facilitate testing,Francois Marier,2014-05-06T04:35:38Z,Francois Marier,Francois Marier,17,9,8
+31,fxa-customs-server,b094229ce83db6486168b505bb13d8ffd1101c54,"Merge pull request #7 from fmarier/ip_record_tests
+
+ip_record tests",Francois Marier,2014-05-09T04:26:27Z,fmarier,fmarier,102,93,9
+32,fxa-customs-server,96c4a4906ea1e88948f912a021ed2360f732a21b,Add unit tests for ip_record.js,Francois Marier,2014-05-06T04:07:58Z,Francois Marier,Francois Marier,83,83,0
+33,fxa-customs-server,c54a908ffadd96d8771400a538c32df0d364f88f,Copy the retryAfter function from email_record.js,Francois Marier,2014-05-06T04:04:24Z,Francois Marier,Francois Marier,3,1,2
+34,fxa-customs-server,9f1f3843dc6cc6d6df20745e46654d3086f8f874,Make the now() function configurable to facilitate testing,Francois Marier,2014-05-06T04:03:42Z,Francois Marier,Francois Marier,14,8,6
+35,fxa-customs-server,3cf9d873984cc9621197b0897cbd51520aab0847,Check for blocks against the right interval,Francois Marier,2014-05-06T04:01:50Z,Francois Marier,Francois Marier,2,1,1
+36,fxa-customs-server,46c9df259ebcca37beb3c41ffbfaae2d39a8790b,Pass the missing BLOCK_INTERVAL_MS to the ip_record,Francois Marier,2014-05-06T04:01:03Z,Francois Marier,Francois Marier,4,2,2
+37,fxa-customs-server,3c1c78781088f27207d907b036aab2eb386d5863,Make the InvalidAgentInterval configurable,Francois Marier,2014-05-06T03:59:45Z,Francois Marier,Francois Marier,6,3,3
+38,fxa-customs-server,7fbd0b1502972fdae69413939a796e71d74eb5c6,"Merge pull request #11 from fmarier/ass_coverage
+
+Ass coverage (fix #4)",Ryan Kelly,2014-05-09T02:19:34Z,rfk,rfk,101,98,3
+39,fxa-customs-server,abd6ffe9910a67bd75d4fb05c2f6a1082ca88be2,Add more email_record unit tests to get 100% coverage,Francois Marier,2014-05-07T06:37:44Z,Francois Marier,Francois Marier,59,57,2
+40,fxa-customs-server,adee385a5e160638f61dae3ed5a849a3e32a2bb2,"Enable test coverage analysis using ass (fix #4)
+
+This script comes from fxa-auth-server but it is always run with
+the test in this project.",Francois Marier,2014-05-07T06:35:59Z,Francois Marier,Francois Marier,42,41,1
+41,fxa-customs-server,e2fe1a97e03797c82d974094621a2e72983bbdc7,"Merge pull request #10 from fmarier/jshint
+
+Add jshint to the tests (fix #6)",Francois Marier,2014-05-08T00:22:19Z,fmarier,fmarier,102,100,2
+42,fxa-customs-server,ce6109aba2e756e98f15c19f4a3b4f62b62ae810,"Add jshint to the tests (fix #6)
+
+This is inspired by the test of the same name in browserid-local-verify
+(https://github.com/mozilla/browserid-local-verify/blob/404bdcd158094aaaeb412b8eb0263243c79f8b92/tests/jshint.js) and enables all of the checks that pass.",Francois Marier,2014-05-06T11:33:14Z,Francois Marier,Francois Marier,102,100,2
+43,fxa-customs-server,62ce0ad7d55679348338e0131683f61c29aa716d,"Merge pull request #8 from fmarier/add_licensing_info
+
+Add a copy of the MPL and put tests in Public Domain",Danny Coates,2014-05-06T18:32:41Z,dannycoates,dannycoates,376,376,0
+44,fxa-customs-server,e36c0fc9f937ceea534f69247ef92a5be335393f,"Add a copy of the MPL and put tests in Public Domain
+
+As suggested on https://www.mozilla.org/MPL/headers/",Francois Marier,2014-05-06T04:28:34Z,Francois Marier,Francois Marier,376,376,0
+45,fxa-customs-server,beb67a64a9cf38475476354caa0abaa54ae14c44,"Merge pull request #5 from vladikoff/travis
+
+Adds travis.yml",Danny Coates,2014-05-05T23:12:48Z,dannycoates,dannycoates,18,18,0
+46,fxa-customs-server,55d632dd2a0ea976f2fb20d830118eb706211ac9,Adds travis.yml,vladikoff,2014-05-05T22:59:23Z,vladikoff,vladikoff,18,18,0
+47,fxa-customs-server,032c40e845f890dc126349486385cb57bc9c8cb5,"Merge pull request #1 from fmarier/email_record_tests
+
+Add tests for the rest of email_record.js",Danny Coates,2014-05-05T22:19:16Z,dannycoates,dannycoates,114,108,6
+48,fxa-customs-server,f057917f091af1d52fce8dfc1f810de7d72f3e71,Add tests for the rest of email_record.js,Francois Marier,2014-05-05T08:25:25Z,Francois Marier,Francois Marier,114,108,6
+49,fxa-customs-server,3c02755100784340aac26242f808f1af10f66246,added first unit test,Danny Coates,2014-05-04T18:39:04Z,dannycoates,dannycoates,21,21,0
+50,fxa-customs-server,9c10eb0033cff98987d581abd3001301cd8b1f97,added /passwordReset to unblock login,Danny Coates,2014-04-22T18:55:47Z,dannycoates,dannycoates,70,58,12
+51,fxa-customs-server,74d7b8d6dc239335178cef287794af7a1c028114,made different 'rules' not affect endpoints they don't care about,Danny Coates,2014-04-21T18:10:43Z,dannycoates,dannycoates,55,35,20
+52,fxa-customs-server,3849ebb999531b26fba21ff149425e4e14b34960,fixed retryAfter from old blocks,Danny Coates,2014-04-21T17:02:53Z,dannycoates,dannycoates,16,5,11
+53,fxa-customs-server,e0fe137f34b30fbeeceb51a977b50fc206ef4a1c,added retryAfter,Danny Coates,2014-04-19T01:58:47Z,dannycoates,dannycoates,30,26,4
+54,fxa-customs-server,fe6bcd4c9d0bf9e55078700bcaa14d92c193d01c,first commit,Danny Coates,2014-04-18T20:27:09Z,dannycoates,dannycoates,411,411,0
+55,fxa-customs-server,d2168f9872c9c511022a4bb21e9747cc835b2e57,chore(config): Update convict and switch on strict validation.,Ryan Kelly,2015-06-10T02:20:53Z,rfk,rfk,291,149,142
+56,fxa-customs-server,a44d40b80922085542eff57ae3f32b47ab769c79,"Merge pull request #82 from pdehaan/license-mit
+
+chore(license): Update license to be SPDX compliant",Vlad Filippov,2015-05-23T00:40:57Z,vladikoff,vladikoff,2,1,1
+57,fxa-customs-server,237f745805e4184a645eda826bc1bc755e886ced,chore(license): Update license to be SPDX compliant,Peter deHaan,2015-05-23T00:26:53Z,pdehaan,pdehaan,2,1,1
+58,fxa-customs-server,631284361a01ff9c3bf9ede830b05fde104ccf38,Release v0.36.0,John Morrison,2015-04-28T02:46:04Z,jrgm,jrgm,8,6,2
+59,fxa-customs-server,cb93dfe0d966ad8a5ea26fb76dbb69fe0fa6aa04,"Merge pull request #81 from jrgm/test-travis-0.12-iojs
+
+Test travis 0.12 iojs",John Morrison,2015-04-17T19:05:06Z,jrgm,jrgm,10,7,3
+60,fxa-customs-server,4b93b2b0e90fc3424c69cdcd776d44b00ca1824e,chore(travis): quiet validate-shrinkwrap failure on security warning on module,John Morrison,2015-04-17T00:23:19Z,jrgm,jrgm,4,2,2
+61,fxa-customs-server,2818e438b174d1cb2320df40d2a36627a82e7daf,"chore(travis): build/test on 0.10, 0.12, and iojs",John Morrison,2015-04-17T00:00:30Z,jrgm,jrgm,6,5,1
+62,fxa-customs-server,50423f42c8d68d590581bdb6942d911a3fbc46af,"Merge pull request #80 from mozilla/train-34
+
+Train 34",John Morrison,2015-04-02T19:41:57Z,jrgm,jrgm,9,7,2
+63,fxa-customs-server,9f299cc73e44d9d0528e86716f6f14f4a7b41389,docs(changelog): changelog for train-34,John Morrison,2015-04-02T19:35:27Z,jrgm,jrgm,5,5,0
+64,fxa-customs-server,37a6e4880ceb8be83fb5637e1f81f2182d48948b,Release v0.34.0,John Morrison,2015-04-02T06:46:40Z,jrgm,jrgm,4,2,2
+65,fxa-customs-server,585104a3f6de308e39e9b36da04d5cc0c3958fcc,"Merge pull request #79 from jrgm/add-task-for-tagging-release
+
+Add task for tagging release and fix some jshint whining",John Morrison,2015-04-02T06:41:53Z,jrgm,jrgm,833,569,264
+66,fxa-customs-server,e9c5d91b63c1c6f1cec77e016dbd26d4c8dc3b9d,chore(shrinkwrap): update shrinkwrap,John Morrison,2015-04-01T01:50:50Z,jrgm,jrgm,675,448,227
+67,fxa-customs-server,532f8c2a533093bf02ecfd2aee35aec5d75e69e2,"fix(release): add tasks ""grunt version"" and ""grunt version:patch"" to create release tags",John Morrison,2015-04-01T01:31:06Z,jrgm,jrgm,142,105,37
+68,fxa-customs-server,152b7f81c3e55fbed1325385d5c116cc5342d29f,"fix(tests): files were not being linted; so now, make jshint happy",John Morrison,2015-04-01T01:29:26Z,jrgm,jrgm,16,16,0
+69,fxa-customs-server,70d1f02dfc1105af6ca7df2a2bacfb81da1cdeed,Release v0.33.0,Ryan Kelly,2015-03-17T02:54:44Z,rfk,rfk,9,8,1
+70,fxa-customs-server,6befc1079474109d37ed62da2d225664263c9142,"fix(config): fix units typo in default config
+
+The comment said 3 hours but the value was 30 hours.",Ryan Kelly,2015-03-16T22:55:05Z,rfk,rfk,2,1,1
+71,fxa-customs-server,20076f86aab3222c269241045f6c9bf68b1fa638,"Merge pull request #76 from shane-tomlinson/issue-75-bad-login-interval
+
+feat(config): Add a badLoginLockoutIntervalSeconds configuration option.",Ryan Kelly,2015-03-16T22:42:52Z,rfk,rfk,39,26,13
+72,fxa-customs-server,f2270a5fe895de76cf0de2da1503f518e00ebbb8,"Merge pull request #74 from mozilla/rfk/code-cleanups
+
+More code cleanups",Andrew Chilton,2015-03-11T02:10:09Z,chilts,chilts,44,23,21
+73,fxa-customs-server,429eec1a030b72e33fe417c3f4bdee9bfbe216bf,"feat(config): Add a badLoginLockoutIntervalSeconds configuration option.
+
+This is the time over which bad logins should be remembered for account lockout
+
+fixes #75",Shane Tomlinson,2015-02-25T18:01:58Z,Shane Tomlinson,Shane Tomlinson,39,26,13
+74,fxa-customs-server,458cdac7ccb27ffdda38ba15ad4e4d7bf92d10c2,"Merge pull request #78 from mozilla/issue-77-document-memcached
+
+feat(docs): Include a snipped about the memcached requirement.",Ryan Kelly,2015-02-26T16:47:36Z,rfk,rfk,14,12,2
+75,fxa-customs-server,2446f1a79eaa3bb5e164cf2ad70154b6bbe4b6ce,"feat(docs): Include a snipped about the memcached requirement.
+
+fixes #77",Shane Tomlinson,2015-02-26T13:25:05Z,Shane Tomlinson,Shane Tomlinson,14,12,2
+76,fxa-customs-server,d2c285a671f104a2e2a5206b02354790a3ee9fbd,Rename isIpEmailAction() to isPasswordCheckingAction(),Ryan Kelly,2015-02-13T05:57:00Z,rfk,rfk,11,6,5
+77,fxa-customs-server,61bc62e4999d04aaf73d7d59e3f228e6e954b6e4,Untangle some logic in email_record.js,Ryan Kelly,2015-02-13T05:52:55Z,rfk,rfk,31,16,15
+78,fxa-customs-server,0d978f0ece718b7584b0af5ac4011d44132df767,Rename isEmailAction to isEmailSendingAction,Ryan Kelly,2015-02-13T05:29:51Z,rfk,rfk,4,2,2
+79,fxa-customs-server,3e9815f346386882ddf34d84e6bc5df708859394,"Merge pull request #71 from chilts/normalise-blocked
+
+Add .shouldBlock() and .isRateLimited(); normalise .isBlocked()",Ryan Kelly,2015-02-13T05:13:12Z,rfk,rfk,192,112,80
+80,fxa-customs-server,00b3738982aa3715256474d51b5cca0997f9d7a5,"Merge pull request #73 from mozilla/rfk/sqs-ban-logging
+
+Tweak logging output when processing sqs ban messages.",Ryan Kelly,2015-02-11T04:51:17Z,rfk,rfk,857,773,84
+81,fxa-customs-server,6ccf21e27deee398231c2c2db11a6c7b9d3d3524,Update old convict dependency,Ryan Kelly,2015-02-10T23:35:06Z,rfk,rfk,853,771,82
+82,fxa-customs-server,3d781e98cfab8d18d11cc9633149fc98c3a80e73,Tweak logging output when processing sqs ban messages.,Ryan Kelly,2015-02-10T23:30:06Z,rfk,rfk,4,2,2
+83,fxa-customs-server,d290f4ea0d13ad52dff50e653dc6bfa7e58222ed,train-05,John Morrison,2014-10-21T19:01:34Z,jrgm,jrgm,5,4,1
+84,fxa-customs-server,d1d6385c1b2fdd52fc7260e17f21838558c36d6c,Add .shouldBlock() and .isRateLimited(); normalise .isBlocked() and .update(),Andrew Chilton,2014-10-14T22:26:39Z,chilts,chilts,192,112,80
+85,fxa-customs-server,66f0137a364e6b4c840df3deace2d0c673f388ac,"Merge pull request #70 from mozilla/rfk/block-banned-emails
+
+Block all actions for emails that are explicitly banned",Andrew Chilton,2014-10-13T21:15:35Z,chilts,chilts,22,19,3
+86,fxa-customs-server,9665f240eb2dd248f38a6748074466f98c430802,Block all actions for emails that are explicitly banned,Ryan Kelly,2014-10-10T05:40:37Z,rfk,rfk,22,19,3
+87,fxa-customs-server,2c189ec8aa84643a6e4d557d2d521db2419d9467,train-04,John Morrison,2014-10-06T23:59:26Z,jrgm,jrgm,6,5,1
+88,fxa-customs-server,79a9c255b914c46b981e346e39601a247216d2c9,"Merge pull request #63 from fmarier/document_all_the_things
+
+Document all the things (fix #61)",ckarlof,2014-09-30T00:35:40Z,ckarlof,ckarlof,266,261,5
+89,fxa-customs-server,35d5c6035ca7f7798c0162302b5adc2892736cfd,Document the current blocking and rate-limiting policies,Francois Marier,2014-09-11T05:52:00Z,Francois Marier,Francois Marier,24,24,0
+90,fxa-customs-server,5410778c4b45b1d811b5c64e438880df074cc05c,Document the API,Francois Marier,2014-09-11T05:41:19Z,Francois Marier,Francois Marier,225,225,0
+91,fxa-customs-server,dba022e094d2aaf9406929a37be6e6f4fe90d2aa,Document the code layout,Francois Marier,2014-09-11T05:26:05Z,Francois Marier,Francois Marier,12,12,0
+92,fxa-customs-server,3196e8d700f89bf5e3a33d7adc841fda852e49a5,Remove redundant info,Francois Marier,2014-09-11T05:18:43Z,Francois Marier,Francois Marier,5,0,5
+93,fxa-customs-server,4297a4d5c969641916b2874bd582c66c4652dd94,"Merge pull request #68 from fmarier/use_400_error_code
+
+Use 400 error code for missing parameters",Francois Marier,2014-09-30T00:00:11Z,Francois Marier,Francois Marier,44,24,20
+94,fxa-customs-server,3fd870899c7b7d7f71b6e03900129c2189aa0612,"Validation errors should return 400 errors, not 500",Francois Marier,2014-09-25T01:18:00Z,Francois Marier,Francois Marier,32,16,16
+95,fxa-customs-server,2f3818868f8e6364ee42ce835030ce26525d6f4e,Avoid normalizing undefined email addresses,Francois Marier,2014-09-25T01:20:12Z,Francois Marier,Francois Marier,12,8,4
+96,fxa-customs-server,00b584e3be6102191a98500d5a82644beb6cc8f6,train-03,John Morrison,2014-09-23T15:56:20Z,jrgm,jrgm,6,5,1
+97,fxa-customs-server,abf5be563342532ca6321a0bb7d2ab9e009c21ca,"Merge pull request #65 from chilts/make-server-executable
+
+Make the server executable",Francois Marier,2014-09-18T22:43:10Z,Francois Marier,Francois Marier,2,2,0
+98,fxa-customs-server,0b53da1ad081fc7806dfd2c148dffb6cce61fe23,Make the server executable,Andrew Chilton,2014-09-17T05:01:20Z,chilts,chilts,2,2,0
+99,fxa-customs-server,eef76a638eeb066bfd1c84e114665d4f4ce76e4c,"Merge pull request #62 from fmarier/normalize-emails
+
+Normalize incoming emails (fix #59)",Francois Marier,2014-09-14T20:55:35Z,Francois Marier,Francois Marier,144,140,4
+100,fxa-customs-server,7a795ebe8521ed31c54331006081424af584856c,"Normalize incoming emails (fix #59)
+
+This is to prevent attackers from varying the case of their email
+addresses to work-around rate-limiting.",Francois Marier,2014-09-11T04:59:51Z,Francois Marier,Francois Marier,144,140,4
+101,fxa-customs-server,d277a2bf8eea2f77856d787141ae3028a8855c9e,"Merge pull request #60 from fmarier/lockout
+
+Add support for account lockout (fix #58)",Francois Marier,2014-09-10T04:45:44Z,Francois Marier,Francois Marier,383,315,68
+102,fxa-customs-server,bb308cbce3439331d2be13c5f6512600e0f5b803,Remove unnecessary (and incomplete) comment,Francois Marier,2014-09-10T04:38:15Z,Francois Marier,Francois Marier,2,0,2
+103,fxa-customs-server,efa1f16a627f880f28805164030fbb1bbc966882,"Account lockout when there are way too many attempts for an email
+
+This is a global limit which applies to a given email address
+regardless of the user agent's IP address.",Francois Marier,2014-09-10T02:54:51Z,Francois Marier,Francois Marier,291,267,24
+104,fxa-customs-server,c726ce69e682ac86f11b3052f979ebba791a8cba,"Add an extra check in the middle of the bad login attempts
+
+This is just to double-check that we're not blocking too early.",Francois Marier,2014-09-10T02:53:42Z,Francois Marier,Francois Marier,22,14,8
+105,fxa-customs-server,d423de01dd688d65ac5c5a96b6542e702c497098,"Rename the variable that keeps track of login failures
+
+While it's similar in the way it's handled to the one keeping track
+of emails sent, it keeps track of something different so it should
+have a different name to avoid confusion.",Francois Marier,2014-09-09T02:32:09Z,Francois Marier,Francois Marier,72,36,36
+106,fxa-customs-server,bf0f27679c06c390cac4f410f2976056b1038eca,Label the xs property properly in ip_email_record.js,Francois Marier,2014-09-09T02:29:07Z,Francois Marier,Francois Marier,2,1,1
+107,fxa-customs-server,8c8ff4a6a24adb73cde11e4bc9a36f1f53d9b523,train-02,John Morrison,2014-08-11T22:10:40Z,jrgm,jrgm,7,6,1
+108,fxa-customs-server,1844ec30febbe57fd5dd762d4180134e812733d0,"Merge pull request #57 from pdehaan/issue-56
+
+Updating restify and request",John Morrison,2014-08-08T03:43:37Z,jrgm,jrgm,718,712,6
+109,fxa-customs-server,fdda7048ee4dbebf6ace5d321cbc35aaa4e7cdfa,Update .travis.yml with workaround for obsolete `temp` module 0.6,John Morrison,2014-08-08T03:29:33Z,jrgm,jrgm,5,5,0
+110,fxa-customs-server,30c71edf6eb98c8a85d61d0630b853ff5185a45f,moving dependencies to devDeps,Peter deHaan,2014-08-07T17:34:05Z,pdehaan,pdehaan,8,3,5
+111,fxa-customs-server,c9e13a9396f458833506e28fa056f24595d9e767,run npm outdated and validate-shrinkwrap on travis,Peter deHaan,2014-08-07T17:31:18Z,pdehaan,pdehaan,2,2,0
+112,fxa-customs-server,2565c50eea906492f5f0cdb9d6ec09bcf6e1ce12,updating restify and request,Peter deHaan,2014-08-07T17:29:00Z,pdehaan,pdehaan,718,712,6
+113,fxa-customs-server,3f9d6246c2211a4d8af25689f38bdeea4c6a44ba,0.1.1,John Morrison,2014-08-03T04:24:40Z,jrgm,jrgm,7,6,1
+114,fxa-customs-server,bb6db314e0e0728581a3ee08a8f4ae0f4af9f90a,"Merge pull request #54 from fmarier/jrgm-expose-configuration-settings
+
+Expose configuration settings and merge memcache.host & port",John Morrison,2014-08-01T15:32:09Z,jrgm,jrgm,33,16,17
+115,fxa-customs-server,5c01ff4a06ca631567798d4c7b375c1e69b53a93,"Remove redundant memcache.host and memcache.port settings
+
+These settings were made redundant by db4dbd04f9b23095403b4167fc9da82a76823c53.",Francois Marier,2014-08-01T05:04:35Z,Francois Marier,Francois Marier,24,4,20
+116,fxa-customs-server,6c70ac0f9af9e1917040d7f2ca96897ef54bb347,expose all configuration settings to the environment; add option memcache.address to work with previous puppet settings,John Morrison,2014-08-01T02:54:17Z,jrgm,jrgm,27,21,6
+117,fxa-customs-server,96eef3f0b10a2e75b4c7e7a0b6ed0b7683b3c78b,"Merge pull request #55 from mozilla/fix-invalid-travis-yaml
+
+fix invalid travis yaml",John Morrison,2014-08-01T05:37:52Z,jrgm,jrgm,2,1,1
+118,fxa-customs-server,8b644074d59a01fdd882f556888ec15a962cab97,fix invalid travis yaml,John Morrison,2014-08-01T05:35:46Z,jrgm,jrgm,2,1,1
+119,fxa-customs-server,2558cac034857104a2c2a244b08d9e279ef97a8a,"Merge pull request #52 from pdehaan/die-npm-spinner
+
+removing npm spinner from travis logs",Francois Marier,2014-08-01T04:59:12Z,fmarier,fmarier,3,3,0
+120,fxa-customs-server,7310e18bc985d5379de3c4a0822800f1521289cd,removing npm spinner from travis logs,Peter deHaan,2014-08-01T00:08:26Z,pdehaan,pdehaan,3,3,0
+121,fxa-customs-server,a16e1da10f09038aa5c3722fcdee3c5afb6c1749,"Merge pull request #51 from jrgm/set-ver-0.1.0
+
+0.1.0",Francois Marier,2014-07-31T23:37:04Z,fmarier,fmarier,6,4,2
+122,fxa-customs-server,227ffdc4fc46c2a3f737a29c8f9c8a7ea776e2ba,0.1.0,John Morrison,2014-07-31T21:54:25Z,jrgm,jrgm,6,4,2
+123,fxa-customs-server,3a881f33d62c9b0bde16f4520d1dbb5173e54824,"Merge pull request #47 from fmarier/use_convict
+
+Switch config management from rc to convict (fix #46)",Andrew Chilton,2014-07-15T22:48:11Z,chilts,chilts,281,204,77
+124,fxa-customs-server,7c78ac5bf43ce1d7db8585ce65af49b6d2b268eb,Switch config management from rc to convict (fix #46),Francois Marier,2014-06-25T10:07:53Z,Francois Marier,Francois Marier,281,204,77
+125,fxa-customs-server,d5f96e7308aae0a803ea140dfa3b0234f9389d86,"Merge pull request #48 from fmarier/sqs_fix
+
+Fix SQS API",Francois Marier,2014-06-27T03:09:32Z,fmarier,fmarier,3,3,0
+126,fxa-customs-server,6bd2c2e7a1a7a81c7641c3946665fa68884cd6a3,"Merge pull request #49 from fmarier/fix_awsbox_typo
+
+Actually address the typo that Andy found",Francois Marier,2014-06-27T03:06:35Z,fmarier,fmarier,2,1,1
+127,fxa-customs-server,27d36e72ef89426e0f2aa606243fcae0e11a6f9b,Actually address the typo that Andy found,Francois Marier,2014-06-27T03:05:27Z,Francois Marier,Francois Marier,2,1,1
+128,fxa-customs-server,78a4f098cbfbbab9b6949e86ef05125b26dec430,"Merge pull request #45 from fmarier/awsbox_support
+
+Awsbox support",Francois Marier,2014-06-27T03:03:57Z,fmarier,fmarier,11,10,1
+129,fxa-customs-server,1c63617609acfd52c4f5e1da757aef0ae57bab64,"Fix SQS API
+
+This can be tested from the AWS web console like this:
+
+1. create a test queue
+2. give all permissions to everybody
+3. send a manual message like this one:
+
+        {""Message"":""{\""ban\"":{\""ip\"":\""192.168.0.2\""}}""}
+
+Then run the customs server with the queue region and URL:
+
+    BANS_REGION=""ap-southeast-2"" BANS_QUEUE_URL=""https://sqs.ap-southeast-2.amazonaws.com/12345678/cs-sqs-test"" node bin/customs_server.js
+
+and use the `check` API before and after sending the SQS message:
+
+    curl -H ""Content-Type: application/json"" -d '{""ip"":""192.168.0.2"",""action"":""accountLogin""}' http://127.0.0.1:7000/check",Francois Marier,2014-06-27T01:57:34Z,Francois Marier,Francois Marier,3,3,0
+130,fxa-customs-server,89ee8e085402c5ca15f63dfb9baae2b31e1ebb0a,"Add awsbox config for easy dev testing
+
+Requires a manual ""npm install awsbox"" since that's not in the
+dev dependencies.",Francois Marier,2014-06-25T01:58:14Z,Francois Marier,Francois Marier,9,9,0
+131,fxa-customs-server,078bde7f3c36fca7ff2d089932f220dcf97330a0,Differentiate between fetching and parsing errors,Francois Marier,2014-06-25T07:54:13Z,Francois Marier,Francois Marier,2,1,1
+132,fxa-customs-server,232c5ae957a2ea7485d51ecad65632a48bd7cc68,"Merge pull request #44 from fmarier/update-dependencies
+
+Update dependencies to match the versions used on the auth-server",Francois Marier,2014-06-24T23:06:04Z,fmarier,fmarier,16,8,8
+133,fxa-customs-server,946bde1078b627df163c57a37557c5a454b38d2c,Update dependencies to match the versions used on the auth-server,Francois Marier,2014-06-24T04:41:42Z,Francois Marier,Francois Marier,16,8,8
+134,fxa-customs-server,449303b6a769519b516a63e3c30b813c28cc7f4b,"Merge pull request #41 from fmarier/sqs_bans
+
+Move blockIp and blockEmail to SQS messages (fix #27)",Francois Marier,2014-06-23T03:39:51Z,fmarier,fmarier,450,410,40
+135,fxa-customs-server,4378ae917581dfdf4a64da70113d8cb944fdd49e,Test that blockIp and blockEmail work by calling /check,Francois Marier,2014-06-18T02:28:41Z,Francois Marier,Francois Marier,92,74,18
+136,fxa-customs-server,b5520006bf5559a60dd3b01a1010e64c7f1fa8ae,Add an SQS-based API for blockIp and blockEmail (fix #27),Francois Marier,2014-06-16T05:24:26Z,Francois Marier,Francois Marier,358,336,22
+137,fxa-customs-server,912ade72c206b58d336279a68a2e320d8a7d4c18,"Merge pull request #43 from fmarier/issue42
+
+Document what the config options do (fix #42)",Francois Marier,2014-06-23T03:34:45Z,fmarier,fmarier,10,5,5
+138,fxa-customs-server,abebc876cbe0f3d796ce85fccc3c8103646abdf4,Document what the config options do (fix #42),Francois Marier,2014-06-20T05:13:25Z,Francois Marier,Francois Marier,10,5,5
+139,fxa-customs-server,a6a3db4f607a72dde10490fc112685c60b89807a,"Merge pull request #38 from fmarier/issue35
+
+Fix for password resets not clearing the bad login count",Francois Marier,2014-06-11T00:21:54Z,fmarier,fmarier,106,106,0
+140,fxa-customs-server,33f8438531353b629ad713441c7239addab58ca4,Successful password resets need to clear bad logins (fix #35),Francois Marier,2014-06-05T08:32:39Z,Francois Marier,Francois Marier,106,106,0
+141,fxa-customs-server,5236fd1edce1e96644e68f7b2108467de8523592,"Merge pull request #37 from fmarier/refactor
+
+Refactor remote tests that peak into memcache",Francois Marier,2014-06-06T02:03:22Z,fmarier,fmarier,481,177,304
+142,fxa-customs-server,a9e2a29989e5e6c57ef1a4047103158f69a69cd0,Refactor common memcache operations into a helper,Francois Marier,2014-06-05T06:57:11Z,Francois Marier,Francois Marier,467,170,297
+143,fxa-customs-server,e197438f23e387e3d4836f595ccbd5986f5be749,"Use catch instead of caught
+
+According to @dannycoates in #36, the community doesn't seem to
+care about catch being a reserved word, so let's use the more
+idiomatic function.",Francois Marier,2014-06-05T03:34:18Z,Francois Marier,Francois Marier,14,7,7
+144,fxa-customs-server,c7f5e9dfea107285023999cf8e9b87f531131659,"Merge pull request #36 from fmarier/ban_ip_and_email
+
+Add new blockIp and blockEmail API endpoints",Francois Marier,2014-06-05T03:33:09Z,fmarier,fmarier,499,426,73
+145,fxa-customs-server,1991a223fe4021e2b8734bf2aafbe5aa70378a0b,Make IP and email addresses bans last for 24 hours,Francois Marier,2014-06-03T12:44:36Z,Francois Marier,Francois Marier,2,1,1
+146,fxa-customs-server,e6ee296f1362b661a670bdde5dc2c70e399b927e,"Always clear everything before the functional tests
+
+We should always clear everything in memcache before running the
+functional tests otherwise future unit tests may make them fail.",Francois Marier,2014-06-03T12:39:03Z,Francois Marier,Francois Marier,165,148,17
+147,fxa-customs-server,76dc3dc9da268038909dc2dfd1e4b6659209626b,"Add a new blockIp API endpoint
+
+This allows a third-party to ban a given ip address for a given
+period of time.",Francois Marier,2014-06-03T11:06:34Z,Francois Marier,Francois Marier,97,97,0
+148,fxa-customs-server,f8409fb6c6a0db33e996b4ad5967a533b46474cc,"Add a new blockEmail API endpoint
+
+This allows a third-party to ban a given email address for a given
+period of time.",Francois Marier,2014-06-03T10:50:51Z,Francois Marier,Francois Marier,153,138,15
+149,fxa-customs-server,6f7e1ed55d79f281c60468dc7627670088a87813,"Distinguish between banning and rate-limiting
+
+The current automatic blocking that we have only covers rate-limiting
+to slow down abuse.
+
+It should be distinguished from outright bans of bad IPs / emails
+(which we have yet to implement).",Francois Marier,2014-06-03T09:11:06Z,Francois Marier,Francois Marier,114,58,56
+150,fxa-customs-server,c4636525d51946aeba26e73aa3e2ef7b74b19d7d,"Merge pull request #34 from jrgm/cover-testserver
+
+record coverage data from the main process",Francois Marier,2014-05-28T23:03:57Z,fmarier,fmarier,11,10,1
+151,fxa-customs-server,032810254c06e21e1de06c8e55a2d92043ec69bf,record coverage data from the main process,John Morrison,2014-05-28T05:55:55Z,jrgm,jrgm,11,10,1
+152,fxa-customs-server,b1d83360602c77ff5f9e1b2b55f8a58166581805,"Merge pull request #31 from fmarier/issue16
+
+Add README and CONTRIBUTING (fix #16)",Francois Marier,2014-05-23T01:15:38Z,fmarier,fmarier,98,98,0
+153,fxa-customs-server,23f4c4894cc064dd1c101aea7b663854e00d59a5,"Merge pull request #30 from fmarier/remove_badagents
+
+Remove unused badAgent code",Francois Marier,2014-05-21T05:08:42Z,fmarier,fmarier,75,29,46
+154,fxa-customs-server,2acc86fabd8d195048a7f157bac20bf2588fa05d,Customize README and CONTRIBUTING for this repo,Francois Marier,2014-05-21T04:50:53Z,Francois Marier,Francois Marier,128,10,118
+155,fxa-customs-server,9a4eaf50f404656eb82e975a04a71e85437910e6,"fix(ip): Rate-limit all status-checking actions per IP.
+
+Previously, email-sending actions had a special exemption
+and were not rate-limited, even if they also allow status checking.",Ryan Kelly,2016-08-02T04:37:06Z,rfk,rfk,7,0,7
+156,fxa-customs-server,112277fc85b6d62fbdfa9dd8c498b3e8e9e9cd9b,feat(block): ip record blocks trump all other conditions,Sean McArthur,2016-08-01T20:57:49Z,seanmonstar,seanmonstar,20,19,1
+157,fxa-customs-server,6fadc52bfabfc3d08dbbdf3f4a42bf67ec9b54cf,"refactor(test): Modify test cases to use promises instead of callbacks (#123) r=vladikoff
+
+fixes #97",Larissa Gaulia,2016-08-05T21:52:04Z,larissagaulia,larissagaulia,690,354,336
+158,fxa-customs-server,3a254c414fce8076a467b41a2765b0d2e72b9cb9,"feat(server): Add uid_record and checkAuthenticated endpoint (#121) r=vladikoff,rfk",Larissa Gaulia,2016-08-05T14:20:29Z,larissagaulia,larissagaulia,386,382,4
+159,fxa-customs-server,383412c036f445de5ed9b07eea355d7d1cfd4609,chore(server): Remove some left-over references to account lockout. (#124) r=vladikoff,Ryan Kelly,2016-08-02T14:35:32Z,rfk,rfk,20,5,15
+160,fxa-customs-server,ca57b82f8aecf376916367f1f1d3ea78be9b17e5,chore(release): Add changelog for v0.66.0,Ryan Kelly,2016-07-28T01:08:44Z,rfk,rfk,5,5,0
+161,fxa-customs-server,3c87927948f2d027c2437b2e356a6a4c20e97166,Release v0.66.0,Ryan Kelly,2016-07-27T22:25:24Z,rfk,rfk,4,2,2
+162,fxa-customs-server,6b90925d842b04effd79ee6a3b8d1ae6895820a7,"Merge pull request #122 from mozilla/issue-120-remove-account-lockout
+
+feat(server): Remove account lockout.",Sean McArthur,2016-07-27T16:49:54Z,seanmonstar,seanmonstar,282,14,268
+163,fxa-customs-server,28343cb7aee17456a1e935e6379195855ce95915,feat(server): Remove `badLoginLockout` config and EmailRecord.lf (loginFailure) related code.,Shane Tomlinson,2016-07-27T09:36:58Z,Shane Tomlinson,Shane Tomlinson,72,7,65
+164,fxa-customs-server,f409c6f3d63653106c81ad762be657a75459463b,"feat(server): Remove account lockout.
+
+fixes #120",Shane Tomlinson,2016-07-27T09:23:02Z,Shane Tomlinson,Shane Tomlinson,210,7,203
+165,fxa-customs-server,985208ab8a304d7df43f244addc2530b566dc529,Merge pull request #119 from mozilla/dev-deps-0720 r=vbudhram,Vlad Filippov,2016-07-21T14:47:20Z,vladikoff,vladikoff,6300,5117,1183
+166,fxa-customs-server,f6bf278b27eeeaee1f82ab1cdfba19d8c28c9f63,"Merge pull request #118 from mozilla/i12
+
+fix(tests): add coveralls and enforce coverage",Ryan Kelly,2016-07-06T06:29:53Z,rfk,rfk,8,6,2
+167,fxa-customs-server,c236800ec90166f59e692ecf03d6a60a20793732,"fix(tests): add coveralls and enforce coverage
+
+Fixes #12",Vlad Filippov,2016-07-05T21:04:23Z,vladikoff,vladikoff,8,6,2
+168,fxa-customs-server,e011a16183b15ca96f4830ebe21706b3f5431866,Release v0.64.0,Ryan Kelly,2016-06-22T01:15:10Z,rfk,rfk,7,5,2
+169,fxa-customs-server,90d6af7d58fabb9cb7e65cbb5850991f3cd0e4ad,"Merge pull request #115 from mozilla/node012
+
+chore(travis): drop node 0.12",Ryan Kelly,2016-05-24T20:42:41Z,rfk,rfk,1,0,1
+170,fxa-customs-server,5bb758c19673e4ccdb8f76753eb422e08ddf6305,chore(travis): drop node 0.12,Vlad Filippov,2016-05-24T19:47:35Z,vladikoff,vladikoff,1,0,1
+171,fxa-customs-server,a684d87e113f35dde22c5db640f53d124480fd0f,Add v0.61.0 changelog,Ryan Kelly,2016-05-08T22:25:32Z,rfk,rfk,4,4,0
+172,fxa-customs-server,03cb25611b197ea26e1f3f4bb3c6465c7bafd5a5,Release v0.61.0,Ryan Kelly,2016-05-04T04:42:48Z,rfk,rfk,4,2,2
+173,fxa-customs-server,7b6001efb089d99ea7430db50a61bd5c5ece42c8,"Merge pull request #112 from mozilla/allowed-email-domains
+
+feat(email): Add config option to avoid blocking certain email domains",Sean McArthur,2016-05-04T00:21:52Z,seanmonstar,seanmonstar,171,168,3
+174,fxa-customs-server,1de11665b7adb50ae6a234b0ce705766fe1ce0b7,"Merge pull request #110 from dannycoates/i102
+
+feat(scripts): added admin scripts: block-ip and customs-info",Ryan Kelly,2016-05-03T22:12:31Z,rfk,rfk,127,127,0
+175,fxa-customs-server,e578c26ea382ca6a1142cfded79a30903ced63c1,feat(email): Add config option to avoid blocking certain email domains,Ryan Kelly,2016-05-03T04:43:12Z,rfk,rfk,171,168,3
+176,fxa-customs-server,5405ac5e4b3bf296772a860ae7a6d6f7b674ec68,feat(scripts): added admin scripts: block-ip and customs-info,Danny Coates,2016-04-22T02:04:21Z,dannycoates,dannycoates,127,127,0
+177,fxa-customs-server,c265c6cac3f663376045b57ee2b3915d96cb45b8,Release v0.60.1,Ryan Kelly,2016-04-20T03:28:03Z,rfk,rfk,30,28,2
+178,fxa-customs-server,ea5085bf78b4cda5604300aaff42a31993be4e0c,Merge branch 'master' into private-master,Ryan Kelly,2016-04-20T03:21:11Z,rfk,rfk,4,2,2
+179,fxa-customs-server,f25dd06d2597a8105ef2db22940455147a5c1dcf,Merge remote-tracking branch 'private/ip-record-relaxation' into private-master,Ryan Kelly,2016-04-20T03:19:34Z,rfk,rfk,126,77,49
+180,fxa-customs-server,4187ae8fb65999f2babb0a4f311fdf16ad6c759a,Release v0.60.0,Ryan Kelly,2016-04-19T00:49:16Z,rfk,rfk,4,2,2
+181,fxa-customs-server,c89c354b7c41f25c6abfe98d9d4b5fe5a57d5421,"Merge pull request #109 from dannycoates/update-cmds
+
+some *sharp* tools for updating the configs in memcache",Ryan Kelly,2016-04-19T00:46:11Z,rfk,rfk,179,178,1
+182,fxa-customs-server,27d1ab93794cb8a0b9248c6713355f87803fbfea,some *sharp* tools for updating the configs in memcache,Danny Coates,2016-04-18T01:01:42Z,dannycoates,dannycoates,179,178,1
+183,fxa-customs-server,30f941f7c34798f727365c821e8bccce7b303fa7,"Merge pull request #107 from mozilla/expand-action-definitions
+
+fix(check): Include more action names in various checks.",Ryan Kelly,2016-04-18T03:58:09Z,rfk,rfk,16,16,0
+184,fxa-customs-server,6b659e22cabdb808d34e60500059d6b9909ee9a4,"Merge pull request #25 from mozilla/limits-config
+
+limits config",Ryan Kelly,2016-04-15T02:34:14Z,rfk,rfk,2049,869,1180
+185,fxa-customs-server,8fa354a9aede3d48b5ecdb168161c330ed1363b8,feat(config): Allow config to be udpated via memcached,Danny Coates,2016-04-12T19:56:46Z,dannycoates,dannycoates,730,541,189
+186,fxa-customs-server,9ad5ac9341d268075fa3a026c3826aaa63eb3251,chore(deps): updated deps,Danny Coates,2016-04-11T21:53:22Z,dannycoates,dannycoates,1325,331,994
+187,fxa-customs-server,799c1d2aee5341d2ff76ae2cb37b089bc31ff61a,"Merge pull request #104 from mozilla/merge-private-fixes
+
+Merge changes made in private fork",Ryan Kelly,2016-04-12T04:21:54Z,rfk,rfk,622,561,61
+188,fxa-customs-server,09dd129d570ec939411f7d05b752ac9f87061165,fix(ip): Pass updated config params to ip_record in the ban-handling script.,Ryan Kelly,2016-04-12T04:09:24Z,rfk,rfk,3,2,1
+189,fxa-customs-server,0b571d53dc0a604b130c08695125562509acdcc2,"Merge pull request #23 from mozilla/ip-limit-by-unique-emails
+
+feat(ip): Count IP rate limits based on unique emails only.",Danny Coates,2016-04-11T23:37:34Z,dannycoates,dannycoates,126,77,49
+190,fxa-customs-server,7037db4e0c6abd54713a330299dabc23fcef9012,"Merge pull request #22 from mozilla/ip-record-relaxation
+
+Reduce aggressiveness of IP rate-limiting",Danny Coates,2016-04-11T23:11:10Z,dannycoates,dannycoates,87,48,39
+191,fxa-customs-server,2773c40ea33e20913c7ebf436b344daa484ef0d7,feat(ip): Count IP rate limits based on unique emails only.,Ryan Kelly,2016-04-11T03:26:23Z,rfk,rfk,126,77,49
+192,fxa-customs-server,b8469d442e9777d395373a7cd4fb2e227cb819b1,fix(ip): Be less aggressive about extending IP rate-limit duration.,Ryan Kelly,2016-04-11T01:00:10Z,rfk,rfk,35,24,11
+193,fxa-customs-server,50c84e54375776b87edaa77a951d49fe843fb095,"feat(login): Allow different bad-login errnos to have different weights.
+
+This is a simple extensible mechanism to make some bad-login errno's
+be ""badder"" than others, e.g. logins failed because of an unknown account
+count more towards the total than those failed because of an incorrect
+password.",Ryan Kelly,2016-04-11T00:40:41Z,rfk,rfk,52,24,28
+194,fxa-customs-server,268462842ab6589d0e8e4524707e8aef607e4d6b,"Merge pull request #21 from mozilla/no-email-ip-limit
+
+fix(ip): Don't rate-limit email sending based on IP address alone.",Danny Coates,2016-04-08T21:58:22Z,dannycoates,dannycoates,5,5,0
+195,fxa-customs-server,6c2f8922c2c07a14848444af49e9ec57fd44fff8,fix(ip): Don't rate-limit email sending based on IP address alone.,Ryan Kelly,2016-04-08T21:56:17Z,rfk,rfk,5,5,0
+196,fxa-customs-server,2d33ca3ee22363b6928401fd66f8c8b26d428b57,"Merge pull request #20 from mozilla/allowed-ips-env-var
+
+fix(ips): Add ALLOWED_IPS environment variable for config.",Ryan Kelly,2016-04-08T02:13:28Z,rfk,rfk,2,2,0
+197,fxa-customs-server,4456e35ea34158e455b556475adc333e313e669b,fix(ips): Add ALLOWED_IPS environment variable for config.,Ryan Kelly,2016-04-08T02:09:29Z,rfk,rfk,2,2,0
+198,fxa-customs-server,46cb91f7eee7ce7f70e2959aced039954512f024,"Merge pull request #18 from mozilla/allowed-ips
+
+feat(ip): Add config option for list of allowed ips.",Vlad Filippov,2016-04-07T16:31:17Z,vladikoff,vladikoff,48,48,0
+199,fxa-customs-server,2632ae78f0ade9e98cb731a208e871c27e4b4f13,feat(ip): Add config option for list of allowed ips.,Ryan Kelly,2016-04-07T12:36:32Z,rfk,rfk,48,48,0
+200,fxa-customs-server,85b5ed7860d4034225497a471fb522cde18c6090,"Merge pull request #14 from mozilla/record-errno
+
+feat(iprecord): record errno and ratelimit when errno is 102",Vlad Filippov,2016-04-05T02:12:29Z,vladikoff,vladikoff,77,61,16
+201,fxa-customs-server,72338f224ac6fa4101791d1d1e01d7e6e0084374,"Merge pull request #16 from mozilla/record-errno-tweaks
+
+fix(iprecord): Fix calls to IpRecord.addBadLogin",Vlad Filippov,2016-04-05T02:09:41Z,vladikoff,vladikoff,7,4,3
+202,fxa-customs-server,13c339a203a0ce11133f3f4a4f7b867ef9ea82f8,fix(iprecord): Fix calls to IpRecord.addBadLogin,Ryan Kelly,2016-04-05T02:05:04Z,rfk,rfk,7,4,3
+203,fxa-customs-server,d843c0f6d5ebb029ca0d1fa83b697c163e1b5f6b,"Merge pull request #12 from mozilla/issue-8-block-on-memcache-timeout
+
+fix(blocking): Send block for all requests if memcache is down",Ryan Kelly,2016-04-05T01:51:30Z,rfk,rfk,73,68,5
+204,fxa-customs-server,484ff0c28e08efa32e48ebbbc3d9c45779229ad4,fix(blocking): Merge and now blocks all request on server-side error,Vijay Budhram,2016-04-05T01:09:42Z,vbudhram,vbudhram,15,5,10
+205,fxa-customs-server,37b4a1a6cbce476f997f59828b5a5a7f26b56416,feat(iprecord): record errno and ratelimit when errno is 102,Sean McArthur,2016-04-04T23:52:22Z,seanmonstar,seanmonstar,74,59,15
+206,fxa-customs-server,90ebc46ee9c4e914da6843acf677de11ac6dabe4,"Merge remote-tracking branch 'origin/issue-8-block-on-memcache-timeout' into issue-8-block-on-memcache-timeout
+
+# Conflicts:
+#	lib/server.js",Vijay Budhram,2016-04-05T00:56:03Z,vbudhram,vbudhram,137,122,15
+207,fxa-customs-server,721dffe97b8a091ba0037b2a7ee255528a929a68,fix(blocking): Send block for all requests if memcache is down,Vijay Budhram,2016-04-04T23:21:21Z,vbudhram,vbudhram,78,73,5
+208,fxa-customs-server,70d4c21d7affa62434c89aaf9998502718395eb8,"Merge pull request #13 from mozilla/memcached-ttl-duration
+
+fix(lifetime): Ensure records are written with sufficient ttls in memcache",Vlad Filippov,2016-04-05T00:28:50Z,vladikoff,vladikoff,81,72,9
+209,fxa-customs-server,3c3c72271c83b6742dc4a9eb2bdc2d122a29360f,fix(lifetime): ensure memcache lifetime is set in more places,Ryan Kelly,2016-04-05T00:25:29Z,rfk,rfk,14,8,6
+210,fxa-customs-server,5aff49c8345d5da264e4b280f6d13fe71bd82772,fix(lifetime): Ensure records are written with sufficient ttls in memcache.,Ryan Kelly,2016-04-04T23:32:40Z,rfk,rfk,69,65,4
+211,fxa-customs-server,6955b6a0bfce7b6ca09d672dd70400e1b0933857,fix(blocking): Send block for all requests if memcache is down,Vijay Budhram,2016-04-04T23:21:21Z,vbudhram,vbudhram,76,72,4
+212,fxa-customs-server,6c73ec671a67dd8843b5bec6e574b9ef2eae4df3,"Merge pull request #11 from mozilla/count-rate-limited-logins-2
+
+fix(logins): add test and adjust rate limit r=rfk,vladikoff",Vlad Filippov,2016-04-04T22:53:35Z,vladikoff,vladikoff,52,48,4
+213,fxa-customs-server,7c4de25d07a63d908cbebb8f32c18ebf3ddc4c78,fix(tests): adjust login tests,Vlad Filippov,2016-04-04T22:52:08Z,vladikoff,vladikoff,4,2,2
+214,fxa-customs-server,ed6790ff6ed69087b15ae6dca93cf00ebf18b863,fix(logins): add docs and simplify test,Vlad Filippov,2016-04-04T22:39:15Z,vladikoff,vladikoff,11,3,8
+215,fxa-customs-server,2f0aa17bd451746f5a5258c8d532ddc5feade4b6,fix(logins): combine limiting for bad logins and rate,Vlad Filippov,2016-04-04T22:23:48Z,vladikoff,vladikoff,4,1,3
+216,fxa-customs-server,8d94c1c71e1eb0067ea15a07657470069be9e897,fix(logins): add test and adjust rate limit,Vlad Filippov,2016-04-04T21:59:59Z,vladikoff,vladikoff,53,50,3
+217,fxa-customs-server,47616536ee79ba5997387e7e2ccbc000a1dec1f5,feat(logins): Count rate-limited login attempts as failed logins.,Ryan Kelly,2016-04-04T18:37:58Z,rfk,rfk,8,6,2
+218,fxa-customs-server,e56bb5ad75f35a31a7dfebf143bd26fe39f0c55e,"Merge pull request #3 from mozilla/max_ip_bad_logins
+
+Max ip bad logins",Ryan Kelly,2016-04-04T19:44:27Z,rfk,rfk,316,268,48
+219,fxa-customs-server,a8f5892257671eeeb26db06a132099399e63901e,fix(check): Include more action names in various checks.,Ryan Kelly,2016-04-04T10:51:11Z,rfk,rfk,16,16,0
+220,fxa-customs-server,92a0008b3be727d2137bb6b828e4f4a329f15b2b,fix(config): update name values for ip ban,Vlad Filippov,2016-04-03T22:46:50Z,vladikoff,vladikoff,20,10,10
+221,fxa-customs-server,5ca30521076cfe4ff506157155fc57a888579181,fix(handler): add new config values to handler.js,Vlad Filippov,2016-04-03T22:42:38Z,vladikoff,vladikoff,4,3,1
+222,fxa-customs-server,746e9d537b5741a1f986d61a38f806bc73f5cdd9,fix(tests): adjust config values for status check,Vlad Filippov,2016-04-03T22:38:56Z,vladikoff,vladikoff,3,2,1
+223,fxa-customs-server,f52d9130aaa21917f092505daeebfe9baddaa2a5,fix(config): add more config to ip rate limits,Vlad Filippov,2016-04-03T22:37:54Z,vladikoff,vladikoff,62,45,17
+224,fxa-customs-server,30f8a5d1b4a967a9698095b3e399ed151765453f,fix(lock): add ip lock test,Vlad Filippov,2016-04-03T21:40:43Z,vladikoff,vladikoff,229,130,99
+225,fxa-customs-server,add5795f069933360ad58d4a2b608b275f52b3fa,WIP block bad logins per ip,Ryan Kelly,2016-04-03T20:27:58Z,rfk,rfk,246,202,44
+226,fxa-customs-server,cafe24577e01b5f43d32a005e31770d7c9459441,fix(style): Fix some typos,Ryan Kelly,2016-04-03T13:17:27Z,rfk,rfk,4,2,2
+227,fxa-customs-server,16f0e041f3d3857aaf8ddf5d709baf324ac302c0,Release v0.57.0,John Morrison,2016-03-01T05:16:07Z,jrgm,jrgm,9,7,2
+228,fxa-customs-server,898f4c61d231907a42ab2b651afa138ba799a598,"Merge pull request #99 from mozilla/issue-96-add-account-staus
+
+feat(api): Add account status check with rate limiting",Vijay,2016-02-22T15:06:45Z,vbudhram,vbudhram,228,215,13
+229,fxa-customs-server,4df20b8d0728059c6b0ffb8da4bb33afbf9abd68,feat(api): Add check account status,Vijay Budhram,2016-02-17T21:19:19Z,vbudhram,vbudhram,228,215,13
+230,fxa-customs-server,af6c42621f66d33fa16256abb9a34976040662cc,"Merge pull request #100 from mozilla/fix-config-dir
+
+fix(config): restore top-level ""config"" dir for $(NODE_ENV).json files.",Ryan Kelly,2016-02-19T00:09:16Z,rfk,rfk,6,5,1
+231,fxa-customs-server,b853875fa8fb4961f56eee082fb7062d37e771eb,"fix(config): restore top-level ""config"" dir for $(NODE_ENV).json files.",Ryan Kelly,2016-02-19T00:05:45Z,rfk,rfk,6,5,1
+232,fxa-customs-server,6970f559c7a611004fb52584a0483b70dfcb3de5,"Merge pull request #98 from mozilla/code-goes-in-lib-dir
+
+refactor(lib): Put all the code inside a ""lib"" subdirectory.",Ryan Kelly,2016-02-17T22:40:02Z,rfk,rfk,582,299,283
+233,fxa-customs-server,493984a6a0548b403b0800e1d0fb5e699cb0ced6,"refactor(lib): Put all the code inside a ""lib"" subdirectory.",Ryan Kelly,2016-02-17T04:42:36Z,rfk,rfk,582,299,283
+234,fxa-customs-server,3cf348e7d0de708a8d0e7f469e9e80792defb74d,Release v0.55.0,John Morrison,2016-01-31T01:33:24Z,jrgm,jrgm,14,10,4
+235,fxa-customs-server,369792f6f667c3f7bf1d7be973db76fddb29f067,"Merge pull request #95 from jrgm/chore-remove-misleading-reference-to-awsbox
+
+chore(docs): remove misleading reference to awsbox",John Morrison,2015-12-22T01:58:00Z,jrgm,jrgm,1,0,1
+236,fxa-customs-server,8f9c06f0e83dd66ede7a610239ec7f7fc8ec62bf,chore(docs): remove misleading reference to awsbox,John Morrison,2015-12-22T01:51:44Z,jrgm,jrgm,1,0,1
+237,fxa-customs-server,37db908b9a3adff2cdfbb7bf0c47ced0d69a25cd,"Merge pull request #94 from jrgm/travis-test-nodejs-10-12-4
+
+fix(travis): build and test on 0.10, 0.12 and 4.x",John Morrison,2015-12-11T02:20:18Z,jrgm,jrgm,2,1,1
+238,fxa-customs-server,4922a102d242ef32608790c1ad55c0001684d891,"fix(travis): build and test on 0.10, 0.12 and 4.x",John Morrison,2015-12-11T02:08:23Z,jrgm,jrgm,2,1,1
+239,fxa-customs-server,6681a2296352c1b2001fa7bcb45d4659755db31b,"Merge pull request #93 from mozilla/i91
+
+fix(build): add grunt-nsp r=rfk",Vlad Filippov,2015-11-10T21:43:09Z,vladikoff,vladikoff,3344,1705,1639
+240,fxa-customs-server,816ae95388207a335c869098f8e8fefb0c05af74,fix(build): add grunt-nsp,vladikoff,2015-11-10T21:28:51Z,vladikoff,vladikoff,3344,1705,1639
+241,fxa-customs-server,7f8747957c5a41e2ae418711c1e2bb03ded50b64,"Merge pull request #92 from jrgm/remove-grunt-validate-shrinkwrap-travis
+
+fix(travis): remove broken validate-shrinkwrap",John Morrison,2015-11-09T18:54:36Z,jrgm,jrgm,1,0,1
+242,fxa-customs-server,f01517b5695a2753f6216902b1f0d0172d3e7922,fix(travis): remove broken validate-shrinkwrap,John Morrison,2015-11-09T18:51:21Z,jrgm,jrgm,1,0,1
+243,fxa-customs-server,b09194f595c9f9d18ccc6b8f9dc485c667df33a8,Release v0.45.0,John Morrison,2015-09-13T02:02:24Z,jrgm,jrgm,9,7,2
+244,fxa-customs-server,cc6444b9120abc0384acbb924f51cc026e6397a7,chore(shrinkwrap): update npm-shrinkwrap,John Morrison,2015-09-13T01:59:30Z,jrgm,jrgm,211,106,105
+245,fxa-customs-server,bbd2f9135a86f4a62599450968a1901d78bb2dc5,"Merge pull request #90 from mozilla/rpm-version.js
+
+chore(version): generate legacy-format output for ./config/version.json",Ryan Kelly,2015-09-09T05:10:25Z,rfk,rfk,36,36,0
+246,fxa-customs-server,129d885207971fdff835b0643fc0c79219a385ec,chore(version): generate legacy-format output for ./config/version.json,John Morrison,2015-08-13T18:36:56Z,jrgm,jrgm,36,36,0
+247,fxa-customs-server,0a725ca6d7800eb0e451effe888dbd5092eb5dd6,"Merge pull request #87 from pdehaan/eslint-in-jshint-out
+
+chore(build): Replace JSHint with ESLint",Ryan Kelly,2015-07-08T07:02:02Z,rfk,rfk,930,584,346
+248,fxa-customs-server,a0f508e1271ba1c101371c202fb117e57e593418,"Merge pull request #88 from chilts/bot-channel-goodness
+
+chore(travis): Tell Travis to use #fxa-bots",Vlad Filippov,2015-07-01T04:47:32Z,vladikoff,vladikoff,2,1,1
+249,fxa-customs-server,f835276ee7dea411a5bfcdd75caa0408173d3c56,chore(travis): Tell Travis to use #fxa-bots,Andrew Chilton,2015-07-01T04:30:01Z,chilts,chilts,2,1,1
+250,fxa-customs-server,dad97a5124b8c897ac41a23424b870d89d39e11a,chore(build): Replace JSHint with ESLint,Peter deHaan,2015-06-29T23:18:21Z,pdehaan,pdehaan,930,584,346
+251,fxa-customs-server,17879ebabc5ea6376297263591cd3b38b018c344,Release v0.39.0,John Morrison,2015-06-10T22:53:23Z,jrgm,jrgm,7,6,1
+252,fxa-customs-server,d6d31c702c72e1aa442867297274381a798fbd27,"Merge pull request #86 from jrgm/update-shrinkwrap
+
+chore(shrinkwrap): update ass to what other modules use; update shrinkwrap",John Morrison,2015-06-10T22:51:37Z,jrgm,jrgm,240,115,125
+253,fxa-customs-server,06920e58f31f4e445c5ca12450bc4ad4712d9fc1,chore(shrinkwrap): update ass to what other modules use; update shrinkwrap,John Morrison,2015-06-10T22:18:33Z,jrgm,jrgm,240,115,125
+254,fxa-customs-server,865386e2449b40310f228bcc5e8f18379591baa3,"Merge pull request #85 from mozilla/rfk/strict-convict
+
+chore(config): Update convict and switch on strict validation.",Andrew Chilton,2015-06-10T03:41:32Z,chilts,chilts,291,149,142
+255,fxa-customs-server,e417db5025c18ecc603c1f6e09702f895354ed70,Release v1.103.0,Ryan Kelly,2018-01-09T03:05:48Z,rfk,rfk,20,18,2
+256,fxa-customs-server,0f9408124b88d3f7b3d65698b50b11b7ae284bdb,"feat(token): Add rate limit for tokenCodes (#225), r=@rfk",Vijay Budhram,2018-01-08T15:16:56Z,vbudhram,vbudhram,152,68,84
+257,fxa-customs-server,4cbc5440c784ac94e62814e3dc6c2995d4043cd4,feat(logs): add Sentry error logs (#224) r=@vbudhram,Vlad Filippov,2018-01-05T02:23:36Z,vladikoff,vladikoff,195,126,69
+258,fxa-customs-server,1f4d997dd3bb328a8037c733758b250708f735f7,fix(node): use node 6.12.3 (#223) r=@vladikoff,John Morrison,2018-01-04T01:57:32Z,jrgm,jrgm,2,1,1
+259,fxa-customs-server,c33a018d9091d0737da97e2f9b8db349f919b804,"fix(blocklist): Fix use of setImmediate to work with node 8 (#220) r=@vladikoff
+
+Fixes #212",Ryan Kelly,2017-12-20T16:44:40Z,rfk,rfk,6,3,3
+260,fxa-customs-server,b0152daeb39de6a6a76dcb8be794d3d236cc2322,Release v1.102.0,Ryan Kelly,2017-12-13T23:34:03Z,rfk,rfk,10,8,2
+261,fxa-customs-server,77cb031676a1d2135045ea37a6be6f0cb28a2037,Release v1.101.0,Ryan Kelly,2017-11-29T01:12:33Z,rfk,rfk,27,25,2
+262,fxa-customs-server,dd100f359cfddbf6e80c3727f82c366c3e0d0b98,"Merge pull request #218 from mozilla/issue-217-allow-test-phone-numbers r=@vbudhram,@rfk
+
+feat(sms): Add an allow list of non-rate limited phone numbers for testing.",Shane Tomlinson,2017-11-21T10:05:15Z,Shane Tomlinson,Shane Tomlinson,180,173,7
+263,fxa-customs-server,6cc0cebec11e7d510d55a872a542c325b4a80f6a,fix(sms): Load `allowedPhoneNumbers` from memcached!,Shane Tomlinson,2017-11-17T14:13:05Z,Shane Tomlinson,Shane Tomlinson,11,11,0
+264,fxa-customs-server,79517725a6a4c51485d7044a4de7334762b1c690,"refactor(isAllowed): Add `isAllowed` to allowedIPs.
+
+This allows server.js to become more concise by
+removing `isIPAllowed`, `isPhoneNumberAllowed` and `isEmailAllowed`",Shane Tomlinson,2017-11-15T17:12:57Z,Shane Tomlinson,Shane Tomlinson,22,7,15
+265,fxa-customs-server,35c37d592795a9a11f52f6a902a090f9dff4116c,feat(sms): Added tests for `change allowedPhoneNumbers` config,Shane Tomlinson,2017-11-15T15:50:01Z,Shane Tomlinson,Shane Tomlinson,56,56,0
+266,fxa-customs-server,17a94591d5df4a77153888b2cb71a494233d39a7,chore(sms): Store allowed phone numbers in a Set,Shane Tomlinson,2017-11-15T14:56:57Z,Shane Tomlinson,Shane Tomlinson,10,3,7
+267,fxa-customs-server,78226031d44e79064ac50a79c696553ff8540155,"feat(sms): Add an allow list of non-rate limited phone numbers for testing.
+
+fixes #217",Shane Tomlinson,2017-11-15T12:10:26Z,Shane Tomlinson,Shane Tomlinson,125,118,7
+268,fxa-customs-server,a285a15e82590bc18bf3cd1a30211c7ed05d7c74,Release v1.100.0,Ryan Kelly,2017-11-15T02:46:49Z,rfk,rfk,21,19,2
+269,fxa-customs-server,e21820c8c75844fdf530c720f0b0d2b24e0fdfe7,"fix(grunt): Commit new file CHANGELOG.md, not the old file CHANGELOG",Ryan Kelly,2017-11-15T02:45:56Z,rfk,rfk,7,2,5
+270,fxa-customs-server,19920cc1a5981d4caaa9d78c2f503974ccf73c07,"fix(newrelic): newrelic native requires python, gyp, c++; update node@6.12.0 (#216) r=@vladikoff",John Morrison,2017-11-13T22:13:41Z,jrgm,jrgm,4,3,1
+271,fxa-customs-server,bf06c0ea21e0249271a863fad3c5c6cd4b054942,fix(newrelic): Dockerpush fix newrelic must be first (#215) r=@vladikoff,John Morrison,2017-11-12T18:15:23Z,jrgm,jrgm,181,92,89
+272,fxa-customs-server,f228d27b71bcb43c3f4aadc4bb0e12ebe239c218,"chore(build): add changelog tag (#213) r=@vbudhram
+
+Fixes #177",Vlad Filippov,2017-11-06T15:38:37Z,vladikoff,vladikoff,3018,2120,898
+273,fxa-customs-server,d45d1ab4d894c7d0dfbadeb0361f0d6f7a24f5ed,chore(npm): update shrinkwrap command,Vlad Filippov,2017-11-03T17:28:59Z,vladikoff,vladikoff,2,1,1
+274,fxa-customs-server,47204ca07691a1bf3f111f2d3d13c299d64b5995,Release v1.98.0,Jon Buckley,2017-10-26T17:17:27Z,jbuck,jbuck,6,4,2
+275,fxa-customs-server,290e678602319312c1984bf125d42565b6200eb5,chore(docker): Update to node v6.11.5 for security fix,Jon Buckley,2017-10-26T17:11:54Z,jbuck,jbuck,2,1,1
+276,fxa-customs-server,01f74d3c1b62238f8d9c5c324e923c41a4f171c1,Release v1.92.0,Ryan Kelly,2017-07-26T01:23:28Z,rfk,rfk,8,6,2
+277,fxa-customs-server,32f908371f6618f6c2ea90a81b149cb7d8141312,fix(docs): document the dependency on memcached (#211) r=vladikoff,Phil Booth,2017-07-18T11:56:05Z,philbooth,philbooth,8,8,0
+278,fxa-customs-server,a682ae40596a2cac8cbb8fc19d68b7c20055d095,"fix(server): remove mozdef integration (#209)
+
+Fixes #204",Vlad Filippov,2017-07-12T20:17:32Z,vladikoff,vladikoff,146,0,146
+279,fxa-customs-server,4364c3a5151930d2257ca1ef7624e4b19852825d,Release v1.91.0,Sean McArthur,2017-07-12T18:52:21Z,seanmonstar,seanmonstar,4,2,2
+280,fxa-customs-server,8b93b6b236da0c394d9e98021797ec4b56d5934d,"Merge pull request #210 from mozilla/node-sec
+
+fix(nodejs): upgrade to 6.11.1 for security fixes",Sean McArthur,2017-07-12T18:49:42Z,seanmonstar,seanmonstar,2,1,1
+281,fxa-customs-server,ef20449cc81fcd9a8a740a54cac91d70635b5d5c,fix(nodejs): upgrade to 6.11.1 for security fixes,Sean McArthur,2017-07-12T18:32:34Z,seanmonstar,seanmonstar,2,1,1
+282,fxa-customs-server,7b20330fd288f196d2fe8fcd0cf43daf3cab91aa,feat(node): upgrade to Node 6 (#208),Sean McArthur,2017-07-04T19:29:32Z,seanmonstar,seanmonstar,2,1,1
+283,fxa-customs-server,eaf5c74ba54f98acf79d27f05b93b9f6f31c8a97,Release v1.90.0,Ryan Kelly,2017-06-28T22:59:28Z,rfk,rfk,4,2,2
+284,fxa-customs-server,389432e2094022acc4c7ede3a661dd9af4c77852,Release v1.89.0,Ryan Kelly,2017-06-28T22:56:43Z,rfk,rfk,4,2,2
+285,fxa-customs-server,b39f993bb6eb3a4669659e1684a99613f202b7b2,"(iprecord): ignore prior rate-limiting for account access actions
+
+Requests to /check with allow-listed email addresses cause the IP record
+to to be marked as rate-limited, even though those requests aren't
+actually blocked. Any subsequent requests to /checkIpOnly will fetch the
+rate-limited IP record from memcached and block the request incorrectly.
+This is a problem for the content server functional tests.
+
+The change here ignores any previous rate-limiting for account access
+actions, effectively putting them into a separate rate-limiting bucket.
+
+https://github.com/mozilla/fxa-customs-server/pull/207
+r=rfk",Phil Booth,2017-06-28T12:21:01Z,philbooth,philbooth,108,101,7
+286,fxa-customs-server,4de800f471dc7c491e670fa09b96f5c20b87df66,Release v1.88.0,Ryan Kelly,2017-05-31T03:17:42Z,rfk,rfk,8,6,2
+287,fxa-customs-server,08fca60761c9fdd987ef12dbb737410aec84c5ee,"feat(actions): add consumeSigninCode as an ACCOUNT_ACCESS_ACTION
+
+https://github.com/mozilla/fxa-customs-server/pull/203
+
+r=vbudhram",Phil Booth,2017-05-23T12:34:40Z,philbooth,philbooth,538,399,139
+288,fxa-customs-server,159d53bb949f83d3187cf6684da18623146a71fc,feat(docker): add custom feature branch (#202) r=jrgm,Vlad Filippov,2017-05-16T21:44:51Z,vladikoff,vladikoff,12,9,3
+289,fxa-customs-server,334eeb82a78a5d3382184d795c1e463b858e990b,Release v1.86.0,Ryan Kelly,2017-05-03T03:06:49Z,rfk,rfk,11,9,2
+290,fxa-customs-server,da6765ade4ae045f9c5322227e90eb75cdf6cb6f,chore(deps): Update shrinkwrap,Ryan Kelly,2017-05-03T03:05:27Z,rfk,rfk,779,549,230
+291,fxa-customs-server,3f03e431f3e862efec3fabf616c51e8c90df477e,"Merge pull request #200 from mozilla/pushonempty-rejection
+
+fix(settings): pushOnMissing no longer updates on unexpected errors",Sean McArthur,2017-04-25T22:38:03Z,seanmonstar,seanmonstar,752,417,335
+292,fxa-customs-server,a72074993185d478bd2d5d968acd99e85af1a00f,"fix(settings): pushOnMissing no longer updates on unexpected errors
+
+Closes #194",Sean McArthur,2017-04-25T21:15:58Z,seanmonstar,seanmonstar,752,417,335
+293,fxa-customs-server,e2f206cda1af00de08924bbf3484d4f468d84fcd,"fix(sms): Add ability to rate-limit sms by email (#198), r=@rfk",Vijay Budhram,2017-04-21T13:26:43Z,vbudhram,vbudhram,121,112,9
+294,fxa-customs-server,b412411ea6fe0a72898fe026d796e414d2bfaec5,"feat(emails): Add `createEmail` to email sending endpoints (#199) r=vladikoff
+
+This PR adds rate-limiting to all endpoints that send emails for the add secondary email feature. It is a one liner because we reuse the verify code and resend code endpoints in add secondary emails. The only other endpoint that sends an email is the create email operation.
+
+Fixes #180",Vijay Budhram,2017-04-20T15:31:18Z,vbudhram,vbudhram,1,1,0
+295,fxa-customs-server,a919f09d2c077ab4be765e27be9e5d0638a9eda5,Release v1.85.0,Ryan Kelly,2017-04-19T00:10:26Z,rfk,rfk,12,10,2
+296,fxa-customs-server,e7dd3c1a619f90e1446aa4f4f1be99b567865728,chore(docker): Use official node image & update to Node.js v4.8.2 (#196) r=vladikoff,Jon Buckley,2017-04-18T22:35:42Z,jbuck,jbuck,2,1,1
+297,fxa-customs-server,720e7dec11dc2658948541cc3e24e0efea850803,"fix(security): escape json output (#193) r=vladikoff
+
+refs: bmo secure bug 1320211",Greg Guthe,2017-04-11T15:17:08Z,g-k,g-k,22,20,2
+298,fxa-customs-server,7acf589e5268bc5c48b4ee7d9ccad12519ee9243,Release v1.84.0,Ryan Kelly,2017-04-04T17:48:01Z,rfk,rfk,7,5,2
+299,fxa-customs-server,2a70689b0e48791a6be2cbdda748280fb3a6dd25,"fix(tests): Correctly rate limit sms by ip address (#191), r=@rfk",Vijay Budhram,2017-03-28T15:16:50Z,vbudhram,vbudhram,52,26,26
+300,fxa-customs-server,353f69c0f35683d7a62cc6b9e0446987b92b8136,Release v1.83.0,Ryan Kelly,2017-03-21T05:59:29Z,rfk,rfk,10,8,2
+301,fxa-customs-server,8fef3d152d6b99c084258177ddd5f9ff1a722ab6,fix(tests): Update config and testing for sms (#189) r=vladikoff,Vijay Budhram,2017-03-20T23:36:07Z,vbudhram,vbudhram,51,41,10
+302,fxa-customs-server,1cd55b1d939424ca725e9963f37658154f5f3e72,"fix(docs): Add notes for sms (#184), r=@shane-tomlinson",Vijay Budhram,2017-03-09T21:31:26Z,vbudhram,vbudhram,7,6,1
+303,fxa-customs-server,d84f28921892569180702287f94bbf9a385f75d7,Release v1.82.0,Ryan Kelly,2017-03-08T09:20:05Z,rfk,rfk,4,2,2
+304,fxa-customs-server,c0434db14c73f993d5f0e06e7e9c7c0b17354a31,chore(changelog): Update the changelog,Ryan Kelly,2017-03-08T09:14:50Z,rfk,rfk,25,25,0
+305,fxa-customs-server,63f30f6fceb6bb79b4de7050bb2c36e5a5540aa7,chore(docs): add circle ci badge to README,Vlad Filippov,2017-03-05T18:09:20Z,vladikoff,vladikoff,1,1,0
+306,fxa-customs-server,b0cb1fa1a74b182ea77b712b4a0195991decdf21,"feat(docker): add Docker support (#176) r=vladikoff,jbuck",Sean McArthur,2017-03-05T18:02:18Z,seanmonstar,seanmonstar,120,87,33
+307,fxa-customs-server,7c2b774d8ab1688deb8e13a2d8ad5c4e97350763,chore(package): Use ip-rep service client with keepalive enabled (#181) r=vladikoff,Greg Guthe,2017-02-27T21:46:21Z,g-k,g-k,8,4,4
+308,fxa-customs-server,30be84518a3a152f2e83f9a07c4196fd9fad63c4,fix(shutdown): Fix deferred call of process.exit(code). (#183); r=jrgm,Ryan Kelly,2017-02-27T06:06:13Z,rfk,rfk,2,1,1
+309,fxa-customs-server,2be2853414f5541d2ebf1146e2e72774e7b76d31,Release v1.81.0,Sean McArthur,2017-02-24T23:14:40Z,seanmonstar,seanmonstar,4,2,2
+310,fxa-customs-server,a521224641db5d916e7ca07f49ecfe83bbb073e3,"fix(reputation): add more (positive) logging to reputation service requests (#179), r=@vbudhram",John Morrison,2017-02-21T18:52:48Z,jrgm,jrgm,21,15,6
+311,fxa-customs-server,14e37c34962d329bd5e7b9cd320f996edd2b0e34,"feat(blocklist): Add support to specify the block level for multiple blocklists (#167), r=@rfk
+
+Ability to specify log only lists for ip blocklist.",Vijay Budhram,2017-02-20T14:51:21Z,vbudhram,vbudhram,206,108,98
+312,fxa-customs-server,310fafb7454ff4bdc583032b8efaa5b0a417b1a9,fix(config-set): Don't attempt to merge array-valued config items. (#171); r=jrgm,Ryan Kelly,2017-02-20T07:53:53Z,rfk,rfk,35,32,3
+313,fxa-customs-server,ce084e75fbf2b68684862c2a7415de31c737b0d6,Release v0.80.0,Ryan Kelly,2017-02-16T00:35:34Z,rfk,rfk,4,2,2
+314,fxa-customs-server,89678059e0d8df8a7f61bcf9948d84b7b7a5b023,"Fix rep service config (#172), r=@vbudhram, @jrgm
+
+Updates ip rep js client to 2.0.1 and makes the relevant test and server changes.",Greg Guthe,2017-02-15T14:09:36Z,g-k,g-k,56,23,33
+315,fxa-customs-server,84d6ca423e3ee508493d471361fbc1d6c451c734,"fix(tests): remove old code coverage tool (#173), r=@vbudhram
+
+Fixes #164",Vlad Filippov,2017-02-11T04:59:54Z,vladikoff,vladikoff,457,133,324
+316,fxa-customs-server,dd30b0ea92880bd50b971c53694cad6c72607a7f,"feat(sms): Add support for rate-limiting sms actions (#161), r=@philbooth, @rfk",Vijay Budhram,2017-02-09T15:54:07Z,vbudhram,vbudhram,479,449,30
+317,fxa-customs-server,7a56e8b521d688fc8a14271d86a4a543a432b7b5,"fix(startup): Exit process on any startup error. (#169), r=@rfk",Vijay Budhram,2017-02-08T20:42:49Z,vbudhram,vbudhram,5,3,2
+318,fxa-customs-server,c5002be045d515a39606be461f00173d6b7f77c1,fix(timers): Unref all the update-polling timers. (#170); r=vbudhram,Ryan Kelly,2017-02-08T20:32:00Z,rfk,rfk,6,6,0
+319,fxa-customs-server,7a73ca4f5787911692c36265ea9584f1d5c20718,"refactor(tests): Add ability to debug child processes (#162), r=@rfk",Vijay Budhram,2017-02-01T20:53:23Z,vbudhram,vbudhram,21,19,2
+320,fxa-customs-server,3689787e0b7ea8da95bf4fd37e197e011cdaba55,Release v0.79.0,Ryan Kelly,2017-01-25T04:10:22Z,rfk,rfk,4,2,2
+321,fxa-customs-server,a9f193232da881486f3a377f72f25d4ed9a95026,"fix(retryAfter): Round blocking periods up instead of down. (#159), r=@vbudhram
+
+Fix for intermittent test failures associated with `retryAfter`.",Ryan Kelly,2017-01-24T13:56:51Z,rfk,rfk,26,13,13
+322,fxa-customs-server,a8f4d68549d99cfee34e8d9dccfd328f5f0276ed,"feat(config): Merge with existing config when writing to memcache. (#151) r=vladikoff
+
+This makes it easier to change a single setting while leaving all
+the others alone.",Ryan Kelly,2017-01-19T02:04:23Z,rfk,rfk,137,80,57
+323,fxa-customs-server,4f5d781e6dceb765ab96b8c8b305bb7023a55536,"feat(ipreputation): Use IP reputation service from /check (#152), r=@vbudhram
+
+This adds support for using the ip reputation service to block requests that the service deems questionable. Disabled by default.",Greg Guthe,2017-01-17T19:34:13Z,g-k,g-k,579,505,74
+324,fxa-customs-server,262c210974818860e0f6f53dbb37145eca118245,"fix(test): increase rateLimitInterval for send_violation_tests (#157), r=@vbudhram",Greg Guthe,2017-01-11T17:11:30Z,g-k,g-k,4,2,2
+325,fxa-customs-server,fe231b1ee2d4f89a48dc66b775377885905f91dc,Release v0.78.0,Ryan Kelly,2017-01-11T05:23:56Z,rfk,rfk,11,9,2
+326,fxa-customs-server,d61ac269f30e43a7db4e249479b41d728e6591a2,"fix(config): remove mockmyid rate limit, add second restmail (#156); r=rfk",Vlad Filippov,2017-01-11T05:23:33Z,vladikoff,vladikoff,2,1,1
+327,fxa-customs-server,da057a2a06053d2159548e9c3b7151d68d89368b,fix(docs): Add note about commit messages (#155); r=rfk,Vijay Budhram,2017-01-10T19:47:29Z,vbudhram,vbudhram,2,2,0
+328,fxa-customs-server,e84a4be691c843faeb8b9b5ef9ff63e1b060d59f,"chore(shrinkwrap): add npm script for shrinkwrap (#150) r=vladikoff
+
+Fixes #149",Sai Prashanth Chandramouli,2016-12-07T23:48:49Z,TDA,TDA,6240,5436,804
+329,fxa-customs-server,9b94bd1bdd012217e322d2e008e16f3d7e57c22c,"Send violations to ip service (#148), r=@vbudhram
+
+This adds the tigerblood-js-client to the customs server. This is used to report when a request has been blocked to the Tigerblood service. It is disabled by default.",Greg Guthe,2016-11-28T14:08:23Z,g-k,g-k,1097,1035,62
+330,fxa-customs-server,344239219805657ba31c366b654aa80bc97c2e3f,Release v0.72.1,Ryan Kelly,2016-10-26T02:48:50Z,rfk,rfk,8,6,2
+331,fxa-customs-server,696f56ff80e006458ffbca8f35594f27257fdb0a,"Merge pull request #145 from mozilla/fix-per-ip-rate-limiting
+
+fix(ip_record): Correctly total bad logins by unique email address.",Sean McArthur,2016-10-26T01:17:51Z,seanmonstar,seanmonstar,60,44,16
+332,fxa-customs-server,4f20fadca6663e8313a4d4e3eb7d635ba283631c,fix(ip_record): Correctly total bad logins by unique email address.,Ryan Kelly,2016-10-25T04:51:17Z,rfk,rfk,60,44,16
+333,fxa-customs-server,6828d49337315982cb57dc20be4f08fa356057db,Release v0.72.0,Ryan Kelly,2016-10-19T08:21:04Z,rfk,rfk,14,12,2
+334,fxa-customs-server,85814853e24feff2efd27e7b832776f5214841cb,"Merge pull request #141 from mozilla/dont-log-msg
+
+fix(logging): Don't attempt to log a 'msg' field.",John Morrison,2016-10-19T05:26:37Z,jrgm,jrgm,4,2,2
+335,fxa-customs-server,dfc173e8fe9fd1061bc80291cace28f8f72efe51,fix(blocklist): Convert date to milliseconds for file comparison (#143); r=rfk,Vijay Budhram,2016-10-19T00:43:07Z,vbudhram,vbudhram,4,2,2
+336,fxa-customs-server,9f239034fd5e5efd2d75e235930e336b2179f1f2,feat(blocklist): Add latest firehol sample list (#144); r=rfk,Vijay Budhram,2016-10-19T00:42:09Z,vbudhram,vbudhram,652,376,276
+337,fxa-customs-server,01d8e3d2e2ce4461ea96b097d49e23a896719cee,"fix(logging): Don't attempt to log a 'msg' field.
+
+The logger used here (bunyan) treats 'msg' as a place to
+write its own formatted interpretation of the log message,
+so don't use it for our own purposes.",Ryan Kelly,2016-10-18T04:45:50Z,rfk,rfk,4,2,2
+338,fxa-customs-server,9545e7dc2b355ddc0388847db115170bc07866f2,chore(config): Don't set allow ALLOWED_IPS by default. (#138); r=jrgm,Ryan Kelly,2016-10-17T19:48:44Z,rfk,rfk,11,5,6
+339,fxa-customs-server,814d2e4f4a5e88eb10c6de12e5c1343b8ea976f0,"Merge pull request #137 from mozilla/backport-suspect-requests; r=vbudhram
+
+feat(requestChecks): Backport ""requestChecks"" framework from private repo",Ryan Kelly,2016-10-17T02:06:27Z,rfk,rfk,289,261,28
+340,fxa-customs-server,623de15c807068269ca19ae349350ae116c934ab,chore(lint): Fix up some linty issues noticed in PR review.,Ryan Kelly,2016-10-17T01:38:58Z,rfk,rfk,24,20,4
+341,fxa-customs-server,5ddfcf170a2dca5c332b65b3b841264e5a77457e,"feat(requestChecks): Backport ""requestChecks"" framework from private repo.",Ryan Kelly,2016-10-14T01:59:57Z,rfk,rfk,269,243,26
+342,fxa-customs-server,8642bc174e7ef896bd32e1533ff36ac707789bf1,"Merge pull request #136 from mozilla/unblockvs-ip-blocklist
+
+fix(unblock): Return `unblock` value for IPs on a blocklist",Sean McArthur,2016-10-05T16:38:32Z,seanmonstar,seanmonstar,6,4,2
+343,fxa-customs-server,fa2c306d618846a17fd38b47c93834aa8b9a3dbd,fix(unblock): Return `unblock` value for IPs on a blocklist,Ryan Kelly,2016-10-05T03:49:52Z,rfk,rfk,6,4,2
+344,fxa-customs-server,eb94a0132611f3882516a3a08a127bbb8f6c86d0,Release v0.71.0,Ryan Kelly,2016-10-05T03:41:11Z,rfk,rfk,12,10,2
+345,fxa-customs-server,03c8c02eee0b2aed883e3befd7fe19f8aa19f564,feat(unblock): add unblock rate limits (#131); r=rfk,Sean McArthur,2016-10-05T03:25:58Z,seanmonstar,seanmonstar,180,167,13
+346,fxa-customs-server,9a7b93a92449cc51beaff1ca5e7af262d8e18a07,fix(dependencies): update restify to 4.1.1 (#135); r=rfk,Sean McArthur,2016-10-05T03:23:50Z,seanmonstar,seanmonstar,246,132,114
+347,fxa-customs-server,1dc03ef84afbdf8117624a1fa347eaea37503926,feat(verify-code): Add rate-limiting of code verification attempts. (#132); r=vbudhram,Ryan Kelly,2016-10-04T02:10:41Z,rfk,rfk,268,264,4
+348,fxa-customs-server,101062c9704a80d17c821b2f2294c65952554ffe,fix(settings): Fix reloading of nested settings from mecmached (#133); r=vbudhram,Ryan Kelly,2016-10-03T23:58:51Z,rfk,rfk,44,40,4
+349,fxa-customs-server,029111d92ea639ad412e9fb1de5f8ea187f0d369,"feat(blocklist): Add blocklist module (#117), r=@rfk, @seanmonstar
+
+* feat(blocklist): Add blocklist module
+
+* feat(blocklist): Add log only support and update firehol blocklist
+
+* feat(blocklist): Update shrinkwrap
+
+* feat(blocklist): Add missing dependency and reshrinkwrap
+
+* feat(blocklist): PR Fixs
+
+* feat(blocklist): Add ability to automatically reload blocklist whenever blocklist file has been updated
+
+* feat(blocklist): Add missing test cases for coverage
+
+* feat(blocklist): Add support for multiple lists, updated firehol
+
+* feat(blocklist): Add test cases for multiple lists processing
+
+* feat(blocklist): Renamed to blockclass
+
+* feat(blocklist): update shrinkwrap
+
+* feat(blocklist): PR Updates
+
+* feat(blocklist): PR Updates
+
+* feat(blocklist): PR Updates
+
+* feat(blocklist): PR Updates",Vijay Budhram,2016-10-03T18:45:55Z,vbudhram,vbudhram,23247,18298,4949
+350,fxa-customs-server,61402426aa8c25d53690e8846dbd2ab1762fcb3e,Release v0.69.0,Ryan Kelly,2016-09-08T23:02:00Z,rfk,rfk,7,5,2
+351,fxa-customs-server,a60f740579094fe6ef5eec593b38f9cc6a19a7b1,"Merge pull request #129 from mozilla/add-optional-newrelic
+
+feature(newrelic): add optional newrelic integration",Ryan Kelly,2016-09-07T04:07:02Z,rfk,rfk,525,329,196
+352,fxa-customs-server,bac4bbc5d3ad7b47960c50f0a51786a0776bf21a,feature(newrelic): add optional newrelic integration,John Morrison,2016-09-07T01:12:00Z,jrgm,jrgm,525,329,196
+353,fxa-customs-server,ca9f8853cfde3983f9b2036a3e1f0683bbdec02d,Release v0.67.0,Sean McArthur,2016-08-11T18:41:24Z,seanmonstar,seanmonstar,4,2,2
+354,fxa-customs-server,7fe9bd361fc19f54684a98252a0cbb9cb0e9a23d,"Merge pull request #125 from mozilla/backport
+
+Backport of several IP blocks and email rate limiting from private repo",Ryan Kelly,2016-08-10T03:51:56Z,rfk,rfk,19,15,4
+355,fxa-customs-server,2a2415a730edab8cd3a3a6e0506f196ab9c4e4dc,"Merge pull request #332 from mozilla/shane-tomlinson-patch-1
+
+chore(docs): Point to monorepo in README",Shane Tomlinson,2019-04-03T06:19:00Z,Shane Tomlinson,Shane Tomlinson,135,2,133
+356,fxa-customs-server,4c041e6a748a679325d4c57daef8805225fee1ae,chore(docs): Point to monorepo in README,Shane Tomlinson,2019-04-03T05:58:17Z,Shane Tomlinson,Shane Tomlinson,135,2,133
+357,fxa-customs-server,a35593732d7dd60abf9f543c1d57cc209cd0a7d0,"Merge pull request #330 from mozilla/train-134 r=@philbooth
+
+chore(release): Merge train-134 into master.",Shane Tomlinson,2019-04-02T14:00:54Z,Shane Tomlinson,Shane Tomlinson,184,112,72
+358,fxa-customs-server,ea7d713de8f51592aba71926979153138c236118,Release v1.134.1,Shane Tomlinson,2019-04-02T13:56:09Z,Shane Tomlinson,Shane Tomlinson,14,12,2
+359,fxa-customs-server,4b2304b3d0f228ffd75a4d9a9c83b39b649f3a16,"Merge pull request #331 from mozilla/fix-audit-warnings r=@philbooth
+
+fix(deps): Fix the audit warnings.",Shane Tomlinson,2019-04-02T13:55:37Z,Shane Tomlinson,Shane Tomlinson,156,86,70
+360,fxa-customs-server,6014d759af1824e179b5f3379c61eefa1dbb1557,"fix(deps): Fix the audit warnings.
+
+Update:
+* tap
+* js-yaml
+* grunt",Shane Tomlinson,2019-04-02T13:34:15Z,Shane Tomlinson,Shane Tomlinson,156,86,70
+361,fxa-customs-server,a153198e11080c21bfd6955bc0296e577c6c6ecc,Release v1.134.0,Shane Tomlinson,2019-04-02T12:45:17Z,Shane Tomlinson,Shane Tomlinson,18,16,2
+362,fxa-customs-server,bfd53d094387b49a95c1a8a428fa3872f57fbef5,"Merge pull request #324 from mozilla/refactor-simplify-record-management r=@vbudhram
+
+refactor(server): Extract and simplify record retreival/storage, user defined rules.",Shane Tomlinson,2019-03-21T19:34:05Z,Shane Tomlinson,Shane Tomlinson,833,490,343
+363,fxa-customs-server,6f73c3c8b81df183cc59919feab0ddb2a6875aa0,"refactor(server): Extract and simplify record retreival/storage, user defined rules.
+
+server.js has a whole bunch of mixed concerns, part of which was record retreival
+and loading/checking user defined rules.
+
+This PR extracts record handling logic as well as user defined rules logic
+into their own modules.
+
+Loading/saving records can now be done through a common interface. fetchRecords no longer
+holds the assumption that an ip address will be passed in. setRecord no longer requires
+passing in a key as the key is stored on the record, and setRecords now only accepts records
+instead of it's confusing signature.  It's now possible to define non-enumerable
+properties on a record that are not saved when serialized.
+
+I started to use async/await to simplify logic where it made sense as well as
+started down the path to using native promises in places.
+
+Note, no remote tests are modified, so functionality should be the same.
+
+This is groundwork to simplify the DataFlow integration where a simple API is
+needed to fetch records of varying types.",Shane Tomlinson,2019-03-19T11:51:59Z,Shane Tomlinson,Shane Tomlinson,833,490,343
+364,fxa-customs-server,8a7fa302d8769d5f49b2e49c47b759312063fd29,"Merge pull request #326 from mozilla/node-10 r=@vladikoff
+
+feat(docker): Use node 10 to build the docker image",Shane Tomlinson,2019-03-20T21:08:57Z,Shane Tomlinson,Shane Tomlinson,7,3,4
+365,fxa-customs-server,2b124c2302c479dec0ca60fddfad7ceb0bea552e,feat(docker): Use node 10 to build the docker image,Shane Tomlinson,2019-03-20T13:27:14Z,Shane Tomlinson,Shane Tomlinson,7,3,4
+366,fxa-customs-server,24e36886dfd1238619a295ba038348f8c574d73c,"Merge pull request #323 from mozilla/train-132 r=@philbooth
+
+chore(release): Release v1.132.0",Shane Tomlinson,2019-03-05T14:20:13Z,Shane Tomlinson,Shane Tomlinson,14,12,2
+367,fxa-customs-server,48dbee59ea68de22957aec6e7a5cbf6aab6284e4,Release v1.132.0,Shane Tomlinson,2019-03-05T13:17:03Z,Shane Tomlinson,Shane Tomlinson,14,12,2
+368,fxa-customs-server,ce80a8bab69fb085bbd8fd1697fccb9e4b02f6ce,"Merge pull request #317 from mozilla/gcp-pubsub r=@philbooth
+
+feat(fraud-detection): Listen for DataFlow fraud detection events",Shane Tomlinson,2019-03-01T17:23:24Z,Shane Tomlinson,Shane Tomlinson,5211,2633,2578
+369,fxa-customs-server,ad16e74d0a3c3bf02aa41fbc43114b6a29a6cfbd,"feat(fraud-detection): Listen for DataFlow fraud detection events
+
+Hook up to GCP PubSub to listen for fraud detection events
+from the DataFlow fraud detection pipeline.
+
+fixes #311",Shane Tomlinson,2019-02-27T11:40:19Z,Shane Tomlinson,Shane Tomlinson,5211,2633,2578
+370,fxa-customs-server,ff64496c7339a64dcb512cd6c163322de03b1db4,"Merge train-130 into master
+
+https://github.com/mozilla/fxa-customs-server/pull/321
+r=vladikoff",Phil Booth,2019-02-06T15:47:35Z,philbooth,philbooth,78,47,31
+371,fxa-customs-server,f7cfac3630f5d91afe75fd74331127e9d3b44f55,Release v1.130.0,Phil Booth,2019-02-06T15:33:05Z,philbooth,philbooth,18,16,2
+372,fxa-customs-server,28ad6d56b322da0375afba87f33f0ee1cea99736,chore(package): update shrinkwrap,Phil Booth,2019-02-06T15:32:56Z,philbooth,philbooth,60,31,29
+373,fxa-customs-server,3c2fa72c84ffeeb9e89e7afe317a1fa1a79106fa,"Merge pull request #320 from mozilla/pb/319-homogeneous-log-properties
+
+https://github.com/mozilla/fxa-customs-server/pull/320
+r=vbudhram",Phil Booth,2019-02-06T15:29:13Z,philbooth,philbooth,46,40,6
+374,fxa-customs-server,bb91ab59b4d88108aa784ca1c1d8ffc204e042cc,fix(logs): preserve homogeneity of more log properties,Phil Booth,2019-02-06T14:17:09Z,philbooth,philbooth,46,40,6
+375,fxa-customs-server,9487ddb82565e4ffe3946c01c8e70c2741e4af58,"Merge train-129 into master
+
+https://github.com/mozilla/fxa-customs-server/pull/316
+r=shane-tomlinson",Phil Booth,2019-01-25T14:49:38Z,philbooth,philbooth,14,12,2
+376,fxa-customs-server,9257d4d8deaa5e3a25817ae32af8fa0f37a3b203,Release v1.129.0,Phil Booth,2019-01-25T14:18:18Z,philbooth,philbooth,14,12,2
+377,fxa-customs-server,b70d527517206d43bd83e5e347b5a2b42db403af,"Merge pull request #315 from mozilla/pb/314-homogeneous-log-properties
+
+https://github.com/mozilla/fxa-customs-server/pull/315
+r=shane-tomlinson",Phil Booth,2019-01-25T14:17:06Z,philbooth,philbooth,491,324,167
+378,fxa-customs-server,469ca49eab6789aad70595483169ae52c498a464,fix(logs): preserve homogeneity of log properties,Phil Booth,2019-01-24T15:53:13Z,philbooth,philbooth,491,324,167
+379,fxa-customs-server,eefe334349aa5992c8eba68c27658926fb6c4f51,"Merge pull request #284 from mozilla/train-124 r=@philbooth
+
+chore(release): Merge train-124 into master",Shane Tomlinson,2018-10-30T16:34:20Z,Shane Tomlinson,Shane Tomlinson,18,16,2
+380,fxa-customs-server,0df9787aae281cf5dd602e1385fc2be1a3f338a9,Release v1.124.0,Shane Tomlinson,2018-10-30T15:49:36Z,Shane Tomlinson,Shane Tomlinson,18,16,2
+381,fxa-customs-server,3bf13d4b56c9d095e96ee0aeafa51a1f37f758aa,"Merge pull request #283 from mozilla/tls-shrink r=@philbooth
+
+feat(deps): Add tls-shrink, remove ""^"" prefix on audit-filter version",Shane Tomlinson,2018-10-30T15:49:02Z,Shane Tomlinson,Shane Tomlinson,446,160,286
+382,fxa-customs-server,fd6912550746b8e2f333113179fef7c0fb5e27e5,"feat(deps): Add tls-shrink, remove ""^"" prefix on audit-filter version
+
+follow on from #280",Shane Tomlinson,2018-10-30T10:24:14Z,Shane Tomlinson,Shane Tomlinson,446,160,286
+383,fxa-customs-server,f76530532a09e608a30f35c7187420497c8275b4,"Merge pull request #280 from g-k/filtered-npm-audit r=@shane-tomlinson
+
+fix(deps): add filtered npm audit support",Shane Tomlinson,2018-10-30T10:20:51Z,Shane Tomlinson,Shane Tomlinson,23,22,1
+384,fxa-customs-server,fbc7d3b8b896b339779dcdaf5ad09d88a48b065e,"fix(deps): add filtered npm audit support
+
+refs: #270, #271
+
+https://github.com/mozilla/fxa/issues/303
+https://bugzilla.mozilla.org/show_bug.cgi?id=1478025",Greg Guthe,2018-09-26T20:56:48Z,g-k,g-k,23,22,1
+385,fxa-customs-server,a8fd00ea468c51cc95db304faf843b721e486bdf,"Merge pull request #282 from mozilla/train-123
+
+chore(release): Merge train-123 into master",Vlad Filippov,2018-10-18T18:49:42Z,vladikoff,vladikoff,10,8,2
+386,fxa-customs-server,79e0bc9cb76443da7cfb80e6663d366f4549a11f,Release v1.123.0,Shane Tomlinson,2018-10-16T11:58:53Z,Shane Tomlinson,Shane Tomlinson,10,8,2
+387,fxa-customs-server,4b439f3eab36b2056442577f371f181e82caaf07,"Merge pull request #281 from mozilla/train-122
+
+chore(release): Merge train-122 into master",Vlad Filippov,2018-10-02T21:04:00Z,vladikoff,vladikoff,10,8,2
+388,fxa-customs-server,460f46a41a4bd3ccb96529f2160dac5855206e78,Release v1.122.0,Shane Tomlinson,2018-10-02T19:51:09Z,Shane Tomlinson,Shane Tomlinson,10,8,2
+389,fxa-customs-server,1f86ce49a7985abad7a8b605a453b6da54f19d3f,"Merge pull request #279 from mozilla/train-121
+
+chore(release): Merge train-121 into master",Vlad Filippov,2018-09-18T13:39:19Z,vladikoff,vladikoff,10,8,2
+390,fxa-customs-server,cad8df4f0a664ca2bf5efe6fb26a891719f82669,Release v1.121.0,Shane Tomlinson,2018-09-18T13:32:52Z,Shane Tomlinson,Shane Tomlinson,10,8,2
+391,fxa-customs-server,9f3f160eea0218b8c18e4316cf596cc475cb4671,Merge pull request #278 from mozilla/train-120,Vijay Budhram,2018-09-07T02:03:03Z,vbudhram,vbudhram,14,12,2
+392,fxa-customs-server,aa4258c181c0c64b429599c1e7f65e5bcac1bcd2,Release v1.120.1,Ryan Kelly,2018-09-07T01:49:41Z,rfk,rfk,14,12,2
+393,fxa-customs-server,4c97576bf78d87a44bf06e794a3f12b53bdbfec0,"Merge pull request #277 from mozilla/add-token-code-limits, r=@rfk",Vijay Budhram,2018-09-07T01:45:46Z,vbudhram,vbudhram,303,164,139
+394,fxa-customs-server,cd949ae1ae59a235d88729dcc7f7ff71d9809187,feat(code): add custom rate limits for token code,Vijay Budhram,2018-09-06T17:30:33Z,vbudhram,vbudhram,303,164,139
+395,fxa-customs-server,986f889fc2a988fcd5757f708edb9b2435ab5142,"Merge pull request #276 from mozilla/train-120
+
+Release v1.120.0",Vlad Filippov,2018-09-06T01:49:06Z,vladikoff,vladikoff,18,16,2
+396,fxa-customs-server,5aea8bf0de639ff8218889257752cc119f6a9328,Release v1.120.0,Ryan Kelly,2018-09-06T01:28:38Z,rfk,rfk,18,16,2
+397,fxa-customs-server,884909eddda41d20686049447fcce08a295737c4,"fix(deps): Remove nsp support, add npm audit support in logging only mode. (#274) r=@vladikoff
+
+fixes #270
+fixes #271",Shane Tomlinson,2018-08-24T16:33:42Z,Shane Tomlinson,Shane Tomlinson,7466,4054,3412
+398,fxa-customs-server,d50ec3261f9c8c8c081e0b54d4fcf243efe6f5a9,"feat(deps): Update to the newest restify. (#264)
+
+Update to restify@7.2.1, restify-safe-json-formatter@0.3.0",Shane Tomlinson,2018-08-24T12:38:44Z,Shane Tomlinson,Shane Tomlinson,558,340,218
+399,fxa-customs-server,5a7b4764a04e512906c785383c4d7d3698a1f7ec,"Merge pull request #272 from mozilla/train-119
+
+Release v1.119.0",Vlad Filippov,2018-08-22T12:55:54Z,vladikoff,vladikoff,10,8,2
+400,fxa-customs-server,020f030bf334fe124c7310909820b283e91e90cf,Release v1.119.0,Shane Tomlinson,2018-08-22T12:34:40Z,Shane Tomlinson,Shane Tomlinson,10,8,2
+401,fxa-customs-server,96f3c28ec6a291ec2c29f6519cec36fbca926ec4,"Merge pull request #269 from mozilla/train-118 r=@vladikoff
+
+chore(release): Merge Release v1.118.1 into master",Shane Tomlinson,2018-08-21T19:24:48Z,Shane Tomlinson,Shane Tomlinson,15,13,2
+402,fxa-customs-server,a46e71387310b5c19fe2f512b6522bc6523ff47c,Release v1.118.1,Shane Tomlinson,2018-08-14T12:38:03Z,Shane Tomlinson,Shane Tomlinson,15,13,2
+403,fxa-customs-server,17a471500f05548b22b0cb4a9db572a6d37cbf28,fix(restify): set keepAliveTimeout correctly on api.server object (#267),John Morrison,2018-08-11T10:33:59Z,jrgm,jrgm,2,1,1
+404,fxa-customs-server,c10d339aeb83e5409c6275575dbcb2b3c9e05fe7,"fix(restify): set server.keepAliveTimeout to 120s, similar to in node6 (#266)",John Morrison,2018-08-09T03:20:25Z,jrgm,jrgm,8,8,0
+405,fxa-customs-server,a47503fb7d9b86f25974657a5d4b4b2d5336b523,"Merge pull request #265 from mozilla/train-118 r=@vladikoff
+
+chore(release): Merge train-118 into master",Shane Tomlinson,2018-08-08T21:29:29Z,Shane Tomlinson,Shane Tomlinson,14,12,2
+406,fxa-customs-server,8b1daec7d436e416ca8e1f4e9029407104a39d34,Release v1.118.0,Shane Tomlinson,2018-08-08T21:15:45Z,Shane Tomlinson,Shane Tomlinson,14,12,2
+407,fxa-customs-server,3fd76392080e81d42938fab4ea2b2d15fd1a5522,"fix(deps): update ip-reputation-js-client to 4.1.0 (#263) r=@vladikoff
+
+Makes timeout param include DNS resolution and connect() not just time since last byte after a connection is established.
+
+mozilla-services/ip-reputation-js-client#24",Greg Guthe,2018-08-01T14:31:51Z,g-k,g-k,187,152,35
+408,fxa-customs-server,6eb1e01488edd4de9bd1102c9841757e2273ae24,"Merge pull request #262 from mozilla/train-117 r=@vladikoff
+
+chore(release): Merge train-117 into master",Shane Tomlinson,2018-07-24T15:26:13Z,Shane Tomlinson,Shane Tomlinson,15,13,2
+409,fxa-customs-server,69a25602df1bd65300d9a2b99d3d08b200906d92,Release v1.117.0,Shane Tomlinson,2018-07-24T15:22:00Z,Shane Tomlinson,Shane Tomlinson,15,13,2
+410,fxa-customs-server,9d2115bde2aa069ae367aac4d391d707a83593e1,"Merge pull request #261 from mozilla/train-116 r=@vladikoff
+
+Release v1.116.0",Shane Tomlinson,2018-07-24T15:02:03Z,Shane Tomlinson,Shane Tomlinson,18,16,2
+411,fxa-customs-server,c346bb8c31ba144b64cbd8be0617623821b51d62,feat(ci): update to circle 2 (#260) r=@vbudhram,Vlad Filippov,2018-07-17T22:21:12Z,vladikoff,vladikoff,140,89,51
+412,fxa-customs-server,1d7ea3b7f9187d1474b3d1b4f860fe85ac0a9282,feat(code): add `recoveryKeyExists` to account status actions (#259) r=@vladikoff,Vijay Budhram,2018-07-17T18:23:28Z,vbudhram,vbudhram,6,4,2
+413,fxa-customs-server,d617b0b63261b24159250a18354ea10da3267043,Release v1.116.0,Shane Tomlinson,2018-07-11T13:04:30Z,Shane Tomlinson,Shane Tomlinson,18,16,2
+414,fxa-customs-server,5037ee8403acdc05d04fab677164f890806b308c,fix(circle): docker run --rm -it fxa-customs-server:build npm ls --production fxa#302,John Morrison,2018-07-03T17:27:51Z,jrgm,jrgm,1,1,0
+415,fxa-customs-server,5112862b3853969bfb34edb71eef1caf646805b8,"chore(release): Merge mozilla/train-115 into master r=@shane-tomlinson
+
+Release v1.115.0",Shane Tomlinson,2018-06-27T13:17:28Z,Shane Tomlinson,Shane Tomlinson,14,12,2
+416,fxa-customs-server,6ed167daa69bc9ab6e8bd178db10c4086b75b909,Release v1.115.0,Ryan Kelly,2018-06-27T05:44:43Z,rfk,rfk,14,12,2
+417,fxa-customs-server,458f94dd1bbceeca6becd2c5498ff75483f9333f,"test(reputation): adds compose based integration test with iprepd (#253) r=@vladikoff
+
+Add framework for integration testing between fxa-customs-server and
+iprepd (newer version of Tigerblood). The existing tests included a stub
+reputation server; this conducts similar testing but uses the actual
+reputation service backend.",Aaron Meihm,2018-06-26T21:30:11Z,Aaron Meihm,Aaron Meihm,261,260,1
+418,fxa-customs-server,6376028ecb95c45933a0abe73e887fbfedd4bd52,"Updates to reputation service integration (#251) r=@vladikoff
+
+* fix(deps): update ip-reputation-js-client to 4.0.2
+
+* feat(reputation): request time logging, update tests
+
+- Modify reputation service integration to log reputation service query
+  time
+- Include a test to verify ip-reputation-js-client return values contain
+  the desired timing value
+- The newer version of the reputation service deprecated the POST /
+  endpoint for reputation updates. Modify the stub reputation service
+  and tests to use the update endpoint (which should be used for both
+  new reputation creation and reputation updates now).",Aaron Meihm,2018-06-25T22:21:48Z,Aaron Meihm,Aaron Meihm,90,65,25
+419,fxa-customs-server,7ee26e709367594eaa6bd5e7e1c4c99b0df0bccb,"Merge pull request #256 from mozilla/train-114
+
+Merge v1.114.3 to master",Ryan Kelly,2018-06-22T04:10:30Z,rfk,rfk,2133,1073,1060
+420,fxa-customs-server,5fb8acb5831f94a977c764a2d00de1b129457f40,Release v1.114.3,Vijay Budhram,2018-06-21T16:15:25Z,vbudhram,vbudhram,2126,1068,1058
+421,fxa-customs-server,d419a53824074120eb1169b9cc46f8d38b980d31,feat(actions): Add 'verifyRecoveryCode' as a code-checking action.,Ryan Kelly,2018-06-21T04:32:04Z,rfk,rfk,7,5,2
+422,fxa-customs-server,13614b94029f7601168202b074514de00c6818ca,"Merge pull request #254 from mozilla/train-114 r=@jrgm
+
+merge train-114 into master",Shane Tomlinson,2018-06-13T23:06:39Z,Shane Tomlinson,Shane Tomlinson,42,38,4
+423,fxa-customs-server,96ff4ad7df973bb573d9fd486a12928d41e0cddd,Release v1.114.2,Shane Tomlinson,2018-06-13T21:55:24Z,Shane Tomlinson,Shane Tomlinson,14,12,2
+424,fxa-customs-server,781e3486b4800ecf2642257ef2b49fbcc1efd99c,"Merge pull request #255 from mozilla/fix-generic-node8-and-update-npm6 r=@shane-tomlinson
+
+fix(docker): base image node:8-alpine and upgrade to npm6",Shane Tomlinson,2018-06-13T21:54:31Z,Shane Tomlinson,Shane Tomlinson,4,3,1
+425,fxa-customs-server,60a90132a846330e60669a8d712789cfbbde7cb7,fix(docker): base image node:8-alpine and upgrade to npm6,John Morrison,2018-06-13T20:46:56Z,jrgm,jrgm,4,3,1
+426,fxa-customs-server,aa594fdfe56dd38d2f8f7566593767642c2521e9,Release v1.114.1,Shane Tomlinson,2018-06-13T18:47:44Z,Shane Tomlinson,Shane Tomlinson,14,12,2
+427,fxa-customs-server,8b706b2016ea41dcb96f18f08bf6f986f8f9deeb,"Merge pull request #252 from ameihm0912/testlocalfix r=@shane-tomlinson
+
+fix(tests): fix test-local.sh bug introduced in d177360",Shane Tomlinson,2018-06-13T18:41:32Z,Shane Tomlinson,Shane Tomlinson,2,1,1
+428,fxa-customs-server,057a039bf31605603e90879568b975a087ef4b84,Release v1.114.0,Shane Tomlinson,2018-06-13T17:29:11Z,Shane Tomlinson,Shane Tomlinson,16,14,2
+429,fxa-customs-server,35908016889e9eb622abeb4e24c98e252e48861a,fix(tests): fix test-local.sh bug introduced in d177360,Aaron Meihm,2018-06-12T20:31:35Z,Aaron Meihm,Aaron Meihm,2,1,1
+430,fxa-customs-server,d1773606504073dfcf139ecd6f3ca5492ebb62c7,"fix(tests): remove bash builtin from test-local.sh (#250) r=@vladikoff
+
+test-local.sh specifies /bin/sh as an interpreter, but contains the [[
+bash builtin which fails on systems where /bin/sh is not bash or is
+running in a compatibility mode.
+
+Updates test-local.sh to use a standard test command.",Aaron Meihm,2018-06-11T19:45:49Z,Aaron Meihm,Aaron Meihm,2,1,1
+431,fxa-customs-server,ab1fb6e2e75e978a5ff7e24ae4cd23050c01aa79,fix(deps): update ip rep client to v4 (#249) r=@vladikoff,Greg Guthe,2018-06-08T14:09:35Z,g-k,g-k,2128,1064,1064
+432,fxa-customs-server,c40684e4d9956a38f1b2ba680ecda26342fefabe,"fix(deps): Update ip rep client to v3 (#247), r=@vbudhram",Vlad Filippov,2018-05-31T13:59:37Z,vladikoff,vladikoff,9515,1319,8196
+433,fxa-customs-server,00e252b8d825ea6edc9fb60e0332ab39cd45f158,Release v1.113.0,Shane Tomlinson,2018-05-30T19:08:11Z,Shane Tomlinson,Shane Tomlinson,14,12,2
+434,fxa-customs-server,3a988b6a892b48ff3f77945fef5850b312076b36,chore(ci): Remove coveralls from travis config (#246),Ryan Kelly,2018-05-23T00:24:45Z,rfk,rfk,4,1,3
+435,fxa-customs-server,ab2a4a3599285ab66c3c4ef650129ee83e2102a4,Release v1.112.0,Shane Tomlinson,2018-05-16T12:54:50Z,Shane Tomlinson,Shane Tomlinson,15,13,2
+436,fxa-customs-server,aaa2afbd035dff2a56e05a93a42624d4d928d5ef,fix(npm): update shrinkwrap (#241),Vlad Filippov,2018-05-12T01:00:23Z,vladikoff,vladikoff,209,171,38
+437,fxa-customs-server,40580f100dddb1c571790be21ca2c594d15fba37,fix(nsp): Update newrelic version (#240) r=@vladikoff,John Morrison,2018-05-08T00:26:48Z,jrgm,jrgm,19241,12841,6400
+438,fxa-customs-server,cbde513dd83419b85862e30ee4eab24c3f02ed9e,Release v1.111.0,Shane Tomlinson,2018-05-02T10:03:08Z,Shane Tomlinson,Shane Tomlinson,14,12,2
+439,fxa-customs-server,e8e2e458c7eb7652095303e9f44ec5a349f13c85,feat(node): update to node 8 (#239)  r=@jrgm,Vlad Filippov,2018-04-24T01:17:19Z,vladikoff,vladikoff,5,2,3
+440,fxa-customs-server,85a8abbcb2204c5a0c641574595b9f83101a74eb,Release v1.110.0,Shane Tomlinson,2018-04-18T12:39:12Z,Shane Tomlinson,Shane Tomlinson,23,21,2
+441,fxa-customs-server,2a8c18045a819f4ce238e168bf255520e5948e3c,chore(docs): Add documentation on tagging private releases. (#237) r=@vladikoff,Ryan Kelly,2018-04-18T02:12:18Z,rfk,rfk,42,42,0
+442,fxa-customs-server,0ca8c5206405981c35428c08f6e475c4ad044152,fix(sms): Reduce sms rate-limit interval to half an hour. (#235); r=philbooth,Ryan Kelly,2018-04-16T06:16:17Z,rfk,rfk,2,1,1
+443,fxa-customs-server,2633c4cbc90199e8825beaaf7fe46b92204b765a,"fix(tests): fix dependent tests (#234), r=@rfk",Vijay Budhram,2018-04-13T04:04:22Z,vbudhram,vbudhram,163,103,60
+444,fxa-customs-server,970f01eaa1260f59ad9f11343b4d71a1764c3eed,"feat(totp): add totp rate limits (#233), r=@rfk",Vijay Budhram,2018-04-11T15:27:05Z,vbudhram,vbudhram,638,521,117
+445,fxa-customs-server,29a52a5db0ba3020c6e21042eb604ae3fe2d0c3e,Release v1.109.0,Ryan Kelly,2018-04-04T01:27:07Z,rfk,rfk,18,16,2
+446,fxa-customs-server,de0ddc70a75aaa405b97f7e9a3583699b1ca614e,fix(node): Use Node.js v6.14.0 (#232)  r=@vladikoff,Jon Buckley,2018-03-29T15:30:53Z,jbuck,jbuck,2,1,1
+447,fxa-customs-server,abac95c164eab3c6af4bbb900bc00797f1779be4,chore(deps): update ip-reputation-js-client (#231) r=@vladikoff,Phil Booth,2018-03-22T10:17:13Z,philbooth,philbooth,819,585,234
+448,fxa-customs-server,9de273decf910657df48fbb73f857493ff0313a5,Release v1.108.0,Ryan Kelly,2018-03-21T02:37:13Z,rfk,rfk,14,12,2
+449,fxa-customs-server,475bf23bf81ac72729defe319ea51760fde44361,"fix(test): start memcached as part of 'npm test' r=@vladikoff
+
+Fixes #228",Deepti,2018-03-19T19:14:31Z,deeptibaghel,deeptibaghel,34,19,15
+450,fxa-customs-server,be3b5794da2df8d8d7d042a269ef3ca47e248c1f,Release v1.106.0,Ryan Kelly,2018-02-21T01:36:27Z,rfk,rfk,22,20,2
+451,fxa-customs-server,d420b3a538082d226217c91f9827fc21a01b0508,"chore(deps): update deps, fix nsp (#229) r=@philbooth",Vlad Filippov,2018-02-17T14:33:59Z,vladikoff,vladikoff,1039,479,560
+452,fxa-customs-server,f205d1f24b0f029855a119055f7fceb10c260016,"Merge pull request #227 from g-k/check-ip-only-doc-and-log-fix
+
+https://github.com/mozilla/fxa-customs-server/pull/227
+r=philbooth",Phil Booth,2018-02-07T09:36:10Z,philbooth,philbooth,44,43,1
+453,fxa-customs-server,ed22ea90a475aeaaf75f32a05aa8b6abad507d09,docs(api): add /checkIpOnly,Greg Guthe,2018-02-06T15:44:09Z,g-k,g-k,42,42,0
+454,fxa-customs-server,13e6af46598d6cce3f0f1f8d49bf9b900dc92db0,fix(log): fix log op s/checkAuthenticated/checkIpOnly/,Greg Guthe,2018-02-06T15:34:39Z,g-k,g-k,2,1,1

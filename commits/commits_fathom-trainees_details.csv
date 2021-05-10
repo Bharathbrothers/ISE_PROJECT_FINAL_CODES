@@ -1,0 +1,57 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,fathom-trainees,dcebc936edda9d46fae724fbbadb9b2e21788c5b,Note that this project is obsolete.,Erik Rose,2020-01-03T21:10:04Z,erikrose,erikrose,6,6,0
+1,fathom-trainees,d3bb9dd34bca014f9673c13dd047e7d1194aa95d,"Ensure that 'yarn run watch' works with hard links
+
+This makes it possible for 'yarn run watch' to correctly detect file changes when a Fathom project's source 'trainees.js' is hardlinked to fathom-trainees' target 'trainees.js', even if that source 'trainees.js' has 'import' statements. Any changes to the imported files will also be correctly detected as a file change.
+
+See https://github.com/mozilla/fathom-trainees/issues/8#issuecomment-541253062 for more information.",Bianca Danforth,2019-10-11T23:09:56Z,biancadanforth,biancadanforth,5,4,1
+2,fathom-trainees,cb856e5aeb71c928f50bbcd8b85e08945820180c,Updates required version of fathom-web to 3.1,Daniel Hertenstetin,2019-08-02T15:45:02Z,danielhertenstein,danielhertenstein,2,1,1
+3,fathom-trainees,09ad5d6b938d3331979b0688f134a0b730386d8b,"Add Mozilla Code of Conduct file
+
+Fixes #5.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,2019-03-30T06:58:38Z,Mozilla-GitHub-Standards,Mozilla-GitHub-Standards,15,15,0
+4,fathom-trainees,f6d06793a75103502bba7f7fb12c4511f8542694,Remove a comment that came to nothing.,Erik Rose,2019-04-01T23:38:41Z,erikrose,erikrose,5,0,5
+5,fathom-trainees,581d38d03bbb4f859f4d980b2f827e8d42180dee,Note that ruleset() takes an array of rules now.,Erik Rose,2019-03-26T00:34:31Z,erikrose,erikrose,1,1,0
+6,fathom-trainees,b2a4b9de88caac501caea1ca0323261600a5a635,Update the comments.,Erik Rose,2019-03-26T00:17:20Z,erikrose,erikrose,19,8,11
+7,fathom-trainees,37f3d1c8de13d8a298edffb4ced31c3bfec481d9,Add version history to readme.,Erik Rose,2019-03-26T00:10:25Z,erikrose,erikrose,10,10,0
+8,fathom-trainees,e7d9fae31765e9db2a90825e530ad4399667d0f1,Bump Fathom dependency to >=3.0a1<4.0.,Erik Rose,2019-03-26T00:05:28Z,erikrose,erikrose,10,5,5
+9,fathom-trainees,c03ce6a171f280a0bdbfc3c192089d359f82cf83,"Remove ONEISH and ZEROISH in favor of hard 1s and 0s.
+
+This doesn't seem to affect the convergence rate of the loss function during training: the initial random weights have a greater effect.",Erik Rose,2019-03-25T23:43:27Z,erikrose,erikrose,51,17,34
+10,fathom-trainees,a029b8a38a3b8707c4efd6a6e1e662ef33400363,Add vectorType declaration.,Erik Rose,2019-03-25T23:25:40Z,erikrose,erikrose,3,3,0
+11,fathom-trainees,ef526e0699b76344501e6630d5bc7155523e45de,"Port to mappish coefficients, named rules, and internal weighting.",Erik Rose,2019-03-25T23:25:25Z,erikrose,erikrose,39,23,16
+12,fathom-trainees,34a0286195fc1ff4ffcc7c594647c004b1fb88ac,"Update to Fathom 2.8, which lets us click Bad cells to see what element was wrongly selected.",Erik Rose,2018-11-15T17:36:34Z,erikrose,erikrose,2,1,1
+13,fathom-trainees,d6941f2d34b00c97f3332f0c2e44ac2478fb2866,"Add hashes for dependencies.
+
+I'm sad some of them are SHA1s. We should figure out why at some point.",Erik Rose,2018-11-15T17:35:55Z,erikrose,erikrose,685,682,3
+14,fathom-trainees,6a0ca6b59ff70fcf05eb13906829b62856133a10,Document the newly available pluggable success functions. Depend on a newer Fathom that provides them.,Erik Rose,2018-10-09T18:53:36Z,erikrose,erikrose,20,18,2
+15,fathom-trainees,1f06477896a6c537c106140f91ffecb34d9f6ae6,Remove generated code that should have been gone in a35774c2067e7d16853052910e184d2c75004b5b.,Erik Rose,2018-10-09T18:27:18Z,erikrose,erikrose,78,0,78
+16,fathom-trainees,a35774c2067e7d16853052910e184d2c75004b5b,Factor out boilerplate into Fathom itself. Fix #1.,Erik Rose,2018-10-05T19:49:01Z,erikrose,erikrose,144,92,52
+17,fathom-trainees,d93bc593a08f6503d137df4d35ce2a2bc6b93b6e,"Make viewport size configurable per trainee.
+
+Obsolete `traineeCoeffs` message in favor of `trainee` so we don't need new logic for each new property.
+
+This will require FathomFox 1.4 or higher.",Erik Rose,2018-10-05T19:00:37Z,erikrose,erikrose,10,7,3
+18,fathom-trainees,25e2524daf4309c94ce644050b13e5e220a46383,"Rename the command for installing dependencies, avoiding an infinite `yarn` loop.
+
+It turns out `install` is short for `postinstall`, which npm and yarn call after installing. See https://github.com/yarnpkg/yarn/issues/2335.",Erik Rose,2018-08-20T16:23:39Z,erikrose,erikrose,4,2,2
+19,fathom-trainees,8d12209722502a07668f2b37f46e844a45d1f65c,"Use the now-released Fathom 2.4, getting rid of the git submodule which pointed to a prerelease branch.",Erik Rose,2018-08-17T19:59:17Z,erikrose,erikrose,11,5,6
+20,fathom-trainees,a54180915bdb6a1c4a8c788f8a06cc1b238bca6a,"Add a `yarn run install` script that works around a bad engine constraint in a deep dependency.
+
+This solves `error mutable-proxy@0.1.7: The engine ""node"" is incompatible with this module. Expected version ""6.X.X"".`.",Erik Rose,2018-08-16T20:38:52Z,erikrose,erikrose,5,3,2
+21,fathom-trainees,566dd7622603a847d40441267e9564ee7fd69650,Describe the overlay ruleset.,Erik Rose,2018-07-31T21:57:40Z,erikrose,erikrose,2,2,0
+22,fathom-trainees,e5d7d0c02104f7f80c81a802180953f2e910d02c,"Add the missing ""yarn install"" step.",Erik Rose,2018-07-19T19:50:05Z,erikrose,erikrose,1,1,0
+23,fathom-trainees,9fb03636583fb6ff714fd57c9291f1f1f940d1e4,Make intro a bit clearer.,Erik Rose,2018-07-19T19:45:25Z,erikrose,erikrose,2,1,1
+24,fathom-trainees,b434e59f30b930633ce58795fef10720c3ceefb9,Add readme and `yarn run browser`.,Erik Rose,2018-07-18T21:47:15Z,erikrose,erikrose,18,17,1
+25,fathom-trainees,26040584387c9a0d97c9899e9d80ad835723aaff,"Polish extension ID and description, and remove unneeded permissions.",Erik Rose,2018-07-13T15:21:33Z,erikrose,erikrose,12,4,8
+26,fathom-trainees,9e43ee3b33c0b066cb64c45debc1d1dff33d4a01,Improve trainees doclet.,Erik Rose,2018-07-13T15:16:24Z,erikrose,erikrose,12,9,3
+27,fathom-trainees,03b93df41f720993d4cb8bd77c6eeb19e4b26884,"Rename ""trainables"" to the existing word ""trainees"".",Erik Rose,2018-07-11T02:06:19Z,erikrose,erikrose,38,19,19
+28,fathom-trainees,2feb0c9375107a83dbe9d1db20d34a1b6ee7b41a,"Add Fathom as a submodule.
+
+We use the branch that I've ported to use ES2015-style imports, so rollup is happy.",Erik Rose,2018-07-10T21:29:37Z,erikrose,erikrose,1,1,0
+29,fathom-trainees,e9d8fa735d2414321bbf763e684b0ff4bb134b30,"Restore the original synchronous approach. All external messages work now.
+
+Turns out I was editing the wrong file when it wasn't working.",Erik Rose,2018-07-10T20:50:46Z,erikrose,erikrose,10,3,7
+30,fathom-trainees,413793b45cff96f24dbb0d38a60be7b1e1622c1e,Get external messaging working via async.,Erik Rose,2018-07-10T20:29:56Z,erikrose,erikrose,7,3,4
+31,fathom-trainees,eab0c7f4a1511adcdd71bbf749516b247975590b,"The external-message handler fires, but the sender just gets an empty object as a reply.",Erik Rose,2018-07-10T20:14:16Z,erikrose,erikrose,4876,4876,0

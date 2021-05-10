@@ -1,0 +1,133 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,cubeb-coreaudio-rs,0dfa46ce028b7f9eb5000ccf0c1e91f53302b064,map the name in c version,Chun-Min Chang,2018-10-07T23:31:34Z,ChunMinChang,ChunMinChang,12,6,6
+1,cubeb-coreaudio-rs,30c2e22a8f89761bae5d88c141529120e1e44074,todos,Chun-Min Chang,2018-10-07T23:18:24Z,ChunMinChang,ChunMinChang,9,9,0
+2,cubeb-coreaudio-rs,1c6c45992207552c3ee3e36a5c94cf4dfdea5e83,get vendor name,Chun-Min Chang,2018-10-07T23:10:33Z,ChunMinChang,ChunMinChang,28,24,4
+3,cubeb-coreaudio-rs,f17905797b207d0eb66a801715978cf8b49e0db5,add goals,Chun-Min Chang,2018-10-07T22:58:11Z,ChunMinChang,ChunMinChang,4,4,0
+4,cubeb-coreaudio-rs,d3f63d779ac8ebd8ad613dc299eeea55b7ef6fe5,todo,Chun-Min Chang,2018-10-07T22:55:37Z,ChunMinChang,ChunMinChang,4,4,0
+5,cubeb-coreaudio-rs,5a21300f1835046d9f4e200f4b16dedcebd5b00c,get data source name,Chun-Min Chang,2018-10-07T22:55:01Z,ChunMinChang,ChunMinChang,28,26,2
+6,cubeb-coreaudio-rs,b4818e3173c19830314c60f020ecb12bf129c7b4,Set friendly_name to device name,Chun-Min Chang,2018-10-07T22:48:06Z,ChunMinChang,ChunMinChang,44,38,6
+7,cubeb-coreaudio-rs,9e4c523015e1dfe4772e5115cd858dd7eb9941b7,"dev_into.{device_type, state, format, default_format}",Chun-Min Chang,2018-10-07T21:57:38Z,ChunMinChang,ChunMinChang,20,14,6
+8,cubeb-coreaudio-rs,a8626f1cd7cb6d6d34a10b3dd7706ae222ffa942,set group_id,Chun-Min Chang,2018-10-07T21:44:53Z,ChunMinChang,ChunMinChang,17,12,5
+9,cubeb-coreaudio-rs,c52add7593f076a3323d5c47884fc5165fa05d46,impl audiounit_strref_to_cstr_utf8,Chun-Min Chang,2018-10-07T21:32:27Z,ChunMinChang,ChunMinChang,92,85,7
+10,cubeb-coreaudio-rs,0e1ea24150c336cb9868a4149c5e61a2c803f358,impl a empty stream,Chun-Min Chang,2018-10-07T18:55:52Z,ChunMinChang,ChunMinChang,33,30,3
+11,cubeb-coreaudio-rs,b8521e23f2f66bb71add614d5c2af0db32bd4e33,Use audiounit_get_default_device_id to set preferred,Chun-Min Chang,2018-10-07T01:49:52Z,ChunMinChang,ChunMinChang,6,5,1
+12,cubeb-coreaudio-rs,32e84e1650c570dc39d5ad4aea82ff7b1b19c57d,Move tests and add tests for audiounit apis,Chun-Min Chang,2018-10-07T01:43:34Z,ChunMinChang,ChunMinChang,516,325,191
+13,cubeb-coreaudio-rs,dbe89218f283b02425602d426d73b5e6ccfc42b0,add tests,Chun-Min Chang,2018-10-07T01:37:50Z,ChunMinChang,ChunMinChang,84,77,7
+14,cubeb-coreaudio-rs,a0c9c514d4478601f70f5e2f3068b4aaa2348eb0,"impl for audiounit_get_channel_count, audiounit_get_devices_of_type, and audiounit_create_device_from_hwdev",Chun-Min Chang,2018-10-07T01:21:15Z,ChunMinChang,ChunMinChang,248,236,12
+15,cubeb-coreaudio-rs,8cbe8b138ce64b6233708bc14c7b2d5c9d4ec359,dummy implementation for enumerate_devices,Chun-Min Chang,2018-10-07T00:38:12Z,ChunMinChang,ChunMinChang,79,74,5
+16,cubeb-coreaudio-rs,a960e4bfb93d7775511de85186f7cb644440f018,Change backend_id,Chun-Min Chang,2018-10-05T23:31:18Z,ChunMinChang,ChunMinChang,2,1,1
+17,cubeb-coreaudio-rs,07856d3a1c9548aa7d5c6291d64558a9f19a881a,rename,Chun-Min Chang,2018-10-05T23:30:47Z,ChunMinChang,ChunMinChang,20,10,10
+18,cubeb-coreaudio-rs,cfe8450843fce1b98e873f656997e3b657de7c1a,Add lib,Chun-Min Chang,2018-10-05T23:20:58Z,ChunMinChang,ChunMinChang,3,3,0
+19,cubeb-coreaudio-rs,4df011a13b5536a13acf91daa6b1fa7791f8ab47,fallback to test implementation,Chun-Min Chang,2018-10-05T23:11:30Z,ChunMinChang,ChunMinChang,683,205,478
+20,cubeb-coreaudio-rs,253939a7bb8d3e2b2aba2a2eac5161d4c473bde0,dummp implementation for enumerate_devices,Chun-Min Chang,2018-10-05T21:56:19Z,ChunMinChang,ChunMinChang,631,535,96
+21,cubeb-coreaudio-rs,b567926418955830fc1b052b4c1ea291db66319b,"Rust Interfaces to Cubeb APIs
+
+Create empty implementations for all the Cubeb Rust interfaces first. Before implementing the underlying platform-dependent code in Rust, it's better to make sureall the Cubeb APIs are callable from C/C++.
+
+On ther other hands, it's a good opportunity to know how the Cubeb Rust interfaces connect to the Cubeb C interfaces. All the Cubeb Rust interfaces are in `cubeb-rs` (https://github.com/djg/cubeb-rs) git repo. The types and APIs of Cubeb are passed from cubeb-sys to cubeb-core to cubeb-backend, and therefore are called from cubeb-backend to cubeb-core to cubeb-ffi. To implement platform-dependent behavior, a `Context` instance is created and is used to call the platform-dependent APIs based on the platform libraries. The above note are commented verbosely in the code for now. They should be removed once it's ready to publish. Just leave them to make other beginners(like me) know how it works for now.",Chun-Min Chang,2018-09-10T23:18:04Z,ChunMinChang,ChunMinChang,140,133,7
+22,cubeb-coreaudio-rs,8abc3271462e0a7c75d4f14aa934bf48a1ac6ad3,Add editorconfig,Chun-Min Chang,2018-09-10T18:23:29Z,ChunMinChang,ChunMinChang,12,12,0
+23,cubeb-coreaudio-rs,d9fadc00a82c1a8cc4ef2244216f62388c266926,create a empty cargo library crate,Chun-Min Chang,2018-09-10T18:23:03Z,ChunMinChang,ChunMinChang,16,16,0
+24,cubeb-coreaudio-rs,e6286ad1993500a32a15934b1cd8d7a8a1e50409,Add link to cubeb,Chun-Min Chang,2018-09-10T18:20:11Z,ChunMinChang,ChunMinChang,4,3,1
+25,cubeb-coreaudio-rs,cc5b1ea55152d95ee89b2c0f8358ba2218094bbc,Add Readme and License,Chun-Min Chang,2018-09-10T18:18:00Z,ChunMinChang,ChunMinChang,16,16,0
+26,cubeb-coreaudio-rs,c5a8ff938089f586fd5d21fd5e88e4b5908df03b,"Implement Debug trait for AudioUnit{Context, Stream} and OwnedCriticalSection",Chun-Min Chang,2018-11-01T17:34:26Z,ChunMinChang,ChunMinChang,16,13,3
+27,cubeb-coreaudio-rs,d629308290a3157c0cb97ae00f656ac9a1814c5a,"Add members: {input, output}_stream_params in AudioUnitStream",Chun-Min Chang,2018-11-01T17:06:50Z,ChunMinChang,ChunMinChang,26,25,1
+28,cubeb-coreaudio-rs,6b6ac5edafa8a164f0a1682363f61280b7f6eb7a,Add members to AudioUnitStream,Chun-Min Chang,2018-10-31T23:00:58Z,ChunMinChang,ChunMinChang,40,34,6
+29,cubeb-coreaudio-rs,e0844e0d594fa1ccaf86c0c4593e1b31732d825e,Remove useless member in AudioUnitStream,Chun-Min Chang,2018-10-31T22:47:58Z,ChunMinChang,ChunMinChang,2,0,2
+30,cubeb-coreaudio-rs,2ee32ae411a21423b882dedf52e4e62b3c3fbbc3,Return Self instead of Result<Box<Self>> from AudioUnitStream::new(),Chun-Min Chang,2018-10-31T22:40:47Z,ChunMinChang,ChunMinChang,22,10,12
+31,cubeb-coreaudio-rs,bb3b74165a45f35e84a2d41583c66062df6ff968,"Add test cases for audiounit_{add, remove}_device_listener",Chun-Min Chang,2018-10-31T21:44:48Z,ChunMinChang,ChunMinChang,458,456,2
+32,cubeb-coreaudio-rs,8cdb03db865d7788bbad13cdf91f72116a433a75,Revise tests,Chun-Min Chang,2018-10-31T16:50:13Z,ChunMinChang,ChunMinChang,4,2,2
+33,cubeb-coreaudio-rs,05b7aee3b295c2cd77e79ea366d03b925bbaee42,Revise comments,Chun-Min Chang,2018-10-31T16:40:48Z,ChunMinChang,ChunMinChang,9,7,2
+34,cubeb-coreaudio-rs,97d3c6afca9d2114c00f4794e00421bfb45162aa,Add notes,Chun-Min Chang,2018-10-31T00:06:43Z,ChunMinChang,ChunMinChang,15,9,6
+35,cubeb-coreaudio-rs,d0695114091ef1b8df89a8c96ab74d75299acaff,LGTM fix,Chun-Min Chang,2018-10-30T23:49:45Z,ChunMinChang,ChunMinChang,6,3,3
+36,cubeb-coreaudio-rs,16bcd4badcb602663ced736253fc32b6087af33d,Check paramters of stream_init,Chun-Min Chang,2018-10-30T23:47:54Z,ChunMinChang,ChunMinChang,19,14,5
+37,cubeb-coreaudio-rs,6b85c9ece68c8198e7c42fa0e1dd1d4988be104b,Impl audiounit_increment_active_streams,Chun-Min Chang,2018-10-30T23:21:14Z,ChunMinChang,ChunMinChang,11,9,2
+38,cubeb-coreaudio-rs,b9f918bd62d0773877c46008d8219755b9676d14,A workaround to use AutoLock in stream_init,Chun-Min Chang,2018-10-30T23:01:25Z,ChunMinChang,ChunMinChang,13,13,0
+39,cubeb-coreaudio-rs,69b5dbb5372a734661b2707632a0b6aec350067c,Sync with C version (and style),Chun-Min Chang,2018-10-30T21:44:03Z,ChunMinChang,ChunMinChang,14,7,7
+40,cubeb-coreaudio-rs,ee3d3d59dc6bfb8ca9b4080a27162b210ca2083e,LGTM fix,Chun-Min Chang,2018-10-30T21:43:41Z,ChunMinChang,ChunMinChang,4,2,2
+41,cubeb-coreaudio-rs,546eb20aca875bd0fa952721318a52af3bf89907,Add missing license,Chun-Min Chang,2018-10-30T21:32:03Z,ChunMinChang,ChunMinChang,15,15,0
+42,cubeb-coreaudio-rs,35f456c23d98d0990c3522276f558e5398d56c51,Use async_dispatch in audiounit_collection_changed_callback,Chun-Min Chang,2018-10-30T20:08:39Z,ChunMinChang,ChunMinChang,105,99,6
+43,cubeb-coreaudio-rs,0cba63ea839854b571d6aa7e760f9fe2318fa199,Add new() and init() in AudioUnitContext,Chun-Min Chang,2018-10-30T18:27:56Z,ChunMinChang,ChunMinChang,31,16,15
+44,cubeb-coreaudio-rs,2ffc286344682cef6cb27a4f52bb59401c03748f,Add *_device_array in AudioUnitContext,Chun-Min Chang,2018-10-30T18:21:17Z,ChunMinChang,ChunMinChang,15,15,0
+45,cubeb-coreaudio-rs,87e62824aa9ff49499857d3626b4d37f4e759eb9,sync with C version,Chun-Min Chang,2018-10-30T17:53:32Z,ChunMinChang,ChunMinChang,3,3,0
+46,cubeb-coreaudio-rs,e1e07ef0cd1860aed7417c1168b50ba17c52d327,Merge code for test_ops_context_register_device_collection_changed_twice_*,Chun-Min Chang,2018-10-30T17:43:07Z,ChunMinChang,ChunMinChang,97,15,82
+47,cubeb-coreaudio-rs,197e2ecc7fb676ca29825abfc7c076645327e8bb,Add tests for register_device_collection_changed,Chun-Min Chang,2018-10-29T23:46:35Z,ChunMinChang,ChunMinChang,198,198,0
+48,cubeb-coreaudio-rs,2bc8e5987a2865208bdedd4ff501efd94be554ea,Add test for register_device_collection_changed with unknown type,Chun-Min Chang,2018-10-29T23:20:32Z,ChunMinChang,ChunMinChang,17,17,0
+49,cubeb-coreaudio-rs,5475c0567db322a18617dfb54010cead1171be0b,add test for audio_object_remove_property_listener,Chun-Min Chang,2018-10-29T23:13:46Z,ChunMinChang,ChunMinChang,25,16,9
+50,cubeb-coreaudio-rs,b3204f966b15851a6cfd9f22245fb7b135905066,Fix tests,Chun-Min Chang,2018-10-29T23:00:15Z,ChunMinChang,ChunMinChang,10,9,1
+51,cubeb-coreaudio-rs,db2d5cf9382c64af5726285d18999b33da8fbf82,Store collection changed callbacks and user defined pointer in context,Chun-Min Chang,2018-10-29T21:46:26Z,ChunMinChang,ChunMinChang,68,63,5
+52,cubeb-coreaudio-rs,1488166435230e60fd648bb6def5b8e55533da0e,audio_object_remove_property_listener,Chun-Min Chang,2018-10-29T21:45:29Z,ChunMinChang,ChunMinChang,16,16,0
+53,cubeb-coreaudio-rs,7bcc057baa83f0bbfb65d0043caccc125debe3db,Add notes for OwnedCriticalSection,Chun-Min Chang,2018-10-29T20:39:57Z,ChunMinChang,ChunMinChang,6,6,0
+54,cubeb-coreaudio-rs,5eba915d08ed1b6f52d422f8fd837aadfd613ec8,Add a mutex(OwnedCriticalSection) in AudioUnitContext,Chun-Min Chang,2018-10-29T20:32:41Z,ChunMinChang,ChunMinChang,29,21,8
+55,cubeb-coreaudio-rs,0971bb55c302d6fa46d38ed05d34b502a245856f,dummy implementation for audiounit_remove_device_listener,Chun-Min Chang,2018-10-29T20:24:23Z,ChunMinChang,ChunMinChang,19,16,3
+56,cubeb-coreaudio-rs,7eb2d8079cb19f20b8cfe3e311fe8e0c66d763ed,Check type for register_device_collection_changed,Chun-Min Chang,2018-10-29T18:48:09Z,ChunMinChang,ChunMinChang,4,4,0
+57,cubeb-coreaudio-rs,36c76c5efd9bd3230666961a4be31594ac658526,Dummy implementation for register_device_collection_changed,Chun-Min Chang,2018-10-29T18:28:22Z,ChunMinChang,ChunMinChang,31,28,3
+58,cubeb-coreaudio-rs,3da9707dbbdb2d95eea3ae5826ea8f7a0963db44,C style,Chun-Min Chang,2018-10-29T17:57:11Z,ChunMinChang,ChunMinChang,6,4,2
+59,cubeb-coreaudio-rs,557e6e8e55c062bf88a506536231b174dbebd4c9,reference,Chun-Min Chang,2018-10-29T01:12:00Z,ChunMinChang,ChunMinChang,5,2,3
+60,cubeb-coreaudio-rs,01d1ea3ce8b4a5d4d480a260e95ba67cec80dd5d,style and comment,Chun-Min Chang,2018-10-29T00:38:42Z,ChunMinChang,ChunMinChang,8,4,4
+61,cubeb-coreaudio-rs,629c1e5a55abfb82fc836c164c597537a7b680e7,fix tests,Chun-Min Chang,2018-10-26T23:25:59Z,ChunMinChang,ChunMinChang,24,22,2
+62,cubeb-coreaudio-rs,28e1d130e105a71bbd095777f577bb6d81bed415,Fix test and remove useless comments,Chun-Min Chang,2018-10-26T22:02:54Z,ChunMinChang,ChunMinChang,60,33,27
+63,cubeb-coreaudio-rs,52de9962538570f6e813fa288261190d66c8cb36,Impl: audio_object_add_property_listener,Chun-Min Chang,2018-10-25T22:43:16Z,ChunMinChang,ChunMinChang,62,62,0
+64,cubeb-coreaudio-rs,3e87dfeed0a3227e0164f1c624fab7bb77189a44,Add note for test_async_dispatch,Chun-Min Chang,2018-10-25T20:52:51Z,ChunMinChang,ChunMinChang,9,9,0
+65,cubeb-coreaudio-rs,eb7aecc1188e6840ef1765ae405cfb7570a48aa2,Check tasks' order by logging and checking the shared resource's data,Chun-Min Chang,2018-10-25T20:07:33Z,ChunMinChang,ChunMinChang,32,18,14
+66,cubeb-coreaudio-rs,28c7512cdcf279e2fa4db7500e3865e3667b33d9,Fix test_async_dispatch: Don't release the resource until tasks are done.,Chun-Min Chang,2018-10-25T20:01:20Z,ChunMinChang,ChunMinChang,27,20,7
+67,cubeb-coreaudio-rs,912fbaf646eb7743f2afcde10b3965fe04293a5d,State reasons about why the test cannot be run,Chun-Min Chang,2018-10-25T05:13:55Z,ChunMinChang,ChunMinChang,22,14,8
+68,cubeb-coreaudio-rs,21cd67910a00360510c359fd0fd815bec8fb9e8e,Remove log for multithread tests,Chun-Min Chang,2018-10-25T05:05:30Z,ChunMinChang,ChunMinChang,14,4,10
+69,cubeb-coreaudio-rs,ec330081cc290bee663726d95cc66dff526eac10,Revise log,Chun-Min Chang,2018-10-25T05:04:02Z,ChunMinChang,ChunMinChang,17,6,11
+70,cubeb-coreaudio-rs,84e131285ab8cdf44fa794fdc51b67b99ef7d7ab,change the way to check results for the multithread tests,Chun-Min Chang,2018-10-25T04:56:03Z,ChunMinChang,ChunMinChang,16,8,8
+71,cubeb-coreaudio-rs,c51d633207ebed8e016c4f6db356bd7e4aaadda5,"Fixing test fail for test_critical_section_multithread
+
+Introduce a AutoLock to make sure whole block is locked.",Chun-Min Chang,2018-10-25T04:49:30Z,ChunMinChang,ChunMinChang,37,26,11
+72,cubeb-coreaudio-rs,081475ccabb7b8540b8a6846e9779ef44b201286,ignore test_async_dispatch for now,Chun-Min Chang,2018-10-25T04:48:02Z,ChunMinChang,ChunMinChang,4,3,1
+73,cubeb-coreaudio-rs,9078abb17c075c3e42e624c3dee3d48ca5aefb33,"Implement async_dispatch, which is based on dispatch_async_f, to replace dispatch_async",Chun-Min Chang,2018-10-24T22:47:52Z,ChunMinChang,ChunMinChang,108,100,8
+74,cubeb-coreaudio-rs,3c2adde4daa63a54f6ee0ce4eadb95f7868e8ecf,example to call osx dispatch_async_f API,Chun-Min Chang,2018-10-24T22:28:41Z,ChunMinChang,ChunMinChang,53,52,1
+75,cubeb-coreaudio-rs,0462379ecb10d4ef6e176040527be7c7e4dc7ac3,add todo for owned_critical_section,Chun-Min Chang,2018-10-24T22:26:50Z,ChunMinChang,ChunMinChang,2,2,0
+76,cubeb-coreaudio-rs,98fc025a5eacb8533958fc24f604a55046b1f54e,fix test for owned critical section,Chun-Min Chang,2018-10-24T22:08:26Z,ChunMinChang,ChunMinChang,7,4,3
+77,cubeb-coreaudio-rs,501f39de5794f0ef56363782f7c73c3759eea42c,Revise comments,Chun-Min Chang,2018-10-24T21:01:37Z,ChunMinChang,ChunMinChang,12,6,6
+78,cubeb-coreaudio-rs,ed767fe74b76a32bc28c5aabb78442f41f295d0c,make sure the passed pointer is same.,Chun-Min Chang,2018-10-24T20:50:21Z,ChunMinChang,ChunMinChang,2,2,0
+79,cubeb-coreaudio-rs,11a5f5af5f8b0d60055b8e1edad64b8d59486235,Make the hacky pointer passing works on 32 or 64-bit computer,Chun-Min Chang,2018-10-24T20:42:32Z,ChunMinChang,ChunMinChang,14,6,8
+80,cubeb-coreaudio-rs,a3ff1e13c2b933846a15cf194266d8737b6be013,update note,Chun-Min Chang,2018-10-24T20:12:59Z,ChunMinChang,ChunMinChang,1,1,0
+81,cubeb-coreaudio-rs,09f2fa0f77b85f874a767fae568f036d0250d161,link to a prototype to replace dispatch_async,Chun-Min Chang,2018-10-24T18:29:22Z,ChunMinChang,ChunMinChang,11,6,5
+82,cubeb-coreaudio-rs,7b8f62292c6809bf5c5ca86ed3e4998d3430e733,Update note,Chun-Min Chang,2018-10-24T02:57:52Z,ChunMinChang,ChunMinChang,6,4,2
+83,cubeb-coreaudio-rs,a9059675caf4f161adf3729e0b6955f71f3b0608,Update issues,Chun-Min Chang,2018-10-23T23:52:33Z,ChunMinChang,ChunMinChang,7,7,0
+84,cubeb-coreaudio-rs,7eed34a72375fa269f648b641b600bea6ebadfd4,update note for mutex,Chun-Min Chang,2018-10-23T22:53:43Z,ChunMinChang,ChunMinChang,231,115,116
+85,cubeb-coreaudio-rs,6fc75e2520b02d8499669bb763e02de0336e831e,mutex issues,Chun-Min Chang,2018-10-23T17:20:14Z,ChunMinChang,ChunMinChang,174,116,58
+86,cubeb-coreaudio-rs,4f12b4c44fe2b5d4f1852af0b6f8d2999cbe162d,move tests,Chun-Min Chang,2018-10-23T17:12:24Z,ChunMinChang,ChunMinChang,187,91,96
+87,cubeb-coreaudio-rs,398a18b27f9a221fa1123efed1dc00f0a4b574eb,add todo,Chun-Min Chang,2018-10-22T22:35:46Z,ChunMinChang,ChunMinChang,2,2,0
+88,cubeb-coreaudio-rs,ed67184f24788dce4685afeda89145ef1da94089,add notes,Chun-Min Chang,2018-10-22T22:33:36Z,ChunMinChang,ChunMinChang,6,5,1
+89,cubeb-coreaudio-rs,f3852c47e4cb8a312586e6aaa44a082dc49f1314,Impl owned_critical_section,Chun-Min Chang,2018-10-22T22:04:29Z,ChunMinChang,ChunMinChang,168,168,0
+90,cubeb-coreaudio-rs,8be35cee085ce41f873a6e9bc75c9eab3130719a,Make ops private,Chun-Min Chang,2018-10-22T18:14:38Z,ChunMinChang,ChunMinChang,6,3,3
+91,cubeb-coreaudio-rs,415de06392b55d3745f3277671a9c13062bc1279,Remove useless comments,Chun-Min Chang,2018-10-22T17:32:07Z,ChunMinChang,ChunMinChang,10,0,10
+92,cubeb-coreaudio-rs,32c5f8a3a92f520cca1fbff6884e69f282a86367,Revise comments about how to operate a variable-size struct,Chun-Min Chang,2018-10-22T17:16:00Z,ChunMinChang,ChunMinChang,15,10,5
+93,cubeb-coreaudio-rs,d8aaf2a6f95cdfaaffcca326e29c70eb91bb23c3,fix,Chun-Min Chang,2018-10-22T05:44:57Z,ChunMinChang,ChunMinChang,12,9,3
+94,cubeb-coreaudio-rs,0a4995aa1698459fe93b1c1ece1ba61549289d54,add todo,Chun-Min Chang,2018-10-21T21:48:39Z,ChunMinChang,ChunMinChang,4,3,1
+95,cubeb-coreaudio-rs,1fe65cef68ad10732174eb441794dcab49421af7,fix memory leaks,Chun-Min Chang,2018-10-21T05:49:32Z,ChunMinChang,ChunMinChang,29,23,6
+96,cubeb-coreaudio-rs,6245cbfcdd9fd7e1eb3def0cb95a6a0e456f4bbe,another approach for get_device_name,Chun-Min Chang,2018-10-21T03:40:59Z,ChunMinChang,ChunMinChang,22,22,0
+97,cubeb-coreaudio-rs,0163f8d1cf18419591d6c388ac745bd7182f5063,LGTM fix,Chun-Min Chang,2018-10-21T03:34:41Z,ChunMinChang,ChunMinChang,5,3,2
+98,cubeb-coreaudio-rs,69c169c1bc871bf49a939cf50cbff8476664d76e,fix audiounit_strref_to_cstr_utf8,Chun-Min Chang,2018-10-21T03:25:12Z,ChunMinChang,ChunMinChang,1,1,0
+99,cubeb-coreaudio-rs,65c8fed6980597482d54b324ac20ddb568ecee4c,add todo,Chun-Min Chang,2018-10-19T23:41:26Z,ChunMinChang,ChunMinChang,1,1,0
+100,cubeb-coreaudio-rs,f6e26f5625969e2b30dddd8afa6e5837effd2466,Sync with C version: Remove private aggregate devices in audiounit_get_devices_of_type,Chun-Min Chang,2018-10-19T23:28:05Z,ChunMinChang,ChunMinChang,11,10,1
+101,cubeb-coreaudio-rs,fb9a305b89a583215bae2b650d2ec4f1cf29d20b,remove log in test and add todo,Chun-Min Chang,2018-10-19T23:21:39Z,ChunMinChang,ChunMinChang,4,1,3
+102,cubeb-coreaudio-rs,b18e3ffbf39af1b106b02d19f5a823dcbb0cd6cc,Create a function to replace CFSTR since it's not support in core-foundation-sys,Chun-Min Chang,2018-10-19T23:20:29Z,ChunMinChang,ChunMinChang,30,30,0
+103,cubeb-coreaudio-rs,9546dab87dd1506a8b363b3f4424fa07374880c0,rename,Chun-Min Chang,2018-10-19T21:30:05Z,ChunMinChang,ChunMinChang,4,2,2
+104,cubeb-coreaudio-rs,71d0c58cf5f668099e8ca4fa66b03a7d9fcced83,impl: get_device_name,Chun-Min Chang,2018-10-19T21:29:07Z,ChunMinChang,ChunMinChang,47,47,0
+105,cubeb-coreaudio-rs,076efaa7aa037452e5c2cec9a39eaff221d82c4a,add comments,Chun-Min Chang,2018-10-10T17:12:08Z,ChunMinChang,ChunMinChang,17,9,8
+106,cubeb-coreaudio-rs,3809c0726ed7eeb0a16c0c14d7ed521f8dc1634d,add tests,Chun-Min Chang,2018-10-10T00:42:12Z,ChunMinChang,ChunMinChang,22,19,3
+107,cubeb-coreaudio-rs,fb011527eb9e271ddbc32c4c70510b397ee40342,"Impl: max_channel_count, min_latency, and preferred_sample_rate to pass test_latency.cpp in cubeb repo",Chun-Min Chang,2018-10-09T23:49:46Z,ChunMinChang,ChunMinChang,120,117,3
+108,cubeb-coreaudio-rs,0c22f0db0aecec1516d173f438a727b47bb23eba,Merge branch 'master' of https://github.com/ChunMinChang/cubeb-coreaudio-rs,Chun-Min Chang,2018-10-09T19:58:37Z,ChunMinChang,ChunMinChang,2,1,1
+109,cubeb-coreaudio-rs,3dfb29b4993216332e4baf9f952ede7dde7811da,Test if the device-type is in-out,Chun-Min Chang,2018-10-09T19:58:26Z,ChunMinChang,ChunMinChang,53,53,0
+110,cubeb-coreaudio-rs,7c2dcb9dda577c9e9baa81ad9121ad6d1a26203a,fix comment,Chun-Min Chang,2018-10-09T04:11:32Z,ChunMinChang,ChunMinChang,2,1,1
+111,cubeb-coreaudio-rs,20b6225e2598a5b2d97844d173dedfe3aa93fb66,Add tests and comments,Chun-Min Chang,2018-10-08T22:52:54Z,ChunMinChang,ChunMinChang,735,681,54
+112,cubeb-coreaudio-rs,332627554e64f7a920545e3932167439af337778,set pointers of the devices in device_collection to null when destroying,Chun-Min Chang,2018-10-08T20:25:09Z,ChunMinChang,ChunMinChang,3,3,0
+113,cubeb-coreaudio-rs,1751b27fd0c5bb32f17ecd1ca7aea72ee8963472,"implementation for current_device, device_destroy and their related functions",Chun-Min Chang,2018-10-08T20:22:24Z,ChunMinChang,ChunMinChang,104,98,6
+114,cubeb-coreaudio-rs,53314d3486e9c19c5d4b68a71a6150dac035ddfb,Set all data of cubeb_device_info to default before assigning new values,Chun-Min Chang,2018-10-08T18:20:12Z,ChunMinChang,ChunMinChang,4,3,1
+115,cubeb-coreaudio-rs,626e7973a26e09f28fa728cd765acd414903c1e5,dummy implementation for current_device and device_destroy on macos,Chun-Min Chang,2018-10-08T18:13:58Z,ChunMinChang,ChunMinChang,18,15,3
+116,cubeb-coreaudio-rs,9645b71a42b25cde1060467dfeb79df81f5286ca,map to c version style,Chun-Min Chang,2018-10-08T17:54:03Z,ChunMinChang,ChunMinChang,124,55,69
+117,cubeb-coreaudio-rs,e5b425d47552b69d8bfdb3d580e7d9974785da05,Impl current_device and device_destroy for ios,Chun-Min Chang,2018-10-08T17:43:38Z,ChunMinChang,ChunMinChang,10,10,0
+118,cubeb-coreaudio-rs,197a2289df2ca799d8646ace08f06268bee53308,impl: is_aggregate_device,Chun-Min Chang,2018-10-08T17:24:56Z,ChunMinChang,ChunMinChang,27,23,4
+119,cubeb-coreaudio-rs,d048e3568bb5668ff21e38835061904f69b6aac2,Impl: audiounit_get_device_presentation_latency,Chun-Min Chang,2018-10-08T17:09:23Z,ChunMinChang,ChunMinChang,46,43,3
+120,cubeb-coreaudio-rs,01f99c1ece4475931454f85ecdbd30e72616576b,"Impl: {get,retake}_leaked_vec",Chun-Min Chang,2018-10-08T16:46:07Z,ChunMinChang,ChunMinChang,40,25,15
+121,cubeb-coreaudio-rs,bc96c434cabd73c4d899e97571f8754a931edcfe,map to c style instead of using rust style,Chun-Min Chang,2018-10-08T04:00:03Z,ChunMinChang,ChunMinChang,75,17,58
+122,cubeb-coreaudio-rs,323cdfb7622c84b689d41f947dcd69c2b5d149e9,impl: audiounit_get_available_samplerate,Chun-Min Chang,2018-10-08T03:47:14Z,ChunMinChang,ChunMinChang,77,73,4
+123,cubeb-coreaudio-rs,69c46855c9428f39780e9d8cb17c68727b4f978d,Return CString instead of vec<c_char> from audiounit_strref_to_cstr_utf8,Chun-Min Chang,2018-10-08T03:00:59Z,ChunMinChang,ChunMinChang,95,33,62
+124,cubeb-coreaudio-rs,53c49cf3e6766063bf611aac354c444c6849b2d8,words,Chun-Min Chang,2018-10-07T23:40:35Z,ChunMinChang,ChunMinChang,2,1,1
+125,cubeb-coreaudio-rs,6efddc5abeecc7728cc867422744e3e010835f9d,cleanup,Chun-Min Chang,2018-10-07T23:38:43Z,ChunMinChang,ChunMinChang,14,8,6

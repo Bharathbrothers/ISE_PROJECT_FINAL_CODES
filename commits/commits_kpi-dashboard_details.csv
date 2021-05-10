@@ -1,0 +1,576 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,kpi-dashboard,9871370e355e016a67164c78f48e337ed9425a86,Update script now uses https to access kpiggybank,Katie Parlante,2013-01-25T19:54:40Z,kparlante,kparlante,6,3,3
+1,kpi-dashboard,728f3823875b14b6020b077f331cb78970ad851b,"Added CSRF protection to login POST, removed some debug logging",Katie Parlante,2013-01-24T00:29:18Z,kparlante,kparlante,14,4,10
+2,kpi-dashboard,58f191832c4df0718b1ba1992c38e744b513f1f7,"Added script for couch1.2.0, added persona login (refactored to use ejs and added sessions)",Katie Parlante,2013-01-23T20:59:36Z,kparlante,kparlante,236,225,11
+3,kpi-dashboard,5ab1e2e77e904444bc2748db495baa6666a537b3,Modify update script to use start/end timestamps when fetching kpiggybank data -- use kpiggybank arguments instead of filtering after the fact,Katie Parlante,2013-01-04T21:44:01Z,kparlante,kparlante,92,49,43
+4,kpi-dashboard,4c557f1f1ce0ab2b1db03e28697b643c2052438f,"Add awsbox config
+
+express.createServer() depricated -- clean up
+
+add awsbox to dependencies, right path for postcreate script
+
+defer to environment for PORT
+
+Updated .gitignore for emacs/osx",Katie Parlante,2012-12-20T21:59:34Z,kparlante,kparlante,48,44,4
+5,kpi-dashboard,685d63f89f6d4bed43f3a926e4301454ed6f914b,Use new events for password reset KPI (closes #37),Nathan Malkin,2012-08-21T18:27:03Z,nmalkin,nmalkin,12,4,8
+6,kpi-dashboard,c87c8911c08a706dde0182cdc587dd60ab0afdc2,"Report percentage of successful new users
+
+This report is identical to the ""sites"" report (number of sites logged
+in), except for one difference. While the ""sites"" report lets users
+switch between ""area"" and ""line"" mode for the graph display, this report
+loads into ""line"" mode by default and hides the option to switch modes.
+
+This was done because area mode is cumulative, which doesn't make sense
+with fractions that this report uses.
+(e.g., if we had a segmentation with three browsers, each at 0.5 success, the
+cumulative graph would display 1.5=150% success, which is nonsensical.)
+
+Closes #15",Nathan Malkin,2012-08-14T22:04:33Z,nmalkin,nmalkin,169,167,2
+7,kpi-dashboard,c37d3a347717dd16b73ce669a31709dbedf118ef,Create report for password reset flow (#3),Nathan Malkin,2012-08-14T18:02:11Z,nmalkin,nmalkin,218,208,10
+8,kpi-dashboard,2e624ba84820b3ae3b4006ce40ff2688aaec50a1,Segment data by number of emails (#6),Nathan Malkin,2012-08-13T22:39:13Z,nmalkin,nmalkin,12,12,0
+9,kpi-dashboard,958d9280225f1722b9804e5e472f8db0a8e1db4e,Segment data by screen resolution (#7),Nathan Malkin,2012-08-13T20:42:50Z,nmalkin,nmalkin,12,12,0
+10,kpi-dashboard,deedd85441c0405d259b38d12348e857186275a9,"Rename ""sites logged in"" report to ""Persona adoption"" (#32)",Nathan Malkin,2012-08-13T18:08:39Z,nmalkin,nmalkin,19,14,5
+11,kpi-dashboard,e86185c3fea7a750e9ebf9c5f260868e73dc6343,Wait until date slider stops to update graph (closes #25),Nathan Malkin,2012-08-13T17:44:40Z,nmalkin,nmalkin,2,1,1
+12,kpi-dashboard,b8ea8716380cdf878c2838197f618025bc38a06a,Ignore KPI events with empty event streams (closes #33),Nathan Malkin,2012-08-13T17:11:58Z,nmalkin,nmalkin,5,5,0
+13,kpi-dashboard,239bfa2112e074961080f56b95ea9855bf43b79d,Use real-world data (from KPIggybank),Nathan Malkin,2012-08-13T17:00:40Z,nmalkin,nmalkin,6,3,3
+14,kpi-dashboard,637e7d4e941d119f42749658555f313722a6f39e,Handle renaming of number_sites_logged_in KPI (#31),Nathan Malkin,2012-08-13T16:58:44Z,nmalkin,nmalkin,10,9,1
+15,kpi-dashboard,57412afb9b4295293a920da7dab51ad08b12cb8f,"Merge database backend implementation
+
+Closes #27: Pre-calculate reports, store them in CouchDB for retrieval",Nathan Malkin,2012-07-25T18:14:34Z,nmalkin,nmalkin,847,617,230
+16,kpi-dashboard,45c16fe2622fddab98765523c5dd0d2e9e9ea372,"Fix #30: holes in data break user flow over time
+
+The problem was that, in the data returned by the server, some days
+didn't have a value for every step.
+
+That is an indicator that 0 people completed the missing step, but
+that needed to be stated explicitly.",Nathan Malkin,2012-07-18T19:20:36Z,nmalkin,nmalkin,36,24,12
+17,kpi-dashboard,b936089bddb9856ce2356915f602d11672647813,Remove code deprecated by switch to database backend,Nathan Malkin,2012-07-18T01:57:55Z,nmalkin,nmalkin,142,10,132
+18,kpi-dashboard,e740a0a6c90784d9f57442628fc74329353f0816,"Convert sites logged in report to database backend
+
+The report is also converted to display the mean number of sites logged in
+instead of the median (closes #29).
+
+The reason behind it (from #29):
+
+Report #1 is the median number of sites a user logs into with Persona.
+
+As part of migrating to CouchDB as the backend (#27), finding the median
+of the data series becomes a significantly harder technical challenge.
+(To do it in a map/reduce framework requires a quick-select algorithm,
+which there doesn't seem to be a good way to do in CouchDB.)
+
+Alternately, the median value for each day could be precalculated when
+data arrives and then stored in the database. However, this would
+require either a new database (cumbersome) or a change to the data
+format and code of the current one (very undesirable).
+
+Calculating the mean of the dataset, however, is much easier.
+
+While the median is a more sensible value to look at (it is less
+sensitive to outliers), it has been agreed, before, that this entire
+report is not hugely meaningful. The median value itself doesn't really
+say anything. The only way we'd use it is to watch the number and hope
+it trends up. In that case, however, the mean is just about as good: we
+can look at it and watch its trend.",Nathan Malkin,2012-07-18T01:46:42Z,nmalkin,nmalkin,88,81,7
+19,kpi-dashboard,288d260b99f4f12a9cb1c7d08b12f4b8168100f7,"Convert ""assertions"" report to database backend",Nathan Malkin,2012-07-16T23:42:54Z,nmalkin,nmalkin,102,96,6
+20,kpi-dashboard,af0f7c6b1e0c2adcc36d164262c221fd6c75fad8,"Unwrap segmentation values
+
+Due to code copy/pasting, segmentation values in the database were
+stored inside a size-one array (e.g., [""value""]). Though things weren't
+breaking, there is absolutely no reason for that here.",Nathan Malkin,2012-07-16T23:15:40Z,nmalkin,nmalkin,2,1,1
+21,kpi-dashboard,6d31fe976f954bfd7b331aac769870de2def3adf,Consolidate creation of views for new user report,Nathan Malkin,2012-07-16T22:51:46Z,nmalkin,nmalkin,113,56,57
+22,kpi-dashboard,7a82e3a826e7ae10b7678bcb1143b3e942e82cea,"Fix segments not reappearing on re-selection
+
+After being toggled off, then toggled on, segments in the ""sites logged in"" and ""sign-in
+attempts"" reports weren't shown.
+
+The issue was occurring because, in the process of updating displayed
+segments, the series in the report object were being overwritten with the
+""filtered"" series — the ones with the segment removed. Thus, this data
+was being lost permanently.
+
+To fix this, the full (unfiltered) series are stored in a temporary
+variable before the graph is updated; then they are restored.
+
+This regression was introduced in fa809ba.",Nathan Malkin,2012-07-16T21:32:15Z,nmalkin,nmalkin,11,9,2
+23,kpi-dashboard,477c09ce114aab00cba4daf8e425acaf432c71ea,"Ensure only known segmentation values are stored in database
+
+""Known"" means the ones listed in the config file.
+
+Fixes the way we populate the database to be consistent with how data
+aggregation used to happen.",Nathan Malkin,2012-07-16T21:07:12Z,nmalkin,nmalkin,13,12,1
+24,kpi-dashboard,02178006deff9f4fdc7c52f2f42a6ec2cd3c50cd,Use database backend for all new user segmentations,Nathan Malkin,2012-07-16T20:46:22Z,nmalkin,nmalkin,130,65,65
+25,kpi-dashboard,d655a9813274d1af9ee96c6974472cceca8b9a79,"Add first segmentation to db-backed new user report
+
+Segmentation by OS",Nathan Malkin,2012-07-16T18:43:29Z,nmalkin,nmalkin,110,95,15
+26,kpi-dashboard,41be2006f4c9ce50d59c89eef4cc4cee8711284d,"Partially migrate new user report (#2) to database backend
+
+Uses database backend for cumulative requests;
+requests for segmented data get processed using legacy code.",Nathan Malkin,2012-07-14T00:22:39Z,nmalkin,nmalkin,69,69,0
+27,kpi-dashboard,9f1203eefe79be005556415e20a1de282c7fe696,"Pre-calculate user flow over time report
+
+Prior process:
+    On every request, data was downloaded, the report was prepared, then
+    sent back to the user.
+
+Now:
+    Separately from the server, data is downloaded and stored in CouchDB.
+        (This is done, manually for now, using the script server/bin/update.)
+    The server sets up views in CouchDB that map/reduce the data into a form
+        ready for the report.
+    On user request, the data is retrieved from the appropriate view and
+    sent back.
+
+Benefit:
+    Data download and report calculation only needs to happen once.
+
+Scope:
+    This commit only switches over the ""new user flow over time"" report.
+
+This is the first major part of implementing #10.",Nathan Malkin,2012-07-13T20:44:17Z,nmalkin,nmalkin,224,183,41
+28,kpi-dashboard,5dfb406ac86c8c27112341633f3cf37da91b81e5,"Load configurations synchronously
+
+Ensures that, whenever settings are requested, they have already been loaded.",Nathan Malkin,2012-07-13T18:56:57Z,nmalkin,nmalkin,6,2,4
+29,kpi-dashboard,a4a477c451aceafb62895772e50d224bf6694d1a,Introduce CouchDB as a dependency,Nathan Malkin,2012-07-13T18:55:17Z,nmalkin,nmalkin,12,11,1
+30,kpi-dashboard,652c09d773137f64f532e2133c2385557a0e3ac7,"Move date determination into new util module
+
+Turns out, it's needed in multiple places",Nathan Malkin,2012-07-13T18:52:01Z,nmalkin,nmalkin,28,15,13
+31,kpi-dashboard,5c97188f011ec91c829717b2b404f9b10559529c,Move date determination into data module,Nathan Malkin,2012-07-12T23:24:41Z,nmalkin,nmalkin,33,20,13
+32,kpi-dashboard,e4219c0989859862ada5087abb1ce6ee0d9d79ff,"Adopt KPIggybank's data format
+
+This means:
+    - The fake data server generates data using that format.
+    - The data downloaded from the server is expected to be in that
+      format too
+
+The difference:
+    KPIggybank's wraps the payload of KPI data into an object that has
+    an ID and where the data itself is under the ""value"" field.
+    (This is how the data is extracted from CouchDB.)",Nathan Malkin,2012-07-12T22:51:40Z,nmalkin,nmalkin,39,27,12
+33,kpi-dashboard,892b5b3a0c176ebe5ed2022c468477131c471b86,Add date controls for flow over time report (#18),Nathan Malkin,2012-07-07T00:04:17Z,nmalkin,nmalkin,208,138,70
+34,kpi-dashboard,fa809baee01fa571690277ced98a20da48d5a339,Remove redundant parameter in updateGraph,Nathan Malkin,2012-07-06T20:08:43Z,nmalkin,nmalkin,11,7,4
+35,kpi-dashboard,093932e33b2f1d58ae30203a3cd70bf23b70feca,Remove bootstrap tab plugin from repository,Nathan Malkin,2012-07-06T19:15:26Z,nmalkin,nmalkin,135,0,135
+36,kpi-dashboard,f06e215bdda67cd406edd27248cb9d7083c5d548,"Increase number of points generated by fake data server
+
+To make the new user flow over time report (336dfa1) less noisy.",Nathan Malkin,2012-07-06T19:07:33Z,nmalkin,nmalkin,2,1,1
+37,kpi-dashboard,336dfa119d77a4a34bd7687807d5576848f10d67,First draft of user flow over time report (#18),Nathan Malkin,2012-07-06T19:06:29Z,nmalkin,nmalkin,230,229,1
+38,kpi-dashboard,8676c6d698d4e8514040d7cb4bbd78d889f28b12,Remove mock-up of visitor flow Sankey diagram,Nathan Malkin,2012-07-05T22:40:41Z,nmalkin,nmalkin,501,0,501
+39,kpi-dashboard,686ba75b89b6c3b26109e5100d71f03cbf460ee3,Initialize all reports to pre-defined date range,Nathan Malkin,2012-07-03T00:49:43Z,nmalkin,nmalkin,12,6,6
+40,kpi-dashboard,746a7db130363bc71a3f6a468dbe4196fe923767,Improve component positioning in pages,Nathan Malkin,2012-07-03T00:40:47Z,nmalkin,nmalkin,85,43,42
+41,kpi-dashboard,8ca0a4a4f7ac34f6aac39f3393dc78f043dd245a,Add visual markers for release milestones (closes #13),Nathan Malkin,2012-07-03T00:35:54Z,nmalkin,nmalkin,57,48,9
+42,kpi-dashboard,d57dee81db68eac5ec364dfb883b99415c983a73,"Make greater use of graphDecorator field
+
+instead of calling init*Graph functions directly",Nathan Malkin,2012-07-03T00:16:34Z,nmalkin,nmalkin,4,2,2
+43,kpi-dashboard,9c96cae7870559feee7bde6736b0dbde4dfa6171,"Recreate graph decorations after errors (#11)
+
+*actually* fixes #11
+
+The previous fix (commit 29f57dc) called a non-existent property.",Nathan Malkin,2012-07-03T00:12:40Z,nmalkin,nmalkin,2,1,1
+44,kpi-dashboard,421be30fe116aee884e12d9f7473ed8cbaa8a765,"Validate user-inputted dates more carefully
+
+Slider was being updated before dates were validated, could have been
+passed bad values.",Nathan Malkin,2012-07-02T23:08:01Z,nmalkin,nmalkin,40,24,16
+45,kpi-dashboard,0d25c28c3fd9a2a3dbd045ffcfabd746cf5e4ae9,Add date pickers to time series reports (closes #12),Nathan Malkin,2012-07-02T22:50:51Z,nmalkin,nmalkin,44,28,16
+46,kpi-dashboard,d399c8561a949f368fd2aead2f85a52c6c2f8634,Consolidate data aggregation functions (closes #21),Nathan Malkin,2012-07-02T22:20:52Z,nmalkin,nmalkin,31,6,25
+47,kpi-dashboard,29f57dcf96f1a2d95335b1c6f7eaf8c7c7e4fe1b,"Recreate graph decorations after errors (fixes #11)
+
+Done by refactoring axis decorating logic into separate functions, and
+adding a function pointer to the report object to identify the right
+decorator function.",Nathan Malkin,2012-07-02T22:00:54Z,nmalkin,nmalkin,51,31,20
+48,kpi-dashboard,9e45436c98a6efbe28aeb0bb21ceea45119912ff,Remove system file from repository,Nathan Malkin,2012-06-29T23:37:26Z,nmalkin,nmalkin,0,0,0
+49,kpi-dashboard,bb24ea196d03c37a272973d4fbc43bb95aa6a1a3,"Label users at each step as percentage of total
+
+instead of the total number of users who completed this step",Nathan Malkin,2012-06-29T23:05:01Z,nmalkin,nmalkin,20,16,4
+50,kpi-dashboard,93ae88c283d8f7e2c35081d2b5e71315e4fab865,"Fix regression: slider not updated when date changed
+
+introduced in fb42d76",Nathan Malkin,2012-06-29T22:28:34Z,nmalkin,nmalkin,6,3,3
+51,kpi-dashboard,afa2dd71e02ffe9ccfb7317669655029d9257fb0,Expand readme,Nathan Malkin,2012-06-29T22:20:27Z,nmalkin,nmalkin,42,39,3
+52,kpi-dashboard,fb42d763daf9eb084a0ad2b735a45a3c26440ea6,Permit dragging of entire range in date slider,Nathan Malkin,2012-06-29T21:04:15Z,nmalkin,nmalkin,109,108,1
+53,kpi-dashboard,a3e61ccce50231ea298b7f950b8c8d4586438452,Use sliders to control date range,Nathan Malkin,2012-06-29T20:52:55Z,nmalkin,nmalkin,63,59,4
+54,kpi-dashboard,e02ba07df16e45e1f7263cc3106c69a4f7ee7a95,"Always display all steps in flow report
+
+even if some have no people",Nathan Malkin,2012-06-29T01:34:26Z,nmalkin,nmalkin,17,15,2
+55,kpi-dashboard,54c3b514e5344549b50beeb6f4b7cf485e74a6ae,Load server configurations into their own module,Nathan Malkin,2012-06-29T01:26:38Z,nmalkin,nmalkin,64,36,28
+56,kpi-dashboard,181851c86f5d19f1e6de1f5d5463cf2329cca90d,"Improve frontend handling of missing data
+
+After graph was updated with partial data (or none at all), it would
+sometimes stop working even after new, complete data was given.
+It doesn't seem to do that anymore.",Nathan Malkin,2012-06-29T00:50:38Z,nmalkin,nmalkin,16,14,2
+57,kpi-dashboard,ff00e25af2ae8686736bc71fd27582d87613756b,"Add date pickers to select new-user report date range
+
+Import additional functionality (datepicker) into jQuery UI",Nathan Malkin,2012-06-28T23:42:46Z,nmalkin,nmalkin,133,126,7
+58,kpi-dashboard,5f24709536aa398bb25905cd2df1dca4217861f1,Some cleanup to make JSHint happier,Nathan Malkin,2012-06-28T22:03:07Z,nmalkin,nmalkin,15,8,7
+59,kpi-dashboard,b748117e83fb76b683c4811ad55b1af10369ebed,Display report for new user flow,Nathan Malkin,2012-06-28T21:56:50Z,nmalkin,nmalkin,178,147,31
+60,kpi-dashboard,c41f1502704cba467b70cac985b645f8ba8342c7,"Make sure new user report only includes new users
+
+All users who had events from the new user flow were being counted.",Nathan Malkin,2012-06-28T21:37:40Z,nmalkin,nmalkin,12,4,8
+61,kpi-dashboard,350c8cc1a2da89e3bc7ee364a2673d025b4a3840,"Switch date string representation to YYYY-MM-DD
+
+to enable sorting
+
+Previously, date format was ambiguous, unspecified",Nathan Malkin,2012-06-28T19:46:43Z,nmalkin,nmalkin,4,2,2
+62,kpi-dashboard,7fcdeed74b24a510b1dc042d4e1288e93353de8f,Number flow steps for clarity and to allow sorting,Nathan Malkin,2012-06-28T19:38:07Z,nmalkin,nmalkin,8,4,4
+63,kpi-dashboard,609edf3bcbf1fd7440e60be777b1a3f07529c64b,Sort summarized data by category,Nathan Malkin,2012-06-28T19:37:46Z,nmalkin,nmalkin,4,3,1
+64,kpi-dashboard,b712412634c7842c87eba27ed0d148b1d54f05c0,"Provide API for steps followed by new users
+
+returning the number of users at each step tells us how far they get
+in the process",Nathan Malkin,2012-06-28T19:23:53Z,nmalkin,nmalkin,85,85,0
+65,kpi-dashboard,f17b3d008d6a1c1c84b96de7945750955a475670,Load data server information from config file,Nathan Malkin,2012-06-28T17:32:38Z,nmalkin,nmalkin,12,6,6
+66,kpi-dashboard,f8e75fb07d175a9954ec49719c2ab0eb511f82bc,"Store configurations together in data module
+
+Avoids need to create a new variable for each new configuration.",Nathan Malkin,2012-06-28T17:27:25Z,nmalkin,nmalkin,15,7,8
+67,kpi-dashboard,bc8f101ba35d37f50b94bb7e036cd4d2d1224999,Refactor aggregation in reports,Nathan Malkin,2012-06-28T00:48:26Z,nmalkin,nmalkin,75,35,40
+68,kpi-dashboard,71fcabd7d09feef58a826f03beab87e659a3780f,"Refactor aggregation by date in reports
+
+Makes summaryReports function more generic",Nathan Malkin,2012-06-27T23:51:26Z,nmalkin,nmalkin,75,39,36
+69,kpi-dashboard,4b2ecb54944ff3b89a8992a4108f1213ab400696,Put semicolon in its proper place,Nathan Malkin,2012-06-27T23:16:01Z,nmalkin,nmalkin,4,2,2
+70,kpi-dashboard,199caac1024d66a11dfeca60e36b9779df9b3bd1,"Separate web API from reports (functional) API
+
+This separates the validation of user input (and request/response
+management) from the logic that puts together the reports themselves.",Nathan Malkin,2012-06-27T22:55:59Z,nmalkin,nmalkin,152,100,52
+71,kpi-dashboard,33ffe7ef149271bfbc8c16c57fef7d63725b5d7f,"Unify handling of API calls by Express
+
+Avoids custom logic for each new report",Nathan Malkin,2012-06-27T19:01:15Z,nmalkin,nmalkin,16,9,7
+72,kpi-dashboard,a41963a86ddde49c1b265b32363225ebe157b29d,"Randomly generate events in fake data server
+
+Screen size now also randomly generated.
+
+Slight clean-up of other randomly-generated values",Nathan Malkin,2012-06-21T00:11:27Z,nmalkin,nmalkin,230,190,40
+73,kpi-dashboard,0b9da9a987143af43f6f779bbae9b150553a2725,"Prototype of first KPI report and mock-up of second one
+
+First KPI report: median number of sites logged in
+Data used is from local server generating fake data (in server/scripts).
+
+Second KPI report: visitor flow visualization",Nathan Malkin,2012-06-20T23:28:31Z,nmalkin,nmalkin,28841,28841,0
+74,kpi-dashboard,7fdd97a19cd4e2dcc61619b96ed1a5476a0be1dd,"Merge pull request #93 from kparlante/new_user_bounce
+
+New user bounce; IdP segmentation added",Katie Parlante,2013-10-24T18:02:29Z,kparlante,kparlante,348,232,116
+75,kpi-dashboard,c71f4c7828e6e6a1aa23ff7b1196fa0e7204b4b4,fixed conflict in password reset query,Katie Parlante,2013-10-24T17:57:22Z,kparlante,kparlante,0,0,0
+76,kpi-dashboard,654f6a93f9bd5ecf21a75513ba9632dc2848d2ba,password_reset report needs to match query; trust newUserSteps over email_type,Katie Parlante,2013-10-23T03:47:32Z,kparlante,kparlante,14,5,9
+77,kpi-dashboard,0e1147f2dd0ef0670132c7b43c6b3b10ceb2f757,Added IdP vs Fallback segmentation,Katie Parlante,2013-10-22T21:51:11Z,kparlante,kparlante,23,14,9
+78,kpi-dashboard,96a4b3e4c4bd4b42620e40dcaff073dc4b621367,First password reset stage was incorrect; use reset_password_staged to detect reset,Katie Parlante,2013-10-22T21:28:20Z,kparlante,kparlante,2,1,1
+79,kpi-dashboard,3d0cd79dcd454b1ba0c3bcd9e69b3132824046cb,rewrite password_reset query to use simpler reduce method,Katie Parlante,2013-10-22T21:24:40Z,kparlante,kparlante,66,14,52
+80,kpi-dashboard,36f33f3f5eae4fb3d5b45c683903d322f3c80d70,Remove missing stage from password_reset stages,Katie Parlante,2013-10-22T21:17:31Z,kparlante,kparlante,7,3,4
+81,kpi-dashboard,ea4886bec48a01d3d70ef1ac50b562544ecace2f,removed new_user_success queries (using new_user_bounce instead),Katie Parlante,2013-10-22T21:14:05Z,kparlante,kparlante,34,0,34
+82,kpi-dashboard,37a471051c77f64b06f6d87901db0fcc0cba4bf1,update new_user_success report to account for idps as well as fallback users,Katie Parlante,2013-10-22T20:55:42Z,kparlante,kparlante,19,11,8
+83,kpi-dashboard,9a3d12d7b041ac32e9b322b3780ae9e0088eae1b,count both idp and fallback users in new_user_per_day report,Katie Parlante,2013-10-22T18:29:39Z,kparlante,kparlante,11,4,7
+84,kpi-dashboard,2ab45aaece6e6a3ef6b30117c6f7821b9b335253,Added segmentations to new_user_bounce,Katie Parlante,2013-10-18T18:58:10Z,kparlante,kparlante,125,107,18
+85,kpi-dashboard,aabcf378ddf295273a73d9fb6e221b5a405ff559,"Added new user bounce rate (query, report and view)",Katie Parlante,2013-10-17T22:57:52Z,kparlante,kparlante,111,105,6
+86,kpi-dashboard,dcb8dceb1febf60b4c72303eba0fe96266c0ca68,data-->datum,Katie Parlante,2013-10-11T23:26:59Z,kparlante,kparlante,2,1,1
+87,kpi-dashboard,a51753f7ad2e8d8b4697150c34b278d31874cd5a,"handle kpi data that contains no event stream.
+
+* Pass errors up the stack during initialization",Shane Tomlinson,2013-10-10T11:13:40Z,Shane Tomlinson,Shane Tomlinson,36,20,16
+88,kpi-dashboard,e395dca2fa5f3f7086fd31c387e613e5921efbbe,"Add a siteName, siteLogo and backgroundColor.
+
+fixes #85",Shane Tomlinson,2013-10-10T11:41:27Z,Shane Tomlinson,Shane Tomlinson,58,31,27
+89,kpi-dashboard,34994e98188749a56cfb5d2116c4695fedcc9ac1,"Merge pull request #91 from kparlante/master
+
+Update milestone data",Katie Parlante,2013-10-15T22:14:47Z,kparlante,kparlante,21,16,5
+90,kpi-dashboard,460329d8d1807f0ae28da4f00440a81d512d8313,"Merge branch 'master' of github.com:mozilla/kpi-dashboard
+
+Pull Shane's latest round of fixes",Katie Parlante,2013-10-15T21:13:09Z,kparlante,kparlante,94,51,43
+91,kpi-dashboard,c945a235034102470ecb4e4975416c2879e65d1d,"Merge pull request #2 from kparlante/bounce_rate
+
+Bounce rate",Katie Parlante,2013-10-15T21:09:02Z,kparlante,kparlante,21,16,5
+92,kpi-dashboard,107bc89e61d3f91de2cedac57ddd5f35b54e4aa5,"Merge pull request #90 from mozilla/issue-84-no-event-stream-import
+
+Issue 84 no event stream import",Katie Parlante,2013-10-11T23:47:41Z,kparlante,kparlante,36,20,16
+93,kpi-dashboard,0b45596f5aa2845032231931a35cb7cf808e4cec,data-->datum,Katie Parlante,2013-10-11T23:26:59Z,kparlante,kparlante,2,1,1
+94,kpi-dashboard,0942efc1da65376f936a42753bc374886a9002f6,"Merge pull request #88 from mozilla/issue-87-rp-branding
+
+Add a siteName, siteLogo and backgroundColor.",Katie Parlante,2013-10-11T21:42:21Z,kparlante,kparlante,58,31,27
+95,kpi-dashboard,6293785dcc3037de1ed745200e6be1d82bcc6a78,"Merge pull request #86 from mozilla/issue-80-login-loop
+
+Fix the login loop of death.",Katie Parlante,2013-10-10T22:23:00Z,kparlante,kparlante,44,41,3
+96,kpi-dashboard,66b1e530be85ee32734330d2528c0c827f0b41eb,"Add a siteName, siteLogo and backgroundColor.
+
+fixes #85",Shane Tomlinson,2013-10-10T11:41:27Z,Shane Tomlinson,Shane Tomlinson,58,31,27
+97,kpi-dashboard,0b16dc100f9ac50ce5054e83315f4b4b2b60d9c7,"Fix the login loop of death.
+
+* If there is an error verifying the assertion, send the user to the /force-logout page, where navigator.id.logout is called.
+
+fixes #80",Shane Tomlinson,2013-10-10T11:33:47Z,Shane Tomlinson,Shane Tomlinson,44,41,3
+98,kpi-dashboard,ca85ee08977e02ddeb6a7aac6cfbf85d670a7714,"handle kpi data that contains no event stream.
+
+* Pass errors up the stack during initialization",Shane Tomlinson,2013-10-10T11:13:40Z,Shane Tomlinson,Shane Tomlinson,36,20,16
+99,kpi-dashboard,75aeaeaf0f410f8d263c4e51249da4c6c9153805,add kpiggybank outage to milestones,Katie Parlante,2013-10-08T21:28:28Z,kparlante,kparlante,7,6,1
+100,kpi-dashboard,20a13ceb3d845d0957d3e6ab1893725cce35b20b,Updated earliest date to match data,Katie Parlante,2013-10-08T20:06:28Z,kparlante,kparlante,2,1,1
+101,kpi-dashboard,0ebd8e4bb1fc8e532f9b1046e9baa660a5abf11a,Added recent milestones,Katie Parlante,2013-10-08T19:56:27Z,kparlante,kparlante,14,10,4
+102,kpi-dashboard,934683ca089bad6d93a4c65e144f748203388559,"Merge pull request #83 from kparlante/bounce_rate
+
+Added general progress query and related graphs",Katie Parlante,2013-10-03T22:29:19Z,kparlante,kparlante,274,257,17
+103,kpi-dashboard,1aef6389fc7eb97694fb78f014c2e1cf041fe88d,Cleaning up date hover,Katie Parlante,2013-10-03T21:53:32Z,kparlante,kparlante,2,1,1
+104,kpi-dashboard,e75c2f1abaa2c3459f4b1f22de59d953df3077e6,Use hasOwnProperty; the 'watch' segmentation was causing problems with the views,Katie Parlante,2013-10-02T20:26:58Z,kparlante,kparlante,14,7,7
+105,kpi-dashboard,20eb687d736d821ed4f7af90440bd68f6fd75957,"Make sure data point has a value, fixing one of the problems with segmented views",Katie Parlante,2013-10-02T19:37:32Z,kparlante,kparlante,2,1,1
+106,kpi-dashboard,17979bc34e2371daaee98ca9ffaab04e05a486d0,Sort segmentation data so zeroFill doesn't cause problems,Katie Parlante,2013-10-01T22:09:55Z,kparlante,kparlante,2,1,1
+107,kpi-dashboard,aa8a2731eadf3c7def52fb499af9fdc1105f3123,"upgrade to awsbox 0.6.0, upgrade for node 0.10.x",Katie Parlante,2013-09-24T20:53:03Z,kparlante,kparlante,11,6,5
+108,kpi-dashboard,15051c37176fc6c13ad47da29c8a807b33bb9ec8,Fix hover date display error,Katie Parlante,2013-08-02T20:50:36Z,kparlante,kparlante,2,1,1
+109,kpi-dashboard,c2775f02f82fb736afc948e7831e36771e2cbffd,Add last date to time series graphs,Katie Parlante,2013-08-02T20:39:02Z,kparlante,kparlante,2,1,1
+110,kpi-dashboard,dd20bceac443565aea821806e2b1e188e4b4ea25,"Added general progress query, first pass for bounce rate and general progress visualizations",Katie Parlante,2013-07-30T19:04:58Z,kparlante,kparlante,243,241,2
+111,kpi-dashboard,a1ccc3e1a84406bb7f9f0bc2434a7178174f6ece,"Merge pull request #82 from kparlante/master
+
+Added milestones and new user per day polish",Katie Parlante,2013-09-26T22:41:58Z,kparlante,kparlante,21,14,7
+112,kpi-dashboard,68ea3026b3cf36a70052ee3e46a5aefabd2d7848,Added milestones: recent train and gmail announcement,Katie Parlante,2013-08-13T20:01:31Z,kparlante,kparlante,6,5,1
+113,kpi-dashboard,a87dc5e5db1a4c86af067cce119bb58d9ea40f9b,new_user_per_day as area,Katie Parlante,2013-07-30T20:26:15Z,kparlante,kparlante,2,1,1
+114,kpi-dashboard,e199b6019ad69fdc4ff50ddd0d2fccc5699101c2,Add recent milestones and explanatory text to new_user_per_day,Katie Parlante,2013-07-30T20:14:54Z,kparlante,kparlante,15,9,6
+115,kpi-dashboard,4b4bda3b4290ea3d3d48346791ffa9d4105763a7,"Merge pull request #68 from kparlante/master
+
+Adding new_user_per_day graph",Katie Parlante,2013-07-18T22:46:41Z,kparlante,kparlante,124,115,9
+116,kpi-dashboard,9666bfaac6e87933625ee0501def1ed06052bcc6,Adding new_user_per_day graph,Katie Parlante,2013-07-18T21:02:09Z,kparlante,kparlante,124,115,9
+117,kpi-dashboard,38e86cbe3cff1a41f3a0a9dd5dfff72e8859d99e,"Merge pull request #66 from kparlante/master
+
+Handle staging_continuation data and refactor out new_user_time couchdb view",Katie Parlante,2013-07-17T22:57:50Z,kparlante,kparlante,102,20,82
+118,kpi-dashboard,5dd172c92428926e1263af9aefd85e981d5b3321,Remove unused new_user_time view,Katie Parlante,2013-07-17T22:18:20Z,kparlante,kparlante,65,0,65
+119,kpi-dashboard,176986cf89c063636246122bfb7cdaaa5313d82c,Use new_user report for new user time series,Katie Parlante,2013-07-16T23:36:56Z,kparlante,kparlante,20,7,13
+120,kpi-dashboard,f5eb512cf03d3ce38c06b6ce1d51da13cc79a816,Count staging_continuations if they result in an assertion,Katie Parlante,2013-07-16T22:19:19Z,kparlante,kparlante,17,13,4
+121,kpi-dashboard,7b3644ba341b40462b995b9e14a62c8c8a7d9935,"Merge pull request #65 from kparlante/master
+
+Add FirefoxOS and screen size buckets to segmentations",Katie Parlante,2013-07-12T18:55:14Z,kparlante,kparlante,41,29,12
+122,kpi-dashboard,8eff3967a5096366917bbc9a5c8a9b63addb961d,Update segmentations: add FirefoxOS and bucket screen sizes,Katie Parlante,2013-07-11T20:14:17Z,kparlante,kparlante,13,9,4
+123,kpi-dashboard,17fdb535376138a6cee20075596fc85d232e0708,"Merge pull request #57 from kparlante/master
+
+Fix two bugs: #53 (new_user used wrong queries for segmentations) and #62 (x_axis growing in new_user_flow)",Katie Parlante,2013-07-11T18:19:35Z,kparlante,kparlante,11,10,1
+124,kpi-dashboard,5a72dc1c316678f7e807aeb2c88f76551720b486,Make calls to collector in two week intervals,Katie Parlante,2013-07-09T22:29:03Z,kparlante,kparlante,28,20,8
+125,kpi-dashboard,8c2345b76c2fa4cdaf16e334f07426cf665a17e4,Fixes #62: x_axis grows when segmentations change,Katie Parlante,2013-07-09T17:39:22Z,kparlante,kparlante,4,4,0
+126,kpi-dashboard,3c1c1681bcd1740e9165b3e280035e8c9257c858,Fixes #53: Wire up new_user_segmentations to the correct query,Katie Parlante,2013-07-08T19:18:51Z,kparlante,kparlante,7,6,1
+127,kpi-dashboard,ff0acef71362bbe48bb11afe22afb891677142fa,"Merge pull request #54 from kparlante/master
+
+Implements the new_user view changes",Katie Parlante,2013-06-27T22:21:25Z,kparlante,kparlante,19043,9473,9570
+128,kpi-dashboard,e2c892731b87e772c34e6589b3d188dcdf51cd6f,"new_user changes: move axis outside graph, remove vertical grid marks",Katie Parlante,2013-06-27T20:38:34Z,kparlante,kparlante,5,4,1
+129,kpi-dashboard,20375dd5581a61ccc3cb42f00c9493b3bb1432e4,"Merge pull request #1 from kparlante/new_user_funnel
+
+Move new_user_funnel work back to dev",Katie Parlante,2013-06-26T22:45:30Z,kparlante,kparlante,19040,9470,9570
+130,kpi-dashboard,5079f8821bddfe46a08998b53adc06a0227ace92,Labeling new_user graph,Katie Parlante,2013-06-25T23:38:22Z,kparlante,kparlante,22,17,5
+131,kpi-dashboard,32d505bf8d3ff0538ae4136f4ab35f525522c6fe,upgrade rickshaw and d3,Katie Parlante,2013-06-25T23:27:40Z,kparlante,kparlante,18638,9227,9411
+132,kpi-dashboard,62019eb217ec1008c5c7cd85d8d6abed91a98318,tweaking graph sizes,Katie Parlante,2013-06-25T19:39:29Z,kparlante,kparlante,16,11,5
+133,kpi-dashboard,6fcf8bde9abf4d8c20928dd2dbf4b66893e944f4,"Refactor for default renderer in rickshaw graphs, use 'bar' only for new_user funnel",Katie Parlante,2013-06-25T19:22:41Z,kparlante,kparlante,22,6,16
+134,kpi-dashboard,56aa6847d87a5737d60af64bb071781103a468e4,"Make use of bootstrap styling for table, etc.",Katie Parlante,2013-06-19T19:55:59Z,kparlante,kparlante,17,8,9
+135,kpi-dashboard,a7223a98ab9e1c360a6810928aecb69d129a42b3,"Modify fake milestones to be in our date range, add 'internal' rp_api",Katie Parlante,2013-06-18T19:30:56Z,kparlante,kparlante,8,4,4
+136,kpi-dashboard,d1bbe0ce02085ca651121e156f0dde5902cf6ed6,hardcode EARLIEST_DATE to day we started collecting production kpi data,Katie Parlante,2013-06-18T19:23:52Z,kparlante,kparlante,2,1,1
+137,kpi-dashboard,c821b9869b582ffd958b6ccd33190aa73972a29d,Add table to new_user funnel graph,Katie Parlante,2013-06-11T20:43:19Z,kparlante,kparlante,77,69,8
+138,kpi-dashboard,f3301e77a8e4143d31e7c9f0604e150abcac7488,Add segment by rp api,Katie Parlante,2013-06-07T18:42:44Z,kparlante,kparlante,21,16,5
+139,kpi-dashboard,8ae4c09a58b036a6d9cf6147662ff4493bd978cf,Handle not-orphaned new user cases,Katie Parlante,2013-06-06T23:15:16Z,kparlante,kparlante,5,4,1
+140,kpi-dashboard,eb338e8951423fa472903410381cbfc10192156b,"Update segmentations: new indexes, segmentation config to cover common cases",Katie Parlante,2013-05-14T22:51:03Z,kparlante,kparlante,226,113,113
+141,kpi-dashboard,15a99058b74a3a197a73cc5420dc6e2f0608501d,sort data so that steps are in expected order,Katie Parlante,2013-05-14T20:10:25Z,kparlante,kparlante,1,1,0
+142,kpi-dashboard,de254f67cf6133121ed604b1d10fffb4e0155506,Add bar chart option for rendering new_user_flow,Katie Parlante,2013-05-10T19:38:22Z,kparlante,kparlante,3,2,1
+143,kpi-dashboard,8587968d2665c23ff940d3f61eb9e043a180378d,"Merge pull request #43 from kparlante/master
+
+Ignore 'canceled' flows that aren't new users",Katie Parlante,2013-06-20T23:23:35Z,kparlante,kparlante,9,7,2
+144,kpi-dashboard,4eb43b5948811a47e5eded6dcdec275a80ae24dc,"If the user is prompted to enter an existing password, we don't have a new user flow",Katie Parlante,2013-05-01T23:19:39Z,kparlante,kparlante,4,4,0
+145,kpi-dashboard,47547434ad06588f3e5432bf0aee68af6f20f659,move updating total out of loop for password_reset (ala #42),Katie Parlante,2013-05-01T23:09:53Z,kparlante,kparlante,5,3,2
+146,kpi-dashboard,be32309fa0e13b2a7e7d8887296f4dc8aa5438ce,"Merge pull request #42 from kparlante/master
+
+Fix for ""new user flow over time"" graph",Austin King,2013-04-28T21:33:54Z,ozten,ozten,7,4,3
+147,kpi-dashboard,ccb84e4566728a151981e23601e60a35435b4345,"Only updated accumulated total once, not for each step",Katie Parlante,2013-04-25T22:35:40Z,kparlante,kparlante,7,4,3
+148,kpi-dashboard,280aa0c8983fee9e25f7ff17f6dd0e995ac20c2f,"Merge pull request #41 from kparlante/master
+
+Pulling the awsbox and couch install changes so @karlht can use them",Katie Parlante,2013-04-19T18:50:30Z,kparlante,kparlante,13,7,6
+149,kpi-dashboard,441980e35d213f1fc241763cf3b3dc2fc1ef44fb,"Update awsbox to get security group option, fix the sha for iriscouch/build-couchdb, pick up local config.json for on-the-box edits",Katie Parlante,2013-04-05T21:36:10Z,kparlante,kparlante,13,7,6
+150,kpi-dashboard,901d2e83b1898f86a01ac5cc056df80ecf1dcf90,"Merge pull request #39 from kparlante/master
+
+Merge the convict PR",Katie Parlante,2013-02-26T23:01:05Z,kparlante,kparlante,1621,874,747
+151,kpi-dashboard,4d41b82d0ec8c2f0c7aa06348422bdd9b179bd6a,Fixed up problems introduced while resolving merge conflicts,Katie Parlante,2013-02-23T00:57:23Z,kparlante,kparlante,25,22,3
+152,kpi-dashboard,bafb8c82933e77d698867f7cbf51c643ab79405a,"Fixed merge conflicts, client-sessions and convict",Katie Parlante,2013-02-22T22:50:06Z,kparlante,kparlante,1598,853,745
+153,kpi-dashboard,cb6667ff33ce49a61ed055acaa6bb95a930d7560,"Merge pull request #36 from mozilla/client-sessions
+
+Replace sessions with client-sessions",Katie Parlante,2013-02-22T22:39:13Z,kparlante,kparlante,18,15,3
+154,kpi-dashboard,35fcaaf022061a7df7bd86a9cd02b370200ea4f3,Migrating to convict for managing configs. Fixes #14,Austin King,2013-02-21T22:43:19Z,ozten,ozten,1600,854,746
+155,kpi-dashboard,ab98988a4e0562ec5c7622f3baf951332553e609,Noting CouchDB version Fixes #31,Austin King,2013-02-21T21:53:15Z,ozten,ozten,3,2,1
+156,kpi-dashboard,1c2fc2942c7e7725038e620e5045a1673b7ac3ad,Switches to client-sessions,Austin King,2013-02-21T20:55:19Z,ozten,ozten,6,6,0
+157,kpi-dashboard,c176dd82700a8afa90549d75868d6ea1cd0d902e,"Switches to client-sessions
+
+Conflicts:
+
+	server/bin/app",Austin King,2013-02-21T21:21:06Z,ozten,ozten,12,9,3
+158,kpi-dashboard,45636c615a3b618896731c65526fc7d6474fc888,"Merge pull request #33 from mozilla/issue-27-session-secret
+
+Make session secret configurable",Katie Parlante,2013-02-21T19:55:07Z,kparlante,kparlante,3,2,1
+159,kpi-dashboard,ac3c4cf7268a58b317bfca1debc1225bb00bc4ea,Basic awsbox steps to a healthy instance,Austin King,2013-02-21T19:35:42Z,ozten,ozten,42,37,5
+160,kpi-dashboard,25ea853c5aaaa887ffce4bd132e2c495a627aa94,"Merge pull request #32 from mozilla/issue-25-move-css
+
+Move styles into CSS, style logout button",Katie Parlante,2013-02-21T18:51:30Z,kparlante,kparlante,114,57,57
+161,kpi-dashboard,cdfe7ece55d1b5fda3834a1a18c7b2795f01ac31,"Adding help2man dependency, fixes #34",Austin King,2013-02-21T18:38:42Z,ozten,ozten,4,3,1
+162,kpi-dashboard,5fe4a4abbaf287c7b85f7435f152c9a767fe54b2,Adding -t c1.medium to README,Austin King,2013-02-21T00:59:32Z,ozten,ozten,2,1,1
+163,kpi-dashboard,27c5af466e57e85bf0d04a4be5404b2739f9d929,Make session secret configurable,Austin King,2013-02-20T23:20:21Z,ozten,ozten,3,2,1
+164,kpi-dashboard,978b93fa80a7d73cdc050595d27c87d51ffa0f95,Adding deployment notes,Austin King,2013-02-20T23:15:14Z,ozten,ozten,12,12,0
+165,kpi-dashboard,9f5e3c6af0baf54bce8f62081733565d1d061b56,Extracting CSS,Austin King,2013-02-20T23:11:15Z,ozten,ozten,114,57,57
+166,kpi-dashboard,f4a4485f7251e8340dbe016041f226ad5b175a85,"Merge pull request #24 from kparlante/master
+
+Get dashboard ready for AWS dev deployment",Katie Parlante,2013-02-20T21:26:18Z,kparlante,kparlante,467,404,63
+167,kpi-dashboard,7c246c547a0f77b8da30d9e3512e0caddc05e663,"removed inline script, sets logged-in-user on jquery data attribute instead",Katie Parlante,2013-02-20T00:37:36Z,kparlante,kparlante,15,3,12
+168,kpi-dashboard,938f1d527d65e0e7e035609be10621610e5ca467,don't update server config,Katie Parlante,2013-02-19T22:26:03Z,kparlante,kparlante,25,16,9
+169,kpi-dashboard,45ac2b4c2888c2ce812debf245e79e75dcb7e145,remove magic number from mozilla.com verification step,Katie Parlante,2013-02-19T21:55:08Z,kparlante,kparlante,2,1,1
+170,kpi-dashboard,3a7d611bcda04ce21ea52f93f81d84cfe4ae96e9,pin versions down,Katie Parlante,2013-02-19T21:46:36Z,kparlante,kparlante,10,5,5
+171,kpi-dashboard,bdb44360170de14ac2817419c8f6809acb756913,Added sudo to creation of local.ini,Katie Parlante,2013-02-19T20:39:29Z,kparlante,kparlante,2,1,1
+172,kpi-dashboard,dcb062a8b1f878362d6a2e62c68e4892805338eb,Create and use dashboard user for couchdb,Katie Parlante,2013-02-19T19:47:16Z,kparlante,kparlante,62,34,28
+173,kpi-dashboard,8392260e1e7f0a4aabf9b360bd4ba77568db6306,"Updated config with staging url
+
+added deploy script
+
+add server details to config file",Katie Parlante,2013-02-06T21:18:21Z,kparlante,kparlante,105,94,11
+174,kpi-dashboard,7fdd97a19cd4e2dcc61619b96ed1a5476a0be1dd,"Merge pull request #93 from kparlante/new_user_bounce
+
+New user bounce; IdP segmentation added",Katie Parlante,2013-10-24T18:02:29Z,kparlante,kparlante,348,232,116
+175,kpi-dashboard,c71f4c7828e6e6a1aa23ff7b1196fa0e7204b4b4,fixed conflict in password reset query,Katie Parlante,2013-10-24T17:57:22Z,kparlante,kparlante,0,0,0
+176,kpi-dashboard,654f6a93f9bd5ecf21a75513ba9632dc2848d2ba,password_reset report needs to match query; trust newUserSteps over email_type,Katie Parlante,2013-10-23T03:47:32Z,kparlante,kparlante,14,5,9
+177,kpi-dashboard,0e1147f2dd0ef0670132c7b43c6b3b10ceb2f757,Added IdP vs Fallback segmentation,Katie Parlante,2013-10-22T21:51:11Z,kparlante,kparlante,23,14,9
+178,kpi-dashboard,96a4b3e4c4bd4b42620e40dcaff073dc4b621367,First password reset stage was incorrect; use reset_password_staged to detect reset,Katie Parlante,2013-10-22T21:28:20Z,kparlante,kparlante,2,1,1
+179,kpi-dashboard,3d0cd79dcd454b1ba0c3bcd9e69b3132824046cb,rewrite password_reset query to use simpler reduce method,Katie Parlante,2013-10-22T21:24:40Z,kparlante,kparlante,66,14,52
+180,kpi-dashboard,36f33f3f5eae4fb3d5b45c683903d322f3c80d70,Remove missing stage from password_reset stages,Katie Parlante,2013-10-22T21:17:31Z,kparlante,kparlante,7,3,4
+181,kpi-dashboard,ea4886bec48a01d3d70ef1ac50b562544ecace2f,removed new_user_success queries (using new_user_bounce instead),Katie Parlante,2013-10-22T21:14:05Z,kparlante,kparlante,34,0,34
+182,kpi-dashboard,37a471051c77f64b06f6d87901db0fcc0cba4bf1,update new_user_success report to account for idps as well as fallback users,Katie Parlante,2013-10-22T20:55:42Z,kparlante,kparlante,19,11,8
+183,kpi-dashboard,9a3d12d7b041ac32e9b322b3780ae9e0088eae1b,count both idp and fallback users in new_user_per_day report,Katie Parlante,2013-10-22T18:29:39Z,kparlante,kparlante,11,4,7
+184,kpi-dashboard,2ab45aaece6e6a3ef6b30117c6f7821b9b335253,Added segmentations to new_user_bounce,Katie Parlante,2013-10-18T18:58:10Z,kparlante,kparlante,125,107,18
+185,kpi-dashboard,aabcf378ddf295273a73d9fb6e221b5a405ff559,"Added new user bounce rate (query, report and view)",Katie Parlante,2013-10-17T22:57:52Z,kparlante,kparlante,111,105,6
+186,kpi-dashboard,dcb8dceb1febf60b4c72303eba0fe96266c0ca68,data-->datum,Katie Parlante,2013-10-11T23:26:59Z,kparlante,kparlante,2,1,1
+187,kpi-dashboard,a51753f7ad2e8d8b4697150c34b278d31874cd5a,"handle kpi data that contains no event stream.
+
+* Pass errors up the stack during initialization",Shane Tomlinson,2013-10-10T11:13:40Z,Shane Tomlinson,Shane Tomlinson,36,20,16
+188,kpi-dashboard,e395dca2fa5f3f7086fd31c387e613e5921efbbe,"Add a siteName, siteLogo and backgroundColor.
+
+fixes #85",Shane Tomlinson,2013-10-10T11:41:27Z,Shane Tomlinson,Shane Tomlinson,58,31,27
+189,kpi-dashboard,34994e98188749a56cfb5d2116c4695fedcc9ac1,"Merge pull request #91 from kparlante/master
+
+Update milestone data",Katie Parlante,2013-10-15T22:14:47Z,kparlante,kparlante,21,16,5
+190,kpi-dashboard,460329d8d1807f0ae28da4f00440a81d512d8313,"Merge branch 'master' of github.com:mozilla/kpi-dashboard
+
+Pull Shane's latest round of fixes",Katie Parlante,2013-10-15T21:13:09Z,kparlante,kparlante,94,51,43
+191,kpi-dashboard,c945a235034102470ecb4e4975416c2879e65d1d,"Merge pull request #2 from kparlante/bounce_rate
+
+Bounce rate",Katie Parlante,2013-10-15T21:09:02Z,kparlante,kparlante,21,16,5
+192,kpi-dashboard,107bc89e61d3f91de2cedac57ddd5f35b54e4aa5,"Merge pull request #90 from mozilla/issue-84-no-event-stream-import
+
+Issue 84 no event stream import",Katie Parlante,2013-10-11T23:47:41Z,kparlante,kparlante,36,20,16
+193,kpi-dashboard,0b45596f5aa2845032231931a35cb7cf808e4cec,data-->datum,Katie Parlante,2013-10-11T23:26:59Z,kparlante,kparlante,2,1,1
+194,kpi-dashboard,0942efc1da65376f936a42753bc374886a9002f6,"Merge pull request #88 from mozilla/issue-87-rp-branding
+
+Add a siteName, siteLogo and backgroundColor.",Katie Parlante,2013-10-11T21:42:21Z,kparlante,kparlante,58,31,27
+195,kpi-dashboard,6293785dcc3037de1ed745200e6be1d82bcc6a78,"Merge pull request #86 from mozilla/issue-80-login-loop
+
+Fix the login loop of death.",Katie Parlante,2013-10-10T22:23:00Z,kparlante,kparlante,44,41,3
+196,kpi-dashboard,66b1e530be85ee32734330d2528c0c827f0b41eb,"Add a siteName, siteLogo and backgroundColor.
+
+fixes #85",Shane Tomlinson,2013-10-10T11:41:27Z,Shane Tomlinson,Shane Tomlinson,58,31,27
+197,kpi-dashboard,0b16dc100f9ac50ce5054e83315f4b4b2b60d9c7,"Fix the login loop of death.
+
+* If there is an error verifying the assertion, send the user to the /force-logout page, where navigator.id.logout is called.
+
+fixes #80",Shane Tomlinson,2013-10-10T11:33:47Z,Shane Tomlinson,Shane Tomlinson,44,41,3
+198,kpi-dashboard,ca85ee08977e02ddeb6a7aac6cfbf85d670a7714,"handle kpi data that contains no event stream.
+
+* Pass errors up the stack during initialization",Shane Tomlinson,2013-10-10T11:13:40Z,Shane Tomlinson,Shane Tomlinson,36,20,16
+199,kpi-dashboard,75aeaeaf0f410f8d263c4e51249da4c6c9153805,add kpiggybank outage to milestones,Katie Parlante,2013-10-08T21:28:28Z,kparlante,kparlante,7,6,1
+200,kpi-dashboard,20a13ceb3d845d0957d3e6ab1893725cce35b20b,Updated earliest date to match data,Katie Parlante,2013-10-08T20:06:28Z,kparlante,kparlante,2,1,1
+201,kpi-dashboard,0ebd8e4bb1fc8e532f9b1046e9baa660a5abf11a,Added recent milestones,Katie Parlante,2013-10-08T19:56:27Z,kparlante,kparlante,14,10,4
+202,kpi-dashboard,934683ca089bad6d93a4c65e144f748203388559,"Merge pull request #83 from kparlante/bounce_rate
+
+Added general progress query and related graphs",Katie Parlante,2013-10-03T22:29:19Z,kparlante,kparlante,274,257,17
+203,kpi-dashboard,1aef6389fc7eb97694fb78f014c2e1cf041fe88d,Cleaning up date hover,Katie Parlante,2013-10-03T21:53:32Z,kparlante,kparlante,2,1,1
+204,kpi-dashboard,e75c2f1abaa2c3459f4b1f22de59d953df3077e6,Use hasOwnProperty; the 'watch' segmentation was causing problems with the views,Katie Parlante,2013-10-02T20:26:58Z,kparlante,kparlante,14,7,7
+205,kpi-dashboard,20eb687d736d821ed4f7af90440bd68f6fd75957,"Make sure data point has a value, fixing one of the problems with segmented views",Katie Parlante,2013-10-02T19:37:32Z,kparlante,kparlante,2,1,1
+206,kpi-dashboard,17979bc34e2371daaee98ca9ffaab04e05a486d0,Sort segmentation data so zeroFill doesn't cause problems,Katie Parlante,2013-10-01T22:09:55Z,kparlante,kparlante,2,1,1
+207,kpi-dashboard,aa8a2731eadf3c7def52fb499af9fdc1105f3123,"upgrade to awsbox 0.6.0, upgrade for node 0.10.x",Katie Parlante,2013-09-24T20:53:03Z,kparlante,kparlante,11,6,5
+208,kpi-dashboard,15051c37176fc6c13ad47da29c8a807b33bb9ec8,Fix hover date display error,Katie Parlante,2013-08-02T20:50:36Z,kparlante,kparlante,2,1,1
+209,kpi-dashboard,c2775f02f82fb736afc948e7831e36771e2cbffd,Add last date to time series graphs,Katie Parlante,2013-08-02T20:39:02Z,kparlante,kparlante,2,1,1
+210,kpi-dashboard,dd20bceac443565aea821806e2b1e188e4b4ea25,"Added general progress query, first pass for bounce rate and general progress visualizations",Katie Parlante,2013-07-30T19:04:58Z,kparlante,kparlante,243,241,2
+211,kpi-dashboard,a1ccc3e1a84406bb7f9f0bc2434a7178174f6ece,"Merge pull request #82 from kparlante/master
+
+Added milestones and new user per day polish",Katie Parlante,2013-09-26T22:41:58Z,kparlante,kparlante,21,14,7
+212,kpi-dashboard,68ea3026b3cf36a70052ee3e46a5aefabd2d7848,Added milestones: recent train and gmail announcement,Katie Parlante,2013-08-13T20:01:31Z,kparlante,kparlante,6,5,1
+213,kpi-dashboard,a87dc5e5db1a4c86af067cce119bb58d9ea40f9b,new_user_per_day as area,Katie Parlante,2013-07-30T20:26:15Z,kparlante,kparlante,2,1,1
+214,kpi-dashboard,e199b6019ad69fdc4ff50ddd0d2fccc5699101c2,Add recent milestones and explanatory text to new_user_per_day,Katie Parlante,2013-07-30T20:14:54Z,kparlante,kparlante,15,9,6
+215,kpi-dashboard,4b4bda3b4290ea3d3d48346791ffa9d4105763a7,"Merge pull request #68 from kparlante/master
+
+Adding new_user_per_day graph",Katie Parlante,2013-07-18T22:46:41Z,kparlante,kparlante,124,115,9
+216,kpi-dashboard,9666bfaac6e87933625ee0501def1ed06052bcc6,Adding new_user_per_day graph,Katie Parlante,2013-07-18T21:02:09Z,kparlante,kparlante,124,115,9
+217,kpi-dashboard,38e86cbe3cff1a41f3a0a9dd5dfff72e8859d99e,"Merge pull request #66 from kparlante/master
+
+Handle staging_continuation data and refactor out new_user_time couchdb view",Katie Parlante,2013-07-17T22:57:50Z,kparlante,kparlante,102,20,82
+218,kpi-dashboard,5dd172c92428926e1263af9aefd85e981d5b3321,Remove unused new_user_time view,Katie Parlante,2013-07-17T22:18:20Z,kparlante,kparlante,65,0,65
+219,kpi-dashboard,176986cf89c063636246122bfb7cdaaa5313d82c,Use new_user report for new user time series,Katie Parlante,2013-07-16T23:36:56Z,kparlante,kparlante,20,7,13
+220,kpi-dashboard,f5eb512cf03d3ce38c06b6ce1d51da13cc79a816,Count staging_continuations if they result in an assertion,Katie Parlante,2013-07-16T22:19:19Z,kparlante,kparlante,17,13,4
+221,kpi-dashboard,7b3644ba341b40462b995b9e14a62c8c8a7d9935,"Merge pull request #65 from kparlante/master
+
+Add FirefoxOS and screen size buckets to segmentations",Katie Parlante,2013-07-12T18:55:14Z,kparlante,kparlante,41,29,12
+222,kpi-dashboard,8eff3967a5096366917bbc9a5c8a9b63addb961d,Update segmentations: add FirefoxOS and bucket screen sizes,Katie Parlante,2013-07-11T20:14:17Z,kparlante,kparlante,13,9,4
+223,kpi-dashboard,17fdb535376138a6cee20075596fc85d232e0708,"Merge pull request #57 from kparlante/master
+
+Fix two bugs: #53 (new_user used wrong queries for segmentations) and #62 (x_axis growing in new_user_flow)",Katie Parlante,2013-07-11T18:19:35Z,kparlante,kparlante,11,10,1
+224,kpi-dashboard,5a72dc1c316678f7e807aeb2c88f76551720b486,Make calls to collector in two week intervals,Katie Parlante,2013-07-09T22:29:03Z,kparlante,kparlante,28,20,8
+225,kpi-dashboard,8c2345b76c2fa4cdaf16e334f07426cf665a17e4,Fixes #62: x_axis grows when segmentations change,Katie Parlante,2013-07-09T17:39:22Z,kparlante,kparlante,4,4,0
+226,kpi-dashboard,3c1c1681bcd1740e9165b3e280035e8c9257c858,Fixes #53: Wire up new_user_segmentations to the correct query,Katie Parlante,2013-07-08T19:18:51Z,kparlante,kparlante,7,6,1
+227,kpi-dashboard,ff0acef71362bbe48bb11afe22afb891677142fa,"Merge pull request #54 from kparlante/master
+
+Implements the new_user view changes",Katie Parlante,2013-06-27T22:21:25Z,kparlante,kparlante,19043,9473,9570
+228,kpi-dashboard,e2c892731b87e772c34e6589b3d188dcdf51cd6f,"new_user changes: move axis outside graph, remove vertical grid marks",Katie Parlante,2013-06-27T20:38:34Z,kparlante,kparlante,5,4,1
+229,kpi-dashboard,20375dd5581a61ccc3cb42f00c9493b3bb1432e4,"Merge pull request #1 from kparlante/new_user_funnel
+
+Move new_user_funnel work back to dev",Katie Parlante,2013-06-26T22:45:30Z,kparlante,kparlante,19040,9470,9570
+230,kpi-dashboard,5079f8821bddfe46a08998b53adc06a0227ace92,Labeling new_user graph,Katie Parlante,2013-06-25T23:38:22Z,kparlante,kparlante,22,17,5
+231,kpi-dashboard,32d505bf8d3ff0538ae4136f4ab35f525522c6fe,upgrade rickshaw and d3,Katie Parlante,2013-06-25T23:27:40Z,kparlante,kparlante,18638,9227,9411
+232,kpi-dashboard,62019eb217ec1008c5c7cd85d8d6abed91a98318,tweaking graph sizes,Katie Parlante,2013-06-25T19:39:29Z,kparlante,kparlante,16,11,5
+233,kpi-dashboard,6fcf8bde9abf4d8c20928dd2dbf4b66893e944f4,"Refactor for default renderer in rickshaw graphs, use 'bar' only for new_user funnel",Katie Parlante,2013-06-25T19:22:41Z,kparlante,kparlante,22,6,16
+234,kpi-dashboard,56aa6847d87a5737d60af64bb071781103a468e4,"Make use of bootstrap styling for table, etc.",Katie Parlante,2013-06-19T19:55:59Z,kparlante,kparlante,17,8,9
+235,kpi-dashboard,a7223a98ab9e1c360a6810928aecb69d129a42b3,"Modify fake milestones to be in our date range, add 'internal' rp_api",Katie Parlante,2013-06-18T19:30:56Z,kparlante,kparlante,8,4,4
+236,kpi-dashboard,d1bbe0ce02085ca651121e156f0dde5902cf6ed6,hardcode EARLIEST_DATE to day we started collecting production kpi data,Katie Parlante,2013-06-18T19:23:52Z,kparlante,kparlante,2,1,1
+237,kpi-dashboard,c821b9869b582ffd958b6ccd33190aa73972a29d,Add table to new_user funnel graph,Katie Parlante,2013-06-11T20:43:19Z,kparlante,kparlante,77,69,8
+238,kpi-dashboard,f3301e77a8e4143d31e7c9f0604e150abcac7488,Add segment by rp api,Katie Parlante,2013-06-07T18:42:44Z,kparlante,kparlante,21,16,5
+239,kpi-dashboard,8ae4c09a58b036a6d9cf6147662ff4493bd978cf,Handle not-orphaned new user cases,Katie Parlante,2013-06-06T23:15:16Z,kparlante,kparlante,5,4,1
+240,kpi-dashboard,eb338e8951423fa472903410381cbfc10192156b,"Update segmentations: new indexes, segmentation config to cover common cases",Katie Parlante,2013-05-14T22:51:03Z,kparlante,kparlante,226,113,113
+241,kpi-dashboard,15a99058b74a3a197a73cc5420dc6e2f0608501d,sort data so that steps are in expected order,Katie Parlante,2013-05-14T20:10:25Z,kparlante,kparlante,1,1,0
+242,kpi-dashboard,de254f67cf6133121ed604b1d10fffb4e0155506,Add bar chart option for rendering new_user_flow,Katie Parlante,2013-05-10T19:38:22Z,kparlante,kparlante,3,2,1
+243,kpi-dashboard,8587968d2665c23ff940d3f61eb9e043a180378d,"Merge pull request #43 from kparlante/master
+
+Ignore 'canceled' flows that aren't new users",Katie Parlante,2013-06-20T23:23:35Z,kparlante,kparlante,9,7,2
+244,kpi-dashboard,4eb43b5948811a47e5eded6dcdec275a80ae24dc,"If the user is prompted to enter an existing password, we don't have a new user flow",Katie Parlante,2013-05-01T23:19:39Z,kparlante,kparlante,4,4,0
+245,kpi-dashboard,47547434ad06588f3e5432bf0aee68af6f20f659,move updating total out of loop for password_reset (ala #42),Katie Parlante,2013-05-01T23:09:53Z,kparlante,kparlante,5,3,2
+246,kpi-dashboard,be32309fa0e13b2a7e7d8887296f4dc8aa5438ce,"Merge pull request #42 from kparlante/master
+
+Fix for ""new user flow over time"" graph",Austin King,2013-04-28T21:33:54Z,ozten,ozten,7,4,3
+247,kpi-dashboard,ccb84e4566728a151981e23601e60a35435b4345,"Only updated accumulated total once, not for each step",Katie Parlante,2013-04-25T22:35:40Z,kparlante,kparlante,7,4,3
+248,kpi-dashboard,280aa0c8983fee9e25f7ff17f6dd0e995ac20c2f,"Merge pull request #41 from kparlante/master
+
+Pulling the awsbox and couch install changes so @karlht can use them",Katie Parlante,2013-04-19T18:50:30Z,kparlante,kparlante,13,7,6
+249,kpi-dashboard,441980e35d213f1fc241763cf3b3dc2fc1ef44fb,"Update awsbox to get security group option, fix the sha for iriscouch/build-couchdb, pick up local config.json for on-the-box edits",Katie Parlante,2013-04-05T21:36:10Z,kparlante,kparlante,13,7,6
+250,kpi-dashboard,901d2e83b1898f86a01ac5cc056df80ecf1dcf90,"Merge pull request #39 from kparlante/master
+
+Merge the convict PR",Katie Parlante,2013-02-26T23:01:05Z,kparlante,kparlante,1621,874,747
+251,kpi-dashboard,4d41b82d0ec8c2f0c7aa06348422bdd9b179bd6a,Fixed up problems introduced while resolving merge conflicts,Katie Parlante,2013-02-23T00:57:23Z,kparlante,kparlante,25,22,3
+252,kpi-dashboard,bafb8c82933e77d698867f7cbf51c643ab79405a,"Fixed merge conflicts, client-sessions and convict",Katie Parlante,2013-02-22T22:50:06Z,kparlante,kparlante,1598,853,745
+253,kpi-dashboard,cb6667ff33ce49a61ed055acaa6bb95a930d7560,"Merge pull request #36 from mozilla/client-sessions
+
+Replace sessions with client-sessions",Katie Parlante,2013-02-22T22:39:13Z,kparlante,kparlante,18,15,3
+254,kpi-dashboard,35fcaaf022061a7df7bd86a9cd02b370200ea4f3,Migrating to convict for managing configs. Fixes #14,Austin King,2013-02-21T22:43:19Z,ozten,ozten,1600,854,746
+255,kpi-dashboard,ab98988a4e0562ec5c7622f3baf951332553e609,Noting CouchDB version Fixes #31,Austin King,2013-02-21T21:53:15Z,ozten,ozten,3,2,1
+256,kpi-dashboard,1c2fc2942c7e7725038e620e5045a1673b7ac3ad,Switches to client-sessions,Austin King,2013-02-21T20:55:19Z,ozten,ozten,6,6,0
+257,kpi-dashboard,c176dd82700a8afa90549d75868d6ea1cd0d902e,"Switches to client-sessions
+
+Conflicts:
+
+	server/bin/app",Austin King,2013-02-21T21:21:06Z,ozten,ozten,12,9,3
+258,kpi-dashboard,45636c615a3b618896731c65526fc7d6474fc888,"Merge pull request #33 from mozilla/issue-27-session-secret
+
+Make session secret configurable",Katie Parlante,2013-02-21T19:55:07Z,kparlante,kparlante,3,2,1
+259,kpi-dashboard,ac3c4cf7268a58b317bfca1debc1225bb00bc4ea,Basic awsbox steps to a healthy instance,Austin King,2013-02-21T19:35:42Z,ozten,ozten,42,37,5
+260,kpi-dashboard,25ea853c5aaaa887ffce4bd132e2c495a627aa94,"Merge pull request #32 from mozilla/issue-25-move-css
+
+Move styles into CSS, style logout button",Katie Parlante,2013-02-21T18:51:30Z,kparlante,kparlante,114,57,57
+261,kpi-dashboard,cdfe7ece55d1b5fda3834a1a18c7b2795f01ac31,"Adding help2man dependency, fixes #34",Austin King,2013-02-21T18:38:42Z,ozten,ozten,4,3,1
+262,kpi-dashboard,5fe4a4abbaf287c7b85f7435f152c9a767fe54b2,Adding -t c1.medium to README,Austin King,2013-02-21T00:59:32Z,ozten,ozten,2,1,1
+263,kpi-dashboard,27c5af466e57e85bf0d04a4be5404b2739f9d929,Make session secret configurable,Austin King,2013-02-20T23:20:21Z,ozten,ozten,3,2,1
+264,kpi-dashboard,978b93fa80a7d73cdc050595d27c87d51ffa0f95,Adding deployment notes,Austin King,2013-02-20T23:15:14Z,ozten,ozten,12,12,0
+265,kpi-dashboard,9f5e3c6af0baf54bce8f62081733565d1d061b56,Extracting CSS,Austin King,2013-02-20T23:11:15Z,ozten,ozten,114,57,57
+266,kpi-dashboard,f4a4485f7251e8340dbe016041f226ad5b175a85,"Merge pull request #24 from kparlante/master
+
+Get dashboard ready for AWS dev deployment",Katie Parlante,2013-02-20T21:26:18Z,kparlante,kparlante,467,404,63
+267,kpi-dashboard,7c246c547a0f77b8da30d9e3512e0caddc05e663,"removed inline script, sets logged-in-user on jquery data attribute instead",Katie Parlante,2013-02-20T00:37:36Z,kparlante,kparlante,15,3,12
+268,kpi-dashboard,938f1d527d65e0e7e035609be10621610e5ca467,don't update server config,Katie Parlante,2013-02-19T22:26:03Z,kparlante,kparlante,25,16,9
+269,kpi-dashboard,45ac2b4c2888c2ce812debf245e79e75dcb7e145,remove magic number from mozilla.com verification step,Katie Parlante,2013-02-19T21:55:08Z,kparlante,kparlante,2,1,1
+270,kpi-dashboard,3a7d611bcda04ce21ea52f93f81d84cfe4ae96e9,pin versions down,Katie Parlante,2013-02-19T21:46:36Z,kparlante,kparlante,10,5,5
+271,kpi-dashboard,bdb44360170de14ac2817419c8f6809acb756913,Added sudo to creation of local.ini,Katie Parlante,2013-02-19T20:39:29Z,kparlante,kparlante,2,1,1
+272,kpi-dashboard,dcb062a8b1f878362d6a2e62c68e4892805338eb,Create and use dashboard user for couchdb,Katie Parlante,2013-02-19T19:47:16Z,kparlante,kparlante,62,34,28
+273,kpi-dashboard,8392260e1e7f0a4aabf9b360bd4ba77568db6306,"Updated config with staging url
+
+added deploy script
+
+add server details to config file",Katie Parlante,2013-02-06T21:18:21Z,kparlante,kparlante,105,94,11

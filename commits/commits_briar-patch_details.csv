@@ -1,0 +1,571 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,briar-patch,4c77322c5564e1bb3412f9f4a2b101be49cd3814,renamed kittenreaper to kittenwrangler,Mike Taylor,2012-03-14T19:42:36Z,bear,bear,0,0,0
+1,briar-patch,63be54ea47d784701a2591f3b4e6893b57c4a5c0,"fixed bug in the wait() method that is called to wait for the shell
+  prompt to respond before continuing with remote commands.  Turns
+  out if something is configured wrong with the slave it would never
+  exit the loop - wow!",Mike Taylor,2012-03-14T19:30:19Z,bear,bear,87,60,27
+2,briar-patch,4774f753c964aba9434105cd4cfe8667406e500e,"removed some debug output from the email generation code
+fixed bug in getSlave() code that was causing some of the windows
+  slaves to not be classified properly",Mike Taylor,2012-03-08T16:39:36Z,bear,bear,10,2,8
+3,briar-patch,269218cf782c26297295b54b20d10b673d231ae0,remove listing of idle hosts in email - we already know they are idle :),Mike Taylor,2012-03-08T03:15:11Z,bear,bear,14,3,11
+4,briar-patch,7b64920dad36b39f9a963b147477f476bd975dda,added LICENSE file and also mplv2 appropriate headers to the source files,Mike Taylor,2012-03-07T06:41:42Z,bear,bear,405,405,0
+5,briar-patch,3ecb2227de3f4d06c5a72e6a3a2dc28763d6640a,"generate an email if --email command line parameter found
+  modified the check and reboot code to forward to the caller
+  the information used to generate the screen output",Mike Taylor,2012-03-07T06:37:41Z,bear,bear,149,130,19
+6,briar-patch,48ac0c0dd5cd6bc6d1ec8cafd3a2b2674d2bdd1b,flipped ssh code to use fqdn,Mike Taylor,2012-03-06T22:58:41Z,bear,bear,6,3,3
+7,briar-patch,867f4c8a7f78eec274bdd40146f20efe8a1ab938,"wow, *and* the output message is different...",Mike Taylor,2012-03-06T22:49:07Z,bear,bear,2,1,1
+8,briar-patch,4423a0f4cd62868978fc7679bf6583f59239d5b0,"oh the joys of multiple OS support - changed ping call to remove -o
+which isn't supported on the version of CentOS we are now using
+and to ping the FQDN for the host",Mike Taylor,2012-03-06T22:45:18Z,bear,bear,5,3,2
+9,briar-patch,9dbea68295dd59751be719a9274158dfa10ddb46,type in log output format string - doh!,Mike Taylor,2012-03-06T22:30:42Z,bear,bear,2,1,1
+10,briar-patch,91d37cf892958dba334cca25d39279f428cd02be,"add RECOVERY to the status output
+remove sbin/ path requirement for ping
+add mw32-* to slave type list",Mike Taylor,2012-03-06T22:24:21Z,bear,bear,38,24,14
+11,briar-patch,9d79c01e53a01ff86de8433855bd86e2ba765636,"kittenreaper only processes ""prod"" hosts by default
+  changed --class to --environ so it's name matches slavealloc's field
+fixed bug in calculating last seen date if log file causes a date
+  conversion error
+other small indent and output formating glitches",Mike Taylor,2012-03-05T18:03:24Z,bear,bear,59,43,16
+12,briar-patch,d6da665357b801b7c86f83574fc743ec0c6081be,"more cosmetic cleanups to the output to make it easier to scan and read
+added at nthomas' suggestion a check to make sure buildbot was active
+  before trying to run graceful shutdown request
+cleaned-up and tweaked w32 slave class and then added w64
+moved more of the core code into remote.py so that the differences
+  between kitten and kittenreaper are how it's run and output style",Mike Taylor,2012-03-03T08:12:48Z,bear,bear,408,198,210
+13,briar-patch,6f570e58c3dd514cbe19d4204125775c2166209d,"large refactoring to move anything related to handling of the remote
+  hosts into releng/remote.py
+also made the checkAndReboot() routine return a dictionary that contains
+  values for the different checks/actions performed - this way the calling
+  routine can parse and format any status messages.  Only if you specify
+  the verbose flag will you see those steps being performed.",Mike Taylor,2012-03-01T20:51:48Z,bear,bear,451,252,199
+14,briar-patch,4a8121ca21dcdde08c5699386e322793a79a34c0,missed redis as a dependency for install_venv.sh,Mike Taylor,2012-02-24T21:46:09Z,bear,bear,1,1,0
+15,briar-patch,d905d8550d2812e668f256f032c7101097de8b09,"fixed subtle bug in remote.py about it not finding the tegras.json
+  file if you passed in a toolspath
+added an install_venv.sh file to automate creating a test directory
+  with the proper python environment",Mike Taylor,2012-02-24T21:32:39Z,bear,bear,48,46,2
+16,briar-patch,3baf7e2f74afa141a5fe253084ff778a17a1bf1a,forcing --filter just until we get some testing done,Mike Taylor,2012-02-22T23:14:52Z,bear,bear,8,7,1
+17,briar-patch,f1ba05ae1d96bac6c75d74312bad104d04af4539,helps if you log something when --dryrun prevents an action,Mike Taylor,2012-02-22T23:06:54Z,bear,bear,17,12,5
+18,briar-patch,56b69a668555255bff81d35347a8054bfca18192,"removed some output to keep the core code path quieter
+  and also made the worker count variable",Mike Taylor,2012-02-22T22:54:49Z,bear,bear,28,17,11
+19,briar-patch,8cf4a280fb91a0d48f6a0d25685a58501b3f9b25,"big refactoring of remote.py to make it more robust to ssh errors
+  and also to try and reduce the significant amount of code
+  duplication.  Still more work to be done on that tho!
+kitten and kittenreaper were also modified to work with the updated
+  remote.py and I also made the error reporting inside of the
+  check() routine know when one twistd.log string happened before
+  another so it will only report the last one - which as you can
+  imagine is the one your *really* interested in.",Mike Taylor,2012-02-18T00:53:41Z,bear,bear,411,257,154
+20,briar-patch,cc05b906a9d7749e06cb630d6324f2ad0f2b6a80,"moved a bunch of slave related code into releng/remote.py and started
+  working on some common classes - based off of the initial work by
+  catlee
+kitten.py - basically a tool to check on the status of a slave and
+  output a bunch of status/info lines.  Soon will be able to force
+  reboots if idle/hung, enable/disable, etc
+rbug.py - the first pass at a tool to file a remote-hands bug for
+  a slave. working out the kinds with bugzilla api tho :(",Mike Taylor,2012-02-17T18:09:31Z,bear,bear,757,757,0
+21,briar-patch,4c493da5a6f9348e3018b0181e70882d80f0c762,"refactored to move some of the common slave handling code to a new
+  releng.remote module
+made the output less chatty",Mike Taylor,2012-02-17T18:08:16Z,bear,bear,94,30,64
+22,briar-patch,13eb1be82615068f38357fc6818b13479152dbe3,"make the logging less ""chatty"" on request",Mike Taylor,2012-02-17T18:07:53Z,bear,bear,18,14,4
+23,briar-patch,41fd639c36f4dcbaa802dba98ca167d7741cdc90,"Aborbed coop's changes to catlee's paramiko classes to manage remote
+  slaves.  Wrapped it up with some support code to allow for multiple
+  processes, last-seen cache and slavealloc api goodness.",Mike Taylor,2012-02-15T22:23:01Z,bear,bear,166,148,18
+24,briar-patch,b8a404a05b63cac0e813db4c4af10a9bb591091d,Added code to handle source change events,Mike Taylor,2012-02-15T22:22:32Z,bear,bear,39,37,2
+25,briar-patch,4c7ea0bdb260067807f7f8e8ed52f58dd0f264a7,"d'oh! did not realize that the helper routine for Pulse was *not*
+  acking messages.  Sorry pulse queue that had 47k+ messages!",Mike Taylor,2012-02-15T22:20:33Z,bear,bear,6,6,0
+26,briar-patch,740ac1e5c85e2db892aeb1cb55de02a6425c3b3a,"Updated the docstring to show the worker and kittens options that I
+  missed earlier",Mike Taylor,2012-02-15T05:49:50Z,bear,bear,4,3,1
+27,briar-patch,012c8d352584b1f15b894e47a771be65c65cadf8,"outline of a ""kitten"" reaper process.
+Either from a file or from the slaves_needing_to_reboot.txt source
+  gather a list of kittens to check and reboot if needed.
+Creates a pool of workers to process the list
+Right now it's a no-op as I need to get the code from Coop that he has
+  been working on",Mike Taylor,2012-02-15T05:44:53Z,bear,bear,132,132,0
+28,briar-patch,1e564726a9bc68b8849eb993713c5cf8c1166246,"Changed PulseBroker so it can be run offline by reading from a file.
+Adjusted bpServer to archive in smaller chunks
+Added to the helper routines",Mike Taylor,2012-02-15T05:31:17Z,bear,bear,94,74,20
+29,briar-patch,62db43f117f4431dc58b24342b7f4443dc345510,"Realized that I was calculating elapsed based on the timestamp of
+  the finished event and *not* the timestamp of the started event.
+  Now I'm pulling the timestamp from the builduid's existing hash.",Mike Taylor,2012-02-04T10:48:11Z,bear,bear,27,16,11
+30,briar-patch,c00d392970b063970c1bdf25c91aedad2c0903d7,calculate and store elapsed time when the finished event happens,Mike Taylor,2012-02-04T04:11:44Z,bear,bear,56,41,15
+31,briar-patch,cffe8777f01c1ed4b6a4ecf9ee971431bc4dc216,"silly bug that was causing the check() rollup code to not do
+  anything after an hour (in other words after the interval looped around)",Mike Taylor,2012-02-03T14:43:48Z,bear,bear,18,4,14
+32,briar-patch,d33ae567832fb74889996adc5e90ef8a7a2f61b7,"Something seems to be happening to the socket the Metrics object was
+  keeping open to Graphite - after about 2 hours all Graphite data just
+  ""goes away"".  I'm not seeing any socket errors in either log :(
+  Changed the code to open/send/close the socket per request which
+  happens once a minute currently",Mike Taylor,2012-02-02T18:51:18Z,bear,bear,27,16,11
+33,briar-patch,7e8b1ddd0e7b302466c606829e008c8fd2159211,"Realized that I was adding builduid's to a list thinking it was a set and in
+  Redis lists just grow and contain duplicates.  Switched the type to sets so
+  the build:YYYY-MM-DD variables are sets of unique builduids",Mike Taylor,2012-02-02T08:33:40Z,bear,bear,27,19,8
+34,briar-patch,0a893f442c153189495578077807e3904c007e27,"Tighted up how Redis keys and hashes are stored - much saner now (I hope)
+Mirrored all of the graphite counts to Redis
+Added some new lists and hashes to Redis by builduid and also by
+  date and date.hour - this will allow the primary lists and hashes
+  to be zeroed out daily but information retained as to what the
+  timestamp was for builds",Mike Taylor,2012-02-02T07:30:45Z,bear,bear,70,45,25
+35,briar-patch,0df4ca9995b825493ae03ea9f23dab117ba20683,"Finally refactored the metrics handling code into it's own server
+  and implemented the interval-rollup for metrics
+The data is flowing in nice 1,5,15 minute chunks to graphite and
+  now to move the html code over to a newly installed Playdoh (django)
+  install",Mike Taylor,2012-02-02T04:56:08Z,bear,bear,177,112,65
+36,briar-patch,44c9f1635c59639820251acea8426f99c069c19b,"Split out the sending of data to graphite to a new server bpMetrics which
+  will eventually become a worker pool like bpServer
+Tried to remove any from bpServer that wasn't tied directly to parsing of
+  Pulse data and left the figuring out of what to tally to bpMetrics",Mike Taylor,2012-02-01T10:21:24Z,bear,bear,595,417,178
+37,briar-patch,e624e78ecbfd41566fbda1c8971c316122fb9244,worked on the README to document all the bits and pieces needed for the project,Mike Taylor,2012-02-01T06:30:08Z,bear,bear,99,95,4
+38,briar-patch,aafb626fed0fe290656839aba099dce44edfc4b9,"added first pass at sending data to a Graphite server
+  the job worker builds the Graphite formatted string and then
+  inserts it into a queue for handling",Mike Taylor,2012-01-19T07:36:15Z,bear,bear,126,93,33
+39,briar-patch,171fc405c8d983e9451b63bcc0f2365a5ece519a,"helps that, if your looking into a set to see if a build has been started...
+you actually add the build to the set when the starting event happens...",Mike Taylor,2012-01-19T05:29:39Z,bear,bear,20,14,6
+40,briar-patch,382d9776a40eba1ff7a29cae18703f058364b324,"second pass at the core metrics job parsing routine
+  changed the schema to break out non-counter items to their own hashkey
+  put into a helper function the date:hour:qhour hincr() calls",Mike Taylor,2012-01-19T05:16:06Z,bear,bear,138,87,51
+41,briar-patch,0dbbf907c054aa154b401048698a010ef8670d9d,"very initial steps towards storing items to redis
+ - created metrics.py to hold all things key/value manipulation
+ - added core key parsing for things that are common to all:
+    slave, master, date, hour, quarter-hour and so on",Mike Taylor,2012-01-13T10:41:27Z,bear,bear,114,105,9
+42,briar-patch,7a3009c0c748833c5c4b5322b851b5bdcabc76e6,"learned something new from Ben today!
+dumpException is no longer needed as Python log events take
+  a exc_info parameter, and if not False cause the exception
+  stack to be included in the log output \o/",Mike Taylor,2012-01-13T04:00:26Z,bear,bear,19,3,16
+43,briar-patch,1c8c27ebc03ea77c5ad32bf122f03f4cad9dd7a4,"worked on the heartbeat and available server code
+  changed the notification of new/old active servers from using the
+  event queue to working direct with the servers list.  This was needed
+  because the event queue had to be touched to get new servers but that
+  would also require any job events to be cached and that didn't make
+  sense - why add a cache or have to re-insert.
+  Anywho, now the broker is more robust for server changes except in the
+  edge case where no servers are available for a long time - need to add
+  some sort of high water mark handling",Mike Taylor,2012-01-12T22:21:20Z,bear,bear,90,40,50
+44,briar-patch,78e057b2bddcbdc9031bded7267caf15a43d421e,"moved dbRedis over to releng lib for the short term so it can be used by bpServer
+updated bpServer so it uses redis to advertise that it's listening
+updated PulseBroker so it parses the server names pulled from redis to
+  extract ip address",Mike Taylor,2012-01-12T12:34:11Z,bear,bear,182,107,75
+45,briar-patch,c42f2369e8668724ab97376fd061787078f2cbba,"added redis db helper object and yea, it's really brute force right now but was
+  looking to get required minimum to connect to redis
+basic but functional server ""discovery"" via redis
+  checks for new servers in a redis list and also checks to see if they
+  are members of an inactive set
+cleaned up helper classes and added some really minor helper functions
+  so that the main zmqHandler loop is cleaner",Mike Taylor,2012-01-12T10:53:56Z,bear,bear,186,134,52
+46,briar-patch,3a86be506251c890eefcd6ffb44a0272acb5ae24,"refactored main zmq loop for:
+ - pulled out all server tracking into a helper class
+ - improved ping/heartbeat
+ - readability cleanup",Mike Taylor,2012-01-12T06:57:01Z,bear,bear,232,136,96
+47,briar-patch,d2e2c58d18408cf7806002534aaf9bcdec2b4bb9,"roughed out bpServer and added the beginnings of server heartbeat checks.
+still need to add some Redis love",Mike Taylor,2012-01-11T09:32:55Z,bear,bear,213,180,33
+48,briar-patch,9ed87ea34cd38141fc500958b212e6e2fa4c1909,initial commit,Mike Taylor,2012-01-11T00:29:25Z,bear,bear,466,466,0
+49,briar-patch,7aae27a38984adf79eaf8d3261ec20e97a2414d0,"Merge pull request #7 from Mozilla-GitHub-Standards/master
+
+Add Mozilla Code of Conduct",Chris AtLee,2019-03-28T19:15:04Z,catlee,catlee,15,15,0
+50,briar-patch,ca6b16fec964f65b343d815036b5ae7f861a7ec9,"Add Mozilla Code of Conduct file
+
+Fixes #6.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,2019-03-28T03:51:50Z,Mozilla-GitHub-Standards,Mozilla-GitHub-Standards,15,15,0
+51,briar-patch,0c2d9235fe653df9db5952e32e18c4a210650d09,"Add cron script for kittenherder, template files for config",Chris Cooper,2013-09-16T17:36:52Z,ccooper,ccooper,38,38,0
+52,briar-patch,a230542a3f4469f6269b3f98dc4d958cf0ddf78e,Specify a timeout for IPMI requests so we don't hang indefinitely.,Chris Cooper,2013-09-16T15:52:47Z,ccooper,ccooper,16,9,7
+53,briar-patch,47b7cb52b6ea1b8580e283a43dcf7192982fe702,"Change default IPMI username. p=jhopkins, r=bhearsum",John Hopkins,2013-08-20T18:20:38Z,jhopkinsmoz,jhopkinsmoz,2,1,1
+54,briar-patch,5c701aaa0361978d9e576e91a675aacec47c871d,Bug 878049 - Create a persistent history of slave reboot attempts and outcomes for kittenherder,Chris Cooper,2013-07-24T16:59:50Z,ccooper,ccooper,40,35,5
+55,briar-patch,96568e33ae6aca2d2f414f2e5404e4142627627a,Kill dead code. r=jhopkins,Ben Hearsum,2013-07-24T16:45:47Z,bhearsum,bhearsum,2773,0,2773
+56,briar-patch,ee70854ddc7f940626019716c53490bf5f92641d,"Bug 883176 - point kittenherder to http://builddata.pub.build.mozilla.org/reports/slaves_needing_reboot.txt. p=dustin, r=jhopkins",John Hopkins,2013-06-17T14:32:44Z,jhopkinsmoz,jhopkinsmoz,8,4,4
+57,briar-patch,ecd72679b00b68ea6dc8cc15c1c4ee8daaaecd7c,Bug 874957 - Support t-xp32-ix-* hosts in kittenherder. r=coop,John Hopkins,2013-05-22T17:25:49Z,jhopkinsmoz,jhopkinsmoz,7,7,0
+58,briar-patch,8817bd54ec1a9b7d8d39527e5523a06f3662aad7,Do not fetch inventory details when FQDN is not provided. r=nthomas,John Hopkins,2013-05-22T01:55:55Z,jhopkinsmoz,jhopkinsmoz,3,3,0
+59,briar-patch,7fe5c9ea8b856899ca5d00ccaac3bb309edacebd,Bug 874666 - Support t-w732-ix-* hosts in kittenherder. r=coop,John Hopkins,2013-05-22T01:41:25Z,jhopkinsmoz,jhopkinsmoz,7,7,0
+60,briar-patch,b4ad58a1496b607c8c8d64ae69adb74687cae215,"Bug 869132 - Finish implementing kittenherder's PDU reboot support. r=coop
+fetch PDU details from inventory, fetch lastSeen from buildapi, rewrite
+rebootIfNeeded logic, improve logging",John Hopkins,2013-05-09T14:23:39Z,jhopkinsmoz,jhopkinsmoz,367,250,117
+61,briar-patch,88f5e63ac98142a92b28ddaccc5dfbfd9fe712f5,Bug 868414 - kittenherder misinterprets reboot output. r=coop,John Hopkins,2013-05-06T13:54:47Z,jhopkinsmoz,jhopkinsmoz,17,13,4
+62,briar-patch,a32b0fd12532d453f99cbf831894553e0f2906ac,Bug 855419 - always use .build.mozilla.org CNAME to look up -mgmt hostname.  r=coop,John Hopkins,2013-05-01T13:28:17Z,jhopkinsmoz,jhopkinsmoz,2,1,1
+63,briar-patch,06ed0cb467edf8f39fd7bde41fbdf2c017abf072,Add support for talos-linux*-ix slaves,Chris Cooper,2013-04-17T21:02:21Z,ccooper,ccooper,7,7,0
+64,briar-patch,6520fc3ba4217954cd740b1920c47cca2779470e,Bug 821883 - allow rebooting of r4 and r5 minis via PDU - r=jhopkins,Chris Cooper,2013-04-16T14:21:22Z,ccooper,ccooper,151,100,51
+65,briar-patch,d8e1e943f7a4efa38640ebf83d74fbda0c7635a8,Bug 855419 - Add Windows 8 support to kittenherder. r=coop,John Hopkins,2013-04-15T21:07:03Z,jhopkinsmoz,jhopkinsmoz,9,9,0
+66,briar-patch,256add89a4efd40e3a651c4f8644298b6218219b,"Disable EC2 checking, add SDcard formatting for tegras, return reboot status",Chris Cooper,2012-12-14T15:50:41Z,ccooper,ccooper,70,55,15
+67,briar-patch,7af9f64d4958800c206cd819623edb5e6e0d054e,"Merge pull request #4 from mozilla/dev
+
+Dev",Mike Taylor,2012-07-18T07:00:11Z,bear,bear,581,367,214
+68,briar-patch,744b5662f5d84c94b32583c7534a92cb457596fb,"nice subtle bug, setting bbdir in __init__ works except for those child classes
+that don't *have* __init__",Mike Taylor,2012-07-18T06:53:53Z,bear,bear,5,3,2
+69,briar-patch,0a42a469b541a1266814ec4cbfbd2b7662535bed,"store into a jobs hash any step timings that getWorksteps() determines are interesting
+(currently this is a list of compile/build steps)",Mike Taylor,2012-07-12T07:45:46Z,bear,bear,19,18,1
+70,briar-patch,31501ffc986d471871901a14254128c15797f71e,"add helper routines to determine os, platform and other step related items",Mike Taylor,2012-07-12T07:45:12Z,bear,bear,97,71,26
+71,briar-patch,b98f3e8b6afec21d864e461d15561455d2b31603,"make the Pulse appname unique - this was causing the production PulseBroker
+to not receive all possible messages because it shared the same appname with staging.",Mike Taylor,2012-07-12T07:43:33Z,bear,bear,2,1,1
+72,briar-patch,1648e8a4f8eee72d8f73d30f79e9aa329f530f57,"worked thru a nasty glitch where ssh/paramiko (when run against an ec2 host) was not always returning the current commands output if that command's output was smaller than the stdout buffer because the .wait() code was sending keystrokes and not letting the lower level code flush the output buffers.  (ok, yea, that last bit is a hunch but man did it take a lot of tests to get to that hunch and working code.)",Mike Taylor,2012-07-11T06:06:40Z,bear,bear,285,150,135
+73,briar-patch,9a99807ce122d113e83a7601563e9a5e6155691c,Change kittenmonitor to gather pending job counts by platform and also by hostname (as defined by buildermap),Mike Taylor,2012-07-10T21:35:23Z,bear,bear,109,53,56
+74,briar-patch,33abf5e145cbbc9cc23921c7dab2bdea9f1d1e9f,"- added to remote host management for tegras a reformat SDcard helper
+- adding to AWS support code the start of pending job metrics so that kittenherder can know when to stop/start EC2 instances",Mike Taylor,2012-07-06T06:42:42Z,bear,bear,90,76,14
+75,briar-patch,915b39eb8e5b5352402d044c020bf32a8d939611,added some error logging to rebootIPMI() and also changed the reboot code to try ipmi/pdu more aggressively when --reboot option is given,Mike Taylor,2012-07-03T19:31:04Z,bear,bear,36,26,10
+76,briar-patch,f9cf9f88ad83fed66d7e415a0efc27d242411419,"Merge pull request #3 from ccooper/master
+
+Don't hardcode OS in bug template, fixup HTML reporting to match text",ccooper,2012-06-29T16:13:32Z,ccooper,ccooper,36,23,13
+77,briar-patch,e737ed1ff7141392123ec0f5be8791ee8ca6ba13,"Bug 748563
+- ignore emacs auto-saves (*~)
+- make HTML line breaks between logical sections rather than every section",Chris Cooper,2012-06-29T16:09:39Z,Chris Cooper,Chris Cooper,12,10,2
+78,briar-patch,4a14d1653d1e125d552f2c51a9f6b11d0ca51980,"Bug 748563
+- renamed generate() to generateTextList()
+- make previouslySeen() return a host list so the HTML report can reuse it
+- report previously seen hosts in HTML report
+- add a subtle line break between the HTML report sections",Chris Cooper,2012-06-29T16:00:07Z,Chris Cooper,Chris Cooper,24,13,11
+79,briar-patch,e1631f7c1166fe456b9cce86db640b14b8444fc3,Bug 748563 - don't hardcode OS in bug template,Chris Cooper,2012-06-28T23:03:49Z,Chris Cooper,Chris Cooper,2,1,1
+80,briar-patch,ca1a41b981b72d7382283b1da6054be3155ad948,"Merge pull request #2 from ccooper/master
+
+Bug 748563 - send HTML mail, add bug links",Mike Taylor,2012-06-28T22:11:31Z,bear,bear,121,117,4
+81,briar-patch,a076c1b616820dd6dda3008c34cf70e8783b1c83,"Merge pull request #1 from mozilla/dev
+
+- always add all ec2 values to the redis hash for the instance",Mike Taylor,2012-06-28T21:50:10Z,bear,bear,31,17,14
+82,briar-patch,419103a0e4ed7c05c39b95ec68708707db644c79,"- always add all ec2 values to the redis hash for the instance
+- process all ec2 instances but only try to shutdown an instance if it is currently running",Mike Taylor,2012-06-28T21:48:14Z,bear,bear,31,17,14
+83,briar-patch,ec362f277659a24e151dc239937a5bb26a3ea4eb,"Bug 748563 - send HTML mail, add bug links",Chris Cooper,2012-06-28T21:45:42Z,Chris Cooper,Chris Cooper,121,117,4
+84,briar-patch,b75a8807a179fe4fe4edd8e98c62821a840b3698,added .DS_Store to .gitignore and also removed from the repo an errant .idea/* commit,Mike Taylor,2012-06-28T07:08:29Z,bear,bear,10,1,9
+85,briar-patch,fd3a1d7587e72981cb198655fb9ec711edb5c9b5,added *.log to gitignore,Mike Taylor,2012-06-28T07:05:03Z,bear,bear,1,1,0
+86,briar-patch,f5add6804c8a54cf124ac5f8b7e610b1ac3b56a6,"refactored the error handling for both sides of the messaging system.  bpServer now checks periodically if it has been listed as inactive by the broker and the broker is more aggressive to flag a worker as inactive.
+If bpServer finds that it is inactive it now exits",Mike Taylor,2012-06-28T06:52:41Z,bear,bear,160,101,59
+87,briar-patch,5d05e9408191bdef27afd989a2be03e6d1d7ca0e,cleaned and brought up-to-date the README,Mike Taylor,2012-06-28T06:46:31Z,bear,bear,57,21,36
+88,briar-patch,0cc8afe5e8612b1ec0772c25a7baa2346049e1c6,"bringing the rest of the tools up to date with initOptions changes, adding some defensive coding to kittenherder and changing the key used for EC2 farm entries",Mike Taylor,2012-06-27T17:30:15Z,bear,bear,32,17,15
+89,briar-patch,f63215f5e5029443495a3863c9390711824cd584,change default options to reflect new initOptions handling for boolean parameters,Mike Taylor,2012-06-27T07:44:20Z,bear,bear,17,8,9
+90,briar-patch,4226bbb2adc835e675d1781c7158719387e5fdb6,remove 'b' from default options dictionary to sync up with initOptions() change and fix typo that removed final paren,Mike Taylor,2012-06-27T06:45:06Z,bear,bear,7,3,4
+91,briar-patch,9cb9df55409cf80169a2fb5a9023ee7f0d3afaed,"- made initOptions smart enough to not require a special flag for boolean params, now it just figures it out
+- fixed bug 768145 - exception being thrown when host is offline and some variables from check result are None
+- bug 768143 and bug 768163 - output from kitten cleaned up when host is offline and also the reboot output is much easier to follow if a reboot doesn't happen",Mike Taylor,2012-06-27T06:04:17Z,bear,bear,152,82,70
+92,briar-patch,74c4dbe062d112ee55cdce97522102ca82367f61,and... changing the db back to 8 - dashboard is metrics data *not* kitten data,Mike Taylor,2012-06-13T19:52:33Z,bear,bear,2,1,1
+93,briar-patch,ba5f961477acd0eeb2a7bd5bbebe69d498950696,point to the proper default redis db,Mike Taylor,2012-06-13T19:45:57Z,bear,bear,2,1,1
+94,briar-patch,948bdc2e5e63789aee2a7996421bcc26c37c79c3,adding the current dashboard code to the repo,Mike Taylor,2012-06-13T19:36:53Z,bear,bear,781,781,0
+95,briar-patch,dec4ab6ccab369720b6ff5a288e9865e59d68c5d,"bad bear, making quick changes without testing... no cookie for you!",Mike Taylor,2012-06-12T20:52:36Z,bear,bear,3,1,2
+96,briar-patch,2250fc37de6fbd7fa4c274008069d0e8ed57f9b9,"small hack, use database 10 for the aws update but force redis db to 8 for the dashboard work",Mike Taylor,2012-06-12T20:50:32Z,bear,bear,4,4,0
+97,briar-patch,fb3785efd3d053ec801e6f8044bccd57bc86213e,forced all instance tag/key names to be lower case when pulling from ec2 data,Mike Taylor,2012-06-12T20:44:30Z,bear,bear,7,4,3
+98,briar-patch,2425595b5e32a986522e9acfa639e10ed4778e6c,"changed the default database for non-metrics briarpatch stuff from 8 to 10
+changed the default expire for kittenherder history items to 14 days",Mike Taylor,2012-06-12T20:35:59Z,bear,bear,10,5,5
+99,briar-patch,f514a15c76c8cbcaddbcc677dc2d9b6642f79527,set the key expire value for all ec2:* instance keys added to redis,Mike Taylor,2012-06-12T14:46:51Z,bear,bear,4,3,1
+100,briar-patch,c8719f6a5c176bf65ef9d2d3763501cd9ec3cbed,"changed how aws instances are stored to make the host key not require the word ""instance"" and to only put into the ec2:active / ec2:inactive list those hosts that have a moz-state *and* ec2 in their instance names",Mike Taylor,2012-06-12T14:35:32Z,bear,bear,46,24,22
+101,briar-patch,6f64cb4c55a3a045f8b1fe2c7ad6b5247739bd46,"updated kittens option description and some minor code layout tweaks, changed worker option description to match reality and also made the value a local constant",Mike Taylor,2012-06-12T14:07:16Z,bear,bear,28,11,17
+102,briar-patch,d021dcdb2eeeb46b4248931831050590ed3134c0,"added commandline option for smtpserver so I can stop commenting
+  out the smtp.send() code when testing locally and forgetting to
+  remove it ...
+added option for --monitor - this will be used soon to start having
+  kittenherder run more often to gather monitoring data for all the
+  other hosts that are not processed by the current code
+added code to remoteEnv.check() to search for and get the timestamp
+  of when the host was idle rebooted by buildbot and also when the
+  last time it handled any job related command.
+  This allows me now to put into the email output a ""bored kitten""
+  section",Mike Taylor,2012-06-08T21:55:08Z,bear,bear,75,52,23
+103,briar-patch,6a4ef2ad677cdefce47feb91e0a1778a9d87432a,"more defensive code to catch when hosts are cranky and offline when we
+  look at them to find out if they are active",Mike Taylor,2012-06-08T17:22:25Z,bear,bear,26,13,13
+104,briar-patch,f8d405ab9d7c9d82d3ccb77062aee1526a90aca1,"add some protection if remote.getHost() returns None when it encounters
+  a host type it is not prepared for",Mike Taylor,2012-06-08T07:07:45Z,bear,bear,73,38,35
+105,briar-patch,01ab3354759d34791dd56ee1649a5e41a4f899da,"updated install notes to match the most recent changes in dependencies
+also simplified the README to not mention graphite web, that really
+  should be it's own doc",Mike Taylor,2012-06-08T05:29:51Z,bear,bear,103,32,71
+106,briar-patch,5ea2c9988b4393fb32776d0c116863d31378310f,added configuration files to gitignore,Mike Taylor,2012-06-08T05:29:06Z,bear,bear,1,1,0
+107,briar-patch,52a04a6db189f056aff2fb64352988224e2caf4a,adding the virtualenv directories to gitignore,Mike Taylor,2012-06-08T03:44:33Z,bear,bear,3,3,0
+108,briar-patch,14a0122addd2d518f839c7451e75c2ecf2cb8de4,"change kittenherder to report along side the last seen hour/min/sec the
+  total seconds as the key ""since""
+also change all briarpatch code to stop using keyring as I could not get
+  it to store and retrieve a password in the latest version properly on OS X
+  for now just use the secrets.cfg json",Mike Taylor,2012-06-08T03:33:40Z,bear,bear,73,16,57
+109,briar-patch,055bdaa7f00fa903bb574cbd6d608de8f4410ea3,temp change the metric for elapsed time from a timer to a counter,Mike Taylor,2012-06-08T03:31:52Z,bear,bear,3,2,1
+110,briar-patch,16327d4a7815c2ebc77f7d379f3a889451b327bb,added the PyCharm project directory to gitignore,Mike Taylor,2012-06-07T06:07:35Z,bear,bear,2,2,0
+111,briar-patch,bd20f39f1a5108733df33880978596ea72de9fd4,"bunch of small changes to get the kitten code to recognize and handle
+  ec2 farm hosts",Mike Taylor,2012-06-07T06:06:27Z,bear,bear,350,214,136
+112,briar-patch,4cfb9ea6a4d428296d2730d80cf7f488b5545def,"updated metric key layout to match :lonnen's changes and also added a
+  simple filter to reduce the amount of data we are pumping to StatsD
+  as it can't handle the full flow :/",Mike Taylor,2012-06-07T06:05:00Z,bear,bear,19,8,11
+113,briar-patch,b3a6326ace8e8ad2c5c333b008f55fbed416b1a5,added code to have the event loop kill itself if any Pulse exceptions happen,Mike Taylor,2012-06-07T06:04:18Z,bear,bear,34,21,13
+114,briar-patch,16219087780ee531ae0c655730b81998e01d89e0,"added a very basic archive of what is being sent to StatsD
+removed the ""stats."" prefix from our metrics label as StatsD adds that",Mike Taylor,2012-06-01T19:21:32Z,bear,bear,47,28,19
+115,briar-patch,ebcbfca9e2180f13a68d08db241ae42dd352a844,"converted my homegrown metrics over to statsd style and changed
+  bpServer to use it instead of bpMetrics",Mike Taylor,2012-05-31T22:05:50Z,bear,bear,248,57,191
+116,briar-patch,185e6eb914af22c33b22d0e7601f24953ca0025c,"start tracking instances in a ""farm"" set and also which are active
+  (i.e. moz-state = ready) or inactive.  This allows kittenherder
+  to know what instances to monitor and also how to handle them.",Mike Taylor,2012-05-29T21:39:22Z,bear,bear,71,42,29
+117,briar-patch,1dab16d984e457a357219325841d8c71a3fb1c50,now this is a bug worthy of someone's wall of shame,Mike Taylor,2012-05-29T21:34:20Z,bear,bear,2,1,1
+118,briar-patch,32fe30d6c4a3bf02e4b7367bb9258d6b6752ab9b,first pass at monitoring AWS instances in briar-patch,Mike Taylor,2012-05-29T16:19:29Z,bear,bear,48,47,1
+119,briar-patch,55c72a59f3b57f40b99f5d092a04436ede53d885,use fqdn for tegra state check,Mike Taylor,2012-05-29T16:19:01Z,bear,bear,2,1,1
+120,briar-patch,cc2272601cd877bc0455b7827a6d4a68221ba5a7,fixed bug where master may not be defined and/or master_id is not present,Mike Taylor,2012-05-29T16:18:01Z,bear,bear,2,1,1
+121,briar-patch,574a2e31eea09ece8fd7e28fc6b41c94c0975441,"added a new metrics type 'raw' to enable pass-thru to backend carbon to allow
+  a fast switch to how we count things for :lonnens work",Mike Taylor,2012-05-29T16:16:23Z,bear,bear,90,59,31
+122,briar-patch,3484e3d5636e44c4bee863205309546e5d98ac54,so that's where the 'releng' keystrokes went ...,Mike Taylor,2012-05-15T01:50:35Z,bear,bear,2,1,1
+123,briar-patch,7c9a11145593040bc69cc6a2f87497b5ab703d32,remove unused paramiko import,Mike Taylor,2012-05-15T01:46:14Z,bear,bear,1,0,1
+124,briar-patch,94777977e6bbbb0e03f080692bda896c2b40ad2c,"sigh, yes, one of those 'catch up with local changes' commits",Mike Taylor,2012-05-14T15:12:23Z,bear,bear,165,136,29
+125,briar-patch,ed0b71abf64d81839df3c03a8c5080600b7b9b71,updated kittenmonitor to add dashboard values for queue collapsing,Mike Taylor,2012-04-19T05:36:03Z,bear,bear,196,130,66
+126,briar-patch,3ef609537d976101c25dd2aeda88c89937a24ac8,"tweak how started and finished timestamps are handled for .finished event
+add support for request_ids property during .log_upload event so we can
+capture queue collapse information",Mike Taylor,2012-04-19T05:28:11Z,bear,bear,28,18,10
+127,briar-patch,520d682553b1a69c49ec3b67157948bf910faeb5,"add more hostname patterns to remote code and also add a .wait() call
+on the advice of jhopkins to help with an odd bug with win32 hosts",Mike Taylor,2012-04-19T05:26:22Z,bear,bear,12,9,3
+128,briar-patch,f8c7bcf78798986c2b59eb2ed48b3d05958f067b,"start storing to redis the job history for a host.  currently pushing the job key name
+  to a list and trimming the list to hold only 20 items",Mike Taylor,2012-04-05T07:26:23Z,bear,bear,3,3,0
+129,briar-patch,95b7fc87c66a696e80eba8b836e12a33d02a0b06,"tightened up how hosts that are flagged for recovery or reboot are reported by
+  trying to mark/flag when they are *actually* restarted via ipmi/pdu vs if they
+  could have been.
+added storing to redis last run of kittenherder so repeat offenders can be flagged
+added storing of last results from a run to a yyyy-mm-dd.hr redis hash so that
+  information can be stored and displayed for a host listed for recovery",Mike Taylor,2012-04-05T07:23:51Z,bear,bear,188,138,50
+130,briar-patch,71defb6a33569da8732ad26f8f844aad4b218805,"so it seems that I think of CNAME differently than the rest of Moz IT ;)
+  so I've adjusted the DNS lookup code to build a proper CNAME to use
+  as the FQDN lookup and low-and-behold it is now working.",Mike Taylor,2012-04-04T01:58:32Z,bear,bear,13,11,2
+131,briar-patch,7eab488c179e0c7a7feed0380483f7342792b5e0,"split the ""rebooted"" email section into SSH, PDU and IPMI sublists
+made it so that a DNS failure for CNAME to FQDN lookup will not allow
+IPMI or PDU restarts to happen",Mike Taylor,2012-04-04T00:42:47Z,bear,bear,95,53,42
+132,briar-patch,173a318ea782f329ef739b5b0257199484aa9ea4,"big refactoring for releng/remote
+ - move reboot and ping routines to the Host class
+ - changed the slavealloc and master data pulls so that they happen once when
+   RemoteEnv starts and then that is searched when Host is created
+ - add real DNS resolving and IP lookups",Mike Taylor,2012-04-03T22:59:33Z,bear,bear,544,302,242
+133,briar-patch,d88889db3b89b763fbd8510265f1dd5cebfb88a6,"adjust to new remote.py interface changes
+adjusted bpServer to skip SeaMonkey and to add Product to redis tracking",Mike Taylor,2012-04-03T22:56:29Z,bear,bear,114,64,50
+134,briar-patch,65b6a4385eb4dcd58d28137b225a0f50958457f3,"bug fix - when new hosts are defined host can be None but reboot
+  code tries to operate like it has a valid object",Mike Taylor,2012-03-28T13:50:12Z,bear,bear,39,20,19
+135,briar-patch,2ec004cf29d54aa3e8730387fea6968841197601,changed --halt to --stop so that it doesn't imply powering off the host,Mike Taylor,2012-03-27T16:32:03Z,bear,bear,4,2,2
+136,briar-patch,fbb9b08283a2e7d90d478aa96ba41f3c98904f21,"added a new option: --halt
+  this option will try and make the graceful_shutdown() call for a host
+fixed bug in handling of Tegra hosts that prevented them from being
+  treated like the Unix(ish) hosts they are",Mike Taylor,2012-03-27T16:27:04Z,bear,bear,80,16,64
+137,briar-patch,77b7b65eea87b4e9d71f50cd77bea075f05112ea,"forced reboot to be true if the host was recovered using pdu or ipmi
+this allows the host to be listed under the ""rebooted"" section when
+  the kittenherder email report is generated",Mike Taylor,2012-03-23T20:01:55Z,bear,bear,14,6,8
+138,briar-patch,dca02c845f54ff0443bb82352f1befd0722906df,"added a secrets.cfg config option to allow setting of passwords from a secure file
+  so initKeystore() won't prompt for passwords.  This is a temp workaround and right
+  now it's only used to force the ldapuser prompt to not happen.
+added initKeystore() to kittenherder
+updated remote.py to cover some hostname patterns I missed in getHost()",Mike Taylor,2012-03-23T16:45:59Z,bear,bear,93,54,39
+139,briar-patch,1aa2aef982ed88b2a16e46cf661037dcd699986c,"wired up the new IPMI and the older PDU reboot functions
+  now if a reboot is required *and* the host is not reachable,
+  kittenherder will try PDU and/or IPMI
+still need to add more PDU detection via Inventory and also make
+  the IPMI detection less smelly",Mike Taylor,2012-03-22T23:30:52Z,bear,bear,23,16,7
+140,briar-patch,500ccabb535581ac3794b223c4fa710c4d19dac9,"changed initKeystore to only prompt for passwords that have defined
+  usernames and to also use the username value as part of the prompt",Mike Taylor,2012-03-22T22:56:43Z,bear,bear,14,9,5
+141,briar-patch,800e44c3303802173cb1bf7b63e75c4f0f2459a0,helps if you include the new files when you push new code ...,Mike Taylor,2012-03-22T22:14:04Z,bear,bear,20,20,0
+142,briar-patch,62db859dabde8029118d7dab769ed7ccd2882f80,"big refactoring to change any reference of slave to host
+started to add the storing of passwords into keyring, this means
+  that any password required will be requested at startup and,
+  if configured, store it either in memory or in the appropriate
+  keystore for the OS",Mike Taylor,2012-03-22T22:11:59Z,bear,bear,458,278,180
+143,briar-patch,a16dcb813f44656a8bc8796d42eae173354f6927,"added keyring to the dependency list
+added new names to the list of properties that we monitor
+  during the pulse message parsing",Mike Taylor,2012-03-22T22:10:49Z,bear,bear,13,9,4
+144,briar-patch,00fa29eba1724e827661cef633a01416714844ef,simple fix to prevent not having carbon from killing the daemon from socket errors,Mike Taylor,2012-03-20T13:47:31Z,bear,bear,37,20,17
+145,briar-patch,a054f7420a5ad04cdfc571ee834d68b82ea4bf1e,"store jobKey along with result weight scores so the dashboard can included a link
+  to any job that failed",Mike Taylor,2012-03-19T15:12:59Z,bear,bear,70,42,28
+146,briar-patch,005fb6822c7ce602d6d33332cce90f8433a1e180,track result from each job for use by dashboard,Mike Taylor,2012-03-19T15:12:25Z,bear,bear,9,6,3
+147,briar-patch,fe668e68d3ef1f6895be1a71ffb941dcb1634fd9,"fixed an issue with the Pulse to redis code - the builduid is not as
+  unique as I need it to be (and yes, Catlee had warned me ;) so instead
+  of storing the build:<builduid> as the final hash I had to make that
+  a set and then add build:<jobid> which has a key of builduid, master
+  and buildnumber.
+also checked in first pass of kittenmonitor.py - it looks for the last
+  N hours of build:<yyyy-mm-dd>.<hh> activity and then breaks down that
+  activity into a dashboard:<yyyy-mm-dd>.<hh> hash to be consumed by
+  the bpDashboard code.  kittenmonitor also looks for certain thresholds
+  and will email an alert when they are passed.",Mike Taylor,2012-03-16T05:52:29Z,bear,bear,295,268,27
+148,briar-patch,95f31983f6f8ff04b7c7adb65a6eff734a3a06fe,"ok, sorry for the ""flapping"" - kittenherder is just much more cooler than wrangler",Mike Taylor,2012-03-14T19:55:33Z,bear,bear,0,0,0
+149,briar-patch,7aae27a38984adf79eaf8d3261ec20e97a2414d0,"Merge pull request #7 from Mozilla-GitHub-Standards/master
+
+Add Mozilla Code of Conduct",Chris AtLee,2019-03-28T19:15:04Z,catlee,catlee,15,15,0
+150,briar-patch,ca6b16fec964f65b343d815036b5ae7f861a7ec9,"Add Mozilla Code of Conduct file
+
+Fixes #6.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,2019-03-28T03:51:50Z,Mozilla-GitHub-Standards,Mozilla-GitHub-Standards,15,15,0
+151,briar-patch,0c2d9235fe653df9db5952e32e18c4a210650d09,"Add cron script for kittenherder, template files for config",Chris Cooper,2013-09-16T17:36:52Z,ccooper,ccooper,38,38,0
+152,briar-patch,a230542a3f4469f6269b3f98dc4d958cf0ddf78e,Specify a timeout for IPMI requests so we don't hang indefinitely.,Chris Cooper,2013-09-16T15:52:47Z,ccooper,ccooper,16,9,7
+153,briar-patch,47b7cb52b6ea1b8580e283a43dcf7192982fe702,"Change default IPMI username. p=jhopkins, r=bhearsum",John Hopkins,2013-08-20T18:20:38Z,jhopkinsmoz,jhopkinsmoz,2,1,1
+154,briar-patch,5c701aaa0361978d9e576e91a675aacec47c871d,Bug 878049 - Create a persistent history of slave reboot attempts and outcomes for kittenherder,Chris Cooper,2013-07-24T16:59:50Z,ccooper,ccooper,40,35,5
+155,briar-patch,96568e33ae6aca2d2f414f2e5404e4142627627a,Kill dead code. r=jhopkins,Ben Hearsum,2013-07-24T16:45:47Z,bhearsum,bhearsum,2773,0,2773
+156,briar-patch,ee70854ddc7f940626019716c53490bf5f92641d,"Bug 883176 - point kittenherder to http://builddata.pub.build.mozilla.org/reports/slaves_needing_reboot.txt. p=dustin, r=jhopkins",John Hopkins,2013-06-17T14:32:44Z,jhopkinsmoz,jhopkinsmoz,8,4,4
+157,briar-patch,ecd72679b00b68ea6dc8cc15c1c4ee8daaaecd7c,Bug 874957 - Support t-xp32-ix-* hosts in kittenherder. r=coop,John Hopkins,2013-05-22T17:25:49Z,jhopkinsmoz,jhopkinsmoz,7,7,0
+158,briar-patch,8817bd54ec1a9b7d8d39527e5523a06f3662aad7,Do not fetch inventory details when FQDN is not provided. r=nthomas,John Hopkins,2013-05-22T01:55:55Z,jhopkinsmoz,jhopkinsmoz,3,3,0
+159,briar-patch,7fe5c9ea8b856899ca5d00ccaac3bb309edacebd,Bug 874666 - Support t-w732-ix-* hosts in kittenherder. r=coop,John Hopkins,2013-05-22T01:41:25Z,jhopkinsmoz,jhopkinsmoz,7,7,0
+160,briar-patch,b4ad58a1496b607c8c8d64ae69adb74687cae215,"Bug 869132 - Finish implementing kittenherder's PDU reboot support. r=coop
+fetch PDU details from inventory, fetch lastSeen from buildapi, rewrite
+rebootIfNeeded logic, improve logging",John Hopkins,2013-05-09T14:23:39Z,jhopkinsmoz,jhopkinsmoz,367,250,117
+161,briar-patch,88f5e63ac98142a92b28ddaccc5dfbfd9fe712f5,Bug 868414 - kittenherder misinterprets reboot output. r=coop,John Hopkins,2013-05-06T13:54:47Z,jhopkinsmoz,jhopkinsmoz,17,13,4
+162,briar-patch,a32b0fd12532d453f99cbf831894553e0f2906ac,Bug 855419 - always use .build.mozilla.org CNAME to look up -mgmt hostname.  r=coop,John Hopkins,2013-05-01T13:28:17Z,jhopkinsmoz,jhopkinsmoz,2,1,1
+163,briar-patch,06ed0cb467edf8f39fd7bde41fbdf2c017abf072,Add support for talos-linux*-ix slaves,Chris Cooper,2013-04-17T21:02:21Z,ccooper,ccooper,7,7,0
+164,briar-patch,6520fc3ba4217954cd740b1920c47cca2779470e,Bug 821883 - allow rebooting of r4 and r5 minis via PDU - r=jhopkins,Chris Cooper,2013-04-16T14:21:22Z,ccooper,ccooper,151,100,51
+165,briar-patch,d8e1e943f7a4efa38640ebf83d74fbda0c7635a8,Bug 855419 - Add Windows 8 support to kittenherder. r=coop,John Hopkins,2013-04-15T21:07:03Z,jhopkinsmoz,jhopkinsmoz,9,9,0
+166,briar-patch,256add89a4efd40e3a651c4f8644298b6218219b,"Disable EC2 checking, add SDcard formatting for tegras, return reboot status",Chris Cooper,2012-12-14T15:50:41Z,ccooper,ccooper,70,55,15
+167,briar-patch,7af9f64d4958800c206cd819623edb5e6e0d054e,"Merge pull request #4 from mozilla/dev
+
+Dev",Mike Taylor,2012-07-18T07:00:11Z,bear,bear,581,367,214
+168,briar-patch,744b5662f5d84c94b32583c7534a92cb457596fb,"nice subtle bug, setting bbdir in __init__ works except for those child classes
+that don't *have* __init__",Mike Taylor,2012-07-18T06:53:53Z,bear,bear,5,3,2
+169,briar-patch,0a42a469b541a1266814ec4cbfbd2b7662535bed,"store into a jobs hash any step timings that getWorksteps() determines are interesting
+(currently this is a list of compile/build steps)",Mike Taylor,2012-07-12T07:45:46Z,bear,bear,19,18,1
+170,briar-patch,31501ffc986d471871901a14254128c15797f71e,"add helper routines to determine os, platform and other step related items",Mike Taylor,2012-07-12T07:45:12Z,bear,bear,97,71,26
+171,briar-patch,b98f3e8b6afec21d864e461d15561455d2b31603,"make the Pulse appname unique - this was causing the production PulseBroker
+to not receive all possible messages because it shared the same appname with staging.",Mike Taylor,2012-07-12T07:43:33Z,bear,bear,2,1,1
+172,briar-patch,1648e8a4f8eee72d8f73d30f79e9aa329f530f57,"worked thru a nasty glitch where ssh/paramiko (when run against an ec2 host) was not always returning the current commands output if that command's output was smaller than the stdout buffer because the .wait() code was sending keystrokes and not letting the lower level code flush the output buffers.  (ok, yea, that last bit is a hunch but man did it take a lot of tests to get to that hunch and working code.)",Mike Taylor,2012-07-11T06:06:40Z,bear,bear,285,150,135
+173,briar-patch,9a99807ce122d113e83a7601563e9a5e6155691c,Change kittenmonitor to gather pending job counts by platform and also by hostname (as defined by buildermap),Mike Taylor,2012-07-10T21:35:23Z,bear,bear,109,53,56
+174,briar-patch,33abf5e145cbbc9cc23921c7dab2bdea9f1d1e9f,"- added to remote host management for tegras a reformat SDcard helper
+- adding to AWS support code the start of pending job metrics so that kittenherder can know when to stop/start EC2 instances",Mike Taylor,2012-07-06T06:42:42Z,bear,bear,90,76,14
+175,briar-patch,915b39eb8e5b5352402d044c020bf32a8d939611,added some error logging to rebootIPMI() and also changed the reboot code to try ipmi/pdu more aggressively when --reboot option is given,Mike Taylor,2012-07-03T19:31:04Z,bear,bear,36,26,10
+176,briar-patch,f9cf9f88ad83fed66d7e415a0efc27d242411419,"Merge pull request #3 from ccooper/master
+
+Don't hardcode OS in bug template, fixup HTML reporting to match text",ccooper,2012-06-29T16:13:32Z,ccooper,ccooper,36,23,13
+177,briar-patch,e737ed1ff7141392123ec0f5be8791ee8ca6ba13,"Bug 748563
+- ignore emacs auto-saves (*~)
+- make HTML line breaks between logical sections rather than every section",Chris Cooper,2012-06-29T16:09:39Z,Chris Cooper,Chris Cooper,12,10,2
+178,briar-patch,4a14d1653d1e125d552f2c51a9f6b11d0ca51980,"Bug 748563
+- renamed generate() to generateTextList()
+- make previouslySeen() return a host list so the HTML report can reuse it
+- report previously seen hosts in HTML report
+- add a subtle line break between the HTML report sections",Chris Cooper,2012-06-29T16:00:07Z,Chris Cooper,Chris Cooper,24,13,11
+179,briar-patch,e1631f7c1166fe456b9cce86db640b14b8444fc3,Bug 748563 - don't hardcode OS in bug template,Chris Cooper,2012-06-28T23:03:49Z,Chris Cooper,Chris Cooper,2,1,1
+180,briar-patch,ca1a41b981b72d7382283b1da6054be3155ad948,"Merge pull request #2 from ccooper/master
+
+Bug 748563 - send HTML mail, add bug links",Mike Taylor,2012-06-28T22:11:31Z,bear,bear,121,117,4
+181,briar-patch,a076c1b616820dd6dda3008c34cf70e8783b1c83,"Merge pull request #1 from mozilla/dev
+
+- always add all ec2 values to the redis hash for the instance",Mike Taylor,2012-06-28T21:50:10Z,bear,bear,31,17,14
+182,briar-patch,419103a0e4ed7c05c39b95ec68708707db644c79,"- always add all ec2 values to the redis hash for the instance
+- process all ec2 instances but only try to shutdown an instance if it is currently running",Mike Taylor,2012-06-28T21:48:14Z,bear,bear,31,17,14
+183,briar-patch,ec362f277659a24e151dc239937a5bb26a3ea4eb,"Bug 748563 - send HTML mail, add bug links",Chris Cooper,2012-06-28T21:45:42Z,Chris Cooper,Chris Cooper,121,117,4
+184,briar-patch,b75a8807a179fe4fe4edd8e98c62821a840b3698,added .DS_Store to .gitignore and also removed from the repo an errant .idea/* commit,Mike Taylor,2012-06-28T07:08:29Z,bear,bear,10,1,9
+185,briar-patch,fd3a1d7587e72981cb198655fb9ec711edb5c9b5,added *.log to gitignore,Mike Taylor,2012-06-28T07:05:03Z,bear,bear,1,1,0
+186,briar-patch,f5add6804c8a54cf124ac5f8b7e610b1ac3b56a6,"refactored the error handling for both sides of the messaging system.  bpServer now checks periodically if it has been listed as inactive by the broker and the broker is more aggressive to flag a worker as inactive.
+If bpServer finds that it is inactive it now exits",Mike Taylor,2012-06-28T06:52:41Z,bear,bear,160,101,59
+187,briar-patch,5d05e9408191bdef27afd989a2be03e6d1d7ca0e,cleaned and brought up-to-date the README,Mike Taylor,2012-06-28T06:46:31Z,bear,bear,57,21,36
+188,briar-patch,0cc8afe5e8612b1ec0772c25a7baa2346049e1c6,"bringing the rest of the tools up to date with initOptions changes, adding some defensive coding to kittenherder and changing the key used for EC2 farm entries",Mike Taylor,2012-06-27T17:30:15Z,bear,bear,32,17,15
+189,briar-patch,f63215f5e5029443495a3863c9390711824cd584,change default options to reflect new initOptions handling for boolean parameters,Mike Taylor,2012-06-27T07:44:20Z,bear,bear,17,8,9
+190,briar-patch,4226bbb2adc835e675d1781c7158719387e5fdb6,remove 'b' from default options dictionary to sync up with initOptions() change and fix typo that removed final paren,Mike Taylor,2012-06-27T06:45:06Z,bear,bear,7,3,4
+191,briar-patch,9cb9df55409cf80169a2fb5a9023ee7f0d3afaed,"- made initOptions smart enough to not require a special flag for boolean params, now it just figures it out
+- fixed bug 768145 - exception being thrown when host is offline and some variables from check result are None
+- bug 768143 and bug 768163 - output from kitten cleaned up when host is offline and also the reboot output is much easier to follow if a reboot doesn't happen",Mike Taylor,2012-06-27T06:04:17Z,bear,bear,152,82,70
+192,briar-patch,74c4dbe062d112ee55cdce97522102ca82367f61,and... changing the db back to 8 - dashboard is metrics data *not* kitten data,Mike Taylor,2012-06-13T19:52:33Z,bear,bear,2,1,1
+193,briar-patch,ba5f961477acd0eeb2a7bd5bbebe69d498950696,point to the proper default redis db,Mike Taylor,2012-06-13T19:45:57Z,bear,bear,2,1,1
+194,briar-patch,948bdc2e5e63789aee2a7996421bcc26c37c79c3,adding the current dashboard code to the repo,Mike Taylor,2012-06-13T19:36:53Z,bear,bear,781,781,0
+195,briar-patch,dec4ab6ccab369720b6ff5a288e9865e59d68c5d,"bad bear, making quick changes without testing... no cookie for you!",Mike Taylor,2012-06-12T20:52:36Z,bear,bear,3,1,2
+196,briar-patch,2250fc37de6fbd7fa4c274008069d0e8ed57f9b9,"small hack, use database 10 for the aws update but force redis db to 8 for the dashboard work",Mike Taylor,2012-06-12T20:50:32Z,bear,bear,4,4,0
+197,briar-patch,fb3785efd3d053ec801e6f8044bccd57bc86213e,forced all instance tag/key names to be lower case when pulling from ec2 data,Mike Taylor,2012-06-12T20:44:30Z,bear,bear,7,4,3
+198,briar-patch,2425595b5e32a986522e9acfa639e10ed4778e6c,"changed the default database for non-metrics briarpatch stuff from 8 to 10
+changed the default expire for kittenherder history items to 14 days",Mike Taylor,2012-06-12T20:35:59Z,bear,bear,10,5,5
+199,briar-patch,f514a15c76c8cbcaddbcc677dc2d9b6642f79527,set the key expire value for all ec2:* instance keys added to redis,Mike Taylor,2012-06-12T14:46:51Z,bear,bear,4,3,1
+200,briar-patch,c8719f6a5c176bf65ef9d2d3763501cd9ec3cbed,"changed how aws instances are stored to make the host key not require the word ""instance"" and to only put into the ec2:active / ec2:inactive list those hosts that have a moz-state *and* ec2 in their instance names",Mike Taylor,2012-06-12T14:35:32Z,bear,bear,46,24,22
+201,briar-patch,6f64cb4c55a3a045f8b1fe2c7ad6b5247739bd46,"updated kittens option description and some minor code layout tweaks, changed worker option description to match reality and also made the value a local constant",Mike Taylor,2012-06-12T14:07:16Z,bear,bear,28,11,17
+202,briar-patch,d021dcdb2eeeb46b4248931831050590ed3134c0,"added commandline option for smtpserver so I can stop commenting
+  out the smtp.send() code when testing locally and forgetting to
+  remove it ...
+added option for --monitor - this will be used soon to start having
+  kittenherder run more often to gather monitoring data for all the
+  other hosts that are not processed by the current code
+added code to remoteEnv.check() to search for and get the timestamp
+  of when the host was idle rebooted by buildbot and also when the
+  last time it handled any job related command.
+  This allows me now to put into the email output a ""bored kitten""
+  section",Mike Taylor,2012-06-08T21:55:08Z,bear,bear,75,52,23
+203,briar-patch,6a4ef2ad677cdefce47feb91e0a1778a9d87432a,"more defensive code to catch when hosts are cranky and offline when we
+  look at them to find out if they are active",Mike Taylor,2012-06-08T17:22:25Z,bear,bear,26,13,13
+204,briar-patch,f8d405ab9d7c9d82d3ccb77062aee1526a90aca1,"add some protection if remote.getHost() returns None when it encounters
+  a host type it is not prepared for",Mike Taylor,2012-06-08T07:07:45Z,bear,bear,73,38,35
+205,briar-patch,01ab3354759d34791dd56ee1649a5e41a4f899da,"updated install notes to match the most recent changes in dependencies
+also simplified the README to not mention graphite web, that really
+  should be it's own doc",Mike Taylor,2012-06-08T05:29:51Z,bear,bear,103,32,71
+206,briar-patch,5ea2c9988b4393fb32776d0c116863d31378310f,added configuration files to gitignore,Mike Taylor,2012-06-08T05:29:06Z,bear,bear,1,1,0
+207,briar-patch,52a04a6db189f056aff2fb64352988224e2caf4a,adding the virtualenv directories to gitignore,Mike Taylor,2012-06-08T03:44:33Z,bear,bear,3,3,0
+208,briar-patch,14a0122addd2d518f839c7451e75c2ecf2cb8de4,"change kittenherder to report along side the last seen hour/min/sec the
+  total seconds as the key ""since""
+also change all briarpatch code to stop using keyring as I could not get
+  it to store and retrieve a password in the latest version properly on OS X
+  for now just use the secrets.cfg json",Mike Taylor,2012-06-08T03:33:40Z,bear,bear,73,16,57
+209,briar-patch,055bdaa7f00fa903bb574cbd6d608de8f4410ea3,temp change the metric for elapsed time from a timer to a counter,Mike Taylor,2012-06-08T03:31:52Z,bear,bear,3,2,1
+210,briar-patch,16327d4a7815c2ebc77f7d379f3a889451b327bb,added the PyCharm project directory to gitignore,Mike Taylor,2012-06-07T06:07:35Z,bear,bear,2,2,0
+211,briar-patch,bd20f39f1a5108733df33880978596ea72de9fd4,"bunch of small changes to get the kitten code to recognize and handle
+  ec2 farm hosts",Mike Taylor,2012-06-07T06:06:27Z,bear,bear,350,214,136
+212,briar-patch,4cfb9ea6a4d428296d2730d80cf7f488b5545def,"updated metric key layout to match :lonnen's changes and also added a
+  simple filter to reduce the amount of data we are pumping to StatsD
+  as it can't handle the full flow :/",Mike Taylor,2012-06-07T06:05:00Z,bear,bear,19,8,11
+213,briar-patch,b3a6326ace8e8ad2c5c333b008f55fbed416b1a5,added code to have the event loop kill itself if any Pulse exceptions happen,Mike Taylor,2012-06-07T06:04:18Z,bear,bear,34,21,13
+214,briar-patch,16219087780ee531ae0c655730b81998e01d89e0,"added a very basic archive of what is being sent to StatsD
+removed the ""stats."" prefix from our metrics label as StatsD adds that",Mike Taylor,2012-06-01T19:21:32Z,bear,bear,47,28,19
+215,briar-patch,ebcbfca9e2180f13a68d08db241ae42dd352a844,"converted my homegrown metrics over to statsd style and changed
+  bpServer to use it instead of bpMetrics",Mike Taylor,2012-05-31T22:05:50Z,bear,bear,248,57,191
+216,briar-patch,185e6eb914af22c33b22d0e7601f24953ca0025c,"start tracking instances in a ""farm"" set and also which are active
+  (i.e. moz-state = ready) or inactive.  This allows kittenherder
+  to know what instances to monitor and also how to handle them.",Mike Taylor,2012-05-29T21:39:22Z,bear,bear,71,42,29
+217,briar-patch,1dab16d984e457a357219325841d8c71a3fb1c50,now this is a bug worthy of someone's wall of shame,Mike Taylor,2012-05-29T21:34:20Z,bear,bear,2,1,1
+218,briar-patch,32fe30d6c4a3bf02e4b7367bb9258d6b6752ab9b,first pass at monitoring AWS instances in briar-patch,Mike Taylor,2012-05-29T16:19:29Z,bear,bear,48,47,1
+219,briar-patch,55c72a59f3b57f40b99f5d092a04436ede53d885,use fqdn for tegra state check,Mike Taylor,2012-05-29T16:19:01Z,bear,bear,2,1,1
+220,briar-patch,cc2272601cd877bc0455b7827a6d4a68221ba5a7,fixed bug where master may not be defined and/or master_id is not present,Mike Taylor,2012-05-29T16:18:01Z,bear,bear,2,1,1
+221,briar-patch,574a2e31eea09ece8fd7e28fc6b41c94c0975441,"added a new metrics type 'raw' to enable pass-thru to backend carbon to allow
+  a fast switch to how we count things for :lonnens work",Mike Taylor,2012-05-29T16:16:23Z,bear,bear,90,59,31
+222,briar-patch,3484e3d5636e44c4bee863205309546e5d98ac54,so that's where the 'releng' keystrokes went ...,Mike Taylor,2012-05-15T01:50:35Z,bear,bear,2,1,1
+223,briar-patch,7c9a11145593040bc69cc6a2f87497b5ab703d32,remove unused paramiko import,Mike Taylor,2012-05-15T01:46:14Z,bear,bear,1,0,1
+224,briar-patch,94777977e6bbbb0e03f080692bda896c2b40ad2c,"sigh, yes, one of those 'catch up with local changes' commits",Mike Taylor,2012-05-14T15:12:23Z,bear,bear,165,136,29
+225,briar-patch,ed0b71abf64d81839df3c03a8c5080600b7b9b71,updated kittenmonitor to add dashboard values for queue collapsing,Mike Taylor,2012-04-19T05:36:03Z,bear,bear,196,130,66
+226,briar-patch,3ef609537d976101c25dd2aeda88c89937a24ac8,"tweak how started and finished timestamps are handled for .finished event
+add support for request_ids property during .log_upload event so we can
+capture queue collapse information",Mike Taylor,2012-04-19T05:28:11Z,bear,bear,28,18,10
+227,briar-patch,520d682553b1a69c49ec3b67157948bf910faeb5,"add more hostname patterns to remote code and also add a .wait() call
+on the advice of jhopkins to help with an odd bug with win32 hosts",Mike Taylor,2012-04-19T05:26:22Z,bear,bear,12,9,3
+228,briar-patch,f8c7bcf78798986c2b59eb2ed48b3d05958f067b,"start storing to redis the job history for a host.  currently pushing the job key name
+  to a list and trimming the list to hold only 20 items",Mike Taylor,2012-04-05T07:26:23Z,bear,bear,3,3,0
+229,briar-patch,95b7fc87c66a696e80eba8b836e12a33d02a0b06,"tightened up how hosts that are flagged for recovery or reboot are reported by
+  trying to mark/flag when they are *actually* restarted via ipmi/pdu vs if they
+  could have been.
+added storing to redis last run of kittenherder so repeat offenders can be flagged
+added storing of last results from a run to a yyyy-mm-dd.hr redis hash so that
+  information can be stored and displayed for a host listed for recovery",Mike Taylor,2012-04-05T07:23:51Z,bear,bear,188,138,50
+230,briar-patch,71defb6a33569da8732ad26f8f844aad4b218805,"so it seems that I think of CNAME differently than the rest of Moz IT ;)
+  so I've adjusted the DNS lookup code to build a proper CNAME to use
+  as the FQDN lookup and low-and-behold it is now working.",Mike Taylor,2012-04-04T01:58:32Z,bear,bear,13,11,2
+231,briar-patch,7eab488c179e0c7a7feed0380483f7342792b5e0,"split the ""rebooted"" email section into SSH, PDU and IPMI sublists
+made it so that a DNS failure for CNAME to FQDN lookup will not allow
+IPMI or PDU restarts to happen",Mike Taylor,2012-04-04T00:42:47Z,bear,bear,95,53,42
+232,briar-patch,173a318ea782f329ef739b5b0257199484aa9ea4,"big refactoring for releng/remote
+ - move reboot and ping routines to the Host class
+ - changed the slavealloc and master data pulls so that they happen once when
+   RemoteEnv starts and then that is searched when Host is created
+ - add real DNS resolving and IP lookups",Mike Taylor,2012-04-03T22:59:33Z,bear,bear,544,302,242
+233,briar-patch,d88889db3b89b763fbd8510265f1dd5cebfb88a6,"adjust to new remote.py interface changes
+adjusted bpServer to skip SeaMonkey and to add Product to redis tracking",Mike Taylor,2012-04-03T22:56:29Z,bear,bear,114,64,50
+234,briar-patch,65b6a4385eb4dcd58d28137b225a0f50958457f3,"bug fix - when new hosts are defined host can be None but reboot
+  code tries to operate like it has a valid object",Mike Taylor,2012-03-28T13:50:12Z,bear,bear,39,20,19
+235,briar-patch,2ec004cf29d54aa3e8730387fea6968841197601,changed --halt to --stop so that it doesn't imply powering off the host,Mike Taylor,2012-03-27T16:32:03Z,bear,bear,4,2,2
+236,briar-patch,fbb9b08283a2e7d90d478aa96ba41f3c98904f21,"added a new option: --halt
+  this option will try and make the graceful_shutdown() call for a host
+fixed bug in handling of Tegra hosts that prevented them from being
+  treated like the Unix(ish) hosts they are",Mike Taylor,2012-03-27T16:27:04Z,bear,bear,80,16,64
+237,briar-patch,77b7b65eea87b4e9d71f50cd77bea075f05112ea,"forced reboot to be true if the host was recovered using pdu or ipmi
+this allows the host to be listed under the ""rebooted"" section when
+  the kittenherder email report is generated",Mike Taylor,2012-03-23T20:01:55Z,bear,bear,14,6,8
+238,briar-patch,dca02c845f54ff0443bb82352f1befd0722906df,"added a secrets.cfg config option to allow setting of passwords from a secure file
+  so initKeystore() won't prompt for passwords.  This is a temp workaround and right
+  now it's only used to force the ldapuser prompt to not happen.
+added initKeystore() to kittenherder
+updated remote.py to cover some hostname patterns I missed in getHost()",Mike Taylor,2012-03-23T16:45:59Z,bear,bear,93,54,39
+239,briar-patch,1aa2aef982ed88b2a16e46cf661037dcd699986c,"wired up the new IPMI and the older PDU reboot functions
+  now if a reboot is required *and* the host is not reachable,
+  kittenherder will try PDU and/or IPMI
+still need to add more PDU detection via Inventory and also make
+  the IPMI detection less smelly",Mike Taylor,2012-03-22T23:30:52Z,bear,bear,23,16,7
+240,briar-patch,500ccabb535581ac3794b223c4fa710c4d19dac9,"changed initKeystore to only prompt for passwords that have defined
+  usernames and to also use the username value as part of the prompt",Mike Taylor,2012-03-22T22:56:43Z,bear,bear,14,9,5
+241,briar-patch,800e44c3303802173cb1bf7b63e75c4f0f2459a0,helps if you include the new files when you push new code ...,Mike Taylor,2012-03-22T22:14:04Z,bear,bear,20,20,0
+242,briar-patch,62db859dabde8029118d7dab769ed7ccd2882f80,"big refactoring to change any reference of slave to host
+started to add the storing of passwords into keyring, this means
+  that any password required will be requested at startup and,
+  if configured, store it either in memory or in the appropriate
+  keystore for the OS",Mike Taylor,2012-03-22T22:11:59Z,bear,bear,458,278,180
+243,briar-patch,a16dcb813f44656a8bc8796d42eae173354f6927,"added keyring to the dependency list
+added new names to the list of properties that we monitor
+  during the pulse message parsing",Mike Taylor,2012-03-22T22:10:49Z,bear,bear,13,9,4
+244,briar-patch,00fa29eba1724e827661cef633a01416714844ef,simple fix to prevent not having carbon from killing the daemon from socket errors,Mike Taylor,2012-03-20T13:47:31Z,bear,bear,37,20,17
+245,briar-patch,a054f7420a5ad04cdfc571ee834d68b82ea4bf1e,"store jobKey along with result weight scores so the dashboard can included a link
+  to any job that failed",Mike Taylor,2012-03-19T15:12:59Z,bear,bear,70,42,28
+246,briar-patch,005fb6822c7ce602d6d33332cce90f8433a1e180,track result from each job for use by dashboard,Mike Taylor,2012-03-19T15:12:25Z,bear,bear,9,6,3
+247,briar-patch,fe668e68d3ef1f6895be1a71ffb941dcb1634fd9,"fixed an issue with the Pulse to redis code - the builduid is not as
+  unique as I need it to be (and yes, Catlee had warned me ;) so instead
+  of storing the build:<builduid> as the final hash I had to make that
+  a set and then add build:<jobid> which has a key of builduid, master
+  and buildnumber.
+also checked in first pass of kittenmonitor.py - it looks for the last
+  N hours of build:<yyyy-mm-dd>.<hh> activity and then breaks down that
+  activity into a dashboard:<yyyy-mm-dd>.<hh> hash to be consumed by
+  the bpDashboard code.  kittenmonitor also looks for certain thresholds
+  and will email an alert when they are passed.",Mike Taylor,2012-03-16T05:52:29Z,bear,bear,295,268,27
+248,briar-patch,95f31983f6f8ff04b7c7adb65a6eff734a3a06fe,"ok, sorry for the ""flapping"" - kittenherder is just much more cooler than wrangler",Mike Taylor,2012-03-14T19:55:33Z,bear,bear,0,0,0

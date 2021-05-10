@@ -1,0 +1,161 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,fx-crash-sig,5f779ef19efb85f9148bf759e92903db313be72c,Rework Python testing to use CircleCI Python images,Will Kahn-Greene,2020-12-24T00:13:28Z,willkg,willkg,39,33,6
+1,fx-crash-sig,e35f7ea2722ed5f86abd45b59745744c6feda500,Set up CI to test with Python 3.9,Will Kahn-Greene,2020-12-24T00:07:36Z,willkg,willkg,19,16,3
+2,fx-crash-sig,0e1064a7db18f7c96ec47e24f63e7830633b61a2,Fix linting step in CI,Will Kahn-Greene,2020-12-23T19:23:44Z,willkg,willkg,12,8,4
+3,fx-crash-sig,3db33e33d35ba684a97d97d68b3bdc947e15b647,"Restrict CircleCI from testing with Python 3.9
+
+The image we're using doesn't have Python 3.9 installed, so we can't use
+it until that's fixed.",Will Kahn-Greene,2020-12-23T18:50:56Z,willkg,willkg,5,4,1
+4,fx-crash-sig,12af7ec912f5424a11e5a27bbba3e115a9fabe0c,Add Python environmen testing to CircleCI,Will Kahn-Greene,2020-12-23T18:11:08Z,willkg,willkg,50,27,23
+5,fx-crash-sig,6635a417fa14218d1816cd2db647a7dbf25771ab,"Support python 3.6, 3.7, 3.8, 3.9
+
+This adds tox so it's easier to run all the tests in all the supported
+environments.",Will Kahn-Greene,2020-12-23T17:05:37Z,willkg,willkg,40,36,4
+6,fx-crash-sig,c3e7dbc4faa1d64556285029b5799e969c584fcf,"Remove __future__ use and reorder some imports
+
+This removes __future__ use. We don't need that anymore since this is
+Python 3 only now.
+
+This reorders some imports so it's stdlib, then 3rd-party, then
+fx-crash-sig things.",Will Kahn-Greene,2020-12-23T16:36:45Z,willkg,willkg,11,4,7
+7,fx-crash-sig,529172ad38fdb55f4997b3c0b28b71f5b9e98be4,"Fix AttributeErrors (#23)
+
+This fixes an attribute error when printing out details of an unhandled
+exception when using the fx-crash-sig command.
+
+This fixes the attribute error caused by some parts of the code still
+using a non-existent `__postprocess` method.
+
+This fixes the problem where siggen now returns a Result object which
+isn't serializable and so it doesn't work with json.dumps.",Will Kahn-Greene,2020-12-23T16:01:26Z,willkg,willkg,38,24,14
+8,fx-crash-sig,74ca3ff019ca5f3aae27116913fe9871644625bb,"Update setup.py values; document release process
+
+This moves the version information to fx_crash_sig/__init__.py rather
+than rely on pkg_resources.
+
+This updates the package url to the correct value and removes the
+maintainer because there are a bunch of us maintaining.
+
+This documents a release process to make it easier for all of us.",Will Kahn-Greene,2020-12-04T14:19:05Z,willkg,willkg,67,51,16
+9,fx-crash-sig,5389512b7fe65b6fa4f62685ba56e6d0e56528bd,"Rework requirements to fix version restrictions and bigquery
+
+Basic use of fx-crash-sig shouldn't require installing
+google-cloud-bigquery, so I moved that to extras_require. I updated
+documentation and the Dockerfile accordingly.
+
+Instead of pinning requirements on specific versions which isn't
+flexible, this pins them on ranges with the assumption that these
+requirements use semver versioning.",Will Kahn-Greene,2020-12-04T13:58:55Z,willkg,willkg,46,30,16
+10,fx-crash-sig,9d1ffc48adaf7224b25fc81d2fb3815a4153ccbb,"Update dependencies
+
+This updates the install and dev dependencies to recent versions of
+things.",Will Kahn-Greene,2020-12-03T20:56:16Z,willkg,willkg,10,5,5
+11,fx-crash-sig,340ffa21bf788eeae6b199c19637e66d83a7bde4,"Update docker version (#22)
+
+This explicitly sets the Docker version. If we don't set the version,
+CircleCI defaults to using 17.03.0 which is a version that CircleCI is
+deprecating.",Will Kahn-Greene,2020-10-06T19:50:01Z,willkg,willkg,5,4,1
+12,fx-crash-sig,71ad97fe34d4b43d6047942f91aedad90bd0f1c5,"Enable linting in CI, reformat code
+
+Fixes #17",Will Kahn-Greene,2020-09-02T17:03:29Z,willkg,willkg,2636,1939,697
+13,fx-crash-sig,2b9e6256c4ed007e0ff9abc926e409f6fa1d5ead,Add apt cleanup to reduce image size,Will Kahn-Greene,2020-09-02T15:59:34Z,willkg,willkg,5,4,1
+14,fx-crash-sig,2d2b53a68ba866a26caa3504770853c3fb7105ec,Rework lint and test so they work in Makefile and CI,Will Kahn-Greene,2020-08-31T20:40:04Z,willkg,willkg,48,42,6
+15,fx-crash-sig,7f23e695e5514aba4186765358bafbb7245f5fbf,Nix maintainer from Dockerfile,Will Kahn-Greene,2020-08-31T19:58:46Z,willkg,willkg,1,0,1
+16,fx-crash-sig,56109730e7215a4ad948cd72edc1cf23244e7989,Add versioning to config.yml file,Will Kahn-Greene,2020-08-27T17:43:34Z,willkg,willkg,2,2,0
+17,fx-crash-sig,093f9fb20354c6c008dcbdbc476cd52078b83176,Fix inadvertently commented out line,Will Kahn-Greene,2020-08-27T16:53:57Z,willkg,willkg,2,1,1
+18,fx-crash-sig,1605c52d3476bf91ada2c2ab0cc7be47d2dda562,"Fix input handling and add exit codes
+
+This fixes input handling in fx-crash-sig command so that if there's
+nothing in stdin to slurp, it raises an error rather than hangs.
+
+This also changes fx-crash-sig command to return an error exit code when
+it doesn't work.",Will Kahn-Greene,2020-08-27T16:38:45Z,willkg,willkg,8,7,1
+19,fx-crash-sig,e2cb89b5b5f5b448a832bd5a15d5720e100e0675,"Update CI to build docker image and test with it (#19)
+
+Note that this doesn't run linting in CI--going to do that in a future
+PR.",Will Kahn-Greene,2020-08-27T16:26:53Z,willkg,willkg,73,62,11
+20,fx-crash-sig,81cb366cc5bf0c2eb9d584f68d1e50f999eae61b,Update README (#19),Will Kahn-Greene,2020-08-27T15:28:16Z,willkg,willkg,24,21,3
+21,fx-crash-sig,6ad6e67cff1899f7b666ea073abb9c78157ac964,Add .cache to .gitignore (#19),Will Kahn-Greene,2020-08-27T15:20:37Z,willkg,willkg,1,1,0
+22,fx-crash-sig,51cbba512a5402102eb27e07744668c893c92261,Rework tests to work in pytest (#19),Will Kahn-Greene,2020-08-27T15:20:06Z,willkg,willkg,86,43,43
+23,fx-crash-sig,fea881f5bab561ef4f77847e21c1d13af95ae176,"Initial pass at dockerization (#19)
+
+* add Makefile for easier maintenance
+* add Dockerfile for building a docker image
+* tweak how requirements are required and add dev requirements
+* move tests to their own directory outside of the fx_crash_sig module
+* update .gitignore accordingly",Will Kahn-Greene,2020-08-27T15:12:54Z,willkg,willkg,125,116,9
+24,fx-crash-sig,e5cdf5a4e766df555cb4a990967ba3616ea11606,Add .circleci/config.yml (#16),William Lachance,2020-08-26T20:23:54Z,wlach,wlach,21,21,0
+25,fx-crash-sig,8ae487e9bfaacebf913aa3c38f17f0da8b65696c,typo in google-cloud-bigquery requirements,William Lachance,2020-08-26T19:36:53Z,wlach,wlach,2,1,1
+26,fx-crash-sig,ef9db02ac2c772190aedfe9530ae05bb39d73221,"Add a script for generating signatures from crash pings.
+
+This script generates a CSV file of the format ""document_id, crash_signature""
+by pulling from the `telemetry.crash` table in BigQuery.
+
+The script parallelizes operations internally to reduce total wall-clock time.",William Lachance,2020-05-21T21:14:56Z,wlach,wlach,89,89,0
+27,fx-crash-sig,23fbd5fd345dd2691b51889671963156317fc8e1,"Avoid errors appending ints to strings
+
+This is likely from python version migration.",Kartikaya Gupta,2020-08-20T17:42:46Z,staktrace,staktrace,15,6,9
+28,fx-crash-sig,9c427f060492247ea28219d3d8d7ebcbb69aeefa,"Send error logging to stderr
+
+Also add some more detailed error logging on errors returned by tecken, so
+that we can diagnose errors and make fixes accordingly.",Kartikaya Gupta,2020-06-18T17:34:03Z,staktrace,staktrace,8,6,2
+29,fx-crash-sig,251734804e5b7c3eaf54d7a07768bbc2a114ba67,Add CrashProcessor::get_signatures_multi to batch process payloads,Kartikaya Gupta,2020-06-18T17:37:38Z,staktrace,staktrace,23,23,0
+30,fx-crash-sig,d35655e0d611d7fe81d1c76ed5f855cae80364da,Handle missing data in crash pings,William Lachance,2020-05-21T21:14:18Z,wlach,wlach,13,5,8
+31,fx-crash-sig,c098ed48d53351eff8a5822dfee325d6f09a01ae,Remove some unnecessary python2 compat shim,William Lachance,2020-05-21T21:13:58Z,wlach,wlach,3,0,3
+32,fx-crash-sig,8fba05e03c2e8998c68fd5a82b30f9f6664b3463,Inline the header,Will Kahn-Greene,2020-06-30T17:35:47Z,willkg,willkg,7,3,4
+33,fx-crash-sig,7907d70bba97ac758b8471025aa79521c2d85f89,"Add user-agent to symbolication requests
+
+This makes it easier for us to track down issues in Symbols related to
+fx-crash-sig usage.",Will Kahn-Greene,2020-06-26T19:49:06Z,willkg,willkg,9,8,1
+34,fx-crash-sig,fc41db5f41c105eb61ee9fb7596e915df8208d9a,Avoid erroring out if the crashing_thread is malformed somehow (#12),Kartikaya Gupta (kats),2020-06-30T15:51:53Z,staktrace,staktrace,2,2,0
+35,fx-crash-sig,f76357c684de4ac85afa2993dd79049c43ccfcac,"Upgrade requests to >= 2.20.0 to fix vulnerability
+
+https://nvd.nist.gov/vuln/detail/CVE-2018-18074",Benjamin Wu,2019-06-01T19:22:00Z,BenWu,BenWu,2,1,1
+36,fx-crash-sig,33e0f3eabc8c3bfd25b5ea99efe2a96a568b7e5c,Switch % for .format() and fix link in README,Will Kahn-Greene,2019-05-31T17:17:06Z,willkg,willkg,4,2,2
+37,fx-crash-sig,f98265f9b7c190759b17634cf2de649dbcc6c9f4,Switch from % to .format(),Will Kahn-Greene,2019-05-31T00:07:13Z,willkg,willkg,2,1,1
+38,fx-crash-sig,b6c38bf5398cf2c666a45e0c9436da49e0272e93,Move get_version_info() to __init__.py,Will Kahn-Greene,2019-05-31T00:06:18Z,willkg,willkg,49,28,21
+39,fx-crash-sig,632c89eb8ccb64df315d910d77716bb364bc2395,"Add get_version_info and --version flag
+
+This adds get_version_info() which returns the versions for siggen,
+fix-crash-sig and Python. This will greatly ease debugging issues.
+
+This also adds a --version flag to fx-crash-sig command which spits those
+things out to stdout.",Will Kahn-Greene,2019-05-30T01:54:10Z,willkg,willkg,29,28,1
+40,fx-crash-sig,9ded14596b30d9009913794710c94a39065529d8,Remove commented out bits in setup.cfg,Will Kahn-Greene,2019-05-23T21:18:40Z,willkg,willkg,5,0,5
+41,fx-crash-sig,7cb7a75a0b21cff6cb93eaca55607ee8a188e4bd,"Update to Python 3, fix example
+
+* update to support Python 3 and siggen 1.0.0+
+* fixes example so it works
+* adds test and example to README",Will Kahn-Greene,2019-05-23T21:11:15Z,willkg,willkg,65,41,24
+42,fx-crash-sig,f1056e434dc00f0e78799e389820aa5724a4891d,Add .gitignore,Will Kahn-Greene,2019-05-23T20:47:10Z,willkg,willkg,4,4,0
+43,fx-crash-sig,9e2e085c69a00fef8bbf88a8d8bfe4be742e4c5f,Add setup.cfg with flake8 linting configuration,Will Kahn-Greene,2019-05-23T20:45:51Z,willkg,willkg,10,10,0
+44,fx-crash-sig,5a43fdbd083cc7ff2c0e03e4285c61cd1ab9c9e8,"Return an empty dict instead of None
+
+If we return None then the CrashProcessor can throw an exception while
+trying to update the 'os' property on it.",Kartikaya Gupta,2019-04-16T20:33:54Z,staktrace,staktrace,2,1,1
+45,fx-crash-sig,f7daaf385184fe62a378cdf3b38db17e5e4c4765,Add PyPI link to readme,Ben Wu,2018-08-10T14:52:42Z,BenWu,BenWu,2,1,1
+46,fx-crash-sig,2c02288250850ee192fd0ceb90e62ad725bb2a2d,Test symbolicator,Ben Wu,2018-08-03T20:24:05Z,BenWu,BenWu,45,44,1
+47,fx-crash-sig,b95ff85fdfab66fb3a4883a00ecd76608a0f4ac9,Version 0.1.11,Ben Wu,2018-08-03T20:23:46Z,BenWu,BenWu,2,1,1
+48,fx-crash-sig,1e07b822d68c6268d40feaeb9efd980e96e4fd49,Don't symbolicate if ipc_channel_error is in the payload,Ben Wu,2018-07-31T00:14:00Z,BenWu,BenWu,4,4,0
+49,fx-crash-sig,c74f91be22c22a667e2093dfb64e2a7b976102b7,Version 0.1.10,Ben Wu,2018-07-28T20:23:32Z,BenWu,BenWu,2,1,1
+50,fx-crash-sig,f2192da67e65c79eebb42eed27bca0f364c859d0,update to siggen==0.1.2,Ben Wu,2018-07-28T20:22:50Z,BenWu,BenWu,2,1,1
+51,fx-crash-sig,a73f1495a21049e509a6740cf5ebf291100f06f4,use string serialization of async_shutdown_timeout,Ben Wu,2018-07-23T22:09:12Z,BenWu,BenWu,21,17,4
+52,fx-crash-sig,8dc1697b23940fbb7a014b5dba33f2858c90d745,version 0.1.8,Ben Wu,2018-07-20T22:57:27Z,BenWu,BenWu,2,1,1
+53,fx-crash-sig,32e408f8697d28ad17ef39689a5098a7c926b882,Parse entire crash ping payload instead of just stack traces,Ben Wu,2018-07-20T22:52:37Z,BenWu,BenWu,58,45,13
+54,fx-crash-sig,e687a0a8c83bf03822335a44d0b13f9b80b8a80e,"no more logging, just print errors",Ben Wu,2018-07-16T20:07:19Z,BenWu,BenWu,39,14,25
+55,fx-crash-sig,9770cd7009e641844681823e2fff4bf84008f2e3,log to file,Ben Wu,2018-07-13T18:16:23Z,BenWu,BenWu,4,4,0
+56,fx-crash-sig,8feda44f61803a8e8ac02261c7db568b6bd5177e,Version 0.1.5,Ben Wu,2018-07-13T16:58:39Z,BenWu,BenWu,2,1,1
+57,fx-crash-sig,28691d0b52346fe64e63212499854e75b85056d9,verbose option to print errors to stderr,Ben Wu,2018-07-13T16:54:35Z,BenWu,BenWu,1832,1807,25
+58,fx-crash-sig,019c01ea896d2ba4b58a06f58f61873c20ac27ff,License,Ben Wu,2018-07-13T02:43:06Z,BenWu,BenWu,25,25,0
+59,fx-crash-sig,abf0146bed83df8bf950ef5d47e44ed0bde2471f,Release 0.1.4,Ben Wu,2018-07-12T03:54:50Z,BenWu,BenWu,2,1,1
+60,fx-crash-sig,efabe3e9a18b0179bf403cda01a0b837fb46e677,command line program prints json instead of python dict,Ben Wu,2018-07-12T03:53:52Z,BenWu,BenWu,2,1,1
+61,fx-crash-sig,6f09cc9ef85c3e3aa9f4a117a688b80554803a4d,Release 0.1.3,Ben Wu,2018-07-12T03:12:42Z,BenWu,BenWu,4,2,2
+62,fx-crash-sig,15fcd69163abc4e3fa0e86a568324b81e912bf99,usage instructions in readme,Ben Wu,2018-07-12T03:09:26Z,BenWu,BenWu,20,20,0
+63,fx-crash-sig,0da3c4f25a0dc4b7af975d1192b43a75ae0d4697,renamed crash processor functions,Ben Wu,2018-07-12T03:08:51Z,BenWu,BenWu,10,5,5
+64,fx-crash-sig,361c5ceec339316fea84d0e1be8f3296b734bded,crash processor class to do everything,Ben Wu,2018-07-12T03:04:32Z,BenWu,BenWu,59,36,23
+65,fx-crash-sig,f61d7718f45099a9e73ed6d8a72431247b596760,cleaned up symbolicate into Symbolicator class,Ben Wu,2018-07-12T02:42:21Z,BenWu,BenWu,343,170,173
+66,fx-crash-sig,79c1c48601ca77695ef578233fe531756aa902d8,fixed readme for markdown,Ben Wu,2018-07-12T02:20:17Z,BenWu,BenWu,11,7,4
+67,fx-crash-sig,60a61a2fdd6d0ed5cc1f8ad67d0eed7bce09d704,changes for pypi,Ben Wu,2018-07-12T02:13:00Z,BenWu,BenWu,365,362,3
+68,fx-crash-sig,6ce2ea5f03eb63f56a3a8fff4284e8ac5e5b16b8,rename to fx-crash-sig,Ben Wu,2018-07-12T01:37:13Z,BenWu,BenWu,14,7,7
+69,fx-crash-sig,a45e39f78ae7035e867a16c728a0d6d12fcf0130,setup.py and command line entrypoint,Ben Wu,2018-07-11T23:43:57Z,BenWu,BenWu,987,987,0
+70,fx-crash-sig,3cdd6836cb2140d538ede04bd8e83c4ad2d4c0f5,symbolication and example,Ben Wu,2018-07-11T23:19:54Z,BenWu,BenWu,824,824,0

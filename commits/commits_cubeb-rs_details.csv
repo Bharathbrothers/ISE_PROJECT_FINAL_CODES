@@ -1,0 +1,441 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,cubeb-rs,aaba6b34368db990d3ec165ebc85053f61097bac,bump cubeb-api version to 0.3.1.,Dan Glastonbury,2017-10-19T05:21:40Z,djg,djg,2,1,1
+1,cubeb-rs,b810b87633eb3fd126fc39600f63b4a96f1d3ae5,cubeb-api: Implement cubeb_stream_reset_default_device binding.,Dan Glastonbury,2017-10-19T05:20:32Z,djg,djg,8,8,0
+2,cubeb-rs,96e2f01eded665b1ec1322f38d0a56fb211b20a8,"cubeb-api: Fix linker path after libcubeb submodule update.
+
+https://github.com/kinetiknz/cubeb/commit/871456d0 causes the library to
+be generated in a lib subdirectory rather than in the root of the build
+output, so update build.rs to search in the new location.",Matthew Gregan,2017-10-10T04:39:34Z,kinetiknz,kinetiknz,6,3,3
+3,cubeb-rs,d01bc7a253abe70037b00787a40a6385d13e60e4,Update libcubeb submodule to pick up Windows build fix.,Matthew Gregan,2017-10-10T00:58:49Z,kinetiknz,kinetiknz,2,1,1
+4,cubeb-rs,a1f72e49aafc8d79fe946f76d4715dc950096c97,Update libcubeb submodule to pick up kinetik/cubeb#299.,Matthew Gregan,2017-08-30T23:21:33Z,kinetiknz,kinetiknz,2,1,1
+5,cubeb-rs,314e611d58da33acef46d6a8e9976468b1e19c73,"cubeb-api: Remove PhantomData<&Context> from Stream.
+
+Keeping a ref to owning Context doesn't solve the problem it was
+intended to solve.",Dan Glastonbury,2017-08-22T03:13:43Z,djg,djg,22,10,12
+6,cubeb-rs,b79b7d42e8a3c942272a8b6f9d63339ddb932de7,cubeb-api: Flesh out build.rs for Windows.,Matthew Gregan,2017-08-17T00:13:22Z,kinetiknz,kinetiknz,7,5,2
+7,cubeb-rs,07c48589d12fd4dca5ce04a58084ea76ba11a543,cubeb-core: Tweak ffi::cubeb_device_type casts to fix build on Windows.,Matthew Gregan,2017-08-17T00:12:48Z,kinetiknz,kinetiknz,6,3,3
+8,cubeb-rs,77d88b7b798ce3411d8cf965ce6cf24bc1209171,cubeb-api: Remove StreamType.,Dan Glastonbury,2017-08-06T03:58:43Z,djg,djg,42,1,41
+9,cubeb-rs,59037b49d74ce21f93585643c66045a117ec0c6e,cubeb-core: Remove StreamType and cubeb_stream_type.,Dan Glastonbury,2017-08-06T03:58:24Z,djg,djg,64,1,63
+10,cubeb-rs,8a3e85c7409767515390173a9b76a5c9fb9e4791,"cubeb-backend: Rename t! to _try!
+
+Added documentation to _try macro rule explaining the macro's role.",Dan Glastonbury,2017-08-06T03:35:02Z,djg,djg,39,21,18
+11,cubeb-rs,a4b31677c8a918457b3f6b17a607a5aa4606c93f,"cubeb-core: Remove Copy, Clone from structs containing pointers.",Dan Glastonbury,2017-08-04T07:21:14Z,djg,djg,6,3,3
+12,cubeb-rs,fff2ed6735539da4a61aa672aa19e9d990fa739e,cubeb-core: Fix typo in comment.,Dan Glastonbury,2017-08-04T07:19:43Z,djg,djg,2,1,1
+13,cubeb-rs,2fdfd2fca1234b9883000c7f9bdfc11f679d2eeb,cubeb-api/cubeb-backend: Bump version number to reflect ops table change.,Dan Glastonbury,2017-07-27T05:37:09Z,djg,djg,4,2,2
+14,cubeb-rs,2c5159bcebbe9218a1e65aea403950687a68b40c,cubeb-backend: Implement ops for stream_reset_default_device.,Dan Glastonbury,2017-07-27T05:20:05Z,djg,djg,18,17,1
+15,cubeb-rs,2a8e1e704689b8929cf0e328062c5b707356ec57,libcubeb-sys: Update libcubeb to 09aeb59,Dan Glastonbury,2017-07-27T05:11:07Z,djg,djg,2,1,1
+16,cubeb-rs,26699f1f8da8b7177c732ccea79a9f95ff8b9a7d,"cubeb-core: Derive Copy, Clone and Debug for all the structs.",Dan Glastonbury,2017-07-21T01:04:08Z,djg,djg,6,4,2
+17,cubeb-rs,6ac67a101f4b9500bd40d9a9f0e187dd3a2b9659,"cubeb-backend: To &mut self or not &mut self.
+
+After talking over issues I have with borrowck, have decided to change
+the signature of all traits to &self. The implementator must then use
+interior mutability to achieve state mutation.",Dan Glastonbury,2017-07-18T01:09:24Z,djg,djg,80,40,40
+18,cubeb-rs,d5c5796f2c2b72deb0cc477df04e69238034eea5,"cubeb-core: Make _bytes() functions public.
+
+It's useful to have access to raw *const c_char strings as &[u8]
+instead of as &str.",Dan Glastonbury,2017-07-14T07:23:43Z,djg,djg,12,6,6
+19,cubeb-rs,12ff04282e6a05593e05a81d5a7083d79bfb6fa9,"cubeb-core: Implement Clone, Copy, Debug for Device",Dan Glastonbury,2017-07-14T07:09:54Z,djg,djg,1,1,0
+20,cubeb-rs,9784c0fa4997251be6ebdd1a82a109f5ca624523,cubeb-api: Implement IntoCString for Vec<u8>,Dan Glastonbury,2017-07-14T05:43:37Z,djg,djg,13,12,1
+21,cubeb-rs,b8cca8dfcaa484dbaedd70709a3b467a1a6fc6f2,"cubeb-api: Remove where Frame from StreamCallback Frame type.
+
+The type of StreamCallback::Frame had to implement Frame, which
+provided a fn layout() which wasn't being used.",Dan Glastonbury,2017-07-14T04:23:30Z,djg,djg,4,1,3
+22,cubeb-rs,83961514b63be2e6f97ef53e423086f2ece03cdd,cubeb-core: Allow raw() conversion for DeviceInfo.,Dan Glastonbury,2017-07-14T02:12:29Z,djg,djg,4,4,0
+23,cubeb-rs,9111bde55474709363408da89d02eb76955c463e,cubeb-backend: All Stream trait fn take &mut self.,Dan Glastonbury,2017-07-13T05:13:10Z,djg,djg,12,6,6
+24,cubeb-rs,6c5a8ab216f2910fbdf5da8ecdfaa144d4a37846,"cubeb-backend: Fix passing of cubeb_stream_params via cubeb_get_min_latency
+
+It's pass-by-value in the backend, but pass-by-pointer in the API.",Dan Glastonbury,2017-07-13T02:22:20Z,djg,djg,8,4,4
+25,cubeb-rs,fac92f874add83276522f838c8a769769e82122c,"cubeb-core: Add From conversion trait for SampleFormat, ChannelLayout",Dan Glastonbury,2017-07-13T01:12:22Z,djg,djg,41,41,0
+26,cubeb-rs,add2f3abad00c9a788d78245a83ddc551c40d60d,cubeb-backend: Change get_preferred_channel_layout to return FFI type.,Dan Glastonbury,2017-07-11T23:54:54Z,djg,djg,8,4,4
+27,cubeb-rs,178bff4f5eea047c978033c48c326da4df074991,cubeb-backend: mutate all the self!,Dan Glastonbury,2017-07-11T23:46:40Z,djg,djg,42,21,21
+28,cubeb-rs,0baf96d99719a8267f47bde46a3b776a7f526709,cubeb-core: Fixup and test ErrorCode conversion.,Dan Glastonbury,2017-07-11T06:46:34Z,djg,djg,115,84,31
+29,cubeb-rs,b78a1adfc02daf9507e45502441bfb370219ff7d,cubeb-backend: Add helper for creating C api binding.,Dan Glastonbury,2017-07-10T04:21:27Z,djg,djg,586,572,14
+30,cubeb-rs,80799fe66039bc6faa3bc04bed8ae4120c52a02b,cubeb-backend: Move common functionality to cubeb-core and cubeb-api.,Dan Glastonbury,2017-07-10T03:05:39Z,djg,djg,802,603,199
+31,cubeb-rs,e8b717a7508d8084398205c43ca456f8260c9010,cubeb-backend: Start crate.,Dan Glastonbury,2017-07-08T06:54:11Z,djg,djg,24,23,1
+32,cubeb-rs,1c8d96a1c46837f3190ebb5f8c8fb61671585008,cubeb-core: Incorporate FFI type wrappers from cubeb-api.,Dan Glastonbury,2017-07-08T06:03:32Z,djg,djg,991,542,449
+33,cubeb-rs,cc0697c371adb2903b0810a3b5671cd9645ddfad,cubeb-api: Update raw types to reference cubeb-core::ffi.,Dan Glastonbury,2017-07-07T06:31:43Z,djg,djg,573,179,394
+34,cubeb-rs,ecd6c02cd283f9d316655789f57b78089244b750,cubeb-core: Move raw types from cubeb-api into ffi module.,Dan Glastonbury,2017-07-07T06:34:32Z,djg,djg,565,565,0
+35,cubeb-rs,3ce6869c639383d25e5486a9d4243b23bfca1cbf,Move cubeb-rs files into cubeb-api/,Dan Glastonbury,2017-07-07T04:19:13Z,djg,djg,2,1,1
+36,cubeb-rs,724a707c62dd47719dafd058f362f27523c9f56b,libcubeb-sys: Fix linking on OS X.,Dan Glastonbury,2017-07-04T04:23:52Z,Dan Glastonbury,Dan Glastonbury,11,5,6
+37,cubeb-rs,fcb5ff30ceae2b014f82745a3d137fb241b4547f,cubeb-rs: Move callback shims into struct Stream.,Dan Glastonbury,2017-07-04T03:37:10Z,djg,djg,88,42,46
+38,cubeb-rs,41e2986d60f5f0f559bb40963b2092a8f7de1796,cubeb-rs: Flesh out complete example in Stream header docs.,Dan Glastonbury,2017-07-04T03:35:37Z,djg,djg,59,56,3
+39,cubeb-rs,3d6aa35a3588084d42db06903a274ae53b17c868,cubeb-rs: Clippy suggested changes.,Dan Glastonbury,2017-07-04T01:16:45Z,djg,djg,3,2,1
+40,cubeb-rs,ca123e8dc44a832ef1b825134cf808a6ee2d4791,cubeb-rs: Fix broken sample format conversion tests.,Dan Glastonbury,2017-07-04T03:19:08Z,djg,djg,13,11,2
+41,cubeb-rs,56fbfc3c5878089da5cf85d827fee102b88709d7,cubeb-rs: Add unit tests for StreamParams creation/conversion.,Dan Glastonbury,2017-07-04T03:05:10Z,djg,djg,280,280,0
+42,cubeb-rs,3ae4829e10b9e485abc39fad34e6be450bb15d7a,cubeb-rs: Update tone example to use common::init.,Dan Glastonbury,2017-07-04T03:04:42Z,djg,djg,9,3,6
+43,cubeb-rs,4e659e92218a45cb1adb36a719b8942efc68fd06,"cubeb-rs: Extract frame helpers MonoFrame, StereoFrame into frame.rs.",Dan Glastonbury,2017-07-04T00:53:33Z,djg,djg,79,43,36
+44,cubeb-rs,0d88e6f10dec58bf7afd79d32f4b09f8c2bbc107,cubeb-rs: Add no_run to example in stream.rs header.,Dan Glastonbury,2017-07-04T00:51:46Z,djg,djg,2,1,1
+45,cubeb-rs,87ac0f308eaf195b3defc4c74624d23ec57d2e20,cubeb-rs: Add device enumeration example.,Dan Glastonbury,2017-07-04T00:35:17Z,djg,djg,583,355,228
+46,cubeb-rs,066f94bd1d7e4c36c16d64b09c98239ffda391f2,cubeb-rs: Connect 'ctx life time to Context param in cubeb::Stream::init.,Dan Glastonbury,2017-07-04T00:31:59Z,djg,djg,2,1,1
+47,cubeb-rs,490c43079cb2912a2b5a87573d5c7ae3326525c4,More meaningful README.,Dan Glastonbury,2017-06-30T20:55:11Z,djg,djg,27,26,1
+48,cubeb-rs,8ffe0ffe03fbdb01e4d6e56e1be628c4134e16e1,cubeb-rs: Add example usage of cubeb.,Dan Glastonbury,2017-06-28T18:36:23Z,djg,djg,77,77,0
+49,cubeb-rs,93ae1cd36de95947f8ecaa0b2c66a9bd3e85f219,cubeb-rs: Rust bindings for Cubeb,Dan Glastonbury,2017-06-28T18:35:32Z,djg,djg,1551,1551,0
+50,cubeb-rs,41e18eebb2c8041090d2d2cb19c15221acb6d5aa,libcubeb-sys: FFI wrapper around cubeb including static linking of cubeb native library.,Dan Glastonbury,2017-06-21T11:35:46Z,djg,djg,367,367,0
+51,cubeb-rs,37a335575fc215374045120c1b783a2b6fad334e,Add cubeb,Dan Glastonbury,2017-06-21T04:46:40Z,djg,djg,4,4,0
+52,cubeb-rs,577639509ddd653ba755e94fc89d7c4571532e6f,Initial repo setup,Dan Glastonbury,2017-02-10T00:45:59Z,Dan Glastonbury,Dan Glastonbury,24,24,0
+53,cubeb-rs,3ce512aa106db3307ec7ce234e3d00e02016a620,build.rs: Fix Android build.,Matthew Gregan,2021-03-24T08:15:54Z,kinetiknz,kinetiknz,7,5,2
+54,cubeb-rs,23b57da751be91087bce7e850576eb9a58d12715,Remove obsolete CI configs.,Matthew Gregan,2021-03-10T06:11:39Z,kinetiknz,kinetiknz,114,0,114
+55,cubeb-rs,b870c3b7e4ee06c9dce3a801105fc7973f15abb1,Fix ffi::cubeb_channel_layout definition on Windows.,Matthew Gregan,2021-03-10T06:05:29Z,kinetiknz,kinetiknz,2,1,1
+56,cubeb-rs,7c1de7f1921cd0166243d6cd2190b08e0f0a1e30,Add systest run to build action.,Matthew Gregan,2021-03-10T04:21:38Z,kinetiknz,kinetiknz,4,4,0
+57,cubeb-rs,7666a72bf81ace42c48f56f9a24cc2dc0a9a76fc,Add build action.,Matthew Gregan,2021-02-23T22:04:57Z,kinetiknz,kinetiknz,45,45,0
+58,cubeb-rs,2c5d9d0d87555bd485c25639029c008dba7ea37e,Remove cubeb_stream_reset_default_device API.,Matthew Gregan,2021-02-17T00:51:32Z,kinetiknz,kinetiknz,39,8,31
+59,cubeb-rs,be6cb3222bdcf518f035120384c903fca1b6dd26,Update libcubeb submodule for kinetiknz/cubeb#615.,Matthew Gregan,2020-10-06T22:31:01Z,kinetiknz,kinetiknz,2,1,1
+60,cubeb-rs,5972492dc5bf1cdefc90cd3e7ae73aae517024fe, Add method to change stream name,Brendan Early,2020-10-01T00:15:29Z,mymindstorm,mymindstorm,53,45,8
+61,cubeb-rs,1ade4d752ee8a3a21a1ba031a9ae9be39f7689a3,systest: Update to ctest 0.2.,Matthew Gregan,2020-04-30T04:10:28Z,kinetiknz,kinetiknz,11,9,2
+62,cubeb-rs,cc6bed987a32609e41396e10d27eb48205f49011,"Fix ""unused doc comment"" warnings.",Matthew Gregan,2020-04-30T03:26:08Z,kinetiknz,kinetiknz,26,13,13
+63,cubeb-rs,0f7a3578734aa24268afaadac73d24087bfa700c,"Fix ""unnecessary parentheses around assigned value"" and ""unnecessary trailing semicolon"" warnings.",Matthew Gregan,2020-04-30T03:25:56Z,kinetiknz,kinetiknz,8,4,4
+64,cubeb-rs,9e6a2c40c8291f8ac707b1fa3ad4dddb1628900d,"Fix ""use of deprecated item 'std::error::Error::description'"" warnings.",Matthew Gregan,2020-04-30T03:25:21Z,kinetiknz,kinetiknz,8,3,5
+65,cubeb-rs,e38324dad72ac8e1f118c5da5afc57245f4dd17b,Add `input_latency` to TestStream impl.,Matthew Gregan,2020-04-30T03:23:37Z,kinetiknz,kinetiknz,3,3,0
+66,cubeb-rs,ca37dc622ff13d063b8cb9a742bb0b9a88e1894a,"Use a more recent libcubeb to have the stream_input_latency method, and bump a few crates because of API changes",Paul Adenot,2020-04-29T14:25:45Z,padenot,padenot,16,8,8
+67,cubeb-rs,027525b4390d48529db5d41c0a677fd88cf97168,0.7,Paul Adenot,2020-04-24T15:10:17Z,padenot,padenot,6,3,3
+68,cubeb-rs,198a89f99f175f44027fa6e995dec4ec8c02878c,Update for stream_get_latency,Paul Adenot,2020-04-24T14:58:33Z,padenot,padenot,26,26,0
+69,cubeb-rs,47932f9640cf45e81c213f8487abdc039e4902fa,"Silence clippy range_plus_one
+
+https://rust-lang.github.io/rust-clippy/master/index.html#range_plus_one",Paul Adenot,2020-04-15T13:04:17Z,padenot,padenot,2,1,1
+70,cubeb-rs,cd03ac595c95de87a978dacfef3f3187f014172d,cubeb-backend: Bump to 0.6.3.,Matthew Gregan,2020-04-13T22:51:40Z,kinetiknz,kinetiknz,2,1,1
+71,cubeb-rs,d1294aa8db6e7c20d76a7e35d100cf0419701f2f,"Merge pull request #51 from ChunMinChang/speedup-logging
+
+Do not allocate buffer when logging messages",Paul Adenot,2020-04-10T17:09:05Z,padenot,padenot,17,15,2
+72,cubeb-rs,77b71c0b75ee087fe7caabbb5d8d79b30f737f3b,"Ignore the fractional part of the log value
+
+The log calculation will be applied for converting the `line!()` value
+to the digits of the number we need in the log message. The fractional
+part of the log value can be ignored in the calculation. This might give
+a better readability of how the digits are calculated.",Chun-Min Chang,2020-04-09T21:13:39Z,ChunMinChang,ChunMinChang,2,1,1
+73,cubeb-rs,6f33df34fe9d018fb8c89a1c9d5be8fcc4a0951b,"Truncate log silently in release build
+
+When log message's size is over than the buffer's capacity, in release
+build, we silently truncate the log message. In debug build, we have an
+assertion to warn this.",Chun-Min Chang,2020-04-09T17:19:29Z,ChunMinChang,ChunMinChang,9,5,4
+74,cubeb-rs,cebe8836cdc5ff7bbea5eab779510f05b85dda76,Add newline character in buffer,Chun-Min Chang,2020-04-09T17:13:35Z,ChunMinChang,ChunMinChang,6,3,3
+75,cubeb-rs,74665b35bd1324825dacbf32a4c955a28740d9bd,Do not allocate buffer when logging messages,Chun-Min Chang,2020-04-08T21:07:57Z,ChunMinChang,ChunMinChang,16,14,2
+76,cubeb-rs,dba05cce19afe211cbc33c16322a31b15931ed82,"Only print filename in the log
+
+Instead of printing the full path to the file that is currently running,
+we should print the filename only. As long as we have the filename and
+the line, we know where the log comes from.",Chun-Min Chang,2020-04-07T22:30:42Z,ChunMinChang,ChunMinChang,3,2,1
+77,cubeb-rs,49e7641e0f21ed82eb1b7101c0d7e8b9eaa8593a,"Add a top-level README.md as a guide for newcomers
+
+The intention is to provide a friendlier experience to new users along
+with the over-arching goals of the project and a rough overview of the
+structure of the repo.
+
+This is a best effort from my understanding of the repository so far,
+please let me know if you would like to see anything
+added/changed/removed!",mitchmindtree,2020-01-30T20:09:49Z,mitchmindtree,mitchmindtree,50,50,0
+78,cubeb-rs,ac1dd5ef6826c25d680c8d8ca66dd5cfad808884,cubeb-sys: link to libc++ on FreeBSD,Greg V,2020-01-08T19:03:15Z,unrelentingtech,unrelentingtech,7,6,1
+79,cubeb-rs,770cc83570cd7e6d0847fa030d2fed679b54e522,"cubeb-sys: do not build tools
+
+Not useful for linking to Rust, and causes a failure on FreeBSD
+(missing link flag for pthread library)",Greg V,2020-01-08T19:02:14Z,unrelentingtech,unrelentingtech,1,1,0
+80,cubeb-rs,cd0b88356e150b5f9b6b5c06d3b36f4a5a693432,cubeb-sys: extract redundant build line out of the ifs,Greg V,2020-01-08T18:58:09Z,unrelentingtech,unrelentingtech,4,1,3
+81,cubeb-rs,41274796eeb40d04ea1317893c258aad88334aad,Fix deprecated `try!` warnings for rustc nightly 1.40.,Matthew Gregan,2019-09-26T22:03:18Z,kinetiknz,kinetiknz,18,9,9
+82,cubeb-rs,bd0ff54df74652ddccdcff378a8d2b851731bba0,Bump crate versions to 0.6.2.,Matthew Gregan,2019-08-22T00:20:22Z,kinetiknz,kinetiknz,14,7,7
+83,cubeb-rs,f035a31ef7234a3550cfdcac0208b45d6e295fcb,cubeb-sys: Remove missed cubeb_stream_set_panning reference.,Matthew Gregan,2019-08-22T00:19:03Z,kinetiknz,kinetiknz,1,0,1
+84,cubeb-rs,90fbfa8b7b38cd641741e246cc47a6fad7c81790,Bump crate versions to 0.6.1.,Matthew Gregan,2019-08-21T23:03:33Z,kinetiknz,kinetiknz,14,7,7
+85,cubeb-rs,da1d93944e69e8d190a1e1d22cb59d856d93b73d,cubeb-sys: Update libcubeb submodule to 8c3e32bd.,Matthew Gregan,2019-08-21T22:58:23Z,kinetiknz,kinetiknz,2,1,1
+86,cubeb-rs,672457a271e65e2642a0ec93d217fcbf81851414,Bump crate versions to 0.6.0.,Matthew Gregan,2019-08-21T22:02:21Z,kinetiknz,kinetiknz,14,7,7
+87,cubeb-rs,1106bcafbb639ece2017a7d9e649a3b4fd88a3c0,Remove panning bindings,Paul Adenot,2019-08-21T15:40:17Z,padenot,padenot,51,0,51
+88,cubeb-rs,f6d64ee61e5af0ecf7cb506c0d648834e2054f62,cubeb-sys: Search both lib and lib64 in build.rs.,Matthew Gregan,2019-07-02T02:37:05Z,kinetiknz,kinetiknz,1,1,0
+89,cubeb-rs,44cea094dfde51691ee87ef4e3e7b7f1a2e12445,libcubeb: Update to commit 0d1d9d84.,Matthew Gregan,2019-07-02T01:55:18Z,kinetiknz,kinetiknz,2,1,1
+90,cubeb-rs,f691b2c925de117ffa030784b2ee8ead15b70a60,Bump crate version to 0.5.5.,Matthew Gregan,2019-07-02T00:51:46Z,kinetiknz,kinetiknz,14,7,7
+91,cubeb-rs,74dd8152453ad66b1ff5332f03cd7bcbc34c6933,Fix MinGW build issue and bump version to 0.5.4.,Matthew Gregan,2019-03-06T21:28:34Z,kinetiknz,kinetiknz,18,9,9
+92,cubeb-rs,66b1abefc04460a3bcd8b0d613c2928c5ccb8095,"Drop 'static lifetime from ContextOps::backend_id return value.
+
+This allows implementations to return a value with a shorter lifetime,
+e.g. tied to the associated implementation of ContextOp.",Matthew Gregan,2019-06-28T01:30:05Z,kinetiknz,kinetiknz,2,1,1
+93,cubeb-rs,c3e67b6375406b67a88db4d07ef3a4652a243397,Sync stream_prefs enums with cubeb.h.,Matthew Gregan,2019-06-26T09:02:52Z,kinetiknz,kinetiknz,4,3,1
+94,cubeb-rs,940b5a7164069cc9aee5f9c3739cdf4afd80571e,Add missing enum export from ffi.,Matthew Gregan,2019-06-26T09:02:22Z,kinetiknz,kinetiknz,1,1,0
+95,cubeb-rs,a5caa5b0159d1768c16725be083db7084be8bd09,libcubeb: Update to commit 98a1c8e6.,Matthew Gregan,2019-06-26T08:39:21Z,kinetiknz,kinetiknz,2,1,1
+96,cubeb-rs,36a643a4b75d5c3785fd2636fbbe3f82dec93d7a,Add a new enum binding,Paul Adenot,2019-04-10T16:13:01Z,padenot,padenot,1,1,0
+97,cubeb-rs,107959ec779860b721314f2ec460ac4f3bc4a70c,Add Dockerfile used to create Circle CI docker image.,Dan Glastonbury,2019-03-04T01:53:21Z,djg,djg,59,59,0
+98,cubeb-rs,95d6d5f870c1b59511f8209ec5c8605c424e6e74,Update Circle CI to use rust 1.33,Dan Glastonbury,2019-03-04T02:00:42Z,djg,djg,2,1,1
+99,cubeb-rs,0a062fefc2d58797aa59d66085b3a18d3c02cf1d,Return the result from the implementation of device_collection_destroy instead of returing CUBEB_OK all the time,Chun-Min Chang,2019-01-09T21:46:48Z,ChunMinChang,ChunMinChang,2,1,1
+100,cubeb-rs,5d99b58de5036f3c0dbff97661931f04a9571b11,Implement stream_register_device_changed_callback,Chun-Min Chang,2018-11-14T19:14:25Z,ChunMinChang,ChunMinChang,13,12,1
+101,cubeb-rs,c91034dd886958f920563804f538e98e67cf8d86,Bump cubeb-api and cubeb-backend versions and deps.,Matthew Gregan,2018-12-05T03:55:19Z,kinetiknz,kinetiknz,8,4,4
+102,cubeb-rs,33e49a83a00b276f8b5723e07df16c4804e050f3,Bump cubeb-core version and dep on cubeb-sys to 0.5.3.,Matthew Gregan,2018-12-05T03:50:01Z,kinetiknz,kinetiknz,4,2,2
+103,cubeb-rs,c4527c6560fb1055749328ca78a8b61fa64a96ed,Bump cubeb-sys version for release.,Matthew Gregan,2018-10-23T20:39:03Z,kinetiknz,kinetiknz,2,1,1
+104,cubeb-rs,61bb043e303882d5863ec5f22a1d2ab7044cb3e0,Fix cubeb_channel enum on Windows.,Matthew Gregan,2018-08-08T11:57:31Z,kinetiknz,kinetiknz,7,5,2
+105,cubeb-rs,78ed9459b8ac2ca50ea37bb72f8a06847eb8d379,"Remove the gcc dependency and bump version
+
+It isn't used...",Bastien Orivel,2018-04-11T21:34:48Z,Eijebong,Eijebong,4,1,3
+106,cubeb-rs,c4837b10647b1731b3d959dc8bbef144fac68961,"Bump cubeb-core version to 0.5.1, cubeb-api version to 0.5.2.",Dan Glastonbury,2018-04-04T00:49:59Z,djg,djg,6,3,3
+107,cubeb-rs,d72957989bc8486c2d041a0480ccab410905fdab,"cubeb-core: Stop cubeb_stream before destroying it in Drop.
+
+A running cubeb_stream *must* be stopped before calling
+cubeb_stream_destroy, otherwise it's possible for the stream callbacks to
+run during and after cubeb_stream_destroy, restuling in a UAF.
+
+It's not clear that calling cubeb_stream_stop multiple times is permitted by
+the current API (although it's currently safe to do in the tier 1 backends I
+checked), but I think it's cleaner to change the API than to carry an
+additional piece of state in the caller to track whether the stream was ever
+started.",Matthew Gregan,2018-04-03T03:04:47Z,kinetiknz,kinetiknz,7,6,1
+108,cubeb-rs,27900b0623cb0e648d8acffc53e41a3b2f32b110,cubeb-api: Drop inner Stream before deallocating StreamCallbacks.,Matthew Gregan,2018-04-03T03:01:15Z,kinetiknz,kinetiknz,10,7,3
+109,cubeb-rs,d18f114f855e972bdf3892e056c4e0705f1cb005,"Bump cubeb-api, cubeb-backend version to 0.5.1",Dan Glastonbury,2018-03-28T06:56:48Z,djg,djg,4,2,2
+110,cubeb-rs,748ba26cde6c3ae7774bbaac4aeb264e9c2f6cb9,"cubeb-backend: Fix cubeb_log! and cubeb_logv!
+
+Works with rust formatting specifiers and passes formatted string to cubeb.",Dan Glastonbury,2018-03-28T06:55:26Z,djg,djg,28,15,13
+111,cubeb-rs,cba88d067c3c6f92e3475985cacdd34095a2e20e,"cubeb-api: Fix cubeb_log! and cubeb_logv!
+
+Works with rust formatting specifiers and passes formatted string to cubeb.",Dan Glastonbury,2018-03-28T06:54:40Z,djg,djg,28,15,13
+112,cubeb-rs,df2af21887d2e6b53d0c887ada31d7a70ff5ee90,cubeb-sys: Bump version to 0.5.1.,Dan Glastonbury,2018-03-23T05:05:11Z,djg,djg,2,1,1
+113,cubeb-rs,b7be9aab98cfae22328bbb5403aa52a1ff0242d2,cubeb-sys: cubeb_mixer_mix const input.,Dan Glastonbury,2018-03-23T05:03:13Z,djg,djg,4,2,2
+114,cubeb-rs,98f5a8b48e44185736c88e83e933c71c5442396a,"Bump version to 0.5.0
+
+Because of API incompatible change due to removal of
+cubeb_get_preferred_channel_layout and other channel layout changes.",Dan Glastonbury,2018-03-13T03:41:18Z,djg,djg,14,7,7
+115,cubeb-rs,5eeda3eb5b29f60e0c939c582f2a6c19b2d486c4,cubeb-backend: Changes due to cubeb mixer.,Dan Glastonbury,2018-03-20T04:31:39Z,djg,djg,9,4,5
+116,cubeb-rs,56ec2411f3987d32a57d2a1b2ec4b0c6f0299e3e,cubeb-api: Fixes.,Dan Glastonbury,2018-03-21T23:31:15Z,djg,djg,4,2,2
+117,cubeb-rs,08607ee497a494cb50a73d84ba3e86960d8f80f2,cubeb-core: Changes due to cubeb mixer changes.,Dan Glastonbury,2018-03-20T03:57:20Z,djg,djg,379,202,177
+118,cubeb-rs,ba0bc7e3a8a47deeca48b1e086e7393e9dded5e2,cubeb-sys: Update due to the cubeb mixer interface changes.,Dan Glastonbury,2018-03-20T03:29:04Z,djg,djg,170,70,100
+119,cubeb-rs,6daf8e9a207149a6dbc653dbdf2d881e5c6c4ebc,"Remove the concept of preferred layout.
+
+Channel layout is derived by the content being played. The concept of
+preferred layout is meaningless. Either we have a layout defined, or
+we don't. There's no in-between.
+
+So we remove it.",Jean-Yves Avenard,2018-01-31T18:08:51Z,Jean-Yves Avenard,Jean-Yves Avenard,46,0,46
+120,cubeb-rs,3edcdfd65a7d6c2adb4c8bb550a4692de0a26a44,cubeb-core: Bump version to 0.4.4,Dan Glastonbury,2018-03-05T09:07:05Z,djg,djg,2,1,1
+121,cubeb-rs,d4bc88189612ebc1a78ffe60bb5f2e5868dad2e3,"cubeb-core: Handle cubeb_init failure.
+
+`ffi::cubeb_init` missing `try_call!` macro.",Dan Glastonbury,2018-03-05T08:52:00Z,djg,djg,2,1,1
+122,cubeb-rs,bd6c410c2c820940741b6f1a61ec9c1be87538d1,cubeb-core: Bump version to 0.4.3,Dan Glastonbury,2018-03-02T23:06:45Z,djg,djg,2,1,1
+123,cubeb-rs,892c0469f57cddf083241bf394d3ecfb7b9c5ecb,cubeb-api: Remove unused files.,Dan Glastonbury,2018-03-02T23:05:51Z,djg,djg,70,0,70
+124,cubeb-rs,83c34b00f4561205ea7092f3a6bff74677d4ba1b,"cubeb-core: Correct Result<> handling for try_call!
+
+try_call! is intended to be equivalent of try!---it wasn't. Added
+call! to return Result from ffi call.",Dan Glastonbury,2018-03-02T22:59:25Z,djg,djg,24,15,9
+125,cubeb-rs,4b9caba52f961ff6272517a68ccd336d3eccd258,"cubeb-core: Fix device_collection memory leaks.
+
+Make DeviceCollection own the memory it's given and clean up on drop.
+Manually calling device_collection_destroy on Context is too
+dangerous.",Dan Glastonbury,2018-02-23T07:29:55Z,djg,djg,95,75,20
+126,cubeb-rs,bfdc1c0c51875cdd5d5253831731c2767b7880cf,Bump version to 0.4.1.,Dan Glastonbury,2018-02-22T02:13:01Z,djg,djg,15,7,8
+127,cubeb-rs,ac4caf6bd0b29300b469603c11fa2f05011e1ad0,"Add gecko-in-tree feature to support compilating for Gecko.
+
+Gecko provides libcubeb as linked object files, so we don't need to
+specify that linking to cubeb.a is required.",Dan Glastonbury,2018-02-21T06:19:04Z,djg,djg,21,20,1
+128,cubeb-rs,1bc4e6200bceb285f4086806a38602789fea844f,Update Cargo.toml with CircleCI badges.,Dan Glastonbury,2018-02-21T06:23:16Z,djg,djg,12,8,4
+129,cubeb-rs,36598a06238edcd1f43f5b97c24a77c6507c724e,"Move systest out of cubeb-sys.
+
+So it won't be included when cubeb-sys is published.",Dan Glastonbury,2018-02-21T05:17:23Z,djg,djg,8,4,4
+130,cubeb-rs,39e9bce5035e1d59846da8c423782e3553880d8f,Link LICENSE into each crate.,Dan Glastonbury,2018-02-21T05:05:48Z,djg,djg,4,4,0
+131,cubeb-rs,0f8bf852c38c2b131271ca0bfd4dbdfa25156311,Add crate version numbers for cargo package.,Dan Glastonbury,2018-02-21T05:00:57Z,djg,djg,6,3,3
+132,cubeb-rs,de35478864c563e82bf96e67f8e1875d7b11ae3b,Remove rustfmt.toml and format all the code.,Dan Glastonbury,2018-02-21T04:10:46Z,djg,djg,551,294,257
+133,cubeb-rs,3440da0b6b6a9a769cb71f6dd494b41d12855e85,cubeb-backend: Fix reported ASAN leaks.,Dan Glastonbury,2018-02-13T23:45:13Z,djg,djg,7,4,3
+134,cubeb-rs,4322eed343e184d27a80567114a58342249f95d8,CircleCI: Enable testing sys crate against cubeb headers.,Dan Glastonbury,2018-02-13T03:30:16Z,djg,djg,3,3,0
+135,cubeb-rs,a99a89a935cb2e99ec098309e197d208740d9915,Bump bitflags to 1.0.,Dan Glastonbury,2018-02-02T01:19:59Z,djg,djg,65,31,34
+136,cubeb-rs,6a5b2498ea260a502384aba6d083a97da9400e69,Rework cubeb-backend crate.,Dan Glastonbury,2018-02-01T09:14:15Z,djg,djg,738,324,414
+137,cubeb-rs,9cb13024d797d19f49b60d9c8e3afacd41147b1a,Rework cubeb-api crate.,Dan Glastonbury,2018-02-01T02:13:47Z,djg,djg,1400,316,1084
+138,cubeb-rs,9a00204257d66dd2480c4c1c3684095eff3f4a87,"Rework cubeb-core crate.
+
+* Use cubeb-sys crate and re-export ffi as cubeb-core::ffi
+* Replace Binding trait with foreign_types.
+* Remove the `call!`/`try_call!` macros.",Dan Glastonbury,2018-01-25T05:34:43Z,djg,djg,2757,1490,1267
+139,cubeb-rs,dfe577015f6aa2d07931a3a397e2fe7f48d4b301,Use ctest to check that cubeb-sys bindings match cubeb.,Dan Glastonbury,2018-01-29T02:52:56Z,djg,djg,63,61,2
+140,cubeb-rs,c39ccde313f3e0bcebfa5e26f7281293881eda37,libcubeb: Update to commit 1d53c3a,Dan Glastonbury,2018-02-21T04:25:52Z,djg,djg,2,1,1
+141,cubeb-rs,23f6c0fd21e795f217e4d2c234d7487109c27c75,Organise all the FFI stuff into cubeb-sys crate.,Dan Glastonbury,2018-01-25T01:47:09Z,djg,djg,777,658,119
+142,cubeb-rs,211c7e4fabac694deac9099515332e24052ec05c,libcubeb-sys: Fix build when linux sound libs are missing.,Dan Glastonbury,2018-02-13T01:01:32Z,djg,djg,8,5,3
+143,cubeb-rs,7c527d04600dac89ce8c249e859b997f2e71f1aa,CircleCI: Disable rustfmt check.,Dan Glastonbury,2018-02-12T23:02:38Z,djg,djg,5,0,5
+144,cubeb-rs,405c117615e0a25a9856d6f3d3e45eac38834fc3,CircleCI: Use nightly version of cargo-fmt and rustfmt,Dan Glastonbury,2018-02-12T22:55:31Z,djg,djg,4,2,2
+145,cubeb-rs,9f53e4cae49ab1a1fb10399e248d2fe4be4bae62,Configuration for CircleCI.,Dan Glastonbury,2018-02-12T07:22:37Z,djg,djg,49,49,0
+146,cubeb-rs,04ca5c1870617ffd0c70bf40590899910630d59b,"Modify Context & Stream traits from &self to &mut self.
+
+This allows implementations to change internal state without resorting
+interior mutability shenanigans.",Dan Glastonbury,2018-01-30T00:19:17Z,djg,djg,38,19,19
+147,cubeb-rs,e0adddb58be6bf97885aca047cab7aca9cbded88,Improved rustfmt output.,Dan Glastonbury,2018-01-25T01:35:14Z,djg,djg,24,18,6
+148,cubeb-rs,ace716b6e7a5a71984694656dc31eb55d001d224,"Bump cubeb-api version to 0.3.2.
+
+Exposing StreamPrefs alters the API surface, so bump the version.",Bryce Van Dyk,2018-01-24T13:52:19Z,SingingTree,SingingTree,2,1,1
+149,cubeb-rs,fd664652e8a346b5f3a32a1b73def10758ac55a0,"Expose new StreamPrefs member on StreamParams.
+
+cubeb has been updated to expose a preferences field on cubeb_stream_params.
+This commit updates the rust impl to also expose this, as well as adding
+appropriate tests.",Bryce Van Dyk,2018-01-24T13:25:11Z,SingingTree,SingingTree,80,73,7
+150,cubeb-rs,48d49585d9614991c3aa15013b4c430da7089041,Update libcubeb submodule to pick up kinetiknz/cubeb#387,Bryce Van Dyk,2018-01-24T13:48:57Z,SingingTree,SingingTree,2,1,1
+151,cubeb-rs,087eae3b3ed881a23d8de93832561642db7c55a2,Fixes for Clippy lints.,Dan Glastonbury,2018-01-24T02:51:45Z,djg,djg,162,98,64
+152,cubeb-rs,43c5774dfc2fa06c9846c43d0b0b41c1ede90b84,Remove unnecessary mut reported as warnings.,Dan Glastonbury,2017-11-19T23:53:36Z,Dan Glastonbury,Dan Glastonbury,4,2,2
+153,cubeb-rs,3ce512aa106db3307ec7ce234e3d00e02016a620,build.rs: Fix Android build.,Matthew Gregan,2021-03-24T08:15:54Z,kinetiknz,kinetiknz,7,5,2
+154,cubeb-rs,23b57da751be91087bce7e850576eb9a58d12715,Remove obsolete CI configs.,Matthew Gregan,2021-03-10T06:11:39Z,kinetiknz,kinetiknz,114,0,114
+155,cubeb-rs,b870c3b7e4ee06c9dce3a801105fc7973f15abb1,Fix ffi::cubeb_channel_layout definition on Windows.,Matthew Gregan,2021-03-10T06:05:29Z,kinetiknz,kinetiknz,2,1,1
+156,cubeb-rs,7c1de7f1921cd0166243d6cd2190b08e0f0a1e30,Add systest run to build action.,Matthew Gregan,2021-03-10T04:21:38Z,kinetiknz,kinetiknz,4,4,0
+157,cubeb-rs,7666a72bf81ace42c48f56f9a24cc2dc0a9a76fc,Add build action.,Matthew Gregan,2021-02-23T22:04:57Z,kinetiknz,kinetiknz,45,45,0
+158,cubeb-rs,2c5d9d0d87555bd485c25639029c008dba7ea37e,Remove cubeb_stream_reset_default_device API.,Matthew Gregan,2021-02-17T00:51:32Z,kinetiknz,kinetiknz,39,8,31
+159,cubeb-rs,be6cb3222bdcf518f035120384c903fca1b6dd26,Update libcubeb submodule for kinetiknz/cubeb#615.,Matthew Gregan,2020-10-06T22:31:01Z,kinetiknz,kinetiknz,2,1,1
+160,cubeb-rs,5972492dc5bf1cdefc90cd3e7ae73aae517024fe, Add method to change stream name,Brendan Early,2020-10-01T00:15:29Z,mymindstorm,mymindstorm,53,45,8
+161,cubeb-rs,1ade4d752ee8a3a21a1ba031a9ae9be39f7689a3,systest: Update to ctest 0.2.,Matthew Gregan,2020-04-30T04:10:28Z,kinetiknz,kinetiknz,11,9,2
+162,cubeb-rs,cc6bed987a32609e41396e10d27eb48205f49011,"Fix ""unused doc comment"" warnings.",Matthew Gregan,2020-04-30T03:26:08Z,kinetiknz,kinetiknz,26,13,13
+163,cubeb-rs,0f7a3578734aa24268afaadac73d24087bfa700c,"Fix ""unnecessary parentheses around assigned value"" and ""unnecessary trailing semicolon"" warnings.",Matthew Gregan,2020-04-30T03:25:56Z,kinetiknz,kinetiknz,8,4,4
+164,cubeb-rs,9e6a2c40c8291f8ac707b1fa3ad4dddb1628900d,"Fix ""use of deprecated item 'std::error::Error::description'"" warnings.",Matthew Gregan,2020-04-30T03:25:21Z,kinetiknz,kinetiknz,8,3,5
+165,cubeb-rs,e38324dad72ac8e1f118c5da5afc57245f4dd17b,Add `input_latency` to TestStream impl.,Matthew Gregan,2020-04-30T03:23:37Z,kinetiknz,kinetiknz,3,3,0
+166,cubeb-rs,ca37dc622ff13d063b8cb9a742bb0b9a88e1894a,"Use a more recent libcubeb to have the stream_input_latency method, and bump a few crates because of API changes",Paul Adenot,2020-04-29T14:25:45Z,padenot,padenot,16,8,8
+167,cubeb-rs,027525b4390d48529db5d41c0a677fd88cf97168,0.7,Paul Adenot,2020-04-24T15:10:17Z,padenot,padenot,6,3,3
+168,cubeb-rs,198a89f99f175f44027fa6e995dec4ec8c02878c,Update for stream_get_latency,Paul Adenot,2020-04-24T14:58:33Z,padenot,padenot,26,26,0
+169,cubeb-rs,47932f9640cf45e81c213f8487abdc039e4902fa,"Silence clippy range_plus_one
+
+https://rust-lang.github.io/rust-clippy/master/index.html#range_plus_one",Paul Adenot,2020-04-15T13:04:17Z,padenot,padenot,2,1,1
+170,cubeb-rs,cd03ac595c95de87a978dacfef3f3187f014172d,cubeb-backend: Bump to 0.6.3.,Matthew Gregan,2020-04-13T22:51:40Z,kinetiknz,kinetiknz,2,1,1
+171,cubeb-rs,d1294aa8db6e7c20d76a7e35d100cf0419701f2f,"Merge pull request #51 from ChunMinChang/speedup-logging
+
+Do not allocate buffer when logging messages",Paul Adenot,2020-04-10T17:09:05Z,padenot,padenot,17,15,2
+172,cubeb-rs,77b71c0b75ee087fe7caabbb5d8d79b30f737f3b,"Ignore the fractional part of the log value
+
+The log calculation will be applied for converting the `line!()` value
+to the digits of the number we need in the log message. The fractional
+part of the log value can be ignored in the calculation. This might give
+a better readability of how the digits are calculated.",Chun-Min Chang,2020-04-09T21:13:39Z,ChunMinChang,ChunMinChang,2,1,1
+173,cubeb-rs,6f33df34fe9d018fb8c89a1c9d5be8fcc4a0951b,"Truncate log silently in release build
+
+When log message's size is over than the buffer's capacity, in release
+build, we silently truncate the log message. In debug build, we have an
+assertion to warn this.",Chun-Min Chang,2020-04-09T17:19:29Z,ChunMinChang,ChunMinChang,9,5,4
+174,cubeb-rs,cebe8836cdc5ff7bbea5eab779510f05b85dda76,Add newline character in buffer,Chun-Min Chang,2020-04-09T17:13:35Z,ChunMinChang,ChunMinChang,6,3,3
+175,cubeb-rs,74665b35bd1324825dacbf32a4c955a28740d9bd,Do not allocate buffer when logging messages,Chun-Min Chang,2020-04-08T21:07:57Z,ChunMinChang,ChunMinChang,16,14,2
+176,cubeb-rs,dba05cce19afe211cbc33c16322a31b15931ed82,"Only print filename in the log
+
+Instead of printing the full path to the file that is currently running,
+we should print the filename only. As long as we have the filename and
+the line, we know where the log comes from.",Chun-Min Chang,2020-04-07T22:30:42Z,ChunMinChang,ChunMinChang,3,2,1
+177,cubeb-rs,49e7641e0f21ed82eb1b7101c0d7e8b9eaa8593a,"Add a top-level README.md as a guide for newcomers
+
+The intention is to provide a friendlier experience to new users along
+with the over-arching goals of the project and a rough overview of the
+structure of the repo.
+
+This is a best effort from my understanding of the repository so far,
+please let me know if you would like to see anything
+added/changed/removed!",mitchmindtree,2020-01-30T20:09:49Z,mitchmindtree,mitchmindtree,50,50,0
+178,cubeb-rs,ac1dd5ef6826c25d680c8d8ca66dd5cfad808884,cubeb-sys: link to libc++ on FreeBSD,Greg V,2020-01-08T19:03:15Z,unrelentingtech,unrelentingtech,7,6,1
+179,cubeb-rs,770cc83570cd7e6d0847fa030d2fed679b54e522,"cubeb-sys: do not build tools
+
+Not useful for linking to Rust, and causes a failure on FreeBSD
+(missing link flag for pthread library)",Greg V,2020-01-08T19:02:14Z,unrelentingtech,unrelentingtech,1,1,0
+180,cubeb-rs,cd0b88356e150b5f9b6b5c06d3b36f4a5a693432,cubeb-sys: extract redundant build line out of the ifs,Greg V,2020-01-08T18:58:09Z,unrelentingtech,unrelentingtech,4,1,3
+181,cubeb-rs,41274796eeb40d04ea1317893c258aad88334aad,Fix deprecated `try!` warnings for rustc nightly 1.40.,Matthew Gregan,2019-09-26T22:03:18Z,kinetiknz,kinetiknz,18,9,9
+182,cubeb-rs,bd0ff54df74652ddccdcff378a8d2b851731bba0,Bump crate versions to 0.6.2.,Matthew Gregan,2019-08-22T00:20:22Z,kinetiknz,kinetiknz,14,7,7
+183,cubeb-rs,f035a31ef7234a3550cfdcac0208b45d6e295fcb,cubeb-sys: Remove missed cubeb_stream_set_panning reference.,Matthew Gregan,2019-08-22T00:19:03Z,kinetiknz,kinetiknz,1,0,1
+184,cubeb-rs,90fbfa8b7b38cd641741e246cc47a6fad7c81790,Bump crate versions to 0.6.1.,Matthew Gregan,2019-08-21T23:03:33Z,kinetiknz,kinetiknz,14,7,7
+185,cubeb-rs,da1d93944e69e8d190a1e1d22cb59d856d93b73d,cubeb-sys: Update libcubeb submodule to 8c3e32bd.,Matthew Gregan,2019-08-21T22:58:23Z,kinetiknz,kinetiknz,2,1,1
+186,cubeb-rs,672457a271e65e2642a0ec93d217fcbf81851414,Bump crate versions to 0.6.0.,Matthew Gregan,2019-08-21T22:02:21Z,kinetiknz,kinetiknz,14,7,7
+187,cubeb-rs,1106bcafbb639ece2017a7d9e649a3b4fd88a3c0,Remove panning bindings,Paul Adenot,2019-08-21T15:40:17Z,padenot,padenot,51,0,51
+188,cubeb-rs,f6d64ee61e5af0ecf7cb506c0d648834e2054f62,cubeb-sys: Search both lib and lib64 in build.rs.,Matthew Gregan,2019-07-02T02:37:05Z,kinetiknz,kinetiknz,1,1,0
+189,cubeb-rs,44cea094dfde51691ee87ef4e3e7b7f1a2e12445,libcubeb: Update to commit 0d1d9d84.,Matthew Gregan,2019-07-02T01:55:18Z,kinetiknz,kinetiknz,2,1,1
+190,cubeb-rs,f691b2c925de117ffa030784b2ee8ead15b70a60,Bump crate version to 0.5.5.,Matthew Gregan,2019-07-02T00:51:46Z,kinetiknz,kinetiknz,14,7,7
+191,cubeb-rs,74dd8152453ad66b1ff5332f03cd7bcbc34c6933,Fix MinGW build issue and bump version to 0.5.4.,Matthew Gregan,2019-03-06T21:28:34Z,kinetiknz,kinetiknz,18,9,9
+192,cubeb-rs,66b1abefc04460a3bcd8b0d613c2928c5ccb8095,"Drop 'static lifetime from ContextOps::backend_id return value.
+
+This allows implementations to return a value with a shorter lifetime,
+e.g. tied to the associated implementation of ContextOp.",Matthew Gregan,2019-06-28T01:30:05Z,kinetiknz,kinetiknz,2,1,1
+193,cubeb-rs,c3e67b6375406b67a88db4d07ef3a4652a243397,Sync stream_prefs enums with cubeb.h.,Matthew Gregan,2019-06-26T09:02:52Z,kinetiknz,kinetiknz,4,3,1
+194,cubeb-rs,940b5a7164069cc9aee5f9c3739cdf4afd80571e,Add missing enum export from ffi.,Matthew Gregan,2019-06-26T09:02:22Z,kinetiknz,kinetiknz,1,1,0
+195,cubeb-rs,a5caa5b0159d1768c16725be083db7084be8bd09,libcubeb: Update to commit 98a1c8e6.,Matthew Gregan,2019-06-26T08:39:21Z,kinetiknz,kinetiknz,2,1,1
+196,cubeb-rs,36a643a4b75d5c3785fd2636fbbe3f82dec93d7a,Add a new enum binding,Paul Adenot,2019-04-10T16:13:01Z,padenot,padenot,1,1,0
+197,cubeb-rs,107959ec779860b721314f2ec460ac4f3bc4a70c,Add Dockerfile used to create Circle CI docker image.,Dan Glastonbury,2019-03-04T01:53:21Z,djg,djg,59,59,0
+198,cubeb-rs,95d6d5f870c1b59511f8209ec5c8605c424e6e74,Update Circle CI to use rust 1.33,Dan Glastonbury,2019-03-04T02:00:42Z,djg,djg,2,1,1
+199,cubeb-rs,0a062fefc2d58797aa59d66085b3a18d3c02cf1d,Return the result from the implementation of device_collection_destroy instead of returing CUBEB_OK all the time,Chun-Min Chang,2019-01-09T21:46:48Z,ChunMinChang,ChunMinChang,2,1,1
+200,cubeb-rs,5d99b58de5036f3c0dbff97661931f04a9571b11,Implement stream_register_device_changed_callback,Chun-Min Chang,2018-11-14T19:14:25Z,ChunMinChang,ChunMinChang,13,12,1
+201,cubeb-rs,c91034dd886958f920563804f538e98e67cf8d86,Bump cubeb-api and cubeb-backend versions and deps.,Matthew Gregan,2018-12-05T03:55:19Z,kinetiknz,kinetiknz,8,4,4
+202,cubeb-rs,33e49a83a00b276f8b5723e07df16c4804e050f3,Bump cubeb-core version and dep on cubeb-sys to 0.5.3.,Matthew Gregan,2018-12-05T03:50:01Z,kinetiknz,kinetiknz,4,2,2
+203,cubeb-rs,c4527c6560fb1055749328ca78a8b61fa64a96ed,Bump cubeb-sys version for release.,Matthew Gregan,2018-10-23T20:39:03Z,kinetiknz,kinetiknz,2,1,1
+204,cubeb-rs,61bb043e303882d5863ec5f22a1d2ab7044cb3e0,Fix cubeb_channel enum on Windows.,Matthew Gregan,2018-08-08T11:57:31Z,kinetiknz,kinetiknz,7,5,2
+205,cubeb-rs,78ed9459b8ac2ca50ea37bb72f8a06847eb8d379,"Remove the gcc dependency and bump version
+
+It isn't used...",Bastien Orivel,2018-04-11T21:34:48Z,Eijebong,Eijebong,4,1,3
+206,cubeb-rs,c4837b10647b1731b3d959dc8bbef144fac68961,"Bump cubeb-core version to 0.5.1, cubeb-api version to 0.5.2.",Dan Glastonbury,2018-04-04T00:49:59Z,djg,djg,6,3,3
+207,cubeb-rs,d72957989bc8486c2d041a0480ccab410905fdab,"cubeb-core: Stop cubeb_stream before destroying it in Drop.
+
+A running cubeb_stream *must* be stopped before calling
+cubeb_stream_destroy, otherwise it's possible for the stream callbacks to
+run during and after cubeb_stream_destroy, restuling in a UAF.
+
+It's not clear that calling cubeb_stream_stop multiple times is permitted by
+the current API (although it's currently safe to do in the tier 1 backends I
+checked), but I think it's cleaner to change the API than to carry an
+additional piece of state in the caller to track whether the stream was ever
+started.",Matthew Gregan,2018-04-03T03:04:47Z,kinetiknz,kinetiknz,7,6,1
+208,cubeb-rs,27900b0623cb0e648d8acffc53e41a3b2f32b110,cubeb-api: Drop inner Stream before deallocating StreamCallbacks.,Matthew Gregan,2018-04-03T03:01:15Z,kinetiknz,kinetiknz,10,7,3
+209,cubeb-rs,d18f114f855e972bdf3892e056c4e0705f1cb005,"Bump cubeb-api, cubeb-backend version to 0.5.1",Dan Glastonbury,2018-03-28T06:56:48Z,djg,djg,4,2,2
+210,cubeb-rs,748ba26cde6c3ae7774bbaac4aeb264e9c2f6cb9,"cubeb-backend: Fix cubeb_log! and cubeb_logv!
+
+Works with rust formatting specifiers and passes formatted string to cubeb.",Dan Glastonbury,2018-03-28T06:55:26Z,djg,djg,28,15,13
+211,cubeb-rs,cba88d067c3c6f92e3475985cacdd34095a2e20e,"cubeb-api: Fix cubeb_log! and cubeb_logv!
+
+Works with rust formatting specifiers and passes formatted string to cubeb.",Dan Glastonbury,2018-03-28T06:54:40Z,djg,djg,28,15,13
+212,cubeb-rs,df2af21887d2e6b53d0c887ada31d7a70ff5ee90,cubeb-sys: Bump version to 0.5.1.,Dan Glastonbury,2018-03-23T05:05:11Z,djg,djg,2,1,1
+213,cubeb-rs,b7be9aab98cfae22328bbb5403aa52a1ff0242d2,cubeb-sys: cubeb_mixer_mix const input.,Dan Glastonbury,2018-03-23T05:03:13Z,djg,djg,4,2,2
+214,cubeb-rs,98f5a8b48e44185736c88e83e933c71c5442396a,"Bump version to 0.5.0
+
+Because of API incompatible change due to removal of
+cubeb_get_preferred_channel_layout and other channel layout changes.",Dan Glastonbury,2018-03-13T03:41:18Z,djg,djg,14,7,7
+215,cubeb-rs,5eeda3eb5b29f60e0c939c582f2a6c19b2d486c4,cubeb-backend: Changes due to cubeb mixer.,Dan Glastonbury,2018-03-20T04:31:39Z,djg,djg,9,4,5
+216,cubeb-rs,56ec2411f3987d32a57d2a1b2ec4b0c6f0299e3e,cubeb-api: Fixes.,Dan Glastonbury,2018-03-21T23:31:15Z,djg,djg,4,2,2
+217,cubeb-rs,08607ee497a494cb50a73d84ba3e86960d8f80f2,cubeb-core: Changes due to cubeb mixer changes.,Dan Glastonbury,2018-03-20T03:57:20Z,djg,djg,379,202,177
+218,cubeb-rs,ba0bc7e3a8a47deeca48b1e086e7393e9dded5e2,cubeb-sys: Update due to the cubeb mixer interface changes.,Dan Glastonbury,2018-03-20T03:29:04Z,djg,djg,170,70,100
+219,cubeb-rs,6daf8e9a207149a6dbc653dbdf2d881e5c6c4ebc,"Remove the concept of preferred layout.
+
+Channel layout is derived by the content being played. The concept of
+preferred layout is meaningless. Either we have a layout defined, or
+we don't. There's no in-between.
+
+So we remove it.",Jean-Yves Avenard,2018-01-31T18:08:51Z,Jean-Yves Avenard,Jean-Yves Avenard,46,0,46
+220,cubeb-rs,3edcdfd65a7d6c2adb4c8bb550a4692de0a26a44,cubeb-core: Bump version to 0.4.4,Dan Glastonbury,2018-03-05T09:07:05Z,djg,djg,2,1,1
+221,cubeb-rs,d4bc88189612ebc1a78ffe60bb5f2e5868dad2e3,"cubeb-core: Handle cubeb_init failure.
+
+`ffi::cubeb_init` missing `try_call!` macro.",Dan Glastonbury,2018-03-05T08:52:00Z,djg,djg,2,1,1
+222,cubeb-rs,bd6c410c2c820940741b6f1a61ec9c1be87538d1,cubeb-core: Bump version to 0.4.3,Dan Glastonbury,2018-03-02T23:06:45Z,djg,djg,2,1,1
+223,cubeb-rs,892c0469f57cddf083241bf394d3ecfb7b9c5ecb,cubeb-api: Remove unused files.,Dan Glastonbury,2018-03-02T23:05:51Z,djg,djg,70,0,70
+224,cubeb-rs,83c34b00f4561205ea7092f3a6bff74677d4ba1b,"cubeb-core: Correct Result<> handling for try_call!
+
+try_call! is intended to be equivalent of try!---it wasn't. Added
+call! to return Result from ffi call.",Dan Glastonbury,2018-03-02T22:59:25Z,djg,djg,24,15,9
+225,cubeb-rs,4b9caba52f961ff6272517a68ccd336d3eccd258,"cubeb-core: Fix device_collection memory leaks.
+
+Make DeviceCollection own the memory it's given and clean up on drop.
+Manually calling device_collection_destroy on Context is too
+dangerous.",Dan Glastonbury,2018-02-23T07:29:55Z,djg,djg,95,75,20
+226,cubeb-rs,bfdc1c0c51875cdd5d5253831731c2767b7880cf,Bump version to 0.4.1.,Dan Glastonbury,2018-02-22T02:13:01Z,djg,djg,15,7,8
+227,cubeb-rs,ac4caf6bd0b29300b469603c11fa2f05011e1ad0,"Add gecko-in-tree feature to support compilating for Gecko.
+
+Gecko provides libcubeb as linked object files, so we don't need to
+specify that linking to cubeb.a is required.",Dan Glastonbury,2018-02-21T06:19:04Z,djg,djg,21,20,1
+228,cubeb-rs,1bc4e6200bceb285f4086806a38602789fea844f,Update Cargo.toml with CircleCI badges.,Dan Glastonbury,2018-02-21T06:23:16Z,djg,djg,12,8,4
+229,cubeb-rs,36598a06238edcd1f43f5b97c24a77c6507c724e,"Move systest out of cubeb-sys.
+
+So it won't be included when cubeb-sys is published.",Dan Glastonbury,2018-02-21T05:17:23Z,djg,djg,8,4,4
+230,cubeb-rs,39e9bce5035e1d59846da8c423782e3553880d8f,Link LICENSE into each crate.,Dan Glastonbury,2018-02-21T05:05:48Z,djg,djg,4,4,0
+231,cubeb-rs,0f8bf852c38c2b131271ca0bfd4dbdfa25156311,Add crate version numbers for cargo package.,Dan Glastonbury,2018-02-21T05:00:57Z,djg,djg,6,3,3
+232,cubeb-rs,de35478864c563e82bf96e67f8e1875d7b11ae3b,Remove rustfmt.toml and format all the code.,Dan Glastonbury,2018-02-21T04:10:46Z,djg,djg,551,294,257
+233,cubeb-rs,3440da0b6b6a9a769cb71f6dd494b41d12855e85,cubeb-backend: Fix reported ASAN leaks.,Dan Glastonbury,2018-02-13T23:45:13Z,djg,djg,7,4,3
+234,cubeb-rs,4322eed343e184d27a80567114a58342249f95d8,CircleCI: Enable testing sys crate against cubeb headers.,Dan Glastonbury,2018-02-13T03:30:16Z,djg,djg,3,3,0
+235,cubeb-rs,a99a89a935cb2e99ec098309e197d208740d9915,Bump bitflags to 1.0.,Dan Glastonbury,2018-02-02T01:19:59Z,djg,djg,65,31,34
+236,cubeb-rs,6a5b2498ea260a502384aba6d083a97da9400e69,Rework cubeb-backend crate.,Dan Glastonbury,2018-02-01T09:14:15Z,djg,djg,738,324,414
+237,cubeb-rs,9cb13024d797d19f49b60d9c8e3afacd41147b1a,Rework cubeb-api crate.,Dan Glastonbury,2018-02-01T02:13:47Z,djg,djg,1400,316,1084
+238,cubeb-rs,9a00204257d66dd2480c4c1c3684095eff3f4a87,"Rework cubeb-core crate.
+
+* Use cubeb-sys crate and re-export ffi as cubeb-core::ffi
+* Replace Binding trait with foreign_types.
+* Remove the `call!`/`try_call!` macros.",Dan Glastonbury,2018-01-25T05:34:43Z,djg,djg,2757,1490,1267
+239,cubeb-rs,dfe577015f6aa2d07931a3a397e2fe7f48d4b301,Use ctest to check that cubeb-sys bindings match cubeb.,Dan Glastonbury,2018-01-29T02:52:56Z,djg,djg,63,61,2
+240,cubeb-rs,c39ccde313f3e0bcebfa5e26f7281293881eda37,libcubeb: Update to commit 1d53c3a,Dan Glastonbury,2018-02-21T04:25:52Z,djg,djg,2,1,1
+241,cubeb-rs,23f6c0fd21e795f217e4d2c234d7487109c27c75,Organise all the FFI stuff into cubeb-sys crate.,Dan Glastonbury,2018-01-25T01:47:09Z,djg,djg,777,658,119
+242,cubeb-rs,211c7e4fabac694deac9099515332e24052ec05c,libcubeb-sys: Fix build when linux sound libs are missing.,Dan Glastonbury,2018-02-13T01:01:32Z,djg,djg,8,5,3
+243,cubeb-rs,7c527d04600dac89ce8c249e859b997f2e71f1aa,CircleCI: Disable rustfmt check.,Dan Glastonbury,2018-02-12T23:02:38Z,djg,djg,5,0,5
+244,cubeb-rs,405c117615e0a25a9856d6f3d3e45eac38834fc3,CircleCI: Use nightly version of cargo-fmt and rustfmt,Dan Glastonbury,2018-02-12T22:55:31Z,djg,djg,4,2,2
+245,cubeb-rs,9f53e4cae49ab1a1fb10399e248d2fe4be4bae62,Configuration for CircleCI.,Dan Glastonbury,2018-02-12T07:22:37Z,djg,djg,49,49,0
+246,cubeb-rs,04ca5c1870617ffd0c70bf40590899910630d59b,"Modify Context & Stream traits from &self to &mut self.
+
+This allows implementations to change internal state without resorting
+interior mutability shenanigans.",Dan Glastonbury,2018-01-30T00:19:17Z,djg,djg,38,19,19
+247,cubeb-rs,e0adddb58be6bf97885aca047cab7aca9cbded88,Improved rustfmt output.,Dan Glastonbury,2018-01-25T01:35:14Z,djg,djg,24,18,6
+248,cubeb-rs,ace716b6e7a5a71984694656dc31eb55d001d224,"Bump cubeb-api version to 0.3.2.
+
+Exposing StreamPrefs alters the API surface, so bump the version.",Bryce Van Dyk,2018-01-24T13:52:19Z,SingingTree,SingingTree,2,1,1
+249,cubeb-rs,fd664652e8a346b5f3a32a1b73def10758ac55a0,"Expose new StreamPrefs member on StreamParams.
+
+cubeb has been updated to expose a preferences field on cubeb_stream_params.
+This commit updates the rust impl to also expose this, as well as adding
+appropriate tests.",Bryce Van Dyk,2018-01-24T13:25:11Z,SingingTree,SingingTree,80,73,7
+250,cubeb-rs,48d49585d9614991c3aa15013b4c430da7089041,Update libcubeb submodule to pick up kinetiknz/cubeb#387,Bryce Van Dyk,2018-01-24T13:48:57Z,SingingTree,SingingTree,2,1,1
+251,cubeb-rs,087eae3b3ed881a23d8de93832561642db7c55a2,Fixes for Clippy lints.,Dan Glastonbury,2018-01-24T02:51:45Z,djg,djg,162,98,64
+252,cubeb-rs,43c5774dfc2fa06c9846c43d0b0b41c1ede90b84,Remove unnecessary mut reported as warnings.,Dan Glastonbury,2017-11-19T23:53:36Z,Dan Glastonbury,Dan Glastonbury,4,2,2

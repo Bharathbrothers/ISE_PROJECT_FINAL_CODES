@@ -1,0 +1,804 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,masche,7763ebb9fcb2c912d60c1d9eb17223ab1a8168cb,"procMems.c now stores the mem regions in an array.
+
+This is for interacting with go: we just call this function to get all the
+memory regions, and maybe then find a specific string.
+
+The memory regions may change so we may have to take a different approach
+in the future.",Marco Vanotti,2014-09-04T19:10:03Z,mvanotti,mvanotti,93,76,17
+1,masche,5314750329c46fa38f409d011322249dc055ef46,pid is now a parameter,Marco Vanotti,2014-09-04T18:29:22Z,mvanotti,mvanotti,10,8,2
+2,masche,15f0a3a68f42307272ed581b188363e2e937b9dd,Add some documentation to procMems.c,Marco Vanotti,2014-09-03T19:49:08Z,mvanotti,mvanotti,6,6,0
+3,masche,4c2b1f1ae1538b864119b2ab93d5584d6e648bdb,Fix indentation.,Marco Vanotti,2014-09-03T19:13:11Z,mvanotti,mvanotti,70,35,35
+4,masche,876e07b6eef48a12f1196f19e50f012cfdf65f92,"Memory Regions Listings for windows.
+
+This is something similar to /proc/<pid>/maps in linux, but with less info
+and more pain.",Marco Vanotti,2014-09-03T18:40:46Z,mvanotti,mvanotti,46,46,0
+5,masche,9c8acd0df25664e6992737a705706a5bceb22bd5,memory grep for linux,Laski,2014-09-03T18:44:56Z,Laski,Laski,103,62,41
+6,masche,b9c2374f0b07745c1f15d3b131fbd5752ea9b134,added linux folder,Laski,2014-08-29T18:04:59Z,Laski,Laski,70,70,0
+7,masche,0de03d7858d32b78dffe454f7db04cff8536b43b,"Change project name to MASCHE
+
+We are now MASCHE! :)
+It stands for Memory Analysis Suite for Controlling Harmony of Endpoints.",Marco Vanotti,2014-08-15T22:58:43Z,mvanotti,mvanotti,14,7,7
+8,masche,8b9a507356118afda0dc3801dce9c771d47a1aca,"Fix build errors in linux
+
+I didn't see that after changing the pids to uint
+the linux program wouldn't build.",Marco Vanotti,2014-08-15T22:54:26Z,mvanotti,mvanotti,5,3,2
+9,masche,081c019f5e47338fccb78b20f955e8e711b4f7f7,Set C indentation to 4 spaces instead of tab.,Marco Vanotti,2014-08-15T18:12:02Z,mvanotti,mvanotti,231,115,116
+10,masche,660c3643682fac10143cfd6439463d3207a65a82,"Avoid double free of res->modules
+
+I forgot to set the modules to NULL before cleanup. If there was an error
+with the GetModuleFilenameEx or GetModuleInformation API Call, it would
+make a double free.",Marco Vanotti,2014-08-15T17:34:08Z,mvanotti,mvanotti,3,3,0
+11,masche,d5a41f7a050b95e2b3ec1cee2337fa28c3ebac85,Fortot to free aMods,Marco Vanotti,2014-08-15T17:28:15Z,mvanotti,mvanotti,1,1,0
+12,masche,432f74821fa5f7f2652a3f2dd1f7ea1476cb9784,"Forgot to change package name in example.
+
+It should point to the github repo, not the local package.",Marco Vanotti,2014-08-15T17:21:07Z,mvanotti,mvanotti,5,3,2
+13,masche,4e1fe4eaac5737c21d81f273ce2a9ac52467a020,Example Test,Marco Vanotti,2014-08-15T17:00:49Z,mvanotti,mvanotti,17,17,0
+14,masche,5971a96dd8c9d6e3d05eac4af5f62cce7e9ef41d,pids are now uint for all the os's,Marco Vanotti,2014-08-15T16:53:47Z,mvanotti,mvanotti,8,4,4
+15,masche,5d7ce482ab3113b5afcca6a4dc7f23315987345d,Add EnumProcessModules cgo wrapper,Marco Vanotti,2014-08-15T16:52:27Z,mvanotti,mvanotti,234,203,31
+16,masche,b2546c0c2bb59e68c22f006d078e329d6216748d,Add usage comment on prueba.go,Marco Vanotti,2014-08-08T16:42:57Z,mvanotti,mvanotti,3,3,0
+17,masche,2d0492a3968bfecffd0d42788c932cf5f69084aa,"Rename regions_mac to regions_darwing
+
+This is to avoid building it in other oses, this file is only useful in
+mac os.",Marco Vanotti,2014-08-08T16:37:59Z,mvanotti,mvanotti,2,1,1
+18,masche,d62d0907392da051975158214ba13b45835d729c,Use filepath.Join instead of fmt.Sprintf,Marco Vanotti,2014-08-08T16:36:16Z,mvanotti,mvanotti,6,4,2
+19,masche,f9182dd21ce18f018dcb4baef02ca2226913fa25,Change package name to migmem,Marco Vanotti,2014-08-08T16:35:24Z,mvanotti,mvanotti,4,2,2
+20,masche,22f87ae6a3e4c54efea5d04864346a13bc8e08d7,"Add mac memory regions listing program
+
+To compile it: make regions
+To use it:     sudo ./regions <pid>
+
+It should give an output similar to the one of vmmap program.",Marco Vanotti,2014-08-08T15:59:29Z,mvanotti,mvanotti,127,127,0
+21,masche,e67f8e9e2143a519425658a3df33ccbb8dbdfc87,"Add basic version of library grepping for windows
+
+This program just lists all the pids in the system for windows, using
+cgo.",Marco Vanotti,2014-08-08T15:56:58Z,mvanotti,mvanotti,116,116,0
+22,masche,442b078c3690eeedfcef2e7ffa8b6859c3a50dba,"Add library grepping for linux + example
+
+This program greps the /proc/<pid>/maps for each processes and checks
+which processes has a library that matches the regexp.",Marco Vanotti,2014-08-08T15:47:14Z,mvanotti,mvanotti,100,100,0
+23,masche,ad25ddd0aed3300515f9891ffb7547540d0cd415,Initial commit,Julien Vehent,2014-08-08T15:42:46Z,jvehent,jvehent,389,389,0
+24,masche,915e151d2f0557938b57c3045a46e3ec5eee0686,[memaccess] Improve memaccess_darwin.c workaround,Patricio Palladino,2014-10-24T19:17:19Z,alcuadrado,alcuadrado,8,5,3
+25,masche,e0dc5cd5bf18cebc11a55e3cb9221aa549133049,[memsearch] add regexp match in memsearch example,Marco Vanotti,2014-10-24T16:48:45Z,mvanotti,mvanotti,28,23,5
+26,masche,fcd115b36036a33baad01caecfe690a30ff0e886,"[memsearch] add regexp string to test binary.
+
+I forgot to add this in the previous commit.
+
+Do not forget to compile it!
+
+gcc -Wall -Wextra -std=c99 -O0 known_byte_sequences.c -o test.exe",Marco Vanotti,2014-10-24T16:39:40Z,mvanotti,mvanotti,4,3,1
+27,masche,b44098fbcc17fda40ccfc89e1a372e838097e04e,Adapted Linux memaccess to new interface,Laski,2014-10-24T16:38:44Z,Laski,Laski,68,37,31
+28,masche,d00eabdb8ce83592c232e87498a5cdcd1cfdba58,[memaccess] Add soft error on memaccess_darwin,Patricio Palladino,2014-10-24T16:09:42Z,alcuadrado,alcuadrado,13,12,1
+29,masche,50153a67289a20748f8d28136fc2affb03605534,[memaccess] Add missing soft errors print,Patricio Palladino,2014-10-24T16:09:07Z,alcuadrado,alcuadrado,3,2,1
+30,masche,657f8d6b09956d9220129c2069c2d2f9ed066a2c,[memsearch] Fix TODO's wording,Patricio Palladino,2014-10-24T15:49:12Z,alcuadrado,alcuadrado,2,1,1
+31,masche,0fc0a0be18498b17817c74d18c60253834d91248,[memsearc] Add regexp search functionality.,Marco Vanotti,2014-10-24T16:34:40Z,mvanotti,mvanotti,84,84,0
+32,masche,b7388e2680bf20ffc2bda631a086ae2cfe47ef78,"[memsearch] create launchProcess & testFindString
+
+launchProcess is a function that launches a process and waits until it is already running.
+
+testFindString searched for a string in its own memory, it is replaced by TestSearchInOtherProcess.",Marco Vanotti,2014-10-24T16:26:56Z,mvanotti,mvanotti,48,22,26
+33,masche,0c3d7d1cc8710efc3740dd76baa7f51253cdc843,"Complete refactor of the codebase.
+
+The most important bits are:
+* Finished extracting a ProcessMemoryReading interface, moving code to
+  its suitable place, and separating the different concerns.
+* Consistent error handling across all the project",Patricio Palladino,2014-10-23T16:37:33Z,alcuadrado,alcuadrado,377,264,113
+34,masche,96977fc1fe33251ec88446e66d4c09de63eea943,"[memaccess] Renamed the reading interface
+
+The name Process didn't reflect its intantion, it's actually a
+ProcessMemoryReader, because that's what it was created for.",Patricio Palladino,2014-10-23T15:38:54Z,alcuadrado,alcuadrado,28,14,14
+35,masche,2581e81abbe2358e90ed052eb5a4736ae25407bb,[memaccess] Add documentation,Patricio Palladino,2014-10-23T14:15:55Z,alcuadrado,alcuadrado,53,39,14
+36,masche,05513bc9daf87cddb54a53bb235628d6b3e1739a,[memaccess] Remove unused function,Patricio Palladino,2014-10-23T14:01:57Z,alcuadrado,alcuadrado,14,0,14
+37,masche,dc0a8626bc905bccd88951cfceb42eb66dc45d6f,[memaccess] Improve C header doc.,Patricio Palladino,2014-10-23T13:49:04Z,alcuadrado,alcuadrado,2,1,1
+38,masche,779bbc9e9b666e7a2b8103dcfdac3e372ffc4875,[memaccess] Fix c style,Patricio Palladino,2014-10-23T12:50:05Z,alcuadrado,alcuadrado,2,1,1
+39,masche,7b06520e0b990aa55ba1087b8cb4602a50bd6c12,Fixed bug in linux memaccess,Laski,2014-10-22T18:11:21Z,Laski,Laski,2,1,1
+40,masche,6e7f3e7ab01aa9222045a45b19a53d7574aa9893,Fixed imports,Laski,2014-10-22T18:06:34Z,Laski,Laski,1,1,0
+41,masche,e1d3c67004731091cda6956f3f0b700f454f369e,Fix imports,Patricio Palladino,2014-10-22T17:37:29Z,alcuadrado,alcuadrado,4,2,2
+42,masche,ca749cee450f85ec855b5d6a1a5887e7cb5d1283,"[memaccess] Created a portable OpenProcess func
+
+I created an OpenProcess func in memaccess.go so it's documented for all
+the OSs. It just calls openProcessImpl, with does the OS-specific work.",Patricio Palladino,2014-10-22T16:51:13Z,alcuadrado,alcuadrado,9,7,2
+43,masche,c63f43ee8093a10a3a3181447e01155011adeba4,Extracted memaccess module from memsearch,Patricio Palladino,2014-10-22T16:05:11Z,alcuadrado,alcuadrado,410,115,295
+44,masche,ea1504c30c0fcd750cce15332fb5eace0a2f4b69,"Fix race condition on TestSearchInOtherProcess
+
+There was a race condition between when we spawn the process and when the process started running: if we searched the memory before the child process initialized its own memory, we may fail our test.
+
+The quick and dirty solution was to synchronize the processes via stdout: From the go test we wait until the process writes something to its StdoutPipe, and from the C process we call printf and fflush after initializing all the memory.",Marco Vanotti,2014-10-18T20:19:52Z,mvanotti,mvanotti,14,14,0
+45,masche,e402c0f48a52a97e9cdccf4fb137901546df8700,Check for errors in types conversion,Laski,2014-10-17T18:22:32Z,Laski,Laski,10,8,2
+46,masche,297be289918f2bf868d1c2572d3a424210b4bd2f,Memory access linux now only needs testing,Laski,2014-10-17T17:43:55Z,Laski,Laski,38,32,6
+47,masche,7dfebb4113d6bc1f51045b9c7d7b6bfa37697cc6,Merge branch 'memory_reading_interface' of https://github.com/mozilla/masche into memory_reading_interface,Laski,2014-10-17T17:12:22Z,Laski,Laski,459,96,363
+48,masche,b845aba0673c8ae22bd37f716ac3f6987a640d79,"[memsearch] remove unused code for windows
+
+This code has been replaced with the memory reading interface using the Process interface. in files memory_access_windows.c and memory_access_others.go",Marco Vanotti,2014-10-17T17:01:58Z,mvanotti,mvanotti,247,0,247
+49,masche,493e2fbe830253fc88fc7bae24f55f9a45dfc3ca,memsearch example now works with Process interface,Marco Vanotti,2014-10-17T16:56:00Z,mvanotti,mvanotti,23,15,8
+50,masche,c514d2831c9723c31b430e647e9dedcd94390ff1,"[memsearch] add WalkMemory function (WIP)
+
+WalkMemory is used to traverse all the memory of a process, running a function trough each block of memory (allowing a certain overlap).
+
+It still needs testing.",Marco Vanotti,2014-10-17T16:53:15Z,mvanotti,mvanotti,189,81,108
+51,masche,b0053f5f832d6fd7399da041ac95ae2667da0945,Reverted grep_mem_linux to last working status,Laski,2014-10-17T16:52:03Z,Laski,Laski,32,5,27
+52,masche,5a46af9633ad04fcfee70172d2dba569e2be4db2,Merge branch 'memory_reading_interface' of https://github.com/mozilla/masche into memory_reading_interface,Laski,2014-10-15T18:06:33Z,Laski,Laski,518,235,283
+53,masche,556cf49659b61b150b5b25f03ded06ee6c6a1ff2,mapped memory regions works in linux,Laski,2014-10-15T18:06:09Z,Laski,Laski,73,54,19
+54,masche,1ba300db1fdd94d81a9753cbff325b9e5b811eb0,Fix typo,Marco Vanotti,2014-10-15T16:44:21Z,mvanotti,mvanotti,2,1,1
+55,masche,1c09aa924e31ca06271f1b74d4c6c7e57dc7654d,"is_readable in windows now checks for free regions
+
+Regions with MEM_FREE State have invalid Protections, so we must check that the region isn't MEM_FREE.",Marco Vanotti,2014-10-15T15:42:33Z,mvanotti,mvanotti,14,9,5
+56,masche,291eb756fbc7a96209727678ce0557978bdb1a95,[memsearch] findInRegion now uses a bigger buffer,Marco Vanotti,2014-10-15T15:35:34Z,mvanotti,mvanotti,14,8,6
+57,masche,500da33e00bf39f06fcd4a40704114ce9ef7880b,"Workaround for go issue 8921
+
+Go garbage collector panics when storing a HANDLE inside a windows struct
+
+issue: https://code.google.com/p/go/issues/detail?id=8921",Marco Vanotti,2014-10-11T12:11:10Z,mvanotti,mvanotti,23,13,10
+58,masche,325486073f8cb6b81ed00f666d149248b6eb0560,Clean memsearch tests,Patricio Palladino,2014-10-11T05:02:28Z,alcuadrado,alcuadrado,9,0,9
+59,masche,1daf7d59cbd68067fb26d16a5c9ced7fca013a94,Fix style error,Patricio Palladino,2014-10-11T04:40:04Z,alcuadrado,alcuadrado,3,2,1
+60,masche,9ae59108dd572ab02b0de3c1e6cda0a5921d6e95,Simplify process handle in OS X,Patricio Palladino,2014-10-11T04:39:08Z,alcuadrado,alcuadrado,21,7,14
+61,masche,5da285e35ead555284cb94972dcd40b644439b89,Fix bug in soft errors handling,Patricio Palladino,2014-10-11T04:33:03Z,alcuadrado,alcuadrado,11,6,5
+62,masche,953af9a7e07f79559432e44bf28af7a2212be850,"Improve memory_access.h documentation.
+
+Added some documentation to explain why memory_adress_t exists and some
+information about its portability.",Patricio Palladino,2014-10-11T01:48:54Z,alcuadrado,alcuadrado,9,9,0
+63,masche,3055b9f1aad206ef1742d442b361fad2c5075ca4,Remove duplicated typedef in memory_access.h,Patricio Palladino,2014-10-11T01:48:24Z,alcuadrado,alcuadrado,5,0,5
+64,masche,fc1ed1877527aaa5d715fe5b404daa434077b9c8,Update memory_access_darwin.c types,Patricio Palladino,2014-10-11T01:39:39Z,alcuadrado,alcuadrado,18,9,9
+65,masche,9daa35c1a7107c01ec4107380af7cdf925502dd5,Removed unused file,Patricio Palladino,2014-10-10T17:40:02Z,alcuadrado,alcuadrado,225,0,225
+66,masche,24565c24cbaec2c0746200abe20fec9f76538be1,Add GC to reproduce weird bug,Marco Vanotti,2014-10-10T21:01:55Z,mvanotti,mvanotti,9,7,2
+67,masche,ffe43ae40d6c5120691b8f041f0e4aab94d7c429,Fix Go Vet errors,Marco Vanotti,2014-10-10T19:09:17Z,mvanotti,mvanotti,7,2,5
+68,masche,9adc12d50064f128bcfd2aabb764367ff4549094,Memory_access_windows.c bug fixes (still WIP),Marco Vanotti,2014-10-10T18:10:14Z,mvanotti,mvanotti,47,31,16
+69,masche,7e1a74683ce81ec91529b7376cb3e296f3bda92b,Add OpenProcess test,Marco Vanotti,2014-10-10T18:09:49Z,mvanotti,mvanotti,21,19,2
+70,masche,34bf8fcbf9e735e6c287fd401f526391de4a7aac,Merge,Marco Vanotti,2014-10-10T18:14:35Z,mvanotti,mvanotti,15,12,3
+71,masche,41020653ec8a74777723a472b904741b1a8dfdb1,"Windows implementation of memory_access (WIP)
+
+This implementation still needs error fixing.",Marco Vanotti,2014-10-10T17:07:58Z,mvanotti,mvanotti,145,140,5
+72,masche,390f5066dcf6eb6149c042138a862827c3892b02,Merge branch 'memory_reading_interface' of https://github.com/mozilla/masche into memory_reading_interface,Laski,2014-10-10T18:08:08Z,Laski,Laski,56,40,16
+73,masche,ebb8ab024d9faab79876a9b2dec31a9e83a9f1fe,Typos,Laski,2014-10-10T18:07:48Z,Laski,Laski,6,3,3
+74,masche,f08d75d481c30a215bb191175c1ae37a12217725,"First try of memory access in Linux
+It needs lots of testing and types checking",Laski,2014-10-10T17:58:33Z,Laski,Laski,165,165,0
+75,masche,6879d45dd8e5dbcf056727154fe109fa7542b643,Fix casting warnings,Patricio Palladino,2014-10-10T17:39:10Z,alcuadrado,alcuadrado,9,5,4
+76,masche,f8ea9e4e76e21816e582b321faa2cd98dd88a058,Fix memory_access.h for OS X.,Patricio Palladino,2014-10-10T17:37:59Z,alcuadrado,alcuadrado,14,7,7
+77,masche,c924703ed7cf1d9d90c75648efe3f6fdfe7980ce,Fix bug in memory_access_darwin.c,Patricio Palladino,2014-10-10T17:08:46Z,alcuadrado,alcuadrado,10,9,1
+78,masche,d54bde3e71e46ea7f1e9da0bf2f768ecdf6ab91b,Improve formatting in memory_access_darwin.c,Patricio Palladino,2014-10-10T16:36:03Z,alcuadrado,alcuadrado,10,7,3
+79,masche,67bef83d5b5250d4f2802ab813c2537e35d242a0,Fix bug in memory_access_darwin,Patricio Palladino,2014-10-10T16:35:44Z,alcuadrado,alcuadrado,2,1,1
+80,masche,775837f0eba295b6557d691176ee90b3526b39f0,Update test to run with new memor_access interface,Marco Vanotti,2014-10-10T17:05:52Z,mvanotti,mvanotti,19,15,4
+81,masche,8cfe50b39387bf12b50bee751203aebec5c78a75,Merge branch 'memory_reading_interface' of https://github.com/mozilla/masche into memory_reading_interface,Laski,2014-10-10T16:53:09Z,Laski,Laski,601,521,80
+82,masche,d93af105618929b13eb2de5a80d24bbd89d3c408,"Add Process Interface impl for Win and Mac (WIP)
+
+As we have a common interface for the .c source code, the Go source code is the same.
+
+This is a WIP, it still needs to handle softerrors and testing.",Marco Vanotti,2014-10-09T00:40:54Z,mvanotti,mvanotti,85,85,0
+83,masche,f031735fc1e14712a6d69f19fef7ecf42ba0cf48,"[memory_access] add function defs in windows.
+
+I only added the function definitions for it to compile.",Marco Vanotti,2014-10-09T00:39:34Z,mvanotti,mvanotti,22,22,0
+84,masche,b68ba50f4465faf509c072e75ada52c5547f9716,"[memory_access] fix typos and small errors
+
+renamed pid_t to pid_tt because pid_t is in use.
+We have to define a new name for pid_t that does not collide with windows naming.",Marco Vanotti,2014-10-09T00:37:50Z,mvanotti,mvanotti,12,5,7
+85,masche,02b28aea9bf01fbee2a3afa4dbfc8fdc798cc892,"First version of memory interface (WIP)
+
+This was done by aemartinez and me (mvanotti).
+There are a couple of things missing:
+
+* Better error handling (we are not checking for hard errors)
+* Improve the searching algorithm
+* Create the wrappers for each os
+* Testing",Marco Vanotti,2014-10-08T22:58:01Z,mvanotti,mvanotti,143,143,0
+86,masche,15b9cf549d41206b3ab870bd5388ebd159b3e389,Fix TODO on error reporting in OS X memory_access,Patricio Palladino,2014-10-08T22:42:41Z,alcuadrado,alcuadrado,39,25,14
+87,masche,14c8108ff871ac278c302cb273bb5501e2d4903a,Rename error_create function,Patricio Palladino,2014-10-08T22:10:23Z,alcuadrado,alcuadrado,6,3,3
+88,masche,bff129eb0e9997ff12554cfca13b34891d6c5d99,Implemented copy_process_memory for OS X,Patricio Palladino,2014-10-08T21:37:53Z,alcuadrado,alcuadrado,10,9,1
+89,masche,fd67d9f3eb9e89e416c5c7aa6d67ef176e625306,"Initial implementation of memory_access on OS X.
+
+Note: There is one function missing in here.",Patricio Palladino,2014-10-08T18:07:44Z,alcuadrado,alcuadrado,184,184,0
+90,masche,09fe9e961bc12d8b97fa19fb88b2db9d7f36117d,Correct OS X conditional compilation,Patricio Palladino,2014-10-08T18:07:20Z,alcuadrado,alcuadrado,6,4,2
+91,masche,be3ab10be16b2be4aaeaff9c4f60ccdb8e56d8db,Add soft_errors array's capacity to response_t,Patricio Palladino,2014-10-08T17:53:45Z,alcuadrado,alcuadrado,2,2,0
+92,masche,b4816954bd665134cbf6fe52a648fb0338362ae2,Grep Mem Linux WIP,Laski,2014-10-08T16:56:41Z,Laski,Laski,28,25,3
+93,masche,6e57aef46700cec732f8b2d2d159c59cb17b87ca,"Simplified the memsearch/memory_access.h interface
+
+As we are going to export it to Go in a single place, it makes more
+sense to have a cleaner C interface and keep all the nasty code in
+a single Go file.
+
+Also, there is no need to have a read_memory function that allocates its
+own buffer, that can be done in the Go wrapper.",Patricio Palladino,2014-10-08T13:58:49Z,alcuadrado,alcuadrado,142,64,78
+94,masche,9a59dbb7e7fa5edba87d7c13c35c1a67bc49f6c2,Add doc and extended memory_access interface,Marco Vanotti,2014-10-03T16:06:47Z,mvanotti,mvanotti,92,85,7
+95,masche,abda4b521b1f33fbe2fecaa20bf6cec4c4cf7f40,process_handle_response just returns one error.,Marco Vanotti,2014-09-30T20:36:34Z,mvanotti,mvanotti,3,2,1
+96,masche,2fa8fa147927eb09ddde00a168f430f2e0982fca,"Remove soft_errors_capacity from header definition
+
+It is not necessary, soft_errors_count should be enough to be used as a Slice from Go.
+We can even call realloc after we know the size of the errors and have count == capacity.",Marco Vanotti,2014-09-30T20:23:59Z,mvanotti,mvanotti,5,1,4
+97,masche,70c9433123177e8c0dc01a83861bc413d03fe436,Fix wording error.,Patricio Palladino,2014-09-27T15:10:22Z,alcuadrado,alcuadrado,2,1,1
+98,masche,22db0fa4e3b814bb135e6700ef8d64359371d257,Add initial work on a commmon C interface.,Patricio Palladino,2014-09-27T15:06:48Z,alcuadrado,alcuadrado,69,69,0
+99,masche,b723a92979418d95e9ee9f575f9a81038f3cbe32,"[memsearch] Add test for known byte sequences.
+
+This tests for the known byte sequences added in cb0996871bc2
+The C file has to be manually compiled, right now the name is hardcoded.",Marco Vanotti,2014-09-25T01:04:16Z,mvanotti,mvanotti,35,33,2
+100,masche,e7612f77983cf04893eefc1690c22bcdb0f96a54,"[memsearch] fix minor bug + formatting
+
+The address printed when a match is found was off by one (it incremented
+the address and then printed it).
+
+Some formatting corrections after running AStyle",Marco Vanotti,2014-09-25T01:01:50Z,mvanotti,mvanotti,77,39,38
+101,masche,d413162a5a587d27d1e26714aca854218ee4d48d,Now byte seqs tests print the addresses,Marco Vanotti,2014-09-25T01:00:40Z,mvanotti,mvanotti,5,5,0
+102,masche,3361a73828998aee9aecd8b0d63ef240f1dce24f,Add ctags file to gitignore,Patricio Palladino,2014-09-24T22:16:12Z,alcuadrado,alcuadrado,3,3,0
+103,masche,4c9773107de42065f81b596a79c4279ca422ab5f,"Better darwin's mem_search return values
+
+Improved the interface of the memory search C functions for OS X. Now
+there is a special struct that has address where the needle was found
+(or NULL), and any error that ocurred (fatal or not).",Patricio Palladino,2014-09-24T22:05:38Z,alcuadrado,alcuadrado,222,149,73
+104,masche,dc8083c63b4a13d2b2fb334e8885fe502f24341d,Fix bug in test case and typo in its name,Patricio Palladino,2014-09-20T01:19:36Z,alcuadrado,alcuadrado,2,1,1
+105,masche,0c8368f9543b032406027e266b40af016571dacb,"[windows] Add pgrep functionality.
+
+GetAllProcesses returns all the processes running in the system alongside with their image name (in Device format).
+
+GrepProcesses runs a regexp against all the processes and return the ones whose name matches.
+
+pgrep.go provides a functionality similar to the one of pgrep in Linux.",Marco Vanotti,2014-09-24T21:46:38Z,mvanotti,mvanotti,97,97,0
+106,masche,570ea5761b88cc520bcd8e1820789f1f78f1ba3e,"[windows] Get All Processes names in c.
+
+Adds getAllProcesses function that returns all the processes names alongside with their pids.
+Also, a bit of formatting.",Marco Vanotti,2014-09-24T21:44:50Z,mvanotti,mvanotti,175,142,33
+107,masche,4627f045120b5d8366279c1cbd46e64471dbd4a6,Rename file to follow go's cross platform names.,Patricio Palladino,2014-09-19T16:32:10Z,alcuadrado,alcuadrado,0,0,0
+108,masche,b21069d6c38eeac0aee1fdff9d3c1dc38b517d47,Remove unused file,Patricio Palladino,2014-09-19T16:31:41Z,alcuadrado,alcuadrado,124,0,124
+109,masche,085b020e64f262d8921771b7a043f8a3354e3f61,Fix typo,Patricio Palladino,2014-09-19T16:31:05Z,alcuadrado,alcuadrado,12,6,6
+110,masche,cb0996871bc25a7f4687130bcd7ca706c15d1474,"Add a sample program for testing memory search.
+
+This program places known bytes sequences in the process' stack, heap
+and data segment.
+
+NOTE: This is not exhaustive.",Patricio Palladino,2014-09-19T16:08:36Z,alcuadrado,alcuadrado,22,22,0
+111,masche,93f3f074b7590028b90fc9eaef00ae700ac63502,Add WIP version of memory search on OS X.,Patricio Palladino,2014-09-19T16:07:43Z,alcuadrado,alcuadrado,149,149,0
+112,masche,755b91d66328b73a5cd7e2dfeed295e5375b5ba5,[memsearch] some documentation and gofmt,Marco Vanotti,2014-09-14T18:34:02Z,mvanotti,mvanotti,23,14,9
+113,masche,d51389777552aebfc9c9c6495ff3348e1310e81e,"FindProcWithLib now returns the list of softerrors
+
+There was another approach to solving this issue:
+Returning only one error which the caller should check if it is a
+harderror or a softerror (something similar to PathError in OS Package),
+but the problem with that is that softerrors are not errors per se: The
+function may have succeded for a lot of processes and failed only for a
+few ones, thus, the returning value is still useful. The logic for
+handling that case would be a bit complicated (instead of: If it is not a
+hard error, then I have useful results).
+
+This resolves #8.",Marco Vanotti,2014-09-14T17:13:05Z,mvanotti,mvanotti,71,54,17
+114,masche,ed7dac2f97a61588c2b4c7221c051e7f47338efd,"Memsearch now can grab an arbitray buffer from mem
+
+It is just for debugging, but it is useful.",Marco Vanotti,2014-09-12T17:01:26Z,mvanotti,mvanotti,42,41,1
+115,masche,2a20da3e7622b42e72ce3f4269c10ccf3c8519cc,Find in range implementation,Marco Vanotti,2014-09-10T19:36:02Z,mvanotti,mvanotti,34,32,2
+116,masche,83de9dd6e424cbc092812c223be3fa832d83f29b,Run memsearch in goroutines,Marco Vanotti,2014-09-10T19:35:33Z,mvanotti,mvanotti,27,23,4
+117,masche,ed74740b41483f1c54998e1bb4cdbe5c80554388,Add procMems test,Marco Vanotti,2014-09-10T19:34:58Z,mvanotti,mvanotti,4,2,2
+118,masche,93d32954e004206dcb4de93b1efc4fb84ddf46cf,Add memsearch example,Marco Vanotti,2014-09-10T19:34:26Z,mvanotti,mvanotti,26,26,0
+119,masche,661e064bce3831563352c5781757d52d793561f0,Rename example,Marco Vanotti,2014-09-10T19:33:59Z,mvanotti,mvanotti,0,0,0
+120,masche,a05425dda43bab09c96a80e8b13b863ac6d4034a,"grep_mem for windows (WIP).
+
+This is the memory grepper library for windows, it just calls the C
+function to get all the memory regions and iterates trough them, but the C
+part isn't calling readProcessMemory yet.",Marco Vanotti,2014-09-10T18:24:42Z,mvanotti,mvanotti,88,78,10
+121,masche,0edca2f7d4eba5a7e278f6caa9a32338aad09440,"grep mem for linux almost finished. now it looks for a string in heap and stack, and gets the process name from its pid.",Laski,2014-09-12T17:02:20Z,Laski,Laski,44,42,2
+122,masche,08735456a498c76a29e37a60bb8fed8685b01472,Grep memory for linux,Laski,2014-09-10T18:04:07Z,Laski,Laski,154,85,69
+123,masche,7b6a52c2aceb46e6f60a4bbac69deb919a60c3eb,"Create packages for listlibs and memsearch
+
+I've moved the list_libs files to a listlibs package folder, and
+consolidated the mem grepper into the memsearch folder.
+
+Maybe the package names can be changed if we come up with better ones.",Marco Vanotti,2014-09-08T00:11:20Z,mvanotti,mvanotti,294,147,147
+124,masche,6ea1dcd32e476e1b887b7d3e9772dcb1ee720441,"Merge pull request #40 from golint-fixer/master
+
+Fix golint import path",Julien Vehent [:ulfr],2019-02-05T20:30:08Z,jvehent,jvehent,2,1,1
+125,masche,5f84ff342bc459fdd9e3bec130c0e0b912a53504,Fix golint import path,golint fixer,2018-10-24T20:39:33Z,golint-fixer,golint-fixer,2,1,1
+126,masche,dbff04bc604e9996b628743bb92344dcb5d7bd24,"Merge pull request #38 from ameihm0912/darwinfix
+
+correct error class ordering, fixes build on darwin",Aaron Meihm,2017-08-31T16:12:29Z,Aaron Meihm,Aaron Meihm,6,3,3
+127,masche,98894f82dbf693d787f39b168af35ac4df81c72c,"correct error class ordering, fixes build on darwin",Aaron Meihm,2017-08-31T16:01:25Z,Aaron Meihm,Aaron Meihm,6,3,3
+128,masche,7b664eb23b56b000613fbc1dd45efb9577c7262e,"Merge pull request #36 from vbmade2000/style_issues
+
+Fix stylistic issues, fix issue #32",Julien Vehent [:ulfr],2017-03-28T13:25:39Z,jvehent,jvehent,378,190,188
+129,masche,eb8f789dc600335533bb16131a9c86fc481a19f9,Merge branch 'style_issues' of https://github.com/vbmade2000/masche into style_issues,Malhar Vora,2017-03-25T06:18:39Z,vbmade2000,vbmade2000,55,27,28
+130,masche,07297dcb628733a0b5927b2e4548141c2c190a70,"Fix stylistic issues, fix issue #32",Malhar Vora,2017-03-24T06:43:39Z,vbmade2000,vbmade2000,337,170,167
+131,masche,77464143c20edb94ec19b05958337eecf6b44a44,"Fix stylistic issues, fix issue #32",Malhar Vora,2017-03-24T06:43:39Z,vbmade2000,vbmade2000,335,171,164
+132,masche,53c69da97894504d32096342c9e9886c70bd3b28,Add CI,Julien Vehent,2017-03-22T18:51:07Z,jvehent,jvehent,14,14,0
+133,masche,571c9e411ba9ca4b2f262a65d2ac671c42509161,"Fix issue #31. The change was made by @mvanotti
+
+There was an use after-free caused by a bad defer order",Patricio Palladino,2015-09-01T17:22:44Z,alcuadrado,alcuadrado,2,1,1
+134,masche,7119feb04628bb77831f2bdc440c8b238f1c7942,"[listlibs/windows] Add LIST_MODULES_ALL definition
+
+In windows, some versions of mingw doesn't come with that definition
+in psapi.h. I manually added the definition in case it wasn't already
+there.",Marco Vanotti,2015-03-23T06:34:55Z,mvanotti,mvanotti,6,6,0
+135,masche,3bb31609c1467cbe7ad048b071b7aaad1039c790,"[process/windows] Add missing process_windows.h
+
+This file was not tracked in the repo and has been deleted by mistake.
+
+This fixes issue #27",Marco Vanotti,2015-03-23T06:03:54Z,mvanotti,mvanotti,18,18,0
+136,masche,2752b05f9e39075013207f033d2569309f507ca1,"Update README.md
+
+Add detailed description of building for linux and cross-compiling.",Marco Vanotti,2015-03-23T07:00:58Z,mvanotti,mvanotti,7,7,0
+137,masche,aae2692dffb3207320fded3ee335ef8c43450400,Update README.md,Julien Vehent,2015-03-14T14:10:01Z,jvehent,jvehent,2,2,0
+138,masche,2cb3a0ced7298a9e1b193c4287845221b4369f82,[memaccess] Fix incorrect check,Patricio Palladino,2015-03-02T03:23:14Z,alcuadrado,alcuadrado,2,1,1
+139,masche,c4909c3d43f4da7fad00e61bcbe679c5bb9221a4,"[listlibs/windows] fix return time of winapi call
+
+GetModuleFilenameEx returns a DWORD, not a BOOL",Marco Vanotti,2015-02-16T08:09:39Z,mvanotti,mvanotti,6,3,3
+140,masche,dbafb39af74d9a3b575bd2f815be70f4e0c5f3bb,[process] Uncomment fixed test,Marco Vanotti,2015-02-16T08:08:39Z,mvanotti,mvanotti,11,3,8
+141,masche,fbc07464f48850563fc60d6c66d966e669c064a8,"[process/windows] Change Name() format
+
+It was in Device Format, and this changes it to canonical form. This is
+not the recommended way to do it, but it is the only one supported in
+Windows XP.",Marco Vanotti,2015-02-16T08:05:10Z,mvanotti,mvanotti,44,20,24
+142,masche,30577d09d55832cfc4b771240078275d36681097,[test/windows] add workaround for .exe executables,Marco Vanotti,2015-02-16T08:04:41Z,mvanotti,mvanotti,9,8,1
+143,masche,942c9f5cf02cb2c67f50dab4ad4d75edcd690cdc,"[listlibs/windows] don't call CloseHandle()
+
+The previous version of this file Opened a process, listed its modules
+and then called CloseHandle. When I moved the code over, I removed the
+OpenProcess call, but forgot to remove CloseProcess calls, thus,
+everytime listlibs was called all processes were closed.",Marco Vanotti,2015-02-15T18:04:53Z,mvanotti,mvanotti,15,5,10
+144,masche,fa6a3f8a565b210e20ad7fd0df0aa17c51029928,"[process/windows] fix typo + skip reserved pids
+
+Pids 0 and 4 are reserved in windows.
+There was a bug on process.Name in windows.",Marco Vanotti,2015-02-15T05:03:41Z,mvanotti,mvanotti,13,9,4
+145,masche,56077a16b2e437fb40533aaa998ea7c6ee2b8321,"[process/test] Fix regexp for windows.
+
+Also, the test is now broken. Windows process names are being reported
+in Device Format, and not in the normal format (/Drive/C/Folder instead
+of C:\folder). This test is now broken until I change the way program
+names are reported.",Marco Vanotti,2015-02-15T05:01:14Z,mvanotti,mvanotti,17,11,6
+146,masche,8d220546040b76d031c2e2eef6aad7c8d1fd1bf2,"[process] Add Pid on Open SoftErrors
+
+I'm adding the PID of the process that failed to open.
+Having a softerror reporting just the error doesn't give any context
+information.",Marco Vanotti,2015-02-15T04:59:25Z,mvanotti,mvanotti,7,5,2
+147,masche,aa69a8c991ee7d6537a21d2e9bf599a132f7b6d3,[examples/listlibs] update example,Marco Vanotti,2015-02-15T04:58:55Z,mvanotti,mvanotti,47,40,7
+148,masche,2a5fa4c16820431cfb991b3dfbda4c0ca1ed9692,"[listlibs/windows] Add listlibs implementation.
+
+This was already done in a previous commit, but was removed after a
+refactor. This commit just reintroduces the code.",Marco Vanotti,2015-02-15T02:15:57Z,mvanotti,mvanotti,161,161,0
+149,masche,6120dc736103459b9be80443f524481d1855bad5,"[memaccess/windows] code cleanup
+
+Remove cresponse related functions and process related functions.
+Those functions were already moved to the corresponding packages
+(cresponse and process)",Marco Vanotti,2015-02-09T03:34:59Z,mvanotti,mvanotti,55,0,55
+150,masche,7c8f6d3f2b54260943219523db3e391843865ddc,"[process/windows] Implement GetAllPids and Name()
+
+Both functions have been extracted from listlibs. In a later commit I
+will clean up all the unused code from that library.",Marco Vanotti,2015-02-09T03:30:52Z,mvanotti,mvanotti,115,109,6
+151,masche,0ea0dab342d42dc1397c137d07a48f11f3d140df,[process/windows] move process c functions from memaccess,Marco Vanotti,2015-02-09T01:30:13Z,mvanotti,mvanotti,112,66,46
+152,masche,2fd04bf9e398746a71a1bfed1f65204701455a5c,[process/windows] add empty files,Marco Vanotti,2015-02-09T00:56:18Z,mvanotti,mvanotti,20,20,0
+153,masche,8f22e90615a77e1039656f65a9dc77bb8e717fc5,Delete unused file,Marco Vanotti,2015-02-01T03:25:55Z,mvanotti,mvanotti,33,0,33
+154,masche,89b410ae740e8dc1e6a6010946e815a1b5432938,[examples] Ignore newlines in memsearch file-search,Patricio Palladino,2015-02-16T23:18:42Z,alcuadrado,alcuadrado,2,1,1
+155,masche,d5d546eaaf8fcf93512d4c040fd4811cb45afb30,[examples] Add memsearch's file-search action,Patricio Palladino,2015-02-16T23:06:41Z,alcuadrado,alcuadrado,28,25,3
+156,masche,a52f26da8e5531e1e70d037ccec403e0aebc6856,[memaccess] Delete some old stuff no longer needed,Patricio Palladino,2015-01-16T21:34:23Z,alcuadrado,alcuadrado,47,1,46
+157,masche,df46df7b5caa74317ecd8898a721a5409578a1e9,"[listlibs] Add OS X and Linux implementations
+
+I deleted all the old files that were present in this folder. If needed,
+checkout an older version of the project.",Patricio Palladino,2015-01-16T21:31:02Z,alcuadrado,alcuadrado,986,396,590
+158,masche,00dac18ef207c5099983c50a2047745d6c7f64fb,Created a common module for sharing code,Patricio Palladino,2015-01-11T22:33:52Z,alcuadrado,alcuadrado,164,110,54
+159,masche,a659e64f7bd68ba77aa243f47f9e19db0283dcde,Update pgrep example to work with Process library,Marco Vanotti,2015-01-11T20:10:47Z,mvanotti,mvanotti,22,18,4
+160,masche,4c3c56db1711d2bed46d45159d84001004d1006c,Update README.md,Julien Vehent,2015-01-13T18:20:06Z,jvehent,jvehent,15,11,4
+161,masche,b5ab86919e57afc020c57c57297ae6363d2b3605,"Makefile ""get"" to fetch packages from github",Julien Vehent,2015-01-13T13:45:45Z,jvehent,jvehent,8,7,1
+162,masche,40c1db8f3b0ce48abdbc67c18c4db9e5e948eb4a,[memsearch] Improve naming and doc,Patricio Palladino,2015-01-11T19:30:53Z,alcuadrado,alcuadrado,25,14,11
+163,masche,1d8b2334866f95559125d1e3f3580522f5b53da7,[process] Add doc to OpenAll about softerrors,Patricio Palladino,2015-01-11T19:12:23Z,alcuadrado,alcuadrado,2,2,0
+164,masche,16370e06245e80470917b1c90eb8d8e4f5cc44cc,[process] Add test for OpenByName,Patricio Palladino,2015-01-11T19:12:07Z,alcuadrado,alcuadrado,30,30,0
+165,masche,53612ffcf6452376bbe1cc2db5571dbbbdf86dac,"[process/linux] process.Name() now mimics ps(1).
+
+We were having issues when /proc/<pid>/exe was not a valid link, so if
+that fails now we fallback to mimic ps(1)'s behaviour.",Patricio Palladino,2015-01-11T19:09:56Z,alcuadrado,alcuadrado,36,34,2
+166,masche,fa799e74c0a4507845e2d6b261bdf084bad47258,"[process/darwin] Fix getAllPids
+
+We were returning some 0s as PIDs, which doesn't make sense.",Patricio Palladino,2015-01-11T19:09:05Z,alcuadrado,alcuadrado,8,6,2
+167,masche,5d2f4d0fc5d78fcd300d2ca7ad31e7fcc23aeabc,[process] Fix bug in OpenAll,Patricio Palladino,2015-01-11T19:07:59Z,alcuadrado,alcuadrado,1,1,0
+168,masche,7f56caa4728f4f6ff97249b51e25f1bdf9dd13ee,"[memaccess/linux] Add tests for memmaps parsing
+
+This fixes #17",Patricio Palladino,2015-01-11T06:19:42Z,alcuadrado,alcuadrado,47,47,0
+169,masche,8a90123502f283df40231e0adcc7b912326b1dd1,"[process/linux] Check permissions in openFromPid
+
+This fixes #20",Patricio Palladino,2015-01-11T04:41:16Z,alcuadrado,alcuadrado,10,10,0
+170,masche,dcb64fa1a4dfed501837800867ff36d77fff8be6,[examples] Update and clean up memaccess,Patricio Palladino,2015-01-11T04:29:26Z,alcuadrado,alcuadrado,81,47,34
+171,masche,f9e1cccaad19c3d1fe084362d791e589708daf1e,Change Makefile's targets to force recompilation,Patricio Palladino,2015-01-11T03:26:46Z,alcuadrado,alcuadrado,12,6,6
+172,masche,978da9e43acc864eb83df3b951eaae6932a162f7,"[memaccess/linux] Fix nextReadableRegion's bug.
+
+This fixes #19",Patricio Palladino,2015-01-11T03:12:48Z,alcuadrado,alcuadrado,7,6,1
+173,masche,57572033fb09781a1997d5942016500f4797ecb4,"[memaccess] Fix WalkMemory's starting address bug.
+
+Fixes issue #21",Patricio Palladino,2015-01-11T03:04:32Z,alcuadrado,alcuadrado,12,12,0
+174,masche,1032531a9c4d0f343f32bf24679372906ea2b293,"Process module completed and updated the others.
+
+Note that Window's version of this refactoring is missing.",Patricio Palladino,2015-01-11T02:35:07Z,alcuadrado,alcuadrado,2,1,1
+175,masche,ecd0e54983f21c5e464c86ba25ac2043ef5dd859,"Process module completed and updated the others.
+
+Note that Window's version of this refactoring is missing.",Patricio Palladino,2015-01-11T02:35:07Z,alcuadrado,alcuadrado,573,337,236
+176,masche,9124afebf43ac3248207355f7ce22584ac14f331,"[test] Fix GetTestCasePath.
+
+Symlinks must be evaled if we want to return the absolute path to it in
+a consistent way.",Patricio Palladino,2015-01-11T02:34:00Z,alcuadrado,alcuadrado,8,7,1
+177,masche,6b7517210e7307c37840e5dbd9b3da6c9b89497f,Add clean to makefile,Patricio Palladino,2015-01-10T20:01:36Z,alcuadrado,alcuadrado,7,7,0
+178,masche,8d0dd8f8ef8aa8a8a1d9cf3249c21d26b700b36d,[cresponse] Move a mach specific method into here,Patricio Palladino,2015-01-10T19:28:16Z,alcuadrado,alcuadrado,17,12,5
+179,masche,01b4131af60d4440c00ec1a73495ea938d2d1dea,[test] Expose a private method for new tests,Patricio Palladino,2015-01-10T19:25:45Z,alcuadrado,alcuadrado,6,3,3
+180,masche,d0cb7480ef0d0c1b4851337832b00691a21079ef,Add process module's tests to the global Makefile,Patricio Palladino,2015-01-09T19:44:49Z,alcuadrado,alcuadrado,2,1,1
+181,masche,140d747618e8025f3378651e8a433811f976fcb1,[cresponse] All functions moved to the header :(,Patricio Palladino,2015-01-06T22:56:36Z,alcuadrado,alcuadrado,147,71,76
+182,masche,8c66851a38eab3586449ee9daf8720a316e6c50c,Created cresponse go module.,Patricio Palladino,2015-01-06T19:56:45Z,alcuadrado,alcuadrado,111,62,49
+183,masche,5a4d91e7806386cd72319e85735f2d71a19152d1,[memaccess] Fix formating,Patricio Palladino,2015-01-06T02:45:54Z,alcuadrado,alcuadrado,7,2,5
+184,masche,a5a8a31c5e580f3ec9ea44a48a4617fc174536ee,"Extracted cresponse module from memaccess.
+
+I moved this code to it's own module as its gonna be used by process
+module too.",Patricio Palladino,2015-01-06T02:22:22Z,alcuadrado,alcuadrado,284,149,135
+185,masche,6af9c21806452edba12d18a0e4cabb95226ab6a6,[memaccess/darwin] Fix sprintf formatting issue.,Patricio Palladino,2015-01-06T02:21:04Z,alcuadrado,alcuadrado,6,4,2
+186,masche,95acb1bfbc092c18c8bcc1355cde2e67d34ce665,Better naming and doc in process module,Patricio Palladino,2015-01-05T20:56:53Z,alcuadrado,alcuadrado,34,25,9
+187,masche,083f7494021e24993171e25c53b6b384757f148d,[memaccess/linux] Fix compilation errror,Laski,2014-11-20T18:59:31Z,Laski,Laski,4,1,3
+188,masche,eecf5e66aa848b9f91697900b58b3089efa16f58,Basic Process interface (WIP),Marco Vanotti,2014-11-12T14:47:04Z,mvanotti,mvanotti,210,210,0
+189,masche,c8a3384840165e0b1e9612aad264b467c7d10e43,Add a basic Makefile for running memory tests,Marco Vanotti,2014-11-07T04:09:00Z,mvanotti,mvanotti,16,16,0
+190,masche,0dda5f8d1fcbaf054057aebdd5ba8e3a5c24162b,"[listlibs/windows] Weird bug on (missing symbol)
+
+I don't know why listlibs fails to compile in my computer. It says that LIST_ALL_MODULES is undefined, but it should be defined in psapi.h which is included beforehand.
+
+Right now I hardcoded its numerical value, but it should be fixed.",Marco Vanotti,2014-11-07T04:06:41Z,mvanotti,mvanotti,5,3,2
+191,masche,9c9b42ccb49244d7d7b2b8ae716261cd3bcdfe10,"[memaccess] Add Makefile for test cases
+
+Basic Makefile which allows to build 32 and 64 bit binaries.
+Also windows doesn't have a sleep function (documented), it has a Sleep function defined in windows.h",Marco Vanotti,2014-11-07T02:27:09Z,mvanotti,mvanotti,18,17,1
+192,masche,c6293ae86b3000f57134215a4e2c15d2f6d7b3ad,"[test] test binary shouldn't have an os suffix
+
+There's not need to differentiate among binaries, you will compile each one in each os. Also, there's no need to have a special case for windows, you can execute .exe files without using the extension.",Marco Vanotti,2014-11-07T02:15:36Z,mvanotti,mvanotti,7,1,6
+193,masche,1198b6f3488ba9c5eec885669819143b3ec9364b,"Update README.md
+
+README.md now shows the actual features (and the MASCHE image) :P.
+I also added compile instructions for windows.",Marco Vanotti,2014-11-05T23:24:04Z,mvanotti,mvanotti,22,21,1
+194,masche,9ca3da41dd4731813e7374959ffc37b8d697241d,"[memaccess/cgo] Pointer types now are uintptr_t
+
+uintptr_t is a better fit than unsigned long long for int types,
+because if we are runnning in 32 bits it is the same size as the pointers.",Marco Vanotti,2014-11-05T23:01:20Z,mvanotti,mvanotti,30,14,16
+195,masche,c90734ebefa8ba1003c34f30365473facf81b231,"[memaccess/linux] Fix maps parsing
+
+Now it takes into account whitespaces in names",Laski,2014-11-05T16:55:17Z,Laski,Laski,17,16,1
+196,masche,73559092504691bfbe9aa1e48705702ac9f8fbc8,[memaccess/linux] Fix typo,Patricio Palladino,2014-10-29T14:21:48Z,alcuadrado,alcuadrado,2,1,1
+197,masche,382394946df6b79b661bc4114e693bade26be421,"[memsearch] Use SlidingWalkRegion
+
+I changed memsearch functions to use SlidingWalkRegion so they can find
+a string in between buffers",Patricio Palladino,2014-10-29T12:58:38Z,alcuadrado,alcuadrado,6,2,4
+198,masche,45f53befeb53bf47141ae7e6cad6d5823a1c9520,[memaccess] Add SlidingWalkRegion,Patricio Palladino,2014-10-29T12:57:45Z,alcuadrado,alcuadrado,146,146,0
+199,masche,5f9b6f5ada0a2cd914f34ff650ea69fd496a8390,[memaccess] Fix typo,Patricio Palladino,2014-10-29T12:57:09Z,alcuadrado,alcuadrado,8,4,4
+200,masche,afd2125c3fed3231a27946cfe730a524a0322211,"[memaccess] Fix bug in walkRegion
+
+If the buffer was bigger than the region it was breaking",Patricio Palladino,2014-10-29T12:56:14Z,alcuadrado,alcuadrado,16,10,6
+201,masche,ac99549b2606b7170cdcb849b370e121c07a67c9,[memaccess] Improve WalkMemory documentation,Patricio Palladino,2014-10-29T12:54:54Z,alcuadrado,alcuadrado,2,2,0
+202,masche,c53caed0afac7f3736daad9815015a4510b3dc08,"[memaccess] test walkRegion
+
+Add a test to WalkRegion that checks that it reads entire regions.",Patricio Palladino,2014-10-28T21:12:58Z,alcuadrado,alcuadrado,73,71,2
+203,masche,c3a6d20722566db110a89367247df82c105351a2,[memaccess/windows] Add TODO for mvanotti,Patricio Palladino,2014-10-28T20:50:30Z,alcuadrado,alcuadrado,1,1,0
+204,masche,b85a65cc45e02f4f72972d901ce859381fec2bf3,"[memaccess/darwin] Change unreadable region errors
+
+Now, as in linux, a soft error is only generated when we actually try to
+get an unreadable region and we have to skip it, not when it finishes a
+previous region. This way we avoid reporting the same error twice.",Patricio Palladino,2014-10-28T20:45:29Z,alcuadrado,alcuadrado,8,4,4
+205,masche,0ed0ff9cfa9638d2d1199cd4da9e4ca33315d438,"[memaccess] Test WalkMemory
+
+This test only checks if the read regions do not overlap. We need to add
+a test for checking that walkMemoryRegion reads the entire region.",Patricio Palladino,2014-10-28T20:34:26Z,alcuadrado,alcuadrado,54,54,0
+206,masche,add02acf00bb30fedcc775feeed9523090f46a08,[memaccess/c_wrapper] Better error messages,Patricio Palladino,2014-10-28T20:34:02Z,alcuadrado,alcuadrado,3,2,1
+207,masche,33c76a86289517a96422503afec2e63039c79852,[memoryaccess] Fix bug in walkMemoryRegion,Patricio Palladino,2014-10-28T20:29:02Z,alcuadrado,alcuadrado,4,2,2
+208,masche,50298d134aee70d8bfb3b014a913c6c3eb06ad2d,[memaccess] Improve WalkMemory error reporting,Patricio Palladino,2014-10-28T20:28:37Z,alcuadrado,alcuadrado,3,2,1
+209,masche,d0662505bb3b8a190135f402cb9ab1e3b403efb2,[memaccess] Add CopyMemory test,Patricio Palladino,2014-10-28T18:27:17Z,alcuadrado,alcuadrado,75,74,1
+210,masche,30c5f2a6c80d11da9a14761440175869346ab7fb,[memaccess/linux] Remove debugging trace,Patricio Palladino,2014-10-28T16:56:51Z,alcuadrado,alcuadrado,1,0,1
+211,masche,d013bad821310ee4140a6be511332a38f37d49c2,[test] Make test names os-dependant,Patricio Palladino,2014-10-28T16:54:55Z,alcuadrado,alcuadrado,46,32,14
+212,masche,35020ae34c21f83c4ed91a4e76df7bd46532b275,[memaccess/linux] Remove debugging print,Patricio Palladino,2014-10-28T16:51:45Z,alcuadrado,alcuadrado,2,1,1
+213,masche,f7d45ae55d6d6e781c705484cd5740e847e81ec4,[memaccess] MemoryRegion implements Stringer now,Patricio Palladino,2014-10-28T16:49:27Z,alcuadrado,alcuadrado,6,6,0
+214,masche,3882bc7035a3ced09d6e081ad14f1b5a82319df2,"[memaccess/linux] Fix bugs on unreadable regions
+
+The check was wrong, and the error message was left with some debugging
+bits.",Patricio Palladino,2014-10-28T16:47:26Z,alcuadrado,alcuadrado,4,2,2
+215,masche,00e25ce5a71e988c1fa4ad32088471e7d2995b92,"[memaccess/linux] Fix NextReadableMemoryRegion
+
+A detailed explanation of what was fixed and changed, in chronological
+order:
+
+    - Several errors where raised in the test because of not ignoring
+      unreadable regions. Added as it was a simple test.
+
+    - [vsyscall] mapping was giving errors while trying to read it.
+      I googled about it, and it turns out to be a special page always
+      mapped by the kernel to optimize some simple syscalls. It can't be
+      read so we ignore it.
+
+    - Line splitting was handling errors incorrectly. We only know how to
+      parse the current format of the mappings, if it changes this
+      program will break, and it'd be better if it breaks in a
+      predictable way. In order to do that I changed the split to a
+      regexp based one splitting by several space characters, not just
+      by one. This way items slice will contain only the non-blank bits
+      of the mapping. Finally we check if the length of that slice is
+      exactly the one that we were expecting, and if not, we return a
+      hard error.
+
+    - The interface says that contiguous regions are collapsed into one,
+      and this logic was missing, which could break the algorithms that
+      relay on this, so I added it.
+
+    - We were reading unnecessary mappings from the maps file (not a big
+      deal) and reporting any soft error that happened during this
+      (which can be really confusing while debugging). To avoid this
+      the address must be passed to getMappedAdresses, and it's
+      intention would be changed to mimic exactly what
+      NextReadableMemoryRegion is supposed to do, so I combined them in
+      a single function.
+
+    - Finally, mapInfo was representing exactly the same thing as
+      MemoryRegion, so I removed the first and used public type
+      everywhere.",Patricio Palladino,2014-10-28T15:42:27Z,alcuadrado,alcuadrado,138,77,61
+216,masche,489e1d8e0cdbc6edc5f99c1496a8d924550d72ee,Created a test package with testing utils,Patricio Palladino,2014-10-28T15:17:36Z,alcuadrado,alcuadrado,140,70,70
+217,masche,1ee389da6b45e8f0af1833670ecaf457b6a76df9,[memaccess] Better TestManuallyWalk,Patricio Palladino,2014-10-28T14:53:42Z,alcuadrado,alcuadrado,18,16,2
+218,masche,975fa17c58bbb778f86757ef673bd1a854784c8e,"[memaccess/linux] Fix CopyMemory error handling.
+
+First you have to check if you could actually read before bothering
+about who much did you read.",Patricio Palladino,2014-10-27T22:11:26Z,alcuadrado,alcuadrado,8,5,3
+219,masche,e0462fad248147413cc692ce90c86cf285667c3b,"[memacess/linux] Read the entire process memory
+
+Until we have a good explanation and a different API giving the user the
+ability to choose what to read, we read the entire memory of a process.
+
+Also, the previous implementation was hiding several errors in the code, so
+it's better if we cover all the cases now, and in the future give add
+more granularity about what to read.",Patricio Palladino,2014-10-27T22:06:37Z,alcuadrado,alcuadrado,57,15,42
+220,masche,2200e1d1e439aeefb14b260ab2e2f17cd59ef6d5,[memaccess] Better errors on linux's CopyMemory,Patricio Palladino,2014-10-27T21:50:20Z,alcuadrado,alcuadrado,3,2,1
+221,masche,7ab983015fcfcbbfbc67bc8716cfb48b78154e82,[memaccess] Remove dead code in linux,Patricio Palladino,2014-10-27T21:49:48Z,alcuadrado,alcuadrado,30,0,30
+222,masche,b8f48a0ed86bd6ebfea0308ee3dbf91a4828d480,Add vagrant-related files to gitignore.,Patricio Palladino,2014-10-27T21:28:44Z,alcuadrado,alcuadrado,4,4,0
+223,masche,1402eff6e1330991bbbb36747740f201f290fe23,"[memaccess] Small fix in linux implementation
+
+The interface documentation says that if no region is returned then the
+value NoRegionAvailable is returned. I changed Linux's
+NextReadableMemoryRegion to behave like that.",Patricio Palladino,2014-10-27T01:05:46Z,alcuadrado,alcuadrado,4,2,2
+224,masche,6ea1dcd32e476e1b887b7d3e9772dcb1ee720441,"Merge pull request #40 from golint-fixer/master
+
+Fix golint import path",Julien Vehent [:ulfr],2019-02-05T20:30:08Z,jvehent,jvehent,2,1,1
+225,masche,5f84ff342bc459fdd9e3bec130c0e0b912a53504,Fix golint import path,golint fixer,2018-10-24T20:39:33Z,golint-fixer,golint-fixer,2,1,1
+226,masche,dbff04bc604e9996b628743bb92344dcb5d7bd24,"Merge pull request #38 from ameihm0912/darwinfix
+
+correct error class ordering, fixes build on darwin",Aaron Meihm,2017-08-31T16:12:29Z,Aaron Meihm,Aaron Meihm,6,3,3
+227,masche,98894f82dbf693d787f39b168af35ac4df81c72c,"correct error class ordering, fixes build on darwin",Aaron Meihm,2017-08-31T16:01:25Z,Aaron Meihm,Aaron Meihm,6,3,3
+228,masche,7b664eb23b56b000613fbc1dd45efb9577c7262e,"Merge pull request #36 from vbmade2000/style_issues
+
+Fix stylistic issues, fix issue #32",Julien Vehent [:ulfr],2017-03-28T13:25:39Z,jvehent,jvehent,378,190,188
+229,masche,eb8f789dc600335533bb16131a9c86fc481a19f9,Merge branch 'style_issues' of https://github.com/vbmade2000/masche into style_issues,Malhar Vora,2017-03-25T06:18:39Z,vbmade2000,vbmade2000,55,27,28
+230,masche,07297dcb628733a0b5927b2e4548141c2c190a70,"Fix stylistic issues, fix issue #32",Malhar Vora,2017-03-24T06:43:39Z,vbmade2000,vbmade2000,337,170,167
+231,masche,77464143c20edb94ec19b05958337eecf6b44a44,"Fix stylistic issues, fix issue #32",Malhar Vora,2017-03-24T06:43:39Z,vbmade2000,vbmade2000,335,171,164
+232,masche,53c69da97894504d32096342c9e9886c70bd3b28,Add CI,Julien Vehent,2017-03-22T18:51:07Z,jvehent,jvehent,14,14,0
+233,masche,571c9e411ba9ca4b2f262a65d2ac671c42509161,"Fix issue #31. The change was made by @mvanotti
+
+There was an use after-free caused by a bad defer order",Patricio Palladino,2015-09-01T17:22:44Z,alcuadrado,alcuadrado,2,1,1
+234,masche,7119feb04628bb77831f2bdc440c8b238f1c7942,"[listlibs/windows] Add LIST_MODULES_ALL definition
+
+In windows, some versions of mingw doesn't come with that definition
+in psapi.h. I manually added the definition in case it wasn't already
+there.",Marco Vanotti,2015-03-23T06:34:55Z,mvanotti,mvanotti,6,6,0
+235,masche,3bb31609c1467cbe7ad048b071b7aaad1039c790,"[process/windows] Add missing process_windows.h
+
+This file was not tracked in the repo and has been deleted by mistake.
+
+This fixes issue #27",Marco Vanotti,2015-03-23T06:03:54Z,mvanotti,mvanotti,18,18,0
+236,masche,2752b05f9e39075013207f033d2569309f507ca1,"Update README.md
+
+Add detailed description of building for linux and cross-compiling.",Marco Vanotti,2015-03-23T07:00:58Z,mvanotti,mvanotti,7,7,0
+237,masche,aae2692dffb3207320fded3ee335ef8c43450400,Update README.md,Julien Vehent,2015-03-14T14:10:01Z,jvehent,jvehent,2,2,0
+238,masche,2cb3a0ced7298a9e1b193c4287845221b4369f82,[memaccess] Fix incorrect check,Patricio Palladino,2015-03-02T03:23:14Z,alcuadrado,alcuadrado,2,1,1
+239,masche,c4909c3d43f4da7fad00e61bcbe679c5bb9221a4,"[listlibs/windows] fix return time of winapi call
+
+GetModuleFilenameEx returns a DWORD, not a BOOL",Marco Vanotti,2015-02-16T08:09:39Z,mvanotti,mvanotti,6,3,3
+240,masche,dbafb39af74d9a3b575bd2f815be70f4e0c5f3bb,[process] Uncomment fixed test,Marco Vanotti,2015-02-16T08:08:39Z,mvanotti,mvanotti,11,3,8
+241,masche,fbc07464f48850563fc60d6c66d966e669c064a8,"[process/windows] Change Name() format
+
+It was in Device Format, and this changes it to canonical form. This is
+not the recommended way to do it, but it is the only one supported in
+Windows XP.",Marco Vanotti,2015-02-16T08:05:10Z,mvanotti,mvanotti,44,20,24
+242,masche,30577d09d55832cfc4b771240078275d36681097,[test/windows] add workaround for .exe executables,Marco Vanotti,2015-02-16T08:04:41Z,mvanotti,mvanotti,9,8,1
+243,masche,942c9f5cf02cb2c67f50dab4ad4d75edcd690cdc,"[listlibs/windows] don't call CloseHandle()
+
+The previous version of this file Opened a process, listed its modules
+and then called CloseHandle. When I moved the code over, I removed the
+OpenProcess call, but forgot to remove CloseProcess calls, thus,
+everytime listlibs was called all processes were closed.",Marco Vanotti,2015-02-15T18:04:53Z,mvanotti,mvanotti,15,5,10
+244,masche,fa6a3f8a565b210e20ad7fd0df0aa17c51029928,"[process/windows] fix typo + skip reserved pids
+
+Pids 0 and 4 are reserved in windows.
+There was a bug on process.Name in windows.",Marco Vanotti,2015-02-15T05:03:41Z,mvanotti,mvanotti,13,9,4
+245,masche,56077a16b2e437fb40533aaa998ea7c6ee2b8321,"[process/test] Fix regexp for windows.
+
+Also, the test is now broken. Windows process names are being reported
+in Device Format, and not in the normal format (/Drive/C/Folder instead
+of C:\folder). This test is now broken until I change the way program
+names are reported.",Marco Vanotti,2015-02-15T05:01:14Z,mvanotti,mvanotti,17,11,6
+246,masche,8d220546040b76d031c2e2eef6aad7c8d1fd1bf2,"[process] Add Pid on Open SoftErrors
+
+I'm adding the PID of the process that failed to open.
+Having a softerror reporting just the error doesn't give any context
+information.",Marco Vanotti,2015-02-15T04:59:25Z,mvanotti,mvanotti,7,5,2
+247,masche,aa69a8c991ee7d6537a21d2e9bf599a132f7b6d3,[examples/listlibs] update example,Marco Vanotti,2015-02-15T04:58:55Z,mvanotti,mvanotti,47,40,7
+248,masche,2a5fa4c16820431cfb991b3dfbda4c0ca1ed9692,"[listlibs/windows] Add listlibs implementation.
+
+This was already done in a previous commit, but was removed after a
+refactor. This commit just reintroduces the code.",Marco Vanotti,2015-02-15T02:15:57Z,mvanotti,mvanotti,161,161,0
+249,masche,6120dc736103459b9be80443f524481d1855bad5,"[memaccess/windows] code cleanup
+
+Remove cresponse related functions and process related functions.
+Those functions were already moved to the corresponding packages
+(cresponse and process)",Marco Vanotti,2015-02-09T03:34:59Z,mvanotti,mvanotti,55,0,55
+250,masche,7c8f6d3f2b54260943219523db3e391843865ddc,"[process/windows] Implement GetAllPids and Name()
+
+Both functions have been extracted from listlibs. In a later commit I
+will clean up all the unused code from that library.",Marco Vanotti,2015-02-09T03:30:52Z,mvanotti,mvanotti,115,109,6
+251,masche,0ea0dab342d42dc1397c137d07a48f11f3d140df,[process/windows] move process c functions from memaccess,Marco Vanotti,2015-02-09T01:30:13Z,mvanotti,mvanotti,112,66,46
+252,masche,2fd04bf9e398746a71a1bfed1f65204701455a5c,[process/windows] add empty files,Marco Vanotti,2015-02-09T00:56:18Z,mvanotti,mvanotti,20,20,0
+253,masche,8f22e90615a77e1039656f65a9dc77bb8e717fc5,Delete unused file,Marco Vanotti,2015-02-01T03:25:55Z,mvanotti,mvanotti,33,0,33
+254,masche,89b410ae740e8dc1e6a6010946e815a1b5432938,[examples] Ignore newlines in memsearch file-search,Patricio Palladino,2015-02-16T23:18:42Z,alcuadrado,alcuadrado,2,1,1
+255,masche,d5d546eaaf8fcf93512d4c040fd4811cb45afb30,[examples] Add memsearch's file-search action,Patricio Palladino,2015-02-16T23:06:41Z,alcuadrado,alcuadrado,28,25,3
+256,masche,a52f26da8e5531e1e70d037ccec403e0aebc6856,[memaccess] Delete some old stuff no longer needed,Patricio Palladino,2015-01-16T21:34:23Z,alcuadrado,alcuadrado,47,1,46
+257,masche,df46df7b5caa74317ecd8898a721a5409578a1e9,"[listlibs] Add OS X and Linux implementations
+
+I deleted all the old files that were present in this folder. If needed,
+checkout an older version of the project.",Patricio Palladino,2015-01-16T21:31:02Z,alcuadrado,alcuadrado,986,396,590
+258,masche,00dac18ef207c5099983c50a2047745d6c7f64fb,Created a common module for sharing code,Patricio Palladino,2015-01-11T22:33:52Z,alcuadrado,alcuadrado,164,110,54
+259,masche,a659e64f7bd68ba77aa243f47f9e19db0283dcde,Update pgrep example to work with Process library,Marco Vanotti,2015-01-11T20:10:47Z,mvanotti,mvanotti,22,18,4
+260,masche,4c3c56db1711d2bed46d45159d84001004d1006c,Update README.md,Julien Vehent,2015-01-13T18:20:06Z,jvehent,jvehent,15,11,4
+261,masche,b5ab86919e57afc020c57c57297ae6363d2b3605,"Makefile ""get"" to fetch packages from github",Julien Vehent,2015-01-13T13:45:45Z,jvehent,jvehent,8,7,1
+262,masche,40c1db8f3b0ce48abdbc67c18c4db9e5e948eb4a,[memsearch] Improve naming and doc,Patricio Palladino,2015-01-11T19:30:53Z,alcuadrado,alcuadrado,25,14,11
+263,masche,1d8b2334866f95559125d1e3f3580522f5b53da7,[process] Add doc to OpenAll about softerrors,Patricio Palladino,2015-01-11T19:12:23Z,alcuadrado,alcuadrado,2,2,0
+264,masche,16370e06245e80470917b1c90eb8d8e4f5cc44cc,[process] Add test for OpenByName,Patricio Palladino,2015-01-11T19:12:07Z,alcuadrado,alcuadrado,30,30,0
+265,masche,53612ffcf6452376bbe1cc2db5571dbbbdf86dac,"[process/linux] process.Name() now mimics ps(1).
+
+We were having issues when /proc/<pid>/exe was not a valid link, so if
+that fails now we fallback to mimic ps(1)'s behaviour.",Patricio Palladino,2015-01-11T19:09:56Z,alcuadrado,alcuadrado,36,34,2
+266,masche,fa799e74c0a4507845e2d6b261bdf084bad47258,"[process/darwin] Fix getAllPids
+
+We were returning some 0s as PIDs, which doesn't make sense.",Patricio Palladino,2015-01-11T19:09:05Z,alcuadrado,alcuadrado,8,6,2
+267,masche,5d2f4d0fc5d78fcd300d2ca7ad31e7fcc23aeabc,[process] Fix bug in OpenAll,Patricio Palladino,2015-01-11T19:07:59Z,alcuadrado,alcuadrado,1,1,0
+268,masche,7f56caa4728f4f6ff97249b51e25f1bdf9dd13ee,"[memaccess/linux] Add tests for memmaps parsing
+
+This fixes #17",Patricio Palladino,2015-01-11T06:19:42Z,alcuadrado,alcuadrado,47,47,0
+269,masche,8a90123502f283df40231e0adcc7b912326b1dd1,"[process/linux] Check permissions in openFromPid
+
+This fixes #20",Patricio Palladino,2015-01-11T04:41:16Z,alcuadrado,alcuadrado,10,10,0
+270,masche,dcb64fa1a4dfed501837800867ff36d77fff8be6,[examples] Update and clean up memaccess,Patricio Palladino,2015-01-11T04:29:26Z,alcuadrado,alcuadrado,81,47,34
+271,masche,f9e1cccaad19c3d1fe084362d791e589708daf1e,Change Makefile's targets to force recompilation,Patricio Palladino,2015-01-11T03:26:46Z,alcuadrado,alcuadrado,12,6,6
+272,masche,978da9e43acc864eb83df3b951eaae6932a162f7,"[memaccess/linux] Fix nextReadableRegion's bug.
+
+This fixes #19",Patricio Palladino,2015-01-11T03:12:48Z,alcuadrado,alcuadrado,7,6,1
+273,masche,57572033fb09781a1997d5942016500f4797ecb4,"[memaccess] Fix WalkMemory's starting address bug.
+
+Fixes issue #21",Patricio Palladino,2015-01-11T03:04:32Z,alcuadrado,alcuadrado,12,12,0
+274,masche,1032531a9c4d0f343f32bf24679372906ea2b293,"Process module completed and updated the others.
+
+Note that Window's version of this refactoring is missing.",Patricio Palladino,2015-01-11T02:35:07Z,alcuadrado,alcuadrado,2,1,1
+275,masche,ecd0e54983f21c5e464c86ba25ac2043ef5dd859,"Process module completed and updated the others.
+
+Note that Window's version of this refactoring is missing.",Patricio Palladino,2015-01-11T02:35:07Z,alcuadrado,alcuadrado,573,337,236
+276,masche,9124afebf43ac3248207355f7ce22584ac14f331,"[test] Fix GetTestCasePath.
+
+Symlinks must be evaled if we want to return the absolute path to it in
+a consistent way.",Patricio Palladino,2015-01-11T02:34:00Z,alcuadrado,alcuadrado,8,7,1
+277,masche,6b7517210e7307c37840e5dbd9b3da6c9b89497f,Add clean to makefile,Patricio Palladino,2015-01-10T20:01:36Z,alcuadrado,alcuadrado,7,7,0
+278,masche,8d0dd8f8ef8aa8a8a1d9cf3249c21d26b700b36d,[cresponse] Move a mach specific method into here,Patricio Palladino,2015-01-10T19:28:16Z,alcuadrado,alcuadrado,17,12,5
+279,masche,01b4131af60d4440c00ec1a73495ea938d2d1dea,[test] Expose a private method for new tests,Patricio Palladino,2015-01-10T19:25:45Z,alcuadrado,alcuadrado,6,3,3
+280,masche,d0cb7480ef0d0c1b4851337832b00691a21079ef,Add process module's tests to the global Makefile,Patricio Palladino,2015-01-09T19:44:49Z,alcuadrado,alcuadrado,2,1,1
+281,masche,140d747618e8025f3378651e8a433811f976fcb1,[cresponse] All functions moved to the header :(,Patricio Palladino,2015-01-06T22:56:36Z,alcuadrado,alcuadrado,147,71,76
+282,masche,8c66851a38eab3586449ee9daf8720a316e6c50c,Created cresponse go module.,Patricio Palladino,2015-01-06T19:56:45Z,alcuadrado,alcuadrado,111,62,49
+283,masche,5a4d91e7806386cd72319e85735f2d71a19152d1,[memaccess] Fix formating,Patricio Palladino,2015-01-06T02:45:54Z,alcuadrado,alcuadrado,7,2,5
+284,masche,a5a8a31c5e580f3ec9ea44a48a4617fc174536ee,"Extracted cresponse module from memaccess.
+
+I moved this code to it's own module as its gonna be used by process
+module too.",Patricio Palladino,2015-01-06T02:22:22Z,alcuadrado,alcuadrado,284,149,135
+285,masche,6af9c21806452edba12d18a0e4cabb95226ab6a6,[memaccess/darwin] Fix sprintf formatting issue.,Patricio Palladino,2015-01-06T02:21:04Z,alcuadrado,alcuadrado,6,4,2
+286,masche,95acb1bfbc092c18c8bcc1355cde2e67d34ce665,Better naming and doc in process module,Patricio Palladino,2015-01-05T20:56:53Z,alcuadrado,alcuadrado,34,25,9
+287,masche,083f7494021e24993171e25c53b6b384757f148d,[memaccess/linux] Fix compilation errror,Laski,2014-11-20T18:59:31Z,Laski,Laski,4,1,3
+288,masche,eecf5e66aa848b9f91697900b58b3089efa16f58,Basic Process interface (WIP),Marco Vanotti,2014-11-12T14:47:04Z,mvanotti,mvanotti,210,210,0
+289,masche,c8a3384840165e0b1e9612aad264b467c7d10e43,Add a basic Makefile for running memory tests,Marco Vanotti,2014-11-07T04:09:00Z,mvanotti,mvanotti,16,16,0
+290,masche,0dda5f8d1fcbaf054057aebdd5ba8e3a5c24162b,"[listlibs/windows] Weird bug on (missing symbol)
+
+I don't know why listlibs fails to compile in my computer. It says that LIST_ALL_MODULES is undefined, but it should be defined in psapi.h which is included beforehand.
+
+Right now I hardcoded its numerical value, but it should be fixed.",Marco Vanotti,2014-11-07T04:06:41Z,mvanotti,mvanotti,5,3,2
+291,masche,9c9b42ccb49244d7d7b2b8ae716261cd3bcdfe10,"[memaccess] Add Makefile for test cases
+
+Basic Makefile which allows to build 32 and 64 bit binaries.
+Also windows doesn't have a sleep function (documented), it has a Sleep function defined in windows.h",Marco Vanotti,2014-11-07T02:27:09Z,mvanotti,mvanotti,18,17,1
+292,masche,c6293ae86b3000f57134215a4e2c15d2f6d7b3ad,"[test] test binary shouldn't have an os suffix
+
+There's not need to differentiate among binaries, you will compile each one in each os. Also, there's no need to have a special case for windows, you can execute .exe files without using the extension.",Marco Vanotti,2014-11-07T02:15:36Z,mvanotti,mvanotti,7,1,6
+293,masche,1198b6f3488ba9c5eec885669819143b3ec9364b,"Update README.md
+
+README.md now shows the actual features (and the MASCHE image) :P.
+I also added compile instructions for windows.",Marco Vanotti,2014-11-05T23:24:04Z,mvanotti,mvanotti,22,21,1
+294,masche,9ca3da41dd4731813e7374959ffc37b8d697241d,"[memaccess/cgo] Pointer types now are uintptr_t
+
+uintptr_t is a better fit than unsigned long long for int types,
+because if we are runnning in 32 bits it is the same size as the pointers.",Marco Vanotti,2014-11-05T23:01:20Z,mvanotti,mvanotti,30,14,16
+295,masche,c90734ebefa8ba1003c34f30365473facf81b231,"[memaccess/linux] Fix maps parsing
+
+Now it takes into account whitespaces in names",Laski,2014-11-05T16:55:17Z,Laski,Laski,17,16,1
+296,masche,73559092504691bfbe9aa1e48705702ac9f8fbc8,[memaccess/linux] Fix typo,Patricio Palladino,2014-10-29T14:21:48Z,alcuadrado,alcuadrado,2,1,1
+297,masche,382394946df6b79b661bc4114e693bade26be421,"[memsearch] Use SlidingWalkRegion
+
+I changed memsearch functions to use SlidingWalkRegion so they can find
+a string in between buffers",Patricio Palladino,2014-10-29T12:58:38Z,alcuadrado,alcuadrado,6,2,4
+298,masche,45f53befeb53bf47141ae7e6cad6d5823a1c9520,[memaccess] Add SlidingWalkRegion,Patricio Palladino,2014-10-29T12:57:45Z,alcuadrado,alcuadrado,146,146,0
+299,masche,5f9b6f5ada0a2cd914f34ff650ea69fd496a8390,[memaccess] Fix typo,Patricio Palladino,2014-10-29T12:57:09Z,alcuadrado,alcuadrado,8,4,4
+300,masche,afd2125c3fed3231a27946cfe730a524a0322211,"[memaccess] Fix bug in walkRegion
+
+If the buffer was bigger than the region it was breaking",Patricio Palladino,2014-10-29T12:56:14Z,alcuadrado,alcuadrado,16,10,6
+301,masche,ac99549b2606b7170cdcb849b370e121c07a67c9,[memaccess] Improve WalkMemory documentation,Patricio Palladino,2014-10-29T12:54:54Z,alcuadrado,alcuadrado,2,2,0
+302,masche,c53caed0afac7f3736daad9815015a4510b3dc08,"[memaccess] test walkRegion
+
+Add a test to WalkRegion that checks that it reads entire regions.",Patricio Palladino,2014-10-28T21:12:58Z,alcuadrado,alcuadrado,73,71,2
+303,masche,c3a6d20722566db110a89367247df82c105351a2,[memaccess/windows] Add TODO for mvanotti,Patricio Palladino,2014-10-28T20:50:30Z,alcuadrado,alcuadrado,1,1,0
+304,masche,b85a65cc45e02f4f72972d901ce859381fec2bf3,"[memaccess/darwin] Change unreadable region errors
+
+Now, as in linux, a soft error is only generated when we actually try to
+get an unreadable region and we have to skip it, not when it finishes a
+previous region. This way we avoid reporting the same error twice.",Patricio Palladino,2014-10-28T20:45:29Z,alcuadrado,alcuadrado,8,4,4
+305,masche,0ed0ff9cfa9638d2d1199cd4da9e4ca33315d438,"[memaccess] Test WalkMemory
+
+This test only checks if the read regions do not overlap. We need to add
+a test for checking that walkMemoryRegion reads the entire region.",Patricio Palladino,2014-10-28T20:34:26Z,alcuadrado,alcuadrado,54,54,0
+306,masche,add02acf00bb30fedcc775feeed9523090f46a08,[memaccess/c_wrapper] Better error messages,Patricio Palladino,2014-10-28T20:34:02Z,alcuadrado,alcuadrado,3,2,1
+307,masche,33c76a86289517a96422503afec2e63039c79852,[memoryaccess] Fix bug in walkMemoryRegion,Patricio Palladino,2014-10-28T20:29:02Z,alcuadrado,alcuadrado,4,2,2
+308,masche,50298d134aee70d8bfb3b014a913c6c3eb06ad2d,[memaccess] Improve WalkMemory error reporting,Patricio Palladino,2014-10-28T20:28:37Z,alcuadrado,alcuadrado,3,2,1
+309,masche,d0662505bb3b8a190135f402cb9ab1e3b403efb2,[memaccess] Add CopyMemory test,Patricio Palladino,2014-10-28T18:27:17Z,alcuadrado,alcuadrado,75,74,1
+310,masche,30c5f2a6c80d11da9a14761440175869346ab7fb,[memaccess/linux] Remove debugging trace,Patricio Palladino,2014-10-28T16:56:51Z,alcuadrado,alcuadrado,1,0,1
+311,masche,d013bad821310ee4140a6be511332a38f37d49c2,[test] Make test names os-dependant,Patricio Palladino,2014-10-28T16:54:55Z,alcuadrado,alcuadrado,46,32,14
+312,masche,35020ae34c21f83c4ed91a4e76df7bd46532b275,[memaccess/linux] Remove debugging print,Patricio Palladino,2014-10-28T16:51:45Z,alcuadrado,alcuadrado,2,1,1
+313,masche,f7d45ae55d6d6e781c705484cd5740e847e81ec4,[memaccess] MemoryRegion implements Stringer now,Patricio Palladino,2014-10-28T16:49:27Z,alcuadrado,alcuadrado,6,6,0
+314,masche,3882bc7035a3ced09d6e081ad14f1b5a82319df2,"[memaccess/linux] Fix bugs on unreadable regions
+
+The check was wrong, and the error message was left with some debugging
+bits.",Patricio Palladino,2014-10-28T16:47:26Z,alcuadrado,alcuadrado,4,2,2
+315,masche,00e25ce5a71e988c1fa4ad32088471e7d2995b92,"[memaccess/linux] Fix NextReadableMemoryRegion
+
+A detailed explanation of what was fixed and changed, in chronological
+order:
+
+    - Several errors where raised in the test because of not ignoring
+      unreadable regions. Added as it was a simple test.
+
+    - [vsyscall] mapping was giving errors while trying to read it.
+      I googled about it, and it turns out to be a special page always
+      mapped by the kernel to optimize some simple syscalls. It can't be
+      read so we ignore it.
+
+    - Line splitting was handling errors incorrectly. We only know how to
+      parse the current format of the mappings, if it changes this
+      program will break, and it'd be better if it breaks in a
+      predictable way. In order to do that I changed the split to a
+      regexp based one splitting by several space characters, not just
+      by one. This way items slice will contain only the non-blank bits
+      of the mapping. Finally we check if the length of that slice is
+      exactly the one that we were expecting, and if not, we return a
+      hard error.
+
+    - The interface says that contiguous regions are collapsed into one,
+      and this logic was missing, which could break the algorithms that
+      relay on this, so I added it.
+
+    - We were reading unnecessary mappings from the maps file (not a big
+      deal) and reporting any soft error that happened during this
+      (which can be really confusing while debugging). To avoid this
+      the address must be passed to getMappedAdresses, and it's
+      intention would be changed to mimic exactly what
+      NextReadableMemoryRegion is supposed to do, so I combined them in
+      a single function.
+
+    - Finally, mapInfo was representing exactly the same thing as
+      MemoryRegion, so I removed the first and used public type
+      everywhere.",Patricio Palladino,2014-10-28T15:42:27Z,alcuadrado,alcuadrado,138,77,61
+316,masche,489e1d8e0cdbc6edc5f99c1496a8d924550d72ee,Created a test package with testing utils,Patricio Palladino,2014-10-28T15:17:36Z,alcuadrado,alcuadrado,140,70,70
+317,masche,1ee389da6b45e8f0af1833670ecaf457b6a76df9,[memaccess] Better TestManuallyWalk,Patricio Palladino,2014-10-28T14:53:42Z,alcuadrado,alcuadrado,18,16,2
+318,masche,975fa17c58bbb778f86757ef673bd1a854784c8e,"[memaccess/linux] Fix CopyMemory error handling.
+
+First you have to check if you could actually read before bothering
+about who much did you read.",Patricio Palladino,2014-10-27T22:11:26Z,alcuadrado,alcuadrado,8,5,3
+319,masche,e0462fad248147413cc692ce90c86cf285667c3b,"[memacess/linux] Read the entire process memory
+
+Until we have a good explanation and a different API giving the user the
+ability to choose what to read, we read the entire memory of a process.
+
+Also, the previous implementation was hiding several errors in the code, so
+it's better if we cover all the cases now, and in the future give add
+more granularity about what to read.",Patricio Palladino,2014-10-27T22:06:37Z,alcuadrado,alcuadrado,57,15,42
+320,masche,2200e1d1e439aeefb14b260ab2e2f17cd59ef6d5,[memaccess] Better errors on linux's CopyMemory,Patricio Palladino,2014-10-27T21:50:20Z,alcuadrado,alcuadrado,3,2,1
+321,masche,7ab983015fcfcbbfbc67bc8716cfb48b78154e82,[memaccess] Remove dead code in linux,Patricio Palladino,2014-10-27T21:49:48Z,alcuadrado,alcuadrado,30,0,30
+322,masche,b8f48a0ed86bd6ebfea0308ee3dbf91a4828d480,Add vagrant-related files to gitignore.,Patricio Palladino,2014-10-27T21:28:44Z,alcuadrado,alcuadrado,4,4,0
+323,masche,1402eff6e1330991bbbb36747740f201f290fe23,"[memaccess] Small fix in linux implementation
+
+The interface documentation says that if no region is returned then the
+value NoRegionAvailable is returned. I changed Linux's
+NextReadableMemoryRegion to behave like that.",Patricio Palladino,2014-10-27T01:05:46Z,alcuadrado,alcuadrado,4,2,2

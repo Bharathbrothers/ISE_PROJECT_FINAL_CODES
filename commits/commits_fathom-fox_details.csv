@@ -1,0 +1,775 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,fathom-fox,6b7b77b1630ad4d3f0ce7122aabaf860a015925d,"Standardize the viewport size before freezing.
+
+Also start using Slashdot, a more challenging size with iframes and more images.",Erik Rose,2018-01-17T21:35:04Z,erikrose,erikrose,20,18,2
+1,fathom-fox,01c8d52bac0b8c62656fe1f644f3d69b0a8b4206,"Improve naming, and add comments.",Erik Rose,2018-01-17T01:56:24Z,erikrose,erikrose,20,15,5
+2,fathom-fox,c7ffc884f459863a38c5a06b9d78d56ac7c61244,"Save the freeze-dried markup as a file.
+
+receiveMessage seems to work happily as an async.",Erik Rose,2018-01-17T01:50:03Z,erikrose,erikrose,18,15,3
+3,fathom-fox,8a0f343d077f755a8c66a12ed8f7a1ed080ea0d0,"freezeDry the page, and send the resulting HTML back to the background script.",Erik Rose,2018-01-16T21:00:20Z,erikrose,erikrose,8,5,3
+4,fathom-fox,d99ca89ac8b2bba6a737870074add5175986f2e1,Prove we can get at the page content.,Erik Rose,2018-01-16T20:23:27Z,erikrose,erikrose,2,1,1
+5,fathom-fox,a07b1d8f3407b66841764d23ab538e8c70e75886,"Get an answer back from the content script.
+
+We can't just return a value that pops out of executeScript() because webpack wraps our content script in a function. Thus, we can't get it to emit a statement on the top level, which is where executeScript() looks for a return value. Perhaps we could twiddle a webpack flag, but mucking with webpack tends to be a time sink.",Erik Rose,2018-01-16T20:22:31Z,erikrose,erikrose,44,16,28
+6,fathom-fox,ab20a634a067a95a7911675819c1604e75885726,"Bring in freeze-dry instead of left-pad, and switch to ES7 syntax so we can use async and await.
+
+We have to keep using require() in the webpack config because node, which runs it, isn't savvy yet.",Erik Rose,2018-01-12T21:55:12Z,erikrose,erikrose,1015,397,618
+7,fathom-fox,e3365c9f16375deb2192d363319942542bde3410,Annnnd prove that the content script can use npm modules.,Erik Rose,2018-01-12T20:26:02Z,erikrose,erikrose,6,3,3
+8,fathom-fox,0cb809d9fba054a06c0d3028deb361226d6d24e6,"Extension now injects a content script into the current tab, and the content script logs a message.",Erik Rose,2018-01-12T20:23:39Z,erikrose,erikrose,12,8,4
+9,fathom-fox,26c60860f3f74e69f3b5bd9f1b59868ccc64a4bc,"Got rid of the popup. Now we have a simple browser action that logs ""gone!"" when clicked.
+
+We also have a blank content script that webpack compiles.",Erik Rose,2018-01-12T20:04:48Z,erikrose,erikrose,152,35,117
+10,fathom-fox,cd60425599cbf97b4064828b21a37bedff7645c2,Add auto-recompiling and reloading.,Erik Rose,2018-01-12T17:56:40Z,erikrose,erikrose,4237,4113,124
+11,fathom-fox,28eaa909b479153bfd4c952238de7d04667f24f1,Add .gitignore and package-lock.,Erik Rose,2018-01-12T17:14:22Z,erikrose,erikrose,2782,2782,0
+12,fathom-fox,ef81ab9b0350e8dd2226517207bb1f09070bebb0,Clear out stuff I don't need. Add a license file.,Erik Rose,2018-01-12T17:11:59Z,erikrose,erikrose,440,384,56
+13,fathom-fox,30b9222c6115637998e9406935c6883f385d4118,"Starting with https://github.com/mdn/webextensions-examples' webpack-modules folder, rev 416199ccf97fa683c1257e60a9da2c388f987e0f.",Erik Rose,2018-01-12T16:17:20Z,erikrose,erikrose,212,212,0
+14,fathom-fox,0c29553403ebf1dde1bf3aa5425e597016a1815d,"Add `yarn run browser` and `yarn run release`.
+
+I can't remember these incantations.",Erik Rose,2018-07-18T20:43:25Z,erikrose,erikrose,4,3,1
+15,fathom-fox,754ba3bfebe230a7f21ee4c22adf47477ac2cd88,Bump version in manifest.,Erik Rose,2018-07-18T20:41:12Z,erikrose,erikrose,2,1,1
+16,fathom-fox,ca1606aee508be071bb2d500799291cd4bf02598,"Move caveat text to a place more visually pleasing and more suited to its chronological usefulness.
+
+The use should be able to ""get right to it"" without reading through this fairly unimportant text, but it still might answer important questions, so we leave it in a place where they might naturally read it while waiting for training to complete.",Erik Rose,2018-07-18T13:45:52Z,erikrose,erikrose,18,11,7
+17,fathom-fox,2fff9995180e2c94324cec4b8e3dceb6873a7685,Make toolbar-button action menu look less trashy.,Erik Rose,2018-07-18T13:11:58Z,erikrose,erikrose,32,29,3
+18,fathom-fox,d33f80d6e29a3254818ff34470d0c3ca912be530,"Change the title on the Trainer to ""Trainer"", since that's what it's naturally getting called in the readme.
+
+""Name things what they're called.""",Erik Rose,2018-07-18T11:59:49Z,erikrose,erikrose,2,1,1
+19,fathom-fox,8d5191549e4c42fe13c30c0c849323c750da51ee,"Update version history, document Trainer, and polish readme.",Erik Rose,2018-07-18T11:55:31Z,erikrose,erikrose,23,19,4
+20,fathom-fox,82d9dd1f082621a5eff471656c3d4f5210e30b5b,"Add Trainer. Switch to yarn.
+
+Yarn installs Fathom's own dependencies, like wu. npm neglects to.",Erik Rose,2018-07-17T21:23:53Z,erikrose,erikrose,11287,4474,6813
+21,fathom-fox,96beff5a92e7305727522ab83e392e73cd6728d5,Improve no-trainee-found error message.,Erik Rose,2018-07-17T21:23:15Z,erikrose,erikrose,2,1,1
+22,fathom-fox,da587e7850af1f44b463629b2cbcccef86e246f8,Disable the Training page controls and show a nice warning when no trainable rulesets are installed.,Erik Rose,2018-07-16T21:37:21Z,erikrose,erikrose,52,42,10
+23,fathom-fox,60abc4b9fda5065de1cc96ae94537a35cb408882,Change Fathom Trainees extension ID.,Erik Rose,2018-07-13T15:21:52Z,erikrose,erikrose,6,3,3
+24,fathom-fox,e5695544c45d26672298099efe032922c7c1297d,"Rename ""trainables"" to the existing word ""trainees"".",Erik Rose,2018-07-11T02:05:27Z,erikrose,erikrose,18,9,9
+25,fathom-fox,e60bc8802e96ead7d666ecb3c5cb546e39c9f5e0,"Remove the overlay trainable, which has moved into a separate webext so ruleset devs don't have to fork FathomFox.
+
+This actually means we don't have to bundle Fathom here anymore.",Erik Rose,2018-07-10T21:25:56Z,erikrose,erikrose,498,27,471
+26,fathom-fox,4582c74cf7d64359aae17d3cc3744e3f42db332b,"Link to fathom as a submodule.
+
+We're using a funny branch at the moment, and I don't want to lose track. This also lets other people build this without a bunch of instruction.",Erik Rose,2018-07-03T18:50:06Z,erikrose,erikrose,7,6,1
+27,fathom-fox,be6fad3288745f18c99f5cdc9e31ff18f6f5ba02,Add a missing semicolon.,Erik Rose,2018-07-03T14:12:03Z,erikrose,erikrose,2,1,1
+28,fathom-fox,e453e625e9be45bcf7cbf07a2ba62ea7178dd77b,"Crank up the page-completion timeout.
+
+Pages with zillions of ads are really, really, really slow!",Erik Rose,2018-06-30T12:43:35Z,erikrose,erikrose,10,8,2
+29,fathom-fox,2a93b92039febe3eba259a6155d1adc9cb32753a,Tolerate any combination of horizontal whitespace in Corpus Collector textarea.,Erik Rose,2018-06-30T12:38:55Z,erikrose,erikrose,4,2,2
+30,fathom-fox,da4663faf52af8de933b2a61a1bb876f2341d11b,"Add visibility rule, which gets us to 93.8% on training corpus!",Erik Rose,2018-06-29T21:31:35Z,erikrose,erikrose,31,29,2
+31,fathom-fox,ba280194d0358bd5f9ef0715368171efdb90a23e,"Make Corpus Collector open in the current window, for consistency with the Trainer.",Erik Rose,2018-06-29T21:27:10Z,erikrose,erikrose,14,7,7
+32,fathom-fox,d5d2bf056cdcec4ff04829ef397cd97564e20880,Support optional filenames in the Corpus Collector.,Erik Rose,2018-06-29T21:16:57Z,erikrose,erikrose,25,20,5
+33,fathom-fox,017ea602b0cad872d2410e6d755ec8bae106df5e,"Take alpha from background-color into account for opaqueness. This gets us to 87.5% on the training corpus.
+
+Incidentally, it turns out that ""rgb(...)"" and ""rgba(...)"" are aliases for each other in CSS Colors Level 4 and up, so my regex is more correct than I supposed!",Erik Rose,2018-06-29T17:38:00Z,erikrose,erikrose,32,17,15
+34,fathom-fox,0d7e3eadf7b92d530b3e070ec5b29781cef54b6b,Move urlFilename to utils so I can call it from log() in the content script.,Erik Rose,2018-06-29T16:11:46Z,erikrose,erikrose,22,14,8
+35,fathom-fox,3cd0fe0b359306686f9bd35b57562aef04ec5b7a,"Fix opacity() implementation, which cranks us up to 81.3% on the training corpus!",Erik Rose,2018-06-28T21:12:59Z,erikrose,erikrose,4,2,2
+36,fathom-fox,2ab9fb565ad1ec154c6df8772109c65f49b9947b,"Move initial/best solution into trainables.
+
+We'll need one per ruleset, so it needs to be there.",Erik Rose,2018-06-28T20:36:17Z,erikrose,erikrose,301,152,149
+37,fathom-fox,451f3cac5eb0921ad125d89f8a9da97b979abbc2,Add good/bad page reporting so I know where my failures are.,Erik Rose,2018-06-28T20:11:48Z,erikrose,erikrose,108,95,13
+38,fathom-fox,59e0994e0d048ebfa9e8022ac99ae1d768f1ad74,"Implement class and ID sniffing, driving training-set accuracy to 75%.",Erik Rose,2018-06-27T19:28:48Z,erikrose,erikrose,41,35,6
+39,fathom-fox,147a0fa86b541979b2734df17c3e5ef187812d88,"These coeffs now give 62.5% accuracy after fixing the corpus.
+
+This is about as well as it's possible for these rules to do on these samples. Now we need more rules.",Erik Rose,2018-06-27T15:25:25Z,erikrose,erikrose,6,5,1
+40,fathom-fox,cf16514d637a2fe50f947dcc6e3847534facfbd9,"Move the succeeded-or-not logic out of the trainable so the content script can have access to the whole ruleset, not just a final boolean.
+
+This will help us build reusable ruleset debugging into the content script: for example, we can run user-provided queries against the ruleset and show the results by setting the inspected item in the devtools. As a bonus, this tersens the trainables.",Erik Rose,2018-06-26T02:34:51Z,erikrose,erikrose,32,16,16
+41,fathom-fox,102e1288cf24e1d57917752e59b9438c5725108f,"Replace loop with reduce in the (untested) hope that it's faster.
+
+It's certainly briefer and less stateful.",Erik Rose,2018-06-25T21:23:53Z,erikrose,erikrose,7,1,6
+42,fathom-fox,6a8e19324b737acfc15cf7a553395072cb4384bc,"solutionCost was upside-down. Fixed that.
+
+Display in the UI was mis-scaled too.
+
+Running it right-side-up (and on more pages: 4-38) yielded new coefficients: 40% accuracy.",Erik Rose,2018-06-25T19:07:01Z,erikrose,erikrose,12,6,6
+43,fathom-fox,e754ceacc813594d830fa43d69406c8e2f641197,"Port in the overlay rules I have written so far, and debug a bit.
+
+* There's nothing wrong with <0 coeffs in this raise-the-score-to-the-coeff-power world, so change randomTransition accordingly.
+* Add some well-scoring coeffs the optimizer found (on just samples 9-12).
+* Report new bests more promptly in the UI. Otherwise, it can be minutes till they show up.",Erik Rose,2018-06-25T18:48:11Z,erikrose,erikrose,159,131,28
+44,fathom-fox,f116e0f6ac7cacf7f130e3f0455438152c612234,"I guess technically all this stuff is dev dependencies, since you don't need it sitting around at runtime.",Erik Rose,2018-06-22T23:38:56Z,erikrose,erikrose,10,4,6
+45,fathom-fox,18cd28a547d6018075a3151d4b76657b7b2f2770,"Set the viewport size before training.
+
+Factor up setViewportSize() so the trainer and the corpus collector can both call it.",Erik Rose,2018-06-22T19:23:10Z,erikrose,erikrose,48,25,23
+46,fathom-fox,e5dcce782968df2979a1cae4bab58ac521fb4e99,"Show best-so-far coeffs as we go.
+
+Full annealer runs can take awhile, and this takes away the disincentive to run more iterations.",Erik Rose,2018-06-20T20:46:57Z,erikrose,erikrose,18,10,8
+47,fathom-fox,33d35a2c1d2328174c5f1a552c1d1c187dbea567,Report accuracy after training.,Erik Rose,2018-06-20T20:38:56Z,erikrose,erikrose,6,3,3
+48,fathom-fox,2995fbfe1a999ac266e558e49288d0b44186ac8d,"Make output look okay, too.",Erik Rose,2018-06-20T19:51:49Z,erikrose,erikrose,12,9,3
+49,fathom-fox,e1fe1848eb6b145eddb722ef8e954653540c7663,Style the Training page a bit. Add a progress bar.,Erik Rose,2018-06-20T18:14:43Z,erikrose,erikrose,63,53,10
+50,fathom-fox,ac1ac232e420a4fba609c8de00d48bb839e1d6a5,Add a real randomTransition algorithm.,Erik Rose,2018-06-20T18:12:07Z,erikrose,erikrose,17,15,2
+51,fathom-fox,b53804f3b07a8457f1fc03d82a837d7e5482328f,Init ruleset menu from the map of trainables.,Erik Rose,2018-06-19T20:51:57Z,erikrose,erikrose,25,19,6
+52,fathom-fox,bce5e62496ff8ac7952364d13f4c256d65158b82,"Run tuner to completion, output the result, and get the ruleset name from the menu.
+
+The menu itself is still hard-coded.",Erik Rose,2018-06-19T19:10:34Z,erikrose,erikrose,12,4,8
+53,fathom-fox,425ee6cd32a77512325629464d35b312a2de5709,Remove test module.,Erik Rose,2018-06-19T18:06:35Z,erikrose,erikrose,5,0,5
+54,fathom-fox,4a47d08b437c9456f59d8be73b7033e863cb1b36,"It runs tuning error-free for 1 iteration.
+
+* Stop subclassing Annealer for now so rollup works.
+* Fix syntax errors.",Erik Rose,2018-06-19T16:16:31Z,erikrose,erikrose,31,19,12
+55,fathom-fox,1a0f9f294ac10a604e8d87b189224293db812b38,"It compiles without error now.
+
+(rollup -c, that is.)",Erik Rose,2018-06-18T20:32:31Z,erikrose,erikrose,523,515,8
+56,fathom-fox,7ffd5d97ce68dc986dfa49c1e6c8272a44a407af,Factor out common rollup settings.,Erik Rose,2018-06-15T18:28:18Z,erikrose,erikrose,63,14,49
+57,fathom-fox,326936cf12962a71351fdbbfba52baf6edcbf869,"rollup compiles it now! wu bundles properly. Add trainables file. Add an async tab-training annealer. Maybe it'll even run in parallel; we'll see what FF does.
+
+One of the problems was that npm wasn't installing wu, despite it being a dependency of fathom-web. That was keeping rollup from bundling it. Perhaps it's that I'm using a file: URL to fathom-web. At any rate, yarn does the right thing, so I've switched to yarn.
+
+Add json() plugin to fix ""Unexpected token"" errors parsing package.json files.",Erik Rose,2018-06-15T17:48:53Z,erikrose,erikrose,11935,3856,8079
+58,fathom-fox,87f65de06907fd075943a90c5db5494bdd1e4d8a,Fix copy-paste mistake in error handler.,Erik Rose,2018-05-09T21:23:19Z,erikrose,erikrose,2,1,1
+59,fathom-fox,02e5381a53d89f412f9320569f61a9a723c9ab27,"Bump version to 1.0.1, and add version history to readme.",Erik Rose,2018-06-13T01:09:15Z,erikrose,erikrose,11,9,2
+60,fathom-fox,e56fac50aceb72b2bf997dafa21e13f63a3d99a5,Add PoC bidirectional communication from training page to tabs in the same window.,Erik Rose,2018-05-23T21:30:52Z,erikrose,erikrose,3204,2765,439
+61,fathom-fox,f64c6486d3a99f8fb7e2b7cf794c2c493efde18b,This traverses into (and bundles) node_modules that are proper ES6 modules.,Erik Rose,2018-05-14T20:13:38Z,erikrose,erikrose,5,5,0
+62,fathom-fox,837550a44d3e458a1116f336a3bf5145a028f5e3,"Committing before trying to see why we have require()s in the corpus.js that rollup generates. Does webpack do the same?
+
+Turns out it was ""webpack-webext-plugin"": ""github:MarZab/webpack-webext-plugin"" that was keeping the requires away. Remove it, and they come roaring back. However, replace it with web-ext, its sole dependency, and they stay away.",Erik Rose,2018-05-09T21:26:01Z,erikrose,erikrose,3068,1101,1967
+63,fathom-fox,2738d62b1422bf9d7f01b5a637e097111a30e6b4,Fix copy-paste mistake in error handler.,Erik Rose,2018-05-09T21:23:19Z,erikrose,erikrose,2,1,1
+64,fathom-fox,5e5bd945b933dc5c1fd37f5ca75e2e4aa1d97a90,Turn browser action into a menu so we can kick off the tuner.,Erik Rose,2018-05-01T21:29:21Z,erikrose,erikrose,25,16,9
+65,fathom-fox,2d141579e3d44e280ad8c2caeeb218a0d3816d18,"Fix the ""No matching message handler"" errors when downloading using the Corpus Collector.
+
+Basically, it was a race condition that either didn't exist in previous Firefoxes or that we were lucking out of.",Erik Rose,2018-05-09T19:08:29Z,erikrose,erikrose,44,43,1
+66,fathom-fox,e8c855c83b04e92f2166fdaed1f0fe3cc3f2a34b,"Improve tabCompletion() waiter to take into account that about:blank loads first when creating a new tab.
+
+...and then, to make things more interesting, it reaches the ""complete"" state. So we have to test against that URL explicitly, which unfortunately requires the ""tabs"" permission.
+
+Get rid of that proof-of-concept sleep call as well. And quit testing against 'loading', which is an additional piece of knowledge.",Erik Rose,2018-05-09T18:12:27Z,erikrose,erikrose,29,17,12
+67,fathom-fox,01c6764c03a0bec7f8e7cec93b11ae6d6e6c7ae3,This works.,Erik Rose,2018-05-07T20:55:04Z,erikrose,erikrose,37,37,0
+68,fathom-fox,87cf5675c41729057caed9a95e1d5b33d9bcca14,"Replace webpack with rollup.
+
+I'm hoping rollup's dead-code elimination allows us to bundle Fathom. Fathom's references to node.js stdlib routines bother webpack, even though there's no call path to them from FathomFox code.
+
+Move background script out of src folder. I wasn't using the compile pass that existed; I was just afraid to remove it with webpack.
+
+Has ""No matching message handler"" errors, but so does the webpack version. Remove seemingly unused definition of backgroundPort in contentScript.js to try to fix that--no dice.",Erik Rose,2018-05-07T16:00:48Z,erikrose,erikrose,692,453,239
+69,fathom-fox,e9b0ba0e0f44c8848b786e6400e015cb6050b390,"Update readme to be suitable, with minimal changes, as the description on FathomFox's addons.mozilla.org page.",Erik Rose,2018-03-15T13:39:19Z,erikrose,erikrose,30,20,10
+70,fathom-fox,312bca91323785d7fca1d1ed6f0c245df7322717,"Add icon source file.
+
+It's in Affinity Designer.",Erik Rose,2018-03-13T19:56:54Z,erikrose,erikrose,0,0,0
+71,fathom-fox,74eae89ad7f83545e07b556ae143a6f1e7ab4006,"Don't crash when freezing pages for the Corpus Collector, which has no highlights to hide.",Erik Rose,2018-03-13T19:24:49Z,erikrose,erikrose,8,6,2
+72,fathom-fox,79230a8375555c5b8ffe768d188e5a99fbaa43dd,Ignore built webexts.,Erik Rose,2018-03-13T19:24:25Z,erikrose,erikrose,1,1,0
+73,fathom-fox,bfc07132fac4daf8d0a93d56e96c4a2f444f77cc,Add pixel-based widths to icon so it passes the AMO linter.,Erik Rose,2018-03-13T18:43:00Z,erikrose,erikrose,2,1,1
+74,fathom-fox,af2e8039b5cf26715eedcae83fc37d1155d717cb,Polish readme a bit.,Erik Rose,2018-03-13T16:30:11Z,erikrose,erikrose,6,3,3
+75,fathom-fox,b06f6ce45eff90004b5cb32e2838839531f0b18f,"Merge a very basic devtools panel with lets you label DOM elements for training.
+
+Bad UI so far, but it works.",Erik Rose,2018-03-13T16:20:58Z,erikrose,erikrose,384,335,49
+76,fathom-fox,6ceefa7f8e5a7aea010278e9f0940fde7eb3ebf6,Add a first whack at a real icon.,Erik Rose,2018-03-13T16:20:27Z,erikrose,erikrose,8,5,3
+77,fathom-fox,42ceaf4ef3769f79ccfdaf56166ba03991771ddc,"Hide the highlighter before freezing the page.
+
+Now we don't end up with a big highlighter polluting our captured page.
+
+Consequently, move the highlighter twiddling into the background script. This is an aesthetic win because now everything toggles the highlighter in the same way; you don't have the devtools panel doing it ad hoc through evals. But really we were forced to do this because we needed to hide and re-show the highlighter around the page downloading, which already must be done in the background script due to permissions.
+
+As a bonus, pages can't trip up our highlighter manipulation by monkeypatching different code onto the DOM methods we call, as they could when we were using eval().",Erik Rose,2018-03-12T21:35:16Z,erikrose,erikrose,181,108,73
+78,fathom-fox,3c4ba9c849d9bf8899fcb550891f39218797675f,Update readme to acknowledge the devpane.,Erik Rose,2018-03-09T22:40:59Z,erikrose,erikrose,11,8,3
+79,fathom-fox,ceb827946a9e9fb0b988cb477bc39973c658317b,Improve devpane styling a little.,Erik Rose,2018-03-09T22:40:48Z,erikrose,erikrose,11,9,2
+80,fathom-fox,d3aa4df485987e0e4f35f9997811f41d86776a93,Present a Save dialog when you click Save in the devpane so you know something has happened.,Erik Rose,2018-03-09T22:40:31Z,erikrose,erikrose,8,4,4
+81,fathom-fox,86a53d4954b9ce92fb9e74b589d41de3fcd11100,"Unhighlight the inspected element when switching away from the Fathom devpanel.
+
+It conflicted with the Inspector panel's highlight and was confusing. Plus, maybe other panels will want to highlight something someday.",Erik Rose,2018-03-09T18:02:27Z,erikrose,erikrose,29,23,6
+82,fathom-fox,414a3b788407a9b845528d796487a9465abd16e6,"Add a Save button to the devpanel that freezes and downloads the page, complete with labeling info.
+
+* Merge freezeDryThisPage.js and devtoolsHelper.js into a single content script. This lets us call freezeDry() from both the corpus collector and the devpanel without having to bundle freezeDry twice.
+* Replace the port listener in the background script with a more generic dispatcher. Sometimes we still just forward stuff to the content script, but other times we do other things as well, like write HTML to disk.
+* Move download() to its own script so we can call it in in a few different places.",Erik Rose,2018-03-08T22:41:36Z,erikrose,erikrose,174,100,74
+83,fathom-fox,8dc0e0790b2a996809906ceb58b295ac86d0e1f2,"Move elementAtPath() and reversed() to utils module.
+
+Move $0 outside elementPath for philosophical reusability and practical visibility of captured variables.",Erik Rose,2018-03-06T19:05:01Z,erikrose,erikrose,51,26,25
+84,fathom-fox,2a3392b236d0748445c7bbba221f955af985cd46,"Move eval'd string inside the function that uses it.
+
+It might be less efficient on some implementations, but now I can navigate the code.",Erik Rose,2018-03-06T18:49:56Z,erikrose,erikrose,49,25,24
+85,fathom-fox,197dca3762e06c4016efbbb9e5fd49fc7ddcf632,"Move resultOfEval to utils module.
+
+Trying to keep the UI code by itself in the devtoolsPanel module.",Erik Rose,2018-03-06T18:46:08Z,erikrose,erikrose,26,14,12
+86,fathom-fox,5977c6885020a0493f1c1618fee2312ad5c4bb5a,Shorten backgroundPort initialization.,Erik Rose,2018-03-06T18:45:07Z,erikrose,erikrose,5,1,4
+87,fathom-fox,b93ccdc391210e2a448d106b827514cd5dcd7417,"Now label any inspected element, even if it has no ID. Also, label it with the label you type in!",Erik Rose,2018-03-01T21:42:23Z,erikrose,erikrose,63,52,11
+88,fathom-fox,05b037be9fb12d25eec0ecd7ce8dc51fae734b8a,"Clicking the devpanel's button now causes the content script to slap a (currently hard-coded) data-fathom attr on the inspected element (though only elements with IDs work for the moment).
+
+Also...
+
+* Rename ""message"" arg to ""request"" for consistency. Though I am conflicted about the overloading of the term w.r.t. HTTP.
+* Add a wrapper for inspectedWindow.eval() that makes its return convention not require 2 nested branches to unpack.",Erik Rose,2018-02-28T21:34:01Z,erikrose,erikrose,105,50,55
+89,fathom-fox,df866cbdadb61fb890ae7e6d5117d6e301842811,Maintain inspected item's highlight when the Fathom dev panel is brought forward.,Erik Rose,2018-02-22T22:01:07Z,erikrose,erikrose,33,32,1
+90,fathom-fox,8d36db96631b122057a5290e2929f82b8d36f49a,Add proof-of-concept bidirectioal communication chai between dev pael and a content script running on the inspected tab.,Erik Rose,2018-02-13T02:28:47Z,erikrose,erikrose,62,55,7
+91,fathom-fox,624bc367e218eb2d150adda8f4f78dbc4fa2859d,"Add a demo init-panel routine, and refactor to hide the ugliness of the eval() API's error handling a bit better.
+
+Committing this before I try a content script and messaging to get around the JSON-only barrier.",Erik Rose,2018-02-08T22:17:26Z,erikrose,erikrose,52,35,17
+92,fathom-fox,e1e6c8a2ed61e8297e000348d26d73a67ec0ffbb,Log the ID of the inspected element. Remove the rest of the example code.,Erik Rose,2018-02-07T15:15:05Z,erikrose,erikrose,79,10,69
+93,fathom-fox,8c5ce6e84b2b2b0cc6157384aeb43b81e4d0e4f8,Merge most of the devtools-panels WebExtensions example in.,Erik Rose,2018-02-05T22:27:36Z,erikrose,erikrose,121,120,1
+94,fathom-fox,9776f3835594833b49415a5cd0d4fcdb73bd9933,Make tooltip name consistent with page title.,Erik Rose,2018-02-02T16:42:02Z,erikrose,erikrose,2,1,1
+95,fathom-fox,52118d39a68c4f75d32eba8baff330e5fd1c50b6,"Keep going on error.
+
+We do tend to hit some: like redirects, which throw off our messaging. When collecting a large corpus, it's best to log the error and keep going so we can get something done unattended.",Erik Rose,2018-02-01T21:19:45Z,erikrose,erikrose,11,6,5
+96,fathom-fox,e25ff236b3e0921aa6d1922ff78348299d2092fa,"Swap the position of the two controls to reflect which one actually happens first.
+
+We scroll, and then we wait.",Erik Rose,2018-02-01T17:05:04Z,erikrose,erikrose,4,2,2
+97,fathom-fox,0ec6485357b9e242537e1c69b09c251e3c75db72,"Report errors in the UI, not on the console.
+
+It was pretty confusing to have it inexplicably not work when I wasn't looking at the console.",Erik Rose,2018-02-01T17:04:44Z,erikrose,erikrose,12,9,3
+98,fathom-fox,e0eb19fb59b232d4f4175bf4527ff6347a1cb369,Add the option to scroll to the bottom of the page. Close #3.,Erik Rose,2018-01-31T03:02:38Z,erikrose,erikrose,13,11,2
+99,fathom-fox,408e5d6b7b0abeab10fc5b0491eadc7986fd3e2e,"Optionally wait a few seconds before saving a page. Close #2.
+
+This helps asynchronous resources load and annoying popups pop up.",Erik Rose,2018-01-30T21:19:48Z,erikrose,erikrose,17,13,4
+100,fathom-fox,2c4da5bae2aad97b0ef29334e6b0563702bfd811,"Rename to FathomFox.
+
+fathom-webextension, aside from not being at all catchy, collides with both Swathi's product-grokking demo and vng's universal wishlist demo.",Erik Rose,2018-01-30T20:47:51Z,erikrose,erikrose,18,9,9
+101,fathom-fox,4d85efd3c0ac671854265f4e8501d553d941971d,"Make the UI look decent. Update readme.
+
+* Abuse the popup stylesheet to get some basic Photon styling.
+* Grey out the Download button while we're working so the user can't start a second concurrent run, which he wouldn't want to do.
+* Make sure we always re-enable the Download button, even if something goes wrong, so the user can try again. (Right now, we miss some of the error cases.)
+
+Still needs a progress bar and a suitable icon.",Erik Rose,2018-01-26T22:40:47Z,erikrose,erikrose,39,28,11
+102,fathom-fox,0700a0acb95b4d0b4954f555a55006725422cf5e,"Get a basic, no-frills UI fully working.
+
+The toolbar button now opens a UI window rather than just kicking off the freeze-drying. There's a field you can paste your URLs into (no more editing the code) and a button you can click to start.
+
+Also...
+
+* Get a little more adventurous about not trapping every error. This makes the code much clearer but worsens the error experience. I hope to find a way to have both clarity and good error reporting in JS eventually.
+* Flow is simpler than the message ping-pong I was playing before.",Erik Rose,2018-01-26T21:21:09Z,erikrose,erikrose,135,52,83
+103,fathom-fox,5ce22ee8266800905eb5c6a06b9fa1017dc02584,"Start porting functionality into the Corpus window (from the background script).
+
+Now clicking Freeze makes a new window and sets its size. Clicking the toolbar button opens the Corpus window.",Erik Rose,2018-01-24T18:34:21Z,erikrose,erikrose,63,44,19
+104,fathom-fox,a450e7a1c08607a99b260ad09e7a27d9a186fc13,Add metadata to silence various warnings.,Erik Rose,2018-01-24T17:06:58Z,erikrose,erikrose,10,7,3
+105,fathom-fox,f3cc7fb14606b641e64fbf4273247fd854929bc1,"Standardize on single quotes
+
+...except in plain JSON things, which are likely to be edited and re-double-quote-ified by some tool in the future.",Erik Rose,2018-01-22T17:11:50Z,erikrose,erikrose,10,5,5
+106,fathom-fox,814a113a5628ad7ff23a21b2315d809375b1aca3,"Add measureWindowSize.js, which should have been in d4457699f6e80ccbd979f2e66f003f09994c95a7.",Erik Rose,2018-01-22T17:09:55Z,erikrose,erikrose,4,4,0
+107,fathom-fox,0ea133056f630389ba8f0f6b17e6e9e426d34286,"Give scripts more descriptive names.
+
+I'd prefer to also keep them in content/background script folders, but I can't figure out how to make webpack do that.",Erik Rose,2018-01-22T17:08:46Z,erikrose,erikrose,18,10,8
+108,fathom-fox,bff30976b6d8c2def52c23b2dd8f125f28414544,"Change underscorey folder names to camelCase
+
+...to better meld with the language conventions.",Erik Rose,2018-01-22T16:47:11Z,erikrose,erikrose,17,8,9
+109,fathom-fox,d4457699f6e80ccbd979f2e66f003f09994c95a7,"Dynamically compute the window size so the viewport size is always right, no matter the platform or visibility of toolbars.",Erik Rose,2018-01-22T16:41:19Z,erikrose,erikrose,23,19,4
+110,fathom-fox,235f4f8c1c5c0610da96a727164185073189ac48,"Document where we are so far.
+
+Kelly needs this as is for some ML projects.",Erik Rose,2018-01-19T17:17:37Z,erikrose,erikrose,11,11,0
+111,fathom-fox,f3053af8f5bf4885f6198f721945f527c3f33488,Document the types of messages flying around. Start  handling the error one.,Erik Rose,2018-01-19T02:36:37Z,erikrose,erikrose,53,30,23
+112,fathom-fox,c6d5c9531fcc919441bd196fe0cba19d89c6cd86,"Loop over pages serially so we let each be active for a bit before it's freeze-dried.
+
+We may need to add a bit of delay, depending on how scripts in the wild tend to behave.
+
+Take ""Dry"" out of one function name for consistency.",Erik Rose,2018-01-18T21:03:21Z,erikrose,erikrose,52,36,16
+113,fathom-fox,36103786df4076d2e820044b27fb963bac0b7e09,"Loop over multiple pages. Close tabs when we're done.
+
+Currently opens all tabs at once, so isn't scalable.",Erik Rose,2018-01-18T20:24:20Z,erikrose,erikrose,31,21,10
+114,fathom-fox,5528a7696b7677f8e2a263677eb8e6e5ed96af69,Update version history for 3.0.,Erik Rose,2019-03-26T18:16:49Z,erikrose,erikrose,15,15,0
+115,fathom-fox,7dc22bc4ddcfe216dd8929d4e9e5609225c1f0cc,Add a header to the Vectorizer's output file so the external trainer can spit out a pasteable blob of named coefficients.,Erik Rose,2019-03-26T16:19:34Z,erikrose,erikrose,17,16,1
+116,fathom-fox,2f5c4fee3454a8a5eaf604ec024c8794ecea39ff,"Add a configurable delay to vectorization.
+
+Otherwise, these Best Buy samples return empty vectors:
+
+best_buy-electronics-source.html
+best_buy-food-source.html
+best_buy-hardware-source.html
+best_buy-home-source.html
+best_buy-toys-source.html
+
+The tabs flash by without visibly rendering the page content. When I load them manually, I get a flash of unstyled content. Perhaps the CSS needs the delay to render and my rules, which do have some .when()s, are prematurely pruning the unstyled nodes.",Erik Rose,2019-02-21T17:07:24Z,erikrose,erikrose,15,13,2
+117,fathom-fox,b96d25c3fa0c294e2bc2b8aefdd47e0ca26bfa52,Limit the number of retries in case we have a persistent error and are running unattended.,Erik Rose,2019-02-15T16:10:18Z,erikrose,erikrose,17,13,4
+118,fathom-fox,206fb4cd90c4fe3bd53a4f95b8681ed69ea585b0,Armor onUpdated handler that sends init message to devtools panel against inapplicable update events.,Erik Rose,2019-02-15T15:37:51Z,erikrose,erikrose,2,1,1
+119,fathom-fox,460f1b58dc9f94e9e17c408adf458a495c49ce09,"Add a sleep/retry loop to vector capture.
+
+Even with all the other fixes, sometimes it claims ""No message handler"" or some such thing with regard to the 'vectorizeTab' message it sends to handleBackgroundScriptMessage. Though that should be a stable listener, present since the loading of the webext, it fails intermittently. Compounding my confounding, a retry fixes it.",Erik Rose,2019-02-14T22:29:42Z,erikrose,erikrose,17,12,5
+120,fathom-fox,f3f47c0c1699d8e6b08bea80daf31eb47f76ae7e,"We still get more onUpdated events than I expect, perhaps due to the implicit injection of the content script. Add a sentry. Fix #22 for real for real this time.",Erik Rose,2019-02-14T22:25:30Z,erikrose,erikrose,46,28,18
+121,fathom-fox,dcbdafd0aef697ebf48b9f088fd6a9ff92bb389e,"Fix the duplicates once and for all. Fix #22 for real this time.
+
+Turns out every page gets a bunch of onUpdated events, not just blank.html. That was firing off a second, spurious fathom:visitPage event, which was, understandably, doubling the save of the page. I suspect it was also leading to the ""listener disconnected"" (or words to that effect) errors, when the script slammed the tab before the second visit was done talking to it.",Erik Rose,2019-02-14T17:12:04Z,erikrose,erikrose,29,14,15
+122,fathom-fox,5e1c6e202779c124acf287cd3f572bb7e992c682,"Collect all the feature vectors, and save them to a single file at the end.",Erik Rose,2019-02-13T22:16:41Z,erikrose,erikrose,36,28,8
+123,fathom-fox,7c602e130be0de8b369c91087862b077f3183282,Add the syntax for a local web server in case you need it.,Erik Rose,2019-02-13T21:51:10Z,erikrose,erikrose,2,1,1
+124,fathom-fox,b003b3f8e3e807b15ea81fc523d7a1d5d9697a42,Quit hard-coding the ruleset name.,Erik Rose,2019-02-13T20:44:51Z,erikrose,erikrose,4,3,1
+125,fathom-fox,fbbc3ae336e65509ff0759947c0ada3c28482632,Factor out Ruleset menu drawing.,Erik Rose,2019-02-13T20:39:10Z,erikrose,erikrose,76,27,49
+126,fathom-fox,741db177e49bd1cbe7ea01038a6f3bc537786630,"Make Vectorizer use the visitation framework.
+
+Add a warning message if fathom-trainees isn't installed, like on the Trainer.
+
+Also add a Ruleset menu, which we aren't using yet.",Erik Rose,2019-02-13T19:46:02Z,erikrose,erikrose,250,82,168
+127,fathom-fox,0418398ebf459a6a14eb1023e760e2e849713fc8,Pull the meat of the processing out into the CorpusCollector subclass.,Erik Rose,2019-02-13T17:32:34Z,erikrose,erikrose,54,33,21
+128,fathom-fox,5e682f41fe05c595b4b3ad9c2512bc5d53ff4e97,Factor out the bulk of the Corpus Collector's page visitation machinery into a reusable framework so we can use it for the Vectorizer.,Erik Rose,2019-02-13T16:49:50Z,erikrose,erikrose,546,290,256
+129,fathom-fox,8e636094f245dac0cb317476e8098d002c77e7a3,"Master master into coeffs-as-map to get fixed Corpus Collector from 2.3.1.
+
+We're going to base the vectorizer on it.",Erik Rose,2019-02-12T22:05:05Z,erikrose,erikrose,67,44,23
+130,fathom-fox,51b54fab675b98ce4270bb12a7f5c9a7da8376ea,Bump version to 2.3.1.,Erik Rose,2019-02-12T18:50:30Z,erikrose,erikrose,10,8,2
+131,fathom-fox,c5157f8a2055c49828c266a74ed6657c89ac6725,"Fix Corpus Collector spewing extra bullet points, closing the wrong tabs, downloading duplicates, and generally misbehaving in recent Firefoxes. This might close #22.",Erik Rose,2019-02-12T03:30:07Z,erikrose,erikrose,56,36,20
+132,fathom-fox,c30be47418d9fe965a8d9bc963719eaf4ac6f35a,"Remove onUpdated listener when we're done.
+
+This seems to make the ""no url downloaded as ..."", which intermittently appears as a spurious last bullet after a run, go away.
+
+This, along with the other bugs fixed in this branch, are plausible explanations for #22.",Erik Rose,2019-02-12T02:52:49Z,erikrose,erikrose,5,5,0
+133,fathom-fox,0d4c4bd73170f2543ebdc1c218e2f9f582cacd67,"Fix Corpus Collector behavior in recent Firefoxes (like v65) of running past the end of the list of URLs and into `undefined`s.
+
+This led to non-obvious misbehaviors like closing the blank.html placeholder tab prematurely.
+
+The trouble is that we were waiting for a less specific flavor of update event on the blank.html page than we now need to. blank.html used to receive a single update event before but now receives one every time we close a tab holding a page to freeze: it gets an update event with {attention: false}.",Erik Rose,2019-02-12T02:07:05Z,erikrose,erikrose,37,23,14
+134,fathom-fox,2aaedf5f0368a9194364213c6a98a58dc7089084,"Quit assuming the current freezing tab is always at [0]...
+
+...just in case that doesn't prove true. Right now, I'm seeing 2 freezing tabs open at once, which shouldn't happen. This should at least ameleriorate one source of surprise when that happens. It does not, however, appear to fix anything at the moment.",Erik Rose,2019-02-11T20:26:48Z,erikrose,erikrose,12,6,6
+135,fathom-fox,90622105d4e411fb73c9d70495b9372ae725fccd,"Also ignore about:newtab, a problem I ran into on the Vectorizer.",Erik Rose,2019-02-11T20:24:41Z,erikrose,erikrose,1,1,0
+136,fathom-fox,2059b065a10b974d9c5ec9c3d9393ee35d35c167,Declare some globals I forgot.,Erik Rose,2019-02-11T20:24:17Z,erikrose,erikrose,1,1,0
+137,fathom-fox,f8bbefbbf2997f5c2e42fd3584034855afd297bc,Fix undeclared globals.,Erik Rose,2019-02-08T19:37:21Z,erikrose,erikrose,1,1,0
+138,fathom-fox,4d7ebd8bcfceaec27db3a3a3e08c6d62d24e4708,The errors this throws happen while using the Corpus Collector as well and appear harmless.,Erik Rose,2019-02-08T19:37:12Z,erikrose,erikrose,8,4,4
+139,fathom-fox,31a54c3ce355f28c91a06787b7017ae7262c0029,Add vectorizer.,Erik Rose,2019-02-08T16:01:18Z,erikrose,erikrose,244,240,4
+140,fathom-fox,6bdcfc4420450cfd84b20368418e71d9d0c0825d,Remove counters that are no longer useful.,Erik Rose,2019-01-18T22:20:23Z,erikrose,erikrose,5,0,5
+141,fathom-fox,97cc63f464b53b611785c76cc959ba9ba7c9e4d6,"Stop assuming that costs represent nothing but accuracy.
+
+* Stop returning stuff from the annealer, since we weren't using it anyway.
+* Show costs, mostly for debugging.",Erik Rose,2019-01-15T16:44:06Z,erikrose,erikrose,50,29,21
+142,fathom-fox,c48358be9c23411f94ccee690d40d55332c1056e,Add UI output for Map-based coeffs.,Erik Rose,2018-12-13T22:08:05Z,erikrose,erikrose,6,5,1
+143,fathom-fox,2f8c1644d11fa460cc333cc5c4ee8e239d0005d1,"Remove seenSolutions cache to see if it was causing the problem.
+
+Actually, it was the console.log statements. The more the console filled up, the slower the whole browser went. It was down to half speed by halfway through the training run.",Erik Rose,2018-12-13T21:28:15Z,erikrose,erikrose,19,9,10
+144,fathom-fox,135e15b2f7bf5f98d05041219e9af4211e1f121d,"This works, taking the coeffs as a map instead of a vector.",Erik Rose,2018-11-29T15:47:09Z,erikrose,erikrose,42,31,11
+145,fathom-fox,d91fd960a2eb94f34583a0ac49872eb410bc30c5,"Add ""click to inspect"" instruction to the UI.",Erik Rose,2018-11-26T16:38:12Z,erikrose,erikrose,2,1,1
+146,fathom-fox,b8f04fb7e05a1c5e24699ab1941966d6ddb11540,"Bump version to 2.3, and bring readme up to date.",Erik Rose,2018-11-15T17:29:20Z,erikrose,erikrose,25,23,2
+147,fathom-fox,c45324f4f18b02e18f97dc70e3dcc3fa89c834f4,"Add a Pause button.
+
+This lets you lay off the CPU while you're on battery power. More immediately for my needs, it lets me free up some CPU so I can actually click the Bad cells and see what went wrong.",Erik Rose,2018-11-15T02:47:29Z,erikrose,erikrose,109,88,21
+148,fathom-fox,606ea37a6cad1cb6100f87bb9ec634e3f5513896,Factor out repeated sleep() function.,Erik Rose,2018-11-15T02:46:11Z,erikrose,erikrose,12,4,8
+149,fathom-fox,10a7c8238cfe3f9ed0a212613ff4214cb7b6cfba,"Add Photon style to buttons.
+
+I couldn't bear to Photonize the menu, since then it gains a pointless scrollbar and looks aggressively un-Mac-like. I'd have left the buttons alone too, but only the border gets grayed out when disabled, which is too subtle to notice.",Erik Rose,2018-11-15T02:38:46Z,erikrose,erikrose,69,55,14
+150,fathom-fox,5bd1905b873aa9c2ccc5ba4eab2c080dac96181b,"Set up the buttons like a 2-way toggle, so one is ""go"" and the other ""stop"".",Erik Rose,2018-11-15T02:12:42Z,erikrose,erikrose,12,11,1
+151,fathom-fox,bb778162960d2e5d9dee9cd9232ba8b2782aeca6,Add a quick and dirty pause button.,Erik Rose,2018-11-15T02:05:39Z,erikrose,erikrose,28,24,4
+152,fathom-fox,5438a2dabfac40d73455043334db4054bf4c3f5c,"Make good/bad cells clickable and show the wrongly recognized element, if any, in the devtools panel.",Erik Rose,2018-11-13T03:30:36Z,erikrose,erikrose,66,50,16
+153,fathom-fox,81ca2995897c2e561a8edade89a606b2103e49d4,Add instructions to the good/bad table.,Erik Rose,2018-11-13T03:27:46Z,erikrose,erikrose,4,4,0
+154,fathom-fox,f1330034f41015e1d02860af27c15e7b9228817c,"When clicking a good/bad cell, make sure the devtools panel is updated if it's already open.
+
+Also, run labelBadElement no matter what, so clicking a green cell shows no labeled BAD element. After all, nothing is bad at that point.",Erik Rose,2018-11-13T03:27:27Z,erikrose,erikrose,17,9,8
+155,fathom-fox,d9f196e6d8e0c0b9a0d599cd13227d3a7ef221a8,"Remove devtools button we aren't going to use for now.
+
+Leave some of the doc/param changes in that make things clearer.",Erik Rose,2018-11-09T22:31:25Z,erikrose,erikrose,14,0,14
+156,fathom-fox,7cbcd647ba111b9049dfec9939dd5d910cda87a3,Make goods and bads look clickable.,Erik Rose,2018-11-09T21:06:54Z,erikrose,erikrose,16,13,3
+157,fathom-fox,7e9ba11807de960efbe0850d221b0ab9eefa54fb,First whack at clickable bad cells that show the wrongly chosen element,Erik Rose,2018-11-09T20:52:58Z,erikrose,erikrose,9,9,0
+158,fathom-fox,3296a77520c39273fec3c5fe341e951acfaff7fa,Clicking a good/bad square now takes you to that tab.,Erik Rose,2018-11-09T19:05:41Z,erikrose,erikrose,8,4,4
+159,fathom-fox,aadf610b835bf1a9c14232a3da648b3722f6e0ff,"Add a button to the devtools panel that asks the background script for a selector, then converts that to an element and inspects it.",Erik Rose,2018-11-09T18:45:56Z,erikrose,erikrose,22,17,5
+160,fathom-fox,fe492228d4bc27421ea85bdb814ef7ee9455326e,Fix readme typo.,Erik Rose,2018-11-09T16:49:05Z,erikrose,erikrose,4,2,2
+161,fathom-fox,ba44ae20b9806b5366a70052e406a5971ef4f337,Bump version to 2.2.,Erik Rose,2018-11-09T16:48:49Z,erikrose,erikrose,4,2,2
+162,fathom-fox,f021417893d366031e06f35fd3aa60343b1e12a3,Run; don't crash.,Erik Rose,2018-11-02T01:33:13Z,erikrose,erikrose,9,6,3
+163,fathom-fox,9641041de2b115bfddcfade76bcfc07c7db8768a,First steps at clicking a good-bad square to highlight the spuriously selected element.,Erik Rose,2018-10-25T21:31:47Z,erikrose,erikrose,17,13,4
+164,fathom-fox,ca6775024f7bcfa32893a625301969740009a0cd,"Allow text wrap for selectors, and redo dev panel table CSS.
+
+The long selectors were pushing the table outside the window, and I still wanted to see the whole selector.
+
+Remove #has-selection rule, which ID doesn't occur anywhere.
+
+Add more vertical padding, which is now necessary to separate 2 wrapped selectors or tag previews.
+
+Try to keep column widths relatively stable as rows are added and deleted, even if their contents are very long or very short.",Erik Rose,2018-10-19T20:01:01Z,erikrose,erikrose,24,15,9
+165,fathom-fox,fc27ad1e235afe38e1d112aceb8e2b5de55147b7,Focus the new label field after inspecting an element.,Erik Rose,2018-10-18T18:30:50Z,erikrose,erikrose,14,11,3
+166,fathom-fox,7f1ad7cd02ad5ea84fa97565f87b063251bad070,"Truncate tags in devtools panel if they're longer than 200 chars.
+
+Labeling some already frozen pages, I found that the huge data URLs would fail to wrap and thus make the panel unusably wide.",Erik Rose,2018-10-17T18:35:54Z,erikrose,erikrose,13,12,1
+167,fathom-fox,9a8d2207107f7cc25835f88db4bcd02f589412df,Bring version history up to date.,Erik Rose,2018-10-17T14:25:55Z,erikrose,erikrose,6,6,0
+168,fathom-fox,64af7aeacaa8b1ac184123471149e2605b1bd10d,Make viewport size customizable during capture.,Erik Rose,2018-10-17T14:24:34Z,erikrose,erikrose,12,11,1
+169,fathom-fox,83fffeaa7ca8858da0dffdc0eeeb119848a09f7e,"It turns out a longer freeze delay avoids some dead-object errors.
+
+All 5 Amazon sample pages I was collecting failed with dead-object errors when I used a delay of 0. All 5 worked with a delay of 1. So we change the default to 1 and add a ""try this"" addendum to the error message.",Erik Rose,2018-10-17T14:24:25Z,erikrose,erikrose,4,2,2
+170,fathom-fox,3bb3878a63988953a0b78b36711a9ad52a053cc7,"Standardize capitalization, and add colons after labels.",Erik Rose,2018-10-17T14:21:39Z,erikrose,erikrose,12,6,6
+171,fathom-fox,cf4e61795bb759167e1d5c1579c8a1df52d6f0cd,"Add integrity SHAs to yarn.lock.
+
+Though it's unfortunate anyone is using SHA1 anymore.",Erik Rose,2018-10-10T17:41:17Z,erikrose,erikrose,668,668,0
+172,fathom-fox,11c01cc576bcdad814fe8752689bb38fa3231ed2,Bump version to 2.1.,Erik Rose,2018-10-10T17:40:44Z,erikrose,erikrose,4,2,2
+173,fathom-fox,a7ffcdafbd8a7aa20aee42306750cf967e4220b1,Add computation of a 95% confidence interval for accuracy. Close #19.,Erik Rose,2018-10-10T17:40:36Z,erikrose,erikrose,39,36,3
+174,fathom-fox,7fd55075e5cdd0c5e5335fa623780fe7a92d5569,Update tips to take into account the configurable capture window size.,Erik Rose,2018-10-08T17:14:01Z,erikrose,erikrose,6,3,3
+175,fathom-fox,25e6dce4cfefe2da668c28328d8b7a73e1f998b1,"Bump version to 2.0, and update version history.",Erik Rose,2018-10-08T17:12:58Z,erikrose,erikrose,11,9,2
+176,fathom-fox,220dbc5cbf9a8f917c01c5f39d820a23da4c739d,"Support customizable viewport sizes. Quit using `traineeCoeffs` function in favor of `trainee`.
+
+This will require fathom-trainees d93bc593a08f6503d137df4d35ce2a2bc6b93b6e or later.",Erik Rose,2018-10-05T19:02:34Z,erikrose,erikrose,15,8,7
+177,fathom-fox,2bf30e96c4e5a988b8db18af6a24ab81e5f7012d,Bump version to 1.3.,Erik Rose,2018-09-25T20:30:45Z,erikrose,erikrose,14,12,2
+178,fathom-fox,d1971f13baf8ac63f902090c71c7b4df38535ec8,"Solve some causes of Corpus Collector freezing. Update to freeze-dry 0.2.0. Close #17. Fix #8.
+
+With freeze-dry 0.2.0 we gain idempotent freezing (with a few trivial exceptions).
+
+Also improve progress reporting during freezing, and use the hostname as a filename in the absence of a user-provided one.",Erik Rose,2018-09-11T22:02:27Z,erikrose,erikrose,435,315,120
+179,fathom-fox,4e1c335196c4eb60aa6def4629d0ff40d171f89d,revert revokeObjectURL logic,Byron Jones,2018-09-11T16:01:03Z,globau,globau,12,3,9
+180,fathom-fox,cb8eeda6cfc25379c82c9af30e8da65a8d0897db,oops: don't remove download onChanged listener until download has completed,Byron Jones,2018-09-11T07:04:22Z,globau,globau,2,1,1
+181,fathom-fox,24463ab668b4f389032c1bd21c584ebefd6cee7d,"fix async issues, improve download naming
+
+- ensure errors triggered after a successful download don't overwrite
+  the 'downloaded' message in the ui
+- when revoking the download url listen for the download completion
+  event instead of always waiting 10 seconds
+- show the final filename in the 'downloaded' message
+- change the default filename from 'Untitled' to the url's hostname
+  (my download folder had hundreds of 'Untitled(NNN).html' files)",Byron Jones,2018-09-11T06:58:15Z,globau,globau,60,44,16
+182,fathom-fox,15a2c5c94c414ff13041eec727c71d3b68bfcb47,address review points,Byron Jones,2018-09-10T16:45:22Z,globau,globau,103,55,48
+183,fathom-fox,0bf7c1dd8f9607e9bc88e26b1657c56abd0176cc,Merge use of standard UI elements for toolbar menu. Close #16.,Erik Rose,2018-09-06T17:43:22Z,erikrose,erikrose,36,7,29
+184,fathom-fox,d1933db0738054c9837052aa8328041c1fc2d58d,Rework corpus collection,Byron Jones,2018-08-28T06:41:46Z,globau,globau,350,253,97
+185,fathom-fox,6dae22314e5eafb7da5e36a7c6db002a76a6b191,update freeze-dry version to 0.2.0,Byron Jones,2018-08-28T06:41:33Z,globau,globau,54,32,22
+186,fathom-fox,68b303f2134cbf5988ce450fcff45cab10076db4,Update actionMenu.html,byron jones,2018-09-03T04:14:16Z,globau,globau,2,1,1
+187,fathom-fox,2ea0912d32657c8fcaec3c5ba892172f321af0d0,Use browser menu style in popup menu.,Byron Jones,2018-09-03T04:09:32Z,globau,globau,36,7,29
+188,fathom-fox,6bb09bfa1fbc0e8bdf89bec7edb7a9c391e3170a,Bump version to 1.2.2.,Erik Rose,2018-08-31T18:59:57Z,erikrose,erikrose,9,7,2
+189,fathom-fox,3046e4f9e9a17c413220df9544cd2cb644827252,"Fix bug where some inspected elements would yield merely ""false"" in the Fathom dev panel.",Erik Rose,2018-08-31T18:54:13Z,erikrose,erikrose,27,23,4
+190,fathom-fox,bdfb823dbb7bcb5776128dd0f4c4e7d86c825ea3,Do the configuration inline with the simmering.,Erik Rose,2018-08-31T14:57:15Z,erikrose,erikrose,9,2,7
+191,fathom-fox,48c2c2c96bcc68b4f6d7064e8b077c246f923c11,"Increase the max CSS selector depth (fixes #13)
+
+- increase Simmer's max CSS selector depth from 3 to 25
+- if Simmer fails, show an error message instead of `false`",Byron Jones,2018-08-31T05:08:58Z,globau,globau,28,26,2
+192,fathom-fox,7bcc6147978018b5576e44a297055efda611f88a,Bump version to 1.2.1.,Erik Rose,2018-08-31T00:16:42Z,erikrose,erikrose,9,7,2
+193,fathom-fox,508a6bf9c09602485c40ed23048fb42384858ede,Bump version to 1.2.,Erik Rose,2018-08-30T16:19:02Z,erikrose,erikrose,4,2,2
+194,fathom-fox,f3230f9504cfd709688d50b1e82f0f37453a2f4f,"Reorder Quick Start steps so FathomFox gets installed into the browser `yarn browser` has opened.
+
+Also, reserve `monospaced` for CLI text.",Erik Rose,2018-08-30T14:39:05Z,erikrose,erikrose,46,24,22
+195,fathom-fox,a77dad1a2c3e69f569825cd330b506a25859194f,Wrap some unwrapped lines in readme.,Erik Rose,2018-08-30T14:24:18Z,erikrose,erikrose,25,14,11
+196,fathom-fox,e89abfd63e97cc648b174b2067a2ac90b6ed73b0,"Bring version history up to date, and tweak readme wording.",Erik Rose,2018-08-30T14:23:59Z,erikrose,erikrose,44,25,19
+197,fathom-fox,9f053c3ef932352d89e453939e5e2c7d3dae8667,Merge labeling UI rework. Fix #4. Close #11.,Erik Rose,2018-08-30T14:01:49Z,erikrose,erikrose,731,579,152
+198,fathom-fox,1e337450bee598003728a99d8d31d7d7875286be,address review points,Byron Jones,2018-08-30T07:07:21Z,globau,globau,39,32,7
+199,fathom-fox,27733e672108162e7140617532d3450ac2e3f80e,"rework fathom devtools panel (fixes #4)
+
+- change ui for labeling inspected element
+- add list of already labeled elements, with ability to edit/clear
+  inline
+- switch from oid style selectors to css path (via the simmer library)
+- add spinner to freeze action",Byron Jones,2018-08-21T15:41:14Z,globau,globau,718,560,158
+200,fathom-fox,010e75779e04c51b9fc04dec2cf5520f361b92c8,Merge remote-tracking branch 'upstream/master',Byron Jones,2018-08-21T15:26:24Z,globau,globau,205,146,59
+201,fathom-fox,f22cd420bb69026d72e3b88e68ba49284333125e,"optimise updateProgress (fixes #2)
+
+Make updateProgress faster by minimising the times elements are added
+and removed from the DOM, and cache the element objects instead of
+looking them up for each call.",byron jones,2018-08-16T15:58:34Z,globau,globau,118,72,46
+202,fathom-fox,24c8d507aee8f62623feb6d7358a3080cb3ae4cf,"Add a ""Quick Start"" guide to the README (#5)
+
+* Add a ""Quick Start"" guide to the README
+
+The quick start aims to highlight the key points of fathom-fox, which
+can be lost in the more informative text in the rest of the document.",byron jones,2018-08-13T15:25:53Z,globau,globau,87,74,13
+203,fathom-fox,263c10cd8b8e880a112c9796edca809e9ff5b929,Merge remote-tracking branch 'upstream/master',Byron Jones,2018-08-13T06:19:03Z,globau,globau,36,24,12
+204,fathom-fox,3fb7a609ef939d64316c82d47fa8e2985c404d9d,Merge readme fix. Close #3.,Erik Rose,2018-08-09T12:59:45Z,erikrose,erikrose,2,1,1
+205,fathom-fox,cbac3a91de58bc2fa0376674639841e67f9e47dc,Use curly apostrophes in Trainer explanatory text.,Erik Rose,2018-08-09T12:56:34Z,erikrose,erikrose,4,2,2
+206,fathom-fox,d19ef806edd96ed7ce6b796983f17bd4a48dfe39,Note that Dev Edition works just as well.,Erik Rose,2018-08-09T12:55:19Z,erikrose,erikrose,4,2,2
+207,fathom-fox,4550449243f550f72522c704152563c257e8f5ee,"Merge readme fix. Close #3.
+
+Update README instructions to start in the browser.",Erik Rose,2018-08-09T01:32:41Z,erikrose,erikrose,2,1,1
+208,fathom-fox,a407af67602d2d19395e63571f35059d13888349,"Update README instructions to start in the browser.
+
+Updated `yarn run build` to be `yarn run browser`.",Nick Chapman,2018-08-07T23:13:17Z,nchapman,nchapman,2,1,1
+209,fathom-fox,21d43873839336bd81c24d69763056abe17cad43,"Bump version to 1.1.1, and update version history.",Erik Rose,2018-07-31T15:39:46Z,erikrose,erikrose,8,6,2
+210,fathom-fox,9ec3e7cba9c25f908656f9a394272800b2f36c14,Avoid another uncaught exception when nothing is inspected.,Erik Rose,2018-07-24T16:26:45Z,erikrose,erikrose,5,4,1
+211,fathom-fox,0c5c10e70ffaffd60dcce0683ae8e3b64758615d,"Fix bug where Save button on Fathom dev panel wouldn't do anything when no element was inspected.
+
+`await inspectedElementPath()` was crashing in the param to my `backgroundPort.postMessage()` call. Now it just returns undefined when nothing is inspected.",Erik Rose,2018-07-24T16:26:20Z,erikrose,erikrose,6,5,1
+212,fathom-fox,bed84d736545bb15133c2928d66fb76e4ddc30d9,"Spell my methods like the webext APIs spell them, for consistency.",Erik Rose,2018-07-24T16:24:24Z,erikrose,erikrose,8,4,4
+213,fathom-fox,077e35a10cf91674096c1e9ce45620b887b5b2a0,"Ignore package-lock.json.
+
+We don't support npm anymore; it doesn't install the dependencies of Fathom when it's installed as a git submodule.",Erik Rose,2018-07-24T16:23:56Z,erikrose,erikrose,1,1,0
+214,fathom-fox,22e25f2c9742b47b677147e5b69e337848b029a6,Point to the main Fathom repository.,Erik Rose,2020-03-25T18:25:37Z,erikrose,erikrose,4,4,0
+215,fathom-fox,cddabf71e478eacc730977308edc135babaa3413,Fix some ReST markup that somehow made it into an HTML file.,Erik Rose,2020-03-23T18:02:30Z,erikrose,erikrose,2,1,1
+216,fathom-fox,d2c3b97c85a03ece2474effd5d8b66a357765487,Bump to Fathom 3.3 to get `element()`.,Erik Rose,2020-03-20T15:17:27Z,erikrose,erikrose,10,5,5
+217,fathom-fox,e487a5627b6b6ef3ee53d3e4c3bdc3be0723c8c0,Rewrap some comments.,Erik Rose,2020-03-20T15:16:17Z,erikrose,erikrose,7,4,3
+218,fathom-fox,e852f7cbf424d338b2eb185702658f12dcc013dd,"Crank retry count to 100, which we seem to need when vectorizing the latest fathom-login-forms corpus.
+
+We'll try to find a more elegant way of fixing this when we get a chance.",Erik Rose,2020-03-20T15:16:08Z,erikrose,erikrose,4,2,2
+219,fathom-fox,7a1f6f937f54638fe896ed4dcc898e9ce264005a,Tersen the vector sorting.,Erik Rose,2020-03-19T14:31:20Z,erikrose,erikrose,8,1,7
+220,fathom-fox,8f913e4f19f245e9642b3138ac3c7f83472c5066,Pull in Fathom 3.2.1.,Erik Rose,2020-03-19T14:30:53Z,erikrose,erikrose,20,7,13
+221,fathom-fox,487781c9f3e6bbce76dd70b34ec64216702542f7,"Sort vector files by filename so we can compare them for troubleshooting.
+
+The parallelization otherwise makes them nondeterministic.",Erik Rose,2020-03-13T18:52:44Z,erikrose,erikrose,19,19,0
+222,fathom-fox,0954aa9b68ae8a6c1337856f6a3996911b75b158,"Emit a bit of the candidate tags' markup when vectorizing. Close #75.
+
+This helps with chasing down failures.",Erik Rose,2020-03-12T19:23:26Z,erikrose,erikrose,21,20,1
+223,fathom-fox,b56e26fdf73629b0cb73dc17d85250d5521b1ae1,Increases the sleep between errors from 1s to 2s,Daniel Hertenstetin,2020-03-09T15:40:36Z,danielhertenstein,danielhertenstein,4,2,2
+224,fathom-fox,307e513dba96cb078c819e577fe9f2798cc8f708,Record how long it takes the ruleset to run on each page.,Erik Rose,2020-03-05T15:41:15Z,erikrose,erikrose,5,4,1
+225,fathom-fox,6cb440aa16ed52f26297018b995f57c7aea08867,"Change the nice UUID to the GUID AMO made up.
+
+AMO won't let us change the UUID, but, at least this way, there's still a stable thing for fathom-vectorize to grab onto.",Erik Rose,2020-02-25T15:04:48Z,erikrose,erikrose,2,1,1
+226,fathom-fox,1776ddfa2c0db74e338eb1a04ce0782cd3a0d165,Fix a readme typo.,Erik Rose,2020-02-25T14:59:41Z,erikrose,erikrose,2,1,1
+227,fathom-fox,0224c29b4e3aad53da7492907bf512f5474a81af,Bump version to 3.3.,Erik Rose,2020-02-25T02:23:20Z,erikrose,erikrose,4,2,2
+228,fathom-fox,6fafbb7f40a670f7d8106801883afd06836bbf86,Bring version history up to date.,Erik Rose,2020-02-25T02:19:53Z,erikrose,erikrose,13,12,1
+229,fathom-fox,8ebd684021196dc672d5d947d165fb086d502cd4,Reduces the number of retries from 100 to 10.,Daniel Hertenstetin,2020-02-24T20:05:45Z,danielhertenstein,danielhertenstein,2,1,1
+230,fathom-fox,36ef6ca21c465978b3425deeffe2fbf2ac7cd1d9,Add a hook to customize what the Vectorizer considers a target.,Erik Rose,2020-02-21T17:11:27Z,erikrose,erikrose,14,13,1
+231,fathom-fox,9274f738a1bc7d33eb99cded54a5717624c060ea,"It returns fancy objects, not just bools anymore.",Erik Rose,2020-02-21T17:10:53Z,erikrose,erikrose,2,1,1
+232,fathom-fox,bbc742ad1ed5b1835cb4d62a048dd1bb16dd16d5,"Move ruleset.js comments above the things they document, for consistency with the functions in rulesetMaker.",Erik Rose,2020-02-21T17:10:39Z,erikrose,erikrose,6,3,3
+233,fathom-fox,436b61161d0e494c6ba3ebc59951d9a82b708bbc,"Automatically add a slash to the end of the base URL if there isn't one.
+
+This bit me.",Erik Rose,2020-02-19T21:34:24Z,erikrose,erikrose,5,4,1
+234,fathom-fox,02fad3776b5485301f9a219df1de65553bbd54f8,"Merge fathom-trainees into FathomFox. Close #68. Fix https://github.com/mozilla/fathom-trainees/issues/8.
+
+This makes fewer repos to clone, fewer addons to install, and fewer build processes to babysit for ruleset authors. It means a simpler FathomFox with less message passing. And it will make one fewer issue tracker and repo to stitch together.",Erik Rose,2020-01-03T20:33:14Z,erikrose,erikrose,2204,1261,943
+235,fathom-fox,79c4013aff4b22bf560f0e7c31a75f8e2d39c4f9,"In the readme, actually link to the referenced section.",Erik Rose,2020-01-03T20:26:32Z,erikrose,erikrose,2,1,1
+236,fathom-fox,5ea31cca24d13b57468b22a7e37ff2ed249d15f2,"Put the Development section back, just in case anybody searches for it.",Erik Rose,2020-01-02T15:55:22Z,erikrose,erikrose,4,4,0
+237,fathom-fox,0ba6134b91b3280008de52125a4dbf65143f1da7,"Rename trainees.js to rulesets.js.
+
+We think ruleset authors will find this clearer. For now, I didn't rename the vars (`trainees`, `traineeId`, etc.) because having a var called `rulesets` point to a thing other than a collection of rulesets would be confusing. And we already have plenty of variables called `ruleset` more deservedly which would collide. However, I did spruce up the top comment in rulesets.js, which should help orient newcomers.",Erik Rose,2020-01-02T15:48:49Z,erikrose,erikrose,34,18,16
+238,fathom-fox,381226c056dcd542bdf4d081b207ae3a839e5586,Combine the 2 onMessage handlers.,Erik Rose,2020-01-02T15:22:14Z,erikrose,erikrose,22,8,14
+239,fathom-fox,cda2642b5d935bc52b84e180cab08796df693961,"Update readme.
+
+* Remove all mention of fathom-trainees.
+* Remove the Development section, which is now just the same as the Getting Started instructions, since we're pushing most people toward a source checkout. You don't even need to use Dev Edition or Nightly anymore; `web-ext run` seems to work even with Release.",Erik Rose,2019-12-18T00:21:45Z,erikrose,erikrose,51,26,25
+240,fathom-fox,f059109e085732abee0bbcfc783ea3072313ad89,"Ensure that `yarn run watch` works with hard links.
+
+Copied from https://github.com/mozilla/fathom-trainees/commit/d3bb9dd34bca014f9673c13dd047e7d1194aa95d.",Erik Rose,2019-12-18T00:03:23Z,erikrose,erikrose,5,4,1
+241,fathom-fox,cee99d8c3fe7eec926881f612e04fa630c54ab8f,Remove the duplicates of things we've since lifted into Fathom proper.,Erik Rose,2019-12-17T21:18:16Z,erikrose,erikrose,90,5,85
+242,fathom-fox,cfdb26f1b1d5a39ae7cd27d688e8cafa13f208ad,Spruce up trainee comments.,Erik Rose,2019-12-17T21:17:56Z,erikrose,erikrose,41,17,24
+243,fathom-fox,c8978001b11b7ba4b5fb55546ae8a96ac7ff6bea,"Merge master into bye-bye-trainees to get the parallel vectorizer, which I assume is going to throw things off.
+
+But it doesn't; everything works!",Erik Rose,2019-12-17T17:51:32Z,erikrose,erikrose,3413,1173,2240
+244,fathom-fox,528ca0da8e9b4e3e9c7417bd156fe4a774c75a57,"Cut out the background-script middleman for BAD labeling.
+
+Cut out the rest of them, long since unused, as well.",Erik Rose,2019-12-17T17:31:53Z,erikrose,erikrose,24,5,19
+245,fathom-fox,eb29bfb3c59e05af6982a76174ea9974e642c085,Cut out the background-script middle man in vectorization.,Erik Rose,2019-12-17T17:12:27Z,erikrose,erikrose,9,1,8
+246,fathom-fox,395484e38940a2fd62110bc54a7ed36674239b7c,Vectorizing works now.,Erik Rose,2019-12-17T16:51:50Z,erikrose,erikrose,17,9,8
+247,fathom-fox,bda8f3b479d69cd1997ce70f8538b87b87f723e2,Get BAD labeling working.,Erik Rose,2019-12-17T15:31:50Z,erikrose,erikrose,4,2,2
+248,fathom-fox,144a5133fa2d25c1970c7b642a0653fea2adb4b4,Evaluator now works.,Erik Rose,2019-12-17T14:50:27Z,erikrose,erikrose,64,51,13
+249,fathom-fox,639d98a00b0d4981188804d331b4b399ca2cad22,"Take a rough first whack at moving fathom-trainees into FathomFox.
+
+It ""should"" work but doesn't yet.
+
+* Copy trainees.js over from fathom-trainees.
+* Add it as a content script so content scripts can get at its `trainees` symbol directly. Replace several message passings with direct access.
+* FathomFox now depends on Fathom directly so trainees can be compiled.
+* Copy much of the fathom/trainees.js module into FathomFox's content script. We'll be able to delete this code from Fathom.",Erik Rose,2019-11-11T17:06:17Z,erikrose,erikrose,1056,840,216
+250,fathom-fox,c4fb3e2ddf4599ed64a7f14204eab88a8a1b27b7,Merge miscellaneous changes needed for fathom-vectorize. Closes #63.,Daniel Hertenstein,2019-11-13T18:43:41Z,danielhertenstein,danielhertenstein,7,6,1
+251,fathom-fox,7773a45e8ec8ff6571f6d129f1febb8d606a617e,Gives the addon an id so we can get its UUID from through selenium,Daniel Hertenstetin,2019-11-08T16:03:17Z,danielhertenstein,danielhertenstein,5,5,0
+252,fathom-fox,c2985c6722b7166edc699baab834b2f0aff6b20e,Changes the default base path for the vectorizer,Daniel Hertenstetin,2019-11-08T16:02:52Z,danielhertenstein,danielhertenstein,2,1,1
+253,fathom-fox,b5b00a5bf578bce0261e8534dfdf59554fdfee9e,Merge parallelization of vectorizer. Closes #55.,Daniel Hertenstein,2019-11-08T15:54:54Z,danielhertenstein,danielhertenstein,206,131,75
+254,fathom-fox,808263e004f05be1591f88217563663554f8df58,Removes completed TODO,Daniel Hertenstetin,2019-11-08T15:44:41Z,danielhertenstein,danielhertenstein,1,0,1
+255,fathom-fox,4c69745e548db90f497f293b9b4a73641682b2b7,Fixes error logging error,Daniel Hertenstetin,2019-11-08T15:44:25Z,danielhertenstein,danielhertenstein,2,1,1
+256,fathom-fox,319925442b3ff724f598de3407d5f9ddc7c07652,Move a status message from visit.js to corpus.js and vector.js and tailor it to the file,Daniel Hertenstetin,2019-11-08T15:44:03Z,danielhertenstein,danielhertenstein,3,2,1
+257,fathom-fox,d994be0bab69acdc4fef5908879c2b10e7d251b3,"Bump eslint-utils from 1.4.0 to 1.4.3
+
+Bumps [eslint-utils](https://github.com/mysticatea/eslint-utils) from 1.4.0 to 1.4.3.
+- [Release notes](https://github.com/mysticatea/eslint-utils/releases)
+- [Commits](https://github.com/mysticatea/eslint-utils/compare/v1.4.0...v1.4.3)
+
+Signed-off-by: dependabot[bot] <support@github.com>",dependabot[bot],2019-11-01T12:42:15Z,dependabot[bot],dependabot[bot],2075,594,1481
+258,fathom-fox,f44c39cd38d8b461ec4c5cc8674793431a7777cf,Fixes non-determinism by making the tab active and waiting before vectorizing,Daniel Hertenstetin,2019-10-31T17:20:13Z,danielhertenstein,danielhertenstein,16,10,6
+259,fathom-fox,a52b3d5aa85317fd0a42041e2db1a595b7b151a5,Factor out error and stop pattern,Daniel Hertenstetin,2019-10-24T19:34:58Z,danielhertenstein,danielhertenstein,50,18,32
+260,fathom-fox,9989779b1ac1d83c373ee21fe585e506a92867ea,"Increase the number of maxTries as parallelization causes more occurrences of ""receiving end does not exist"".
+
+This doesn't feel good. I will be investigating the cause of the error to see if we can make this unnecessary.",Daniel Hertenstetin,2019-10-22T21:33:13Z,danielhertenstein,danielhertenstein,2,1,1
+261,fathom-fox,65d978f16c159a91cdc8e9bc9db0be565cb7900c,Remove console.log()s that shouldn't be there,Daniel Hertenstetin,2019-10-22T21:31:47Z,danielhertenstein,danielhertenstein,4,1,3
+262,fathom-fox,1e543947e343ddcc9398e45c32691a209e424a2f,Stops vectorizer on maxTries error,Daniel Hertenstetin,2019-10-21T17:37:48Z,danielhertenstein,danielhertenstein,5,5,0
+263,fathom-fox,02cbb8a3abf074a30d496712799bee8e1238bc47,Fixes error I introduced by renaming,Daniel Hertenstetin,2019-09-27T20:53:57Z,danielhertenstein,danielhertenstein,8,4,4
+264,fathom-fox,57dc5f0877f5f04fdb1a911bef63d7444a487df7,Add explanatory comment and note about error handling,Daniel Hertenstetin,2019-09-27T20:47:39Z,danielhertenstein,danielhertenstein,7,6,1
+265,fathom-fox,8482dca515aa24082d3c5202c61db96bffaf3944,Solves status indexing problem for URL collisions,Daniel Hertenstetin,2019-09-27T20:43:40Z,danielhertenstein,danielhertenstein,43,22,21
+266,fathom-fox,a7ac704da99d9f00e0d88d6e546934c836483c99,Makes new tabs not active,Daniel Hertenstetin,2019-09-25T17:28:46Z,danielhertenstein,danielhertenstein,1,1,0
+267,fathom-fox,55ce635d291b8c097b5c0f1c32cb2cff9a4c2110,Fixes not completely reverted indexing change,Daniel Hertenstetin,2019-09-25T17:19:43Z,danielhertenstein,danielhertenstein,2,1,1
+268,fathom-fox,eff8aef2c0d4a1f62b603b7ebca3230bb4332e9b,Fixes corpus collector status indexing problem,Daniel Hertenstetin,2019-09-25T17:13:05Z,danielhertenstein,danielhertenstein,15,10,5
+269,fathom-fox,af86e6dba0b3920cdebd57bf71c5a3f7cb51df15,Allows vectorizer to be run multiple times again,Daniel Hertenstetin,2019-09-25T15:40:09Z,danielhertenstein,danielhertenstein,15,8,7
+270,fathom-fox,a76555796b946861d2563b87d5d7ec41ae21c97c,Fixes missing function argument,Daniel Hertenstetin,2019-09-25T15:39:47Z,danielhertenstein,danielhertenstein,7,6,1
+271,fathom-fox,223157fe30f9691e378af73bb98cd4b54107a36b,Stops vectorizer when there are null vectors,Daniel Hertenstetin,2019-09-25T14:43:06Z,danielhertenstein,danielhertenstein,5,5,0
+272,fathom-fox,9867cad6e46c5026a4b3bf6376bc3906fd5f6262,Fixes indexing problem for status display,Daniel Hertenstetin,2019-09-25T14:34:02Z,danielhertenstein,danielhertenstein,27,20,7
+273,fathom-fox,1b49e4f15f8f2562769cfdc92d1cb71cac3781cb,Second version that has a max number of tabs in flight,Daniel Hertenstetin,2019-09-25T14:20:57Z,danielhertenstein,danielhertenstein,117,70,47
+274,fathom-fox,d5edd65ca39f45debfb41ce2759b3798f4cd0d66,First version that works if you have infinite RAM,Daniel Hertenstetin,2019-09-24T14:00:08Z,danielhertenstein,danielhertenstein,140,72,68
+275,fathom-fox,b51b6442e499e9fc81c9f4608fabb0fa87c63e22,Recommend fathom-serve in Vectorizer. Fix #48.,Erik Rose,2019-09-06T12:20:40Z,erikrose,erikrose,2,1,1
+276,fathom-fox,5c76cce0124dd275719c975fd9c3fe1ca0b11e58,"Merge check for null values in Vectorizer. Closes #46.
+
+Closes #35",Daniel Hertenstein,2019-08-28T13:37:48Z,danielhertenstein,danielhertenstein,81,54,27
+277,fathom-fox,6701c3a61ee3f720c75096ff2ac0fa1551b19868,"Bump version to 3.2, and update version history.",Erik Rose,2019-08-16T20:36:33Z,erikrose,erikrose,12,10,2
+278,fathom-fox,4aebc94b4a4603b85564d5cf20a84e89e2bfecaf,Gets traineeId immediately after vectorize button is pressed,Daniel Hertenstetin,2019-08-15T17:28:57Z,danielhertenstein,danielhertenstein,21,11,10
+279,fathom-fox,c4a2330603d485e626d34def4ae48b454be3b2d0,Addresses PR review comments,Daniel Hertenstetin,2019-08-14T14:44:36Z,danielhertenstein,danielhertenstein,62,28,34
+280,fathom-fox,5ca0cca4174355fe38c5d1efddf514de53dfc506,"Merge keystroke to trigger page freeze. Closes #49.
+
+Closes #41",Daniel Hertenstein,2019-08-09T17:24:39Z,danielhertenstein,danielhertenstein,40,39,1
+281,fathom-fox,69781217e92cf2701bbfab7a6ea96f5d6a6471f6,Changes download keystroke to Ctrl+Shift+O,Daniel Hertenstetin,2019-08-09T17:15:29Z,danielhertenstein,danielhertenstein,4,2,2
+282,fathom-fox,050e25fb5567ed0df0604a4dd1956c2c30ff482f,Addresses PR review comments,Daniel Hertenstetin,2019-08-09T13:34:23Z,danielhertenstein,danielhertenstein,36,13,23
+283,fathom-fox,550e193bc2274602050b92a29961a4d3a3fd9922,"Merge conversion of Train page to Evaluate page. Closes #47
+
+Fixes #43",Daniel Hertenstein,2019-08-08T21:08:47Z,danielhertenstein,danielhertenstein,545,198,347
+284,fathom-fox,2fa515a3a466e003be6a1d48eea01e4db02167c7,Eliminates extra call to `resultsForPages()`,Daniel Hertenstetin,2019-08-02T16:02:25Z,danielhertenstein,danielhertenstein,29,15,14
+285,fathom-fox,46714c56ef8b3dad23801473a501797faaa60d15,Refactors evaluate.js to be more consistent with evaluation instead of training,Daniel Hertenstetin,2019-07-31T20:25:57Z,danielhertenstein,danielhertenstein,101,44,57
+286,fathom-fox,fe21b695aee8291e66fbb026de722578c564f153,First wave of renaming trainer to evaluator,Daniel Hertenstetin,2019-07-31T19:42:47Z,danielhertenstein,danielhertenstein,51,23,28
+287,fathom-fox,761a5f25b11fc2910512e54e1e202feb8d620377,Adds a command for freezing a page via keypress,Daniel Hertenstetin,2019-07-31T18:56:30Z,danielhertenstein,danielhertenstein,50,49,1
+288,fathom-fox,a86dab866a7c93f20f0009b81549c746dd8ad3de,Changes vectorizer's default baseUrl to coordinate with 7d279d60e10c5b84d7b2fa1b1013bfac2e910b82,Daniel Hertenstetin,2019-07-26T15:25:38Z,danielhertenstein,danielhertenstein,2,1,1
+289,fathom-fox,81324fcde01472966936c30e835ab6272cb37fe5,Updates freeze-dry to 0.2.4. Closes #45,Daniel Hertenstein,2019-07-24T13:58:12Z,danielhertenstein,danielhertenstein,5516,4346,1170
+290,fathom-fox,49270dcaa0460084499d30f42a6e41955b9b8d39,Removes ability to Train and Pause on the Trainer page,Daniel Hertenstetin,2019-07-23T14:59:53Z,danielhertenstein,danielhertenstein,158,13,145
+291,fathom-fox,6e8562e4c6672e035b9a51509706af5747eddc21,Changes warning to failure message,Daniel Hertenstetin,2019-07-22T19:01:41Z,danielhertenstein,danielhertenstein,2,1,1
+292,fathom-fox,c929245f9f36b87338aab3ad3698daf541631b87,Adds rule names to the warning,Daniel Hertenstetin,2019-07-22T19:01:15Z,danielhertenstein,danielhertenstein,30,24,6
+293,fathom-fox,4e0ddce7c643481bd8a0c06de01222fbe0a47cab,Adds vectorizer check for rules that don't run or return null,Daniel Hertenstetin,2019-07-22T16:53:41Z,danielhertenstein,danielhertenstein,16,15,1
+294,fathom-fox,b9c7588eb5c9dd9b9f18206c6e0879507b35bcd2,Suggest `fathom-list` for getting the list of filenames to vectorize.,Erik Rose,2019-07-18T20:58:55Z,erikrose,erikrose,2,1,1
+295,fathom-fox,b6c371237a4a896eb3b07201d3e26e26b7d5e72c,"Updates freeze-dry to 0.2.4 and adds rollup plugin to support postcss
+
+This commit also updates all the other dependencies we use and adds
+webpack to the list",Daniel Hertenstetin,2019-07-17T19:05:32Z,danielhertenstein,danielhertenstein,5516,4346,1170
+296,fathom-fox,629c7de64a3f2b4af1fdab10f17f3e2c48d0ecc8,Merge the already-released 3.1 tag and readme soft-wrapping.,Erik Rose,2019-07-08T18:45:15Z,erikrose,erikrose,190,49,141
+297,fathom-fox,9b912df2dfe2ecea42612e4458c54bab538cbee7,"Merges automatic retrieval of viewport size from loaded trainee
+
+Closes #42",Daniel Hertenstein,2019-07-05T15:29:06Z,danielhertenstein,danielhertenstein,69,42,27
+298,fathom-fox,5a00a248e6dcd4405f0affe79a2751a631205342,Makes `formOptions()` and `getViewportHeightAndWidth()` abstract,Daniel Hertenstetin,2019-07-05T15:21:24Z,danielhertenstein,danielhertenstein,26,13,13
+299,fathom-fox,fe2eedfa2a532d95587091228dcc97d3cd7c3020,Fixes indent,Daniel Hertenstetin,2019-07-05T15:17:50Z,danielhertenstein,danielhertenstein,2,1,1
+300,fathom-fox,b86ce43971b5a0ed1553b525cd5e9c21b068cea2,Adds `getViewportHeightAndWidth()` to corpus.js,Daniel Hertenstetin,2019-07-05T14:08:50Z,danielhertenstein,danielhertenstein,36,17,19
+301,fathom-fox,b4f3c07032d7903c1cb387ce2c31e352fd344aad,Fixes funny indent,Daniel Hertenstetin,2019-07-03T20:17:17Z,danielhertenstein,danielhertenstein,2,1,1
+302,fathom-fox,d9710b12dc09feefc6b20255c4efe01486d26827,Adds separate method to get viewport size,Daniel Hertenstetin,2019-07-03T20:16:23Z,danielhertenstein,danielhertenstein,36,29,7
+303,fathom-fox,9d529947a50fcab223ce7d386426bb3d1470c19a,Automatically retrieves viewport size from trainee instead of manually,Daniel Hertenstetin,2019-07-02T14:37:32Z,danielhertenstein,danielhertenstein,23,9,14
+304,fathom-fox,3cde7f44c26a4792229cf2c7faa3f341ba373aae,"Remove soft-wrapping from readme.
+
+It persists when rendering to quasi-HTML for entry on the addon page, and the addon page happily displays it.",Erik Rose,2019-05-24T23:37:23Z,erikrose,erikrose,186,47,139
+305,fathom-fox,f843de21850278d9fdde7f0046b689d1b2369dc2,Bump version to 3.1.,Erik Rose,2019-05-24T23:26:05Z,erikrose,erikrose,4,2,2
+306,fathom-fox,f3cb960da4d69e9d11dab264c2a8687476af99ca,"Document Vectorizer, deprecate Trainer, and bring version history up to date.",Erik Rose,2019-05-24T23:22:19Z,erikrose,erikrose,128,75,53
+307,fathom-fox,d98006aecfd6dabfa2e2cc9a9f8a2eaf2239fd21,"Rename and separate the Evaluate button.
+
+It doesn't actually train, and it certainly doesn't interact with the Pause button.",Erik Rose,2019-04-22T20:03:00Z,erikrose,erikrose,6,5,1
+308,fathom-fox,a4e477b3c80f07ce255b3e7482646a5b626e11ae,"Add Mozilla Code of Conduct file
+
+Fixes #29.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,2019-03-30T06:58:51Z,Mozilla-GitHub-Standards,Mozilla-GitHub-Standards,15,15,0
+309,fathom-fox,d34c2c42a7e03cdcbb6eca49c76c3d7e4da6efd9,"Add a Base URL field.
+
+This saves me a search-and-replace step in BBEdit each time before vectorizing a new set of pages.",Erik Rose,2019-04-19T15:08:21Z,erikrose,erikrose,20,12,8
+310,fathom-fox,5836e928d4348c8977862e9a89b798984d8a2912,"Add a Retry On Error checkbox.
+
+Turning it off lets you see the bugs in your ruleset code faster.",Erik Rose,2019-04-19T14:48:01Z,erikrose,erikrose,14,10,4
+311,fathom-fox,304c13c1441d7887311182613487cb22f183c11a,"Add the Train One Step button, useful for debugging against externally computed coefficients.",Erik Rose,2019-04-03T19:01:34Z,erikrose,erikrose,23,12,11
+312,fathom-fox,31906e0aefe46018a714a5b19b544efebac17d81,"Merge Vectorizer, the visitation framework and associated Corpus Collector duplicate fixes, and coefficients-as-a-Map.",Erik Rose,2019-03-26T18:17:27Z,erikrose,erikrose,898,593,305
+313,fathom-fox,cb35d88fadad4da114d3a57b52a80e25c261f255,Bump version to 3.0.,Erik Rose,2019-03-26T18:17:03Z,erikrose,erikrose,4,2,2
+314,fathom-fox,22e25f2c9742b47b677147e5b69e337848b029a6,Point to the main Fathom repository.,Erik Rose,2020-03-25T18:25:37Z,erikrose,erikrose,4,4,0
+315,fathom-fox,cddabf71e478eacc730977308edc135babaa3413,Fix some ReST markup that somehow made it into an HTML file.,Erik Rose,2020-03-23T18:02:30Z,erikrose,erikrose,2,1,1
+316,fathom-fox,d2c3b97c85a03ece2474effd5d8b66a357765487,Bump to Fathom 3.3 to get `element()`.,Erik Rose,2020-03-20T15:17:27Z,erikrose,erikrose,10,5,5
+317,fathom-fox,e487a5627b6b6ef3ee53d3e4c3bdc3be0723c8c0,Rewrap some comments.,Erik Rose,2020-03-20T15:16:17Z,erikrose,erikrose,7,4,3
+318,fathom-fox,e852f7cbf424d338b2eb185702658f12dcc013dd,"Crank retry count to 100, which we seem to need when vectorizing the latest fathom-login-forms corpus.
+
+We'll try to find a more elegant way of fixing this when we get a chance.",Erik Rose,2020-03-20T15:16:08Z,erikrose,erikrose,4,2,2
+319,fathom-fox,7a1f6f937f54638fe896ed4dcc898e9ce264005a,Tersen the vector sorting.,Erik Rose,2020-03-19T14:31:20Z,erikrose,erikrose,8,1,7
+320,fathom-fox,8f913e4f19f245e9642b3138ac3c7f83472c5066,Pull in Fathom 3.2.1.,Erik Rose,2020-03-19T14:30:53Z,erikrose,erikrose,20,7,13
+321,fathom-fox,487781c9f3e6bbce76dd70b34ec64216702542f7,"Sort vector files by filename so we can compare them for troubleshooting.
+
+The parallelization otherwise makes them nondeterministic.",Erik Rose,2020-03-13T18:52:44Z,erikrose,erikrose,19,19,0
+322,fathom-fox,0954aa9b68ae8a6c1337856f6a3996911b75b158,"Emit a bit of the candidate tags' markup when vectorizing. Close #75.
+
+This helps with chasing down failures.",Erik Rose,2020-03-12T19:23:26Z,erikrose,erikrose,21,20,1
+323,fathom-fox,b56e26fdf73629b0cb73dc17d85250d5521b1ae1,Increases the sleep between errors from 1s to 2s,Daniel Hertenstetin,2020-03-09T15:40:36Z,danielhertenstein,danielhertenstein,4,2,2
+324,fathom-fox,307e513dba96cb078c819e577fe9f2798cc8f708,Record how long it takes the ruleset to run on each page.,Erik Rose,2020-03-05T15:41:15Z,erikrose,erikrose,5,4,1
+325,fathom-fox,6cb440aa16ed52f26297018b995f57c7aea08867,"Change the nice UUID to the GUID AMO made up.
+
+AMO won't let us change the UUID, but, at least this way, there's still a stable thing for fathom-vectorize to grab onto.",Erik Rose,2020-02-25T15:04:48Z,erikrose,erikrose,2,1,1
+326,fathom-fox,1776ddfa2c0db74e338eb1a04ce0782cd3a0d165,Fix a readme typo.,Erik Rose,2020-02-25T14:59:41Z,erikrose,erikrose,2,1,1
+327,fathom-fox,0224c29b4e3aad53da7492907bf512f5474a81af,Bump version to 3.3.,Erik Rose,2020-02-25T02:23:20Z,erikrose,erikrose,4,2,2
+328,fathom-fox,6fafbb7f40a670f7d8106801883afd06836bbf86,Bring version history up to date.,Erik Rose,2020-02-25T02:19:53Z,erikrose,erikrose,13,12,1
+329,fathom-fox,8ebd684021196dc672d5d947d165fb086d502cd4,Reduces the number of retries from 100 to 10.,Daniel Hertenstetin,2020-02-24T20:05:45Z,danielhertenstein,danielhertenstein,2,1,1
+330,fathom-fox,36ef6ca21c465978b3425deeffe2fbf2ac7cd1d9,Add a hook to customize what the Vectorizer considers a target.,Erik Rose,2020-02-21T17:11:27Z,erikrose,erikrose,14,13,1
+331,fathom-fox,9274f738a1bc7d33eb99cded54a5717624c060ea,"It returns fancy objects, not just bools anymore.",Erik Rose,2020-02-21T17:10:53Z,erikrose,erikrose,2,1,1
+332,fathom-fox,bbc742ad1ed5b1835cb4d62a048dd1bb16dd16d5,"Move ruleset.js comments above the things they document, for consistency with the functions in rulesetMaker.",Erik Rose,2020-02-21T17:10:39Z,erikrose,erikrose,6,3,3
+333,fathom-fox,436b61161d0e494c6ba3ebc59951d9a82b708bbc,"Automatically add a slash to the end of the base URL if there isn't one.
+
+This bit me.",Erik Rose,2020-02-19T21:34:24Z,erikrose,erikrose,5,4,1
+334,fathom-fox,02fad3776b5485301f9a219df1de65553bbd54f8,"Merge fathom-trainees into FathomFox. Close #68. Fix https://github.com/mozilla/fathom-trainees/issues/8.
+
+This makes fewer repos to clone, fewer addons to install, and fewer build processes to babysit for ruleset authors. It means a simpler FathomFox with less message passing. And it will make one fewer issue tracker and repo to stitch together.",Erik Rose,2020-01-03T20:33:14Z,erikrose,erikrose,2204,1261,943
+335,fathom-fox,79c4013aff4b22bf560f0e7c31a75f8e2d39c4f9,"In the readme, actually link to the referenced section.",Erik Rose,2020-01-03T20:26:32Z,erikrose,erikrose,2,1,1
+336,fathom-fox,5ea31cca24d13b57468b22a7e37ff2ed249d15f2,"Put the Development section back, just in case anybody searches for it.",Erik Rose,2020-01-02T15:55:22Z,erikrose,erikrose,4,4,0
+337,fathom-fox,0ba6134b91b3280008de52125a4dbf65143f1da7,"Rename trainees.js to rulesets.js.
+
+We think ruleset authors will find this clearer. For now, I didn't rename the vars (`trainees`, `traineeId`, etc.) because having a var called `rulesets` point to a thing other than a collection of rulesets would be confusing. And we already have plenty of variables called `ruleset` more deservedly which would collide. However, I did spruce up the top comment in rulesets.js, which should help orient newcomers.",Erik Rose,2020-01-02T15:48:49Z,erikrose,erikrose,34,18,16
+338,fathom-fox,381226c056dcd542bdf4d081b207ae3a839e5586,Combine the 2 onMessage handlers.,Erik Rose,2020-01-02T15:22:14Z,erikrose,erikrose,22,8,14
+339,fathom-fox,cda2642b5d935bc52b84e180cab08796df693961,"Update readme.
+
+* Remove all mention of fathom-trainees.
+* Remove the Development section, which is now just the same as the Getting Started instructions, since we're pushing most people toward a source checkout. You don't even need to use Dev Edition or Nightly anymore; `web-ext run` seems to work even with Release.",Erik Rose,2019-12-18T00:21:45Z,erikrose,erikrose,51,26,25
+340,fathom-fox,f059109e085732abee0bbcfc783ea3072313ad89,"Ensure that `yarn run watch` works with hard links.
+
+Copied from https://github.com/mozilla/fathom-trainees/commit/d3bb9dd34bca014f9673c13dd047e7d1194aa95d.",Erik Rose,2019-12-18T00:03:23Z,erikrose,erikrose,5,4,1
+341,fathom-fox,cee99d8c3fe7eec926881f612e04fa630c54ab8f,Remove the duplicates of things we've since lifted into Fathom proper.,Erik Rose,2019-12-17T21:18:16Z,erikrose,erikrose,90,5,85
+342,fathom-fox,cfdb26f1b1d5a39ae7cd27d688e8cafa13f208ad,Spruce up trainee comments.,Erik Rose,2019-12-17T21:17:56Z,erikrose,erikrose,41,17,24
+343,fathom-fox,c8978001b11b7ba4b5fb55546ae8a96ac7ff6bea,"Merge master into bye-bye-trainees to get the parallel vectorizer, which I assume is going to throw things off.
+
+But it doesn't; everything works!",Erik Rose,2019-12-17T17:51:32Z,erikrose,erikrose,3413,1173,2240
+344,fathom-fox,528ca0da8e9b4e3e9c7417bd156fe4a774c75a57,"Cut out the background-script middleman for BAD labeling.
+
+Cut out the rest of them, long since unused, as well.",Erik Rose,2019-12-17T17:31:53Z,erikrose,erikrose,24,5,19
+345,fathom-fox,eb29bfb3c59e05af6982a76174ea9974e642c085,Cut out the background-script middle man in vectorization.,Erik Rose,2019-12-17T17:12:27Z,erikrose,erikrose,9,1,8
+346,fathom-fox,395484e38940a2fd62110bc54a7ed36674239b7c,Vectorizing works now.,Erik Rose,2019-12-17T16:51:50Z,erikrose,erikrose,17,9,8
+347,fathom-fox,bda8f3b479d69cd1997ce70f8538b87b87f723e2,Get BAD labeling working.,Erik Rose,2019-12-17T15:31:50Z,erikrose,erikrose,4,2,2
+348,fathom-fox,144a5133fa2d25c1970c7b642a0653fea2adb4b4,Evaluator now works.,Erik Rose,2019-12-17T14:50:27Z,erikrose,erikrose,64,51,13
+349,fathom-fox,639d98a00b0d4981188804d331b4b399ca2cad22,"Take a rough first whack at moving fathom-trainees into FathomFox.
+
+It ""should"" work but doesn't yet.
+
+* Copy trainees.js over from fathom-trainees.
+* Add it as a content script so content scripts can get at its `trainees` symbol directly. Replace several message passings with direct access.
+* FathomFox now depends on Fathom directly so trainees can be compiled.
+* Copy much of the fathom/trainees.js module into FathomFox's content script. We'll be able to delete this code from Fathom.",Erik Rose,2019-11-11T17:06:17Z,erikrose,erikrose,1056,840,216
+350,fathom-fox,c4fb3e2ddf4599ed64a7f14204eab88a8a1b27b7,Merge miscellaneous changes needed for fathom-vectorize. Closes #63.,Daniel Hertenstein,2019-11-13T18:43:41Z,danielhertenstein,danielhertenstein,7,6,1
+351,fathom-fox,7773a45e8ec8ff6571f6d129f1febb8d606a617e,Gives the addon an id so we can get its UUID from through selenium,Daniel Hertenstetin,2019-11-08T16:03:17Z,danielhertenstein,danielhertenstein,5,5,0
+352,fathom-fox,c2985c6722b7166edc699baab834b2f0aff6b20e,Changes the default base path for the vectorizer,Daniel Hertenstetin,2019-11-08T16:02:52Z,danielhertenstein,danielhertenstein,2,1,1
+353,fathom-fox,b5b00a5bf578bce0261e8534dfdf59554fdfee9e,Merge parallelization of vectorizer. Closes #55.,Daniel Hertenstein,2019-11-08T15:54:54Z,danielhertenstein,danielhertenstein,206,131,75
+354,fathom-fox,808263e004f05be1591f88217563663554f8df58,Removes completed TODO,Daniel Hertenstetin,2019-11-08T15:44:41Z,danielhertenstein,danielhertenstein,1,0,1
+355,fathom-fox,4c69745e548db90f497f293b9b4a73641682b2b7,Fixes error logging error,Daniel Hertenstetin,2019-11-08T15:44:25Z,danielhertenstein,danielhertenstein,2,1,1
+356,fathom-fox,319925442b3ff724f598de3407d5f9ddc7c07652,Move a status message from visit.js to corpus.js and vector.js and tailor it to the file,Daniel Hertenstetin,2019-11-08T15:44:03Z,danielhertenstein,danielhertenstein,3,2,1
+357,fathom-fox,d994be0bab69acdc4fef5908879c2b10e7d251b3,"Bump eslint-utils from 1.4.0 to 1.4.3
+
+Bumps [eslint-utils](https://github.com/mysticatea/eslint-utils) from 1.4.0 to 1.4.3.
+- [Release notes](https://github.com/mysticatea/eslint-utils/releases)
+- [Commits](https://github.com/mysticatea/eslint-utils/compare/v1.4.0...v1.4.3)
+
+Signed-off-by: dependabot[bot] <support@github.com>",dependabot[bot],2019-11-01T12:42:15Z,dependabot[bot],dependabot[bot],2075,594,1481
+358,fathom-fox,f44c39cd38d8b461ec4c5cc8674793431a7777cf,Fixes non-determinism by making the tab active and waiting before vectorizing,Daniel Hertenstetin,2019-10-31T17:20:13Z,danielhertenstein,danielhertenstein,16,10,6
+359,fathom-fox,a52b3d5aa85317fd0a42041e2db1a595b7b151a5,Factor out error and stop pattern,Daniel Hertenstetin,2019-10-24T19:34:58Z,danielhertenstein,danielhertenstein,50,18,32
+360,fathom-fox,9989779b1ac1d83c373ee21fe585e506a92867ea,"Increase the number of maxTries as parallelization causes more occurrences of ""receiving end does not exist"".
+
+This doesn't feel good. I will be investigating the cause of the error to see if we can make this unnecessary.",Daniel Hertenstetin,2019-10-22T21:33:13Z,danielhertenstein,danielhertenstein,2,1,1
+361,fathom-fox,65d978f16c159a91cdc8e9bc9db0be565cb7900c,Remove console.log()s that shouldn't be there,Daniel Hertenstetin,2019-10-22T21:31:47Z,danielhertenstein,danielhertenstein,4,1,3
+362,fathom-fox,1e543947e343ddcc9398e45c32691a209e424a2f,Stops vectorizer on maxTries error,Daniel Hertenstetin,2019-10-21T17:37:48Z,danielhertenstein,danielhertenstein,5,5,0
+363,fathom-fox,02cbb8a3abf074a30d496712799bee8e1238bc47,Fixes error I introduced by renaming,Daniel Hertenstetin,2019-09-27T20:53:57Z,danielhertenstein,danielhertenstein,8,4,4
+364,fathom-fox,57dc5f0877f5f04fdb1a911bef63d7444a487df7,Add explanatory comment and note about error handling,Daniel Hertenstetin,2019-09-27T20:47:39Z,danielhertenstein,danielhertenstein,7,6,1
+365,fathom-fox,8482dca515aa24082d3c5202c61db96bffaf3944,Solves status indexing problem for URL collisions,Daniel Hertenstetin,2019-09-27T20:43:40Z,danielhertenstein,danielhertenstein,43,22,21
+366,fathom-fox,a7ac704da99d9f00e0d88d6e546934c836483c99,Makes new tabs not active,Daniel Hertenstetin,2019-09-25T17:28:46Z,danielhertenstein,danielhertenstein,1,1,0
+367,fathom-fox,55ce635d291b8c097b5c0f1c32cb2cff9a4c2110,Fixes not completely reverted indexing change,Daniel Hertenstetin,2019-09-25T17:19:43Z,danielhertenstein,danielhertenstein,2,1,1
+368,fathom-fox,eff8aef2c0d4a1f62b603b7ebca3230bb4332e9b,Fixes corpus collector status indexing problem,Daniel Hertenstetin,2019-09-25T17:13:05Z,danielhertenstein,danielhertenstein,15,10,5
+369,fathom-fox,af86e6dba0b3920cdebd57bf71c5a3f7cb51df15,Allows vectorizer to be run multiple times again,Daniel Hertenstetin,2019-09-25T15:40:09Z,danielhertenstein,danielhertenstein,15,8,7
+370,fathom-fox,a76555796b946861d2563b87d5d7ec41ae21c97c,Fixes missing function argument,Daniel Hertenstetin,2019-09-25T15:39:47Z,danielhertenstein,danielhertenstein,7,6,1
+371,fathom-fox,223157fe30f9691e378af73bb98cd4b54107a36b,Stops vectorizer when there are null vectors,Daniel Hertenstetin,2019-09-25T14:43:06Z,danielhertenstein,danielhertenstein,5,5,0
+372,fathom-fox,9867cad6e46c5026a4b3bf6376bc3906fd5f6262,Fixes indexing problem for status display,Daniel Hertenstetin,2019-09-25T14:34:02Z,danielhertenstein,danielhertenstein,27,20,7
+373,fathom-fox,1b49e4f15f8f2562769cfdc92d1cb71cac3781cb,Second version that has a max number of tabs in flight,Daniel Hertenstetin,2019-09-25T14:20:57Z,danielhertenstein,danielhertenstein,117,70,47
+374,fathom-fox,d5edd65ca39f45debfb41ce2759b3798f4cd0d66,First version that works if you have infinite RAM,Daniel Hertenstetin,2019-09-24T14:00:08Z,danielhertenstein,danielhertenstein,140,72,68
+375,fathom-fox,b51b6442e499e9fc81c9f4608fabb0fa87c63e22,Recommend fathom-serve in Vectorizer. Fix #48.,Erik Rose,2019-09-06T12:20:40Z,erikrose,erikrose,2,1,1
+376,fathom-fox,5c76cce0124dd275719c975fd9c3fe1ca0b11e58,"Merge check for null values in Vectorizer. Closes #46.
+
+Closes #35",Daniel Hertenstein,2019-08-28T13:37:48Z,danielhertenstein,danielhertenstein,81,54,27
+377,fathom-fox,6701c3a61ee3f720c75096ff2ac0fa1551b19868,"Bump version to 3.2, and update version history.",Erik Rose,2019-08-16T20:36:33Z,erikrose,erikrose,12,10,2
+378,fathom-fox,4aebc94b4a4603b85564d5cf20a84e89e2bfecaf,Gets traineeId immediately after vectorize button is pressed,Daniel Hertenstetin,2019-08-15T17:28:57Z,danielhertenstein,danielhertenstein,21,11,10
+379,fathom-fox,c4a2330603d485e626d34def4ae48b454be3b2d0,Addresses PR review comments,Daniel Hertenstetin,2019-08-14T14:44:36Z,danielhertenstein,danielhertenstein,62,28,34
+380,fathom-fox,5ca0cca4174355fe38c5d1efddf514de53dfc506,"Merge keystroke to trigger page freeze. Closes #49.
+
+Closes #41",Daniel Hertenstein,2019-08-09T17:24:39Z,danielhertenstein,danielhertenstein,40,39,1
+381,fathom-fox,69781217e92cf2701bbfab7a6ea96f5d6a6471f6,Changes download keystroke to Ctrl+Shift+O,Daniel Hertenstetin,2019-08-09T17:15:29Z,danielhertenstein,danielhertenstein,4,2,2
+382,fathom-fox,050e25fb5567ed0df0604a4dd1956c2c30ff482f,Addresses PR review comments,Daniel Hertenstetin,2019-08-09T13:34:23Z,danielhertenstein,danielhertenstein,36,13,23
+383,fathom-fox,550e193bc2274602050b92a29961a4d3a3fd9922,"Merge conversion of Train page to Evaluate page. Closes #47
+
+Fixes #43",Daniel Hertenstein,2019-08-08T21:08:47Z,danielhertenstein,danielhertenstein,545,198,347
+384,fathom-fox,2fa515a3a466e003be6a1d48eea01e4db02167c7,Eliminates extra call to `resultsForPages()`,Daniel Hertenstetin,2019-08-02T16:02:25Z,danielhertenstein,danielhertenstein,29,15,14
+385,fathom-fox,46714c56ef8b3dad23801473a501797faaa60d15,Refactors evaluate.js to be more consistent with evaluation instead of training,Daniel Hertenstetin,2019-07-31T20:25:57Z,danielhertenstein,danielhertenstein,101,44,57
+386,fathom-fox,fe21b695aee8291e66fbb026de722578c564f153,First wave of renaming trainer to evaluator,Daniel Hertenstetin,2019-07-31T19:42:47Z,danielhertenstein,danielhertenstein,51,23,28
+387,fathom-fox,761a5f25b11fc2910512e54e1e202feb8d620377,Adds a command for freezing a page via keypress,Daniel Hertenstetin,2019-07-31T18:56:30Z,danielhertenstein,danielhertenstein,50,49,1
+388,fathom-fox,a86dab866a7c93f20f0009b81549c746dd8ad3de,Changes vectorizer's default baseUrl to coordinate with 7d279d60e10c5b84d7b2fa1b1013bfac2e910b82,Daniel Hertenstetin,2019-07-26T15:25:38Z,danielhertenstein,danielhertenstein,2,1,1
+389,fathom-fox,81324fcde01472966936c30e835ab6272cb37fe5,Updates freeze-dry to 0.2.4. Closes #45,Daniel Hertenstein,2019-07-24T13:58:12Z,danielhertenstein,danielhertenstein,5516,4346,1170
+390,fathom-fox,49270dcaa0460084499d30f42a6e41955b9b8d39,Removes ability to Train and Pause on the Trainer page,Daniel Hertenstetin,2019-07-23T14:59:53Z,danielhertenstein,danielhertenstein,158,13,145
+391,fathom-fox,6e8562e4c6672e035b9a51509706af5747eddc21,Changes warning to failure message,Daniel Hertenstetin,2019-07-22T19:01:41Z,danielhertenstein,danielhertenstein,2,1,1
+392,fathom-fox,c929245f9f36b87338aab3ad3698daf541631b87,Adds rule names to the warning,Daniel Hertenstetin,2019-07-22T19:01:15Z,danielhertenstein,danielhertenstein,30,24,6
+393,fathom-fox,4e0ddce7c643481bd8a0c06de01222fbe0a47cab,Adds vectorizer check for rules that don't run or return null,Daniel Hertenstetin,2019-07-22T16:53:41Z,danielhertenstein,danielhertenstein,16,15,1
+394,fathom-fox,b9c7588eb5c9dd9b9f18206c6e0879507b35bcd2,Suggest `fathom-list` for getting the list of filenames to vectorize.,Erik Rose,2019-07-18T20:58:55Z,erikrose,erikrose,2,1,1
+395,fathom-fox,b6c371237a4a896eb3b07201d3e26e26b7d5e72c,"Updates freeze-dry to 0.2.4 and adds rollup plugin to support postcss
+
+This commit also updates all the other dependencies we use and adds
+webpack to the list",Daniel Hertenstetin,2019-07-17T19:05:32Z,danielhertenstein,danielhertenstein,5516,4346,1170
+396,fathom-fox,629c7de64a3f2b4af1fdab10f17f3e2c48d0ecc8,Merge the already-released 3.1 tag and readme soft-wrapping.,Erik Rose,2019-07-08T18:45:15Z,erikrose,erikrose,190,49,141
+397,fathom-fox,9b912df2dfe2ecea42612e4458c54bab538cbee7,"Merges automatic retrieval of viewport size from loaded trainee
+
+Closes #42",Daniel Hertenstein,2019-07-05T15:29:06Z,danielhertenstein,danielhertenstein,69,42,27
+398,fathom-fox,5a00a248e6dcd4405f0affe79a2751a631205342,Makes `formOptions()` and `getViewportHeightAndWidth()` abstract,Daniel Hertenstetin,2019-07-05T15:21:24Z,danielhertenstein,danielhertenstein,26,13,13
+399,fathom-fox,fe2eedfa2a532d95587091228dcc97d3cd7c3020,Fixes indent,Daniel Hertenstetin,2019-07-05T15:17:50Z,danielhertenstein,danielhertenstein,2,1,1
+400,fathom-fox,b86ce43971b5a0ed1553b525cd5e9c21b068cea2,Adds `getViewportHeightAndWidth()` to corpus.js,Daniel Hertenstetin,2019-07-05T14:08:50Z,danielhertenstein,danielhertenstein,36,17,19
+401,fathom-fox,b4f3c07032d7903c1cb387ce2c31e352fd344aad,Fixes funny indent,Daniel Hertenstetin,2019-07-03T20:17:17Z,danielhertenstein,danielhertenstein,2,1,1
+402,fathom-fox,d9710b12dc09feefc6b20255c4efe01486d26827,Adds separate method to get viewport size,Daniel Hertenstetin,2019-07-03T20:16:23Z,danielhertenstein,danielhertenstein,36,29,7
+403,fathom-fox,9d529947a50fcab223ce7d386426bb3d1470c19a,Automatically retrieves viewport size from trainee instead of manually,Daniel Hertenstetin,2019-07-02T14:37:32Z,danielhertenstein,danielhertenstein,23,9,14
+404,fathom-fox,3cde7f44c26a4792229cf2c7faa3f341ba373aae,"Remove soft-wrapping from readme.
+
+It persists when rendering to quasi-HTML for entry on the addon page, and the addon page happily displays it.",Erik Rose,2019-05-24T23:37:23Z,erikrose,erikrose,186,47,139
+405,fathom-fox,f843de21850278d9fdde7f0046b689d1b2369dc2,Bump version to 3.1.,Erik Rose,2019-05-24T23:26:05Z,erikrose,erikrose,4,2,2
+406,fathom-fox,f3cb960da4d69e9d11dab264c2a8687476af99ca,"Document Vectorizer, deprecate Trainer, and bring version history up to date.",Erik Rose,2019-05-24T23:22:19Z,erikrose,erikrose,128,75,53
+407,fathom-fox,d98006aecfd6dabfa2e2cc9a9f8a2eaf2239fd21,"Rename and separate the Evaluate button.
+
+It doesn't actually train, and it certainly doesn't interact with the Pause button.",Erik Rose,2019-04-22T20:03:00Z,erikrose,erikrose,6,5,1
+408,fathom-fox,a4e477b3c80f07ce255b3e7482646a5b626e11ae,"Add Mozilla Code of Conduct file
+
+Fixes #29.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,2019-03-30T06:58:51Z,Mozilla-GitHub-Standards,Mozilla-GitHub-Standards,15,15,0
+409,fathom-fox,d34c2c42a7e03cdcbb6eca49c76c3d7e4da6efd9,"Add a Base URL field.
+
+This saves me a search-and-replace step in BBEdit each time before vectorizing a new set of pages.",Erik Rose,2019-04-19T15:08:21Z,erikrose,erikrose,20,12,8
+410,fathom-fox,5836e928d4348c8977862e9a89b798984d8a2912,"Add a Retry On Error checkbox.
+
+Turning it off lets you see the bugs in your ruleset code faster.",Erik Rose,2019-04-19T14:48:01Z,erikrose,erikrose,14,10,4
+411,fathom-fox,304c13c1441d7887311182613487cb22f183c11a,"Add the Train One Step button, useful for debugging against externally computed coefficients.",Erik Rose,2019-04-03T19:01:34Z,erikrose,erikrose,23,12,11
+412,fathom-fox,31906e0aefe46018a714a5b19b544efebac17d81,"Merge Vectorizer, the visitation framework and associated Corpus Collector duplicate fixes, and coefficients-as-a-Map.",Erik Rose,2019-03-26T18:17:27Z,erikrose,erikrose,898,593,305
+413,fathom-fox,cb35d88fadad4da114d3a57b52a80e25c261f255,Bump version to 3.0.,Erik Rose,2019-03-26T18:17:03Z,erikrose,erikrose,4,2,2

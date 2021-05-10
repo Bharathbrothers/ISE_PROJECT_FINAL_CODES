@@ -1,0 +1,400 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,addon-sdk,10db1050619d7dab64c8389611d4473a85fcfcc2,Renamed 'lineno' to 'lineNo',Atul Varma,2009-09-24T22:57:13Z,Atul Varma,Atul Varma,6,3,3
+1,addon-sdk,da9e62e977845f61192543a5047a9021dc356bf3,cuddle.js can now be loaded as a js module or script src.,Atul Varma,2009-09-24T17:34:33Z,Atul Varma,Atul Varma,83,77,6
+2,addon-sdk,af14314efd861f1af16a67a2f18fde3ac1360806,"Moved dump-test-runner.js out of lib.
+
+--HG--
+rename : chrome/content/lib/dump-test-runner.js => chrome/content/dump-test-runner.js",Atul Varma,2009-09-24T16:51:23Z,Atul Varma,Atul Varma,2,1,1
+3,addon-sdk,76052cc44a89169c208a38b98e84126c92111f1f,Imported dump-test-runner.js from jep-25.,Atul Varma,2009-09-24T16:49:31Z,Atul Varma,Atul Varma,113,107,6
+4,addon-sdk,3e7e2f7e8b7d1718603b78d4651b4bc5aae0b319,"Added initial bootstrapping.
+
+--HG--
+rename : chrome/content/booster.js => chrome/content/lib/booster.js",Atul Varma,2009-09-24T16:25:07Z,Atul Varma,Atul Varma,15,13,2
+5,addon-sdk,b2d5548964dbee00628143412f5f68d6ed7f9d7f,"Origination of 'cuddlefish' project.
+
+--HG--
+rename : chrome/modules/booster.js => chrome/content/booster.js",Atul Varma,2009-09-24T14:47:49Z,Atul Varma,Atul Varma,339,1,338
+6,addon-sdk,254346e75dd1ebac6ed4e87cc52787329e04fc56,Added more tests.,Atul Varma,2009-09-16T18:34:45Z,Atul Varma,Atul Varma,22,22,0
+7,addon-sdk,8eab0149a6478ad1c9026c94dd64fd4644e83a1d,Made parentification more robust.,Atul Varma,2009-09-16T18:01:13Z,Atul Varma,Atul Varma,9,7,2
+8,addon-sdk,b8af67fe64ae0b6295dc9dc82d22bf6d4a89615b,Added 'parentification' for filenames of sandboxed code that has the system principal and therefore needs to have wrappers made for it.,Atul Varma,2009-09-16T17:26:18Z,Atul Varma,Atul Varma,81,67,14
+9,addon-sdk,6c27b4c573c9ea9fc19784a881d897bddc2093d5,Added license blocks to files.,Atul Varma,2009-09-15T23:19:02Z,Atul Varma,Atul Varma,108,108,0
+10,addon-sdk,08802ad5a6db92b9e53dbf0fc44cd78c7ebb9a32,Added test names/messages to all assertEqual() calls.,Atul Varma,2009-09-15T23:05:04Z,Atul Varma,Atul Varma,30,20,10
+11,addon-sdk,6a9b4700032638cf3d0c00de2a93d30cb713398f,Changes to output of assertEqual(),Atul Varma,2009-09-15T22:56:32Z,Atul Varma,Atul Varma,18,11,7
+12,addon-sdk,0aa079437015cb8644dbc5ca21cf6ffb015b16ba,Refactoring to simplify code.,Atul Varma,2009-09-15T22:49:37Z,Atul Varma,Atul Varma,23,8,15
+13,addon-sdk,39e401f0feeddcc0e369d352c8a97c39a7a33d48,"Loader() can now take an options.defaultPrincipal argument, as per JEP 25.",Atul Varma,2009-09-15T22:43:45Z,Atul Varma,Atul Varma,9,6,3
+14,addon-sdk,3d7aebd051e6b827cabd6f7477d1e3e6349ffecf,Added another test.,Atul Varma,2009-09-15T22:38:00Z,Atul Varma,Atul Varma,9,9,0
+15,addon-sdk,0fd9a0d322c5cdb78cdfca25247b6f883cf0daf3,Loader() can now take a nsIURI or nsIFile for its options.rootPath parameter. Added a test to ensure that Loader() w/ no args when loaded in a document has the proper root dir.,Atul Varma,2009-09-15T22:35:16Z,Atul Varma,Atul Varma,17,12,5
+16,addon-sdk,e44af0d4aaf25a4457389b46e7f0af2fa6e4d1e0,loader.require(module) is now shorthand for loader.runScript('require(module)').,Atul Varma,2009-09-15T22:24:31Z,Atul Varma,Atul Varma,6,5,1
+17,addon-sdk,9197bb3165333dce9d3efd586c7d45fa5065392a,Added similar functionality to sandbox.evaluate().,Atul Varma,2009-09-15T22:22:25Z,Atul Varma,Atul Varma,2,2,0
+18,addon-sdk,9b08c836cf3e1f9ca5fcaff5089249a4b2a37974,"Loader.runScript() can now pass a single string arg, which passes for Loader.runScript({contents: <string>}).",Atul Varma,2009-09-15T22:21:13Z,Atul Varma,Atul Varma,4,3,1
+19,addon-sdk,8f213e1d397f19de4623abe4942ccf6695ef5005,Added a few more tests and a TODO.,Atul Varma,2009-09-15T22:11:39Z,Atul Varma,Atul Varma,32,29,3
+20,addon-sdk,badfa23319abd80242f5ad14f56201063028db0c,"LocalFileSystem now uses URIs, channels, and streams internally instead of nsIFile objects. Also, its constructor now accepts nsIFile objects, nsIURI objects, and url strings. The Loader constructor also takes an optional rootPath parameter as specified in the current JEP 25.",Atul Varma,2009-09-15T21:25:22Z,Atul Varma,Atul Varma,72,42,30
+21,addon-sdk,ca8c51df9386e747905d39df9cf21f6942bdddf6,Added README.,Atul Varma,2009-09-15T05:11:51Z,Atul Varma,Atul Varma,48,48,0
+22,addon-sdk,6777b287a992616e0037aac626458f09cf23a1fd,We now auto-retrieve compliance tests if they're not already present.,Atul Varma,2009-09-15T05:01:38Z,Atul Varma,Atul Varma,28,19,9
+23,addon-sdk,51444cbddafb7a98d3fea3b5c13c84bbe6f5c8a0,Added another test.,Atul Varma,2009-09-14T23:03:07Z,Atul Varma,Atul Varma,18,15,3
+24,addon-sdk,679e666be618757a35e2ab415b9cd0b1d188af85,Added a bit more.,Atul Varma,2009-09-14T22:52:02Z,Atul Varma,Atul Varma,10,6,4
+25,addon-sdk,e0ebeeb37050e32da8537385bec611e575d270eb,"Test suite is now run twice: once in the context of a JS module, again in the context of a window.",Atul Varma,2009-09-14T22:49:47Z,Atul Varma,Atul Varma,19,13,6
+26,addon-sdk,2d963b4675c91d0300c8fa79b309395d1b0cd69e,Test output is more responsive.,Atul Varma,2009-09-14T22:32:49Z,Atul Varma,Atul Varma,19,10,9
+27,addon-sdk,1e5f4978114ec5b1b07d8bd1d43ae97a0bba8852,Exit code of test suite now reflects its success.,Atul Varma,2009-09-14T22:28:24Z,Atul Varma,Atul Varma,25,21,4
+28,addon-sdk,ee54162208b3ca3d6d46830de60b871ed0963c41,Replaced run_tests shell script w/ python script.,Atul Varma,2009-09-14T22:04:30Z,Atul Varma,Atul Varma,80,77,3
+29,addon-sdk,ecd20418bcfb7247a290d5181906ca1d343d7407,Removed unneeded code.,Atul Varma,2009-09-14T21:10:13Z,Atul Varma,Atul Varma,2,0,2
+30,addon-sdk,3364ca557d4727fc54bb9c4686d22b3d5c23eae7,Added another test.,Atul Varma,2009-09-14T18:55:27Z,Atul Varma,Atul Varma,13,13,0
+31,addon-sdk,757a88fda034db5f344ea069cd1cd7fdc806233b,Added another test.,Atul Varma,2009-09-14T18:49:22Z,Atul Varma,Atul Varma,28,22,6
+32,addon-sdk,54b89b9943f6b142ede97c589879a16d93e9c170,Changed default principal to be a limited principal insteal of a system principal.,Atul Varma,2009-09-14T18:33:45Z,Atul Varma,Atul Varma,6,4,2
+33,addon-sdk,3973900b972a7f1de6aa3d0047e54c36a72b20d1,All compliance tests are now run and pass.,Atul Varma,2009-09-14T18:20:42Z,Atul Varma,Atul Varma,44,28,16
+34,addon-sdk,f9f90fb9ad9f6610795d38e628d09a9de4dc3115,"We now run the 'monkeys' compliance test, and it passes.",Atul Varma,2009-09-14T17:54:40Z,Atul Varma,Atul Varma,71,65,6
+35,addon-sdk,767f5371711d43327c35a1adf19cb7a7a8e1183f,Aliased Cu == Components.utils,Atul Varma,2009-09-14T16:51:48Z,Atul Varma,Atul Varma,7,3,4
+36,addon-sdk,521e5b4699442209e6ca01ebb7e1fa68682c1762,Refactored test microframework to be compatible w/ securablemodules interop tests.,Atul Varma,2009-09-14T16:36:12Z,Atul Varma,Atul Varma,88,46,42
+37,addon-sdk,141eae72d415c78dc0f5ce8259508c11ecb3881b,simplfied Test interface,Atul Varma,2009-09-14T16:16:29Z,Atul Varma,Atul Varma,8,6,2
+38,addon-sdk,4b803143b41d8ce47dde9b1dd431ffcd63dc0f03,Moved test suite to booster-tests.js,Atul Varma,2009-09-14T16:14:21Z,Atul Varma,Atul Varma,103,88,15
+39,addon-sdk,8a779b1d988e47563e5dc9a98e33e0a1d8f75ee8,Refactored out a new SandboxFactory class.,Atul Varma,2009-09-14T14:13:52Z,Atul Varma,Atul Varma,124,74,50
+40,addon-sdk,1a4e78cfb29e57f355520352742180dd1543d3a9,Origination.,Atul Varma,2009-09-14T12:48:21Z,Atul Varma,Atul Varma,166,166,0
+41,addon-sdk,30259c736fd42ca6f074284ecfa501f460081df3,"Harness works on thunderbird now, but no longer on XULRunner... argh.",Atul Varma,2009-10-22T18:11:51Z,Atul Varma,Atul Varma,30,18,12
+42,addon-sdk,9825b0efac30c0b1ac5a0d301a252d04c0a7c153,Test harness works better w/ firefox.,Atul Varma,2009-10-22T17:49:55Z,Atul Varma,Atul Varma,48,42,6
+43,addon-sdk,f542ca27920786e6f36b00cd9fb583d4488980bd,Removed toolkit.defaultChromeURI pref and replaced it with an app-startup XPCOM service that opens a window.,Atul Varma,2009-10-22T17:30:27Z,Atul Varma,Atul Varma,74,72,2
+44,addon-sdk,1c7bbd3d75a4bbc9819fa4e18b166d8293fb3e25,"Added an --app option to the harness package, which allows tests to be run in xulrunner, firefox, or thunderbird.",Atul Varma,2009-10-22T17:01:15Z,Atul Varma,Atul Varma,1266,1252,14
+45,addon-sdk,fccda5c0b0d205cbe68f08a67689f234fa13e1c4,Added url.fromFilename().,Atul Varma,2009-10-20T04:31:50Z,Atul Varma,Atul Varma,15,15,0
+46,addon-sdk,f2f86bce2b79f06274c2e899acbf21615f4e3945,Simplified xhr caching logic and likely removed a memory leak.,Atul Varma,2009-10-20T04:17:37Z,Atul Varma,Atul Varma,24,10,14
+47,addon-sdk,d0a558120b2ad3994e8f6465053290dfb39ba986,Added license block.,Atul Varma,2009-10-20T04:02:23Z,Atul Varma,Atul Varma,36,36,0
+48,addon-sdk,a1ce2c2bf9b25f639065d35734bb2d71b326d75a,Added xhr module.,Atul Varma,2009-10-20T03:55:16Z,Atul Varma,Atul Varma,149,149,0
+49,addon-sdk,3c7051cc992d7a4ec402ef0815546802de926e62,Changed cuddlefish.loader to cuddlefish.parentLoader as per conversation with Jono.,Atul Varma,2009-10-19T22:17:54Z,Atul Varma,Atul Varma,4,2,2
+50,addon-sdk,57825148a4af38ab5f210c1ebc7cd6a5e416f3b0,"Moved harness/python-modules/harness.py to harness/__init__.py and simplified run_tests.py.
+
+--HG--
+rename : harness/python-modules/harness.py => harness/__init__.py",Atul Varma,2009-10-19T22:15:04Z,Atul Varma,Atul Varma,24,14,10
+51,addon-sdk,40f4c5e92f512748784be39e625f0479a3006b2f,"downloading of interop suite now only occurs if the user actually runs tests when calling run_tests.py (as opposed to looking at cmdline opts, etc.)",Atul Varma,2009-10-19T17:57:50Z,Atul Varma,Atul Varma,18,12,6
+52,addon-sdk,d845271bb498c89784d206ce361d84e655f4c134,removed run-suites.js. main.js now loads unit-test and calls its findAndRunTests() function on its own.,Atul Varma,2009-10-19T17:51:24Z,Atul Varma,Atul Varma,18,7,11
+53,addon-sdk,5e8820bf74277c08b488b34fc3c1bb579c07f8e2,Folded the securable-module tests from the jep-25 repository into this one.,Atul Varma,2009-10-19T17:38:09Z,Atul Varma,Atul Varma,253,252,1
+54,addon-sdk,08881ac27700e7964c463126f000df7ce0faacf4,Moved test-finding functionality into unit-test module.,Atul Varma,2009-10-19T16:33:18Z,Atul Varma,Atul Varma,94,56,38
+55,addon-sdk,ce1163bdd57b9cd2cffdc683aae7df571eeb9a95,"Made members of securable-module classes public, added a require('cuddlefish').loader attr to the module which is the Loader of the *current* cuddlefish instance.",Atul Varma,2009-10-19T10:04:42Z,Atul Varma,Atul Varma,51,31,20
+56,addon-sdk,b8f6766feb0142c9ca9711a9d9ad10e949d314c6,test harness now passes a custom console into its loader in which tests are run.,Atul Varma,2009-10-19T06:49:09Z,Atul Varma,Atul Varma,70,33,37
+57,addon-sdk,08c436eef2a573e583dc67802111fdba66c99d67,Added __url__ global to cuddlefish modules and scripts.,Atul Varma,2009-10-19T05:31:55Z,Atul Varma,Atul Varma,34,25,9
+58,addon-sdk,eb0811cd8dc07c5f91f018776eeb698661e53997,"Added assertMatches() to testing repertoire, made file.list() raise a friendlier error when the path doesn't exist.",Atul Varma,2009-10-19T05:06:03Z,Atul Varma,Atul Varma,37,35,2
+59,addon-sdk,99228b61b6e750fb58a5576c7d971877762b7c60,Minor change to test output.,Atul Varma,2009-10-19T00:41:22Z,Atul Varma,Atul Varma,6,3,3
+60,addon-sdk,2f212c5fd11b63faf8cbe024c1e2d17ecfd86c9d,Supressing pointless console messages like 'Invalid chrome URI: /'.,Atul Varma,2009-10-19T00:37:58Z,Atul Varma,Atul Varma,9,8,1
+61,addon-sdk,698daa238397771c1ebaee51d79dd8ee546df5f9,Added a -v/--verbose option to run_tests.py.,Atul Varma,2009-10-19T00:32:05Z,Atul Varma,Atul Varma,19,15,4
+62,addon-sdk,5a558fee763f29e3239a9015d10671834c759f03,"run_tests.py now imports all its modules from harness/python-modules, main.js now gets all its cuddlefish-specific information via JSON from run_tests.py, and the 'harness' directory can now potentially be reused by other projects.",Atul Varma,2009-10-19T00:23:45Z,Atul Varma,Atul Varma,1463,1346,117
+63,addon-sdk,699f4f29176a7ec1b8ef7126df5cc112a6a4bdea,"Changed preferences-service.set() to throw if a float is passed as the value, rather than truncate the float and log a warning.",Atul Varma,2009-10-18T23:39:30Z,Atul Varma,Atul Varma,16,7,9
+64,addon-sdk,52604821e487c6e5f540374aad5efefa498e78b7,"Test suite output is now much less verbose by default, making it easier to spot failing tests.",Atul Varma,2009-10-18T23:26:10Z,Atul Varma,Atul Varma,49,39,10
+65,addon-sdk,54e533dba22d0060521c8b210ae3dfb7c66a6a36,Added file.join() and changed run-suites.js to use the file module to dynamically find suites.,Atul Varma,2009-10-18T18:52:30Z,Atul Varma,Atul Varma,46,33,13
+66,addon-sdk,5c2ed8364f7b7e2592c6336abb9828285683436b,Added file.dirname(),Atul Varma,2009-10-18T18:28:55Z,Atul Varma,Atul Varma,18,17,1
+67,addon-sdk,0f7db88838c291a0c06973d40c542c5d3ef581f1,"Added 'assertNotEqual()' to test suite functions, url.toFilename(), and started moving over Irakli's file module from narwhal.  Only file.list() is currently supported.",Atul Varma,2009-10-18T18:13:56Z,Atul Varma,Atul Varma,162,160,2
+68,addon-sdk,b093ea80df37e39f6af87b9eb09c06a48c23c56b,Minor refactorings,Atul Varma,2009-10-18T16:36:34Z,Atul Varma,Atul Varma,20,8,12
+69,addon-sdk,87e67f2f5689ba61730c1495ba715408d2b7b2d5,"harness no longer uses current working dir, since a race condition can sometimes make it have a weird value.",Atul Varma,2009-10-18T00:09:20Z,Atul Varma,Atul Varma,18,14,4
+70,addon-sdk,17215dd8210067bebe48ca341d7f8a637ecd4cc0,Fixed .hgignore.,Atul Varma,2009-10-17T23:47:04Z,Atul Varma,Atul Varma,1,0,1
+71,addon-sdk,c9853efa53a033cf704c0e31d10a27372993a05d,"Moved xulrunner harness app into 'harness' dir
+
+--HG--
+rename : application.ini => harness/application.ini
+rename : chrome/chrome.manifest => harness/chrome/chrome.manifest
+rename : chrome/content/main.js => harness/chrome/content/main.js
+rename : chrome/content/main.xul => harness/chrome/content/main.xul
+rename : defaults/preferences/prefs.js => harness/defaults/preferences/prefs.js",Atul Varma,2009-10-17T23:46:39Z,Atul Varma,Atul Varma,6,4,2
+72,addon-sdk,452748094e7121c553ee66df26f5ec7067b835d1,"Moved 'lib' and 'tests' dir from chrome/content to root dir.
+
+--HG--
+rename : chrome/content/lib/cuddlefish.js => lib/cuddlefish.js
+rename : chrome/content/lib/memory.js => lib/memory.js
+rename : chrome/content/lib/observer-service.js => lib/observer-service.js
+rename : chrome/content/lib/plain-text-console.js => lib/plain-text-console.js
+rename : chrome/content/lib/preferences-service.js => lib/preferences-service.js
+rename : chrome/content/lib/securable-module.js => lib/securable-module.js
+rename : chrome/content/lib/timer.js => lib/timer.js
+rename : chrome/content/lib/traceback.js => lib/traceback.js
+rename : chrome/content/lib/unit-test.js => lib/unit-test.js
+rename : chrome/content/lib/unload.js => lib/unload.js
+rename : chrome/content/lib/url.js => lib/url.js
+rename : chrome/content/tests/run-suites.js => tests/run-suites.js
+rename : chrome/content/tests/test-cuddlefish.js => tests/test-cuddlefish.js
+rename : chrome/content/tests/test-memory.js => tests/test-memory.js
+rename : chrome/content/tests/test-observer-service.js => tests/test-observer-service.js
+rename : chrome/content/tests/test-plain-text-console.js => tests/test-plain-text-console.js
+rename : chrome/content/tests/test-preferences-service.js => tests/test-preferences-service.js
+rename : chrome/content/tests/test-timer.js => tests/test-timer.js
+rename : chrome/content/tests/test-traceback.js => tests/test-traceback.js
+rename : chrome/content/tests/test-url.js => tests/test-url.js",Atul Varma,2009-10-17T23:40:21Z,Atul Varma,Atul Varma,25,23,2
+73,addon-sdk,3844d39246c051cc61bb01865a725e8c86f2e951,Removed outdated comment.,Atul Varma,2009-10-17T22:59:10Z,Atul Varma,Atul Varma,3,0,3
+74,addon-sdk,656bf59fe0207cc801b5392f7ed1ea12083e387c,Fixed a race condition bug in run_tests.py.,Atul Varma,2009-10-17T22:41:35Z,Atul Varma,Atul Varma,9,6,3
+75,addon-sdk,9e1806ae2cd503122e16056e14161b24a7a2bbd3,run_tests.py now supports xulrunner-bin via the -b argument.,Atul Varma,2009-10-17T22:34:26Z,Atul Varma,Atul Varma,17,10,7
+76,addon-sdk,c0f6220243b6915613733caccc0bd3c1b84a5885,Minor formatting change,Atul Varma,2009-10-02T04:41:08Z,Atul Varma,Atul Varma,3,1,2
+77,addon-sdk,13d444dc2771de1c0db8f7112e8c0451906813fe,"Enabled strict mode on testing suite and fixed a warning raised by it. Also, nsIConsole messages now show up in test output.",Atul Varma,2009-10-02T03:41:09Z,Atul Varma,Atul Varma,16,15,1
+78,addon-sdk,e59156b09d9560afcab783ff1bad20a17f0d816d,"Report useful error if Cu.import() of securable-module.js fails.
+
+--HG--
+extra : rebase_source : 64f793bc350bf7506ac2c23ba57583047ebd07e6",Atul Varma,2009-10-01T04:05:03Z,Atul Varma,Atul Varma,6,5,1
+79,addon-sdk,f5d60388e0559041e4fec10e71882da70d082ec2,Consistently use {} instead of new Object().,Edward Lee,2009-10-01T23:40:21Z,Mardak,Mardak,8,4,4
+80,addon-sdk,ee73a506f87a9f6d2a1e49e01a84cf6fff94ce45,"Add tests for plain text console printing of objects with custom toString. Use Array.map for the arguments object and a wrapper around String, which already handles undefined/null values.",Edward Lee,2009-10-01T23:33:19Z,Mardak,Mardak,34,18,16
+81,addon-sdk,963860613a8e14c04affcf0be5254053a14cb1bb,"Fixed a bug in traceback, though I didn't add a regression test b/c I'm not entirely sure how to make one.",Atul Varma,2009-09-30T20:02:43Z,Atul Varma,Atul Varma,2,1,1
+82,addon-sdk,9532220a917b1d8752954bbf548c3d36c41859f8,Changed observer-service to explicitly unregister all still-registered observers on unload.,Atul Varma,2009-09-30T19:49:55Z,Atul Varma,Atul Varma,13,9,4
+83,addon-sdk,9d994d2871799360e3cfcc2a15ac09d52b9be4b0,Removed observe() and ignore() from preferences-service for now,Atul Varma,2009-09-30T17:50:14Z,Atul Varma,Atul Varma,8,0,8
+84,addon-sdk,412d1b86ba39e7d6c4c9196ca2f7e25bd75939cf,Renamed some things in pref tests,Atul Varma,2009-09-30T17:48:07Z,Atul Varma,Atul Varma,12,6,6
+85,addon-sdk,23f115a972b9a33605a8763f8eb627b80e8e59d3,Added another preferences unit test,Atul Varma,2009-09-30T17:46:14Z,Atul Varma,Atul Varma,8,8,0
+86,addon-sdk,a3130d0447dfd7ce7c43cf86930db233ef9792b2,Added preferences-service module w/ tests.,Atul Varma,2009-09-30T17:41:56Z,Atul Varma,Atul Varma,204,204,0
+87,addon-sdk,86191bb49cf1c7b8c1fca4103df9889e19e87bdd,Added a test to observer-service that ensures that exceptions are logged.,Atul Varma,2009-09-30T15:49:32Z,Atul Varma,Atul Varma,12,10,2
+88,addon-sdk,2009478e22d25db46d46738435655727df775a23,Added unload test to observer-service tests.,Atul Varma,2009-09-30T15:44:20Z,Atul Varma,Atul Varma,28,27,1
+89,addon-sdk,6dfcc3b93a36866b1dfd8a588d85139d14dfb1b8,Added an unload test to the timer module.,Atul Varma,2009-09-30T15:38:28Z,Atul Varma,Atul Varma,16,16,0
+90,addon-sdk,9c5663bdb7e31369c4df3e5fb6d7457c0c188bb7,Moved sandboxed loader functionality from test-cuddlefish.js to run-suites.js; it's now attached as a convenience method to the test runner.,Atul Varma,2009-09-30T15:33:43Z,Atul Varma,Atul Varma,21,13,8
+91,addon-sdk,fca4ac8710c57d33f73e63eb36bff5d74ca30227,Added license blocks to all remaining SecurableModules.,Atul Varma,2009-09-30T00:36:55Z,Atul Varma,Atul Varma,216,216,0
+92,addon-sdk,721cb55fa2dbae55e219e14f2d90b244a170e293,Fixed a bug in unit-test.js that caused the stack to not unroll between tests.,Atul Varma,2009-09-30T00:16:44Z,Atul Varma,Atul Varma,2,1,1
+93,addon-sdk,c8daf0570bb0d6980efd3ed98a968a815fa8d303,"Fixed a bug in the traceback module and wrote a regression test. Also, an observer-service observer that throws an exception now has it logged via console.exception().",Atul Varma,2009-09-30T00:09:51Z,Atul Varma,Atul Varma,50,41,9
+94,addon-sdk,29c959027e06d8fba22387ed001d66c288745f60,Changed observer-service tests a bit.,Atul Varma,2009-09-29T23:15:07Z,Atul Varma,Atul Varma,11,6,5
+95,addon-sdk,65c67c73b8039e72806539a6107485d37242ed09,"Added observer-service.js, a SecurableModule version of Daniel Aquino and Myk Melez's Observers.js.",Atul Varma,2009-09-29T23:05:39Z,Atul Varma,Atul Varma,223,223,0
+96,addon-sdk,4533848acf3dc5c8b512cb3c7052c1a80a251d46,"made 'memory' a global as per the JEP 28 spec, and added tests for it.",Atul Varma,2009-09-29T22:07:20Z,Atul Varma,Atul Varma,19,19,0
+97,addon-sdk,61615ece68df6da8be33253fb2adf76f33aec901,Updated to reflect latest docs.,Atul Varma,2009-09-29T00:37:46Z,Atul Varma,Atul Varma,4,2,2
+98,addon-sdk,86aaba9908cab00f4d00f4816956bced3073a499,"Changed compaction interval of tracked objects to 5s, provided generic bin if a name can't be inferred.",Atul Varma,2009-09-29T00:24:25Z,Atul Varma,Atul Varma,4,3,1
+99,addon-sdk,497c0ff64a978f873875b037d2784c6bb9c2cb6c,Added initial implementation of memory module.,Atul Varma,2009-09-29T00:01:31Z,Atul Varma,Atul Varma,87,87,0
+100,addon-sdk,1ac6e695eee8276d3ad871f312afc3b75238a733,Exceptions raised in timer callbacks now log them used console.exception().,Atul Varma,2009-09-28T23:07:59Z,Atul Varma,Atul Varma,2,1,1
+101,addon-sdk,777db9a430181c5bdafb6c418291b9327e19fcfe,Implemented console.trace().,Atul Varma,2009-09-28T20:35:10Z,Atul Varma,Atul Varma,13,13,0
+102,addon-sdk,334a97506fe20a7b8d0a43a6cdd3be0329f1185a,Even better outermost exception handling.,Atul Varma,2009-09-28T20:24:24Z,Atul Varma,Atul Varma,15,11,4
+103,addon-sdk,f6a07907da685b06d16b9b7918be8b0680fde66a,Better error feedback on outermost exception handler.,Atul Varma,2009-09-28T20:19:11Z,Atul Varma,Atul Varma,6,5,1
+104,addon-sdk,1848538cf34469484949a8e2df6d780c3b96e2b1,traceback.fromException() now supports Error instances.,Atul Varma,2009-09-28T20:16:09Z,Atul Varma,Atul Varma,55,47,8
+105,addon-sdk,e51de97f38116cb172b858c5b55ef48c6b8ea32f,traceback.fromException() now works w/ nsIException instances.,Atul Varma,2009-09-28T19:37:30Z,Atul Varma,Atul Varma,39,32,7
+106,addon-sdk,bdb8e44cda64cf5140588e596449b1744589c68f,Added traceback.format() initial implementation.,Atul Varma,2009-09-28T19:13:49Z,Atul Varma,Atul Varma,73,73,0
+107,addon-sdk,654dc0acce8cbfff6ce2fb5578cc68b560baad9b,"Renamed dump-console.js to plain-text-console.js.
+
+--HG--
+rename : chrome/content/lib/dump-console.js => chrome/content/lib/plain-text-console.js
+rename : chrome/content/tests/test-console.js => chrome/content/tests/test-plain-text-console.js",Atul Varma,2009-09-28T18:06:41Z,Atul Varma,Atul Varma,30,15,15
+108,addon-sdk,265711c1e8c2c6c4b5acffcdc856cc121f47cf4e,Added a Loader.unload() method to the Cuddlefish Loader class.,Atul Varma,2009-09-28T17:38:38Z,Atul Varma,Atul Varma,11,11,0
+109,addon-sdk,839b8eba167af3784b7b0c16a9d81a51f29f3ae1,Added a console.exception() method.,Atul Varma,2009-09-28T17:30:33Z,Atul Varma,Atul Varma,17,13,4
+110,addon-sdk,a47d8d4185a91675fd66a46234e0a0de52a05b94,unit-test.startMany() now resets the stack every time a new test runs via timer.setTimeout().,Atul Varma,2009-09-28T17:16:04Z,Atul Varma,Atul Varma,23,14,9
+111,addon-sdk,2d1907e02339a2bad5cbc02b4ede2660b38f1f2d,Added timers module and unload module.,Atul Varma,2009-09-28T16:58:24Z,Atul Varma,Atul Varma,99,96,3
+112,addon-sdk,bd59bb338057c93620a93e7de23c048f050a3caa,Minor refactoring to traceback.js,Atul Varma,2009-09-28T05:19:12Z,Atul Varma,Atul Varma,7,6,1
+113,addon-sdk,8b515cab7f8078ae8089733deac78e69efda2ddb,More url tests,Atul Varma,2009-09-28T02:46:11Z,Atul Varma,Atul Varma,44,39,5
+114,addon-sdk,5c7a8dc87a883692f36ee0adf36183ebcce2a7d9,Added exception for invalid URIs,Atul Varma,2009-09-28T02:36:19Z,Atul Varma,Atul Varma,28,26,2
+115,addon-sdk,57cd071ae31c00a160dd73af4a42df5b7971d591,Minor refactoring to url.js.,Atul Varma,2009-09-28T00:03:58Z,Atul Varma,Atul Varma,10,7,3
+116,addon-sdk,65a4226138741c67f9018e39df88050925a70136,Added console tests and fixed bugs revealed by them.,Atul Varma,2009-09-27T20:27:13Z,Atul Varma,Atul Varma,15,14,1
+117,addon-sdk,56665f2b7ed546b37406acaf38fa124636b2210a,added another url test,Atul Varma,2009-09-27T20:21:33Z,Atul Varma,Atul Varma,6,5,1
+118,addon-sdk,b18d624ffc102a65f1b4069bc619d7a4ade55777,added url test,Atul Varma,2009-09-27T20:19:01Z,Atul Varma,Atul Varma,4,4,0
+119,addon-sdk,a4fd61c6372166928b4e57988891036644293283,"url module now deals w/ NS_ERROR_MALFORMED_URI, TestRunner now has assertRaises() function.",Atul Varma,2009-09-27T20:16:53Z,Atul Varma,Atul Varma,22,21,1
+120,addon-sdk,227f1bd9d85c00b64273af999551b70e2b915907,Added initial test-url.js,Atul Varma,2009-09-27T20:02:29Z,Atul Varma,Atul Varma,10,10,0
+121,addon-sdk,ef6ef3b29c901c70726c7212095435735c1659b6,"Refactored test runner more.
+
+--HG--
+rename : chrome/content/tests/cuddlefish-tests.js => chrome/content/tests/run-suites.js",Atul Varma,2009-09-27T19:53:05Z,Atul Varma,Atul Varma,38,28,10
+122,addon-sdk,026d55652ad9ce30ce3bb81495ac1526a37de7ff,Changed tests a bit.,Atul Varma,2009-09-27T19:37:15Z,Atul Varma,Atul Varma,47,24,23
+123,addon-sdk,ca93183df740d3b1da80e6700b57e32f9b279e12,added a startMany() method to TestRunner.,Atul Varma,2009-09-27T14:08:05Z,Atul Varma,Atul Varma,21,12,9
+124,addon-sdk,f5c536bfdb770e918938d85fc1767562579ac985,TestRunner can now be used more than once.,Atul Varma,2009-09-27T13:48:31Z,Atul Varma,Atul Varma,25,10,15
+125,addon-sdk,5a100880efb0fba170f027f8ab9110caaddbcbfc,Added test-console.js.,Atul Varma,2009-09-27T13:38:38Z,Atul Varma,Atul Varma,44,38,6
+126,addon-sdk,ffe44dfa6067491335c15afbf4d162801e28fda7,Renamed addException() to exception().,Atul Varma,2009-09-27T06:53:56Z,Atul Varma,Atul Varma,4,2,2
+127,addon-sdk,9c17dbf8522d005d6f296a46d6a29de286b5325b,"Renamed addPass() and addFail() to pass() and fail(), respectively.",Atul Varma,2009-09-26T23:40:57Z,Atul Varma,Atul Varma,10,5,5
+128,addon-sdk,b77ca23a2fcfc78840e628ede1911b22ca1af564,Tests are run using unit-test module instead of dump-test-runner.,Atul Varma,2009-09-26T23:39:19Z,Atul Varma,Atul Varma,218,75,143
+129,addon-sdk,cad1a6d9a467268b976db4580886ad7aa0c91b2d,Initial barebones implementation of unit-test module.,Atul Varma,2009-09-26T22:45:39Z,Atul Varma,Atul Varma,48,48,0
+130,addon-sdk,e7087c1b2763ee7f29426d1eab2adb4f72c4a095,Renamed booster.js to securable-module.js.,Atul Varma,2009-09-26T21:00:56Z,Atul Varma,Atul Varma,29,14,15
+131,addon-sdk,53e7c2c28155ceac7ccc153f261338661310e7d3,"Renamed 'cuddle' to 'cuddlefish'
+
+--HG--
+rename : chrome/content/lib/cuddle.js => chrome/content/lib/cuddlefish.js
+rename : chrome/content/tests/cuddle-tests.js => chrome/content/tests/cuddlefish-tests.js",Atul Varma,2009-09-26T20:49:13Z,Atul Varma,Atul Varma,6,3,3
+132,addon-sdk,9fff71a1ce89c355b87944282fea66b9626ed856,Added README.,Atul Varma,2009-09-26T05:27:21Z,Atul Varma,Atul Varma,32,32,0
+133,addon-sdk,59718b011ee09d98b84057f92fd5f4970a519bc1,"Added initial versions of traceback and URL module, and moved the test suite to be run within Cuddlefish itself.
+
+--HG--
+rename : chrome/content/dump-test-runner.js => chrome/content/tests/dump-test-runner.js",Atul Varma,2009-09-26T02:19:44Z,Atul Varma,Atul Varma,136,102,34
+134,addon-sdk,396565ff34de9f635e9ed2fdb75a3bfac466da27,Cuddlefish no longer requires booster.js to be manually loaded before it and passed into it.,Atul Varma,2009-09-25T22:27:54Z,Atul Varma,Atul Varma,36,32,4
+135,addon-sdk,1ccd9efaa01070749d87b3206bef976005d84e32,Implemented console.debug().,Atul Varma,2009-09-25T21:16:33Z,Atul Varma,Atul Varma,8,8,0
+136,addon-sdk,652c9d38dd4fb6331c811c2879b88020234f360c,Added more console tests.,Atul Varma,2009-09-25T21:04:25Z,Atul Varma,Atul Varma,32,27,5
+137,addon-sdk,b2ed00d8239b2e04338a4ac5e56c12f06012225d,Merged in changes from jep-25.,Atul Varma,2009-09-25T20:27:45Z,Atul Varma,Atul Varma,19,18,1
+138,addon-sdk,8be6a802cdfa382b5fde3afdffc239bdc75b9b18,dump console now auto-enables browser.dom.window.dump.enabled preference if necessary.,Atul Varma,2009-09-25T18:22:47Z,Atul Varma,Atul Varma,7,7,0
+139,addon-sdk,a7887a0d0ed2bd0654264722279f023aa2174e8f,Added to test,Atul Varma,2009-09-25T17:15:43Z,Atul Varma,Atul Varma,4,2,2
+140,addon-sdk,b3f674d377713cd511e8eed2a8998964297a1cb8,Added basic console.log().,Atul Varma,2009-09-25T17:14:04Z,Atul Varma,Atul Varma,65,60,5
+141,addon-sdk,0253e0613b86c635174ec280945c16607ccea13d,Added batch files to bin directory for Windows support.,Atul Varma,2009-11-23T01:07:40Z,Atul Varma,Atul Varma,57,57,0
+142,addon-sdk,fabc38fbcfca38b9be5e4c23c07a53922cfdcfea,Made cuddlefish.run() take optional 'arguments' arg,Atul Varma,2009-11-18T20:16:05Z,Atul Varma,Atul Varma,4,2,2
+143,addon-sdk,e1cebc93148a17b277ce30a27cb04031a636b7c5,Made package metadata available to XPIs via packaging.options.metadata.,Atul Varma,2009-11-18T19:27:14Z,Atul Varma,Atul Varma,31,28,3
+144,addon-sdk,4afa24541ac6271bd9bf8d03b7a98c8d632c1e27,"Merged packaging-tests into test-harness.
+
+--HG--
+rename : packages/packaging-tests/tests/test-packaging.js => packages/test-harness/tests/test-packaging.js",Atul Varma,2009-11-18T18:38:50Z,Atul Varma,Atul Varma,9,2,7
+145,addon-sdk,7678851a207276ca06b6f39e8c19e7ba4493f3eb,"Added a 'packaging' global to modules loaded in extensions via harness.js, which provides access to packaging metadata, etc.",Atul Varma,2009-11-18T18:31:45Z,Atul Varma,Atul Varma,50,48,2
+146,addon-sdk,265fd135db866e887751d8166b3740ad76f17272,harness service can now have its wrappedJSObject and loader retrieved by XPCOM clients.,Atul Varma,2009-11-18T01:17:49Z,Atul Varma,Atul Varma,76,39,37
+147,addon-sdk,015daa8bc264b74d638d529a84a6156402fb14df,"The harness service's contract ID is now named based on the id of the extension being built, rather than the random guid of the harness component.",Atul Varma,2009-11-18T01:04:53Z,Atul Varma,Atul Varma,22,13,9
+148,addon-sdk,e9bb3c0d5b10cf78ff966899006e566f92c59a10,Building an xpi now copies the contents of the whole extension template into the .xpi file.,Atul Varma,2009-11-18T00:24:52Z,Atul Varma,Atul Varma,21,14,7
+149,addon-sdk,176f95b2e5cc8169c7fac671b722b0ec7cba1d0c,"Added a --templatedir option, which allows cuddlefisher to use a different app-extension directory than the default.",Atul Varma,2009-11-18T00:05:52Z,Atul Varma,Atul Varma,15,11,4
+150,addon-sdk,865d80e6cb06b1513b1b1e35b4526a13c5fab343,harness.js is now completely decoupled from cuddlefish proper.,Atul Varma,2009-11-17T23:57:34Z,Atul Varma,Atul Varma,50,27,23
+151,addon-sdk,90a6cea7696b4bd659a39f4e8f97818d52dee93f,Updated README.txt instructions,Atul Varma,2009-11-17T23:32:29Z,Atul Varma,Atul Varma,3,2,1
+152,addon-sdk,1ad88c3e2e38e789f99f7374472e404da6b37f59,"Restructured directories such that cuddlefish is now in its own package in the 'packages' directory.
+
+--HG--
+rename : lib/cuddlefish.js => packages/cuddlefish/lib/cuddlefish.js
+rename : lib/file.js => packages/cuddlefish/lib/file.js
+rename : lib/memory.js => packages/cuddlefish/lib/memory.js
+rename : lib/observer-service.js => packages/cuddlefish/lib/observer-service.js
+rename : lib/plain-text-console.js => packages/cuddlefish/lib/plain-text-console.js
+rename : lib/preferences-service.js => packages/cuddlefish/lib/preferences-service.js
+rename : lib/securable-module.js => packages/cuddlefish/lib/securable-module.js
+rename : lib/timer.js => packages/cuddlefish/lib/timer.js
+rename : lib/traceback.js => packages/cuddlefish/lib/traceback.js
+rename : lib/unit-test.js => packages/cuddlefish/lib/unit-test.js
+rename : lib/unload.js => packages/cuddlefish/lib/unload.js
+rename : lib/url.js => packages/cuddlefish/lib/url.js
+rename : lib/xhr.js => packages/cuddlefish/lib/xhr.js
+rename : lib/xpcom.js => packages/cuddlefish/lib/xpcom.js
+rename : package.json => packages/cuddlefish/package.json
+rename : python-packages/download_interopjs.py => packages/cuddlefish/python-lib/download_interopjs.py
+rename : tests/test-cuddlefish.js => packages/cuddlefish/tests/test-cuddlefish.js
+rename : tests/test-file.js => packages/cuddlefish/tests/test-file.js
+rename : tests/test-globals.js => packages/cuddlefish/tests/test-globals.js
+rename : tests/test-memory.js => packages/cuddlefish/tests/test-memory.js
+rename : tests/test-observer-service.js => packages/cuddlefish/tests/test-observer-service.js
+rename : tests/test-plain-text-console.js => packages/cuddlefish/tests/test-plain-text-console.js
+rename : tests/test-preferences-service.js => packages/cuddlefish/tests/test-preferences-service.js
+rename : tests/test-securable-module.js => packages/cuddlefish/tests/test-securable-module.js
+rename : tests/test-timer.js => packages/cuddlefish/tests/test-timer.js
+rename : tests/test-traceback.js => packages/cuddlefish/tests/test-traceback.js
+rename : tests/test-url.js => packages/cuddlefish/tests/test-url.js
+rename : tests/test-xhr.js => packages/cuddlefish/tests/test-xhr.js
+rename : tests/test-xpcom.js => packages/cuddlefish/tests/test-xpcom.js
+rename : python-packages/cuddlefish/__init__.py => python-lib/cuddlefish/__init__.py
+rename : python-packages/cuddlefish/app-extension/application.ini => python-lib/cuddlefish/app-extension/application.ini
+rename : python-packages/cuddlefish/app-extension/components/harness.js => python-lib/cuddlefish/app-extension/components/harness.js
+rename : python-packages/cuddlefish/app-extension/defaults/preferences/prefs.js => python-lib/cuddlefish/app-extension/defaults/preferences/prefs.js
+rename : python-packages/cuddlefish/app-extension/install.rdf => python-lib/cuddlefish/app-extension/install.rdf
+rename : python-packages/cuddlefish/bunch.py => python-lib/cuddlefish/bunch.py
+rename : python-packages/cuddlefish/packaging.py => python-lib/cuddlefish/packaging.py
+rename : python-packages/cuddlefish/prefs.py => python-lib/cuddlefish/prefs.py
+rename : python-packages/cuddlefish/rdf.py => python-lib/cuddlefish/rdf.py
+rename : python-packages/cuddlefish/runner.py => python-lib/cuddlefish/runner.py
+rename : python-packages/cuddlefish/xpcom.py => python-lib/cuddlefish/xpcom.py
+rename : python-packages/cuddlefish/xpi.py => python-lib/cuddlefish/xpi.py
+rename : python-packages/mozrunner/__init__.py => python-lib/mozrunner/__init__.py
+rename : python-packages/mozrunner/killableprocess.py => python-lib/mozrunner/killableprocess.py
+rename : python-packages/mozrunner/winprocess.py => python-lib/mozrunner/winprocess.py
+rename : python-packages/simplejson/__init__.py => python-lib/simplejson/__init__.py
+rename : python-packages/simplejson/decoder.py => python-lib/simplejson/decoder.py
+rename : python-packages/simplejson/encoder.py => python-lib/simplejson/encoder.py
+rename : python-packages/simplejson/scanner.py => python-lib/simplejson/scanner.py
+rename : python-packages/simplejson/tool.py => python-lib/simplejson/tool.py",Atul Varma,2009-11-17T23:31:26Z,Atul Varma,Atul Varma,5,2,3
+153,addon-sdk,79c1c79bb09ee415d3b90d9435b198ed0e092c4f,Slightly better chance of gc'ing better on one iteration of suite.,Atul Varma,2009-11-17T22:42:09Z,Atul Varma,Atul Varma,39,24,15
+154,addon-sdk,3fd704b93df732619cd3e7ae959f3bf8f5262d0e,Fixed test runner to work on thunderbird.,Atul Varma,2009-11-17T22:30:47Z,Atul Varma,Atul Varma,4,4,0
+155,addon-sdk,e0eb76ff98e1526d5cac30f3be263c96b6c2a63b,Global variable is now cleared in run-tests.js,Atul Varma,2009-11-17T22:28:07Z,Atul Varma,Atul Varma,7,5,2
+156,addon-sdk,5fee4916e9d435f807db87277ece7a6df84213b1,"Moved test running code out of the generic app-extension and into a new 'test-harness' package.
+
+--HG--
+rename : python-packages/cuddlefish/app-extension/securable-modules/harness.js => packages/test-harness/lib/harness.js
+rename : python-packages/cuddlefish/app-extension/profiler-scripts/profiler.js => packages/test-harness/lib/profiler-scripts/profiler.js",Atul Varma,2009-11-17T22:19:51Z,Atul Varma,Atul Varma,168,85,83
+157,addon-sdk,0dcf50a37244d4c2ce6f14e56a3f990e9b1d012f,"Moved harness xulrunner app/extension files into an app-extension dir.
+
+--HG--
+rename : python-packages/cuddlefish/application.ini => python-packages/cuddlefish/app-extension/application.ini
+rename : python-packages/cuddlefish/components/harness.js => python-packages/cuddlefish/app-extension/components/harness.js
+rename : python-packages/cuddlefish/defaults/preferences/prefs.js => python-packages/cuddlefish/app-extension/defaults/preferences/prefs.js
+rename : python-packages/cuddlefish/install.rdf => python-packages/cuddlefish/app-extension/install.rdf
+rename : python-packages/cuddlefish/profiler-scripts/profiler.js => python-packages/cuddlefish/app-extension/profiler-scripts/profiler.js
+rename : python-packages/cuddlefish/securable-modules/harness.js => python-packages/cuddlefish/app-extension/securable-modules/harness.js",Atul Varma,2009-11-17T20:03:36Z,Atul Varma,Atul Varma,11,7,4
+158,addon-sdk,4e49975fbaeb179a2f756d14f9a34b307cad3def,Simplified plugin interface.,Atul Varma,2009-11-17T16:35:53Z,Atul Varma,Atul Varma,8,4,4
+159,addon-sdk,cd03b4b3cfbf194b4003ac9506db62321703f199,Removed duplicate code.,Atul Varma,2009-11-17T16:33:27Z,Atul Varma,Atul Varma,2,0,2
+160,addon-sdk,cb1002faadf6a512f29646f24fe71604de4533b6,Factored out app-running functionality into cuddlefish.runner.,Atul Varma,2009-11-14T18:46:52Z,Atul Varma,Atul Varma,308,160,148
+161,addon-sdk,d870dd98e5eedd40f8b97be9ca2003fad542f1df,Better feedback on package.json malformedness.,Atul Varma,2009-11-14T18:17:36Z,Atul Varma,Atul Varma,9,8,1
+162,addon-sdk,b05f51fe2cdc57d4a03c4bc29b347a4b45c5d97e,"Renamed cuddlefish.xpcomutils to cuddlefish.xpcom, and cuddlefish.rdfutils to cuddlefish.rdf.
+
+--HG--
+rename : python-packages/cuddlefish/rdfutils.py => python-packages/cuddlefish/rdf.py
+rename : python-packages/cuddlefish/xpcomutils.py => python-packages/cuddlefish/xpcom.py",Atul Varma,2009-11-14T18:05:59Z,Atul Varma,Atul Varma,6,3,3
+163,addon-sdk,f0843e9a7addbbcfd720eca1b3e4eb77b16dbbab,Factored-out all packaging-related code to cuddlefish.packaging.,Atul Varma,2009-11-14T18:02:08Z,Atul Varma,Atul Varma,183,94,89
+164,addon-sdk,612adddc0ac3246c65d58648e9fd446c558ef895,Removed unneeded code.,Atul Varma,2009-11-14T17:47:59Z,Atul Varma,Atul Varma,27,11,16
+165,addon-sdk,6f8de7748df04410cded4b64b181a8819cf846a0,Removed unneeded code.,Atul Varma,2009-11-14T17:36:09Z,Atul Varma,Atul Varma,3,0,3
+166,addon-sdk,fe7156db64d05e3f12474e142ad2647f3ae2643c,Various refactorings to cuddlefisher.,Atul Varma,2009-11-14T17:31:46Z,Atul Varma,Atul Varma,269,140,129
+167,addon-sdk,1c382804fb7057e5de94d694c107fcd439f0c09f,Removed extraneous import.,Atul Varma,2009-11-14T16:51:07Z,Atul Varma,Atul Varma,1,0,1
+168,addon-sdk,162bc91bc4b6c69fd5a3cbe6896d6a420a93d3b2,made resource dir prefixes easier to read when testing.,Atul Varma,2009-11-14T16:49:13Z,Atul Varma,Atul Varma,27,17,10
+169,addon-sdk,57000cf335800e5d72e16b483868c4e8ed62b32b,"Added an xpcom.autoRegister() function. Can't really write a test for it without adding xpcom binary components to cuddlefish, though.",Atul Varma,2009-11-14T03:14:56Z,Atul Varma,Atul Varma,32,32,0
+170,addon-sdk,f12f32f358d24ae5188a3f8f2d8476200a2bfd01,xpts are now included in XPIs and when tests/main runs.,Atul Varma,2009-11-14T02:43:56Z,Atul Varma,Atul Varma,36,28,8
+171,addon-sdk,473abeb0b879f7d1c6ca8705f5db1a705eb2fa5e,Added incompatibility error when --components is used with the 'xpi' command on cuddlefisher.,Atul Varma,2009-11-14T02:21:37Z,Atul Varma,Atul Varma,4,4,0
+172,addon-sdk,cec75c7d229a9c737a5f9d5752cb51ea0cfffb16,Added support for build xpcom components.,Atul Varma,2009-11-14T02:02:52Z,Atul Varma,Atul Varma,40,38,2
+173,addon-sdk,572eafe5a5c559a7ccad73b40b50587b886d13bb,Display help on unknown command.,Atul Varma,2009-11-14T01:06:31Z,Atul Varma,Atul Varma,5,3,2
+174,addon-sdk,28738e48dbf4303e6839ff2367d65df34e6ce64f,Refactorings to cuddlefisher.,Atul Varma,2009-11-14T01:04:55Z,Atul Varma,Atul Varma,114,66,48
+175,addon-sdk,cd594926c4ddbc5d9a52571c851ed6ce16190a74,"Removed temporary code from my last commit, and made xpcom component generation clear src/build directories on completion.",Atul Varma,2009-11-14T00:06:28Z,Atul Varma,Atul Varma,4,2,2
+176,addon-sdk,f186d51ef2fb88673c2aba1eb258bcaa0da5d862,"Added cuddlefish.bunch and cuddlefish.xpcomutils, ported code from jetpack's manage.py useful for building xpcom components.",Atul Varma,2009-11-14T00:00:35Z,Atul Varma,Atul Varma,141,141,0
+177,addon-sdk,45c5b30dec0cd1dbb20c29379e35e928cecd86fb,Ignore the 'packages' directory instead of the local.json file.,Atul Varma,2009-11-13T22:17:42Z,Atul Varma,Atul Varma,2,1,1
+178,addon-sdk,a79c5d73846c3811b7994c35eb62b1fe1ea99ffb,"We now just look at dirs in a 'packages' dir, if it exists, to find packages, instead of using local.json.",Atul Varma,2009-11-13T22:13:56Z,Atul Varma,Atul Varma,14,6,8
+179,addon-sdk,40b609f2e373fc03e9fb7f2a127b0f8e00e8b506,XPI export functionality works again.,Atul Varma,2009-11-13T21:31:17Z,Atul Varma,Atul Varma,72,56,16
+180,addon-sdk,a35389f6af2f4a49621b38a2be9578826d9b6115,Added support for running 'main' scripts.,Atul Varma,2009-11-13T20:35:30Z,Atul Varma,Atul Varma,17,13,4
+181,addon-sdk,aacf9e29e3c428e2eeea0e98bd3e1c7fe295861a,"Fixed a bug whereby the relative paths in local.json were being resolved based on the current directory, rather than the directory of local.json.",Atul Varma,2009-11-13T20:19:30Z,Atul Varma,Atul Varma,3,3,0
+182,addon-sdk,eed9d96f00d6740394e71b8482939aed895d1532,Fixed README to be consistent w/ current code.,Atul Varma,2009-11-13T19:47:24Z,Atul Varma,Atul Varma,11,5,6
+183,addon-sdk,0bd4b95a87f28b7e7f462af3ce11340aaf174b6e,Ignore weird OSErrors on destruction of xulrunner profiles.,Atul Varma,2009-11-13T19:44:44Z,Atul Varma,Atul Varma,5,4,1
+184,addon-sdk,46c9deb97bcbbb1e582f66d5ee83b9bcf502201e,"Replaced run_tests.py with cuddlefisher.py, which automatically introspects the current directory's package.json and runs any tests it mentions.
+
+--HG--
+rename : bin/run_tests.py => bin/cuddlefisher.py",Atul Varma,2009-11-13T19:39:38Z,Atul Varma,Atul Varma,167,137,30
+185,addon-sdk,c408b21833d90a4e271848e9a493dfebbff17b19,CUDDLEFISH_ROOT is now exported.,Atul Varma,2009-11-13T14:04:45Z,Atul Varma,Atul Varma,1,1,0
+186,addon-sdk,364898a64a3ab4c9f3b538b171b29fcd93f12021,"Added bin/activate, which bin/run_tests.py now assumes has been source'd.",Atul Varma,2009-11-13T13:56:16Z,Atul Varma,Atul Varma,75,72,3
+187,addon-sdk,3117ae16139be790c2bcbbd165af5d7f4b4cd3f6,"Moved harness to python-packages/cuddlefish, and run_tests.py to bin/run_tests.py.
+
+--HG--
+rename : run_tests.py => bin/run_tests.py
+rename : harness/__init__.py => python-packages/cuddlefish/__init__.py
+rename : harness/application.ini => python-packages/cuddlefish/application.ini
+rename : harness/components/harness.js => python-packages/cuddlefish/components/harness.js
+rename : harness/defaults/preferences/prefs.js => python-packages/cuddlefish/defaults/preferences/prefs.js
+rename : harness/install.rdf => python-packages/cuddlefish/install.rdf
+rename : harness/profiler-scripts/profiler.js => python-packages/cuddlefish/profiler-scripts/profiler.js
+rename : harness/securable-modules/harness.js => python-packages/cuddlefish/securable-modules/harness.js",Atul Varma,2009-11-13T13:40:10Z,Atul Varma,Atul Varma,23,12,11
+188,addon-sdk,70d747ebf66cd694b1f1c7e43e157032ecc0fedf,"Moved harness/python-modules to python-packages.
+
+--HG--
+rename : harness/python-modules/mozrunner/__init__.py => python-packages/mozrunner/__init__.py
+rename : harness/python-modules/mozrunner/killableprocess.py => python-packages/mozrunner/killableprocess.py
+rename : harness/python-modules/mozrunner/winprocess.py => python-packages/mozrunner/winprocess.py
+rename : harness/python-modules/simplejson/__init__.py => python-packages/simplejson/__init__.py
+rename : harness/python-modules/simplejson/decoder.py => python-packages/simplejson/decoder.py
+rename : harness/python-modules/simplejson/encoder.py => python-packages/simplejson/encoder.py
+rename : harness/python-modules/simplejson/scanner.py => python-packages/simplejson/scanner.py
+rename : harness/python-modules/simplejson/tool.py => python-packages/simplejson/tool.py",Atul Varma,2009-11-13T13:29:47Z,Atul Varma,Atul Varma,2,1,1
+189,addon-sdk,39598e69dc69b236a2b9c713e9bea64bebf3d7dd,Got rid of unused chrome.manifest files.,Atul Varma,2009-11-13T13:24:46Z,Atul Varma,Atul Varma,0,0,0
+190,addon-sdk,7351ec12c002b165d711f660770ce85f4689abc8,harness now just bootstraps on app-startup if a script is running rather than the test suite.,Atul Varma,2009-11-13T02:36:27Z,Atul Varma,Atul Varma,5,5,0
+191,addon-sdk,a3d544fa3143eb9436f6c77d1de9ebf9a987c337,class/contractid of harness component is dynamically generated when exporting.,Atul Varma,2009-11-13T02:30:08Z,Atul Varma,Atul Varma,7,7,0
+192,addon-sdk,9afd64225960d89b7375aec1567fb5563ed6d2d8,Changed interoperablejs test loader to use relative URL.,Atul Varma,2009-11-13T02:17:45Z,Atul Varma,Atul Varma,7,4,3
+193,addon-sdk,59451171ad77118d759b33878c407a7035e0a956,Added an --export command-line flag allowing cuddlefish programs to be exported as XULRunner/Firefox/Thunderbird extensions.,Atul Varma,2009-11-13T00:29:19Z,Atul Varma,Atul Varma,110,101,9
+194,addon-sdk,64589a595067de7928f6b702b8bc7517fc524c2d,More refactorings.,Atul Varma,2009-11-12T22:04:47Z,Atul Varma,Atul Varma,14,10,4
+195,addon-sdk,4ce30df7a29e2287e2f3de96b25b71d2bc8f14d5,A few refactorings to harness.,Atul Varma,2009-11-12T21:57:51Z,Atul Varma,Atul Varma,40,26,14
+196,addon-sdk,0bb3446604a11159f84329ae3b8a689c23342493,Minor function renaming.,Atul Varma,2009-11-12T21:15:18Z,Atul Varma,Atul Varma,2,1,1
+197,addon-sdk,608196a15b63cea0d5795dbd6ed6cc11ff1004b5,contract ID and class ID of harness is passed in through options.,Atul Varma,2009-11-12T21:14:46Z,Atul Varma,Atul Varma,55,35,20
+198,addon-sdk,dc529d2e7fa1b68689ede2c394ed9f0a4dc1e40a,XPCOM typelibs in additional component directories are now automatically 'installed' into the harness for the duration of tests.,Atul Varma,2009-11-12T19:39:11Z,Atul Varma,Atul Varma,29,29,0
+199,addon-sdk,d644941243e1ab2b8af6ecc13491c848a8aaf13f,We now create a brand-new profile when running xulrunner tests.,Atul Varma,2009-11-12T19:05:37Z,Atul Varma,Atul Varma,14,13,1
+200,addon-sdk,b0967459df47227e71d656c018914a37a5f8a3a4,harness now runs at final-ui-startup on XULRunner to ensure that the profile has been created and NSS won't die if accessed.,Atul Varma,2009-11-12T18:58:29Z,Atul Varma,Atul Varma,6,5,1
+201,addon-sdk,943cea31f3b32331687e70b4a9770bf71e517b25,Minor change to factory unregistration code.,Atul Varma,2009-11-06T22:26:41Z,Atul Varma,Atul Varma,5,3,2
+202,addon-sdk,50cc82108c8bb2fb3140af668962f7c7a9bf41d4,Added category manager capabilities to xpcom module.,Atul Varma,2009-11-06T17:44:50Z,Atul Varma,Atul Varma,37,37,0
+203,addon-sdk,3ad5ddb3c96fd8c3518d947f3f8fccd9c935ced8,Made harness work w/ memory profiler again,Atul Varma,2009-11-05T00:55:32Z,Atul Varma,Atul Varma,2,1,1
+204,addon-sdk,a879c79aeb47b6d71c8545076e2972b80a6576a5,"harness works w/ thunderbird again, though there are a bunch of weird spurious Cu.import() errors raised by thunderbird code.",Atul Varma,2009-11-05T00:41:43Z,Atul Varma,Atul Varma,7,7,0
+205,addon-sdk,67bb65f7edde23384372331ac091630724d3e635,"Moved harness logic out of main.xul/main.js and to xpcom component.
+
+--HG--
+rename : harness/chrome/content/profiler.js => harness/profiler-scripts/profiler.js
+rename : harness/chrome/content/harness.js => harness/securable-modules/harness.js",Atul Varma,2009-11-04T23:23:12Z,Atul Varma,Atul Varma,339,142,197
+206,addon-sdk,27fd1dc6e339245a7dadc6f29b6f1ef7df32d5e8,"Added option for harness to run a main program via a --main command-line option, which allows for manual testing and experimentation.",Atul Varma,2009-11-04T19:38:00Z,Atul Varma,Atul Varma,58,38,20
+207,addon-sdk,850a695ad862da592865a6cf0fd5ee9e18f2900d,Fixed a memory leak in timer.js and made it more efficient. We now report # of live objects being tracked in the testing sandbox.,Atul Varma,2009-10-31T04:59:46Z,Atul Varma,Atul Varma,17,10,7
+208,addon-sdk,ad7916f591a82fdb0aded18019384fc6c3dd2417,Fixed a weird bug in memory.gc(),Atul Varma,2009-10-31T03:51:36Z,Atul Varma,Atul Varma,4,4,0
+209,addon-sdk,2025a8d2150d256864e2aa2b6eebbb51e13ec2a6,"Added memory tracking instrumentation to a number of classes, memory leak report detection, made memory.js have no dependencies since it prevented memory tracking instrumentation on those dependencies.",Atul Varma,2009-10-31T03:31:44Z,Atul Varma,Atul Varma,133,84,49
+210,addon-sdk,e0df95b11439530afe6d7d60c1ab0d86de53134b,Attempt to auto-set LD_LIBRARY_PATH when running harness under xulrunner in linux.,Atul Varma,2009-10-28T16:37:53Z,Atul Varma,Atul Varma,3,3,0
+211,addon-sdk,5a24d32acab7eff664dea816135b3022550007db,Removed the FirefoxBinaryFinder class from harness and replaced it w/ simple mozrunner reuse.,Atul Varma,2009-10-28T16:09:05Z,Atul Varma,Atul Varma,56,6,50
+212,addon-sdk,aa60592de077c47613f239c0910eb95555961fa6,Simplified harness memory profiling code by exposing sandbox global scope info in securable-module.js.,Atul Varma,2009-10-26T03:40:30Z,Atul Varma,Atul Varma,20,7,13
+213,addon-sdk,96d19c1353a43059a141c1e0867c08e3061bfb0b,Fixed an issue w/ memory profiling.,Atul Varma,2009-10-26T02:40:16Z,Atul Varma,Atul Varma,10,8,2
+214,addon-sdk,589050805878b7aed51ee32d6af727eb83da7e53,Per-module object count information is now reported.,Atul Varma,2009-10-26T02:39:26Z,Atul Varma,Atul Varma,31,26,5
+215,addon-sdk,b3f663f5cb713313ec45ceaca1aeb9ba1d95e5b9,Got rid of an annoying strict warning.,Atul Varma,2009-10-26T02:07:30Z,Atul Varma,Atul Varma,17,10,7
+216,addon-sdk,a519877d997f6b5775cf228330b63df5fef7ea32,"Added memory profiling code, if nsJetpack is available.",Atul Varma,2009-10-26T02:03:11Z,Atul Varma,Atul Varma,181,181,0
+217,addon-sdk,333c28e9c034530949f8e13f3c7d0c0347a8d80b,"Renamed test-runner.js to harness.js to avoid confusing it w/ being a test suite (like test-file.js et al)
+
+--HG--
+rename : harness/chrome/content/test-runner.js => harness/chrome/content/harness.js",Atul Varma,2009-10-25T10:42:31Z,Atul Varma,Atul Varma,4,2,2
+218,addon-sdk,cbf0d5ba421a939be4214815f1da1347c5c3e905,We now display memory usage stats (via nsIMemoryReporterManager) at the end of each test suite iteration.,Atul Varma,2009-10-25T10:38:35Z,Atul Varma,Atul Varma,17,16,1
+219,addon-sdk,7ea94bfe8b06a9ed7ce198cdc521a3d076fa67af,Perform GC after each test suite iteration.,Atul Varma,2009-10-25T10:27:14Z,Atul Varma,Atul Varma,1,1,0
+220,addon-sdk,18e84b3e0fd739f47c8d7933d851ae84bf3712ad,minor bugfix to last commit.,Atul Varma,2009-10-25T10:21:47Z,Atul Varma,Atul Varma,11,7,4
+221,addon-sdk,d591a1bdf8b9438462de658174649167ab310602,"harness now puts its result in a file, which means we don't fail when running tests with debug builds of Firefox.",Atul Varma,2009-10-25T10:17:07Z,Atul Varma,Atul Varma,75,55,20
+222,addon-sdk,e8dc46a9f8ccecad35eba61bb72de6543a2a3ba1,Changed maxversion to 1.9.3.*,Atul Varma,2009-10-25T00:03:36Z,Atul Varma,Atul Varma,2,1,1
+223,addon-sdk,bdea4e9345e325468f65ad0afd8f66edd73888fd,Added file.read().,Atul Varma,2009-10-24T19:53:42Z,Atul Varma,Atul Varma,82,71,11
+224,addon-sdk,a42143802851de928fa13802fa82d50634f51dfd,Made command line option docs consistent,Atul Varma,2009-10-24T01:39:18Z,Atul Varma,Atul Varma,15,7,8
+225,addon-sdk,6d2298ac470469bf994dfdaf778ec108dfae22c7,"It's now possible to specify how many times you want to run all tests, using a new '-x' command-line option. Hopefully it'll be useful in finding memory leaks.",Atul Varma,2009-10-24T01:35:33Z,Atul Varma,Atul Varma,55,41,14
+226,addon-sdk,3ab29574fafff40cfe8bbf82867dfcd4e37f795d,Added the ability for harness to auto-register custom xpcom component directories.,Atul Varma,2009-10-24T01:07:42Z,Atul Varma,Atul Varma,39,34,5
+227,addon-sdk,4e744404e6c5528dcbfd9467b7b71dd7430ef487,"Minor refactoring to unit-test.js, which should make it easier to detect memory leaks b/c onDone() will be called when a test's stack has unrolled.",Atul Varma,2009-10-23T23:06:24Z,Atul Varma,Atul Varma,20,9,11
+228,addon-sdk,2ab690ab910cd3a072f4794573d1c04c8c92c5be,Added a memory.gc() function that performs cycle collection.,Atul Varma,2009-10-23T22:22:04Z,Atul Varma,Atul Varma,16,15,1
+229,addon-sdk,afacdfd274fe69f18fb253472c2e6730e5dc8e5c,"Added license block, a few comments.",Atul Varma,2009-10-23T18:44:24Z,Atul Varma,Atul Varma,42,42,0
+230,addon-sdk,1c7789791997fca913488b2bd1ab516bb35eef31,"Factored out some of main.js into a harness-specific securablemodule, 'test-runner'.",Atul Varma,2009-10-23T18:41:09Z,Atul Varma,Atul Varma,243,137,106
+231,addon-sdk,aa6c4181986149420d33ccd23f5f77430dcbba2d,We now emit a stace trace whenever a test fails.,Atul Varma,2009-10-23T17:45:39Z,Atul Varma,Atul Varma,1,1,0
+232,addon-sdk,70a4fc9c0c3722aa5699a4977b5e913efdef399d,Made unloader test a bit more robust.,Atul Varma,2009-10-23T17:37:04Z,Atul Varma,Atul Varma,10,7,3
+233,addon-sdk,71bda5ce882cafa039d18012ff4e4385cbbad3f4,Renamed a test to be more accurate.,Atul Varma,2009-10-23T17:15:53Z,Atul Varma,Atul Varma,6,3,3
+234,addon-sdk,e295e7ea2bd3f6cdb481f86615af744bef1cbfe4,Added another test.,Atul Varma,2009-10-23T17:14:59Z,Atul Varma,Atul Varma,8,8,0
+235,addon-sdk,7f2a70a5f5364fad2267ea80942e69b86fe435d8,Added license block.,Atul Varma,2009-10-23T17:09:25Z,Atul Varma,Atul Varma,36,36,0
+236,addon-sdk,7ed849e63bc7df2ce77627dc33eaf2698d9527a9,"Added another xpcom test, fixed a bug revealed by it.",Atul Varma,2009-10-23T17:02:32Z,Atul Varma,Atul Varma,25,24,1
+237,addon-sdk,696203d8c026943887ba4574c6ee1705feba7d3b,Replaced Cu.import(XPCOMUtils.jsm) with require('xpcom'),Atul Varma,2009-10-23T16:50:45Z,Atul Varma,Atul Varma,17,6,11
+238,addon-sdk,32472a93c1aea0416c525758e4c819ff075a3659,Added an xpcom securable-module that allows a factory to register and unregister itself.,Atul Varma,2009-10-23T16:44:36Z,Atul Varma,Atul Varma,141,141,0
+239,addon-sdk,f255bae6a35722556d997d403b9c70ac5a2ddcf6,url.toFilename() can now convert chrome: URLs that aren't in jars.,Atul Varma,2009-10-23T05:00:45Z,Atul Varma,Atul Varma,30,28,2
+240,addon-sdk,ca70e4c71d3757c078baa9f3908f09df817bb44c,Minor cosmetic changes.,Atul Varma,2009-10-22T18:36:30Z,Atul Varma,Atul Varma,2,1,1

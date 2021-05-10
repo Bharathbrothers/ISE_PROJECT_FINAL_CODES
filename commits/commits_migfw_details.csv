@@ -1,0 +1,132 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,migfw,209f3fd1457f4d09c3fb6164ebe31e4b86efde62,some minor changes,Dhruv Agarwal,2014-12-02T15:25:46Z,dhruvagarwal,dhruvagarwal,18,9,9
+1,migfw,edbdfd6843fcbf0be88292ab939baa785fee407d,"write rule working
+
+string match module to be worked upon",Dhruv Agarwal,2014-12-01T17:48:55Z,dhruvagarwal,dhruvagarwal,30,13,17
+2,migfw,16316b5cc75f5b62db936a827e4286151d09cd47,"json output implemented,
+
+@todo - convert the bstr to str in entry level and modify all
+coresponding section",mebjas,2014-12-01T16:27:22Z,mebjas,mebjas,7464,7432,32
+3,migfw,aee878703039121fd69a1225919c352dc20950ad,update,abhinavdahiya,2014-12-01T16:13:26Z,abhinavdahiya,abhinavdahiya,147,27,120
+4,migfw,202bd927be1e07a832b29b6ebf848ca866319377,Mask string-convert Updated,abhinavdahiya,2014-12-01T15:25:12Z,abhinavdahiya,abhinavdahiya,9,5,4
+5,migfw,72fde1a58ae050094f84a153ce6741b9256a3f31,Debugging write-rule,Dhruv Agarwal,2014-12-01T15:18:57Z,dhruvagarwal,dhruvagarwal,221,110,111
+6,migfw,961977f9dbbfc16ef35400b8ecb1675cb9d2f78d,"write-rule.go
+
+version 1 : buggy",abhinavdahiya,2014-11-30T06:39:14Z,abhinavdahiya,abhinavdahiya,534,534,0
+7,migfw,87997ef6212fdbeafc6eaaccafd74c73a99dfbed,minor changes,Dhruv Agarwal,2014-11-29T22:48:12Z,dhruvagarwal,dhruvagarwal,4,2,2
+8,migfw,7b69b6269bb9a72bfec3155a7582034c7d48d381,corrected the indents,Dhruv Agarwal,2014-11-29T22:26:41Z,dhruvagarwal,dhruvagarwal,53,26,27
+9,migfw,cc5a2b91624949a858d026e09e83b4703d79e19c,Merge branch 'master' of https://github.com/mozilla/migfw,Dhruv Agarwal,2014-11-29T22:21:22Z,dhruvagarwal,dhruvagarwal,0,0,0
+10,migfw,2163e7f2c815dc0e61ed6ddbf41a0a9c3fa16b8e,"Write rule code initiated
+
+- Can add a firewall rule, by means of a function call with parameters -
+mask and string input for all the rule properties
+- @todo: need to enlist all rules, remote & local port no isn't getting
+set, for port no add functionality for port range a-b which was earlier
+not taken care of (or seen),
+@todo - create / use vector to JSON and a JSON to obj code",mebjas,2014-11-29T21:58:08Z,mebjas,mebjas,252,205,47
+11,migfw,b6778f9e3ede15366a9cfc42dfadecae7b5fe854,"minor bug in port check fixed
+
+Now local & remote port can be sent as `""*""` which would mean all ports
+(A possible option in windows api)",mebjas,2014-11-28T19:38:52Z,mebjas,mebjas,16,14,2
+12,migfw,86a900d26b4f5bfa9e6e00e4eee14c8b05f8338c,"Read rule, c++ implementation
+
+C++ implementation of read rule with filter capability, can filter on
+basis of: name, local & remote address, local & remote port, direction,
+actions
+@todo - left to filter on basis of protocol and protocol retireval left
+
+Added helper functions for each required tasks!",mebjas,2014-11-28T19:28:49Z,mebjas,mebjas,349,250,99
+13,migfw,b658076f29d18a7a50b2e29de2f68643127780a4,write-rule working for 3 match modules,Dhruv Agarwal,2014-11-29T22:09:04Z,dhruvagarwal,dhruvagarwal,104,68,36
+14,migfw,efa3afd1b790fd0f50175119c798b0eaf7374bee,"Write rule code initiated
+
+- Can add a firewall rule, by means of a function call with parameters -
+mask and string input for all the rule properties
+- @todo: need to enlist all rules, remote & local port no isn't getting
+set, for port no add functionality for port range a-b which was earlier
+not taken care of (or seen),
+@todo - create / use vector to JSON and a JSON to obj code",mebjas,2014-11-29T21:58:08Z,mebjas,mebjas,252,205,47
+15,migfw,e59e35f8669ad6d34c45b4ef2ec2dc60b964c46a,Write rule for C now working,Dhruv Agarwal,2014-11-29T18:23:55Z,dhruvagarwal,dhruvagarwal,165,154,11
+16,migfw,7ec7ac59607a9b29c75dc079fc68224c9d806d65,"minor bug in port check fixed
+
+Now local & remote port can be sent as `""*""` which would mean all ports
+(A possible option in windows api)",mebjas,2014-11-28T19:38:52Z,mebjas,mebjas,16,14,2
+17,migfw,3827cba5455830082351969f01f67358441acaef,"Read rule, c++ implementation
+
+C++ implementation of read rule with filter capability, can filter on
+basis of: name, local & remote address, local & remote port, direction,
+actions
+@todo - left to filter on basis of protocol and protocol retireval left
+
+Added helper functions for each required tasks!",mebjas,2014-11-28T19:28:49Z,mebjas,mebjas,349,250,99
+18,migfw,0d866e2f555439b42a7e28ab3d3e92bee55df714,Update filter.go,abhinavdahiya,2014-11-28T14:48:08Z,abhinavdahiya,abhinavdahiya,233,186,47
+19,migfw,10753d13699bec210de59945c345a7b5693fd589,"created library files for windows
+
+Abilities for now:
+- Read all firewall rules, filter and return the rules that match an ip
+string, currently based on string matching
+- function definition meant to take all filters as parameters and return
+vector of those rules that match all the rules
+- Added few ip based helper functions, and testing functions in main.cpp
+
+@todo -
+1. complete the getrulesbyfilter(), remove the first overloaded function
+for this,
+- write a function that reads json and call the get...() function in
+appropriate manner
+- write a function that parses the vector returned and creates json
+output",mebjas,2014-11-28T11:42:46Z,mebjas,mebjas,431,285,146
+20,migfw,c6a9d4dc19b4cc04d761e3f83e97d851040774b1,filter-rule.go : filter iprange and interface,abhinavdahiya,2014-10-26T10:32:04Z,abhinavdahiya,abhinavdahiya,439,439,0
+21,migfw,3448d45b4f89509fa269236b5230256d81b8c254,Create README.md,minhaz,2014-10-13T16:40:58Z,mebjas,mebjas,23,23,0
+22,migfw,98b4f066cf6b4fac98bec8dacff6bd59541ef031,"Windows c++ code to read firewall rules based on ip strings
+
+Added global functions fro retrieving rules, from firewall api.
+Added temporary codes to dump firewall rules to console, for debugging
+purposes.",mebjas,2014-10-13T16:36:00Z,mebjas,mebjas,635,197,438
+23,migfw,15b755c5681833425d83812b088870984a9233ae,Merge branch 'master' of https://github.com/mozilla/migfw,Dhruv Agarwal,2014-10-09T10:40:06Z,dhruvagarwal,dhruvagarwal,0,0,0
+24,migfw,39e2ff5f20a0548f4a6b5723704e189870e18520,"Merge pull request #3 from mozilla/abhinav-read-rules-go
+
+Now reads both ipv4 & ipv6 rules completely",abhinavdahiya,2014-10-09T04:58:43Z,abhinavdahiya,abhinavdahiya,182,162,20
+25,migfw,1449769c9691553e3391347796d4fcea46894f03,Merge branch 'abhinav-read-rules-go',Dhruv Agarwal,2014-10-07T09:08:13Z,dhruvagarwal,dhruvagarwal,182,162,20
+26,migfw,fa04bbabdff98b3a84b0ec22641dcda7aaddd896,dependency update,abhinavdahiya,2014-10-01T15:17:01Z,abhinavdahiya,abhinavdahiya,1,1,0
+27,migfw,d81dfb8b57c6f935de7262582e233160cf09bc38,"Now reads both ipv4 & ipv6 rules completely
+
+output generated is rules as string and then json",abhinavdahiya,2014-10-01T15:11:36Z,abhinavdahiya,abhinavdahiya,182,162,20
+28,migfw,8b95ba6b72a78bf4908483da99d359e7f53b9447,Create read-rule.go,abhinavdahiya,2014-09-28T16:07:56Z,abhinavdahiya,abhinavdahiya,479,479,0
+29,migfw,5a777195739c699fc8a624337bcf37b9d3ed2d6d,Merge branch 'dev',Dhruv Agarwal,2014-09-04T07:53:26Z,dhruvagarwal,dhruvagarwal,19,16,3
+30,migfw,7b0ff9f31b99b159aabb0780dc9b41b2aed4b2ed,Read Rules working,Dhruv Agarwal,2014-09-04T07:50:51Z,dhruvagarwal,dhruvagarwal,19,16,3
+31,migfw,76f7f0fb3e468cf60f054f7b91a6ad742ebd1956,restructuring file structure,Dhruv Agarwal,2014-09-03T20:27:53Z,dhruvagarwal,dhruvagarwal,880,2,878
+32,migfw,07b538d25e46ede1f7da16e2a0b73477241c02e4,Resolved file structure conflict,Dhruv Agarwal,2014-09-03T20:26:42Z,dhruvagarwal,dhruvagarwal,877,877,0
+33,migfw,1fd332df682bb85c32c403ffbac6f2013d8f25ca,renamed structure,Dhruv Agarwal,2014-09-03T20:13:33Z,dhruvagarwal,dhruvagarwal,8,4,4
+34,migfw,032b641909d1773874f5caee2b3d60abf2073925,Merge branch 'master' of https://github.com/mozilla/migfw,Dhruv Agarwal,2014-09-03T20:02:31Z,dhruvagarwal,dhruvagarwal,704,704,0
+35,migfw,0d96dd5eaace8b3fb522e3a85f8ccf09f11608dd,added go library for write-rule,Dhruv Agarwal,2014-09-03T20:00:58Z,dhruvagarwal,dhruvagarwal,54,54,0
+36,migfw,e4aa2dc7bcde2420c62dd0c4033b0d9e5362b3d4,changes to helper,Dhruv Agarwal,2014-09-03T19:59:10Z,dhruvagarwal,dhruvagarwal,34,20,14
+37,migfw,978b7a8d098a8cb731c7587affbfb7e645014ea7,"C++ code to enumerate firewall rules based on localAdress
+
+Current Code can: can input ip as string in console from user and
+enumerate those, firewall rules to console that have matching
+localAddresses in them.",mebjas,2014-09-03T19:54:12Z,mebjas,mebjas,704,704,0
+38,migfw,d8fbe99d4431a696bd4ea19ae606563931ce520c,restructured file structure,Dhruv Agarwal,2014-09-03T17:53:31Z,dhruvagarwal,dhruvagarwal,5,1,4
+39,migfw,80ed4b5005b921088c5a7a3de95052a25f567f1a,Making C library for write-rule --protocol struct,Dhruv Agarwal,2014-09-03T16:15:51Z,dhruvagarwal,dhruvagarwal,24,18,6
+40,migfw,3865b2975b2a63bb4521659f89bd3818fee48a2c,Making C library for write-rule,Dhruv Agarwal,2014-09-03T14:08:49Z,dhruvagarwal,dhruvagarwal,136,136,0
+41,migfw,63c281abff7c95698208af0d8ffd4e06ddf643b9,Update README.md,dhruvagarwal,2014-09-03T06:14:58Z,dhruvagarwal,dhruvagarwal,9,9,0
+42,migfw,02781cfc7727dabde6bdcc80ede2c8dd7b4066eb,"initial code for os x added, lang - c++
+
+Also added build script to build / build+run the code,",minhaz,2014-08-23T15:27:53Z,mebjas,mebjas,103,103,0
+43,migfw,1affefb2118488b11a6e95de223e395472767f1c,"restructured the read-rules.c code
+
+#Modifications:
+1. removed useless argument from `print_match()`
+2. All structure definitions to the top
+3. Changed the code layout, added proper indentation where required.",minhaz,2014-08-18T21:30:36Z,mebjas,mebjas,46,23,23
+44,migfw,4cbc0f4c9eb53e9b54029b0d9d381eec4bfd9ae6,"Added conf files for OS X PF
+
+#Modification:
+1. Added config file for `pf.conf` and other required files that will
+provide the architecture.",minhaz,2014-08-18T21:14:34Z,mebjas,mebjas,72,72,0
+45,migfw,0392fe923ff4708a8183d7427ccf7cf4e4a3561b,added bash command,Dhruv Agarwal,2014-08-17T10:38:12Z,dhruvagarwal,dhruvagarwal,2,2,0
+46,migfw,7618af9176115dc2199a42b10b94d8ab549d0a35,created separate directory for each os,minhaz,2014-08-17T08:20:42Z,mebjas,mebjas,0,0,0
+47,migfw,bd92ac4673e2d36dac69bb813861f5d6a6a1dfe3,correct file update,abhinavdahiya,2014-08-17T07:51:45Z,abhinavdahiya,abhinavdahiya,268,115,153
+48,migfw,07d2c242cd24bbef097a0edcde66770ccfd25c06,basic write rules to iptalbles using C,abhinavdahiya,2014-08-17T07:48:18Z,abhinavdahiya,abhinavdahiya,169,169,0
+49,migfw,6561895cbc02afec702879ac638f39b29aa072ea,Basic read rules in C,abhinavdahiya,2014-08-17T07:47:32Z,abhinavdahiya,abhinavdahiya,169,169,0
+50,migfw,95dbb437e189ab422b9aa679f75519de1c29cd6b,init readme file & procee,minhaz,2014-08-16T20:50:40Z,mebjas,mebjas,6,4,2
+51,migfw,14bfaf8ed48f92d4eb0c3a807feb3dd3bae6cf72,Initial commit,Julien Vehent,2014-08-14T03:22:21Z,jvehent,jvehent,387,387,0

@@ -1,0 +1,70 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,datomish-user-agent-service,73d30c07de7bfee46690d93c4f081cd5e28d6fbc,0.0.10.,Richard Newman,2016-11-29T02:27:44Z,rnewman,rnewman,6,3,3
+1,datomish-user-agent-service,f540d4820214bdf10e46348f83958b2eb58714b4,Downgrade to ClojureScript 1.9.229 to avoid unknown issue when opening DBs. 0.0.9.,Richard Newman,2016-11-29T00:53:01Z,rnewman,rnewman,6,3,3
+2,datomish-user-agent-service,ad1fb728b117bb5bc1db65caf48f34b30b870533,Use Datomish 0.3.2. Release 0.0.8.,Richard Newman,2016-11-23T17:45:12Z,rnewman,rnewman,4,2,2
+3,datomish-user-agent-service,3fccb7a91d02b0f21739210aec218067b39fdba6,Add travis.yml.,Richard Newman,2016-11-23T16:18:21Z,rnewman,rnewman,15,14,1
+4,datomish-user-agent-service,0e8323216a5a5daef41c8494575eee496c11bb8c,Bump dependencies. v0.0.7.,Richard Newman,2016-11-22T02:02:17Z,rnewman,rnewman,8,4,4
+5,datomish-user-agent-service,04f0829248da8cd8dcd6e0aa151e51e3486a3fcc,"Copy Datomish's test_macros.cljc, because it's no longer exported.",Richard Newman,2016-11-22T03:07:18Z,rnewman,rnewman,56,56,0
+6,datomish-user-agent-service,8f2f0ca3d53fbd2079bfe43d18398a3d020773ed,Add a quick pointer to Datomish.,Richard Newman,2016-11-16T17:12:33Z,rnewman,rnewman,3,3,0
+7,datomish-user-agent-service,a2528361fd2efd94b1091469b1f79684cb929306,Bump Datomish dependency to get latest SQLite.,Richard Newman,2016-10-24T21:18:24Z,rnewman,rnewman,6,3,3
+8,datomish-user-agent-service,04c099968f6fad58606dc497a4d542a78bc5fbf3,Bump to version 0.0.4.,Richard Newman,2016-10-21T15:44:14Z,rnewman,rnewman,2,1,1
+9,datomish-user-agent-service,9cefbad28dfa5490b6d31e2de8e9354d89e79d43,"Wait for the server to start before proceeding with tests.
+
+Without this change, some tests will fail with timing-related errors, like
+
+   POST /v1/sessions/end 200 15.903 ms - 2
+
+   FAIL in (test-visits) (at /Users/rnewman/moz/git/datomish-user-agent-service/target/test/cljs/core/async/impl/channels.js:195:22)
+   expected: (clojure.core/= e__41737__auto__ nil)
+     actual: (not (clojure.core/= #object[FetchError FetchError: request to http://localhost:3002/v1/sessions/start failed, reason: connect ECONNREFUSED 127.0.0.1:3002] nil))
+   POST /v1/sessions/start 200 269.530 ms - 17
+
+We might consider shifting this change into server.cljs.",Richard Newman,2016-10-18T01:58:21Z,rnewman,rnewman,7,6,1
+10,datomish-user-agent-service,c2a9faedf9737c1b7e4180b2223d825d27a29cde,"Fix an error introduced in ""Support a basic limit for <saved-pages-matching-string.""",Nick Alexander,2016-10-13T23:47:05Z,ncalexan,ncalexan,4,2,2
+11,datomish-user-agent-service,b805bc42c5486e9f4ee8eebd1e1e58f0aa73d561,Bump to version 0.0.3.,Nick Alexander,2016-10-13T23:13:40Z,ncalexan,ncalexan,14,12,2
+12,datomish-user-agent-service,b8626ef69a42584dcb0d299d36e33418c736d75a,Listen on localhost only by default. (#5),Nick Alexander,2016-10-12T17:27:17Z,ncalexan,ncalexan,7,4,3
+13,datomish-user-agent-service,efbe10f0ba40a2d57073c46879d9b3b85b651786,Rename <saved-pages-matching-string -> <pages-matching-string. Use since param.,Richard Newman,2016-10-11T00:20:09Z,rnewman,rnewman,13,7,6
+14,datomish-user-agent-service,aac41df70bb063221b6325e54b51b1e79f8ca6be,Support a basic limit for <saved-pages-matching-string.,Richard Newman,2016-10-11T00:16:38Z,rnewman,rnewman,8,5,3
+15,datomish-user-agent-service,bd90988fb6c2306ed2752d48879141eba0d9a7ab,Add limit to <saved-pages.,Richard Newman,2016-10-10T23:06:28Z,rnewman,rnewman,10,7,3
+16,datomish-user-agent-service,be75a132b5af373fe8f321511cc35d4c851d1fc8,Use scalar find spec to simplify <find-title. Fixes #11.,Richard Newman,2016-10-11T00:22:39Z,rnewman,rnewman,16,6,10
+17,datomish-user-agent-service,001d7486a78cd4854f210f2b8666e88092f2d12e,Make :visit/visitAt cardinality-one. Fixes #10.,Richard Newman,2016-10-10T23:06:00Z,rnewman,rnewman,2,1,1
+18,datomish-user-agent-service,62b94e65d516703a9fa7581d0b62979aef22d55e,Make :page/visit a value-unique attribute. Fixes #6.,Richard Newman,2016-10-10T23:05:42Z,rnewman,rnewman,1,1,0
+19,datomish-user-agent-service,a825a53b8f9ed8bace3d7da331b985b18d13c945,Extend .gitignore.,Richard Newman,2016-10-11T00:24:25Z,rnewman,rnewman,37,25,12
+20,datomish-user-agent-service,1e98d9acfec366fc493e79501eab8f15a711503b,Roll back to cljs-promises 0.1.0. Fixes #13.,Richard Newman,2016-10-11T17:11:03Z,rnewman,rnewman,2,1,1
+21,datomish-user-agent-service,4253a1e24fe2c5a8dbccca91d7f6d3681b8557ff,Add note about microtime libraries.,Richard Newman,2016-10-10T18:28:48Z,rnewman,rnewman,12,6,6
+22,datomish-user-agent-service,be6ade90e59fc204d568e670bb4dc224f3b7838e,Add docs on development.,Nick Alexander,2016-09-29T21:47:53Z,ncalexan,ncalexan,19,19,0
+23,datomish-user-agent-service,b4cb1a0ba50a80dead9301b92063f602050b91ca,Review comments.,Nick Alexander,2016-09-29T21:34:53Z,ncalexan,ncalexan,29,20,9
+24,datomish-user-agent-service,71555cbfed033dee3368983cf0c783d3a4132cdf,"Add LICENSE, update documentation, bump to 0.0.2.",Nick Alexander,2016-09-29T21:34:35Z,ncalexan,ncalexan,810,807,3
+25,datomish-user-agent-service,17a773ff68b20232e4e117ba0546c17e6ed0810d,Review comment: license and clean up bin/user-agent-service.,Nick Alexander,2016-09-29T20:58:38Z,ncalexan,ncalexan,149,54,95
+26,datomish-user-agent-service,30a637a0c8f6570e14b74fbff60f41c4720afdaf,"Add /query and /transact endpoints.
+
+These offer raw access to the underlying Datomish knowledge base, so
+I've elected not to put them in the /v1 namespace.",Nick Alexander,2016-09-29T00:08:41Z,ncalexan,ncalexan,146,128,18
+27,datomish-user-agent-service,86af79b3bf7e964044b64a0c03b2c1c47c52b956,Fix tests.,Nick Alexander,2016-09-27T23:34:07Z,ncalexan,ncalexan,91,53,38
+28,datomish-user-agent-service,7d1acbcf767ea98c3a538548e7ebd1142fd499af,Push to NPM.,Nick Alexander,2016-09-27T22:48:57Z,ncalexan,ncalexan,4,2,2
+29,datomish-user-agent-service,3b0e3bea4ab5330af1287138da337fa902c8a7fc,Use morgan to log requests.,Nick Alexander,2016-09-26T23:29:55Z,ncalexan,ncalexan,9,4,5
+30,datomish-user-agent-service,14e44cabf1f9960f37665f26017d9694b0e05cec,Allow cross origin requests.,Nick Alexander,2016-09-25T21:10:00Z,ncalexan,ncalexan,19,19,0
+31,datomish-user-agent-service,22ffff2065a0990cc8294607c402c3824073bb1c,Implement User Agent Service WebSocket API.,Nick Alexander,2016-09-25T01:11:50Z,ncalexan,ncalexan,606,365,241
+32,datomish-user-agent-service,89bb1eee4f8e984d3aaee06927632d8b98c67a13,"Make /query consider :page/* and :save/*.
+
+This requires two queries for now; in the future, we'll be able to do it
+with `or-join`.",Nick Alexander,2016-09-27T21:13:40Z,ncalexan,ncalexan,43,29,14
+33,datomish-user-agent-service,75d8691bd9921bb1985bc261066284a3611bc13c,Make it pass Tofino's test-server.,Nick Alexander,2016-09-23T22:31:48Z,ncalexan,ncalexan,51,27,24
+34,datomish-user-agent-service,0565073e656b452edd9be14e776f3b27d32f2aab,Export bin/user-agent-service.,Nick Alexander,2016-09-23T22:31:41Z,ncalexan,ncalexan,174,136,38
+35,datomish-user-agent-service,56061f76e57a96ea84ab40efee6f10c7b7045987,Package.json.,Nick Alexander,2016-09-23T19:42:02Z,ncalexan,ncalexan,4,2,2
+36,datomish-user-agent-service,ef14c6ce3a05f68cc32198aab1f1dc9bfda3fa58,"This is Node.js-only so we don't need to wrap the module.
+
+That means we get source maps!  Unfortunately, they're not too useful in
+go-blocks, but every little helps.",Nick Alexander,2016-09-23T00:10:01Z,ncalexan,ncalexan,53,6,47
+37,datomish-user-agent-service,946a3977a351613edd1ea2684071b2ac30e2c1a7,Export Tofino UserAgentService JS API.,Nick Alexander,2016-09-22T23:50:01Z,ncalexan,ncalexan,109,74,35
+38,datomish-user-agent-service,f5e25278ce17d08aa2add9eb4cd82976686400ed,First attempt at bundling for Node.js.,Nick Alexander,2016-09-21T22:18:11Z,ncalexan,ncalexan,436,366,70
+39,datomish-user-agent-service,e559f3f4829ee36b368914756c73373f3d937b3c,"Split server out of core.
+
+The server will be consumed by the JavaScript library interface.",Nick Alexander,2016-09-21T21:27:07Z,ncalexan,ncalexan,494,252,242
+40,datomish-user-agent-service,54175e50723b9bf66a0f4168fb1e887fc55168b7,Expose /pages and /query.,Nick Alexander,2016-09-21T17:18:35Z,ncalexan,ncalexan,154,137,17
+41,datomish-user-agent-service,1477f44fea57bf2ca2c1ccc3402928b75be28776,Converge star API to Tofino UA Service API.,Nick Alexander,2016-09-21T00:40:49Z,ncalexan,ncalexan,202,117,85
+42,datomish-user-agent-service,5c1ec4b50244751fafaecf225396ffd3bad292a4,Partially test and implement stars.,Nick Alexander,2016-09-20T18:47:38Z,ncalexan,ncalexan,96,95,1
+43,datomish-user-agent-service,eb5afceff17bf9aeb79a86c80fe0f2de0289adc0,Test visits.,Nick Alexander,2016-09-20T18:02:36Z,ncalexan,ncalexan,133,98,35
+44,datomish-user-agent-service,7553b53843ec614219d2dbe73263619e50e4d706,Test sessions.,Nick Alexander,2016-09-20T17:19:21Z,ncalexan,ncalexan,25,16,9
+45,datomish-user-agent-service,68a1f4eaf7d9b2b51672591dfe2471bf87ec498c,Make it work.  Breaks figwheel?,Nick Alexander,2016-09-20T00:27:58Z,ncalexan,ncalexan,648,595,53
+46,datomish-user-agent-service,e844c8c4283396d829e9b03c4fbe2545f3dc4bc3,"Initial commit, lightly modified from `lein new figwheel`.",Nick Alexander,2016-09-13T19:36:04Z,ncalexan,ncalexan,279,279,0

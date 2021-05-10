@@ -1,0 +1,339 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,dryice,a19dc6cc67e2956226fc5fe30cce987f18750165,adding support for common js project dependency tracking,Joe Walker,2011-01-27T13:45:06Z,joewalker,joewalker,253,233,20
+1,dryice,4ec67e2a968d23b436928937a45d96a57739af38,update package.json,Fabian Jakobs,2011-01-22T15:44:40Z,fjakobs,fjakobs,5,3,2
+2,dryice,e0c4ba5be03ebca4bf741facfc2d5dd83a07ea83,update package.json and tidy up to publish version 0.1.0,Joe Walker,2011-01-14T12:06:48Z,joewalker,joewalker,117,28,89
+3,dryice,38f2c897474a3eaf503c1cb9bb6e9fbf3cd00e49,tweaking documentation,Joe Walker,2011-01-14T10:29:13Z,joewalker,joewalker,107,51,56
+4,dryice,0e121e2b2e37f8e95389e0e401408cb98352a31a,lots of new docs,Joe Walker,2011-01-14T09:12:59Z,joewalker,joewalker,306,302,4
+5,dryice,16c43d5bcf4c8c32e3f3891f0ec1c1f98d6e9582,copy in Joe's new code for dryice (the supercharged copy function),Kevin Dangoor,2011-01-13T04:24:45Z,dangoor,dangoor,833,278,555
+6,dryice,8b4ee4c5ae4dda5eff0c5599526f187253da1c5b,started work on the new copy() function,Mihai Sucan,2011-01-11T10:08:05Z,mihaisucan,mihaisucan,49,49,0
+7,dryice,cedac26a75cb61d4999e75dffb3a5946bb2ef56b,"Working towards the new API.
+
+API details:
+http://etherpad.mozilla.com:9000/NgH9qpSA4W",Mihai Sucan,2011-01-09T17:42:55Z,mihaisucan,mihaisucan,439,414,25
+8,dryice,89f99bb65c66d0c25d461ab4af5743ef1676a04d,Fixed the usage of Step in dryice. Group file reads.,Mihai Sucan,2011-01-05T21:43:02Z,mihaisucan,mihaisucan,45,19,26
+9,dryice,4621a9bf0a937d1aaff818ec811d9e4c91087183,"Fixed the scripts.
+
+It now runs as expected. Tested the script by building some web app I have.",Mihai Sucan,2011-01-05T13:06:09Z,mihaisucan,mihaisucan,6,3,3
+10,dryice,f95a645d455c8e19a0a13476d620467b892fda9e,"Initial implementation.
+
+What it does:
+- load config from a manifest.json.
+- load JS input files.
+- process each input file with defined filters.
+  - uglifyjs for compression.
+  - moduleDefines updates the define() in JS files.
+- final output filter.
+  - currently uglifyjs is used.
+- concatenation of all files is saved to stdout or to a given target file.
+
+The code is untested, might even have syntax errors.",Mihai Sucan,2011-01-04T21:00:41Z,mihaisucan,mihaisucan,303,270,33
+11,dryice,e98f0a248160edce6dc4520e2e7dd3b7c8b6aac1,starting work on the builder,Kevin Dangoor,2010-12-12T01:29:36Z,dangoor,dangoor,84,84,0
+12,dryice,fab58892da67935c562e04e04d84aba17ecf52a8,initial commit,Kevin Dangoor,2010-11-23T18:16:34Z,dangoor,dangoor,477,477,0
+13,dryice,836fa7533c90abc3a30dd08c721d271d578d7b46,Release version 0.4.11,Joe Walker,2014-05-08T09:30:48Z,joewalker,joewalker,2,1,1
+14,dryice,0bfb723ee4b76cdd315139f362271401fb80b294,"Merge branch 'master' into betterdiag
+
+Conflicts:
+	lib/dryice/index.js",Joe Walker,2014-05-08T09:30:10Z,joewalker,joewalker,13,12,1
+15,dryice,2202fd1714854524ac07ef4f232297e1a124175b,"Use ' when adding define lines rather than """,Joe Walker,2014-05-08T09:25:08Z,joewalker,joewalker,6,3,3
+16,dryice,47c1c9c6894af82bcdf1506cdee06043ce1c4b50,Better diagnose failing requires,Joe Walker,2014-05-08T09:24:32Z,joewalker,joewalker,12,6,6
+17,dryice,01ef61bcebc3e498451570229af8532f1343599f,Make filenameFilter optional,Joe Walker,2013-06-17T09:42:16Z,joewalker,joewalker,8,6,2
+18,dryice,a0cdb595ec17fe1938ac5d338a602414d0de396c,"Support Simplified CommonJS Wrappers
+
+Add explicit support for CJS Wrappers which look like the following:
+
+    define(function(require, exports, module){
+        var foo = require('foo'),
+            bar = require('foo/bar');
+
+        exports.doSomething = function(){
+            console.log(foo + bar);
+        };
+    });
+
+A module is only treated as a CJS module if it doesn't contain a dependency
+array and the definition function contain at least one parameter.
+
+More information:
+
+    http://requirejs.org/docs/api.html#cjsmodule
+    https://github.com/jrburke/requirejs/wiki/Differences-between-the-simplified-CommonJS-wrapper-and-standard-AMD-define",Stas Malolepszy,2013-06-12T10:12:25Z,stasm,stasm,13,12,1
+19,dryice,cdfd2783d34616476b9e06c450d7606e7e108116,Addition of a filenameFilter property,Joe Walker,2012-11-21T18:06:26Z,joewalker,joewalker,13,9,4
+20,dryice,2cc3e3d8b32463260a4f8dcf4bc78a3985e9338f,Release version 0.4.10,Joe Walker,2012-11-21T23:41:04Z,joewalker,joewalker,2,1,1
+21,dryice,0b7e1197b0c3be4f6c9988f436698d8e15814e85,"Merge pull request #31 from ajaxorg/master
+
+lower the NodeJS version requirement",Joe Walker,2012-11-21T23:38:21Z,joewalker,joewalker,6,5,1
+22,dryice,f536bc6d9aa6d6546668de2de409d52606bd6cda,ensure backward compatibility with older node versions,mikedeboer,2012-11-21T20:56:03Z,mikedeboer,mikedeboer,4,4,0
+23,dryice,87728b051c6d503a3cae9fd17a26e387092eebc0,lower the NodeJS version requirement,mikedeboer,2012-11-21T18:32:58Z,mikedeboer,mikedeboer,2,1,1
+24,dryice,b0c70ff7559e6256bed222acd0ed6b5d659757c7,Release version 0.4.9,Joe Walker,2012-11-21T18:11:47Z,joewalker,joewalker,2,1,1
+25,dryice,41f3c211e284368bf268c1204f1dd066c044c7e4,"Merge pull request #30 from ajaxorg/master
+
+UglifyJS moved to version 2, which is NOT backward compatible.",Joe Walker,2012-11-21T18:09:19Z,joewalker,joewalker,2,1,1
+26,dryice,e9fe460a349c28273910803dda2cc8dbd153b818,fixed version of uglify-js to NOT use uglify-js2,mikedeboer,2012-11-21T17:18:45Z,mikedeboer,mikedeboer,2,1,1
+27,dryice,cbcda191d2849ec72b798fd1a16ae7edf1be1f57,Merge branch 'readme_typo' of https://github.com/tonistiigi/dryice,Joe Walker,2012-09-12T10:14:49Z,joewalker,joewalker,4,2,2
+28,dryice,d6707649a93308b5da1669b749977e3110eff943,Fix typos in code sample of the README on calling uglifyjs filter,Tõnis Tiigi,2012-09-11T08:27:33Z,tonistiigi,tonistiigi,4,2,2
+29,dryice,b854dfeeb3efacb9d754032e72c3c748312a54de,Release version 0.4.8,Joe Walker,2012-08-26T12:06:03Z,joewalker,joewalker,2,1,1
+30,dryice,fb9bb9ae0baf85f273fd317e6dee279a6a4312de,Use existsSync without switch to avoid console messages,Joe Walker,2012-08-26T11:25:58Z,joewalker,joewalker,17,7,10
+31,dryice,cc56bdf7c4d4052f7054fcbb6f4c50b3b8de9e18,Update mini_require in line with changes from GCLI,Joe Walker,2012-08-26T11:20:59Z,joewalker,joewalker,225,110,115
+32,dryice,f4e2c6d642bda7ebcfe14bf5e86af15a010b3535,Various documentation tweaks,Joe Walker,2012-08-26T11:20:13Z,joewalker,joewalker,5,2,3
+33,dryice,923e9acf626ba57cd68320211f717fac4e9545ed,Update license to match that of GCLI.,Joe Walker,2012-08-26T11:18:51Z,joewalker,joewalker,744,229,515
+34,dryice,eff3b9f98122f8fbeee4f239b10634f27835a60b,"Add support for node 0.8+
+
+Have existsSync point to either fs.existsSync or path.existsSync",Joe Walker,2012-08-10T14:15:27Z,joewalker,joewalker,15,9,6
+35,dryice,669dd95960ddeb3ab80823608125cc14f66a71a1,Release version 0.4.7,Joe Walker,2012-06-19T14:24:35Z,joewalker,joewalker,2,1,1
+36,dryice,a0f456423463a77923e4cd036e2172e78ef5d93f,add support for specifying dependencies in the second argument of module define() calls within findRequires() - used by CommonJS projects,Mihai Sucan,2012-05-25T09:44:15Z,mihaisucan,mihaisucan,18,13,5
+37,dryice,2c63e30cc76e635a39ef70cb361dbd73e8f3371c,Release version 0.4.6,Joe Walker,2012-05-05T14:19:31Z,joewalker,joewalker,2,1,1
+38,dryice,57f89596d94e567988b086bd071f4efa478e9ee2,add support for windows path separator,Harutyun Amirjanyan,2012-04-23T17:11:18Z,nightwing,nightwing,4,2,2
+39,dryice,3aaea35392641ba623bf7c915afa0561ea985aa1,Fix name typo,Joe Walker,2012-04-02T11:16:02Z,joewalker,joewalker,2,1,1
+40,dryice,71bcc27fcd11da073403448b184ea238f06da26c,Release version 0.4.5,Joe Walker,2012-04-02T11:10:42Z,joewalker,joewalker,2,1,1
+41,dryice,e2e1ccb593819331693cc49cf7df668da6fe9bae,Update authors to include Honza,Joe Walker,2012-04-02T11:09:17Z,joewalker,joewalker,6,4,2
+42,dryice,17ddb8f253c3ec253c632cdff0c8170bc08e7dd2,Make parse step more robust,Joe Walker,2012-04-02T10:54:45Z,joewalker,joewalker,9,8,1
+43,dryice,25991654fa9c2d4e29e622f77d82df4b94c584ee,Support for aliases,Jan Odvarko,2012-03-31T15:07:10Z,janodvarko,janodvarko,18,18,0
+44,dryice,ccc40d544784576f67366bb3997189312e01be91,Release version 0.4.3,Joe Walker,2012-03-22T17:42:38Z,joewalker,joewalker,2,1,1
+45,dryice,488a0a89b551d78e4eb4285553766517d131dc87,initial support for amd format modules,Joe Walker,2012-03-22T17:41:54Z,joewalker,joewalker,31,28,3
+46,dryice,fbb42b5ed3c64e2bb285dd6fb76f290321181fc4,Release version 0.4.3,Joe Walker,2012-03-22T13:42:33Z,joewalker,joewalker,2,1,1
+47,dryice,bff08b73a60f6eb404e6573fbe5c0fd833317f26,Basic support for extra module header formats,Joe Walker,2012-03-22T13:41:48Z,joewalker,joewalker,30,24,6
+48,dryice,ec04ea3aa59c34b6b4b62b2dee89d8d0168aa319,Release version 0.4.2,Joe Walker,2012-02-21T17:58:18Z,joewalker,joewalker,2,1,1
+49,dryice,fd1a95ec5c14e67040d394008f6560564dd82628,"Bug ajaxorg/ace#634: s/fulllname/fullname
+Thanks @joopringelberg",Joe Walker,2012-02-21T17:48:53Z,joewalker,joewalker,2,1,1
+50,dryice,55bec7dcd4ff91d8e216950c76484d2d9af79a77,file changes for version 0.4.1,Joe Walker,2012-01-05T09:26:51Z,joewalker,joewalker,2,1,1
+51,dryice,701d005a3bd1e61a2a5dc88cda64020a2cb21407,2 fixes to directory processing,Joe Walker,2012-01-05T09:25:54Z,joewalker,joewalker,4,2,2
+52,dryice,9dbd61062f0de90813ab91515cdf0804ba59254f,"Huge upgrade to handle directory destinations, and refactor mess",Joe Walker,2012-01-04T19:48:52Z,joewalker,joewalker,1471,901,570
+53,dryice,52644147797cb3307f96678f3f28d469125421b4,Merge remote-tracking branch 'berkerpeksag/master',Joe Walker,2011-11-09T18:35:57Z,joewalker,joewalker,11,8,3
+54,dryice,be1647a5172f77e94e33b523bcdf3dd909347f95,Update version to 0.3.1,Joe Walker,2011-11-09T17:00:42Z,joewalker,joewalker,2,1,1
+55,dryice,29685d178e36fe2bdfc2f87c9b58c3c316619afb,"Merge branch 'master' of git://github.com/ajaxorg/dryice
+
+Conflicts:
+	lib/dryice/index.js",Joe Walker,2011-11-09T16:55:43Z,joewalker,joewalker,48,28,20
+56,dryice,b2c3703a8f5aaad369406fc10d5723a85d015c99,"Merge pull request #19 from fjakobs/patch-2
+
+update naming",Joe Walker,2011-11-09T15:25:27Z,joewalker,joewalker,4,2,2
+57,dryice,d6c1647bd6da2289482c73558f5159c9bf9dbcfe,"Merge pull request #18 from fjakobs/patch-1
+
+CommonJsProject.prototype.clone broke since the arguments to the CommonJs",Joe Walker,2011-11-09T15:23:39Z,joewalker,joewalker,5,4,1
+58,dryice,6459eaeac57f633705915dd6851ed8596c544eb2,also normalize modules id's with plugins,Fabian Jakobs,2011-11-09T14:39:35Z,fjakobs,fjakobs,33,20,13
+59,dryice,902f45a61fcfbfc7c18b6b3f4e9826a8875e07e3,npm is complaining about bugs.web,Fabian Jakobs,2011-11-09T10:24:05Z,fjakobs,fjakobs,2,1,1
+60,dryice,a2ce7c305b06a8444a33e8f78280c3fe8eca3463,"make text module regexp configurable since e.g.
+ace and dojo use custom text modules",Fabian Jakobs,2011-11-09T10:22:26Z,fjakobs,fjakobs,16,10,6
+61,dryice,e264aa85c36395951b0e87296f62bed2f23703eb,update naming,Fabian Jakobs,2011-11-09T09:57:45Z,fjakobs,fjakobs,4,2,2
+62,dryice,29e627a89ae24a4048c590508415c0d5bb98dfa4,CommonJsProject.prototype.clone broke since the arguments to the CommonJsProject class changes.,Fabian Jakobs,2011-11-09T09:53:59Z,fjakobs,fjakobs,5,4,1
+63,dryice,cd7db7e284f33f9643eff9f2fa6ecc46ef7f62be,Improve console logging for duplicate resources,Joe Walker,2011-11-06T10:39:28Z,joewalker,joewalker,2,1,1
+64,dryice,11ffb0e80c969286e6fca84a8b3505baf1f08355,"Merge pull request #16 from ajaxorg/master
+
+Proper escaping in text modules",Joe Walker,2011-11-02T17:59:06Z,joewalker,joewalker,4,2,2
+65,dryice,a8889864bdf5ae90ed11731bf32ba1a0d25738b5,Added install section to README and fixed spelling errors: Javascript -> JavaScript.,Berker Peksag,2011-10-14T06:22:25Z,berkerpeksag,berkerpeksag,11,8,3
+66,dryice,32f24d2561d2d77d93a0b9c99f167b0de72ab103,"Merge pull request #14 from paulb777/patch-1
+
+Make moduleDefines more space tolerant",Joe Walker,2011-09-27T20:09:53Z,joewalker,joewalker,2,1,1
+67,dryice,c811b88f659642251935d33e3798c2c40644cbcf,Make moduleDefines more space tolerant,Paul Beusterien,2011-09-27T17:07:46Z,paulb777,paulb777,2,1,1
+68,dryice,375d9a339646d70846ad40eddaad406198dd9d40,escape \ in text module,Fabian Jakobs,2011-09-06T13:54:26Z,fjakobs,fjakobs,2,1,1
+69,dryice,d20acf76c9c8669374385c9628530888c2a5b95c,"Bug 683859 (minirequire, fix): Package mini_require.js
+See gcli/Makefile.dryice.js for usage, or guess, frankly, it not hard.",Joe Walker,2011-09-01T10:24:46Z,joewalker,joewalker,169,169,0
+70,dryice,3a74af64cc49b5db47cb9190ae4c00fa7de90140,"Minor bugfix: 'ast' is used later, if compilation fails don't use it",Joe Walker,2011-09-01T09:49:05Z,joewalker,joewalker,1,1,0
+71,dryice,9f4db5aceb58baaf8bda083014764d4a3502164c,"Tidyup: Add missing ';', fix indentation, remove unused variables",Joe Walker,2011-09-01T09:48:02Z,joewalker,joewalker,68,33,35
+72,dryice,c939ecfd5201e8400fca17a11da246d7a0418d16,Merge branch 'master' of git@github.com:mozilla/dryice.git,Joe Walker,2011-09-01T09:12:36Z,joewalker,joewalker,115,88,27
+73,dryice,009436720f8a80e93e8d41044debaaa02faeae12,"Merge pull request #12 from fitzgen/master
+
+Adding support for relative and absolute requires",Nick Fitzgerald,2011-08-31T20:35:12Z,fitzgen,fitzgen,80,59,21
+74,dryice,88753c565559992e11e72762688a4b8168c011e0,"Adding missing var's, changing filter(Boolean) to filter(instEmptyString) per review feedback",Nick Fitzgerald,2011-08-31T20:32:43Z,fitzgen,fitzgen,11,7,4
+75,dryice,0698f17062057626ad98e9a9f16cd4043567a440,Adding the node_modules directory to the ignore file,Nick Fitzgerald,2011-08-31T00:40:57Z,fitzgen,fitzgen,1,1,0
+76,dryice,1aa242c928fa5a64adad942c344702b6d03ae460,Changing pathJoin to path.join etc. Which involved renaming a couple function parameters.,Nick Fitzgerald,2011-08-31T00:35:54Z,fitzgen,fitzgen,41,24,17
+77,dryice,3991a2d5d51e7ce35e474db5e88b84d1378e87f7,Changing isFile and isSync to be less verbose,Sean McArthur,2011-08-31T00:20:55Z,Sean McArthur,Sean McArthur,14,2,12
+78,dryice,916477ed54647f86e62fdf88974b89a7197e433a,Fix support for relative requires,Nick Fitzgerald,2011-08-25T23:26:52Z,fitzgen,fitzgen,29,26,3
+79,dryice,ba16c806477bc0b0e6aabb1bb14183b7b4acf754,fix new line handling of text modules,Fabian Jakobs,2011-08-16T11:46:46Z,fjakobs,fjakobs,2,1,1
+80,dryice,36b127889dae2c61daadb0369ba34dcd43b7d83e,allow dryice to create graphml files,Joe Walker,2011-08-15T16:42:48Z,joewalker,joewalker,38,38,0
+81,dryice,518afade0bce229a2062b54fde4862d10abf6e02,remove VIM header. (CRLF->LF conversion may have happened too),Joe Walker,2011-08-15T15:47:58Z,joewalker,joewalker,1,0,1
+82,dryice,ec93976f049d97c267974da67d4a578845f6bef4,Adding support for relative and absolute requires,Nick Fitzgerald,2011-08-10T00:49:02Z,fitzgen,fitzgen,26,20,6
+83,dryice,04b1068ce81e974a4dfa25d03684c9cd86dd8943,"Merge pull request #11 from fitzgen/master
+
+* Adding documentation about the new api changes to creating commonjs projects
+
+* Fixing small bug with the define matching regexp",Nick Fitzgerald,2011-07-18T18:48:07Z,fitzgen,fitzgen,35,29,6
+84,dryice,9f5a114b004cbd3da1642869f9a25b71f0dc1b20,Adding a zero or more space between function and paren,Nick Fitzgerald,2011-07-18T18:46:27Z,fitzgen,fitzgen,2,1,1
+85,dryice,9e0f3d1ab80e53c90c49fd3348fa91331f68321f,Updating README with documentation on the new commonjs project interface,Nick Fitzgerald,2011-06-30T17:23:57Z,fitzgen,fitzgen,33,28,5
+86,dryice,f40a9dbc307d527fc10aca7edee1d316d49f77db,"Merge pull request #10 from fitzgen/master
+
+Fix bug 666578 - text dependencies in commonjs projects were being treated as normal commonjs modules",Joe Walker,2011-06-30T09:30:39Z,joewalker,joewalker,71,56,15
+87,dryice,a075978996417d48c59e25259e67efea173857d2,Adding empty dependencies to the null module because there is code that expects modules to have dependencies,Nick Fitzgerald,2011-06-29T20:12:45Z,fitzgen,fitzgen,1,1,0
+88,dryice,45f645245c58d3ee91f02e6a081ad3d88e340ce7,Changing the interface to creating common js projects so that you can define certain requires which should just be ignored.,Nick Fitzgerald,2011-06-28T20:59:20Z,fitzgen,fitzgen,40,33,7
+89,dryice,9fb83fab78930236b513c4103c06353816a8c4c6,Fix bug 666578 - text dependencies in commonjs projects were being treated as normal commonjs modules,Nick Fitzgerald,2011-06-24T21:18:49Z,fitzgen,fitzgen,30,22,8
+90,dryice,8ecda88fc383423d0d5c2afb3d01462371d56a80,fixes to package.json,Joe Walker,2011-06-22T15:51:08Z,joewalker,joewalker,7,2,5
+91,dryice,8f3cf58433ee05e8c65c5c3ddeb03d415acd0f23,"Add report function so we can see the modules that have been
+included/excluded",Joe Walker,2011-06-22T15:46:27Z,joewalker,joewalker,33,32,1
+92,dryice,37c52bd0b500bba062b16d0fa9ec9731641803cb,better error messages,Joe Walker,2011-06-16T10:41:18Z,joewalker,joewalker,19,11,8
+93,dryice,11976b5636135c8d637068f9f3eedbd592b87876,bump version number to 0.2.4,Joe Walker,2011-04-27T14:26:34Z,joewalker,joewalker,5,2,3
+94,dryice,a54e351ae6c3df010ce2366ecefff807f54e3eb5,"fixing issue where Missing filename for moduleDefines was fatal, where it could be a warning",Joe Walker,2011-04-27T14:24:48Z,joewalker,joewalker,25,13,12
+95,dryice,dc214a21f1572acc30d951d784ef95fa06c73259,fix typo in documentation,Joe Walker,2011-04-27T09:13:32Z,joewalker,joewalker,6,3,3
+96,dryice,5d27f7b933239469a2892d2155217badc2208d04,bump version number to 0.2.3,Joe Walker,2011-03-30T15:35:47Z,joewalker,joewalker,2,1,1
+97,dryice,b3fc8067c76e436b041d60b2ea52edabee7a6b00,add changes from ajaxorg,Mihai Sucan,2011-02-21T19:26:53Z,mihaisucan,mihaisucan,20,13,7
+98,dryice,6f24b9169c9c32d064694e67e89baa04ebd607f8,add ability to ignore requires,Mihai Sucan,2011-02-21T17:32:07Z,mihaisucan,mihaisucan,5,5,0
+99,dryice,526081177013d46d6a80c0e581412e4279296360,declare commonjs dependencies in AMD style,Fabian Jakobs,2011-02-21T11:21:04Z,fjakobs,fjakobs,19,12,7
+100,dryice,fc81886bb47d6f72204cce45ba4a236a26d071d6,incrementing version number to 0.2.2,Joe Walker,2011-02-08T16:56:23Z,joewalker,joewalker,2,1,1
+101,dryice,cf529b0702065ed766b1bcbb27bc92ef3210ae40,add clone function to the CommonJSProject class,Fabian Jakobs,2011-02-08T16:26:01Z,fjakobs,fjakobs,14,14,0
+102,dryice,bef51bee2662068025f3f47a833348541cce4ace,fix typo,Fabian Jakobs,2011-02-08T16:25:42Z,fjakobs,fjakobs,2,1,1
+103,dryice,64ad48dbb698b3d912306726768414c113cff2d8,Merge remote branch 'mozilla/master',Fabian Jakobs,2011-01-31T08:56:06Z,fjakobs,fjakobs,25,22,3
+104,dryice,91e7f8ef910e92c2635bdd9cb86b037d8106c8a6,bump version number to 0.2.1,Joe Walker,2011-01-28T16:34:01Z,joewalker,joewalker,4,2,2
+105,dryice,2d8d31adf7a41dc78d6edac62748f9b61575c48a,"adding ability to add roots to common js project, plus a fix to how projects are created",Joe Walker,2011-01-28T16:32:29Z,joewalker,joewalker,8,6,2
+106,dryice,c9802d54b73b11e94fa4b9f36bf23f674dddb77d,adding ignore file,Joe Walker,2011-01-28T16:31:41Z,joewalker,joewalker,15,15,0
+107,dryice,5838e5580f5c8dd128a834303f96fa84e632b31b,"Merge remote branch 'mozilla/master'
+
+Conflicts:
+	package.json",Fabian Jakobs,2011-01-28T08:30:29Z,fjakobs,fjakobs,284,253,31
+108,dryice,7833d53e7ff4db7e1e48f85d2a45805980e25a5a,bump version number,Fabian Jakobs,2011-01-28T08:29:54Z,fjakobs,fjakobs,2,1,1
+109,dryice,4457dc4c240ec7cc05d33adfe140b899a120d2ac,treat onRead always as boolean,Fabian Jakobs,2011-01-28T08:29:46Z,fjakobs,fjakobs,2,1,1
+110,dryice,44b0e97e8a01cef9f29c5ceedd2a12ae9e6fe540,adding documentation for commonjs updates,Joe Walker,2011-01-27T14:00:30Z,joewalker,joewalker,31,20,11
+111,dryice,33a829ac78efffa6d3d805de94aed64d7ab365bf,Merge branch 'master' of git://github.com/mozilla/dryice,Joe Walker,2011-01-27T13:47:34Z,joewalker,joewalker,3,2,1
+112,dryice,355e438749ebc984039fa5acb774d3f6e2a1a4f2,"fixing revision specifier, and upgrade to 0.2.0",Joe Walker,2011-01-27T13:47:27Z,joewalker,joewalker,4,2,2
+113,dryice,836fa7533c90abc3a30dd08c721d271d578d7b46,Release version 0.4.11,Joe Walker,2014-05-08T09:30:48Z,joewalker,joewalker,2,1,1
+114,dryice,0bfb723ee4b76cdd315139f362271401fb80b294,"Merge branch 'master' into betterdiag
+
+Conflicts:
+	lib/dryice/index.js",Joe Walker,2014-05-08T09:30:10Z,joewalker,joewalker,13,12,1
+115,dryice,2202fd1714854524ac07ef4f232297e1a124175b,"Use ' when adding define lines rather than """,Joe Walker,2014-05-08T09:25:08Z,joewalker,joewalker,6,3,3
+116,dryice,47c1c9c6894af82bcdf1506cdee06043ce1c4b50,Better diagnose failing requires,Joe Walker,2014-05-08T09:24:32Z,joewalker,joewalker,12,6,6
+117,dryice,01ef61bcebc3e498451570229af8532f1343599f,Make filenameFilter optional,Joe Walker,2013-06-17T09:42:16Z,joewalker,joewalker,8,6,2
+118,dryice,a0cdb595ec17fe1938ac5d338a602414d0de396c,"Support Simplified CommonJS Wrappers
+
+Add explicit support for CJS Wrappers which look like the following:
+
+    define(function(require, exports, module){
+        var foo = require('foo'),
+            bar = require('foo/bar');
+
+        exports.doSomething = function(){
+            console.log(foo + bar);
+        };
+    });
+
+A module is only treated as a CJS module if it doesn't contain a dependency
+array and the definition function contain at least one parameter.
+
+More information:
+
+    http://requirejs.org/docs/api.html#cjsmodule
+    https://github.com/jrburke/requirejs/wiki/Differences-between-the-simplified-CommonJS-wrapper-and-standard-AMD-define",Stas Malolepszy,2013-06-12T10:12:25Z,stasm,stasm,13,12,1
+119,dryice,cdfd2783d34616476b9e06c450d7606e7e108116,Addition of a filenameFilter property,Joe Walker,2012-11-21T18:06:26Z,joewalker,joewalker,13,9,4
+120,dryice,2cc3e3d8b32463260a4f8dcf4bc78a3985e9338f,Release version 0.4.10,Joe Walker,2012-11-21T23:41:04Z,joewalker,joewalker,2,1,1
+121,dryice,0b7e1197b0c3be4f6c9988f436698d8e15814e85,"Merge pull request #31 from ajaxorg/master
+
+lower the NodeJS version requirement",Joe Walker,2012-11-21T23:38:21Z,joewalker,joewalker,6,5,1
+122,dryice,f536bc6d9aa6d6546668de2de409d52606bd6cda,ensure backward compatibility with older node versions,mikedeboer,2012-11-21T20:56:03Z,mikedeboer,mikedeboer,4,4,0
+123,dryice,87728b051c6d503a3cae9fd17a26e387092eebc0,lower the NodeJS version requirement,mikedeboer,2012-11-21T18:32:58Z,mikedeboer,mikedeboer,2,1,1
+124,dryice,b0c70ff7559e6256bed222acd0ed6b5d659757c7,Release version 0.4.9,Joe Walker,2012-11-21T18:11:47Z,joewalker,joewalker,2,1,1
+125,dryice,41f3c211e284368bf268c1204f1dd066c044c7e4,"Merge pull request #30 from ajaxorg/master
+
+UglifyJS moved to version 2, which is NOT backward compatible.",Joe Walker,2012-11-21T18:09:19Z,joewalker,joewalker,2,1,1
+126,dryice,e9fe460a349c28273910803dda2cc8dbd153b818,fixed version of uglify-js to NOT use uglify-js2,mikedeboer,2012-11-21T17:18:45Z,mikedeboer,mikedeboer,2,1,1
+127,dryice,cbcda191d2849ec72b798fd1a16ae7edf1be1f57,Merge branch 'readme_typo' of https://github.com/tonistiigi/dryice,Joe Walker,2012-09-12T10:14:49Z,joewalker,joewalker,4,2,2
+128,dryice,d6707649a93308b5da1669b749977e3110eff943,Fix typos in code sample of the README on calling uglifyjs filter,Tõnis Tiigi,2012-09-11T08:27:33Z,tonistiigi,tonistiigi,4,2,2
+129,dryice,b854dfeeb3efacb9d754032e72c3c748312a54de,Release version 0.4.8,Joe Walker,2012-08-26T12:06:03Z,joewalker,joewalker,2,1,1
+130,dryice,fb9bb9ae0baf85f273fd317e6dee279a6a4312de,Use existsSync without switch to avoid console messages,Joe Walker,2012-08-26T11:25:58Z,joewalker,joewalker,17,7,10
+131,dryice,cc56bdf7c4d4052f7054fcbb6f4c50b3b8de9e18,Update mini_require in line with changes from GCLI,Joe Walker,2012-08-26T11:20:59Z,joewalker,joewalker,225,110,115
+132,dryice,f4e2c6d642bda7ebcfe14bf5e86af15a010b3535,Various documentation tweaks,Joe Walker,2012-08-26T11:20:13Z,joewalker,joewalker,5,2,3
+133,dryice,923e9acf626ba57cd68320211f717fac4e9545ed,Update license to match that of GCLI.,Joe Walker,2012-08-26T11:18:51Z,joewalker,joewalker,744,229,515
+134,dryice,eff3b9f98122f8fbeee4f239b10634f27835a60b,"Add support for node 0.8+
+
+Have existsSync point to either fs.existsSync or path.existsSync",Joe Walker,2012-08-10T14:15:27Z,joewalker,joewalker,15,9,6
+135,dryice,669dd95960ddeb3ab80823608125cc14f66a71a1,Release version 0.4.7,Joe Walker,2012-06-19T14:24:35Z,joewalker,joewalker,2,1,1
+136,dryice,a0f456423463a77923e4cd036e2172e78ef5d93f,add support for specifying dependencies in the second argument of module define() calls within findRequires() - used by CommonJS projects,Mihai Sucan,2012-05-25T09:44:15Z,mihaisucan,mihaisucan,18,13,5
+137,dryice,2c63e30cc76e635a39ef70cb361dbd73e8f3371c,Release version 0.4.6,Joe Walker,2012-05-05T14:19:31Z,joewalker,joewalker,2,1,1
+138,dryice,57f89596d94e567988b086bd071f4efa478e9ee2,add support for windows path separator,Harutyun Amirjanyan,2012-04-23T17:11:18Z,nightwing,nightwing,4,2,2
+139,dryice,3aaea35392641ba623bf7c915afa0561ea985aa1,Fix name typo,Joe Walker,2012-04-02T11:16:02Z,joewalker,joewalker,2,1,1
+140,dryice,71bcc27fcd11da073403448b184ea238f06da26c,Release version 0.4.5,Joe Walker,2012-04-02T11:10:42Z,joewalker,joewalker,2,1,1
+141,dryice,e2e1ccb593819331693cc49cf7df668da6fe9bae,Update authors to include Honza,Joe Walker,2012-04-02T11:09:17Z,joewalker,joewalker,6,4,2
+142,dryice,17ddb8f253c3ec253c632cdff0c8170bc08e7dd2,Make parse step more robust,Joe Walker,2012-04-02T10:54:45Z,joewalker,joewalker,9,8,1
+143,dryice,25991654fa9c2d4e29e622f77d82df4b94c584ee,Support for aliases,Jan Odvarko,2012-03-31T15:07:10Z,janodvarko,janodvarko,18,18,0
+144,dryice,ccc40d544784576f67366bb3997189312e01be91,Release version 0.4.3,Joe Walker,2012-03-22T17:42:38Z,joewalker,joewalker,2,1,1
+145,dryice,488a0a89b551d78e4eb4285553766517d131dc87,initial support for amd format modules,Joe Walker,2012-03-22T17:41:54Z,joewalker,joewalker,31,28,3
+146,dryice,fbb42b5ed3c64e2bb285dd6fb76f290321181fc4,Release version 0.4.3,Joe Walker,2012-03-22T13:42:33Z,joewalker,joewalker,2,1,1
+147,dryice,bff08b73a60f6eb404e6573fbe5c0fd833317f26,Basic support for extra module header formats,Joe Walker,2012-03-22T13:41:48Z,joewalker,joewalker,30,24,6
+148,dryice,ec04ea3aa59c34b6b4b62b2dee89d8d0168aa319,Release version 0.4.2,Joe Walker,2012-02-21T17:58:18Z,joewalker,joewalker,2,1,1
+149,dryice,fd1a95ec5c14e67040d394008f6560564dd82628,"Bug ajaxorg/ace#634: s/fulllname/fullname
+Thanks @joopringelberg",Joe Walker,2012-02-21T17:48:53Z,joewalker,joewalker,2,1,1
+150,dryice,55bec7dcd4ff91d8e216950c76484d2d9af79a77,file changes for version 0.4.1,Joe Walker,2012-01-05T09:26:51Z,joewalker,joewalker,2,1,1
+151,dryice,701d005a3bd1e61a2a5dc88cda64020a2cb21407,2 fixes to directory processing,Joe Walker,2012-01-05T09:25:54Z,joewalker,joewalker,4,2,2
+152,dryice,9dbd61062f0de90813ab91515cdf0804ba59254f,"Huge upgrade to handle directory destinations, and refactor mess",Joe Walker,2012-01-04T19:48:52Z,joewalker,joewalker,1471,901,570
+153,dryice,52644147797cb3307f96678f3f28d469125421b4,Merge remote-tracking branch 'berkerpeksag/master',Joe Walker,2011-11-09T18:35:57Z,joewalker,joewalker,11,8,3
+154,dryice,be1647a5172f77e94e33b523bcdf3dd909347f95,Update version to 0.3.1,Joe Walker,2011-11-09T17:00:42Z,joewalker,joewalker,2,1,1
+155,dryice,29685d178e36fe2bdfc2f87c9b58c3c316619afb,"Merge branch 'master' of git://github.com/ajaxorg/dryice
+
+Conflicts:
+	lib/dryice/index.js",Joe Walker,2011-11-09T16:55:43Z,joewalker,joewalker,48,28,20
+156,dryice,b2c3703a8f5aaad369406fc10d5723a85d015c99,"Merge pull request #19 from fjakobs/patch-2
+
+update naming",Joe Walker,2011-11-09T15:25:27Z,joewalker,joewalker,4,2,2
+157,dryice,d6c1647bd6da2289482c73558f5159c9bf9dbcfe,"Merge pull request #18 from fjakobs/patch-1
+
+CommonJsProject.prototype.clone broke since the arguments to the CommonJs",Joe Walker,2011-11-09T15:23:39Z,joewalker,joewalker,5,4,1
+158,dryice,6459eaeac57f633705915dd6851ed8596c544eb2,also normalize modules id's with plugins,Fabian Jakobs,2011-11-09T14:39:35Z,fjakobs,fjakobs,33,20,13
+159,dryice,902f45a61fcfbfc7c18b6b3f4e9826a8875e07e3,npm is complaining about bugs.web,Fabian Jakobs,2011-11-09T10:24:05Z,fjakobs,fjakobs,2,1,1
+160,dryice,a2ce7c305b06a8444a33e8f78280c3fe8eca3463,"make text module regexp configurable since e.g.
+ace and dojo use custom text modules",Fabian Jakobs,2011-11-09T10:22:26Z,fjakobs,fjakobs,16,10,6
+161,dryice,e264aa85c36395951b0e87296f62bed2f23703eb,update naming,Fabian Jakobs,2011-11-09T09:57:45Z,fjakobs,fjakobs,4,2,2
+162,dryice,29e627a89ae24a4048c590508415c0d5bb98dfa4,CommonJsProject.prototype.clone broke since the arguments to the CommonJsProject class changes.,Fabian Jakobs,2011-11-09T09:53:59Z,fjakobs,fjakobs,5,4,1
+163,dryice,cd7db7e284f33f9643eff9f2fa6ecc46ef7f62be,Improve console logging for duplicate resources,Joe Walker,2011-11-06T10:39:28Z,joewalker,joewalker,2,1,1
+164,dryice,11ffb0e80c969286e6fca84a8b3505baf1f08355,"Merge pull request #16 from ajaxorg/master
+
+Proper escaping in text modules",Joe Walker,2011-11-02T17:59:06Z,joewalker,joewalker,4,2,2
+165,dryice,a8889864bdf5ae90ed11731bf32ba1a0d25738b5,Added install section to README and fixed spelling errors: Javascript -> JavaScript.,Berker Peksag,2011-10-14T06:22:25Z,berkerpeksag,berkerpeksag,11,8,3
+166,dryice,32f24d2561d2d77d93a0b9c99f167b0de72ab103,"Merge pull request #14 from paulb777/patch-1
+
+Make moduleDefines more space tolerant",Joe Walker,2011-09-27T20:09:53Z,joewalker,joewalker,2,1,1
+167,dryice,c811b88f659642251935d33e3798c2c40644cbcf,Make moduleDefines more space tolerant,Paul Beusterien,2011-09-27T17:07:46Z,paulb777,paulb777,2,1,1
+168,dryice,375d9a339646d70846ad40eddaad406198dd9d40,escape \ in text module,Fabian Jakobs,2011-09-06T13:54:26Z,fjakobs,fjakobs,2,1,1
+169,dryice,d20acf76c9c8669374385c9628530888c2a5b95c,"Bug 683859 (minirequire, fix): Package mini_require.js
+See gcli/Makefile.dryice.js for usage, or guess, frankly, it not hard.",Joe Walker,2011-09-01T10:24:46Z,joewalker,joewalker,169,169,0
+170,dryice,3a74af64cc49b5db47cb9190ae4c00fa7de90140,"Minor bugfix: 'ast' is used later, if compilation fails don't use it",Joe Walker,2011-09-01T09:49:05Z,joewalker,joewalker,1,1,0
+171,dryice,9f4db5aceb58baaf8bda083014764d4a3502164c,"Tidyup: Add missing ';', fix indentation, remove unused variables",Joe Walker,2011-09-01T09:48:02Z,joewalker,joewalker,68,33,35
+172,dryice,c939ecfd5201e8400fca17a11da246d7a0418d16,Merge branch 'master' of git@github.com:mozilla/dryice.git,Joe Walker,2011-09-01T09:12:36Z,joewalker,joewalker,115,88,27
+173,dryice,009436720f8a80e93e8d41044debaaa02faeae12,"Merge pull request #12 from fitzgen/master
+
+Adding support for relative and absolute requires",Nick Fitzgerald,2011-08-31T20:35:12Z,fitzgen,fitzgen,80,59,21
+174,dryice,88753c565559992e11e72762688a4b8168c011e0,"Adding missing var's, changing filter(Boolean) to filter(instEmptyString) per review feedback",Nick Fitzgerald,2011-08-31T20:32:43Z,fitzgen,fitzgen,11,7,4
+175,dryice,0698f17062057626ad98e9a9f16cd4043567a440,Adding the node_modules directory to the ignore file,Nick Fitzgerald,2011-08-31T00:40:57Z,fitzgen,fitzgen,1,1,0
+176,dryice,1aa242c928fa5a64adad942c344702b6d03ae460,Changing pathJoin to path.join etc. Which involved renaming a couple function parameters.,Nick Fitzgerald,2011-08-31T00:35:54Z,fitzgen,fitzgen,41,24,17
+177,dryice,3991a2d5d51e7ce35e474db5e88b84d1378e87f7,Changing isFile and isSync to be less verbose,Sean McArthur,2011-08-31T00:20:55Z,Sean McArthur,Sean McArthur,14,2,12
+178,dryice,916477ed54647f86e62fdf88974b89a7197e433a,Fix support for relative requires,Nick Fitzgerald,2011-08-25T23:26:52Z,fitzgen,fitzgen,29,26,3
+179,dryice,ba16c806477bc0b0e6aabb1bb14183b7b4acf754,fix new line handling of text modules,Fabian Jakobs,2011-08-16T11:46:46Z,fjakobs,fjakobs,2,1,1
+180,dryice,36b127889dae2c61daadb0369ba34dcd43b7d83e,allow dryice to create graphml files,Joe Walker,2011-08-15T16:42:48Z,joewalker,joewalker,38,38,0
+181,dryice,518afade0bce229a2062b54fde4862d10abf6e02,remove VIM header. (CRLF->LF conversion may have happened too),Joe Walker,2011-08-15T15:47:58Z,joewalker,joewalker,1,0,1
+182,dryice,ec93976f049d97c267974da67d4a578845f6bef4,Adding support for relative and absolute requires,Nick Fitzgerald,2011-08-10T00:49:02Z,fitzgen,fitzgen,26,20,6
+183,dryice,04b1068ce81e974a4dfa25d03684c9cd86dd8943,"Merge pull request #11 from fitzgen/master
+
+* Adding documentation about the new api changes to creating commonjs projects
+
+* Fixing small bug with the define matching regexp",Nick Fitzgerald,2011-07-18T18:48:07Z,fitzgen,fitzgen,35,29,6
+184,dryice,9f5a114b004cbd3da1642869f9a25b71f0dc1b20,Adding a zero or more space between function and paren,Nick Fitzgerald,2011-07-18T18:46:27Z,fitzgen,fitzgen,2,1,1
+185,dryice,9e0f3d1ab80e53c90c49fd3348fa91331f68321f,Updating README with documentation on the new commonjs project interface,Nick Fitzgerald,2011-06-30T17:23:57Z,fitzgen,fitzgen,33,28,5
+186,dryice,f40a9dbc307d527fc10aca7edee1d316d49f77db,"Merge pull request #10 from fitzgen/master
+
+Fix bug 666578 - text dependencies in commonjs projects were being treated as normal commonjs modules",Joe Walker,2011-06-30T09:30:39Z,joewalker,joewalker,71,56,15
+187,dryice,a075978996417d48c59e25259e67efea173857d2,Adding empty dependencies to the null module because there is code that expects modules to have dependencies,Nick Fitzgerald,2011-06-29T20:12:45Z,fitzgen,fitzgen,1,1,0
+188,dryice,45f645245c58d3ee91f02e6a081ad3d88e340ce7,Changing the interface to creating common js projects so that you can define certain requires which should just be ignored.,Nick Fitzgerald,2011-06-28T20:59:20Z,fitzgen,fitzgen,40,33,7
+189,dryice,9fb83fab78930236b513c4103c06353816a8c4c6,Fix bug 666578 - text dependencies in commonjs projects were being treated as normal commonjs modules,Nick Fitzgerald,2011-06-24T21:18:49Z,fitzgen,fitzgen,30,22,8
+190,dryice,8ecda88fc383423d0d5c2afb3d01462371d56a80,fixes to package.json,Joe Walker,2011-06-22T15:51:08Z,joewalker,joewalker,7,2,5
+191,dryice,8f3cf58433ee05e8c65c5c3ddeb03d415acd0f23,"Add report function so we can see the modules that have been
+included/excluded",Joe Walker,2011-06-22T15:46:27Z,joewalker,joewalker,33,32,1
+192,dryice,37c52bd0b500bba062b16d0fa9ec9731641803cb,better error messages,Joe Walker,2011-06-16T10:41:18Z,joewalker,joewalker,19,11,8
+193,dryice,11976b5636135c8d637068f9f3eedbd592b87876,bump version number to 0.2.4,Joe Walker,2011-04-27T14:26:34Z,joewalker,joewalker,5,2,3
+194,dryice,a54e351ae6c3df010ce2366ecefff807f54e3eb5,"fixing issue where Missing filename for moduleDefines was fatal, where it could be a warning",Joe Walker,2011-04-27T14:24:48Z,joewalker,joewalker,25,13,12
+195,dryice,dc214a21f1572acc30d951d784ef95fa06c73259,fix typo in documentation,Joe Walker,2011-04-27T09:13:32Z,joewalker,joewalker,6,3,3
+196,dryice,5d27f7b933239469a2892d2155217badc2208d04,bump version number to 0.2.3,Joe Walker,2011-03-30T15:35:47Z,joewalker,joewalker,2,1,1
+197,dryice,b3fc8067c76e436b041d60b2ea52edabee7a6b00,add changes from ajaxorg,Mihai Sucan,2011-02-21T19:26:53Z,mihaisucan,mihaisucan,20,13,7
+198,dryice,6f24b9169c9c32d064694e67e89baa04ebd607f8,add ability to ignore requires,Mihai Sucan,2011-02-21T17:32:07Z,mihaisucan,mihaisucan,5,5,0
+199,dryice,526081177013d46d6a80c0e581412e4279296360,declare commonjs dependencies in AMD style,Fabian Jakobs,2011-02-21T11:21:04Z,fjakobs,fjakobs,19,12,7
+200,dryice,fc81886bb47d6f72204cce45ba4a236a26d071d6,incrementing version number to 0.2.2,Joe Walker,2011-02-08T16:56:23Z,joewalker,joewalker,2,1,1
+201,dryice,cf529b0702065ed766b1bcbb27bc92ef3210ae40,add clone function to the CommonJSProject class,Fabian Jakobs,2011-02-08T16:26:01Z,fjakobs,fjakobs,14,14,0
+202,dryice,bef51bee2662068025f3f47a833348541cce4ace,fix typo,Fabian Jakobs,2011-02-08T16:25:42Z,fjakobs,fjakobs,2,1,1
+203,dryice,64ad48dbb698b3d912306726768414c113cff2d8,Merge remote branch 'mozilla/master',Fabian Jakobs,2011-01-31T08:56:06Z,fjakobs,fjakobs,25,22,3
+204,dryice,91e7f8ef910e92c2635bdd9cb86b037d8106c8a6,bump version number to 0.2.1,Joe Walker,2011-01-28T16:34:01Z,joewalker,joewalker,4,2,2
+205,dryice,2d8d31adf7a41dc78d6edac62748f9b61575c48a,"adding ability to add roots to common js project, plus a fix to how projects are created",Joe Walker,2011-01-28T16:32:29Z,joewalker,joewalker,8,6,2
+206,dryice,c9802d54b73b11e94fa4b9f36bf23f674dddb77d,adding ignore file,Joe Walker,2011-01-28T16:31:41Z,joewalker,joewalker,15,15,0
+207,dryice,5838e5580f5c8dd128a834303f96fa84e632b31b,"Merge remote branch 'mozilla/master'
+
+Conflicts:
+	package.json",Fabian Jakobs,2011-01-28T08:30:29Z,fjakobs,fjakobs,284,253,31
+208,dryice,7833d53e7ff4db7e1e48f85d2a45805980e25a5a,bump version number,Fabian Jakobs,2011-01-28T08:29:54Z,fjakobs,fjakobs,2,1,1
+209,dryice,4457dc4c240ec7cc05d33adfe140b899a120d2ac,treat onRead always as boolean,Fabian Jakobs,2011-01-28T08:29:46Z,fjakobs,fjakobs,2,1,1
+210,dryice,44b0e97e8a01cef9f29c5ceedd2a12ae9e6fe540,adding documentation for commonjs updates,Joe Walker,2011-01-27T14:00:30Z,joewalker,joewalker,31,20,11
+211,dryice,33a829ac78efffa6d3d805de94aed64d7ab365bf,Merge branch 'master' of git://github.com/mozilla/dryice,Joe Walker,2011-01-27T13:47:34Z,joewalker,joewalker,3,2,1
+212,dryice,355e438749ebc984039fa5acb774d3f6e2a1a4f2,"fixing revision specifier, and upgrade to 0.2.0",Joe Walker,2011-01-27T13:47:27Z,joewalker,joewalker,4,2,2

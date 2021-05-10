@@ -1,0 +1,1139 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,dogear,56bafcbf29345f655ae0bbdf51d0c2cb69b38388,Fix up Clippy lints and missing docs for `remote_node_is_syncable`.,Lina Cambridge,2019-02-23T19:56:26Z,linacambridge,linacambridge,46,24,22
+1,dogear,43c1adb5204ac9024b43684098b7ce2ae4a8c960,Enable Rust 2018 🦀 and bump copyright year. 📅,Lina Cambridge,2019-02-23T19:45:42Z,linacambridge,linacambridge,33,25,8
+2,dogear,6289e75fd13a3b147ed796ca319e86a53a531d45,Treat remote livemarks and diverged queries as non-syncable.,Lina Cambridge,2019-02-15T08:44:01Z,linacambridge,linacambridge,18,15,3
+3,dogear,7758dec2a0bbd1bea192083e3bdc5ef8c6f66fc3,Log merged local and remote deletions.,Lina Cambridge,2019-02-15T08:43:40Z,linacambridge,linacambridge,19,16,3
+4,dogear,95eebf3f447eec2086328aa33361de2487a1c90a,Collect descendants and deletions instead of returning an iterator.,Lina Cambridge,2019-02-14T06:16:49Z,linacambridge,linacambridge,77,31,46
+5,dogear,5cdef6909243f0198bc85978232e31e24d853984,Ignore `Repr` when comparing and hashing GUIDs.,Lina Cambridge,2019-02-12T22:10:45Z,linacambridge,linacambridge,33,30,3
+6,dogear,d84a6bc75927410a4f10f4c43da2a439a0463a8d,Rename `guid::IsValid` to `guid::IsValidGuid`.,Lina Cambridge,2019-02-12T00:55:04Z,linacambridge,linacambridge,30,15,15
+7,dogear,0477bf47795ad49345e6518dfdb331634a8ed50c,Compare timestamps instead of taking the other side for diverged items.,Lina Cambridge,2019-02-10T05:55:40Z,linacambridge,linacambridge,72,32,40
+8,dogear,13114ea26c245f439114394d118cb9d65dbf3cbd,"Track item validity states and flag invalid items for reupload.
+
+This ports the merger parts of
+https://bugzilla.mozilla.org/show_bug.cgi?id=1515784.",Lina Cambridge,2019-02-06T00:05:16Z,linacambridge,linacambridge,114,97,17
+9,dogear,b9c8d330c79912405477238762cca211f6fc1d1d,Don't allow roots to be moved or deleted.,Lina Cambridge,2019-02-05T03:03:42Z,linacambridge,linacambridge,232,216,16
+10,dogear,57c9c538d3b6a6ed744852e2aaccdfabb50d3018,Add a `guid::IsValid` trait for `Guid`s and byte slices.,Lina Cambridge,2019-02-05T03:03:13Z,linacambridge,linacambridge,77,34,43
+11,dogear,917fc439b8bc61ce14ce46786cedfd8d03c0dcf0,Add docs and `inline` attributes to tree methods.,Lina Cambridge,2019-02-02T03:23:24Z,linacambridge,linacambridge,88,53,35
+12,dogear,65b056d7d6b44d3a4d682f0d1fb60590fbd85eb0,"Add `{Local, Remote}Only` merge states; remove `LocalWithNewStructure`.
+
+Before `Unchanged`, `Local` meant ""keep local and maybe upload"", and
+`LocalWithNewStructure` meant ""keep local and always upload"". Now
+that `Unchanged` exists, `Local` means ""keep local and upload"", so
+`LocalWithNewStructure` is redundant.
+
+Further, it wasn't obvious that `Local { remote_node: None }` meant
+the item only exists locally, and should be uploaded unconditionally,
+and `Remote { local_node: None }` meant the item only exists remotely,
+and should be applied unconditionally. This commit changes `Local`
+and `Remote` to mean ""exists on both sides, but prefer one"", and adds
+`LocalOnly`, `RemoteOnly`, and `RemoteOnlyWithNewStructure` to mean
+""exists on one side, so take unconditionally"".
+
+To that end, this commit treats remotely changed user content roots as
+`Unchanged`. As of bug 1432614, roots don't have user-editable titles,
+so applying remote title changes is unnecessary. However, we also don't
+mark the roots as `Local`, because that would mean we'd reupload the
+root _every time_ it was changed remotely.
+
+Finally, we want callers to easily determine whether to apply remote
+changes, and upload local and new changes. This commit adds
+`MergeState::{should_apply, should_upload}()` for that.",Lina Cambridge,2019-02-01T01:18:16Z,linacambridge,linacambridge,270,169,101
+13,dogear,d2715ef1b6afb24567df0b273b323d13a51224a0,"Add `MergedNode::descendants()`.
+
+This returns an iterator that yields the merged node's descendants, in
+level order.",Lina Cambridge,2019-01-31T21:48:52Z,linacambridge,linacambridge,76,54,22
+14,dogear,18aa45d0efde87e5a533a3efd7c60e7a1dabf04c,Test on Rust stable and beta.,Lina Cambridge,2019-02-01T23:16:46Z,linacambridge,linacambridge,2,2,0
+15,dogear,0d9e7961ed0efd9062e4014f8e96a3655503ddb4,"Replace `log` with a simple local logger.
+
+The `log` crate uses a global logger that can only be registered once,
+at startup. Unfortunately, this won't work for Desktop, where we want
+to integrate with Sync's existing logging setup. We also don't want to
+impact other crates in `gkrust` that use `log`.
+
+This commit replaces `log` with a quick-and-dirty implementation on
+`Driver`, and some macros that take care of calling `format_args!()`.
+We can extend these later to pass `file!()` and `line!()`, if we
+want.
+
+This commit also changes `Merger` to hold a reference to `Driver`.
+On Desktop, the driver accumulates log messages on the storage
+thread, and accesses them on the main thread.",Lina Cambridge,2019-01-30T02:05:25Z,linacambridge,linacambridge,280,167,113
+16,dogear,ed949796a78b2ffbbd873981c1b3bc4a6f797682,"Prepare for Rust 2018.
+
+Enabling `edition = ""2018""` prints spurious ""item doesn't need to be
+mutable"" warnings in the `nodes!()` macro, so I haven't done that
+yet.",Lina Cambridge,2019-01-30T19:54:14Z,linacambridge,linacambridge,42,21,21
+17,dogear,07fd1615e05530ddaa82e77e53a19157f2f733dd,"Refactor error handling in `Store`.
+
+* Fix infinite recursion in `fmt::Display::fmt()` for `Error`.
+* Make `Store` generic over the error type. This allows callers to
+  provide their own error types that unify with Dogear errors,
+  `nsresult`s, and others, instead of requiring them to wrap their
+  errors into `ErrorKind::Storage(...)`.
+* Forward decoding errors from `Guid::from{utf8, uft16}()`.
+* Rename `ErrorKind::GenerateGuid` to `ErrorKind::InvalidGuid`.
+* Move `dogear::merge` into `Store::merge`.",Lina Cambridge,2019-01-29T22:26:19Z,linacambridge,linacambridge,134,75,59
+18,dogear,ceb45d6b6558f2db8726b8349c91456bda9f4c01,"Include nodes from both sides for each `MergeState`.
+
+We need this to apply the merged tree, when we join to the local and
+remote trees.",Lina Cambridge,2019-01-29T22:25:55Z,linacambridge,linacambridge,70,26,44
+19,dogear,3842b40510fe30b1e2cc1cccf9d98d19da4b8441,"Naming is the hardest problem in computer science.
+
+* Shorten import paths.
+* Rename `Child::Existing` to `Child::Exists`.
+* Rename `Divergence::Ok` to `Divergence::Consistent`, since `Ok`
+  might be confused with `Result`.",Lina Cambridge,2019-01-26T01:20:16Z,linacambridge,linacambridge,32,17,15
+20,dogear,25b31efdf93c834166ab6fd115e23d2ecc318674,"@pjenvey's review.
+
+* Clean up optionals with `.map_or(...)` and `.filter(...).map(...)`.
+* Explain why we use `ptr::eq` to compare entries.",Lina Cambridge,2019-01-26T00:56:27Z,linacambridge,linacambridge,22,11,11
+21,dogear,b182366b4b1757868fd3a16cd5899df978d3ab83,"Don't store divergence on tree nodes.
+
+In most cases, `node.2 == node.entry().divergence`, except for
+orphans, default orphans, and diverging `parentid`s. This is a
+surprising inconsistency that means `node_for_guid` and
+`children` need to do more work to figure out if the node has
+actually diverged.
+
+This commit:
+
+* Changes the tree to flag divergent `parentid`s at `insert` time.
+* Cleans up `Tree::structure_for_insert`, to clarify what happens when
+  a `parentid` is or isn't provided.
+* Moves the logic for checking default folder divergences into
+  `Node::diverged`.
+* Replaces `EntryParents::{indices, guids}` with `EntryParents::iter()`,
+  which doesn't allocate (thanks, @thomcc!).",Lina Cambridge,2019-01-26T00:09:28Z,linacambridge,linacambridge,366,198,168
+22,dogear,a1ba30b1ef49a5f8816251174feb4469131fecfe,"Reviews from @thomcc and @mhammond.
+
+* Clarify why `merge::Driver` exists.
+* Make `Merger` generic over `Driver`, instead of using a trait object.
+* Use `clone` instead of `to_owned`.
+* Replace `Entry#is` with `std::ptr::eq`.
+* Add `MergedNode::remote_guid_changed`.",Lina Cambridge,2019-01-25T05:35:33Z,linacambridge,linacambridge,130,72,58
+23,dogear,67b6cb7ae903866567df793c924a03a0b27fd36c,Remove unused deps.,Lina Cambridge,2019-01-19T23:06:20Z,linacambridge,linacambridge,2,0,2
+24,dogear,d23fd74d910a98e230b196acd28fd584af25a4bf,"Remove `Item::Missing`.
+
+This reverts commit b5e38d48f1c48a902e6140141048e7425916b5cc.",Lina Cambridge,2019-01-19T22:27:53Z,linacambridge,linacambridge,790,277,513
+25,dogear,ed65291b8ee225a96664d8ed8259795fd2785fef,"Implement a simpler, recursive `PartialEq` for trees and nodes.",Lina Cambridge,2019-01-19T21:34:34Z,linacambridge,linacambridge,101,20,81
+26,dogear,ea1a02240075f258df9b3a6c751a8dcab9fdc3fc,"Refactor and refine the new tree.
+
+* Add missing doc comments.
+* Rename reparenting methods for clarity.
+* Move `Tree::{children, parent}_for_entry` to
+  `Node::{children, parent}`.
+* Remove optional return value from `Node::level`.
+* Add `Node::is_{root, default_parent_for_orphans}`.
+* Iterate over `Tree::entries` instead of
+  `Tree::entry_index_by_guid`. The two should point to the same
+  entries, but `entries` is more direct.
+* Don't mark trees with orphans as equal.",Lina Cambridge,2019-01-19T20:26:31Z,linacambridge,linacambridge,366,201,165
+27,dogear,8225591456bf49e25531f835f864f8ec7a657441,"Don't store placeholders for missing children in entries.
+
+Originally, I'd intended for the tree to expose diverging structure to
+the merger, and for the merger to fix it. That was part of why I split
+`Item` into `Existing` and `Missing` variants.
+
+However, it turns out it's simpler to resolve divergences in the tree,
+and expose a well-formed structure to the merger instead. Changing
+`Item` to an enum means we now need a pattern match for _every_ item,
+when all we really want is a flag on the parent that says ""this folder
+has diverged because it has a missing child"".
+
+`Entry::divergence` already flags diverging structure for multiple
+parents, so let's use it to also flag parents with missing children,
+instead of forcing the merger to handle invalid structure for this one
+case.",Lina Cambridge,2019-01-19T18:28:49Z,linacambridge,linacambridge,296,163,133
+28,dogear,615707fadde26fb9df84f70eb4508e3be0e6b4ff,Change invalid item GUIDs when merging.,Lina Cambridge,2019-01-18T17:41:41Z,linacambridge,linacambridge,148,112,36
+29,dogear,eeaee8faa9af229eef599028c7e2f6dc1b8d424f,Reupload diverged nodes.,Lina Cambridge,2019-01-18T02:59:58Z,linacambridge,linacambridge,241,206,35
+30,dogear,f84472207a7ef2cb2b49fe4d662905356ac68c63,Rewrite the tree to support diverging structure.,Lina Cambridge,2019-01-18T02:27:08Z,linacambridge,linacambridge,833,700,133
+31,dogear,b5e38d48f1c48a902e6140141048e7425916b5cc,Add an `Item::Missing` representation for missing items.,Lina Cambridge,2019-01-09T02:41:55Z,linacambridge,linacambridge,722,472,250
+32,dogear,2ea28a3fbcf099010014cbf3e710a358a504c0ca,Move merger tests into a separate module.,Lina Cambridge,2018-12-27T19:08:31Z,linacambridge,linacambridge,3714,1864,1850
+33,dogear,fd6494f4058e5195c6bddcf2e39d72b3b17b1694,Merge #17.,Lina Cambridge,2018-12-22T01:41:15Z,linacambridge,linacambridge,125,63,62
+34,dogear,dcbae1b1f564e2e3ea3ae3d87c1985c1e13d25c3,"Bump minimum Rust version. Thanks, @thomcc!",Lina Cambridge,2018-12-15T00:58:05Z,linacambridge,linacambridge,2,1,1
+35,dogear,d31a585ea48de9adaedb2ab5b4439e417eae681f,`MergeState` only needs to hold the decided node.,Lina Cambridge,2018-12-14T14:45:32Z,linacambridge,linacambridge,70,31,39
+36,dogear,43ce56cbd91852215ebddaff96f80d02f972f7df,"Add an ""unchanged"" merge state.
+
+Unchanged items exist on both sides, and don't need to be updated or
+uploaded. They're not handled specially in Dogear, but we can apply
+them more efficiently, since we won't need to update their value
+or structure.
+
+This also lets us clean up `MergedNode::use_remote()` and
+`needs_upload()`.",Lina Cambridge,2018-12-14T05:56:53Z,linacambridge,linacambridge,76,45,31
+37,dogear,a4ebc75a5adf6982edc71948d374256dff3832e9,Remove `Item::newer_than`.,Lina Cambridge,2018-12-14T02:41:19Z,linacambridge,linacambridge,13,4,9
+38,dogear,b091a9530875eb35a838c4b3b5ed97c241782c39,Port tests for #15 from Desktop.,Lina Cambridge,2018-12-15T00:14:58Z,linacambridge,linacambridge,196,196,0
+39,dogear,68a6dd3e64cc2d39c64aaa3d0a9c18b18bca4af9,Don't check structure for already-merged orphans.,Lina Cambridge,2018-12-14T06:21:16Z,linacambridge,linacambridge,8,8,0
+40,dogear,345a745b45d3f95080d3795fa09a6423a7b89460,"Refactor conflict resolution.
+
+This commit streamlines how we resolve value and structure conflicts.
+The algorithms for checking change flags and comparing timestamps now
+live in `resolve_value_conflict` and `resolve_structure_conflict`,
+making them easier to understand.
+
+This also cleans up a lot of duplication in
+`merge_{remote, local}_child_into_merged_node`, and makes it easier to
+backport https://bugzilla.mozilla.org/show_bug.cgi?id=1506287.",Lina Cambridge,2018-12-14T02:23:17Z,linacambridge,linacambridge,667,359,308
+41,dogear,37106803c53f975218a7079169cd70af274cb254,Keep the local state for items unchanged on both sides.,Lina Cambridge,2018-12-13T01:33:58Z,linacambridge,linacambridge,19,10,9
+42,dogear,c25995e1f6b951469b30aa08136c8b8789b20867,Always update or upload items that only exist on one side.,Lina Cambridge,2018-12-11T21:54:01Z,linacambridge,linacambridge,122,84,38
+43,dogear,2b65f9290f41a2cc4a25f4b842922bf0fbb441ec,"Ensure we flag newer locally moved children for reupload.
+
+This likely explains why we're seeing more `parentid` mismatches for
+the new bookmarks engine. Previously, when we preferred a local move
+over a remote move, we flagged the *parent* for reupload, but not the
+*child*. However, older Desktops and Android use the child's `parentid`
+to determine the correct parent, not the parent's `children`, and iOS
+expects the two to match.
+
+The old behavior accidentally did the right thing on Desktop for local
+values, since we didn't reset the Sync change counter (`needs_merge`
+flag in Dogear). However, we did reset the counter for *remote* values
+with a new structure, meaning those children weren't uploaded to the
+server...even though they were flagged correctly before merging.
+
+This commit also simplifies Sync change tracking for uploads. Every
+merged node wiith a new structure (`LocalWithNewStructure` or
+`RemoteWithNewStructure`) should have `syncChangeCounter = 1`, and
+all others should have `syncChangeCounter = 0`.",Lina Cambridge,2018-10-05T23:26:54Z,linacambridge,linacambridge,64,40,24
+44,dogear,bdfe297c11d0c9da21d1856b4cfaf986c959abb3,"Fix the logic in `two_way_merge` for deciding the value state.
+
+Refactoring made the previous buggy behavior more obvious. If the node
+is changed locally, but not remotely, we should use the local node and
+merge state.",Lina Cambridge,2018-10-05T07:52:59Z,linacambridge,linacambridge,6,3,3
+45,dogear,47335a2cafb15a4e612e9e8bf846cd8b6f1900b7,"Mark merged nodes with new structure as unmerged.
+
+This is useful for testing which items are flagged for upload.",Lina Cambridge,2018-10-05T07:40:19Z,linacambridge,linacambridge,78,41,37
+46,dogear,6b6f00f8a1a0dc49947bc3231b456a3237ea4faf,Remove rustfmt.,Lina Cambridge,2018-12-12T01:40:51Z,linacambridge,linacambridge,17,1,16
+47,dogear,802982d39621239c6f155494f88cf05356c47e32,Set up Codecov.,Lina Cambridge,2018-08-31T23:48:00Z,linacambridge,linacambridge,68,67,1
+48,dogear,917653c6422cbf105b4250ae8733f4e583ee9f32,"Consolidate value and structure state.
+
+This commit changes `MergedNode` to hold on to the unmerged node, and
+merges `ValueState` and `StructureState` into a simpler `MergeState`
+enum with four variants: local and remote with original structure, and
+local and remote with new structure.
+`MergeState::with_new_structure(old_state)` indicates that the old
+merge state has a new structure that we should upload to the server.
+
+This commit also inlines `merge_*_children_into_merged_node` and
+`resolve_two_value_conflict`, and factors out two-way structure
+merging into `merge_*_child_node_with_*_child_node`. No test changes
+here, to make the subsequent fixes more obvious.",Lina Cambridge,2018-10-05T05:07:06Z,linacambridge,linacambridge,994,440,554
+49,dogear,5bb68e22f64a8b3cc2679d2ceac704740767c256,"Reject high ASCII characters in GUIDs.
+
+Thanks @thomcc for noticing this! ✨ 👀",Lina Cambridge,2018-10-04T21:31:14Z,linacambridge,linacambridge,41,38,3
+50,dogear,c5365cc5cc170c23dba37ecda848e624dbf2c81a,Dogear 0.1.1.,Lina Cambridge,2018-09-04T07:25:32Z,linacambridge,linacambridge,2,1,1
+51,dogear,ef9bafc31584c04530c9d635e5a3a89d8c849eb6,Split up `Guid::from_bytes` into `from_utf8` and `from_utf16`.,Lina Cambridge,2018-09-04T07:19:59Z,linacambridge,linacambridge,56,48,8
+52,dogear,468bc52dd8969a8760a06b1c6a595aa1efe6c320,Update description and repo. [skip ci],Lina Cambridge,2018-09-03T20:13:37Z,linacambridge,linacambridge,2,2,0
+53,dogear,69ac8d506f6ee95f8cde8b3591cdced6b5e14f9c,Don't package unnecessary files.,Lina Cambridge,2018-09-01T20:41:58Z,linacambridge,linacambridge,1,1,0
+54,dogear,580f7e467165bebc07294018401b4df8ef343f7a,Add `Guid::from_bytes` to simplify conversions from `nsString`.,Lina Cambridge,2018-09-01T20:06:16Z,linacambridge,linacambridge,20,18,2
+55,dogear,c5075cddaf25bc0829ed584ab396528538490d7a,Clean up error kind names.,Lina Cambridge,2018-09-01T16:48:26Z,linacambridge,linacambridge,52,26,26
+56,dogear,07db796c224dda878869afdea11fd2b24ea908d5,Define a `Store` trait and `merge` function. Closes #8.,Lina Cambridge,2018-08-21T00:56:53Z,linacambridge,linacambridge,69,69,0
+57,dogear,b2542f6c4d07d940b3fa002383c7db104a64aca6,Expose public structs.,Lina Cambridge,2018-08-21T00:50:17Z,linacambridge,linacambridge,29,21,8
+58,dogear,84e97df3d5f5450e8167731d805f8cde391d466f,Match the `env_logger` version used in gkrust.,Lina Cambridge,2018-08-21T00:41:54Z,linacambridge,linacambridge,2,1,1
+59,dogear,c0998c11cf6a0d0b1ccf7f2c41899ea3e09876ad,Rename to Dogear. 🐶 📚,Lina Cambridge,2018-09-01T22:37:30Z,linacambridge,linacambridge,12,7,5
+60,dogear,169b7e31de23ae662d0d879919b4a902a7ae247b,"Replace the `merged_guid` param with `{remote, local}_node.guid`.",Lina Cambridge,2018-09-01T07:52:56Z,linacambridge,linacambridge,103,32,71
+61,dogear,62a7b5965cce57dec68a3a2784273a9efe37295a,"Don't allow merging folders and livemarks.
+
+This requires removing the entire subtree, in case we're merging a
+folder with children on one side, and a livemark on the other. Since
+we're removing livemarks in bug 1477667, we can remove this entirely
+instead of adding complexity to the merger.",Lina Cambridge,2018-08-30T18:50:48Z,linacambridge,linacambridge,43,35,8
+62,dogear,847e7cf2c73c9958244f0d8357c8dd2153b006fd,Port the remaining merging tests from Desktop. Closes #3.,Lina Cambridge,2018-08-31T22:30:59Z,linacambridge,linacambridge,649,625,24
+63,dogear,d0f552070f192118787abdcd04d953b22b2ba00b,Add `Merger::telemetry()`.,Lina Cambridge,2018-08-31T22:29:39Z,linacambridge,linacambridge,30,18,12
+64,dogear,6aa5f2394f95ce39709df3de81a5de80ac27fc51,Fix up Clippy nits.,Lina Cambridge,2018-08-31T01:08:53Z,linacambridge,linacambridge,67,30,37
+65,dogear,0ac271880d47980f8fa04c7d918e5d62f8a605d0,Expose merged deletions.,Lina Cambridge,2018-08-31T00:35:06Z,linacambridge,linacambridge,76,74,2
+66,dogear,dbf59d3f08aaa49885bcb0b1767a3ef8896b7e0c,Remove the Cargo boilerplate test.,Lina Cambridge,2018-08-31T00:18:22Z,linacambridge,linacambridge,8,0,8
+67,dogear,da6938da9710df8ed6f1aa72dea99cc3bd4b3e08,Remove `failure` dependency.,Lina Cambridge,2018-08-31T00:15:02Z,linacambridge,linacambridge,78,29,49
+68,dogear,81233792898ca59817660d5258b344fc6cf1989f,Add more merger tests.,Lina Cambridge,2018-08-27T16:06:12Z,linacambridge,linacambridge,464,463,1
+69,dogear,7ca01c90fd2e6b33cc69ed8f51efbe44840175c1,"Implement `Tree::default()`; track `is_syncable` on nodes, not items.",Lina Cambridge,2018-08-30T18:41:47Z,linacambridge,linacambridge,61,46,15
+70,dogear,86755a02272748f53d52c90f07c691c0217e2a93,Build `failure` without backtrace support.,Lina Cambridge,2018-08-27T16:04:26Z,linacambridge,linacambridge,5,4,1
+71,dogear,0e6d6b5c3fbfb0f5a627deb3fcf7ff59c343ba2e,Split `Merger::new` and `Merger::with_contents`.,Lina Cambridge,2018-08-27T16:03:40Z,linacambridge,linacambridge,451,218,233
+72,dogear,87260d92e206bc6b3c85e87bf0b88b3880e2c44f,Remove panics from `Tree::insert`.,Lina Cambridge,2018-08-27T03:00:09Z,linacambridge,linacambridge,236,125,111
+73,dogear,ebd69a69d5a7839d2af2f90c2c0cd12bcb60bb1a,Switch to the Apache License.,Lina Cambridge,2018-08-23T00:35:32Z,linacambridge,linacambridge,280,268,12
+74,dogear,ad38815eca6c18414554b32982f16ae6abe33704,Add a slow string representation for invalid GUIDs.,Lina Cambridge,2018-08-22T06:29:31Z,linacambridge,linacambridge,170,117,53
+75,dogear,511d3fe605af7d32cba402acd4e86a97c1f40a3e,Remove unused `lazy_static` dependency.,Lina Cambridge,2018-08-22T06:30:12Z,linacambridge,linacambridge,1,0,1
+76,dogear,81e9ca424e54ed41dec1e26fb4aa94d05bb5ef9f,Store GUIDs as an array of [u8; 12] (fixes #9 by making it pointless),Thom Chiovoloni,2018-08-16T18:30:02Z,thomcc,thomcc,309,213,96
+77,dogear,1c215b813a9097c93dc7f61254948cb96722a249,Address review comments,Edouard Oger,2018-08-09T14:32:02Z,eoger,eoger,42,26,16
+78,dogear,3c6d8303ad5881c1f7e4ec7643944c5bda2f938e,"Streamline ascii_tree_prefixed across MergedNode and Node
+
+We could probably factorize the ascii_tree_prefixed functions in a helper method
+if someone was willing to fight with rust type checking.",Edouard Oger,2018-08-08T23:35:29Z,eoger,eoger,38,25,13
+79,dogear,7a659561707da290b8db42b448caeb5d56726511,Remove extra parenthesis,Edouard Oger,2018-08-08T22:59:26Z,eoger,eoger,4,2,2
+80,dogear,506c7dcda45c53aea6ea8bd884e581066e77f393,cargo fmt,Edouard Oger,2018-08-08T22:22:13Z,eoger,eoger,19,9,10
+81,dogear,43fac46ff7b875bee99ebe09e56479164630d37c,Emojis 🤪,Edouard Oger,2018-08-08T19:59:29Z,eoger,eoger,8,4,4
+82,dogear,ea02a1dc54c7487fadc4c1f5764edebad02fd38e,Invert match arms for consistency,Edouard Oger,2018-08-08T19:12:31Z,eoger,eoger,8,4,4
+83,dogear,33b76440454027820db21405423da1fbd0b8eb39,Add ASCII art tree,Edouard Oger,2018-08-08T18:57:27Z,eoger,eoger,47,47,0
+84,dogear,46ad636f73e8bc54ba46dc4f590c5913fc4bd0fd,Remove `Eq` implementation for `Tree`; make `PartialEq` test-only.,Lina Cambridge,2018-08-16T05:46:48Z,linacambridge,linacambridge,3,1,2
+85,dogear,72b3413855a204adc10b046a6f90e8580c8e916d,Replace `panic` with `assert`.,Lina Cambridge,2018-08-16T05:46:29Z,linacambridge,linacambridge,14,7,7
+86,dogear,23218d1c8fa0b226c451575d7372401bc3077523,Use `impl Iterator` with a lifetime bound instead of `collect`.,Lina Cambridge,2018-08-16T05:38:41Z,linacambridge,linacambridge,21,8,13
+87,dogear,b617eadd76f4b322a03f634f510ee6d8905b3042,"Remove unnecessary use of `Box`, since `Vec` is heap-allocated.",Lina Cambridge,2018-08-14T00:21:28Z,linacambridge,linacambridge,29,14,15
+88,dogear,ae6bcdfb2fec4faaf4a3251e15c6fcedf2aeb6d6,Remove `ContentDupeKey` and use an enum for `Content` instead.,Lina Cambridge,2018-08-13T23:54:00Z,linacambridge,linacambridge,130,71,59
+89,dogear,fad717bbec60615ed5b9775b3858b5df0913ad9d,"Disable rustfmt checking on Travis.
+
+`indent_style = ""Visual""` tends to switch between styles. See
+rust-lang-nursery/rustfmt#2496.",Lina Cambridge,2018-08-10T08:22:01Z,linacambridge,linacambridge,1,0,1
+90,dogear,a100d3c03f580fc96e076dd6b7ed8c10ea78358e,Port remaining structure change tests.,Lina Cambridge,2018-08-10T08:14:59Z,linacambridge,linacambridge,339,337,2
+91,dogear,1cc30e5e59c0f935a3d568f03a7fd72e72bbda30,"Remove special handling for roots.
+
+It's easier to enforce that user content roots aren't moved when
+buffering incoming records, instead of special-casing roots in
+the merger to always prefer the local structure.",Lina Cambridge,2018-08-10T08:01:07Z,linacambridge,linacambridge,33,0,33
+92,dogear,edc69b4c7e7303348481013c2fe0a2db3e9e3705,Remove unused `lazy_static` dependency.,Lina Cambridge,2018-08-10T08:00:27Z,linacambridge,linacambridge,4,0,4
+93,dogear,36a1db691dab5363019516fa734c9f67f3b55b08,Add a test for complex orphaning.,Lina Cambridge,2018-08-07T06:27:53Z,linacambridge,linacambridge,133,133,0
+94,dogear,232b58f48efb35f7ed7762dc3b24fd90f733b604,Fix up doc comments and nits.,Lina Cambridge,2018-08-07T06:26:45Z,linacambridge,linacambridge,151,54,97
+95,dogear,37b1f35addc2b4d88d4ad9fac2cf7d50bc7cd5e7,Implement `Tree`.,Lina Cambridge,2018-08-07T05:47:33Z,linacambridge,linacambridge,684,471,213
+96,dogear,b4caed92c89538482cf570eba6817969ff1dd63f,Initial commit.,Lina Cambridge,2018-08-04T04:53:21Z,linacambridge,linacambridge,1555,1555,0
+97,dogear,2d39a974e4381b42be1ac804ac40019a7f0e2fee,Updated token for github deployment (#63),lougeniaC64,2021-04-15T17:44:56Z,lougeniaC64,lougeniaC64,2,1,1
+98,dogear,41b498c6fa9ad6270cf7268b5399e45eb57e8a69,Recorded invalid items as tree problem,lougeniac64,2020-03-16T20:33:41Z,lougeniaC64,lougeniaC64,23,22,1
+99,dogear,0b782ddf376bb4c42b2a039b66ec1699b88feb8f,Add variants for unknown child items,Matt Stavola,2019-10-08T01:13:22Z,mbStavola,mbStavola,41,36,5
+100,dogear,768d5d93d47b8f20b9487c5772ca41f2e9105ffd,Add kinds to InvalidParent,Matt Stavola,2019-10-06T21:57:50Z,mbStavola,mbStavola,63,47,16
+101,dogear,e80f0d73fe3c953af8a88542e442591284b2075c,Include guid in the message for MismatchedItemKind,Matt Stavola,2019-10-06T21:16:17Z,mbStavola,mbStavola,17,10,7
+102,dogear,cbc82f989d7c29024fe82f2b4e5e888fcfbb6e10,Dogear v0.4.0.,Lina Cambridge,2019-09-16T23:51:08Z,linacambridge,linacambridge,2,1,1
+103,dogear,b6a900cac607b0ffbf5f4253561a4d7ea78d78d0,Remove unnecessary closure for `Guid::as_str`.,Lina Cambridge,2019-09-16T21:29:50Z,linacambridge,linacambridge,5,3,2
+104,dogear,558ee66ee1e3c08cc8498f4a62ba251c6649e825,Add a `to_strings` helper.,Lina Cambridge,2019-09-16T21:29:31Z,linacambridge,linacambridge,75,25,50
+105,dogear,51e638edf3d4df7ddae384e76c6546d1a7b21f16,Improve completion op summaries.,Lina Cambridge,2019-09-16T17:44:17Z,linacambridge,linacambridge,65,31,34
+106,dogear,188fd6b8ee75f17590b5d2f56e1f9f60cff0f37b,"Revert storing extra tombstones in `delete_{locally, remotely}`.
+
+Instead of panicking if a GUID in `delete_locally` or `delete_remotely`
+doesn't exist on both sides, we now clean up local tombstones, and
+flag the remote tombstone as merged.
+
+With this change, we no longer need to filter out local and remote
+tombstones for items that don't exist on the other side. That means
+we can revert `Tree::guids` to return all GUIDs, including deletions,
+and have `MergedRoot::{local, remote}_deletions` return a more accurate
+set of tombstones for logging.",Lina Cambridge,2019-09-16T16:44:33Z,linacambridge,linacambridge,73,50,23
+107,dogear,5707548d060d989c308b46dbf99acff6a77c13e8,"Make fetching completion ops abortable.
+
+This commit adds `MergedRoot::completion_ops_with_signal`, and
+implements `MergedRoot::completion_ops` in terms of it.",Lina Cambridge,2019-09-14T00:55:36Z,linacambridge,linacambridge,33,25,8
+108,dogear,af00f1478de386955057ad84637e549913d992b7,Report local and remote deletions in tree stats.,Lina Cambridge,2019-09-14T00:55:07Z,linacambridge,linacambridge,3,3,0
+109,dogear,0e5b63e1d5c0b6f49741abdf37f58cfea5d510e6,"Refactor handling of deletion ops.
+
+We now emit ops in two steps. The first step removes all local
+tombstones, and flags remote tombstones as merged, for all revived
+items. The second handles the actual deletion, on either or both sides.
+
+* Don't add deletions from local and remote trees that aren't
+  mentioned in `delete_remotely` and `delete_locally`, because we emit
+  different completion ops for those.
+* Change `Tree::guids` to only return GUIDs that exist in the tree,
+  not deleted GUIDs.
+* Change `Tree::deletions` to return a `HashSet` instead of an
+  iterator, so that we can use the `difference` method.
+* Add `Tree::exists`.
+* Remove `Tree::record_for_guid`.
+* Add `CompletionOps::summarize` for tests and logging.
+* Remove `StructureCounts::merged_deletions`, since it's not accurate
+  anymore.",Lina Cambridge,2019-09-13T23:11:47Z,linacambridge,linacambridge,381,168,213
+110,dogear,5f66b493c3e73b57f6d302839af3b8248d5c2c6a,"Emit completion ops for tombstones.
+
+This commit adds completion ops for deleting local items (to apply
+remote tombstones), inserting new tombstones (to delete non-syncable
+and invalid items), and uploading tombstones (to avoid an extra table
+scan when staging outgoing tombstones).
+
+These ops also help avoid extra work when applying tombstones for items
+that don't exist locally, or uploading tombstones for items that don't
+exist remotely.",Lina Cambridge,2019-09-10T07:20:19Z,linacambridge,linacambridge,375,282,93
+111,dogear,8185f8c6f47f229cfdc6bf5ce6b18b238bed8842,"Rename completion ops to clarify if they're local or remote.
+
+It's unclear if `flag_{for_upload, as_merged}` and `skip_upload`
+refer to local or remote items. This commit renames them to be more
+consistent:
+
+* `SetLocalUnmerged` (formerly `FlagForUpload`) marks a local item as
+  needing to be merged.
+* `SetLocalMerged` (formerly `SkipUpload`) removes the ""needs merge""
+  flag from a local item.
+* `SetRemoteMerged` (formerly `FlagAsMerged`) removes the ""needs merge""
+  flag from a _remote_ item.
+
+This commit also renames `Upload` to `UploadItems`, since we'll be
+adding completion ops for uploading tombstones next.",Lina Cambridge,2019-09-10T07:07:47Z,linacambridge,linacambridge,48,24,24
+112,dogear,0c94b197c3c1b337dbb872a2ac5195fcb9ad631c,Dogear v0.3.3.,Lina Cambridge,2019-08-27T07:26:15Z,linacambridge,linacambridge,2,1,1
+113,dogear,756cc94b6c4d2c7f9a67a8ee215c6ce31fd47038,"Move `by_structure` from `ItemBuilder` to `ParentBuilder`.
+
+This lets us build the local tree in two steps.",Lina Cambridge,2019-08-27T07:20:16Z,linacambridge,linacambridge,100,54,46
+114,dogear,bfa452dc63d217098ab543539b58e62bde4bee63,Dogear v0.3.2.,Lina Cambridge,2019-08-20T21:06:02Z,linacambridge,linacambridge,2,1,1
+115,dogear,d749e931863a7b9c26fcdf66639ea1377c3082c7,"Ensure possible remote dupes don't exist locally.
+
+We ignored local child nodes that existed in the remote tree, but
+didn't check if the remote node existed in the local tree. This
+meant we might dedupe multiple local items to the same remote
+item.
+
+This showed up as a UNIQUE constraint violation on Desktop.",Lina Cambridge,2019-08-19T21:58:29Z,linacambridge,linacambridge,218,156,62
+116,dogear,de516eeba700365faf6b8b00eed5dcbd3d63c1e3,Dogear v0.3.1.,Lina Cambridge,2019-08-13T20:54:30Z,linacambridge,linacambridge,2,1,1
+117,dogear,5e0e2019c0044a1f4dabd9323f692c768e448b47,"Add `Store::Ok` and `Store::Error` associated types.
+
+This lets `Store::merge()` return a value, and it's cleaner to
+represent the error as an associated type instead of a type param.",Lina Cambridge,2019-08-13T20:44:34Z,linacambridge,linacambridge,22,14,8
+118,dogear,85bbabb71949a4bf9f527a20bd91a83e589996ba,Add `CompletionOps::is_empty()`.,Lina Cambridge,2019-08-13T20:44:12Z,linacambridge,linacambridge,14,14,0
+119,dogear,fbb660b41a8a629353582bd18766765c925d9b46,Dogear v0.3.0.,Lina Cambridge,2019-08-06T21:25:02Z,linacambridge,linacambridge,2,1,1
+120,dogear,00c01872e031732c8b2a0de027130699c88e63d8,"Add docs for new public methods, and improve some comments.",Lina Cambridge,2019-08-06T19:12:51Z,linacambridge,linacambridge,70,43,27
+121,dogear,791d8f4a7913d3f27ab3911d7a6115bd76776631,"Split `FlagForUpload` into a separate completion op.
+
+We now emit `FlagForUpload` to update the local change counter
+(matching `FlagAsMerged`), and emit `Upload` for all items that should
+be uploaded. This lets us avoid another full table scan when staging
+outgoing items.",Lina Cambridge,2019-08-06T01:27:15Z,linacambridge,linacambridge,53,42,11
+122,dogear,9a43ebbdc1b957358aeedf7973bc93cc15a1b29a,Make the logging in `Store::merge_with_driver` less chatty.,Lina Cambridge,2019-08-06T01:23:00Z,linacambridge,linacambridge,12,9,3
+123,dogear,a135cc0a14e559e952019895c57dc83b39e86550,"Explicitly call `Driver::max_log_level` in the logging macros.
+
+The `Driver` trait no longer needs to be in scope to use the macros.",Lina Cambridge,2019-08-06T01:14:59Z,linacambridge,linacambridge,18,9,9
+124,dogear,f32ca3f46c1d4211eaceadeb8475f6635b0289a8,"Always check for changed GUIDs and new structure in `accumulate`.
+
+This avoids emitting extra `ApplyNewLocalStructure` for remotely
+changed items in folders with new local structure.",Lina Cambridge,2019-07-26T20:27:45Z,linacambridge,linacambridge,104,34,70
+125,dogear,487ca47fd276bc7999664e57c85f3d9ed17d9c97,"Treat the tags root as a content root.
+
+This makes it easier for Desktop to build a complete tree.",Lina Cambridge,2019-07-26T01:28:10Z,linacambridge,linacambridge,43,27,16
+126,dogear,1626ea6a837e46aa2aca0c452458d1f57e50d5ff,"Remove positions from `Content::Separator`.
+
+The merger already knows the positions of all children, there's
+no need to include it in the content info. This also lets us avoid a
+left join on the structure table when inflating the remote tree in
+Desktop and a-s.",Lina Cambridge,2019-07-26T01:21:26Z,linacambridge,linacambridge,50,36,14
+127,dogear,bc683af66d36d17f0e2540258dbaff81fd5a18de,"Move more methods to `MergedRoot`.
+
+* Change `Merger::merge` to consume the merger, and check if the merged
+  tree subsumes the local and remote trees before returning a merged
+  root.
+* Remove `Merger::subsumes`.
+* Move `Merger::{deletions, local_deletions, remote_deletions, counts}`
+  to `MergedRoot`.
+* Add `MergedRoot::completion_ops_with_filter`, to let callers discard
+  completion ops. Desktop uses this to ignore position changes to user
+  content roots,
+* Move `MergedRoot::to_ascii_string` to `MergedNode`.
+* Add a `FlagAsMerged` completion op, to flag fully merged remote items
+  and tombstones. This is the motivation for this refactor, since we
+  need the set of deletions and both trees to emit these ops.
+* Change `Store::apply` to only take a `MergedRoot`, since
+  `MergedRoot::deletions` exists now.",Lina Cambridge,2019-07-26T01:15:17Z,linacambridge,linacambridge,967,484,483
+128,dogear,7883c1e17201e6a8f01fd38a75c96c57fa4a7a1a,Note deleted parents and children.,Lina Cambridge,2019-07-24T01:40:16Z,linacambridge,linacambridge,152,112,40
+129,dogear,4d1b2211329382a750236c940d8552d3b4a89336,"Replace `Tree::note_deleted` with `Builder::deletion`.
+
+This lets us note deletions as we build the tree, avoiding a second
+table scan on the synced bookmarks table to fetch deletions. This also
+means we can report validation telemetry for deleted parents and
+children separately from missing ones.",Lina Cambridge,2019-07-23T22:19:13Z,linacambridge,linacambridge,171,86,85
+130,dogear,42dabe62196c83b4a2e4c8dc1534b013beb91fe5,"Remove `Store::fetch_new_{local, remote}_contents`.
+
+In Rust Places and `bookmark_sync` on Desktop, fetching the tree and
+contents runs two table scans: one to build the structure, and one to
+fetch content info for deduping. Since the latter can't use an index,
+it's more efficient to fetch content info during the first scan to
+build the tree.
+
+This commit adds a builder API to set content info, and stores it with
+the item instead of a separate map.",Lina Cambridge,2019-07-23T20:41:00Z,linacambridge,linacambridge,683,300,383
+131,dogear,e9d1f0fcdf566b3faeb43094537043272456ed08,Fix up some doc comments.,Lina Cambridge,2019-07-18T19:26:07Z,linacambridge,linacambridge,65,30,35
+132,dogear,9ed02f4065c7f4efcf9a2e9be44a9e02a8f21b2d,Split `UpdateSyncChangeCounter` into `Upload` and `SkipUpload`.,Lina Cambridge,2019-07-18T17:53:14Z,linacambridge,linacambridge,98,52,46
+133,dogear,67f9557402af88cb3381934da23b61303bbcf4cc,"Update tests to check for merged structure state.
+
+This is more comprehensive than checking if an item should be
+reuploaded.",Lina Cambridge,2019-07-17T17:10:21Z,linacambridge,linacambridge,954,481,473
+134,dogear,48b24ba60cecac5b12b39fb50ed6c5bde82996fe,"Improve handling for unchanged and locally changed items.
+
+This commit overhauls how the merger records and applies local changes.
+Before, new structure was only used to flag merged items for
+reupload. Consumers would apply the merged tree by storing all merge
+states in an SQLite temp table, then firing triggers that examined and
+updated every item. This was inefficient, and the process could take
+several seconds for a large tree on Desktop.
+
+To improve this, we introduce two concepts: new local structure, and
+completion operations.
+
+New local structure is the analog to new remote structure, and is set
+for all items with newer local changes that are reparented or
+repositioned in the merged tree. (Remote-only items, and items with
+newer remote changes, have new local structure by definition). The
+merger now flags relocated orphans, deleted non-syncable and invalid
+items, items with deduped and changed GUIDs, reparented items, and
+folders with moved children, as having new local structure.
+
+Merging now produces a sequence of completion operations, instead of
+raw merged descendants. Completion ops describe how to update the local
+tree so that it matches the remote tree. These include changing GUIDs,
+taking remote items, applying new structure, and updating change
+counters. We try to avoid emitting completion ops for items that didn't
+change (like children of a folder with new local structure that have
+the same positions) to avoid unnecessary database work. The name
+""completion ops"" comes from Firefox for iOS, which had a similar
+concept in its old bookmark sync implementation.
+
+Additionally, the ""unchanged"" merge state really means unchanged now.
+Before, it meant something like ""unchanged, possibly with new
+children"". ""Unchanged with new local structure"" is a new state that's
+used for roots, where we want to apply merged children, but not a
+synced root's title. We compare child GUIDs to determine if a folder's
+local and remote children are unchanged, and use a new
+`merge_unchanged_child_into_merged_node` method that skips checking for
+moved children.
+
+Finally, we now check validity when determining which side to take, and
+pick the valid side even if it's unchanged or older.
+
+Closes #46.",Lina Cambridge,2019-07-17T17:09:39Z,linacambridge,linacambridge,935,750,185
+135,dogear,a254e72ce1e75597cb7264010c3ec6e560ce71b8,Use Tarpaulin for code coverage.,Lina Cambridge,2019-07-17T20:27:09Z,linacambridge,linacambridge,42,9,33
+136,dogear,fbade15f2a4f11215e30b8f428a0a8df3defeaec,Dogear v0.2.6.,Lina Cambridge,2019-05-31T04:36:13Z,linacambridge,linacambridge,2,1,1
+137,dogear,d4957a89e9935532f715fbe9ff36706be72b9ada,"Emit telemetry events after each operation.
+
+This commit adds a `Driver::record_telemetry_event` method that's
+called with timings and counts after each store operation, instead
+of returning a `Stats` struct at the end. This lets consumers like
+Desktop record telemetry for interrupted or failed merges, and track
+progress so we can see why some merges cause shutdown hangs.",Lina Cambridge,2019-05-21T03:18:58Z,linacambridge,linacambridge,157,90,67
+138,dogear,9be09ab647fb83e53d46fa2fc8ca3074310ce789,"Add `Problems::counts()`.
+
+These counts are used to report tree structure problems via telemetry.",Lina Cambridge,2019-05-07T06:12:01Z,linacambridge,linacambridge,179,173,6
+139,dogear,082e13f740bc61ce4eeb5decda90a4441bf60891,Exclude the mdBook config from the Cargo package.,Lina Cambridge,2019-05-14T03:40:55Z,linacambridge,linacambridge,2,1,1
+140,dogear,f481a5c9bf64b4387cf7b746caa0a2041a9613c0,Dogear v0.2.5.,Lina Cambridge,2019-05-14T03:33:32Z,linacambridge,linacambridge,4,2,2
+141,dogear,2f87a26a9dbdd842ef65c12f19d5a25a5061ab03,"Make merges abortable.
+
+This commit adds an `AbortSignal` trait that Desktop and Rust Places
+can use to interrupt merging.",Lina Cambridge,2019-05-13T22:23:57Z,linacambridge,linacambridge,141,110,31
+142,dogear,f81cb8693f100cfc619cb5895940beb2edcbf3e4,Run rustfmt and add a `readme` key for Cargo.,Lina Cambridge,2019-05-13T22:33:01Z,linacambridge,linacambridge,9,5,4
+143,dogear,c67b4906572900a8e22277365b5099ce9e05e726,Build the book on Travis.,Lina Cambridge,2019-03-19T05:48:58Z,linacambridge,linacambridge,19,19,0
+144,dogear,1e1781ac150b403368552a7309cebba009cec2c3,"First draft of the docs.
+
+This commit adds an mdBook skeleton that covers building the trees,
+divergences, deduping, and implementing `Store`. It also explains the
+merge algorithm at a high level.
+
+Still needed: application, putting everything together, a more
+detailed explanation of the algo.
+
+Closes #24.",Lina Cambridge,2019-03-19T05:37:26Z,linacambridge,linacambridge,384,380,4
+145,dogear,2939fb4b2b49e865e23c9cec99455c3a4ab23b8f,Merge #40.,Lina Cambridge,2019-04-26T20:42:27Z,linacambridge,linacambridge,8,4,4
+146,dogear,6997665256a662118a2c1e8adc28a7669f0149eb,"Don't convert Guid to str when comparing with str
+
+This skips pointlessly UTF-8 validating the GUID bytes.",Thom Chiovoloni,2019-04-26T17:27:11Z,Thom Chiovoloni,Thom Chiovoloni,2,1,1
+147,dogear,1f1c5a2c89c85e4912e9087a104bf00fd78eeb25,"Use Box<str> instead of String for invalid guids, reducing mem::size_of::<Guid>",Thom Chiovoloni,2019-04-26T17:21:54Z,Thom Chiovoloni,Thom Chiovoloni,6,3,3
+148,dogear,c272e19c53a9d590007cd6c4baedbf3e1f276218,Replace IntoTree with TryFrom/TryInto. Fixes #38,Thom Chiovoloni,2019-04-26T17:19:04Z,Thom Chiovoloni,Thom Chiovoloni,112,65,47
+149,dogear,b3594a204492d84b6e4d97d21285f329667f2962,Dogear v0.2.4.,Lina Cambridge,2019-04-24T00:28:39Z,linacambridge,linacambridge,2,1,1
+150,dogear,d7ba53a58e54b426b5db24e25c200b5ed792bcda,Fix up Clippy lints.,Lina Cambridge,2019-04-23T23:16:28Z,linacambridge,linacambridge,7,5,2
+151,dogear,ddcdce459aeeba962779c229cb95bfbb5738fbf3,"Use `.map_or(X, Y)` instead of `.map(Y).unwrap_or(X)`.",Lina Cambridge,2019-04-23T23:15:34Z,linacambridge,linacambridge,25,8,17
+152,dogear,0b5acdcf1a337e1a6cbb2d5919b2834b7036ed0e,"Treat livemarks as non-syncable on both sides.
+
+Livemarks are no longer supported in Firefox, so let's delete them
+from the tree entirely, on both sides. The bookmarks engine on Desktop
+can export existing livemarks before a first sync, to avoid data loss.",Lina Cambridge,2019-04-23T19:07:16Z,linacambridge,linacambridge,100,78,22
+153,dogear,61321751f12a56521c325de3fab14e6d88dac2dc,Enable the `rust_2018_idioms` lint.,Lina Cambridge,2019-04-16T18:41:02Z,linacambridge,linacambridge,65,34,31
+154,dogear,b50a6b9b01039a25569fa5a073fd261d9de7d0c7,Dogear v0.2.3.,Lina Cambridge,2019-04-05T06:47:15Z,linacambridge,linacambridge,2,1,1
+155,dogear,25adb650c1d7126bfa4dd885c21dae7179d85448,Only allow `ByParentGuid` overrides for reparented roots.,Lina Cambridge,2019-04-05T04:44:50Z,linacambridge,linacambridge,12,5,7
+156,dogear,27fa8dcb10e7d14bd2025d3321781580dd24f658,Add more struct and method docs.,Lina Cambridge,2019-04-05T04:44:20Z,linacambridge,linacambridge,14,10,4
+157,dogear,3563c70f3bf4a6641d457347083dc081811a5f0a,"Improve problem summaries.
+
+* Split `MultipleParents`, `{Missing, NonFolder}ParentGuid`, and
+  `ParentChildDisagreement` into `DivergedParent::By{Guid,
+  ParentGuid}`, and add `DivergedParentGuid` to distinguish
+  between folders, non-folders, and nonexistent parents. This matches
+  how the builder stores parents internally, and makes for more
+  accurate messages.
+* Use named fields in `Problem` variants for clarity.
+* Return more readable summary strings.",Lina Cambridge,2019-04-05T04:43:49Z,linacambridge,linacambridge,295,216,79
+158,dogear,9e3e482f46c4d925d4951a7116481dd5a606a25b,"Record and report problems with tree structure.
+
+This commit records problems that Dogear notices when building a
+tree, and outputs a summary when the tree is printed. It's useful for
+logging, so we can see why the structure diverged.
+
+We can also use it to emit validation events, like the Desktop Sync
+ping, if we decide to in the future.",Lina Cambridge,2019-03-30T22:34:48Z,linacambridge,linacambridge,225,187,38
+159,dogear,80c26a08244e5681de58eb3432b069080327a9d5,"Factor out parent resolution into `ResolveParent`.
+
+This builds on the last commit. The algorithm for resolving parents
+is hard to follow when it's inlined into `Builder::resolve`, isn't
+as efficient as it could be for roots, isn't well-commented, and
+tolerates unreachable cases.
+
+This commit factors that logic out into a separate `ResolveParent`
+type. It simplifies how we handle complete and partial parents,
+unrolls the nested iterator chains in `Builder::into_tree`,
+tightens up some cases, and adds more docs.",Lina Cambridge,2019-03-30T22:21:53Z,linacambridge,linacambridge,441,273,168
+160,dogear,ba4f1172a3f39cb31c44ac83ede2f29338022a2a,"Factor out resolving possible parents into `PossibleParents`.
+
+The logic for breaking the tie between conflicting parents is hard to
+digest when it's inlined into `resolve`. Instead of using `min_by()`,
+we can iterate over a sequence of `PossibleParent`s that implement
+the logic as part of `Ord::cmp`.
+
+This commit also adds more comments that explain how we pick the
+parent.",Lina Cambridge,2019-03-29T03:31:10Z,linacambridge,linacambridge,161,86,75
+161,dogear,edbc09e24312685a6a7fd86923859abad3e27751,"Delete items that are invalid on one side and don't exist on the other.
+
+We handled ""invalid on one side, deleted on the other"", but not the
+case where the item doesn't exist on the other side at all. This commit
+also adds test coverage, renames
+`relocate_{local, remote}_orphans_to_merged_node` to
+`delete_{local, remote}_node`, and simplifies
+`check_for_{local, remote}_structure_change_of_{remote, local}_node`.",Lina Cambridge,2019-04-01T21:34:57Z,linacambridge,linacambridge,331,199,132
+162,dogear,f912e8b937a53f74734e6ecac1997f7b930a5fbe,"Don't take invalid item changes, even if they're newer.
+
+`resolve_value_conflict` should only compare timestamps if the items
+are valid on both sides. If not, pick the other side.",Lina Cambridge,2019-04-01T21:39:34Z,linacambridge,linacambridge,39,28,11
+163,dogear,17643f2bdcd26e303c0d76bd897e92debbef5959,Derive `Copy` and `Hash` for `StructureCounts` and `Deletion`.,Lina Cambridge,2019-04-01T21:41:31Z,linacambridge,linacambridge,4,2,2
+164,dogear,cc700d2b7cdaa245ea0d7e6563787ba3244b3b91,Fix required CPG text. Closes #32. [skip ci],Lina Cambridge,2019-03-30T17:22:44Z,linacambridge,linacambridge,4,2,2
+165,dogear,3a80ce69cad3f7a21d3e98b74e620d4e725fe7b8,Add Mozilla code of conduct. [skip ci],Lina Cambridge,2019-03-27T19:02:00Z,linacambridge,linacambridge,25,25,0
+166,dogear,a74520720623e8cd1d550e8bb564a14718ae8afc,Dogear 0.2.2.,Lina Cambridge,2019-03-22T05:02:49Z,linacambridge,linacambridge,2,1,1
+167,dogear,8352bc21c5da85ef9856725385cd97077268d3ec,Revert `Store::apply` to take `&mut self`.,Lina Cambridge,2019-03-22T06:07:46Z,linacambridge,linacambridge,6,3,3
+168,dogear,b069bdea03131526b33672f378e4a063bb9e2f51,Document more public methods and clean up method signatures.,Lina Cambridge,2019-03-22T05:01:32Z,linacambridge,linacambridge,40,35,5
+169,dogear,6d0ece62c0ac0ca0811944f666df1a92c5b320d7,"Hide types and methods that don't need to be exposed.
+
+`StructureChange` and `MergedNode::{new, remote_guid_changed}` are only
+used internally, and `Merger::{new, with_contents}` are test-only.",Lina Cambridge,2019-03-22T01:59:44Z,linacambridge,linacambridge,12,8,4
+170,dogear,74af343fd17912eb9488c835e50fbb59b7089c55,Improve docs for `MergedRoot`.,Lina Cambridge,2019-03-22T01:58:29Z,linacambridge,linacambridge,31,23,8
+171,dogear,33c409d5fe53af84df249d86e57dfc00f9a2ecc6,Expose merger structure counts as `Merger::counts`.,Lina Cambridge,2019-03-22T01:53:33Z,linacambridge,linacambridge,69,38,31
+172,dogear,711e0f28ac1e7fef3038c7630072983bb0de8991,"Don't clone GUIDs in `Deletion`s.
+
+A `Deletion` never outlives the `Merger`, so it doesn't need an owning
+reference to the deleted GUID.",Lina Cambridge,2019-03-22T01:49:39Z,linacambridge,linacambridge,53,26,27
+173,dogear,f1763dca31ebb07b69dbb8efe4fd1c2e8911f078,"Remove `Item::root()` and `Tree::default()`.
+
+`Item::root()` creates a fake root for the tree, which can mask bugs
+like missing or corrupt roots. We now require callers to fetch roots
+from storage, making it easier to detect issues with local and remote
+roots.",Lina Cambridge,2019-03-22T01:43:03Z,linacambridge,linacambridge,63,25,38
+174,dogear,2be2547f585fd808833498d801484ad6928401b5,Change `Driver::logger` to return `&dyn Log`.,Lina Cambridge,2019-03-20T00:02:48Z,linacambridge,linacambridge,2,1,1
+175,dogear,0ec64209ac5412e615ba5cec73eca469e3f59734,Factor out the shared logging logic into a function.,Lina Cambridge,2019-03-20T00:00:02Z,linacambridge,linacambridge,103,76,27
+176,dogear,200e186dfae294f661178d0ac84b927467caeffb,"Expose `Driver::max_log_level()`.
+
+Also, don't flush after every log message.",Lina Cambridge,2019-03-19T15:08:05Z,linacambridge,linacambridge,39,23,16
+177,dogear,83efa18b92acbb1c29bec690c5a55856e50fe0b8,"Re-add the `log` crate for logging.
+
+On Slack, @mhammond suggested using `log::Level` instead of rolling
+our own. It turns out that `log` exposes all the building blocks for
+logging messages, too, so we can have `Driver` return an implementation
+of `log::Log` instead of handling logging ourselves.
+
+The default implementation returns the global logger, so things will
+""just work"" in Rust Places. On Desktop, we'll have `XpComLogger`
+implement `log::Log`, and return that instead of the global one.
+
+See #20.",Lina Cambridge,2019-03-19T04:24:55Z,linacambridge,linacambridge,61,39,22
+178,dogear,a270689091fcc97a7022b8cd9ecba86d157f7fb4,Wrap merged root nodes in `MergedRoot`.,Lina Cambridge,2019-03-11T00:13:50Z,linacambridge,linacambridge,174,88,86
+179,dogear,dad920c42a780445892aaae0f0526bcfd1f661e5,Expose all user content root GUIDs.,Lina Cambridge,2019-03-11T00:12:06Z,linacambridge,linacambridge,31,19,12
+180,dogear,53238e756a63ea404cd80f1c727f86e08d70f9e7,Dogear 0.2.1.,Lina Cambridge,2019-03-10T06:12:31Z,linacambridge,linacambridge,2,1,1
+181,dogear,4516eadfc0d75abb50088d8893f4e99c1b88dfc2,rustfmt everything.,Lina Cambridge,2019-03-10T00:05:27Z,linacambridge,linacambridge,2591,1581,1010
+182,dogear,f676317b70214f65f488f68f16f74c3bc537d04c,Split `Store::merge` into `merge` and `merge_with_driver`.,Lina Cambridge,2019-03-10T00:01:24Z,linacambridge,linacambridge,16,12,4
+183,dogear,68903b56561fb0f805b10b980e15b53b13ce6da8,"Exclude Travis scripts from Cargo.
+
+I thought this is how Cargo works today, but it's not. See
+rust-lang/cargo#4268.",Lina Cambridge,2019-03-04T04:23:36Z,linacambridge,linacambridge,2,1,1
+184,dogear,f12125202ed5b85a85282c239c991ec6b792c903,Dogear 0.2.0.,Lina Cambridge,2019-03-04T01:07:37Z,linacambridge,linacambridge,8,4,4
+185,dogear,e14e1b1759ffd48b6d114026e4a53b3a34e9c5c4,Document validity states.,Lina Cambridge,2019-03-02T09:15:57Z,linacambridge,linacambridge,8,8,0
+186,dogear,7f5f9319a158c5509c309a8a5047e979ef72c36f,Use a `SmallBitVec` in `detect_cycles`.,Lina Cambridge,2019-02-10T08:53:16Z,linacambridge,linacambridge,9,7,2
+187,dogear,8c054b670715a869d1a47da05fbfc45fa62351c6,Add cycle detection. See #22.,Lina Cambridge,2019-02-10T08:20:00Z,linacambridge,linacambridge,72,72,0
+188,dogear,25266378ea73061481ac9409710ddeb9ad7a4844,"Replant the tree! 🌲
+
+This started out as a fix for corruption corner cases, grew into
+simplifying how we build the remote tree, and turned into a rewrite
+(again >.>). Instead of managing two different sets of structure at
+insert and merge time, we now store items and parent-child
+relationships in a tree builder, then build a consistent tree that
+flags divergent items.
+
+The old tree was complicated because it had to maintain a valid
+structure before and after every insert, but with references to
+potentially unknown parents and children. Since we couldn't insert
+an item without knowing its parent, we had to pick a canonical
+structure (parents by `children`), insert children in level
+order, and note divergent structure (by `parentid`) separately.
+
+This meant Desktop's `Store::fetch_remote_tree()` had to left-join
+`mirror.items` to `mirror.structure`, store the items in a
+pseudo-tree, then recursively walk children to inflate the complete
+tree. This was complicated enough with a valid tree, let alone
+orphans and multiple parents.
+
+With the new approach, we build the tree in three steps:
+
+1. First, we add all items, without structure.
+2. Next, we set parent-child relationships. Parents by `children`
+   require the parent to exist, but not the child; this handles the
+   case where a folder mentions nonexistent or deleted GUIDs in
+   its `children`. Parents by `parentid` require the item to exist,
+   but not its parent; this handles orphans that reference missing
+   or non-folder parents.
+3. Finally, once we've added all entries to the tree, we have a
+   complete view of the structure, so we can resolve missing, multiple,
+   and conflicting parents.
+
+For cases where we know the structure is valid and in level order,
+like Desktop's `Store::fetch_local_tree()`, we handle steps 1 and 2
+at the same time: `builder.item(item)?.by_structure(&parent_guid)?`.
+
+For the remote tree, we insert all items and their `parentid`s
+first (`builder.item(item)?.by_parent_guid(&parent_guid)?`, where
+`parent_guid` might not be in the tree), then add structure from
+children later:
+`builder.parent_for(&child_guid)?.by_children(&parent_guid)?`,
+where `child_guid` might not be in the tree.
+
+Closes #22.",Lina Cambridge,2019-02-10T07:35:23Z,linacambridge,linacambridge,1347,669,678
+189,dogear,ef2479be937b7d470428d7c0dc91a63a97566ff6,"Add an `UploadReason` for merged descendants.
+
+We'll use this on Desktop to track sync loops, where two or more
+clients reupload the same record on every sync, even though the
+user hasn't changed it locally.
+
+The idea is: on every sync, we'll store the GUIDs of all uploaded items
+in a separate table, along with the timestamp and reason. If we see a
+GUID uploaded with `NewStructure` for 5-ish consecutive syncs, we'll
+emit telemetry.",Lina Cambridge,2019-02-23T22:36:04Z,linacambridge,linacambridge,54,42,12
+190,dogear,4c81c818cbc594e7092bea38f2bd1fa5de08b953,Add a merger test for changing invalid GUIDs.,Lina Cambridge,2019-02-23T22:06:10Z,linacambridge,linacambridge,86,61,25
+191,dogear,0f6256e7adea2a9cbbc1ef2c85c9c2ea217c26ad,"Rename `Guid::{Fast, Slow}` to `Guid::{Valid, Invalid}`.",Lina Cambridge,2019-02-23T21:32:32Z,linacambridge,linacambridge,55,29,26
+192,dogear,b009d467e02b47e303d47417b9e44e9c344da6e8,"Clarify the merging behavior for changed GUIDs.
+
+* If the merged parent's GUID changed, we need to flag its children for
+  reupload, so that the childrens' `parentid` is correct.
+* If the merged child's GUID changed, we need to flag its parent for
+  reupload, so that the parent's `children` are correct.
+* It's an error for `Driver::generate_new_guid` to return a GUID that we
+  already merged.",Lina Cambridge,2019-02-23T21:13:21Z,linacambridge,linacambridge,100,67,33
+193,dogear,8dc54ef3f90e2c77d023fef829f4786373e86ad3,"Remove `{local, remote}_time_millis` from `Store` methods.
+
+`Store` implementations can keep track of these internally. We don't
+need to pass them around.",Lina Cambridge,2019-02-23T19:04:11Z,linacambridge,linacambridge,12,5,7
+194,dogear,9a317f0314023fed8a4731630776248984cecf7b,"Replace `Stats` with a struct returned from `Store::merge`.
+
+Since we already tracked most of our counts in `StructureCounts`, this
+commit adds `merged_nodes` and `merged_deletions`. Bonus: counting
+merged nodes this way lets us preallocate the space we need to hold all
+the descendants when we recurse down the merged root.
+
+This also adds a `MergedTimings` struct, and a macro for recording
+timings with operation names.",Lina Cambridge,2019-02-17T17:50:40Z,linacambridge,linacambridge,342,199,143
+195,dogear,21a11a414b12456557715e882f4e53b9feafd448,Derive more `LogLevel` traits and clean up log macros.,Lina Cambridge,2019-02-17T07:43:17Z,linacambridge,linacambridge,58,29,29
+196,dogear,96f4afaf6f8be1a671183087a65e47464fc6d731,Collect timings and counters for telemetry.,Lina Cambridge,2019-02-14T07:18:47Z,linacambridge,linacambridge,197,146,51
+197,dogear,2d39a974e4381b42be1ac804ac40019a7f0e2fee,Updated token for github deployment (#63),lougeniaC64,2021-04-15T17:44:56Z,lougeniaC64,lougeniaC64,2,1,1
+198,dogear,41b498c6fa9ad6270cf7268b5399e45eb57e8a69,Recorded invalid items as tree problem,lougeniac64,2020-03-16T20:33:41Z,lougeniaC64,lougeniaC64,23,22,1
+199,dogear,0b782ddf376bb4c42b2a039b66ec1699b88feb8f,Add variants for unknown child items,Matt Stavola,2019-10-08T01:13:22Z,mbStavola,mbStavola,41,36,5
+200,dogear,768d5d93d47b8f20b9487c5772ca41f2e9105ffd,Add kinds to InvalidParent,Matt Stavola,2019-10-06T21:57:50Z,mbStavola,mbStavola,63,47,16
+201,dogear,e80f0d73fe3c953af8a88542e442591284b2075c,Include guid in the message for MismatchedItemKind,Matt Stavola,2019-10-06T21:16:17Z,mbStavola,mbStavola,17,10,7
+202,dogear,cbc82f989d7c29024fe82f2b4e5e888fcfbb6e10,Dogear v0.4.0.,Lina Cambridge,2019-09-16T23:51:08Z,linacambridge,linacambridge,2,1,1
+203,dogear,b6a900cac607b0ffbf5f4253561a4d7ea78d78d0,Remove unnecessary closure for `Guid::as_str`.,Lina Cambridge,2019-09-16T21:29:50Z,linacambridge,linacambridge,5,3,2
+204,dogear,558ee66ee1e3c08cc8498f4a62ba251c6649e825,Add a `to_strings` helper.,Lina Cambridge,2019-09-16T21:29:31Z,linacambridge,linacambridge,75,25,50
+205,dogear,51e638edf3d4df7ddae384e76c6546d1a7b21f16,Improve completion op summaries.,Lina Cambridge,2019-09-16T17:44:17Z,linacambridge,linacambridge,65,31,34
+206,dogear,188fd6b8ee75f17590b5d2f56e1f9f60cff0f37b,"Revert storing extra tombstones in `delete_{locally, remotely}`.
+
+Instead of panicking if a GUID in `delete_locally` or `delete_remotely`
+doesn't exist on both sides, we now clean up local tombstones, and
+flag the remote tombstone as merged.
+
+With this change, we no longer need to filter out local and remote
+tombstones for items that don't exist on the other side. That means
+we can revert `Tree::guids` to return all GUIDs, including deletions,
+and have `MergedRoot::{local, remote}_deletions` return a more accurate
+set of tombstones for logging.",Lina Cambridge,2019-09-16T16:44:33Z,linacambridge,linacambridge,73,50,23
+207,dogear,5707548d060d989c308b46dbf99acff6a77c13e8,"Make fetching completion ops abortable.
+
+This commit adds `MergedRoot::completion_ops_with_signal`, and
+implements `MergedRoot::completion_ops` in terms of it.",Lina Cambridge,2019-09-14T00:55:36Z,linacambridge,linacambridge,33,25,8
+208,dogear,af00f1478de386955057ad84637e549913d992b7,Report local and remote deletions in tree stats.,Lina Cambridge,2019-09-14T00:55:07Z,linacambridge,linacambridge,3,3,0
+209,dogear,0e5b63e1d5c0b6f49741abdf37f58cfea5d510e6,"Refactor handling of deletion ops.
+
+We now emit ops in two steps. The first step removes all local
+tombstones, and flags remote tombstones as merged, for all revived
+items. The second handles the actual deletion, on either or both sides.
+
+* Don't add deletions from local and remote trees that aren't
+  mentioned in `delete_remotely` and `delete_locally`, because we emit
+  different completion ops for those.
+* Change `Tree::guids` to only return GUIDs that exist in the tree,
+  not deleted GUIDs.
+* Change `Tree::deletions` to return a `HashSet` instead of an
+  iterator, so that we can use the `difference` method.
+* Add `Tree::exists`.
+* Remove `Tree::record_for_guid`.
+* Add `CompletionOps::summarize` for tests and logging.
+* Remove `StructureCounts::merged_deletions`, since it's not accurate
+  anymore.",Lina Cambridge,2019-09-13T23:11:47Z,linacambridge,linacambridge,381,168,213
+210,dogear,5f66b493c3e73b57f6d302839af3b8248d5c2c6a,"Emit completion ops for tombstones.
+
+This commit adds completion ops for deleting local items (to apply
+remote tombstones), inserting new tombstones (to delete non-syncable
+and invalid items), and uploading tombstones (to avoid an extra table
+scan when staging outgoing tombstones).
+
+These ops also help avoid extra work when applying tombstones for items
+that don't exist locally, or uploading tombstones for items that don't
+exist remotely.",Lina Cambridge,2019-09-10T07:20:19Z,linacambridge,linacambridge,375,282,93
+211,dogear,8185f8c6f47f229cfdc6bf5ce6b18b238bed8842,"Rename completion ops to clarify if they're local or remote.
+
+It's unclear if `flag_{for_upload, as_merged}` and `skip_upload`
+refer to local or remote items. This commit renames them to be more
+consistent:
+
+* `SetLocalUnmerged` (formerly `FlagForUpload`) marks a local item as
+  needing to be merged.
+* `SetLocalMerged` (formerly `SkipUpload`) removes the ""needs merge""
+  flag from a local item.
+* `SetRemoteMerged` (formerly `FlagAsMerged`) removes the ""needs merge""
+  flag from a _remote_ item.
+
+This commit also renames `Upload` to `UploadItems`, since we'll be
+adding completion ops for uploading tombstones next.",Lina Cambridge,2019-09-10T07:07:47Z,linacambridge,linacambridge,48,24,24
+212,dogear,0c94b197c3c1b337dbb872a2ac5195fcb9ad631c,Dogear v0.3.3.,Lina Cambridge,2019-08-27T07:26:15Z,linacambridge,linacambridge,2,1,1
+213,dogear,756cc94b6c4d2c7f9a67a8ee215c6ce31fd47038,"Move `by_structure` from `ItemBuilder` to `ParentBuilder`.
+
+This lets us build the local tree in two steps.",Lina Cambridge,2019-08-27T07:20:16Z,linacambridge,linacambridge,100,54,46
+214,dogear,bfa452dc63d217098ab543539b58e62bde4bee63,Dogear v0.3.2.,Lina Cambridge,2019-08-20T21:06:02Z,linacambridge,linacambridge,2,1,1
+215,dogear,d749e931863a7b9c26fcdf66639ea1377c3082c7,"Ensure possible remote dupes don't exist locally.
+
+We ignored local child nodes that existed in the remote tree, but
+didn't check if the remote node existed in the local tree. This
+meant we might dedupe multiple local items to the same remote
+item.
+
+This showed up as a UNIQUE constraint violation on Desktop.",Lina Cambridge,2019-08-19T21:58:29Z,linacambridge,linacambridge,218,156,62
+216,dogear,de516eeba700365faf6b8b00eed5dcbd3d63c1e3,Dogear v0.3.1.,Lina Cambridge,2019-08-13T20:54:30Z,linacambridge,linacambridge,2,1,1
+217,dogear,5e0e2019c0044a1f4dabd9323f692c768e448b47,"Add `Store::Ok` and `Store::Error` associated types.
+
+This lets `Store::merge()` return a value, and it's cleaner to
+represent the error as an associated type instead of a type param.",Lina Cambridge,2019-08-13T20:44:34Z,linacambridge,linacambridge,22,14,8
+218,dogear,85bbabb71949a4bf9f527a20bd91a83e589996ba,Add `CompletionOps::is_empty()`.,Lina Cambridge,2019-08-13T20:44:12Z,linacambridge,linacambridge,14,14,0
+219,dogear,fbb660b41a8a629353582bd18766765c925d9b46,Dogear v0.3.0.,Lina Cambridge,2019-08-06T21:25:02Z,linacambridge,linacambridge,2,1,1
+220,dogear,00c01872e031732c8b2a0de027130699c88e63d8,"Add docs for new public methods, and improve some comments.",Lina Cambridge,2019-08-06T19:12:51Z,linacambridge,linacambridge,70,43,27
+221,dogear,791d8f4a7913d3f27ab3911d7a6115bd76776631,"Split `FlagForUpload` into a separate completion op.
+
+We now emit `FlagForUpload` to update the local change counter
+(matching `FlagAsMerged`), and emit `Upload` for all items that should
+be uploaded. This lets us avoid another full table scan when staging
+outgoing items.",Lina Cambridge,2019-08-06T01:27:15Z,linacambridge,linacambridge,53,42,11
+222,dogear,9a43ebbdc1b957358aeedf7973bc93cc15a1b29a,Make the logging in `Store::merge_with_driver` less chatty.,Lina Cambridge,2019-08-06T01:23:00Z,linacambridge,linacambridge,12,9,3
+223,dogear,a135cc0a14e559e952019895c57dc83b39e86550,"Explicitly call `Driver::max_log_level` in the logging macros.
+
+The `Driver` trait no longer needs to be in scope to use the macros.",Lina Cambridge,2019-08-06T01:14:59Z,linacambridge,linacambridge,18,9,9
+224,dogear,f32ca3f46c1d4211eaceadeb8475f6635b0289a8,"Always check for changed GUIDs and new structure in `accumulate`.
+
+This avoids emitting extra `ApplyNewLocalStructure` for remotely
+changed items in folders with new local structure.",Lina Cambridge,2019-07-26T20:27:45Z,linacambridge,linacambridge,104,34,70
+225,dogear,487ca47fd276bc7999664e57c85f3d9ed17d9c97,"Treat the tags root as a content root.
+
+This makes it easier for Desktop to build a complete tree.",Lina Cambridge,2019-07-26T01:28:10Z,linacambridge,linacambridge,43,27,16
+226,dogear,1626ea6a837e46aa2aca0c452458d1f57e50d5ff,"Remove positions from `Content::Separator`.
+
+The merger already knows the positions of all children, there's
+no need to include it in the content info. This also lets us avoid a
+left join on the structure table when inflating the remote tree in
+Desktop and a-s.",Lina Cambridge,2019-07-26T01:21:26Z,linacambridge,linacambridge,50,36,14
+227,dogear,bc683af66d36d17f0e2540258dbaff81fd5a18de,"Move more methods to `MergedRoot`.
+
+* Change `Merger::merge` to consume the merger, and check if the merged
+  tree subsumes the local and remote trees before returning a merged
+  root.
+* Remove `Merger::subsumes`.
+* Move `Merger::{deletions, local_deletions, remote_deletions, counts}`
+  to `MergedRoot`.
+* Add `MergedRoot::completion_ops_with_filter`, to let callers discard
+  completion ops. Desktop uses this to ignore position changes to user
+  content roots,
+* Move `MergedRoot::to_ascii_string` to `MergedNode`.
+* Add a `FlagAsMerged` completion op, to flag fully merged remote items
+  and tombstones. This is the motivation for this refactor, since we
+  need the set of deletions and both trees to emit these ops.
+* Change `Store::apply` to only take a `MergedRoot`, since
+  `MergedRoot::deletions` exists now.",Lina Cambridge,2019-07-26T01:15:17Z,linacambridge,linacambridge,967,484,483
+228,dogear,7883c1e17201e6a8f01fd38a75c96c57fa4a7a1a,Note deleted parents and children.,Lina Cambridge,2019-07-24T01:40:16Z,linacambridge,linacambridge,152,112,40
+229,dogear,4d1b2211329382a750236c940d8552d3b4a89336,"Replace `Tree::note_deleted` with `Builder::deletion`.
+
+This lets us note deletions as we build the tree, avoiding a second
+table scan on the synced bookmarks table to fetch deletions. This also
+means we can report validation telemetry for deleted parents and
+children separately from missing ones.",Lina Cambridge,2019-07-23T22:19:13Z,linacambridge,linacambridge,171,86,85
+230,dogear,42dabe62196c83b4a2e4c8dc1534b013beb91fe5,"Remove `Store::fetch_new_{local, remote}_contents`.
+
+In Rust Places and `bookmark_sync` on Desktop, fetching the tree and
+contents runs two table scans: one to build the structure, and one to
+fetch content info for deduping. Since the latter can't use an index,
+it's more efficient to fetch content info during the first scan to
+build the tree.
+
+This commit adds a builder API to set content info, and stores it with
+the item instead of a separate map.",Lina Cambridge,2019-07-23T20:41:00Z,linacambridge,linacambridge,683,300,383
+231,dogear,e9d1f0fcdf566b3faeb43094537043272456ed08,Fix up some doc comments.,Lina Cambridge,2019-07-18T19:26:07Z,linacambridge,linacambridge,65,30,35
+232,dogear,9ed02f4065c7f4efcf9a2e9be44a9e02a8f21b2d,Split `UpdateSyncChangeCounter` into `Upload` and `SkipUpload`.,Lina Cambridge,2019-07-18T17:53:14Z,linacambridge,linacambridge,98,52,46
+233,dogear,67f9557402af88cb3381934da23b61303bbcf4cc,"Update tests to check for merged structure state.
+
+This is more comprehensive than checking if an item should be
+reuploaded.",Lina Cambridge,2019-07-17T17:10:21Z,linacambridge,linacambridge,954,481,473
+234,dogear,48b24ba60cecac5b12b39fb50ed6c5bde82996fe,"Improve handling for unchanged and locally changed items.
+
+This commit overhauls how the merger records and applies local changes.
+Before, new structure was only used to flag merged items for
+reupload. Consumers would apply the merged tree by storing all merge
+states in an SQLite temp table, then firing triggers that examined and
+updated every item. This was inefficient, and the process could take
+several seconds for a large tree on Desktop.
+
+To improve this, we introduce two concepts: new local structure, and
+completion operations.
+
+New local structure is the analog to new remote structure, and is set
+for all items with newer local changes that are reparented or
+repositioned in the merged tree. (Remote-only items, and items with
+newer remote changes, have new local structure by definition). The
+merger now flags relocated orphans, deleted non-syncable and invalid
+items, items with deduped and changed GUIDs, reparented items, and
+folders with moved children, as having new local structure.
+
+Merging now produces a sequence of completion operations, instead of
+raw merged descendants. Completion ops describe how to update the local
+tree so that it matches the remote tree. These include changing GUIDs,
+taking remote items, applying new structure, and updating change
+counters. We try to avoid emitting completion ops for items that didn't
+change (like children of a folder with new local structure that have
+the same positions) to avoid unnecessary database work. The name
+""completion ops"" comes from Firefox for iOS, which had a similar
+concept in its old bookmark sync implementation.
+
+Additionally, the ""unchanged"" merge state really means unchanged now.
+Before, it meant something like ""unchanged, possibly with new
+children"". ""Unchanged with new local structure"" is a new state that's
+used for roots, where we want to apply merged children, but not a
+synced root's title. We compare child GUIDs to determine if a folder's
+local and remote children are unchanged, and use a new
+`merge_unchanged_child_into_merged_node` method that skips checking for
+moved children.
+
+Finally, we now check validity when determining which side to take, and
+pick the valid side even if it's unchanged or older.
+
+Closes #46.",Lina Cambridge,2019-07-17T17:09:39Z,linacambridge,linacambridge,935,750,185
+235,dogear,a254e72ce1e75597cb7264010c3ec6e560ce71b8,Use Tarpaulin for code coverage.,Lina Cambridge,2019-07-17T20:27:09Z,linacambridge,linacambridge,42,9,33
+236,dogear,fbade15f2a4f11215e30b8f428a0a8df3defeaec,Dogear v0.2.6.,Lina Cambridge,2019-05-31T04:36:13Z,linacambridge,linacambridge,2,1,1
+237,dogear,d4957a89e9935532f715fbe9ff36706be72b9ada,"Emit telemetry events after each operation.
+
+This commit adds a `Driver::record_telemetry_event` method that's
+called with timings and counts after each store operation, instead
+of returning a `Stats` struct at the end. This lets consumers like
+Desktop record telemetry for interrupted or failed merges, and track
+progress so we can see why some merges cause shutdown hangs.",Lina Cambridge,2019-05-21T03:18:58Z,linacambridge,linacambridge,157,90,67
+238,dogear,9be09ab647fb83e53d46fa2fc8ca3074310ce789,"Add `Problems::counts()`.
+
+These counts are used to report tree structure problems via telemetry.",Lina Cambridge,2019-05-07T06:12:01Z,linacambridge,linacambridge,179,173,6
+239,dogear,082e13f740bc61ce4eeb5decda90a4441bf60891,Exclude the mdBook config from the Cargo package.,Lina Cambridge,2019-05-14T03:40:55Z,linacambridge,linacambridge,2,1,1
+240,dogear,f481a5c9bf64b4387cf7b746caa0a2041a9613c0,Dogear v0.2.5.,Lina Cambridge,2019-05-14T03:33:32Z,linacambridge,linacambridge,4,2,2
+241,dogear,2f87a26a9dbdd842ef65c12f19d5a25a5061ab03,"Make merges abortable.
+
+This commit adds an `AbortSignal` trait that Desktop and Rust Places
+can use to interrupt merging.",Lina Cambridge,2019-05-13T22:23:57Z,linacambridge,linacambridge,141,110,31
+242,dogear,f81cb8693f100cfc619cb5895940beb2edcbf3e4,Run rustfmt and add a `readme` key for Cargo.,Lina Cambridge,2019-05-13T22:33:01Z,linacambridge,linacambridge,9,5,4
+243,dogear,c67b4906572900a8e22277365b5099ce9e05e726,Build the book on Travis.,Lina Cambridge,2019-03-19T05:48:58Z,linacambridge,linacambridge,19,19,0
+244,dogear,1e1781ac150b403368552a7309cebba009cec2c3,"First draft of the docs.
+
+This commit adds an mdBook skeleton that covers building the trees,
+divergences, deduping, and implementing `Store`. It also explains the
+merge algorithm at a high level.
+
+Still needed: application, putting everything together, a more
+detailed explanation of the algo.
+
+Closes #24.",Lina Cambridge,2019-03-19T05:37:26Z,linacambridge,linacambridge,384,380,4
+245,dogear,2939fb4b2b49e865e23c9cec99455c3a4ab23b8f,Merge #40.,Lina Cambridge,2019-04-26T20:42:27Z,linacambridge,linacambridge,8,4,4
+246,dogear,6997665256a662118a2c1e8adc28a7669f0149eb,"Don't convert Guid to str when comparing with str
+
+This skips pointlessly UTF-8 validating the GUID bytes.",Thom Chiovoloni,2019-04-26T17:27:11Z,Thom Chiovoloni,Thom Chiovoloni,2,1,1
+247,dogear,1f1c5a2c89c85e4912e9087a104bf00fd78eeb25,"Use Box<str> instead of String for invalid guids, reducing mem::size_of::<Guid>",Thom Chiovoloni,2019-04-26T17:21:54Z,Thom Chiovoloni,Thom Chiovoloni,6,3,3
+248,dogear,c272e19c53a9d590007cd6c4baedbf3e1f276218,Replace IntoTree with TryFrom/TryInto. Fixes #38,Thom Chiovoloni,2019-04-26T17:19:04Z,Thom Chiovoloni,Thom Chiovoloni,112,65,47
+249,dogear,b3594a204492d84b6e4d97d21285f329667f2962,Dogear v0.2.4.,Lina Cambridge,2019-04-24T00:28:39Z,linacambridge,linacambridge,2,1,1
+250,dogear,d7ba53a58e54b426b5db24e25c200b5ed792bcda,Fix up Clippy lints.,Lina Cambridge,2019-04-23T23:16:28Z,linacambridge,linacambridge,7,5,2
+251,dogear,ddcdce459aeeba962779c229cb95bfbb5738fbf3,"Use `.map_or(X, Y)` instead of `.map(Y).unwrap_or(X)`.",Lina Cambridge,2019-04-23T23:15:34Z,linacambridge,linacambridge,25,8,17
+252,dogear,0b5acdcf1a337e1a6cbb2d5919b2834b7036ed0e,"Treat livemarks as non-syncable on both sides.
+
+Livemarks are no longer supported in Firefox, so let's delete them
+from the tree entirely, on both sides. The bookmarks engine on Desktop
+can export existing livemarks before a first sync, to avoid data loss.",Lina Cambridge,2019-04-23T19:07:16Z,linacambridge,linacambridge,100,78,22
+253,dogear,61321751f12a56521c325de3fab14e6d88dac2dc,Enable the `rust_2018_idioms` lint.,Lina Cambridge,2019-04-16T18:41:02Z,linacambridge,linacambridge,65,34,31
+254,dogear,b50a6b9b01039a25569fa5a073fd261d9de7d0c7,Dogear v0.2.3.,Lina Cambridge,2019-04-05T06:47:15Z,linacambridge,linacambridge,2,1,1
+255,dogear,25adb650c1d7126bfa4dd885c21dae7179d85448,Only allow `ByParentGuid` overrides for reparented roots.,Lina Cambridge,2019-04-05T04:44:50Z,linacambridge,linacambridge,12,5,7
+256,dogear,27fa8dcb10e7d14bd2025d3321781580dd24f658,Add more struct and method docs.,Lina Cambridge,2019-04-05T04:44:20Z,linacambridge,linacambridge,14,10,4
+257,dogear,3563c70f3bf4a6641d457347083dc081811a5f0a,"Improve problem summaries.
+
+* Split `MultipleParents`, `{Missing, NonFolder}ParentGuid`, and
+  `ParentChildDisagreement` into `DivergedParent::By{Guid,
+  ParentGuid}`, and add `DivergedParentGuid` to distinguish
+  between folders, non-folders, and nonexistent parents. This matches
+  how the builder stores parents internally, and makes for more
+  accurate messages.
+* Use named fields in `Problem` variants for clarity.
+* Return more readable summary strings.",Lina Cambridge,2019-04-05T04:43:49Z,linacambridge,linacambridge,295,216,79
+258,dogear,9e3e482f46c4d925d4951a7116481dd5a606a25b,"Record and report problems with tree structure.
+
+This commit records problems that Dogear notices when building a
+tree, and outputs a summary when the tree is printed. It's useful for
+logging, so we can see why the structure diverged.
+
+We can also use it to emit validation events, like the Desktop Sync
+ping, if we decide to in the future.",Lina Cambridge,2019-03-30T22:34:48Z,linacambridge,linacambridge,225,187,38
+259,dogear,80c26a08244e5681de58eb3432b069080327a9d5,"Factor out parent resolution into `ResolveParent`.
+
+This builds on the last commit. The algorithm for resolving parents
+is hard to follow when it's inlined into `Builder::resolve`, isn't
+as efficient as it could be for roots, isn't well-commented, and
+tolerates unreachable cases.
+
+This commit factors that logic out into a separate `ResolveParent`
+type. It simplifies how we handle complete and partial parents,
+unrolls the nested iterator chains in `Builder::into_tree`,
+tightens up some cases, and adds more docs.",Lina Cambridge,2019-03-30T22:21:53Z,linacambridge,linacambridge,441,273,168
+260,dogear,ba4f1172a3f39cb31c44ac83ede2f29338022a2a,"Factor out resolving possible parents into `PossibleParents`.
+
+The logic for breaking the tie between conflicting parents is hard to
+digest when it's inlined into `resolve`. Instead of using `min_by()`,
+we can iterate over a sequence of `PossibleParent`s that implement
+the logic as part of `Ord::cmp`.
+
+This commit also adds more comments that explain how we pick the
+parent.",Lina Cambridge,2019-03-29T03:31:10Z,linacambridge,linacambridge,161,86,75
+261,dogear,edbc09e24312685a6a7fd86923859abad3e27751,"Delete items that are invalid on one side and don't exist on the other.
+
+We handled ""invalid on one side, deleted on the other"", but not the
+case where the item doesn't exist on the other side at all. This commit
+also adds test coverage, renames
+`relocate_{local, remote}_orphans_to_merged_node` to
+`delete_{local, remote}_node`, and simplifies
+`check_for_{local, remote}_structure_change_of_{remote, local}_node`.",Lina Cambridge,2019-04-01T21:34:57Z,linacambridge,linacambridge,331,199,132
+262,dogear,f912e8b937a53f74734e6ecac1997f7b930a5fbe,"Don't take invalid item changes, even if they're newer.
+
+`resolve_value_conflict` should only compare timestamps if the items
+are valid on both sides. If not, pick the other side.",Lina Cambridge,2019-04-01T21:39:34Z,linacambridge,linacambridge,39,28,11
+263,dogear,17643f2bdcd26e303c0d76bd897e92debbef5959,Derive `Copy` and `Hash` for `StructureCounts` and `Deletion`.,Lina Cambridge,2019-04-01T21:41:31Z,linacambridge,linacambridge,4,2,2
+264,dogear,cc700d2b7cdaa245ea0d7e6563787ba3244b3b91,Fix required CPG text. Closes #32. [skip ci],Lina Cambridge,2019-03-30T17:22:44Z,linacambridge,linacambridge,4,2,2
+265,dogear,3a80ce69cad3f7a21d3e98b74e620d4e725fe7b8,Add Mozilla code of conduct. [skip ci],Lina Cambridge,2019-03-27T19:02:00Z,linacambridge,linacambridge,25,25,0
+266,dogear,a74520720623e8cd1d550e8bb564a14718ae8afc,Dogear 0.2.2.,Lina Cambridge,2019-03-22T05:02:49Z,linacambridge,linacambridge,2,1,1
+267,dogear,8352bc21c5da85ef9856725385cd97077268d3ec,Revert `Store::apply` to take `&mut self`.,Lina Cambridge,2019-03-22T06:07:46Z,linacambridge,linacambridge,6,3,3
+268,dogear,b069bdea03131526b33672f378e4a063bb9e2f51,Document more public methods and clean up method signatures.,Lina Cambridge,2019-03-22T05:01:32Z,linacambridge,linacambridge,40,35,5
+269,dogear,6d0ece62c0ac0ca0811944f666df1a92c5b320d7,"Hide types and methods that don't need to be exposed.
+
+`StructureChange` and `MergedNode::{new, remote_guid_changed}` are only
+used internally, and `Merger::{new, with_contents}` are test-only.",Lina Cambridge,2019-03-22T01:59:44Z,linacambridge,linacambridge,12,8,4
+270,dogear,74af343fd17912eb9488c835e50fbb59b7089c55,Improve docs for `MergedRoot`.,Lina Cambridge,2019-03-22T01:58:29Z,linacambridge,linacambridge,31,23,8
+271,dogear,33c409d5fe53af84df249d86e57dfc00f9a2ecc6,Expose merger structure counts as `Merger::counts`.,Lina Cambridge,2019-03-22T01:53:33Z,linacambridge,linacambridge,69,38,31
+272,dogear,711e0f28ac1e7fef3038c7630072983bb0de8991,"Don't clone GUIDs in `Deletion`s.
+
+A `Deletion` never outlives the `Merger`, so it doesn't need an owning
+reference to the deleted GUID.",Lina Cambridge,2019-03-22T01:49:39Z,linacambridge,linacambridge,53,26,27
+273,dogear,f1763dca31ebb07b69dbb8efe4fd1c2e8911f078,"Remove `Item::root()` and `Tree::default()`.
+
+`Item::root()` creates a fake root for the tree, which can mask bugs
+like missing or corrupt roots. We now require callers to fetch roots
+from storage, making it easier to detect issues with local and remote
+roots.",Lina Cambridge,2019-03-22T01:43:03Z,linacambridge,linacambridge,63,25,38
+274,dogear,2be2547f585fd808833498d801484ad6928401b5,Change `Driver::logger` to return `&dyn Log`.,Lina Cambridge,2019-03-20T00:02:48Z,linacambridge,linacambridge,2,1,1
+275,dogear,0ec64209ac5412e615ba5cec73eca469e3f59734,Factor out the shared logging logic into a function.,Lina Cambridge,2019-03-20T00:00:02Z,linacambridge,linacambridge,103,76,27
+276,dogear,200e186dfae294f661178d0ac84b927467caeffb,"Expose `Driver::max_log_level()`.
+
+Also, don't flush after every log message.",Lina Cambridge,2019-03-19T15:08:05Z,linacambridge,linacambridge,39,23,16
+277,dogear,83efa18b92acbb1c29bec690c5a55856e50fe0b8,"Re-add the `log` crate for logging.
+
+On Slack, @mhammond suggested using `log::Level` instead of rolling
+our own. It turns out that `log` exposes all the building blocks for
+logging messages, too, so we can have `Driver` return an implementation
+of `log::Log` instead of handling logging ourselves.
+
+The default implementation returns the global logger, so things will
+""just work"" in Rust Places. On Desktop, we'll have `XpComLogger`
+implement `log::Log`, and return that instead of the global one.
+
+See #20.",Lina Cambridge,2019-03-19T04:24:55Z,linacambridge,linacambridge,61,39,22
+278,dogear,a270689091fcc97a7022b8cd9ecba86d157f7fb4,Wrap merged root nodes in `MergedRoot`.,Lina Cambridge,2019-03-11T00:13:50Z,linacambridge,linacambridge,174,88,86
+279,dogear,dad920c42a780445892aaae0f0526bcfd1f661e5,Expose all user content root GUIDs.,Lina Cambridge,2019-03-11T00:12:06Z,linacambridge,linacambridge,31,19,12
+280,dogear,53238e756a63ea404cd80f1c727f86e08d70f9e7,Dogear 0.2.1.,Lina Cambridge,2019-03-10T06:12:31Z,linacambridge,linacambridge,2,1,1
+281,dogear,4516eadfc0d75abb50088d8893f4e99c1b88dfc2,rustfmt everything.,Lina Cambridge,2019-03-10T00:05:27Z,linacambridge,linacambridge,2591,1581,1010
+282,dogear,f676317b70214f65f488f68f16f74c3bc537d04c,Split `Store::merge` into `merge` and `merge_with_driver`.,Lina Cambridge,2019-03-10T00:01:24Z,linacambridge,linacambridge,16,12,4
+283,dogear,68903b56561fb0f805b10b980e15b53b13ce6da8,"Exclude Travis scripts from Cargo.
+
+I thought this is how Cargo works today, but it's not. See
+rust-lang/cargo#4268.",Lina Cambridge,2019-03-04T04:23:36Z,linacambridge,linacambridge,2,1,1
+284,dogear,f12125202ed5b85a85282c239c991ec6b792c903,Dogear 0.2.0.,Lina Cambridge,2019-03-04T01:07:37Z,linacambridge,linacambridge,8,4,4
+285,dogear,e14e1b1759ffd48b6d114026e4a53b3a34e9c5c4,Document validity states.,Lina Cambridge,2019-03-02T09:15:57Z,linacambridge,linacambridge,8,8,0
+286,dogear,7f5f9319a158c5509c309a8a5047e979ef72c36f,Use a `SmallBitVec` in `detect_cycles`.,Lina Cambridge,2019-02-10T08:53:16Z,linacambridge,linacambridge,9,7,2
+287,dogear,8c054b670715a869d1a47da05fbfc45fa62351c6,Add cycle detection. See #22.,Lina Cambridge,2019-02-10T08:20:00Z,linacambridge,linacambridge,72,72,0
+288,dogear,25266378ea73061481ac9409710ddeb9ad7a4844,"Replant the tree! 🌲
+
+This started out as a fix for corruption corner cases, grew into
+simplifying how we build the remote tree, and turned into a rewrite
+(again >.>). Instead of managing two different sets of structure at
+insert and merge time, we now store items and parent-child
+relationships in a tree builder, then build a consistent tree that
+flags divergent items.
+
+The old tree was complicated because it had to maintain a valid
+structure before and after every insert, but with references to
+potentially unknown parents and children. Since we couldn't insert
+an item without knowing its parent, we had to pick a canonical
+structure (parents by `children`), insert children in level
+order, and note divergent structure (by `parentid`) separately.
+
+This meant Desktop's `Store::fetch_remote_tree()` had to left-join
+`mirror.items` to `mirror.structure`, store the items in a
+pseudo-tree, then recursively walk children to inflate the complete
+tree. This was complicated enough with a valid tree, let alone
+orphans and multiple parents.
+
+With the new approach, we build the tree in three steps:
+
+1. First, we add all items, without structure.
+2. Next, we set parent-child relationships. Parents by `children`
+   require the parent to exist, but not the child; this handles the
+   case where a folder mentions nonexistent or deleted GUIDs in
+   its `children`. Parents by `parentid` require the item to exist,
+   but not its parent; this handles orphans that reference missing
+   or non-folder parents.
+3. Finally, once we've added all entries to the tree, we have a
+   complete view of the structure, so we can resolve missing, multiple,
+   and conflicting parents.
+
+For cases where we know the structure is valid and in level order,
+like Desktop's `Store::fetch_local_tree()`, we handle steps 1 and 2
+at the same time: `builder.item(item)?.by_structure(&parent_guid)?`.
+
+For the remote tree, we insert all items and their `parentid`s
+first (`builder.item(item)?.by_parent_guid(&parent_guid)?`, where
+`parent_guid` might not be in the tree), then add structure from
+children later:
+`builder.parent_for(&child_guid)?.by_children(&parent_guid)?`,
+where `child_guid` might not be in the tree.
+
+Closes #22.",Lina Cambridge,2019-02-10T07:35:23Z,linacambridge,linacambridge,1347,669,678
+289,dogear,ef2479be937b7d470428d7c0dc91a63a97566ff6,"Add an `UploadReason` for merged descendants.
+
+We'll use this on Desktop to track sync loops, where two or more
+clients reupload the same record on every sync, even though the
+user hasn't changed it locally.
+
+The idea is: on every sync, we'll store the GUIDs of all uploaded items
+in a separate table, along with the timestamp and reason. If we see a
+GUID uploaded with `NewStructure` for 5-ish consecutive syncs, we'll
+emit telemetry.",Lina Cambridge,2019-02-23T22:36:04Z,linacambridge,linacambridge,54,42,12
+290,dogear,4c81c818cbc594e7092bea38f2bd1fa5de08b953,Add a merger test for changing invalid GUIDs.,Lina Cambridge,2019-02-23T22:06:10Z,linacambridge,linacambridge,86,61,25
+291,dogear,0f6256e7adea2a9cbbc1ef2c85c9c2ea217c26ad,"Rename `Guid::{Fast, Slow}` to `Guid::{Valid, Invalid}`.",Lina Cambridge,2019-02-23T21:32:32Z,linacambridge,linacambridge,55,29,26
+292,dogear,b009d467e02b47e303d47417b9e44e9c344da6e8,"Clarify the merging behavior for changed GUIDs.
+
+* If the merged parent's GUID changed, we need to flag its children for
+  reupload, so that the childrens' `parentid` is correct.
+* If the merged child's GUID changed, we need to flag its parent for
+  reupload, so that the parent's `children` are correct.
+* It's an error for `Driver::generate_new_guid` to return a GUID that we
+  already merged.",Lina Cambridge,2019-02-23T21:13:21Z,linacambridge,linacambridge,100,67,33
+293,dogear,8dc54ef3f90e2c77d023fef829f4786373e86ad3,"Remove `{local, remote}_time_millis` from `Store` methods.
+
+`Store` implementations can keep track of these internally. We don't
+need to pass them around.",Lina Cambridge,2019-02-23T19:04:11Z,linacambridge,linacambridge,12,5,7
+294,dogear,9a317f0314023fed8a4731630776248984cecf7b,"Replace `Stats` with a struct returned from `Store::merge`.
+
+Since we already tracked most of our counts in `StructureCounts`, this
+commit adds `merged_nodes` and `merged_deletions`. Bonus: counting
+merged nodes this way lets us preallocate the space we need to hold all
+the descendants when we recurse down the merged root.
+
+This also adds a `MergedTimings` struct, and a macro for recording
+timings with operation names.",Lina Cambridge,2019-02-17T17:50:40Z,linacambridge,linacambridge,342,199,143
+295,dogear,21a11a414b12456557715e882f4e53b9feafd448,Derive more `LogLevel` traits and clean up log macros.,Lina Cambridge,2019-02-17T07:43:17Z,linacambridge,linacambridge,58,29,29
+296,dogear,96f4afaf6f8be1a671183087a65e47464fc6d731,Collect timings and counters for telemetry.,Lina Cambridge,2019-02-14T07:18:47Z,linacambridge,linacambridge,197,146,51

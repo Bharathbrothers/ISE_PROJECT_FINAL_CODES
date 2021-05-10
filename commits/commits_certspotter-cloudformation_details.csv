@@ -1,0 +1,53 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,certspotter-cloudformation,a4af86d7122a11e03682c3f028fc0023e4d50142,"Merge pull request #4 from Mozilla-GitHub-Standards/master
+
+Add Mozilla Code of Conduct",Gene Wood,2019-04-08T15:34:02Z,gene1wood,gene1wood,15,15,0
+1,certspotter-cloudformation,eb776e07ff22143f28dfee09c884438c4fc3a848,"Add Mozilla Code of Conduct file
+
+Fixes #3.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,2019-03-30T06:02:43Z,Mozilla-GitHub-Standards,Mozilla-GitHub-Standards,15,15,0
+2,certspotter-cloudformation,fc18b710b32ac6696b1a2edd81200f3cd143f310,"Merge pull request #2 from gene1wood/switch-json-template-to-yaml
+
+Switch json template to yaml",Gene Wood,2019-03-08T18:02:08Z,gene1wood,gene1wood,965,398,567
+3,certspotter-cloudformation,8990ee9ef3c9bf06eec294f550c0bc4adc77a6a5,Move to Mozilla GitHub org,Gene Wood,2019-03-08T17:59:23Z,gene1wood,gene1wood,6,3,3
+4,certspotter-cloudformation,24442af4c392d9f2f401c9c4fbc9213a586dcc33,Add docs about logging and deploying,Gene Wood,2019-03-08T17:57:49Z,gene1wood,gene1wood,15,13,2
+5,certspotter-cloudformation,521500e179b7dd0d68a16322c8e7f9cf95d4d867,"Update certspotter-ses to current AMIs
+
+Switch to only accepting a watchlist URI, instead of a comma delimited list
+Add IAM permissions to read from the S3 watchlist URI
+Fix AMI Mapping name
+Change user-data from Fn::Join to Fn::Sub for clarity
+Fix logging
+Add awscli
+Add ElasicIP",Gene Wood,2019-03-08T17:57:19Z,gene1wood,gene1wood,180,100,80
+6,certspotter-cloudformation,7941218d27f155cc11a9d56885edcbf027ba185d,"Change logging to verbose
+
+Switch from awscli OS package to PIP package as OS package is old and causes errors
+Add lock on certspotter run to prevent concurrent runs
+Add logrotation
+Ensure no string interpolation happens in the file creation heredocs",Gene Wood,2019-03-07T00:00:07Z,gene1wood,gene1wood,16,11,5
+7,certspotter-cloudformation,8da1fa2ce1d22f698ea2a7cae62aa3359aaf6514,"Change WatchList to WatchListUri and other improvements
+
+* Remove the ability to pass in an empty AWS account ID (as we're using it to
+  generate the IAM policy now)
+* Change the IAM Role policies to be dynmaically generated from the SQS and S3
+  details passed in as CloudFormation parameters
+* Change the WatchList to WatchListUri which must be an s3 URL. This removes
+  the ability to pass in a comma delimited list of domains
+* CentOS AMI versions updated to the current release of CentOS (see
+  https://gist.github.com/gene1wood/56e42097e0f0ac1aace14cbc41ee3e11 )
+* Change user-data from join to sub for clarity
+* Add the `ts` tool to the instance to timestamp log output
+* Create a log file and write the certspotter output to it (timestamped)
+  * This changes the destination of output from cron and mail spool to a log
+    file",Gene Wood,2019-02-27T00:04:54Z,gene1wood,gene1wood,245,110,135
+8,certspotter-cloudformation,10388926817d80e94bb1fa12e918bdea9e52d060,Convert JSON CloudFormation templates to YAML,Gene Wood,2019-02-26T18:39:08Z,gene1wood,gene1wood,949,384,565
+9,certspotter-cloudformation,d3ae4cb2f50dcfca97e39d3313a771164be1657e,"Add support for s3 hosted watchlist
+Add elastic IP support",Gene Wood,2017-01-06T23:33:31Z,gene1wood,gene1wood,101,73,28
+10,certspotter-cloudformation,eb060d918aa2c3ccc199e30a99b9ade3bb68d981,Updating docs to reflect move from SES to SQS,Gene Wood,2016-12-23T23:06:20Z,gene1wood,gene1wood,7,4,3
+11,certspotter-cloudformation,6a840705c2854220ff8aa9a62d0ba56af8bf9366,"Add a field of only the SAN DNS names which are being watched
+Add test event and test script",Gene Wood,2016-12-23T21:54:12Z,gene1wood,gene1wood,122,122,0
+12,certspotter-cloudformation,6be3679de7360c09306079b1be66474856664733,Renaming certspotter SES,Gene Wood,2016-08-12T22:35:36Z,gene1wood,gene1wood,9,4,5
+13,certspotter-cloudformation,028f2f70644cd66a0b7d09cea0d4c4990dc31528,Adding a certspotter template which outputs MozDef events to an SQS queue,Gene Wood,2016-08-12T22:18:16Z,gene1wood,gene1wood,272,271,1
+14,certspotter-cloudformation,a94be6180020fda6760c89686051d1f9ac171d70,initial commit,Gene Wood,2016-08-10T20:41:51Z,gene1wood,gene1wood,263,263,0

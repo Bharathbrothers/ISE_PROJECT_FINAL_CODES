@@ -1,0 +1,503 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,autophone,10770b5d3a5cbd0085d7e94abd6a3f1f1894bf41,Added unit tests.,Mark Côté,2012-07-10T04:59:55Z,Mark Côté,Mark Côté,961,560,401
+1,autophone,cba08a468a5749fc840c470c23487ca6eabc569b,Don't reset status to IDLE if reboot command fails.,Mark Côté,2012-05-18T18:56:39Z,Mark Côté,Mark Côté,48,26,22
+2,autophone,f4485ccb9e52e3badcc898c0478ccf425979b06e,Try to rmdir before mkdir during sd card test.,Mark Côté,2012-05-18T16:13:25Z,Mark Côté,Mark Côté,1,1,0
+3,autophone,cac0a9ec6eb4bd1977edbd9dd304bd5aaf2c4ec5,Updated to use new sendemail API.,Mark Côté,2012-05-18T15:59:26Z,Mark Côté,Mark Côté,10,5,5
+4,autophone,6f5f33bc1d53779f2cc5ecbe8535e8bf34211240,Patch smtplib in Python versions under 2.6.3. Changed to standard coding style.,Mark Côté,2012-05-17T16:07:37Z,Mark Côté,Mark Côté,107,64,43
+5,autophone,1c9ab26c254fc5602b640e775cfd671222d22194,Do nonblocking reads when reading from subprocess when polling.,Mark Côté,2012-05-16T18:21:06Z,Mark Côté,Mark Côté,44,31,13
+6,autophone,fc73bc6fc879af22f251a90c8649bbc652e181a3,"Changed rm -rf to rm -r when deleting profile, since the latter is not a valid on android.",Mark Côté,2012-05-15T23:10:13Z,Mark Côté,Mark Côté,2,1,1
+7,autophone,1331fd5128c30f1e6470dcf885589c5028140fc7,Do status update even if disabled-phone mail fails.,Mark Côté,2012-05-15T22:13:15Z,Mark Côté,Mark Côté,6,3,3
+8,autophone,8abc7378eba44ec31cf708407aa80658ff683225,Make sure we can cd to sd card as well as making a dir there.,Mark Côté,2012-05-15T20:59:59Z,Mark Côté,Mark Côté,4,4,0
+9,autophone,8273a9f66bf1c982512a3e6e110b7c092ec23a75,Catch socket errors when sending email.,Mark Côté,2012-05-15T20:37:44Z,Mark Côté,Mark Côté,14,9,5
+10,autophone,cf1f4ebfb1687d8fa3e0810b3c3c2e05a46b687b,Check for errors when rebooting. Force ping on next iteration after reenabling.,Mark Côté,2012-05-15T20:33:27Z,Mark Côté,Mark Côté,11,9,2
+11,autophone,5a4c1b48ef300b76ce4e4982f26e4ba7c8f8c753,Replaced all DISCONNECTED states with DISABLED. Simplified PhoneWorker.disable_phone(). Try to recover phone after ping fails.,Mark Côté,2012-05-15T20:12:38Z,Mark Côté,Mark Côté,61,37,24
+12,autophone,8cd22ece83173c8f702aaab58fe23e9d8ec162e2,Fixed trigger_runs.py for nightlies. Fixed exception when unable to obtain device root.,Mark Côté,2012-05-15T19:50:05Z,Mark Côté,Mark Côté,12,11,1
+13,autophone,1d03e518cfa6667a17ac56b51d735432c1e4528a,Use echo instead of ps as heartbeat since the output is less.,Mark Côté,2012-05-14T19:08:15Z,Mark Côté,Mark Côté,3,2,1
+14,autophone,6251b23d0d22b75fb840475cc12cdfe9351e7e5e,"trigger_runs.py can trigger jobs for tinderbox builds and from local files.
+Also log all stdout and sterr from adb commands, cached builds expire after
+one day, phone worker does heartbeat every 15 minutes instead of every minute,
+verify cached builds and redownload if bad zip, removed some unused imports,
+and a couple tiny fixes.",Mark Côté,2012-05-14T15:12:43Z,Mark Côté,Mark Côté,210,136,74
+15,autophone,5a0dfa8c89add86617a19fd60cf02a934d3ea502,Reboot command now uses more robust recover_phone() method. Removed check for drawing != 0 since it is never reported.,Mark Côté,2012-05-09T19:46:41Z,Mark Côté,Mark Côté,10,4,6
+16,autophone,c20f8f4baaae1f4f85d56acc9b169ba47ecb1552,More clean-up of trigger_runs.py. Immediately go back to IDLE when a job completes.,Mark Côté,2012-05-07T03:27:08Z,Mark Côté,Mark Côté,30,13,17
+17,autophone,5f92265c3c0de163ce44fa4a48d0cde30e904285,"Added build cache. Fixed infinite loop in tcp request handler. Simplified
+job creation and triggerjobs command. Added disable and reenable commands.
+Check sdcard before starting jobs. Always retry 3 times. Changed s1s2test
+to record time of first occurrence of throbstart/stop.",Mark Côté,2012-05-07T02:54:52Z,Mark Côté,Mark Côté,441,266,175
+18,autophone,3eb0b88295187e9e5c7ff69c024dc5117a9d74fd,Fixed typo.,Mark Côté,2012-04-18T17:00:27Z,Mark Côté,Mark Côté,2,1,1
+19,autophone,fa5518d9b97588f6394c55ff357ab553acef2406,More logging.,Mark Côté,2012-04-18T16:18:27Z,Mark Côté,Mark Côté,10,10,0
+20,autophone,2c54d67d58080d2f510bd422bdab57106eb5ea41,Added DISABLED state. Include IP in phone status.,Mark Côté,2012-04-13T21:50:59Z,Mark Côté,Mark Côté,23,17,6
+21,autophone,dfe9f80cded69808d8bec6da762570503c2295f4,"If two AndroidErrors occur during the same test, disable the phone.",Mark Côté,2012-04-13T16:05:08Z,Mark Côté,Mark Côté,24,17,7
+22,autophone,2a05145f5b4f3827aa3f33d3928e34ad873ff1a7,"Added timeouts for some adb commands, after which the device is rebooted.",Mark Côté,2012-04-12T11:54:15Z,Mark Côté,Mark Côté,91,62,29
+23,autophone,d82c92e63e14a429bc56b16860d6709a905b6562,"Fixed retry loop; reboot is tried 3 times, and each test tried twice. Email when phone is disabled.",Mark Côté,2012-04-06T02:06:21Z,Mark Côté,Mark Côté,142,130,12
+24,autophone,853a2616c2340349ca1246abef25e104653d4871,Increased reboot timeout to 300 s.,Mark Côté,2012-04-05T23:15:26Z,Mark Côté,Mark Côté,2,1,1
+25,autophone,9308a56e622aff7581bf1f476bbea604fd6c29fd,More logging and status info. Moved build installation to PhoneWorker.,Mark Côté,2012-04-05T17:18:42Z,Mark Côté,Mark Côté,65,36,29
+26,autophone,1b4ba68f2317e05ec2620701e55413da824d6602,Moved TCP classes into AutoPhone. Implemented status command.,Mark Cote,2012-04-04T20:12:44Z,Mark Cote,Mark Cote,186,121,65
+27,autophone,5b3fefa3af6c76c43cc3b47ff59cf3122ea3852b,Removed some debug print statements.,Mark Côté,2012-04-03T21:58:31Z,Mark Côté,Mark Côté,11,3,8
+28,autophone,29f4dcbb439d65da83014469285b1e884d6f097f,Added script to trigger runs.,Mark Côté,2012-04-03T21:20:12Z,Mark Côté,Mark Côté,196,193,3
+29,autophone,30dbb91c3da29744304bf02d3de33da141c563e5,Removed deprecated pulsebuildmonitor option.,Mark Côté,2012-04-03T14:52:44Z,Mark Côté,Mark Côté,1,0,1
+30,autophone,1d89fef9276e5ba2c39a32cc9bc4811fda08de9c,Updated pulse build monitor usage.,Mark Côté,2012-03-30T18:35:11Z,Mark Côté,Mark Côté,6,3,3
+31,autophone,653413152e8e49ea94bdd74cfb456c5faae57d14,Merge branch 'master' of https://github.com/ctalbert/autophone,Mark Côté,2012-03-28T19:06:40Z,Mark Côté,Mark Côté,0,0,0
+32,autophone,0720dd4a0bbfb08b246dea217e5f1b391567d7c2,Catch all exceptions while running tests and report them. Note time that autophone is launched and terminated.,Mark Côté,2012-03-28T18:53:02Z,Mark Côté,Mark Côté,14,9,5
+33,autophone,d890aea803b3eb0d58b370e23189a10e71a9abad,Reboot phones and try job again if a device manager error is encountered.,Mark Côté,2012-03-09T23:23:59Z,Mark Côté,Mark Côté,54,51,3
+34,autophone,1c8e6e842e75f394035fd0d06c0a135c73b05655,Trailing slash in profile path not needed.,Mark Côté,2012-03-02T20:02:13Z,Mark Côté,Mark Côté,2,1,1
+35,autophone,5199d28fec522381d38febc93824dfe783582a3d,Typo in profile path,Clint Talbert,2012-03-02T18:59:10Z,Clint Talbert,Clint Talbert,2,1,1
+36,autophone,405135eaa0f49098cafe6e30bea4c89feb15d480,Correctly push profile and runbrowserprofile.sh to phone,Clint Talbert,2012-03-02T18:04:44Z,Clint Talbert,Clint Talbert,15,9,6
+37,autophone,d5eef3ee644fedad016863f4b800ad195ff589c7,Latest changes from mcote,Clint Talbert,2012-03-02T16:41:24Z,Clint Talbert,Clint Talbert,301,218,83
+38,autophone,7f399c2f451b22858bc135816319524a3030b153,Enabled pulse build monitor.,Mark Côté,2012-02-28T17:49:44Z,Mark Côté,Mark Côté,14,7,7
+39,autophone,10aa0b1948515690289b59d127a05148f0f18dd3,Renamed config file to avoid clobbering it all the time.,Mark Côté,2012-02-28T06:01:38Z,Mark Côté,Mark Côté,0,0,0
+40,autophone,1ce7bc1c3df018c6b1f1055ad5bd92b3a562b826,Merge branch 'master' of github.com:markrcote/autophone,Mark Côté,2012-02-28T05:58:50Z,Mark Côté,Mark Côté,0,0,0
+41,autophone,0e0a8f46c0491596b8c43ea5590a7af979f4e54d,Merge pull request #2 from ctalbert/master,Mark Côté,2012-02-28T05:56:39Z,Mark Côté,Mark Côté,14,9,5
+42,autophone,4ce623fdb20d8767569ed92edcf63223fd85b8f2,Merge pull request #1 from ctalbert/master,Mark Côté,2012-02-28T05:56:39Z,Mark Côté,Mark Côté,14,9,5
+43,autophone,412c03306275dd91764e3885b32ff41cdb9603bc,Merge.,Mark Côté,2012-02-28T05:39:28Z,Mark Côté,Mark Côté,68,42,26
+44,autophone,96834af389de24e8703ec56a6d1b4a7b67ac5133,"Can create, push, and use custom profiles. Some pulse support.",Mark Côté,2012-02-28T05:35:54Z,Mark Côté,Mark Côté,295,215,80
+45,autophone,2f06010a31ce20ebdd3cd28ebd17252b91b32de1,Fix bug with retry logic - it wasn't killing the browser for each retry,Clint Talbert,2012-02-27T22:01:10Z,Clint Talbert,Clint Talbert,18,11,7
+46,autophone,9d61ec53f806567d5be9aa9acf29738fb3d0bcfe,"Merge pull request #1 from ctalbert/master
+
+See what you think - 30s delay between tests and a retry of 3 attempts per job (in case we get 0s)",Mark Côté,2012-02-24T17:49:04Z,Mark Côté,Mark Côté,66,41,25
+47,autophone,9c2e6bf52abef0541982a5ba7cb4957ad53e8182,Make my if statement pretty,Clint Talbert,2012-02-24T17:46:16Z,Clint Talbert,Clint Talbert,10,5,5
+48,autophone,06771aca08b155c74483d0d4482323d6e5916824,Adding a delay between jobs of 30s and a retry in case we get 0s during a test,Clint Talbert,2012-02-24T17:12:56Z,Clint Talbert,Clint Talbert,66,41,25
+49,autophone,2e980e16373cf605bb40ea9156d9f94b386b33ee,Log adb-not-in-path warning only once per process. Workers log to their own files. Implemented status command. Added --no-reboot option.,Mark Côté,2012-02-21T17:52:39Z,Mark Côté,Mark Côté,71,56,15
+50,autophone,6548982833a92863ab663ffe0f664e090480294d,Allow specification of IP address as command-line option. Reboot phones in separate processes.,Mark Côté,2012-02-21T16:07:24Z,Mark Côté,Mark Côté,105,54,51
+51,autophone,91b2c037b97dee681430b8e53fd0de2b2e5bd341,Initial commit.,Mark Côté,2012-02-21T14:08:09Z,Mark Côté,Mark Côté,3511,3511,0
+52,autophone,32ddd4f3cca5919ac4554b7785fc2e5b3b02bd5f,"Bug 981593 - Autophone - Incorrect measurement of throbberstart, r=mcote.",Bob Clary,2014-03-11T02:36:17Z,bclary,bclary,33,29,4
+53,autophone,14cdbd778803b0026c001c44a0e3627da6e12868,"Bug 969518 - Autophone - allow use of usb networking on Linux, r=mcote.",Bob Clary,2014-03-04T21:26:14Z,bclary,bclary,152,149,3
+54,autophone,270db9e1448a5fb7ffeb50407cdd033a190574cb,"Bug 968920 - use stderr percentage as a discriminator, r=mcote.",Bob Clary,2014-02-21T21:26:28Z,bclary,bclary,277,162,115
+55,autophone,6d5755492325bcb9b3da24c3d9e51ef2ad1a28b1,"Bug 968905 - Autophone - parameterize control constants via config files, r=mcote.",Bob Clary,2014-02-13T02:08:30Z,bclary,bclary,611,457,154
+56,autophone,059aef2a58f815663c5703927625a9c53285038a,"bug 852264 - Autophone - modify configuration to improve flexibility, r=mcote.",Bob Clary,2014-01-29T22:29:56Z,bclary,bclary,245,159,86
+57,autophone,69948a83c98dbd9c41dd81bdb7cc16812d87c65a,"Bug 965557 - Call devicemanager's reboot with keyword arguments, don't specify port;r=bc",William Lachance,2014-01-29T22:22:45Z,wlach,wlach,4,2,2
+58,autophone,56e22e7f422ccc5a86f307a146534778a6aaa38f,"Bug 964645 - Autophone - update regexp for fennec start for Android 4.2+, r=self.",Bob Clary,2014-01-29T12:34:11Z,bclary,bclary,2,1,1
+59,autophone,61f11d6fad1586a3b47c6c89e45d6d76086dba7f,"Bug 964645 - Autophone - improve logging, error recovery and throbber measurements, r=mcote.",Bob Clary,2014-01-29T08:41:10Z,bclary,bclary,351,239,112
+60,autophone,5039015d3ac291bed519126b1ce8b128de84a511,"Bug 959952 - Autophone - Do not submit full revision path to autolog, r=wlach.",Bob Clary,2014-01-15T07:23:31Z,bclary,bclary,7,6,1
+61,autophone,48cd3b77f0374d3d39ad754157faff185ee2cecb,"Bug 957312 - Autophone - add repository to db schema, r=mcote.",Bob Clary,2014-01-10T08:55:19Z,bclary,bclary,10,6,4
+62,autophone,60d79577bd9223441347cdc9c2338e38487f2064,"Bug 948512 - Autophone - specify device specific tests, r=mcote.",Bob Clary,2013-12-10T18:08:20Z,bclary,bclary,28,18,10
+63,autophone,c9ec58c8b0eed2f38452842debf84d7b85f60565,"Bug 945390 - Autophone - support build selection via revision, r=mcote.",Bob Clary,2013-12-04T20:01:41Z,bclary,bclary,708,602,106
+64,autophone,06bb072816f5ca855051dd351d0b1f583a5cd657,"Bug 943873 - Autophone - support inbound archive, r=mcote.",Bob Clary,2013-12-02T19:13:49Z,bclary,bclary,9,8,1
+65,autophone,ac8391aacc45cfb1d14c5720a2e0e81854b71567,"Bug 943871 - Autophone - use http instead of ftp for build urls, r=mcote.",Bob Clary,2013-12-02T16:29:36Z,bclary,bclary,132,54,78
+66,autophone,cfc19311aed6cd995d4d63f9927b2ac9ae3f1701,"bug 943860 - In builds.py.build_metadata, check the SourceRepository to see if it contains any of the strings 'mozilla-central', 'mozilla-inbound', 'mozilla-aurora', 'mozilla-beta'. This allows the use of local repositories to create builds, r=mcote.",Bob Clary,2013-11-26T17:53:18Z,bclary,bclary,27,14,13
+67,autophone,8be23b3c681daa0c84a7bf52ad6a0287fb84666f,"Bug 940143 - fix up test framework message detection after bug 865349 changed the format of some sentinel line prefixes, r=mcote.",Bob Clary,2013-11-16T14:38:49Z,bclary,bclary,19,13,6
+68,autophone,1b30fde2e877d318aa0cd634b5a8f33a45ad9cd0,"Bug 893620 - rename mispelled files, r=self.",Bob Clary,2013-07-16T12:24:39Z,bclary,bclary,0,0,0
+69,autophone,19b7f6aea21c27f6fa4d0a3b0875e229f320b2ef,"Bug 893620 - Fix various issues in Autophone unittests and add ability to set prefs for tests, r=mcote.",Bob Clary,2013-06-23T13:59:55Z,bclary,bclary,143,122,21
+70,autophone,f0558c9dff29a62a38411a959457523b44ed0c59,Fix loggerdeco initialization.,Bob Clary,2013-06-19T21:24:15Z,bclary,bclary,18,10,8
+71,autophone,d23b2ce2467f6b3f31d435dcfa068fe0d13c5742,Increase devicemanagerSUT.reboot_settling_time from 60 to 120 seconds.,Bob Clary,2013-06-19T14:39:40Z,bclary,bclary,4,4,0
+72,autophone,b3820c66f20e25a68d4d10d5868716bd1c985ec2,"Bug 873081 - Autophone - split s1s2 prepare_phone into install_local_pages and create_profile, r=mcote.",Bob Clary,2013-05-16T02:43:34Z,bclary,bclary,34,28,6
+73,autophone,f1d7600328143c245e20ee627e25ef8ca938958b,"Bug 872863 - Autophone - eliminate DeviceManagerSUT in favor of DroidSUT, r=mcote.",Bob Clary,2013-05-09T18:14:09Z,bclary,bclary,24,14,10
+74,autophone,d0f51cfce7be6cd509a53d0d2879ada6e40bb21c,"Bug 872861 - Autophone - ignore encoding errors when composing notification emails, r=mcote.",Bob Clary,2013-05-07T19:38:35Z,bclary,bclary,4,4,0
+75,autophone,cba8e9fdd58a31c73e5765847afd9d388dab4b90,"Bug 872859 - Autophone - serve jobs in lifo order, r=mcote.",Bob Clary,2013-05-06T17:38:01Z,bclary,bclary,2,1,1
+76,autophone,47abe33ebfdfa9d276842a9a6610d17667c07cde,"Bug 872857 - Autophone - using logger.warning instead of synonym logger.warn, r=mcote.",Bob Clary,2013-05-06T17:37:04Z,bclary,bclary,102,51,51
+77,autophone,ee040e2d4c59cb6d1c3a8e3c9ff5b7108c6d2318,"bug 866195 - Improve Autophone s1s2 test reproducibility followup, r=mcote.",Bob Clary,2013-05-02T23:43:37Z,bclary,bclary,32,12,20
+78,autophone,2de216376b37ca931a1fadd166dbad31b7cc62b1,"Bug 866195 - Improve Autophone s1s2 test reproducibility, r=mcote.",Bob Clary,2013-05-01T13:04:32Z,bclary,bclary,17,6,11
+79,autophone,d7262f2b370d922dc71a357bd2e90691c98fbb72,Bug 866195 - Improve Autophone s1s2 test reproducibility,Bob Clary,2013-04-30T17:24:12Z,bclary,bclary,286,200,86
+80,autophone,4df8067c46f5e73786ef71e27b9adcf7efe60d3c,bug 860750 - Autophone - support multiple architectures,Bob Clary,2013-04-16T22:13:37Z,bclary,bclary,141,110,31
+81,autophone,873caf080651b3b1c3e036993077a4207426e112,bug 862508 - use mozdevice.DroidSUT.launchFennec,Bob Clary,2013-04-16T23:10:12Z,bclary,bclary,40,23,17
+82,autophone,d0745fd2dc465443fc75026dc38dff3071d2b74b,bug 853961 - Correct zipfile.BadZipfile typo,Bob Clary,2013-04-05T08:43:05Z,bclary,bclary,1,0,1
+83,autophone,9fef3dc7ac1c182e1413bcad30f8d40e9269e4d8,bug 853961 - worker should try to recover phone if it is in an error state.,Bob Clary,2013-04-05T06:00:25Z,bclary,bclary,1,1,0
+84,autophone,7ff3fad5f04594b41f36720cd2fc089379ff97df,"bug 853961 - catch sqlite OperationalErrors, r=mcote.",Bob Clary,2013-04-04T20:51:35Z,bclary,bclary,1,0,1
+85,autophone,c93ed39049cab4a3023bdf9921373b6b1887cf22,"bug 853961 - revamp logging, r=mcote.",Bob Clary,2013-04-04T20:50:14Z,bclary,bclary,1,1,0
+86,autophone,8d6486d7c31ae9f232bd7d893ec2dc3d0eb87356,Bug 863189 - Support jwt encoding of results. r=bc,Mark Côté,2013-04-19T15:23:27Z,Mark Côté,Mark Côté,30,24,6
+87,autophone,f247b50034010127c87c33a90fc83a0e52eeade6,"bug 853961 - handle multiprocess TimedRotatingFileHandler, r=mcote.",Bob Clary,2013-04-18T15:07:56Z,bclary,bclary,72,67,5
+88,autophone,bb64435c6df362369ae8a67cd288d7846160ba0b,"bug 853961 - fix ftp 550 Failed to change directory getting symbols, r=mcote.",Bob Clary,2013-04-18T15:06:59Z,bclary,bclary,2,1,1
+89,autophone,fac1755a44f18ca362e0436d5658c4ce940ab8d9,"bug 853961 - Fix mozdevice.DMError imports, r=mcote.",Bob Clary,2013-04-18T15:05:02Z,bclary,bclary,1,1,0
+90,autophone,31a25041f6e7c6338bf395d5202b065cef0f261d,"bug 853961 - Correct zipfile.BadZipfile typo, r=mcote.",Bob Clary,2013-04-18T15:03:46Z,bclary,bclary,4,2,2
+91,autophone,8ae96cd943d7c6ee1da0ac7920d28c78f124b0da,"bug 853961 - rework worker.py main_loop, r=mcote.",Bob Clary,2013-04-18T15:02:41Z,bclary,bclary,47,28,19
+92,autophone,645d88fb69d21ffaec1783ba29ecb842b40b8027,"bug 853961 - make sure to release locks in case of an exception, r=mcote.",Bob Clary,2013-04-18T15:01:53Z,bclary,bclary,29,19,10
+93,autophone,7b8a21687beeb5ff027bc9eb4be0f98fe78cb07e,"bug 853961 - catch sqlite OperationalErrors, r=mcote.",Bob Clary,2013-04-18T15:00:57Z,bclary,bclary,174,134,40
+94,autophone,1102e039d60fe19dee5f2438b4ac289bdc3eb7e1,"bug 853961 - revamp logging, r=mcote.",Bob Clary,2013-04-18T14:59:18Z,bclary,bclary,651,426,225
+95,autophone,0726e2d98be82c8d7aef9eb35cf585cc7f4e7de2,"bug 853961 - do not set throbberstop to max if not found, r=mcote.",Bob Clary,2013-04-18T14:57:30Z,bclary,bclary,2,1,1
+96,autophone,71846cb33c1dad1b7734d0e6531455d23b90614a,"bug 853961 - fix quitter's version limits, r=mcote.",Bob Clary,2013-04-18T14:54:44Z,bclary,bclary,0,0,0
+97,autophone,645b2ab48231e78269d82e08dcee97d40228f978,"bug 853961 - fix retryLimit typo in worker.py, r=mcote.",Bob Clary,2013-04-18T14:52:30Z,bclary,bclary,2,1,1
+98,autophone,d57e29a2ffe28d7b7f3ff0021c3f1d12c815dbee,Bug 850438 - Delete existing results before running tests. r=bc,Mark Côté,2013-03-22T23:00:05Z,Mark Côté,Mark Côté,36,26,10
+99,autophone,63933d50f835c0b7c2f87d4de089ec94fc027b49,"Bug 795417 - Persistent job queues. r=bc
+Phones also no longer reboot by default.  Added a reboot command,
+and made device commands handle ""all"" instead of a device ID.
+Cleaned up some old comments.",Mark Côté,2013-03-21T03:11:39Z,Mark Côté,Mark Côté,362,226,136
+100,autophone,cc8be502c662d5aad7d3e9374883dee9e94abebf,Bug 850395 - Allow device-specific jobs. r=bc,Mark Côté,2013-03-12T17:41:13Z,Mark Côté,Mark Côté,56,35,21
+101,autophone,3efbb60fc4b6381f1ca18b17d26c5210ee3b6f9e,"Bug 852842 - Disable crash reporter ui in Autophone, r=mcote.",Bob Clary,2013-03-20T19:55:27Z,bclary,bclary,4,3,1
+102,autophone,88f839b989a7e43f4eafa3ba36e79057394c8b27,Bug 849251 - Decouple build cache as TCP server in a separate thread. r=bc,Mark Côté,2013-03-12T17:41:13Z,Mark Côté,Mark Côté,577,341,236
+103,autophone,33564b1af2ee196d01e83508d5c092fe65ea81a8,"Bug 850799 - [s1s2] Run tests with and without cache enabled, r=mcote.",Bob Clary,2013-03-20T04:59:07Z,bclary,bclary,28,21,7
+104,autophone,cfce5c69f7240287967891aa65b3f142fee6b773,"Bug 851288 - Use quitter.xpi for terminating fennec in autophone s1s2 tests, r=mcote.",Bob Clary,2013-03-20T04:57:45Z,bclary,bclary,96,76,20
+105,autophone,cbcf1ca5162e419c10386ff4a8f35bc575f6cc15,"Bug 849831 - improve logcat analysis for detecting throbberstart, throbberstop, r=mcote.",Bob Clary,2013-03-09T03:52:38Z,bclary,bclary,73,48,25
+106,autophone,cdfa289537f7f5afa26e65f22011d569fdf0816c,bc - Merge branch 'master' of github.com:mozilla/autophone,Bob Clary,2013-03-09T03:32:50Z,bclary,bclary,0,0,0
+107,autophone,779f702114eab7c28a883a6bff948bd0d8ea10aa,"Bug 848881 - Report throbberstop - throbberstart instead of total drawing time, r=mcote.",Bob Clary,2013-03-07T19:39:49Z,bclary,bclary,21,7,14
+108,autophone,ad330489735e10242ce6d4a81fdf52a4381d7bca,"Bug 848937 - add try block around robocop uninstallation, regression caused by bug 842257, r=mcote.",Bob Clary,2013-03-07T20:54:42Z,bclary,bclary,8,7,1
+109,autophone,c8f55847ce64751a6e49c210020e3acd84aa7111,"Bug 848881 - Report throbberstop - throbberstart instead of total drawing time, r=mcote.",Bob Clary,2013-03-07T19:39:49Z,bclary,bclary,21,7,14
+110,autophone,c85dc2ae7ca53e3da051efe9154cb110321bbbab,Bug 847769 - Change telemetry-prompt preference for older builds. r=bc,Mark Côté,2013-03-05T03:57:03Z,Mark Côté,Mark Côté,7,5,2
+111,autophone,9bca04b0f32981c05f46224c25d1e0c8271a99f9,"Bug 845794 - Adjust Autophone UnitTest chunking, r=mcote",Bob Clary,2013-02-23T15:08:36Z,bclary,bclary,18,12,6
+112,autophone,b245259abaeb51e1baf755648542aebc131b129f,Bug 843798 - Allow overriding of autolog ES index. r=bc,Mark Côté,2013-02-21T21:39:30Z,Mark Côté,Mark Côté,5,5,0
+113,autophone,0ec36fd66dfc9c37aacfaaa161c5a2285fd638c3,"Bug 842257 - Autophone - unittests - remove reftests, increase timeout, improve status updates and recovery, part 2, r=mcote",Bob Clary,2013-02-18T09:55:52Z,bclary,bclary,91,47,44
+114,autophone,651e4be3d8cad0edcc4bc57a7336e6b35fc58de7,"Bug 842257 - Autophone - unittests - remove reftests, increase timeout, improve status updates and recovery, part 1, r=mcote",Bob Clary,2013-02-16T21:48:34Z,bclary,bclary,4,2,2
+115,autophone,9860a54b267cffac7e18736c3479080bd4e48540,Bug 797371 - Update phone info and restart worker if reg msg changes. r=bc,Mark Côté,2013-02-14T23:04:28Z,Mark Côté,Mark Côté,117,66,51
+116,autophone,d7e45f9875029764e2f99cf969a031182bf13ed1,Bug 840866 - Requirements file and updates to docs. r=bc,Mark Côté,2013-02-13T06:09:53Z,Mark Côté,Mark Côté,24,15,9
+117,autophone,cf68f74eb1556607b433b5bec780b799392cc749,"bug 839167 - autophone - add option for build cache directory for multiple autophone instances, r=mcote.",Bob Clary,2013-02-07T15:30:20Z,bclary,bclary,14,10,4
+118,autophone,771dcca73c053fe3007288c1ffd1ee32e19e4c89,"bug 838571 - autophone - use shutil.move instead of os.rename, r=mcote",Bob Clary,2013-02-05T21:46:38Z,bclary,bclary,6,3,3
+119,autophone,cebc24daebb528e7e8521c364652100b99d32457,"Bug 828644 - Suppress telemetry in Autophone s1s2 and smoketests, r=mcote",Bob Clary,2013-01-09T21:51:49Z,bclary,bclary,6,4,2
+120,autophone,875b63e9107f8bc7245c58fd4cb9b8025b80bd5d,"Bug 827433 - parse Robocop summary markers, r=mcote.",Bob Clary,2013-01-07T15:23:23Z,bclary,bclary,58,49,9
+121,autophone,d687f599e7214609f51c61983b0fd9dd02983bad,"Bug 821954 - allow specification of repo, build types, r=mcote.",Bob Clary,2012-12-20T19:48:49Z,bclary,bclary,149,107,42
+122,autophone,5d632feb44121ef01ac473ad2746d6d375d1ccf1,"Bug 785129 - Create Autophone tests to run unit tests, r=mcote.",Bob Clary,2012-12-20T19:47:36Z,bclary,bclary,2603,2556,47
+123,autophone,64644494edc5a37cad7ccc5d28d4796f84aa552c,Bug 818188 - Fix ftp-directory-name generation. r=bc,Mark Côté,2012-12-04T19:30:51Z,Mark Côté,Mark Côté,26,17,9
+124,autophone,e6ded27e48bed6df5365185773ea4207529d759c,"Bug 803169 - Autophone - handle errors downloading builds, r=mcote",Bob Clary,2012-10-18T22:29:53Z,bclary,bclary,44,39,5
+125,autophone,2b6d54ec0b92d5fc9ae9a49c8ada048018632e8e,Bug 795195 - Added DISCONNECTED state; updated for DM exceptions change. r=bc,Mark Cote,2012-10-12T03:37:57Z,Mark Cote,Mark Cote,371,235,136
+126,autophone,762a3c5d188ce6f9d44e74aefd9865bc3bdcdaf9,Bug 790390 - Keep pinging disabled phones. r=wlach,Mark Cote,2012-09-26T18:13:17Z,Mark Cote,Mark Cote,30,17,13
+127,autophone,524b0dbb4110dda3f73bc6452e38429115893cde,Bug 790380 - Handle worker crashes and misc. other improvements and fixes. r=bc,Mark Côté,2012-09-20T22:04:48Z,Mark Côté,Mark Côté,193,146,47
+128,autophone,d1e02c520b4685c4432f6f660a64a2122a66032c,"Bug 785086 - Add ability to download unit test prerequisites and to run from a specific cached build directory, r=mcote.",Bob Clary,2012-09-13T21:16:03Z,bclary,bclary,179,132,47
+129,autophone,7ed2d36effd4459e3ec2df966b4ba4fd7e68b6f3,Bug 790380 Improve error-recovery logic and logs. r=bc,Mark Cote,2012-09-12T16:45:36Z,Mark Cote,Mark Cote,67,39,28
+130,autophone,0bde7564db65b62778aa7d46e4d15053322163b4,Bug 790377 Output worker stdout and stderr to files. r=bc,Mark Côté,2012-09-11T21:35:41Z,Mark Côté,Mark Côté,20,13,7
+131,autophone,f5aee6bdf8a23239d645f20084814b2f1c4651c8,Bug 783584 Improved SD-card check. r=wlach,Mark Côté,2012-08-20T16:43:27Z,Mark Côté,Mark Côté,38,28,10
+132,autophone,56f5c82d8e1d298f284a7d24a600180ee9da66bf,Bug 783585 Improve latest-build downloader and handle build errors in smoketest.sh. r=wlach,Mark Côté,2012-08-20T16:32:11Z,Mark Côté,Mark Côté,36,25,11
+133,autophone,d95f25e323f341ff7bc53810d05fb68a7d61fff0,Bug 783585 Fix line endings. r=wlach,Mark Côté,2012-08-20T16:30:49Z,Mark Côté,Mark Côté,200,100,100
+134,autophone,5218e188acc5c937b2d93aee326a64039abb5f42,Bug 781821 - Remove references to unused runbrowserprofile.sh;r=mcote,William Lachance,2012-08-14T09:41:01Z,wlach,wlach,8,0,8
+135,autophone,3d35ff634fb757de2bd551b5fa34ed9c939727e3,Bug 781821 - Fix problems/nits pointed out by pyflakes;r=mcote,William Lachance,2012-08-14T09:40:13Z,wlach,wlach,23,6,17
+136,autophone,bf2ce54119da91b97b23e409c16603fec1a6b3fa,Bug 781821 - Fix wrongly defined variable in mailer.py;r=mcote,William Lachance,2012-08-14T09:39:06Z,wlach,wlach,2,1,1
+137,autophone,f77ad5f8069ad9dfbbb868ad86d72f338cc35c89,Bug 781212 - Don't create empty cache file when blowing away cache;r=mcote,William Lachance,2012-08-08T21:12:33Z,wlach,wlach,30,13,17
+138,autophone,2468549e989e9643ac35bbc2bd9f4ca7407d189a,Bug 781212 - Default should not be to clear cache;r=mcote,William Lachance,2012-08-08T16:15:18Z,wlach,wlach,22,11,11
+139,autophone,9962718100638506ea64bbe76f9193d32631457b,"Bug 780268 - Use Autophone, not AutoPhone in docs/help;r=mcote",William Lachance,2012-08-08T15:30:43Z,wlach,wlach,28,14,14
+140,autophone,47d8f3d705a798f9631016d8c6a4ac57fc6019d2,Bug 780268 - Convert INSTALL and USAGE to proper markdown;r=mcote,William Lachance,2012-08-03T20:41:39Z,wlach,wlach,79,39,40
+141,autophone,38786fd6ef94f1ec688701d37a554c29627110d4,Bug 780268 - Better description/examples of SUTAgent.ini in INSTALL;r=mcote,William Lachance,2012-08-03T20:34:48Z,wlach,wlach,37,28,9
+142,autophone,5471c967e141819f326afe142bb9a8b0f63332f8,Bug 780268 - Remove unwanted spaces in documentation;r=mcote,William Lachance,2012-08-03T20:34:11Z,wlach,wlach,4,2,2
+143,autophone,af09c7a380bd75bde5fb828a06a083b7b44777a8,Bug 780282 - Add option to disable pulse listener;r=mcote,William Lachance,2012-08-03T21:34:02Z,wlach,wlach,35,21,14
+144,autophone,4a1e8b27c7e24b61276c8def157585224d9065ee,Bug 776737 Fixed s1s2_test.py. r=wlach,Mark Côté,2012-08-07T20:11:28Z,Mark Côté,Mark Côté,36,18,18
+145,autophone,c433f565bc734f2f2e21170bec250553b75095f6,Bug 776737 Replaced all adb usage with DeviceManagerSUT. r=wlach,Mark Côté,2012-07-23T22:42:31Z,Mark Côté,Mark Côté,3226,185,3041
+146,autophone,3c3bdfc38731d8b14bc41e7423c0ed936222f4a9,"Merge pull request #12 from bclary/master
+
+Add missing logging import statement.",Mark Côté,2012-07-23T18:25:54Z,Mark Côté,Mark Côté,1,1,0
+147,autophone,776d14c25ea5b85a833b0d8602a209f9dc6d6549,Include missing import logging in mailer.py,bclary,2012-07-23T13:51:28Z,bclary,bclary,1,1,0
+148,autophone,eee972407faf8cf5d2f5df801f7f93c4c00467e0,"Smoke test, refactored builds.py.
+Also added signal handler, support for getting latest build, switched builds.py
+from using urllib2 to faster ftplib.",Mark Côté,2012-07-19T04:05:33Z,Mark Côté,Mark Côté,463,377,86
+149,autophone,c66279b311b84e56cdb98c4111af049a84f4df45,"Usage instructions, documented email settings.",Mark Côté,2012-07-11T16:36:04Z,Mark Côté,Mark Côté,56,56,0
+150,autophone,e3377ce633874490d7eb75ec3436cdce9a500f54,README and installation instructions.,Mark Côté,2012-07-11T04:48:53Z,Mark Côté,Mark Côté,119,119,0
+151,autophone,453ae16734abc7e37673c6541467a66f1f48ba26,Split worker interface and process into different classes. Added another test.,Mark Côté,2012-07-10T15:43:15Z,Mark Côté,Mark Côté,137,86,51
+152,autophone,b8ab294443ae3eceef21d6f0efe303817217f995,"Bug 1119654 - Autophone - update test manifests and config files, r=gbrown.
+
+- replace underscores with dashes in ini files
+- separate local/remote test configs
+- add additional tests",Bob Clary,2015-05-05T15:16:24Z,bclary,bclary,472,417,55
+153,autophone,da999ea1214e17361ec81651472a6539476bcbaa,"Bug 1119654 - Autophone - update documentation, r=gbrown.",Bob Clary,2015-05-05T15:16:36Z,bclary,bclary,334,108,226
+154,autophone,b6dc95d0c7268a3a61b16066be8ed81d6efd790f,"Bug 1119654 - Autophone - separate installation specific settings, r=gbrown.
+
+- parameterize phonedash, webserver urls
+- separate credentials into distinct configuration file
+- add test elasped time logging",Bob Clary,2015-05-05T15:16:55Z,bclary,bclary,103,82,21
+155,autophone,a2d1dec5d15b94e8737938854ec07feb876f7186,"Bug 1119654 - Autophone - update .gitignore to ignore credentials and developer settings, r=gbrown.",Bob Clary,2015-04-28T22:34:22Z,bclary,bclary,5,4,1
+156,autophone,24f288cd3d1b53553411e6bbc03294b31a154c1a,"Bug 1162022 - Autophone - --close-when-done --autorun no longer supported in testing/mochitest/runtests.py, r=gbrown.",Bob Clary,2015-05-06T13:15:14Z,bclary,bclary,6,1,5
+157,autophone,b904378250e418bef4b0ae0075437a6065db6de3,"Bug 1160161 - Autophone - do not chmod -R full profile directory when creating the webappstartup profile, r=gbrown",Bob Clary,2015-04-30T17:25:27Z,bclary,bclary,8,7,1
+158,autophone,f857458f40f97fa31882dea94d2119648d381c34,"Bug 1160158 - Autophone - validate device id when processing job actions, r=gbrown",Bob Clary,2015-04-30T15:37:56Z,bclary,bclary,12,8,4
+159,autophone,6e8806fda2a4db37be4b65a5184d2e67a3adb3b8,"Bug 1153992 - Autophone - allow test manifest to include multiple sections per test script, r=gbrown.",Bob Clary,2015-04-13T19:30:52Z,bclary,bclary,1006,509,497
+160,autophone,9c957163b44902ad74d36f5f785d6c7aefb87950,"bug 1152392 - update webapp-startup-test.apk to use quitter@squarefree.com, r=snorp.",Bob Clary,2015-04-23T21:56:04Z,bclary,bclary,0,0,0
+161,autophone,5edb1f020f6e431e08ed69bb3e0c30a949211b40,"bug 1152392 - use existing webapp profile webappstartup, r=gbrown.",Bob Clary,2015-04-13T18:15:02Z,bclary,bclary,156,150,6
+162,autophone,bd0ccdbe1d7422a23ccfec8c75d143e0203c2e89,"Bug 1118751 - explicitly specify root=True in argument lists where appropriate and use root=True when accessing the profile contents, r=gbrown.",Bob Clary,2015-04-22T20:52:34Z,bclary,bclary,64,35,29
+163,autophone,fd2c00008f66ad42f52b5eb8251d38454c678538,"Bug 1065599 - Autophone - audit/update Fennec preferences, r=gbrown.",Bob Clary,2015-04-07T20:58:40Z,bclary,bclary,35,29,6
+164,autophone,94957230106e24cd87e63c587008e9dd41cbadfd,"bug 1150111 - sync to new ep1 master - take 2, r=self",Bob Clary,2015-04-14T18:23:04Z,bclary,bclary,2,1,1
+165,autophone,3f2bbd42eb540099b4190d5731bf0b03a8279ad7,"bug 1150111 - sync to new ep1 master, r=self",Bob Clary,2015-04-13T19:32:33Z,bclary,bclary,2,1,1
+166,autophone,f232cf4e23a22706d8c573ff58012cf90208787a,"Bug 1152507 - Autophone - improve detection of initial gecko start time, r=gbrown",Bob Clary,2015-04-10T20:43:47Z,bclary,bclary,10,6,4
+167,autophone,660a643c357d0b6ae4edbf4482eabfbc1f3b3f8a,"Bug 1151329 - Autophone - properly handle local build urls, r=gbrown.",Bob Clary,2015-04-03T20:02:12Z,bclary,bclary,57,37,20
+168,autophone,7d71fb0dafb1e8f2e5362f3e9eb6326a14ffccfa,"Bug 1140406 - correct failure to sync patch before commiting, r=self",Bob Clary,2015-04-08T15:12:02Z,bclary,bclary,2,1,1
+169,autophone,678709bb90e7751e222a59d947aea3be25c79351,Bug 1140406 - [mozdevice] Allow connecting to a remote ADB server in adb.py. r=bclary,Dave Hunt,2015-04-08T15:02:33Z,davehunt,davehunt,50,46,4
+170,autophone,1b618a3c05115e6ac241e539d12a279840528d73,"Bug 1078643 - Autophone - fix trigger_runs.py revision and date ranges, r=gbrown.
+
+In get_revision_timestamps, get inclusive ranges by looking up individual
+changesets instead of changeset ranges.
+
+Properly handle timezone conversion in build_dates.set_time_zone and
+trigger_runs.py.",Bob Clary,2015-04-02T18:56:24Z,bclary,bclary,30,7,23
+171,autophone,c94b0638354ba007905a8cc224bad39d0f5f4e30,"Bug 1088930 - builds.find_builds_by_directory should ensure the directory is terminated with /, r=gbrown.",Bob Clary,2015-04-02T15:04:26Z,bclary,bclary,3,3,0
+172,autophone,480d42509fdc0275137b9b2877f49c7dfcea2221,Bug 1147614 - [mozdevice] The property ADBDevice.test_root does not appear in documentation. r=bclary,Julien Pagès,2015-04-01T21:45:24Z,parkouss,parkouss,24,22,2
+173,autophone,8ee1dd0aa8b3c135143d9673b5b110f98b8417d0,"Bug 807207 - Autophone - catch bad zip files which raise IOError, r=mcote.",Bob Clary,2015-04-01T15:50:10Z,bclary,bclary,3,2,1
+174,autophone,287c3b87ce9f9601b33c81cce0c678a3637589ca,"Bug 1147480 - Autophone - Consolidate add test failure logic, fix regression where PhoneTest.test_status is not set, r=mcote.",Bob Clary,2015-03-25T15:08:36Z,bclary,bclary,184,98,86
+175,autophone,9e37b83d5bbb0f6f0e9e445044d3d8b7c89f2c36,"Bug 1147480 - Autophone - phonetest.setup_job - clear job_details, r=mcote.",Bob Clary,2015-03-25T05:08:30Z,bclary,bclary,2,2,0
+176,autophone,57123d38251d60ad42a5ac0787b37492150920c7,"Bug 1147480 - Autophone - utils.get_remote_text - handle 503 Too Busy Errors, r=mcote.",Bob Clary,2015-03-25T03:42:46Z,bclary,bclary,27,19,8
+177,autophone,f122c4133e17f051389cd6af8e1c84360948c063,"Bug 1133580 - fix format string error when checking for device repository specifications, r=self.",Bob Clary,2015-03-24T20:15:09Z,bclary,bclary,2,1,1
+178,autophone,5bbc94886ff85989858722f1ede1b4e6845a9904,"Bug 1133580 - Autophone - fix incorrect removal of parentheses in conditional, r=self",Bob Clary,2015-03-24T18:39:22Z,bclary,bclary,2,1,1
+179,autophone,161d7c4244c3c0592f9806b0cbf9bdfdf6d104b7,"Bug 1133580 - Autophone - incorporate job action processing in tests, r=mcote.",Bob Clary,2015-03-23T12:54:48Z,bclary,bclary,254,162,92
+180,autophone,b0a2e595a2a9c1b5ee780e3c1ae623da50da1d45,"Bug 1133580 - Autophone - update to worker.py, r=mcote.
+
+- clean up device error/disconnection/disable states
+- add new FETCHING state.
+- move compatible job detection into autophone.py
+- delete tests from the jobs database as they are completed.
+- use test status RETRY when a test must be retried while
+  creating a new job for the test(s) to be retried.
+- process retrigger, cancel job actions",Bob Clary,2015-03-23T12:53:34Z,bclary,bclary,418,250,168
+181,autophone,19a86a16055c8d10d9f480e89aef68f34fd7dedf,"Bug 1133580 - Autophone - update autophonetreeherder.py, r=mcote.
+
+- begin divorcing PhoneWorkerSubProcess from AutophoneTreeherder
+- make AutophoneTreeherder.submit_complete require tests.
+- submit a privatebuild artifact to Treeherder to record the build used in a test
+- catch potential exceptions while uploading logs",Bob Clary,2015-03-23T12:52:46Z,bclary,bclary,300,145,155
+182,autophone,4576a1ffbfea80c5eabc7b4f4fd616ab2f032296,"Bug 1133580 - Autophone - remove enable_unittests as a BuildCache property in builds.py, r=mcote.",Bob Clary,2015-03-23T12:52:02Z,bclary,bclary,15,6,9
+183,autophone,2e7c3ec57fcbfc0b1619a02f753c56c73e203dbf,"Bug 1133580 - Autophone - implement new jobs format including new tests table in jobs.py, r=mcote.",Bob Clary,2015-03-23T12:51:25Z,bclary,bclary,314,267,47
+184,autophone,0bd108b6f310979c214d2ba2a2588108fc9cabea,"Bug 1133580 - Autophone - hookup new pulsemonitor, consolidate compatible build detection, use new jobs format in autophone.py, r=mcote.",Bob Clary,2015-03-23T12:50:45Z,bclary,bclary,221,156,65
+185,autophone,d78bc8dc2c56e4c305edd49799d68411b31ae570,"Bug 1133580 - Autophone - Add autophonepulsemonitor.py, r=mcote.",Bob Clary,2015-03-23T12:49:47Z,bclary,bclary,422,422,0
+186,autophone,2264d074a6bd72741778fe30a2e1c96322298f21,"Bug 1133580 - Autophone - Remove autophonepulsebuildmonitor.py, r=mcote.",Bob Clary,2015-03-23T12:49:06Z,bclary,bclary,233,0,233
+187,autophone,65f0067d9dcf2f3e7405574945a637b364d4dbff,"Bug 1133580 - Autophone - fix missing error in cache response in builds.py, r=mcote.",Bob Clary,2015-03-23T12:47:56Z,bclary,bclary,2,2,0
+188,autophone,8080d9ae1b22720aa1f3c8850e9928ab5c0d06da,"Bug 1133580 - Autophone - use utils.py, r=mcote.",Bob Clary,2015-03-23T12:47:09Z,bclary,bclary,147,44,103
+189,autophone,37045563b2930e0e9a70bbbeb9f6fdd85d70499f,"Bug 1133580 - Autophone - add utils.py, r=mcote.",Bob Clary,2015-03-23T12:44:47Z,bclary,bclary,133,133,0
+190,autophone,399da99b605fcb7bf0670af9b4794ca1ec9a08ad,"Bug 1138998 - Autophone - properly report failures to treeherder, fix possible uninitialized logfilehandle in runtestsremote.py, r=mcote.",Bob Clary,2015-03-05T05:54:22Z,bclary,bclary,46,30,16
+191,autophone,1a94922527c3eba8701b4c6de5d081440da75e6d,"Bug 1135275 - Autophone - uninstall previous org.mozilla packages prior to installing build, r=mcote.",Bob Clary,2015-02-20T21:08:21Z,bclary,bclary,13,12,1
+192,autophone,300ebeb2e6a1baf242ba124b3bcd0149e91ca8ac,"Bug 1135185 - Autophone - prioritize try builds, r=mcote.",Bob Clary,2015-02-20T19:27:38Z,bclary,bclary,6,4,2
+193,autophone,1ec6798d9df5a0412cc42ae8abf2161d7c38cf10,"Bug 1134520 - Autophone - detect app name using package-name.txt, detect build type and fall back for missing SourceRepository, add mozilla-aurora, mozilla-release, r=mcote.",Bob Clary,2015-02-19T17:05:18Z,bclary,bclary,56,32,24
+194,autophone,0222138ae6b158eacf4c9ac01e17574032f40399,"Bug 1118758 - Adjust phonedash url for new url syntax, r=self.",Bob Clary,2015-01-28T04:45:22Z,bclary,bclary,5,3,2
+195,autophone,fadc14c774ef406aead459a0d14f3ba7e69e1591,"Bug 1118758 - Autophone - add support for job specific tests, r=mcote.",Bob Clary,2015-01-20T20:38:18Z,bclary,bclary,411,234,177
+196,autophone,24b0722dca3e63cb422076837e927bbd8fa18dcb,"Bug 1118758 - handle missing build property values, r=mcote.",Bob Clary,2015-01-21T00:20:39Z,bclary,bclary,2,1,1
+197,autophone,73c2ea0de10009c2ffb77c446ac85ff3c43a7a28,Bug 1119838 - Raise exception early when there is no adb command available; r=bclary,Julien Pagès,2015-01-20T15:36:17Z,parkouss,parkouss,8,8,0
+198,autophone,91b0bcaca9d2fcd04720b9db2739eef8fe92c4ae,"Bug 1118758 - Autophone - use AutophonePulseBuildMonitor, r=mcote.",Bob Clary,2015-01-15T19:12:27Z,bclary,bclary,55,31,24
+199,autophone,768e17b7586b095c78ebcc930419006ef9373c3d,"Bug 1118758 - Autophone - add replacement pulse build monitor, r=mcote.",Bob Clary,2015-01-15T01:19:04Z,bclary,bclary,233,233,0
+200,autophone,1674eb190625b8bb7931a6316e1d06f531b48e24,"Bug 1119457 - Autophone - upload device logs, r=mcote.",Bob Clary,2015-01-08T01:52:39Z,bclary,bclary,170,141,29
+201,autophone,1496635c6dfaaf502d20d184df8a14cbaf5c5e5d,"Bug 1118883 - Autophone - upload crash dmp files to S3, r=mcote.",Bob Clary,2015-01-07T19:37:34Z,bclary,bclary,112,55,57
+202,autophone,f8424ba31abb84b7fc778e1fc34751713dc4995b,"Bug 1118276 - Autophone - handle Exceptions from urllib2.urlopen(url), r=mcote.",Bob Clary,2015-01-06T15:57:20Z,bclary,bclary,70,47,23
+203,autophone,4c2c8fb4f71aa9cd8069021bcbe6e34be5fe2119,"Bug 1118793 - Autophone - fix leading space in default minidump_stackwalk binary option, r=mcote.",Bob Clary,2015-01-07T16:46:02Z,bclary,bclary,2,1,1
+204,autophone,53aefcbba0dd0e30e0c1deb54ee6c21222f4c26c,"bug 1080784 - Autophone - Do not duplicate bugs in autophonetreeherder.get_bug_suggestions when there are no matching bugs, r=mcote.",Bob Clary,2015-01-04T23:52:07Z,bclary,bclary,12,4,8
+205,autophone,fe24e2d16c6fba407e38b500e0506415cb0cfecf,"bug 1080784 - Autophone - Reset the PhoneTest.test_result on setup_job so we do no carry forward values from previous run, r=mcote.",Bob Clary,2015-01-04T20:41:42Z,bclary,bclary,1,1,0
+206,autophone,6a047b9dee375b4988b3642ce32cbc682ce3732f,"bug 1080783 - Autophone - Better define AutophoneTreeherder.submit_complete usage to eliminate duplicate error messages, r=mcote.",Bob Clary,2015-01-04T02:19:53Z,bclary,bclary,65,43,22
+207,autophone,7fb94b3fcaa254996e98abddadc4f572fbe99ee0,"bug 1080783 - Autophone - process crash dumps, r=mcote.",Bob Clary,2014-12-30T15:03:14Z,bclary,bclary,551,508,43
+208,autophone,33f4b4c99073108e69db882cce06dba89c673cf7,"Bug 1113164 - Autophone - AttributeError: 'S1S2Test' object has no attribute 'result', r=mcote.",Bob Clary,2014-12-18T16:23:49Z,bclary,bclary,5,2,3
+209,autophone,27d6d21429cb6866f91d5ebccea0afcbf0e17c5a,"Bug 1079923 - Autophone - followup to fix reference to loggerdeco in Logcat, r=self",Bob Clary,2014-12-17T15:37:18Z,bclary,bclary,2,1,1
+210,autophone,b8f2f2603faa637322856dda6aeadf30533d57a7,"Bug 1079923 - Autophone - update unittests to fix bitrot, r=mcote.",Bob Clary,2014-10-08T22:51:09Z,bclary,bclary,4242,1600,2642
+211,autophone,a0532d71ed64390fd3c1a6d057c21a48823eaeae,"Bug 1072423 - Autophone - support split APKs for 2.3/later followup, r=self",Bob Clary,2014-12-14T17:07:21Z,bclary,bclary,13,8,5
+212,autophone,07892cf486c148704fc53deea1c7dffcf0c82a18,"Bug 1109144 - Autophone - add Android api 11, r=bc.",Kim Moir,2014-12-10T15:13:18Z,kmoir,kmoir,19,14,5
+213,autophone,6098a6963d3759f8fa6c0ce21cf2c9271da89c9c,"Bug 1072423 - Autophone - support split APKs for 2.3/later, r=mcote.",Bob Clary,2014-12-08T14:57:52Z,bclary,bclary,36,27,9
+214,autophone,aa0df92edbff11f0f8a989c002d36af22861b7d4,Bug 1093175 - Make ADBDevice examples in docs run as written;r=bc DONTBUILD,William Lachance,2014-11-03T21:52:23Z,wlach,wlach,6,3,3
+215,autophone,6e88ae676c217fbf14bc5707c19a6aaa300aa9d3,"Bug 1037067 - Improve initial setup and docs, fix typo introducing is editing. r=self",Bob Clary,2014-10-28T17:02:53Z,bclary,bclary,2,1,1
+216,autophone,df44529621b578fe7170d480e44ca6ad940a6f2d,"Bug 1037067 - Improve initial setup and docs, r=gbrown, r=mcote.",Bob Clary,2014-10-21T22:02:24Z,bclary,bclary,1201,922,279
+217,autophone,c038c1bc4474d7cc3b2ef302aca12280086bb21f,Bug 1078645: Update docs for using an emulator; r=bc,Geoff Brown,2014-10-15T15:26:59Z,gbrownmozilla,gbrownmozilla,31,31,0
+218,autophone,c0af37cdc3538460263646ecb0096d2369749365,"Bug 1080261 - Autophone - upgrade to new pulsebuildmonitor with authentication, r=mcote.",Bob Clary,2014-10-09T03:33:10Z,bclary,bclary,19,17,2
+219,autophone,1d997f0efe332b7cb6eabc77a2ee9ae45e0a86df,"Bug 1037077 - Report run status to treeherder - fix requirements.txt to work behind firewall, r=bc",Bob Clary,2014-10-06T19:24:07Z,bclary,bclary,2,1,1
+220,autophone,a11d7cb5e68ddfad0bc7545e1d8eaf652c0a2d3a,"Bug 1037064 - Allow use of custom local and remote builds, r=mcote.",Bob Clary,2014-10-02T18:11:15Z,bclary,bclary,103,82,21
+221,autophone,376c2e4efb24b81d07ad85b5c712c90f70b379c7,"Bug 1074454 - Autophone - check test files into git repos, update Subproject commit, r=bc",Bob Clary,2014-10-06T16:41:03Z,bclary,bclary,2,1,1
+222,autophone,c1347d92c08c16d36f6c2a52da623d1beb14b915,"Bug 1037059 - Make phonedash optional and generate local reports, r=mcote.",Bob Clary,2014-10-01T14:30:26Z,bclary,bclary,136,117,19
+223,autophone,73b6a9e00cf5313cd238645fd2a0c4aa5937119a,"Bug 1074454 - Autophone - check test files into git repos, r=mcote.",Bob Clary,2014-09-29T21:55:22Z,bclary,bclary,67,53,14
+224,autophone,b77f25d6ca44efbc50fc110917408eb837269443,"bug 1037077 - use uuid.uuid4() to generate job_guids, r=mcote.",Bob Clary,2014-09-24T05:10:32Z,bclary,bclary,17,9,8
+225,autophone,270e6ff6c95c6063da413e40344d98faf7a0cbc8,"bug 1037077 - temporarily disable kill_server, r=mcote.",Bob Clary,2014-09-23T20:36:19Z,bclary,bclary,9,6,3
+226,autophone,c544d655ddfea4d6baafa457098ff33b3b402c4a,"bug 1037077 - clean up mailer, part 2, r=mcote.",Bob Clary,2014-09-23T20:23:21Z,bclary,bclary,23,13,10
+227,autophone,c5dd9f130e1f14a7d068605a7e29e2092ea51635,"bug 1037077 - make job detail phonedash url point to the test results for the day, r=mcote.",Bob Clary,2014-09-23T20:07:39Z,bclary,bclary,34,30,4
+228,autophone,f04032555e1db813fda430ecf189cabf1cd8145f,"bug 1037077 - fix Mailer initialization if no email config file specified, r=mcote.",Bob Clary,2014-09-23T13:33:46Z,bclary,bclary,12,9,3
+229,autophone,219501013d6d7bd795e63e5c41497e18840d0344,"bug 1037077 - relax WEBAPP and Throbber regex due to bug 1060171, r=mcote.",Bob Clary,2014-09-23T13:25:24Z,bclary,bclary,6,3,3
+230,autophone,11bc95c1b906f9625024c293a947a2a15b98387e,"bug 1037077 - bail early on webappstartup failures, r=mcote.",Bob Clary,2014-09-23T13:23:14Z,bclary,bclary,36,29,7
+231,autophone,c3df2d2a3d2a5127effc986593c8b2e19bc4a284,"Bug 1062378 - Autophone - allow lifo job ordering in addition to fifo, r=mcote.",Bob Clary,2014-09-10T15:29:14Z,bclary,bclary,19,15,4
+232,autophone,5d020e1002268d1e02d86e9ebc9498e2414145d6,"Bug 1037077 - Report run status to treeherder, r=mcote.",Bob Clary,2014-09-08T12:46:13Z,bclary,bclary,1059,793,266
+233,autophone,02c423456f55b618338f834aeaf09ad5a8a5d3b9,Bug 1037067: Update USAGE.md; r=bc,Geoff Brown,2014-09-12T21:48:32Z,gbrownmozilla,gbrownmozilla,25,24,1
+234,autophone,035f6af36d372755a1a7d1e228b4966f52f69b10,Bug 1037067: Update install instructions; r=mcote,Geoff Brown,2014-09-12T18:05:22Z,gbrownmozilla,gbrownmozilla,144,39,105
+235,autophone,121e179aa9fbf88b8e866e137d58ede37f99eeca,"Bug 1064237 - Autophone - fix smoketest, r=mcote.",Bob Clary,2014-09-08T03:28:26Z,bclary,bclary,137,36,101
+236,autophone,e57567dcece5b56d670b335749704c606403d4e2,"Bug 1062371 - Autophone - incorporate recent changes to mozdevice.adb, r=mcote.",Bob Clary,2014-09-07T13:25:59Z,bclary,bclary,25,16,9
+237,autophone,5ca1fb7cb37f9bee6919405664a0e0e46c843c19,"Bug 1048942 - Add support for getting the device ip address to mozdevice.adb, r=bclary",James Graham,2014-09-07T13:14:45Z,jgraham,jgraham,32,32,0
+238,autophone,dcb8f8c878eb333c7cafd5798f4fb65bbcfb0af5,"Bug 1048883 - Add extra methods for remounting, pulling files and forwarding ports, r=bclary",James Graham,2014-09-07T13:14:37Z,jgraham,jgraham,127,126,1
+239,autophone,1c7cb1e2ed39eb7a9089bb5db746d91466bc4588,"Bug 1048881 - Make ADBDevice.test_root into a computed property, r=bclary",James Graham,2014-09-07T13:14:37Z,jgraham,jgraham,110,56,54
+240,autophone,6682c94252690cccca3c2a89fc35481b3608efd0,"Bug 1050896 - Improve specification of device serial in mozdevice.adb, r=bclary",James Graham,2014-09-07T13:14:37Z,jgraham,jgraham,59,55,4
+241,autophone,ff8bc7b037c74f85b8151236649f2976fde19185,"Bug 1048889 - Make mozdevice.adb work with structured logging, r=bclary",James Graham,2014-09-07T13:14:37Z,jgraham,jgraham,91,53,38
+242,autophone,8292c841b53680dee6423ca675fc42cc3e96f8d8,"Bug 1063886 - Autophone - paydown technical debt, r=mcote.
+* Make pyflake clean.
+* switch to jot.
+* Remove armv6 since it is no longer supported
+* fix runjob vs. run_job inconsistency in tests.
+* move test config file reading to PhoneTest constructor.
+* add missing import ConfigParser
+* remove PhoneTestMessage.JSONEncoder
+* Use AutophoneOptions object to encapsulate command and ini configuration data instead of user_cfg dictionary.
+* Use PhoneData object instead of phone_cfg dict to encapsulate phone data.
+* Use BuildMetadata object instead of build_metadata dict to encapsulate build data.
+** Change BuildMetadata's attributes to be less verbose: build_dir to dir, build_type to type, androidprocname to app_name, blddate to date.
+* PhoneTestMessage/update_status
+** Move phonetest.PhoneTestMessage to phonestatus, eliminate status_cb from PhoneTest constuctor
+** Move phonetest.PhoneTestMessage.* status values to phonestatus.PhoneStatus
+** change PhoneTestMessage signature to use phone_status, message arguments
+** change worker status_update and phonetest set_status to update_status.
+** Pass PhoneData to PhoneTestMessage, optionally pass BuildMetadata.
+* PhoneTest
+** Use PhoneWorker.setup_job/teardown_job to set the worker_subprocess as an attribute on PhoneTest
+** Add PhoneTest.build property to return PhoneTest.worker_subprocess.build
+* Remove build_metadata and worker_subprocess arguments where available as attributes.
+* Make sure to use phone_status kwarg on PhoneWorker.update_status
+* Remove redundant build.id from s1s2tests update_status messages.
+* Fix undefined use of proc in PhoneWorkerSubProcess._check_device.",Bob Clary,2014-08-28T16:18:13Z,bclary,bclary,1231,579,652
+243,autophone,01605c51669ef9193876807e95cc3c25eae74c79,"Bug 1047480 - Autophone - should send email notifications when tests fail to run, r=mcote.",Bob Clary,2014-08-06T04:59:22Z,bclary,bclary,36,36,0
+244,autophone,8ec1f68a5d7f4af1f8afd24bfa6b419c4b9787e6,"Bug 1037085 - Autophone - add b2g-inbound as a supported repository for downloading builds, r=mcote.",Bob Clary,2014-07-11T13:22:21Z,bclary,bclary,14,9,5
+245,autophone,50538162ab3962706b98a0e9db0606ffce977009,"Bug 1031008 - Autophone - let devices catch their breath, r=mcote.",Bob Clary,2014-07-04T02:53:06Z,bclary,bclary,310,141,169
+246,autophone,92416ceff7514e5210e1fe5f682cd1bc0bc94109,"Bug 1007220 - Add webapp startup test, r=mcote.",Bob Clary,2014-06-05T14:32:44Z,bclary,bclary,3319,2243,1076
+247,autophone,4244191872b496addc58851111a61bd0763bf4ab,"Bug 1017097 - Autophone - support running local tests only, r=mcote.",Bob Clary,2014-05-30T09:39:49Z,bclary,bclary,17,11,6
+248,autophone,dc7fa5538d3d80685a1f9ff4fbf5cfdc747f9f24,"Bug 1011112 - Autophone - adb - uninstall_app should not raise ADBError if the app is not installed, r=mcote.",Bob Clary,2014-05-15T16:28:51Z,bclary,bclary,305,190,115
+249,autophone,8bddba38e1f536a2403beab888fac71a7a1d9df4,"Bug 990601 - Autophone - use adb instead of tcp/ip to control devices, r=mcote.",Bob Clary,2014-04-22T15:39:59Z,bclary,bclary,1983,1412,571
+250,autophone,a3a774a9673fdcce42226f501667acbbb36a5921,"Bug 998788 - Autophone - fix detection of device ids in test manifests, r=self.",Bob Clary,2014-04-18T21:48:02Z,bclary,bclary,2,1,1
+251,autophone,850f6a2f783737d8d62a86f0425d11afadc2cb80,"Bug 969518 - Autophone - attempt to use reverse tethering so we can use ethernet over usb instead of wifi, r=mcote.
+
+* autophone.ini.example
+** Update with usbnet examples.
+* autophone.py
+** Do not lower case registration url data as device serial numbers
+   are case sensitive.
+** Make the host port distinct for each ppp connection.
+** Add debug logging about usbnet set up and catch errors from
+   calling usbnet.sh. Terminate Autophone and send email notification
+   if an error occurs calling usbnet.sh.
+** In Autophone.stop, call stop on the workers before calling shutdown
+   on the Autophone instance. This along with the change to worker.py,
+   helps prevent deadlocks when shutting down the server.
+* worker.py
+** Call terminate on worker process when stopping the worker.
+* usbnet.sh
+** Fix typo in usage.
+** Implement a shell function wait_for_device using adb get-state
+   which will time out and return an error after 30 seconds.
+** Restrict usbnet to devices where we can run adbd on device as
+   root so we can create the ppp device on the phone. Terminate
+   with a non-zero exit code if adb root is not supported by a device.
+** If we have udev rules set up we do not need suid adb except
+   for when creating the ppp devices.
+** Explicitly turn off deflate and bsd compression on the ppp
+   connection.",Bob Clary,2014-03-12T04:32:34Z,bclary,bclary,192,149,43
+252,autophone,ab63d1328bc8bdfac6121e2218244b5b69b17af8,"Bug 1208782 - Autophone - do not attempt to get response json during Treeherder submission error if response is None, r=jmaher.",Bob Clary,2015-09-26T21:06:39Z,bclary,bclary,9,7,2
+253,autophone,b2bbbab74f507b77f74b6fbb3908e196b17036db,"Bug 1205836 - Autophone - suppress errors due to invalid values in preferences due to suppression of non local network accesses, r=jmaher.",Bob Clary,2015-09-26T20:44:51Z,bclary,bclary,74,54,20
+254,autophone,f158c591a926499d7ad129cc346a8212352bc196,"Bug 1205836 - Autophone - reset throbber, chrome start times if stop not found, r=jmaher.",Bob Clary,2015-09-25T16:58:28Z,bclary,bclary,21,17,4
+255,autophone,af57e65369cc956f74cabf48a58c75f43c715a1a,Bug 1192069 - Autophone should submit data to perfherder. r=bc,Joel Maher,2015-10-01T10:38:51Z,jmaher,jmaher,71,60,11
+256,autophone,38993cf5d9727eb01af822ba4d903d3ebcd7c8c7,"Bug 1207836 - Autophone - update production test manifest to include rca in mozilla-central and mozilla-aurora, r=self.",Bob Clary,2015-09-23T23:07:49Z,bclary,bclary,4,2,2
+257,autophone,b426f8a3242021078707bb0006f9209d10245704,"Bug 1207836 - Autophone - add jmaher to email notification list, r=self.",Bob Clary,2015-09-23T22:52:14Z,bclary,bclary,2,1,1
+258,autophone,4e18f7b42384e60fbfb2e608471115f9be4cdfc2,"Bug 1205864 - Autophone - eliminate spurious duplicate logcat messages, r=jmaher.",Bob Clary,2015-09-18T21:26:28Z,bclary,bclary,71,61,10
+259,autophone,8932b011e95e850c0cbf98f4e712399adfd50261,"Bug 1206954 - Autophone - Do not kill the worker if unable to submit Phonedash results, r=jmaher",Bob Clary,2015-09-22T23:25:08Z,bclary,bclary,1,0,1
+260,autophone,b57c339e7724903f532a0501b0dc51b013bedaf1,"Bug 1205660 - Autophone - disable global autophone-tests selector on try, r=gbrown",Bob Clary,2015-09-17T14:51:53Z,bclary,bclary,8,4,4
+261,autophone,db3e74941efda2ba0a085ca9233df6add1016f34,"Bug 1205396 - Autophone - limit revision to 12 characters in job url email, r=gbrown.",Bob Clary,2015-09-16T09:38:37Z,bclary,bclary,2,1,1
+262,autophone,aacba4b78789d44a05630a27c5ca3f4a4537d940,"Bug 1205394 - Set MOZ_CRASHREPORTER_NO_REPORT in environment to suppress crashreporter ui, r=gbrown.",Bob Clary,2015-09-16T06:52:27Z,bclary,bclary,1,1,0
+263,autophone,05a0a0b63b5ecd3881d7b7342efbd8a6cd291b57,"Bug 1205393 - Autophone - wait between polls and collect logcat when polling unit test process, r=gbrown.",Bob Clary,2015-09-16T06:51:12Z,bclary,bclary,6,6,0
+264,autophone,fde25b179aee7d155728299a8aa68faee6b78710,"Bug 1205389 - Autophone - Update preferences for new SafeBrowsing prefs structure added in Bug 1107372, r=gbrown.",Bob Clary,2015-09-16T05:41:22Z,bclary,bclary,6,6,0
+265,autophone,5df25aa6536f06b67e691caa42cd892dbff3e699,"Bug 1205388 - Autophone - better handle logcat collection, r=gbrown.",Bob Clary,2015-09-15T16:38:39Z,bclary,bclary,76,50,26
+266,autophone,e43b7f1a8082449857907f481fef717416852dfe,"Bug 1205386 - Autophone - frequently reap child processes, r=gbrown.",Bob Clary,2015-09-15T16:32:00Z,bclary,bclary,27,27,0
+267,autophone,5badbf32a5233ff747dabcf702d73aaa496ac697,"Bug 1205384 - Autophone - suppress BeautifulSoup4 parser warning, r=gbrown.",Bob Clary,2015-09-14T13:32:36Z,bclary,bclary,2,1,1
+268,autophone,89805c6aba58ae2b0abd6090b2df47d4fe7795bb,"Bug 1205383 - Autophone - catch device exceptions in PhoneWorkerSubProcess:ping, r=gbrown.",Bob Clary,2015-09-14T13:27:01Z,bclary,bclary,105,55,50
+269,autophone,00fc38bc9d970c8456c66175d3025b6cf841d6e3,"Bug 1205382 - Autophone - PhoneWorkerSubProcess:stop - kill process if terminate does not succeed, r=gbrown.",Bob Clary,2015-09-14T13:04:18Z,bclary,bclary,7,5,2
+270,autophone,0560fe77e08091c6100a2934e3da06533ed4c250,"Bug 1197374 - Autophone - create separate logs for devices and tests, r=gbrown.",Bob Clary,2015-09-13T21:27:33Z,bclary,bclary,239,138,101
+271,autophone,77f2284242de8db148d9c07512bdc51a8620a552,"Bug 1204071 - Autophone - set runtestsremote.py environment variables via the command line, r=gbrown.",Bob Clary,2015-09-13T16:58:23Z,bclary,bclary,10,4,6
+272,autophone,bd00ca865ec1445be56f69981bc8647fbb556ef9,"Bug 1204288 - Autophone - do not short circuit test downloads based on existence of tests directory, r=gbrown.",Bob Clary,2015-09-13T00:54:21Z,bclary,bclary,175,89,86
+273,autophone,3543ec1d556fd7924661d3bdb585d2ae185ab8ca,"Bug 1204092 - Autophone - update production-manifest.ini to allow try on all devices/tests, r=self",Bob Clary,2015-09-11T23:14:06Z,bclary,bclary,238,176,62
+274,autophone,aaa9252af597b9bb6de6cb435d8284972c2e3ab6,"Bug 1203535 - Autophone - Use adb transport for unit tests, r=gbrown.",Bob Clary,2015-09-11T18:45:40Z,bclary,bclary,5,2,3
+275,autophone,b1b12513d809613b4b5fb599c6d84cc49f19a85d,"Bug 1201061 - Autophone - disable robocoptest-autophone-robocoptests-autophone for devices which do not support SUTAgent execsu, r=self.",Bob Clary,2015-09-10T06:10:37Z,bclary,bclary,12,6,6
+276,autophone,56aaa101234ffe1c96914288514585995144240c,"Bug 1202833 - Autophone - interrupt charging if shutdown or restart command received, r=gbrown",Bob Clary,2015-09-09T02:24:00Z,bclary,bclary,5,5,0
+277,autophone,51b7e4e270d7e7d1248418795cbfff174f25e4b7,"Bug 1201061 - Autophone - enable robocop_autophone in production, r=self.",Bob Clary,2015-09-08T15:43:57Z,bclary,bclary,13,13,0
+278,autophone,a36b3227074378a1ce61d0b28d7b7ca9668a9313,"Bug 1201061 - Autophone - adapt runtestsremote.py to use test's mozbase, r=gbrown.",Bob Clary,2015-09-04T21:24:47Z,bclary,bclary,12,12,0
+279,autophone,5bded5c80e634606c7fe52ae6f94743826d1775e,"Bug 1201061 - Autophone - adapt runtestsremote.py to robocop test runner changes, r=gbrown.",Bob Clary,2015-09-03T16:57:39Z,bclary,bclary,35,26,9
+280,autophone,4e9a4ba10620c7e2a7512fea6d73f697d3262712,"Bug 1196115 - Autophone - re-enable flash now that bug 1200361 has re-enabled in process NPAPI on Android, r=self.
+
+This reverts commit c9eb3e206583d9598dbd92a98135c99293ce63ac.",Bob Clary,2015-08-28T13:23:32Z,bclary,bclary,2,1,1
+281,autophone,f5ec40550251a0d95d60bbba6a413720e7b976c2,add talos robocheck support to autophone,Joel Maher,2015-08-24T20:24:48Z,jmaher,jmaher,347,337,10
+282,autophone,c9eb3e206583d9598dbd92a98135c99293ce63ac,"Bug 1196115 - make flash click to play to work around oop flash crashes, r=self.",Bob Clary,2015-08-21T18:59:28Z,bclary,bclary,2,1,1
+283,autophone,95f5b44625a339bd80ddfbf732a3adc59052bc31,"Bug 1176060 - Autophone - recover from wifi issues, r=gbrown.",Bob Clary,2015-08-20T15:11:38Z,bclary,bclary,31,31,0
+284,autophone,b4fbc740a619ef1dedeebbf4bda4fa661cbbaacd,Bug 1157377 - Fixed parameter types to adb_android.py and adb.py. r=dhunt,Rahul Sharma,2015-08-21T15:16:03Z,creativcoder,creativcoder,368,215,153
+285,autophone,1d5a23125b970848372d9f91146a7e04924248bc,"Bug 1014760 - Move mozlog.structured to mozlog; Move mozlog to mozlog.unstructured, r=jgraham",Andrew Halberstadt,2015-08-21T15:15:17Z,ahal,ahal,4,2,2
+286,autophone,10d67a5468b155db607d2c8bc4f17ca6f11470ba,Bug 1156812 - [mozdevice] Support specifying alternate log buffers when retrieving or clearing the logcat. r=bclary,Dave Hunt,2015-08-21T15:08:22Z,davehunt,davehunt,45,32,13
+287,autophone,b793f5ba7cedfadc97e520b8e8d29c4440157093,"Bug 1196123 - Autophone smoketest does not use default preferences, r=gbrown.",Bob Clary,2015-08-19T15:12:00Z,bclary,bclary,12,3,9
+288,autophone,c61cbd6b8471a3722c73a50e0d4fd09630ade314,"Bug 1196120 - Fix error in mailer.send use in AutophoneTreeherder.post_request, r=gbrown.",Bob Clary,2015-08-19T06:07:16Z,bclary,bclary,17,11,6
+289,autophone,a1584c9634747505723e6497298a1315c026eba3,"Bug 1190912 - Autophone - refactor tests to remove necessity for duplicating code, r=gbrown.",Bob Clary,2015-08-18T19:14:32Z,bclary,bclary,508,185,323
+290,autophone,0ee96a97a82b67639a8df0ae35119ddb07511323,"Bug 1194801 - Autophone - truncate revision to 12 characters when submitting to Treeherder resultset api, r=self",Bob Clary,2015-08-14T19:33:36Z,bclary,bclary,2,1,1
+291,autophone,1fa6160587741cb3a8789614c481397a6c0f3ec2,Bug 1172105 - write a tests/talostest.py to autophone for tp4m/tsvg,Joel Maher,2015-08-02T11:03:13Z,jmaher,jmaher,516,513,3
+292,autophone,9c12f897833a713c80954ba0b003c2195dc1bc53,"Bug 1172105 - fix yandex.ru to not have external network access, update Autophone Subproject, r=self",Bob Clary,2015-07-27T15:43:25Z,bclary,bclary,2,1,1
+293,autophone,91eac8f41de0284560509fabd3297828531a70c9,"Bug 1186420 - Autophone - update requirements and deploy thclient 1.6, r=mcote.",Bob Clary,2015-07-22T14:34:09Z,bclary,bclary,73,50,23
+294,autophone,3c0ac555d7a0d9f8d588ef97f506cf1a9adcc63c,"Bug 1186400 - Autophone - 2015-07-22 - nexus-5-kot49h-1 has died, swap in nexus-5-kot49h-4, r=self",Bob Clary,2015-07-24T03:09:48Z,bclary,bclary,11,6,5
+295,autophone,4b27da1566fe9e528b7b286704030378b18bcb4a,"Bug 1172095 - add talos tp4m and tsvgm files to ep1 repository - update ep1 subproject in Autophone, r=bc",Bob Clary,2015-07-23T17:29:43Z,bclary,bclary,2,1,1
+296,autophone,28a8fc0f990ad09c9c0ee7f50e1c6b8bcb0931b3,"Bug 1183057 - rename facebook.com/*/barackobama -> facebook.com/*/barackobama.html, update ep1 Subproject in Autophone",Bob Clary,2015-07-21T13:40:25Z,bclary,bclary,2,1,1
+297,autophone,6400e80bf5c41a0fd8a7f83e3940985be962932b,"Merge pull request #37 from jmaher/master
+
+Bug 1172098 - add pageloader.xpi to autophone /xpi/. r=bc",Bob Clary,2015-07-20T08:04:16Z,bclary,bclary,0,0,0
+298,autophone,e24c2973bbc61171e005fae1be0ed1c7d9a7df94,"Bug 1182802 - Autophone - set browser.search.geoSpecificDefaults false, r=gbrown.",Bob Clary,2015-07-14T13:53:48Z,bclary,bclary,1,1,0
+299,autophone,29bc0031ef24ce33d3d4065aaeda64db1f9b0ef6,Bug 1172098 - add pageloader.xpi to autophone /xpi/. r=bc,Joel Maher,2015-07-13T12:23:12Z,jmaher,jmaher,0,0,0
+300,autophone,7e44509043ac5371a0624972c5f185b31d7a335a,"Bug 1180235 - Autophone - enable reboot on error in production, r=self.",Bob Clary,2015-07-03T14:57:20Z,bclary,bclary,3,2,1
+301,autophone,454db3c053ed2b2396fbb7d1a0dc6bb06b995ffc,"Bug 1179880 - Autophone - retry any exceptions when posting to treeherder, r=gbrown.",Bob Clary,2015-07-02T13:30:31Z,bclary,bclary,20,5,15
+302,autophone,2bcb211d42b5bff587a9e03263040e97934e1344,"Bug 1177491 - Autophone - standardize custom fennec preferences and environment variables for tests, r=gbrown,jmaher.",Bob Clary,2015-06-30T17:56:36Z,bclary,bclary,279,179,100
+303,autophone,3ae1b09bc36eb7a30d9ee649c520e965b4d5f361,"Bug 1155885 - Autophone - should automatically recover when devices are disconnected, r=gbrown.
+
+- remove PhoneWorkerSubprocess.clear_test_base_paths.
+- send Heartbeat messages to update last message timestamps.
+- consolidate device checking/recovery into PhoneWorkerSubProcess.ping().
+- improve email notifications of device status.
+- handle device errors on startup.
+- handle tests which require device network access.
+- check installation success before running tests.
+- handle device errors when tearing down jobs and submitting results to Treeherder.
+- reboot on unrecoverable error
+- remove logger argument to AutophoneCrashProcessor init in smoketest.py left from bug 1161631",Bob Clary,2015-06-14T15:36:58Z,bclary,bclary,815,502,313
+304,autophone,d07291f0a6b24caf916aa30b961b82733d0d634d,"Bug 1176014 - Autophone - increase stderrp_reject from 15 to 50% in webappstartup, r=gbrown",Bob Clary,2015-06-18T18:17:20Z,bclary,bclary,2,1,1
+305,autophone,6d0fe54970464614dd0f6dd6e41e22000b2b1d88,"Bug 1175594 - set pref to allow flash in S1S2Test, r=gbrown.",Bob Clary,2015-06-18T20:31:45Z,bclary,bclary,1,1,0
+306,autophone,90a630500695b4aedd55f1b0403630793fc792bb,"Bug 1173855 - Autophone - handle all URLErrors identically in PerfTest.publish_results, r=gbrown.",Bob Clary,2015-06-12T14:04:17Z,bclary,bclary,8,4,4
+307,autophone,b0ce085535ffefe0edd7bc3f9e5c93eea86051d9,"Bug 1173882 - Autophone - do not increment attempts when inserting a new job due to a retry, r=gbrown.",Bob Clary,2015-06-12T13:57:59Z,bclary,bclary,2,1,1
+308,autophone,383b090b2244a989137895f481c3a19c526aa7a7,"Bug 1174269 - Autophone - increase stderrp_reject from 10 to 50% in perftests, r=gbrown.",Bob Clary,2015-06-12T18:47:50Z,bclary,bclary,16,8,8
+309,autophone,9170a302a14593156f4936bf018cbf1be4fcde43,"Bug 1173882 - Autophone - should use updated attempts when inserting a new job due to a retry, r=gbrown",Bob Clary,2015-06-11T21:26:59Z,bclary,bclary,14,8,6
+310,autophone,a5fd88fd841c25d37144d5039d07605b0d427154,"Bug 1173853 - enable webappstartup on nexus-4-jdq39-4, nexus-5-kot49h-5 for mozilla-beta, r=self",Bob Clary,2015-06-11T21:59:48Z,bclary,bclary,4,2,2
+311,autophone,ca872113c03dd3b11609c8f3af95ed2bfc6011de,"Bug 1158276 - Autophone - download test packages, r=gbrown.",Bob Clary,2015-06-11T03:19:16Z,bclary,bclary,194,145,49
+312,autophone,41f5079ecf731e55821b34b85ae5430e5a6460d5,"Bug 1158276 - Autophone - add test_package_names to the unittest config files, r=gbrown.",Bob Clary,2015-06-11T02:03:32Z,bclary,bclary,54,53,1
+313,autophone,c9e7eaa8afbbfe69b8e565019a584219c8249598,"Bug 1173855 - Autophone - check for timeout in PerfTest.publish_results should test for timeout message, r=gbrown",Bob Clary,2015-06-11T18:06:39Z,bclary,bclary,2,1,1
+314,autophone,0a55fdb858ab799742045875ba0bbf0f2e7604c1,"Bug 1172489 - Autophone - email notifications should include link to Treeherder resultset, failure to submit results should be fatal, r=gbrown",Bob Clary,2015-06-09T18:21:45Z,bclary,bclary,79,56,23
+315,autophone,791e8e681ba49e55697370b5621dfe37d1c50c49,"Bug 1172984 - Autophone - enable duplicate jobs, r=gbrown",Bob Clary,2015-06-10T17:42:01Z,bclary,bclary,1,1,0
+316,autophone,06f6444fa9e3908cdaf0eac5019f555c6de74232,"Bug 1172100 - update autophone.ini.example, r=gbrown.",Bob Clary,2015-06-09T17:05:04Z,bclary,bclary,51,27,24
+317,autophone,f33a3cc891cc2ef8aa51d3eadb3bef875284ff03,"Bug 1165403 - Autophone - allow duplicate jobs, r=gbrown.",Bob Clary,2015-06-08T21:40:38Z,bclary,bclary,68,42,26
+318,autophone,55431a5dad611e6ff7f77a5432f60f334d7f6db5,Bug 1172585 - s3.upload() on Win 7 results in IOError,Maja Frydrychowicz,2015-06-08T17:55:20Z,mjzffr,mjzffr,2,1,1
+319,autophone,e4f1f859a1f2781cdc55370f1fe940ec4923baf8,"Bug 1167682 - sync autophone to talos tp4m and tsvgm files to ep1 repository, r=self",Bob Clary,2015-06-08T13:07:06Z,bclary,bclary,2,1,1
+320,autophone,b91511aa08bd508d38b372567ba8cab3af239bcd,"Bug 1172481 - Autophone - disable autophone-mochitest-media on nexus-7-jss15q-2, r=self.",Bob Clary,2015-06-08T12:44:44Z,bclary,bclary,2,1,1
+321,autophone,514e8feca208bb9cc77cd98226ddf419304dc718,"Bug 1172338 - Autophone - re-enable email notifications, r=self",Bob Clary,2015-06-07T16:50:42Z,bclary,bclary,12,9,3
+322,autophone,0ebb695fee9e5a09c3ad0ecc73e821ea41842995,"Bug 1172334 - Autophone - set custom pref in webappstartup, r=self.",Bob Clary,2015-06-07T16:24:07Z,bclary,bclary,3,2,1
+323,autophone,e90a3a4a47af17e26f1e3272966e9beef1b9ec3a," Bug 1161631 - Autophone - part 7 - remove device-debug, document commands and add script ap.sh to control Autophone, r=gbrown.",Bob Clary,2015-06-04T17:33:59Z,bclary,bclary,139,101,38
+324,autophone,2031330ebdea9a720adc147755f8913f1615a91a,"Bug 1161631 - Autophone - part 2 - part duh - do not attempt to get treeherder credentials if treeherder is not being used, r=gbrown.",Bob Clary,2015-06-04T16:28:34Z,bclary,bclary,7,4,3
+325,autophone,7358c9814666457dba5bd11d7b8296bf27cdb097,"Bug 1161631 - Autophone - part 6 - reuse ADBDevice instances, r=gbrown.",Bob Clary,2015-06-04T16:12:41Z,bclary,bclary,73,34,39
+326,autophone,010aa5daca5f994abaf4e31d675fdddef51718c5,"Bug 1161631 - Autophone - part 5 - tweak and describe ProcessStates, r=gbrown.",Bob Clary,2015-06-04T15:51:38Z,bclary,bclary,30,28,2
+327,autophone,3d5878b94df615c3a73601c36ead0163ee90e660,"Bug 1160188 - Autophone - enable text_log_summary with line, linenumber attributes, fix log uploading, use string instead of dict in text_log_summary artifact, r=gbrown.",Bob Clary,2015-06-03T20:42:52Z,bclary,bclary,66,32,34
+328,autophone,86c921e55aeeba6965d8b35659f5882bb8634a43,"Bug 1161631 - Autophone - part 4 -implement autophone-restart, autophone-add-device, device-restart commands, make device-stop remove device, r=gbrown.",Bob Clary,2015-06-03T02:09:19Z,bclary,bclary,221,166,55
+329,autophone,a0bb699983b3596831eae519e49ce793032c94ec,"Bug 1161631 - Autophone - part 3 -implement help and device commands, r=gbrown.
+
+- autophone-help
+- device-is-alive <device>
+- device-stop <device>
+- device-shutdown  <device>
+- device-reboot  <device>
+- device-disable <device>
+- device-enable <device>
+- device-debug <device> <level>
+- device-ping <device>
+- device-status <device>",Bob Clary,2015-05-31T21:14:48Z,bclary,bclary,214,154,60
+330,autophone,279303dccf68b1c2cdbafa4f39a825504cf31267,"Bug 1161631 - Autophone - Use a shared process lock to prevent AutophonePulseHandler handlers and AutophoneTreeherder post_request contention, add verbose option, r=gbrown.",Bob Clary,2015-05-31T05:17:11Z,bclary,bclary,220,137,83
+331,autophone,95cc7e4191fb49717a1426fd132bb476cad28d9b,"Bug 1160188 - Autophone - support new Treeherder log submission and error summary processing, r=gbrown.",Bob Clary,2015-05-31T00:09:02Z,bclary,bclary,383,122,261
+332,autophone,cd7c3c5ff954787810a1fe561783b845bf57d573,"Bug 1161631 - Autophone - part 2 - revamp logging, r=gbrown.
+
+- remove multiprocessing logging
+- remove third party logger handlers
+- remove root handlers in worker to prevent logging to the main log file
+- use global loggers
+- move some PhoneWorkerSubProcess initialization from the main process to the run method which is in the new process.
+- add SensitiveDataFilter to remove sensitive data from logs
+- close log filehandler after test to prevent truncation",Bob Clary,2015-05-22T17:31:44Z,bclary,bclary,827,416,411
+333,autophone,141483183a2f337f40df5f690f88994a25db592b,"Bug 1161631 - Autophone - part 1 - implement shutdown command, r=gbrown.
+
+- serialize access to PhoneWorkers from AutoPhone.worker_msg_loop
+- use locks consistently.
+- replace AutoPhone.cmd_lock, AutoPhone.worker_lock with a single reentrant lock;
+- ensure lock is acquired in any command or messages processing, pulse notification processing.
+- rename Multiprocessing queue properties
+- properly protect worker access in AutoPhone.worker_msg_loop
+- do not start PhoneWorkerSubProcess until all PhoneWorkers are initialized
+- use autophone-, device- command prefixes
+- map device commands to PhoneWorker methods; make PhoneWorker status a method
+- deal with child process error when stopping a device.
+- implement shutdown
+- process states and bailing during main_loop if shutting down
+- check shutdown in run_tests before dl build and before each test
+- track locks
+- pulsemonitor should use the _stopping threading.Event in the loop conditional
+- move guts of stop off of server thread onto main thread
+- do not drop shutdown jobs just due to the number of attempts
+- tweak the process id logging",Bob Clary,2015-05-18T13:39:16Z,bclary,bclary,522,334,188
+334,autophone,0fcbbd37f9ec4f7cec17fe3a88f30052a1c255c0,"Bug 1161631 - Autophone - fix possible uninitialized PhoneTest.start_time due to device timeout in self.dm, r=gbrown.",Bob Clary,2015-05-26T01:51:07Z,bclary,bclary,10,6,4
+335,autophone,0f03d7fbe09ef3d9b71ca1e110a6959c8022cd14,"Bug 1161631 - Autophone - Make PhoneTest use PhoneWorkerSubProcess instance of ADBAndroid, r=gbrown.",Bob Clary,2015-05-26T14:57:04Z,bclary,bclary,23,2,21
+336,autophone,ef6e338bfd1a23fc1b9bd0c23c195576cbb00a75,"Bug 1161631 - Autophone - do setup before checking battery in case of ADBTimeoutError, r=gbrown.",Bob Clary,2015-05-22T23:47:16Z,bclary,bclary,2,1,1
+337,autophone,da1800c414a893a5e142d12436b94cc9c9fd491e,"Bug 1161631 - Autophone - reset PhoneTest.test_result.status after jobs, r=gbrown.",Bob Clary,2015-05-18T22:43:21Z,bclary,bclary,24,23,1
+338,autophone,8f4ca86090cd82cd239decb5550f3b8e05e01604,"Bug 1166752 - Autophone - disable nexus-s-[46], nexus-5-kot49h-2 on unittests, r=self.",Bob Clary,2015-06-01T07:58:23Z,bclary,bclary,52,26,26
+339,autophone,1056a07e31664ada6dfe5b263050160648dcc463,"Bug 1166752 - Autophone - device issues - nexus-5-kot49h-4 failed, trying nexus-5-kot49h-5 again, r=self.",Bob Clary,2015-05-27T18:34:35Z,bclary,bclary,16,8,8
+340,autophone,30dd2878c85b761f1fa2bc0753d7383f2e0b524c,"Bug 1166752 - Autophone - device issues - replace nexus-5-kot49h-5 with nexus-5-kot49h-4, r=self",Bob Clary,2015-05-21T14:37:18Z,bclary,bclary,14,7,7
+341,autophone,5ab6b1d7013ad868d04b84583d0d9f93abe9ad0f,"Bug 1164871 - Autophone - update device and test configurations, r=self.
+
+- add disabled nexus-5-kot49h-6 to production-devices.ini;
+- replace nexus-5-kot49h-4 with nexus-5-kot49h-5 in tests/production-manifest.ini;
+- disable mochitest-media on try for nexus-5-kot49h-5 due to rooting issues.",Bob Clary,2015-05-18T02:45:20Z,bclary,bclary,9,5,4
+342,autophone,ac9bb0c9b457a21c18a73a91d0169bfe7129ae88,"Bug 1164871 - Autophone - replace nexus-5-kot49h-4 with spare nexus-5-kot49h-5, r=self.",Bob Clary,2015-05-15T18:34:58Z,bclary,bclary,6,4,2
+343,autophone,5788485319d0d55001b495a36513c2e381eb6a7a,"Bug 1164505 - Autophone - handle no device/repos in test manifest, r=gbrown.",Bob Clary,2015-05-13T00:43:09Z,bclary,bclary,15,8,7
+344,autophone,5fa555ae3d9de1dfd4a76e81adee732a57c3376e,"Bug 1164082 - Autophone - retry when timing out submitting results to phonedash, r=gbrown.",Bob Clary,2015-05-12T16:38:33Z,bclary,bclary,66,41,25
+345,autophone,91420256f70694bab429816872cb14a917f9afc0,"Bug 1163129 - Autophone - exclude nexus-4-jdq39-{3,4} from Mm due to hang/excessive timeouts, r=self.",Bob Clary,2015-05-10T06:44:17Z,bclary,bclary,6,4,2
+346,autophone,1d734e7cacf812aa3234c435c5663514f60792c5,"Bug 1163129 - Autophone - exclude nexus-s-4 from w, Mm; nexus-5-kot49h-4 from Mm, r=self.",Bob Clary,2015-05-10T00:34:08Z,bclary,bclary,9,6,3
+347,autophone,1ffe96291976ac47700717070e648df3df4171da,"Bug 1163129 - Autophone - exclude Mm on nexus-5-kot49h-2, nexus-s-6 and w on nexus-s-6 on fx-team, r=self.",Bob Clary,2015-05-09T22:20:49Z,bclary,bclary,9,6,3
+348,autophone,80aa3df1af6da63848af1e830ca3c6dccd9cb495,"Bug 1163340 - Autophone - include config file in log file names to prevent collisions, r=self.",Bob Clary,2015-05-09T21:00:33Z,bclary,bclary,7,5,2
+349,autophone,f306708691759c43bdd77f37cd0f8280c9d129a6,"Bug 1162514 - Autophone - fix device repo mapping, r=gbrown.",Bob Clary,2015-05-07T20:31:27Z,bclary,bclary,118,90,28
+350,autophone,55d122b6897b68fdba973c6764a035907502f6f7,"Bug 1162389 - fix devicescfg in production-autophone.ini, r=gbrown",Bob Clary,2015-05-07T18:57:38Z,bclary,bclary,2,1,1
+351,autophone,2e34070c47aa66c0b09b93105fb98fbec649b4f8,"Bug 1119654 - Autophone - Add production configuration, r=gbrown.",Bob Clary,2015-05-07T05:33:35Z,bclary,bclary,225,225,0

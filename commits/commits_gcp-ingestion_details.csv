@@ -1,0 +1,1972 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,gcp-ingestion,a582f7b3b85f59167a3d276fa962490893bba63b,"Change flag name for sending code coverage report
+
+Apparently, dashes are not allowed
+https://docs.codecov.io/docs/flags#section-how-to-create-flags",Jeff Klukas,2018-11-06T18:48:10Z,jklukas,jklukas,2,1,1
+1,gcp-ingestion,e14b6eaa79937ac39b2a827c153dc60e9f2951ae,"Replace CompositeTranform with Beam's PTranform.compose
+
+Closes #155",Jeff Klukas,2018-11-06T18:39:59Z,jklukas,jklukas,83,19,64
+2,gcp-ingestion,c68a42e860067d7bebf88244504776b8231fb6ff,"Add code coverage reporting for ingestion-beam
+
+Closes #124",Jeff Klukas,2018-11-06T17:53:03Z,jklukas,jklukas,22,22,0
+3,gcp-ingestion,0667d6a376eef7b8802fef5c4c05eacfc8a6476a,"Optionally discard geo_city based on presence in a city size file (#153)
+
+* Optionally discard geo_city based on presence in a city size file
+
+Closes #144
+
+I realized a slightly improved way of accessing a single file via the
+Beam FileSystems API and decided it's simple enough to use directly rather
+than wrapping up in a utility class, so `util/File.java` goes away here.
+
+The sample city file for `milton` is taken from [lua_sandbox_extensions]
+(https://github.com/mozilla-services/lua_sandbox_extensions/blob/e9a472704a88cf7f714ba4974436701558850c44/moz_ingest/tests/cities1000-test.txt)",Jeff Klukas,2018-11-06T18:16:26Z,jklukas,jklukas,210,121,89
+4,gcp-ingestion,0262a93782fc82ef624151303f19fb82611d63a8,"Add a brief description of the migration plan. (#152)
+
+Credit to :whd for the content, any errors are courtesy of :mreid.",Mark Reid,2018-11-02T19:32:59Z,mreid-moz,mreid-moz,89,89,0
+5,gcp-ingestion,1b79a400ec4960ba7b5fe9fe6986db65fe7c1d4c,"Add tests for check_disk_bytes_free
+
+fixes #147",Daniel Thorn,2018-10-30T22:48:09Z,relud,relud,87,84,3
+6,gcp-ingestion,8d9970291f7b8089851643598f1950ba1728f8be,Add test for flush api,Daniel Thorn,2018-10-30T22:48:54Z,relud,relud,36,36,0
+7,gcp-ingestion,7f8f130d87155b55a97c415309f439d3f6cbd4cd,Add environment to dockerhub push (#151),whd,2018-10-31T18:13:20Z,whd,whd,3,3,0
+8,gcp-ingestion,98f048254e5813a5d64d434b29a0dfc86b834970,Add dockerhub config (#146),whd,2018-10-31T12:59:33Z,whd,whd,14,13,1
+9,gcp-ingestion,606eadcbca0a338829b81049e2f9f5dccfc5bd9d,Disable new java option breaking beam tests,Daniel Thorn,2018-10-30T23:30:40Z,relud,relud,2,2,0
+10,gcp-ingestion,0483292849f64decdfdeed6cac5807ac43ae3c49,Beam 2.7.0 -> 2.8.0,Jeff Klukas,2018-10-26T21:01:12Z,jklukas,jklukas,2,1,1
+11,gcp-ingestion,5d06f070e39fcb5c8a0e8ab365517757a6c059ad,"Support GCS paths for geoCityDatabase
+
+We also add a util.File class to contain the logic for digging into
+Beam's facilities for resolving paths in different storage backends.",Jeff Klukas,2018-10-26T19:58:47Z,jklukas,jklukas,101,95,6
+12,gcp-ingestion,10fef5af6013752f79b91170913564cb145a83cd,Add dockerflow heartbeat check for disk space (#122),Daniel Thorn,2018-10-26T15:58:54Z,relud,relud,49,45,4
+13,gcp-ingestion,9d3a3dd782c1b5d9a81423f8ff563f4c4461f03a,Move test requirements into a separate document,Daniel Thorn,2018-10-23T18:53:32Z,relud,relud,325,162,163
+14,gcp-ingestion,b289340aae93fee5f6673cee2e715433f1c50f08,Update protobuf python 3.7 hash,Daniel Thorn,2018-10-23T18:40:38Z,relud,relud,2,1,1
+15,gcp-ingestion,271d747c6c8c19cfc81ea695aa91dc276f7f6234,Use spotless to format java,Daniel Thorn,2018-10-22T20:18:13Z,relud,relud,911,389,522
+16,gcp-ingestion,71ab872f36bf7f5314b1aeacc30fc851d07f0850,Format ingestion-edge with black,Daniel Thorn,2018-10-22T18:06:23Z,relud,relud,97,53,44
+17,gcp-ingestion,fd9278e9c9214c169de245bde61fcb90dcae6d16,"Replace Flask with Sanic (#109)
+
+* Replace Flask with Sanic
+
+fixes #17
+
+* Update ingestion-edge to use hashed requirements
+
+fixes #89
+
+* make _publish async
+
+* fix test client error handler
+
+* address review
+
+* address review",Daniel Thorn,2018-10-22T17:34:34Z,relud,relud,408,294,114
+18,gcp-ingestion,de0988181d071d7313facd8c8b8e161623c35e58,Improve docstring for _publish (#111),Daniel Thorn,2018-10-15T21:03:50Z,relud,relud,19,11,8
+19,gcp-ingestion,07af5e1c9eb23b5eee5ccde37e69d0fdb8c3e292,"Update dependencies
+
+beam 2.7 was just released, which updates many other dependencies
+transitively.",Jeff Klukas,2018-10-05T18:30:30Z,jklukas,jklukas,6,3,3
+20,gcp-ingestion,0b28fde28aa03cdcbb267b441c8b50ba014f0109,Use factory pattern and separate contract-tests in ingestion-beam,Daniel Thorn,2018-09-26T23:42:39Z,relud,relud,490,311,179
+21,gcp-ingestion,84050e392b6bd7590ce4f82f74bc3e3dfcfcbbf5,Include docstring linting in CI (#107),Jeff Klukas,2018-09-27T17:36:03Z,jklukas,jklukas,38,29,9
+22,gcp-ingestion,6f38afc4f8683cb5365f92b249a1a4127a8daef4,Implement disk queue in ingestion-edge,Daniel Thorn,2018-09-19T06:23:44Z,relud,relud,159,130,29
+23,gcp-ingestion,6ebd0f0394fa646ccb3976fb41a42f051c6fa058,"Add util.Time and implement parseDuration using java 8 time API (#100)
+
+Add util.Time and implement parseDuration using java 8 time API
+
+This parses a wider variety of formats and will make the transition
+off of joda time easier.",Jeff Klukas,2018-09-26T13:51:27Z,jklukas,jklukas,328,208,120
+24,gcp-ingestion,4889c511c582b59dd111c587f8fac219e5ba7366,Add DecoderMainTest,Jeff Klukas,2018-09-25T19:53:15Z,jklukas,jklukas,56,56,0
+25,gcp-ingestion,dcfd506eeac3b8f9ee25e45955bb96b64d1c6d2c,"Fix DecoderOptions.parse
+
+Fixes #101",Jeff Klukas,2018-09-25T19:52:14Z,jklukas,jklukas,22,11,11
+26,gcp-ingestion,3a47937d3c158bd80fb04221d76647029d97bbca,"Add SinkMain tests for placeholders and text<->Json (#98)
+
+Partially addresses #74",Jeff Klukas,2018-09-25T19:55:11Z,jklukas,jklukas,108,91,17
+27,gcp-ingestion,941624398031194eab5abbb98fabf64ac19ca28a,"Add test utilities for reading files and comparing contents
+
+Closes #54",Jeff Klukas,2018-09-24T20:31:07Z,jklukas,jklukas,284,237,47
+28,gcp-ingestion,5bf5abfc7c0f4520250818e16dfb2e8af4dc32f1,"Bug: Allow dash and underscore in path attributes (#87)
+
+* Bug: Allow dash and underscore in path attributes
+
+* More comprehensive regex for output path placeholders",Jeff Klukas,2018-09-20T00:53:36Z,jklukas,jklukas,31,28,3
+29,gcp-ingestion,663cc7fa01be8250315cece42108b58790c1652d,"Pre-load all schemas in ingestion-beam
+
+Closes #57",Jeff Klukas,2018-09-18T12:44:44Z,jklukas,jklukas,57,49,8
+30,gcp-ingestion,6771af45a52ee0321236226217c1e32f794795d7,"Add metrics to several Decoder transforms
+
+Closes #38",Jeff Klukas,2018-09-18T13:44:30Z,jklukas,jklukas,48,46,2
+31,gcp-ingestion,e90e760c4b2ef0bfe1fb8b849b046fa2f3910c23,Test ingestion-edge with docker-compose,Daniel Thorn,2018-09-17T22:19:37Z,relud,relud,195,124,71
+32,gcp-ingestion,04516d8f4d6fba88f788f2d2c65c26525652c00f,Update CI to use a smaller image for gcloud emulators,Daniel Thorn,2018-08-27T19:59:36Z,relud,relud,2,1,1
+33,gcp-ingestion,b3d809ca7236c9bfb17bd9a50d6fa51753f0fa4c,Update requirements.txt,Daniel Thorn,2018-09-17T17:11:42Z,relud,relud,8,4,4
+34,gcp-ingestion,93f990bae8d84f09d90a1e39d0e9eb8acf6a7d09,"Add checkstyle header
+
+fixes #73",Daniel Thorn,2018-09-17T16:48:11Z,relud,relud,37,37,0
+35,gcp-ingestion,e0fb8e3f836e9c43fc09a87f294b90afb3eff8fd,Rename utils to util,Daniel Thorn,2018-09-17T16:27:09Z,relud,relud,20,10,10
+36,gcp-ingestion,d0be5a94447433c797642d90270e0d7d222916ef,"Add derived state SinkOptions.Parsed
+
+This allows us to parse values once and have them available as getters
+on the options class we pass around.",Jeff Klukas,2018-09-14T21:03:51Z,jklukas,jklukas,189,149,40
+37,gcp-ingestion,1684ccf205cfe142e3541b28e345fc0a1e65c3ec,Provide static identity() transform for PubsubMessage,Daniel Thorn,2018-09-13T22:16:26Z,relud,relud,47,26,21
+38,gcp-ingestion,e980c82dec52b65f29dc4e781a63fc95d77b6c30,Add Deduplicate to Decoder,Daniel Thorn,2018-09-12T22:05:51Z,relud,relud,365,350,15
+39,gcp-ingestion,c70c416ce9e434a7b432966f943a0ad63d643e1f,Refactor Sink.Options to options.SinkOptions,Daniel Thorn,2018-09-14T18:52:51Z,relud,relud,201,100,101
+40,gcp-ingestion,3d605e676c53d9bab0d506df1c3c13d005a45792,"Remove empty lines between getters and setters in options
+
+We add a suppressions.xml file and make our options code in line
+with Beam examples.",Jeff Klukas,2018-09-14T15:00:03Z,jklukas,jklukas,28,16,12
+41,gcp-ingestion,81b3eaa408ad4bbe2a857b0b99aec67c8d5f28ad,Make mvn checkstyle:check work,Daniel Thorn,2018-09-13T22:22:14Z,relud,relud,4,1,3
+42,gcp-ingestion,d1157ef1841b364240f9f09ca1727d2bb36472f0,Move common pattern to MapElementsWithErrors,Daniel Thorn,2018-09-12T22:05:08Z,relud,relud,415,185,230
+43,gcp-ingestion,fe19564691e03ff7ff08bdeeeb64b8311b5bb70a,"Pull down mozilla-pipeline-schemas in pom.xml
+
+Closes #56
+
+This seems like a simpler approach to maintain compared to packaging
+and uploading a versioned jar from mozilla-pipeline-schemas as suggested in
+https://github.com/mozilla-services/mozilla-pipeline-schemas/pull/201
+
+With this approach, we'll always pull the latest version, which comes with
+the downside of a bad update to the other repo unexpectedly breaking builds
+here, but it's in line with practices we already have in place elsewhere
+and it ensures we don't lag in schema version.",Jeff Klukas,2018-09-13T14:43:23Z,jklukas,jklukas,36,33,3
+44,gcp-ingestion,f143f98fe417d3e844ecfe90be70447ae36f7e9c,"Use doctoc for generating markdown TOC
+
+Closes #64",Jeff Klukas,2018-09-13T13:15:53Z,jklukas,jklukas,171,161,10
+45,gcp-ingestion,99f50cba3f9f62b20573eda9f655e1f3b621da30,Suppress warning on readJSONObject,Jeff Klukas,2018-09-11T20:56:44Z,jklukas,jklukas,1,1,0
+46,gcp-ingestion,117daf737a3e5f12c7e26645d957bf9867758766,Add header to indicate what this checkstyle config was forked from.,Jeff Klukas,2018-09-11T20:56:19Z,jklukas,jklukas,12,11,1
+47,gcp-ingestion,b439de3c9855ff8334e39ca4c21218e08c869ac4,Refactor mozilla_checks into checkstyle.xml,Jeff Klukas,2018-09-11T20:44:46Z,jklukas,jklukas,23,3,20
+48,gcp-ingestion,194654d847555a383136b4f2d208bc01d5ba159e,Copy google_checks.xml locally as checkstyle.xml,Jeff Klukas,2018-09-11T20:39:28Z,jklukas,jklukas,259,257,2
+49,gcp-ingestion,62cfcdf57518f1dd0978533bf8e8e9a29ac65ea7,"Use FileIO.writeDynamic to route output based on attributes
+
+Closes #22",Jeff Klukas,2018-09-11T18:46:51Z,jklukas,jklukas,416,385,31
+50,gcp-ingestion,0a7e0ec9c05af7de2236ba7719ade330573ee3a8,"Add names to all .apply() invocations
+
+We were seeing some warnings when running due to unstable names.",Jeff Klukas,2018-09-11T18:46:01Z,jklukas,jklukas,31,16,15
+51,gcp-ingestion,ea5c6eb862b7b9703b0de234ef735a9cb129eb74,Set default log level to WARNING,Daniel Thorn,2018-09-11T18:21:23Z,relud,relud,13,13,0
+52,gcp-ingestion,567a6db50d2abda64cb2ab4e41bf18fd3265d753,Add metadata to payload in Decoder,Daniel Thorn,2018-09-10T16:23:49Z,relud,relud,300,242,58
+53,gcp-ingestion,17c9a6673b1894158e3b3bfbef754e85a7890777,"Rename edge to ingestion-edge (#55)
+
+fixes #40",Daniel Thorn,2018-09-10T18:45:37Z,relud,relud,46,23,23
+54,gcp-ingestion,2f779c9e7c08310826ad26efd8dcb5e95c6957fe,"Implement initial schema validation (#52)
+
+* Implement initial schema validation
+
+* address review
+
+* reject messages without schemas
+
+* fix checkstyle
+
+* address review",Daniel Thorn,2018-09-10T16:23:49Z,relud,relud,199,190,9
+55,gcp-ingestion,fee512984d647bc61f021d0d8756b26a7e199815,"Restore ability to write to stdout (#50)
+
+* Restore ability to write to stdout
+
+Fixes #49
+
+* Add test to validate running main with output to stdout
+
+* Less verbose Println",Jeff Klukas,2018-09-07T21:05:27Z,jklukas,jklukas,139,71,68
+56,gcp-ingestion,87154e45ea81b2bfbd8dae7bdb3e01aab0a2fca8,Move Decoder-specific transforms to separate package (#51),Jeff Klukas,2018-09-07T20:11:04Z,jklukas,jklukas,25,13,12
+57,gcp-ingestion,b8f8621cd3ea8021b56337e3ad8a89432511d211,"Refactor error logic (#48)
+
+* Factor out error parsing to FailureMessage
+
+* Return an error PCollection from OutputType.write
+
+* Factor out writing logic to be shared with ErrorOutputType",Jeff Klukas,2018-09-07T17:54:10Z,jklukas,jklukas,329,216,113
+58,gcp-ingestion,e9f33eec1afeb486ae5ad774085d52ecd7f13f53,"Add ParseUri to Decoder (#46)
+
+Also moves the main method to a fluent style with error output inline via CompositeTransforms.",Daniel Thorn,2018-09-07T13:09:51Z,relud,relud,198,180,18
+59,gcp-ingestion,36b60b4e3972e634e7813b614a4636d20202e983,"Rename Validation Service to Decoder (#45)
+
+fixes #39",Daniel Thorn,2018-09-07T00:10:17Z,relud,relud,52,27,25
+60,gcp-ingestion,ff38ceab5b1de44a52a32e4ad14b59333a668061,Refactor switch statements to methods on enums,Jeff Klukas,2018-09-05T17:51:48Z,jklukas,jklukas,929,568,361
+61,gcp-ingestion,fe77d12a086d310f93412ed43122ab86a8352647,Add NewlineAtEndOfFile check,Jeff Klukas,2018-09-06T15:19:18Z,jklukas,jklukas,1,1,0
+62,gcp-ingestion,76d4d1268d2bac42e8bd0f530a047b78dbd3b583,Add ParseUserAgent to Validation,Daniel Thorn,2018-09-05T19:30:19Z,relud,relud,225,218,7
+63,gcp-ingestion,d9a88e83a7b03e0df0dbe07013d09a0c8e29bb24,Implement Decompression in Validation Service (#41),Daniel Thorn,2018-09-05T18:06:56Z,relud,relud,56,56,0
+64,gcp-ingestion,07865b5f574dbf0429091d4dc584dc3795277518,"Implement GeoIP lookups for Validation Service (#37)
+
+* Implement GeoIP lookups for Validation Service
+
+* rename dataflow/ to ingestion-beam/
+
+and clarify between Apache Beam and Dataflow
+
+* Add attribution comment to download-geolite2
+
+* reraise IOException as UncheckedIOException",Daniel Thorn,2018-09-05T16:40:29Z,relud,relud,391,350,41
+65,gcp-ingestion,06aa7c1b8ecfb2ad5cca33a768da9a297fe59f78,"Add multiple executions to checkstyle
+
+and bind them to the test phase",Daniel Thorn,2018-09-04T15:51:02Z,relud,relud,33,31,2
+66,gcp-ingestion,db8f557c10dde5ff069347fb8f0c0035889867a1,Rewrite Sink in Java,Daniel Thorn,2018-09-04T15:05:11Z,relud,relud,1404,869,535
+67,gcp-ingestion,891537ab045c031f3ccd24f9fc5e9e1db91d3a44,Add error output to sink,Daniel Thorn,2018-08-30T02:13:05Z,relud,relud,353,275,78
+68,gcp-ingestion,8cb12bd171fa46f0356ae458cd768b925ad66265,Add BigQuery output to Sink,Daniel Thorn,2018-08-29T20:17:29Z,relud,relud,100,60,40
+69,gcp-ingestion,63e7a9141632936544717ea29ad0a989dbd23a35,"Refactor string-typed pattern matches to ADTs
+
+and document base64 encodings of test payloads",Jeff Klukas,2018-08-29T16:01:34Z,jklukas,jklukas,107,81,26
+70,gcp-ingestion,047fe6c0e101886e4d894cdc768667de298cd4b1,"Rename landfill to sink
+
+to reflect that the service will support delivering messages to a
+variety of services, as opposed to just Cloud Storage",Daniel Thorn,2018-08-28T23:04:45Z,relud,relud,260,162,98
+71,gcp-ingestion,b06ee6ac2b5e64677c8425efe2025470755b6848,"Add text input/output file format to landfill
+
+fixes #23",Daniel Thorn,2018-08-28T17:03:06Z,relud,relud,140,90,50
+72,gcp-ingestion,3d7d5b2f82aa5af7f95823ad09b8f800e434fcd7,Add landfill implementation,Daniel Thorn,2018-08-22T18:01:36Z,relud,relud,307,307,0
+73,gcp-ingestion,c2e7bd28a6cd029600c2a93eabd7ce8cd8eeda5a,"Fix CircleCI badge
+
+Needed a token to display correctly since this is a private repo.",Jeff Klukas,2018-08-28T13:10:21Z,jklukas,jklukas,2,1,1
+74,gcp-ingestion,ef098454391537dcf5fe063d8e893a3c6589184e,Add spec for landfill,Daniel Thorn,2018-08-16T21:52:42Z,relud,relud,60,60,0
+75,gcp-ingestion,dbf8ba3126b6ef954e0131f3a6b94d6a55db67a2,Add spec for BigQuery sinks,Daniel Thorn,2018-08-16T21:53:23Z,relud,relud,107,107,0
+76,gcp-ingestion,3beba7e70d27ff0e7173d0ce8e29dd9df87e2cac,Add edge implementation,Daniel Thorn,2018-08-20T16:45:05Z,relud,relud,409,409,0
+77,gcp-ingestion,aaf6c769b4fc0ab9476de99e75a070471a12af1a,Fix markdown anchor links,Daniel Thorn,2018-08-14T22:55:26Z,relud,relud,4,2,2
+78,gcp-ingestion,3715afed920d5e7a527085d1d83af7f67c669fd9,Fix grammar,Daniel Thorn,2018-08-14T22:51:58Z,relud,relud,4,2,2
+79,gcp-ingestion,a8fbbe6060842fba5afa2644a5df4ea74602b9fa,"Support legacy systems in the edge spec
+
+fixes #5",Daniel Thorn,2018-08-13T17:48:16Z,relud,relud,13,13,0
+80,gcp-ingestion,e94770f6495e71b405005b3ebe800da27675876e,"Add spec for validation service
+
+and set up spell check",Daniel Thorn,2018-08-06T22:11:11Z,relud,relud,251,223,28
+81,gcp-ingestion,4a32840282a86abb85d7044af2025361c78d7ccc,"Add section defining edge pubsub topics
+
+fixes #2",Daniel Thorn,2018-08-09T16:05:48Z,relud,relud,7,6,1
+82,gcp-ingestion,c5fdbfcccb38f4e75884251414dfab39506c8325,"Merge pull request #1 from mozilla/edge_spec
+
+Add design spec for edge",Daniel Thorn,2018-08-03T18:38:54Z,relud,relud,179,179,0
+83,gcp-ingestion,33864228d1cb5f6fd73c16d39aead275b729b825,Add design spec for edge,Daniel Thorn,2018-08-01T21:24:06Z,relud,relud,179,179,0
+84,gcp-ingestion,614ccedda6d3be7060af997bec18d758ffb9f63a,Initial Commit,Daniel Thorn,2018-08-01T19:45:07Z,relud,relud,373,373,0
+85,gcp-ingestion,93a392c00db0234c0cde385ceefa04de85849305,Document reliability goals (#257),Daniel Thorn,2018-12-20T18:36:43Z,relud,relud,85,85,0
+86,gcp-ingestion,37937ef6e3316cf3051023ea436d890b911073f9,"Move decompress step before ParsePayload
+
+This was broken; the ParsePayload transform was getting gzipped
+content that couldn't be parsed as a JSON object.
+
+Added a test to exercise gzipped payloads in the Decoder.",Jeff Klukas,2018-12-19T22:24:40Z,jklukas,jklukas,23,22,1
+87,gcp-ingestion,dfcd3e529e4ab97db7df039790599a7366286f10,"Remove and parse ""metadata"" field in ParsePayload
+
+Resolves #279",Jeff Klukas,2018-12-19T19:37:39Z,jklukas,jklukas,65,60,5
+88,gcp-ingestion,2aa0e84b6c457d1f2936abb4f8def413a72ee8b8,"Bump google-cloud-pubsub from 0.39.0 to 0.39.1 in /ingestion-edge
+
+Bumps [google-cloud-pubsub](https://github.com/GoogleCloudPlatform/google-cloud-python) from 0.39.0 to 0.39.1.
+- [Release notes](https://github.com/GoogleCloudPlatform/google-cloud-python/releases)
+- [Changelog](https://github.com/googleapis/google-cloud-python/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/GoogleCloudPlatform/google-cloud-python/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-19T13:12:19Z,JustCallMeDev,JustCallMeDev,2,1,1
+89,gcp-ingestion,333680934b48451b6d78bb56fee1c5dde1caf1c0,"Bump google-api-core from 1.6.0 to 1.7.0 in /ingestion-edge (#285)
+
+Bumps [google-api-core](https://github.com/GoogleCloudPlatform/google-cloud-python) from 1.6.0 to 1.7.0.
+- [Release notes](https://github.com/GoogleCloudPlatform/google-cloud-python/releases)
+- [Changelog](https://github.com/googleapis/google-cloud-python/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/GoogleCloudPlatform/google-cloud-python/compare/videointelligence-1.6.0...storage-1.7.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-18T16:54:15Z,dependabot[bot],dependabot[bot],2,1,1
+90,gcp-ingestion,175d1dc457b6865e06aa218e9bc603c841ee52e7,"Bump typed-ast from 1.1.0 to 1.1.1 in /ingestion-edge (#284)
+
+Bumps [typed-ast](https://github.com/python/typed_ast) from 1.1.0 to 1.1.1.
+- [Release notes](https://github.com/python/typed_ast/releases)
+- [Changelog](https://github.com/python/typed_ast/blob/master/release_process.md)
+- [Commits](https://github.com/python/typed_ast/compare/1.1.0...1.1.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-18T16:51:14Z,dependabot[bot],dependabot[bot],2,1,1
+91,gcp-ingestion,2d6c4cfd5370a608cf21fab16dd97672e14a1473,"Bump google-auth from 1.6.1 to 1.6.2 in /ingestion-edge (#286)
+
+Bumps [google-auth](https://github.com/GoogleCloudPlatform/google-auth-library-python) from 1.6.1 to 1.6.2.
+- [Release notes](https://github.com/GoogleCloudPlatform/google-auth-library-python/releases)
+- [Changelog](https://github.com/googleapis/google-auth-library-python/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/GoogleCloudPlatform/google-auth-library-python/compare/v1.6.1...v1.6.2)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-18T16:46:28Z,dependabot[bot],dependabot[bot],2,1,1
+92,gcp-ingestion,45e9d062b6a93f25632acd580110c0143149852a,Add top-level README (#283),Jeff Klukas,2018-12-17T20:44:32Z,jklukas,jklukas,20,20,0
+93,gcp-ingestion,16e331b9ea31239b9b245ac6ad13477e3fc2ccd9,"Bump pytest-docstyle from 1.4.1 to 1.5.0 in /ingestion-edge (#281)
+
+Bumps [pytest-docstyle](https://github.com/henry0312/pytest-docstyle) from 1.4.1 to 1.5.0.
+- [Release notes](https://github.com/henry0312/pytest-docstyle/releases)
+- [Commits](https://github.com/henry0312/pytest-docstyle/compare/v1.4.1...v1.5.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-17T17:09:05Z,dependabot[bot],dependabot[bot],2,1,1
+94,gcp-ingestion,748cee3cb56b143df0cf14c4ce4bbd807053ed9b,"Bump pytest from 4.0.1 to 4.0.2 in /ingestion-edge
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 4.0.1 to 4.0.2.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/4.0.1...4.0.2)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-14T17:06:58Z,JustCallMeDev,JustCallMeDev,2,1,1
+95,gcp-ingestion,284f24301ed5b946d6423ff962a1d4c0770669d7,"Bump grpcio from 1.17.0 to 1.17.1 in /ingestion-edge
+
+Bumps [grpcio](https://grpc.io) from 1.17.0 to 1.17.1.
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-14T17:02:27Z,JustCallMeDev,JustCallMeDev,2,1,1
+96,gcp-ingestion,08b2e2e901cbdde21749fef95bb6f35790d26ab8,"Bump spotless-maven-plugin from 1.16.0 to 1.17.0 in /ingestion-beam
+
+Bumps [spotless-maven-plugin](https://github.com/diffplug/plugin-maven) from 1.16.0 to 1.17.0.
+- [Release notes](https://github.com/diffplug/plugin-maven/releases)
+- [Commits](https://github.com/diffplug/plugin-maven/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-14T16:58:39Z,JustCallMeDev,JustCallMeDev,2,1,1
+97,gcp-ingestion,dbc37c01bc2f4cf27cde3e7d1a4f77da488f7417,"Bump beam.version from 2.8.0 to 2.9.0 in /ingestion-beam
+
+Bumps `beam.version` from 2.8.0 to 2.9.0.
+
+Updates `beam-runners-direct-java` from 2.8.0 to 2.9.0
+
+Updates `beam-runners-google-cloud-dataflow-java` from 2.8.0 to 2.9.0
+
+Updates `beam-sdks-java-extensions-json-jackson` from 2.8.0 to 2.9.0
+
+Updates `beam-sdks-java-io-google-cloud-platform` from 2.8.0 to 2.9.0
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-14T13:15:46Z,JustCallMeDev,JustCallMeDev,2,1,1
+98,gcp-ingestion,f00bf54a85bf7900fccb59be294fce4d8cd16f73,"Bump auto-value from 1.6.2 to 1.6.3 in /ingestion-beam (#273)
+
+Bumps [auto-value](https://github.com/google/auto) from 1.6.2 to 1.6.3.
+- [Release notes](https://github.com/google/auto/releases)
+- [Commits](https://github.com/google/auto/compare/auto-value-1.6.2...auto-value-1.6.3)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-12T16:54:11Z,dependabot[bot],dependabot[bot],2,1,1
+99,gcp-ingestion,e71f5cb39377287e1b89ae2181fa6192554601e5,"Add ParseSubmissionTimestamp transform (#274)
+
+Closes #267 and should unblock deployment of landfill.",Jeff Klukas,2018-12-12T16:49:48Z,jklukas,jklukas,171,171,0
+100,gcp-ingestion,41d0a860cfeca55c9083186a9f2583d0d90242bd,"Bump requests from 2.20.1 to 2.21.0 in /ingestion-edge (#271)
+
+Bumps [requests](https://github.com/requests/requests) from 2.20.1 to 2.21.0.
+- [Release notes](https://github.com/requests/requests/releases)
+- [Changelog](https://github.com/requests/requests/blob/master/HISTORY.md)
+- [Commits](https://github.com/requests/requests/compare/v2.20.1...v2.21.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-12T16:44:57Z,dependabot[bot],dependabot[bot],2,1,1
+101,gcp-ingestion,af5b62aec027b1f835773d464a64590c7f24931d,"Bump yarl from 1.2.6 to 1.3.0 in /ingestion-edge (#272)
+
+Bumps [yarl](https://github.com/aio-libs/yarl) from 1.2.6 to 1.3.0.
+- [Release notes](https://github.com/aio-libs/yarl/releases)
+- [Changelog](https://github.com/aio-libs/yarl/blob/master/CHANGES.rst)
+- [Commits](https://github.com/aio-libs/yarl/compare/v1.2.6...v1.3.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-12T16:33:10Z,dependabot[bot],dependabot[bot],2,1,1
+102,gcp-ingestion,e41c78b2bc59322b15a539d35a1578002027631a,"Bump six from 1.11.0 to 1.12.0 in /ingestion-edge (#269)
+
+Bumps [six](https://github.com/benjaminp/six) from 1.11.0 to 1.12.0.
+- [Release notes](https://github.com/benjaminp/six/releases)
+- [Changelog](https://github.com/benjaminp/six/blob/master/CHANGES)
+- [Commits](https://github.com/benjaminp/six/compare/1.11.0...1.12.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-10T17:15:51Z,dependabot[bot],dependabot[bot],2,1,1
+103,gcp-ingestion,55af1256e838f1213ae616d2207f2403f8ab8033,"Bump mypy from 0.641 to 0.650 in /ingestion-edge (#268)
+
+Bumps [mypy](https://github.com/python/mypy) from 0.641 to 0.650.
+- [Release notes](https://github.com/python/mypy/releases)
+- [Commits](https://github.com/python/mypy/compare/v0.641...v0.650)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-10T17:12:33Z,dependabot[bot],dependabot[bot],2,1,1
+104,gcp-ingestion,aa02712011e76ec82e36a12adebe1410bc8e892f,"Bump grpcio from 1.16.1 to 1.17.0 in /ingestion-edge
+
+Bumps [grpcio](https://grpc.io) from 1.16.1 to 1.17.0.
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-06T13:12:45Z,JustCallMeDev,JustCallMeDev,2,1,1
+105,gcp-ingestion,06d6142e3102498d88d4126b7edb7672a45efc58,"Bump jedis from 2.9.0 to 3.0.0 in /ingestion-beam
+
+Bumps [jedis](https://github.com/xetorthio/jedis) from 2.9.0 to 3.0.0.
+- [Release notes](https://github.com/xetorthio/jedis/releases)
+- [Commits](https://github.com/xetorthio/jedis/compare/jedis-2.9.0...jedis-3.0.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-06T13:22:07Z,JustCallMeDev,JustCallMeDev,2,1,1
+106,gcp-ingestion,2eb29a3125d0c522b7323550ab126bc74771a0cb,Add python pubsub emulator (#259),Daniel Thorn,2018-12-06T22:26:31Z,relud,relud,323,318,5
+107,gcp-ingestion,bbdbc0c5006ba26c9b5326f48778c1eb3a984ca8,"Bug: accessing ValueProvider at runtime in writeFile
+
+Closes #258",Jeff Klukas,2018-12-06T16:55:12Z,jklukas,jklukas,50,35,15
+108,gcp-ingestion,b403a4d16900ff53a2c9db7c49e6710b0dbbce51,Create pain_points.md (#262),Daniel Thorn,2018-12-06T16:39:48Z,relud,relud,30,30,0
+109,gcp-ingestion,3f1971545d992c2a884cc9ae5f227e948eec44c9,"Bump idna from 2.7 to 2.8 in /ingestion-edge
+
+Bumps [idna](https://github.com/kjd/idna) from 2.7 to 2.8.
+- [Release notes](https://github.com/kjd/idna/releases)
+- [Changelog](https://github.com/kjd/idna/blob/master/HISTORY.rst)
+- [Commits](https://github.com/kjd/idna/compare/v2.7...v2.8)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-05T13:13:30Z,JustCallMeDev,JustCallMeDev,2,1,1
+110,gcp-ingestion,da1bc378d9a62da2f3770648d8ab242cfa6317f2,"Bump google-api-core from 1.5.2 to 1.6.0 in /ingestion-edge
+
+Bumps [google-api-core](https://github.com/GoogleCloudPlatform/google-cloud-python) from 1.5.2 to 1.6.0.
+- [Release notes](https://github.com/GoogleCloudPlatform/google-cloud-python/releases)
+- [Changelog](https://github.com/googleapis/google-cloud-python/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/GoogleCloudPlatform/google-cloud-python/commits/videointelligence-1.6.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-04T13:12:53Z,JustCallMeDev,JustCallMeDev,2,1,1
+111,gcp-ingestion,25243d055886261cb5f54a8e5cf5d7ab6b3d5b4b,"Document need to specify sharding for streaming mode
+
+Closes #245",Jeff Klukas,2018-11-30T18:05:01Z,jklukas,jklukas,71,71,0
+112,gcp-ingestion,ca00f4064c6c0b61a5cd90a6374dd8e7683ea7e8,"Bump certifi from 2018.10.15 to 2018.11.29 in /ingestion-edge
+
+Bumps [certifi](https://github.com/certifi/python-certifi) from 2018.10.15 to 2018.11.29.
+- [Release notes](https://github.com/certifi/python-certifi/releases)
+- [Commits](https://github.com/certifi/python-certifi/compare/2018.10.15...2018.11.29)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-30T17:37:55Z,JustCallMeDev,JustCallMeDev,2,1,1
+113,gcp-ingestion,56dc745ac0e3c539bcc77c7cd5cd363c3586c51f,"Bump checkstyle from 8.14 to 8.15 in /ingestion-beam
+
+Bumps [checkstyle](https://github.com/checkstyle/checkstyle) from 8.14 to 8.15.
+- [Release notes](https://github.com/checkstyle/checkstyle/releases)
+- [Commits](https://github.com/checkstyle/checkstyle/compare/checkstyle-8.14...checkstyle-8.15)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-30T13:25:54Z,JustCallMeDev,JustCallMeDev,2,1,1
+114,gcp-ingestion,fae9d54bb2761153911989a370388544c0ed919f,"Bump multidict from 4.5.1 to 4.5.2 in /ingestion-edge
+
+Bumps [multidict](https://github.com/aio-libs/multidict) from 4.5.1 to 4.5.2.
+- [Release notes](https://github.com/aio-libs/multidict/releases)
+- [Changelog](https://github.com/aio-libs/multidict/blob/master/docs/changes.rst)
+- [Commits](https://github.com/aio-libs/multidict/compare/v4.5.1...v4.5.2)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-29T13:14:00Z,JustCallMeDev,JustCallMeDev,2,1,1
+115,gcp-ingestion,b9fbc0169d562c3d155950971a45a64dc56391ad,"Add ResultWithErrors to refactor handling of error collections
+
+Closes #235",Jeff Klukas,2018-11-28T02:54:59Z,jklukas,jklukas,481,268,213
+116,gcp-ingestion,4850c7ea113daa59d4207955d8fb0d77fdcba46c,Rename ValidateSchema -> ParsePayload,Jeff Klukas,2018-11-28T18:25:43Z,jklukas,jklukas,88,41,47
+117,gcp-ingestion,08a76ecc9da3b3e2b775bbb552bfcea118277bdf,Pull version out of payload in ValidateSchema,Jeff Klukas,2018-11-28T18:16:45Z,jklukas,jklukas,77,65,12
+118,gcp-ingestion,4b42cbfbf7d14c86a65fa9c8899f54398d62ec6c,"Bump google-cloud-pubsub from 0.38.0 to 0.39.0 in /ingestion-edge
+
+Bumps [google-cloud-pubsub](https://github.com/GoogleCloudPlatform/google-cloud-python) from 0.38.0 to 0.39.0.
+- [Release notes](https://github.com/GoogleCloudPlatform/google-cloud-python/releases)
+- [Changelog](https://github.com/googleapis/google-cloud-python/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/GoogleCloudPlatform/google-cloud-python/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-28T13:12:41Z,JustCallMeDev,JustCallMeDev,2,1,1
+119,gcp-ingestion,e5379a1f5fe0003775d5c56de6f3d43bdce14084,Remove redundant restore_cache step,Jeff Klukas,2018-11-27T23:36:22Z,jklukas,jklukas,6,0,6
+120,gcp-ingestion,4ecc751c66ceb295bf04f26bfd2c549e39115da7,Add StorageIntegationTest for beam GCS -> GCS pipeline,Jeff Klukas,2018-11-27T18:54:45Z,jklukas,jklukas,151,149,2
+121,gcp-ingestion,41600feac9af046a94bdbe2cd8dab3c7374282df,Remove unneeded option errorOutputNumShards from DecoderMainTest,Jeff Klukas,2018-11-27T18:54:23Z,jklukas,jklukas,4,2,2
+122,gcp-ingestion,f1f805355f8d23f07775b8fc0d553ea168a8158d,Move integration tests to a subdirectory,Jeff Klukas,2018-11-27T18:54:04Z,jklukas,jklukas,5,3,2
+123,gcp-ingestion,bc6d0324cde93f56f36ee0b09b214d419e600168,"Add test with mixed errors to DecoderMainTest
+
+Closes #209",Jeff Klukas,2018-11-27T16:43:24Z,jklukas,jklukas,247,165,82
+124,gcp-ingestion,ba5c48c46bd664ae35d90e90c3b285433f1f2da2,Add --includeStackTrace option,Jeff Klukas,2018-11-27T02:02:29Z,jklukas,jklukas,45,39,6
+125,gcp-ingestion,cf0ea9c16b04ddf12e6828d927bd5af0238c75bb,"Delete DecoderTest, which contained duplicate tests",Jeff Klukas,2018-11-27T02:01:19Z,jklukas,jklukas,323,0,323
+126,gcp-ingestion,eb7b49b2cd76e701cb94d23ef19b81dedbdb9560,Flatten error collections and write in a single transform,Jeff Klukas,2018-11-27T02:00:44Z,jklukas,jklukas,72,44,28
+127,gcp-ingestion,0fa08fac49358246f8b4c38293598f048609c6ea,"Add test cases for code coverage in ingestion-beam
+
+With these changes, I'm considering #208 complete.",Jeff Klukas,2018-11-26T16:16:01Z,jklukas,jklukas,25,25,0
+128,gcp-ingestion,0caf1234d2605a78f1d3d0febde502c1eb494678,"Bump multidict from 4.5.0 to 4.5.1 in /ingestion-edge
+
+Bumps [multidict](https://github.com/aio-libs/multidict) from 4.5.0 to 4.5.1.
+- [Release notes](https://github.com/aio-libs/multidict/releases)
+- [Changelog](https://github.com/aio-libs/multidict/blob/master/docs/changes.rst)
+- [Commits](https://github.com/aio-libs/multidict/compare/v4.5.0...v4.5.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-26T13:27:46Z,JustCallMeDev,JustCallMeDev,2,1,1
+129,gcp-ingestion,c6f2ec6e1ecb8d8efb5b90ecd8a80f525156deb4,"Bump pytest from 4.0.0 to 4.0.1 in /ingestion-edge
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 4.0.0 to 4.0.1.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/4.0.0...4.0.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-26T13:13:50Z,JustCallMeDev,JustCallMeDev,2,1,1
+130,gcp-ingestion,0d366713b98e8077eef2cc018bfb371812615250,"Bump yauaa from 5.5 to 5.7 in /ingestion-beam
+
+Bumps [yauaa](https://github.com/nielsbasjes/yauaa) from 5.5 to 5.7.
+- [Release notes](https://github.com/nielsbasjes/yauaa/releases)
+- [Changelog](https://github.com/nielsbasjes/yauaa/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/nielsbasjes/yauaa/compare/v5.5...v5.7)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-26T13:10:54Z,JustCallMeDev,JustCallMeDev,2,1,1
+131,gcp-ingestion,f841e3f3146f3f639a10dbe0ca8aa32a69d70a73,Consolidate beam integration tests to one CircleCI job,Jeff Klukas,2018-11-22T03:03:54Z,jklukas,jklukas,16,3,13
+132,gcp-ingestion,893fac50aabb268730db33480c6b9857900313b1,"Increase ingestion-beam coverage
+
+Various new test cases and some dead code removal.
+
+Partially addresses #208",Jeff Klukas,2018-11-21T21:52:50Z,jklukas,jklukas,169,158,11
+133,gcp-ingestion,e8db6d994b7efa2bde7e6dde6374be96ab97d470,"Test IOException cases in GeoCityLookup
+
+Partially fulfills #208",Jeff Klukas,2018-11-21T20:05:16Z,jklukas,jklukas,35,35,0
+134,gcp-ingestion,129f9868cd0e4922a60dcffe8b5a475b11800960,"Test schema failure modes in ValidateSchema
+
+Partially fulfills #208",Jeff Klukas,2018-11-21T18:49:10Z,jklukas,jklukas,35,34,1
+135,gcp-ingestion,3e11f93e0653198a44f14752982d202b206556ba,"Test additional URI cases in ParseUri
+
+We add validation that the number of path elements matches expected
+number of elements, which was previously allowed but could lead to
+unexpected behavior.",Jeff Klukas,2018-11-21T17:45:50Z,jklukas,jklukas,52,44,8
+136,gcp-ingestion,e1b5cc748147f3fd3dcee113f41b24716bfbb0fa,"Test invalid ID in Deduplicate
+
+Partially satisfies #208",Jeff Klukas,2018-11-21T16:29:32Z,jklukas,jklukas,7,4,3
+137,gcp-ingestion,0d383cf95233451390d3b9ed99ca06f08f26ea96,"Tests for JSON encode/decode and error cases
+
+Partially satisfies #208",Jeff Klukas,2018-11-21T15:29:52Z,jklukas,jklukas,130,85,45
+138,gcp-ingestion,88e72d3a7c1caf70d50e2ed0c83cad97c6b35f81,"Add exception_class attribute to failure messages
+
+This could be very helpful for filtering through error data if we discover
+particular cases we want to recover from.",Jeff Klukas,2018-11-21T16:33:08Z,jklukas,jklukas,3,2,1
+139,gcp-ingestion,16767ec249a5db340c35d350909dcc41ab62ce76,"Bump multidict from 4.4.2 to 4.5.0 in /ingestion-edge
+
+Bumps [multidict](https://github.com/aio-libs/multidict) from 4.4.2 to 4.5.0.
+- [Release notes](https://github.com/aio-libs/multidict/releases)
+- [Changelog](https://github.com/aio-libs/multidict/blob/master/docs/changes.rst)
+- [Commits](https://github.com/aio-libs/multidict/compare/v4.4.2...v4.5.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-20T19:56:33Z,JustCallMeDev,JustCallMeDev,2,1,1
+140,gcp-ingestion,8145640d8e548c1aa70afd3cb272d49998c75c4c,"Add PubsubIntegrationTest to ingestion-beam
+
+Adds one test case each for exercising InputType.pubsub and OutputType.pubsub
+
+Closes #207",Jeff Klukas,2018-11-20T18:24:29Z,jklukas,jklukas,249,241,8
+141,gcp-ingestion,3236538c151081d001f4538d334b22e2d4fd21aa,"Bump guava from 27.0-jre to 27.0.1-jre in /ingestion-beam
+
+Bumps [guava](https://github.com/google/guava) from 27.0-jre to 27.0.1-jre.
+- [Release notes](https://github.com/google/guava/releases)
+- [Commits](https://github.com/google/guava/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-20T13:18:19Z,JustCallMeDev,JustCallMeDev,2,1,1
+142,gcp-ingestion,2afca0117ef7ad811341f0d41a9d5bc1f91ed35a,"Test BigQuery failedInserts
+
+The test here exercises failedInserts as currently implemented,
+but the implementation still leaves some things to be desired:
+
+- we lose attributes for failedInserts (because we get back only the
+  TableRow; not the original PubsubMessage)
+- we rely on the less performant BigQueryIO.insertTableRows method
+  rather than passing a function to convert PubsubMessage to TableRow,
+  since there's no hook for error handling in the conversion function
+
+I will write a follow-up issue for these problems, but they look like
+they'd require upstream Beam changes to address.",Jeff Klukas,2018-11-16T22:01:54Z,jklukas,jklukas,48,48,0
+143,gcp-ingestion,6f8b60280090a1b4ca48e26a663d61263f3ecf65,"Bump pluggy from 0.7.1 to 0.8.0 in /ingestion-edge
+
+Bumps [pluggy](https://github.com/pytest-dev/pluggy) from 0.7.1 to 0.8.0.
+- [Release notes](https://github.com/pytest-dev/pluggy/releases)
+- [Changelog](https://github.com/pytest-dev/pluggy/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pluggy/compare/0.7.1...0.8.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-19T14:45:20Z,JustCallMeDev,JustCallMeDev,2,1,1
+144,gcp-ingestion,0c54a7d4a51b9199a65a9466afd0549357fc7698,"Bump googleapis-common-protos from 1.5.3 to 1.5.5 in /ingestion-edge
+
+Bumps [googleapis-common-protos](https://github.com/googleapis/googleapis) from 1.5.3 to 1.5.5.
+- [Release notes](https://github.com/googleapis/googleapis/releases)
+- [Commits](https://github.com/googleapis/googleapis/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-19T14:40:47Z,JustCallMeDev,JustCallMeDev,2,1,1
+145,gcp-ingestion,bc1e4c9a6fa1bc2c6d893332b204161c93a8b06f,"Bump cachetools from 2.1.0 to 3.0.0 in /ingestion-edge
+
+Bumps [cachetools](https://github.com/tkem/cachetools) from 2.1.0 to 3.0.0.
+- [Release notes](https://github.com/tkem/cachetools/releases)
+- [Changelog](https://github.com/tkem/cachetools/blob/master/CHANGES.rst)
+- [Commits](https://github.com/tkem/cachetools/compare/v2.1.0...v3.0.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-19T14:26:43Z,JustCallMeDev,JustCallMeDev,2,1,1
+146,gcp-ingestion,a635b9e16059a0d1cd6280a34a9b5c6f61b28512,"Bump grpcio from 1.16.0 to 1.16.1 in /ingestion-edge
+
+Bumps [grpcio](https://grpc.io) from 1.16.0 to 1.16.1.
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-19T14:22:44Z,JustCallMeDev,JustCallMeDev,2,1,1
+147,gcp-ingestion,98e8e7385423722210f008660920cb5ef98269db,"Bump pytest-timeout from 1.3.2 to 1.3.3 in /ingestion-edge
+
+Bumps [pytest-timeout](https://bitbucket.org/pytest-dev/pytest-timeout) from 1.3.2 to 1.3.3.
+- [Commits](https://bitbucket.org/pytest-dev/pytest-timeout/branches/compare/1.3.3..1.3.2)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-19T14:18:31Z,JustCallMeDev,JustCallMeDev,2,1,1
+148,gcp-ingestion,829d62cce0e9b4a67a8146c9ac07fc75a2c1c551,"Bump uvloop from 0.11.2 to 0.11.3 in /ingestion-edge
+
+Bumps [uvloop](https://github.com/MagicStack/uvloop) from 0.11.2 to 0.11.3.
+- [Release notes](https://github.com/MagicStack/uvloop/releases)
+- [Commits](https://github.com/MagicStack/uvloop/compare/v0.11.2...v0.11.3)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-19T14:14:17Z,JustCallMeDev,JustCallMeDev,2,1,1
+149,gcp-ingestion,2ef477bc5cf8bcf2235b3e3e78bda89828da7409,"Bump pytest-sanic from 0.1.13 to 0.1.15 in /ingestion-edge
+
+Bumps [pytest-sanic](https://github.com/yunstanford/pytest-sanic) from 0.1.13 to 0.1.15.
+- [Release notes](https://github.com/yunstanford/pytest-sanic/releases)
+- [Commits](https://github.com/yunstanford/pytest-sanic/compare/v0.1.13...v0.1.15)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-19T14:10:22Z,JustCallMeDev,JustCallMeDev,2,1,1
+150,gcp-ingestion,bc45663aef0ee8f8e1a6eb7c9c7e641fbfa266a1,"Bump google-api-core from 1.4.1 to 1.5.2 in /ingestion-edge
+
+Bumps [google-api-core](https://github.com/GoogleCloudPlatform/google-cloud-python) from 1.4.1 to 1.5.2.
+- [Release notes](https://github.com/GoogleCloudPlatform/google-cloud-python/releases)
+- [Changelog](https://github.com/googleapis/google-cloud-python/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/GoogleCloudPlatform/google-cloud-python/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-19T14:06:24Z,JustCallMeDev,JustCallMeDev,2,1,1
+151,gcp-ingestion,fe84419c9fcc6f6fc7a181d47b88bd638fbbd555,"Bump pytz from 2018.5 to 2018.7 in /ingestion-edge
+
+Bumps [pytz](https://github.com/stub42/pytz) from 2018.5 to 2018.7.
+- [Release notes](https://github.com/stub42/pytz/releases)
+- [Commits](https://github.com/stub42/pytz/compare/release_2018.5...release_2018.7)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-19T13:14:02Z,JustCallMeDev,JustCallMeDev,2,1,1
+152,gcp-ingestion,b152cc99efc23f7460bc50c3d2d517348154bc34,"Bump coverage from 4.5.1 to 4.5.2 in /ingestion-edge
+
+Bumps [coverage](https://bitbucket.org/ned/coveragepy) from 4.5.1 to 4.5.2.
+- [Changelog](https://bitbucket.org/ned/coveragepy/src/master/CHANGES.rst)
+- [Commits](https://bitbucket.org/ned/coveragepy/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-16T21:14:01Z,JustCallMeDev,JustCallMeDev,2,1,1
+153,gcp-ingestion,5ccfb649fb73383bad7d86a1302986357f3ef363,"Bump pytest from 3.10.1 to 4.0.0 in /ingestion-edge
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 3.10.1 to 4.0.0.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/3.10.1...4.0.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-16T21:08:36Z,JustCallMeDev,JustCallMeDev,2,1,1
+154,gcp-ingestion,c219daba914d693ca7387a1ef72fc4650433808b,"Bump urllib3 from 1.23 to 1.24.1 in /ingestion-edge
+
+Bumps [urllib3](https://github.com/urllib3/urllib3) from 1.23 to 1.24.1.
+- [Release notes](https://github.com/urllib3/urllib3/releases)
+- [Changelog](https://github.com/urllib3/urllib3/blob/master/CHANGES.rst)
+- [Commits](https://github.com/urllib3/urllib3/compare/1.23...1.24.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-16T20:55:29Z,JustCallMeDev,JustCallMeDev,2,1,1
+155,gcp-ingestion,58825140d89e7c32fb3223cf3c897965646f23d0,"Bump pydocstyle from 2.1.1 to 3.0.0 in /ingestion-edge
+
+Bumps [pydocstyle](https://github.com/PyCQA/pydocstyle) from 2.1.1 to 3.0.0.
+- [Release notes](https://github.com/PyCQA/pydocstyle/releases)
+- [Changelog](https://github.com/PyCQA/pydocstyle/blob/master/docs/release_notes.rst)
+- [Commits](https://github.com/PyCQA/pydocstyle/compare/2.1.1...3.0.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-16T20:40:29Z,JustCallMeDev,JustCallMeDev,2,1,1
+156,gcp-ingestion,cd0e5fc790dcaf399721e0398bb0b63b53538aeb,"Bump pytest-docstyle from 1.4.0 to 1.4.1 in /ingestion-edge
+
+Bumps [pytest-docstyle](https://github.com/henry0312/pytest-docstyle) from 1.4.0 to 1.4.1.
+- [Release notes](https://github.com/henry0312/pytest-docstyle/releases)
+- [Commits](https://github.com/henry0312/pytest-docstyle/compare/v1.4.0...v1.4.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-16T16:57:32Z,JustCallMeDev,JustCallMeDev,2,1,1
+157,gcp-ingestion,6abfde25eddb5b08339a8a6ec9a12e732f878c20,Bring ingestion-edge unit test coverage to 100% (#200),Daniel Thorn,2018-11-16T16:55:34Z,relud,relud,853,638,215
+158,gcp-ingestion,b36c55b7dae611b2cc6f5c3f85d0c0d8bf16e3d3,"Update code style libraries
+
+Closes #186 #177 #175",Jeff Klukas,2018-11-14T19:10:06Z,jklukas,jklukas,6,3,3
+159,gcp-ingestion,6a526566e4d70cc713cab01c705df91bbda7d4b7,"Bump python-dateutil from 2.7.3 to 2.7.5 in /ingestion-edge
+
+Bumps [python-dateutil](https://dateutil.readthedocs.io) from 2.7.3 to 2.7.5.
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-14T21:32:51Z,JustCallMeDev,JustCallMeDev,2,1,1
+160,gcp-ingestion,a642759f04e78be3e9440a4291359d90972c1f5b,"Bump google-auth from 1.5.1 to 1.6.1 in /ingestion-edge
+
+Bumps [google-auth](https://github.com/GoogleCloudPlatform/google-auth-library-python) from 1.5.1 to 1.6.1.
+- [Release notes](https://github.com/GoogleCloudPlatform/google-auth-library-python/releases)
+- [Changelog](https://github.com/googleapis/google-auth-library-python/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/GoogleCloudPlatform/google-auth-library-python/compare/v1.5.1...v1.6.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-14T20:15:37Z,JustCallMeDev,JustCallMeDev,2,1,1
+161,gcp-ingestion,741b9122428ada486b67730378530a6321da0831,"Bump grpcio from 1.15.0 to 1.16.0 in /ingestion-edge
+
+Bumps [grpcio](https://grpc.io) from 1.15.0 to 1.16.0.
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-14T19:56:54Z,JustCallMeDev,JustCallMeDev,2,1,1
+162,gcp-ingestion,b6cd85a5556d403e9da9781ebd048fef748d9e8f,"Bump persist-queue from 0.4.0 to 0.4.1 in /ingestion-edge
+
+Bumps [persist-queue](https://github.com/peter-wangxu/persist-queue) from 0.4.0 to 0.4.1.
+- [Release notes](https://github.com/peter-wangxu/persist-queue/releases)
+- [Commits](https://github.com/peter-wangxu/persist-queue/compare/v0.4.0...v0.4.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-14T19:45:58Z,JustCallMeDev,JustCallMeDev,2,1,1
+163,gcp-ingestion,02ecf91b75c26332f9c4ad14daf85a66b0289ea5,"[Security] Bump requests from 2.19.1 to 2.20.1 in /ingestion-edge
+
+Bumps [requests](https://github.com/requests/requests) from 2.19.1 to 2.20.1. **This update includes security fixes.**
+- [Release notes](https://github.com/requests/requests/releases)
+- [Changelog](https://github.com/requests/requests/blob/master/HISTORY.md)
+- [Commits](https://github.com/requests/requests/compare/v2.19.1...v2.20.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-14T19:18:23Z,JustCallMeDev,JustCallMeDev,2,1,1
+164,gcp-ingestion,93172b7c82e5422d1dbd6f10839997136147a3f8,"Bind RedisServer to localhost in tests
+
+On my machine, each run of tests would cause a MacOS popup every time
+an embedded RedisServer is initialized, warning about a process establishing
+an incoming network connection. By binding to localhost, the OS doesn't get
+worried.
+
+Solution documented in
+https://github.com/kstyrc/embedded-redis/issues/45#issuecomment-116592376",Jeff Klukas,2018-11-14T18:47:38Z,jklukas,jklukas,6,4,2
+165,gcp-ingestion,3441d377393d2fd896bfb89f23778a649c267e09,Use same codecov flag for both ingestion-beam jobs,Jeff Klukas,2018-11-14T16:22:01Z,jklukas,jklukas,2,1,1
+166,gcp-ingestion,ca511228abdf255e176dc8402b43d9f3bd8eb4f2,Add BigQueryIntegrationTest that accesses BigQuery in GCP,Jeff Klukas,2018-11-14T15:53:16Z,jklukas,jklukas,155,149,6
+167,gcp-ingestion,e53ce6d0177da7f331766639e2c79fb18ccc0bfa,"Bump pytest from 3.8.0 to 3.10.1 in /ingestion-edge
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 3.8.0 to 3.10.1.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/3.8.0...3.10.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-14T14:20:31Z,JustCallMeDev,JustCallMeDev,2,1,1
+168,gcp-ingestion,9a85799f8714ae42bc90eba0c7935bcd35818d80,"Bump commons-text from 1.5 to 1.6 in /ingestion-beam
+
+Bumps commons-text from 1.5 to 1.6.
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-14T13:14:41Z,JustCallMeDev,JustCallMeDev,2,1,1
+169,gcp-ingestion,1b564a118eb43ee52ffb37d54adc42d6d83061f0,Put pip hashes on same line as requirement (#182),Daniel Thorn,2018-11-13T20:18:06Z,relud,relud,156,52,104
+170,gcp-ingestion,06b7113f5cd1b6bb4312021c337f766a4f34663e,"Bump guava from 26.0-jre to 27.0-jre in /ingestion-beam
+
+Bumps [guava](https://github.com/google/guava) from 26.0-jre to 27.0-jre.
+- [Release notes](https://github.com/google/guava/releases)
+- [Commits](https://github.com/google/guava/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-13T19:58:16Z,JustCallMeDev,JustCallMeDev,2,1,1
+171,gcp-ingestion,1190becd0e467a37fd7e88a1df91327b61afd3b9,"Bump maven-surefire-plugin from 2.12.4 to 2.22.1 in /ingestion-beam
+
+Bumps [maven-surefire-plugin](https://github.com/apache/maven-surefire) from 2.12.4 to 2.22.1.
+- [Release notes](https://github.com/apache/maven-surefire/releases)
+- [Commits](https://github.com/apache/maven-surefire/compare/surefire-2.12.4...surefire-2.22.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-13T19:53:51Z,JustCallMeDev,JustCallMeDev,2,1,1
+172,gcp-ingestion,d048a56992bcd697929ed7f52e0abcf0cd394388,"Bump checkstyle from 8.12 to 8.14 in /ingestion-beam
+
+Bumps [checkstyle](https://github.com/checkstyle/checkstyle) from 8.12 to 8.14.
+- [Release notes](https://github.com/checkstyle/checkstyle/releases)
+- [Commits](https://github.com/checkstyle/checkstyle/compare/checkstyle-8.12...checkstyle-8.14)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-13T19:47:53Z,JustCallMeDev,JustCallMeDev,2,1,1
+173,gcp-ingestion,ace1be5042b352f27b13f7ad9eb765b4302be92f,"Bump yauaa from 5.2 to 5.5 in /ingestion-beam
+
+Bumps [yauaa](https://github.com/nielsbasjes/yauaa) from 5.2 to 5.5.
+- [Release notes](https://github.com/nielsbasjes/yauaa/releases)
+- [Changelog](https://github.com/nielsbasjes/yauaa/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/nielsbasjes/yauaa/compare/v5.2...v5.5)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-13T19:36:43Z,JustCallMeDev,JustCallMeDev,2,1,1
+174,gcp-ingestion,8b2d60c960105ef25f3d17ca81ceda4469ab16c7,"Bump spotless-maven-plugin from 1.15.0 to 1.16.0 in /ingestion-beam
+
+Bumps [spotless-maven-plugin](https://github.com/diffplug/plugin-maven) from 1.15.0 to 1.16.0.
+- [Release notes](https://github.com/diffplug/plugin-maven/releases)
+- [Commits](https://github.com/diffplug/plugin-maven/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-11-13T19:36:40Z,JustCallMeDev,JustCallMeDev,2,1,1
+175,gcp-ingestion,cf47c2c627aa08cf663e60b58b240946eacb39ec,Fix METADATA_HEADERS documentation (#169),Daniel Thorn,2018-11-08T21:18:00Z,relud,relud,4,2,2
+176,gcp-ingestion,7393299db372bb0dd3d28bf82acf6d75bb1a05b7,"Move Decoder tests into transform-specific suites
+
+We remove `DecoderTest` completely, factoring tests out to individual
+classes corresponding to the transform they test.
+Most test method names have been changed to `testOutput`
+(since the class name now expresses which transform is under test).
+
+Otherwise, the content of the test code is intended to be identical.",Jeff Klukas,2018-11-08T14:41:58Z,jklukas,jklukas,468,468,0
+177,gcp-ingestion,f16f4fa43191dff1960aecff88d5051a3ca5ebd7,"Require defaults for output path placeholders (#168)
+
+Closes #108",Jeff Klukas,2018-11-08T21:02:48Z,jklukas,jklukas,66,36,30
+178,gcp-ingestion,24fe122bef9822d6c7f539fea3c7913f757afbda,Handle X-Pipeline-Proxy header (#165),Daniel Thorn,2018-11-08T20:53:06Z,relud,relud,57,50,7
+179,gcp-ingestion,ae1463e8307a30d7df6d3891314a83c35dbad6b8,"Fix container termination behavior for SIGTERM (#166)
+
+fixes #164",Daniel Thorn,2018-11-08T19:48:50Z,relud,relud,2,1,1
+180,gcp-ingestion,ce99185ee9e10dc442ba0047eec35760b312a2a1,Add design documentation for whole pipeline (#114),Daniel Thorn,2018-11-08T13:44:33Z,relud,relud,392,392,0
+181,gcp-ingestion,bd7c122e68633d68d15d0da88fee9055ca53aacc,"Report code coverage for ingestion-edge
+
+Closes #123",Jeff Klukas,2018-11-06T19:26:58Z,jklukas,jklukas,27,24,3
+182,gcp-ingestion,5599c5be9773ba06aead3ee4f3094fb7776e0c45,"Make ingestion-edge metadata headers configurable (#163)
+
+fixes #13",Daniel Thorn,2018-11-07T23:38:59Z,relud,relud,34,25,9
+183,gcp-ingestion,9152a208f7dae83e235f9796adaeb35d5f65d2f9,"Fix ingestion-edge response content-type (#162)
+
+fixes #158",Daniel Thorn,2018-11-07T23:25:34Z,relud,relud,10,6,4
+184,gcp-ingestion,902192cec8ce1854a09f51442e06a3356923c62e,"Fix ingestion-edge logger (#161)
+
+fixes #159",Daniel Thorn,2018-11-07T22:31:44Z,relud,relud,2,1,1
+185,gcp-ingestion,4a1017847f65edf0fb31260773677de7dcb17559,"Bump python-dateutil from 2.7.5 to 2.8.0 in /ingestion-edge
+
+Bumps [python-dateutil](https://dateutil.readthedocs.io) from 2.7.5 to 2.8.0.
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-06T21:20:13Z,JustCallMeDev,JustCallMeDev,2,1,1
+186,gcp-ingestion,719c664720b9b27c494646156117edfca3bc0f1a,"Bump pytest-mock from 1.10 to 1.10.1 in /ingestion-edge
+
+Bumps [pytest-mock](https://github.com/pytest-dev/pytest-mock) from 1.10 to 1.10.1.
+- [Release notes](https://github.com/pytest-dev/pytest-mock/releases)
+- [Changelog](https://github.com/pytest-dev/pytest-mock/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest-mock/commits/v1.10.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-05T13:13:39Z,JustCallMeDev,JustCallMeDev,2,1,1
+187,gcp-ingestion,76d5b642c56b08b945cf9375fc156f1741fa8287,"Bump flake8 from 3.7.4 to 3.7.5 in /ingestion-edge (#419)
+
+Bumps [flake8](https://gitlab.com/pycqa/flake8) from 3.7.4 to 3.7.5.
+- [Release notes](https://gitlab.com/pycqa/flake8/tags)
+- [Commits](https://gitlab.com/pycqa/flake8/compare/3.7.4...3.7.5)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-05T20:19:39Z,dependabot[bot],dependabot[bot],2,1,1
+188,gcp-ingestion,b4fe1e7ba3bc7049f66711648a0e361ee86a9a10,Add load test for ingestion-edge (#417),Daniel Thorn,2019-02-05T19:58:40Z,relud,relud,704,689,15
+189,gcp-ingestion,66241ef57f53295e4c8cd89cb2b65179cb35f7a0,Bump style deps (#415),Daniel Thorn,2019-02-01T18:42:24Z,relud,relud,11,6,5
+190,gcp-ingestion,5d69324b9bbc3b2f1a7b363503d7bde001fba9f4,"Bump pytest-flake8 from 1.0.3 to 1.0.4 in /ingestion-edge (#414)
+
+Bumps [pytest-flake8](https://github.com/tholo/pytest-flake8) from 1.0.3 to 1.0.4.
+- [Release notes](https://github.com/tholo/pytest-flake8/releases)
+- [Changelog](https://github.com/tholo/pytest-flake8/blob/master/CHANGELOG)
+- [Commits](https://github.com/tholo/pytest-flake8/compare/1.0.3...1.0.4)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-01T17:58:49Z,dependabot[bot],dependabot[bot],2,1,1
+191,gcp-ingestion,fc4af95e5dca81759a3cff0ca6c49df44c583e02,"Bump atomicwrites from 1.2.1 to 1.3.0 in /ingestion-edge (#413)
+
+Bumps [atomicwrites](https://github.com/untitaker/python-atomicwrites) from 1.2.1 to 1.3.0.
+- [Release notes](https://github.com/untitaker/python-atomicwrites/releases)
+- [Commits](https://github.com/untitaker/python-atomicwrites/compare/1.2.1...1.3.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-01T17:53:40Z,dependabot[bot],dependabot[bot],2,1,1
+192,gcp-ingestion,ab3cf4c1e1331c0ca3594b320014999ef7543898,"Bump pytest from 4.1.1 to 4.2.0 in /ingestion-edge (#408)
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 4.1.1 to 4.2.0.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/4.1.1...4.2.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-31T23:16:19Z,dependabot[bot],dependabot[bot],2,1,1
+193,gcp-ingestion,95830a2e537194484948143a46c96879cfe4497d,"Metrics per docType
+
+Closes #379
+
+This PR defines some machinery for tracking counters per docType and schema
+version using Beam's built-in Metrics interface, which Dataflow automatically
+visualizes in its UI and sends to Stackdriver.
+
+This explicitly does not match the segmentation of the AWS-based pipeline.
+If we segment on appname, channel, etc. then we quickly end up with counters
+numbers in tens of thousands, which Dataflow starts to drop. That number of
+user-defined counters also clutters the Dataflow UI and causes it to slow down
+significantly.
+
+This also doesn't cover all of the metric types of the old pipeline.
+In particular, we aren't tracking compressed bytes and invalid gzip errors.
+We could do so in a future PR if these Stackdriver-based metrics prove useful
+and worth further investment.",Jeff Klukas,2019-01-30T20:21:28Z,jklukas,jklukas,184,166,18
+194,gcp-ingestion,bbad098643420d1d533320a339b2494df77ac380,"Pull schemas from GCS rather than building into jar (#405)
+
+Closes #398
+
+This new approach is consistent with how we pull in the geo database and how
+we run tests for it. Instead of pulling from GitHub at maven build time,
+developers are instructed to run a script to pull down an archive locally.
+Then, we rely on Beam's Filesystems library to transparently handle a local
+or GCS path.",Jeff Klukas,2019-01-30T20:32:40Z,jklukas,jklukas,441,287,154
+195,gcp-ingestion,c8f01fc3f7da5ae6e8c828ea893d56eada64474d,"Bump cachetools from 3.0.0 to 3.1.0 in /ingestion-edge
+
+Bumps [cachetools](https://github.com/tkem/cachetools) from 3.0.0 to 3.1.0.
+- [Release notes](https://github.com/tkem/cachetools/releases)
+- [Changelog](https://github.com/tkem/cachetools/blob/master/CHANGES.rst)
+- [Commits](https://github.com/tkem/cachetools/compare/v3.0.0...v3.1.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-30T13:13:15Z,JustCallMeDev,JustCallMeDev,2,1,1
+196,gcp-ingestion,8b88e6b0c0aba08d3628486434e98a866a4418f8,"Add ensureNonNull pubsub util for simplifying error checking
+
+We had some complicated duplicated logic spread around transforms simply
+for ensuring that messages, payloads, and attributes were non-null.
+This consolidates that logic to a method that we apply across the codebase
+and allows us to remove some distracting null-checking code.",Jeff Klukas,2019-01-30T14:19:47Z,jklukas,jklukas,89,56,33
+197,gcp-ingestion,85da1e4080dcaa7ace44486fb99713346ada15f6,"Preserve uri attribute and make geo idempotent
+
+Fixes #358 and #359",Jeff Klukas,2019-01-29T19:55:03Z,jklukas,jklukas,26,19,7
+198,gcp-ingestion,6af9fb51ea918fb36fe662b5e6f3519e593d39f2,"Use underscores for metric names
+
+This matches the convention for all built-in Dataflow metrics.",Jeff Klukas,2019-01-29T19:12:00Z,jklukas,jklukas,30,15,15
+199,gcp-ingestion,b04979f345883ceea7da3f0f39e3d29cbf8f240f,"Bump yauaa from 5.7 to 5.8 in /ingestion-beam (#394)
+
+Bumps [yauaa](https://github.com/nielsbasjes/yauaa) from 5.7 to 5.8.
+- [Release notes](https://github.com/nielsbasjes/yauaa/releases)
+- [Changelog](https://github.com/nielsbasjes/yauaa/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/nielsbasjes/yauaa/compare/v5.7...v5.8)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-28T18:05:33Z,dependabot[bot],dependabot[bot],2,1,1
+200,gcp-ingestion,facd43fab631380c6d5d364f99b3170b4bb6761b,"Bump checkstyle from 8.16 to 8.17 in /ingestion-beam (#395)
+
+Bumps [checkstyle](https://github.com/checkstyle/checkstyle) from 8.16 to 8.17.
+- [Release notes](https://github.com/checkstyle/checkstyle/releases)
+- [Commits](https://github.com/checkstyle/checkstyle/compare/checkstyle-8.16...checkstyle-8.17)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-28T17:40:21Z,dependabot[bot],dependabot[bot],2,1,1
+201,gcp-ingestion,471501d8c9aff101b04643281c4c7315e21c28a1,"Bump psutil from 5.4.8 to 5.5.0 in /ingestion-edge (#389)
+
+Bumps [psutil](https://github.com/giampaolo/psutil) from 5.4.8 to 5.5.0.
+- [Release notes](https://github.com/giampaolo/psutil/releases)
+- [Changelog](https://github.com/giampaolo/psutil/blob/master/HISTORY.rst)
+- [Commits](https://github.com/giampaolo/psutil/compare/release-5.4.8...release-5.5.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-28T17:31:39Z,dependabot[bot],dependabot[bot],2,1,1
+202,gcp-ingestion,3318af7d35be49a49aec34e1b90003414a672c38,"Bump pytest-black from 0.3.2 to 0.3.3 in /ingestion-edge (#392)
+
+Bumps [pytest-black](https://github.com/shopkeep/pytest-black) from 0.3.2 to 0.3.3.
+- [Release notes](https://github.com/shopkeep/pytest-black/releases)
+- [Commits](https://github.com/shopkeep/pytest-black/compare/v0.3.2...0.3.3)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-28T17:24:24Z,dependabot[bot],dependabot[bot],2,1,1
+203,gcp-ingestion,6af6fbf8acd956901b35e127700fcf021b00ce25,"Bump pyasn1-modules from 0.2.3 to 0.2.4 in /ingestion-edge (#393)
+
+Bumps [pyasn1-modules](https://github.com/etingof/pyasn1-modules) from 0.2.3 to 0.2.4.
+- [Release notes](https://github.com/etingof/pyasn1-modules/releases)
+- [Changelog](https://github.com/etingof/pyasn1-modules/blob/master/CHANGES.txt)
+- [Commits](https://github.com/etingof/pyasn1-modules/compare/v0.2.3...v0.2.4)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-28T17:03:23Z,dependabot[bot],dependabot[bot],2,1,1
+204,gcp-ingestion,e920d35104f13236915b54aaa87adf23b637f702,"ingestion-beam style cleanup
+
+A variety of changes to be more consistent in our style internally and more
+consistent with some conventions of Beam.
+
+We give all ""user-facing"" transforms private constructors and public static
+factory methods, returning a Singleton instance in case of transforms that
+take no parameters.
+
+Also more consistent in skipping explicit names for transforms when they
+simply repeat the class name.",Jeff Klukas,2019-01-24T15:48:14Z,jklukas,jklukas,243,152,91
+205,gcp-ingestion,e7f1c10e656272090c5550aef668e505309346b4,"Bump jacoco-maven-plugin from 0.8.2 to 0.8.3 in /ingestion-beam
+
+Bumps [jacoco-maven-plugin](https://github.com/jacoco/jacoco) from 0.8.2 to 0.8.3.
+- [Release notes](https://github.com/jacoco/jacoco/releases)
+- [Commits](https://github.com/jacoco/jacoco/compare/v0.8.2...v0.8.3)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-24T13:15:51Z,JustCallMeDev,JustCallMeDev,2,1,1
+206,gcp-ingestion,6f846a9ca8bcb6c413facbdd3347cc22764baa4e,Address review comments and enforce style,Jeff Klukas,2019-01-24T01:14:55Z,jklukas,jklukas,78,38,40
+207,gcp-ingestion,6a2108ca91d3fd3ccf70f56da40b6b12c39685c7,"Improve the error collection interface
+
+See the new WithErrors class for the main new concept here.
+The transforms that emit errors now return a result that has an errorsTo()
+method that makes their usage in the top-level Sink and Decoder pipelines
+simpler.
+
+This also closes #386 as it refactors the Deduplicate.java code to use the
+new error interface.
+
+All the logic for our inputs and outputs have been factored into an io module
+and also now use the new error interface consistently.
+
+These refactorings also aid in how the pipeline is displayed in the dataflow UI
+so I've removed most of the explicit string names as we apply transforms
+since the class names are now instructive. Thus also closes #241.",Jeff Klukas,2019-01-23T21:31:00Z,jklukas,jklukas,1181,693,488
+208,gcp-ingestion,3b86d7ae85fb396ac997b4cc6b1d44c7e619db4c,"Drop duplicate messages
+
+Currently, duplicate messages go to error output, but we have no particular
+reason to save them.",Jeff Klukas,2019-01-22T19:59:54Z,jklukas,jklukas,23,20,3
+209,gcp-ingestion,3ab2a7c740e3445fb194d3da0ddf2c514f9b838c,"Bump uvloop from 0.11.3 to 0.12.0 in /ingestion-edge (#383)
+
+Bumps [uvloop](https://github.com/MagicStack/uvloop) from 0.11.3 to 0.12.0.
+- [Release notes](https://github.com/MagicStack/uvloop/releases)
+- [Commits](https://github.com/MagicStack/uvloop/compare/v0.11.3...v0.12.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-22T18:46:15Z,dependabot[bot],dependabot[bot],2,1,1
+210,gcp-ingestion,0583b073e808b5e7deac7923d428efb2b6ce755d,Add more pain points (#382),Daniel Thorn,2019-01-22T18:30:21Z,relud,relud,62,50,12
+211,gcp-ingestion,f150eaa0c00a862a5e73962d2b375ebc513f4255,"Fixups for BigQuery batch loading
+
+We need to specify sharding for temp files when reading an unbounded input,
+which was missed in the previous PR. This change also moves triggeringFreq
+to a parameter rather than a hard-coded 5 minutes.",Jeff Klukas,2019-01-18T17:27:36Z,jklukas,jklukas,53,39,14
+212,gcp-ingestion,1433c1bd639bd16e34eb0f1de463c0b972e24d99,"Use failEarly() option of Validator and add timing metrics
+
+Closes #374
+
+I've deployed this change to the test decoder, and it looks like it successfully
+made it past the message that was causing GC thrashing, and the decoder is
+now working down the backlog of messages on Pub/Sub.",Jeff Klukas,2019-01-17T20:24:38Z,jklukas,jklukas,36,33,3
+213,gcp-ingestion,7b3de2dd1e1f01fa71c59d5f427ec7275504bcf1,"Configure maven memory settings
+
+The ingestion-beam-integration job was crashing the VM on CircleCI.
+
+Working theory is that it was the jacoco agent crashing due to insufficient
+memory.
+
+See https://stackoverflow.com/a/38925634/1260237",Jeff Klukas,2019-01-16T20:50:29Z,jklukas,jklukas,6,3,3
+214,gcp-ingestion,8b1995e58fbe283a459ca30cf1e6fdbb24dbfdd4,"Add file-based (batch) loading for BigQuery
+
+Closes #353",Jeff Klukas,2019-01-16T19:33:59Z,jklukas,jklukas,222,162,60
+215,gcp-ingestion,ddcf6e950180e30d8de81e35827044fa1fe33cd9,"Bug: ensure transience and proper projectId for table listing
+
+When this sink was deployed, the default BQ client wasn't finding
+any of the tables because they're not in the same project as where
+the Dataflow job is running.
+
+We now create BQ clients as needed, and specifically set the project.
+We also list all tables for a dataset at once for fewer calls out to BigQuery.
+
+I've deployed this change and it's now working as intended.",Jeff Klukas,2019-01-16T14:27:37Z,jklukas,jklukas,57,36,21
+216,gcp-ingestion,d29c21f6583735df93d50e8fa69247f6d64c4fae,"Bump grpcio from 1.17.1 to 1.18.0 in /ingestion-edge
+
+Bumps [grpcio](https://grpc.io) from 1.17.1 to 1.18.0.
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-16T13:13:17Z,JustCallMeDev,JustCallMeDev,2,1,1
+217,gcp-ingestion,5ff50854af4662398a92851ca1bf98ef65fd4e44,"Send records to error output if BQ table does not exist.
+
+This will be necessary to unblock moving to batch loading for BigQuery,
+since BigQueryIO raises a pipeline execution exception in case of nonexistent
+table or any single row being rejected.
+
+Once this is merged, I will take down the BQ sink Dataflow job, delete
+placeholder tables we had previously created, and launch a new job.
+This may significantly improve performance of the sink as well, since we
+won't be sending a large volume of data we know won't validate given current
+table schemas.",Jeff Klukas,2019-01-15T19:50:47Z,jklukas,jklukas,41,39,2
+218,gcp-ingestion,65250797ff1fc31a6745d82fd244315915756de2,"Bump googleapis-common-protos from 1.5.5 to 1.5.6 in /ingestion-edge
+
+Bumps [googleapis-common-protos](https://github.com/googleapis/googleapis) from 1.5.5 to 1.5.6.
+- [Release notes](https://github.com/googleapis/googleapis/releases)
+- [Commits](https://github.com/googleapis/googleapis/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-14T15:13:54Z,JustCallMeDev,JustCallMeDev,2,1,1
+219,gcp-ingestion,4c8d51c3dc8a0d04bda3979fe6ff6e30ddb85678,"Bump pytest-flake8 from 1.0.2 to 1.0.3 in /ingestion-edge
+
+Bumps [pytest-flake8](https://github.com/tholo/pytest-flake8) from 1.0.2 to 1.0.3.
+- [Release notes](https://github.com/tholo/pytest-flake8/releases)
+- [Changelog](https://github.com/tholo/pytest-flake8/blob/master/CHANGELOG)
+- [Commits](https://github.com/tholo/pytest-flake8/compare/1.0.2...1.0.3)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-14T15:07:40Z,JustCallMeDev,JustCallMeDev,2,1,1
+220,gcp-ingestion,1b99fcb49d6be3667c96647b9331f23d5d8f3968,"Bump aiohttp from 3.5.3 to 3.5.4 in /ingestion-edge
+
+Bumps [aiohttp](https://github.com/aio-libs/aiohttp) from 3.5.3 to 3.5.4.
+- [Release notes](https://github.com/aio-libs/aiohttp/releases)
+- [Changelog](https://github.com/aio-libs/aiohttp/blob/master/HISTORY.rst)
+- [Commits](https://github.com/aio-libs/aiohttp/compare/v3.5.3...v3.5.4)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-14T15:01:00Z,JustCallMeDev,JustCallMeDev,2,1,1
+221,gcp-ingestion,522b65ccc822eb9ec74be8d040c9e2247e50a153,"Bump pytest from 4.1.0 to 4.1.1 in /ingestion-edge
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 4.1.0 to 4.1.1.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/4.1.0...4.1.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-14T14:54:12Z,JustCallMeDev,JustCallMeDev,2,1,1
+222,gcp-ingestion,c9d7086f3b4e33c3228ea6b1b59d3da9b45d1311,"Modify JSON payloads to make submission_timestamp a top-level field
+
+Closes #339",Jeff Klukas,2019-01-11T21:29:35Z,jklukas,jklukas,80,72,8
+223,gcp-ingestion,24c1cea1bdcb69f6f38a86f73a8ae28978cdfecf,"Implement pubsub batch for asyncio (#355)
+
+Handle RetryError in PublisherClient.publish
+Raise ValueError when single message exceeds max bytes
+Return asyncio.Task instead of google.api_core.futures.Future",Daniel Thorn,2019-01-11T18:37:49Z,relud,relud,448,286,162
+224,gcp-ingestion,e383ed514338d66ff8c58f8d95631b65cbe8424d,"Bump aiohttp from 3.5.2 to 3.5.3 in /ingestion-edge
+
+Bumps [aiohttp](https://github.com/aio-libs/aiohttp) from 3.5.2 to 3.5.3.
+- [Release notes](https://github.com/aio-libs/aiohttp/releases)
+- [Changelog](https://github.com/aio-libs/aiohttp/blob/master/HISTORY.rst)
+- [Commits](https://github.com/aio-libs/aiohttp/compare/v3.5.2...v3.5.3)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-11T13:14:04Z,JustCallMeDev,JustCallMeDev,2,1,1
+225,gcp-ingestion,5e3b65f818b70c36eb632ceb7e350ace69a3a910,Support core ping's 'v' for version,Jeff Klukas,2019-01-10T20:56:59Z,jklukas,jklukas,10,6,4
+226,gcp-ingestion,d8caedbd8c1c3ac8984cc6647e40c1cac62fa38a,"Bump pluggy from 0.8.0 to 0.8.1 in /ingestion-edge
+
+Bumps [pluggy](https://github.com/pytest-dev/pluggy) from 0.8.0 to 0.8.1.
+- [Release notes](https://github.com/pytest-dev/pluggy/releases)
+- [Changelog](https://github.com/pytest-dev/pluggy/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pluggy/compare/0.8.0...0.8.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-10T13:13:50Z,JustCallMeDev,JustCallMeDev,2,1,1
+227,gcp-ingestion,3c846e14bf6b380458b85facd77f105ced872021,"Logic and display cleanup around BigQuery output
+
+A few things I noticed while debugging BigQuery output.",Jeff Klukas,2019-01-09T20:21:48Z,jklukas,jklukas,19,14,5
+228,gcp-ingestion,5020be5f687a81de18004c5e80fcdbadc922a484,"Bump aiohttp from 3.5.1 to 3.5.2 in /ingestion-edge
+
+Bumps [aiohttp](https://github.com/aio-libs/aiohttp) from 3.5.1 to 3.5.2.
+- [Release notes](https://github.com/aio-libs/aiohttp/releases)
+- [Changelog](https://github.com/aio-libs/aiohttp/blob/master/HISTORY.rst)
+- [Commits](https://github.com/aio-libs/aiohttp/compare/v3.5.1...v3.5.2)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-08T14:47:50Z,JustCallMeDev,JustCallMeDev,2,1,1
+229,gcp-ingestion,c7a6dead542592ab7f43969863eb19d542af96fe,Maven memory settings,Jeff Klukas,2019-01-08T18:15:03Z,jklukas,jklukas,1,1,0
+230,gcp-ingestion,e2efa5e3849a44dba4d824bbb7bb3297d794d894,Revert BigQuery test with large datum,Jeff Klukas,2019-01-08T18:09:58Z,jklukas,jklukas,24,8,16
+231,gcp-ingestion,56c8da2e539eccbc753d2b00f3ad66ad682aaafc,Pin maven image,Jeff Klukas,2019-01-08T17:53:03Z,jklukas,jklukas,6,4,2
+232,gcp-ingestion,3872c7ef042e667d653b991d2142d569e114639c,"Filter large payloads to error output when writing to BigQuery
+
+We found that the pipeline was throwing runtime exceptions due to 404 responses
+relating to payloads over 10 MB.",Jeff Klukas,2019-01-08T16:27:16Z,jklukas,jklukas,142,131,11
+233,gcp-ingestion,3698c0c8cff6390cc4587f458239c6fef5f87487,Label the empty error collection,Jeff Klukas,2019-01-07T21:57:04Z,jklukas,jklukas,4,2,2
+234,gcp-ingestion,56e61681d5a13370c2e2edbe0fd066f2b9c89a8d,"Don't catch Throwable in MapElementsWithErrors
+
+In testing the Decoder, I've seen some records in the error collection due to
+OutOfMemoryError. We likely want the worker to fail in this case rather than
+send the message to error output.
+
+In general, it's a bit dangerous to catch Throwable since system Errors
+(which don't inherit from exception) are generally due to some unrecoverable
+state that means the process needs to go down quickly.",Jeff Klukas,2019-01-07T21:53:43Z,jklukas,jklukas,14,7,7
+235,gcp-ingestion,961eaef638c7c64f3770b0fc9536de617abdb2ac,Bug: set default for errorOutputPubsubCompression,Jeff Klukas,2019-01-07T22:21:04Z,jklukas,jklukas,2,2,0
+236,gcp-ingestion,fa6c847b74d22f949ee8c693eeecdf4dd0ba0051,"Check for null bytes in CompressPayload
+
+@whd found NullPointerExceptions due to constructing a ByteArrayInputStream
+with a null argument.",Jeff Klukas,2019-01-07T21:35:30Z,jklukas,jklukas,10,10,0
+237,gcp-ingestion,41f1810795a8de2640a19a70b44207904f0e196f,Remove premature optimization of checking gzip header bytes,Jeff Klukas,2019-01-07T17:52:55Z,jklukas,jklukas,23,5,18
+238,gcp-ingestion,7292e9bd06d42b6c4cfa12a8f8f907d06c2c4faf,"Apply gzip compression and decompression by default
+
+Closes #324",Jeff Klukas,2019-01-04T21:38:57Z,jklukas,jklukas,159,152,7
+239,gcp-ingestion,e15a5015470e6b77c38ffe77791dc6632d816a3f,File compression,Jeff Klukas,2019-01-04T16:46:42Z,jklukas,jklukas,135,96,39
+240,gcp-ingestion,ecac708e341396a612d8823110f7a8e63499b03e,More efficient gzip check via magic bytes,Jeff Klukas,2019-01-04T15:41:41Z,jklukas,jklukas,18,18,0
+241,gcp-ingestion,dad815328b9f2cafe973e6b0c8d0e535315c3a36,Rename GzipDecompress -> DecompressPayload,Jeff Klukas,2019-01-04T15:26:58Z,jklukas,jklukas,10,5,5
+242,gcp-ingestion,5ff97b90b6f6595e96a2dc6e4a6d611953869152,"Bump pytest from 4.0.2 to 4.1.0 in /ingestion-edge (#345)
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 4.0.2 to 4.1.0.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/4.0.2...4.1.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-07T14:42:38Z,dependabot[bot],dependabot[bot],2,1,1
+243,gcp-ingestion,10c73e42e2c40e1e957eb2070e96afbc571241fb,"Bump pytest-cov from 2.6.0 to 2.6.1 in /ingestion-edge (#344)
+
+Bumps [pytest-cov](https://github.com/pytest-dev/pytest-cov) from 2.6.0 to 2.6.1.
+- [Release notes](https://github.com/pytest-dev/pytest-cov/releases)
+- [Changelog](https://github.com/pytest-dev/pytest-cov/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest-cov/compare/v2.6.0...v2.6.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-07T14:30:00Z,dependabot[bot],dependabot[bot],2,1,1
+244,gcp-ingestion,b0e293fefd2f2ce7396fb2a780e444843a4697d7,"Bump pytz from 2018.7 to 2018.9 in /ingestion-edge (#343)
+
+Bumps [pytz](https://github.com/stub42/pytz) from 2018.7 to 2018.9.
+- [Release notes](https://github.com/stub42/pytz/releases)
+- [Commits](https://github.com/stub42/pytz/compare/release_2018.7...release_2018.9)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-07T14:24:38Z,dependabot[bot],dependabot[bot],2,1,1
+245,gcp-ingestion,afd8c0bee02d9a86ba4b6eec5803ea5db5f79c71,"Account for Google forwarding rule IP in GeoCityLookup (#336)
+
+Fixes #327",Jeff Klukas,2019-01-03T19:05:27Z,jklukas,jklukas,67,49,18
+246,gcp-ingestion,237fc742af000e3eb6c21c31418ec31586d05d36,Use context.abort in pubsub_emulator (#332),Daniel Thorn,2019-01-03T18:31:14Z,relud,relud,121,63,58
+247,gcp-ingestion,2801f0ca98e8aa7724c5222806441043da9d8998,Add types to pubsub_emulator api methods (#333),Daniel Thorn,2019-01-03T18:24:50Z,relud,relud,40,28,12
+248,gcp-ingestion,a0b447a3cf2c2263c6d6ff2add65e64cca6d4d31,Add logging to pubsub_emulator (#334),Daniel Thorn,2019-01-03T14:30:58Z,relud,relud,40,38,2
+249,gcp-ingestion,7cf62e7a37d8aa845069ff1c4cb63b8fbb563bef,"Bump pytest-env from 0.6.1 to 0.6.2 in /ingestion-edge (#335)
+
+Bumps [pytest-env](https://github.com/MobileDynasty/pytest-env) from 0.6.1 to 0.6.2.
+- [Release notes](https://github.com/MobileDynasty/pytest-env/releases)
+- [Commits](https://github.com/MobileDynasty/pytest-env/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-03T14:07:58Z,dependabot[bot],dependabot[bot],2,1,1
+250,gcp-ingestion,75be8dca49369b7109829d3172dd2993b89d6440,Remove unused HTTP codes and add 431 (#331),Daniel Thorn,2019-01-02T22:10:39Z,relud,relud,7,4,3
+251,gcp-ingestion,6cb866947c25e3242f1fc65303b3cd95457354b4,Remove unnecessary yield for fixture (#330),Daniel Thorn,2019-01-02T21:36:10Z,relud,relud,2,1,1
+252,gcp-ingestion,b588099f07dde988319a4c150a778ccb47a6e6a1,Simplify pubsub status code tests (#329),Daniel Thorn,2019-01-02T21:32:51Z,relud,relud,39,5,34
+253,gcp-ingestion,51e1555c11dc86c60d2e3c451917084466853222,Update pubsub exception handling (#328),Daniel Thorn,2019-01-02T21:23:03Z,relud,relud,253,26,227
+254,gcp-ingestion,f75f0e5387189121ff26761b03af4822b7718d27,Report HTTP version as protocol (#326),Daniel Thorn,2019-01-02T20:12:36Z,relud,relud,8,4,4
+255,gcp-ingestion,df30b4e533a569acfc7b0fd2b1abe95c8b521c14,create edge server and pubsub emulator if needed (#322),Daniel Thorn,2019-01-02T19:46:26Z,relud,relud,174,103,71
+256,gcp-ingestion,6833ae1a41ee8369d7a4a7b739d86825c6df6357,Add integration tests for ingestion-edge (#317),Daniel Thorn,2019-01-02T16:34:43Z,relud,relud,181,166,15
+257,gcp-ingestion,26b5288f8099cd5ae45397b19c921f8eaa6004f4,"Bump checkstyle from 8.15 to 8.16 in /ingestion-beam
+
+Bumps [checkstyle](https://github.com/checkstyle/checkstyle) from 8.15 to 8.16.
+- [Release notes](https://github.com/checkstyle/checkstyle/releases)
+- [Commits](https://github.com/checkstyle/checkstyle/compare/checkstyle-8.15...checkstyle-8.16)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-02T16:13:25Z,JustCallMeDev,JustCallMeDev,2,1,1
+258,gcp-ingestion,79b7286ded0f735c3b14a09919f889024cd488a3,"Bump maven-assembly-plugin from 3.1.0 to 3.1.1 in /ingestion-beam
+
+Bumps [maven-assembly-plugin](https://github.com/apache/maven-assembly-plugin) from 3.1.0 to 3.1.1.
+- [Release notes](https://github.com/apache/maven-assembly-plugin/releases)
+- [Commits](https://github.com/apache/maven-assembly-plugin/compare/maven-assembly-plugin-3.1.0...maven-assembly-plugin-3.1.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-01-02T13:14:13Z,JustCallMeDev,JustCallMeDev,2,1,1
+259,gcp-ingestion,9843c549028410a047f9f26405b834e0c6a694c3,"Bump sanic from 0.8.3 to 18.12.0 in /ingestion-edge (#315)
+
+Bumps [sanic](https://github.com/channelcat/sanic) from 0.8.3 to 18.12.0.
+- [Release notes](https://github.com/channelcat/sanic/releases)
+- [Changelog](https://github.com/huge-success/sanic/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/channelcat/sanic/compare/0.8.3...18.12.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-31T18:05:22Z,dependabot[bot],dependabot[bot],4,2,2
+260,gcp-ingestion,2b29b193941a28126d34dd6bb3c49fe08bb0018e,"Bump pyasn1 from 0.4.4 to 0.4.5 in /ingestion-edge (#319)
+
+Bumps [pyasn1](https://github.com/etingof/pyasn1) from 0.4.4 to 0.4.5.
+- [Release notes](https://github.com/etingof/pyasn1/releases)
+- [Changelog](https://github.com/etingof/pyasn1/blob/master/CHANGES.rst)
+- [Commits](https://github.com/etingof/pyasn1/compare/v0.4.4...v0.4.5)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-31T17:55:04Z,dependabot[bot],dependabot[bot],2,1,1
+261,gcp-ingestion,4e07f224e5b118c11fbaa1fceb25ce3527e4c38e,"Bump pyasn1-modules from 0.2.2 to 0.2.3 in /ingestion-edge (#318)
+
+Bumps [pyasn1-modules](https://github.com/etingof/pyasn1-modules) from 0.2.2 to 0.2.3.
+- [Release notes](https://github.com/etingof/pyasn1-modules/releases)
+- [Changelog](https://github.com/etingof/pyasn1-modules/blob/master/CHANGES.txt)
+- [Commits](https://github.com/etingof/pyasn1-modules/compare/v0.2.2...v0.2.3)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-31T17:50:50Z,dependabot[bot],dependabot[bot],2,1,1
+262,gcp-ingestion,1781554da8d684709859c58f2c11b08ee59fef20,"Add integration tests for ingestion-edge (#312)
+
+fixes #310",Daniel Thorn,2018-12-28T21:15:36Z,relud,relud,515,392,123
+263,gcp-ingestion,3a69f3b7e224c7511e49a0dce6d53363476488b8,"Add PubsubConstraints for attribute truncation (#316)
+
+Mostly addresses #313.
+
+We were seeing the Decoder job fail to progress due to exception being thrown
+when attempting to publish error messages to Pubsub. The stack_trace attribute
+values were too large.
+
+This change proactively truncates the stack trace values, but then also applies
+a final TruncateAttributes transform before attempting to publish. That
+introduces the possibility of some data loss in the published attributes, but
+seems better than unexpectedly having the pipeline fail.
+
+We are still vulnerable to the possibility of putting too many attributes on
+messages (over 100) or having too large of a payload, but we have not yet
+observed those cases in practice.",Jeff Klukas,2018-12-28T21:02:08Z,jklukas,jklukas,252,237,15
+264,gcp-ingestion,c2f29c8fab7576ed8900795318c8f853635862e7,"Bump more-itertools from 4.3.0 to 5.0.0 in /ingestion-edge (#314)
+
+Bumps [more-itertools](https://github.com/erikrose/more-itertools) from 4.3.0 to 5.0.0.
+- [Release notes](https://github.com/erikrose/more-itertools/releases)
+- [Commits](https://github.com/erikrose/more-itertools/compare/4.3.0...5.0.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-28T19:51:20Z,dependabot[bot],dependabot[bot],2,1,1
+265,gcp-ingestion,cfb114a9ea723238358639f0c3af32a137617735,"Bump jedis from 3.0.0 to 3.0.1 in /ingestion-beam
+
+Bumps [jedis](https://github.com/xetorthio/jedis) from 3.0.0 to 3.0.1.
+- [Release notes](https://github.com/xetorthio/jedis/releases)
+- [Commits](https://github.com/xetorthio/jedis/compare/jedis-3.0.0...jedis-3.0.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-27T13:22:10Z,JustCallMeDev,JustCallMeDev,2,1,1
+266,gcp-ingestion,f37faf7f38fd0170054a0b1f25b27e5e843e4ea2,"Configure 7 day allowed lateness for file windowing
+
+Closes #253",Jeff Klukas,2018-12-26T19:29:53Z,jklukas,jklukas,159,143,16
+267,gcp-ingestion,f87176c325dd8dee419def345a701ceadc473988,"Add DerivedAttributesMap to avoid persisting derived attributes
+
+Closes #306",Jeff Klukas,2018-12-26T16:08:13Z,jklukas,jklukas,304,155,149
+268,gcp-ingestion,54dcf8f37061fdfff226d0a7336c21cb3c3af70f,"Bump aiohttp from 3.4.4 to 3.5.1 in /ingestion-edge
+
+Bumps [aiohttp](https://github.com/aio-libs/aiohttp) from 3.4.4 to 3.5.1.
+- [Release notes](https://github.com/aio-libs/aiohttp/releases)
+- [Changelog](https://github.com/aio-libs/aiohttp/blob/master/HISTORY.rst)
+- [Commits](https://github.com/aio-libs/aiohttp/compare/v3.4.4...v3.5.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2018-12-25T13:14:42Z,JustCallMeDev,JustCallMeDev,2,1,1
+269,gcp-ingestion,163cc7438c5d380c58fba7115b3769dd0dc63d08,Move black to same location as other style checks (#302),Daniel Thorn,2018-12-21T22:01:27Z,relud,relud,21,7,14
+270,gcp-ingestion,a6944dfc0af38090fcd211c38653f51ced538f63,Turn off cleanupDaemonThreads in mvn java:exec,Jeff Klukas,2018-12-21T20:49:24Z,jklukas,jklukas,3,3,0
+271,gcp-ingestion,0855384e6a97aadc4970046901c7097ebccdb657,Populate attributes for failed inserts to BigQuery,Jeff Klukas,2018-12-21T20:48:40Z,jklukas,jklukas,51,38,13
+272,gcp-ingestion,695baae425d97aba71247683e6862c46b49541c6,"Allow loading of schemas at runtime
+
+Tests on Dataflow were failing with not being able to find schemas",Jeff Klukas,2018-12-21T17:24:37Z,jklukas,jklukas,11,6,5
+273,gcp-ingestion,85f1783284b1b07c3d651ce20b6b57f063470c96,"Relocate tests for better naming (#301)
+
+and add documentation for running separate test suites",Daniel Thorn,2018-12-21T21:02:59Z,relud,relud,63,55,8
+274,gcp-ingestion,628a375cfaabda5bb6df37ae683d045c54ceb402,"Update ingestion-beam/src/main/java/com/mozilla/telemetry/decoder/DecoderOptions.java
+
+Co-Authored-By: jklukas <jeff@klukas.net>",Daniel Thorn,2018-12-21T17:01:18Z,relud,relud,2,1,1
+275,gcp-ingestion,c2550100681af84f5946bc9def84263481bed1e2,Make geoCityFilter and geoCityDatabase runtime parameters,Jeff Klukas,2018-12-21T02:55:26Z,jklukas,jklukas,57,34,23
+276,gcp-ingestion,ba3c0891b4dca865047805064093fb07a571b13a,Enforce default for deduplicateExpireDuration,Jeff Klukas,2018-12-21T02:39:08Z,jklukas,jklukas,20,19,1
+277,gcp-ingestion,0ef226f8aef79d0de475ac80deb3e62189e5b8ce,Remove repeated defaults in options docs,Jeff Klukas,2018-12-21T02:23:23Z,jklukas,jklukas,24,12,12
+278,gcp-ingestion,046d7cb079b03b3f39f9979dba41932c49a05087,Make flush a background task (#287),Daniel Thorn,2018-12-21T01:41:50Z,relud,relud,744,486,258
+279,gcp-ingestion,1366806a86dfcccfd3656eaeaa9702d1f0b19611,"Documentation on runtime parameters for templates
+
+This should hopefully alleviate some of the confusion we currently
+have over how to correctly deploy a templated pipeline.",Jeff Klukas,2018-12-20T20:34:35Z,jklukas,jklukas,38,32,6
+280,gcp-ingestion,0f0a615ff1dbf8b6c42c0f983a2c008d2cbed746,add heartbeat check on queue size (#295),Daniel Thorn,2018-12-20T22:55:41Z,relud,relud,187,132,55
+281,gcp-ingestion,74e432686d23186f9b8003a811a1ee28cb6e7793,"Use TestPipeline.newProvider() in tests
+
+We've seen some cases in the past where a change deployed to Dataflow
+leads to ""Value only available at runtime"" errors because tests are using
+a StaticValueProvider that's available at compile time whereas real
+execution doesn't have the value available.
+
+TestPipeline.newProvider() exists for this purpose. You pass in a literal
+value, but it won't be available for access until runtime, better simulating
+the real execution context.
+
+This change removes usage of StaticValueProvider for all tests where a
+TestPipeline is available.",Jeff Klukas,2018-12-20T20:26:05Z,jklukas,jklukas,33,9,24
+282,gcp-ingestion,21850679b6c69e66af24fb8d46889772ba298643,Make PublisherClient ephemeral (#294),Daniel Thorn,2018-12-20T20:49:10Z,relud,relud,81,47,34
+283,gcp-ingestion,f2c44bed806600ab2b867878714d2e57bd6c1df7,"Dynamic destinations for BigQuery output
+
+Closes #291",Jeff Klukas,2018-12-20T02:32:04Z,jklukas,jklukas,152,127,25
+284,gcp-ingestion,6f70ccc67c68f0c7e02a464e85ba047f3ad006f4,"Add run methods to Sink and Decoder returning PipelineResult
+
+Also updates BigQueryIntegrationTest to call `waitUntilFinish`
+on the result, which should hopefully clear up the flakiness
+described in #263",Jeff Klukas,2018-12-19T20:35:11Z,jklukas,jklukas,60,50,10
+285,gcp-ingestion,022370aabd5030efa612a06681490376d19122fc,"Bump pytest-mock from 1.10.1 to 1.10.4 in /ingestion-edge
+
+Bumps [pytest-mock](https://github.com/pytest-dev/pytest-mock) from 1.10.1 to 1.10.4.
+- [Release notes](https://github.com/pytest-dev/pytest-mock/releases)
+- [Changelog](https://github.com/pytest-dev/pytest-mock/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest-mock/compare/v1.10.1...1.10.4)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-02T13:30:57Z,JustCallMeDev,JustCallMeDev,2,1,1
+286,gcp-ingestion,1d71e8305380bb0ce9763e491b851a4bb3b3376c,"Bump more-itertools from 6.0.0 to 7.0.0 in /ingestion-edge
+
+Bumps [more-itertools](https://github.com/erikrose/more-itertools) from 6.0.0 to 7.0.0.
+- [Release notes](https://github.com/erikrose/more-itertools/releases)
+- [Commits](https://github.com/erikrose/more-itertools/compare/6.0.0...7.0.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-02T13:27:21Z,JustCallMeDev,JustCallMeDev,2,1,1
+287,gcp-ingestion,7199d8af32880fdd2364cc220a8fc4f96782d15f,"Bump pyasn1-modules from 0.2.4 to 0.2.5 in /ingestion-edge
+
+Bumps [pyasn1-modules](https://github.com/etingof/pyasn1-modules) from 0.2.4 to 0.2.5.
+- [Release notes](https://github.com/etingof/pyasn1-modules/releases)
+- [Changelog](https://github.com/etingof/pyasn1-modules/blob/master/CHANGES.txt)
+- [Commits](https://github.com/etingof/pyasn1-modules/compare/v0.2.4...v0.2.5)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-02T13:22:09Z,JustCallMeDev,JustCallMeDev,2,1,1
+288,gcp-ingestion,77e5cfc71438fcb31a1d5076d43535c043621c0c,"Remove duplicate schemaLocation config option
+
+Fixes #538",Jeff Klukas,2019-04-30T18:46:40Z,jklukas,jklukas,36,13,23
+289,gcp-ingestion,21d1153965c7c4efe9863490fbcd9b0cc20244b2,"Test decoder idempotence
+
+Closes #366",Jeff Klukas,2019-05-01T17:11:36Z,jklukas,jklukas,35,35,0
+290,gcp-ingestion,d2e76af1c79921cbf6491130a64009eb7f950db3,"Include geo db version in metadata
+
+Fixes #537",Jeff Klukas,2019-04-30T19:09:56Z,jklukas,jklukas,12997,12938,59
+291,gcp-ingestion,acca1563696c6b73b083fbcc78e4118d5355ffa7,"Don't insert empty objects into additional_properties
+
+Currently, we descend into all records and add a node to additional_properties,
+even if it ends up giving us empty output like `{""outer"":{}}`. With this change,
+a record without any properties absent from the schema will end up with an
+empty json record (`{}`) for additional_properties.",Jeff Klukas,2019-05-01T16:33:02Z,jklukas,jklukas,25,22,3
+292,gcp-ingestion,2a10819b8ef9460ba3ed442b9acf50b5165343ba,"Add distribution metric for tee latency
+
+Fixes #559",Jeff Klukas,2019-04-30T20:57:02Z,jklukas,jklukas,32,22,10
+293,gcp-ingestion,3ce15cb2cfef66ec6c7bdd12cfad9fd91296987a,"Bump psutil from 5.6.1 to 5.6.2 in /ingestion-edge
+
+Bumps [psutil](https://github.com/giampaolo/psutil) from 5.6.1 to 5.6.2.
+- [Release notes](https://github.com/giampaolo/psutil/releases)
+- [Changelog](https://github.com/giampaolo/psutil/blob/master/HISTORY.rst)
+- [Commits](https://github.com/giampaolo/psutil/compare/release-5.6.1...release-5.6.2)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-01T14:27:59Z,JustCallMeDev,JustCallMeDev,2,1,1
+294,gcp-ingestion,c011152542b0dacd8898bb5d9abf2f4f9f868980,"Bump googleapis-common-protos from 1.5.8 to 1.5.10 in /ingestion-edge
+
+Bumps [googleapis-common-protos](https://github.com/googleapis/googleapis) from 1.5.8 to 1.5.10.
+- [Release notes](https://github.com/googleapis/googleapis/releases)
+- [Commits](https://github.com/googleapis/googleapis/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-01T14:24:42Z,JustCallMeDev,JustCallMeDev,2,1,1
+295,gcp-ingestion,98b40cea6f4337da9222ff2c86cd767eac43400d,"Bump cffi from 1.12.2 to 1.12.3 in /ingestion-edge
+
+Bumps [cffi](https://bitbucket.org/cffi/release-doc) from 1.12.2 to 1.12.3.
+- [Commits](https://bitbucket.org/cffi/release-doc/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-01T14:21:04Z,JustCallMeDev,JustCallMeDev,2,1,1
+296,gcp-ingestion,5586ab6e2c6ff2f9255133ae5f0a5fd7e6aed241,"Bump websockets from 6.0 to 7.0 in /ingestion-edge
+
+Bumps [websockets](https://github.com/aaugustin/websockets) from 6.0 to 7.0.
+- [Release notes](https://github.com/aaugustin/websockets/releases)
+- [Changelog](https://github.com/aaugustin/websockets/blob/master/docs/changelog.rst)
+- [Commits](https://github.com/aaugustin/websockets/compare/6.0...7.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-01T14:18:11Z,JustCallMeDev,JustCallMeDev,2,1,1
+297,gcp-ingestion,294f2e831913f6e2168d4bf99f025c75ab74127a,"Bump checkstyle from 8.18 to 8.20 in /ingestion-beam
+
+Bumps [checkstyle](https://github.com/checkstyle/checkstyle) from 8.18 to 8.20.
+- [Release notes](https://github.com/checkstyle/checkstyle/releases)
+- [Commits](https://github.com/checkstyle/checkstyle/compare/checkstyle-8.18...checkstyle-8.20)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-01T13:36:49Z,JustCallMeDev,JustCallMeDev,2,1,1
+298,gcp-ingestion,e05148a0a99c277035458552048c754f92f79b31,"Bump google-cloud-pubsub from 0.39.1 to 0.40.0 in /ingestion-edge
+
+Bumps [google-cloud-pubsub](https://github.com/GoogleCloudPlatform/google-cloud-python) from 0.39.1 to 0.40.0.
+- [Release notes](https://github.com/GoogleCloudPlatform/google-cloud-python/releases)
+- [Changelog](https://github.com/googleapis/google-cloud-python/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/GoogleCloudPlatform/google-cloud-python/compare/pubsub-0.39.1...pubsub-0.40.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-01T13:33:36Z,JustCallMeDev,JustCallMeDev,2,1,1
+299,gcp-ingestion,9d2842f288a68f8a2b53a36b0d312bda6def531c,"Bump auto-value from 1.6.3 to 1.6.5 in /ingestion-beam
+
+Bumps [auto-value](https://github.com/google/auto) from 1.6.3 to 1.6.5.
+- [Release notes](https://github.com/google/auto/releases)
+- [Commits](https://github.com/google/auto/compare/auto-value-1.6.3...auto-value-1.6.5)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-01T13:29:53Z,JustCallMeDev,JustCallMeDev,2,1,1
+300,gcp-ingestion,fecda8213ac8fd1c03247b23587e6adea4f08cb4,"[Security] Bump urllib3 from 1.24.1 to 1.24.2 in /ingestion-edge
+
+Bumps [urllib3](https://github.com/urllib3/urllib3) from 1.24.1 to 1.24.2. **This update includes security fixes.**
+- [Release notes](https://github.com/urllib3/urllib3/releases)
+- [Changelog](https://github.com/urllib3/urllib3/blob/master/CHANGES.rst)
+- [Commits](https://github.com/urllib3/urllib3/compare/1.24.1...1.24.2)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-01T13:26:22Z,JustCallMeDev,JustCallMeDev,2,1,1
+301,gcp-ingestion,ed8208bc7cf3a4875fb40626e5f3fcc3c76a72ac,"Bump grpcio from 1.19.0 to 1.20.1 in /ingestion-edge
+
+Bumps [grpcio](https://github.com/grpc/grpc) from 1.19.0 to 1.20.1.
+- [Release notes](https://github.com/grpc/grpc/releases)
+- [Changelog](https://github.com/grpc/grpc/blob/master/doc/grpc_release_schedule.md)
+- [Commits](https://github.com/grpc/grpc/compare/v1.19.0...v1.20.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-01T13:22:30Z,JustCallMeDev,JustCallMeDev,2,1,1
+302,gcp-ingestion,f438efc53e4699f7e246f1b7405b7b32c1393020,"Bump google-api-core from 1.8.0 to 1.10.0 in /ingestion-edge
+
+Bumps [google-api-core](https://github.com/GoogleCloudPlatform/google-cloud-python) from 1.8.0 to 1.10.0.
+- [Release notes](https://github.com/GoogleCloudPlatform/google-cloud-python/releases)
+- [Changelog](https://github.com/googleapis/google-cloud-python/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/GoogleCloudPlatform/google-cloud-python/compare/logging-1.8.0...logging-1.10.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-01T13:09:38Z,JustCallMeDev,JustCallMeDev,2,1,1
+303,gcp-ingestion,bc10249547d8e321d457d70cf81e3edd79d0457b,"Bump spotless-maven-plugin from 1.19.0 to 1.23.0 in /ingestion-beam
+
+Bumps [spotless-maven-plugin](https://github.com/diffplug/plugin-maven) from 1.19.0 to 1.23.0.
+- [Release notes](https://github.com/diffplug/plugin-maven/releases)
+- [Commits](https://github.com/diffplug/plugin-maven/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-01T13:06:30Z,JustCallMeDev,JustCallMeDev,2,1,1
+304,gcp-ingestion,07e52f8ebc0d520ffbe08aebcd178aba3a001b68,"Bump beam.version from 2.11.0 to 2.12.0 in /ingestion-beam
+
+Bumps `beam.version` from 2.11.0 to 2.12.0.
+
+Updates `beam-runners-direct-java` from 2.11.0 to 2.12.0
+
+Updates `beam-runners-google-cloud-dataflow-java` from 2.11.0 to 2.12.0
+
+Updates `beam-sdks-java-extensions-json-jackson` from 2.11.0 to 2.12.0
+
+Updates `beam-sdks-java-io-google-cloud-platform` from 2.11.0 to 2.12.0
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-01T13:03:31Z,JustCallMeDev,JustCallMeDev,2,1,1
+305,gcp-ingestion,3ca70d639a88dc502571c7b10db50b85c28696d9,"Bump yauaa from 5.8 to 5.9 in /ingestion-beam
+
+Bumps [yauaa](https://github.com/nielsbasjes/yauaa) from 5.8 to 5.9.
+- [Release notes](https://github.com/nielsbasjes/yauaa/releases)
+- [Changelog](https://github.com/nielsbasjes/yauaa/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/nielsbasjes/yauaa/compare/v5.8...v5.9)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-01T13:00:23Z,JustCallMeDev,JustCallMeDev,2,1,1
+306,gcp-ingestion,2f5e33f6ab76ecd893c11fd6e1c25cb45c441ed0,"[Security] Bump pyyaml from 3.13 to 5.1 in /ingestion-edge
+
+Bumps [pyyaml](https://github.com/yaml/pyyaml) from 3.13 to 5.1. **This update includes security fixes.**
+- [Release notes](https://github.com/yaml/pyyaml/releases)
+- [Changelog](https://github.com/yaml/pyyaml/blob/master/CHANGES)
+- [Commits](https://github.com/yaml/pyyaml/compare/3.13...5.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-05-01T12:56:53Z,JustCallMeDev,JustCallMeDev,2,1,1
+307,gcp-ingestion,be3ad7415f743ec183e491fe2c317571f18fd867,"Save the uri attribute in nested metadata
+
+After deploying #542, the BigQuery sink jobs were failing. The cause
+was that we were writing a ""uri"" string to the metadata object as extra
+identifying information, but that clobbered the ""uri"" struct of the same name,
+leading to a string where BQ expected a record.
+
+We now save the uri string inside the uri struct.",Jeff Klukas,2019-04-30T19:23:26Z,jklukas,jklukas,21,12,9
+308,gcp-ingestion,b2719364a74a3cd3497cebe730d76ab6803ce1fa,"Implement nested metadata (#542)
+
+Per the accepted [Ping metadata in GCP proposal](https://docs.google.com/document/d/1AsshL_QS1qRVXcHW5lz0jZeM-UKIWFl1oV3XJz7Xewo/edit#)
+
+A json schema for this metadata is being drafted in
+https://github.com/mozilla-services/mozilla-pipeline-schemas/pull/312",Jeff Klukas,2019-04-30T18:21:28Z,jklukas,jklukas,498,396,102
+309,gcp-ingestion,b2a64c304e30d9c768277e4245b86b9d2c7167d8,"Add documentation on testing BigQuery from ingestion-beam (#543)
+
+* Create documentation on testing BigQuery from ingestion-beam.
+
+* Add a mermaid config file to the docs directory for overflow
+
+* Fix spelling mistakes
+
+* Move mermaid config to top-level .mermaid",Anthony Miyaguchi,2019-04-29T18:27:44Z,acmiyaguchi,acmiyaguchi,140,134,6
+310,gcp-ingestion,5bb0aba51c8fe3824e1585b5e68ba9d54b7d2d1c,"Add scripts for testing bigquery table updates with schemas generated from mps (#541)
+
+* Add helper scripts for generating bigquery schemas and creating tables
+
+* Add correct type for metadata and comments
+
+* Refactor update table into a function
+
+* Fix script based on shellcheck hints
+
+* Update error counting
+
+* Apply suggestions from code review
+
+Co-Authored-By: acmiyaguchi <acmiyaguchi@gmail.com>
+
+* Add generated resources to gitignore
+
+* Update documentation in scripts",Anthony Miyaguchi,2019-04-26T21:52:01Z,acmiyaguchi,acmiyaguchi,187,187,0
+311,gcp-ingestion,dedb321bb581e9887bfa9a0f8dfe182fa38d08c8,"Add Normalize.countryCode
+
+Follow-up to #478
+
+We will likely add a top-level ""normalized_country_code"" attribute next
+week as part of a cohesive strategy for building a nested metadata struct
+and top-level metadata fields. For now, we're immediately normalizing the value
+we get from geo lookup.",Jeff Klukas,2019-04-19T18:55:46Z,jklukas,jklukas,37,36,1
+312,gcp-ingestion,12fcbe6944c7cf76d3d35cd46fe24cd4d0a8ab03,"Transform json map fields to arrays before output to BigQuery (#536)
+
+* Apply payload transformations to match BQ schema
+
+We support a variety of transformations to account for limitations of BigQuery
+schemas. In particular, we support transforming maps into arrays of key/value
+pairs, serializing structures to json strings where a string is expected,
+and sanitizing field names that BQ cannot support.
+
+We additionally build up a JSON string of items for which we have no
+JSON fields in the destination BigQuery table.
+
+* Apply suggestions from code review
+
+Co-Authored-By: jklukas <jeff@klukas.net>",Jeff Klukas,2019-04-25T19:48:54Z,jklukas,jklukas,283,277,6
+313,gcp-ingestion,bfdfd2c51104b14ac2b4da8fa89652634c362406,"Update download schemas (#531)
+
+* Insert testing schemas to an upstream copy of mozilla-pipeline-schemas
+
+* Update name for top-level directory in generate-avro-schema
+
+* Fix output directory
+
+* Use `git apply` instead of `patch`
+
+* Directly inject testing schema into mps tarball",Anthony Miyaguchi,2019-04-18T23:16:12Z,acmiyaguchi,acmiyaguchi,136,99,37
+314,gcp-ingestion,f0b06bd83a011f555f6158b14dd9c7dbb8e83f8b,"Add normalized os and app attributes
+
+Closes https://github.com/mozilla/gcp-ingestion/issues/478",Jeff Klukas,2019-04-16T13:14:17Z,jklukas,jklukas,216,210,6
+315,gcp-ingestion,eda974f395c15b54fdcc9c12aabbb3fe981f8058,"Add normalized_channel attribute (#532)
+
+Supports https://github.com/mozilla/gcp-ingestion/issues/478",Jeff Klukas,2019-04-17T20:23:33Z,jklukas,jklukas,139,115,24
+316,gcp-ingestion,e979b0f31b90f622644bef0cd24c9f2e28041b86,"Improve unit tests in AvroSinkTest (#530)
+
+* Add a test for asserting that the expected value can be read from file
+
+* Fix tests for reading avro and add tests for exception messages",Anthony Miyaguchi,2019-04-15T19:07:05Z,acmiyaguchi,acmiyaguchi,95,87,8
+317,gcp-ingestion,8836b34dbaeb57744165d446449b0f47bde891e1,"Remove MarkAsSeen from Decoder
+
+Once the Republisher (see #517) is deployed and stable, it will be marking
+IDs as seen in Redis, so the Decoder no longer needs to do so.
+
+This PR removes all code related to Decoder publishing ids to Redis.",Jeff Klukas,2019-04-05T18:38:49Z,jklukas,jklukas,126,16,110
+318,gcp-ingestion,d987f3246faeb0a0389ed275282166fc0bff8fa9,"Define republisher destinations at compile-time (#527)
+
+Fixes #524",Jeff Klukas,2019-04-12T06:34:07Z,jklukas,jklukas,56,36,20
+319,gcp-ingestion,dc7429954b8f2bd5d0a87b2867105b0e2c2001a6,"Add option to write Avro to GCS (#470)
+
+* Add script to generate testcases for avro fileouput
+
+* Add classes for encoding and decoding generic records
+
+* Add sink for avro output
+
+* Add scripts for running integration tests
+
+* Refactor and edit integration testing scripts
+
+* Read jsonschema directly from the tarfile
+
+* Rename and comment the encodePayloadAsAvro ParDo
+
+* Add option for schemaAliasLocation
+
+* Fix unit tests for SinkAvroTest
+
+* Apply suggestions from code review
+
+Co-Authored-By: acmiyaguchi <acmiyaguchi@gmail.com>",Anthony Miyaguchi,2019-04-10T20:51:06Z,acmiyaguchi,acmiyaguchi,661,660,1
+320,gcp-ingestion,854f5bd050f98b9edbd713ea56025c38df8a98a3,Calculate sample_id in the Decoder,Jeff Klukas,2019-04-09T20:03:27Z,jklukas,jklukas,151,141,10
+321,gcp-ingestion,8628793ea6f8ca9317150150725ae22b529b806d,Add stream-specific republisher configuration for templates (#523),whd,2019-04-09T01:19:43Z,whd,whd,4,2,2
+322,gcp-ingestion,897b52fb3f623b327c115a5dbd78a845898efcac,"Use the correct schema suffix when retrieving avro schemas (#522)
+
+* Update AvroSchemaStore to accept aliases
+
+* Add tests for verifying the contents of the schema store
+
+* Use the correct schema suffix when retrieving avro schemas
+
+* Address review: simplify string",Anthony Miyaguchi,2019-04-08T22:35:27Z,acmiyaguchi,acmiyaguchi,78,62,16
+323,gcp-ingestion,623a93eac9d8b84bb08be1488e5b2c34d0bb2e38,"Generate `avro-schema-test.tar.gz` programmatically (#521)
+
+* Add script to generate avro schemas for tests
+
+* Add checksum for generated tar.gz test resources
+
+* Address review: file ending, documentation, and output directory",Anthony Miyaguchi,2019-04-08T22:01:07Z,acmiyaguchi,acmiyaguchi,114,113,1
+324,gcp-ingestion,e40addff72acc2e3475ec4b680dd89666e5c1f8b,Add republisher to template build script (#520),whd,2019-04-08T17:09:00Z,whd,whd,6,6,0
+325,gcp-ingestion,692333828db89a1a59786f10f1f0fe32daa4117f,"Fix #504 - Add public methods for retrieving attribute map from DynamicPathTemplate (#511)
+
+* Fix #504 - Include attributes for fully qualified names to schemas into DynamicPathTemplate
+
+* Revert ""Fix #504 - Include attributes for fully qualified names to schemas into DynamicPathTemplate""
+
+This reverts commit ebcd42945841fac9d4bf62cb2dd30d3f0fc3b27f.
+
+* Add public methods for retrieving attribute map from DynamicPathTemplate
+
+* Update ingestion-beam/src/main/java/com/mozilla/telemetry/util/DynamicPathTemplate.java",Anthony Miyaguchi,2019-04-05T21:20:28Z,acmiyaguchi,acmiyaguchi,45,36,9
+326,gcp-ingestion,700a46618a13cf5dbe40558eccd5bd8c1c7a2270,"Republisher
+
+Fixes #479 and #396
+
+Adds the Republisher job as previously spec'd in `docs/architecture`.
+
+Before this is deployed, we will need to create appropriate output topics
+for the intended configuration.
+
+Once this is deployed and stable, we can remove the decoded topic consumer
+from Decoder. There will be a short overlap period where both the Decoder
+and Republisher are marking messages as seen in Redis, but this shouldn't
+cause any problems (other than the expense of two consumers).",Jeff Klukas,2019-04-05T14:11:42Z,jklukas,jklukas,544,540,4
+327,gcp-ingestion,d74b51db51d66035b675956a43c3b89455fee21f," Fix #512 - Insert default value of null for missing, nullable fields  (#515)
+
+* Add failing cases for Avro JsonDecoder
+
+* Add test to verify behavior of required fields
+
+* Fix #512 - Insert default value of null for missing, nullable fields
+
+* Add tests for missing field and empty field
+
+* Move insertion of default value outside of field caching",Anthony Miyaguchi,2019-04-05T17:20:36Z,acmiyaguchi,acmiyaguchi,113,112,1
+328,gcp-ingestion,dd7c0c139744b0d21c0db5f35ad852800c4bdba8,"PublishBundleMetrics
+
+Enables https://github.com/mozilla/gcp-ingestion/issues/501",Jeff Klukas,2019-04-03T20:30:55Z,jklukas,jklukas,74,74,0
+329,gcp-ingestion,af345bba57e92675fefdbfd74b657ba4b8f15cce,Add namespace/docType aliasing,Arkadiusz Komarzewski,2019-04-04T14:18:37Z,akkomar,akkomar,230,206,24
+330,gcp-ingestion,d9043041c11959a17f989e26b28339b39e83af89,"Remove SimpleDateFormat in favor of DateTimeFormatter
+
+It appears that SimpleDateFormat's parse method can throw a number
+of undocumented exceptions which bubbled up in the Decoder.
+I expect the newer java.time library to be more stable and more
+thoroughly tested.
+
+Fixes #513",Jeff Klukas,2019-04-03T20:58:34Z,jklukas,jklukas,14,8,6
+331,gcp-ingestion,10c83a2f679c8cb845ff21e403e952b96b602dd9,Add Mozilla Code of Conduct (#510),Mozilla-GitHub-Standards,2019-03-30T16:57:46Z,Mozilla-GitHub-Standards,Mozilla-GitHub-Standards,17,17,0
+332,gcp-ingestion,2c94fff10202abcd1d40dcba00549d5225e90914,Use X-Pipeline-Proxy as submission_timestamp (#507),Daniel Thorn,2019-03-29T17:51:35Z,relud,relud,264,236,28
+333,gcp-ingestion,b44aec4ed6f5fcc5ef9bcf472d636793e9d65b0a,"Implement formatter for decoding PubsubMessage payloads into GenericRecords (#506)
+
+* Add tests for the record formatter
+
+* Move avro functionality into a separate package; add stub for an alternate json decoder
+
+* Add test for object with a single null field
+
+* Add decoding of a flat schema based on the org.avro.io.JsonDecoder
+
+* Add exceptions for unsupported decoding operations
+
+* Add tests for arrays and unions
+
+* Refactor tests to put expected value first in assertions
+
+* Implement array handling
+
+* Add decoding support for maps
+
+* Add insufficient algorithm from org.apache.avro.io.JsonDecoder
+
+* Add custom implementation of readIndex that supports nullable, non-variant types
+
+* Implement string serialization of tree nodes based on the input schema
+
+* Rename fields for expected schemas
+
+* Add documention and fix checkstyle
+
+* Update documentation for decoder module
+
+* Fix checkstyle",Anthony Miyaguchi,2019-03-28T21:18:38Z,acmiyaguchi,acmiyaguchi,770,770,0
+334,gcp-ingestion,0c75dc3960843f63bb6d3056899c9446f9dceee9,"Bump spotless-maven-plugin from 1.18.0 to 1.19.0 in /ingestion-beam (#495)
+
+Bumps [spotless-maven-plugin](https://github.com/diffplug/plugin-maven) from 1.18.0 to 1.19.0.
+- [Release notes](https://github.com/diffplug/plugin-maven/releases)
+- [Commits](https://github.com/diffplug/plugin-maven/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-03-12T18:54:53Z,dependabot[bot],dependabot[bot],2,1,1
+335,gcp-ingestion,7efde811c110eb6340b82ed60e5048db82cd0182,"Bump psutil from 5.6.0 to 5.6.1 in /ingestion-edge (#494)
+
+Bumps [psutil](https://github.com/giampaolo/psutil) from 5.6.0 to 5.6.1.
+- [Release notes](https://github.com/giampaolo/psutil/releases)
+- [Changelog](https://github.com/giampaolo/psutil/blob/master/HISTORY.rst)
+- [Commits](https://github.com/giampaolo/psutil/compare/release-5.6.0...release-5.6.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-03-12T15:07:52Z,dependabot[bot],dependabot[bot],2,1,1
+336,gcp-ingestion,f8794300fc99564bc20b50f76cb0d34f8698059d,"Bump guava from 27.0.1-jre to 27.1-jre in /ingestion-beam (#492)
+
+Bumps [guava](https://github.com/google/guava) from 27.0.1-jre to 27.1-jre.
+- [Release notes](https://github.com/google/guava/releases)
+- [Commits](https://github.com/google/guava/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-03-11T22:32:14Z,dependabot[bot],dependabot[bot],2,1,1
+337,gcp-ingestion,6772297b343c055598e6d44b4578370da7d56a3f,"Bump certifi from 2018.11.29 to 2019.3.9 in /ingestion-edge (#490)
+
+Bumps [certifi](https://github.com/certifi/python-certifi) from 2018.11.29 to 2019.3.9.
+- [Release notes](https://github.com/certifi/python-certifi/releases)
+- [Commits](https://github.com/certifi/python-certifi/compare/2018.11.29...2019.03.09)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-03-11T22:28:39Z,dependabot[bot],dependabot[bot],2,1,1
+338,gcp-ingestion,853417b38e6b613558e62db943060655face88e3,"Bump coverage from 4.5.2 to 4.5.3 in /ingestion-edge (#491)
+
+Bumps [coverage](https://github.com/nedbat/coveragepy) from 4.5.2 to 4.5.3.
+- [Release notes](https://github.com/nedbat/coveragepy/releases)
+- [Changelog](https://github.com/nedbat/coveragepy/blob/coverage-4.5.3/CHANGES.rst)
+- [Commits](https://github.com/nedbat/coveragepy/compare/coverage-4.5.2...coverage-4.5.3)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-03-11T22:26:08Z,dependabot[bot],dependabot[bot],2,1,1
+339,gcp-ingestion,55a494e0e05833ad5e0b3f0e0ea7bbb43a29eb18,"Bump psutil from 5.5.1 to 5.6.0 in /ingestion-edge
+
+Bumps [psutil](https://github.com/giampaolo/psutil) from 5.5.1 to 5.6.0.
+- [Release notes](https://github.com/giampaolo/psutil/releases)
+- [Changelog](https://github.com/giampaolo/psutil/blob/master/HISTORY.rst)
+- [Commits](https://github.com/giampaolo/psutil/compare/release-5.5.1...release-5.6.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-03-05T13:13:30Z,JustCallMeDev,JustCallMeDev,2,1,1
+340,gcp-ingestion,caff1cf00240071bdf833306eee454a866ae7cb5,update jackson in sync with beam,Daniel Thorn,2019-03-04T17:52:55Z,relud,relud,2,1,1
+341,gcp-ingestion,ddf349973e1c9541fe99d482ba1c8ba049e8954b,"Bump beam.version from 2.10.0 to 2.11.0 in /ingestion-beam
+
+Bumps `beam.version` from 2.10.0 to 2.11.0.
+
+Updates `beam-runners-direct-java` from 2.10.0 to 2.11.0
+
+Updates `beam-runners-google-cloud-dataflow-java` from 2.10.0 to 2.11.0
+
+Updates `beam-sdks-java-extensions-json-jackson` from 2.10.0 to 2.11.0
+
+Updates `beam-sdks-java-io-google-cloud-platform` from 2.10.0 to 2.11.0
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-03-04T13:19:07Z,JustCallMeDev,JustCallMeDev,2,1,1
+342,gcp-ingestion,149613d31451fbe9e7faf12774c60e57dba027cb,"Bump protobuf from 3.6.1 to 3.7.0 in /ingestion-edge (#486)
+
+Bumps [protobuf](https://github.com/protocolbuffers/protobuf) from 3.6.1 to 3.7.0.
+- [Release notes](https://github.com/protocolbuffers/protobuf/releases)
+- [Changelog](https://github.com/protocolbuffers/protobuf/blob/master/generate_changelog.py)
+- [Commits](https://github.com/protocolbuffers/protobuf/compare/v3.6.1...v3.7.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-03-04T17:29:50Z,dependabot[bot],dependabot[bot],2,1,1
+343,gcp-ingestion,bd6962328cb15605958f21c546ad8adfd0bb5290,"Bump pyflakes from 2.1.0 to 2.1.1 in /ingestion-edge (#485)
+
+Bumps [pyflakes](https://github.com/PyCQA/pyflakes) from 2.1.0 to 2.1.1.
+- [Release notes](https://github.com/PyCQA/pyflakes/releases)
+- [Changelog](https://github.com/PyCQA/pyflakes/blob/2.1.1/NEWS.rst)
+- [Commits](https://github.com/PyCQA/pyflakes/compare/2.1.0...2.1.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-03-04T17:20:57Z,dependabot[bot],dependabot[bot],2,1,1
+344,gcp-ingestion,ad54491867866e390af133aba0e98ca42ab3d401,"Bump attrs from 18.2.0 to 19.1.0 in /ingestion-edge (#484)
+
+Bumps [attrs](https://github.com/python-attrs/attrs) from 18.2.0 to 19.1.0.
+- [Release notes](https://github.com/python-attrs/attrs/releases)
+- [Changelog](https://github.com/python-attrs/attrs/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/python-attrs/attrs/compare/18.2.0...19.1.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-03-04T17:06:09Z,dependabot[bot],dependabot[bot],2,1,1
+345,gcp-ingestion,4c7368c76e3e44c8f8dfc4b5049d6cfef2175f94,"Add retries in BigQueryIntegrationTest to address race
+
+We sometimes have tests fail due to empty query results. This is likely due
+to immediately making a query after inserting rows.
+
+Addresses #263",Jeff Klukas,2019-02-25T15:58:55Z,jklukas,jklukas,19,15,4
+346,gcp-ingestion,ce949ca2b63e9cb1669c36f0aa3c2d5696f66de3,Update the colour for Monitoring Topics,Mark Reid,2019-02-28T14:44:42Z,mreid-moz,mreid-moz,14,7,7
+347,gcp-ingestion,115d0f2f289a8b5196988b0b7ce89eb4fad8d092,"Bump cryptography from 2.5 to 2.6.1 in /ingestion-edge
+
+Bumps [cryptography](https://github.com/pyca/cryptography) from 2.5 to 2.6.1.
+- [Release notes](https://github.com/pyca/cryptography/releases)
+- [Changelog](https://github.com/pyca/cryptography/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pyca/cryptography/compare/2.5...2.6.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-28T13:14:20Z,JustCallMeDev,JustCallMeDev,2,1,1
+348,gcp-ingestion,e698c84204e408db8ff0d258857090265909486b,"Documentation for refactor with new Republisher job (#471)
+
+* Documentation for refactor with new Republisher job
+
+The Republisher job proposed in this PR would factor out MarkAsSeen
+from Decoder which would lead to a more logical flow of data.
+It also allows us to share the expense of the MarkAsSeen read with
+the read needed to inspect message contents and republish to
+smaller topics.
+
+Specifically, the Republisher for structured ingestion would check for
+the new debug header and publish message containing that header to
+a debug topic per the Glean request in #458.
+
+The Republisher for telemetry data would randomly sample messages to
+produce the monitoring topics discussed in #396.
+
+* Update diagram and include docker wrapper",Jeff Klukas,2019-02-27T22:19:04Z,jklukas,jklukas,96,67,29
+349,gcp-ingestion,017c6535bc1a5df544c60ad16106a3079b085e70,fix ingestion-edge docker container (#475),Daniel Thorn,2019-02-27T20:01:33Z,relud,relud,11,4,7
+350,gcp-ingestion,1aab5e6ee98c4d028a82e1f709263c736f971b1a,Test edge without docker-compose for better dependency caching (#444),Daniel Thorn,2019-02-27T19:17:06Z,relud,relud,288,206,82
+351,gcp-ingestion,2b242a26b4bd4959e34691f8dc280457dff90ae9,"Bump cffi from 1.12.1 to 1.12.2 in /ingestion-edge
+
+Bumps [cffi](https://bitbucket.org/cffi/release-doc) from 1.12.1 to 1.12.2.
+- [Commits](https://bitbucket.org/cffi/release-doc/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-27T17:17:07Z,JustCallMeDev,JustCallMeDev,2,1,1
+352,gcp-ingestion,09dfc8fffde640d6a3f78035f70daf50e0fabaad,"Bump flake8 from 3.7.6 to 3.7.7 in /ingestion-edge
+
+Bumps [flake8](https://gitlab.com/pycqa/flake8) from 3.7.6 to 3.7.7.
+- [Release notes](https://gitlab.com/pycqa/flake8/tags)
+- [Commits](https://gitlab.com/pycqa/flake8/compare/3.7.6...3.7.7)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-27T17:09:55Z,JustCallMeDev,JustCallMeDev,2,1,1
+353,gcp-ingestion,a90d13e775ebd9e125640032cb466c9928b19e5c,"Bump httptools from 0.0.11 to 0.0.13 in /ingestion-edge
+
+Bumps [httptools](https://github.com/MagicStack/httptools) from 0.0.11 to 0.0.13.
+- [Release notes](https://github.com/MagicStack/httptools/releases)
+- [Commits](https://github.com/MagicStack/httptools/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-27T17:03:26Z,JustCallMeDev,JustCallMeDev,2,1,1
+354,gcp-ingestion,b43d72db59ca314f13bf9dce945741f26770b97f,"Bump grpcio from 1.18.0 to 1.19.0 in /ingestion-edge
+
+Bumps [grpcio](https://github.com/grpc/grpc) from 1.18.0 to 1.19.0.
+- [Release notes](https://github.com/grpc/grpc/releases)
+- [Changelog](https://github.com/grpc/grpc/blob/master/doc/grpc_release_schedule.md)
+- [Commits](https://github.com/grpc/grpc/compare/v1.18.0...v1.19.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-27T16:55:53Z,JustCallMeDev,JustCallMeDev,2,1,1
+355,gcp-ingestion,da831a0689ca25e8e3174c71e2f70c38f7a26080,"Bump google-api-core from 1.7.0 to 1.8.0 in /ingestion-edge
+
+Bumps [google-api-core](https://github.com/GoogleCloudPlatform/google-cloud-python) from 1.7.0 to 1.8.0.
+- [Release notes](https://github.com/GoogleCloudPlatform/google-cloud-python/releases)
+- [Changelog](https://github.com/googleapis/google-cloud-python/blob/master/CHANGELOG.md)
+- [Commits](https://github.com/GoogleCloudPlatform/google-cloud-python/compare/logging-1.7.0...logging-1.8.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-27T16:48:55Z,JustCallMeDev,JustCallMeDev,2,1,1
+356,gcp-ingestion,8f21f76bdd4d861d0d8b688e924f0b779bcd4f53,"Bump pytest-sanic from 0.1.15 to 1.0.0 in /ingestion-edge
+
+Bumps [pytest-sanic](https://github.com/yunstanford/pytest-sanic) from 0.1.15 to 1.0.0.
+- [Release notes](https://github.com/yunstanford/pytest-sanic/releases)
+- [Commits](https://github.com/yunstanford/pytest-sanic/compare/v0.1.15...v1.0.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-27T13:15:13Z,JustCallMeDev,JustCallMeDev,2,1,1
+357,gcp-ingestion,a390ab868bc2b309792e8c6b35307c04eef30b14,Add template build script (#469),whd,2019-02-26T19:52:19Z,whd,whd,87,87,0
+358,gcp-ingestion,7eb429193558cd1da8e6bb9b80b0986aaec0cd7d,"Bump websocket-client from 0.54.0 to 0.55.0 in /ingestion-edge
+
+Bumps [websocket-client](https://github.com/websocket-client/websocket-client) from 0.54.0 to 0.55.0.
+- [Release notes](https://github.com/websocket-client/websocket-client/releases)
+- [Changelog](https://github.com/websocket-client/websocket-client/blob/master/ChangeLog)
+- [Commits](https://github.com/websocket-client/websocket-client/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-25T13:19:50Z,JustCallMeDev,JustCallMeDev,2,1,1
+359,gcp-ingestion,375fdd92b8da19868ba049a3cf35fd5340ae7693,"Bump pluggy from 0.8.1 to 0.9.0 in /ingestion-edge
+
+Bumps [pluggy](https://github.com/pytest-dev/pluggy) from 0.8.1 to 0.9.0.
+- [Release notes](https://github.com/pytest-dev/pluggy/releases)
+- [Changelog](https://github.com/pytest-dev/pluggy/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pluggy/compare/0.8.1...0.9.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-25T13:20:07Z,JustCallMeDev,JustCallMeDev,2,1,1
+360,gcp-ingestion,ab27dbd5be0f39d78d192dc013e53778598d07d6,"Bump checkstyle from 8.17 to 8.18 in /ingestion-beam
+
+Bumps [checkstyle](https://github.com/checkstyle/checkstyle) from 8.17 to 8.18.
+- [Release notes](https://github.com/checkstyle/checkstyle/releases)
+- [Commits](https://github.com/checkstyle/checkstyle/compare/checkstyle-8.17...checkstyle-8.18)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-25T13:24:49Z,JustCallMeDev,JustCallMeDev,2,1,1
+361,gcp-ingestion,c032889886ac0e76a7cd34caba8901752020dd05,"Refactor RedisIdService for more consistent connection resets
+
+Follow-up to #456; I had missed the MarkAsSeen case",Jeff Klukas,2019-02-22T18:50:35Z,jklukas,jklukas,44,27,17
+362,gcp-ingestion,e36e320eb5c8b592f8336673c0133d538b4cccf7,"Bump py from 1.7.0 to 1.8.0 in /ingestion-edge
+
+Bumps [py](https://github.com/pytest-dev/py) from 1.7.0 to 1.8.0.
+- [Release notes](https://github.com/pytest-dev/py/releases)
+- [Changelog](https://github.com/pytest-dev/py/blob/master/CHANGELOG)
+- [Commits](https://github.com/pytest-dev/py/compare/1.7.0...1.8.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-22T17:27:01Z,JustCallMeDev,JustCallMeDev,2,1,1
+363,gcp-ingestion,fc663facce263a6ecb0d615d28a9de80d6cddf10,"Initialize a new Redis client on connection errors
+
+Closes #451.
+
+When our Redis cluster experienced a failover, we saw that our client got into
+a bad state and continually returned connection exceptions. This PR attempts
+to handle that case by letting the current message through and initializing a
+new client.
+
+This is somewhat of a speculative change, but we should be able to deploy and
+verify that it does no harm. We'll see how it performs when Redis next fails
+over.",Jeff Klukas,2019-02-22T16:20:31Z,jklukas,jklukas,24,23,1
+364,gcp-ingestion,a70de8f12a2b1e0302b0e75e0c05e62fe088c17a,"Send duplicate message metadata to error output
+
+Fixes #446",Jeff Klukas,2019-02-21T20:01:39Z,jklukas,jklukas,63,51,12
+365,gcp-ingestion,bc61a2f19f0285ce1e94db68d0a0c3e855abf749,"Document GeoCityFilter (#453)
+
+* Document GeoCityFilter in spec
+
+* Document GeoCityFilter in readme
+
+* Add bin to download cities15000.txt",Daniel Thorn,2019-02-21T23:40:32Z,relud,relud,28,25,3
+366,gcp-ingestion,a70924e87535ae7ac24a25ec5f24089de6ea5a28,"Generize SchemaStore for specific schema types (#448)
+
+* Refactor SchemaStore for derived classes
+
+* Update schema tests
+
+* Fix checkstyle errors
+
+* Add initial test by manually creating archive
+
+* Add tests for AvroSchemaStore",Anthony Miyaguchi,2019-02-21T18:32:31Z,acmiyaguchi,acmiyaguchi,192,161,31
+367,gcp-ingestion,e835d8b06f9e1c0e63145d74c428686477eac44a,Fix docs that indicate duplicates go to error output,Jeff Klukas,2019-02-20T19:26:32Z,jklukas,jklukas,6,4,2
+368,gcp-ingestion,881b888f5e18f098d8ffb62082c7525b90d04526,"Bump slf4j-jdk14 from 1.7.25 to 1.7.26 in /ingestion-beam (#443)
+
+Bumps [slf4j-jdk14](https://github.com/qos-ch/slf4j) from 1.7.25 to 1.7.26.
+- [Release notes](https://github.com/qos-ch/slf4j/releases)
+- [Commits](https://github.com/qos-ch/slf4j/compare/v_1.7.25...v_1.7.26)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-20T17:51:36Z,dependabot[bot],dependabot[bot],2,1,1
+369,gcp-ingestion,43c7319e8b30e28a19e1543f22a8d5cc35e040aa,"Bump google-auth from 1.6.2 to 1.6.3 in /ingestion-edge
+
+Bumps [google-auth](https://github.com/GoogleCloudPlatform/google-auth-library-python) from 1.6.2 to 1.6.3.
+- [Release notes](https://github.com/GoogleCloudPlatform/google-auth-library-python/releases)
+- [Changelog](https://github.com/googleapis/google-auth-library-python/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/GoogleCloudPlatform/google-auth-library-python/compare/v1.6.2...v1.6.3)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-20T13:13:29Z,JustCallMeDev,JustCallMeDev,2,1,1
+370,gcp-ingestion,5abaf536a5ddad12dc1484e50f217b910eeaa263,"Bump flake8 from 3.7.5 to 3.7.6 in /ingestion-edge (#442)
+
+Bumps [flake8](https://gitlab.com/pycqa/flake8) from 3.7.5 to 3.7.6.
+- [Release notes](https://gitlab.com/pycqa/flake8/tags)
+- [Commits](https://gitlab.com/pycqa/flake8/compare/3.7.5...3.7.6)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-19T22:29:44Z,dependabot[bot],dependabot[bot],2,1,1
+371,gcp-ingestion,fc0f231a92da874d0617d8e53c99db1f10e396fe,"Bump psutil from 5.5.0 to 5.5.1 in /ingestion-edge (#440)
+
+Bumps [psutil](https://github.com/giampaolo/psutil) from 5.5.0 to 5.5.1.
+- [Release notes](https://github.com/giampaolo/psutil/releases)
+- [Changelog](https://github.com/giampaolo/psutil/blob/master/HISTORY.rst)
+- [Commits](https://github.com/giampaolo/psutil/compare/release-5.5.0...release-5.5.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-19T22:23:04Z,dependabot[bot],dependabot[bot],2,1,1
+372,gcp-ingestion,95875fc1182f84e5560c0a0b7f64a5f6940e1fa7,"Bump cffi from 1.12.0 to 1.12.1 in /ingestion-edge (#439)
+
+Bumps [cffi](https://bitbucket.org/cffi/release-doc) from 1.12.0 to 1.12.1.
+- [Commits](https://bitbucket.org/cffi/release-doc/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-19T22:04:47Z,dependabot[bot],dependabot[bot],2,1,1
+373,gcp-ingestion,c97d7050a8f9339617d18e312aa657871df3217c,"Bump pytest from 4.2.1 to 4.3.0 in /ingestion-edge (#441)
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 4.2.1 to 4.3.0.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/4.2.1...4.3.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-19T18:00:02Z,dependabot[bot],dependabot[bot],2,1,1
+374,gcp-ingestion,5f7a44de72e29b8ca54fb1c98a17f14a1942a3da,"Bump persist-queue from 0.4.1 to 0.4.2 in /ingestion-edge (#438)
+
+Bumps [persist-queue](https://github.com/peter-wangxu/persist-queue) from 0.4.1 to 0.4.2.
+- [Release notes](https://github.com/peter-wangxu/persist-queue/releases)
+- [Commits](https://github.com/peter-wangxu/persist-queue/compare/v0.4.1...v0.4.2)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-19T17:43:33Z,dependabot[bot],dependabot[bot],2,1,1
+375,gcp-ingestion,84984003322d7cf0479059a509849f16130f2d23,"Support outputNumShards and errorNumShards as runtime params
+
+Closes #435
+
+BQ doesn't accept a ValueProvider for its sharding, so we break that out to
+a separate compile-time param that we don't expect we'll need to mess with.
+
+We lose some validation capability with this route, but we are now able to
+provide a non-zero default for sharding, since we check whether we're streaming
+and ignore sharding params for batch mode.",Jeff Klukas,2019-02-15T21:56:17Z,jklukas,jklukas,123,55,68
+376,gcp-ingestion,54ff42fb6585d5de5d4b611646c92118a62a3905,"Bump pytest from 4.2.0 to 4.2.1 in /ingestion-edge
+
+Bumps [pytest](https://github.com/pytest-dev/pytest) from 4.2.0 to 4.2.1.
+- [Release notes](https://github.com/pytest-dev/pytest/releases)
+- [Changelog](https://github.com/pytest-dev/pytest/blob/master/CHANGELOG.rst)
+- [Commits](https://github.com/pytest-dev/pytest/compare/4.2.0...4.2.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-14T21:49:36Z,JustCallMeDev,JustCallMeDev,2,1,1
+377,gcp-ingestion,a12c96360bf6fdf39aa7f4835c64dcf5d9e29dd0,"Bump beam.version from 2.9.0 to 2.10.0 in /ingestion-beam
+
+Bumps `beam.version` from 2.9.0 to 2.10.0.
+
+Updates `beam-runners-direct-java` from 2.9.0 to 2.10.0
+
+Updates `beam-runners-google-cloud-dataflow-java` from 2.9.0 to 2.10.0
+
+Updates `beam-sdks-java-extensions-json-jackson` from 2.9.0 to 2.10.0
+
+Updates `beam-sdks-java-io-google-cloud-platform` from 2.9.0 to 2.10.0
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-14T21:41:50Z,JustCallMeDev,JustCallMeDev,2,1,1
+378,gcp-ingestion,df9685f19da5683aaf76f4a448bcf1740efcc989,"Bump cffi from 1.11.5 to 1.12.0 in /ingestion-edge
+
+Bumps [cffi](https://bitbucket.org/cffi/release-doc) from 1.11.5 to 1.12.0.
+- [Commits](https://bitbucket.org/cffi/release-doc/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-14T13:13:21Z,JustCallMeDev,JustCallMeDev,2,1,1
+379,gcp-ingestion,485dc3586e8267c157f1310fa21cfaba02d74ecf,"Bump uvloop from 0.12.0 to 0.12.1 in /ingestion-edge (#432)
+
+Bumps [uvloop](https://github.com/MagicStack/uvloop) from 0.12.0 to 0.12.1.
+- [Release notes](https://github.com/MagicStack/uvloop/releases)
+- [Commits](https://github.com/MagicStack/uvloop/compare/v0.12.0...v0.12.1)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-14T00:38:50Z,dependabot[bot],dependabot[bot],2,1,1
+380,gcp-ingestion,9866efe27060377caac0f85122001f5c7e98d373,"Bump googleapis-common-protos from 1.5.6 to 1.5.8 in /ingestion-edge (#431)
+
+Bumps [googleapis-common-protos](https://github.com/googleapis/googleapis) from 1.5.6 to 1.5.8.
+- [Release notes](https://github.com/googleapis/googleapis/releases)
+- [Commits](https://github.com/googleapis/googleapis/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-13T20:58:56Z,dependabot[bot],dependabot[bot],2,1,1
+381,gcp-ingestion,2c37315d280f2439127311c2d1c7feed11855fe5,"Bump more-itertools from 5.0.0 to 6.0.0 in /ingestion-edge (#428)
+
+Bumps [more-itertools](https://github.com/erikrose/more-itertools) from 5.0.0 to 6.0.0.
+- [Release notes](https://github.com/erikrose/more-itertools/releases)
+- [Commits](https://github.com/erikrose/more-itertools/compare/5.0.0...6.0.0)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-13T16:54:46Z,dependabot[bot],dependabot[bot],2,1,1
+382,gcp-ingestion,0bb2b5779d94bf55c33453b0abcf15413f71f0b3,"Bump spotless-maven-plugin from 1.17.0 to 1.18.0 in /ingestion-beam (#430)
+
+Bumps [spotless-maven-plugin](https://github.com/diffplug/plugin-maven) from 1.17.0 to 1.18.0.
+- [Release notes](https://github.com/diffplug/plugin-maven/releases)
+- [Commits](https://github.com/diffplug/plugin-maven/commits)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-12T19:01:15Z,dependabot[bot],dependabot[bot],2,1,1
+383,gcp-ingestion,9ea824edff80a0c8c269b38ffc83f583a82e482e,Truncate error payloads too large for Pubsub,Jeff Klukas,2019-02-08T21:36:35Z,jklukas,jklukas,81,60,21
+384,gcp-ingestion,738f8a818d52b8428b8966ef00718f5b057f6eb6,"Bump pytest-black from 0.3.3 to 0.3.4 in /ingestion-edge (#422)
+
+Bumps [pytest-black](https://github.com/shopkeep/pytest-black) from 0.3.3 to 0.3.4.
+- [Release notes](https://github.com/shopkeep/pytest-black/releases)
+- [Commits](https://github.com/shopkeep/pytest-black/compare/0.3.3...0.3.4)
+
+Signed-off-by: dependabot[bot] <support@dependabot.com>",dependabot[bot],2019-02-08T17:49:25Z,dependabot[bot],dependabot[bot],2,1,1

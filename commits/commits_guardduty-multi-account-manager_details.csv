@@ -1,0 +1,208 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,guardduty-multi-account-manager,887ca7befe52e28037d5b973d1593605b0431c6d,"Merge pull request #41 from gene1wood/fix_bug
+
+ Fix bug causing NameError: name 'event' is not defined",Michal Purzynski,2019-11-13T00:49:32Z,mpurzynski,mpurzynski,10,7,3
+1,guardduty-multi-account-manager,b24e41736ba013b7db34e0b2505384053de033c4,Log the record if an exception is thrown,Gene Wood,2019-11-13T00:37:35Z,gene1wood,gene1wood,8,6,2
+2,guardduty-multi-account-manager,9992ea5bb6faf70aca72808cd89f4977f063e45b,Fix bug causing NameError: name 'event' is not defined,Gene Wood,2019-11-13T00:37:11Z,gene1wood,gene1wood,2,1,1
+3,guardduty-multi-account-manager,93a175b4988f56dac43982ccddd14590fa4ddfe4,Add clarification about deploying templates in only one region,Gene Wood,2019-05-15T21:31:34Z,gene1wood,gene1wood,6,4,2
+4,guardduty-multi-account-manager,f3ed30c9106c4097f967e8e8fa2ba58c53cf7e5a,Clarify where to deploy the member template,Gene Wood,2019-05-15T16:58:31Z,gene1wood,gene1wood,6,3,3
+5,guardduty-multi-account-manager,af6d001f076dbc1a2ccf9b0cdf66e3ad6c86ac4c,"Add code of conduct
+
+Fixes #34",Gene Wood,2019-04-08T15:21:34Z,gene1wood,gene1wood,8,8,0
+6,guardduty-multi-account-manager,d5c34cb05da01337db5cae1eb9697ea0ff031325,"Merge pull request #33 from gene1wood/fix-emailverificationfailed
+
+Add case for EMAILVERIFICATIONFAILED where we delete the member",Gene Wood,2019-04-01T23:14:09Z,gene1wood,gene1wood,58,39,19
+7,guardduty-multi-account-manager,ff1d526d18028161cdd6570c2775fa4f920b6ffa,"Add case for EMAILVERIFICATIONFAILED where we delete the member
+
+This will start the process over from the beginning
+Also, handle the case where the GuardDuty parent list doesn't match
+the child state. We only encountered this becasuse of the bug
+regarding EMAILVERIFICATIONFAILED but couldn't hurt to handle this case
+gracefully even if it won't come up",Gene Wood,2019-03-30T05:20:36Z,gene1wood,gene1wood,43,29,14
+8,guardduty-multi-account-manager,56ba4cd8e5c22e0927c9f68a94da5cded3bc6291,"Switch from using GetMembers to ListMembers to workaround limit of 50 accounts
+
+There's an undocumented limit either on the account ids submitted
+for a guardduty:GetMembers request or on the responses. Switching
+to ListMembers to work around this",Gene Wood,2019-03-30T05:20:06Z,gene1wood,gene1wood,12,8,4
+9,guardduty-multi-account-manager,59d3dc1cae8cf5cccb607fa2cc1c34c0e6acca27,"Increase Lambda max execution time to 15 min
+
+to accomodate large lists of accounts",Gene Wood,2019-03-29T18:41:40Z,gene1wood,gene1wood,2,1,1
+10,guardduty-multi-account-manager,948f7a3f02019b7e2426cd574028f3c4a0067b80,"Add boto3 requirement
+
+despite it being present in lambda by default",Gene Wood,2019-03-29T18:41:05Z,gene1wood,gene1wood,1,1,0
+11,guardduty-multi-account-manager,f1e05cfa932378c120a5231297fe54bfcd053a27,"Merge pull request #28 from gene1wood/support-multiple-orgs
+
+Support multiple orgs",Gene Wood,2019-02-19T16:58:52Z,gene1wood,gene1wood,214,142,72
+12,guardduty-multi-account-manager,27e6727f64dcc39f14191ea391139008a462c629,"Allow passing variables in as Parameters
+
+This changes the Mappings to Parameters with defaults
+so that different values can be passed in.
+
+The Makefile is updated to pass these variables in so that staging deployments can be done",Gene Wood,2019-02-14T01:01:53Z,gene1wood,gene1wood,100,80,20
+13,guardduty-multi-account-manager,0573771eff8f50200320021a98e79f2abaca2792,"Code cleanup
+
+PEP008ing lines
+Fixing typos",Gene Wood,2019-02-14T00:59:50Z,gene1wood,gene1wood,54,26,28
+14,guardduty-multi-account-manager,4ca6d0c72ce7912f9c36429a14ff0f304c8ed386,"Add support for multiple AWS Organizations
+
+This allows passing a comma delimited list of AWS Organization
+ARNs instead of a single ARN",Gene Wood,2019-02-14T00:59:05Z,gene1wood,gene1wood,56,34,22
+15,guardduty-multi-account-manager,66b42e81ede79ae4577a68fc5e8025f469ffc18b,Fix bug of function running out of execution time,Gene Wood,2019-02-14T00:53:01Z,gene1wood,gene1wood,4,2,2
+16,guardduty-multi-account-manager,b736a18c472dc84f5819701a0568cc1d5fe74890,"Merge pull request #26 from jcaffet/fix-mutli-account-guard-duty-typo
+
+fix mutli-account-guard-duty typo",Gene Wood,2019-02-05T17:42:40Z,gene1wood,gene1wood,3,2,1
+17,guardduty-multi-account-manager,5cf25a14fb93f8d451f64a1afd1de1043ff30fa1,Leave typo'd IAM Role path in for backwards compatibility,Gene Wood,2019-02-05T17:31:45Z,gene1wood,gene1wood,1,1,0
+18,guardduty-multi-account-manager,e94070e7a06e59814ce7df6b2e44bfc82c205a22,fix mutli-account-guard-duty typo,Jerome Caffet,2019-02-02T09:44:46Z,jcaffet,jcaffet,4,2,2
+19,guardduty-multi-account-manager,c39405e30f40a00718c680b64d6d2233504c2bd8,"Merge pull request #21 from gene1wood/add-links-to-reinvent
+
+Add links to README for re:Invent presentation and slides",Gene Wood,2019-01-11T19:43:05Z,gene1wood,gene1wood,5,5,0
+20,guardduty-multi-account-manager,f9f5059d7a0fd463306db3c2ab03ebe2f2f01445,Add links to README for re:Invent presentation and slides,Gene Wood,2019-01-11T19:37:53Z,gene1wood,gene1wood,5,5,0
+21,guardduty-multi-account-manager,eb9c457ae6440e50f31a23ba5a1499a76dfebd9f,"Merge pull request #20 from gene1wood/move-parameters-to-mappings
+
+Move parameters to mappings",Andrew J Krug,2019-01-11T18:35:10Z,andrewkrug,andrewkrug,274,180,94
+22,guardduty-multi-account-manager,249e816ff6992f009834637fb4e6257566a4765f,Update travis config to use new cfn-lint make target from 376383e5d77516fe5284eb3fe50531f4c869e53a,Gene Wood,2019-01-11T18:26:20Z,gene1wood,gene1wood,2,1,1
+23,guardduty-multi-account-manager,28ea6ea88b09ff945ba815b21025b11d5e1c724e,Add link to parent template to README,Gene Wood,2019-01-11T18:24:58Z,gene1wood,gene1wood,2,1,1
+24,guardduty-multi-account-manager,6b6ab33133da205acc6fd91eeeecb5b7c469a1f5,"Change template and code locations to be user customizable
+
+Change default template location to new public S3 buckets
+Change default code location to dynamically created locations in the local region
+Add Launch Stack button to documentation
+Change Makefile to publish to new public S3 bucket (now using bucket replication)
+Remove file specific ACLs as the new bucket is public",Gene Wood,2019-01-11T17:59:41Z,gene1wood,gene1wood,152,119,33
+25,guardduty-multi-account-manager,721231b390f66a4fdcda118ae58da727bf64fd83,"Add required mappings to member role
+
+Leaving the defaults as they are will prevent stack creation, forcing users to
+actively configure the defaults",Gene Wood,2019-01-11T17:58:58Z,gene1wood,gene1wood,8,5,3
+26,guardduty-multi-account-manager,3f527c855b7dbe90af695cb512948d7ab8bd3f71,Remove DependsOn that isn't needed,Gene Wood,2019-01-11T17:54:29Z,gene1wood,gene1wood,1,0,1
+27,guardduty-multi-account-manager,376383e5d77516fe5284eb3fe50531f4c869e53a,"Rename make target cf-lint to cfn-lint to match tool name
+
+Remove cfn-lint exception as upstream has been bugfixed awslabs/cfn-python-lint#408",Gene Wood,2019-01-11T17:53:31Z,gene1wood,gene1wood,9,4,5
+28,guardduty-multi-account-manager,34ce8d3b898f7bd76ad7b8f6ee6d066a3eef79c0,Remove vestigial stackset make target,Gene Wood,2019-01-11T17:52:40Z,gene1wood,gene1wood,5,0,5
+29,guardduty-multi-account-manager,23fe424be6ebec58af031eab582797f85350d45f,Remove .keep files that are no longer needed,Gene Wood,2019-01-11T17:51:22Z,gene1wood,gene1wood,0,0,0
+30,guardduty-multi-account-manager,eb9c30ca8cd8612416916fa128330e49723e8c05,Merge branch 'master' into move-parameters-to-mappings,Gene Wood,2019-01-11T18:20:38Z,gene1wood,gene1wood,6,4,2
+31,guardduty-multi-account-manager,0a10237f19422598aeff627e539e4fb1ba8400e8,"Update the summary line
+
+Clarify what this project is",Gene Wood,2018-12-31T19:18:37Z,gene1wood,gene1wood,5,3,2
+32,guardduty-multi-account-manager,1ff829fc77cb849e923d7e2df6bec8562ea761ae,Further README cleanup,Gene Wood,2018-12-29T20:32:08Z,gene1wood,gene1wood,39,22,17
+33,guardduty-multi-account-manager,e9a95211800f243e30b893c501ed03790789c1c3,Update README to reflect changes in CloudFormation Cross Account Outputs and the GuardDuty member role,Gene Wood,2018-12-29T20:24:15Z,gene1wood,gene1wood,40,23,17
+34,guardduty-multi-account-manager,17189f333b567090748ba1ff2a9c796b67108cc8,"Move parameters to mappings
+
+This will ensure users don't change the values and ensures that
+this template can not be used in it's current form and *must*
+have the mappings configured before use",Gene Wood,2018-12-29T20:07:18Z,gene1wood,gene1wood,49,21,28
+35,guardduty-multi-account-manager,1274ce5aec6ab0537bc7561b840856c0eb6f8e48,"Merge pull request #19 from gene1wood/update-readme-with-new-parameter-names
+
+Update parameter names in the README",Gene Wood,2018-12-20T20:45:13Z,gene1wood,gene1wood,13,8,5
+36,guardduty-multi-account-manager,25dbea5c01714ae783fc1bd3f819af3d0f0a7464,Update parameter names in the README,Gene Wood,2018-12-20T20:43:56Z,gene1wood,gene1wood,13,8,5
+37,guardduty-multi-account-manager,c3776531c9ea39f7b1ca6b55555e62aea315f092,Fix member role template filename,Gene Wood,2018-12-20T19:32:19Z,gene1wood,gene1wood,0,0,0
+38,guardduty-multi-account-manager,8c6c6c4de41d965c1feec96e0b857b6d5bc749b7,"Merge pull request #18 from gene1wood/cleanup-docs-and-role
+
+Fix member role name",Andrew J Krug,2018-11-21T17:38:40Z,andrewkrug,andrewkrug,52,40,12
+39,guardduty-multi-account-manager,05a01acb2360191c4a3248f83b4b9b9e7d3eb027,"Fix member role name
+
+Add examples and constraints to parameters
+Flesh out docs a bit more",Gene Wood,2018-11-21T17:35:57Z,gene1wood,gene1wood,52,40,12
+40,guardduty-multi-account-manager,370496059c8877ae91f07668273a5e050d5132f1,"Merge pull request #17 from gene1wood/doc-updates
+
+Add example organiztions role and add doc detail",Andrew J Krug,2018-11-21T16:32:09Z,andrewkrug,andrewkrug,96,80,16
+41,guardduty-multi-account-manager,2bb81902e3e7c670f2e28fa14c5ed8c9fefa953b,Add example organiztions role and add doc detail,Gene Wood,2018-11-21T16:28:29Z,gene1wood,gene1wood,96,80,16
+42,guardduty-multi-account-manager,1d6106105c825938c485a67a0ffe6e28703d46e5,"Merge pull request #16 from mozilla/add_diagram_and_docs
+
+add diagram and docs",Andrew J Krug,2018-11-20T23:05:14Z,andrewkrug,andrewkrug,55,55,0
+43,guardduty-multi-account-manager,ae707f2987fd02574580fab981140e9f21bc070f,add diagram and docs,andrewkrug,2018-11-20T23:04:48Z,andrewkrug,andrewkrug,55,55,0
+44,guardduty-multi-account-manager,1711772a2e66ba1f0bdfd104f1a34b1209f45806,"Merge pull request #15 from gene1wood/fix-up-templates
+
+Fix up templates",Gene Wood,2018-11-20T22:43:04Z,gene1wood,gene1wood,13,10,3
+45,guardduty-multi-account-manager,e4caf104af6411936d10601be39ef7b086a50f85,Switch off DEBUG logging,Gene Wood,2018-11-20T22:41:14Z,gene1wood,gene1wood,2,1,1
+46,guardduty-multi-account-manager,a3bee17583eca268adfea616d40094258c68dbe7,Fix logging in Lambda,Gene Wood,2018-11-20T22:14:15Z,gene1wood,gene1wood,8,7,1
+47,guardduty-multi-account-manager,b653ae8c8afbc284cdb0dd8153b403f406f37314,Remove argument added to boto 2 months ago that's not yet present in the boto3/botocore built into Lambda,Gene Wood,2018-11-20T22:13:52Z,gene1wood,gene1wood,3,2,1
+48,guardduty-multi-account-manager,b8bdb7dd6a408a2753edb9956a100e7e6110761b,"Merge pull request #14 from gene1wood/fix-up-templates
+
+Fix up templates",Andrew J Krug,2018-11-20T19:06:09Z,andrewkrug,andrewkrug,63,40,23
+49,guardduty-multi-account-manager,0aa2818300b96a570bb930f3ae3bcd2866ac7d68,Fix AssumeRole permission issue and Schedule ref,Gene Wood,2018-11-20T19:04:52Z,gene1wood,gene1wood,10,6,4
+50,guardduty-multi-account-manager,f5f7fe9abec5c5b742bbfc390c7074b69fb88e45,Fix dict_keys error,Gene Wood,2018-11-20T19:04:02Z,gene1wood,gene1wood,2,1,1
+51,guardduty-multi-account-manager,4aeaf8ecb77bb44ec86fbe374f0854dd773942e2,Give each CloudWatch Event Rule a distinct name,Gene Wood,2018-11-20T18:19:31Z,gene1wood,gene1wood,6,3,3
+52,guardduty-multi-account-manager,16954bf918f7e9ccd366afdcf7aca386306ca544,Move to a multi-region s3 hosted lambda function code model,Gene Wood,2018-11-20T18:13:40Z,gene1wood,gene1wood,35,24,11
+53,guardduty-multi-account-manager,166bb34da953842b17493b75baa8a73b85b9ac8b,Add IAM capability to Makefile,Gene Wood,2018-11-20T18:12:34Z,gene1wood,gene1wood,4,3,1
+54,guardduty-multi-account-manager,d2e228877152015db3df2c3a50e6678870fe0fdd,Fix timeoute types,Gene Wood,2018-11-20T18:11:38Z,gene1wood,gene1wood,4,2,2
+55,guardduty-multi-account-manager,7d9156528a7b16cbc8c1da8631bee39d3757389d,Fix function ARN passed to CloudWatch Events,Gene Wood,2018-11-20T18:10:31Z,gene1wood,gene1wood,2,1,1
+56,guardduty-multi-account-manager,57dc09c2346453054c893623320958b28ea968cc,"Merge pull request #13 from gene1wood/wip_gd_lib
+
+Fixing up invitation manager",Gene Wood,2018-11-20T17:36:35Z,gene1wood,gene1wood,307,240,67
+57,guardduty-multi-account-manager,e237e728090cbf54f9cf3e366379e20afe04fa9a,Add missing permissions to enable tear down,Gene Wood,2018-11-20T17:24:39Z,gene1wood,gene1wood,3,3,0
+58,guardduty-multi-account-manager,12dbe2116a3acb638ef95953ebc9a4ae510007f4,Add tear down function for testing,Gene Wood,2018-11-20T17:24:25Z,gene1wood,gene1wood,48,48,0
+59,guardduty-multi-account-manager,e0d99ad2fd84f81f9a585c26f0f0ba987ad41d9c,Only process member accounts for which we have an IAM role,Gene Wood,2018-11-20T17:23:51Z,gene1wood,gene1wood,8,5,3
+60,guardduty-multi-account-manager,cb30ccb4a9899e866c291846f139294dcb33b72e,Fix Makefile target names,Gene Wood,2018-11-19T22:32:35Z,gene1wood,gene1wood,10,5,5
+61,guardduty-multi-account-manager,bf15e2f3efb383a51e7779fcb1a1467c0bb1f8a5,Initial commit of invitation manager CloudFormation template,Gene Wood,2018-11-19T22:32:11Z,gene1wood,gene1wood,109,109,0
+62,guardduty-multi-account-manager,14b1f5e5d63977464cee172c7e75f5d9cd7c0963,Fix member IAM role with missing ListInvitations permission,Gene Wood,2018-11-19T22:31:36Z,gene1wood,gene1wood,1,1,0
+63,guardduty-multi-account-manager,6531cba5e1cc35e4c405344114180a0bf3e9ad92,"Fix invitation manager
+
+Fix logging
+Make Org IAM Role and account filter list settable from the environment
+Make RelationshipStatus comparisons case insensitive
+Add logging around role assumption failures
+Add account id detail to detector creation logs
+Fix account id email map generation
+Fix account role map generation
+Create optional MANAGER_IAM_ROLE_ARN role for testing
+Fix account filtering
+Move logging to after calls",Gene Wood,2018-11-19T22:31:12Z,gene1wood,gene1wood,128,69,59
+64,guardduty-multi-account-manager,aa486f4c54e9ce4e6573144a0541d23e7271116f,"Merge pull request #12 from mozilla/guardduty_plumbing
+
+completed guardduty plumbing for cross-region sns to lambda",Andrew J Krug,2018-11-17T15:38:25Z,andrewkrug,andrewkrug,98,81,17
+65,guardduty-multi-account-manager,92d933f9e598272255fd8a7c81ce9924a79462cf,"Merge pull request #11 from gene1wood/wip_gd_lib
+
+Update GuardDuty account linker lambda function",Andrew J Krug,2018-11-17T15:38:15Z,andrewkrug,andrewkrug,435,287,148
+66,guardduty-multi-account-manager,9d6b0b77df8cfc3f0bc811c2e9ceeb7809501225,add plumbing lib,andrewkrug,2018-11-17T15:37:40Z,andrewkrug,andrewkrug,71,55,16
+67,guardduty-multi-account-manager,3fbdde77e7cb1805d6c1ba04251b4cc86582cd91,completed guardduty plumbing for cross-region sns to lambda,andrewkrug,2018-11-17T15:36:48Z,andrewkrug,andrewkrug,27,26,1
+68,guardduty-multi-account-manager,df4445d6abff9b5d37c0fd61073627fdf3940011,Add a path to the IAM role,Gene Wood,2018-11-17T00:47:21Z,gene1wood,gene1wood,1,1,0
+69,guardduty-multi-account-manager,19fffb1cc6b062a229a02b2a459d758462e245c2,Fix incorrect member account client session,Gene Wood,2018-11-17T00:05:24Z,gene1wood,gene1wood,9,6,3
+70,guardduty-multi-account-manager,1919f261a5faf218b350f15fa3761c73ba7e8dac,"Renamed to invitation manager
+
+and change ACCOUNT_FILTER_LIST to a space delimited list",Gene Wood,2018-11-16T23:41:17Z,gene1wood,gene1wood,12,10,2
+71,guardduty-multi-account-manager,6bd90cc78c57a21ec684b6861d010c5872388b15,Add logging,Gene Wood,2018-11-16T23:02:37Z,gene1wood,gene1wood,51,39,12
+72,guardduty-multi-account-manager,23e0694d217c6d769d3b0e1cca1ebfe8d4a60e5d,Add an account filter to facilitate testing,Gene Wood,2018-11-16T22:47:47Z,gene1wood,gene1wood,4,4,0
+73,guardduty-multi-account-manager,dc3a3f659d4f7771f7501b8515a7b75aa4dc0335,Create makefile and rename to account_linker,Gene Wood,2018-11-16T22:35:51Z,gene1wood,gene1wood,8,8,0
+74,guardduty-multi-account-manager,6b347872bb3598f5c73f258732ce328fd7d369a8,Merge branch 'master' into wip_gd_lib,Gene Wood,2018-11-16T22:29:53Z,gene1wood,gene1wood,568,568,0
+75,guardduty-multi-account-manager,0d02aad3eb1b8d8402b0042ab27895660f0785ca,Add support for environment variables,Gene Wood,2018-11-16T22:29:05Z,gene1wood,gene1wood,10,8,2
+76,guardduty-multi-account-manager,2ea2f004f6406ce77d8a8115412b703f9f8ab0ef,Fix region list,Gene Wood,2018-11-16T22:11:04Z,gene1wood,gene1wood,9,2,7
+77,guardduty-multi-account-manager,0fd7eaaac203f84b1c4ff457e66fd03e9fe95a78,"Update GuardDuty account linker lambda function
+
+Flesh out all the functions",Gene Wood,2018-11-16T21:38:48Z,gene1wood,gene1wood,301,194,107
+78,guardduty-multi-account-manager,25d28f935a366afa6f1976fbdb9a69bb06cca445,"Merge pull request #10 from mozilla/guardduty_plumbing
+
+Guardduty plumbing",Andrew J Krug,2018-11-16T20:57:05Z,andrewkrug,andrewkrug,525,525,0
+79,guardduty-multi-account-manager,3a2c6115ad965ab146df13adc185a26d7214d1ee,add guardduty plumbing functions,andrewkrug,2018-11-16T20:48:13Z,andrewkrug,andrewkrug,377,377,0
+80,guardduty-multi-account-manager,6c37c6d36d62b70d916f41e3e4dfcbb3ef222291,"Merge pull request #9 from gene1wood/add_service_linked_roles
+
+Add service linked roles",Gene Wood,2018-11-15T19:15:43Z,gene1wood,gene1wood,63,63,0
+81,guardduty-multi-account-manager,cdcef99e3e4c1385b1e63a9b5a010845c0c20b9d,Add creation of GuardDuty service linked role,Gene Wood,2018-11-15T18:53:44Z,gene1wood,gene1wood,62,62,0
+82,guardduty-multi-account-manager,7dc32126b69faf8681fee9a821e0a07cffff8376,Set category for emitted IAM Role ARNs,Gene Wood,2018-11-15T18:53:12Z,gene1wood,gene1wood,1,1,0
+83,guardduty-multi-account-manager,a2afd64913cc65f53fc5cc83a24c38f6dfd22fd2,wip on gd lib,andrewkrug,2018-11-15T18:49:05Z,andrewkrug,andrewkrug,148,148,0
+84,guardduty-multi-account-manager,7e981a737cc88a1e2b8b3811c8069a10a1b16625,"Merge pull request #6 from gene1wood/set-sns-topic
+
+Add final production SNS ARN",Gene Wood,2018-11-14T22:53:09Z,gene1wood,gene1wood,2,1,1
+85,guardduty-multi-account-manager,700d9dad0df3a38b919741a258db5e8036750939,"Merge pull request #7 from gene1wood/fix-up-member-role
+
+Add additional member role permissions",Gene Wood,2018-11-14T22:52:54Z,gene1wood,gene1wood,4,4,0
+86,guardduty-multi-account-manager,47229cc1b26f88a3ff829d632032b8df11812583,"Add additional member role permissions
+
+Fixes #3",Gene Wood,2018-11-14T22:26:54Z,gene1wood,gene1wood,4,4,0
+87,guardduty-multi-account-manager,3cc76a9697fd019f29e84908ba58c9d773c3da22,Add final production SNS ARN,Gene Wood,2018-11-14T22:24:14Z,gene1wood,gene1wood,2,1,1
+88,guardduty-multi-account-manager,326cdb65803c074bbe60613e0a116a143e58e428,"Merge pull request #5 from gene1wood/add-member-account-role
+
+Add member account role",Andrew J Krug,2018-11-13T23:06:48Z,andrewkrug,andrewkrug,48,48,0
+89,guardduty-multi-account-manager,d17a03dd7f039f213e653264cc990c20a101bee6,"Add member account role
+
+This still needs the final SNS topic parameter default configured",Gene Wood,2018-11-13T22:51:29Z,gene1wood,gene1wood,48,48,0
+90,guardduty-multi-account-manager,0302f94277b1dcdfb2dc42c969db9fc75c331f5a,"Merge pull request #2 from gene1wood/add-doc
+
+Add initial design and plan doc",Andrew J Krug,2018-11-12T17:23:34Z,andrewkrug,andrewkrug,76,76,0
+91,guardduty-multi-account-manager,60ab29872a8e4c3a79e21c8909770383e673539b,"Merge pull request #1 from mozilla/development_stubs
+
+add intial project skeleton",Gene Wood,2018-11-12T17:06:39Z,gene1wood,gene1wood,56,56,0
+92,guardduty-multi-account-manager,1d79ecb597e48a1c2c88a4c8345378d7cdb598ee,"Add initial design and plan doc
+
+Originates from mozilla/security#13",Gene Wood,2018-11-12T17:04:54Z,gene1wood,gene1wood,76,76,0
+93,guardduty-multi-account-manager,234d3a8c027e8cd88566a82cf189418821aaab21,add intial project skeleton,andrewkrug,2018-11-12T16:57:28Z,andrewkrug,andrewkrug,56,56,0
+94,guardduty-multi-account-manager,a1ea638dab45265f5913a7e5abc5f1b03e680cfd,Initial commit,Andrew J Krug,2018-11-12T16:32:15Z,andrewkrug,andrewkrug,375,375,0

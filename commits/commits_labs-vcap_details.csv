@@ -1,0 +1,592 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,labs-vcap,a1bfe9cd5f044ca99f55efae4102a0f702c6f405,"This change fixes 2 things
+ 1. Enforce ""no follow"" of symlinks when we open the file for download. This
+    was done by monkey patching the Rack::File class to add the File::NOFOLLOW
+    open flag.
+
+ 2. Add a feature that allows users to view/download symlinks that point within
+    their app's subdirectory. To check whether the symlink point to the users
+    file/subdir, the code makes the assumption that the first subdir under
+    ""root"" is the apps subdirectory. e.g.
+    if root is "".../blah/app"" then
+                 "".../bhah/app/some_app"" is the apps subdirectory.
+    The change converts symlinks to real path and checks if that real path begins
+    with the apps subdir, if it does we allow access to that file/subdir.",Mahesh,2011-04-14T16:39:21Z,mahpat,mahpat,32,27,5
+1,labs-vcap,4d020ba7e5d8b91fa9344889f03ac26bf4de2c5c,"Revert ""This change fixes 2 things""
+
+This reverts commit 6709b96726217cc00b07fb6aae104800f3672392.
+
+This was checked in by accident I meant to send a pull request.",Mahesh,2011-04-14T16:32:26Z,mahpat,mahpat,32,5,27
+2,labs-vcap,6709b96726217cc00b07fb6aae104800f3672392,"This change fixes 2 things
+1. Enforce ""no follow"" of symlinks when we open the file for download. This
+   was done by monkey patching the Rack::File class to add the File::NOFOLLOW
+   open flag.
+
+2. Add a feature that allows users to view/download symlinks that point within
+their app's subdirectory. To check whether the symlink point to the users
+file/subdir, the code makes the assumption that the first subdir under ""root"" is the
+apps subdirectory. e.g.
+  if root is "".../blah/app"" then
+             "".../bhah/app/some_app"" is the apps subdirectory.
+  The change converts symlinks to real path and checks if that real path begins
+  with the apps subdir, if it does we allow access to that file/subdir.",Mahesh,2011-04-14T16:23:53Z,mahpat,mahpat,32,27,5
+3,labs-vcap,3b24f5bdeed0369886869996c5442c86ebbbe23d,Use https for the submodules,Trotter Cashion,2011-04-13T14:49:20Z,trotter,trotter,6,3,3
+4,labs-vcap,4e0c2b706b130c832c6ad59db1e9db96b14f4630,Client is now 0.3.10,Trotter Cashion,2011-04-13T13:52:50Z,trotter,trotter,2,1,1
+5,labs-vcap,e64f5a728b25542946f7f2d9276f30d1bf322c8f,Use public git urls,Trotter Cashion,2011-04-13T01:55:36Z,trotter,trotter,6,3,3
+6,labs-vcap,b3803941fbbbd39f4ec3c81166c00b9f3a502e0e,Use the public git url,Trotter Cashion,2011-04-12T23:58:14Z,trotter,trotter,2,1,1
+7,labs-vcap,db8f8cf48f8c388fee89a4a4bbd6551351c1d778,Client is now 0.3.10,Trotter Cashion,2011-04-13T13:52:50Z,trotter,trotter,2,1,1
+8,labs-vcap,1eea50c181b288a935ca5a9d835db15166fda5a2,git submodule helper,skaar,2011-04-13T22:24:03Z,skaar,skaar,4,4,0
+9,labs-vcap,14eea820010f23f4a00410429cfa4e60353d5fd1,Make submodules private in vmware-ac,skaar,2011-04-13T22:25:58Z,skaar,skaar,6,3,3
+10,labs-vcap,452d16e90b690203f5568f0f19f80f55677aa453,Simplify git submodule helpers,skaar,2011-04-13T22:24:03Z,skaar,skaar,17,1,16
+11,labs-vcap,a9487731acf77165c0876d26a051c05d53013cb1,Updated reference to services submodule,Oleg Shaldybin,2011-04-12T22:58:52Z,olegshaldybin,olegshaldybin,2,1,1
+12,labs-vcap,22a3c046827298680708e894b897cfaa4746975e,simple tooling for setup and sync of git submodules,skaar,2011-04-12T09:41:35Z,skaar,skaar,19,19,0
+13,labs-vcap,3ffc02af19bcf122a19ceeeca5e36c5b9df2f173,Initial commit,Cloud Foundry Engineer,2011-04-12T03:18:41Z,Cloud Foundry Engineer,Cloud Foundry Engineer,25695,25695,0
+14,labs-vcap,a396c474168f04b8710fee24e2b5cfa54f292f39,"remove deprecated option
+
+Change-Id: Id7ab11ad9d8205f68f34257d436edf75477aa50f",Vadim Spivak,2011-05-27T19:23:10Z,Vadim Spivak,Vadim Spivak,1,0,1
+15,labs-vcap,738af7a303124559cfefbd863ebb5fd0036339e2,"HM now tracks NATS latency
+
+Change-Id: Ib61475b4c9d1874fbaa6748433e6eb109575bb64",Vadim Spivak,2011-05-22T01:13:35Z,Vadim Spivak,Vadim Spivak,13,13,0
+16,labs-vcap,cd94c4f0add61f0fff93e18421b687033779c1ae,"HM now tracks stats per framework/runtime
+add index to make framework/runtime more efficient
+
+Change-Id: I1ec39f5ab015a7a0c0d70348ca0ba1e8fbeb9975",Vadim Spivak,2011-05-22T01:12:13Z,Vadim Spivak,Vadim Spivak,100,96,4
+17,labs-vcap,10c3a2e616c7e34d3748af823001f26ea5c2b84b,"CC will now send the framework to the DEA
+DEA will now send framework and runtime tags to the Router
+DEA now tracks stats per framework and runtime
+
+Change-Id: Ie96be29f96530102e6df545fd430f2435e7afcb1",Vadim Spivak,2011-05-22T01:08:23Z,Vadim Spivak,Vadim Spivak,24,22,2
+18,labs-vcap,9e3e859cfa3d7d61c7a9268bd60f55a7eff7b950,"CC sends a component tag to the router
+
+Change-Id: Iafb27517d52d06c45045d7ea66c0a96e5479f75f",Vadim Spivak,2011-05-22T01:05:39Z,Vadim Spivak,Vadim Spivak,2,1,1
+19,labs-vcap,9aa459d5cbc29e667d5f45274d20c2358435b198,"add tags to the router for stats
+add new connection stats (latency and response code ranges)
+
+Change-Id: I0ecf12c38e0ecc7bc245e9b8d7b55b207963091f",Vadim Spivak,2011-05-22T01:05:06Z,Vadim Spivak,Vadim Spivak,117,102,15
+20,labs-vcap,2bbc5a141820f769aaeb2792ed9d162a57272936,"add rolling metric
+
+Change-Id: Ifef3228ca90f183e40da6204b13c91cc4f5cd50a",Vadim Spivak,2011-05-27T01:15:17Z,Vadim Spivak,Vadim Spivak,122,122,0
+21,labs-vcap,cc2e27138bbb37cb6f12e57992e1b97a223395a2,"fix on_message_complete handler and make sure it's called when the client terminates the connection
+
+Change-Id: I897a11cc09c1aae9848d1b1f6ad79ca536516a3b",Vadim Spivak,2011-05-22T01:03:16Z,Vadim Spivak,Vadim Spivak,12,9,3
+22,labs-vcap,34cff4234f640da7e813fdefa37f901cd403c71f,"HM should exit when any NATS error happens
+
+Change-Id: Ic28f435e73299571c34613ddb846dedc9d6f13f1",Vadim Spivak,2011-05-22T01:01:24Z,Vadim Spivak,Vadim Spivak,10,3,7
+23,labs-vcap,5170fd31386f43e5c96b932b85e02efa34ce96ff,"Refactor dea unit tests.
+
+Change-Id: Ibebee503cd2e15471967f290a238be7a4dd946c1",mpage,2011-05-27T06:00:35Z,mpage,mpage,412,178,234
+24,labs-vcap,e89e27d2562e475490784f83de945a4e79dde718,"Lift support
+Topic: merge
+
+Change-Id: I00d1bd02a67e4bd3fbd0a109cef542b664cd7c11",AB Srinivasan,2011-05-22T07:57:34Z,AB Srinivasan,AB Srinivasan,280,279,1
+25,labs-vcap,9379fa8612ac40a612032b69e049bdfee6d07051,"Point submodules to the main repo, not the staging repo",Patrick Bozeman,2011-05-25T18:09:10Z,Patrick Bozeman,Patrick Bozeman,6,3,3
+26,labs-vcap,e6e979dca7cc74e287b166168a6ef9696e3e628a,"Add pid files to gitignore
+
+Change-Id: I743cf2b7ce3655603291f6b50bfab14607fb71d6",Michael Latta,2011-05-22T21:27:38Z,Michael Latta,Michael Latta,1,1,0
+27,labs-vcap,d1beb75e6901ea4af70e7f68684c6566497b31bd,"re-add the edit of .bashrc, but fix the -z vs -n bug, and set rvm home correctly
+
+Change-Id: I9d27c6db8e7bf1e8ee791731688a744520ca93ac",Mark Lucovsky,2011-05-23T17:48:04Z,Mark Lucovsky,Mark Lucovsky,19,18,1
+28,labs-vcap,13dd736b465072e43afd683476d569f50bf5cdea,"fix install issues caused by recent RVM change and free rake to 0.8.7 since 0.9.0 is broken for rails apps (like cloud controller)
+
+Change-Id: Ic2302a0d912a2c3b5f8b1fb0ae3bce4473abfac0",Mark Lucovsky,2011-05-23T02:48:08Z,Mark Lucovsky,Mark Lucovsky,224,43,181
+29,labs-vcap,9460f145b0823ddc9866d88c3c56a26b9552e963,"keep gitmodules pointing to the staging repo
+
+Change-Id: I9d10878c63a645a8805114e76b4da1068b582a7e",Patrick Bozeman,2011-05-23T17:36:58Z,Patrick Bozeman,Patrick Bozeman,6,3,3
+30,labs-vcap,f3ec3c382d6d14b2410561b36bae43ce2fe02b6f,Merge remote-tracking branch 'cloudfoundry/master',Patrick Bozeman,2011-05-23T17:35:18Z,Patrick Bozeman,Patrick Bozeman,94,66,28
+31,labs-vcap,51455493bcfccf572c7fb12ae07a94a41b34604e,"Fail hard on all NATS errors. Prevents us from getting into a state where the DEA is running, but cannot talk over NATS.
+
+Change-Id: Ic511287697693bf87d9544a6a79005d31c97b99e",mpage,2011-05-20T01:53:12Z,mpage,mpage,14,5,9
+32,labs-vcap,da34663d86bb165a5da11e2ab29725144ee76584,Fix broken ubuntu download link in primary readme.,Matt Sanders,2011-05-11T16:05:48Z,nextmat,nextmat,2,1,1
+33,labs-vcap,4b3ca94f01229d4d92ffb1fdb206eac8d3b7304c,"""server.js"" is one of the most popular file names to put main server module code in Node.js apps.",Nikita Fedyashev,2011-05-09T19:13:43Z,fb3,fb3,2,1,1
+34,labs-vcap,3a70116db6b460a32de9e3228ef9ab51d45b4c08,Clarify instructions for local SSH tunnel.,Matt Sanders,2011-05-11T19:22:16Z,nextmat,nextmat,21,17,4
+35,labs-vcap,9eb78559ad3391086e0ae9886dd071314540090d,"Fix typos, clarify instructions for editing mysql_node.yml",Matt Sanders,2011-05-11T18:27:41Z,nextmat,nextmat,18,12,6
+36,labs-vcap,2a4e23e055f3d5447fdea59b20806cd49a37686c,Split tweaks into hard linebreaks to be more consistent with existing,Matt Sanders,2011-05-11T17:31:13Z,nextmat,nextmat,12,9,3
+37,labs-vcap,86cc2031f0763a51cbdfac39022ea539d2db167e,Clarify submodule instructions; explain function of vmc.,Matt Sanders,2011-05-11T17:28:56Z,nextmat,nextmat,25,13,12
+38,labs-vcap,65a24ec2fa3ca9637efb66ea5c7cf930af56d515,Clarify RVM instructions; add basic rvm link.,Matt Sanders,2011-05-11T16:32:40Z,nextmat,nextmat,6,3,3
+39,labs-vcap,9ffbfc8712d37ccb45073fc651d9264965933008,Highlight code for easier to read docs.,Matt Sanders,2011-05-11T16:30:29Z,nextmat,nextmat,20,11,9
+40,labs-vcap,0d64ea38fc92667ca528095ef87d9c4e44e7ec7a,Force ssh install instructions to display as a code block.,Matt Sanders,2011-05-11T16:11:39Z,nextmat,nextmat,4,3,1
+41,labs-vcap,4e5835a84af4c792160fe9413d8b062b5481b806,"document workaround for initial ./vcap start issue
+
+This only affects the initial ./vcap start that
+occurs during the (experimental) automated installer.",pbozeman,2011-05-17T00:01:23Z,pbozeman,pbozeman,8,8,0
+42,labs-vcap,d12a0318dc0d26f24736ad07b6047de8285b04ac,"Fix runtimes for rails3 staging
+
+Change-Id: I7535842fd9b5f169b91e21842a0605a14f112920",mpage,2011-04-30T20:50:44Z,mpage,mpage,12,6,6
+43,labs-vcap,8819ce5c09690e42d2c2db1209161b26c0b965de,"Point submodules to the main repo, not the staging repo",pbozeman,2011-05-16T21:40:43Z,pbozeman,pbozeman,6,3,3
+44,labs-vcap,7ec7e132ca3db5e9adf73238a9b4516921c0ca3d,Merge remote-tracking branch 'staging/master',pbozeman,2011-05-16T21:34:53Z,pbozeman,pbozeman,1103,1039,64
+45,labs-vcap,72de291f89d4959b261ced43def1eaf52c536eca,"update submodule ptr for tests
+
+include mochiweb test",pbozeman,2011-05-03T07:24:31Z,pbozeman,pbozeman,2,1,1
+46,labs-vcap,122f518f57d3e15ac4520798d95bf422ea6fb798,"Merge ""Add erlang support using otp_rebar.""",Matt Page,2011-05-16T21:10:57Z,Matt Page,Matt Page,274,268,6
+47,labs-vcap,e5e35c26143eb0dc81c8a62b779422c2e2518274,"fix user#delete to only allow admins to delete users (provided by Adam Greenfield)
+
+Change-Id: I65563ee9f4d487554546b9f7d2a541a72ce9bb43",Vadim Spivak,2011-05-16T05:47:45Z,Vadim Spivak,Vadim Spivak,13,7,6
+48,labs-vcap,693bf608581ef3ca3c2e6ea1339a2dfc11581ecd,"Make periodic du non-blocking
+
+Change-Id: I457c7430a50c44e8be95ef9e7e251b68d673466c",mpage,2011-05-14T01:33:32Z,mpage,mpage,44,36,8
+49,labs-vcap,4fe9a0b7b137288a9a96606bc7b4e399abe04db3,"Remove instance directories for untracked droplets. Remove instance dirs for crashed droplets when we delete the associated entry in the droplets hash.
+
+Change-Id: I2d18f7079167cafa1875b23de843ba3360c79db8",mpage,2011-05-13T18:38:24Z,mpage,mpage,115,108,7
+50,labs-vcap,a8160b6b7e53ba28c857482c0da9a4cd8da00d08,"Instrument DEA further when du/ps takes longer. Fork and do a du if it takes exceedingly long.
+
+Change-Id: Ia88e213691a4dde25d710d3808e70491b83a25ee",mpage,2011-05-07T00:40:26Z,mpage,mpage,130,117,13
+51,labs-vcap,93e1e425d93d25f5e859aecf2814b27f5a3643dc,"Component server now lets you set port, auth, and index. Updated CloudController, DEA, and Router to use new options.",Vadim Spivak,2011-05-07T00:13:38Z,Vadim Spivak,Vadim Spivak,75,68,7
+52,labs-vcap,c20dbe895ba776c4d9523ae4c189c3fdbc1d36a0,"Merge pull request #6 from absrinivasan/master
+
+Staging unit tests for Grails / Spring",ramnivas,2011-05-06T21:14:54Z,ramnivas,ramnivas,410,410,0
+53,labs-vcap,9dbc7ead2261c1c39fcea011eb97882009914c54,"Log all actions take by the HM at the INFO level, provide a short description of why actions are being taken.",mpage,2011-05-02T19:12:26Z,mpage,mpage,27,20,7
+54,labs-vcap,6afa350d86cac0717dcbccadf0d905260a5fae14,Unit tests for Spring / Grails staging,AB Srinivasan,2011-05-05T23:50:18Z,AB Srinivasan,AB Srinivasan,410,410,0
+55,labs-vcap,298d85b3aed1bc106cc5b8e729c3d467c8936ce5,"update submodule ptr for tests
+
+include mochiweb test",pbozeman,2011-05-03T07:24:31Z,pbozeman,pbozeman,2,1,1
+56,labs-vcap,0afdb2b26afecc0adc84a580c080f90be6203d30,"Add erlang support using otp_rebar.
+
+Also includes details of deploying a non-trivial Erlang/OTP app, and supports
+multiple isolated Erlang installs.",Paul Jones,2011-04-14T20:34:16Z,paulj,paulj,274,268,6
+57,labs-vcap,0bf304c7546eacd951bbf924ec361f036dbc10d9,Merged public/master,Oleg Shaldybin,2011-05-03T00:41:12Z,olegshaldybin,olegshaldybin,2,1,1
+58,labs-vcap,bf4a28cbf87d3cc2689c203d36f2b8737b0d2da9,Fix another incorrect variable assignment in the setup script,John Duff,2011-05-01T04:02:49Z,jduff,jduff,2,1,1
+59,labs-vcap,99ff09055854a4938a294e75cd30ada84e957751,Fixed bug caused by shallow copy of config during sanitize_config for varz,Derek Collison,2011-04-30T14:48:33Z,derekcollison,derekcollison,32,31,1
+60,labs-vcap,c6255310f9ba787801e2c297762410b4eef23ad3,Check at startup that key is long enough,mpage,2011-04-29T22:02:08Z,mpage,mpage,7,7,0
+61,labs-vcap,0c115c51ab500051f3c2143ed6ef1601f9534e0e,Removed debug print,Derek Collison,2011-04-28T23:52:52Z,derekcollison,derekcollison,1,0,1
+62,labs-vcap,dd8a19aeebc1d9e7ad308bd8faa048ba6b3a97a0,"Fix up tests, shutdown NATS after test",Derek Collison,2011-04-28T20:27:06Z,derekcollison,derekcollison,45,27,18
+63,labs-vcap,9cf64db972e4d9b702ad8b4b4ec49bcf221cff6d,"Added additional suppressed keys in config, and check at all levels now",Derek Collison,2011-04-28T19:36:32Z,derekcollison,derekcollison,54,50,4
+64,labs-vcap,f72e66977121b396cadf5f746a9e6cedceab7898,Fixup for NATS changes and malformed auth test,Derek Collison,2011-04-28T18:24:34Z,derekcollison,derekcollison,8,4,4
+65,labs-vcap,e1ae1a81ccef5cfdfa906ddf809101341c5c160e,Bump submodule ptr to head of tests,mpage,2011-04-28T23:50:44Z,mpage,mpage,2,1,1
+66,labs-vcap,293b20f601c773a4864105ece54f1b7f10922d58,"Revert ""Merged pull request #3 from absrinivasan/master.""
+
+This reverts commit 942254006f670df62edfc375d1f137d57a4ddf72, reversing
+changes made to 7823bed736e58d7639eb07a01ff69bb71f991f82.",pbozeman,2011-04-28T20:53:46Z,pbozeman,pbozeman,12,6,6
+67,labs-vcap,96f004158a3f16c5e332bbd5c862d98f08efed4d,Add back support for setting stdout.sync for rails apps and sinatra apps with Gemfiles,mpage,2011-04-27T22:44:52Z,mpage,mpage,137,131,6
+68,labs-vcap,942254006f670df62edfc375d1f137d57a4ddf72,"Merged pull request #3 from absrinivasan/master.
+
+Update JVM startup options used by Tomcat for Spring / Grails to more appropriate defaults.",ramnivas,2011-04-27T03:37:20Z,ramnivas,ramnivas,12,6,6
+69,labs-vcap,b4e917318357eafb0eaae2cf25c7847e848995ad,"Update JVM startup options used by Tomcat for Spring / Grails to more appropriate defaults.
+	modified:   cloud_controller/spec/staging/spring_spec.rb
+	modified:   cloud_controller/staging/grails/plugin.rb
+	modified:   cloud_controller/staging/spring/plugin.rb",AB Srinivasan,2011-04-27T02:52:25Z,AB Srinivasan,AB Srinivasan,12,6,6
+70,labs-vcap,7823bed736e58d7639eb07a01ff69bb71f991f82,Fix race that would cause the most recently started application to be killed in the event that the DEA loses connectivity to NATS and its PID isn't ready before its port is open.,mpage,2011-04-26T01:43:01Z,mpage,mpage,36,35,1
+71,labs-vcap,733cc1a4408350e327a54404f8a039f8ed3bec3d,DEA pruning of staged droplets,Derek Collison,2011-04-26T17:28:45Z,derekcollison,derekcollison,9,8,1
+72,labs-vcap,996884d4fac58bc667f666365e2695adf8967b00,"Point submodules to the main repo, not the staging repo",pbozeman,2011-04-26T07:04:58Z,pbozeman,pbozeman,6,3,3
+73,labs-vcap,f0a54a1859a4e2578fd22ecea7ec4be3290e195d,Merge remote-tracking branch 'staging/master',pbozeman,2011-04-26T00:14:20Z,pbozeman,pbozeman,780,676,104
+74,labs-vcap,58edc8e105828a7743311f0665975c7d23bd7e22,Slight readme update regarding when it is necessary to install curl,pbozeman,2011-04-25T23:28:36Z,pbozeman,pbozeman,3,2,1
+75,labs-vcap,d654922f96a8c7d790c3734be2ddb1b62a35d2f1,"delete README.rdoc
+
+This should have been deleted when accepting the README.md change.
+For some reason it wasn't.",pbozeman,2011-04-25T16:54:36Z,pbozeman,pbozeman,273,0,273
+76,labs-vcap,9f1b07f2397bbeca115620aac18a80c863839dcd,Curl is needed for fully automated install,Michael Neale,2011-04-24T09:51:27Z,Michael Neale,Michael Neale,4,2,2
+77,labs-vcap,816c67b0d5569c807fb82f6ee802760f23554554,Fix variable assignment for optional services answers,John Duff,2011-04-23T02:54:55Z,jduff,jduff,8,4,4
+78,labs-vcap,1a03d19456b694f02471b3f59bc11347997c1f2a,Slight readme update regarding when it is necessary to install curl,pbozeman,2011-04-25T23:28:36Z,pbozeman,pbozeman,3,2,1
+79,labs-vcap,b6bca6187786cfcc39d54801c64fc01a2dfcd74b,"delete README.rdoc
+
+This should have been deleted when accepting the README.md change.
+For some reason it wasn't.",pbozeman,2011-04-25T16:54:36Z,pbozeman,pbozeman,273,0,273
+80,labs-vcap,f2442c46d46bc0d9ab7b0bc21c49c1f01392da4b,Curl is needed for fully automated install,Michael Neale,2011-04-24T09:51:27Z,Michael Neale,Michael Neale,4,2,2
+81,labs-vcap,0d30da1045c642ec06f6a55bed988aad87946936,Fix variable assignment for optional services answers,John Duff,2011-04-23T02:54:55Z,jduff,jduff,8,4,4
+82,labs-vcap,f0e5e2957e262020e16ca30fea75e262a20e3910,fix require order for logging in router,skaar,2011-04-23T19:43:13Z,skaar,skaar,2,1,1
+83,labs-vcap,1397f6591292359c1d6f6c481141d52eca2b9f95,bundle package logging and little-plugger,skaar,2011-04-23T18:44:06Z,skaar,skaar,0,0,0
+84,labs-vcap,90655729973532022acf418db1582780f59fddee,new Node version,Derek Collison,2011-04-23T17:52:36Z,derekcollison,derekcollison,2,1,1
+85,labs-vcap,60d060090fbe9fd08c25de9887be6dd8422fdd75,Modify reconnect logic for router when NATS is being swapped out,Derek Collison,2011-04-23T17:19:22Z,derekcollison,derekcollison,39,33,6
+86,labs-vcap,fa4e3edfc4f13fd610f88b8291b011d640876ed9,"json_schema rewrite. Move into common, with lots of tests.",mpage,2011-04-21T03:00:20Z,mpage,mpage,332,332,0
+87,labs-vcap,03306b44a9937fbee78487303718abcb9520b149,Make log rotation configurable via config file,mpage,2011-04-21T23:44:40Z,mpage,mpage,75,65,10
+88,labs-vcap,31476fc601351fb953d4cd3a3937b8edad8aa79c,Using logging gem instead of ruby logger (working daily log rotation).,mpage,2011-04-19T02:49:34Z,mpage,mpage,100,57,43
+89,labs-vcap,7c1f4c1c64f1fae0d04632bbfd2736fe3349c7bc,Node version 0.4.6,Derek Collison,2011-04-22T20:22:35Z,derekcollison,derekcollison,2,1,1
+90,labs-vcap,157ea8d98f7d1187d2a232087ee929d03140271b,DEA's properly quote user added environment variables,Derek Collison,2011-04-22T18:52:41Z,derekcollison,derekcollison,11,10,1
+91,labs-vcap,cbfe508c950b5c225d6e75c25f2f5a7a9c9b4d92,Merge remote branch 'public/master',pbozeman,2011-04-22T18:40:20Z,pbozeman,pbozeman,568,535,33
+92,labs-vcap,77abf5ad91873398a5c3abfe6b7f0b0945ba6bfb,"Fix README
+
+- Move to GFM (GitHub Flavored Markdown)
+- Fix misc typos",Rogelio J. Samour,2011-04-16T15:02:59Z,therubymug,therubymug,299,299,0
+93,labs-vcap,40e02fba53f0635f437435a791907dc77c81fc53,Add missing packages needed to install Postgres and RabbitMQ.,Monty Williams,2011-04-20T15:57:45Z,Monty Williams,Monty Williams,3,2,1
+94,labs-vcap,4dcf17727c6c8171c375d86809d13062fbfb851b,add debian package update in the automated installer,pbozeman,2011-04-21T19:08:50Z,pbozeman,pbozeman,1,1,0
+95,labs-vcap,678727a794060b5b70a812425dd8e0569fca1139,add debian package update step to README,pbozeman,2011-04-21T19:07:54Z,pbozeman,pbozeman,1,1,0
+96,labs-vcap,eeadd000acffad70ec869498681437ed4c77cb84,Updated Readme to cover the automated installation process from Trotter Cashion <cashion@gmail.com>,pbozeman,2011-04-21T17:41:14Z,pbozeman,pbozeman,19,18,1
+97,labs-vcap,055513d9ea37b7dd6f1cae04f97b6603348423e8,update authors file,pbozeman,2011-04-19T23:19:35Z,pbozeman,pbozeman,2,1,1
+98,labs-vcap,ca4bd1cd5c411b6f0ae65a2b09c5026683b7220b,Use stop method that was already in place,Derek Collison,2011-04-21T22:37:17Z,derekcollison,derekcollison,9,1,8
+99,labs-vcap,128b25eecd38791ae849c24a7ee81fc6670243dc,Fail fast on NATS disconnects and reconnect timeouts,Derek Collison,2011-04-21T22:26:53Z,derekcollison,derekcollison,160,118,42
+100,labs-vcap,4b23839a8a0588a9099e373a598cd0739a39751a,enable configuration of the vcap repo used by the automated installer from trotter,pbozeman,2011-04-21T18:04:36Z,pbozeman,pbozeman,5,4,1
+101,labs-vcap,d27990a4af5066d6c2ae1b409713d19e487b2855,Add minimal interaction install script,Trotter Cashion,2011-04-14T15:50:44Z,trotter,trotter,224,189,35
+102,labs-vcap,bda2265a889e90a05f319004d51a83cf47996605,Accept password for mysql to preseed setup,Trotter Cashion,2011-04-14T02:53:22Z,trotter,trotter,26,26,0
+103,labs-vcap,23fde3f25aefee5ff9948e4b9e7f0680f3d768a6,Chdir to correct directory,Trotter Cashion,2011-04-18T15:14:52Z,trotter,trotter,2,1,1
+104,labs-vcap,d679e94d4ac8dae5cbd725dccc65852e845529a0,sync to head of tests,Mark Lucovsky,2011-04-20T14:18:29Z,Mark Lucovsky,Mark Lucovsky,2,1,1
+105,labs-vcap,2bb112401f1bccdf9317911ef5da4f8ada521cc1,update tests submodule ptr,Mark Lucovsky,2011-04-19T23:00:33Z,Mark Lucovsky,Mark Lucovsky,2,1,1
+106,labs-vcap,a7f662442e2bc05f7114dc6d9010607a164f5a7e,Make sure all saved urls are lowercase,Derek Collison,2011-04-19T18:40:10Z,derekcollison,derekcollison,37,31,6
+107,labs-vcap,3ce0df12f11d69111aaeea23308143db25f7c25d,Allow frameworks to be diabled via configuration directive,Derek Collison,2011-04-19T03:44:22Z,derekcollison,derekcollison,21,20,1
+108,labs-vcap,7c11e6c76b4fc94aa43cd2e028b292036810a782,Merge branch 'master' of https://github.com/mahpat/vcap into mahpat-master,Derek Collison,2011-04-16T17:28:58Z,derekcollison,derekcollison,32,27,5
+109,labs-vcap,81b99b8d84eef632fd44425744d078a88448ad00,"Merge cf/vcap/master into vmware-ac/vcap/master
+
+Conflicts:
+	.gitmodules",pbozeman,2011-04-16T00:24:03Z,pbozeman,pbozeman,12,7,5
+110,labs-vcap,d6ee61859ba1627acb010f8767b372938e24a99c,Updated services submodule,Oleg Shaldybin,2011-04-16T00:06:40Z,olegshaldybin,olegshaldybin,2,1,1
+111,labs-vcap,829dd529ac7f1a6298b051dc4097360be914d92d,Added a few additions to the README to allow for copy+paste,Ari Lerner,2011-04-14T19:25:31Z,auser,auser,8,4,4
+112,labs-vcap,aeae3ec763a7c059418c059f78d017e1b4d099d9,Rename to VMware's Cloud Application Platform,Tony Arcieri,2011-04-15T04:25:53Z,tarcieri,tarcieri,2,1,1
+113,labs-vcap,294207ed818b33ef192119e8ebb378f18ae94ae4,"Renamed README to README.rdoc and took a stab at adding a heading
+
+Right now the README shows up in raw form on Github because there's no file
+extension on it. Adding a .rdoc extension makes Github process it as RDoc
+and convert it into nicely formatted HTML.
+
+In addition I tried adding a heading taking my best guess at what ""vcap""
+actually stands for. The README should probably have some kind of heading
+even if it's just ""VCAP"".",Tony Arcieri,2011-04-15T04:00:25Z,tarcieri,tarcieri,2,2,0
+114,labs-vcap,74b19af6b0358039c424f366313193111a1faff7,"Logs a user event when instances is scaled
+
+Change-Id: I5646694063ad4a9848a7445e0c2ddc977502f634",David Sabeti,2011-07-25T23:40:37Z,dsabeti,dsabeti,4,4,0
+115,labs-vcap,3730098bfd886e1d46d83f1d2005ff3c6b91239d,"Environment variables with vcap_ or vmc_ outlawed (+ unit tests)
+
+Change-Id: I1ad63aa203d62b7f0121fb43a55a15c6ea9fa637",David Sabeti,2011-07-25T18:02:50Z,dsabeti,dsabeti,56,55,1
+116,labs-vcap,5738ca8a79b051398ba21527b82861d9658a135a,"Initial pass at stand alone stager component
+
+Change-Id: Ie227575b95a1045c55ee674e4249952d17d5ba06",mpage,2011-07-26T20:42:27Z,mpage,mpage,1782,1716,66
+117,labs-vcap,daa524630ded4e9c330880bfe4d4dd9167955cc9,"Merge branch 'services-r3'
+
+Change-Id: I0fa3c4da786746b97bcdba769a88bb19e731850e",Nicholas Kushmerick,2011-08-02T18:59:48Z,kushmerick,kushmerick,2,1,1
+118,labs-vcap,f96cce2ccfb61fd5600fdee023a1cd39e6516105,Merge remote-tracking branch 'staging/master',Patrick Bozeman,2011-08-02T17:17:55Z,Patrick Bozeman,Patrick Bozeman,22,10,12
+119,labs-vcap,a1040782a61a22b03a6288ec39fea400adebf105,"advance tests submodule ptr
+
+Change-Id: I716aefa2264def94e785f8dd60ac6db57f7809c4",Patrick Bozeman,2011-08-02T17:04:00Z,Patrick Bozeman,Patrick Bozeman,2,1,1
+120,labs-vcap,25e134d7cd2250cf971b032ea72f3baf6e37f453,"Merge ""Fix require order bug in DEA tests.""",mpage,2011-08-01T18:55:53Z,mpage,mpage,20,9,11
+121,labs-vcap,fd661944d045b9963b733de1a3bfa5cd0c96d885,Merge remote-tracking branch 'staging/master',Patrick Bozeman,2011-07-29T23:32:00Z,Patrick Bozeman,Patrick Bozeman,4,2,2
+122,labs-vcap,17bf48015810e499c890a3d6a76dfa851deebf31,"Merge ""advance tests submodule ptr""",Patrick Bozeman,2011-07-29T22:45:52Z,Patrick Bozeman,Patrick Bozeman,2,1,1
+123,labs-vcap,534eb75bae15b1e9f223d2493cd4461b5a4eb62c,"Moved java submodule forward
+
+Change-Id: If33e5c9865e3fd79546642c26754b0414691dc87",Ramnivas Laddad,2011-07-29T22:08:03Z,ramnivas,ramnivas,2,1,1
+124,labs-vcap,264899e44dd17311530ae79bda2179216a18968a,Merge remote-tracking branch 'staging/master',Patrick Bozeman,2011-07-29T21:57:18Z,Patrick Bozeman,Patrick Bozeman,5643,5364,279
+125,labs-vcap,d9136f9b40f469fca11da411916c6507d752bd10,"Merge ""Templates for CF config files. Also change deployment config from json to yml.""",Mahesh,2011-07-29T21:03:50Z,mahpat,mahpat,1234,964,270
+126,labs-vcap,4a48a28a37652c6019e1febe9fbc87605e5b5414,"advance tests submodule ptr
+
+Change-Id: I6f4916cafb6e0041e941e334b8883b1ac29dcaac",Patrick Bozeman,2011-07-29T19:43:09Z,Patrick Bozeman,Patrick Bozeman,2,1,1
+127,labs-vcap,ff543c0f030e45d9a63c0f61d154a9cb68d53342,"Templates for CF config files. Also change deployment config from json to yml.
+
+Added template files for all cf components including services.
+Add comments to the deployment yaml config file. Cleanup some of the scripts.
+
+Change-Id: I9209749ab9ca50a2bd894189c571e1b4c33bc77b",Mahesh,2011-07-25T19:08:55Z,mahpat,mahpat,1234,964,270
+128,labs-vcap,d68eee3539db28d3999540765e9ece99dcf2697d,"Merge ""Add helper class for loading/validating config files""",mpage,2011-07-28T22:54:20Z,mpage,mpage,96,92,4
+129,labs-vcap,946810014ddb3eaf722423d7d74b3ec86a04fb01,"Merge ""Refactor stager tests""",mpage,2011-07-28T22:53:12Z,mpage,mpage,637,311,326
+130,labs-vcap,9c487d137e1d03856a244a352a362c7af5afa51c,"Merge ""Stager component skeleton""",mpage,2011-07-28T22:52:23Z,mpage,mpage,4162,4162,0
+131,labs-vcap,64e9c8396b6507899f66115ecc6e9090719cf1c2,"Merge ""Make staging a blocking operation.""",Patrick Bozeman,2011-07-28T19:23:26Z,Patrick Bozeman,Patrick Bozeman,6,6,0
+132,labs-vcap,7f7f840b3d178fcf521259314a7356dc118bf223,"Merge ""improved debugging for app change/update""",Patrick Bozeman,2011-07-28T19:23:20Z,Patrick Bozeman,Patrick Bozeman,12,8,4
+133,labs-vcap,e389bcf7093ca9657e369cca75cbe97920630ff0,"Fix require order bug in DEA tests.
+
+Test plan:
+- Ran tests
+
+Change-Id: Ie1594996842e27571c4bc478bb5733e091da5288",mpage,2011-07-27T21:42:52Z,mpage,mpage,20,9,11
+134,labs-vcap,936a3eaeec2a55b28c8ebf2b3029c4992c48e802,"Merge ""Fix log file truncation bug in bin/vcap""",Patrick Bozeman,2011-07-27T16:49:39Z,Patrick Bozeman,Patrick Bozeman,3,2,1
+135,labs-vcap,a80401324f800960ebcec17ea21aaaaa1e56e417,"Added logging for user auth failures
+
+Change-Id: Ibd3fd37138a3868d30396866e53b76bb286e4a54",Josh Valdez,2011-07-26T23:26:52Z,jmvldz,jmvldz,3,3,0
+136,labs-vcap,0b66079d5994f505ad0214e928b6d485ecb2cce7,"Merge ""Add utility classes.""",mpage,2011-07-26T23:08:59Z,mpage,mpage,141,141,0
+137,labs-vcap,97fe89a50c8d7fed8d90eaf11da861ca5259c0db,"Make staging a blocking operation.
+
+The callers of app_manager#stage were written back before
+the cc was made async.  The callers assumed that the call to
+the stager was a blocking operation and start making other
+state modifications to the app immediately after calls
+to app_manger#stage.  This leads to races and the hm usually
+needs to get involved to fix things up, especially given
+that vmc jumps in and restarts apps after doing a service
+binding.
+
+Change-Id: Idd987b79b8d897a857912f764791af2219564b58",Patrick Bozeman,2011-07-26T21:05:29Z,Patrick Bozeman,Patrick Bozeman,6,6,0
+138,labs-vcap,2fb9f2dc63c6f0bee8bb03679ab6b7b4519d7550,"improved debugging for app change/update
+
+Change-Id: Icf17191eb86d49f738a332133d36de6f8b2c2071",Patrick Bozeman,2011-07-26T20:52:19Z,Patrick Bozeman,Patrick Bozeman,12,8,4
+139,labs-vcap,424d72141df9de63e777921768769765b4fe40cc,"ensure things still work if nginx: section not present in
+cloud_controller.yml.
+
+Change-Id: I81d96a44ed431a8b8ad661f966c0aa3156a7bf00",Tal Garfinkel,2011-07-26T21:55:54Z,Tal Garfinkel,Tal Garfinkel,1,1,0
+140,labs-vcap,0863a47645091be401b6c9c20bb048496f2c62da,"Fix log file truncation bug in bin/vcap
+
+bin/vcap redirects stdout/stderr to a log file in /tmp/vcap-run if no log
+file is specified in a given component config. This file is not opened in append-mode,
+which causes attempts to truncate the temporary log file to fail. Fix this
+by opening the file in append-mode and immediately truncating it, thus preserving the
+original semantics.
+
+Test plan:
+
+Started vcap locally, truncated a temporary log file, made sure that the
+correct size was reflected.
+
+Change-Id: I5c07db56fb9801c08e6fab6ef2d15068fd3cf826",mpage,2011-07-26T21:08:22Z,mpage,mpage,3,2,1
+141,labs-vcap,91ed3181688e359f503c00602f21d89b9f4bb86a,Merge remote-tracking branch 'staging/master',Patrick Bozeman,2011-07-25T20:45:20Z,Patrick Bozeman,Patrick Bozeman,53,35,18
+142,labs-vcap,f78eec30f1493f3270f0ffeb1b5861c3c2463081,"Merge ""Install PostgreSQL as a service.""",Patrick Bozeman,2011-07-25T20:38:33Z,Patrick Bozeman,Patrick Bozeman,22,22,0
+143,labs-vcap,274c1b50c63d81ddfc4c62271ccac73654c7bb32,"Merge ""replaced fast_uuid that uses rand with secure_uuid that uses /dev/urandom.""",Tal Garfinkel,2011-07-22T23:44:34Z,Tal Garfinkel,Tal Garfinkel,21,8,13
+144,labs-vcap,aaa04b31722eace85050fe1f5f0adf48038fda8f,"replaced fast_uuid that uses rand with secure_uuid that uses
+/dev/urandom.
+
+Change-Id: Ic248cec9908accdd289b4172d2219ba6105056ee",Tal Garfinkel,2011-07-22T22:27:56Z,Tal Garfinkel,Tal Garfinkel,21,8,13
+145,labs-vcap,53ec703e54611e15814666c8bf88bdcf6a11d8e7,Merge remote-tracking branch 'staging/master',Patrick Bozeman,2011-07-22T21:56:59Z,Patrick Bozeman,Patrick Bozeman,1560,1544,16
+146,labs-vcap,991c03a9c58fa46281c60c3b29c0c79f82e97a03,"Merge ""More license fixes""",Mahesh,2011-07-22T21:56:14Z,mahpat,mahpat,10,5,5
+147,labs-vcap,b088a41bcf9e89ba4a780f5dce71c8366fd223d2,"More license fixes
+
+Change-Id: I74502d897bce163486755662a39fc3ce733030f5",Mahesh,2011-07-22T21:50:57Z,mahpat,mahpat,10,5,5
+148,labs-vcap,0ec45a951a451829f158c2e376ec57efc8072c1b,"Merge ""Fix license headers""",Mahesh,2011-07-22T21:34:10Z,mahpat,mahpat,34,11,23
+149,labs-vcap,2e24f60ad2c4577390c1ee2318398acd88053772,"Fix license headers
+
+Change-Id: I0d0ff721fc180bc0650c65964557a435638f8c89",Mahesh,2011-07-22T21:28:18Z,mahpat,mahpat,34,11,23
+150,labs-vcap,e308297f1e58b788ee6074c425cd566f6329d4c7,"Merge ""-support for downloading logfiles from dea using X-Acel redirect so nginx  does all the work. -fix for dea so that file viewer returns a proper error if a file doesn't exist instead of just dropping the connection.""",Tal Garfinkel,2011-07-22T21:27:39Z,Tal Garfinkel,Tal Garfinkel,46,36,10
+151,labs-vcap,526b2fdc642316f08c85b6af00abe5cc96914b80,"Merge ""Rewrite chef recipes from scratch.""",Mahesh,2011-07-22T20:44:46Z,mahpat,mahpat,7410,460,6950
+152,labs-vcap,5c466316c2eb7993eba6e6cf46942313c2044769,"Merge ""bump services submodule ptr""",Patrick Bozeman,2011-07-22T18:51:00Z,Patrick Bozeman,Patrick Bozeman,2,1,1
+153,labs-vcap,f229006fa487be6e401531080bdcd605daf8af72,"Merge ""micro cloud foundry fix for cloud controller""",Martin Englund,2011-07-22T18:48:24Z,pmenglund,pmenglund,2,1,1
+154,labs-vcap,88993f268beb9171980f1f5c7d90132f15bc3992,"bump services submodule ptr
+
+Change-Id: If637c4fd054ac4e4d3d92aab461d51e4cbbb1b09",Patrick Bozeman,2011-07-22T18:10:27Z,Patrick Bozeman,Patrick Bozeman,2,1,1
+155,labs-vcap,02fa81c0a888ba960f815308ec7ae8ffa4247c6f,"Merge ""changed README.md to note VM memory requirements""",Patrick Bozeman,2011-07-22T18:08:06Z,Patrick Bozeman,Patrick Bozeman,3,2,1
+156,labs-vcap,dfb06f7991980fcf2b79bcbb63b52c3df5a427f4,"Merge ""Fix & tests for bug when we have multiple DispatcherServlets in a Spring app. See https://issuetracker.springsource.com/browse/CF-9.""",AB Srinivasan,2011-07-22T18:06:04Z,AB Srinivasan,AB Srinivasan,88,85,3
+157,labs-vcap,92cc8ef57b4cc6100883e4014b554a72096d204c,"-support for downloading logfiles from dea using X-Acel redirect so nginx
+ does all the work.
+-fix for dea so that file viewer returns a proper error if a file
+doesn't exist instead of just dropping the connection.
+
+Change-Id: I4db50bf7cf0c0adf8cb30ef8f5943e5eb742bf80",Tal Garfinkel,2011-07-12T01:45:00Z,Tal Garfinkel,Tal Garfinkel,46,36,10
+158,labs-vcap,ab6e52a46ac70e14f7de75bad0385692e507437d,"micro cloud foundry fix for cloud controller
+
+cloud_controller and dea can't use the same uid base,
+as they run on the same system
+
+Change-Id: Icc42369a3d42f834169c2bfa29abc25dad851364",Martin Englund,2011-07-22T02:34:48Z,pmenglund,pmenglund,2,1,1
+159,labs-vcap,2e1a5b8cfd8a10645530768da5c52f642c0a34a9,"Rewrite chef recipes from scratch.
+
+Remove the stock recipes downloaded from opscode website. These were all
+written from scratch.
+
+Testing Done: BVT tests
+
+Change-Id: Ibf2cc130e1c80941173ceba3dd4d5574b20d7c14",Mahesh,2011-07-21T23:05:38Z,mahpat,mahpat,7410,460,6950
+160,labs-vcap,5240503085630d5f7ab05b30e2a57fd1389bc49f,"Add helper class for loading/validating config files
+
+This adds a tiny utility class that leverages json_schema to declaratively validate and load
+config files. Over time, I'm imagining that we'll migrate all components over to this. Also,
+reorganize the common spec directory to be more in line with other spec dirs (functional, unit, fixtures sub directories).
+
+Test plan:
+- Ran unit tests
+
+Change-Id: Ib828c1d0ec4edb92c6f2ebe91ab68c36255ef148",mpage,2011-07-21T21:41:07Z,mpage,mpage,96,92,4
+161,labs-vcap,d0fb01f59b9a59bfba80755c546b8b2fd97d103c,"Refactor stager tests
+
+Summary:
+- Fix the warning for multiple definitions of AUTOSTAGING_JAR
+- Move the embedded startup scripts into the fixture directory (lays the groundwork for fully staged droplets)
+- General code cleanup
+
+Test plan:
+- Unit tests still pass
+
+Change-Id: I00c8e6246608abc905f4add093592ab887154469",mpage,2011-07-21T02:10:45Z,mpage,mpage,637,311,326
+162,labs-vcap,2074daa9ac677dc32381ad18b7d242d9b97c5fc9,"Stager component skeleton
+
+This includes a basic gem skeleton that contains all of the staging code from the CC.
+Apart from some minor modifications to get this working without Rails, the code is unchanged.
+
+Test plan:
+
+- Supplied unit tests pass
+
+Change-Id: I65d55c686bed1f8d3301c91cd74ed857f3fd3aba",mpage,2011-07-20T20:27:09Z,mpage,mpage,4162,4162,0
+163,labs-vcap,1fcdc389062f5bbcb532a08077d154140d1700b9,"Merge ""Chef scripts to deploy cloud foundry""",Mahesh,2011-07-20T21:50:18Z,mahpat,mahpat,7921,7921,0
+164,labs-vcap,e0b834702f6c0f5d97912768ca1ce223c6deb849,"Chef scripts to deploy cloud foundry
+
+This is part 1 of what I think will be a 3 part change. This change adds the
+basic chef recipes to deploy cloudfoundry on a single host. The major change is
+to install ruby1.8 and ruby1.9 into a configurable directory. As a result I
+added a wrapper script to invoke vcap start that sets up the ruby paths
+appropriately before starting indivdual components. Note, these changes do not
+download the vcap repo (I will add that in a later change).
+
+Most of the chef recipes were downloaded from the opscode website. Some of them
+have been modified to meet our requirements.
+
+Usage:
+1.  run dev_setup/bin/vcap_dev_setup to install all the components required
+by cloud foundry
+2.  run dev_setup/bin/vcap_dev {start, stop, restart} to start cloud foundry
+components.
+
+Testing: Installed a base Ubuntu image, ran bvts on cloud foundry installed
+using these new scripts.
+
+Change-Id: I22cf25131ae8f8ab725408521a44401578eceedd",Mahesh,2011-07-19T01:16:41Z,mahpat,mahpat,7921,7921,0
+165,labs-vcap,05b1717516b88335d39406b4a1dd16a4751bf3dd,"Add utility classes.
+
+This adds two classes: one for gathering process stats, and another
+for both chaining command execution and capturing stderr.
+
+Test plan:
+- Unit tests
+
+Change-Id: Iec73cf8731798e0b0b91cf3efaa4b3dfed2f1cd6",mpage,2011-07-20T00:05:41Z,mpage,mpage,141,141,0
+166,labs-vcap,245cd63d9fac4cc273f7374c5c82c5397fcabd90,Merge remote-tracking branch 'staging/master',Patrick Bozeman,2011-07-18T23:39:23Z,Patrick Bozeman,Patrick Bozeman,45,21,24
+167,labs-vcap,3ded52399273adeca249bd21a439bb3f4349f189,"changed README.md to note VM memory requirements
+
+Change-Id: I91565d7e3c0a6ea9ab53007ac3146156857b5060",andyl,2011-06-21T05:28:22Z,andyl,andyl,3,2,1
+168,labs-vcap,393d24de21adb7d06ee571bd138cd484b1cfacae,"lock ruby 1.9.2 at p180
+
+Change-Id: I1c01e90e443c3d5bf051a370d0e0db936292bcfd",Patrick Bozeman,2011-07-18T22:19:10Z,Patrick Bozeman,Patrick Bozeman,2,1,1
+169,labs-vcap,82d3053bd5377612a708ca5ebbcc50ed7ee614c1,"Fix & tests for bug when we have multiple DispatcherServlets in a Spring app. See https://issuetracker.springsource.com/browse/CF-9.
+
+Change-Id: I8dc885b29f0f3b48d081d1952c04bb4e4d3678d7",AB Srinivasan,2011-07-15T20:16:26Z,AB Srinivasan,AB Srinivasan,88,85,3
+170,labs-vcap,be206fe480bca4d04eef137d9bf0cfa911f2ecf3,"Fix router/dea unit tests
+
+Change-Id: I475d1f46a53a0a6a301a756d4a4867e664e6a9f4",mpage,2011-07-13T18:03:19Z,mpage,mpage,43,20,23
+171,labs-vcap,2dc576720318141c534ef784d686ff2428928bf5,Merge remote-tracking branch 'staging/master',Patrick Bozeman,2011-07-12T22:42:09Z,Patrick Bozeman,Patrick Bozeman,277,245,32
+172,labs-vcap,37680422128ffc882b9f08309d50abe3bcfe034a,"Merge ""Syncing java submodule with vcap-java's master branch""",Patrick Bozeman,2011-07-12T22:30:34Z,Patrick Bozeman,Patrick Bozeman,2,1,1
+173,labs-vcap,7767cfc71e5b9d4eb20c78249a83f78837b38f91,"Merge ""-added support for forcing droplet fetch over http. -minor style fix in dea.""",Tal Garfinkel,2011-07-12T22:21:56Z,Tal Garfinkel,Tal Garfinkel,16,11,5
+174,labs-vcap,9a2e64323751dc7acc31f2810e0e986da6e80753,"disable nginx front end for cloud_controller by default.
+
+Change-Id: I183b3f045a32d52c4e484e75987ec8b02ff90bac",Tal Garfinkel,2011-07-11T21:29:12Z,Tal Garfinkel,Tal Garfinkel,2,1,1
+175,labs-vcap,96e5fecdae3c740d152698fae480bbbbc18d0350,"-added support for forcing droplet fetch over http.
+-minor style fix in dea.
+
+Change-Id: I512303687ae2254bc515f5996d1cc33d1ecbef69",Tal Garfinkel,2011-07-11T19:02:43Z,Tal Garfinkel,Tal Garfinkel,16,11,5
+176,labs-vcap,3e28592415322651027bc77cf83a0c404e777363,"fixed small merge bug.
+
+Change-Id: I40a7dab19828ca58028499e936304f2370ac5374",Tal Garfinkel,2011-07-11T18:28:27Z,Tal Garfinkel,Tal Garfinkel,1,1,0
+177,labs-vcap,c196d26715d86ef6bdf862684e69910ecf1db821,"cleanup up temporary directory at startup to prevent persistent resource leaks.
+
+Change-Id: I95af33ddeec7961d3670b1563b574b887c58e75a",Tal Garfinkel,2011-07-06T23:45:40Z,Tal Garfinkel,Tal Garfinkel,17,14,3
+178,labs-vcap,3bb6ec0d19830a2c2f98142a87601902673bbf5c,"nginx proxy support for uploading/downloading files.
+
+Change-Id: Iab9d86e0d102915d3f29dabe764bd4332747769a",Tal Garfinkel,2011-06-08T19:41:23Z,Tal Garfinkel,Tal Garfinkel,216,201,15
+179,labs-vcap,0badc5331f570c5693b9e6ffc29aa3d33bd634fb,"added error logging for cloud errors and locking errors so we
+get a stack trace when these occur.
+
+Change-Id: Ibf99944804234ed6134d195971e70b98cd3d7dcb",Tal Garfinkel,2011-07-08T21:46:14Z,Tal Garfinkel,Tal Garfinkel,23,14,9
+180,labs-vcap,bd0a447530797e24e289489055aa96cba6b8b185,"Syncing java submodule with vcap-java's master branch
+
+Change-Id: Ia2f8802f7b5e1736ae1d196ca6cfaee2f2ca9de9",Scott Andrews,2011-07-07T20:13:51Z,Scott Andrews,Scott Andrews,2,1,1
+181,labs-vcap,486609179f1fbd95b60b33ffa9c8969aef2ea6ef,"Install PostgreSQL as a service.
+
+Change-Id: I4ee9bf9fcb994702ab47abb428a62633db0e6c7c",Xin Li,2011-06-27T03:00:02Z,xinli,xinli,22,22,0
+182,labs-vcap,7e5de0103264c5c3be7f232f9512550ceeda71bc,"remove uploaded file after it has been packaged up -- eliminates resource leak.
+
+Change-Id: Ie27bd3ae0015bd3ad045414dc14bf060190ec2c7",Tal Garfinkel,2011-07-05T22:17:25Z,Tal Garfinkel,Tal Garfinkel,12,8,4
+183,labs-vcap,684fb16fc3bf07f337ed542986c6f91b1f3f6ff0,"service tools were consolidated to services/tools directory
+
+Change-Id: I02a10265791673b66ef897cb5d6dc84091e2ac94",figo,2011-06-30T04:07:14Z,figo,AB Srinivasan,27,23,4
+184,labs-vcap,06568a842151f656d2aa5704833204d68c6fd99e,Merge remote-tracking branch 'staging/master',Patrick Bozeman,2011-06-24T17:00:45Z,Patrick Bozeman,Patrick Bozeman,845,551,294
+185,labs-vcap,fba2ed45a68b5d9366db7da552e6cef50f954ee1,"Set postgresql password properly
+
+Change-Id: Ib08fee58c40da2d6a4dcac55a3da9dae54c4a5c0",Nicholas Kushmerick,2011-06-22T19:49:29Z,kushmerick,kushmerick,29,22,7
+186,labs-vcap,571a7e06b89d45c6ae07059a5e8cebbcf733a545,"Simplify check for # cpu/cores on darwin, add check for BSD
+
+Change-Id: I3073d3abb9cfd0dc8e45bcd8c7c9fe4fa0585580",Tim Watson,2011-06-15T15:00:53Z,hyperthunk,hyperthunk,7,4,3
+187,labs-vcap,bfe35ffc945a20cf56e6dca911739a959c1b56aa,"Move description and support address from INFO_PATH to be configurable in AppConfig
+
+Change-Id: I3dd2fee1a61bebe238c2d78a44844e5a6f96c34f",Adam C. Greenfield,2011-06-10T07:13:22Z,admgre,admgre,8,6,2
+188,labs-vcap,8d8f51f2e6d0b5fd311a834dcad4f230f1bf59bb,"Optionally require CC admin ops to use https
+
+Added configuration variable to cloud_controller to require HTTPs
+for admins, and a variable to require HTTPs for all authenticated
+commands, plus tests.
+
+Change-Id: I92ff9bdbf87a8edda58aa78ad14f6c7aef3ce8f9",Adam C. Greenfield,2011-05-17T02:11:27Z,admgre,admgre,166,128,38
+189,labs-vcap,bdbd4d342477850d9bfe63f17ca54457cdf29e09,"disable postgresql in vcap
+
+postgresql hasn't been merged promoted yet, so disable it
+for now.
+
+Change-Id: I0e3b216ec47cef4db7fa2106858451724a96081a",Patrick Bozeman,2011-06-20T22:53:33Z,Patrick Bozeman,Patrick Bozeman,3,1,2
+190,labs-vcap,f7ad599e0afb77b56c50bda6a14616f9bd49a3fb,"Merge ""Use the new logger in the CloudController""",mpage,2011-06-20T22:31:56Z,mpage,mpage,190,119,71
+191,labs-vcap,bd4becbb5a79127ddec012eb4f36c72776c4b645,"Fix syntax error
+
+Test plan:
+  - Ran bvts locally, failing rails db test passes
+
+Change-Id: I45d8183cf72f1efb64e9b69773f011ecbb294500",mpage,2011-06-20T22:17:38Z,mpage,mpage,1,0,1
+192,labs-vcap,ee871ca769b36fc4f179e9f7a94d8400e27887ab,"Use the new logger in the CloudController
+
+- Update the CC to no longer use Rails.logger.* for app specific messages
+- Move the event log into its own file
+- Start tagging log lines (staging related entries)
+
+Test plan:
+* Ran bvts locally
+* Ran unit tests locally
+* Deployed to my bosh instance and ran unit tests against it
+
+Change-Id: I2f72401b64a6e6440690c1c354bfdcea13235022",mpage,2011-06-15T00:14:11Z,mpage,mpage,190,119,71
+193,labs-vcap,c5f44430105b956c92e9c005c3fe78e69bfd9ad5,"Merge ""Update the router to use the new logger""",mpage,2011-06-20T22:04:50Z,mpage,mpage,17,10,7
+194,labs-vcap,cb629f7d4d9481a251da2051bab1268d8962e7b4,"Merge ""Use the new logger in the health manager.""",mpage,2011-06-20T22:04:20Z,mpage,mpage,14,10,4
+195,labs-vcap,defc2225e2001f07674a003853ae02de310b6e6a,"Merge ""Update the dea to use the new logger""",mpage,2011-06-20T22:03:56Z,mpage,mpage,27,17,10
+196,labs-vcap,40636bbb8ad27476cc7374332a9171c1810d0c10,"Merge ""Add postgresql service.""",Figo Feng,2011-06-20T04:55:52Z,Figo Feng,Figo Feng,37,34,3
+197,labs-vcap,be4a0205b355bf9d5752d1771a75845cbe4db25f,"Add postgresql service.
+
+Change-Id: Ia8307fb4e9380b5b473ac7ab4154f2c050fa83e5",Wang Jiajun,2011-05-23T14:13:44Z,Wang Jiajun,Wang Jiajun,37,34,3
+198,labs-vcap,60630df4c4c149a7c6fea762fff6ccfbcb5ffb84,"Refactor router tests
+
+- Moved common code in the functional tests into helper classes
+- Refactored both functional and unit tests so that they no longer depend on eachother
+- Restart both nats and the router for each test so no state is kept between each test
+
+Test plan:
+- Heh, unit/functional tests pass
+
+Change-Id: I152687e8615da220f01ee2a86c3b6e91270ba6b5",mpage,2011-06-16T03:42:04Z,mpage,mpage,362,208,154
+199,labs-vcap,637efa4472fd763d47ec2770df5350c355c93b7e,"Update the router to use the new logger
+
+Test plan:
+
+- Ran BVTs locally
+- Deployed to bosh, ran BVTs there
+
+Change-Id: I89917f24e7bfe023fecc8a2885d1ee7bc4ab8eb1",mpage,2011-06-16T00:41:04Z,mpage,mpage,27,15,12
+200,labs-vcap,909526b5a94118f4a11d9406f8d8c088ce7b93dc,"Update the dea to use the new logger
+
+Test plan:
+
+- Ran BVTs locally
+- Deployed to my bosh instance, ran BVTs against it
+
+Change-Id: I143a7a3f6138520a9a7286c90cf10253bdf5ddd2",mpage,2011-06-16T00:08:47Z,mpage,mpage,27,17,10
+201,labs-vcap,0a6da4497140853e282a7a54fa737c54279a4d75,"Use the new logger in the health manager.
+
+We will need to update the HM config template in the release repo once this goes in...
+
+Test plan:
+- Spot checked HM logs locally
+- Ran BVTs locally, monitored mem usage of HM
+- Deployed to bosh, ran bvts
+
+Change-Id: I3d90d5c934a146316932e73fd02c9d4309d41bb7",mpage,2011-06-11T03:58:48Z,mpage,mpage,24,15,9
+202,labs-vcap,d922379fc858f28f9791d24f3cf850866f91a48a,Merge remote-tracking branch 'staging/master',Patrick Bozeman,2011-06-10T19:25:00Z,Patrick Bozeman,Patrick Bozeman,17,12,5
+203,labs-vcap,40193aadcc5a8f953eb7d23e1a0eee637e19b3f9,"avoid starving the HM event loop so HM can login to NATS
+
+Change-Id: I523595c9b024bec567e7d229fdadad8cf1ee622f",Vadim Spivak,2011-06-07T04:51:42Z,Vadim Spivak,Vadim Spivak,9,5,4
+204,labs-vcap,e46b9af8356541379de368d3facd7b7bb7ef69cc,"Topic: merge - enable rabbitmq service by default (rebasing)
+
+Change-Id: Ie1c7f5088c3522681fd9b750d4235bd9eaa4b976",Nicholas Kushmerick,2011-05-31T19:20:18Z,kushmerick,kushmerick,2,2,0
+205,labs-vcap,516975ab88f9c0bc1542e02e713e039087193537,"Merge ""Topic: merge - needed for services-r2: bin/services/backup_manager -> services/backup/manager/bin/backup_manager""",Merge Bot,2011-06-07T03:33:01Z,Merge Bot,Merge Bot,4,4,0
+206,labs-vcap,2ce453075943f154306856a076cadc73378b13d2,"Topic: merge - needed for services-r2: bin/services/backup_manager -> services/backup/manager/bin/backup_manager
+
+Change-Id: Ide459b8fd80cdd4092d7b434cb0155398ddabc92",Nicholas Kushmerick,2011-05-31T16:05:49Z,kushmerick,kushmerick,4,4,0
+207,labs-vcap,c5c855fad5cc4f1928822388c5f8ec9fd50782e0,"change install url to avoid git redirect response
+
+Change-Id: I4cd558ad5e67ea5a0c4da0354eaf5f871b4fe976",Mark Lucovsky,2011-06-06T20:51:50Z,Mark Lucovsky,Mark Lucovsky,2,1,1
+208,labs-vcap,a102d75762194a9126a4cf9af2c603789941ba59,Merge remote-tracking branch 'staging/master',Patrick Bozeman,2011-06-01T19:13:25Z,Patrick Bozeman,Patrick Bozeman,1184,913,271
+209,labs-vcap,b79cc51c711f701ee362f77f9aa2739207f3a73d,"Added myself to the AUTHORS file
+
+Change-Id: I73b8ec895a9547023bd4963930ea6b6dd86e6224",Adam C. Greenfield,2011-05-24T17:21:52Z,admgre,admgre,1,1,0
+210,labs-vcap,f75b145ffe89048e8df29793822016f69753c757,"Improved the user controller rspec examples I added
+
+Change-Id: I0fadc9ebce364c041579e31005eba7d0578b4f82",Adam C. Greenfield,2011-05-22T10:04:37Z,admgre,admgre,7,7,0
+211,labs-vcap,d6f38036d06ec441052efd021246ab9fd5ac6d4a,"Added a users#list method with tests to allow admins to get a list of all users on the system and their apps. Added some code to application controller to log system exceptions that occur in cloud_controller. Added tests for users#delete to ensure appropriate access controls are in place.
+
+Change-Id: I4c1ae68c7588efa1d1f9e44874e4c46a4e54974f",Adam C. Greenfield,2011-05-22T06:33:00Z,admgre,admgre,74,72,2
+212,labs-vcap,4b8a5e3163bb5a607ff8f9bc4d41df24c6f82bc7,"More granular dea ulimit policy
+
+Added a configuration variable for dea to be able to control
+ulimit enforcement separately from secure mode. This way even if
+you don't want to run in full secure (multi-user) mode you can still
+make a basic attempt to enforce application limits.
+
+(from https://github.com/cloudfoundry/vcap/pull/63 with edits made
+while pulling the change per review comments)
+
+Change-Id: Ifc1cfdf4fea8ac17e3cdb64324eca359daf3c3fe",Adam C. Greenfield,2011-05-22T04:17:03Z,admgre,admgre,6,5,1
+213,labs-vcap,a3d68a3cfb2683d6299c3bcdbe71af37038e7321,"Add Lift support for legacy API clients
+Topic:merge
+
+Change-Id: Id20b7c386b3ea595f8d5d42f075f1955d717274d",AB Srinivasan,2011-06-01T01:00:04Z,AB Srinivasan,AB Srinivasan,3,3,0

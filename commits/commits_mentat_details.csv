@@ -1,0 +1,234 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,mentat,3a56c159fa0875278fa821ab511094ce0fddb482,"Add initial README.md and CONTRIBUTING.md.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-05T18:47:28Z,rnewman,rnewman,248,248,0
+1,mentat,2fc1b884bf0f8b9e56c639d8f182998d66b3a216,Initial commit,Richard Newman,2016-07-05T18:29:35Z,rnewman,rnewman,385,385,0
+2,mentat,b59c71cb0076727b1a62e9838148ee6bf9ceb5ee,"Extract datomish.db.debug from test code, in order to use it during development.",Nick Alexander,2016-08-08T16:40:34Z,ncalexan,ncalexan,98,60,38
+3,mentat,a1cc372d43d501e367699ee8c240dbbef509d436,"Fix :db.unique/value, which should be per (a, v) pair, not per v-value.",Nick Alexander,2016-08-08T05:02:51Z,ncalexan,ncalexan,60,43,17
+4,mentat,1b1cc6f18e0f106a97c9532c3c7c1ff819681bb4,"Add Datomic, for testing.",Nick Alexander,2016-08-07T05:59:52Z,ncalexan,ncalexan,256,256,0
+5,mentat,b29e5caec084d15005681f4bd3bdf1fc921aba69,"Implement parts: Make the DB allocate and persist entity IDs.
+
+This implementation is inefficient because each allocated temporary ID
+touches the database, but it's enough to allow to re-open DBs.",Nick Alexander,2016-08-07T00:35:24Z,ncalexan,ncalexan,225,135,90
+6,mentat,22fc2ce201dac747dd49694320243a00f43c3b08,Define <-tagged-SQLite and tagged-SQLite-to-JS to do tag-aware value transforms.,Richard Newman,2016-08-15T20:31:21Z,rnewman,rnewman,77,61,16
+7,mentat,ff9a75ae095b4d6b4c616e13b35ea567567058ba,Tag values with value type tags in SQLite.,Nick Alexander,2016-08-06T01:41:49Z,ncalexan,ncalexan,162,102,60
+8,mentat,4d34c820b8dd100b04bb8b60acdf23a249d9fc85,Add d/q; make query minimally schema aware.,Nick Alexander,2016-08-06T00:58:46Z,ncalexan,ncalexan,261,164,97
+9,mentat,0f7c1cad79c17ba7a22d00ed37187c9de830ab26,Extract IEncodeSQLite protocol and type-aware (but not schema-aware) <-SQLite factory.,Nick Alexander,2016-08-06T00:57:37Z,ncalexan,ncalexan,121,84,37
+10,mentat,655a6a1461dbb594b922b4616557eccdcbae2cd0,"Raise a specific error when trying to transact invalid sequences.
+
+This specifically checks for things like :db/add foo bar (nil),
+which will otherwise fail elsewhere after being exploded.",Richard Newman,2016-08-17T16:45:45Z,rnewman,rnewman,18,13,5
+11,mentat,e7e84e0a908ef6c03ea3ea25399cd60aeaa8d72b,"Add d/{ident,entid} for mapping between keyword idents and integer entids.",Nick Alexander,2016-08-05T20:59:07Z,ncalexan,ncalexan,195,107,88
+12,mentat,dc87d7d5574f7340a90c3e82c11bed4f7a1837f2,Correctly handle SQL errors in <?all-rows. Fixes #40.,Richard Newman,2016-08-24T03:47:04Z,rnewman,rnewman,2,1,1
+13,mentat,14a6a9bebb008cd34e6ed050f289fb7b29907409,Configure our JDBC interface to not downcase column names in result sets.,Richard Newman,2016-08-31T00:43:05Z,rnewman,rnewman,1,1,0
+14,mentat,9f97cc8f2d761b8ee4d7ecdb6d49c5b5a917bc31,Clarify d/<connect.,Richard Newman,2016-08-19T16:14:27Z,rnewman,rnewman,11,3,8
+15,mentat,cf96bf1888e5b1567daecd984fb64ec299a2db53,Always use our sql-quoting-style.,Richard Newman,2016-08-31T00:43:37Z,rnewman,rnewman,2,1,1
+16,mentat,cff49b6df5702087ad9c9f10a768c8626f268b63,"Initialize the sqlite connection with WAL and foreign keys.
+
+This somewhat improves performance, which is nice.",Richard Newman,2016-08-17T18:21:50Z,rnewman,rnewman,11,11,0
+17,mentat,3ab0428ee0e331898fbb33d0fdf6b36055c8aafc,Add some Leiningen plugins to make testing prettier.,Richard Newman,2016-08-26T00:23:25Z,rnewman,rnewman,4,3,1
+18,mentat,f4344fa28ac3130bb0a74e2d289cdf504be4dd39,"Bump JVM stack size to 4MB and eliminate tiered compilation.
+
+This allows CLJS compilation to complete for complex go-pair forms.
+
+See <https://github.com/emezeske/lein-cljsbuild/issues/303> for more details.",Richard Newman,2016-08-19T16:20:50Z,rnewman,rnewman,1,1,0
+19,mentat,1a54cec1baec8669b3aac32a6bc3b07ce344cf85,Use correct view for fulltext+non-fulltext.,Richard Newman,2016-08-05T23:29:21Z,rnewman,rnewman,8,4,4
+20,mentat,3f882ebdaa48324e80ce9299a0499d36eee49489,"Bump honeysql to 0.8.0, which includes mainline ClojureScript support.",Richard Newman,2016-08-05T20:06:42Z,rnewman,rnewman,2,1,1
+21,mentat,b1e6ffc91c681fc878e2363eaf6ffeaa8bb1e56c,Example query hacking.,Richard Newman,2016-08-04T23:58:59Z,rnewman,rnewman,8,7,1
+22,mentat,fc845a995066a0a773519908f891282e4e90183c,Implement basic fulltext binding. r=nalexander,Richard Newman,2016-08-05T01:50:34Z,rnewman,rnewman,205,198,7
+23,mentat,57d8796d074dfaa1bef59da9fc7fdc0e664e34c0,Split out datomish.query.cc so we can implement clause resolution in more than one namespace. r=nalexander,Richard Newman,2016-08-05T01:49:31Z,rnewman,rnewman,276,155,121
+24,mentat,fc65f268faa4f53e1b5c6310a8bc591c9ca7d197,Process Function instances in clause handling. r=nalexander,Richard Newman,2016-08-04T23:59:37Z,rnewman,rnewman,31,29,2
+25,mentat,4c2230929edf677440700f186cda0489eb00ae83,Turn Source into a protocol. Allow source->from to switch on attribute. r=nalexander,Richard Newman,2016-08-04T23:40:03Z,rnewman,rnewman,85,59,26
+26,mentat,c948902c526fb42e8cce0be2b1499a091e3ffefc,"Follow-up: Extract datomish.transact.explode.
+
+This required pushing the ID literal out of transact.  I elected to put
+them in DB, since literal allocation will end up in IDB eventually.",Nick Alexander,2016-08-05T00:54:50Z,ncalexan,ncalexan,204,111,93
+27,mentat,d8c976c3ad7c55c779d4d2ee4183ee3089a168dd,"Follow-up: split the monolith!
+
+This was a little more tricky than might be expected because the
+initialization process uses the transactor to bootstrap the database.
+Since Clojure doesn't accept mutually recursive modules, this
+necessitated a third module, namely ""db-factory"", which uses both ""db""
+and ""transact"".  While I was here, I started an ""api"" module, to paper
+over the potentially complicated internal module structure for external
+consumers.  In time, this ""api"" module may also grow CLJS-specific JS
+transformations.",Nick Alexander,2016-08-05T00:40:38Z,ncalexan,ncalexan,2047,1053,994
+28,mentat,1853d57cbaad77cd5e7f9687ab7c109b9703aed4,Follow-up: extract datomish.transact.bootstrap.,Nick Alexander,2016-08-04T23:36:48Z,ncalexan,ncalexan,170,88,82
+29,mentat,73b155cfdcdac8f30ee2a8fa6532e73c794055c0,"Follow-up: don't accept schema when creating DB.
+
+This schema was already ignored.",Nick Alexander,2016-08-04T23:33:26Z,ncalexan,ncalexan,145,71,74
+30,mentat,52af06ce2875905f71e521136f2740fbced5454f,Follow-up: lift in-transaction! to DB; make transactions exclusive.,Nick Alexander,2016-08-04T23:27:36Z,ncalexan,ncalexan,34,22,12
+31,mentat,f408cfd314c654c002fddbfa5b74d4f5530c32c8,Follow-up: lift helpers to IDB.,Nick Alexander,2016-08-04T23:20:48Z,ncalexan,ncalexan,52,29,23
+32,mentat,65d71a25989c1e5e536d6d922f6ea4177cbd91bb,Review comment: use :quoting :ansi parameter to honeysql/format.,Nick Alexander,2016-08-04T22:36:57Z,ncalexan,ncalexan,15,11,4
+33,mentat,9c2d81b9c406aa46fff40a6e31bc71fe7baf6679,Review comments: update SQLite schema definitions.,Nick Alexander,2016-08-04T22:05:00Z,ncalexan,ncalexan,40,27,13
+34,mentat,6a01885dff05bf65482dcca0e398468530f64770,Review comment: simplify equality.,Nick Alexander,2016-08-04T21:51:17Z,ncalexan,ncalexan,2,1,1
+35,mentat,c344de665e483a9531759ee34dfd4d13939ccf7f,Review comments: lift (schema db) in a few places.,Nick Alexander,2016-08-04T21:50:05Z,ncalexan,ncalexan,39,21,18
+36,mentat,5ece60e3e9cf680ba4f608a3c49679c557660b8d,Review comment: be more strict in lookup-ref?.,Nick Alexander,2016-08-04T21:45:41Z,ncalexan,ncalexan,5,4,1
+37,mentat,44db8116bfe7d3da36f0a3c79e70bd48fff19f14,"Handle nested maps, sequences in maps, and reverse references.",Nick Alexander,2016-08-04T21:01:11Z,ncalexan,ncalexan,186,160,26
+38,mentat,d9a8cb0d6adfdb60f15dd1b6f247910373ecfa77,"Don't accept user-provided tx values.
+
+This agrees with Datomic.  DataScript allows tx values, possibly to
+allow reconstructing DBs from Datom streams, but appears to handle
+user-provided tx values in the transactor inconsistently.",Nick Alexander,2016-08-04T17:04:15Z,ncalexan,ncalexan,70,36,34
+39,mentat,38545f6efcb8c95de33ecb7001165b828e44000b,"Add :tx and :txInstant to TxReport; accept :db/tx in transactor; allow to set :db/txInstant.
+
+The implementation of :db/tx is special and may need to change over
+time.  We add it as a special ident, with value the current transaction
+entity ID, specified per-transaction.  This works well right now but
+introduces some (internal) ordering requirements that may need to be
+loosened.",Nick Alexander,2016-08-04T03:24:02Z,ncalexan,ncalexan,324,196,128
+40,mentat,417ae1ed9251dff5479c8f93fc84453f650820d0,Allow false; fail if too many components in vector given.,Nick Alexander,2016-08-04T00:02:20Z,ncalexan,ncalexan,12,8,4
+41,mentat,f25838a1eb89723287a2ebf29cd135d202bfd154,"Support :db/fulltext true.
+
+Internally, we use SQLite's FTS4 to maintain a fulltext_values table of
+unique ""text"" values.  Fulltext indexed datoms have value v that is the
+rowid into fulltext_values.  We manually maintain the map between rowid
+and value in the transactor.
+
+For convenience, we expose two views interpolating the real text values
+into the datoms structure.",Nick Alexander,2016-08-03T22:42:04Z,ncalexan,ncalexan,174,160,14
+42,mentat,13f33a4915255d18a4588e3c105edddb9174d5c2,"Unify test pattern around ""(... -after tx0)"".",Nick Alexander,2016-08-03T22:41:40Z,ncalexan,ncalexan,308,150,158
+43,mentat,296c9cb4368266dde1a5a89fd7ec924c61be7429,Bootstrap DB schema; persist and restore schema from materialized views.,Nick Alexander,2016-08-03T15:47:55Z,ncalexan,ncalexan,671,438,233
+44,mentat,5d271454ac984030b2b779be8fee9be474c41475,"Don't replace keyword idents if the underlying field is itself :db.type/keyword.
+
+This is necessary to assert new :db/ident datoms.",Nick Alexander,2016-08-03T00:35:05Z,ncalexan,ncalexan,21,13,8
+45,mentat,a1e3158eac5b1a6b27c0ef236a798f6dfa1558f6,Add some structure and value checking.,Nick Alexander,2016-07-30T01:09:26Z,ncalexan,ncalexan,27,27,0
+46,mentat,6a8739bd2f58a537613fab3d2568c1afcdc24020,Accept new schema fragments via :db.part/db :db.install/attribute.,Nick Alexander,2016-07-29T23:10:07Z,ncalexan,ncalexan,325,288,37
+47,mentat,9497d69b44a8163857663007a7ecd272aa120dad,"Respect :db/unique constraints; test upserts.
+
+This version includes SQLite-level unique indexes; these should never be
+needed.  I've included them as a fail-safe while testing; they'll help
+us catch errors in the transaction layer above.",Nick Alexander,2016-07-28T22:30:46Z,ncalexan,ncalexan,442,345,97
+48,mentat,80742242e28c3a85b3da7c30c0733887e3be0f48,Fix cljs,Nick Alexander,2016-07-28T21:47:43Z,ncalexan,ncalexan,12,8,4
+49,mentat,7a90c43a5a8411a23c9d889dd4a221965a29d0ce,"Map valueTypes to SQLite encodings.
+
+In the future, we might add a layer of indirection, hashing values to
+avoid duplicating storage, or sorting URLs, or handling fulltext indexed
+values differently, or ...",Nick Alexander,2016-07-28T04:15:57Z,ncalexan,ncalexan,128,96,32
+50,mentat,43423b7d0a84c0fe916a75b8cd92b915df59704e,Validate value types.,Nick Alexander,2016-07-28T00:07:05Z,ncalexan,ncalexan,159,116,43
+51,mentat,bceee3b5fbccdf6b5ba9d2c99f2ff32925c53368,"Re-throw errors in Clojure, for easier debugging.",Nick Alexander,2016-07-27T22:50:42Z,ncalexan,ncalexan,3,2,1
+52,mentat,661e7ed12313ed54b7e6cc524c6af625a13c04b8,Allow to add new :db/ident mappings.,Nick Alexander,2016-07-27T21:30:01Z,ncalexan,ncalexan,71,70,1
+53,mentat,fbd5863921f1c66fb0ef84cbd8466ae6b3c92ddc,Resolve lookup-refs.,Nick Alexander,2016-07-27T21:29:51Z,ncalexan,ncalexan,18,18,0
+54,mentat,baec3815b0d0cab4b93c1d4556617498e4a22f91,Implement transactions.,Nick Alexander,2016-07-27T21:29:16Z,ncalexan,ncalexan,888,875,13
+55,mentat,0c51cb6236317eec558e2cfc5bcc93188e26f9e6,"Pre: Catch Throwable, not Exception.",Nick Alexander,2016-07-27T15:55:45Z,ncalexan,ncalexan,6,3,3
+56,mentat,2c1745fa3bea8e6a5bf6bf239de1cd35b421f5b2,Add notes about necessary SQLite options.,Richard Newman,2016-08-04T20:45:38Z,rnewman,rnewman,6,6,0
+57,mentat,8a77dcd8f05c8d168c9fbf7bd66c8b4578ce782d,Implement simple 'or' clauses. r=nalexander,Richard Newman,2016-07-26T23:46:16Z,rnewman,rnewman,253,222,31
+58,mentat,1ad67a03ebb4445146869e3a11db10bfe42791d1,Add tests and comments for clause ordering.,Richard Newman,2016-07-26T18:19:51Z,rnewman,rnewman,52,50,2
+59,mentat,feaca75a740cc6aa4fe45c16f4c223116ff4e864,Add tests for joins and not-clauses.,Richard Newman,2016-07-26T17:51:13Z,rnewman,rnewman,83,78,5
+60,mentat,72f7c8e1a399f96e286c84b614843b1d32b4dc8d,Fix test-raise.,Richard Newman,2016-07-26T17:50:55Z,rnewman,rnewman,5,3,2
+61,mentat,a5556637e8d3fee5e9f4e68b422c7ca275510af5,"Add a table alias function to Source, allowing us to mock alias generation.",Richard Newman,2016-07-26T17:50:40Z,rnewman,rnewman,9,8,1
+62,mentat,5e1648b05f1fdc080f341ce9d24bb7eb7c044b73,Remove a duplicate definition of context->sql-string.,Richard Newman,2016-07-26T17:50:10Z,rnewman,rnewman,10,2,8
+63,mentat,8633efc6be0e47a50af61173d997b63156cff28b,Fix exec-repl to build in cljs.,Richard Newman,2016-07-26T17:49:43Z,rnewman,rnewman,2,1,1
+64,mentat,d9cff5fa3c0b45b74d4afb75e8a0bdfda2386c20,Hacking on exec-repl.,Richard Newman,2016-07-25T16:05:43Z,rnewman,rnewman,35,32,3
+65,mentat,42361c1e5ebeb05804fbd85a2b3bab481e9e23ee,"Implement negation, predicates, external scalar bindings, <?q. r=nalexander",Richard Newman,2016-07-20T05:38:52Z,rnewman,rnewman,837,561,276
+66,mentat,9ae9a0572bc265cf0ae9fa917cf5c413256d9bfa,Pass a Context into query.,Nick Alexander,2016-07-15T19:45:50Z,ncalexan,ncalexan,73,41,32
+67,mentat,f4b9b867a402736cf94b0761dd07966a13dd9bc9,Indenting.,Nick Alexander,2016-07-15T19:45:35Z,ncalexan,ncalexan,16,8,8
+68,mentat,4262b10f55f5d3b853144382eb3dcbefec29ab56,Handle empty :where SQL clauses in query.,Nick Alexander,2016-07-15T19:42:20Z,ncalexan,ncalexan,11,6,5
+69,mentat,13dc1cc9b6b4d3cff894c4d6192305e622e475f3,Take more general `raise` from DataScript.,Nick Alexander,2016-07-14T18:09:42Z,ncalexan,ncalexan,44,27,17
+70,mentat,2a31a0c4d4b32113e60615a521ffa7692951a723,"Fix error in pair-channel->lazy-seq.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-15T19:37:01Z,rnewman,rnewman,2,1,1
+71,mentat,e76895ac0070936bcd322cdd2cc958b1421de439,"Generalize test code for <?run to work in either environment.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-15T19:36:46Z,rnewman,rnewman,13,7,6
+72,mentat,d695554123ce6ad45454d76a3d295d1b97e3e88a,"Initial work on executing queries. r=nalexander
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-15T16:00:49Z,rnewman,rnewman,195,172,23
+73,mentat,437a80a97824c8e09aa692b265f6e7020dadf1d4,Store elements on the context.,Richard Newman,2016-07-13T19:42:01Z,rnewman,rnewman,61,41,20
+74,mentat,64460f7eef062b22d9901d016533882b63db1294,"eavt -> datoms.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-13T18:52:45Z,rnewman,rnewman,18,9,9
+75,mentat,6c367616e63c5e4cdc0bef2e629b672c6bf39bca,"Add while-let.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-15T00:13:16Z,rnewman,rnewman,6,6,0
+76,mentat,bf080ced3c51713cf116bf5974f8d6c9af192a2a,Part 2: Add ISQLiteConnectionFactory and CLJC test that uses it.,Nick Alexander,2016-07-13T23:17:07Z,ncalexan,ncalexan,60,60,0
+77,mentat,cca5010671200dd93d3cf201f9d1a8121ff0822f,"Part 1: Fix testing errors.
+
+Some of these were just typos, but `with-open` was fatally flawed on
+CLJS (we couldn't call `.close` at all), and `deftest-async` was hiding
+all failures (due to a typo).",Nick Alexander,2016-07-13T23:16:31Z,ncalexan,ncalexan,178,79,99
+78,mentat,ef0454dd436dbf9b88bb5d68556b9b0cdbea720f,"Depend on promise-sqlite for Node.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-14T01:16:17Z,rnewman,rnewman,1,1,0
+79,mentat,900e77862e845d4cd28c5fd2a11e9635732e5aef,"Implement database on top of SQLite connection. r=rnewman
+
+We would prefer to talk about a knowledge base on top of a database, but
+all the Datomic and DataScript code (and symbols, like :db/add, etc)
+refer to the ""database of datoms"", so let's roll with that nomenclature
+and try to be specific that the persistent storage-layer is SQLite.
+This will become more clear when we actually use SQLite's unique
+capabilities for text indexing.",Nick Alexander,2016-07-12T22:37:26Z,ncalexan,ncalexan,102,101,1
+80,mentat,636b7a795744b0eb5a05125f85be62ad7fdcd9f3,Pre: Delete trailing whitespace.,Nick Alexander,2016-07-13T19:03:22Z,ncalexan,ncalexan,38,19,19
+81,mentat,db68a714f6620c8c9cd080b74622bd66929cf50e,"First pass at translating Datalog queries into SQL. r=nalexander
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-06T23:55:12Z,rnewman,rnewman,339,339,0
+82,mentat,75810b924e3d0fa52a7c973571e851e7346f5961,"Use cljsbuild 1.1.3.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-08T19:44:57Z,rnewman,rnewman,7,4,3
+83,mentat,3aac28aa139cb744e1778cd3458b3f96cfa6bd7a,"Take a dependency on honeysql for building queries.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-08T18:05:13Z,rnewman,rnewman,1,1,0
+84,mentat,b3b998274012c843b2c180b158e5dd5423db190c,"Take a dependency on DataScript.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-06T23:53:08Z,rnewman,rnewman,1,1,0
+85,mentat,798e05bd9a3a80c93be8e83927614b837c6165b0,"Use correct project name in defproject.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-08T19:49:55Z,rnewman,rnewman,2,1,1
+86,mentat,655d361a4ce0f4e4cddf0f00987f817cfd06d6ad,Ignore /out/.,Richard Newman,2016-07-11T23:30:56Z,rnewman,rnewman,2,1,1
+87,mentat,724c37466d64473b24e5b6a9acee5cc8d214950c,Add an SQLite connection abstraction.,Nick Alexander,2016-07-12T05:02:53Z,ncalexan,ncalexan,256,254,2
+88,mentat,d42e2f02a621285b5b147cd2784615311f4ce4e9,Expose `with-open` to CLJS.,Nick Alexander,2016-07-12T04:57:20Z,ncalexan,ncalexan,33,33,0
+89,mentat,d5cfbeaa45b7dae40a4307de1f02ece0d2681781,"Add `tempfile` and `with-tempfile` to CLJS.
+
+We already have a nice library like this for CLJ (tempfile); this builds
+the same thing for CLJS, using Node.js's tmp.",Nick Alexander,2016-07-12T04:57:40Z,ncalexan,ncalexan,34,33,1
+90,mentat,0a312b4f40515f9230c800651c430164b979c236,"Add an async and async testing framework.
+
+This is a well-worn idea: use a `promise-channel` of `[result nil]` or
+`[nil error]` pairs.  The `go-pair` and `<?` macros handle catching
+exceptions (important, given that synchronous CLJ code expects to throw
+rather than return an error promise or similar), allowing code like:
+```
+(go-pair
+  (let [result (<? (pair-chan-fn))]
+    (when (not result)
+      (throw (Exception. ""No result!"")))
+    (transform result)))
+```
+to be expressed naturally.  These are the equivalents of `async` and
+`await` in JS.
+
+The implementation is complicated by significant incompatibilities
+between CLJ and CLJS.  The solution presented here takes care to
+separate the macro definitions into CLJ.  Sadly, this requires
+namespacing the per-environment symbols explicitly; but we hope to
+minimize such code in files like this.
+
+The most significant restriction to this approach is that consumers must
+require the transitive dependencies of the macro-defining modules.  See
+the included tests (both CLJ and CLJS) for the appropriate
+incantations (for pair-chan, core.async, and test).",Nick Alexander,2016-07-11T23:48:40Z,ncalexan,ncalexan,146,134,12
+91,mentat,ca62b7b5d24fc3f39edcaba83eb5c025412f4e9c,Might as well ignore .cljs_rhino_repl too.,Richard Newman,2016-07-08T18:03:14Z,rnewman,rnewman,1,1,0
+92,mentat,1cf2c4fba72aca1cdf1aad215afcddadfad3e732,"Fix wrapper.prefix to refer to the right library name. r=nalexander
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-08T18:23:04Z,rnewman,rnewman,2,1,1
+93,mentat,08f7084d920755d3654cd95917bc3415a4f239f1,Add lein-doo to run ClojureScript tests.,Nick Alexander,2016-07-06T01:55:55Z,ncalexan,ncalexan,82,55,27
+94,mentat,f2365646d21d932edc53b26213b82358a60f4a4d,Add lein-cljsbuild and adapt datascript's release-js vehicle.,Nick Alexander,2016-07-06T01:13:29Z,ncalexan,ncalexan,149,127,22
+95,mentat,55baa1685d87ff79c26f28db05cbe3157be6e003,"More README tweaks.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-06T19:14:24Z,rnewman,rnewman,9,6,3
+96,mentat,6db476d26516d00aca5462f020592755de9daf58,"Document the process of starting a REPL or connecting from Vim.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-06T18:19:52Z,rnewman,rnewman,82,62,20
+97,mentat,adee5327708ac9fbda42a631e25a5d4c179d6be8,"Add notes comparing to raw SQLite.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-06T00:43:47Z,rnewman,rnewman,7,7,0
+98,mentat,27d35f030dcf80f1c8bea358c124b5c6fed2c6cb,"Take dependencies on a few libraries.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-06T00:01:27Z,rnewman,rnewman,12,9,3
+99,mentat,df08fe23d0ec972ae491ca1cd8108eff25bcc3be,Improve BUILDING.md.,Richard Newman,2016-07-05T19:38:55Z,rnewman,rnewman,11,10,1
+100,mentat,9e3df197988a88640a16feb2116b554055883766,"Stub code, build, and REPL.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-05T19:35:53Z,rnewman,rnewman,41,40,1
+101,mentat,f7621712dfd624c9c157474c92e9b3f1a4a808f5,"Stub out Leiningen and npm project files.
+
+Signed-off-by: Richard Newman <rnewman@twinql.com>",Richard Newman,2016-07-05T19:05:49Z,rnewman,rnewman,62,54,8

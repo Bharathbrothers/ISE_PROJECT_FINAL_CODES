@@ -1,0 +1,168 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,KitchenSink,571e7228583e68a57ae9e6163e392ce67473a69c,"Merge pull request #14 from zalun/fix_browser_test
+
+Found the right doc about browser API and fixed the test",Piotr Zalewa,2013-05-29T16:53:28Z,zalun,zalun,12,6,6
+1,KitchenSink,110b2c40a5bf039d706a299542e49b205b216ba9,"Found the right doc about browser API and fixed the test
+https://developer.mozilla.org/en-US/docs/WebAPI/Browser",Piotr Zalewa,2013-05-29T14:02:16Z,zalun,zalun,12,6,6
+2,KitchenSink,fb0f81fa1ac94d629a9740056e328d7c8238df7b,"Merge pull request #12 from zalun/hotfix
+
+important fixes",Piotr Zalewa,2013-05-21T22:41:31Z,zalun,zalun,11,7,4
+3,KitchenSink,9ba571fb5c0ca49b03b243412cf2ef13a8a0b821,"* fixed getting phoneResourceUri
+* doNotStore attribute added to settings",Piotr Zalewa,2013-05-21T12:32:40Z,zalun,zalun,11,7,4
+4,KitchenSink,eef92428f955af95b76fc9ab23a09398e49d2354,"Merge pull request #11 from zalun/send_result
+
+Sending results to the collection server",Piotr Zalewa,2013-05-20T12:34:42Z,zalun,zalun,409,370,39
+5,KitchenSink,fe4ebdd9e0843f2abe1ffd2dd158a2a46ca7edc9,"* fixes after review
+* removed settings management from ui.js (it is working in settings.js)",Piotr Zalewa,2013-05-20T12:31:39Z,zalun,zalun,74,26,48
+6,KitchenSink,69a5e23d5508222c60ad59259dee23b9e894fbff,"Sending results to the collection server
+https://github.com/mozilla/KitchenSinkServer running on 127.0.0.1:8093
+
+All runTests is now sending callbacks after receiving all results (or
+timeout)
+
+Data format is defined in KitchenSinkServer
+{
+  test_result: // JSON.stringify({
+    {api_name}: {
+      ""preparation"": (-1/0/1), # -1: no preparation needed
+                               #  0: not prepared (and it should)
+                               #  1: prepared
+      ""tests"": {
+		{testName}: (0/1),   #  0: failed
+							 #  1: passed
+		...
+	  },
+	  (""timeout"": 1)           #  any test interrupted by setTimeout
+    },
+    ...
+  }),
+  device: // currently null, we might have some way to provide the model,
+  phone: // uri identifying the app in collection server,
+  app_version: // version of the kitchensink app,
+  user_agent: // navigator.userAgent
+}
+
+* few test callbacks fixed
+* wifi manage removed from manifest as it needs certified app
+* settings is showing up as a dark modal
+* switching certified from the settings page
+* set the default setting state
+* jshint fixes",Piotr Zalewa,2013-05-03T14:53:12Z,zalun,zalun,427,390,37
+7,KitchenSink,523b7908e97d113396b39bf1e6192774f908bfb4,"Merge pull request #10 from zalun/settings_ui
+
+Settings with UI and automation",Piotr Zalewa,2013-05-08T12:47:42Z,zalun,zalun,122,106,16
+8,KitchenSink,80cd4dc184220fce8463ae5d0d133c14867e2e14,"Merge pull request #9 from zalun/settings_in_localstorage
+
+* settings.js stores settings in localStorage",Piotr Zalewa,2013-05-08T12:47:26Z,zalun,zalun,151,96,55
+9,KitchenSink,ae150bf9246576d7d43f922a4c84fb58701e3411,"* settings is showing up as a dark modal
+* switching certified from the settings page
+* set the default state
+* automatically update setting elements if chosen",Piotr Zalewa,2013-05-03T14:53:12Z,zalun,zalun,122,106,16
+10,KitchenSink,548aae524aa7a0598c57fb31a7609af4ef59645e,"* settings.js stores settings in localStorage
+* settings object emits an event when any key changes
+* hide/showCertified moved from settings.js to ui.js",Piotr Zalewa,2013-05-03T12:15:03Z,zalun,zalun,151,96,55
+11,KitchenSink,f09e8f23220aa2e1425e32e76ed014c1235c0f42,version bumped,Piotr Zalewa,2013-04-19T12:32:04Z,zalun,zalun,2,1,1
+12,KitchenSink,6bedc43fae7bb748872fbf936e8a5607c1ad9df6,"Merge pull request #8 from zalun/toggle_certified
+
+we can now switch on/off certified",Piotr Zalewa,2013-04-16T07:01:31Z,zalun,zalun,82,80,2
+13,KitchenSink,93126c8d898a8e3b52893d4d5ac509ec9433e446,"* review fixes
+* named functions
+* some comments
+* style issues",Piotr Zalewa,2013-04-12T10:05:20Z,zalun,zalun,27,19,8
+14,KitchenSink,bab42b9c8ad79b76322871f597a285163f644504,we can now switch on/off certified,Piotr Zalewa,2013-04-11T13:51:17Z,zalun,zalun,71,69,2
+15,KitchenSink,5c2706f3afebd34c46702997f5465231d0769c50,"Merge pull request #7 from zalun/zepto2slick
+
+working with slick and elements - no zepto",Piotr Zalewa,2013-04-11T22:08:44Z,zalun,zalun,5013,4955,58
+16,KitchenSink,eaec082ba2dadc2f46f90fc43275b93be1db21af,"* working with slick and elements - no zepto
+* removed logging to non existing debug element
+* style fixes
+* all needed elements/* in app.js",Piotr Zalewa,2013-04-10T13:06:00Z,zalun,zalun,5013,4955,58
+17,KitchenSink,7fbd85ccf9b7552f4eb115b23c2d22b80ab4b062,stripes,Piotr Zalewa,2013-04-11T08:57:57Z,zalun,zalun,26,5,21
+18,KitchenSink,30fac2719a82b116103a70d7defa70536e2cc1b2,version bumped,Piotr Zalewa,2013-04-09T21:54:18Z,zalun,zalun,2,1,1
+19,KitchenSink,5f75ba026f787b2b12e7d360d91f321d54009204,Merge branch 'ui_improvements',Piotr Zalewa,2013-04-09T18:26:11Z,zalun,zalun,1873,466,1407
+20,KitchenSink,502f86b7d7c61542c421779652ba8cefdd813d61,r?,Piotr Zalewa,2013-04-09T18:25:55Z,zalun,zalun,4,2,2
+21,KitchenSink,f2800a895d7a3de55605c65b559779152ddd436c,failed to upload a package with that permission,Piotr Zalewa,2013-04-09T13:44:50Z,zalun,zalun,3,0,3
+22,KitchenSink,24489748a5ba80d69ab88299af0f4f2486653c46,version bumped,Piotr Zalewa,2013-04-09T12:08:05Z,zalun,zalun,2,1,1
+23,KitchenSink,f367bb052844d5390c42660bd576afb76903ddbd,"UI Improved
+
+* Zepto upgrade
+* logs inside content element
+* name element easier to touch
+* removed background from failed API
+* dropshadow added
+* DEBUG removed as no longer needed
+* apis are no longer overflow scrolled
+* header added
+  x-appbar with icons for reload and menu
+* FxOS style for buttons",Piotr Zalewa,2013-04-05T13:40:20Z,zalun,zalun,1871,465,1406
+24,KitchenSink,47d21cda711828927b2addbad4677dcf73b91d62,Merge branch 'alter_descriptions',Piotr Zalewa,2013-04-05T10:28:38Z,zalun,zalun,106,64,42
+25,KitchenSink,35fe833522b3bd4606d509d94b39b4b499046d65,"new descriptions and links tomore info added
+some not required tests removed
+
+r?",Piotr Zalewa,2013-04-03T12:27:13Z,zalun,zalun,106,64,42
+26,KitchenSink,fd7a13c982fb2f6a3047ad9b437614b782f2188c,"Merge pull request #4 from zalun/content
+
+Adding description",Piotr Zalewa,2013-04-05T09:45:00Z,zalun,zalun,144,116,28
+27,KitchenSink,9dcd0847bd41db44c9a4000d4027ce05c2b3941b,r? fixes (mostly style),Piotr Zalewa,2013-04-05T09:43:51Z,zalun,zalun,55,26,29
+28,KitchenSink,af0d6bdfda4c48f7202a707b128f39029878e448,"ul changed to dl
+dt is the old li
+dd is hollding the content
+action is now called from within the dd
+
+treat all links as MozActivity",Piotr Zalewa,2013-04-02T12:10:56Z,zalun,zalun,113,102,11
+29,KitchenSink,56131d2dd9eae18c1283e79a7d5a8bb347c499bd,"Merge pull request #3 from zalun/icons
+
+manifest validated",Piotr Zalewa,2013-04-02T12:07:16Z,zalun,zalun,45,35,10
+30,KitchenSink,445569208decb3ff9ad045e15b59ea7cfec25253,"manifest validated
+icons added",Piotr Zalewa,2013-03-27T14:33:52Z,zalun,zalun,45,35,10
+31,KitchenSink,cd4a04396c2269fb8a762cd921d28c80d3eb0b04,"Merge pull request #2 from zalun/webfm-test
+
+test switching FM radio on and off",Piotr Zalewa,2013-03-26T12:08:25Z,zalun,zalun,26,26,0
+32,KitchenSink,1775eb342a1de695fd2ac5ea39958147162fc3d2,typo,Piotr Zalewa,2013-03-26T12:07:37Z,zalun,zalun,2,1,1
+33,KitchenSink,07c6169b3b4d7f5881285830a737028b58471056,test switching FM radio on and off,Piotr Zalewa,2013-03-25T11:33:03Z,zalun,zalun,26,26,0
+34,KitchenSink,4818a970e4493750b45f986f52c081df319e12e0,"Merge pull request #1 from zalun/refactor-to-objects
+
+OOP refactoring",Piotr Zalewa,2013-03-22T12:26:28Z,zalun,zalun,3152,2267,885
+35,KitchenSink,44dbeed88b0b53e90e46133f4f34136396bc7be6,"* prime added for OOP
+  https://github.com/mootools/prime
+* ``API`` is a class
+* ``apis`` is an array of classes
+* constructing APIs moved to individual files
+* added string.js which adds simple substitute method (minitemplating)
+* webfm action fixed",Piotr Zalewa,2013-03-19T21:57:31Z,zalun,zalun,3152,2267,885
+36,KitchenSink,8a710b1571693047f1736f4810753e98b7ced5a7,name change (if opened in FFx Desktop),Piotr Zalewa,2013-03-18T11:43:39Z,zalun,zalun,2,1,1
+37,KitchenSink,3cbde60548bae8d35b8a3a2dc7cc8cb5172a2b47,all apis have tests - last update before refactoring,Piotr Zalewa,2013-03-18T10:30:17Z,zalun,zalun,54,40,14
+38,KitchenSink,7b680424c22b783fb74d386870622d8ccd935121,typo,Piotr Zalewa,2013-03-12T20:19:31Z,zalun,zalun,3,1,2
+39,KitchenSink,141a0f78a22348049abb992bee70108b79410b2e,"* Reload button
+* More tests",Piotr Zalewa,2013-03-12T20:15:50Z,zalun,zalun,177,166,11
+40,KitchenSink,9b6c4481a38fab884ff43e0ad247af887ec43b17,* radio action added,Piotr Zalewa,2013-03-07T17:00:48Z,zalun,zalun,35,32,3
+41,KitchenSink,cde9f5899f08d8fbbf3bef80b23d5719ee3430f8,"* info about the developer API page added to readme
+* tests for openwebapps, connection and alarms added",Piotr Zalewa,2013-03-07T09:25:53Z,zalun,zalun,143,125,18
+42,KitchenSink,00e47e1d5f11dd6f1ef3583419aab32a87661e38,"new tests added
+log strip is able to send data to debug (useful for bigger content)",Piotr Zalewa,2013-03-06T12:41:50Z,zalun,zalun,170,133,37
+43,KitchenSink,a511a22b20f85cb1cd9e5648e2dcc792d49af070,description upgraded,Piotr Zalewa,2013-03-05T17:19:20Z,zalun,zalun,24,21,3
+44,KitchenSink,de4cf0e2acbb8fb75e75b5226bbe38ae1e829a88,"* ability to ""debug"" an object (logger.strip)
+* mark apis reserved for certified apps
+*",Piotr Zalewa,2013-03-05T14:52:25Z,zalun,zalun,82,76,6
+45,KitchenSink,d8fa2c70e3f2eae996bfaaa58b0301553a75f91f,"* test added for screen orientation
+* onclick events added to the API row
+* callbacks slightly simplified (a little more DRY)",Piotr Zalewa,2013-03-05T12:12:30Z,zalun,zalun,70,51,19
+46,KitchenSink,63e4d29dc65a70365c4cf4257bcbf05170207396,minor doc update,Piotr Zalewa,2013-03-04T20:15:06Z,zalun,zalun,5,3,2
+47,KitchenSink,45b1af070aca15ae3f5568caa2350cd0bfceb532,"* privileges added
+* cors (F) and systemXHR (P) added
+* changes in handling callbacks (all info is temporary)",Piotr Zalewa,2013-03-04T20:03:42Z,zalun,zalun,107,99,8
+48,KitchenSink,c28aac0aa317f5b95c1fbeda41e13f8d66c1c0d0,"* debug on top
+* all weapis added to the isPrepared test
+* ability to omit isPrepared method",Piotr Zalewa,2013-03-01T16:03:56Z,zalun,zalun,287,257,30
+49,KitchenSink,b0a391338975c460601640eab04e2d302fbe7fb2,"* error, info added to logger
+* more isPrepared tests added
+* run tests only if prepared",Piotr Zalewa,2013-03-01T11:06:30Z,zalun,zalun,139,120,19
+50,KitchenSink,bdc6036896285bf759aff45c5784bbe4905881c5,"* logger moved to libs
+* some styling to keep things moving
+* added WebTelephony as a smaple API
+* isPrepared added for Bill Walker tests
+* async tests will be implemented as an array",Piotr Zalewa,2013-03-01T09:48:08Z,zalun,zalun,81,73,8
+51,KitchenSink,d90e90bbb85c96e04cae6a23fd778ee2c343ca92,"initial
+- require
+- zepto
+- logs on screen",Piotr Zalewa,2013-02-28T22:46:06Z,zalun,zalun,1596,1596,0

@@ -1,0 +1,41 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,moz-security-monkey,bd1b505fef48e69fab6a7e76538bbac8a9149013,Add comment link about subdomain takeover,Gene Wood,2018-12-13T17:11:25Z,gene1wood,gene1wood,1,1,0
+1,moz-security-monkey,aae8f7fe6687802a94f625843e734349529499df,Typo,Gene Wood,2018-12-13T17:10:59Z,gene1wood,gene1wood,2,1,1
+2,moz-security-monkey,174595784f3b3da55017e13c738f1b51b87f6179,Set cron job for change reporter to append to log,Gene Wood,2018-12-13T17:10:42Z,gene1wood,gene1wood,2,1,1
+3,moz-security-monkey,c1020d3aaa3c46a49e33dc20144d3db592e930f6,Add support for importing third party account list,Gene Wood,2018-12-13T17:09:41Z,gene1wood,gene1wood,28,27,1
+4,moz-security-monkey,7fb3cdd59d17d3aafdc8034899f334a97e199e95,Enable check_star_assume_role_policy,Gene Wood,2017-10-05T23:30:58Z,gene1wood,gene1wood,20,20,0
+5,moz-security-monkey,4b6da9319fbef2a9d625e2e1136e3711ef7e7f74,Add documentation,Gene Wood,2017-07-07T21:45:49Z,gene1wood,gene1wood,288,288,0
+6,moz-security-monkey,19d4637f0e80028feb4b3dfd8cb3c93fc0f76383,Bump package version,Gene Wood,2017-07-07T21:26:33Z,gene1wood,gene1wood,2,1,1
+7,moz-security-monkey,7629821f69cffe4ed639525fb22c3ffc8785e26f,Update chef recipe to use new manage.py,Gene Wood,2017-07-07T21:25:07Z,gene1wood,gene1wood,16,10,6
+8,moz-security-monkey,dd8b89cb34ee2a6d00372f5f4d529aaf4e581177,Add support for AWS account aliases in manage:add_all_accounts and add manage:remove_accounts,Gene Wood,2017-07-07T21:23:36Z,gene1wood,gene1wood,68,57,11
+9,moz-security-monkey,3c1827eb37aaf3263c14de8da14ddce75ac505d8,Enable Route53 auditor,Gene Wood,2017-06-27T00:08:51Z,gene1wood,gene1wood,6,5,1
+10,moz-security-monkey,eece9574f171ac29a302c4067ab7eb03ea991411,Add comments to cron job for clarity,Gene Wood,2017-06-27T00:07:59Z,gene1wood,gene1wood,10,9,1
+11,moz-security-monkey,742fb09f1378df254479e41e71f0e025d4b3860f,Stop doing security group port checks,Gene Wood,2017-06-27T00:07:39Z,gene1wood,gene1wood,3,2,1
+12,moz-security-monkey,105814f50db72c8dfb9b81b8b343664a38cd1346,Fix bug in backup import,Gene Wood,2017-06-27T00:06:33Z,gene1wood,gene1wood,6,3,3
+13,moz-security-monkey,8b8905626abc97abb35df0fdd4f223a09b99ae82,"Redesign CloudTrail watcher and auditor
+
+This changes how the CloudTrail watcher functions so that it now keeps track
+of all CloudTrails configured in each region and across all regions. Some of
+this change is driven by the addition of the [AWS support for multiple
+CloudTrails in each region](https://aws.amazon.com/blogs/aws/aws-cloudtrail-update-turn-on-in-all-regions-use-multiple-trails/).
+This change enables the watcher to detect when a region is missing a
+CloudTrail which writes to the Mozilla CloudTrail bucket and to detect when no
+CloudTrail is configured to record GlobalServiceEvents like IAM events. The
+watcher communicates these missing CloudTrails by creating fake/phantom items
+in Security Monkey for these missing CloudTrails for the auditor to notice.
+This is not an ideal method but I haven't come up with something better yet.",Gene Wood,2017-06-27T00:05:14Z,gene1wood,gene1wood,180,123,57
+14,moz-security-monkey,163a2b4f75e06e6e23781dcd7b84da72a1b04911,"Update MozDef event structure
+
+This changes the MozDef event structure from a single json blob describing all changes and issues observed in a given account to multiple events, one for each ""item"" found by a ""watcher"", if that item has ""issues"". This allows for more granular searches in MozDef of the data.
+This also disabled alerting via email so all alerting now happens exclusively through MozDef",Gene Wood,2017-06-26T23:44:58Z,gene1wood,gene1wood,247,77,170
+15,moz-security-monkey,430e321b77f782425081f37f55a8a82b475299f1,"Fix unserializable datetime objects
+
+This fixes the issue where publishing non JSON serializable objects to MozDef causes errors. This fix converts datetime objects to iso formatted dates.",Gene Wood,2017-06-26T23:44:37Z,gene1wood,gene1wood,13,11,2
+16,moz-security-monkey,42858039704e52084714fcaac9e5229b2d3d2939,Send structured data to mozdef,Gene Wood,2016-12-29T21:35:59Z,gene1wood,gene1wood,239,232,7
+17,moz-security-monkey,8d09102153a8ecf0c57ad4c242f4f97fec21e4a4,Add add_all_accounts function to manage,Gene Wood,2016-12-29T21:34:40Z,gene1wood,gene1wood,68,68,0
+18,moz-security-monkey,62c26529b4adf85dc9b8f18816a52b8ad4bcc74b,Fix cloudtrail messages,Gene Wood,2016-12-29T21:32:16Z,gene1wood,gene1wood,4,2,2
+19,moz-security-monkey,c19ee4e93772b41666e856a45be5d71c1c134597,Add custom backup function,Gene Wood,2016-12-29T21:31:02Z,gene1wood,gene1wood,39,38,1
+20,moz-security-monkey,62459d9c465566655a2f7bc3737db87fab89f1ed,Move publish_to_mozdef to utils,Gene Wood,2016-12-29T21:29:58Z,gene1wood,gene1wood,62,41,21
+21,moz-security-monkey,d1ebd680c2cff828af8fccccd74994f756edbeb8,Add provisioning of certbot letsencrypt cert,Gene Wood,2016-12-28T23:40:38Z,gene1wood,gene1wood,22,21,1
+22,moz-security-monkey,13a139dd7f701f052da4a2fcdd107d95c544857b,Open port 80 for letsencrypt validation and redirects to https,Gene Wood,2016-12-28T23:37:42Z,gene1wood,gene1wood,6,6,0
+23,moz-security-monkey,d254910c50e619e18fc3ed91220bfd7cfc7a16fa,initial commit,Gene Wood,2016-09-28T21:16:23Z,gene1wood,gene1wood,2024,2024,0

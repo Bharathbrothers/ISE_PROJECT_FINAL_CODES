@@ -1,0 +1,64 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,SwiftKeychainWrapper,cdc3046d5712abc1747c421aed7b1749c016e316,"Merge pull request #8 from watsonbox/fix-swift-compiler-optimizations
+
+Fix data fetch issues when Swift compiler optimizations are enabled",Jason,2015-02-17T17:22:09Z,jrendel,jrendel,155,38,117
+1,SwiftKeychainWrapper,e0b7fbde2e11f0231a7599f077e267261b63d45a,Remove Swift compiler optimization notes from README.md,Howard Wilson,2015-02-09T18:20:34Z,watsonbox,watsonbox,6,0,6
+2,SwiftKeychainWrapper,66abd60d22ea1a88d58ba988786a682358122eac,Fixes #4 by using UnsafeMutablePointer when fetching Keychain data,Howard Wilson,2015-02-09T18:16:55Z,watsonbox,watsonbox,14,4,10
+3,SwiftKeychainWrapper,24e73fcbb39430647c881dd9336d3950a19dafa5,"Revert ""As per issue #4 dealing with the known compiler issue bug, I've followed @andrewebling's suggestion to use an objective c wrapper for now for the data retrieval steps. Prior to this changing, changing the Swift Compiler Optimization level for deb to Fastest [-O] (matching the Release setting) would cause data retrieval to fail. With this update, this is now working. This allows the keychain wrapper to be used in a release build with optimization enabled.""
+
+This reverts commit ab0959bb70d223f86cc232b4a792f6b3c5a08324.
+
+Conflicts:
+	SwiftKeychainWrapper/KeychainWrapper.swift",Howard Wilson,2015-02-09T18:11:27Z,watsonbox,watsonbox,155,44,111
+4,SwiftKeychainWrapper,208f4f832fe8e6d27b5b0b156f59ffe71cfc3787,updated pod spec,Jason Rendel,2015-01-29T19:47:39Z,Jason Rendel,Jason Rendel,4,2,2
+5,SwiftKeychainWrapper,90467d09836e84ec46e1314c6aa6f41dedbd99d9,Update README.md,Jason,2015-01-29T12:57:38Z,jrendel,jrendel,7,4,3
+6,SwiftKeychainWrapper,7fb6e660310b1b36688c3b7dff82cbdadc09363d,Merge remote-tracking branch 'origin/develop',Jason Rendel,2015-01-29T12:52:49Z,jrendel,jrendel,4,2,2
+7,SwiftKeychainWrapper,534e3b630c08e706066356dcaa2609fdf32f3c7f,Updated pod spec file,Jason Rendel,2015-01-29T12:52:13Z,jrendel,jrendel,4,2,2
+8,SwiftKeychainWrapper,757a41af148877439da59096e89a27b374485f6c,"Merge branch 'release/1.0.5'
+
+Conflicts:
+	README.md
+	SwiftKeychainWrapper/KeychainWrapper.swift",Jason Rendel,2015-01-27T17:54:40Z,jrendel,jrendel,946,645,301
+9,SwiftKeychainWrapper,69b387878153293e7e022bcc397440819fb0901b,"Added Memory leak fix
+
+Fix is part of commented out code in this build, but eventually I'm hoping to remove the objective c wrapper and this will be relevant again.",Jason,2015-01-26T15:46:01Z,jrendel,jrendel,3,2,1
+10,SwiftKeychainWrapper,db4fae89b3bd0f40040182c919f0cdcf292bde1e,"Merge pull request #6 from adamskyle/master
+
+Fixed Memory Leak",Jason,2015-01-26T15:44:05Z,jrendel,jrendel,1,1,0
+11,SwiftKeychainWrapper,91923ea96ffe9510b56eea6a3101ff0dbb60d121,"Fixed Memory Leak
+
+Unwrapped unmanaged resultRef was leaking according to Instruments.",adamskyle,2015-01-24T17:29:24Z,adamskyle-ios,adamskyle-ios,1,1,0
+12,SwiftKeychainWrapper,ba1c68e40fb27d9694a69255fec4477d8c486f9f,Updated pod spec to include all source files,Jason,2015-01-14T12:56:06Z,jrendel,jrendel,4,2,2
+13,SwiftKeychainWrapper,f8c9e4dc5651e48cf2e7378bb4c1a0b9c9827b06,Update README.md,Jason,2015-01-14T04:11:09Z,jrendel,jrendel,4,2,2
+14,SwiftKeychainWrapper,a73ea2523b3724f3a2da450e2855437ef1090464,Update README.md,Jason,2015-01-14T04:08:25Z,jrendel,jrendel,2,2,0
+15,SwiftKeychainWrapper,469205305fcb69156bb60c66fe628c6bdc599742,updated readme,Jason Rendel,2015-01-14T04:07:12Z,jrendel,jrendel,17,14,3
+16,SwiftKeychainWrapper,ab0959bb70d223f86cc232b4a792f6b3c5a08324,"As per issue #4 dealing with the known compiler issue bug, I've followed @andrewebling's suggestion to use an objective c wrapper for now for the data retrieval steps. Prior to this changing, changing the Swift Compiler Optimization level for deb to Fastest [-O] (matching the Release setting) would cause data retrieval to fail. With this update, this is now working. This allows the keychain wrapper to be used in a release build with optimization enabled.",Jason Rendel,2015-01-14T03:53:16Z,jrendel,jrendel,91,78,13
+17,SwiftKeychainWrapper,47ec8b56f7bdd009c6f1614860267749ced62b75,updated pod spec to point to dev tag,Jason Rendel,2015-01-14T03:04:17Z,jrendel,jrendel,2,1,1
+18,SwiftKeychainWrapper,1b53f7cf72d72bd38e2a43a71eafa2d78ae6be8b,Renamed project to SwiftKeychainWrapper and added pod spec from pull request #5. Updated pod spec to reflect project name update.,Jason Rendel,2015-01-14T02:51:05Z,jrendel,jrendel,22,18,4
+19,SwiftKeychainWrapper,261da640a1d900d516e9e1f7e9e76b8aa29d4331,Fixed file locations in the file system,Jason Rendel,2015-01-14T02:45:43Z,jrendel,jrendel,24,12,12
+20,SwiftKeychainWrapper,6ec678ce4c910a825e8d64d2ad9aad9d78b245ce,"Converted project to a Framework target with framework name ""SwiftKeychainWrapper"". Rename is to deal with the naming conflict with private Apple framework, also called KeychainWrapper. This is important to prevent conflicts when importing the framework into other projects and when using with cocoa pods. For now I've left the class name as KeychainWrapper.",Jason Rendel,2015-01-14T02:39:43Z,jrendel,jrendel,362,307,55
+21,SwiftKeychainWrapper,cda87e5b7bdfaee9e79428e7fd9f721db78cb49d,Merge branch 'release/1.0.3',Jason Rendel,2014-11-10T13:58:16Z,jrendel,jrendel,102,73,29
+22,SwiftKeychainWrapper,454a87158109a0b2a73fcff6fbce1385c358ae6b,Added more tests to cover adding multiple string values to the keychain and updating strings.,Jason Rendel,2014-11-10T13:55:36Z,jrendel,jrendel,102,73,29
+23,SwiftKeychainWrapper,e3be2914d134dcae573fe0d1ad076ec19c3c6ec4,Update README.md,Jason,2014-10-28T00:06:20Z,jrendel,jrendel,3,1,2
+24,SwiftKeychainWrapper,8fd464a788ca9018f32ca483c224814a1aaf2eca,Updated for Xcode 6.1. Made a couple personal preference modifications after merging in last pull request from Marko with his 6.1 fixes.,Jason Rendel,2014-10-27T23:59:21Z,jrendel,jrendel,42,19,23
+25,SwiftKeychainWrapper,59d08a36ad514668a709101658dd776612b5eb95,"Merge pull request #1 from mediately/master
+
+Fix errors and warnings on Xcode 6.1 / iOS 8.1",Jason,2014-10-27T23:46:44Z,jrendel,jrendel,85,50,35
+26,SwiftKeychainWrapper,0e4c863db36629099d5434342cf6b41db3f3c638,Updated build settings warning,Marko Nikolovski,2014-10-23T17:10:56Z,markonikolovski,markonikolovski,3,2,1
+27,SwiftKeychainWrapper,bbe6323cf9161b882936568a2c43ab911b9d88b5,"Fixed protocol conformation
+
+Fixes 12 compile-time errors: “Type 'CFStringRef' does not conform to
+protocol 'NSCopying’”",Marko Nikolovski,2014-10-23T17:09:17Z,markonikolovski,markonikolovski,82,48,34
+28,SwiftKeychainWrapper,9eb3ed40039e99e77b35d56934cc575f7595da19,Merge branch 'release/1.0.1',Jason Rendel,2014-09-29T14:57:59Z,jrendel,jrendel,19,6,13
+29,SwiftKeychainWrapper,290d6d316f208532a73a3cca4e4c1f28e131151c,"Found a better way to enforce that objects saved to keychain implement NSCoding: just declare that as the type required and returned. Now only objects that implement NSCoding can be used, else a compile time error will be generated.",Jason Rendel,2014-09-25T18:46:54Z,jrendel,jrendel,30,6,24
+30,SwiftKeychainWrapper,ed7d441e5010a87be67b45d0a1086f5756ac7b0a,"Updated setObject function. This is meant to save NSCoding compliant objects, so enforced that these must be NSObjects and added validation to check that the object is NSCoding compliant.
+Added unit test for failure case.
+Updated objectForKey for return NSObject?",Jason Rendel,2014-09-25T17:55:21Z,jrendel,jrendel,30,23,7
+31,SwiftKeychainWrapper,5afbacc914aac363025858f31debca6064923a42,updated some if let ... { } else { } syntax to be more compact and readable using the ?? operator.,Jason Rendel,2014-09-25T14:19:22Z,jrendel,jrendel,7,1,6
+32,SwiftKeychainWrapper,d5ade899ccaf6c96631f8980ac490ecc517e5ec1,Merge branch 'release/1.0.0',Jason Rendel,2014-09-24T15:06:06Z,jrendel,jrendel,45,39,6
+33,SwiftKeychainWrapper,f8c684f1cb9f211a254bb4b7e8d08390bb7ffe4d,"Updated my ""Internal"" struct to be called ""internalVars"" for clarity and because internal (with a lower case i) is a Swift keyword, so this could be confusing.",Jason Rendel,2014-09-24T14:59:54Z,jrendel,jrendel,12,6,6
+34,SwiftKeychainWrapper,c8ee7f7ae7a6ca3b85fa3191005ca913f2bcc219,Added some more test cases for retrieval failure cases,Jason Rendel,2014-09-24T14:23:02Z,jrendel,jrendel,33,33,0
+35,SwiftKeychainWrapper,42de525271eaa9575efec683b10111489ff65c9a,Update README.md,Jason,2014-09-24T03:41:25Z,jrendel,jrendel,3,2,1
+36,SwiftKeychainWrapper,c697c02596e4b7291805c591f45d4ddd37d9f9ce,Update README.md,Jason,2014-09-24T03:41:03Z,jrendel,jrendel,3,2,1
+37,SwiftKeychainWrapper,504b706c3108c00f7759a1538fb4d31e78a1f152,Initial Xcode project commit,Jason Rendel,2014-09-24T03:18:56Z,jrendel,jrendel,679,679,0
+38,SwiftKeychainWrapper,b43fa94cdb67201f2082c619ba7ff029a6ca0d71,Initial commit,Jason,2014-09-24T03:14:42Z,jrendel,jrendel,50,50,0

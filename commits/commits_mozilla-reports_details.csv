@@ -1,0 +1,447 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,mozilla-reports,3c4b71e17249b126dc570f71408372f70921de8b,Change experiments etl job's CEP output location,Frank Bertsch,2017-02-08T22:19:11Z,fbertsch,fbertsch,8,4,4
+1,mozilla-reports,bfa5872302d696a71d7fd13d12862fa79ee651d8,"Add experiments ETL job
+
+This job takes all pings, and aggregates per-channel, per-experiment,
+the activations, terminations, and number of active experiments.
+It uses a CEP to get the counts per channel.",Frank Bertsch,2017-02-02T18:28:18Z,fbertsch,fbertsch,640,640,0
+2,mozilla-reports,16e26af613dcd982a261d72748c06c42297a88ca,Adding analysis of crash ping client delays,Chris H-C,2017-01-27T21:46:23Z,chutten,chutten,645,645,0
+3,mozilla-reports,7f99e6533c647e23abf37234582ea0cff4ad6608,Update Dataset API usage per Bug 1322768,Mark Reid,2017-01-30T14:07:40Z,mreid-moz,mreid-moz,16,6,10
+4,mozilla-reports,a2837adb8339b4ec7ddbce1803cf3ce831028246,Adding analysis of main ping submission and recording delays,Chris H-C,2017-01-23T17:32:10Z,chutten,chutten,652,652,0
+5,mozilla-reports,cb2e77128ceac64634fc8c35eae1d7b98cc92999,"Add AMO API example
+
+create md title
+
+edit intro
+
+add telemetry exlcusive fields
+
+Clean up code after review",benmiroglio,2017-01-09T21:20:59Z,benmiroglio,benmiroglio,761,761,0
+6,mozilla-reports,bbc66cbe8f0b7ffbb5586db02acf5c326ce8a3e1,Add e10s_experiment beta 51 week 6,benmiroglio,2017-01-10T18:44:47Z,benmiroglio,benmiroglio,4524,4524,0
+7,mozilla-reports,75453c563524f28b19fed2abe355a0de8760e65b,Add e10s_experiment beta 51 week 5,benmiroglio,2017-01-10T18:04:44Z,benmiroglio,benmiroglio,4523,4523,0
+8,mozilla-reports,3dc4e41bad2a0e07f24feebc6f4fe0456a4442ba,Add e10s_experiment beta 51 week 4,benmiroglio,2017-01-10T18:03:51Z,benmiroglio,benmiroglio,4524,4524,0
+9,mozilla-reports,5b875c7ab6f1fc6dd1ebd4c4d15b8d60e792a8fe,Bug 1291340 - Add notebook for sync import etl,Mark Reid,2017-01-06T15:34:16Z,mreid-moz,mreid-moz,1005,1005,0
+10,mozilla-reports,2de3ef16e95ea1b2977d42a7e7a5b9a0aec94f59,"Bug 1321414 -Create v2 desktop churn/retention dataset in telemetry-parquet (#6)
+
+* Bug 1321414 -Create v2 desktop churn/retention dataset in telemetry-parquet
+
+This code refactors the code for recurrent jobs on airflow. Involved with this patch are the following:
+
+* Update dataframe.map to use dataframe.rdd.map (Spark 2.0)
+* Remove loop computing backfill
+* Join of newest_per_client and grouped_usage_time is flattened
+* Miscellaneous formatting
+* Get date from the environment
+* Manual backfill logic implemented
+* Output location changed from mreid/churn to amiyaguchi/churn
+
+* Use snap_to_beginning_of_week instead of most_recent_sunday
+
+* Separate the paths for uploading csv files and the parquet path
+
+* Update parquet path and disable dashboard uploads
+
+* Skip uploading csv files that already exist",Anthony Miyaguchi,2016-12-21T11:38:35Z,acmiyaguchi,acmiyaguchi,1491,1130,361
+11,mozilla-reports,e9ad6637b501e80027c48f7a8a1bce5f4ca14063,Upstream patch; use submission_date_s3 instead of submission_date,Anthony Miyaguchi,2016-12-07T00:49:28Z,acmiyaguchi,acmiyaguchi,14,7,7
+12,mozilla-reports,6eb77b720c141d2a64f1b7af9922e8b3c8dc6697,Add notebook for churn data,Anthony Miyaguchi,2016-11-30T21:33:23Z,acmiyaguchi,acmiyaguchi,1230,1230,0
+13,mozilla-reports,c49eb5381464104ea6def04978a7e79ae525f759,Add longitudinal dataset tutorial,Anthony Miyaguchi,2016-11-29T22:55:21Z,acmiyaguchi,acmiyaguchi,7752,7752,0
+14,mozilla-reports,a6c84172748c15445b8c4fe05d36ed96b80441f1,Add telemetry hello world,Anthony Miyaguchi,2016-11-29T23:07:21Z,acmiyaguchi,acmiyaguchi,677,677,0
+15,mozilla-reports,ed5a62aba6e53b57de6a6a7c732759c61bf1f70f,Update documentation.,Roberto Agostino Vitillo,2016-11-25T14:21:56Z,vitillo,vitillo,126,11,115
+16,mozilla-reports,bedcf4a494a886060a5a76e34a2c151810c80ecd,"Examples/new report.kp (#1)
+
+* Add ATMO report template.",Roberto Agostino Vitillo,2016-11-25T14:09:04Z,vitillo,vitillo,346,346,0
+17,mozilla-reports,1ce1bc4bdf48955763c66b43fce693a8ca4804b3,Initial creation of knowledge data repository structure.,Roberto Agostino Vitillo,2016-11-22T13:50:46Z,vitillo,vitillo,254,254,0
+18,mozilla-reports,cc96e0ea4ba69187453245232624e379b166c126,Update references for default branch rename (#119),Jason Thomas,2021-04-06T21:24:49Z,jasonthomas,jasonthomas,4,2,2
+19,mozilla-reports,1ac918d71eae2b384f2d7193f88d2e10ce12fc52,Webrender Fenix performance study (#117),Tim D. Smith,2020-06-08T16:26:45Z,tdsmith,tdsmith,30241,30241,0
+20,mozilla-reports,a14fe66cdc7424345e4bdbd3acbecfdb8c36e90e,"Bug 1577460 - Remove legacy version of update orphaning ETL
+
+Update orphaning ETL has been migrated to GCP, current version
+lives in telemetry-airflow repo:
+https://github.com/mozilla/telemetry-airflow/blob/4da5c6d7b06b62abde269b7c9f278438fd2852e5/jobs/update_orphaning_dashboard_etl.py",Arkadiusz Komarzewski,2020-03-18T10:29:16Z,akkomar,akkomar,5515,0,5515
+21,mozilla-reports,5f1fefb62134165d1049d55a45517c96238e075c,"Add WebRender Release 67 report (#116)
+
+Closes https://bugzilla.mozilla.org/show_bug.cgi?id=1526094.",Tim D. Smith,2019-11-25T20:24:32Z,tdsmith,tdsmith,30432,30432,0
+22,mozilla-reports,e6e3b348e7728032a0e30789a95a15fb0b8925a0,Add fingerprint protections experiment report (#115),Felix Lawrence,2019-11-07T21:44:24Z,felixlawrence,felixlawrence,29492,29492,0
+23,mozilla-reports,4e17dc3865490b58ccacfea2f258eb3edf818c97,Add notification permissions report (#111),Felix Lawrence,2019-10-16T14:15:00Z,felixlawrence,felixlawrence,29556,29556,0
+24,mozilla-reports,fd81f6faae1dca68a4f63213ea3955e561b40ea6,Bug 1571462 - Remove mobile_clients job,Arkadiusz Komarzewski,2019-09-30T07:01:18Z,akkomar,akkomar,1818,0,1818
+25,mozilla-reports,4f85af0032f90bb7805f4b8d4ca1cb28c782082d,Bug 1570625 - decommission obsolete Android jobs,Arkadiusz Komarzewski,2019-09-27T16:23:57Z,akkomar,akkomar,5009,0,5009
+26,mozilla-reports,80c9bd6468877e1df1f48208c7c99266bedb9896,"Add report for WebRender 66 release experiment (#106)
+
+r=felixlawrence",Tim D. Smith,2019-05-27T19:23:52Z,tdsmith,tdsmith,30283,30283,0
+27,mozilla-reports,96d2215cf0bf09ec3e2b6e2fb36bdb54e49d07dd,Fix pronouns,Felix Lawrence,2019-05-21T22:28:49Z,felixlawrence,felixlawrence,4,2,2
+28,mozilla-reports,de13866e179292fc2ba2e3bbfbf80278753b3e4a,"Add cookie restrictions mini-report.
+
+englehardt would like to present this result as part of a presentation; this will provide a reference for that (the original report is mozilla confidential).",Felix Lawrence,2019-05-21T20:42:54Z,felixlawrence,felixlawrence,29333,29333,0
+29,mozilla-reports,531c6ac43218407cfc056e09f0a74fe1877b25d8,TxP Side View Experiment final report,Teon L Brooks,2019-04-02T16:35:30Z,teonbrooks,teonbrooks,4983,4983,0
+30,mozilla-reports,8160762ed158150f66f7d58eb957447a53d44b01,TxP Cloud Storage Experiment final report,Teon L Brooks,2019-04-02T16:35:14Z,teonbrooks,teonbrooks,108213,108213,0
+31,mozilla-reports,d833a73216339366a0430dff63e8fdcd5be3305c,"Add Mozilla Code of Conduct file
+
+Fixes #100.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,2019-03-29T22:07:08Z,Mozilla-GitHub-Standards,Mozilla-GitHub-Standards,15,15,0
+32,mozilla-reports,9bb85396fb944f1ce2856bc36ba8dd5a7e9f3720,Update README based on existing private reports docere docs,Jeff Klukas,2019-02-26T14:03:37Z,jklukas,jklukas,83,74,9
+33,mozilla-reports,e7bafc2c63cc0792485fa8675f51cfcdce575e8a,"Bug 1501814 - Switch publishing from Knowledge Repo to Docere
+
+Maintains the existing structure of the repository, but removes KR-specific
+config and adds CI code to publish to a newly created bucket.",Jeff Klukas,2019-02-26T13:42:51Z,jklukas,jklukas,157,15,142
+34,mozilla-reports,a022d2636c99c8559afb73c60215c28c9bc39105,"Update static content for app_update_out_of_date
+
+Follow-up to #92 in prep for switchover to docere.",Jeff Klukas,2019-02-26T13:41:40Z,jklukas,jklukas,60,32,28
+35,mozilla-reports,7e3e090247ca104bc6920f44ee4b857603c35bd3,Add deploy job on builds of master branch,Jeff Klukas,2019-03-21T16:40:40Z,jklukas,jklukas,8,8,0
+36,mozilla-reports,b743aa8463009c48abbe0c3a0cc40551003d189f,Point to new mozilla.report bucket,Jeff Klukas,2019-03-21T16:35:53Z,jklukas,jklukas,4,2,2
+37,mozilla-reports,43a827ce27ac177ff4c2fe61f0a04e268fa09eb7,Change app_update_out_of_date.ipynb to use settings.update.enabled.,Robert Strong,2018-11-23T02:08:41Z,Robert Strong,Robert Strong,258,80,178
+38,mozilla-reports,fef0a9413706548283de5d83a16a098611a9b832,"Disable CircleCI builds for now
+
+After discussion with @harterrt, I now understand that
+reports-dev.telemetry.mozilla.org is currently populated from
+mozilla-services/mozilla-private-reports and we need to preserve that
+for now.
+
+So, we'll turn off deploys for this repo for now and I'll be writing
+up a bug to track the steps necessary to make this repo private,
+copy over the mozilla-private-reports content, and eventually
+retire the existing Knowledge Repo.",Jeff Klukas,2018-10-24T19:37:05Z,jklukas,jklukas,10,0,10
+39,mozilla-reports,6d27b7e060e59635b0c79baf3c9c76e5c4e3d094,Move static content into the repository,Jeff Klukas,2018-10-24T17:37:31Z,jklukas,jklukas,7491,6628,863
+40,mozilla-reports,607ebda2d5f2ae102feeb9ee6092d5db2e374652,Fixing circleci's deploy s3 destination,Harold Woo,2018-10-24T16:46:32Z,haroldwoo,haroldwoo,2,1,1
+41,mozilla-reports,33f4cee47ab462e9fa22bae3727dfef6cef5e403,Trying to fix circle deploy again,Harold Woo,2018-10-24T16:38:34Z,haroldwoo,haroldwoo,2,1,1
+42,mozilla-reports,e394ca8c2324963ed48435ebb26d0c876371d35f,Fixing circleci deploy,Harold Woo,2018-10-24T16:17:27Z,haroldwoo,haroldwoo,2,1,1
+43,mozilla-reports,e31c72e2580031db07822d2a67a0353ef3328255,Fixing circleci,Harold Woo,2018-10-24T15:32:36Z,haroldwoo,haroldwoo,8,4,4
+44,mozilla-reports,7584715518e910d40957baa1d0b485ec818539da,Adding circle build to upload built artifacts to s3 on pushes to master,Harold Woo,2018-10-22T21:22:47Z,haroldwoo,haroldwoo,58,58,0
+45,mozilla-reports,3d0fa0fca03331d6e186fb3ca49cc54c177d7c75,Use set -exo pipefail in scripts,Jeff Klukas,2018-10-23T15:00:13Z,jklukas,jklukas,9,8,1
+46,mozilla-reports,4b15e26fdce6e94b0cd6181561f147882c7e34f2,Add render and serve scripts,Jeff Klukas,2018-10-23T14:26:09Z,jklukas,jklukas,36,36,0
+47,mozilla-reports,fcf64bce64264cf0e051c1d538778c40bf8d5b6e,Add converted static html and docere report.json files,Jeff Klukas,2018-10-16T17:55:08Z,jklukas,jklukas,73650,73650,0
+48,mozilla-reports,92bd6284d48d4ea63fa0743ebe8e26a42fc03632,Add scripts for converting kr content to static html,Jeff Klukas,2018-10-16T17:49:10Z,jklukas,jklukas,95,95,0
+49,mozilla-reports,73191b002845b8569b235b7e57605b13098a4fac,"Make all metadata cells ""raw"" rather than ""markdown""",Jeff Klukas,2018-10-15T15:19:01Z,jklukas,jklukas,4,2,2
+50,mozilla-reports,79ea0a2065100d869919299282d451501fb1b712,"Replaced outdated code in Telemetry Hello World notebook
+
+- replaced get_ping_properties with Dataset.select()
+- removed plotly",Ben Wu,2018-05-30T15:31:37Z,BenWu,BenWu,255,141,114
+51,mozilla-reports,07ae51c6797b715b9c33e7fab56ef6ab7323862e,"Remove churn ETL notebooks to mozilla/python_mozetl
+
+It can be found under mozetl/engagement/churn",Anthony Miyaguchi,2018-01-11T00:33:40Z,acmiyaguchi,acmiyaguchi,1396,0,1396
+52,mozilla-reports,3d18ee41ee460a14dc85ef78dea3960d63b4a425,Add the validation for the update ping (reason = success) on Nightly,Alessio Placitelli,2017-09-19T09:26:39Z,Dexterp37,Dexterp37,940,940,0
+53,mozilla-reports,c7b13ccb5e91e57ca81237d501721db67e04869b,"""Bug 1391242 - Add health ping analysis for beta""",katejim,2017-08-24T10:57:05Z,katejim,katejim,1189,1189,0
+54,mozilla-reports,a816065dc0eb71f2a1e121486dcb992f87135978,"""Bug 1388310 - Add health ping data validation""",katejim,2017-08-25T15:51:24Z,katejim,katejim,1260,1260,0
+55,mozilla-reports,3602923b553bddeca54ff034ca09c0af3681c3a5,Update analysis of hang data on nightly,Doug Thayer,2017-07-26T22:02:58Z,squarewave,squarewave,882,818,64
+56,mozilla-reports,4403a3e299bf4f01806dc1b455590c95dee4eece,Add analysis of hang data on Nightly,Doug Thayer,2017-07-20T19:53:49Z,squarewave,squarewave,767,767,0
+57,mozilla-reports,399ba48e64e2521ec4b23a72aed08c2b2bc4422d,Add the validation for the update ping (reason = ready) on Beta,Alessio Placitelli,2017-08-18T13:29:52Z,Dexterp37,Dexterp37,984,984,0
+58,mozilla-reports,440a4dd4a4feb93197f904a1d3d82c266ba87b8a,Add the validation for the update ping (reason = ready) on Nightly,Alessio Placitelli,2017-08-17T15:41:23Z,Dexterp37,Dexterp37,958,958,0
+59,mozilla-reports,f95c88e7b832e66ee4f240686758aa4b4466d090,"Update Guide For Contributing. 
+
+*.ipynb files must contain yaml style header.",Kate Ustiuzhanina,2017-08-10T16:20:33Z,katejim,katejim,15,8,7
+60,mozilla-reports,193a62e1b630046f5f8ab007adb71f50f9d5f25d,bug 1381516 - Add analysis to see how many keyed histograms are affected and for how long,Chris H-C,2017-07-17T20:07:07Z,chutten,chutten,576,576,0
+61,mozilla-reports,e9a8b3bb95703f14fc241f9de965fc43a7000158,Add int overflow checks to android-clients,Frank Bertsch,2017-05-10T16:15:17Z,fbertsch,fbertsch,24,20,4
+62,mozilla-reports,64ee10dcbc42e25d34f3c231eeeedceb54b726ef,Add analysis of the main-ping submission latency on Beta,Alessio Placitelli,2017-07-12T14:47:28Z,Dexterp37,Dexterp37,705,705,0
+63,mozilla-reports,b2a51fbab09e7831b4f6823b00075f9b9c082177,Handle Dataset's auto-sanitized where clause.,Mark Reid,2017-07-10T14:56:15Z,mreid-moz,mreid-moz,22,10,12
+64,mozilla-reports,c3bde07284b7794f040e7e44d8137568dd27e74d,Add the validation for the new-profile ping on Beta,Alessio Placitelli,2017-07-04T12:52:17Z,Dexterp37,Dexterp37,1614,1614,0
+65,mozilla-reports,7c86f67a3639a0bedd914fc5c7a03e95aca3c74e,Add analysis of the pingsender effects on the shutdown ping (Beta),Alessio Placitelli,2017-06-22T16:41:07Z,Dexterp37,Dexterp37,1164,1164,0
+66,mozilla-reports,2ebf7f6ae16b993cca7f1eb381354a7b77ba22b7,Add the validation for the new-profile ping on Nightly,Alessio Placitelli,2017-06-12T14:01:47Z,Dexterp37,Dexterp37,1472,1472,0
+67,mozilla-reports,4307fb8617bff0f0431354bfc95310705778561c,Add analysis of the pingsender effects on the shutdown ping,Alessio Placitelli,2017-05-11T14:01:38Z,Dexterp37,Dexterp37,1174,1174,0
+68,mozilla-reports,4168a187b11545c5498c661bab5fb1bcf8bc689a,Change main_summary version to V4,benmiroglio,2017-05-03T21:09:40Z,benmiroglio,benmiroglio,32,8,24
+69,mozilla-reports,58c614770dd981992ce304cfb69577c54f55b4a6,Add analysis for types of Telemetry Send failures,Chris H-C,2017-05-05T16:51:48Z,chutten,chutten,259,259,0
+70,mozilla-reports,7030caa7994111b16e6f15f8561cb063299e4c6a,"Snake case android_clients columns, bump version",Frank Bertsch,2017-05-03T19:31:38Z,fbertsch,fbertsch,16,8,8
+71,mozilla-reports,0969e14e0d84a7db215f8ef4bf924ebadd2ad19c,Change mobile_clients output to snake case - bump version,Frank Bertsch,2017-05-01T15:20:59Z,fbertsch,fbertsch,16,8,8
+72,mozilla-reports,144cd95ec8ca7a25bfa7dea298760fc2eb5718b7,Add follow-up analysis about that one Aurora 51 client,Chris H-C,2017-05-01T16:35:28Z,chutten,chutten,898,898,0
+73,mozilla-reports,1c811db7117d71ca647a0f78e991cece29ce391f,"Add the hw report for Windows 7 and Windows 10 users
+
+This is a modified version of the original hardware report ETL job
+that produces two reports for the data coming from the past week:
+one for Windows 7 only users, the other for Windows 10 only users.",Alessio Placitelli,2017-04-06T08:11:08Z,Dexterp37,Dexterp37,1226,1226,0
+74,mozilla-reports,f7a037dd7f8ace308289d6588ea98ab8dbbd4b7f,Update knowledge repo for churn_to_csv,Anthony Miyaguchi,2017-04-18T22:20:35Z,acmiyaguchi,acmiyaguchi,57,44,13
+75,mozilla-reports,773172002db89904840ec39debd00764a7d0dda9,"Bug 1355988 - Provide search cohort churn data via csv
+
+The dataframe no longer fits in memory when reducing the scope of the
+dataset, so csv files cannot be written directly to disk. Instead, the
+spark dataframewriter is used to generate compressed gzip csv
+partitions.",Anthony Miyaguchi,2017-04-18T22:13:33Z,acmiyaguchi,acmiyaguchi,54,43,11
+76,mozilla-reports,f0719592f4798a0b9636a12998f18efb247aad8e,Bug 1355241 - Add schema to churn output,Anthony Miyaguchi,2017-04-11T00:16:16Z,acmiyaguchi,acmiyaguchi,128,66,62
+77,mozilla-reports,00f154f206bc89e67f99bc5668a150a25e279c59,"Bug 1347026 - Create per client agggregates
+
+This commit addresses most of the review feedback. In particular, this
+adds a new section for adding per-client aggregates that are used for
+summing things like subsession_length and total_uri_count. Comments are
+also moved into the code in preparation for the pure python port.",Anthony Miyaguchi,2017-04-11T22:41:33Z,acmiyaguchi,acmiyaguchi,190,111,79
+78,mozilla-reports,1985ef9478c28934b0b0344da244f65f93e768f1,Bug 1347026 - Add URI counts to Churn table,Anthony Miyaguchi,2017-04-03T17:31:43Z,acmiyaguchi,acmiyaguchi,102,80,22
+79,mozilla-reports,7e725a1e0f0c71d1c716df47a3417e9b1461e080,"Bug 1354632 - Use None instead of empty string
+
+This affects string values that use the empty string instead of null to
+represent empty rows. The fields that are most affected are
+`distribution_id` and `default_search_engine`.",Anthony Miyaguchi,2017-04-11T00:17:24Z,acmiyaguchi,acmiyaguchi,24,15,9
+80,mozilla-reports,0f7170091f9b4a27b1f6e940f9e7d8f0c7ed4df4,"Change client count fields to reflect channel
+
+Fix rebase overwrites
+
+Resolve conflicts
+
+Fix kernel error and update comments",benmiroglio,2017-04-06T21:49:22Z,benmiroglio,benmiroglio,110,70,40
+81,mozilla-reports,ad03096c981dd6722a0edc5aa0a6ce4f6c21d3df,"Update the notebook inline
+
+Looks like the github UI will suffice.",Chris H-C,2017-04-10T12:53:30Z,chutten,chutten,4,2,2
+82,mozilla-reports,90e9b1a8b4b19e7b6811887c220faa5a7525f5d9,"Fix knowledge.md inline
+
+Trying to fix using github's UI. Let's see how it works.",Chris H-C,2017-04-10T12:52:32Z,chutten,chutten,2,1,1
+83,mozilla-reports,3ab1bc6407cf3ae4fdc5d3e8d1b6b6c22d0ebeb1,Adding duplicate crash pings analysis,Chris H-C,2017-04-07T17:38:52Z,chutten,chutten,275,275,0
+84,mozilla-reports,a1cec638839736f6701cc98f907c05bd9d869ed1,Adding analysis showing (lack of) use of addonHistograms,Chris H-C,2017-04-04T16:15:49Z,chutten,chutten,311,311,0
+85,mozilla-reports,265f431958c9b04135275e6135bfdacbbe0b43e0,"Fix merge conflict
+
+Remove merge conflicts",benmiroglio,2017-04-05T17:48:57Z,benmiroglio,benmiroglio,45,23,22
+86,mozilla-reports,8465203547fbd9dc108dbd49ed3846b5e720e677,Bug 1351815 - Accommodate airflow by waiting only 10 days in churn,Anthony Miyaguchi,2017-03-29T18:52:28Z,acmiyaguchi,acmiyaguchi,30,18,12
+87,mozilla-reports,d21be6938494b68a2a97b60672ee44377891a52d,Bug 1351815 - Change date to accomodate airflow scheduling pattern,Anthony Miyaguchi,2017-03-29T19:03:53Z,acmiyaguchi,acmiyaguchi,12,6,6
+88,mozilla-reports,9307c727db44437d7605c05753585d5b3fa6f821,Add .gitignore and remove ipynb checkpoints,Anthony Miyaguchi,2017-03-23T16:57:05Z,acmiyaguchi,acmiyaguchi,466,2,464
+89,mozilla-reports,ff642e4879841cb9d39fb0c41ebec2648162e061,[churn] Clean up comments and arguments related to csv,Anthony Miyaguchi,2017-03-23T16:23:53Z,acmiyaguchi,acmiyaguchi,736,14,722
+90,mozilla-reports,47bb1fa6ba6fc4ff45050604b1c8f8c3a5a9f499,[churn] Remove csv generation,Anthony Miyaguchi,2017-03-23T01:01:30Z,acmiyaguchi,acmiyaguchi,848,706,142
+91,mozilla-reports,7cd6c48337b386fb3d59d619d054b162a6acfdd0,Update snoozetabs ETL to handle updated ping format,Sunah Suh,2017-03-20T17:24:56Z,sunahsuh,sunahsuh,69,45,24
+92,mozilla-reports,bdc1bd46f0f0145b44a7ae4d227c6876e16d911e,adding containers_testpilottest job,Ryan Harter,2017-03-08T17:11:05Z,harterrt,harterrt,364,364,0
+93,mozilla-reports,18f829a0aa54ca0fe6d1f0464111b874c9322b8d,[churn_to_csv] Add support for environment date,Anthony Miyaguchi,2017-03-08T19:15:00Z,acmiyaguchi,acmiyaguchi,269,254,15
+94,mozilla-reports,73b08b6c2a2795e7b45cffb160ce28330b4bc766,Bug 1345217 - Separate csv uploads to s3 from churn job,Anthony Miyaguchi,2017-03-07T22:33:44Z,acmiyaguchi,acmiyaguchi,345,345,0
+95,mozilla-reports,29e385d5b1494dcc80ec8edbd291df877554f28a,Add notebook for new update out of date dashboard,Robert Strong,2017-03-09T18:14:25Z,Robert Strong,Robert Strong,2758,2758,0
+96,mozilla-reports,27fc2e45b15a0712f61cf150c748e0b488ed4680,"[bugfix] Churn - Add version number to s3 prefix
+
+This commit also removes the ipynb checkpoint and puts the call to the
+main routine in its own cell.",Anthony Miyaguchi,2017-03-08T18:37:44Z,acmiyaguchi,acmiyaguchi,733,21,712
+97,mozilla-reports,5fe7ec9b7eccf29a3bdda361fa4dbc380ef3e4df,Add Analysis of pingSender effects on crash ping client delays,Chris H-C,2017-03-07T18:26:09Z,chutten,chutten,809,809,0
+98,mozilla-reports,2f598ae8bf86899c499a49b0569bc5fcd0ba7bd5,Add churn attribute updates to RTMO,Anthony Miyaguchi,2017-03-02T00:07:20Z,acmiyaguchi,acmiyaguchi,185,124,61
+99,mozilla-reports,e57a4596c6c9624e8999bcb248d364d3a9225ef2,Groupby-sum over original set of churn attributes,Anthony Miyaguchi,2017-03-02T00:04:24Z,acmiyaguchi,acmiyaguchi,20,16,4
+100,mozilla-reports,7547887682538c9587ab55f4e73ae91ad1cb4cd5,"Bug 1323598 - Add fields for search retention project
+
+This adds distribution_id, default_search_engine, and locale as
+new attributes.",Anthony Miyaguchi,2017-03-01T22:14:03Z,acmiyaguchi,acmiyaguchi,13,13,0
+101,mozilla-reports,1100b6226ae4b22bb0338e181a0672cc102dccdd,"Bug 1337037 - Add stub attribution fields to churn
+
+This adds content, medium, campaign, and content as new attributes.",Anthony Miyaguchi,2017-03-02T00:02:23Z,acmiyaguchi,acmiyaguchi,15,15,0
+102,mozilla-reports,6d685ac2409e0c5e0c2d4725385418a2495f18d6,"Reformat churn for readibility
+
+This adds mostly cosmetics changes to churn to make the churn notebook
+easier to deal with.
+
+* Alphabetize source columns for churn dataset
+* Reformat reduceByKey section for addition of new fields
+* Rename func to F (consistent with pyspark documentation)
+* Use mergeSchema
+* Reformatting for easy additions in subsequent commits
+* Add envvar for bucket and prefix
+* Add bucket and prefix to backfill",Anthony Miyaguchi,2017-03-01T23:45:51Z,acmiyaguchi,acmiyaguchi,135,79,56
+103,mozilla-reports,2edbc31745f1057f09d481b6af3ec1ad3839438a,"Add addon_aggregates daily script
+
+Add has_custom_theme and user_type fields
+
+Make edits after review
+
+Break out bucket and prefix strings
+
+Fix final nits",benmiroglio,2017-02-08T17:35:41Z,benmiroglio,benmiroglio,519,519,0
+104,mozilla-reports,07f1c25f74ec4d684861d7e140d874d2509ae25c,Document issues with using coalesce in Spark,Ryan Harter,2017-03-02T23:58:30Z,harterrt,harterrt,439,439,0
+105,mozilla-reports,ee64c5b191d42a3a1d2b780b9b81d691fb00f3aa,Fix handling for malformed sessions in android-events,Frank Bertsch,2017-02-27T17:52:58Z,fbertsch,fbertsch,32,20,12
+106,mozilla-reports,b74244b26d826279c35b0da32529e806006a971b,Bug 1342069 - Update a reference to telemetry-tools,Mark Reid,2017-02-23T15:26:47Z,mreid-moz,mreid-moz,8,4,4
+107,mozilla-reports,abad486c6d528973c35316ea5bc9a43c674ab99f,bug 1341369 - Add analysis about that problematic aurora 51 client,Chris H-C,2017-02-22T21:20:52Z,chutten,chutten,837,837,0
+108,mozilla-reports,2586741b8a4a846484a82cb6d920d9712931146e,Add Pulse Testpilot ETL notebook,Sunah Suh,2017-02-21T23:42:26Z,sunahsuh,sunahsuh,316,316,0
+109,mozilla-reports,5d99e209e76ad098b33103ae0778e63e11e1caea,Add SnoozeTabs ETL to rtmo,Sunah Suh,2017-02-21T23:21:12Z,sunahsuh,sunahsuh,301,301,0
+110,mozilla-reports,3305cea874a3631a53679eee009b2af69474a1f1,Add mobile clients ETL job,Frank Bertsch,2017-02-17T21:24:37Z,fbertsch,fbertsch,473,473,0
+111,mozilla-reports,4defd9c3d4c1503af2cd0724426d7b106252c7d9,Add android events ETL job,Frank Bertsch,2017-02-17T21:24:20Z,fbertsch,fbertsch,395,395,0
+112,mozilla-reports,edcf11b7bb2edd0f2b9343eb9330afcd7b7d9793,Add android addons ETL job,Frank Bertsch,2017-02-17T21:24:01Z,fbertsch,fbertsch,349,349,0
+113,mozilla-reports,24cfab13295fd3b396798e45f80aa79c1715e8d7,Change tldr of android-clients,Frank Bertsch,2017-02-17T21:29:05Z,fbertsch,fbertsch,10,5,5
+114,mozilla-reports,60fc3d10638dd4c5d9ec0d3b2ec9693d4c5dab1d,Add os_churn report,Ryan Harter,2017-02-15T01:00:32Z,harterrt,harterrt,40,40,0
+115,mozilla-reports,11a9ebb12130c1c37b0ca4d28a739d8afa90cb94,Change s3 location for android-clients,Frank Bertsch,2017-02-13T14:54:42Z,fbertsch,fbertsch,10,5,5
+116,mozilla-reports,096dba37f641aa9932eafebe357ac4ac2a76099a,"Add android clients ETL job
+
+Includes changes to add two new fields -
+FENNEC_ACTIVITY_STREAM_TOPSITES_LOADER_TIME_MS, and
+FENNEC_TOPSITES_LOADER_TIME_MS",Frank Bertsch,2017-02-10T19:36:31Z,fbertsch,fbertsch,682,682,0
+117,mozilla-reports,339ec519b8ff02755f17550dab2161e95f8c0bab,Change active experiments format in Experiments ETL,Frank Bertsch,2017-02-09T18:40:14Z,fbertsch,fbertsch,8,4,4
+118,mozilla-reports,cc96e0ea4ba69187453245232624e379b166c126,Update references for default branch rename (#119),Jason Thomas,2021-04-06T21:24:49Z,jasonthomas,jasonthomas,4,2,2
+119,mozilla-reports,1ac918d71eae2b384f2d7193f88d2e10ce12fc52,Webrender Fenix performance study (#117),Tim D. Smith,2020-06-08T16:26:45Z,tdsmith,tdsmith,30241,30241,0
+120,mozilla-reports,a14fe66cdc7424345e4bdbd3acbecfdb8c36e90e,"Bug 1577460 - Remove legacy version of update orphaning ETL
+
+Update orphaning ETL has been migrated to GCP, current version
+lives in telemetry-airflow repo:
+https://github.com/mozilla/telemetry-airflow/blob/4da5c6d7b06b62abde269b7c9f278438fd2852e5/jobs/update_orphaning_dashboard_etl.py",Arkadiusz Komarzewski,2020-03-18T10:29:16Z,akkomar,akkomar,5515,0,5515
+121,mozilla-reports,5f1fefb62134165d1049d55a45517c96238e075c,"Add WebRender Release 67 report (#116)
+
+Closes https://bugzilla.mozilla.org/show_bug.cgi?id=1526094.",Tim D. Smith,2019-11-25T20:24:32Z,tdsmith,tdsmith,30432,30432,0
+122,mozilla-reports,e6e3b348e7728032a0e30789a95a15fb0b8925a0,Add fingerprint protections experiment report (#115),Felix Lawrence,2019-11-07T21:44:24Z,felixlawrence,felixlawrence,29492,29492,0
+123,mozilla-reports,4e17dc3865490b58ccacfea2f258eb3edf818c97,Add notification permissions report (#111),Felix Lawrence,2019-10-16T14:15:00Z,felixlawrence,felixlawrence,29556,29556,0
+124,mozilla-reports,fd81f6faae1dca68a4f63213ea3955e561b40ea6,Bug 1571462 - Remove mobile_clients job,Arkadiusz Komarzewski,2019-09-30T07:01:18Z,akkomar,akkomar,1818,0,1818
+125,mozilla-reports,4f85af0032f90bb7805f4b8d4ca1cb28c782082d,Bug 1570625 - decommission obsolete Android jobs,Arkadiusz Komarzewski,2019-09-27T16:23:57Z,akkomar,akkomar,5009,0,5009
+126,mozilla-reports,80c9bd6468877e1df1f48208c7c99266bedb9896,"Add report for WebRender 66 release experiment (#106)
+
+r=felixlawrence",Tim D. Smith,2019-05-27T19:23:52Z,tdsmith,tdsmith,30283,30283,0
+127,mozilla-reports,96d2215cf0bf09ec3e2b6e2fb36bdb54e49d07dd,Fix pronouns,Felix Lawrence,2019-05-21T22:28:49Z,felixlawrence,felixlawrence,4,2,2
+128,mozilla-reports,de13866e179292fc2ba2e3bbfbf80278753b3e4a,"Add cookie restrictions mini-report.
+
+englehardt would like to present this result as part of a presentation; this will provide a reference for that (the original report is mozilla confidential).",Felix Lawrence,2019-05-21T20:42:54Z,felixlawrence,felixlawrence,29333,29333,0
+129,mozilla-reports,531c6ac43218407cfc056e09f0a74fe1877b25d8,TxP Side View Experiment final report,Teon L Brooks,2019-04-02T16:35:30Z,teonbrooks,teonbrooks,4983,4983,0
+130,mozilla-reports,8160762ed158150f66f7d58eb957447a53d44b01,TxP Cloud Storage Experiment final report,Teon L Brooks,2019-04-02T16:35:14Z,teonbrooks,teonbrooks,108213,108213,0
+131,mozilla-reports,d833a73216339366a0430dff63e8fdcd5be3305c,"Add Mozilla Code of Conduct file
+
+Fixes #100.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,2019-03-29T22:07:08Z,Mozilla-GitHub-Standards,Mozilla-GitHub-Standards,15,15,0
+132,mozilla-reports,9bb85396fb944f1ce2856bc36ba8dd5a7e9f3720,Update README based on existing private reports docere docs,Jeff Klukas,2019-02-26T14:03:37Z,jklukas,jklukas,83,74,9
+133,mozilla-reports,e7bafc2c63cc0792485fa8675f51cfcdce575e8a,"Bug 1501814 - Switch publishing from Knowledge Repo to Docere
+
+Maintains the existing structure of the repository, but removes KR-specific
+config and adds CI code to publish to a newly created bucket.",Jeff Klukas,2019-02-26T13:42:51Z,jklukas,jklukas,157,15,142
+134,mozilla-reports,a022d2636c99c8559afb73c60215c28c9bc39105,"Update static content for app_update_out_of_date
+
+Follow-up to #92 in prep for switchover to docere.",Jeff Klukas,2019-02-26T13:41:40Z,jklukas,jklukas,60,32,28
+135,mozilla-reports,7e3e090247ca104bc6920f44ee4b857603c35bd3,Add deploy job on builds of master branch,Jeff Klukas,2019-03-21T16:40:40Z,jklukas,jklukas,8,8,0
+136,mozilla-reports,b743aa8463009c48abbe0c3a0cc40551003d189f,Point to new mozilla.report bucket,Jeff Klukas,2019-03-21T16:35:53Z,jklukas,jklukas,4,2,2
+137,mozilla-reports,43a827ce27ac177ff4c2fe61f0a04e268fa09eb7,Change app_update_out_of_date.ipynb to use settings.update.enabled.,Robert Strong,2018-11-23T02:08:41Z,Robert Strong,Robert Strong,258,80,178
+138,mozilla-reports,fef0a9413706548283de5d83a16a098611a9b832,"Disable CircleCI builds for now
+
+After discussion with @harterrt, I now understand that
+reports-dev.telemetry.mozilla.org is currently populated from
+mozilla-services/mozilla-private-reports and we need to preserve that
+for now.
+
+So, we'll turn off deploys for this repo for now and I'll be writing
+up a bug to track the steps necessary to make this repo private,
+copy over the mozilla-private-reports content, and eventually
+retire the existing Knowledge Repo.",Jeff Klukas,2018-10-24T19:37:05Z,jklukas,jklukas,10,0,10
+139,mozilla-reports,6d27b7e060e59635b0c79baf3c9c76e5c4e3d094,Move static content into the repository,Jeff Klukas,2018-10-24T17:37:31Z,jklukas,jklukas,7491,6628,863
+140,mozilla-reports,607ebda2d5f2ae102feeb9ee6092d5db2e374652,Fixing circleci's deploy s3 destination,Harold Woo,2018-10-24T16:46:32Z,haroldwoo,haroldwoo,2,1,1
+141,mozilla-reports,33f4cee47ab462e9fa22bae3727dfef6cef5e403,Trying to fix circle deploy again,Harold Woo,2018-10-24T16:38:34Z,haroldwoo,haroldwoo,2,1,1
+142,mozilla-reports,e394ca8c2324963ed48435ebb26d0c876371d35f,Fixing circleci deploy,Harold Woo,2018-10-24T16:17:27Z,haroldwoo,haroldwoo,2,1,1
+143,mozilla-reports,e31c72e2580031db07822d2a67a0353ef3328255,Fixing circleci,Harold Woo,2018-10-24T15:32:36Z,haroldwoo,haroldwoo,8,4,4
+144,mozilla-reports,7584715518e910d40957baa1d0b485ec818539da,Adding circle build to upload built artifacts to s3 on pushes to master,Harold Woo,2018-10-22T21:22:47Z,haroldwoo,haroldwoo,58,58,0
+145,mozilla-reports,3d0fa0fca03331d6e186fb3ca49cc54c177d7c75,Use set -exo pipefail in scripts,Jeff Klukas,2018-10-23T15:00:13Z,jklukas,jklukas,9,8,1
+146,mozilla-reports,4b15e26fdce6e94b0cd6181561f147882c7e34f2,Add render and serve scripts,Jeff Klukas,2018-10-23T14:26:09Z,jklukas,jklukas,36,36,0
+147,mozilla-reports,fcf64bce64264cf0e051c1d538778c40bf8d5b6e,Add converted static html and docere report.json files,Jeff Klukas,2018-10-16T17:55:08Z,jklukas,jklukas,73650,73650,0
+148,mozilla-reports,92bd6284d48d4ea63fa0743ebe8e26a42fc03632,Add scripts for converting kr content to static html,Jeff Klukas,2018-10-16T17:49:10Z,jklukas,jklukas,95,95,0
+149,mozilla-reports,73191b002845b8569b235b7e57605b13098a4fac,"Make all metadata cells ""raw"" rather than ""markdown""",Jeff Klukas,2018-10-15T15:19:01Z,jklukas,jklukas,4,2,2
+150,mozilla-reports,79ea0a2065100d869919299282d451501fb1b712,"Replaced outdated code in Telemetry Hello World notebook
+
+- replaced get_ping_properties with Dataset.select()
+- removed plotly",Ben Wu,2018-05-30T15:31:37Z,BenWu,BenWu,255,141,114
+151,mozilla-reports,07ae51c6797b715b9c33e7fab56ef6ab7323862e,"Remove churn ETL notebooks to mozilla/python_mozetl
+
+It can be found under mozetl/engagement/churn",Anthony Miyaguchi,2018-01-11T00:33:40Z,acmiyaguchi,acmiyaguchi,1396,0,1396
+152,mozilla-reports,3d18ee41ee460a14dc85ef78dea3960d63b4a425,Add the validation for the update ping (reason = success) on Nightly,Alessio Placitelli,2017-09-19T09:26:39Z,Dexterp37,Dexterp37,940,940,0
+153,mozilla-reports,c7b13ccb5e91e57ca81237d501721db67e04869b,"""Bug 1391242 - Add health ping analysis for beta""",katejim,2017-08-24T10:57:05Z,katejim,katejim,1189,1189,0
+154,mozilla-reports,a816065dc0eb71f2a1e121486dcb992f87135978,"""Bug 1388310 - Add health ping data validation""",katejim,2017-08-25T15:51:24Z,katejim,katejim,1260,1260,0
+155,mozilla-reports,3602923b553bddeca54ff034ca09c0af3681c3a5,Update analysis of hang data on nightly,Doug Thayer,2017-07-26T22:02:58Z,squarewave,squarewave,882,818,64
+156,mozilla-reports,4403a3e299bf4f01806dc1b455590c95dee4eece,Add analysis of hang data on Nightly,Doug Thayer,2017-07-20T19:53:49Z,squarewave,squarewave,767,767,0
+157,mozilla-reports,399ba48e64e2521ec4b23a72aed08c2b2bc4422d,Add the validation for the update ping (reason = ready) on Beta,Alessio Placitelli,2017-08-18T13:29:52Z,Dexterp37,Dexterp37,984,984,0
+158,mozilla-reports,440a4dd4a4feb93197f904a1d3d82c266ba87b8a,Add the validation for the update ping (reason = ready) on Nightly,Alessio Placitelli,2017-08-17T15:41:23Z,Dexterp37,Dexterp37,958,958,0
+159,mozilla-reports,f95c88e7b832e66ee4f240686758aa4b4466d090,"Update Guide For Contributing. 
+
+*.ipynb files must contain yaml style header.",Kate Ustiuzhanina,2017-08-10T16:20:33Z,katejim,katejim,15,8,7
+160,mozilla-reports,193a62e1b630046f5f8ab007adb71f50f9d5f25d,bug 1381516 - Add analysis to see how many keyed histograms are affected and for how long,Chris H-C,2017-07-17T20:07:07Z,chutten,chutten,576,576,0
+161,mozilla-reports,e9a8b3bb95703f14fc241f9de965fc43a7000158,Add int overflow checks to android-clients,Frank Bertsch,2017-05-10T16:15:17Z,fbertsch,fbertsch,24,20,4
+162,mozilla-reports,64ee10dcbc42e25d34f3c231eeeedceb54b726ef,Add analysis of the main-ping submission latency on Beta,Alessio Placitelli,2017-07-12T14:47:28Z,Dexterp37,Dexterp37,705,705,0
+163,mozilla-reports,b2a51fbab09e7831b4f6823b00075f9b9c082177,Handle Dataset's auto-sanitized where clause.,Mark Reid,2017-07-10T14:56:15Z,mreid-moz,mreid-moz,22,10,12
+164,mozilla-reports,c3bde07284b7794f040e7e44d8137568dd27e74d,Add the validation for the new-profile ping on Beta,Alessio Placitelli,2017-07-04T12:52:17Z,Dexterp37,Dexterp37,1614,1614,0
+165,mozilla-reports,7c86f67a3639a0bedd914fc5c7a03e95aca3c74e,Add analysis of the pingsender effects on the shutdown ping (Beta),Alessio Placitelli,2017-06-22T16:41:07Z,Dexterp37,Dexterp37,1164,1164,0
+166,mozilla-reports,2ebf7f6ae16b993cca7f1eb381354a7b77ba22b7,Add the validation for the new-profile ping on Nightly,Alessio Placitelli,2017-06-12T14:01:47Z,Dexterp37,Dexterp37,1472,1472,0
+167,mozilla-reports,4307fb8617bff0f0431354bfc95310705778561c,Add analysis of the pingsender effects on the shutdown ping,Alessio Placitelli,2017-05-11T14:01:38Z,Dexterp37,Dexterp37,1174,1174,0
+168,mozilla-reports,4168a187b11545c5498c661bab5fb1bcf8bc689a,Change main_summary version to V4,benmiroglio,2017-05-03T21:09:40Z,benmiroglio,benmiroglio,32,8,24
+169,mozilla-reports,58c614770dd981992ce304cfb69577c54f55b4a6,Add analysis for types of Telemetry Send failures,Chris H-C,2017-05-05T16:51:48Z,chutten,chutten,259,259,0
+170,mozilla-reports,7030caa7994111b16e6f15f8561cb063299e4c6a,"Snake case android_clients columns, bump version",Frank Bertsch,2017-05-03T19:31:38Z,fbertsch,fbertsch,16,8,8
+171,mozilla-reports,0969e14e0d84a7db215f8ef4bf924ebadd2ad19c,Change mobile_clients output to snake case - bump version,Frank Bertsch,2017-05-01T15:20:59Z,fbertsch,fbertsch,16,8,8
+172,mozilla-reports,144cd95ec8ca7a25bfa7dea298760fc2eb5718b7,Add follow-up analysis about that one Aurora 51 client,Chris H-C,2017-05-01T16:35:28Z,chutten,chutten,898,898,0
+173,mozilla-reports,1c811db7117d71ca647a0f78e991cece29ce391f,"Add the hw report for Windows 7 and Windows 10 users
+
+This is a modified version of the original hardware report ETL job
+that produces two reports for the data coming from the past week:
+one for Windows 7 only users, the other for Windows 10 only users.",Alessio Placitelli,2017-04-06T08:11:08Z,Dexterp37,Dexterp37,1226,1226,0
+174,mozilla-reports,f7a037dd7f8ace308289d6588ea98ab8dbbd4b7f,Update knowledge repo for churn_to_csv,Anthony Miyaguchi,2017-04-18T22:20:35Z,acmiyaguchi,acmiyaguchi,57,44,13
+175,mozilla-reports,773172002db89904840ec39debd00764a7d0dda9,"Bug 1355988 - Provide search cohort churn data via csv
+
+The dataframe no longer fits in memory when reducing the scope of the
+dataset, so csv files cannot be written directly to disk. Instead, the
+spark dataframewriter is used to generate compressed gzip csv
+partitions.",Anthony Miyaguchi,2017-04-18T22:13:33Z,acmiyaguchi,acmiyaguchi,54,43,11
+176,mozilla-reports,f0719592f4798a0b9636a12998f18efb247aad8e,Bug 1355241 - Add schema to churn output,Anthony Miyaguchi,2017-04-11T00:16:16Z,acmiyaguchi,acmiyaguchi,128,66,62
+177,mozilla-reports,00f154f206bc89e67f99bc5668a150a25e279c59,"Bug 1347026 - Create per client agggregates
+
+This commit addresses most of the review feedback. In particular, this
+adds a new section for adding per-client aggregates that are used for
+summing things like subsession_length and total_uri_count. Comments are
+also moved into the code in preparation for the pure python port.",Anthony Miyaguchi,2017-04-11T22:41:33Z,acmiyaguchi,acmiyaguchi,190,111,79
+178,mozilla-reports,1985ef9478c28934b0b0344da244f65f93e768f1,Bug 1347026 - Add URI counts to Churn table,Anthony Miyaguchi,2017-04-03T17:31:43Z,acmiyaguchi,acmiyaguchi,102,80,22
+179,mozilla-reports,7e725a1e0f0c71d1c716df47a3417e9b1461e080,"Bug 1354632 - Use None instead of empty string
+
+This affects string values that use the empty string instead of null to
+represent empty rows. The fields that are most affected are
+`distribution_id` and `default_search_engine`.",Anthony Miyaguchi,2017-04-11T00:17:24Z,acmiyaguchi,acmiyaguchi,24,15,9
+180,mozilla-reports,0f7170091f9b4a27b1f6e940f9e7d8f0c7ed4df4,"Change client count fields to reflect channel
+
+Fix rebase overwrites
+
+Resolve conflicts
+
+Fix kernel error and update comments",benmiroglio,2017-04-06T21:49:22Z,benmiroglio,benmiroglio,110,70,40
+181,mozilla-reports,ad03096c981dd6722a0edc5aa0a6ce4f6c21d3df,"Update the notebook inline
+
+Looks like the github UI will suffice.",Chris H-C,2017-04-10T12:53:30Z,chutten,chutten,4,2,2
+182,mozilla-reports,90e9b1a8b4b19e7b6811887c220faa5a7525f5d9,"Fix knowledge.md inline
+
+Trying to fix using github's UI. Let's see how it works.",Chris H-C,2017-04-10T12:52:32Z,chutten,chutten,2,1,1
+183,mozilla-reports,3ab1bc6407cf3ae4fdc5d3e8d1b6b6c22d0ebeb1,Adding duplicate crash pings analysis,Chris H-C,2017-04-07T17:38:52Z,chutten,chutten,275,275,0
+184,mozilla-reports,a1cec638839736f6701cc98f907c05bd9d869ed1,Adding analysis showing (lack of) use of addonHistograms,Chris H-C,2017-04-04T16:15:49Z,chutten,chutten,311,311,0
+185,mozilla-reports,265f431958c9b04135275e6135bfdacbbe0b43e0,"Fix merge conflict
+
+Remove merge conflicts",benmiroglio,2017-04-05T17:48:57Z,benmiroglio,benmiroglio,45,23,22
+186,mozilla-reports,8465203547fbd9dc108dbd49ed3846b5e720e677,Bug 1351815 - Accommodate airflow by waiting only 10 days in churn,Anthony Miyaguchi,2017-03-29T18:52:28Z,acmiyaguchi,acmiyaguchi,30,18,12
+187,mozilla-reports,d21be6938494b68a2a97b60672ee44377891a52d,Bug 1351815 - Change date to accomodate airflow scheduling pattern,Anthony Miyaguchi,2017-03-29T19:03:53Z,acmiyaguchi,acmiyaguchi,12,6,6
+188,mozilla-reports,9307c727db44437d7605c05753585d5b3fa6f821,Add .gitignore and remove ipynb checkpoints,Anthony Miyaguchi,2017-03-23T16:57:05Z,acmiyaguchi,acmiyaguchi,466,2,464
+189,mozilla-reports,ff642e4879841cb9d39fb0c41ebec2648162e061,[churn] Clean up comments and arguments related to csv,Anthony Miyaguchi,2017-03-23T16:23:53Z,acmiyaguchi,acmiyaguchi,736,14,722
+190,mozilla-reports,47bb1fa6ba6fc4ff45050604b1c8f8c3a5a9f499,[churn] Remove csv generation,Anthony Miyaguchi,2017-03-23T01:01:30Z,acmiyaguchi,acmiyaguchi,848,706,142
+191,mozilla-reports,7cd6c48337b386fb3d59d619d054b162a6acfdd0,Update snoozetabs ETL to handle updated ping format,Sunah Suh,2017-03-20T17:24:56Z,sunahsuh,sunahsuh,69,45,24
+192,mozilla-reports,bdc1bd46f0f0145b44a7ae4d227c6876e16d911e,adding containers_testpilottest job,Ryan Harter,2017-03-08T17:11:05Z,harterrt,harterrt,364,364,0
+193,mozilla-reports,18f829a0aa54ca0fe6d1f0464111b874c9322b8d,[churn_to_csv] Add support for environment date,Anthony Miyaguchi,2017-03-08T19:15:00Z,acmiyaguchi,acmiyaguchi,269,254,15
+194,mozilla-reports,73b08b6c2a2795e7b45cffb160ce28330b4bc766,Bug 1345217 - Separate csv uploads to s3 from churn job,Anthony Miyaguchi,2017-03-07T22:33:44Z,acmiyaguchi,acmiyaguchi,345,345,0
+195,mozilla-reports,29e385d5b1494dcc80ec8edbd291df877554f28a,Add notebook for new update out of date dashboard,Robert Strong,2017-03-09T18:14:25Z,Robert Strong,Robert Strong,2758,2758,0
+196,mozilla-reports,27fc2e45b15a0712f61cf150c748e0b488ed4680,"[bugfix] Churn - Add version number to s3 prefix
+
+This commit also removes the ipynb checkpoint and puts the call to the
+main routine in its own cell.",Anthony Miyaguchi,2017-03-08T18:37:44Z,acmiyaguchi,acmiyaguchi,733,21,712
+197,mozilla-reports,5fe7ec9b7eccf29a3bdda361fa4dbc380ef3e4df,Add Analysis of pingSender effects on crash ping client delays,Chris H-C,2017-03-07T18:26:09Z,chutten,chutten,809,809,0
+198,mozilla-reports,2f598ae8bf86899c499a49b0569bc5fcd0ba7bd5,Add churn attribute updates to RTMO,Anthony Miyaguchi,2017-03-02T00:07:20Z,acmiyaguchi,acmiyaguchi,185,124,61
+199,mozilla-reports,e57a4596c6c9624e8999bcb248d364d3a9225ef2,Groupby-sum over original set of churn attributes,Anthony Miyaguchi,2017-03-02T00:04:24Z,acmiyaguchi,acmiyaguchi,20,16,4
+200,mozilla-reports,7547887682538c9587ab55f4e73ae91ad1cb4cd5,"Bug 1323598 - Add fields for search retention project
+
+This adds distribution_id, default_search_engine, and locale as
+new attributes.",Anthony Miyaguchi,2017-03-01T22:14:03Z,acmiyaguchi,acmiyaguchi,13,13,0
+201,mozilla-reports,1100b6226ae4b22bb0338e181a0672cc102dccdd,"Bug 1337037 - Add stub attribution fields to churn
+
+This adds content, medium, campaign, and content as new attributes.",Anthony Miyaguchi,2017-03-02T00:02:23Z,acmiyaguchi,acmiyaguchi,15,15,0
+202,mozilla-reports,6d685ac2409e0c5e0c2d4725385418a2495f18d6,"Reformat churn for readibility
+
+This adds mostly cosmetics changes to churn to make the churn notebook
+easier to deal with.
+
+* Alphabetize source columns for churn dataset
+* Reformat reduceByKey section for addition of new fields
+* Rename func to F (consistent with pyspark documentation)
+* Use mergeSchema
+* Reformatting for easy additions in subsequent commits
+* Add envvar for bucket and prefix
+* Add bucket and prefix to backfill",Anthony Miyaguchi,2017-03-01T23:45:51Z,acmiyaguchi,acmiyaguchi,135,79,56
+203,mozilla-reports,2edbc31745f1057f09d481b6af3ec1ad3839438a,"Add addon_aggregates daily script
+
+Add has_custom_theme and user_type fields
+
+Make edits after review
+
+Break out bucket and prefix strings
+
+Fix final nits",benmiroglio,2017-02-08T17:35:41Z,benmiroglio,benmiroglio,519,519,0
+204,mozilla-reports,07f1c25f74ec4d684861d7e140d874d2509ae25c,Document issues with using coalesce in Spark,Ryan Harter,2017-03-02T23:58:30Z,harterrt,harterrt,439,439,0
+205,mozilla-reports,ee64c5b191d42a3a1d2b780b9b81d691fb00f3aa,Fix handling for malformed sessions in android-events,Frank Bertsch,2017-02-27T17:52:58Z,fbertsch,fbertsch,32,20,12
+206,mozilla-reports,b74244b26d826279c35b0da32529e806006a971b,Bug 1342069 - Update a reference to telemetry-tools,Mark Reid,2017-02-23T15:26:47Z,mreid-moz,mreid-moz,8,4,4
+207,mozilla-reports,abad486c6d528973c35316ea5bc9a43c674ab99f,bug 1341369 - Add analysis about that problematic aurora 51 client,Chris H-C,2017-02-22T21:20:52Z,chutten,chutten,837,837,0
+208,mozilla-reports,2586741b8a4a846484a82cb6d920d9712931146e,Add Pulse Testpilot ETL notebook,Sunah Suh,2017-02-21T23:42:26Z,sunahsuh,sunahsuh,316,316,0
+209,mozilla-reports,5d99e209e76ad098b33103ae0778e63e11e1caea,Add SnoozeTabs ETL to rtmo,Sunah Suh,2017-02-21T23:21:12Z,sunahsuh,sunahsuh,301,301,0
+210,mozilla-reports,3305cea874a3631a53679eee009b2af69474a1f1,Add mobile clients ETL job,Frank Bertsch,2017-02-17T21:24:37Z,fbertsch,fbertsch,473,473,0
+211,mozilla-reports,4defd9c3d4c1503af2cd0724426d7b106252c7d9,Add android events ETL job,Frank Bertsch,2017-02-17T21:24:20Z,fbertsch,fbertsch,395,395,0
+212,mozilla-reports,edcf11b7bb2edd0f2b9343eb9330afcd7b7d9793,Add android addons ETL job,Frank Bertsch,2017-02-17T21:24:01Z,fbertsch,fbertsch,349,349,0
+213,mozilla-reports,24cfab13295fd3b396798e45f80aa79c1715e8d7,Change tldr of android-clients,Frank Bertsch,2017-02-17T21:29:05Z,fbertsch,fbertsch,10,5,5
+214,mozilla-reports,60fc3d10638dd4c5d9ec0d3b2ec9693d4c5dab1d,Add os_churn report,Ryan Harter,2017-02-15T01:00:32Z,harterrt,harterrt,40,40,0
+215,mozilla-reports,11a9ebb12130c1c37b0ca4d28a739d8afa90cb94,Change s3 location for android-clients,Frank Bertsch,2017-02-13T14:54:42Z,fbertsch,fbertsch,10,5,5
+216,mozilla-reports,096dba37f641aa9932eafebe357ac4ac2a76099a,"Add android clients ETL job
+
+Includes changes to add two new fields -
+FENNEC_ACTIVITY_STREAM_TOPSITES_LOADER_TIME_MS, and
+FENNEC_TOPSITES_LOADER_TIME_MS",Frank Bertsch,2017-02-10T19:36:31Z,fbertsch,fbertsch,682,682,0
+217,mozilla-reports,339ec519b8ff02755f17550dab2161e95f8c0bab,Change active experiments format in Experiments ETL,Frank Bertsch,2017-02-09T18:40:14Z,fbertsch,fbertsch,8,4,4

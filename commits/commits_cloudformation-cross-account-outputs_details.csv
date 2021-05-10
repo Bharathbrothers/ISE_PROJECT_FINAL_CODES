@@ -1,0 +1,120 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,cloudformation-cross-account-outputs,971f7345c4be3daf076af6202d6bf8128d4485a1,"Merge pull request #17 from mozilla/gene1wood-patch-1
+
+Add example to README with filter expression",Gene Wood,2020-06-11T20:19:56Z,gene1wood,gene1wood,12,12,0
+1,cloudformation-cross-account-outputs,840b790e143af0f4614e12fdccef8de5afb8e394,Add example to README with filter expression,Gene Wood,2020-03-19T02:42:19Z,gene1wood,gene1wood,12,12,0
+2,cloudformation-cross-account-outputs,11b7dd359d2781869b702652bd34e1aaa0882d73,Add clarification about which stacks should be deployed in single region,Gene Wood,2019-05-15T21:28:22Z,gene1wood,gene1wood,8,4,4
+3,cloudformation-cross-account-outputs,6f49c36b05ad53e94a0882d7ebec3b32f7451a0c,"Merge pull request #14 from Mozilla-GitHub-Standards/master
+
+Add Mozilla Code of Conduct",Gene Wood,2019-04-08T14:57:10Z,gene1wood,gene1wood,15,15,0
+4,cloudformation-cross-account-outputs,d96d3b8ff867733b7ec0e3f6c61e0a117e9729f9,"Add Mozilla Code of Conduct file
+
+Fixes #13.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,2019-03-30T07:04:54Z,Mozilla-GitHub-Standards,Mozilla-GitHub-Standards,15,15,0
+5,cloudformation-cross-account-outputs,5b14c717e1d1c52a6a4ac03d06071a24d054a225,"Merge pull request #11 from gene1wood/update-db-schema-to-gsi-and-id
+
+Update db schema and add category field back in",Gene Wood,2019-01-30T15:56:10Z,gene1wood,gene1wood,158,103,55
+6,cloudformation-cross-account-outputs,8d73c6cab6f0cc92cb6eac4b935845a4119d2564,"Update db schema and add category field back in
+
+This updates the DB schema to version 4.0.0
+This changes the partition key and sort key and establishes an additional Global Secondary Index
+These changes facilitate querying for either the items in a given AWS account
+or the items with a given category value",Gene Wood,2019-01-25T19:39:46Z,gene1wood,gene1wood,132,82,50
+7,cloudformation-cross-account-outputs,6ac569c715702973f1a6647aa1f996d1143975f0,Add more tests to the test emission,Gene Wood,2019-01-25T19:37:45Z,gene1wood,gene1wood,26,21,5
+8,cloudformation-cross-account-outputs,e8bd4bf605632f4bb4271a9883060fa536ee70eb,"Merge pull request #10 from gene1wood/improve-makefile
+
+Improve makefile",Gene Wood,2019-01-23T20:03:41Z,gene1wood,gene1wood,12,12,0
+9,cloudformation-cross-account-outputs,b5792b48c97d2d0eb6af23e71905fc683f77740f,Merge branch 'master' into improve-makefile,Gene Wood,2019-01-23T18:53:46Z,gene1wood,gene1wood,34,21,13
+10,cloudformation-cross-account-outputs,7e083273908fde2d42df5d73fe1eae7950451a31,Add a second emission to the test,Gene Wood,2019-01-23T16:11:47Z,gene1wood,gene1wood,7,7,0
+11,cloudformation-cross-account-outputs,ad0ade9de82185106737fcd54b653f12466d6217,"Improve Makefile
+
+Break out all stack operations into separate make targets",Gene Wood,2019-01-23T16:11:31Z,gene1wood,gene1wood,59,51,8
+12,cloudformation-cross-account-outputs,f47b490ba4ae664a8809b85275968de4ec939ac1,"Merge pull request #9 from gene1wood/change-schema
+
+Change DynamoDB Schema",Gene Wood,2019-01-23T16:07:13Z,gene1wood,gene1wood,88,67,21
+13,cloudformation-cross-account-outputs,f85c76115d0fdaf76197df8d7fdb775fa5dfe449,"Change DB Schema
+
+This changes from using
+* partition key : account id
+* sort key : stack id
+
+to
+
+* partition key : stack id
+* sort key : logical resource id
+
+so that each resource within a given CloudFormation stack has unique rights to edit/delete the attributes it sets. This allows a stack to have multiple resources that emit data and for a single stack to produce multiple records in DynamoDB",Gene Wood,2019-01-23T00:08:38Z,gene1wood,gene1wood,34,21,13
+14,cloudformation-cross-account-outputs,05af1329cae594f48bccd70b329a5f33e2153849,Update Makefile with new granular targets,Gene Wood,2019-01-23T00:06:27Z,gene1wood,gene1wood,54,46,8
+15,cloudformation-cross-account-outputs,783ed27e953d44af8c92b8932ce1a4b13bca10bd,"Merge pull request #8 from gene1wood/publish-public
+
+Setup public publishing of templates",Gene Wood,2019-01-11T22:50:46Z,gene1wood,gene1wood,59,52,7
+16,cloudformation-cross-account-outputs,1aa5f5d067676564d48705a709408fa2a63f9895,"Setup public publishing of templates
+
+Update README with public locations
+Create Makefile to publish templates
+Move templates into cloudformation directory",Gene Wood,2019-01-11T22:48:30Z,gene1wood,gene1wood,59,52,7
+17,cloudformation-cross-account-outputs,519bc253341d1ac2478cae080fb73066e4a959ca,Add LICENSE,Gene Wood,2018-12-31T20:12:52Z,gene1wood,gene1wood,373,373,0
+18,cloudformation-cross-account-outputs,4c3d0ae7f94e954d037f78b3ed16a7050d2c7e3c,"Merge pull request #7 from gene1wood/fix-update-stack
+
+Fix stack updates causing deletion",Gene Wood,2018-12-29T19:57:03Z,gene1wood,gene1wood,36,24,12
+19,cloudformation-cross-account-outputs,ea8f91c7dcad2dfce6d83668a2f7ce43c809b42d,"Fix stack updates causing deletion
+
+Previously, the PhysicalResourceId was generated each time the Lambda function
+was called. This was causing stack updates to result in
+* update event
+* response back to AWS with a new PhysicalResourceId
+* delete event
+* deletion of the record in DynamoDB
+
+This is because AWS checks to see if the PhysicalResourceId has changed and if
+it has it triggers a Delete : https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/aws-resource-cfn-customresource.html#w2ab1c21c10c51c19c19
+
+Now the Lambda function checks for the presense of a PhysicalResourceId in the
+message and uses that if it's present instead of generating one",Gene Wood,2018-12-29T19:47:18Z,gene1wood,gene1wood,36,24,12
+20,cloudformation-cross-account-outputs,188860e061e586a1344df12cec712d01f3536632,"Merge pull request #6 from gene1wood/patch-1
+
+Decompose infrastructure stacks and change DynamoDB schema",Gene Wood,2018-12-29T17:20:36Z,gene1wood,gene1wood,283,148,135
+21,cloudformation-cross-account-outputs,0a7798d77250e60c1986a383216aede57cf413c9,"Decompose infrastructure stacks and change DynamoDB schema
+
+The original design did not account for emitting stacks in regions
+other than the region in which the infrastructure was deployed.
+
+This is fixed by
+* Separating the Lambda function IAM role into it's own stack
+* Moving to a model where the ""consumer"" stack which contains the
+  SNS topic and Lambda function are deployed in each region that
+  you want to support receiving emissions in
+
+The DynamoDB schema was also changed to prevent multiple stacks
+in the same account from overwriting each other. Originally this
+was intentional in the design but after working through trying to
+use it, it became apparent that it wasn't ideal.
+
+The new schema continues to use the account id as the partition key
+but changes the sort key from ""category"" to the GUID of the
+CloudFormation stack that emitted the record.
+
+Additional cleanup includes
+* Deleting the ServiceToken attribute so it's not stored in the DyanmoDB
+  record
+* Adding an attribute with the region of the emitting stack
+* Removing the table provsioning from the Lambda function as this is
+  handled in the dedicated DynamoDB CloudFormation template
+* Added documentation and examples of how to constrain emitting stacks
+  to only regions in which you've deployed the consuming infrastructure",Gene Wood,2018-12-29T00:08:19Z,gene1wood,gene1wood,283,148,135
+22,cloudformation-cross-account-outputs,bd825b682b6e8297567064cfd91464adb4a0f156,"Merge pull request #4 from gene1wood/add-last-updated
+
+Add last updated field",Gene Wood,2018-12-20T16:30:36Z,gene1wood,gene1wood,106,101,5
+23,cloudformation-cross-account-outputs,e780658bc0423fd241491f271bc8c5d7dd20306a,Add documentation,Gene Wood,2018-12-19T00:05:01Z,gene1wood,gene1wood,71,68,3
+24,cloudformation-cross-account-outputs,ac58aab9d4db3be2e525df1b47f01a87330c3e8c,Add template to create DynamoDB table,Gene Wood,2018-12-19T00:04:53Z,gene1wood,gene1wood,25,25,0
+25,cloudformation-cross-account-outputs,f827877ffdb34023bd84918ceff03c5b96907dfc,Add last-updated field,Gene Wood,2018-12-19T00:04:24Z,gene1wood,gene1wood,10,8,2
+26,cloudformation-cross-account-outputs,aa622f8a8a5dbbb776e27864a90aed0200466c8f,"Merge pull request #2 from gene1wood/initial-commit
+
+Initial commit of the tool",Gene Wood,2018-11-14T21:26:43Z,gene1wood,gene1wood,301,301,0
+27,cloudformation-cross-account-outputs,22cae4a9e57d04943420ee9ff48ef20af48dcc50,Initial commit of the tool,Gene Wood,2018-11-14T21:24:11Z,gene1wood,gene1wood,301,301,0
+28,cloudformation-cross-account-outputs,f79c8a31417fedde0d3d41b4a6e8d046c72c805c,"Merge pull request #1 from gene1wood/add-db-schema-doc
+
+Add DynamoDB schema description",Gene Wood,2018-11-14T15:20:27Z,gene1wood,gene1wood,13,13,0
+29,cloudformation-cross-account-outputs,86294a2b46f520c56516c4a6f9e98b64e02b7e0f,Add DynamoDB schema description,Gene Wood,2018-11-14T14:57:58Z,gene1wood,gene1wood,13,13,0
+30,cloudformation-cross-account-outputs,3d00009f30e69fa23749151927b948469cb5d1dc,first commit,Gene Wood,2018-11-13T23:26:57Z,gene1wood,gene1wood,1,1,0

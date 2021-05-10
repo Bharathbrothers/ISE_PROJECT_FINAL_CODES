@@ -1,0 +1,873 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,django-badgekit,85f3dc1c6ab2189db9c76e732951c1e89f3522ad,"Improvements to admin, claim codes, login
+
+* Fix to ?next parameter in post-login redirect
+
+* Simple claim code entry field in the header
+
+* Quick hack to stick a QR code on the DeferredAward detail page.
+
+* Admin improvements to better handle relations between badges, awards,
+  and deferred awards.",Les Orchard,2012-04-07T16:51:36Z,lmorchard,lmorchard,133,114,19
+1,django-badgekit,a9a849cb7e0cad22a660970fc6a6d31584324d0f,TODO updates,Les Orchard,2012-04-07T16:51:14Z,lmorchard,lmorchard,51,38,13
+2,django-badgekit,d48141602978a13da43402bba5d59cb89b48cb44,Big playdoh templates update,Les Orchard,2012-04-02T01:21:41Z,lmorchard,lmorchard,711,600,111
+3,django-badgekit,9d69ad8404563c616d231f174ff3fc1b5906e7ac,"More progress on deferred awards and claims
+
+* Awards are issued by email, rather than user selection
+
+* badge.award_to logic to issue Award to existing users, DeferredAward
+  to email address for which there's no existing user.
+
+* Email notification for newly created DeferredAwards
+
+* DeferredAward claim code UI in the view",Les Orchard,2012-04-02T01:10:12Z,lmorchard,lmorchard,232,183,49
+4,django-badgekit,b6a56401995b77a3c5c5f0da0c72bbd50002b5fd,Model support for deferred awards claimed by code or user email,Les Orchard,2012-04-01T17:06:50Z,lmorchard,lmorchard,233,185,48
+5,django-badgekit,c655baf8400ce8b446fd24cd2b721b9ead1ee4d3,Bugfix for case where badge has no creator and notification breaks things,Les Orchard,2012-04-01T01:16:46Z,lmorchard,lmorchard,14,8,6
+6,django-badgekit,5de3c2268fbcb4fe20c93dc122f6d12d59e8cf71,Properly send default http protocol to notification templates,Les Orchard,2012-03-19T06:56:26Z,lmorchard,lmorchard,24,16,8
+7,django-badgekit,e7e085aaf560ebbf6720dde28345a30dc78e2a60,Initial steps toward notifications,Les Orchard,2012-03-19T02:17:04Z,lmorchard,lmorchard,46,44,2
+8,django-badgekit,ea856d14302157a08b40049c47b511e82d66a350,TODOs,Les Orchard,2012-03-19T02:16:15Z,lmorchard,lmorchard,22,8,14
+9,django-badgekit,a1e2a59ad972f2ee2ba319df6e866f21d2e13f41,Fleshing out more package requirements,Les Orchard,2012-03-18T19:16:02Z,lmorchard,lmorchard,2,2,0
+10,django-badgekit,1b565ca8bbf174fa9951526e9c1b9a248ccf0083,Bugfix to feed icon image URL,Les Orchard,2012-03-18T19:15:45Z,lmorchard,lmorchard,4,2,2
+11,django-badgekit,f069849632d9e721ad1d78a2cdf607f428e22182,Update README.rst,Les Orchard,2012-03-12T04:53:36Z,lmorchard,lmorchard,6,2,4
+12,django-badgekit,6ab2364b6caea07498b0c9c46297205accf2a16d,README and TODO tweaks,Les Orchard,2012-03-12T04:50:38Z,lmorchard,lmorchard,78,43,35
+13,django-badgekit,c7d2179b59b9e367af44537cfbc220d869950beb,"Working with OBI, broken tests fixed
+
+* Switch to OBI hosted assertions baked into PNGs, rather than baking
+  the whole JSON assertion.
+
+* Allow HEAD requests to JSON for hosted assertions, since
+  beta.openbadges.org issues an exploratory HEAD before GET.
+
+* ""issued_on"" should be a date, not a full ISO 8601 timestamp.
+
+* Fixes to tests broken by template changes.
+
+* At some point, I switched to funfactory but never revisited tests.
+  That broke a bunch of things. Fixes included, for locales and other
+  things.
+
+* Tweaks for award image management. Old images are deleted when new
+  ones saved, changed the file storage layout.
+
+* If no awarder given when badge awarded, assume it's on behalf of the
+  badge creator.
+
+* Quick & dirty command to resave all awards, thus rebaking images.",Les Orchard,2012-03-12T00:17:06Z,lmorchard,lmorchard,208,134,74
+14,django-badgekit,439fd04289dbcc97294f16a541b06d7e9a5f07a8,TODO changes,Les Orchard,2012-02-08T18:22:58Z,lmorchard,lmorchard,3,3,0
+15,django-badgekit,b23e0dfa17e0713cbd5110357477ccfc3bb33574,"Changes for vanilla Django
+
+* new set of templates
+* new templatetags
+* removed superfluous imports of jingo and jinja",Phoebe B,2012-02-02T17:57:51Z,Phoebe B,Phoebe B,427,422,5
+16,django-badgekit,3d73c2e7b523eeb593e419191e6f4472a5e9897b,"Merge pull request #1 from johnsca/master
+
+setup.py fails due to reference to README.md",l.m.orchard,2011-11-11T00:07:27Z,lmorchard,lmorchard,5,3,2
+17,django-badgekit,e06aa6044c816fa23d1b5c5c0dc409ea287bddf9,Fixed broken management import from missing package in setup.py,Cory Johns,2011-11-10T23:06:21Z,Cory Johns,Cory Johns,2,1,1
+18,django-badgekit,05c29249153acf2a134ebe92002e56c1119ef79e,Fixed templates package data includes in setup.py,Cory Johns,2011-11-10T22:49:33Z,Cory Johns,Cory Johns,2,1,1
+19,django-badgekit,0fe3b4b9ac6963485f283b26be2a7dfe7c1dc635,Fixed packages and package data missing from setup.py,Cory Johns,2011-11-10T22:42:19Z,Cory Johns,Cory Johns,3,2,1
+20,django-badgekit,3e720edfc3bb175abd9902180bd78cec2333bc14,Fixed reference to README in setup.py causing setup to fail,Cory Johns,2011-11-10T20:23:57Z,Cory Johns,Cory Johns,2,1,1
+21,django-badgekit,d2b13d7258fa493c2b0916767fdce0dba75e5b6e,TODO edits,Les Orchard,2011-10-21T04:50:02Z,lmorchard,lmorchard,9,5,4
+22,django-badgekit,079a33698381ec5305cfdf74f5ce9eacfe2dd8c5,TODO edits,Les Orchard,2011-10-21T04:41:42Z,lmorchard,lmorchard,2,2,0
+23,django-badgekit,ed83f2b581dc0ef43ebcebe5c3fbb20f03607c54,TODO edits,Les Orchard,2011-10-21T04:13:31Z,lmorchard,lmorchard,3,3,0
+24,django-badgekit,b36717478030fac35d8f5db38e83bd85c6fdb50c,TODO edits,Les Orchard,2011-10-21T04:00:17Z,lmorchard,lmorchard,49,32,17
+25,django-badgekit,3f0109d6b5b1ae094acf1eebf88eff92d629e2f9,TODO edits,Les Orchard,2011-10-21T03:54:38Z,lmorchard,lmorchard,17,7,10
+26,django-badgekit,bb5b82c98f5925f5133dd481f73a3a3c43f5d232,Helpers for profile template; template for listing awards as badge images,Les Orchard,2011-10-21T02:38:19Z,lmorchard,lmorchard,27,25,2
+27,django-badgekit,b395d24dcf4a61dd4fed40f6f0b13ee9d625b062,TODO edits,Les Orchard,2011-10-21T02:37:48Z,lmorchard,lmorchard,18,15,3
+28,django-badgekit,172fb51a6d3561233479fd59cdedf7f9c500da2e,TODO edits,Les Orchard,2011-10-17T16:21:54Z,lmorchard,lmorchard,29,27,2
+29,django-badgekit,dc2db659f64148e649795084c53732bd959f018b,Convert app to use South,Les Orchard,2011-10-17T05:02:36Z,lmorchard,lmorchard,163,162,1
+30,django-badgekit,ba29792374f29f0ad9ca864b11be0aca9e1870ae,"Badge search, tweaks to award display, avatar display",Les Orchard,2011-10-17T04:44:21Z,lmorchard,lmorchard,187,167,20
+31,django-badgekit,e2de5343af253fba3b0748f4ed627b988be77309,TODO edits,Les Orchard,2011-10-16T21:50:12Z,lmorchard,lmorchard,36,15,21
+32,django-badgekit,4442680cf6f928baae58646f73862db93dca63f5,"Fixes and tweaks for profiles and awards list
+
+* Added by-badge awards list view URL
+
+* Recent awards listed on badge detail page
+
+* Showing user names as unicode()
+
+* Using user.get_absolute_url() everywhere for profile links",Les Orchard,2011-10-16T21:11:41Z,lmorchard,lmorchard,66,42,24
+33,django-badgekit,11e624dfc6a072277e0daa94218cb6e25db4e346,Tweaks to award and badge display,Les Orchard,2011-10-15T05:18:26Z,lmorchard,lmorchard,24,18,6
+34,django-badgekit,4573f65dbcb819772489074f0062c291c4a634c3,"Moved home page into badger app, renamed index to badges_list",Les Orchard,2011-10-15T04:54:07Z,lmorchard,lmorchard,67,61,6
+35,django-badgekit,43c2981a750b4f118a1b33423d3c520a43e2d6b2,Tweaks to how upload paths are built,Les Orchard,2011-10-09T21:18:45Z,lmorchard,lmorchard,5,3,2
+36,django-badgekit,a242706cb88ae0c26532cd00f6ed82c60ca7d9ec,Generate feed item description including image for badge and award,Les Orchard,2011-10-09T20:58:04Z,lmorchard,lmorchard,24,21,3
+37,django-badgekit,caa10323c721543324cfb4dcf1ec6f512252ab4b,Quick markup fix,Les Orchard,2011-10-09T20:55:52Z,lmorchard,lmorchard,2,1,1
+38,django-badgekit,0eb789688162c864c5b7131bebbb0e76eda40261,Tweaks to awards_by_user list; using Award from badger_multiplayer when available,Les Orchard,2011-09-30T04:06:53Z,lmorchard,lmorchard,21,8,13
+39,django-badgekit,b29f2b4a1dbd7765b2f3eb986e1b4eaf8eb28d0b,Badge creator can issue awards for badge,Les Orchard,2011-09-29T15:21:43Z,lmorchard,lmorchard,181,178,3
+40,django-badgekit,54d6ea7f1d31fa41df9fe4a37eeab75f7dcd966a,TODO edits,Les Orchard,2011-09-29T15:20:26Z,lmorchard,lmorchard,14,14,0
+41,django-badgekit,7e3922ac6a333e88baf16f569a4e04af4e3c35f4,Tweak admin images from 64x64 to 48x48,Les Orchard,2011-09-27T05:59:15Z,lmorchard,lmorchard,2,1,1
+42,django-badgekit,56014bb6c565807af12aac85210489834bed8897,"Tweaks to admin
+
+* Tweaks to fields in list display and editing forms
+* Showing Badge and Award images in list display",Les Orchard,2011-09-27T05:50:31Z,lmorchard,lmorchard,30,24,6
+43,django-badgekit,031971cc93a69470964d6a6b74cf4185447366cb,"Bug fix for Award image baking from admin, misc fixes
+
+* Bug fix for creating Award from admin pages, where award image wasn't
+  getting baked.
+
+* Now using badge slug in image filenames, rather than prinary key,
+  because the primary key isn't available on initial creation
+
+* Use a default image (eg. fixtures/default-badge.png) when baking Award
+  image, if Badge has no image uploaded
+
+* Force a timezone on issued_on date in assertion, UTC by default
+
+* Tweak to assertion origin URL to point at site base URL",Les Orchard,2011-09-27T05:13:34Z,lmorchard,lmorchard,128,83,45
+44,django-badgekit,4e214df08c193874c2de1beccb3b19b9e9bca469,Oops. hasattr() does not work that way,Les Orchard,2011-09-26T02:44:42Z,lmorchard,lmorchard,2,1,1
+45,django-badgekit,5aff17177c5816dc94cec84384fb2513c832784e,Bugfix for item_author_link,Les Orchard,2011-09-26T02:43:06Z,lmorchard,lmorchard,4,2,2
+46,django-badgekit,5d8c3dd7245ebcf874bb325ac602a75275b29034,Tweaks for styling,Les Orchard,2011-09-26T00:33:40Z,lmorchard,lmorchard,17,10,7
+47,django-badgekit,b693670cbd36085054a6fba576120e67251f1e06,Markup tweaks for styling,Les Orchard,2011-09-25T18:33:30Z,lmorchard,lmorchard,29,12,17
+48,django-badgekit,9297fc7f29a4a715bc0d9be3dc9a8c8524c227e2,Reverse modified order for badge and award lists,Les Orchard,2011-09-25T04:59:46Z,lmorchard,lmorchard,4,2,2
+49,django-badgekit,f1bba1b86dd3302004b4d6185ea93d4c47282c2e,"Bake Open Badge Infrastructure assertion into image attached to an Award
+
+* Add ImageField to Award model
+* Bake OBI assertion into PNG on Award save
+* Badge issuer in OBI assertion changes to awarder when available
+* Tweaks to images displayed for Badge and Award templates
+* Tests",Les Orchard,2011-09-25T04:26:49Z,lmorchard,lmorchard,237,202,35
+50,django-badgekit,2ab2a935e8b1d25b5f3f93a196225930b2f72fd4,"Accept and validate badge image uploads, convert to PNG, impose server-controlled filename",Les Orchard,2011-09-24T20:37:01Z,lmorchard,lmorchard,99,99,0
+51,django-badgekit,c42b628b58ddeb84e8230c2af8cc116f3e14e592,Use absolute URLs in Badge and Award JSON formats,Les Orchard,2011-09-24T18:49:02Z,lmorchard,lmorchard,19,12,7
+52,django-badgekit,ab97fe1de68c3b66f87a606f0a749b966fd28ff0,JSON resources for Badge and Award,Les Orchard,2011-09-24T18:38:21Z,lmorchard,lmorchard,163,148,15
+53,django-badgekit,332cdd8646731747fda735def257fe4ef85b09f7,Only really need dependencies so far for running tests (part 2),Les Orchard,2011-08-19T16:05:45Z,lmorchard,lmorchard,6,0,6
+54,django-badgekit,891f0527d0b240f1e5b9137ec31f8d57da36b12b,Only really need dependencies so far for running tests,Les Orchard,2011-08-19T16:05:09Z,lmorchard,lmorchard,0,0,0
+55,django-badgekit,62584ec5f7218fad3c421834c16a610df88275c2,"Quietly ignore BadgeAlreadyAwardedException on updating progress for unique badges
+
+- Progress updates will catch BadgeAlreadyAwardedException unless
+  raise_exception=True
+- Move badger_test to badger/tests/badger_example",Les Orchard,2011-08-19T15:21:33Z,lmorchard,lmorchard,65,50,15
+56,django-badgekit,d79e542a986489d0c8c991f613797628ab512d3f,TODOs,Les Orchard,2011-08-19T02:43:32Z,lmorchard,lmorchard,8,4,4
+57,django-badgekit,402e9738beb6752f18a8e95c6dbbf9b60e61fd73,"Initial {rss,atom,json} feeds for awards
+
+- feeds.py package with AwardsRecentFeed, AwardsByUserFeed, AwardsByBadgeFeed
+- Feeds added to url.py and links added in <head> of respective pages
+- Simple test for award appearing in feeds
+- Added requirements/*.txt to describe packages now needed",Les Orchard,2011-08-19T00:01:27Z,lmorchard,lmorchard,538,537,1
+58,django-badgekit,e092474a5eb2791ab89fb85d6146baabefd293ce,Whitespace edit,Les Orchard,2011-08-18T23:58:24Z,lmorchard,lmorchard,2,0,2
+59,django-badgekit,4fc41e996b1126307038f0fc7809080cd06c6ce2,"Add new award detail view
+
+- get_absolute_url for Award model
+- New template for award detail view
+- Award detail test
+- Tweaking URL route names
+- README and TODO futzing",Les Orchard,2011-08-18T18:04:59Z,lmorchard,lmorchard,92,86,6
+60,django-badgekit,2e81c8ae5b0c5bacd9cae8c9a7835bd61125c2f2,README edits,Les Orchard,2011-08-03T16:25:27Z,lmorchard,lmorchard,4,2,2
+61,django-badgekit,3cee35613f83e2d47b07be65549b2ad082fb8372,README first draft,Les Orchard,2011-08-03T16:17:25Z,lmorchard,lmorchard,73,73,0
+62,django-badgekit,ea8f4171be4b55bfa2fb91b127757f13e42e0443,"Initial views for awards by badge and by user
+
+- Views and templates for listing awards by user and by badge
+- Partial template includes for awards and badges
+- Pagination partial template",Les Orchard,2011-08-03T15:32:53Z,lmorchard,lmorchard,205,178,27
+63,django-badgekit,88db311409677f57960fa26e98db17d5c153e046,Awards can be hidden,Les Orchard,2011-08-03T15:30:15Z,lmorchard,lmorchard,7,6,1
+64,django-badgekit,3282b0b29ff2643487dd803af1c6ce14233c9216,update_badges management command overwrites; sync_db does not,Les Orchard,2011-08-03T15:29:41Z,lmorchard,lmorchard,7,4,3
+65,django-badgekit,578cf869745c104e36e68d7d99b16a1265e8eb59,TODO,Les Orchard,2011-08-03T15:27:32Z,lmorchard,lmorchard,1,0,1
+66,django-badgekit,d09364a7cdc1683a8abee9ab702e95bb98bad06a,TODO,Les Orchard,2011-08-02T21:04:41Z,lmorchard,lmorchard,35,18,17
+67,django-badgekit,5ca67be16db416c44d9c4b183c6b4219b031b078,Better handling of badger.py import errors,Les Orchard,2011-08-02T19:21:17Z,lmorchard,lmorchard,19,13,6
+68,django-badgekit,1ba530fa7591829796a18395a28792b8502500c4,"More moved to multiplayer; admin tweaks; save() changes
+
+- Moving all Nomination logic and tests to django-badger-multiplayer
+- Tweaks to make admin nicer
+- Moved more of the awarding logic to save() method of models, which
+  also works better with Admin and covers more cases in interacting with
+  models.
+- More protection against double-awarding unique badges",Les Orchard,2011-08-02T18:41:56Z,lmorchard,lmorchard,381,127,254
+69,django-badgekit,2b4437b92643f97cfedf765c11f9005f6c6e97fd,Moving some user-editing stuff over to multiplayer,Les Orchard,2011-08-01T20:30:17Z,lmorchard,lmorchard,250,2,248
+70,django-badgekit,5632a117b379db772e9427ab51c1d3101c2a6894,Moving / renaming some utils from __init__.py to utils.py,Les Orchard,2011-07-31T17:29:21Z,lmorchard,lmorchard,124,64,60
+71,django-badgekit,5ff33b1b4ac2a31907974115ad1c86e363736785,Enforcing edit permission in badge editing pages,Les Orchard,2011-07-30T04:48:50Z,lmorchard,lmorchard,22,19,3
+72,django-badgekit,d1726873692a13d60962e1d1d90acdd998b8bb1a,TODO,Les Orchard,2011-07-30T04:47:48Z,lmorchard,lmorchard,37,20,17
+73,django-badgekit,cbd474157337b1d89b36570f6a9ea9c5b79adc09,Doco tweak,Les Orchard,2011-07-30T04:47:34Z,lmorchard,lmorchard,2,1,1
+74,django-badgekit,00564ec24c6ac243b4221c5b707f7643d090da6b,"Badges can have prerequisite badges; auto-award on set completion
+
+- Added prerequisites ManyToManyField on Badge model
+- check_prerequisites() method on Badge
+- award_to() method calls check_prerequisites() on all Badges pointing
+  to the Badge just awarded as a prerequisite
+- badger.utils.update_badges() accepts 'prequisites' as a key in
+  initialization data, a list of slugs or Badge instances",Les Orchard,2011-07-30T01:40:49Z,lmorchard,lmorchard,67,50,17
+75,django-badgekit,eaeb9f27b05c187da647ccb39caca10d4c371e77,TODO,Les Orchard,2011-07-30T01:38:12Z,lmorchard,lmorchard,13,8,5
+76,django-badgekit,03ba8b908a8c63231d9fe771040afdafef5aba99,TODO,Les Orchard,2011-07-29T21:16:41Z,lmorchard,lmorchard,1,0,1
+77,django-badgekit,d6a50a890baa5b2f5a7847149e13cd5854daedca,A badge can be a unique award,Les Orchard,2011-07-29T21:15:42Z,lmorchard,lmorchard,13,13,0
+78,django-badgekit,40c0d9563a00c55d8996aacc2685910d9eee3ab1,"More work on badge progress, conditional awards, meta-badges
+
+- added percentage-based progress with auto-award on 100%
+- playing with set-based progress, auto-award on badge set completion
+- tweaks to JSONField (is this a good idea?)
+- implemented signals for badge award, nominations
+- simplified convenience API a bit more",Les Orchard,2011-07-29T21:02:59Z,lmorchard,lmorchard,249,195,54
+79,django-badgekit,8afadc1e8ef5f5534298142548a84516491fb99c,TODO,Les Orchard,2011-07-29T20:58:18Z,lmorchard,lmorchard,21,11,10
+80,django-badgekit,979c346094a48889cdc0f4d2f7125a8ef49ab815,"Delete progress record on award of a badge
+
+- Checking the progress counter more in the test
+- Progress record deleted on award
+- Getting a fresh progress record doesn't result in a save, right away.
+  So, checking a recently deleted progress counter doesn't result in a
+  new zero counter row.",Les Orchard,2011-07-29T05:07:16Z,lmorchard,lmorchard,29,26,3
+81,django-badgekit,f4c1a2404f35519b55f1616b545fceb7e9ef1799,"Initial stab at tracking badge progress
+
+- Progress model with a counter to increment & decrement
+- Progress also has a JSONField for arbitrary note-keeping
+- Added some convenience API methods to __init__.py",Les Orchard,2011-07-29T04:54:04Z,lmorchard,lmorchard,137,114,23
+82,django-badgekit,ea6164d013f165f0daf5cb972621df8fd3e45ca2,In progress work on tracking status for conditional badge award,Les Orchard,2011-07-28T05:17:35Z,lmorchard,lmorchard,57,48,9
+83,django-badgekit,7018d8c0b088c0cb8f3559bf9132acc049e8f6a0,TODO,Les Orchard,2011-07-28T05:16:52Z,lmorchard,lmorchard,11,5,6
+84,django-badgekit,e806109f1e9800da746f0c077a604856cdc67f04,"update badges from code, misc test rearrangements
+
+- Trying out badge creation in code
+- Switching titles of some badges used in other tests, because the
+  from-fixture and from-code badges get created for all of them.
+- misc pep8 reformattings",Les Orchard,2011-07-28T04:44:05Z,lmorchard,lmorchard,74,56,18
+85,django-badgekit,effce34a84084423164e7361f8a05dd2324ef708,TODO,Les Orchard,2011-07-28T04:39:33Z,lmorchard,lmorchard,4,2,2
+86,django-badgekit,adf35f886b8c032d8616cb2d9e4743a2bf4bf4ae,Initial support for updating badges from syncdb,Les Orchard,2011-07-28T03:26:29Z,lmorchard,lmorchard,42,27,15
+87,django-badgekit,728f6cd3a0b4cd0573d803cf9ef43f939530caa3,TODO tweaks,Les Orchard,2011-07-28T03:25:42Z,lmorchard,lmorchard,30,21,9
+88,django-badgekit,c6356e46d7a89878e3787179635bd3827b899e2b,TODO tweaks,Les Orchard,2011-07-25T04:58:38Z,lmorchard,lmorchard,18,11,7
+89,django-badgekit,cf93a82e04a9a9af0631d66add2f6a71ac29d50a,"First attempt at awarding a badge with a signal
+
+- update_badges management command to load badges from per-app fixture
+  and programmatically
+- badger.autodiscover to register signals for badge awards
+- creator on an award can be Null, for system-awarded badges
+- more fleshed-out badger_test app",Les Orchard,2011-07-25T04:55:27Z,lmorchard,lmorchard,254,248,6
+90,django-badgekit,96d5ebf55559d3cee4442d0d06c2df7e5ae576b6,TODO,Les Orchard,2011-07-22T04:41:33Z,lmorchard,lmorchard,8,8,0
+91,django-badgekit,bdee6933559f83684713642bce51e806189582fe,TODO items,Les Orchard,2011-07-22T04:31:37Z,lmorchard,lmorchard,32,32,0
+92,django-badgekit,646ec8a64f9eff27d130c8518675e71e3c865f1d,"Progress on badge editing.
+
+- skeleton admins for models
+- detail page, edit page
+- body IDs on pages",Les Orchard,2011-07-22T04:20:04Z,lmorchard,lmorchard,240,228,12
+93,django-badgekit,1edb411057ea491d83b260439039301e49187df4,more pep8 tweaks,Les Orchard,2011-07-22T02:20:11Z,lmorchard,lmorchard,95,50,45
+94,django-badgekit,2b99b6ac740e0d81addf45dacada246181cb8e89,Splitting badger app out of badger2 project,Les Orchard,2011-07-22T01:53:13Z,lmorchard,lmorchard,598,598,0
+95,django-badgekit,446733fb726f3751702cc11da4a9d8701e96a958,first commit,Les Orchard,2011-07-22T01:39:26Z,lmorchard,lmorchard,0,0,0
+96,django-badgekit,7adb2f1779796dea630bbb709ae1717053bb8272,register_signals and update_badges are each optional in badges.py,Les Orchard,2012-12-30T03:53:27Z,lmorchard,lmorchard,10,4,6
+97,django-badgekit,44f7ec986325eaf19aca787d08e101c85cd7e86e,issue #47: wiring up view to reject nominations,Les Orchard,2012-12-24T05:18:36Z,lmorchard,lmorchard,40,33,7
+98,django-badgekit,353f16566128bfec0e84f14a8dfd426a51d49ef8,issue #47: model changes for nomination rejection,Les Orchard,2012-12-24T03:22:43Z,lmorchard,lmorchard,272,249,23
+99,django-badgekit,7352a29a015e3a23b9975b34c80bef8e790c9712,fix #40: Award description / explanation field,Les Orchard,2012-12-23T21:52:18Z,lmorchard,lmorchard,172,167,5
+100,django-badgekit,d41805b32f3bc1da1b5df6e6b3526d17b5cd3754,issue #10: View test for award deletion,Les Orchard,2012-12-23T20:59:39Z,lmorchard,lmorchard,27,27,0
+101,django-badgekit,5fb77065afb62504c07440c68d94ece6655f1f0a,"Quick bugfix for previous bugfix. Run tests, dummy",Les Orchard,2012-12-23T20:54:42Z,lmorchard,lmorchard,2,1,1
+102,django-badgekit,8a776c3d488f788d37707bc3cd88ee39bc0e2cba,"Merge pull request #136 from lmorchard/10-award-deletion
+
+fix #10: Implement award deletion",Les Orchard,2012-12-23T20:47:15Z,lmorchard,lmorchard,74,74,0
+103,django-badgekit,b085b870c9562d213a7bd2325e2fa11b03088a41,fix #10: Implement award deletion,Les Orchard,2012-12-23T20:45:16Z,lmorchard,lmorchard,74,74,0
+104,django-badgekit,32b3fe0b8c5fe6a91622bc4eaf80592a2797a99e,"fix #124, unicode-friendly slugifier; bugfix for valid OBI JSON where optional image is missing",Les Orchard,2012-12-23T20:06:16Z,lmorchard,lmorchard,56,48,8
+105,django-badgekit,bf13516b9eb1085b8eac0cdf3f725063b0fc2586,"fix #133: Change wording on button to accept nomination on behalf of nominee, for admins",Les Orchard,2012-12-23T03:46:00Z,lmorchard,lmorchard,10,8,2
+106,django-badgekit,cb3838b0cc2e848a4219f4398de91159d150a315,Fix #135: Lingering badger_multiplayer reference in feeds.py,Les Orchard,2012-12-22T03:22:57Z,lmorchard,lmorchard,2,1,1
+107,django-badgekit,74f44dc6b3374e6e63a6883ea64c03e040843222,Merge branch 'absorb-multiplayer',Les Orchard,2012-12-21T21:26:24Z,lmorchard,lmorchard,2446,1128,1318
+108,django-badgekit,b8f39ffad6befef463e8c76f8f9a43c4bb30182a,Fixes #15: Absorb badger_multplayer fully into badger,Les Orchard,2012-12-21T04:17:17Z,lmorchard,lmorchard,2446,1128,1318
+109,django-badgekit,4642f10542950e6f2951460079cdeaa24fd21b99,Merge the django-badger-multiplayer subproject into core,Les Orchard,2012-12-20T23:10:57Z,lmorchard,lmorchard,1457,1457,0
+110,django-badgekit,1292be634af8094e11e54e2438fb0e2d74b08ac5,Tweak to multiple emails form field,Les Orchard,2012-05-20T21:22:23Z,lmorchard,lmorchard,2,1,1
+111,django-badgekit,1bbc738bac66a2c6269b07dc241958f8e5b5e0a7,Bugfix: Edits no longer change the creator of a badge,Les Orchard,2012-05-20T20:07:37Z,lmorchard,lmorchard,24,23,1
+112,django-badgekit,d254c698e781559936fa2d57e90466009232231f,"Add nominations_accepted flag to badge editing form, disallow nominations when false",Les Orchard,2012-05-18T02:04:17Z,lmorchard,lmorchard,5,4,1
+113,django-badgekit,2829d1bcacbaeb146c77222974acacea5b0184db,"Move more forms to badge detail page, layout tweaks, test fixes",Les Orchard,2012-05-17T23:19:36Z,lmorchard,lmorchard,227,144,83
+114,django-badgekit,4f6d036ccba3c51f689923ecfe72f5caccccd6db,Badge deletion,Les Orchard,2012-05-13T04:11:51Z,lmorchard,lmorchard,100,100,0
+115,django-badgekit,25d4e63f68f06eb1700b6c9a84ce9c888c5b5d4f,Accept initial value to pre-fill tags field,Les Orchard,2012-04-16T01:56:55Z,lmorchard,lmorchard,1,1,0
+116,django-badgekit,4826730c90af846cd4086ce49c7e1f9f3ea4513d,Initial stab at adding tags,Les Orchard,2012-04-16T01:31:52Z,lmorchard,lmorchard,26,25,1
+117,django-badgekit,ec3a2d1f4d7cdf2cac1889e7bd758c70d6b13f7b,Tweak to nominations template,Les Orchard,2012-04-15T02:49:24Z,lmorchard,lmorchard,4,2,2
+118,django-badgekit,b704b4caa029bcbb0b64d226866137cf777a047d,Nomination accepts multiple email addresses; admin upgrades,Les Orchard,2012-04-15T02:46:54Z,lmorchard,lmorchard,100,65,35
+119,django-badgekit,15b8bb492b073f7e1d6fb55bf5a9f19d90a5ce2a,"Enforce {add,change}_badge permissions
+
+* Enforce {add,change}_badge permissions in view
+
+* Helper function to check add_badge permission in templates
+
+* BADGER_ALLOW_ADD_BY_ANYONE setting to shortcircuit add permission
+  enforcement, for permissive multiplayer setup",Les Orchard,2012-04-07T18:04:42Z,lmorchard,lmorchard,4,4,0
+120,django-badgekit,9342056ad83fd49b67b0cb628a8ee8a26881f5b5,Multiplayer remix for DeferredAward; Notification bugfix,Les Orchard,2012-04-02T01:15:58Z,lmorchard,lmorchard,21,18,3
+121,django-badgekit,a17087ef5d62576dd06c87168d08d9ef12d4b7f4,Bugfix for case where badge has no creator and notification breaks things,Les Orchard,2012-04-01T01:17:02Z,lmorchard,lmorchard,34,25,9
+122,django-badgekit,9661df6570a88213907ad16771d2b22851f9a8df,Initial steps toward notifications,Les Orchard,2012-03-19T02:17:35Z,lmorchard,lmorchard,61,60,1
+123,django-badgekit,7138da8f344e754907490fa37dc02b8acc8073f3,Broken test fixes; funfactory tweaks,Les Orchard,2012-03-12T00:22:54Z,lmorchard,lmorchard,49,9,40
+124,django-badgekit,5ad9e441f2b1f958d9590188c4ac59b38602e34a,Bugfix for badge create urlpattern,Les Orchard,2011-10-21T04:02:37Z,lmorchard,lmorchard,2,1,1
+125,django-badgekit,e3ebb183b476de40d5b5b26e8f098c8505335d09,Helpers for listing nominations on profile,Les Orchard,2011-10-21T03:55:10Z,lmorchard,lmorchard,42,42,0
+126,django-badgekit,4b7a568626793339c759bfbee449c06ab85fc7a9,Add view and feed listing badges created by user,Les Orchard,2011-10-21T02:39:12Z,lmorchard,lmorchard,52,51,1
+127,django-badgekit,efec5fef127292580766404fd07705993c135835,Convert app to use South,Les Orchard,2011-10-17T05:03:17Z,lmorchard,lmorchard,121,117,4
+128,django-badgekit,84abb3a449f548c2fdf7e807853775d3c44650ab,"Badge nominations and misc tweaks
+
+* Nomination submission view, to create new nominations
+* Nomination detail view, affords approval and acceptance
+* Award model proxy that produces multiplayer Badge proxies",Les Orchard,2011-09-30T05:48:10Z,lmorchard,lmorchard,257,207,50
+129,django-badgekit,f66d12bac272fa5089967ff278fbc802a01e4464,Accept image upload on Badge create,Les Orchard,2011-09-25T04:31:48Z,lmorchard,lmorchard,13,10,3
+130,django-badgekit,2c7972b960ea9af66a1ae3083205f73679392f91,Move test app into tests directory,Les Orchard,2011-08-19T16:02:13Z,lmorchard,lmorchard,9,5,4
+131,django-badgekit,3760e8145008c72bc8a5c7a229c97bad10cfe499,"Feed for all recent badges, needs a test still though",Les Orchard,2011-08-19T00:05:11Z,lmorchard,lmorchard,68,66,2
+132,django-badgekit,53d44c03020b72da3dc2cdf294cdfdf3dfd1adc9,Don't need these templates anymore,Les Orchard,2011-08-19T00:04:35Z,lmorchard,lmorchard,8,0,8
+133,django-badgekit,b8d19991ffa558b94aaacc1f0c194aad50247a26,Switch to overriding badger partial templates with editing links,Les Orchard,2011-08-03T15:38:54Z,lmorchard,lmorchard,63,22,41
+134,django-badgekit,b8957e4984b8cea78c7a3fe7db13b065f56c6ab4,Add admin for enhanced Badge model,Les Orchard,2011-08-03T15:37:43Z,lmorchard,lmorchard,16,16,0
+135,django-badgekit,cc7c89ea8886aa8f3b1f223aab2566e46aef0b83,Adopted Nomination logic from django-badger,Les Orchard,2011-08-02T18:45:46Z,lmorchard,lmorchard,347,336,11
+136,django-badgekit,2a1c3a82e6b037b614af2df008c5d8036350a968,Moving some user-editing stuff over to multiplayer,Les Orchard,2011-08-01T20:29:47Z,lmorchard,lmorchard,405,405,0
+137,django-badgekit,12e106c60dad84b141db3b198b0e9ddbffb8c186,Allow slashes in tag names for badges,Les Orchard,2012-12-04T20:44:22Z,lmorchard,lmorchard,2,1,1
+138,django-badgekit,f42343f8cec7762d603548d023205df19327c0f2,Bugfix to top tags display limit,Leslie Michael Orchard,2012-11-07T16:10:33Z,lmorchard,lmorchard,4,2,2
+139,django-badgekit,cbf8e0e89398ff7e8f0e1b9d4482115173a1396e,Bugfix to author name display in badge award,Leslie Michael Orchard,2012-11-07T16:04:39Z,lmorchard,lmorchard,2,1,1
+140,django-badgekit,bb812e0892fe903c0c9846d7f6d9ec4030ce397b,"Merge pull request #126 from askvictor/master
+
+nominations_accepted field allowed to be blank",Les Orchard,2012-09-27T01:07:39Z,lmorchard,lmorchard,2,1,1
+141,django-badgekit,0fdcd54324177b81dcce5f266d00b232a02182de,Previous commit affected whitespace in unrelated part of file; reverted and fixed to just change the nominations_accepted field.,Victor Rajewski,2012-09-27T00:51:10Z,askvictor,askvictor,2,1,1
+142,django-badgekit,63a810562166ec08555115da89e68a090e283def,"Revert ""Changed optional nominations_accepted field to have blank=True""
+
+This reverts commit 76f1a303e6f342595475c1c1c1c3dd9609b51571.",Victor Rajewski,2012-09-27T00:48:46Z,askvictor,askvictor,4,2,2
+143,django-badgekit,76f1a303e6f342595475c1c1c1c3dd9609b51571,Changed optional nominations_accepted field to have blank=True,Victor Rajewski,2012-09-15T01:40:32Z,askvictor,askvictor,4,2,2
+144,django-badgekit,f68ee4c64af3eaeef9281e44a1311ca5215a117c,Bugfix for claim code view after claim,Les Orchard,2012-06-02T15:55:29Z,lmorchard,lmorchard,2,1,1
+145,django-badgekit,e2c78fae4dcf1ffebcc98e1da3bde13711887eb3,More fussing with QR codes,Les Orchard,2012-06-01T23:49:29Z,lmorchard,lmorchard,44,26,18
+146,django-badgekit,4cdd47da0e10533aded6dbca6367375ff9a747c3,Add claim_code to Award admin views,Les Orchard,2012-06-01T15:43:58Z,lmorchard,lmorchard,6,3,3
+147,django-badgekit,b2ae9dcb08b9ab1095dbc0ebb62edca2c30e7e13,"Bugfix: Http404 needs to be raised, not returned",Les Orchard,2012-06-01T15:34:56Z,lmorchard,lmorchard,2,1,1
+148,django-badgekit,4c39c1bb75f03a80a0d1b426daff3b6048fb34c9,"Fix #91: After claim, bounce code visit to award
+
+* If a DeferredAward has been claimed, then future attempts to GET or
+  POST the claim code should redirect to the resulting Award
+
+* Migration to add claim_code to Award, adjust size of claim code fields
+  to allow for future expansion
+
+* Test bugfix to reflect salty hash for OBI JSON assersion recipient",Les Orchard,2012-06-01T04:09:59Z,lmorchard,lmorchard,224,218,6
+149,django-badgekit,72f363cdc050e8326731ad0de049ec0cd10aa2c3,"Fix #75: Use PyQRNative to generate QR codes, when available",Les Orchard,2012-06-01T01:35:23Z,lmorchard,lmorchard,196,34,162
+150,django-badgekit,f4c4102330edaa1d0861bdac65b826716784eafd,"Fix #99, fix #96: Add some edge padding to the QR code on labels",Les Orchard,2012-05-31T02:06:21Z,lmorchard,lmorchard,21,15,6
+151,django-badgekit,9e107f94586a7ce405e849d8efbc071a22ed6d51,Add migration for DeferredAward model and new nominations_accepted field on Badge,Les Orchard,2012-05-31T01:30:04Z,lmorchard,lmorchard,139,139,0
+152,django-badgekit,f55bc57178c6e02c9715a748abcbe03a04d0fe6c,Make DeferredAward claim group editable,Les Orchard,2012-05-27T19:56:05Z,lmorchard,lmorchard,3,2,1
+153,django-badgekit,e3ecc78447ea6c15d4c2abddd07bf7f236307e81,Switch to unix timestamp for OBI assertions,Les Orchard,2012-05-27T18:18:30Z,lmorchard,lmorchard,4,2,2
+154,django-badgekit,cbcba73ae07add48ddaa84d1228cf8f7d897dbf5,Fix #14: Use salted hash for recipient to obscure email,Les Orchard,2012-05-27T18:15:00Z,lmorchard,lmorchard,11,10,1
+155,django-badgekit,5ccff4e3139426d5f01d6fca3468bfb4a5c569ed,"PDF label layout tweaks, removing ambiguous characters from claim codes",Les Orchard,2012-05-27T17:33:32Z,lmorchard,lmorchard,12,7,5
+156,django-badgekit,78ac7440bcada8e8d9026c0cb206c726ad748fd1,Notification templates update,Les Orchard,2012-05-27T17:31:56Z,lmorchard,lmorchard,170,65,105
+157,django-badgekit,44fc5a000c2319cd6f5d65c97ce044de7c4d5aa4,Update templates,Les Orchard,2012-05-27T15:42:19Z,lmorchard,lmorchard,140,110,30
+158,django-badgekit,0a5054017a8f360834a5062fd73ae0e32013521f,Fix #89: Get PDF printing working with Avery 22805 labels,Les Orchard,2012-05-27T03:36:13Z,lmorchard,lmorchard,202,186,16
+159,django-badgekit,9c2df17ba933f119193460f8a4aa00141a2d96e1,Fix #87: Clean empty items from multiple field,Les Orchard,2012-05-23T15:03:01Z,lmorchard,lmorchard,5,2,3
+160,django-badgekit,8ffc9a6fa7c436b35817380d11bf0df289b5b071,"Label printing PDF tweaks, closes #31? I hope?",Les Orchard,2012-05-22T02:49:28Z,lmorchard,lmorchard,87,53,34
+161,django-badgekit,e34d9596cfe219516582c5cfb14a0f1a2b1a5c8c,Specify a minimum use count for tags considered in top tags list,Les Orchard,2012-05-21T18:36:31Z,lmorchard,lmorchard,4,2,2
+162,django-badgekit,8b27d318c3d9b6f9d650912e3f3a9d74fef36f44,"Staff tools page, currently only batch claim code granting, closes issue #55",Les Orchard,2012-05-20T21:19:18Z,lmorchard,lmorchard,138,117,21
+163,django-badgekit,55b81750ef2ac72c23832871f35bef4c19a1313a,Add nominations_accepted flag to close #32,Les Orchard,2012-05-18T02:03:31Z,lmorchard,lmorchard,17,17,0
+164,django-badgekit,11e1d53150a5599e8efce785c7109308c6a87d11,Claim button class tweak on home page,Les Orchard,2012-05-18T02:02:44Z,lmorchard,lmorchard,2,1,1
+165,django-badgekit,82f09bfc338c835b97952e6b17c7f72c802e4ef7,"Move more forms to badge detail page, support creating single reusable claim code",Les Orchard,2012-05-17T23:18:09Z,lmorchard,lmorchard,493,327,166
+166,django-badgekit,133e1665054c67544e5ec5f412258f0055fcd90d,"On second thought, switch the front page claim form from GET to POST",Les Orchard,2012-05-17T16:47:59Z,lmorchard,lmorchard,16,8,8
+167,django-badgekit,ceaa91ff110c8fbb69767ca3ac51c190f94a235d,"New ?claim parameter for immediate claim of deferred award, closes #56",Les Orchard,2012-05-17T16:36:44Z,lmorchard,lmorchard,59,48,11
+168,django-badgekit,896949fe1f3bfa9fcf50f868c8758e4dd27b4376,Fix test since badge unique now defaults to true,Les Orchard,2012-05-17T15:44:58Z,lmorchard,lmorchard,7,4,3
+169,django-badgekit,b13f3b62fb5ad4be14bb44e4935b32924fb53cd1,README update,Les Orchard,2012-05-16T17:28:18Z,lmorchard,lmorchard,14,3,11
+170,django-badgekit,26d8bc26abd2ec329499bc5a54aa9fbec4664c5a,Migrated TODO list into github issues,Les Orchard,2012-05-16T17:25:52Z,lmorchard,lmorchard,185,1,184
+171,django-badgekit,8acdb721d10f652f18099673d839418fe8547a04,Add allows_delete_by permission method to Badge model,Les Orchard,2012-05-13T04:07:54Z,lmorchard,lmorchard,9,9,0
+172,django-badgekit,a7d06bbcbb6a5de6e634af48ee025cc8e4ac4bc4,TODO update,Les Orchard,2012-05-13T04:06:49Z,lmorchard,lmorchard,8,3,5
+173,django-badgekit,808d8f2550a103109a791797aed8a32e56227423,Bugfix since adding recent awards to badges list,Les Orchard,2012-05-13T04:06:23Z,lmorchard,lmorchard,2,1,1
+174,django-badgekit,edc3f84d78ba82f3f9f64f63da41a43105b2912f,Tweak to add recent badges to tag and search results,Les Orchard,2012-05-11T04:32:01Z,lmorchard,lmorchard,10,8,2
+175,django-badgekit,b22582e62d64f6996df5a31ad8b789196ae01cf2,TODO updates,Les Orchard,2012-05-11T04:29:27Z,lmorchard,lmorchard,5,5,0
+176,django-badgekit,18400b65a714c5de56f642c74ac2a7335941c120,PDF generation: Tweak to measuring line width for font size adjustment,Les Orchard,2012-04-23T01:31:46Z,lmorchard,lmorchard,38,22,16
+177,django-badgekit,5422ae73ebae6b88a91fd5493daeb98932bfedd4,First stab at building a PDF for printable claim labels,Les Orchard,2012-04-22T22:20:14Z,lmorchard,lmorchard,153,152,1
+178,django-badgekit,62456ca5e8fcf44278d8599ea4caa81d2e629e57,TODO updates,Les Orchard,2012-04-22T21:58:25Z,lmorchard,lmorchard,11,7,4
+179,django-badgekit,fe75174ddb238d7d3f92de1e87840dbd1a185b6a,Allow anonymous user to view award claim page; Be more specific about what anonymous users are allowed,Les Orchard,2012-04-16T14:29:56Z,lmorchard,lmorchard,13,12,1
+180,django-badgekit,8149e5ab62416ebc6ef336841dd0d42c74c4f87f,"Make tags optional, and unique true by default",Les Orchard,2012-04-16T14:05:30Z,lmorchard,lmorchard,4,2,2
+181,django-badgekit,60b0dd5d11968475a568b0cc3fe8487e11fa837b,More detail on forbidden operations,Les Orchard,2012-04-16T05:42:46Z,lmorchard,lmorchard,12,6,6
+182,django-badgekit,df6f4c27953bc8774338864501ef452c46ba9c0e,Playdoh templates update,Les Orchard,2012-04-16T05:17:02Z,lmorchard,lmorchard,229,182,47
+183,django-badgekit,2e6918818e180a130cdc07e96ba64acb67e12311,"Claim code mass generation, management, and display",Les Orchard,2012-04-16T05:15:02Z,lmorchard,lmorchard,197,170,27
+184,django-badgekit,849f063b0e904b2d3beaebef33d5112a79a91ae5,Initial stab at adding tags,Les Orchard,2012-04-16T01:22:56Z,lmorchard,lmorchard,80,67,13
+185,django-badgekit,4de9c1bfba4ce03e3f52cd1fc81f4d318c584d15,Accept a list of multiple email addresses for issuing awards,Les Orchard,2012-04-15T02:14:34Z,lmorchard,lmorchard,120,101,19
+186,django-badgekit,56e36d0a9c1a52557d580bcdac45608265d6216e,Tweaks to model,Les Orchard,2012-04-14T23:52:29Z,lmorchard,lmorchard,15,10,5
+187,django-badgekit,bc28d2a860a7d225de57d2c4c341ec9c44d50aa8,Update playdoh template for deferred award claim,Les Orchard,2012-04-14T21:29:21Z,lmorchard,lmorchard,48,44,4
+188,django-badgekit,d746529a11f9afc4497ab77806ecc9a324ec2173,"View support for granting deferred awards
+
+* Use case is a staff/support volunteer given claim code and email
+  address, who can then claim the award on the behalf of the email
+  address owner.",Les Orchard,2012-04-14T21:27:54Z,lmorchard,lmorchard,78,64,14
+189,django-badgekit,de61e381fe83be20a040b8b0cdcd57dea35663b8,TODO updates,Les Orchard,2012-04-14T21:27:19Z,lmorchard,lmorchard,56,35,21
+190,django-badgekit,ab84f140771e0da449921ff0c2a80e1971827be5,"Model support for granting deferred awards
+
+* Use case is a staff/support volunteer given claim code and email
+  address, who can then claim the award on the behalf of the email
+  address owner.",Les Orchard,2012-04-14T20:26:00Z,lmorchard,lmorchard,118,116,2
+191,django-badgekit,aa33cad0d75b2fd411d97d65228f5b543dd4babd,Redirect all award issuers to badge detail page,Les Orchard,2012-04-14T20:07:06Z,lmorchard,lmorchard,9,4,5
+192,django-badgekit,6559e52f610e64e6529930f60c8fd5506bb7bf20,TODO updates,Les Orchard,2012-04-07T18:22:05Z,lmorchard,lmorchard,2,1,1
+193,django-badgekit,9711ac7419cc6ddb4465717ca6073c17a3fe9767,TODO updates,Les Orchard,2012-04-07T18:21:29Z,lmorchard,lmorchard,38,25,13
+194,django-badgekit,e2af7fa2f7210db520c3ea3c4229cb8d43a939ab,"Enforce {add,change}_badge permissions
+
+* Enforce {add,change}_badge permissions in view
+
+* Helper function to check add_badge permission in templates
+
+* BADGER_ALLOW_ADD_BY_ANYONE setting to shortcircuit add permission
+  enforcement, for permissive multiplayer setup",Les Orchard,2012-04-07T18:01:58Z,lmorchard,lmorchard,42,40,2
+195,django-badgekit,7aa794ee30b617bf3a8094e49580cbf40d903705,TODO updates,Les Orchard,2012-04-07T18:01:20Z,lmorchard,lmorchard,12,2,10
+196,django-badgekit,b93abf21fe8fdb34de0783e9b8c2bf336b7f116e,initial badgekit api integration,Erik Christensen,2014-06-30T20:19:57Z,christensenep,christensenep,150,109,41
+197,django-badgekit,18cf0f7ed4e3e6f8ca3fc55d482e5651a988e40a,Updating PIL requirement,Erik Christensen,2014-06-24T20:25:20Z,christensenep,christensenep,2,1,1
+198,django-badgekit,1a41701179df11df8ca8ca44898b70b6352623d3,"Merge pull request #198 from lmorchard/fix-update-badges-error
+
+Fix update_badges misuse of model.save()",Les Orchard,2014-02-03T21:20:16Z,lmorchard,lmorchard,4,3,1
+199,django-badgekit,fe6e970a0fe083b0fa4840bf7981623c93979279,Fix update_badges misuse of model.save(),Les Orchard,2014-02-03T21:06:03Z,lmorchard,lmorchard,4,3,1
+200,django-badgekit,c04372aa76dfaa2de7db838359cba2cc10cd61cd,"Merge pull request #190 from l-hedgehog/invalid_assertion
+
+issued_on should be ""an ISO 8601 Date",Will Kahn-Greene,2013-11-01T19:47:29Z,willkg,willkg,4,2,2
+201,django-badgekit,cda67c5d61be777ae02855a6d4e87ff265051876,"Merge pull request #191 from willkg/l10n-fix
+
+This fixes gettext-ified strings to be unicodes",Will Kahn-Greene,2013-11-01T14:58:13Z,willkg,willkg,106,50,56
+202,django-badgekit,ff5af989dff9e67bb6dd3ef66c39ab0dacc5dc21,This fixes gettext-ified strings to be unicodes,Will Kahn-Greene,2013-11-01T14:43:51Z,willkg,willkg,106,50,56
+203,django-badgekit,71a7570ef50c911356efb24c5ba39f533043364b,"issued_on should be ""an ISO 8601 date
+
+... or a standard 10-digit Unix timestamp."" per
+https://github.com/mozilla/openbadges/wiki/Assertions#wiki-date-time",Hector Zhao,2013-11-01T05:45:46Z,l-hedgehog,l-hedgehog,4,2,2
+204,django-badgekit,da8c5403526d1c32e68e85ef5ad003f7460a660d,"Merge pull request #189 from willkg/test-fixes
+
+Fix travis and tox config to always use latest django",Will Kahn-Greene,2013-10-30T00:29:54Z,willkg,willkg,17,7,10
+205,django-badgekit,7464cbe7818a123673bbb5a41d190fae4a14465f,Fix travis and tox config to always use latest django,Will Kahn-Greene,2013-10-29T20:31:00Z,willkg,willkg,17,7,10
+206,django-badgekit,aa2bf37aa262f7e11f769aa29b8cc01ea934d62e,Add irc notification to travis.yml,Will Kahn-Greene,2013-09-25T00:47:21Z,willkg,willkg,5,5,0
+207,django-badgekit,dfd3b517eec64b2775d233aef70e812bfeebc21c,Update Django versions in travis.yml,Will Kahn-Greene,2013-09-25T00:45:38Z,willkg,willkg,4,2,2
+208,django-badgekit,90148a42f1249a668d3096be4b52721095892487,Tweak versions so they always use latest Django,Will Kahn-Greene,2013-09-25T00:44:33Z,willkg,willkg,8,4,4
+209,django-badgekit,01d976e23594e94cb16100db6e574492d80a3269,"De-l10nize admin stuff
+
+I did this in a fit of stupidity. This fixes that.",Will Kahn-Greene,2013-09-11T15:09:05Z,willkg,willkg,24,12,12
+210,django-badgekit,a387b0a01fc6c390d654e381a34a9441ec1b7579,"Merge pull request #184 from willkg/rgba-fix
+
+Fix badge image conversion issues",Will Kahn-Greene,2013-09-11T14:40:08Z,willkg,willkg,5,4,1
+211,django-badgekit,270895fa44c3e6df5ec6430cb593d41841aebe89,"Fix badge image conversion issues
+
+This fixes the problem where if you try to create a badge with a PNG
+image that has an alpha channel, django-badger takes that alpha channel
+out back and shoots it in the face with fire changing it to charcoal
+black.",Will Kahn-Greene,2013-09-11T14:00:23Z,willkg,willkg,5,4,1
+212,django-badgekit,b74fbc3a03f6c4387a4bbf4c0c12d9070d710eee,"Fix one more except
+
+Missed this one, too, in the last pass. This is goofy, but I got them
+all this time for realz",Will Kahn-Greene,2013-08-24T15:25:32Z,willkg,willkg,2,1,1
+213,django-badgekit,1e21bb14d218a264ed477165538f6845f426e5d2,"Fix one more except
+
+Missed this one in the last pass. Oops.",Will Kahn-Greene,2013-08-24T15:25:02Z,willkg,willkg,2,1,1
+214,django-badgekit,fa3ea14d8e49cfd2921e9b1d28fc126546005d25,"Fix exception handling
+
+This updates exception syntax to the modern one plus fixes some empty
+excepts.",Will Kahn-Greene,2013-08-24T15:24:10Z,willkg,willkg,77,38,39
+215,django-badgekit,26bad15091e46d25961ba2c28e3d5ef28b149da2,"A bunch of l10n cleanup
+
+I did a few things:
+
+* convert %s to {name} because the latter is easier on localizers and
+  gives more context regarding what the data is
+
+  plus it allows the localizer to change the order of the variables
+  which is really important in strings that have more than one variable
+
+* add gettext calls around strings that should have them
+
+* convert "" to ' in a bunch of places
+
+* fix some indentation where my editor (Emacs) fixed it
+
+* add a few TODO items for things that I'm pretty sure don't fly
+  l10n-wise
+
+The ramification of these changes is that any project that has these
+strings translated will now have to retranslate a bunch of them because
+I changed the variable format. Sorry about that.",Will Kahn-Greene,2013-08-24T14:18:52Z,willkg,willkg,148,86,62
+216,django-badgekit,b5e3dd95dc5f9ceafded3499aa3715196abb263d,"Delete commented out urlparams code
+
+@lmorchard said it was ok to nuke this from orbit. Done.",Will Kahn-Greene,2013-08-24T03:38:04Z,willkg,willkg,34,0,34
+217,django-badgekit,ee84179dca84e6cdc874b8051f0c89c10b618be9,Add ToxicWar to CONTRIBUTORS,Will Kahn-Greene,2013-08-24T03:26:46Z,willkg,willkg,1,1,0
+218,django-badgekit,a35acc3715a08863a81956ab0ca2b4bc6c2ecad0,"Fix issues with url tag and email subject
+
+The url tag changed in Django 1.5. I fixed the code so that it should
+work in both Django 1.4 and 1.5. When we drop support for 1.4, we can
+ditch all the
+
+    {% load url from future %}
+
+stuff.
+
+The email subject for deferred awards is a template which is fine but
+when we render the template, it's likely to end up with newlines. So I
+added a call to strip() which will remove whitespace at the beginning
+and end. It fixes the test, but there might be other things we could do
+better here. For example, maybe use gettext instead of putting it in a
+template?",Will Kahn-Greene,2013-08-24T03:20:40Z,willkg,willkg,48,29,19
+219,django-badgekit,ffdbb5fcbdbd6acb79690321dbd25662e879efee,Improve BadgesListView,ToxicWar,2013-03-19T12:03:52Z,ToxicWar,ToxicWar,26,16,10
+220,django-badgekit,0a675697a4dbe451b611ab6e8f6c18782b385ad5,"Fix kwargs.get problem (kwargs -> self.kwargs)
+Improve AwardsListView
+
+Conflicts:
+	badger/views.py",ToxicWar,2013-03-19T10:53:59Z,ToxicWar,ToxicWar,22,14,8
+221,django-badgekit,12a871622dcdbcf299a900620f9440f45131c4b4,Remove direct_to_template,ToxicWar,2013-03-18T12:24:28Z,ToxicWar,ToxicWar,2,0,2
+222,django-badgekit,4c7707a03f9a8356c850ad64501bc1547c63599f,PEP8,ToxicWar,2013-03-18T11:14:45Z,ToxicWar,ToxicWar,133,64,69
+223,django-badgekit,b77cbeb4fbe9f9e4d7cd4615e3d161a3cc9a050e,"Update badges_list and awards_list(support Django 1.5)
+Fix extra spaces
+
+Conflicts:
+	badger/views.py",ToxicWar,2013-03-16T14:05:32Z,ToxicWar,ToxicWar,106,54,52
+224,django-badgekit,36f086e22ab8fb1df36efa632d96bd3c82daef9e,Add missing docs/ files,Will Kahn-Greene,2013-08-24T01:10:18Z,willkg,willkg,2,2,0
+225,django-badgekit,9d86677ebc850afd7ca6cbc305e1133bfc43396c,Add CHANGELOG and CONTRIBUTORS; fix MANIFEST.in,Will Kahn-Greene,2013-08-24T01:09:52Z,willkg,willkg,35,33,2
+226,django-badgekit,fa10287d2ea59da0de1c4d985a292c4ef7c24041,Add note about tox to docs,Will Kahn-Greene,2013-08-22T19:43:33Z,willkg,willkg,8,8,0
+227,django-badgekit,8b0a9ea0bce2c6e149e6682ccd55b91a44f40fff,"Merge pull request #170 from askvictor/7bbb30eca1c0b8679b9797d302538213d2d5da16
+
+Fix erroneous time format string in OBI assertion",Les Orchard,2013-08-22T18:27:52Z,lmorchard,lmorchard,4,2,2
+228,django-badgekit,8e8e8bda7cdcec05e7837da066bb6e2df763059e,Add .tox to ignored list,Will Kahn-Greene,2013-08-22T15:55:08Z,willkg,willkg,1,1,0
+229,django-badgekit,c1de602802c0e09e2cc920e26a6d698e3fc915d2,"Add tox.ini
+
+This tests python 2.6 and 2.7 with Django 1.4 and 1.5.
+
+The tests all pass fine with django 1.4, but they fail with django
+1.5.
+
+NB: I'm ""faking"" the python 2.6 tests on my system since I don't
+have python 2.6 available. But travis is running 2.6 and 2.7, so
+there you go.",Will Kahn-Greene,2013-08-22T15:14:56Z,willkg,willkg,31,31,0
+230,django-badgekit,1eb2e9cb30fad17cd2b67f2cac27c6e83c6b608c,"Add docstring to _document_django_model
+
+You could say it's ironic that function had no docstring.",Will Kahn-Greene,2013-08-22T13:14:39Z,willkg,willkg,11,6,5
+231,django-badgekit,c58a0e58980ed6931552ea6cf3158419cc47e8e5,"Fix travis to test multiple environments
+
+We want to test Python 2.6 and 2.7 for Django 1.4.6 and 1.5.2.",Will Kahn-Greene,2013-08-22T02:08:09Z,willkg,willkg,13,8,5
+232,django-badgekit,4a9805242ee1211a189eb213c17149218b442c8d,Fix deprecation errors,Will Kahn-Greene,2013-08-22T02:04:55Z,willkg,willkg,4,2,2
+233,django-badgekit,34fdd636d7be01b49a9bccc403907d246933be96,Change all User fields to raw_id_fields in admin,Will Kahn-Greene,2013-08-22T01:47:39Z,willkg,willkg,5,4,1
+234,django-badgekit,a9f85f5d8ef520755d8a977ba0c229c1e9f0acb9,"Make creatore a raw_id_field
+
+Fixes #182.",Will Kahn-Greene,2013-08-22T01:41:58Z,willkg,willkg,4,4,0
+235,django-badgekit,5688fd14d5cc6712b6e5fe2822bd0c7004274dff,Add more settings docs,Will Kahn-Greene,2013-08-22T01:41:01Z,willkg,willkg,29,26,3
+236,django-badgekit,b30690af58d93d8bdf2ba514376cfbffc9fbcdf2,Commenting out urlparams because it's broken,Will Kahn-Greene,2013-08-21T21:25:36Z,willkg,willkg,60,32,28
+237,django-badgekit,4008b70c1e9bed7d5373c8ba198fe0d0f72a134e,Fix badg.us url,Will Kahn-Greene,2013-08-21T20:37:58Z,willkg,willkg,4,2,2
+238,django-badgekit,93b60aa803344c27190422882ad5547bc778af26,Update Getting Started and other docs tweaks,Will Kahn-Greene,2013-08-21T19:52:31Z,willkg,willkg,61,46,15
+239,django-badgekit,48e4de749453c18c4e4b6ec82de2a69690bf6b43,Add some views docs,Will Kahn-Greene,2013-08-21T18:04:02Z,willkg,willkg,106,103,3
+240,django-badgekit,725e735a106a2d41738e7b188aba6eba4c060f57,"Add documentation
+
+This does a first pass on API docs. I think I caught everything, but
+it's hard to know for sure. One thing is that there are a bunch of class
+members that have no docstrings, so they don't currently show up in the
+API docs even though they're specified in the autoclass calls.",Will Kahn-Greene,2013-08-19T21:46:55Z,willkg,willkg,306,284,22
+241,django-badgekit,1e95e5ec03c94f2dbcb1ca9cf932bd2d2c96aedf,Fix .travis.yml,Will Kahn-Greene,2013-08-16T21:58:25Z,willkg,willkg,2,1,1
+242,django-badgekit,bbee58edec457e97636d3f614a4dd09b93a3326a,"Fix AssertionError; signal receivers must have **kwargs
+
+This was causing all the tests to fail under Django 1.4.6.",Will Kahn-Greene,2013-08-16T20:22:05Z,willkg,willkg,2,1,1
+243,django-badgekit,3ed1a09cc45c2593ecadd9587a08c4747a6a584a,"Add docs for running tests; fix reqs
+
+This gets everything working to run tests using:
+
+    python manage.py test
+
+This moves requirements up a directory where they're easier to find
+for people looking at the source code.
+
+This combines ""tests.txt"" and ""dev.txt"". Developers should be running
+tests, so it's easier to just have all the bits in that one requirements
+file. This simplifies setting everytihng up for hacking.
+
+Documents how to set everything up and run the tests in the docs. I also
+added a note about the IRC channel.
+
+I also tweaked .gitignore to ignore some additional things.
+
+I deleted runtests.py and some of the other test scaffolding because
+there was too many test scaffolding things that seemed to conflict.
+There should be only one true documented way!",Will Kahn-Greene,2013-08-16T20:17:38Z,willkg,willkg,107,53,54
+244,django-badgekit,8c2a17e795ff5ca25e76ae1d69e96641804d7460,"Add MANIFEST.in; tweak setup.py
+
+This cleans up setup.py a bit, makes sure it has some additional
+metadata to help PyPI, makes sure everything that should be in an sdist
+will be in the sdist and switches to use find_packages() in setuptools.",Will Kahn-Greene,2013-08-16T14:17:17Z,willkg,willkg,24,19,5
+245,django-badgekit,f9d5278008c4b4f37db01bc3fbc31211834c979b,"Merge pull request #176 from lmorchard/master
+
+Quick fix for breakage with updated distribute",Les Orchard,2013-07-29T16:48:10Z,lmorchard,lmorchard,1,0,1
+246,django-badgekit,68ee3b6a691c214630ec8998d492517b5dbb065c,Quick fix for breakage with updated distribute,Les Orchard,2013-07-29T16:47:05Z,lmorchard,lmorchard,1,0,1
+247,django-badgekit,916ee4c130f7c5c9221d00be635c2ae4e361acf7,"Fix copyright and urls
+
+Bunch of urls pointed to the old repository location. Fixed that.
+Updated copyright to be Mozilla Foundation and have the correct
+years.",Will Kahn-Greene,2013-07-26T16:10:11Z,willkg,willkg,12,6,6
+248,django-badgekit,7bbb30eca1c0b8679b9797d302538213d2d5da16,replaced erroneous strftime('%s') with isoformat() for OBI assertion,Victor Rajewski,2013-06-17T22:30:11Z,askvictor,askvictor,4,2,2
+249,django-badgekit,86f9e3c111e68a4ed744ea347b5fc4124d20b4a1,"Merge pull request #167 from lmorchard/include-nomination-in-award-detail
+
+Include nomination in award detail when necessary",Les Orchard,2013-03-21T17:22:36Z,lmorchard,lmorchard,88,84,4
+250,django-badgekit,935caca8e8ac5a5b61b58b8eed115b4afbbf8f42,Include nomination in award detail when necessary,Les Orchard,2013-03-21T17:00:37Z,lmorchard,lmorchard,88,84,4
+251,django-badgekit,7f3dd23d744663fc07ea45cecdd16057288ac636,Increase test verbosity on travis,Les Orchard,2013-03-21T01:17:22Z,lmorchard,lmorchard,2,1,1
+252,django-badgekit,09c3f8edf1b682992cc73340243ecfe59c67b723,"Merge pull request #166 from rlr/only-one-deferred-email
+
+Fix #165 - Only send email on first DeferredAward to user.",Les Orchard,2013-03-21T01:07:06Z,lmorchard,lmorchard,28,26,2
+253,django-badgekit,db530a3d4b5ec5b1c86634d2863167febf61b011,Fix #165 - Only send email on first DeferredAward to user.,Ricky Rosario,2013-03-20T22:56:42Z,rlr,rlr,28,26,2
+254,django-badgekit,49944c8c4e279413d35c5d6c52358d99550fbe08,"Merge pull request #164 from rlr/detect-deferred-award-dupes
+
+Fix #163 - Don't create multiple DeferredAwards for unique badges.",Les Orchard,2013-03-20T20:37:03Z,lmorchard,lmorchard,25,25,0
+255,django-badgekit,56543cd9670d83e09239c95de013b8468bf73edf,Fix #163 - Don't create multiple DeferredAwards for unique badges.,Ricky Rosario,2013-03-20T18:28:15Z,rlr,rlr,25,25,0
+256,django-badgekit,9129d33ef47a1e3b47d2abd2f4dc6050be48c109,Update doco to point at mozilla repos,Les Orchard,2013-03-19T18:56:09Z,lmorchard,lmorchard,24,12,12
+257,django-badgekit,a0a8148d228f281c59b627818099a8495c5c8182,"Merge pull request #162 from lmorchard/161-missing-unique-checkbox
+
+Fixes #161: Ensure unique field appears in create / edit forms",Les Orchard,2013-03-19T17:46:09Z,lmorchard,lmorchard,4,3,1
+258,django-badgekit,5cf4bb3bc5cfa434d172e3e7ae92f36d465bf321,Fixes #161: Ensure unique field appears in create / edit forms,Les Orchard,2013-03-19T17:44:25Z,lmorchard,lmorchard,3,2,1
+259,django-badgekit,fe6712632939a325b741d1180a7f96d3ec558da8,Add test-venv to .gitignore,Les Orchard,2013-03-19T17:42:44Z,lmorchard,lmorchard,1,1,0
+260,django-badgekit,4ee61c7263659ad8c869320642c4eb885f3b5224,"Merge pull request #154 from lmorchard/master
+
+Tweaks to exceptions and notifications in awarding",Les Orchard,2013-03-04T21:16:46Z,lmorchard,lmorchard,43,25,18
+261,django-badgekit,04180989b3f593b4444e667fc0d838471a0f2002,Notify of badge award in save() method rather than just award_to(),Les Orchard,2013-03-04T21:03:23Z,lmorchard,lmorchard,27,12,15
+262,django-badgekit,f55d06e4eaff9ce0063462e6a8663b0f6e02ba76,Badge.award_to option to raise BadgeAlreadyAwardedException when needed,Les Orchard,2013-03-04T20:56:37Z,lmorchard,lmorchard,18,14,4
+263,django-badgekit,9a8a9ef98c461e2b81955e1a055fe030f0ed8f9f,Fixes #22: Badge option to auto-approve all nominations,Les Orchard,2013-02-25T18:38:16Z,lmorchard,lmorchard,153,149,4
+264,django-badgekit,dff6334c9361d069b9107e45ef0b6abcba00b53b,Some work toward pulling out and centrally defining all settings,Les Orchard,2013-02-25T18:20:11Z,lmorchard,lmorchard,61,34,27
+265,django-badgekit,e648caf3d806934d4e211c22f84d3a8cb859dfc6,Only accept digits for IDs in URLs,Les Orchard,2013-02-24T06:06:32Z,lmorchard,lmorchard,8,4,4
+266,django-badgekit,963f2ffe452a94fae8bf9d5f405abdb016f22988,Bugfixes to slug handling,Les Orchard,2013-02-22T23:48:05Z,lmorchard,lmorchard,5,2,3
+267,django-badgekit,81bf49deef71b6da381861c86659811ecc934e5d,"fix #147, fix #146: Allow slug change until first award, use md5 hash in image filenames",Les Orchard,2013-02-22T21:28:51Z,lmorchard,lmorchard,18,14,4
+268,django-badgekit,128c4bc61f5024a24f9b4f5588791d048abef064,New ignores for docs,Les Orchard,2013-02-22T21:08:12Z,lmorchard,lmorchard,3,3,0
+269,django-badgekit,e95cfe83bf8e17611b696de16d42af6ccb030527,#16: Baby steps toward better docs,Les Orchard,2013-02-21T02:49:59Z,lmorchard,lmorchard,199,124,75
+270,django-badgekit,ff2f9a02558acbe624853f06df39e56241c4b632,Merge branch 'master' of git://github.com/lmorchard/django-badger,Les Orchard,2013-02-21T02:01:17Z,lmorchard,lmorchard,9,7,2
+271,django-badgekit,10b5637f11600af1043a87766913f4fab1529975,Initial doc setup with Sphinx,Les Orchard,2013-02-14T14:52:44Z,lmorchard,lmorchard,366,366,0
+272,django-badgekit,2f97f8e27d9ce67d3ca8338b320f88fdaecc33d7,"Merge pull request #142 from huxley/import-json
+
+Check for lack of django.utils.simplejson, to provide support for Django1.5",Les Orchard,2013-01-27T16:57:58Z,lmorchard,lmorchard,9,7,2
+273,django-badgekit,3429ecdbb82dda4a02c6472754fff06cf2f62bdc,"Test for lack of django.utils.simplejson, to provide support for Django 1.5",Patrick Taylor,2013-01-27T16:38:47Z,huxley,huxley,9,7,2
+274,django-badgekit,62b310ab40151beadc3e9ef789c460718989017b,"Fixes #139: Option to disable badge award image baking, off by default",Les Orchard,2013-01-24T03:07:50Z,lmorchard,lmorchard,161,80,81
+275,django-badgekit,a77047ac4467db36632e0bcc118c3eca5df4a0f4,Fixes #140: Reusable claim code URL should always lead to claim page,Les Orchard,2013-01-24T01:54:09Z,lmorchard,lmorchard,54,38,16
+276,django-badgekit,2f13b05ce0e95b8805656d6665e97c48d17a435f,Bugfix for JSON URLs and reverse lookups,Les Orchard,2013-01-22T23:14:11Z,lmorchard,lmorchard,4,2,2
+277,django-badgekit,ac1efa07f9edc11eef70746b9ef38a058ea169f9,"Use greater-than, no equal, for recent badge checking",Les Orchard,2013-01-16T21:31:51Z,lmorchard,lmorchard,2,1,1
+278,django-badgekit,d352e78cb9ae2e380ae03b55a47ba37ffa93f319,"BADGER_MEDIA_{ROOT,URL} settings; quick bugfix to helpers",Les Orchard,2013-01-16T21:11:40Z,lmorchard,lmorchard,11,7,4
+279,django-badgekit,f0ab6bb178fcc1e6793530fca9509bf09f2dadae,Support a `badges` list alongside optional `update_badges()` method in `badges.py` modules,Les Orchard,2013-01-15T23:25:20Z,lmorchard,lmorchard,49,30,19
+280,django-badgekit,943d687d154f9e7a727ee6b42cfc2c5e7c6e5457,"Test fix, middleware changed names",Les Orchard,2013-01-15T21:54:49Z,lmorchard,lmorchard,7,2,5
+281,django-badgekit,7eb657571355c2cedbca47dca15b1575eb38ed81,Simple URLs list attempt,Les Orchard,2013-01-15T21:00:29Z,lmorchard,lmorchard,49,49,0
+282,django-badgekit,e9506fa82e5c07ae460116528f21726b7830d224,Bugfixes and refinments for RecentBadgeAwardsMiddleware,Les Orchard,2013-01-02T20:45:05Z,lmorchard,lmorchard,117,69,48
+283,django-badgekit,4ba07b6a9e1cae98d0870f796709c4da366d3433,Ignore test virtualenv and uploads test artifact,Les Orchard,2013-01-02T18:38:39Z,lmorchard,lmorchard,2,2,0
+284,django-badgekit,b3544906d70bae51315639ae12381a5c40b048e5,"fix issue 138: New badger_example app and standalone test scaffolding
+
+* Moved badger_example out of tests directory and up to package root
+* Clean out playdoh / jinja templates, since they live in badg.us
+* Misc tweaks to get tests working standalone",Les Orchard,2013-01-02T02:00:45Z,lmorchard,lmorchard,1469,417,1052
+285,django-badgekit,3bab1afb3b696b8e66dde26baa97d2bffb7de8f1,Bugfix for when profile has no avatar attribute,Les Orchard,2012-12-31T20:49:07Z,lmorchard,lmorchard,2,2,0
+286,django-badgekit,2e5cd8cdcd8df5bb62942e461492c5ef2e4f9bc7,Experiments in getting `setup.py test` working,Les Orchard,2012-12-30T04:38:00Z,lmorchard,lmorchard,101,100,1
+287,django-badgekit,3167f23ace7ba5d7af3021a6e604cfd707ae03b5,Notifications app is optional; temporarily disable claim codes test that fails in sqlite3,Les Orchard,2012-12-31T03:17:03Z,lmorchard,lmorchard,48,28,20
+288,django-badgekit,926e87b984eaaddf377cff82b4519c422462b316,Unneeded tower calls,Les Orchard,2012-12-31T03:16:09Z,lmorchard,lmorchard,2,0,2
+289,django-badgekit,f27d9d23e2121f431880803ca8c5f675914cb2be,"Django 1.2 tweaks, bugfixes
+
+* Try to better support Django 1.2, and missing user_logged_in signal
+* Look for PngImagePlugin outside of PIL
+* Silently fail if deferred_award email templates missing",Les Orchard,2012-12-31T03:14:07Z,lmorchard,lmorchard,56,35,21
+290,django-badgekit,aa7ba628e5d304690def7409220e69b693e64841,Middleware to make request.recent_awards available for notifications of awards received since last visit,Les Orchard,2012-12-30T19:02:34Z,lmorchard,lmorchard,155,155,0
+291,django-badgekit,a37033eb7eee990efcf59e6a5a8e88dba2ff150f,Add urlparams filter,Les Orchard,2012-12-30T04:25:17Z,lmorchard,lmorchard,30,30,0
+292,django-badgekit,3b97c21491a03fa9d9b02adced674ac19a421e12,Clean up unused import,Les Orchard,2012-12-30T04:19:46Z,lmorchard,lmorchard,2,1,1
+293,django-badgekit,fdd37d51c25f04139cbe3fffbddb5d2b0ce5208d,"The taggit app is optional, so should the tag field be",Les Orchard,2012-12-30T04:19:06Z,lmorchard,lmorchard,10,7,3
+294,django-badgekit,3f1cb940f8ba5b3f10623b7de3225efe6e99982f,Make template base path configurable in views,Les Orchard,2012-12-30T04:11:28Z,lmorchard,lmorchard,129,62,67
+295,django-badgekit,31acad05a42f7c8782eadda3d11075bb6da25347,Image can be missing in admin,Les Orchard,2012-12-30T03:54:10Z,lmorchard,lmorchard,2,2,0
+296,django-badgekit,b93abf21fe8fdb34de0783e9b8c2bf336b7f116e,initial badgekit api integration,Erik Christensen,2014-06-30T20:19:57Z,christensenep,christensenep,150,109,41
+297,django-badgekit,18cf0f7ed4e3e6f8ca3fc55d482e5651a988e40a,Updating PIL requirement,Erik Christensen,2014-06-24T20:25:20Z,christensenep,christensenep,2,1,1
+298,django-badgekit,1a41701179df11df8ca8ca44898b70b6352623d3,"Merge pull request #198 from lmorchard/fix-update-badges-error
+
+Fix update_badges misuse of model.save()",Les Orchard,2014-02-03T21:20:16Z,lmorchard,lmorchard,4,3,1
+299,django-badgekit,fe6e970a0fe083b0fa4840bf7981623c93979279,Fix update_badges misuse of model.save(),Les Orchard,2014-02-03T21:06:03Z,lmorchard,lmorchard,4,3,1
+300,django-badgekit,c04372aa76dfaa2de7db838359cba2cc10cd61cd,"Merge pull request #190 from l-hedgehog/invalid_assertion
+
+issued_on should be ""an ISO 8601 Date",Will Kahn-Greene,2013-11-01T19:47:29Z,willkg,willkg,4,2,2
+301,django-badgekit,cda67c5d61be777ae02855a6d4e87ff265051876,"Merge pull request #191 from willkg/l10n-fix
+
+This fixes gettext-ified strings to be unicodes",Will Kahn-Greene,2013-11-01T14:58:13Z,willkg,willkg,106,50,56
+302,django-badgekit,ff5af989dff9e67bb6dd3ef66c39ab0dacc5dc21,This fixes gettext-ified strings to be unicodes,Will Kahn-Greene,2013-11-01T14:43:51Z,willkg,willkg,106,50,56
+303,django-badgekit,71a7570ef50c911356efb24c5ba39f533043364b,"issued_on should be ""an ISO 8601 date
+
+... or a standard 10-digit Unix timestamp."" per
+https://github.com/mozilla/openbadges/wiki/Assertions#wiki-date-time",Hector Zhao,2013-11-01T05:45:46Z,l-hedgehog,l-hedgehog,4,2,2
+304,django-badgekit,da8c5403526d1c32e68e85ef5ad003f7460a660d,"Merge pull request #189 from willkg/test-fixes
+
+Fix travis and tox config to always use latest django",Will Kahn-Greene,2013-10-30T00:29:54Z,willkg,willkg,17,7,10
+305,django-badgekit,7464cbe7818a123673bbb5a41d190fae4a14465f,Fix travis and tox config to always use latest django,Will Kahn-Greene,2013-10-29T20:31:00Z,willkg,willkg,17,7,10
+306,django-badgekit,aa2bf37aa262f7e11f769aa29b8cc01ea934d62e,Add irc notification to travis.yml,Will Kahn-Greene,2013-09-25T00:47:21Z,willkg,willkg,5,5,0
+307,django-badgekit,dfd3b517eec64b2775d233aef70e812bfeebc21c,Update Django versions in travis.yml,Will Kahn-Greene,2013-09-25T00:45:38Z,willkg,willkg,4,2,2
+308,django-badgekit,90148a42f1249a668d3096be4b52721095892487,Tweak versions so they always use latest Django,Will Kahn-Greene,2013-09-25T00:44:33Z,willkg,willkg,8,4,4
+309,django-badgekit,01d976e23594e94cb16100db6e574492d80a3269,"De-l10nize admin stuff
+
+I did this in a fit of stupidity. This fixes that.",Will Kahn-Greene,2013-09-11T15:09:05Z,willkg,willkg,24,12,12
+310,django-badgekit,a387b0a01fc6c390d654e381a34a9441ec1b7579,"Merge pull request #184 from willkg/rgba-fix
+
+Fix badge image conversion issues",Will Kahn-Greene,2013-09-11T14:40:08Z,willkg,willkg,5,4,1
+311,django-badgekit,270895fa44c3e6df5ec6430cb593d41841aebe89,"Fix badge image conversion issues
+
+This fixes the problem where if you try to create a badge with a PNG
+image that has an alpha channel, django-badger takes that alpha channel
+out back and shoots it in the face with fire changing it to charcoal
+black.",Will Kahn-Greene,2013-09-11T14:00:23Z,willkg,willkg,5,4,1
+312,django-badgekit,b74fbc3a03f6c4387a4bbf4c0c12d9070d710eee,"Fix one more except
+
+Missed this one, too, in the last pass. This is goofy, but I got them
+all this time for realz",Will Kahn-Greene,2013-08-24T15:25:32Z,willkg,willkg,2,1,1
+313,django-badgekit,1e21bb14d218a264ed477165538f6845f426e5d2,"Fix one more except
+
+Missed this one in the last pass. Oops.",Will Kahn-Greene,2013-08-24T15:25:02Z,willkg,willkg,2,1,1
+314,django-badgekit,fa3ea14d8e49cfd2921e9b1d28fc126546005d25,"Fix exception handling
+
+This updates exception syntax to the modern one plus fixes some empty
+excepts.",Will Kahn-Greene,2013-08-24T15:24:10Z,willkg,willkg,77,38,39
+315,django-badgekit,26bad15091e46d25961ba2c28e3d5ef28b149da2,"A bunch of l10n cleanup
+
+I did a few things:
+
+* convert %s to {name} because the latter is easier on localizers and
+  gives more context regarding what the data is
+
+  plus it allows the localizer to change the order of the variables
+  which is really important in strings that have more than one variable
+
+* add gettext calls around strings that should have them
+
+* convert "" to ' in a bunch of places
+
+* fix some indentation where my editor (Emacs) fixed it
+
+* add a few TODO items for things that I'm pretty sure don't fly
+  l10n-wise
+
+The ramification of these changes is that any project that has these
+strings translated will now have to retranslate a bunch of them because
+I changed the variable format. Sorry about that.",Will Kahn-Greene,2013-08-24T14:18:52Z,willkg,willkg,148,86,62
+316,django-badgekit,b5e3dd95dc5f9ceafded3499aa3715196abb263d,"Delete commented out urlparams code
+
+@lmorchard said it was ok to nuke this from orbit. Done.",Will Kahn-Greene,2013-08-24T03:38:04Z,willkg,willkg,34,0,34
+317,django-badgekit,ee84179dca84e6cdc874b8051f0c89c10b618be9,Add ToxicWar to CONTRIBUTORS,Will Kahn-Greene,2013-08-24T03:26:46Z,willkg,willkg,1,1,0
+318,django-badgekit,a35acc3715a08863a81956ab0ca2b4bc6c2ecad0,"Fix issues with url tag and email subject
+
+The url tag changed in Django 1.5. I fixed the code so that it should
+work in both Django 1.4 and 1.5. When we drop support for 1.4, we can
+ditch all the
+
+    {% load url from future %}
+
+stuff.
+
+The email subject for deferred awards is a template which is fine but
+when we render the template, it's likely to end up with newlines. So I
+added a call to strip() which will remove whitespace at the beginning
+and end. It fixes the test, but there might be other things we could do
+better here. For example, maybe use gettext instead of putting it in a
+template?",Will Kahn-Greene,2013-08-24T03:20:40Z,willkg,willkg,48,29,19
+319,django-badgekit,ffdbb5fcbdbd6acb79690321dbd25662e879efee,Improve BadgesListView,ToxicWar,2013-03-19T12:03:52Z,ToxicWar,ToxicWar,26,16,10
+320,django-badgekit,0a675697a4dbe451b611ab6e8f6c18782b385ad5,"Fix kwargs.get problem (kwargs -> self.kwargs)
+Improve AwardsListView
+
+Conflicts:
+	badger/views.py",ToxicWar,2013-03-19T10:53:59Z,ToxicWar,ToxicWar,22,14,8
+321,django-badgekit,12a871622dcdbcf299a900620f9440f45131c4b4,Remove direct_to_template,ToxicWar,2013-03-18T12:24:28Z,ToxicWar,ToxicWar,2,0,2
+322,django-badgekit,4c7707a03f9a8356c850ad64501bc1547c63599f,PEP8,ToxicWar,2013-03-18T11:14:45Z,ToxicWar,ToxicWar,133,64,69
+323,django-badgekit,b77cbeb4fbe9f9e4d7cd4615e3d161a3cc9a050e,"Update badges_list and awards_list(support Django 1.5)
+Fix extra spaces
+
+Conflicts:
+	badger/views.py",ToxicWar,2013-03-16T14:05:32Z,ToxicWar,ToxicWar,106,54,52
+324,django-badgekit,36f086e22ab8fb1df36efa632d96bd3c82daef9e,Add missing docs/ files,Will Kahn-Greene,2013-08-24T01:10:18Z,willkg,willkg,2,2,0
+325,django-badgekit,9d86677ebc850afd7ca6cbc305e1133bfc43396c,Add CHANGELOG and CONTRIBUTORS; fix MANIFEST.in,Will Kahn-Greene,2013-08-24T01:09:52Z,willkg,willkg,35,33,2
+326,django-badgekit,fa10287d2ea59da0de1c4d985a292c4ef7c24041,Add note about tox to docs,Will Kahn-Greene,2013-08-22T19:43:33Z,willkg,willkg,8,8,0
+327,django-badgekit,8b0a9ea0bce2c6e149e6682ccd55b91a44f40fff,"Merge pull request #170 from askvictor/7bbb30eca1c0b8679b9797d302538213d2d5da16
+
+Fix erroneous time format string in OBI assertion",Les Orchard,2013-08-22T18:27:52Z,lmorchard,lmorchard,4,2,2
+328,django-badgekit,8e8e8bda7cdcec05e7837da066bb6e2df763059e,Add .tox to ignored list,Will Kahn-Greene,2013-08-22T15:55:08Z,willkg,willkg,1,1,0
+329,django-badgekit,c1de602802c0e09e2cc920e26a6d698e3fc915d2,"Add tox.ini
+
+This tests python 2.6 and 2.7 with Django 1.4 and 1.5.
+
+The tests all pass fine with django 1.4, but they fail with django
+1.5.
+
+NB: I'm ""faking"" the python 2.6 tests on my system since I don't
+have python 2.6 available. But travis is running 2.6 and 2.7, so
+there you go.",Will Kahn-Greene,2013-08-22T15:14:56Z,willkg,willkg,31,31,0
+330,django-badgekit,1eb2e9cb30fad17cd2b67f2cac27c6e83c6b608c,"Add docstring to _document_django_model
+
+You could say it's ironic that function had no docstring.",Will Kahn-Greene,2013-08-22T13:14:39Z,willkg,willkg,11,6,5
+331,django-badgekit,c58a0e58980ed6931552ea6cf3158419cc47e8e5,"Fix travis to test multiple environments
+
+We want to test Python 2.6 and 2.7 for Django 1.4.6 and 1.5.2.",Will Kahn-Greene,2013-08-22T02:08:09Z,willkg,willkg,13,8,5
+332,django-badgekit,4a9805242ee1211a189eb213c17149218b442c8d,Fix deprecation errors,Will Kahn-Greene,2013-08-22T02:04:55Z,willkg,willkg,4,2,2
+333,django-badgekit,34fdd636d7be01b49a9bccc403907d246933be96,Change all User fields to raw_id_fields in admin,Will Kahn-Greene,2013-08-22T01:47:39Z,willkg,willkg,5,4,1
+334,django-badgekit,a9f85f5d8ef520755d8a977ba0c229c1e9f0acb9,"Make creatore a raw_id_field
+
+Fixes #182.",Will Kahn-Greene,2013-08-22T01:41:58Z,willkg,willkg,4,4,0
+335,django-badgekit,5688fd14d5cc6712b6e5fe2822bd0c7004274dff,Add more settings docs,Will Kahn-Greene,2013-08-22T01:41:01Z,willkg,willkg,29,26,3
+336,django-badgekit,b30690af58d93d8bdf2ba514376cfbffc9fbcdf2,Commenting out urlparams because it's broken,Will Kahn-Greene,2013-08-21T21:25:36Z,willkg,willkg,60,32,28
+337,django-badgekit,4008b70c1e9bed7d5373c8ba198fe0d0f72a134e,Fix badg.us url,Will Kahn-Greene,2013-08-21T20:37:58Z,willkg,willkg,4,2,2
+338,django-badgekit,93b60aa803344c27190422882ad5547bc778af26,Update Getting Started and other docs tweaks,Will Kahn-Greene,2013-08-21T19:52:31Z,willkg,willkg,61,46,15
+339,django-badgekit,48e4de749453c18c4e4b6ec82de2a69690bf6b43,Add some views docs,Will Kahn-Greene,2013-08-21T18:04:02Z,willkg,willkg,106,103,3
+340,django-badgekit,725e735a106a2d41738e7b188aba6eba4c060f57,"Add documentation
+
+This does a first pass on API docs. I think I caught everything, but
+it's hard to know for sure. One thing is that there are a bunch of class
+members that have no docstrings, so they don't currently show up in the
+API docs even though they're specified in the autoclass calls.",Will Kahn-Greene,2013-08-19T21:46:55Z,willkg,willkg,306,284,22
+341,django-badgekit,1e95e5ec03c94f2dbcb1ca9cf932bd2d2c96aedf,Fix .travis.yml,Will Kahn-Greene,2013-08-16T21:58:25Z,willkg,willkg,2,1,1
+342,django-badgekit,bbee58edec457e97636d3f614a4dd09b93a3326a,"Fix AssertionError; signal receivers must have **kwargs
+
+This was causing all the tests to fail under Django 1.4.6.",Will Kahn-Greene,2013-08-16T20:22:05Z,willkg,willkg,2,1,1
+343,django-badgekit,3ed1a09cc45c2593ecadd9587a08c4747a6a584a,"Add docs for running tests; fix reqs
+
+This gets everything working to run tests using:
+
+    python manage.py test
+
+This moves requirements up a directory where they're easier to find
+for people looking at the source code.
+
+This combines ""tests.txt"" and ""dev.txt"". Developers should be running
+tests, so it's easier to just have all the bits in that one requirements
+file. This simplifies setting everytihng up for hacking.
+
+Documents how to set everything up and run the tests in the docs. I also
+added a note about the IRC channel.
+
+I also tweaked .gitignore to ignore some additional things.
+
+I deleted runtests.py and some of the other test scaffolding because
+there was too many test scaffolding things that seemed to conflict.
+There should be only one true documented way!",Will Kahn-Greene,2013-08-16T20:17:38Z,willkg,willkg,107,53,54
+344,django-badgekit,8c2a17e795ff5ca25e76ae1d69e96641804d7460,"Add MANIFEST.in; tweak setup.py
+
+This cleans up setup.py a bit, makes sure it has some additional
+metadata to help PyPI, makes sure everything that should be in an sdist
+will be in the sdist and switches to use find_packages() in setuptools.",Will Kahn-Greene,2013-08-16T14:17:17Z,willkg,willkg,24,19,5
+345,django-badgekit,f9d5278008c4b4f37db01bc3fbc31211834c979b,"Merge pull request #176 from lmorchard/master
+
+Quick fix for breakage with updated distribute",Les Orchard,2013-07-29T16:48:10Z,lmorchard,lmorchard,1,0,1
+346,django-badgekit,68ee3b6a691c214630ec8998d492517b5dbb065c,Quick fix for breakage with updated distribute,Les Orchard,2013-07-29T16:47:05Z,lmorchard,lmorchard,1,0,1
+347,django-badgekit,916ee4c130f7c5c9221d00be635c2ae4e361acf7,"Fix copyright and urls
+
+Bunch of urls pointed to the old repository location. Fixed that.
+Updated copyright to be Mozilla Foundation and have the correct
+years.",Will Kahn-Greene,2013-07-26T16:10:11Z,willkg,willkg,12,6,6
+348,django-badgekit,7bbb30eca1c0b8679b9797d302538213d2d5da16,replaced erroneous strftime('%s') with isoformat() for OBI assertion,Victor Rajewski,2013-06-17T22:30:11Z,askvictor,askvictor,4,2,2
+349,django-badgekit,86f9e3c111e68a4ed744ea347b5fc4124d20b4a1,"Merge pull request #167 from lmorchard/include-nomination-in-award-detail
+
+Include nomination in award detail when necessary",Les Orchard,2013-03-21T17:22:36Z,lmorchard,lmorchard,88,84,4
+350,django-badgekit,935caca8e8ac5a5b61b58b8eed115b4afbbf8f42,Include nomination in award detail when necessary,Les Orchard,2013-03-21T17:00:37Z,lmorchard,lmorchard,88,84,4
+351,django-badgekit,7f3dd23d744663fc07ea45cecdd16057288ac636,Increase test verbosity on travis,Les Orchard,2013-03-21T01:17:22Z,lmorchard,lmorchard,2,1,1
+352,django-badgekit,09c3f8edf1b682992cc73340243ecfe59c67b723,"Merge pull request #166 from rlr/only-one-deferred-email
+
+Fix #165 - Only send email on first DeferredAward to user.",Les Orchard,2013-03-21T01:07:06Z,lmorchard,lmorchard,28,26,2
+353,django-badgekit,db530a3d4b5ec5b1c86634d2863167febf61b011,Fix #165 - Only send email on first DeferredAward to user.,Ricky Rosario,2013-03-20T22:56:42Z,rlr,rlr,28,26,2
+354,django-badgekit,49944c8c4e279413d35c5d6c52358d99550fbe08,"Merge pull request #164 from rlr/detect-deferred-award-dupes
+
+Fix #163 - Don't create multiple DeferredAwards for unique badges.",Les Orchard,2013-03-20T20:37:03Z,lmorchard,lmorchard,25,25,0
+355,django-badgekit,56543cd9670d83e09239c95de013b8468bf73edf,Fix #163 - Don't create multiple DeferredAwards for unique badges.,Ricky Rosario,2013-03-20T18:28:15Z,rlr,rlr,25,25,0
+356,django-badgekit,9129d33ef47a1e3b47d2abd2f4dc6050be48c109,Update doco to point at mozilla repos,Les Orchard,2013-03-19T18:56:09Z,lmorchard,lmorchard,24,12,12
+357,django-badgekit,a0a8148d228f281c59b627818099a8495c5c8182,"Merge pull request #162 from lmorchard/161-missing-unique-checkbox
+
+Fixes #161: Ensure unique field appears in create / edit forms",Les Orchard,2013-03-19T17:46:09Z,lmorchard,lmorchard,4,3,1
+358,django-badgekit,5cf4bb3bc5cfa434d172e3e7ae92f36d465bf321,Fixes #161: Ensure unique field appears in create / edit forms,Les Orchard,2013-03-19T17:44:25Z,lmorchard,lmorchard,3,2,1
+359,django-badgekit,fe6712632939a325b741d1180a7f96d3ec558da8,Add test-venv to .gitignore,Les Orchard,2013-03-19T17:42:44Z,lmorchard,lmorchard,1,1,0
+360,django-badgekit,4ee61c7263659ad8c869320642c4eb885f3b5224,"Merge pull request #154 from lmorchard/master
+
+Tweaks to exceptions and notifications in awarding",Les Orchard,2013-03-04T21:16:46Z,lmorchard,lmorchard,43,25,18
+361,django-badgekit,04180989b3f593b4444e667fc0d838471a0f2002,Notify of badge award in save() method rather than just award_to(),Les Orchard,2013-03-04T21:03:23Z,lmorchard,lmorchard,27,12,15
+362,django-badgekit,f55d06e4eaff9ce0063462e6a8663b0f6e02ba76,Badge.award_to option to raise BadgeAlreadyAwardedException when needed,Les Orchard,2013-03-04T20:56:37Z,lmorchard,lmorchard,18,14,4
+363,django-badgekit,9a8a9ef98c461e2b81955e1a055fe030f0ed8f9f,Fixes #22: Badge option to auto-approve all nominations,Les Orchard,2013-02-25T18:38:16Z,lmorchard,lmorchard,153,149,4
+364,django-badgekit,dff6334c9361d069b9107e45ef0b6abcba00b53b,Some work toward pulling out and centrally defining all settings,Les Orchard,2013-02-25T18:20:11Z,lmorchard,lmorchard,61,34,27
+365,django-badgekit,e648caf3d806934d4e211c22f84d3a8cb859dfc6,Only accept digits for IDs in URLs,Les Orchard,2013-02-24T06:06:32Z,lmorchard,lmorchard,8,4,4
+366,django-badgekit,963f2ffe452a94fae8bf9d5f405abdb016f22988,Bugfixes to slug handling,Les Orchard,2013-02-22T23:48:05Z,lmorchard,lmorchard,5,2,3
+367,django-badgekit,81bf49deef71b6da381861c86659811ecc934e5d,"fix #147, fix #146: Allow slug change until first award, use md5 hash in image filenames",Les Orchard,2013-02-22T21:28:51Z,lmorchard,lmorchard,18,14,4
+368,django-badgekit,128c4bc61f5024a24f9b4f5588791d048abef064,New ignores for docs,Les Orchard,2013-02-22T21:08:12Z,lmorchard,lmorchard,3,3,0
+369,django-badgekit,e95cfe83bf8e17611b696de16d42af6ccb030527,#16: Baby steps toward better docs,Les Orchard,2013-02-21T02:49:59Z,lmorchard,lmorchard,199,124,75
+370,django-badgekit,ff2f9a02558acbe624853f06df39e56241c4b632,Merge branch 'master' of git://github.com/lmorchard/django-badger,Les Orchard,2013-02-21T02:01:17Z,lmorchard,lmorchard,9,7,2
+371,django-badgekit,10b5637f11600af1043a87766913f4fab1529975,Initial doc setup with Sphinx,Les Orchard,2013-02-14T14:52:44Z,lmorchard,lmorchard,366,366,0
+372,django-badgekit,2f97f8e27d9ce67d3ca8338b320f88fdaecc33d7,"Merge pull request #142 from huxley/import-json
+
+Check for lack of django.utils.simplejson, to provide support for Django1.5",Les Orchard,2013-01-27T16:57:58Z,lmorchard,lmorchard,9,7,2
+373,django-badgekit,3429ecdbb82dda4a02c6472754fff06cf2f62bdc,"Test for lack of django.utils.simplejson, to provide support for Django 1.5",Patrick Taylor,2013-01-27T16:38:47Z,huxley,huxley,9,7,2
+374,django-badgekit,62b310ab40151beadc3e9ef789c460718989017b,"Fixes #139: Option to disable badge award image baking, off by default",Les Orchard,2013-01-24T03:07:50Z,lmorchard,lmorchard,161,80,81
+375,django-badgekit,a77047ac4467db36632e0bcc118c3eca5df4a0f4,Fixes #140: Reusable claim code URL should always lead to claim page,Les Orchard,2013-01-24T01:54:09Z,lmorchard,lmorchard,54,38,16
+376,django-badgekit,2f13b05ce0e95b8805656d6665e97c48d17a435f,Bugfix for JSON URLs and reverse lookups,Les Orchard,2013-01-22T23:14:11Z,lmorchard,lmorchard,4,2,2
+377,django-badgekit,ac1efa07f9edc11eef70746b9ef38a058ea169f9,"Use greater-than, no equal, for recent badge checking",Les Orchard,2013-01-16T21:31:51Z,lmorchard,lmorchard,2,1,1
+378,django-badgekit,d352e78cb9ae2e380ae03b55a47ba37ffa93f319,"BADGER_MEDIA_{ROOT,URL} settings; quick bugfix to helpers",Les Orchard,2013-01-16T21:11:40Z,lmorchard,lmorchard,11,7,4
+379,django-badgekit,f0ab6bb178fcc1e6793530fca9509bf09f2dadae,Support a `badges` list alongside optional `update_badges()` method in `badges.py` modules,Les Orchard,2013-01-15T23:25:20Z,lmorchard,lmorchard,49,30,19
+380,django-badgekit,943d687d154f9e7a727ee6b42cfc2c5e7c6e5457,"Test fix, middleware changed names",Les Orchard,2013-01-15T21:54:49Z,lmorchard,lmorchard,7,2,5
+381,django-badgekit,7eb657571355c2cedbca47dca15b1575eb38ed81,Simple URLs list attempt,Les Orchard,2013-01-15T21:00:29Z,lmorchard,lmorchard,49,49,0
+382,django-badgekit,e9506fa82e5c07ae460116528f21726b7830d224,Bugfixes and refinments for RecentBadgeAwardsMiddleware,Les Orchard,2013-01-02T20:45:05Z,lmorchard,lmorchard,117,69,48
+383,django-badgekit,4ba07b6a9e1cae98d0870f796709c4da366d3433,Ignore test virtualenv and uploads test artifact,Les Orchard,2013-01-02T18:38:39Z,lmorchard,lmorchard,2,2,0
+384,django-badgekit,b3544906d70bae51315639ae12381a5c40b048e5,"fix issue 138: New badger_example app and standalone test scaffolding
+
+* Moved badger_example out of tests directory and up to package root
+* Clean out playdoh / jinja templates, since they live in badg.us
+* Misc tweaks to get tests working standalone",Les Orchard,2013-01-02T02:00:45Z,lmorchard,lmorchard,1469,417,1052
+385,django-badgekit,3bab1afb3b696b8e66dde26baa97d2bffb7de8f1,Bugfix for when profile has no avatar attribute,Les Orchard,2012-12-31T20:49:07Z,lmorchard,lmorchard,2,2,0
+386,django-badgekit,2e5cd8cdcd8df5bb62942e461492c5ef2e4f9bc7,Experiments in getting `setup.py test` working,Les Orchard,2012-12-30T04:38:00Z,lmorchard,lmorchard,101,100,1
+387,django-badgekit,3167f23ace7ba5d7af3021a6e604cfd707ae03b5,Notifications app is optional; temporarily disable claim codes test that fails in sqlite3,Les Orchard,2012-12-31T03:17:03Z,lmorchard,lmorchard,48,28,20
+388,django-badgekit,926e87b984eaaddf377cff82b4519c422462b316,Unneeded tower calls,Les Orchard,2012-12-31T03:16:09Z,lmorchard,lmorchard,2,0,2
+389,django-badgekit,f27d9d23e2121f431880803ca8c5f675914cb2be,"Django 1.2 tweaks, bugfixes
+
+* Try to better support Django 1.2, and missing user_logged_in signal
+* Look for PngImagePlugin outside of PIL
+* Silently fail if deferred_award email templates missing",Les Orchard,2012-12-31T03:14:07Z,lmorchard,lmorchard,56,35,21
+390,django-badgekit,aa7ba628e5d304690def7409220e69b693e64841,Middleware to make request.recent_awards available for notifications of awards received since last visit,Les Orchard,2012-12-30T19:02:34Z,lmorchard,lmorchard,155,155,0
+391,django-badgekit,a37033eb7eee990efcf59e6a5a8e88dba2ff150f,Add urlparams filter,Les Orchard,2012-12-30T04:25:17Z,lmorchard,lmorchard,30,30,0
+392,django-badgekit,3b97c21491a03fa9d9b02adced674ac19a421e12,Clean up unused import,Les Orchard,2012-12-30T04:19:46Z,lmorchard,lmorchard,2,1,1
+393,django-badgekit,fdd37d51c25f04139cbe3fffbddb5d2b0ce5208d,"The taggit app is optional, so should the tag field be",Les Orchard,2012-12-30T04:19:06Z,lmorchard,lmorchard,10,7,3
+394,django-badgekit,3f1cb940f8ba5b3f10623b7de3225efe6e99982f,Make template base path configurable in views,Les Orchard,2012-12-30T04:11:28Z,lmorchard,lmorchard,129,62,67
+395,django-badgekit,31acad05a42f7c8782eadda3d11075bb6da25347,Image can be missing in admin,Les Orchard,2012-12-30T03:54:10Z,lmorchard,lmorchard,2,2,0

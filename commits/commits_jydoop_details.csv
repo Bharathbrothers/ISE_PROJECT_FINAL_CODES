@@ -1,0 +1,468 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,jydoop,da0b6ff3682b1735796107b7045d55bcf3fe9978,Fix the instructions for running local analysis.,Mark Reid,2013-04-09T14:11:54Z,mreid-moz,mreid-moz,6,3,3
+1,jydoop,e60c5076565a6861477283a113d30761b8aff58b,Merge branch 'hbase_full_scan' with rename of pydoop->jydoop,Benjamin Smedberg,2013-04-08T23:14:50Z,bsmedberg,bsmedberg,56,56,0
+2,jydoop,85a98f2487f28a0099f80aadf253a997d4daec71,"Merge pull request #15 from bsmedberg/jydoop-rename
+
+Rename pydoop->jydoop",Benjamin Smedberg,2013-04-08T23:08:57Z,bsmedberg,bsmedberg,64,32,32
+3,jydoop,2fdda52ddda15c838a5d51d72f4809beb5024aff,Rename pydoop->jydoop because there is already a pretty well-known project called pydoop.,Benjamin Smedberg,2013-04-08T23:07:14Z,bsmedberg,bsmedberg,64,32,32
+4,jydoop,fe02b06326d33da175665a21be988718e470ee2d,Fix conversion to byte[],Mark Reid,2013-04-08T19:51:47Z,mreid-moz,mreid-moz,2,1,1
+5,jydoop,9326ca828a046d63d6dc15742c2de2c50ff428ca,Add an example to analyze Health Report data.,Mark Reid,2013-04-08T19:33:43Z,mreid-moz,mreid-moz,31,31,0
+6,jydoop,364e7ca6ba35575ce454d7dcabf9e6e56af3018a,Add a full-table hbase scanner for FHR,Mark Reid,2013-04-08T19:33:19Z,mreid-moz,mreid-moz,25,25,0
+7,jydoop,bba8aa970603d3260f57a7a8d028d412bf60c917,"Merge pull request #13 from bsmedberg/customcolumns
+
+Allow scripts to specify which hbase columns they are expecting.",tarasglek,2013-04-08T17:56:32Z,tarasglek,tarasglek,134,128,6
+8,jydoop,daa6636d67d67f48f7eebfa99ac0c89263056b67,"Clarify error message for json.loads("""")",Benjamin Smedberg,2013-04-08T14:30:25Z,bsmedberg,bsmedberg,2,1,1
+9,jydoop,a419cd442c752f4f6b96da78efe67aa1c6b41d2b,"When a cell is not present in hbase, convert it to None.",Benjamin Smedberg,2013-04-08T14:29:44Z,bsmedberg,bsmedberg,2,1,1
+10,jydoop,0faab76e175c819bdc65b018cdd005ded404a611,"Example script which groups crash reports by (signature, graphicsvendor)",Benjamin Smedberg,2013-04-08T14:29:01Z,bsmedberg,bsmedberg,86,86,0
+11,jydoop,72e1747d398e15a7fe9f200bd5235e370b778fde,Make the column list customizable by annotating the column list from script (preparation for crash-stats queries).,Benjamin Smedberg,2013-04-08T11:45:18Z,bsmedberg,bsmedberg,46,41,5
+12,jydoop,71553c2493f2b3c89a2e3ea0f4a3b8af920e0e07,Add reasonable .gitignore,Benjamin Smedberg,2013-04-06T18:12:26Z,bsmedberg,bsmedberg,7,7,0
+13,jydoop,64ae9ecb0267120d539a01b34c08331f44689443,"Merge pull request #12 from bsmedberg/JacksonJSON
+
+Use Jackson for JSON",tarasglek,2013-04-06T17:42:15Z,tarasglek,tarasglek,190,166,24
+14,jydoop,3ffed3736e7669e41401d86a0aa04c7ef8f03cde,Use Jackson instead of Jyson for speed. See also TODO for future speed improvements in JacksonWrapper.loads.,Benjamin Smedberg,2013-04-06T16:35:28Z,bsmedberg,bsmedberg,154,148,6
+15,jydoop,1ab4f6dc45872613b8916788a386be315b08d871,"Make the map/combine/reduce invocations more efficient. Convert and store the ContextWrapper once. Turn keys and values into PyString directly rather than relying on dynamic conversion, and use byte-expansion rather than unicode conversion for the key and value; keys are not ASCII and unicode conversion on them fails miserably.",Benjamin Smedberg,2013-04-06T16:00:06Z,bsmedberg,bsmedberg,36,18,18
+16,jydoop,b3f8dd517c32bd8f49ecfaecd34daeae548d6456,"Merge pull request #11 from bsmedberg/FileDriver
+
+File driver changes for proper importing and combining",Benjamin Smedberg,2013-04-06T15:09:20Z,bsmedberg,bsmedberg,21,19,2
+17,jydoop,ad0e12634010378097f804cdf0b98b837f986b65,Make FileDriver work with no combine function.,Benjamin Smedberg,2013-04-06T15:07:28Z,bsmedberg,bsmedberg,2,2,0
+18,jydoop,bdf5dce603cab0a98cb172d7523632a3fe636e9f,"The combine function shouldn't recombine, so keep combine results separate from map results and merge them after we're finished mapping.",Benjamin Smedberg,2013-04-05T15:39:37Z,bsmedberg,bsmedberg,15,14,1
+19,jydoop,da77cb341d76edcda332273052ed4e6c2d5dbbc4,Merge branch 'master' of https://github.com/tarasglek/pydoop into FileDriver,Benjamin Smedberg,2013-04-05T15:37:00Z,bsmedberg,bsmedberg,0,0,0
+20,jydoop,3a669093294dfc94df8455f3f7279118ae29c151,"Merge pull request #10 from bsmedberg/telemetryutils
+
+Implement HBase table and range selection as a python library `telemetryutils`",Benjamin Smedberg,2013-04-05T15:35:36Z,bsmedberg,bsmedberg,116,83,33
+21,jydoop,865fd0c913d5394ba3dcc137bac80b7ec6b40d0a,Set up sys.path properly in FileDriver to enable imports.,Benjamin Smedberg,2013-04-05T14:35:18Z,bsmedberg,bsmedberg,4,3,1
+22,jydoop,7aea4be6afcbea7727c1a63a0edae61300d6cc12,Remove debugging print and correct formatting.,Benjamin Smedberg,2013-04-04T22:05:19Z,bsmedberg,bsmedberg,4,1,3
+23,jydoop,14c00d9b5bc9e371397813d69ae7038502ee3479,"Implement HBase table and range selection as a python library `telemetryutils`. This prepares for being able to use pydoop with crash-stats and FHR as well. NOTE: this requires the change from https://github.com/mozilla-metrics/akela/pull/7, removing and re-downloading the akela jar.",Benjamin Smedberg,2013-04-04T20:47:09Z,bsmedberg,bsmedberg,118,85,33
+24,jydoop,36438621e6e75adf2a79d2a23685335fe40eabb3,Address review comments from pydoop PR 9,Benjamin Smedberg,2013-04-04T19:14:01Z,bsmedberg,bsmedberg,28,12,16
+25,jydoop,612663a41b249cdf4a71e5ae9c973ae6059d87b7,"Merge pull request #9 from bsmedberg/setpath
+
+The idea looks good, please fix the nits in followup
+
+
+Allow relative imports to work by adding an entry to sys.path, and add a pydoop utility library which will be a repository of shared functons.",tarasglek,2013-04-04T19:08:24Z,tarasglek,tarasglek,90,63,27
+26,jydoop,30f2b97b6703dcaa824872ea70c456e125f85640,Set a more complete name for jobs so that the job information shows up in the admin console.,Benjamin Smedberg,2013-04-04T18:58:55Z,bsmedberg,bsmedberg,4,3,1
+27,jydoop,ca5aa64342736211679842b46634ec15844a1fdc,"Allow relative imports to work by adding an entry to sys.path, and add a pydoop utility library which will be a repository of shared functons.",Benjamin Smedberg,2013-04-04T18:50:33Z,bsmedberg,bsmedberg,86,60,26
+28,jydoop,56fa7e30ced01e71252a415c0ecd795066b0f89e,removed from leftovers from proof-of-concept days,Taras Glek,2013-04-04T18:33:14Z,Taras Glek,Taras Glek,34,0,34
+29,jydoop,0856367883ad0ef0cdc679c4762acf987ad457b3,Remove extraneous files.,Benjamin Smedberg,2013-04-04T18:08:07Z,bsmedberg,bsmedberg,33,0,33
+30,jydoop,1687cf4f5fa9b8422dff3eb0ddd11080b7d35ac4,Merge branch 'master' of http://github.com/tarasglek/pydoop into scriptdir,Benjamin Smedberg,2013-04-04T18:01:14Z,bsmedberg,bsmedberg,0,0,0
+31,jydoop,e84b0be1f90f61a65cb93fe006f947557f498eb8,Fix README/examples with the new run instructions.,Benjamin Smedberg,2013-04-04T17:59:40Z,bsmedberg,bsmedberg,4,2,2
+32,jydoop,cfddb911e17e7c96d43424fac74e8a27fc62309d,"Merge pull request #8 from bsmedberg/scriptdir
+
+Package all the scripts in driver.jar and select which one to run at runtime",tarasglek,2013-04-04T17:53:54Z,tarasglek,tarasglek,93,73,20
+33,jydoop,b9add5b932ab53c49294942838d3a9665dc482df,"When you create the job, it forks the configuration, so we can't use getConf().set after that point, we have to set it directly on the job configuration.",Benjamin Smedberg,2013-04-04T17:23:53Z,bsmedberg,bsmedberg,19,9,10
+34,jydoop,086147ca3125d882ed6ef5981b03659163f86d30,Ship all the scripts in driver.jar and select which one to run at runtime (preparation for a standard library of pydoop python scripts).,Benjamin Smedberg,2013-04-04T16:27:20Z,bsmedberg,bsmedberg,90,72,18
+35,jydoop,7bf24cba0b74701da0c55b1e18288826b3cc8f0a,"Merge pull request #6 from bsmedberg/master
+
+README.md",Benjamin Smedberg,2013-04-04T14:39:25Z,bsmedberg,bsmedberg,40,19,21
+36,jydoop,f62873fff0064219e87c09e2c58695cd37324e3d,"Update with proper markdown
+
+And slightly better/more accurate instructions.",Benjamin Smedberg,2013-04-04T14:38:21Z,bsmedberg,bsmedberg,40,19,21
+37,jydoop,fd35793e542a8ae983bb071716628d96b86e1124,"Merge pull request #5 from bsmedberg/combiner
+
+Combiner functions.",tarasglek,2013-04-03T23:58:49Z,tarasglek,tarasglek,45,41,4
+38,jydoop,91ddc8eeebceb06b17bd14d6233d55930e9b94c0,Yo ho its hot! The sun is not a place where we could live. / But here on Earth there would be no life Without the light it gives. And actually fix and use the combiner in FileDriver.py,Benjamin Smedberg,2013-04-03T23:50:13Z,bsmedberg,bsmedberg,5,3,2
+39,jydoop,f6f861e9d13234c35232f583b95e2407bb411b3f,The sun is a mass of incadescent gas: a gigantic nuclear furnace / Where hydrogen is turned into helium at a temperature of millions of degrees... have the FileDriver run combiner functions.,Benjamin Smedberg,2013-04-03T23:43:52Z,bsmedberg,bsmedberg,8,6,2
+40,jydoop,cd32fbfa80fc55438a5fccd0e80ae26a7b1c91cb,Make FileDriver use tab separation the same way the HBaseDriver default output does.,Benjamin Smedberg,2013-04-03T23:34:41Z,bsmedberg,bsmedberg,2,1,1
+41,jydoop,b0620a7b8281723febeba5f445f7879a76579736,"Make osdistribution use the combiner framework, and document it liberally.",Benjamin Smedberg,2013-04-03T23:34:05Z,bsmedberg,bsmedberg,18,18,0
+42,jydoop,16da69d9610fcd5d344c51383dfe32aa4005bddb,Combiner is now pretty trivial.,Benjamin Smedberg,2013-04-03T23:33:33Z,bsmedberg,bsmedberg,14,14,0
+43,jydoop,6392eb3769494dc092d65d25746ece915a6ef43b,"Merge pull request #4 from bsmedberg/Comparator
+
+RawComparator implementation, with testsuite",tarasglek,2013-04-03T22:23:54Z,tarasglek,tarasglek,333,311,22
+44,jydoop,c2a23923a81880ac144c89900359de9a56e9852d,Implement tests for TypeWritable and its implementation of RawComparator.,Benjamin Smedberg,2013-04-03T22:18:55Z,bsmedberg,bsmedberg,88,87,1
+45,jydoop,986534faa36daae8e66aeff25d52f0c11971d1b2,Implement RawComparator for TypeWritable for speed.,Benjamin Smedberg,2013-04-03T22:18:21Z,bsmedberg,bsmedberg,245,224,21
+46,jydoop,baa6aca4fbe7b8f2149a08c5d232dc42775c4898,Fix up scripts to remove all the Text() leftovers; rename and document.,Benjamin Smedberg,2013-04-03T17:33:54Z,bsmedberg,bsmedberg,19,4,15
+47,jydoop,40a696bbcfaf0347a28c3cc36e1ab80257168732,Merge branch 'master' into combiner,Benjamin Smedberg,2013-04-03T16:46:13Z,bsmedberg,bsmedberg,0,0,0
+48,jydoop,13c64ca799dde2a3252faef3d5865a223d4ebe1d,"Reland bsmedberg/combiner
+
+This reverts commit b9811af5853f30665c7471e270ae6e1ef0066f56.",Benjamin Smedberg,2013-04-03T16:45:09Z,bsmedberg,bsmedberg,476,395,81
+49,jydoop,a26fb206cc706942e7dcc44d01964550d8cffe90,Remove debugging println,Benjamin Smedberg,2013-04-03T16:35:07Z,bsmedberg,bsmedberg,2,0,2
+50,jydoop,4886277475f421b94206f920958fbcc4349029ea,"Java DataOutput.writeUTF is limited to strings where the UTF8 representation is less than 64k. Since telemetry pings sometimes exceed that threshold, use a custom string-writing routine. Because this uses unmodified UTF8, embedded nulls will be present in the stream, but that's not a problem for hadoop.",Benjamin Smedberg,2013-04-03T15:25:56Z,bsmedberg,bsmedberg,11,9,2
+51,jydoop,56a841666f6f57e60f545d06f42b6cce9133f92c,Untabify Java sources and add modelines. No functional changes.,Benjamin Smedberg,2013-04-02T13:10:39Z,bsmedberg,bsmedberg,29,16,13
+52,jydoop,b9811af5853f30665c7471e270ae6e1ef0066f56,"Revert ""Merge pull request #3 from bsmedberg/combiner""
+
+This reverts commit 3ab6b4d54072da46a9e7fa2c45d1f1075b68c595, reversing
+changes made to 43cca2d5295bc60341d905d5190977422b960b37.",Taras Glek,2013-04-02T00:29:20Z,Taras Glek,Taras Glek,476,81,395
+53,jydoop,3ab6b4d54072da46a9e7fa2c45d1f1075b68c595,"Merge pull request #3 from bsmedberg/combiner
+
+Despite this being called the ""combiner"" branch, this does everything except actually implement a combiner",tarasglek,2013-04-01T17:03:39Z,tarasglek,tarasglek,476,395,81
+54,jydoop,8f5a68dbe09dc7a47fd1703168b8e0fbbe24d1d5,"Add final output flattening to the hbase driver: now it produces a single file, automatically combining the multiple reduce output.",Benjamin Smedberg,2013-03-30T13:17:27Z,bsmedberg,bsmedberg,54,48,6
+55,jydoop,b6f28a38ffde23544f014c984c03e1fd5f1b76de,Add a sampler to osdistribution for faster testing.,Benjamin Smedberg,2013-03-30T13:16:57Z,bsmedberg,bsmedberg,3,3,0
+56,jydoop,f954f881a93d4925f3ca151e89f8acc5ce6f263f,Add a toString method on TypeWritable so that TextOutputFormat does something reasonable with it.,Benjamin Smedberg,2013-03-29T19:59:48Z,bsmedberg,bsmedberg,7,7,0
+57,jydoop,83c5860c418943e72c37589492cc2ec407fa91bc,Use jyson again. The builtin json module that comes with jython is dog-slow: 9 seconds to parse a single telemetry record!,Benjamin Smedberg,2013-03-29T15:47:35Z,bsmedberg,bsmedberg,68,53,15
+58,jydoop,b43c6632c598c676feca9c8133b2602c27ae9e3d,Fix TypeWritable to use public access so that jython agrees to reflect it properly. Use the ContextWrapper so that we get TypeWritable out as well as in.,Benjamin Smedberg,2013-03-29T15:20:51Z,bsmedberg,bsmedberg,22,18,4
+59,jydoop,a798248a5f79bd80dbc881fcd0a0f6d9ec994a4d,Fix makefile to use the new package names and Text is no longer correct.,Benjamin Smedberg,2013-03-25T19:38:35Z,bsmedberg,bsmedberg,10,4,6
+60,jydoop,4aeb87af811925961bd57b09fc94bb8b2876553a,"Move the Java into the correct directory structure expected by a java compiler, and give it a more correct package name. Add a Writeable class which is used to efficiently serialize just the data we might actually want in a python key/value, so that we can now emit tuples and integers.",Benjamin Smedberg,2013-03-22T02:27:37Z,bsmedberg,bsmedberg,213,199,14
+61,jydoop,33c7f999071736205fe2d38235f6fa120696b1d3,"Allow job scripts to customize their output, and change the samples to output reasonable key/value combinations. Add an example that reduces. Note, this patch by itself only implements the python driver half of output customization: the Java half still needs to be implemented.",Benjamin Smedberg,2013-03-21T16:38:56Z,bsmedberg,bsmedberg,93,60,33
+62,jydoop,43cca2d5295bc60341d905d5190977422b960b37,"Merge pull request #2 from bsmedberg/filedriver
+
+Make FileDriver.py the ""runner""",tarasglek,2013-03-21T16:11:39Z,tarasglek,tarasglek,55,27,28
+63,jydoop,3659ff26dd454062ba57ae2761da74813f2e08c6,"Make FileDriver.py the ""runner"" for mapreduce so that each mapreduce script doesn't have to have the stubs which load FileDriver.",Benjamin Smedberg,2013-03-21T15:17:43Z,bsmedberg,bsmedberg,55,27,28
+64,jydoop,33c1ef80d295e1417a4e4280aeb22e226f9f92ac,"Merge pull request #1 from bsmedberg/remove-irrelevant
+
+A bunch of little build fixes",tarasglek,2013-03-21T10:46:19Z,tarasglek,tarasglek,86,10,76
+65,jydoop,39475c74efed4af7badf9225303bf2832a03aa4d,Use wget -c per taras,Benjamin Smedberg,2013-03-21T09:38:37Z,bsmedberg,bsmedberg,4,2,2
+66,jydoop,c07e0a22e1469c929b5cf606ed30ea63dc4948f8,Fix misspelling.,Benjamin Smedberg,2013-03-21T08:59:45Z,bsmedberg,bsmedberg,2,1,1
+67,jydoop,13d8b684c6be8856a21a2f097c0179673be11122,Actually remove the HDFS driver which we don't need.,Benjamin Smedberg,2013-03-19T16:27:27Z,bsmedberg,bsmedberg,2,1,1
+68,jydoop,e174f13cbc7031b2836fe222d23ef1c5a5c94438,Remove unused/incorrect HDFSDriver.java,Benjamin Smedberg,2013-03-19T16:08:10Z,bsmedberg,bsmedberg,69,0,69
+69,jydoop,6a24e3c8b09e6070434ad07ad811a8344f667d20,Use curl and > to avoid redownload issues.,Benjamin Smedberg,2013-03-21T08:19:07Z,bsmedberg,bsmedberg,4,2,2
+70,jydoop,4ecb4b8a901298aa1fe6174b9515fd3bebb19427,"Use the proper jython-standalone.jar, which makes Jyson unnecessary. Also pull akela.",Benjamin Smedberg,2013-03-20T17:51:13Z,bsmedberg,bsmedberg,9,4,5
+71,jydoop,62f16e8d759f6efc25c4ed649f43fd917490b35e,"Make the path of hbase configurable, and make it easier to build.",Benjamin Smedberg,2013-03-21T08:50:31Z,bsmedberg,bsmedberg,8,6,2
+72,jydoop,cd6fc4b41600de4d7f7189a9821554a9a1a47b48,Some more docs,Taras Glek,2013-03-18T15:45:52Z,Taras Glek,Taras Glek,34,27,7
+73,jydoop,0e5e31bb1655041d6c3600b82de92a3971713efc,pass-through map-only jobs,Taras Glek,2013-03-18T15:06:20Z,Taras Glek,Taras Glek,32,24,8
+74,jydoop,fdb36db1eda11ee306781c7fbef7775704554ac0,anr script,Taras Glek,2013-03-14T00:45:35Z,Taras Glek,Taras Glek,23,21,2
+75,jydoop,aa524c820692530e4f2eb876cbadd58d47d783cc,"Makefile fix, use compression for hbase map output",Taras Glek,2013-03-13T23:21:29Z,Taras Glek,Taras Glek,7,5,2
+76,jydoop,2846de581f7bc171135d70beb143021f0582d6a5,FileDriver.py lets one test map/reduces,Taras Glek,2013-03-13T21:02:45Z,Taras Glek,Taras Glek,47,38,9
+77,jydoop,e863c861c9ecd825f61c6d0ff4c315484b31ff22,typo,Taras Glek,2013-03-13T19:16:10Z,Taras Glek,Taras Glek,2,1,1
+78,jydoop,237b2b5e21e45251075ceb432a06d1dd5b795d5e,some cleanup,Taras Glek,2013-03-13T19:12:53Z,Taras Glek,Taras Glek,164,120,44
+79,jydoop,c9f56fa33971c0023025acd4c1716e895836de32,got jython running against hbase too,Taras Glek,2013-03-13T06:33:49Z,Taras Glek,Taras Glek,113,45,68
+80,jydoop,b162584b2ece2b4b5c40ad5a730e64d398a895d6,first successful map/reduce with json,Taras Glek,2013-03-07T05:12:37Z,Taras Glek,Taras Glek,87,50,37
+81,jydoop,cb18d8598dde3294b85d3aff2a5108c4be6067e8,got wordcount to run partially in python,Taras Glek,2013-03-06T20:02:18Z,Taras Glek,Taras Glek,123,117,6
+82,jydoop,9c0f64c0b0966be81b6a6cadde0a4c577ee05d77,test that we can call python from java and call back to java objects,Taras Glek,2013-03-06T06:43:32Z,Taras Glek,Taras Glek,20,20,0
+83,jydoop,14dc68e9a7802021c22c534b33138632ac485cba,jython plan,Taras Glek,2013-03-06T06:16:25Z,Taras Glek,Taras Glek,3,3,0
+84,jydoop,6618836d95326a264e4194b3a4fa294227352328,basic map/reduce skeleton to run queries from,Taras Glek,2013-03-06T01:44:10Z,Taras Glek,Taras Glek,124,124,0
+85,jydoop,a1ce82f3c6f3d335ba2b0cbc310dac52624a6e0b,"Merge pull request #57 from mreid-moz/add_test_data
+
+Provide sample data for new users to try Jydoop.",Benjamin Smedberg,2014-09-02T16:11:06Z,bsmedberg,bsmedberg,134,132,2
+86,jydoop,8559bc7f756e8f2ea2ea25252db34411fb2bdd73,"Provide sample data for new users to try Jydoop.
+
+Resolves issue 56",Mark Reid,2014-08-19T19:24:28Z,mreid-moz,mreid-moz,134,132,2
+87,jydoop,d47edc91d7cc871355b85bd753face3138086ffb,Merge branch 'master' of https://github.com/mozilla/jydoop,Benjamin Smedberg,2014-02-21T18:49:29Z,bsmedberg,bsmedberg,666,24,642
+88,jydoop,ec8f7bcb3e38b414ba4885b8662af548546855cb,Search for crashes where the main .exe name is corrupted.,Benjamin Smedberg,2014-02-21T18:48:32Z,bsmedberg,bsmedberg,62,62,0
+89,jydoop,31b4199d4009bc4bc11137596948a263353a2226,"Merge pull request #55 from bsmedberg/fhr-toolbox-changes
+
+Changes to move FHR scripts to fhr-toolbox.",Benjamin Smedberg,2014-02-21T17:32:34Z,bsmedberg,bsmedberg,666,24,642
+90,jydoop,3b7b162f7d401cbd37a8ad6b5dbdbb11069f86e6,Give mappers access to the configuration via context. Allow using an environment variable to save results to a different directory.,Benjamin Smedberg,2014-02-21T15:49:02Z,bsmedberg,bsmedberg,28,22,6
+91,jydoop,80771264996dc298b11b235f53a7abc864f6f63f,Don't hard-code the list of directories that make up driver.jar when calculating dependencies: use find to build that list. This allows symlinking -toolbox libraries into scripts/ and having them work correctly.,Benjamin Smedberg,2014-02-21T15:46:59Z,bsmedberg,bsmedberg,3,2,1
+92,jydoop,f90937ac24a22d1cb2eb34fb7940e1f4ab2bc820,"Move the FHR utils/scripts from the jydoop repository to fhr-toolbox. To run them, symlink jydoop/scripts/fhrtoolbox to fhr-toolbox/jydoop.",Benjamin Smedberg,2014-02-21T13:53:30Z,bsmedberg,bsmedberg,635,0,635
+93,jydoop,30a52d0a9d705ad1dba449c944eedbab87c67e45,Bug 808680 - script for reporting on minidump sizes in crash-stats,Benjamin Smedberg,2014-01-17T19:14:52Z,bsmedberg,bsmedberg,45,43,2
+94,jydoop,74eddbcfcb8279934224851e946ddd4a9435a7f4,Jython None doesn't have a stable .hashCode() across nodes: re-implement .hashCode to special-case None.,Benjamin Smedberg,2013-12-12T21:19:34Z,bsmedberg,bsmedberg,24,23,1
+95,jydoop,60b7e0cfb0e4e610d08d9a47a7936c8b182a2c57,Checkpoint AMD data for newer build ID.,Benjamin Smedberg,2013-12-12T20:07:59Z,bsmedberg,bsmedberg,16,9,7
+96,jydoop,881c40b7bf12eaef46c80b87a9d5bfd8ae50c0c3,New oom collector.,Benjamin Smedberg,2013-12-12T20:07:32Z,bsmedberg,bsmedberg,11,9,2
+97,jydoop,de61ba9eccefd5ee6b288a9f6cace3c6280fe514,Add a makefile target to launch a python shell with a jydoop-like environment.,Benjamin Smedberg,2013-12-12T20:06:22Z,bsmedberg,bsmedberg,3,3,0
+98,jydoop,c2c781c879422a0ef404efe5e20fa691b28ff2c9,Add a bunch of scripts which I'm using for crash-stats analysis.,Benjamin Smedberg,2013-12-10T21:33:57Z,bsmedberg,bsmedberg,261,261,0
+99,jydoop,dd8c1f82d63a5317dd445572707ec732f1ab08aa,Merge branch 'master' of https://github.com/mozilla/jydoop,Benjamin Smedberg,2013-11-25T16:16:42Z,bsmedberg,bsmedberg,14,8,6
+100,jydoop,deae5cd087b715d650894db95b63eac41cd03409,Add scripts for checking VM data/OOM classifications.,Benjamin Smedberg,2013-11-25T16:16:22Z,bsmedberg,bsmedberg,118,118,0
+101,jydoop,1b6bc6c46151981b7ced21f24f8a8198a1501907,"Merge pull request #47 from mreid-moz/add_counter_support
+
+Add support for custom job counters",Mark Reid,2013-11-08T21:04:28Z,mreid-moz,mreid-moz,6,6,0
+102,jydoop,82933189eb06df3eb0c0fa4a3e0a8cf876fce331,Add support for custom job counters,Mark Reid,2013-11-08T21:03:24Z,mreid-moz,mreid-moz,6,6,0
+103,jydoop,e9413fdebcbcb8cad64b2be56f85179fb0bbf23e,"Merge pull request #46 from mreid-moz/fix_json_serialization
+
+Fix json.dumps()",Mark Reid,2013-11-08T17:06:30Z,mreid-moz,mreid-moz,8,2,6
+104,jydoop,256d30aba3ec3c8c2b872236c1e4975448e25679,Fix json.dumps(),Mark Reid,2013-11-08T15:49:13Z,mreid-moz,mreid-moz,8,2,6
+105,jydoop,081f144c4d545d12f03602c5537be654c2f2a4b0,AMD cpu script.,Benjamin Smedberg,2013-09-03T21:02:09Z,bsmedberg,bsmedberg,51,51,0
+106,jydoop,104675a18c6ba97e480ff32b1453c5b0692349ab,"Merge pull request #44 from mreid-moz/read-plain-sequence-files
+
+Add a basic setupjob function for raw seqfiles",Mark Reid,2013-08-02T19:45:55Z,mreid-moz,mreid-moz,18,18,0
+107,jydoop,c7ae599e685fe6f08363b70e96a1d6184bc208ca,Add a basic setupjob function for raw seqfiles,Mark Reid,2013-08-02T18:54:47Z,mreid-moz,mreid-moz,18,18,0
+108,jydoop,5297a5c0d931c0bc107c2f09d037b17ce5898090,"Merge pull request #43 from mreid-moz/telemetry_hdfs_default
+
+Use the HDFS data for telemetry jobs by default.",Taras Glek,2013-07-24T17:24:02Z,tarasglek,tarasglek,26,11,15
+109,jydoop,b9ea5fa0f31aeee565ce7fd3006300f3b120907d,Use the HDFS data for telemetry jobs by default.,Mark Reid,2013-07-23T15:02:55Z,mreid-moz,mreid-moz,26,11,15
+110,jydoop,fc2ee67df16cd0574432301e5dfae6f0007692b3,"Merge pull request #42 from mreid-moz/move_mapper_type_to_setup
+
+Move the 'mappertype' to job configuration.",Benjamin Smedberg,2013-07-23T14:34:54Z,bsmedberg,bsmedberg,57,24,33
+111,jydoop,ed472b02af98c433c9791eb861c51ebd6055a40c,"Merge pull request #41 from mreid-moz/telemetry_hdfs_support_clean
+
+Telemetry hdfs support",Benjamin Smedberg,2013-07-23T14:27:29Z,bsmedberg,bsmedberg,137,134,3
+112,jydoop,e71da9b1bdb67ddcc5a70ec43d3f721ca8143803,"Move the 'mappertype' to job configuration.
+
+This means that scripts do not have to implement an extra method to set the
+mapper type, and it can just be set once in that data source's ""setupjob""
+function. This eases the burden for developing new scripts.
+
+Any scripts already written to specify a mappertype function should continue
+to work fine, as long as they reference one of the standard jydoop 'setupjob'
+functions.",Mark Reid,2013-07-23T13:52:07Z,mreid-moz,mreid-moz,57,24,33
+113,jydoop,a0054278621a87d15a49323cf06d80c2e34b98b9,Update docs for Telemetry HDFS access,Mark Reid,2013-07-23T13:00:22Z,mreid-moz,mreid-moz,13,12,1
+114,jydoop,6d957baebd02f1aa534de4f2b55a49e4216ae1a3,"Add code + example for reading telemetry from hdfs
+
+If you run a job on Telemetry data outside of the supported date range, you'll
+get a helpful error message.",Mark Reid,2013-07-22T18:51:18Z,mreid-moz,mreid-moz,124,122,2
+115,jydoop,d45625f0f808ccc6be921f49c54249258e8523bd,"Merge pull request #40 from gavinsharp/master
+
+add some scripts",Taras Glek,2013-07-19T21:15:08Z,tarasglek,tarasglek,153,153,0
+116,jydoop,40452775611212cbea1d50bc74f54a18ed148d00,tweak added scripts,Gavin Sharp,2013-07-19T20:50:27Z,gavinsharp,gavinsharp,13,5,8
+117,jydoop,0b164dc7c3df524e348bf2fa5e9a7d5d228825f5,add some scripts,Gavin Sharp,2013-07-19T20:46:41Z,gavinsharp,gavinsharp,156,156,0
+118,jydoop,beb1e90a1580c3e65176cb1faeab623c6c5783fb,"Merge pull request #39 from mreid-moz/cdh4-compat
+
+Update Makefile for compatibility with CDH4",Benjamin Smedberg,2013-07-10T17:23:52Z,bsmedberg,bsmedberg,15,7,8
+119,jydoop,4be925ef09b745115209b2005dd2809d0c2ea895,Minor Makefile cleanup,Mark Reid,2013-07-10T17:21:19Z,mreid-moz,mreid-moz,5,2,3
+120,jydoop,7d06f24fdba377fffb8ed44401f7bac52dd8234e,Update Makefile for compatibility with CDH4,Mark Reid,2013-07-10T14:42:18Z,mreid-moz,mreid-moz,12,6,6
+121,jydoop,91ec53e7f3b98ede2062b4abdf60b21bda23f4ac,"Merge pull request #38 from mreid-moz/seqfile-doc-update
+
+Update documentation to reflect recent changes.",Mark Reid,2013-07-04T17:45:26Z,mreid-moz,mreid-moz,211,193,18
+122,jydoop,15b01086a4a8d3e26350d91a488fbf8b495b13ed,Fix a typo,Mark Reid,2013-07-04T17:38:56Z,mreid-moz,mreid-moz,4,2,2
+123,jydoop,8c227f74d3ee2ee2c30bcefd0d45281fe341d0d3,"Add more detailed documentation for new features.
+
+Describe the required / optional functions in a jydoop script, and add docs
+for skipping local output and accessing TestPilot / Jydoop input data.",Mark Reid,2013-07-04T15:39:29Z,mreid-moz,mreid-moz,211,193,18
+124,jydoop,2438aef9cfdd9886c9bc201054f32b9ed702eb0b,"Merge pull request #37 from mreid-moz/sequence-file-support
+
+Sequence file support",Taras Glek,2013-07-03T18:04:25Z,tarasglek,tarasglek,291,262,29
+125,jydoop,15b2125c9de4daa4810ba00218a6c7c776b2606b,Scripts to measure perf differences in getting 4K pages,Taras Glek,2013-06-27T17:35:34Z,Taras Glek,Taras Glek,90,88,2
+126,jydoop,6a975bc2e00227371e157bbb3ca775b9eff1ac6e,places page_size perf stats,Taras Glek,2013-06-26T19:46:54Z,Taras Glek,Taras Glek,78,78,0
+127,jydoop,c69c39736ef1a25c2edd8e6ad1e415a4ec8b8cff,"Merge pull request #35 from mreid-moz/security_ui
+
+Add a script to fetch SECURITY_UI Telemetry data.",Taras Glek,2013-06-18T20:04:35Z,tarasglek,tarasglek,30,30,0
+128,jydoop,1e0cbe8e175c57e9329ad344945797a47eaccfcc,Add a script to fetch SECURITY_UI Telemetry data.,Mark Reid,2013-06-18T19:39:44Z,mreid-moz,mreid-moz,30,30,0
+129,jydoop,a8fcebf3f140b18bcb38c4fc495482373981fbea,Set default MapperType to HBASE (fix an NPE),Mark Reid,2013-06-18T19:39:00Z,mreid-moz,mreid-moz,2,1,1
+130,jydoop,2a2b9a2e77b71827958527cff38305a787ee55e5,Add some utils for using jydoop output as input,Mark Reid,2013-06-17T23:35:24Z,mreid-moz,mreid-moz,52,52,0
+131,jydoop,3cdd898280c050294a68b101f960e11f2cdc46dd,"Add an option to skip local output
+
+If your jydoop job defines a ""skip_local_output"" function which returns True
+or a non-zero Int, the output will be left in HDFS for further processing.",Mark Reid,2013-06-17T23:34:59Z,mreid-moz,mreid-moz,25,9,16
+132,jydoop,d2749389fb7ba823016f80c8befaf07b0c75679b,"Refactor Sequence File support into HadoopDriver
+
+This combines the functionality of HBaseDriver and SequenceFileDriver without
+all that duplicated code.
+
+There is also a ""JydoopMapper"" which is intended to support using the output
+of one Jydoop job as the input of another.",Mark Reid,2013-06-17T20:23:30Z,mreid-moz,mreid-moz,619,10,609
+133,jydoop,6600e15f825520d10d7b11d8f75006d0fede1edb,Refactored to use HadoopDriver.java,Mark Reid,2013-06-17T20:10:52Z,mreid-moz,mreid-moz,436,433,3
+134,jydoop,1b1eb6e92c5dc52561023d0d42707502577ccae1,Iterate properly from Start Date to End Date.,Mark Reid,2013-06-17T18:54:14Z,mreid-moz,mreid-moz,44,26,18
+135,jydoop,34b3f2f540f59709cb4e0c966da173e2dd80e1df,Use proper Key/Value,Mark Reid,2013-06-17T18:05:16Z,mreid-moz,mreid-moz,5,2,3
+136,jydoop,94d05668d77e6dbd1287a97c99946b8071ca9e7a,Change key type back to Text,Mark Reid,2013-06-17T17:55:17Z,mreid-moz,mreid-moz,4,2,2
+137,jydoop,e8239842675ddfb9b8bc6625f9de534a5ca4697a,Use 'mapreduce' instead of 'mapred' classes,Mark Reid,2013-06-17T17:53:22Z,mreid-moz,mreid-moz,10,5,5
+138,jydoop,c31a9c94df59a1091e3ef9a3035d7ce532db55ed,Add a basic testpilot test,Mark Reid,2013-06-17T17:23:57Z,mreid-moz,mreid-moz,24,24,0
+139,jydoop,64b16db3d9cec6a1fa9af157fc6b7351acd07d44,Make Makefile work on mango-gw,Mark Reid,2013-06-17T17:10:26Z,mreid-moz,mreid-moz,15,7,8
+140,jydoop,c57a0ab550e22f8d7204904871946e9ee68fe1a0,Ignore vim swap files,Mark Reid,2013-06-17T17:10:18Z,mreid-moz,mreid-moz,1,1,0
+141,jydoop,f86ea43e185ba56aa6714a0533dd086eae61dcc2,"Runs, but key / value are messed up.",Mark Reid,2013-06-17T17:09:49Z,mreid-moz,mreid-moz,16,9,7
+142,jydoop,45a5544e6e39782b4c8fd78f729ae0015a6aa4b0,First stab,Mark Reid,2013-06-17T14:54:55Z,mreid-moz,mreid-moz,325,324,1
+143,jydoop,7b606548d91a0429e434fe0f91e13fefc1c2a3da,Update makefile to work on the 'peach' cluster,Mark Reid,2013-06-17T13:14:33Z,mreid-moz,mreid-moz,15,8,7
+144,jydoop,60aa21a8d3c41e62cf7c962c1f72f93d22a5b216,slowsql counter,Taras Glek,2013-06-04T16:26:16Z,Taras Glek,Taras Glek,46,46,0
+145,jydoop,9ab90918825e4aa2eff3a33809a739be56295b69,Merge branch 'master' of github.com:mozilla/jydoop,Taras Glek,2013-05-03T21:14:18Z,Taras Glek,Taras Glek,2,1,1
+146,jydoop,2bab14a7623660ebcef7cc7da9ed4391b6fbf990,tidy up json serialization code,Taras Glek,2013-05-03T21:12:52Z,Taras Glek,Taras Glek,16,11,5
+147,jydoop,d57e8c232030f42c9f6ae2a23e94a3909d8e5979,Fix typo.,Benjamin Smedberg,2013-05-02T20:17:57Z,bsmedberg,bsmedberg,2,1,1
+148,jydoop,13e9e29df75d488c61984987f9146357431f380c,a possibly-working json.dumps,Taras Glek,2013-05-02T01:03:08Z,Taras Glek,Taras Glek,96,90,6
+149,jydoop,fbb3766bd83f73af97f8ea137550e865edab1cd3,test fix to keep up with lib renames,Taras Glek,2013-05-01T22:42:46Z,Taras Glek,Taras Glek,2,1,1
+150,jydoop,62ae5c759ff1867d2a32774f189e0158cd8ec7cc,run tests via our wrapper,Taras Glek,2013-05-01T21:35:40Z,Taras Glek,Taras Glek,17,13,4
+151,jydoop,a957b625dcb33abb020f89beb29de9b9bde8827b,"Merge pull request #34 from bsmedberg/scriptedoutput
+
+Allow scripts to customize the output.",tarasglek,2013-04-30T20:10:41Z,tarasglek,tarasglek,146,109,37
+152,jydoop,51719bc9f1f5584585196ecd0cdbf07ea6b5daf4,"Allow scripts to customize the output and make the defaulat output a little better (use CSV if multiple values are present, otherwise just print value-per-line). Delete the temporary files off of hadoop after we've successfully completed output.",Benjamin Smedberg,2013-04-25T21:09:56Z,bsmedberg,bsmedberg,146,109,37
+153,jydoop,472d0a6c5f6681bf5670a360ff9eb277d86a4949,"Merge pull request #31 from indygreg/fhr-support
+
+FHR Utilities and Scripts",Benjamin Smedberg,2013-04-24T20:20:50Z,bsmedberg,bsmedberg,612,611,1
+154,jydoop,fc43b0e1a4e97a2a96a36b9b51eb412884197acc,"Merge pull request #33 from indygreg/unbust-filedriver
+
+Add pylib to sys.path in FileDriver.py",Benjamin Smedberg,2013-04-24T13:30:43Z,bsmedberg,bsmedberg,1,1,0
+155,jydoop,e2dba90eaab02119786a409845ae0ce66ee4fe48,Script to record which search engines were used,Gregory Szorc,2013-04-20T21:38:14Z,indygreg,indygreg,30,30,0
+156,jydoop,720a6c8a70177ffa3ede095ffa960551c18b6649,Script to record search counts by where in the browser they were performed,Gregory Szorc,2013-04-20T21:37:47Z,indygreg,indygreg,33,33,0
+157,jydoop,9d7e0da35713203d06366c1b063859990a83e931,Script to dump large payloads,Gregory Szorc,2013-04-20T20:59:58Z,indygreg,indygreg,30,30,0
+158,jydoop,6ae0f7620ac238fb2f84375093b6d0075df10701,Script to obtain Places counts,Gregory Szorc,2013-04-20T20:42:00Z,indygreg,indygreg,31,31,0
+159,jydoop,8a914ce6a093ab2d17cced42e29ddc8b7a969c28,Script to measure Telemetry and Blocklist flags,Gregory Szorc,2013-04-20T19:51:09Z,indygreg,indygreg,60,60,0
+160,jydoop,c8d737cfef56d1f39615b7346b2a874515f81a94,Script to retrieve FHR session counts,Gregory Szorc,2013-04-20T19:39:16Z,indygreg,indygreg,33,33,0
+161,jydoop,1148caa4b393e398fccd82ea405703d6d6f9f109,Script to retrieve FHR errors,Gregory Szorc,2013-04-20T19:38:52Z,indygreg,indygreg,27,27,0
+162,jydoop,d0ff9d698e0af931c23d358fef6344d6fe20fe23,Move count_fhr_facets.py into fhr script subdir,Gregory Szorc,2013-04-20T18:02:36Z,indygreg,indygreg,2,1,1
+163,jydoop,2d87732efe375b06abbf1fbede42a8605b19f751,Add class and decorator for more easily interfacing with FHR data,Gregory Szorc,2013-04-20T03:38:47Z,indygreg,indygreg,366,366,0
+164,jydoop,3406633be17dbcf110d09687aedba4b65fd37a67,Add pylib to sys.path in FileDriver.py,Gregory Szorc,2013-04-23T23:10:49Z,indygreg,indygreg,1,1,0
+165,jydoop,7e4513bec2744c3f9357ba3f42dcfe82ade4f68b,"Merge pull request #30 from indygreg/modules-directory
+
+Move common modules to a separate directory (pylib) from the scripts.",Benjamin Smedberg,2013-04-22T20:41:02Z,bsmedberg,bsmedberg,60,36,24
+166,jydoop,35a0136f21611d18c58c3929e09fc57cd67383af,Move common modules to jydoop directory,Gregory Szorc,2013-04-20T19:07:01Z,indygreg,indygreg,60,36,24
+167,jydoop,b82fcea30a514c34bd50df6f2feaa20ecfbfd22d,"Merge pull request #23 from tarasglek/master
+
+Separated key/value serialization from bsmedberg",tarasglek,2013-04-19T18:21:22Z,tarasglek,tarasglek,590,338,252
+168,jydoop,9a7b8b94e607d1fcb6ec378241fe2bfeb3ccf38a,cleaner jython check,Taras Glek,2013-04-19T17:52:26Z,Taras Glek,Taras Glek,11,4,7
+169,jydoop,ba9c354833f9daaadddc6636929f78a8de5a3938,"Merge pull request #22 from bsmedberg/setupjob
+
+Allow scripts to do work on setup/cleanup of jobs.",tarasglek,2013-04-19T17:33:09Z,tarasglek,tarasglek,17,16,1
+170,jydoop,0e6ba2ee22d96605b59e313471aa67e34937370a,"Merge pull request #1 from bsmedberg/dictlist
+
+Separate the type and value classes",tarasglek,2013-04-19T17:25:54Z,tarasglek,tarasglek,593,341,252
+171,jydoop,3ff6ff439699cf5ee13895534541ec4f7f28f461,Fix the tests.,Benjamin Smedberg,2013-04-19T17:16:25Z,bsmedberg,bsmedberg,16,11,5
+172,jydoop,cd7f3a341db507072b583fdee67fc789c4913385,Allow scripts to do work on setup/cleanup of jobs. This will allow me to copy a binary to a tempfile on disk and clean it up correctly.,Benjamin Smedberg,2013-04-19T16:51:52Z,bsmedberg,bsmedberg,17,16,1
+173,jydoop,2b116127634b6fe42dd74f1cb43b3203e2160aaf,"Merge pull request #21 from tarasglek/master
+
+Added Lists, Dicts to serialization code",tarasglek,2013-04-19T16:48:16Z,tarasglek,tarasglek,87,76,11
+174,jydoop,6a632f7bb65663b0969aee626a56275942d74935,Separate the type and value classes so that values can contain lists and dicts (and are not sortable) while keys cannot contain those and are sortable.,Benjamin Smedberg,2013-04-19T16:35:57Z,bsmedberg,bsmedberg,577,330,247
+175,jydoop,7111add80bc1deddbb65754bf3dc91a809fd48be,List serialization support,Taras Glek,2013-04-19T05:11:38Z,Taras Glek,Taras Glek,44,34,10
+176,jydoop,1b1f1aa960b4953fff2fa1b2ad805c03dc58ddde,Dict serialization support,Taras Glek,2013-04-19T04:03:45Z,Taras Glek,Taras Glek,43,42,1
+177,jydoop,aa0afd15c63f9ffcfe2306c471e4818449ed51d0,added a way to pull resources out of driver.jar,Taras Glek,2013-04-18T23:28:35Z,Taras Glek,Taras Glek,24,23,1
+178,jydoop,5a817c5d7f5efb215f2655ecccf988e62b97a1a3,"Merge pull request #18 from mreid-moz/better_fake_keys
+
+Use line numbers instead of byte offsets for fake keys",Benjamin Smedberg,2013-04-10T20:08:56Z,bsmedberg,bsmedberg,6,3,3
+179,jydoop,ab4d956fcf6b9b3843ed11cb72643013434213c3,"Merge pull request #19 from mreid-moz/rename_to_jydoop
+
+Rename from pydoop to jydoop",tarasglek,2013-04-10T18:24:06Z,tarasglek,tarasglek,8,4,4
+180,jydoop,269002a5e351155bd4ba091ea659fcd67a28257a,Change keys from 'fake_key_X' to 'line_Y'.,Mark Reid,2013-04-10T18:22:44Z,mreid-moz,mreid-moz,4,1,3
+181,jydoop,7f560531fc89fddbff54bbe9b938abca9da6e551,Rename from pydoop to jydoop,Mark Reid,2013-04-10T17:37:34Z,mreid-moz,mreid-moz,8,4,4
+182,jydoop,78a8c9ac25fe7b65d29117dd5c811555d20f898f,Add line numbers to fake keys,Mark Reid,2013-04-10T16:58:28Z,mreid-moz,mreid-moz,8,5,3
+183,jydoop,b24a2b25abe8c467e44e557e81fdfc3355a3ad1f,Add LICENSE,Benjamin Smedberg,2013-04-09T17:59:29Z,bsmedberg,bsmedberg,13,13,0
+184,jydoop,552e768693942b44b9d8f288782e244bfa7aa2b3,"Merge pull request #16 from mreid-moz/doc_updates2
+
+Fix the instructions for running local analysis.",Benjamin Smedberg,2013-04-09T14:42:15Z,bsmedberg,bsmedberg,6,3,3
+185,jydoop,a1ce82f3c6f3d335ba2b0cbc310dac52624a6e0b,"Merge pull request #57 from mreid-moz/add_test_data
+
+Provide sample data for new users to try Jydoop.",Benjamin Smedberg,2014-09-02T16:11:06Z,bsmedberg,bsmedberg,134,132,2
+186,jydoop,8559bc7f756e8f2ea2ea25252db34411fb2bdd73,"Provide sample data for new users to try Jydoop.
+
+Resolves issue 56",Mark Reid,2014-08-19T19:24:28Z,mreid-moz,mreid-moz,134,132,2
+187,jydoop,d47edc91d7cc871355b85bd753face3138086ffb,Merge branch 'master' of https://github.com/mozilla/jydoop,Benjamin Smedberg,2014-02-21T18:49:29Z,bsmedberg,bsmedberg,666,24,642
+188,jydoop,ec8f7bcb3e38b414ba4885b8662af548546855cb,Search for crashes where the main .exe name is corrupted.,Benjamin Smedberg,2014-02-21T18:48:32Z,bsmedberg,bsmedberg,62,62,0
+189,jydoop,31b4199d4009bc4bc11137596948a263353a2226,"Merge pull request #55 from bsmedberg/fhr-toolbox-changes
+
+Changes to move FHR scripts to fhr-toolbox.",Benjamin Smedberg,2014-02-21T17:32:34Z,bsmedberg,bsmedberg,666,24,642
+190,jydoop,3b7b162f7d401cbd37a8ad6b5dbdbb11069f86e6,Give mappers access to the configuration via context. Allow using an environment variable to save results to a different directory.,Benjamin Smedberg,2014-02-21T15:49:02Z,bsmedberg,bsmedberg,28,22,6
+191,jydoop,80771264996dc298b11b235f53a7abc864f6f63f,Don't hard-code the list of directories that make up driver.jar when calculating dependencies: use find to build that list. This allows symlinking -toolbox libraries into scripts/ and having them work correctly.,Benjamin Smedberg,2014-02-21T15:46:59Z,bsmedberg,bsmedberg,3,2,1
+192,jydoop,f90937ac24a22d1cb2eb34fb7940e1f4ab2bc820,"Move the FHR utils/scripts from the jydoop repository to fhr-toolbox. To run them, symlink jydoop/scripts/fhrtoolbox to fhr-toolbox/jydoop.",Benjamin Smedberg,2014-02-21T13:53:30Z,bsmedberg,bsmedberg,635,0,635
+193,jydoop,30a52d0a9d705ad1dba449c944eedbab87c67e45,Bug 808680 - script for reporting on minidump sizes in crash-stats,Benjamin Smedberg,2014-01-17T19:14:52Z,bsmedberg,bsmedberg,45,43,2
+194,jydoop,74eddbcfcb8279934224851e946ddd4a9435a7f4,Jython None doesn't have a stable .hashCode() across nodes: re-implement .hashCode to special-case None.,Benjamin Smedberg,2013-12-12T21:19:34Z,bsmedberg,bsmedberg,24,23,1
+195,jydoop,60b7e0cfb0e4e610d08d9a47a7936c8b182a2c57,Checkpoint AMD data for newer build ID.,Benjamin Smedberg,2013-12-12T20:07:59Z,bsmedberg,bsmedberg,16,9,7
+196,jydoop,881c40b7bf12eaef46c80b87a9d5bfd8ae50c0c3,New oom collector.,Benjamin Smedberg,2013-12-12T20:07:32Z,bsmedberg,bsmedberg,11,9,2
+197,jydoop,de61ba9eccefd5ee6b288a9f6cace3c6280fe514,Add a makefile target to launch a python shell with a jydoop-like environment.,Benjamin Smedberg,2013-12-12T20:06:22Z,bsmedberg,bsmedberg,3,3,0
+198,jydoop,c2c781c879422a0ef404efe5e20fa691b28ff2c9,Add a bunch of scripts which I'm using for crash-stats analysis.,Benjamin Smedberg,2013-12-10T21:33:57Z,bsmedberg,bsmedberg,261,261,0
+199,jydoop,dd8c1f82d63a5317dd445572707ec732f1ab08aa,Merge branch 'master' of https://github.com/mozilla/jydoop,Benjamin Smedberg,2013-11-25T16:16:42Z,bsmedberg,bsmedberg,14,8,6
+200,jydoop,deae5cd087b715d650894db95b63eac41cd03409,Add scripts for checking VM data/OOM classifications.,Benjamin Smedberg,2013-11-25T16:16:22Z,bsmedberg,bsmedberg,118,118,0
+201,jydoop,1b6bc6c46151981b7ced21f24f8a8198a1501907,"Merge pull request #47 from mreid-moz/add_counter_support
+
+Add support for custom job counters",Mark Reid,2013-11-08T21:04:28Z,mreid-moz,mreid-moz,6,6,0
+202,jydoop,82933189eb06df3eb0c0fa4a3e0a8cf876fce331,Add support for custom job counters,Mark Reid,2013-11-08T21:03:24Z,mreid-moz,mreid-moz,6,6,0
+203,jydoop,e9413fdebcbcb8cad64b2be56f85179fb0bbf23e,"Merge pull request #46 from mreid-moz/fix_json_serialization
+
+Fix json.dumps()",Mark Reid,2013-11-08T17:06:30Z,mreid-moz,mreid-moz,8,2,6
+204,jydoop,256d30aba3ec3c8c2b872236c1e4975448e25679,Fix json.dumps(),Mark Reid,2013-11-08T15:49:13Z,mreid-moz,mreid-moz,8,2,6
+205,jydoop,081f144c4d545d12f03602c5537be654c2f2a4b0,AMD cpu script.,Benjamin Smedberg,2013-09-03T21:02:09Z,bsmedberg,bsmedberg,51,51,0
+206,jydoop,104675a18c6ba97e480ff32b1453c5b0692349ab,"Merge pull request #44 from mreid-moz/read-plain-sequence-files
+
+Add a basic setupjob function for raw seqfiles",Mark Reid,2013-08-02T19:45:55Z,mreid-moz,mreid-moz,18,18,0
+207,jydoop,c7ae599e685fe6f08363b70e96a1d6184bc208ca,Add a basic setupjob function for raw seqfiles,Mark Reid,2013-08-02T18:54:47Z,mreid-moz,mreid-moz,18,18,0
+208,jydoop,5297a5c0d931c0bc107c2f09d037b17ce5898090,"Merge pull request #43 from mreid-moz/telemetry_hdfs_default
+
+Use the HDFS data for telemetry jobs by default.",Taras Glek,2013-07-24T17:24:02Z,tarasglek,tarasglek,26,11,15
+209,jydoop,b9ea5fa0f31aeee565ce7fd3006300f3b120907d,Use the HDFS data for telemetry jobs by default.,Mark Reid,2013-07-23T15:02:55Z,mreid-moz,mreid-moz,26,11,15
+210,jydoop,fc2ee67df16cd0574432301e5dfae6f0007692b3,"Merge pull request #42 from mreid-moz/move_mapper_type_to_setup
+
+Move the 'mappertype' to job configuration.",Benjamin Smedberg,2013-07-23T14:34:54Z,bsmedberg,bsmedberg,57,24,33
+211,jydoop,ed472b02af98c433c9791eb861c51ebd6055a40c,"Merge pull request #41 from mreid-moz/telemetry_hdfs_support_clean
+
+Telemetry hdfs support",Benjamin Smedberg,2013-07-23T14:27:29Z,bsmedberg,bsmedberg,137,134,3
+212,jydoop,e71da9b1bdb67ddcc5a70ec43d3f721ca8143803,"Move the 'mappertype' to job configuration.
+
+This means that scripts do not have to implement an extra method to set the
+mapper type, and it can just be set once in that data source's ""setupjob""
+function. This eases the burden for developing new scripts.
+
+Any scripts already written to specify a mappertype function should continue
+to work fine, as long as they reference one of the standard jydoop 'setupjob'
+functions.",Mark Reid,2013-07-23T13:52:07Z,mreid-moz,mreid-moz,57,24,33
+213,jydoop,a0054278621a87d15a49323cf06d80c2e34b98b9,Update docs for Telemetry HDFS access,Mark Reid,2013-07-23T13:00:22Z,mreid-moz,mreid-moz,13,12,1
+214,jydoop,6d957baebd02f1aa534de4f2b55a49e4216ae1a3,"Add code + example for reading telemetry from hdfs
+
+If you run a job on Telemetry data outside of the supported date range, you'll
+get a helpful error message.",Mark Reid,2013-07-22T18:51:18Z,mreid-moz,mreid-moz,124,122,2
+215,jydoop,d45625f0f808ccc6be921f49c54249258e8523bd,"Merge pull request #40 from gavinsharp/master
+
+add some scripts",Taras Glek,2013-07-19T21:15:08Z,tarasglek,tarasglek,153,153,0
+216,jydoop,40452775611212cbea1d50bc74f54a18ed148d00,tweak added scripts,Gavin Sharp,2013-07-19T20:50:27Z,gavinsharp,gavinsharp,13,5,8
+217,jydoop,0b164dc7c3df524e348bf2fa5e9a7d5d228825f5,add some scripts,Gavin Sharp,2013-07-19T20:46:41Z,gavinsharp,gavinsharp,156,156,0
+218,jydoop,beb1e90a1580c3e65176cb1faeab623c6c5783fb,"Merge pull request #39 from mreid-moz/cdh4-compat
+
+Update Makefile for compatibility with CDH4",Benjamin Smedberg,2013-07-10T17:23:52Z,bsmedberg,bsmedberg,15,7,8
+219,jydoop,4be925ef09b745115209b2005dd2809d0c2ea895,Minor Makefile cleanup,Mark Reid,2013-07-10T17:21:19Z,mreid-moz,mreid-moz,5,2,3
+220,jydoop,7d06f24fdba377fffb8ed44401f7bac52dd8234e,Update Makefile for compatibility with CDH4,Mark Reid,2013-07-10T14:42:18Z,mreid-moz,mreid-moz,12,6,6
+221,jydoop,91ec53e7f3b98ede2062b4abdf60b21bda23f4ac,"Merge pull request #38 from mreid-moz/seqfile-doc-update
+
+Update documentation to reflect recent changes.",Mark Reid,2013-07-04T17:45:26Z,mreid-moz,mreid-moz,211,193,18
+222,jydoop,15b01086a4a8d3e26350d91a488fbf8b495b13ed,Fix a typo,Mark Reid,2013-07-04T17:38:56Z,mreid-moz,mreid-moz,4,2,2
+223,jydoop,8c227f74d3ee2ee2c30bcefd0d45281fe341d0d3,"Add more detailed documentation for new features.
+
+Describe the required / optional functions in a jydoop script, and add docs
+for skipping local output and accessing TestPilot / Jydoop input data.",Mark Reid,2013-07-04T15:39:29Z,mreid-moz,mreid-moz,211,193,18
+224,jydoop,2438aef9cfdd9886c9bc201054f32b9ed702eb0b,"Merge pull request #37 from mreid-moz/sequence-file-support
+
+Sequence file support",Taras Glek,2013-07-03T18:04:25Z,tarasglek,tarasglek,291,262,29
+225,jydoop,15b2125c9de4daa4810ba00218a6c7c776b2606b,Scripts to measure perf differences in getting 4K pages,Taras Glek,2013-06-27T17:35:34Z,Taras Glek,Taras Glek,90,88,2
+226,jydoop,6a975bc2e00227371e157bbb3ca775b9eff1ac6e,places page_size perf stats,Taras Glek,2013-06-26T19:46:54Z,Taras Glek,Taras Glek,78,78,0
+227,jydoop,c69c39736ef1a25c2edd8e6ad1e415a4ec8b8cff,"Merge pull request #35 from mreid-moz/security_ui
+
+Add a script to fetch SECURITY_UI Telemetry data.",Taras Glek,2013-06-18T20:04:35Z,tarasglek,tarasglek,30,30,0
+228,jydoop,1e0cbe8e175c57e9329ad344945797a47eaccfcc,Add a script to fetch SECURITY_UI Telemetry data.,Mark Reid,2013-06-18T19:39:44Z,mreid-moz,mreid-moz,30,30,0
+229,jydoop,a8fcebf3f140b18bcb38c4fc495482373981fbea,Set default MapperType to HBASE (fix an NPE),Mark Reid,2013-06-18T19:39:00Z,mreid-moz,mreid-moz,2,1,1
+230,jydoop,2a2b9a2e77b71827958527cff38305a787ee55e5,Add some utils for using jydoop output as input,Mark Reid,2013-06-17T23:35:24Z,mreid-moz,mreid-moz,52,52,0
+231,jydoop,3cdd898280c050294a68b101f960e11f2cdc46dd,"Add an option to skip local output
+
+If your jydoop job defines a ""skip_local_output"" function which returns True
+or a non-zero Int, the output will be left in HDFS for further processing.",Mark Reid,2013-06-17T23:34:59Z,mreid-moz,mreid-moz,25,9,16
+232,jydoop,d2749389fb7ba823016f80c8befaf07b0c75679b,"Refactor Sequence File support into HadoopDriver
+
+This combines the functionality of HBaseDriver and SequenceFileDriver without
+all that duplicated code.
+
+There is also a ""JydoopMapper"" which is intended to support using the output
+of one Jydoop job as the input of another.",Mark Reid,2013-06-17T20:23:30Z,mreid-moz,mreid-moz,619,10,609
+233,jydoop,6600e15f825520d10d7b11d8f75006d0fede1edb,Refactored to use HadoopDriver.java,Mark Reid,2013-06-17T20:10:52Z,mreid-moz,mreid-moz,436,433,3
+234,jydoop,1b1eb6e92c5dc52561023d0d42707502577ccae1,Iterate properly from Start Date to End Date.,Mark Reid,2013-06-17T18:54:14Z,mreid-moz,mreid-moz,44,26,18
+235,jydoop,34b3f2f540f59709cb4e0c966da173e2dd80e1df,Use proper Key/Value,Mark Reid,2013-06-17T18:05:16Z,mreid-moz,mreid-moz,5,2,3
+236,jydoop,94d05668d77e6dbd1287a97c99946b8071ca9e7a,Change key type back to Text,Mark Reid,2013-06-17T17:55:17Z,mreid-moz,mreid-moz,4,2,2
+237,jydoop,e8239842675ddfb9b8bc6625f9de534a5ca4697a,Use 'mapreduce' instead of 'mapred' classes,Mark Reid,2013-06-17T17:53:22Z,mreid-moz,mreid-moz,10,5,5
+238,jydoop,c31a9c94df59a1091e3ef9a3035d7ce532db55ed,Add a basic testpilot test,Mark Reid,2013-06-17T17:23:57Z,mreid-moz,mreid-moz,24,24,0
+239,jydoop,64b16db3d9cec6a1fa9af157fc6b7351acd07d44,Make Makefile work on mango-gw,Mark Reid,2013-06-17T17:10:26Z,mreid-moz,mreid-moz,15,7,8
+240,jydoop,c57a0ab550e22f8d7204904871946e9ee68fe1a0,Ignore vim swap files,Mark Reid,2013-06-17T17:10:18Z,mreid-moz,mreid-moz,1,1,0
+241,jydoop,f86ea43e185ba56aa6714a0533dd086eae61dcc2,"Runs, but key / value are messed up.",Mark Reid,2013-06-17T17:09:49Z,mreid-moz,mreid-moz,16,9,7
+242,jydoop,45a5544e6e39782b4c8fd78f729ae0015a6aa4b0,First stab,Mark Reid,2013-06-17T14:54:55Z,mreid-moz,mreid-moz,325,324,1
+243,jydoop,7b606548d91a0429e434fe0f91e13fefc1c2a3da,Update makefile to work on the 'peach' cluster,Mark Reid,2013-06-17T13:14:33Z,mreid-moz,mreid-moz,15,8,7
+244,jydoop,60aa21a8d3c41e62cf7c962c1f72f93d22a5b216,slowsql counter,Taras Glek,2013-06-04T16:26:16Z,Taras Glek,Taras Glek,46,46,0
+245,jydoop,9ab90918825e4aa2eff3a33809a739be56295b69,Merge branch 'master' of github.com:mozilla/jydoop,Taras Glek,2013-05-03T21:14:18Z,Taras Glek,Taras Glek,2,1,1
+246,jydoop,2bab14a7623660ebcef7cc7da9ed4391b6fbf990,tidy up json serialization code,Taras Glek,2013-05-03T21:12:52Z,Taras Glek,Taras Glek,16,11,5
+247,jydoop,d57e8c232030f42c9f6ae2a23e94a3909d8e5979,Fix typo.,Benjamin Smedberg,2013-05-02T20:17:57Z,bsmedberg,bsmedberg,2,1,1
+248,jydoop,13e9e29df75d488c61984987f9146357431f380c,a possibly-working json.dumps,Taras Glek,2013-05-02T01:03:08Z,Taras Glek,Taras Glek,96,90,6
+249,jydoop,fbb3766bd83f73af97f8ea137550e865edab1cd3,test fix to keep up with lib renames,Taras Glek,2013-05-01T22:42:46Z,Taras Glek,Taras Glek,2,1,1
+250,jydoop,62ae5c759ff1867d2a32774f189e0158cd8ec7cc,run tests via our wrapper,Taras Glek,2013-05-01T21:35:40Z,Taras Glek,Taras Glek,17,13,4
+251,jydoop,a957b625dcb33abb020f89beb29de9b9bde8827b,"Merge pull request #34 from bsmedberg/scriptedoutput
+
+Allow scripts to customize the output.",tarasglek,2013-04-30T20:10:41Z,tarasglek,tarasglek,146,109,37
+252,jydoop,51719bc9f1f5584585196ecd0cdbf07ea6b5daf4,"Allow scripts to customize the output and make the defaulat output a little better (use CSV if multiple values are present, otherwise just print value-per-line). Delete the temporary files off of hadoop after we've successfully completed output.",Benjamin Smedberg,2013-04-25T21:09:56Z,bsmedberg,bsmedberg,146,109,37
+253,jydoop,472d0a6c5f6681bf5670a360ff9eb277d86a4949,"Merge pull request #31 from indygreg/fhr-support
+
+FHR Utilities and Scripts",Benjamin Smedberg,2013-04-24T20:20:50Z,bsmedberg,bsmedberg,612,611,1
+254,jydoop,fc43b0e1a4e97a2a96a36b9b51eb412884197acc,"Merge pull request #33 from indygreg/unbust-filedriver
+
+Add pylib to sys.path in FileDriver.py",Benjamin Smedberg,2013-04-24T13:30:43Z,bsmedberg,bsmedberg,1,1,0
+255,jydoop,e2dba90eaab02119786a409845ae0ce66ee4fe48,Script to record which search engines were used,Gregory Szorc,2013-04-20T21:38:14Z,indygreg,indygreg,30,30,0
+256,jydoop,720a6c8a70177ffa3ede095ffa960551c18b6649,Script to record search counts by where in the browser they were performed,Gregory Szorc,2013-04-20T21:37:47Z,indygreg,indygreg,33,33,0
+257,jydoop,9d7e0da35713203d06366c1b063859990a83e931,Script to dump large payloads,Gregory Szorc,2013-04-20T20:59:58Z,indygreg,indygreg,30,30,0
+258,jydoop,6ae0f7620ac238fb2f84375093b6d0075df10701,Script to obtain Places counts,Gregory Szorc,2013-04-20T20:42:00Z,indygreg,indygreg,31,31,0
+259,jydoop,8a914ce6a093ab2d17cced42e29ddc8b7a969c28,Script to measure Telemetry and Blocklist flags,Gregory Szorc,2013-04-20T19:51:09Z,indygreg,indygreg,60,60,0
+260,jydoop,c8d737cfef56d1f39615b7346b2a874515f81a94,Script to retrieve FHR session counts,Gregory Szorc,2013-04-20T19:39:16Z,indygreg,indygreg,33,33,0
+261,jydoop,1148caa4b393e398fccd82ea405703d6d6f9f109,Script to retrieve FHR errors,Gregory Szorc,2013-04-20T19:38:52Z,indygreg,indygreg,27,27,0
+262,jydoop,d0ff9d698e0af931c23d358fef6344d6fe20fe23,Move count_fhr_facets.py into fhr script subdir,Gregory Szorc,2013-04-20T18:02:36Z,indygreg,indygreg,2,1,1
+263,jydoop,2d87732efe375b06abbf1fbede42a8605b19f751,Add class and decorator for more easily interfacing with FHR data,Gregory Szorc,2013-04-20T03:38:47Z,indygreg,indygreg,366,366,0
+264,jydoop,3406633be17dbcf110d09687aedba4b65fd37a67,Add pylib to sys.path in FileDriver.py,Gregory Szorc,2013-04-23T23:10:49Z,indygreg,indygreg,1,1,0
+265,jydoop,7e4513bec2744c3f9357ba3f42dcfe82ade4f68b,"Merge pull request #30 from indygreg/modules-directory
+
+Move common modules to a separate directory (pylib) from the scripts.",Benjamin Smedberg,2013-04-22T20:41:02Z,bsmedberg,bsmedberg,60,36,24
+266,jydoop,35a0136f21611d18c58c3929e09fc57cd67383af,Move common modules to jydoop directory,Gregory Szorc,2013-04-20T19:07:01Z,indygreg,indygreg,60,36,24
+267,jydoop,b82fcea30a514c34bd50df6f2feaa20ecfbfd22d,"Merge pull request #23 from tarasglek/master
+
+Separated key/value serialization from bsmedberg",tarasglek,2013-04-19T18:21:22Z,tarasglek,tarasglek,590,338,252
+268,jydoop,9a7b8b94e607d1fcb6ec378241fe2bfeb3ccf38a,cleaner jython check,Taras Glek,2013-04-19T17:52:26Z,Taras Glek,Taras Glek,11,4,7
+269,jydoop,ba9c354833f9daaadddc6636929f78a8de5a3938,"Merge pull request #22 from bsmedberg/setupjob
+
+Allow scripts to do work on setup/cleanup of jobs.",tarasglek,2013-04-19T17:33:09Z,tarasglek,tarasglek,17,16,1
+270,jydoop,0e6ba2ee22d96605b59e313471aa67e34937370a,"Merge pull request #1 from bsmedberg/dictlist
+
+Separate the type and value classes",tarasglek,2013-04-19T17:25:54Z,tarasglek,tarasglek,593,341,252
+271,jydoop,3ff6ff439699cf5ee13895534541ec4f7f28f461,Fix the tests.,Benjamin Smedberg,2013-04-19T17:16:25Z,bsmedberg,bsmedberg,16,11,5
+272,jydoop,cd7f3a341db507072b583fdee67fc789c4913385,Allow scripts to do work on setup/cleanup of jobs. This will allow me to copy a binary to a tempfile on disk and clean it up correctly.,Benjamin Smedberg,2013-04-19T16:51:52Z,bsmedberg,bsmedberg,17,16,1
+273,jydoop,2b116127634b6fe42dd74f1cb43b3203e2160aaf,"Merge pull request #21 from tarasglek/master
+
+Added Lists, Dicts to serialization code",tarasglek,2013-04-19T16:48:16Z,tarasglek,tarasglek,87,76,11
+274,jydoop,6a632f7bb65663b0969aee626a56275942d74935,Separate the type and value classes so that values can contain lists and dicts (and are not sortable) while keys cannot contain those and are sortable.,Benjamin Smedberg,2013-04-19T16:35:57Z,bsmedberg,bsmedberg,577,330,247
+275,jydoop,7111add80bc1deddbb65754bf3dc91a809fd48be,List serialization support,Taras Glek,2013-04-19T05:11:38Z,Taras Glek,Taras Glek,44,34,10
+276,jydoop,1b1f1aa960b4953fff2fa1b2ad805c03dc58ddde,Dict serialization support,Taras Glek,2013-04-19T04:03:45Z,Taras Glek,Taras Glek,43,42,1
+277,jydoop,aa0afd15c63f9ffcfe2306c471e4818449ed51d0,added a way to pull resources out of driver.jar,Taras Glek,2013-04-18T23:28:35Z,Taras Glek,Taras Glek,24,23,1
+278,jydoop,5a817c5d7f5efb215f2655ecccf988e62b97a1a3,"Merge pull request #18 from mreid-moz/better_fake_keys
+
+Use line numbers instead of byte offsets for fake keys",Benjamin Smedberg,2013-04-10T20:08:56Z,bsmedberg,bsmedberg,6,3,3
+279,jydoop,ab4d956fcf6b9b3843ed11cb72643013434213c3,"Merge pull request #19 from mreid-moz/rename_to_jydoop
+
+Rename from pydoop to jydoop",tarasglek,2013-04-10T18:24:06Z,tarasglek,tarasglek,8,4,4
+280,jydoop,269002a5e351155bd4ba091ea659fcd67a28257a,Change keys from 'fake_key_X' to 'line_Y'.,Mark Reid,2013-04-10T18:22:44Z,mreid-moz,mreid-moz,4,1,3
+281,jydoop,7f560531fc89fddbff54bbe9b938abca9da6e551,Rename from pydoop to jydoop,Mark Reid,2013-04-10T17:37:34Z,mreid-moz,mreid-moz,8,4,4
+282,jydoop,78a8c9ac25fe7b65d29117dd5c811555d20f898f,Add line numbers to fake keys,Mark Reid,2013-04-10T16:58:28Z,mreid-moz,mreid-moz,8,5,3
+283,jydoop,b24a2b25abe8c467e44e557e81fdfc3355a3ad1f,Add LICENSE,Benjamin Smedberg,2013-04-09T17:59:29Z,bsmedberg,bsmedberg,13,13,0
+284,jydoop,552e768693942b44b9d8f288782e244bfa7aa2b3,"Merge pull request #16 from mreid-moz/doc_updates2
+
+Fix the instructions for running local analysis.",Benjamin Smedberg,2013-04-09T14:42:15Z,bsmedberg,bsmedberg,6,3,3

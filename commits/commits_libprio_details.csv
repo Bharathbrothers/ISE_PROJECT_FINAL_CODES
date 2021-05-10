@@ -1,0 +1,465 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,libprio,f64487577ce4cad5a93b1e2d9f539f02da3f3b38,move extern C above includes,Robert Helmer,2018-08-09T05:24:14Z,rhelmer,rhelmer,8,4,4
+1,libprio,ab526aa1d5af8264f901b7655e36e1272db07321,Use NSS_InitContext instead of NSS_Init (#2),Henry Corrigan-Gibbs,2018-08-06T02:11:47Z,henrycg,henrycg,37,22,15
+2,libprio,5779b9cde2e21786d4cf55823e021b8c172990f0,"Code for libprio pilot (#1)
+
+* The core libprio code for Prio client and server.
+
+These files contain the core cryptographic routines needed
+to implement the Prio client and Prio server.
+
+* Tests and example code for libprio.
+
+* A copy of NSS's MPI library.
+
+Since NSS does not export the MPI bignum library, we ship a copy
+with the standalone version of libprio.
+
+* Build file and README for libprio.
+
+* Edits per code review by franziskuskiefer
+
+* More edits per code review by franziskuskiefer
+
+* Fix memory bugs found by clang-analyzer
+
+* Remove ugly hack from PublicKey_import method
+
+Now we can import a 32-byte curve25519 public key into NSS without
+having to generate a new keypair from scratch.
+
+* Replace SConstruct file with simpler one
+
+* Update README to incorporate code review edits
+
+* Allow importing and exporting public keys in hex
+
+- Public functions PublicKey_import_hex and PublicKey_export_hex
+- Tests for these functions
+
+* Add end-to-end test program for PrioEncoder.
+
+Add browser-test utility that
+1) generates new server keypairs,
+2) uses xpcshell to call the PrioEncoder DOM routines,
+3) parses the output of PrioEncoder,
+4) validates the encoded packet, and
+5) checks that the submitted data is what we expected.
+
+* Fixes to make browser-test compile on Linux",Henry Corrigan-Gibbs,2018-07-17T18:26:39Z,henrycg,henrycg,87749,87730,19
+3,libprio,b7ef5dd432ad5577a0d1a11ab75bc75afe231296,Initial commit,Robert Helmer,2018-06-22T16:00:05Z,rhelmer,rhelmer,425,425,0
+4,libprio,b9de0de37e9103421f7088ab8d9e7e6beb789197,Fixed comment,Daniel Reusche,2020-11-19T11:34:58Z,degregat,degregat,3,2,1
+5,libprio,13c2d0ede5081ea361053a9d00791b5040d968f3,add deprecation warning with pointer to libprio-rs,Robert Helmer,2020-11-18T19:09:29Z,rhelmer,rhelmer,2,2,0
+6,libprio,ffda9aa966be1a87ae9ac5f8b8dfb1076662db04,Fix and test zeroing of t->data_shares in set_data_uint,Daniel Reusche,2020-11-05T17:19:10Z,degregat,degregat,33,18,15
+7,libprio,aebda0ea3e6f61229a191520b859d66f7cf4ec71,Declare private functions as static,Henry Corrigan-Gibbs,2020-07-28T19:22:14Z,henrycg,henrycg,4,2,2
+8,libprio,c926280e2f65af49e5d6fef93518aa11d2694d1c,Add checks for server index and public keys,Anthony Miyaguchi,2020-07-27T19:35:28Z,acmiyaguchi,acmiyaguchi,134,109,25
+9,libprio,5a97f57a9ea1fc66d7186818fed69b490770914d,Clean up testing resource (fix memory leak),Anthony Miyaguchi,2020-07-25T03:22:49Z,acmiyaguchi,acmiyaguchi,4,4,0
+10,libprio,ed7c157a2a7764bf71b575d08cf6248194e6966c,Add more formatting fixes,Anthony Miyaguchi,2020-07-25T03:05:57Z,acmiyaguchi,acmiyaguchi,10,5,5
+11,libprio,9f142c750e32a4ff4b805c2cc34e3867720b2665,Add implementation of server merge test (and formatting),Anthony Miyaguchi,2020-07-25T02:59:04Z,acmiyaguchi,acmiyaguchi,96,86,10
+12,libprio,46ed0ac6666bcfa5f10ea077c03a7404e177f624,Add test for serializing server state,Anthony Miyaguchi,2020-07-25T00:36:03Z,acmiyaguchi,acmiyaguchi,107,88,19
+13,libprio,dafbe58b518d8a247cdfe21c287bea18dc9d965e,Add test for merging uint,Anthony Miyaguchi,2020-07-24T23:54:32Z,acmiyaguchi,acmiyaguchi,59,57,2
+14,libprio,2e63cb55c99641d1f2c5202a17fdd28a36f801ba,Add version bump,Anthony Miyaguchi,2020-07-08T19:43:12Z,acmiyaguchi,acmiyaguchi,2,1,1
+15,libprio,4677eb94705084466c1e209ca64f740592ca5649,Update swig interface for server serialization,Anthony Miyaguchi,2020-07-08T08:24:51Z,acmiyaguchi,acmiyaguchi,232,226,6
+16,libprio,bf1856df455efc66278ad95ac477d3632dc88746,Add implementations for the serialization and merge interface,Anthony Miyaguchi,2020-07-08T07:39:49Z,acmiyaguchi,acmiyaguchi,37,37,0
+17,libprio,78a034dd377f5f99632739464e31f34f4c34ae0f,Add a test of the new interface from the Python bindings,Anthony Miyaguchi,2020-07-08T06:51:20Z,acmiyaguchi,acmiyaguchi,83,83,0
+18,libprio,47aeebf345ff63f5a12b7d5ad259fb5d843f6c5b,Add interface for server serialization,Anthony Miyaguchi,2020-07-08T06:49:00Z,acmiyaguchi,acmiyaguchi,12,12,0
+19,libprio,ceb1da0548fd7ade9bdd49c1c21e1e967b34fdcc,"Add script to distribute binary wheels (#103)
+
+* Add Dockerfile that can generate linux wheels
+
+* Add script for distributing binary eggs and wheels
+
+* Remove eggs from the build process
+
+* Use manylinux2014 for building linux wheels and update readme
+
+* Add update script and readme to reflect final testing",Anthony Miyaguchi,2020-07-27T23:51:07Z,acmiyaguchi,acmiyaguchi,219,217,2
+20,libprio,80647f4887886114bc35a5af428172319a2909d1,Hash batchID with shared secret to get PRG seed. (#104),Henry Corrigan-Gibbs,2020-07-27T23:49:30Z,henrycg,henrycg,145,127,18
+21,libprio,951cbd2b04ab27730810b2edc1e606be1f8ab2ce,"CI: chase scons package rename on FreeBSD
+
+scons became scons-py27 + scons-py37.",Jan Beich,2020-07-18T04:36:33Z,jbeich,jbeich,3,2,1
+22,libprio,beed0d9d3c95cede4d6706fb95923db232ae11c8,"Add generated Python bindings (#98)
+
+* Fix SConstruct to build on macOS again
+
+* Add dockerfile with centos8
+
+* Add initial set of files for python binding
+
+* Add build that works in linux
+
+* Add functional build of python bindings
+
+* Use setuptools and document failure mode
+
+* Rename prio to src
+
+* Move swig interface into separate folder
+
+* Update readme and tests
+
+* Reformat swig file and add in generated swig wrapper
+
+* Organize swig interface with modules and macros
+
+* Remove libprio namespace from tests
+
+* Add BBIT_PREC_MAX to swig interface
+
+* Fix implicit declaration of MIN function in binding
+
+* Add tests for config and move bigger test to the bottom
+
+* Accidentally change thing with keys
+
+* Add wrapper for PrioTotalShare_final_uint
+
+* Add working interface to uint encodings
+
+* Move MSGPACK_* macros to end of interface due to inline code
+
+* Add tests for most of the serialization
+
+* Update config and key tests
+
+* Fix hex exports of keys from including null byte
+
+* Add documentation to failing multiprocessing test
+
+* Remove automatic prio context at module load and fix tests
+
+* Fix multi-processing test
+
+* Remove MANIFEST from clean
+
+* Fix travis by updating msgpack instead of installing",Anthony Miyaguchi,2020-07-16T23:57:40Z,acmiyaguchi,acmiyaguchi,8177,8168,9
+23,libprio,bfa543bfaa07bc085881c506669073cdcedb90fd,"Run code through clang-format 9.0. (#97)
+
+Generated by running the following command in the top-level dir:
+
+> clang-format --style=Mozilla \
+   -i include/*.h pclient/*.c prio/*.c prio/*.h ptest/*.c ptest/*.h
+
+Update .travis.yml and clang-format.sh to use 9.0",Henry Corrigan-Gibbs,2020-06-02T06:38:23Z,henrycg,henrycg,1804,1083,721
+24,libprio,e7e7527dd567307588b2fcf7d981bce077712567,Fix a couple of typos in code comments.,Henry Corrigan-Gibbs,2020-05-29T16:41:38Z,henrycg,henrycg,6,3,3
+25,libprio,f41e3f12c11f76d0380a4226619424305551677a,Increase verbosity of tests in travis,Daniel Reusche,2020-05-29T15:31:16Z,degregat,degregat,2,1,1
+26,libprio,e46deabfef9d955fdc3c7c1d5c1b6044dd590496,Check wether prec set correctly on server,Daniel Reusche,2020-05-29T13:41:54Z,degregat,degregat,50,35,15
+27,libprio,1f909c585fe0a7131e084bdbeea995af4f1f96f8,"Lowered BBIT_PREC_MAX, added tests and documentation",Daniel Reusche,2020-05-23T21:12:55Z,degregat,degregat,28,23,5
+28,libprio,c9943d5a291684ec314832c1d7cc04080203105b,Added documentation,Daniel Reusche,2020-05-23T20:54:18Z,degregat,degregat,52,41,11
+29,libprio,838800065e800f767271722f136060740d7b2bce,Renamed to _uint,Daniel Reusche,2020-05-23T18:11:23Z,degregat,degregat,259,130,129
+30,libprio,3b2b8488ac3ad20b0c5c564c05162b9af9bb96f8,Amended as discussed in the review,Daniel Reusche,2020-05-21T15:16:22Z,degregat,degregat,223,211,12
+31,libprio,b2e256f4852461dfa2cd4753ebcad8f08a585c76,Added b-bit integer circuit,Daniel Reusche,2020-05-19T10:30:30Z,degregat,degregat,774,772,2
+32,libprio,a1b48a81c215b9376a4161db4d9a6adfddfa9b52,Run changes through clang-format-3.9,Henry Corrigan-Gibbs,2020-05-21T12:11:00Z,henrycg,henrycg,52,35,17
+33,libprio,a96921775987d59f2dbf37411b5ece97a42e57a2,Add fuzzing documentation,Christian Holler (:decoder),2020-05-11T09:33:51Z,choller,choller,42,42,0
+34,libprio,3881ea04bb9c0998418a6bb44cf2b85fd3afb635,Add a zipped corpus for the server_verify_fuzz target.,Christian Holler (:decoder),2020-05-11T09:05:36Z,choller,choller,0,0,0
+35,libprio,f9be52a70644475c03b7bc6577b552f37919378b,"Add server_verify fuzzing target
+
+This target performs a full server verify cycle similar to the server
+test. Since two data blobs are required, we use a simple custom mutator
+that internally splits the data in two fields A and B and ensures that
+one of the two is mutated per iteration.",Christian Holler (:decoder),2020-04-23T16:59:20Z,choller,choller,251,251,0
+36,libprio,3b2fba41240032b9bfa072ffe92d52431aff6958,"Add FUZZING support
+
+This adds the FUZZING variable to the build system, which will build all
+code with libFuzzer instrumentation and activate the pfuzz subdirectory.
+Inside this subdirectory, all .c files will be built as standalone
+fuzzing targets. This flag is supposed to be combined with SANITIZE=1
+but there are cases where it is desirable to build without sanitizers,
+hence I left the flags separated.",Christian Holler (:decoder),2020-04-23T11:35:51Z,choller,choller,33,33,0
+37,libprio,f16bceefda00bc0eb920917e0f2c39427bcfc85f,"Add -gline-tables-only when building with sanitizers but without DEBUG
+
+Sanitizers require debugging symbols to provide proper tracebacks. It is
+however not required to build with full debug symbols (-g), instead it
+suffices to use -gline-tables-only to reduce the binary size.",Christian Holler (:decoder),2020-04-23T11:30:13Z,choller,choller,2,2,0
+38,libprio,bfff803062d80644bc764697309079f578382ce5,"CI: fix install errors on macOS
+
+Error: nss 3.48 is already installed
+To upgrade to 3.52, run `brew upgrade nss`.
+Error: nspr 4.24 is already installed
+To upgrade to 4.25, run `brew upgrade nspr`.",Jan Beich,2020-05-21T11:56:41Z,jbeich,jbeich,3,2,1
+39,libprio,c70dfd6ab2748a299edfdb17c457793aab3aa42d,CI: drop LD_LIBRARY_PATH after 52643cefe666,Jan Beich,2020-05-21T10:04:06Z,jbeich,jbeich,1,0,1
+40,libprio,244aa016bbc2b521c20ffd1fca167f7dbd3378d0,CI: drop extra flags on macOS after 854d87d8a15b,Jan Beich,2020-05-21T10:05:50Z,jbeich,jbeich,2,0,2
+41,libprio,19faab7083873ea48704928aa3479d9933d260e4,"Keep using old CK_GCM_PARAMS on NSS >= 3.52
+
+Based on https://hg.mozilla.org/mozilla-central/rev/463069687b3d",Jan Beich,2020-05-20T15:56:53Z,jbeich,jbeich,5,1,4
+42,libprio,548c33cf6f6eef94a52af573048f1d8d76c3efc7,CI: add FreeBSD job,Jan Beich,2020-05-20T13:02:59Z,jbeich,jbeich,9,8,1
+43,libprio,72f26f7c89251d24201ace2a26ffec51d064e558,"Add build flags for BSDs
+
+In file included from build/pclient/main.c:9:
+include/mprio.h:16:10: fatal error: 'blapit.h' file not found
+ #include <blapit.h>
+          ^~~~~~~~~~
+In file included from build/pclient/main.c:9:
+include/mprio.h:17:10: fatal error: 'msgpack.h' file not found
+ #include <msgpack.h>
+          ^~~~~~~~~~~
+ld: error: unable to find library -lnss3
+ld: error: unable to find library -lnspr4
+ld: error: unable to find library -lmsgpackc",Jan Beich,2020-05-20T04:14:01Z,jbeich,jbeich,6,6,0
+44,libprio,24c4970e663fc0c7956c0d49693ccb0856c42494,"Avoid redefining MIN
+
+In file included from build/pclient/main.c:13:
+./prio/util.h:17:9: error: 'MIN' macro redefined [-Werror,-Wmacro-redefined]
+ #define MIN(a, b) ((a) < (b) ? (a) : (b))
+         ^
+/usr/include/sys/param.h:308:9: note: previous definition is here
+ #define MIN(a,b) (((a)<(b))?(a):(b))
+         ^",Jan Beich,2020-05-20T04:09:54Z,jbeich,jbeich,2,2,0
+45,libprio,52643cefe6662b4099e16a40a057cb60651ab001,upgrade Travis CI distro to Ubuntu Bionic (#86),Robert Helmer,2020-04-26T19:23:09Z,rhelmer,rhelmer,16,5,11
+46,libprio,f72b2b244194b4d13bb0b68f163591bc16eae55d,"Fix serialization bug in `prio/serial.c` (#81)
+
+* In `serial_read_packet_client`, we should check that the type
+of the incoming packet matches the type of the `PrioPacketClient`
+passed into `serial_read_packet_client` and fail if the two don't
+match.
+
+* Add a test for this behavior.
+
+Co-authored-by: Robert Helmer <rhelmer@rhelmer.org>",Henry Corrigan-Gibbs,2020-04-21T17:14:17Z,henrycg,henrycg,19,18,1
+47,libprio,ed4142ae1cec2082d5efb0f7429cad4b77af672c,"Fix memory leak in serial_read_packet_client (#80)
+
+* Fix memory leak in serial_read_packet_client
+
+* Fixing more memory leaks in `prio/serial.c`
+
+The `UP_CHECK` macro just returned on failure, rather than
+jumping to the `cleanup` label. This commit replaces `UP_CHECK`
+with `UP_CHECKC`, which jumps to `cleanup` on failure.
+
+* Replace `P_CHECK` with `P_CHECKC` in prio/serial.c
+
+Every function in `prio/serial.c` has a `cleanup` label, but
+much of the code in these functions won't actually jump to
+cleanup on failure. As far as I can tell, this doesn't cause
+any additional memory leaks, but in case someone adds cleanup
+code at the `cleanup` label in the future, it seems prudent to
+always jump to `cleanup` on failure.
+
+Co-authored-by: Henry Corrigan-Gibbs <henrycg@csail.mit.edu>",Christian Holler (:decoder),2020-04-21T17:07:56Z,choller,choller,106,55,51
+48,libprio,6efb51c538658828e1a7be42cb3e4b6caba41c46,No need to memset memory allocated with calloc,tititiou36,2020-04-19T10:15:31Z,tititiou36,tititiou36,3,1,2
+49,libprio,9a30c743c0e6d67773ec8341b7e59b69029d0dd1,"remove unnecessary runtime call to strlen()
+
+PRIO_TAG is a fixed-size string, we can use sizeof to the same effect.
+This also has the nice side-effect of removing a variable-length-array
+since AAD_LEN could not be known at compile-time",Gabriel Ganne,2019-08-07T14:12:05Z,GabrielGanne,GabrielGanne,2,1,1
+50,libprio,854d87d8a15ba6275e76d8b06140839f3c1d3475,"Update SConstruct to modify include path based on sys.platform (#74)
+
+* Format SConstruct with black
+
+* Update SConstruct to modify include path based on OS
+
+* Remove unneeded exports",Anthony Miyaguchi,2019-04-30T21:44:59Z,acmiyaguchi,acmiyaguchi,66,41,25
+51,libprio,662191a831fa6ea38460d51e4be5ba84dfaec247,Remove comment in CODE_OF_CONDUCT.md,Henry Corrigan-Gibbs,2019-03-30T15:57:09Z,Henry Corrigan-Gibbs,Henry Corrigan-Gibbs,6,0,6
+52,libprio,bbca24fded07fa65451dec8b7a406d27890395cf,"Add Mozilla Code of Conduct file
+
+Fixes #72.
+
+_(Message COC002)_",Mozilla-GitHub-Standards,2019-03-30T06:57:03Z,Mozilla-GitHub-Standards,Mozilla-GitHub-Standards,15,15,0
+53,libprio,cfecb2cc84789b9c5b2119109c5212bb297f2724,"Remove precomputed table of roots (#68) (#69)
+
+* Remove precomputed table of roots (#68)
+
+There is no need to ship the large precomputed table of roots of unity;
+it's possible to compute the table on the fly in linear time (in the
+table size). This commit:
+* removes the table from `prio/params.h`,
+* removes the script that generates it (`scripts/gen_params.py`), and
+* adds code to generate the table in `prio/config.c`.
+
+* Point Travis to latest version of NSS",Henry Corrigan-Gibbs,2019-03-28T04:34:20Z,henrycg,henrycg,4256,64,4192
+54,libprio,a898b5505d8b60ba7ef39127d7f9a2884f39f33d,Ensure that early cleanup runs correctly,Robert Helmer,2019-02-14T17:31:46Z,rhelmer,rhelmer,41,27,14
+55,libprio,84356e147b15a0e2952e15e82510a0acea5a1cc7,"upgrade nss and tighten up error checking (#66)
+
+* upgrade nss and tighten up error checking",Robert Helmer,2019-02-14T22:35:08Z,rhelmer,rhelmer,8,4,4
+56,libprio,a95cfdd5eaf7104582709c54ef23395d24d7f7fd,"use `unsigned long long` to support 64-bit ints on 32-bit platforms (#62)
+
+* use  to support 64-bit ints on 32-bit platforms
+
+* Tests and utilitie now use unsigned long long.",Robert Helmer,2019-01-10T05:47:00Z,rhelmer,rhelmer,18,9,9
+57,libprio,981e09efa18b01c641226b1263226a1317274e83,"Fix security bug in proof-checking code (#60)
+
+* Add PRG_get_int_range() function
+
+* Fix bug in proof-checking code.
+
+Per Appendix D.2 of the full version of the Prio paper, the servers
+should evaluate the polynomials f, g, and h at a random point r in the
+set {M+1, ..., modulus-1}, where M is the number of multiplication gates
+in the ""Valid"" circuit. The implementation previously sampled the point
+r from the larger set {0, ..., modulus-1}.
+
+* Remove extraneous printf() in test code
+
+* Fixes per clang-format",Henry Corrigan-Gibbs,2019-01-09T06:41:57Z,henrycg,henrycg,106,103,3
+58,libprio,3b3d1b6d4bdd1de0d19f4234b9e2641887ab2945,bump NSS version to fix travis-CI build (#61),Robert Helmer,2019-01-09T06:33:56Z,rhelmer,rhelmer,8,4,4
+59,libprio,1f12e2b68d0d8de9c6d928d22d02bd76df9cbeca,"Issue 57 correctly check max input length (#58)
+
+* Issue #57 - Expose maximum number of data fields
+
+- Add PrioConfig_maxDataFields() to public API
+- Check that the number of data fields passed in during config
+  creation is not too large.
+
+* Test for PrioConfig_maxDataFields()
+
+* Fix formatting per clang-format.",Henry Corrigan-Gibbs,2018-11-07T22:24:04Z,henrycg,henrycg,56,46,10
+60,libprio,2c06b4b8d0197ced96f27db41f4edce46a30fce9,"issue #43 - add travis-ci integration for osx (#53)
+
+* issue #43 - add travis-ci integration for osx
+
+* opt for using clang-format on linux side only",Adeebur Rahman,2018-10-12T04:53:46Z,Adeebur Rahman,Adeebur Rahman,33,22,11
+61,libprio,00c02f92064806ef5055cb6dff784b1a727fb198,Ensure that output does not overflow,Henry Corrigan-Gibbs,2018-10-09T03:30:10Z,Henry Corrigan-Gibbs,Henry Corrigan-Gibbs,21,17,4
+62,libprio,2bfea2aaee0bc335ef62d45bc4ae655f3ae8a94d,"Functions for import/export of private keys (#51)
+
+* Allow DEBUG mode without sanitizers
+
+Valgrind is incompatible with AddressSanitizer, so it is nice to turn
+on DEBUG mode without the sanitizers.
+
+* PrivateKey import/export functions
+
+* Define PT_CHECK*() macros for better test output
+
+When using P_CHECKC(), you get no information about where
+or why the test failed. These macros also call `mu_check()`
+so that you can more easily figure out what went wrong.
+
+* Fix clang-format issues
+
+* Configure travis to use NSS 3.39
+
+* Update README with new version dependencies.
+
+* Fixes per rhelmer's review
+
+* Fix typos.
+* Use (pointer,length)-style arguments for import and export functions.",Henry Corrigan-Gibbs,2018-10-02T19:13:39Z,henrycg,henrycg,971,717,254
+63,libprio,49236017671b891ed2d3e0ff8228cfe246ad4a46,Add contact details for security bugs (#50),Henry Corrigan-Gibbs,2018-10-01T18:25:29Z,henrycg,henrycg,9,4,5
+64,libprio,934173a113ecfcee465aae53deb162be4907434c,"memory leak in fft_interpolate_raw
+
+This should probably be `MP_CHECKC`. Otherwise this leaks.
+(Found by coverity)",Franziskus Kiefer,2018-09-28T07:56:42Z,franziskuskiefer,franziskuskiefer,4,2,2
+65,libprio,8cb93da723e7d0e20e20271deda5c227b759f938,Move `PK11_FreeSlot` below `cleanup` label (#49),Henry Corrigan-Gibbs,2018-09-26T21:00:12Z,henrycg,henrycg,8,5,3
+66,libprio,02a81fb652d385d0f4f10989d051317097ab55fb,"Remove all variable-length arrays on the stack (#45)
+
+* Remove all variable-length arrays
+
+* Fix indenting",Henry Corrigan-Gibbs,2018-09-24T16:34:53Z,henrycg,henrycg,659,357,302
+67,libprio,919088a37a125d033e0b499d885f76023a94326f,Use AddressSanitizer and UBSanitizer in ptest (#46),Henry Corrigan-Gibbs,2018-09-24T07:49:59Z,henrycg,henrycg,7,5,2
+68,libprio,2a49189144fc8e4ee266e9180de11e045a82c0ac,"make roots data read-only, shareable between processes, and smaller on 64-bit platforms (#38)
+
+* don't clang-format generated roots
+
+The formatted arrays are significantly less readable.
+
+* eliminate the need for RootsInv data
+
+Since RootsInv is essentially Roots stored in reverse order, we don't
+need to store an entirely separate array for the inverse roots.  We can
+simply iterate over Roots in reverse order to produce the inverse roots.
+
+* make roots data read-only and shareable between processes
+
+The roots of unity are currently stored as:
+
+static const char *Roots[] = { ... };
+
+which is inefficient for two reasons:
+
+1. `Roots` is a writable array, even though we only ever read from it.
+2. `Roots` contain pointers, which require run-time relocations.
+   These run-time relocations can be at least as large as the entries
+   in the array.
+
+The upshot is that `Roots` requires more space than necessary and cannot
+be shared between processes.
+
+To fix both of these problems, let's change the storage format to one
+long character array, where individual roots are formatted to all be the
+same width.  This format enables efficient access to individual roots
+and is pointer-free, so no run-time relocations are required.
+
+* Script works with Python3, add one sanity check",Nathan Froyd,2018-09-21T14:54:58Z,froydnj,froydnj,12540,4251,8289
+69,libprio,488da2d729d73f18ed45add59edd18b257e1ceaa,"Linux distros expect NSS headers to not have nss/ prefix on include, … (#40)
+
+* Linux distros expect NSS headers to not have nss/ prefix on include, see https://bugzilla.mozilla.org/show_bug.cgi?id=1491289
+
+* put /usr/include/nss on default path
+
+* make clang-format happy",Robert Helmer,2018-09-17T21:54:15Z,rhelmer,rhelmer,40,20,20
+70,libprio,52a3348ea1deb2d4a9a4c69ec15808429a6e64a7,This Firefox-specific browser test was moved to a unit test in https://bugzilla.mozilla.org/show_bug.cgi?id=1485620 so we can remove it now (#39),Robert Helmer,2018-09-17T18:38:49Z,rhelmer,rhelmer,377,0,377
+71,libprio,9df5cd22ae946b5b42b6bc0ade6dda4d21b7e57c,"change readme to specify linkflags not ldflags
+
+PR #34 changes the way compiler flags are read from the environment, and
+SCons seems to want ""LINKFLAGS"" set in the enviroment instead of
+""LDFLAGS"" - this was being mapped before.
+
+It's probably not worth re-mapping this, just changing it so what is
+specified in the README still works for platforms that need to install
+NSS in a weird place (like macOS and Windows) :)",Robert Helmer,2018-09-12T04:34:21Z,rhelmer,rhelmer,4,2,2
+72,libprio,113b69c58dd412a50982d0ebdab319ee30302c86,Add CCFLAGS for compiler options,Anthony Miyaguchi,2018-09-10T22:18:06Z,acmiyaguchi,acmiyaguchi,19,8,11
+73,libprio,02beee180ea3e9b88a45059fd878760c48c187ba,"bug 1465251 - turned out the last histogram I picked was expired :/ I checked and it looks like all the ones we are using now are not expired, and I see active code incrementing them.",Robert Helmer,2018-09-08T19:08:55Z,rhelmer,rhelmer,2,1,1
+74,libprio,7bb69953ce00392bac997007da7e6cf99f8afde0,"per bug 1465251, switch to sync version of PrioEncoder.encode()",Robert Helmer,2018-09-07T18:20:43Z,rhelmer,rhelmer,37,17,20
+75,libprio,f1087cb6c417a92435a69f924eb352724a3df903,"per bug 1465251, switch to using boolean-only histograms",Robert Helmer,2018-09-06T18:06:32Z,rhelmer,rhelmer,14,3,11
+76,libprio,3ecb4a074f01470ee3f67cbc6164b7e2c38c55d3,avoid undefined behavior on platforms where char is signed (which would result in integer overflow before),Robert Helmer,2018-08-30T16:12:35Z,rhelmer,rhelmer,2,1,1
+77,libprio,0500eb04e64b5d42d7816e8f34bebfaa4b2f988f,typo fix,Robert Helmer,2018-08-30T18:41:57Z,rhelmer,rhelmer,2,1,1
+78,libprio,fb03f0f588c6f1fa7f668ce0f4a77217a2fb0ad3,"Merge pull request #27 from rhelmer/use-clang-compiler
+
+issue #25 - use clang as the compiler",Henry Corrigan-Gibbs,2018-08-30T18:39:07Z,henrycg,henrycg,9,6,3
+79,libprio,d1ab26522d3f1d9298605af12b86ed7c94266b25,update README to reflect required SCons version,Robert Helmer,2018-08-30T16:16:24Z,rhelmer,rhelmer,2,1,1
+80,libprio,0659704ba42d3fe43d267e3e790f3822e71e90f9,"Merge pull request #29 from rhelmer/libprio-always-builds-debug
+
+scons currently always does a debug build, fix the default and also t…",Henry Corrigan-Gibbs,2018-08-30T15:30:06Z,henrycg,henrycg,4,2,2
+81,libprio,5b9b9fb182464f17bc1629f77a8df4ba5c761b5c,"scons currently always does a debug build, fix the default and also the example in the README",Robert Helmer,2018-08-30T04:51:44Z,rhelmer,rhelmer,4,2,2
+82,libprio,768dfb95515305b870de8e59e1a0d4070de5899a,issue #25 - use clang as the compiler,Robert Helmer,2018-08-30T04:21:31Z,rhelmer,rhelmer,7,5,2
+83,libprio,91b63f84878649aa4b4792676d4cb44fac7fe2cc,"Two small fixes (#28)
+
+* Remove unnecessary debug #define
+* Fix formatting in README",Henry Corrigan-Gibbs,2018-08-29T21:18:36Z,henrycg,henrycg,4,1,3
+84,libprio,ded8b1054b84012676b28772fd7594476652752a,"issue #25 - format libprio with clang-format, using Mozilla style (#26)
+
+* issue #25 - format libprio with clang-format, using Mozilla style
+
+* force clang 3.9 (latest available on Ubuntu Trusty)
+
+* remove clang-format file, 3.9 is confused by some settings. try using built-in Mozilla style instead",Robert Helmer,2018-08-29T20:47:18Z,rhelmer,rhelmer,21394,10732,10662
+85,libprio,489969758663674ff029d341041518e05955ea5f,issue #21 - add minimal travis-ci integration for libprio (#22),Robert Helmer,2018-08-28T05:33:13Z,rhelmer,rhelmer,19,19,0
+86,libprio,af2f8425af7a9af2697aaf05c7a1d6dc7d5775c1,"Merge pull request #24 from rhelmer/use-non-locale-dependent-isxdigit-and-toupper
+
+issue #20 - do not use locale-dependent versions of isxdigit and toupper",Henry Corrigan-Gibbs,2018-08-28T04:38:49Z,henrycg,henrycg,26,24,2
+87,libprio,022985daae6f0d7332ac282a8a33a79c91e50ab7,Fix formatting nits,Henry Corrigan-Gibbs,2018-08-28T04:37:10Z,Henry Corrigan-Gibbs,Henry Corrigan-Gibbs,9,4,5
+88,libprio,10aeb86dc8ad28c1fac021d8ef44cd14b2d0ab3d,issue #20 - do not use locale-dependent versions of isxdigit and toupper,Robert Helmer,2018-08-27T21:11:02Z,rhelmer,rhelmer,27,25,2
+89,libprio,bfbcf1f95001047c61f4a29c3e68499b2f0c9f3b,"Work with noopt and non 64bit platforms (android, asan, noopt debug, etc) (#16)
+
+* fix issue #15 - do not compile the unused mp_comba.c, only works on 64-bit platforms
+
+* fix issue #15 - use static inline, as disabling optimizations will cause the compiler not to inline and unable to find these functions to link",Robert Helmer,2018-08-23T21:08:26Z,rhelmer,rhelmer,5,2,3
+90,libprio,34c657d6152291debb78dd3e6dbcb98a22609db0,"Merge pull request #14 from rhelmer/nss-pk11-freeslot
+
+free PK11 slot as this appears to be leaking NSS resources at shutdown",Henry Corrigan-Gibbs,2018-08-23T14:49:55Z,henrycg,henrycg,1,1,0
+91,libprio,b9d21e977ccea7b9a5bfa7cc81afb74dc959427d,free PK11 slot as this appears to be leaking NSS resources at shutdown,Robert Helmer,2018-08-23T13:40:41Z,rhelmer,rhelmer,1,1,0
+92,libprio,e79efeda9cbfae4c5adf2063460fe3c8f57b3f99,"Fixes to browser-test (#13)
+
+* Reorder params to match browser implementation
+* Randomize data on each run",Henry Corrigan-Gibbs,2018-08-23T09:58:15Z,henrycg,henrycg,9,5,4
+93,libprio,c1c6afd1683e27d823f39eb8fbe4b8469cc5bbf6,"Merge pull request #12 from rhelmer/mpi-h-use-system-header
+
+look for mpi header in system path instead of file path",Henry Corrigan-Gibbs,2018-08-11T15:40:12Z,henrycg,henrycg,65,35,30
+94,libprio,9aaea60bc30171462b48318c3463c26e3c7ecc81,Put #includes in alphabetical order,Henry Corrigan-Gibbs,2018-08-11T15:35:19Z,Henry Corrigan-Gibbs,Henry Corrigan-Gibbs,49,25,24
+95,libprio,d54ef658276a386118702d354c31247d75050c42,"Merge pull request #11 from rhelmer/fix-encode-once-js
+
+fix issue #7 - encode-once.js needs to be rewritten for latest API",Henry Corrigan-Gibbs,2018-08-11T15:19:54Z,henrycg,henrycg,54,36,18
+96,libprio,1f22a2e8874ce85b54d2045032a725e9f4927150,look for mpi header in system path instead of file path,Robert Helmer,2018-08-11T04:47:38Z,rhelmer,rhelmer,36,20,16
+97,libprio,d6226450cee473a3ba98ccc579a178f5acd38de7,fix issue #7 - encode-once.js needs to be rewritten for latest API,Robert Helmer,2018-08-11T03:05:59Z,rhelmer,rhelmer,54,36,18
+98,libprio,14f4a1f6f34b4a71d8cb48d41277adc25400d7bd,"Fix popen() for Linux and add debugging info (#8)
+
+* popen() on Linux takes only ""r"" as a mode",Henry Corrigan-Gibbs,2018-08-11T02:58:43Z,henrycg,henrycg,15,14,1
+99,libprio,e9920b2bd2307939e4f4ba3c4a26549669bf7983,Pick up LDFLAGS and CPPFLAGS from environment (#10),Henry Corrigan-Gibbs,2018-08-11T02:58:12Z,henrycg,henrycg,7,6,1
+100,libprio,bc7cfbe55cd3f5bc3eee2d13060583d2fc2952b0,"Merge pull request #6 from rhelmer/include-string
+
+import string.h instead of strings.h for windows compat",Henry Corrigan-Gibbs,2018-08-09T06:11:17Z,henrycg,henrycg,18,9,9
+101,libprio,2cf9df63b0f40a76da12c091690ce86abb549be6,use memset instead of bzero,Robert Helmer,2018-08-09T06:04:43Z,rhelmer,rhelmer,10,5,5
+102,libprio,2ccb5b9e98ff93d285c3e37c1293d81348cccbfd,"Merge pull request #5 from rhelmer/move-extern-C
+
+move extern C above includes",Henry Corrigan-Gibbs,2018-08-09T05:47:47Z,henrycg,henrycg,8,4,4
+103,libprio,b15cdbadf51fe300ddc8146335b077391278a071,import string.h instead of strings.h for windows compat,Robert Helmer,2018-08-09T05:27:34Z,rhelmer,rhelmer,8,4,4

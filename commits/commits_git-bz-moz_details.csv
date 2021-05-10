@@ -1,0 +1,1461 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,git-bz-moz,ef827f1b1aa0c0779a6238452e105040858d11c3,"Add 'git bz push -fix' and 'git bz edit --fix'
+
+Add one-stop-shopping --fix=<bug reference> options to 'git bz push'
+and 'git bz edit'. These combine attaching the patches and resolving
+the bug for cases where review and testing aren't necessary.",Owen W. Taylor,2009-09-05T17:19:11Z,owtaylor,owtaylor,162,115,47
+1,git-bz-moz,71dc277bfcd7b98b1f71d46da59f5cd2da3e3974,"Make 'git bz add-url' more like git rebase
+
+Instead of resetting the branch and applying the patches there,
+move to a detached HEAD, apply patches to the detached HEAD and
+then make a single update to the branch ref.
+
+The only real advantage of this is that 'git reflog show <branchname>'
+shows a single meaningful commit.",Owen W. Taylor,2009-09-05T15:30:10Z,owtaylor,owtaylor,46,25,21
+2,git-bz-moz,8d338f0ea9667698fcd975bf52fb9633971699da,"TODO updates
+
+ - Always do 'git bz attach --edit'
+ - Apply patches as a single mailbox
+ - Make -u/--add-url kinder on the reflog",Owen W. Taylor,2009-09-05T14:10:43Z,owtaylor,owtaylor,51,48,3
+3,git-bz-moz,170f40c2d1220e66c3084dafc135745357660956,"Split out documentation
+
+Move the documentation from a giant comment at the start of the file
+into a separate asciidoc document. Among other revisions an
+'EXAMPLE SESSION' section is added to give a sense of the normal
+workflow.
+
+Add a Makefile and asciidoc.conf for converting the asciidoc into HTML
+or a man page.",Owen W. Taylor,2009-09-05T13:50:38Z,owtaylor,owtaylor,597,396,201
+4,git-bz-moz,18e6fdc293fe416146512c35c4ce6a77cfc2ee39,"Command line option tweaks
+
+- Remove the -p shortcut for 'git bz edit --pushed' - I don't find
+  it sufficiently mnemonic to be worth confusion with things like
+  'git add -p'.
+
+- Say -n/--no-add-url instead of just --no-add-url in an error message.
+
+- Fix usage messages to consistently use () for grouping and [] for
+  optional parts.",Owen W. Taylor,2009-09-05T13:27:51Z,owtaylor,owtaylor,15,8,7
+5,git-bz-moz,837a86d1fdc632aa57423d31d4adf4073a61d36a,"Allow omitting bug reference for 'git bz attach'
+
+When there is a single bug referenced in the commits being attached,
+allow using that instead of specifying a bug reference manually.",Owen W. Taylor,2009-09-05T13:06:19Z,owtaylor,owtaylor,41,31,10
+6,git-bz-moz,d6c6d4f9ec53a4b119b704a2d2eea6ee39ce7c00,"Make --add-url the default for 'git bz apply' as well
+
+1) It's confusing to have it different
+2) For git bz push, we want to have that association whenever
+   possible, even if you didn't create the patch yourself.",Owen W. Taylor,2009-09-05T00:55:54Z,owtaylor,owtaylor,4,2,2
+7,git-bz-moz,b3757215bac5deabaf09616ce1086455f94116f2,"Ignore committed/rejected patches
+
+If patches have a status and it's 'committed' or 'rejected', then
+skip them for git-bz apply and don't prompt.",Owen W. Taylor,2009-09-05T00:39:10Z,owtaylor,owtaylor,4,4,0
+8,git-bz-moz,1c975ace55ac8fc5314787bc6d9031736bf28b88,"Allow configuring bug reference addition
+
+Allow configuring the behavior of add-url and --add-url with the
+bz.add-url-method config variable. For example:
+
+ git config bz.add-url-method subject-prepend:Bug %d -",Owen W. Taylor,2009-09-02T00:01:40Z,owtaylor,owtaylor,112,101,11
+9,git-bz-moz,af02cf3f2ff98e86560d93ef12b49e9f9c81f602,"Improve URL addition
+
+* Avoid false positives when the bug # is a substring of a number
+  in the commit.
+* Look at the header, not just the body, for an existing bug #
+* When there are local changes, don't print the diffs to the
+  the screen.
+* For 'git bz add-url' indicate what commits we are skipping, and
+  don't prompt if we aren't going to do anything.
+* Don't start the rebase procedure if we aren't going to do anything.",Owen W. Taylor,2009-09-01T23:13:34Z,owtaylor,owtaylor,32,23,9
+10,git-bz-moz,7d077854c9bd1470d79d5edec7e7458e003d51b4,"Add URLs by default
+
+Switch the default for 'git bz file' and 'git bz attach' so that they
+automatically add the URL to the commit message. Add -n/--no-add-url
+options to disable adding the URL.",Owen W. Taylor,2009-09-01T04:17:06Z,owtaylor,owtaylor,43,28,15
+11,git-bz-moz,1bf3234fa80d227e82425092fe9e705c5cdc0dfc,"Make bug changes before attachment changes to avoid token problems
+
+If we make attachment changes first, we change the timestamp of the
+bug; rather than refetching a new token for the bug (or parsing it
+out of the HTML response), we just make the bug changes first and
+the attachment changes second.",Owen W. Taylor,2009-09-01T03:54:49Z,owtaylor,owtaylor,27,17,10
+12,git-bz-moz,9669815571e4ee575bdf43eef5b6ab736d93a930,"Use .add() for sets not .append()
+
+Fix a problem with adding patches to the 'unapplied_patches' set.",Owen W. Taylor,2009-08-31T17:53:59Z,owtaylor,owtaylor,2,1,1
+13,git-bz-moz,7106719039cf7223faa22571fd8e5b7595664abb,"Cache legal field values
+
+Use our constant-field-value cache to cache legal field values
+for each server; this cuts round trips for 'git bz edit' from
+3 to 1, which is quite noticeably faster.
+
+The legal_values method is moved from Bug to BugServer, where
+it makes more sense.",Owen W. Taylor,2009-08-31T05:06:21Z,owtaylor,owtaylor,47,28,19
+14,git-bz-moz,9b8a0acd33c457111e2b07076f6b30600ad6b5a1,"Add utility for constant-response caching
+
+We don't want to constantly refetch things like legal field values
+from the server. Add a simple cache based on RawConfigParser and
+pickled values stored in ~/.git-bz-cache.",Owen W. Taylor,2009-08-31T05:05:07Z,owtaylor,owtaylor,41,40,1
+15,git-bz-moz,9804dce599270a979fb159ce327bd46fa1a1ea1c,"Add push subcommand to help command
+
+When listing the available commands, include 'push'",Owen W. Taylor,2009-08-31T05:02:31Z,owtaylor,owtaylor,2,1,1
+16,git-bz-moz,75b0cbb957510053760c1ae4f519cd6601040e96,"Fix checking for missing fields in XML response
+
+   token = bug.find(""token"")
+   self.token = token.text if token else None
+
+Was behaving strangely: apparently ElementTree can be logically
+false when non-None. Switch to the more explicit:
+
+   self.token = None if token is None else token.text",Owen W. Taylor,2009-08-31T04:59:53Z,owtaylor,owtaylor,6,3,3
+17,git-bz-moz,3f21f465880443b846c219675c1f4b50c5a568ac,"Fix marking patches as obsolete from 'git bz edit'
+
+Field value for isobsolete must be string ""1"" not 1.",Owen W. Taylor,2009-08-31T02:14:15Z,owtaylor,owtaylor,2,1,1
+18,git-bz-moz,846ea3ae76f3e9bbfca310280db5f8d63146d28c,"Fix git-bz to work with none-GNOME bugzilla
+
+* Catch the server returning a 500 protocol error on xmlrpc.cgi;
+  this happens with bugzilla.openedhand.com  and probably other
+  older versions of post 3.0 bugzilla.
+
+* Handle the server not sending bug/attachment tokens
+
+* Make patch-status handling conditional on the server having
+  status on patches.",Owen W. Taylor,2009-08-31T01:52:00Z,owtaylor,owtaylor,82,53,29
+19,git-bz-moz,c1fdc4c75da29583c33f213ebe970e55d2bcfbe8,"Add 'git bz edit --pushed' and 'git bz push'
+
+'git bz edit --pushed <commits>' automatically prepares the bug
+editing buffering based on a guess as what edits (comments, resolving
+the bug, changing attachment status) are appropriate once the
+commits are pushed to the project's official repository.
+
+'git bz push' actually pushes commits and then does
+'git bz edit --pushed'",Owen W. Taylor,2009-08-31T01:06:15Z,owtaylor,owtaylor,151,143,8
+20,git-bz-moz,aaa94d05aabd81bee0874f4b596b71fded3033ad,"Allow capturing stderr from a run git command
+
+If _return_error=True is added to git.<command_name>() then a
+tuple of captured output from stderr, stdout is returned. We'll
+need this to parse the output of 'git push' which goes to stderr.",Owen W. Taylor,2009-08-31T01:01:31Z,owtaylor,owtaylor,6,6,0
+21,git-bz-moz,febe0d49661b7af96dd93e8cb9774be3d92bb014,"Allow passing a commit or revision range to 'git bz edit'
+
+If a commit or revision range is passed to 'git bz edit', make it
+edit all the bugs referenced in the commit or commits.",Owen W. Taylor,2009-08-30T22:32:15Z,owtaylor,owtaylor,87,82,5
+22,git-bz-moz,e5ad33ee6ed9055884ca93fa8b987c03a099b955,"Add a BugHandle class to represent parsed bug references
+
+Instead of using (host, https, id) tuples, encapsulate the information
+in a BugHandle class.
+
+Add get_bug_server() method to look up a server for a (host, https)
+pair; we uniquify the server across multiple lookups; this will be
+useful if we edit multiple bugs in a single run.",Owen W. Taylor,2009-08-30T21:15:35Z,owtaylor,owtaylor,91,63,28
+23,git-bz-moz,c9303407651c2779db62081748bcf6ecdf86dc5a,"Add an edit subcommand
+
+git bz edit <bug reference>
+
+  Allows doing common operations on a Bugzilla bug without going to
+  your web browser. An editable buffer is brought up in a git-like
+  fashion, where you can add comments, resolve a bug, and change
+  the status of patches.
+
+This is really a warm-up for 'git bz push' which will do a
+semi-automatic job of figuring out all the appropriate edits that
+need to be made when pushing a set of commits that are annotated
+with bug references.",Owen W. Taylor,2009-08-30T15:56:04Z,owtaylor,owtaylor,119,118,1
+24,git-bz-moz,239d2911df496fe11243921069b3b91bf431ba11,"Add a method for getting legal field values
+
+Add Bug.legal_values() to query the server via XML-RPC to find
+out legal values for a particular field.",Owen W. Taylor,2009-08-30T15:54:50Z,owtaylor,owtaylor,15,15,0
+25,git-bz-moz,970fd582a8af194e7e483883b129f8490821b4e6,"Add a method to update a patch on a bug
+
+Add Bug.update_patch() to allow changing fields of an existing
+attachment (status, isobsolete, etc.)
+
+This requires saving all the fields when parsing them out of the
+bug XML, since we have to pass them back to attachment.cgi.",Owen W. Taylor,2009-08-30T15:53:13Z,owtaylor,owtaylor,58,49,9
+26,git-bz-moz,6a848de2bb7621c9050eecd888ad61ca7149116b,"Add a method to update a bug
+
+Add Bug.update() to allow changing fields in an existing bug.
+(adding comments, setting the status/resolution, etc.)",Owen W. Taylor,2009-08-30T15:52:16Z,owtaylor,owtaylor,19,19,0
+27,git-bz-moz,7f92c1b30f4d0e56ff8840cbdd7fc109085af696,"Add helper functions for handling abbrevations
+
+ abbreviation_help_string(['apple', 'pear', 'potato']) =>
+   '[a]pple, [pe]ar, [po]tato'
+
+ expand_abbreviation('pea', ['apple', 'pear', 'potato']) =>
+   'pear'",Owen W. Taylor,2009-08-30T15:48:39Z,owtaylor,owtaylor,23,23,0
+28,git-bz-moz,66da60a337ed559fc85144b3fa65bee654219ce2,"Add a helper function for checking for success
+
+Encapsulate the process of grepping through successful (200)
+responses from Bugzilla to see if they were *really* successful
+in a function.",Owen W. Taylor,2009-08-30T15:45:29Z,owtaylor,owtaylor,51,33,18
+29,git-bz-moz,6a580977ac13a987a7aa87ec9e2f8560a3f0d5ef,"Allow files=None for BugServer.send_post()
+
+We only want to pass in a non-None files in one place, so allow
+files=None to be the same as {}.",Owen W. Taylor,2009-08-30T01:03:17Z,owtaylor,owtaylor,26,12,14
+30,git-bz-moz,751086a7bfdb568e8d2124aa57b1f919d14049b4,"File bugs via XML-RPC when possible
+
+If the server supports XML-RPC (3.0 or newer), then filing via
+xmlrpc.cgi has advantages:
+
+ - We get a string error message instead of an HTML page
+ - We can not specify priority/severity and let the server
+   default it; this is important since there aren't standard
+   priorities.
+
+So, we try to first file via xmlrpc.cgi's Bug.create method and
+if we get a 404, fall back to the old method of a form post.
+
+The configuration for a couple of fields is changed to use the human
+readable field names from Bug.create rather than the database-field
+names of post_bug.cgi.
+
+ default-bug-severity => default-severity
+ default-rep-platform => default-platform",Owen W. Taylor,2009-08-29T15:16:00Z,owtaylor,owtaylor,109,89,20
+31,git-bz-moz,6fc66c6edb64868509c7b29b3f1b8e77ad9734bc,"Split HTTP communication out of Bug class
+
+Create a separate BugServer class that represents a Bugzilla server
+instance and has send_request()/send_post() methods.",Owen W. Taylor,2009-08-29T13:48:36Z,owtaylor,owtaylor,71,40,31
+32,git-bz-moz,a340f57f7e6b8d0d9ea3a9341a950fb73d3fde06,"Fix error message when not logged in
+
+A string with unsubstituted %s was being printed; substitute in
+the host and browser properly.
+
+Pointed out by Jonathon Jongsma",Owen W. Taylor,2009-08-29T15:37:06Z,owtaylor,owtaylor,9,5,4
+33,git-bz-moz,795ff39a29df7fdc5b854bd77534bc1939feebc7,"Improve error handling when bug reference is incorrect
+
+If the user specifies the bug url on the command line but the url violates our
+assumptions, git-bz doesn't currently handle it well.  For instance, the
+following commandline invocation:
+
+git bz attach http://bugzilla.foo.org HEAD
+
+will fail the regex that checks whether it is a bugzilla url (since it is
+missing show_bug.cgi), so it will interpret it as a 'alias:1234'-style
+reference.  'http' is interpreted as the alias, but when that is not found in
+the git config, it will attempt to look up a browser cookie for the host 'http'.
+That will also fail, but it will report a misleading error which is something like:
+
+Please log in to 'http' in Firefox
+
+This patch just does a little sanity checking that the bug id is a number and
+aborts with a slightly more helpful error message if that is not true.",Jonathon Jongsma,2009-08-27T04:25:15Z,jonner,jonner,3,3,0
+34,git-bz-moz,ff5b2c48fca8ff34134d981f8d1ac207b1d5e2a2,"Fix to work again with Firefox
+
+The version of Colin's Chromium patch I applied was outdated and had an obvious
+left-over in the Xulrunner codepaths that made things no longer with with Firefox
+and Epiphany. Fix.",Owen W. Taylor,2009-08-24T16:28:37Z,owtaylor,owtaylor,4,2,2
+35,git-bz-moz,c665b1de6d182e9a060dfd54edaf87f1d6b88fd7,"Support chromium cookies
+
+Chromium uses sqlite for cookies as well and with a very similar
+(but not identical) schema compared to xulrunner.  Abstract things
+a bit so that chromium can use most of the same code.",Colin Walters,2009-07-27T19:53:11Z,cgwalters,cgwalters,33,23,10
+36,git-bz-moz,a4a015b89c2a75bae8f0740679d259a53ff4fe27,"Get attachment data from XML bug dump instead of downloading separately
+
+All of the bugtrackers we care about (gnome,mozilla,freedesktop,openedhand),
+include attachment data in the ctype=xml output, so:
+
+ - Use excludefield=attachmentdata when we don't want attachment data
+ - Use the data downloaded with the XML data when we do want attachment
+   data (git bz apply) rather than downloading it separately.
+
+This fixes problems with bugzilla servers that use a redirect for attachments.",Owen W. Taylor,2009-08-24T15:31:07Z,owtaylor,owtaylor,35,18,17
+37,git-bz-moz,fa0b3a32ae62430609c52f62e658f6bc114a320e,"Fix to work with Bugzilla 3.4
+
+Bugzilla 3.4 (like the new GNOME bugzilla)
+
+ - Requires a status for attached patches
+ - Uses a different title for succesful attachments",Owen W. Taylor,2009-08-15T23:41:57Z,owtaylor,owtaylor,7,5,2
+38,git-bz-moz,f15af50ac558eacaf2fd4f641df52975ffd05145,"Pass -M to git-format-patch
+
+Passing -M to git-format-patch when creating patches means that renames
+will be shown as renames, increasing reviewability of the resulting
+patches.",Owen W. Taylor,2009-06-25T20:44:15Z,owtaylor,owtaylor,5,4,1
+39,git-bz-moz,1e9ba4fd837474ef2791137403c6cf75dd0ce82b,"Make 'git bz file <commit>' just file that commit
+
+Deviate from git-format-patch in the handling of a single revision:
+file a bug with a single patch is definitely more common than filing
+a bug with a range of patches and this results in less mystical
+invocations. Hopefully git-format-patch will eventually catch up.
+
+Remove the support for --num=<N> and -N since it's minimally useful
+now; it's not impossible to want to do 'git bz file old_commit^.. -2'
+but I don't want to clutter the interface.",Owen W. Taylor,2009-04-25T20:10:26Z,owtaylor,owtaylor,85,35,50
+40,git-bz-moz,722e32b55268fa247a82ab1f516b20f0a9308d6a,"Move default-product and default-component to main bz section
+
+Picking up product and component from the tracker specific config
+was never useful and annoying; move the options
+bz.default-product and bz.default-component.
+
+Display useful help when product/component aren't specified.
+
+(No concession to backwards-compat here: people can easily
+reconfigure, especially with the help.)",Owen W. Taylor,2009-04-25T18:33:54Z,owtaylor,owtaylor,63,45,18
+41,git-bz-moz,cdb5d340e63094817e4eac9c3eb6fb19cf3cd595,"Work around Firefox-3.5 locking problems with a copy
+
+Firefox-3.5 seems to always hold cookies.sqlite locked while the
+browser is open. Work around this by, when we hit a lock error,
+making a copy and reading from that. Not 100% reliable, but should
+work much of the time.",Owen W. Taylor,2009-04-25T18:09:52Z,owtaylor,owtaylor,50,40,10
+42,git-bz-moz,721b1174e58e7386d1eaa113cdb3bf20d6c06c04,"Factor out common code between Firefox and Epiphany cookie reading
+
+Make both call a common get_cookies_from_sqlite() to avoid code
+duplication. Return errors by raising a CookieError so that we can
+centralize information about git-config bz.browser into one place.",Owen W. Taylor,2009-04-25T17:52:13Z,owtaylor,owtaylor,90,44,46
+43,git-bz-moz,e7a525e5380dd4049cccd2177b9fa00ec1c38ca0,"Add support for epiphany as well
+
+Add bugzilla support for epiphany. Enable via:
+
+ git config --global bz.browser epiphany
+
+Switch back via:
+
+ git config --global bz.browser firefox3",Andy Wingo,2009-01-21T12:09:06Z,Andy Wingo,Andy Wingo,59,52,7
+44,git-bz-moz,b1a5e4f1fa65ec0257c97ea46c838600bbd72c3f,"Add checks to try and detect when -u/--add-url won't work
+
+Check for:
+ - Commits already pushed to a remote branch
+ - Commits that aren't on the current branch
+ - Merge commits",Owen W. Taylor,2009-04-25T17:13:19Z,owtaylor,owtaylor,69,59,10
+45,git-bz-moz,c26f6dbc7e61005b5da3840529928316341e2ad0,Add TODO item - Automatically guess obvious obsoletes,Owen W. Taylor,2008-12-04T11:47:53Z,owtaylor,owtaylor,6,6,0
+46,git-bz-moz,6e31bb1c29600938e3d41ee613f6e3b49c0a0911,"Add TODO items
+
+  Allow omitting bug reference when obvious
+  Default to -e/--edit when only one commit",Owen W. Taylor,2008-12-04T11:37:19Z,owtaylor,owtaylor,12,12,0
+47,git-bz-moz,05e0ff3ad3e39b30c366d4fdc11f90ea63daafd7,"Allow a separate description for git bz file
+
+Only use the commit body as the bug description when filing a new bug
+if no other description is specified; if another description is
+entered, use the commit body as the description for the attachment.",Owen W. Taylor,2008-12-04T04:01:29Z,owtaylor,owtaylor,37,12,25
+48,git-bz-moz,33af368350715559855c2828e64303a925ffa6a8,"Skip prompting about attachments when editing comment
+
+If -e/--edit is specified and there is only one patch, go
+straight to the edit, the user can abort from there if necessary.",Owen W. Taylor,2008-12-04T03:49:53Z,owtaylor,owtaylor,23,14,9
+49,git-bz-moz,e972dea29b26e0538a87e5faba0b4e4d473cb024,"Allow editing attachment comment and obsoletes
+
+Add a -e/--edit option to 'git-bz-attach' to bring up the
+description/comment in an editor. Existing patches are shown
+as commented out Obsoletes: lines that can be uncommented to
+to obsolete the old patches.",Owen W. Taylor,2008-12-04T03:41:38Z,owtaylor,owtaylor,145,104,41
+50,git-bz-moz,0af9728ec7503650a4f4fad4f7aefc94c4d44ff0,"Fix resolving URL bug references
+
+Fix a problem where https was always used when a bug reference
+was specified as an URL: fhttp(s?) gives a group(1) of """" not
+None when the s is missing",Owen W. Taylor,2008-11-23T16:24:08Z,owtaylor,owtaylor,2,1,1
+51,git-bz-moz,93362dc8c5068a568744ef10abaea84715bc4e1a,"Improve documentation of aliases and configuration
+
+Switch the example alias from the 'bgo' to the less obscure 'gnome'.
+(Suggestion from Ray Strode.) Other minor tweaks to the docs.",Owen W. Taylor,2008-11-22T19:04:57Z,owtaylor,owtaylor,19,10,9
+52,git-bz-moz,cc442c4f0e10cf503918319a005855f3f06a1bf0,"Allowing configuring a default product and component
+
+Allowing specifying bz-tracker.<tracker>.default-product and
+bz-tracker.<tracker>.default-component. This is useful when done
+in the per-repository config.
+
+Add a ""Per-repository configuration"" section in the docs with examples.",Owen W. Taylor,2008-11-22T19:00:45Z,owtaylor,owtaylor,69,50,19
+53,git-bz-moz,8836bbcb6c8d10fabc10dda1dc52a116ae652b13,"Make -b/--bugzilla a global option
+
+Allow specifying -b/--bugzilla for all subcommands and not just
+for for 'file'",Owen W. Taylor,2008-11-22T18:59:48Z,owtaylor,owtaylor,18,8,10
+54,git-bz-moz,201bc1b93915b372b7a71756e64e9091df61b0fd,Add TODO item: Reconsider initial description for 'git bz file',Owen W. Taylor,2008-11-22T16:36:57Z,owtaylor,owtaylor,19,19,0
+55,git-bz-moz,2fb7754e13e1524947d8ec7a93a4c0520cda7319,"Allow spaces in products and components
+
+While spaces in products and components may not be common,
+bugzilla.openedhand.com has, for example, ""Metacity (Clutter port)""
+as a product. So allow that.",Owen W. Taylor,2008-11-22T16:25:44Z,owtaylor,owtaylor,2,1,1
+56,git-bz-moz,e97d1d84ff05a7db431ba1e9a03955c4e2f7affb,"Minor indentation tweak
+
+Tweak style from last patch to match personal preference.",Owen W. Taylor,2008-11-20T20:31:25Z,owtaylor,owtaylor,4,2,2
+57,git-bz-moz,dfbb6f7cdeb2b307678728801d466d207759372f,"Make firefox profile lookup more relaxed
+
+Select the first profile with a Path entry, and in case of multiple
+profiles use the one with Default=1
+
+Fixes profile lookup with profiles.ini that looks like:
+
+[General]
+StartWithLastProfile=1
+
+[Profile0]
+Name=default
+IsRelative=1
+Path=t0ps3cr3t.default",Tommi Komulainen,2008-11-20T15:32:07Z,tko,tko,6,5,1
+58,git-bz-moz,8d049cccdaf2fa1d5710e3cc613c4cbcc3a31e45,Add TODO item: Specifying a default product/component,Owen W. Taylor,2008-11-19T19:11:53Z,owtaylor,owtaylor,6,6,0
+59,git-bz-moz,2bb6bf38ee1e76082298a6423b802e8e6a9c88bb,"Fix git bz file of the last most recent commit
+
+rev_list_commits() wasn't working properly when the returned list of
+commits was empty because """".split(""\n"") is [""""] not []. Special
+case that. (Reported by Colin Walters.)",Owen W. Taylor,2008-11-19T19:03:15Z,owtaylor,owtaylor,5,4,1
+60,git-bz-moz,a729902746db778d6dc832266aadfed5449b43a3,"Remove dependency on GitPython
+
+Replace usage of random low-level parts of GitPython with a simple
+convenience functionality similar to that offered by git.cmd. For
+example:
+
+ git.commit(file=""-"", amend=True, _input=input)
+
+Include special options _input/_quiet/_interactive to allow removing
+several cases where subprocess.Popen() was used directly and improve
+output on git command failure.
+
+Also, use commit.subject rather than commit.message to be consistent
+with standard Git terminology.",Owen W. Taylor,2008-11-19T05:17:41Z,owtaylor,owtaylor,196,124,72
+61,git-bz-moz,e4b359d9ae6f76c8d565560e026adc7001b9b9aa,"Don't include the URL in the attachment comment
+
+Strip out the URL we add with -u when using the body of the commit
+as the comment for an attachmnet; it's completely redundant to have
+an URL pointing back to the bug page itself.",Owen W. Taylor,2008-11-19T03:32:35Z,owtaylor,owtaylor,16,9,7
+62,git-bz-moz,7f34fb8f13cce5be52d5910ac86f81245e8d81d9,"Try to catch failure when attaching a patch
+
+If the response to attaching a patch doesn't have ""Changes Submitted""
+as the, assume the attachment failed and dump out an error message
+and the response body.",Owen W. Taylor,2008-11-19T03:31:12Z,owtaylor,owtaylor,9,8,1
+63,git-bz-moz,4e3116c5762b2c0424ad68d5507df2e82d87b83c,Add TODO item: For attach -u don't include URL in the comment,Owen W. Taylor,2008-11-18T01:53:13Z,owtaylor,owtaylor,6,6,0
+64,git-bz-moz,4df31f62cd0a08d4a8dd65ff6c3ada030e252787,"Fix severity in default config to 'normal'
+
+The default default severity should be 'normal', not empty.",Owen W. Taylor,2008-11-17T13:31:35Z,owtaylor,owtaylor,2,1,1
+65,git-bz-moz,c859173a94bb157d804db479cee623f29eecdd78,"TODO additions
+
+* Add item about dropping the usage of GitPython
+* Add a better suggestion for how to do Obsoletes",Owen W. Taylor,2008-11-17T12:45:11Z,owtaylor,owtaylor,19,14,5
+66,git-bz-moz,7e61ef161bc7bee521d7780da4c2f4fc78481cba,Add TODO item: Allow editing comment used for attachments,Owen W. Taylor,2008-11-16T18:10:31Z,owtaylor,owtaylor,12,12,0
+67,git-bz-moz,fde186b65504c3cada82f84ac9763acf0fed128a,"Add add-url subcommand and -u/--add-url command line options
+
+git bz add-url: new subcommand to rewrite old commit messages to include
+  a bug URL.
+
+git bz attach/file: -u/--add-url option rewrites commit messages as
+  with 'add-url' before attaching patches to bugzilla.
+
+git bz apply: -u/--add-url option rewrites commit messages after
+  applying patches to the current tree.",Owen W. Taylor,2008-11-16T16:59:29Z,owtaylor,owtaylor,182,158,24
+68,git-bz-moz,460bc5e581e20ef28e4642e3ba0a635f7a678aa3,Add TODO item: more general patch application,Owen W. Taylor,2008-11-16T14:04:44Z,owtaylor,owtaylor,8,8,0
+69,git-bz-moz,88e0e6925e54f45227da5c09c38f3b217a1e1b85,"Fix a couple of minor problems introduced in cleanup
+
+Testing revealed a couple of invalid variable references from cleanups
+just before the initial import. Fix.",Owen W. Taylor,2008-11-16T13:58:50Z,owtaylor,owtaylor,7,4,3
+70,git-bz-moz,6db9ba155f8b1b32734c20619663ab92efeebdd4,"Add product/component to 'git file' examples
+
+git-file examples were missing the mandatory product and component.",Owen W. Taylor,2008-11-16T13:49:12Z,owtaylor,owtaylor,4,2,2
+71,git-bz-moz,084d91750b89ec283c3ab04b90d00c77985c195d,Initial import,Owen W. Taylor,2008-11-16T13:20:11Z,owtaylor,owtaylor,1134,1134,0
+72,git-bz-moz,0c9d49043dd9ec483a1810e09d131eb18761d685,Strip off leading commas for attachments,Andrew McCreight,2014-04-08T21:28:09Z,amccreight,amccreight,2,1,1
+73,git-bz-moz,75f7f90d68e70ba8d2fa7c8296c8e80c08df7d14,"Merge pull request #18 from ncalexan/edit-attach-commits
+
+Allow user to interactively edit the list of commits to attach.",John Schoenick,2014-02-10T21:46:11Z,Nephyrin,Nephyrin,30,23,7
+74,git-bz-moz,589b940e35cd0d058758d77953860260f30f0791,Allow user to interactively edit the list of commits to attach.,Nick Alexander,2014-02-08T23:51:32Z,ncalexan,ncalexan,30,23,7
+75,git-bz-moz,a2ac8c74d8f20f58fdd8b0c1d2ceccdeefced768,"Merge pull request #17 from froydnj/ignore-whitespace
+
+add -w option for |git bz attach| to ignore whitespace",John Schoenick,2014-02-04T19:35:04Z,Nephyrin,Nephyrin,14,13,1
+76,git-bz-moz,501522a38d174e150bed48f0f466f3df9001201d,add documentation for |git bz attach -w|,Nathan Froyd,2014-02-04T19:02:47Z,froydnj,froydnj,6,5,1
+77,git-bz-moz,4e2eb59638edca9f328318015bdaa4a5a47f216b,"add -w option for |git bz attach| to ignore whitespace
+
+Generating patches that ignore whitespace is occasionally helpful when
+patches reindent large chunks of code.  Doing so helps the reviewer focus
+on important code changes, rather than verifying that blocks of code were
+copied appropriately.",Nathan Froyd,2014-02-04T15:38:55Z,froydnj,froydnj,8,8,0
+78,git-bz-moz,55895f221a275f43dc3a2b45a551dd5158b431a1,"Merge pull request #15 from djmitche/flag-docs
+
+Add docs for reviewer config, etc.",John Schoenick,2014-01-14T22:16:45Z,Nephyrin,Nephyrin,17,17,0
+79,git-bz-moz,be50c1eef6c43789c7c459cb85858d6d8ddd3ec2,"Merge pull request #14 from djmitche/path-fixes
+
+Fixes for path support",John Schoenick,2014-01-14T22:15:26Z,Nephyrin,Nephyrin,11,6,5
+80,git-bz-moz,5e5b950a667dd0a63550082fb5beabb8bf7e0e7e,"Merge pull request #13 from djmitche/pyflakes
+
+fix unused/duplicate imports",John Schoenick,2014-01-14T22:14:13Z,Nephyrin,Nephyrin,2,0,2
+81,git-bz-moz,01ff7728d6e5e4438958ea96442aa859e604348f,"Merge pull request #12 from djmitche/browser-manual
+
+add browser 'manual' with manually specified cookies",John Schoenick,2014-01-14T22:11:48Z,Nephyrin,Nephyrin,29,25,4
+82,git-bz-moz,f0d1fdd40184226142b58d449ac82f70dc7ef9f8,"Add docs for reviewer config, etc.",Dustin J. Mitchell,2013-12-17T21:49:56Z,djmitche,djmitche,17,17,0
+83,git-bz-moz,4feb55651c9f253bc6c0c2617bd78c30f8e85a84,"Fixes for path support
+
+1. fix auth functions to look at correct config var
+2. include path in get_url",Dustin J. Mitchell,2013-12-17T21:35:08Z,djmitche,djmitche,11,6,5
+84,git-bz-moz,6d69eb9531ec7350f60a764c51c7070ea7c8034c,fix unused/duplicate imports,Dustin J. Mitchell,2013-12-17T21:18:29Z,djmitche,djmitche,2,0,2
+85,git-bz-moz,9f6305f3c53c613372948e3560f14adf80a0deee,add browser 'manual' with manually specified cookies,Dustin J. Mitchell,2013-12-17T21:14:14Z,djmitche,djmitche,29,25,4
+86,git-bz-moz,ef1ddfa6f9bac9b2a42ae35403bed0a5b1042188,"Merge pull request #11 from mshal/master
+
+More --requstee changes",John Schoenick,2013-09-25T21:37:31Z,Nephyrin,Nephyrin,32,23,9
+87,git-bz-moz,e79e93875345368f3c80b472cb2e29666bd854a3,"Allow username matches for --requestee
+
+Now you can do '-r foo' or '-r foo@example.com' to make foo@example.com",Mike Shal,2013-09-25T18:58:50Z,mshal,mshal,27,22,5
+88,git-bz-moz,41b6502845aae568ea40374d9804aaccf2f03376,Simplify flag_requestees construction with a generator.,Mike Shal,2013-09-25T18:57:22Z,mshal,mshal,5,1,4
+89,git-bz-moz,31f4f493978be58c1dc7e9199ec815c66fcf2956,"Merge pull request #10 from mshal/master
+
+Add --requestee flag for 'apply'.",John Schoenick,2013-09-20T21:44:41Z,Nephyrin,Nephyrin,15,15,0
+90,git-bz-moz,2e086648c351a5dfd89c53497709ff17aa89b462,"Add --requestee flag for 'apply'.
+
+For bugs with lots of patches assigned to different reviewers, this helps to prune out only the ones assigned to you.",Mike Shal,2013-09-18T16:08:00Z,mshal,mshal,15,15,0
+91,git-bz-moz,3472e49673f04ab7e7cdc6a9ebf7831f2cfb1a05,"Merge pull request #8 from Nephyrin/master
+
+Cleanup the attachment template, allow separate bug comment/commit body",Justin Lebar,2013-07-26T00:19:07Z,jlebar,jlebar,145,88,57
+92,git-bz-moz,5b146995e14e2e553f3da9af92f12cac29d0ea3d,"Merge pull request #9 from hellojwilde/patch-1
+
+Use env in interpreter shebang.",Justin Lebar,2013-07-25T08:16:05Z,jlebar,jlebar,2,1,1
+93,git-bz-moz,a0986e778cbeaf4ce5a54680f763801c5700fea5,"Use env in interpreter shebang.
+
+Ensures that this will work on systems where Python doesn't necessarily reside in /usr/bin.",Jonathan Wilde,2013-07-25T04:48:19Z,hellojwilde,hellojwilde,2,1,1
+94,git-bz-moz,34eb8c83fd1943148ad8c8b87adeff72e18958d1,"Cleanup the attachment template, allow separate bug comment from commit body",John Schoenick,2013-07-17T00:02:40Z,Nephyrin,Nephyrin,145,88,57
+95,git-bz-moz,76b96ef43d6a9159ed0d4d8a19b9ac92b35b6ce4,"Merge pull request #7 from froydnj/edit-filed-patches
+
+enable comments to be added when filing a bug with patches",Justin Lebar,2013-06-27T17:03:28Z,jlebar,jlebar,4,3,1
+96,git-bz-moz,327b4587b2c787106b4436525a9be71759fbdcd7,enable comments to be added when filing a bug with patches,Nathan Froyd,2013-06-21T15:37:30Z,froydnj,froydnj,4,3,1
+97,git-bz-moz,09ef85c6a5b3ba754db9b2b6a223183355e2271f,"Merge pull request #6 from ncalexan/feedback
+
+Add Feedback field, parallel to Review and Super-Review.",Justin Lebar,2013-05-30T21:33:26Z,jlebar,jlebar,52,37,15
+98,git-bz-moz,186e14d83647dab29d8887a2150a30d4e329649a,"Add Feedback field, parallel to Review and Super-Review.",Nick Alexander,2013-05-30T20:56:29Z,ncalexan,ncalexan,52,37,15
+99,git-bz-moz,56248f455c6fc498cdc942cc1054cbb3e01d6573,"Merge pull request #5 from bholley/master
+
+Include long commit messages in uploaded patches.",Justin Lebar,2013-04-26T22:19:53Z,jlebar,jlebar,3,3,0
+100,git-bz-moz,e518ebd6f052ad6e0a81353115c07110aaec1957,"Include the body of the commit in the uploaded patch as well as in the comment.
+
+This makes long/informative patch descriptions show up in the overview page when
+doing a splinter review, which is a good thing.",Bobby Holley,2013-04-26T22:12:03Z,bholley,bholley,3,3,0
+101,git-bz-moz,85591ab91d9357d909b3edabe7efef48bfaa964b,"Merge pull request #4 from dnarvaez/master
+
+Default to the bugzilla.mozilla.org tracker",Justin Lebar,2013-02-11T19:20:05Z,jlebar,jlebar,2,1,1
+102,git-bz-moz,61cb4aa34c4050611432c20775e4d16c17aa2990,Default to the bugzilla.mozilla.org tracker,Daniel Narvaez,2013-02-11T19:12:54Z,dnarvaez,dnarvaez,2,1,1
+103,git-bz-moz,00e2299ac9f875ed10dd43bc53b30ff9a86ca27b,"Merge pull request #3 from Nephyrin/master
+
+Strip Bug XXXXXX prefixes from attachment descriptions",Justin Lebar,2012-12-14T22:16:44Z,jlebar,jlebar,9,7,2
+104,git-bz-moz,55676b9a7840821f7605a0f9f67814a8c4c4eacb,Strip any |Bug XXXXXX| prefix from attachment descriptions,John Schoenick,2012-12-13T23:26:36Z,Nephyrin,Nephyrin,9,7,2
+105,git-bz-moz,d13bb11fbf879f4b4374e293c5c890c8c253c155,Merge branch 'attach-fold',Justin Lebar,2012-08-19T04:22:52Z,jlebar,jlebar,60,49,11
+106,git-bz-moz,b065d57a7f70689f4abf1e518cb5811928201c1c,"Merge pull request #2 from eeejay/master
+
+Add configurable reviewers to template",Justin Lebar,2012-08-05T05:26:46Z,jlebar,jlebar,19,14,5
+107,git-bz-moz,58ec07bc0434cd309d8535c57ef04e4507fffa05,"If a commit starts with FOLD, fold it into the previous commit when attaching to bugzilla.",Justin Lebar,2012-08-04T05:44:13Z,jlebar,jlebar,60,49,11
+108,git-bz-moz,a71b74bbf5ce16cd455aea66155467fcde298acb,Don't choke on UTF-8 chars in bugzilla summaries when writing commit templates.,Trevor Saunders,2012-07-17T16:50:33Z,Trevor Saunders,Trevor Saunders,2,1,1
+109,git-bz-moz,514fe9441c7b5619086b1e85d7e440f0f05abb5c,Add reviewers and super reviewers to config.,Eitan Isaacson,2012-05-01T18:07:57Z,eeejay,eeejay,19,14,5
+110,git-bz-moz,f6fda2ca3cceb21eb2e7770a9bd19daf16e23567,"Merge pull request #1 from ehsan/osx_gitbz_fix
+
+Fix OS X git-bz to make it read the sqlite db's correctly",Justin Lebar,2012-03-21T20:31:09Z,jlebar,jlebar,38,33,5
+111,git-bz-moz,4157bb875b021a40500ed02a827c824f47fc3e13,"Fix OS X git-bz to make it read the sqlite db's correctly
+
+The MacPorts python-sqlite module comes with an old sqlite binding,
+which makes it impossible for that code to read the newer Firefox cookie
+databases.  In order to fix this we add a fallback path to use the
+sqlite3 command line tool if available.",Ehsan Akhgari,2012-03-21T20:05:37Z,ehsan,ehsan,38,33,5
+112,git-bz-moz,af7f62ac2b4305b8d8c43b739b2c685be44e78b7,Tweaking 'Review:' code so it's not so strict about what it accepts.,Justin Lebar,2012-02-01T22:22:11Z,jlebar,jlebar,41,16,25
+113,git-bz-moz,c2c15628683c709a65d9eba5b533017377517df5,Use patience diff.,Justin Lebar,2012-01-10T14:25:27Z,jlebar,jlebar,2,1,1
+114,git-bz-moz,91ff7f2dfced358bf50fc17cbc3aa59b0fb11c46,Get a new token for each attachment.,Bobby Holley,2011-12-02T21:22:51Z,bholley,bholley,33,19,14
+115,git-bz-moz,e8d3128a37d5f1e38920551987697981787c665b,"Merge branch 'master' of git://git.fishsoup.net/git-bz
+
+Merge from upstream.",Bobby Holley,2011-11-30T06:12:00Z,bholley,bholley,140,120,20
+116,git-bz-moz,e16626c2e55ffb2ab91e4616e25f4a743f590939,"Use the author of the commit, rather than the current user, as the author for the HG patch string.",Bobby Holley,2011-11-30T06:07:14Z,bholley,bholley,26,13,13
+117,git-bz-moz,f4479cacb1a3fcc970d7a5b86dd59aa9925d09d2,"Use the CSRF token from the attachment page, rather than the bug page, when attaching files.
+
+This fixes breakage caused by a recent BMO change.
+
+A similar change was made to bzapi: http://hg.mozilla.org/webtools/bzapi/rev/5ca3562f2e6c",Bobby Holley,2011-11-30T05:33:21Z,bholley,bholley,14,14,0
+118,git-bz-moz,4fd0cc46dcca81f7fb503cb9e5be340f9366b7c5,"Catch trying to refile an already filed bug
+
+If 'git bz file' is used with a commit message that contains a
+bug reference, prompt before filing again.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=624461",Owen W. Taylor,2011-09-12T20:02:49Z,owtaylor,owtaylor,11,11,0
+119,git-bz-moz,3172fcbd5c9e300091dd60b1f96dc2aeb5a5fdf9,"Make components work with older bugzilla
+
+Use Bug.legal_values({ product_id: <id> }) to find out legal
+component values in a way that works on older Bugzilla like the
+bugzilla.gnome.org 3.4.
+
+This requires finding out the product_id first, which is fast
+with new bugzilla, but requires a slow fallback on older bugzillas;
+we cache positive hits for product IDs in our cache.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=654693",Owen W. Taylor,2011-09-09T22:31:30Z,owtaylor,owtaylor,58,49,9
+120,git-bz-moz,20a5009a593408bddf13ab5e466fb1011acce7bb,"components: new command to list the components of a product
+
+eg
+
+    git bz components -b bugzilla.gnome.org gnome-shell
+
+or just
+
+    git bz components
+
+if you have defaults configured
+
+https://bugzilla.gnome.org/show_bug.cgi?id=654693",Dan Winship,2011-07-15T18:25:54Z,danwinship,danwinship,49,48,1
+121,git-bz-moz,eda4accbe756cc15efad244a6f11bac8b4a88c17,"Properly close the template file
+
+https://bugzilla.gnome.org/show_bug.cgi?id=657723",Jasper St. Pierre,2011-08-30T14:45:07Z,magcius,magcius,2,1,1
+122,git-bz-moz,c13ddb37d9ea285a143473c824b4e70cc66b01e8,Include hg-style authorship data in attached patches.,Bobby Holley,2011-08-29T18:01:07Z,bholley,bholley,8,8,0
+123,git-bz-moz,3193e3d3b7ad564e79c40ad2804e69b3ec8f8e27,Use the git commit message as the patch commit message.,Bobby Holley,2011-08-29T17:38:15Z,bholley,bholley,2,1,1
+124,git-bz-moz,6c441e8dee01e0e3f154de6567eef72ffd3221f3,"Add galeon browser support
+
+https://bugzilla.gnome.org/show_bug.cgi?id=632006",Yanko Kaneti,2010-10-12T19:23:07Z,yaneti,yaneti,12,10,2
+125,git-bz-moz,a3dffca03588e65aff68cfaed62fc10298852b4f,"Fix choice of editor
+
+git prefers $VISUAL to $EDITOR. Most of the time. Fortunately we can
+just ask git what editor to use rather than trying to figure it out
+ourselves.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=654396",Dan Winship,2011-07-09T17:44:50Z,danwinship,danwinship,14,1,13
+126,git-bz-moz,a52c6f59431515eefa1d03eb50257ed123e1a8e9,"Merge pull request #1 from neonux/master
+
+Some updates to make it work again (courtesy of neonux).",bholley,2011-08-22T23:35:40Z,bholley,bholley,4,3,1
+127,git-bz-moz,3134df5673627e1866afe37bc8e28a6badcc65e1,Replace default-priority to match Moz bugzilla.,Cedric Vivier,2011-08-20T13:29:24Z,neonux,neonux,2,1,1
+128,git-bz-moz,4053b23c163aa317236b106817fdd41edfe3d6df,Do not fail because of undefined review and superreview variables when not using edit option.,Cedric Vivier,2011-08-20T13:27:19Z,neonux,neonux,2,2,0
+129,git-bz-moz,4f91eb6c943acbfd5b8dab23eaeceee4adf03f41,Added a git config variable firefox-profile to manually specify the Firefox profile to be used for authentication.,Bobby Holley,2011-05-06T04:14:27Z,bholley,bholley,19,18,1
+130,git-bz-moz,508e879b56268221e73467c393e449056ee124b8,Add a helpful warning in the case of a database error.,Bobby Holley,2011-05-06T03:49:59Z,bholley,bholley,6,6,0
+131,git-bz-moz,e72f482a8f379c353e5a452e4bf57c68240357b6,Added native support for OSX Firefox profiles.,Bobby Holley,2011-05-06T03:49:41Z,bholley,bholley,7,6,1
+132,git-bz-moz,353c7a2ff9c4481345cc8111d0b88f7425c7a986,"Merge branch 'master' of git://git.fishsoup.net/git-bz
+
+Conflicts:
+	git-bz",Bobby Holley,2011-05-06T02:49:57Z,bholley,bholley,168,133,35
+133,git-bz-moz,4ccceb90d778e4e0c561fdf15c3353ef4be605b6,"Enable binary diffs, and append a newline to the end of patches.",Bobby Holley,2011-05-06T02:46:13Z,bholley,bholley,2,1,1
+134,git-bz-moz,d031efd02ae8c145cd5df126da53936fbd450a42,"Support UTF-8 attachments
+
+The cookies were being pulled out of Sqlite were Unicode, which
+caused the entire HTTP buffer to be Unicode.  When concatenating
+non-ascii string instances (as would be returned from e.g. git),
+things blew up.
+
+Ensure the cookie data is UTF-8 str, and also set our content
+encoding explicitly to UTF-8.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=633729",Colin Walters,2010-11-01T18:58:26Z,cgwalters,cgwalters,12,9,3
+135,git-bz-moz,9cf4811c355c846a1a9343cac537f4ff6669b651,"Fix 'git command --amend' typo in man page
+
+Should have been 'git commit --amend'. Noticed by Matěj Cepl.",Owen W. Taylor,2011-04-27T17:26:01Z,owtaylor,owtaylor,2,1,1
+136,git-bz-moz,8c82336a05df1cb2b59ef70e62c7b936a6b655d7,"Fix python-2.7 compatibility with xmlrpclib
+
+In Python 2.7 xmlrpclib was changed to use httplib.HTTP[S]Connection
+instead of the deprecatede httplib.HTTP[S]. This broke our
+xmlrpclib.Transport subclass which overrode make_connection().
+For compatibility with old and new Python, switch to subclassing
+Transport and SafeTransport separately, with a mixin to add cookies.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=628731",Owen W. Taylor,2010-09-22T19:54:36Z,owtaylor,owtaylor,30,16,14
+137,git-bz-moz,6b0ed0ac0296dec39d87e91b3b27effd726bc534,better default commit messages,Bobby Holley,2010-09-09T19:28:35Z,bholley,bholley,2,1,1
+138,git-bz-moz,5ae24ed5f9782e21a46ac78a496186810645aad1,"Add bz.add-url config variable
+
+Allow specifying the default value for whether URLs are added via
+a new git config variable. The -u/--add-url and -n/--no-add-url
+override this value.
+
+Based on a patch by Xavier Claessens <xclaesse@gmail.com>",Owen W. Taylor,2010-02-08T21:10:36Z,owtaylor,owtaylor,15,13,2
+139,git-bz-moz,81ab18761aea0d8077a280d4b91af10d93246cf3,"Use the actual description entered by the user, rather than unconditionally using commit.subject
+
+By mistake, the code was discarding the description after parsing it out from
+the edit buffer.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=628455",Bobby Holley,2010-08-14T23:26:20Z,bholley,bholley,2,1,1
+140,git-bz-moz,cf5b26167b5da7d17cf8ef4ab76ef6e3413ce395,"Fix duplicate variable setting
+
+In git_run, interactive was initialized twice. Fix from
+Felipe Contreras <felipe.contreras@gmail.com>.",Owen W. Taylor,2010-09-06T23:56:00Z,owtaylor,owtaylor,1,0,1
+141,git-bz-moz,31ed23c9e140669e8e430bd899313d2155098130,"Document new per-tracker configuration
+
+Add documentation for 'path', 'auth-user', and 'auth-password'",Owen W. Taylor,2010-09-06T23:30:53Z,owtaylor,owtaylor,21,16,5
+142,git-bz-moz,952e408b3a0d0da1321c313003581021eaaf207a,"Fix inconsistent authuser/authpwd abbreviations
+
+Instead of using authuser and authpwd, spell out auth_user and
+auth_password (as was already done in some places.) This changes
+the config options to auth-user and auth-password.",Owen W. Taylor,2010-09-06T23:07:35Z,owtaylor,owtaylor,54,27,27
+143,git-bz-moz,418febc748f52e0e99e2d4dd603b806c64ec98cd,"Handle partial URLs
+
+Code to handle parsing a base-path out of the URL would get confused
+when given an URL without a path or an URL without a hostname. Catch
+those cases.",Owen W. Taylor,2010-09-06T23:05:41Z,owtaylor,owtaylor,8,6,2
+144,git-bz-moz,ca9301d17cdfa96113d6a55a6a6b5f344a90fa20,Merge remote branch 'jjongsma/http-auth',Owen W. Taylor,2010-09-06T22:48:58Z,owtaylor,owtaylor,97,84,13
+145,git-bz-moz,6cc60f2137421137feaa0912901ef73f3f87d847,"Got rid of the format-patch commit messages, allowed specifying manual commit messages instead.",Bobby Holley,2010-08-31T22:08:10Z,bholley,bholley,23,19,4
+146,git-bz-moz,2686d46b34b99ff62446526876f09a332c16a4e1,Added support for self-review+ (via Review: :me+),Bobby Holley,2010-08-28T04:53:24Z,bholley,bholley,20,14,6
+147,git-bz-moz,92cc78bb2230928b189951262d8014a74302a5ee,Support :name convention for flagging for review/superreview.,Bobby Holley,2010-08-27T00:16:11Z,bholley,bholley,9,9,0
+148,git-bz-moz,5403a61ef51f386f4f16ebfe4b5a5a80b644e075,add support for flagging reviewers and superreviewers during patch attachment,Bobby Holley,2010-08-27T00:06:41Z,bholley,bholley,32,26,6
+149,git-bz-moz,eb69664f27bf628f44a7238ed7e3bb54f1d822e9,post patches with 8 lines of context,Bobby Holley,2010-08-26T20:44:47Z,bholley,bholley,2,1,1
+150,git-bz-moz,021e708a8fdb206a7173ea9c532bb7cdb81bcaf8,"Workaround for the ""bad status line"" error. Not the most elegant thing in the world.",Bobby Holley,2010-08-17T03:51:45Z,bholley,bholley,24,22,2
+151,git-bz-moz,0e898be3a212b231eec7f7ff005d7c78a6c9320e,"use the actual description entered by the user, rather than unconditionally using commit.subject",Bobby Holley,2010-08-14T23:26:20Z,bholley,bholley,2,1,1
+152,git-bz-moz,55d8141c5e1565d5d30878d4e5b2e32ec5cd446a,"Use sqlite3 module if available
+
+Since Python 2.5, pysqlite2 has been included in the Python standard
+library with the name sqlite3.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=621715",Yaakov Selkowitz,2010-06-16T01:42:12Z,yselkowitz,yselkowitz,5,4,1
+153,git-bz-moz,0a00eac3b1a8f7126079722f5f9bf73b8d24b501,"docs: Quote example url to workaround asciidoc bug
+
+The example url in the section ""Ways to refer to a bug"" was causing
+asciidoc to emit invalid xml (by closing a docbook ulink tag before the
+closing semicolon for a &gt; replacement giving &gt</ulink>;) which
+meant that xmlto could not then produce a man page. Quoting the url
+seems to workaround this issue.
+
+asciidoc version was 8.4.4
+
+https://bugzilla.gnome.org/show_bug.cgi?id=621580",Robert Bragg,2010-06-14T18:22:27Z,rib,rib,2,1,1
+154,git-bz-moz,84b62a40b40cb96573fcbb1a3f3d6fd884b17b33,Fix typo in google-chrome and chromium support,Marc-Andre Lureau,2010-06-06T13:38:04Z,Marc-Andre Lureau,Marc-Andre Lureau,12,6,6
+155,git-bz-moz,20de9cbc891d9d0a93d99ac3e251ac286daff5a0,"When prompting, loop, don't default on unknown inputs
+
+Rather than taking empty or unknown input as a ""no"", just
+reprompt. I don't think the default value is obvious enough
+for people to actually figure it out and rely on it, so we might
+as well add extra robustness to accidental input.",Owen W. Taylor,2010-06-05T18:54:40Z,owtaylor,owtaylor,14,9,5
+156,git-bz-moz,88a2b9047e61c784c2c1e78c3d2434eaaebc8bd0,"Fix problem with stray spaces
+
+Python adds a space character between consecutive calls to
+print when the first print doesn't end in a newline. To
+avoid problems with this, use <file>.write() rather than
+print when:
+
+ * We might be printing something empty
+ * The newline after the line is added via echoed user
+   input on the terminal
+
+Tracked down by William Jon McCann <william.jon.mccann@gmail.com>",Owen W. Taylor,2010-06-05T18:30:56Z,owtaylor,owtaylor,10,7,3
+157,git-bz-moz,69b9b04d4a1176cc73ce3cc76384af8450434cc2,Fix typos in documentation,Christophe Fergeau,2009-10-22T18:48:47Z,Christophe Fergeau,Christophe Fergeau,19,10,9
+158,git-bz-moz,741cdfb292588d53f8221ac118179e4c71c5bbdd,"Added google-chrome as a possible browser
+
+Chromium and Google Chrome have the same basic way of storing
+cookes, but different config paths. Add a google-chrome browser
+option with the correct config path for Google Chrome.
+
+Based on a patch by Eitan Isaacson <eitan@monotonous.org>",Owen W. Taylor,2010-02-17T20:30:24Z,owtaylor,owtaylor,24,18,6
+159,git-bz-moz,e8544d7b0c67b62596b219a9b83868ff3a52b1f2,"Add support for epiphany with the webkit backend
+
+When they moved to webkit as the browser engine, epiphany changed the location
+of their cookies database, but the format remained the same.  This patch adds
+support for the new location, but falls back to the old location if the new one
+doesn't exist.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=609668",Jonathon Jongsma,2010-05-13T16:33:05Z,jonner,jonner,10,8,2
+160,git-bz-moz,14250befc7ad9b82b380a1fb9389de6975d41d55,"Handle 'see <url> <bug reference>'
+
+The code that was supposed to handle
+'See Mozilla bug http://bugzilla.mozilla.org/show_bug.cgi?...'
+as a cross reference was also detecting
+
+'See
+https://developer.mozilla.org/en/SpiderMonkey/JSAPI_Reference/JS_MaybeGC
+https://bugzilla.gnome.org/show_bug.cgi?id=614725'
+
+As a cross-reference. Fix by requiring the ""intervening words"" not
+to have a : or / in them, since ""See <url>"" is clearly standalone
+and something with a : or a / in it is probably an URL.
+
+Reported by Adel Gadllah
+
+https://bugzilla.gnome.org/show_bug.cgi?id=619328",Owen W. Taylor,2010-06-05T14:27:43Z,owtaylor,owtaylor,2,1,1
+161,git-bz-moz,2ad51d78025a141d455e5bf8b3c2acee451156ad,"Pass --ignore-submodules when checking uncommitted changes
+
+When we check for uncommitted changes prior to adding URLs to
+to commit messages we should ignore submodules, since they don't
+affect the rebase xprocess we use to add URLs.
+
+Reported by Benjamin Otte
+
+https://bugzilla.gnome.org/show_bug.cgi?id=611693",Owen W. Taylor,2010-06-05T14:08:36Z,owtaylor,owtaylor,4,2,2
+162,git-bz-moz,321d428cfc66c1c627864de0eaf36ffbe15247c5,"Handle Chromium cookie expiry properly
+
+Expiry times are in microseconds since the epoch (with the epoch
+depending on the exact version of Chromium.)
+
+We weren't handling this at all and just considering all cookies
+non-expired because of the seconds vs. microseconds difference.",Owen W. Taylor,2009-10-17T15:30:28Z,owtaylor,owtaylor,21,16,5
+163,git-bz-moz,9db86501b9ecd3a28dc5441fd5b59476d14f5c4b,"Fix subcommands without --add-url option
+
+'git bz add-url'  was dying because the code was expecting all subcommands
+to have an --add-url option but add-url doesn't.",Owen W. Taylor,2009-09-18T16:54:43Z,owtaylor,owtaylor,2,1,1
+164,git-bz-moz,c302d2289ef045f7c8e3f2f3c9071414f9d8212b,"Fix adding-url to just some commits
+
+Adding an URL to just some commits was broken in the rewrite to
+be more like git rebase, shuffle things around to fix that.",Owen W. Taylor,2009-09-18T16:52:45Z,owtaylor,owtaylor,55,27,28
+165,git-bz-moz,5c52c2f6afb489f7285e17662f4b5ff440e1ca0c,"Fix ' git bz attach' failure when bugzilla server has a path
+
+I had accidentally prepended the bugzilla installation path in both
+BugServer.send_post() and BugServer.send_request() (which is called by
+send_post()), so the path was getting prepended twice when trying to attach a
+patch.",Jonathon Jongsma,2009-09-15T20:01:05Z,jonner,jonner,2,0,2
+166,git-bz-moz,feb1c4788d7399dfafa7e7f82903d12ef9dbc998,"Fix exception when parsing an alias as a url
+
+In BugHandle.parse(), we first try to parse the bug reference as a url and then
+fall back to interpreting it as an alias from the config file.  Unfortunately,
+something like ""gnome:123456"" gets parsed as a url (with a scheme of 'gnome' and
+a path of '123456', and no hostname).  This resulted in us passing a None
+hostname to tracker_get_auth_user(), which resulted in an uncaught exception.
+From now on, only proceed with treating the bug reference as a url if the scheme
+is parsed as 'http' or 'https'.",Jonathon Jongsma,2009-09-15T19:54:02Z,jonner,jonner,45,23,22
+167,git-bz-moz,9e026a19f7d3d7acc3ac8a82a9fc56512d80452c,"Add support for bugzilla installations that require http auth
+
+This patch should support http authentication credentials specified in url form
+(e.g. https://user:password@foo.com) or in a configuration file.  The additional
+configure options are:
+- bz-tracker.<alias>.authuser
+- bz-tracker.<alias>.authpwd",Jonathon Jongsma,2009-09-11T04:35:25Z,jonner,jonner,58,50,8
+168,git-bz-moz,d385649106fef9901dd33f63efb550d19c7204d4,"Add support for bugzilla installations in non-root paths
+
+Currently, git-bz assumes that all bugzilla installations are at the root of the
+host (e.g. http://foo.com/).  It is currently impossible to use git-bz with a
+bugzilla installation that is hosted at e.g. foo.com/bugzilla/.  This patch adds
+that ability.  A new configuration option ('bz-tracker.alias.path') allows the
+path to be specified for a host.",Jonathon Jongsma,2009-09-11T04:01:20Z,jonner,jonner,54,42,12
+169,git-bz-moz,b0f37091d20947e0c2d619c087a850d23d371db2,"Mark bugzilla.gnome.org as https
+
+bugzilla.gnome.org now supports and redirects to https; even though we
+handle the redirects, having it as https in the config will save
+a round trip.",Owen W. Taylor,2009-09-09T21:21:43Z,owtaylor,owtaylor,1,1,0
+170,git-bz-moz,2680c3c68dca2b6614b1a75ef5e946aa71a6c3dd,"Handle redirects
+
+Handle redirect HTTP responses, in particular if a Bugzilla server
+is redirecting from http to https.
+
+We try to detect ""Bugzilla URL base is over here"" when we ask for
+show_bug.cgi and remember that for future requests to the same BugServer
+to avoid too many redirections.
+
+Switch from caching connection on the BugServer to a global connection
+cache, and rewrite the BugServer cache so to deal with the possibility
+of redirections.",Owen W. Taylor,2009-09-09T21:14:55Z,owtaylor,owtaylor,114,89,25
+171,git-bz-moz,06187ce308dce7b56016e09aa5396e6f1bf60a90,"Avoid Python2.6-isms
+
+I'm not entirely up to speed with the new syntax of Python 2.6, but
+apparently you can now do:
+
+  func(*args, named_arg=value, **options)
+
+and:
+
+  func(*args, named_arg=value)
+
+and Python will happily coalesce named_arg into **options for you.
+
+This is not a valid syntax for Python 2.5, though.",Emmanuele Bassi,2009-09-09T14:06:37Z,ebassi,ebassi,6,4,2
+172,git-bz-moz,6d07e4f41b5a4d1cf6e6d6d48d4beed3fcb4f002,"Merge pull request #98 from mrbkap/readme-update
+
+Mention that this project depends on an external library.",Andrew McCreight,2017-12-07T22:16:39Z,amccreight,amccreight,4,3,1
+173,git-bz-moz,1ddd2b08182ad9be38bb338b54f78f52ac8279c9,"Mention that this depends on an external library.
+
+On Ubuntu, at least, the Requests library isn't installed by default and has
+to be installed manually. It took me a minute to realize this, so mentioning
+it in the README might save others some time.",Blake Kaplan,2017-12-07T22:01:33Z,mrbkap,mrbkap,4,3,1
+174,git-bz-moz,d382ce3de4e7952fc90f8962641649058c4e73de,"Allow dash in reviewer name.
+
+Fixes #97.",Andrew McCreight,2017-11-01T19:55:57Z,amccreight,amccreight,3,2,1
+175,git-bz-moz,81425caf991c5d66bba6f018b2a457d75b8dd50e,"Merge pull request #96 from jankeromnes/patch-1
+
+Escape username when getting user details.",Andrew McCreight,2017-09-29T21:55:24Z,amccreight,amccreight,2,1,1
+176,git-bz-moz,199ea406694e47b9ace9d3db166823d2316bfdd8,Escape username when getting user details.,Jan Keromnes,2017-09-28T07:10:16Z,jankeromnes,jankeromnes,2,1,1
+177,git-bz-moz,dd49933d9acf27f4a1cb6e388471e3333dcef3a0,"Merge pull request #93 from chenpighead/fix-authorship
+
+Prepend the right authorship for the attachment",Andrew McCreight,2017-03-14T14:48:17Z,amccreight,amccreight,23,19,4
+178,git-bz-moz,49a3e659136dc188c2ba409fecd4047998f42562,"Prepend the right authorship for the attachment
+
+Bugzilla actually provides users' detail information. Let's get these
+information through the REST API and use a more accurate authorship.
+
+To do so, we can either (a) use brackets to split the real name,
+or (b) use regex to extract the real name. Since usernames could be
+various, I think using (a) is more fault-tolerant.
+
+Fixed #90.",Jeremy Chen,2017-03-12T13:36:54Z,chenpighead,chenpighead,23,19,4
+179,git-bz-moz,338c4a6cd938dbbe67c8300300857e245fcfa899,"Merge pull request #92 from aethanyc/fix-unicode-error
+
+Explicitly encode/decode utf-8 when applying patch diff",Andrew McCreight,2017-03-01T03:22:58Z,amccreight,amccreight,4,2,2
+180,git-bz-moz,40bfa4332efd87f7816f529af4f0d3eb4f843b23,"Explicitly encode/decode utf-8 when applying patch diff
+
+Fixed #88.",Ting-Yu Lin,2017-03-01T03:05:43Z,aethanyc,aethanyc,4,2,2
+181,git-bz-moz,ce418c6b48d82cdba97da5098a8d92d4d34c439a,explicitly encode for unicode in a bzauth exception,Andrew McCreight,2017-02-02T17:41:56Z,amccreight,amccreight,4,3,1
+182,git-bz-moz,d4f9c61dc76a106495d1b1dea95e38d27c5a5843,"Merge pull request #86 from mshal/bug-81
+
+Always prepend From/Date/Subject if the attachment is a raw diff.",Andrew McCreight,2016-03-18T17:23:43Z,amccreight,amccreight,46,20,26
+183,git-bz-moz,0c7270d66f3974d019c49836b6ce3ac9d1def00f,"Always prepend From/Date/Subject if the attachment is a raw diff.
+
+Fixes #81.",Mike Shal,2016-03-17T18:53:03Z,gittup,gittup,9,6,3
+184,git-bz-moz,25a54c3006c0969da4fbd54c6a98238bc0e288ce,"Move _process_reviewboard_request into the BugAttachment class.
+
+This is just a minor refactoring so that we can share the bare patch
+conversion logic.",Mike Shal,2016-03-17T18:07:19Z,gittup,gittup,43,17,26
+185,git-bz-moz,92bbbc2e9d1c688cd8725eea661ea363e0d66b2b,"Merge pull request #85 from mshal/bug-84
+
+Allow MozReview patches without a 'data' field.",Andrew McCreight,2016-03-15T23:41:52Z,amccreight,amccreight,25,13,12
+186,git-bz-moz,1c1b71b3823929b80993988a9125d9acfaf83181,"Allow MozReview patches without a 'data' field.
+
+In some cases, such as 'git bz attach', we don't pull down the data
+field of the MozReview patch. We should just have an empty data field
+for the bug rather than failing with KeyError: 'data'
+
+Fixes #84",Mike Shal,2016-03-15T21:04:12Z,gittup,gittup,25,13,12
+187,git-bz-moz,bf3caf942c69ae3552f458d00d404a495860416b,"Merge pull request #82 from mshal/bug-48
+
+Add support for MozReview requests in 'git bz apply'",Andrew McCreight,2016-02-26T18:43:28Z,amccreight,amccreight,30,26,4
+188,git-bz-moz,a7415e42fe76988368a10650d1b35dd9538d42f4,"Merge pull request #83 from mshal/document-apply-r
+
+Document 'git bz apply -r <requestee>'",Andrew McCreight,2016-02-26T18:42:16Z,amccreight,amccreight,18,16,2
+189,git-bz-moz,b7db366b712a4c2f936bb23bf622dc14e505365a,"Add support for MozReview requests in 'git bz apply'
+
+Fixes #48",Mike Shal,2016-02-26T02:03:50Z,gittup,gittup,30,26,4
+190,git-bz-moz,f78fb35bce56a457c9bf531c94c5789b2bf7a462,Document 'git bz apply -r <requestee>',Mike Shal,2016-02-26T02:03:17Z,gittup,gittup,18,16,2
+191,git-bz-moz,4cb3dee5be53c4a5581122c438a2d4991e598695,"Merge pull request #79 from ehsan/auto-add-reviewers
+
+Add support for bz.auto-add-reviewers",Andrew McCreight,2016-01-29T02:41:47Z,amccreight,amccreight,19,18,1
+192,git-bz-moz,c82148d4cba68343caa1214bce53267bc5e9d80a,"Add support for bz.auto-add-reviewers
+
+This is handy so that git-bz would pick up the reviewer from your commit
+message, and you can just immediately close the editor that pops up when
+using commands such as git-bz attach or git-bz file to get the default
+behavior of asking for review depending on what the commit message
+specifies.",Ehsan Akhgari,2016-01-28T03:03:01Z,ehsan,ehsan,19,18,1
+193,git-bz-moz,1026c744dd4a59bd9fb3b6fa1000eadb0370b71e,"Merge pull request #76 from amccreight/NoAmbig
+
+Ignore any bug references in a commit past the first one.",Andrew McCreight,2016-01-27T19:47:19Z,amccreight,amccreight,4,4,0
+194,git-bz-moz,d106d3089f2ba3d0d18034718cfc82d1924d1437,"Ignore any bug references in a commit past the first one.
+
+This fixes the problem where you have a bug at the start of the patch, as with the standard Mozilla style, but also
+reference another bug in your commit message.
+
+Fixes #23.",Andrew McCreight,2015-12-17T19:10:11Z,amccreight,amccreight,4,4,0
+195,git-bz-moz,63f65b5c2122cdf46184b6f1d32b95274a60edde,"Merge pull request #72 from froydnj/runtime-error
+
+fix spelling of RuntimeError",Andrew McCreight,2015-10-15T18:19:29Z,amccreight,amccreight,4,2,2
+196,git-bz-moz,9807220b636abd279ede8bd83bbd88ef887404de,fix spelling of RuntimeError,Nathan Froyd,2015-10-16T01:52:32Z,froydnj,froydnj,4,2,2
+197,git-bz-moz,6e594ef5e11d08ef45865a9c941f9ffb52f8cda2,"Merge pull request #70 from amccreight/NoImport
+
+Remove spurious import that causes an error.",Andrew McCreight,2015-09-28T18:04:14Z,amccreight,amccreight,9,0,9
+198,git-bz-moz,cbb73fce55e53b4652b111643306bffac3a9e069,"Remove spurious import that causes an error.
+
+The import from auth causes an exception. That and the import from
+pickle are unused, so I removed them.
+
+Fixes #67.",Andrew McCreight,2015-09-28T18:00:44Z,amccreight,amccreight,9,0,9
+199,git-bz-moz,16119bd9aa591183c909864f1affc173aee21153,"Merge pull request #64 from amccreight/RestAPI
+
+REST API",Andrew McCreight,2015-09-25T18:25:39Z,amccreight,amccreight,2363,1210,1153
+200,git-bz-moz,1379594ed2480971b31327da618e00919a8e1c7b,Fix |git bz file|.,Andrew McCreight,2015-09-23T19:09:27Z,amccreight,amccreight,128,44,84
+201,git-bz-moz,61818497a51861b8f3dd31872d535d35d712158a,"Fix |git bz attach|.
+
+Fixes issue #52.",Andrew McCreight,2015-09-21T21:06:11Z,amccreight,amccreight,128,55,73
+202,git-bz-moz,86d5e8c5c0472727ca7f3d1ba1ced873d84b8d70,"Bundle up attachment requestee flags.
+
+This changes the attachment flag information to be stored in a single
+dictionary rather than a bunch of lists, and also stores the special
+"":me+"" value that indicates a + separately. This will make it easier
+to support more flags in the future.
+
+I did not update the code in create_patch that actually sets the flags
+in the request because that is all going to be completely removed
+later.",Andrew McCreight,2015-09-21T22:52:25Z,amccreight,amccreight,47,28,19
+203,git-bz-moz,8f1095aa175c65e60c983f75e76838cf0d08d3e0,"Use lambdas for append_matching_group.
+
+This will allow us to do other things for these flags.",Andrew McCreight,2015-09-17T23:02:01Z,amccreight,amccreight,17,8,9
+204,git-bz-moz,38ef120293ea4c97647f4e6ce449837761fd5ffa,Fix |git bz edit|,Andrew McCreight,2015-09-21T19:01:07Z,amccreight,amccreight,132,46,86
+205,git-bz-moz,81137c5061a508752aa5d5b69b8c664533fa4b88,"Fix the code that retrieves bug and attachment information from the server.
+
+This is enough to get |git bz apply| to work.
+
+Fixes issue #30.",Andrew McCreight,2015-09-17T22:00:53Z,amccreight,amccreight,94,44,50
+206,git-bz-moz,6e64dcc6c448837e17f7b62cc30f4eab5c719764,Rename attachmentdata to attachment_data for consistency.,Andrew McCreight,2015-09-22T21:03:52Z,amccreight,amccreight,14,7,7
+207,git-bz-moz,b70a127ebfd4964bbf7cbedc0bb97ca527a88cb3,"Fix |git bz components|.
+
+This also gets rid of the last uses of the xmlrpc stuff.",Andrew McCreight,2015-09-22T21:40:42Z,amccreight,amccreight,36,17,19
+208,git-bz-moz,a6bf8b5c7effa32927652e90a1686ca16f7fded3,"Remove auth_user and auth_password.
+
+These are no longer needed now that we are using bzexport's bugzilla
+authentication.",Andrew McCreight,2015-09-23T15:32:28Z,amccreight,amccreight,53,12,41
+209,git-bz-moz,b1668c246d86346c839ff9704d340c77f2913bb9,Implement BugServer authentication using bzauth.,Andrew McCreight,2015-09-17T21:20:24Z,amccreight,amccreight,47,39,8
+210,git-bz-moz,97a779f18a86beec107eaef10b7b01e744adac52,Implement shim for Mercurial's ui object.,Andrew McCreight,2015-09-17T21:13:04Z,amccreight,amccreight,48,48,0
+211,git-bz-moz,d7566b82de261723d6cb9e209c536e04a2afa55a,Remove the implementation of get_attachment_token.,Andrew McCreight,2015-09-17T22:26:21Z,amccreight,amccreight,15,1,14
+212,git-bz-moz,4413af22d465a569907e1f6a85fed041b66277e0,"Remove the implementation of check_for_success.
+
+Also remove a nearby comment that seems out of date.",Andrew McCreight,2015-09-17T20:49:34Z,amccreight,amccreight,26,1,25
+213,git-bz-moz,ada89b0040a05045578322d95609f2f3b6f67f02,Remove the now-unused implementation of the cache.,Andrew McCreight,2015-09-17T20:46:41Z,amccreight,amccreight,41,0,41
+214,git-bz-moz,f649f6ffc3db13422fad029bbb032f20eb796609,"Remove the implementation of BugServer.legal_values.
+
+This will get reimplemented later using the REST API.",Andrew McCreight,2015-09-17T20:45:38Z,amccreight,amccreight,25,1,24
+215,git-bz-moz,450acd2e3ef12f8500fe096a42c9c508e626d9b9,"Remove the implementation of BugServer.product_id.
+
+My later rewrite of product component getting will not use it.",Andrew McCreight,2015-09-17T20:44:41Z,amccreight,amccreight,40,1,39
+216,git-bz-moz,2e26c6a893a7c7faa58b02a6241dcd19b1e3cf1d,"Remove the implementation of BugServer.send_request.
+
+Also remove everything that is only called by it.",Andrew McCreight,2015-09-17T20:31:44Z,amccreight,amccreight,117,1,116
+217,git-bz-moz,0863860a43ea05aa57165cee893cab6af44d53b6,Remove encode_multipart_formdata and the implementation of send_post.,Andrew McCreight,2015-09-17T20:27:20Z,amccreight,amccreight,41,1,40
+218,git-bz-moz,9e3c3bea8752a0530c5b16195aa414b23ed50fd3,"Remove the implementation of BugServer.get_cookie_string().
+
+Also remove everything that is only called by it.",Andrew McCreight,2015-09-17T20:25:03Z,amccreight,amccreight,234,1,233
+219,git-bz-moz,4782d9e960b431dda7f5d313f619876379325037,Remove the implementation of the xmlrpc proxy on BugServer.,Andrew McCreight,2015-09-17T20:10:41Z,amccreight,amccreight,32,1,31
+220,git-bz-moz,9f0930d9f6f99780045d92f1c8c12c28e8610de0,Import various code from version-control-tools.,Andrew McCreight,2015-09-09T23:36:21Z,amccreight,amccreight,863,863,0
+221,git-bz-moz,badc86dd9f79bae15c948812cae73519a1b0a713,"Simplify map of changed_attachments into a list obsoleted_attachments.
+
+Now that the generality is removed, this data structure can be simplified further.",Andrew McCreight,2015-09-18T23:24:20Z,amccreight,amccreight,21,10,11
+222,git-bz-moz,caa6bec1f9578fce5596f9c5d26bee21e615c0c4,"Remove support for attachment status.
+
+bugzilla.mozilla.org does not use attachment status. Instead, the only
+thing we can do is mark patches obsolete. Removing this capability
+simplifies the code.",Andrew McCreight,2015-09-18T22:12:55Z,amccreight,amccreight,59,8,51
+223,git-bz-moz,a70e3b7ea0731909f24a4cec9b05b2d38c98bc88,"Remove edit --fix option.
+
+This sets up bug edit defaults to comment and close a bug after
+pushing commits. Again, this is superceded by pulsebot.
+
+This removes the only use of the fix_commits argument to edit_bug.
+
+That in turn removes the only use of the status argument to
+attach_commits, which in turn is the only caller of create_patch, so
+we can remove the status argument to that, too.",Andrew McCreight,2015-09-18T20:25:21Z,amccreight,amccreight,63,10,53
+224,git-bz-moz,9df425a3d8ec5b599563c841d4d39d12875ae578,"Remove 'push' command.
+
+Closes #54.
+
+This shouldn't really be needed because we have Pulsebot to update bugs",Andrew McCreight,2015-09-14T23:13:27Z,amccreight,amccreight,77,1,76
+225,git-bz-moz,382e4500212bd459bff4e5492df755dfb506b109,"Remove the edit --pushed option.
+
+It is only used in do_edit, but we immediately exit before do_edit if
+it is set.
+
+This removes the only place that calls edit_bug with a non-None
+applied_commits, which lets us in turn remove the only place that
+calls filter_patches().",Andrew McCreight,2015-09-18T20:14:34Z,amccreight,amccreight,49,4,45
+226,git-bz-moz,efaf08f8a8b1c9bad9506488ddf76d0f6b7af8af,Add more convenient ways to create a BugServer.,Andrew McCreight,2015-09-17T21:03:53Z,amccreight,amccreight,32,16,16
+227,git-bz-moz,fa09b68fd189a9d339bdf83b5d26adfd22b99a1b,"Merge pull request #61 from amccreight/Includes
+
+Fix up alphabetization of import statements.",Andrew McCreight,2015-09-18T15:01:27Z,amccreight,amccreight,11,6,5
+228,git-bz-moz,4b2232ff48d003270879e7bddf810d09daf0dea0,Fix up alphabetization of import statements.,Andrew McCreight,2015-09-17T21:19:46Z,amccreight,amccreight,11,6,5
+229,git-bz-moz,cc815ca37139990ea4a4aa83de26c788b569b9ec,"Merge pull request #60 from amccreight/Indent
+
+fix indentation in commit_needs_url",Andrew McCreight,2015-09-18T14:57:36Z,amccreight,amccreight,6,3,3
+230,git-bz-moz,d2f5e6a545de20a12c817f675791e50aae43a34c,"Merge pull request #58 from amccreight/MoreErrors
+
+handle invalid products for do_file better",Andrew McCreight,2015-09-17T17:48:51Z,amccreight,amccreight,15,7,8
+231,git-bz-moz,6bed42b7fd678b44b1a05fb0bc21dfa97024b201,"Merge pull request #57 from amccreight/AddUrl
+
+Make add_url do something useful by default (not REST API related)",Andrew McCreight,2015-09-17T17:48:32Z,amccreight,amccreight,2,1,1
+232,git-bz-moz,8678fe356555c26d20c5cc0d97f6c5e79becae73,"Merge pull request #59 from amccreight/BadUrlAmbiguity
+
+BugHandle.get_url() should account for a blank path.",Andrew McCreight,2015-09-17T17:48:24Z,amccreight,amccreight,2,1,1
+233,git-bz-moz,fce6dfc05875be2c00102f862ff3fc059482346f,fix indentation in commit_needs_url,Andrew McCreight,2015-09-11T17:33:52Z,amccreight,amccreight,6,3,3
+234,git-bz-moz,0f2b9aacdf7624513d5d0de0e0e7f19ce39b793d,"Merge pull request #47 from aethanyc/fix-bz-attach
+
+Add newline to the patch when uploading",Andrew McCreight,2015-09-17T15:14:57Z,amccreight,amccreight,2,1,1
+235,git-bz-moz,2a2bc50d98770cfb81b8736a9b2234dbbcb08237,"BugHandle.get_url() should account for a blank path.
+
+Closes #24. I just implemented what johns suggested.",Andrew McCreight,2015-09-17T15:00:18Z,amccreight,amccreight,2,1,1
+236,git-bz-moz,293353f845581dfde9f55723a7929c52df5a0907,"handle invalid products for do_file better
+
+If product_component does not contain a /, then the pattern match
+(product, component) ends up throwing an exception, so explicitly test
+for that case.
+
+Also, the error message isn't quite right: it is possible you
+specified a product but not a revision.",Andrew McCreight,2015-09-16T16:55:07Z,amccreight,amccreight,15,7,8
+237,git-bz-moz,dc7b0afc4aca17d1607d6b9cb3962ec9e414bde1,"Make add_url do something useful by default (not REST API related)
+
+Closes #49.",Andrew McCreight,2015-09-16T18:51:26Z,amccreight,amccreight,2,1,1
+238,git-bz-moz,9744e53e94a7082ce437651b62594c3f91b8f512,"Merge pull request #50 from mrbkap/save-last-comment
+
+Save the last git-bz file instead of deleting it",Andrew McCreight,2015-09-04T23:50:21Z,amccreight,amccreight,8,7,1
+239,git-bz-moz,a6abee0d20a9618b488fbda869714e285a60faff,"Save the last git-bz file instead of deleting it
+
+There's have been a few times recently where I've been trying to attach a file
+using 'git bz attach -e' where the upload will fail for one reason or another
+(most often to do with entering the reviewer's email wrong). In some cases,
+I'll have entered a long comment about my patch, which will be lost forever.
+
+This patch saves the last file in $TMPDIR/git-bz-last.txt (I hope in a
+platform-agnostic manner) so that it can be recovered if needed.",Blake Kaplan,2015-09-04T22:12:11Z,mrbkap,mrbkap,8,7,1
+240,git-bz-moz,4bdde9d270ff72f1a06943306b558dab29f2a3f7,Fix requesting review for bugs in the Firefox component,Ehsan Akhgari,2015-08-07T16:28:51Z,ehsan,ehsan,7,7,0
+241,git-bz-moz,7643f412ef5e69ead48a7b5ad36b265a55e88208,"Add newline to the patch when uploading
+
+My patch upload by 'git bz attach' often cannot be applied by 'git bz
+apply'. The reason is that the patch being corrupt at the end of the
+file. Adding a blank line at the patch will fix this issue.",Ting-Yu Lin,2015-05-11T10:05:09Z,aethanyc,aethanyc,2,1,1
+242,git-bz-moz,2d7fa1267615499452682d7742f167ef505a268a,"Merge pull request #44 from lissyx/fix-new-bugzillaUI
+
+Force using default Bugzilla presentation",Andrew McCreight,2015-04-14T13:58:54Z,amccreight,amccreight,2,1,1
+243,git-bz-moz,130c0f26fcea53e898c9668577a893696573bb83,Force using default Bugzilla presentation,Alexandre Lissy,2015-04-14T13:39:28Z,Alexandre Lissy,Alexandre Lissy,2,1,1
+244,git-bz-moz,5c3ff209922f2a07f6d40152839bf516ecdf82b9,"Merge pull request #42 from froydnj/style-cleanups
+
+Style cleanups",Andrew McCreight,2015-03-09T18:33:50Z,amccreight,amccreight,13,4,9
+245,git-bz-moz,986d6c6e5d37f6fe78dd325dd80b849a18ee6184,use `list` instead of a list comprehension in do_file,Nathan Froyd,2015-02-11T21:17:33Z,froydnj,froydnj,2,1,1
+246,git-bz-moz,db32d3413f6b4b83088ff49a30cfe5f927dddcf4,"modernize extract_and_collate_bugs
+
+- The `if` dance is a clumsy way of saying `.setdefault()`.
+- The final `yield` loop is a verbose way of saying `.iteritems()`.
+- Fixing the previous two points means we don't need the `bugs` list anymore.",Nathan Froyd,2015-02-11T21:16:23Z,froydnj,froydnj,11,3,8
+247,git-bz-moz,fa725ca1dd8a5a775b88fcbf5d5cbe7e334663a8,"Merge pull request #40 from amccreight/noreviewer
+
+Remove the reviewer name from the summary when filing a new bug.",Andrew McCreight,2015-01-21T17:50:03Z,amccreight,amccreight,9,5,4
+248,git-bz-moz,993fc7090c493bf31be22acfd9aae30480c4fff4,"Remove the reviewer from the subject for a single commit bz file.
+
+Closes #39.",Andrew McCreight,2015-01-20T19:11:01Z,amccreight,amccreight,3,2,1
+249,git-bz-moz,e89fedd04fe152b4aed488b0322c4184e0494f2b,fix comment in do_file,Andrew McCreight,2015-01-20T19:04:38Z,amccreight,amccreight,6,3,3
+250,git-bz-moz,6d372365887f77864505859fc5d821b1c88c8780,"Merge pull request #38 from ehsan/ignoreremotecommits
+
+Add an option to bypass checking for remote commits in add-url",Ehsan Akhgari,2015-01-13T04:39:27Z,ehsan,ehsan,37,26,11
+251,git-bz-moz,ae1e7db26b5df204e535fb3cbfe18047358fe60a,"Add an option to bypass checking for remote commits in add-url
+
+git branch --contains -r is extremely slow, so by default things such as
+filing a bug with an attachment while using the add-url option can be
+very slow.  This patch adds a config variable for making things faster
+by skipping this check.",Ehsan Akhgari,2014-12-30T19:37:06Z,ehsan,ehsan,37,26,11
+252,git-bz-moz,8ed5dd8ad5c9597e523ce5aa7350dd98e092acd6,"Merge pull request #37 from ehsan/attach-commits-after-rebase
+
+Parse the revlist after rebase in order to get the commits to attach",Ehsan Akhgari,2014-12-14T23:34:54Z,ehsan,ehsan,16,12,4
+253,git-bz-moz,20166b5a97918e64110c3487027a3dc6b8b19e5b,"Parse the revlist after rebase in order to get the commits to attach
+
+When the user invokes the file or attach commands with symbolic names
+to specify the commits to attach, they probably expect the symbolic
+names to be parsed after the rebase that is required to edit the
+commit message.  This patch causes us to reparse the revlist after
+rebasing when performing an add-url operation during the file and
+attach commands.
+
+Opting out of this behavior is always possible by using a commit SHA1.",Ehsan Akhgari,2014-12-13T20:55:59Z,ehsan,ehsan,16,12,4
+254,git-bz-moz,0a36fb3489396a329876f8f06072d90c69bfa6fc,"Merge pull request #36 from froydnj/master
+
+add missing whitespace option to |git bz file|",Andrew McCreight,2014-12-08T22:29:37Z,amccreight,amccreight,1,1,0
+255,git-bz-moz,7d9f28f29d4c4602ab3d559d437495554363deb7,"add missing whitespace option to |git bz file|
+
+Pull request #17 added a -w option, but failed to add the appropriate
+option to the |git bz file| command.  |git bz file| fails without this
+option, as other code complains about the unknown `ignore_all_spaces'
+option.",Nathan Froyd,2014-12-08T21:06:33Z,froydnj,froydnj,1,1,0
+256,git-bz-moz,dc57da918206fc3c0452212c5866efd9ecdfc9e5,"Default the path to an empty string
+
+Otherwise, the patterns such as the one in ff1395e0 will end up
+stringifying None, which is not what we want.",Ehsan Akhgari,2014-12-08T17:48:57Z,ehsan,ehsan,2,1,1
+257,git-bz-moz,9b20801a72b612daf8156816ca1d8ef4d7b8e0cf,"Merge pull request #35 from amccreight/reviewersplit
+
+Remove the temp file in edit_template after we're done with it",John Schoenick,2014-11-01T00:20:05Z,Nephyrin,Nephyrin,2,2,0
+258,git-bz-moz,26c3f395ca510b87a2dc4fcc0d94ad86a376279b,Remove the temp file in edit_template after we're done with it,Andrew McCreight,2014-10-31T23:45:20Z,amccreight,amccreight,2,2,0
+259,git-bz-moz,b67202f082438fb72e29140b0e5612e8f627f839,"Merge pull request #33 from lazyparser/master
+
+Add bugzilla path to xmlrpc.cgi requests.",John Schoenick,2014-08-26T18:55:02Z,Nephyrin,Nephyrin,4,2,2
+260,git-bz-moz,ff1395e03180d3c70383fe6afd9fef9a7e5564dc,Add bugzilla path to xmlrpc.cgi requests.,lazyparser,2014-08-24T14:49:40Z,lazyparser,lazyparser,4,2,2
+261,git-bz-moz,7c02255fbe3f9b1cd32f70c50f20c62a5cbc3298,"Merge pull request #32 from Nephyrin/fix-component-slash
+
+Fix splitting product/component",Andrew McCreight,2014-08-18T19:45:25Z,amccreight,amccreight,12,7,5
+262,git-bz-moz,b9635dd46e974810ba288a14a07d69aa612b9ca9,"Fix splitting product/component
+
+Core/Video/Audio should parse to product Core, component Video/Audio",John Schoenick,2014-08-18T19:10:10Z,Nephyrin,Nephyrin,12,7,5
+263,git-bz-moz,06525e2d2ed0a28d43755371fb49894a91ac6f25,"Merge pull request #29 from amccreight/response
+
+If we fail to attach a patch, try to find the title of the page bugzilla...",John Schoenick,2014-08-15T00:03:16Z,Nephyrin,Nephyrin,8,6,2
+264,git-bz-moz,2ec135762d74adbd4c2924d8fee76fa76053e65a,"If we fail to attach a patch, try to find the title of the page bugzilla returns and print that out, rather than the entire HTML page.",Andrew McCreight,2014-08-14T23:51:50Z,amccreight,amccreight,8,6,2
+265,git-bz-moz,84f4087f172a8fced83d211c529f1f20e0d9dcf6,"Merge pull request #25 from Standard8/ui-review
+
+Support ui-review flags when attaching patches",John Schoenick,2014-06-17T18:58:25Z,Nephyrin,Nephyrin,27,22,5
+266,git-bz-moz,8f189cc011d882eb6351dd5aa5a22d626112fac0,Support ui-review flags when attaching patches,Mark Banner,2014-06-16T09:30:05Z,Standard8,Standard8,27,22,5
+267,git-bz-moz,323af187f0277feb9399f85d5a100609bd931d6f,"Merge pull request #21 from amccreight/reviewersplit
+
+Split out reviewers from the description",John Schoenick,2014-04-25T21:30:20Z,Nephyrin,Nephyrin,97,96,1
+268,git-bz-moz,50fa7309bfd7048a10c59609104bd3860c495961,add reviewer splitting,Andrew McCreight,2014-04-21T18:20:26Z,amccreight,amccreight,95,94,1
+269,git-bz-moz,38563a37129ae8ba0c3c2d9a1b93cab5dc3b242a,Add *~ and *.pyc to .gitignore,Andrew McCreight,2014-04-21T18:13:43Z,amccreight,amccreight,2,2,0
+270,git-bz-moz,7b738f7f1d750432afeca81df9ada8748d393da4,Create README.md,John Schoenick,2014-04-08T21:36:56Z,Nephyrin,Nephyrin,4,4,0
+271,git-bz-moz,14ffaab4f7540caaac34ba6563e02b3254118ca6,"Merge pull request #20 from amccreight/stripcommaprefix
+
+Strip off leading commas for attachments",John Schoenick,2014-04-08T21:32:40Z,Nephyrin,Nephyrin,2,1,1
+272,git-bz-moz,6d07e4f41b5a4d1cf6e6d6d48d4beed3fcb4f002,"Merge pull request #98 from mrbkap/readme-update
+
+Mention that this project depends on an external library.",Andrew McCreight,2017-12-07T22:16:39Z,amccreight,amccreight,4,3,1
+273,git-bz-moz,1ddd2b08182ad9be38bb338b54f78f52ac8279c9,"Mention that this depends on an external library.
+
+On Ubuntu, at least, the Requests library isn't installed by default and has
+to be installed manually. It took me a minute to realize this, so mentioning
+it in the README might save others some time.",Blake Kaplan,2017-12-07T22:01:33Z,mrbkap,mrbkap,4,3,1
+274,git-bz-moz,d382ce3de4e7952fc90f8962641649058c4e73de,"Allow dash in reviewer name.
+
+Fixes #97.",Andrew McCreight,2017-11-01T19:55:57Z,amccreight,amccreight,3,2,1
+275,git-bz-moz,81425caf991c5d66bba6f018b2a457d75b8dd50e,"Merge pull request #96 from jankeromnes/patch-1
+
+Escape username when getting user details.",Andrew McCreight,2017-09-29T21:55:24Z,amccreight,amccreight,2,1,1
+276,git-bz-moz,199ea406694e47b9ace9d3db166823d2316bfdd8,Escape username when getting user details.,Jan Keromnes,2017-09-28T07:10:16Z,jankeromnes,jankeromnes,2,1,1
+277,git-bz-moz,dd49933d9acf27f4a1cb6e388471e3333dcef3a0,"Merge pull request #93 from chenpighead/fix-authorship
+
+Prepend the right authorship for the attachment",Andrew McCreight,2017-03-14T14:48:17Z,amccreight,amccreight,23,19,4
+278,git-bz-moz,49a3e659136dc188c2ba409fecd4047998f42562,"Prepend the right authorship for the attachment
+
+Bugzilla actually provides users' detail information. Let's get these
+information through the REST API and use a more accurate authorship.
+
+To do so, we can either (a) use brackets to split the real name,
+or (b) use regex to extract the real name. Since usernames could be
+various, I think using (a) is more fault-tolerant.
+
+Fixed #90.",Jeremy Chen,2017-03-12T13:36:54Z,chenpighead,chenpighead,23,19,4
+279,git-bz-moz,338c4a6cd938dbbe67c8300300857e245fcfa899,"Merge pull request #92 from aethanyc/fix-unicode-error
+
+Explicitly encode/decode utf-8 when applying patch diff",Andrew McCreight,2017-03-01T03:22:58Z,amccreight,amccreight,4,2,2
+280,git-bz-moz,40bfa4332efd87f7816f529af4f0d3eb4f843b23,"Explicitly encode/decode utf-8 when applying patch diff
+
+Fixed #88.",Ting-Yu Lin,2017-03-01T03:05:43Z,aethanyc,aethanyc,4,2,2
+281,git-bz-moz,ce418c6b48d82cdba97da5098a8d92d4d34c439a,explicitly encode for unicode in a bzauth exception,Andrew McCreight,2017-02-02T17:41:56Z,amccreight,amccreight,4,3,1
+282,git-bz-moz,d4f9c61dc76a106495d1b1dea95e38d27c5a5843,"Merge pull request #86 from mshal/bug-81
+
+Always prepend From/Date/Subject if the attachment is a raw diff.",Andrew McCreight,2016-03-18T17:23:43Z,amccreight,amccreight,46,20,26
+283,git-bz-moz,0c7270d66f3974d019c49836b6ce3ac9d1def00f,"Always prepend From/Date/Subject if the attachment is a raw diff.
+
+Fixes #81.",Mike Shal,2016-03-17T18:53:03Z,gittup,gittup,9,6,3
+284,git-bz-moz,25a54c3006c0969da4fbd54c6a98238bc0e288ce,"Move _process_reviewboard_request into the BugAttachment class.
+
+This is just a minor refactoring so that we can share the bare patch
+conversion logic.",Mike Shal,2016-03-17T18:07:19Z,gittup,gittup,43,17,26
+285,git-bz-moz,92bbbc2e9d1c688cd8725eea661ea363e0d66b2b,"Merge pull request #85 from mshal/bug-84
+
+Allow MozReview patches without a 'data' field.",Andrew McCreight,2016-03-15T23:41:52Z,amccreight,amccreight,25,13,12
+286,git-bz-moz,1c1b71b3823929b80993988a9125d9acfaf83181,"Allow MozReview patches without a 'data' field.
+
+In some cases, such as 'git bz attach', we don't pull down the data
+field of the MozReview patch. We should just have an empty data field
+for the bug rather than failing with KeyError: 'data'
+
+Fixes #84",Mike Shal,2016-03-15T21:04:12Z,gittup,gittup,25,13,12
+287,git-bz-moz,bf3caf942c69ae3552f458d00d404a495860416b,"Merge pull request #82 from mshal/bug-48
+
+Add support for MozReview requests in 'git bz apply'",Andrew McCreight,2016-02-26T18:43:28Z,amccreight,amccreight,30,26,4
+288,git-bz-moz,a7415e42fe76988368a10650d1b35dd9538d42f4,"Merge pull request #83 from mshal/document-apply-r
+
+Document 'git bz apply -r <requestee>'",Andrew McCreight,2016-02-26T18:42:16Z,amccreight,amccreight,18,16,2
+289,git-bz-moz,b7db366b712a4c2f936bb23bf622dc14e505365a,"Add support for MozReview requests in 'git bz apply'
+
+Fixes #48",Mike Shal,2016-02-26T02:03:50Z,gittup,gittup,30,26,4
+290,git-bz-moz,f78fb35bce56a457c9bf531c94c5789b2bf7a462,Document 'git bz apply -r <requestee>',Mike Shal,2016-02-26T02:03:17Z,gittup,gittup,18,16,2
+291,git-bz-moz,4cb3dee5be53c4a5581122c438a2d4991e598695,"Merge pull request #79 from ehsan/auto-add-reviewers
+
+Add support for bz.auto-add-reviewers",Andrew McCreight,2016-01-29T02:41:47Z,amccreight,amccreight,19,18,1
+292,git-bz-moz,c82148d4cba68343caa1214bce53267bc5e9d80a,"Add support for bz.auto-add-reviewers
+
+This is handy so that git-bz would pick up the reviewer from your commit
+message, and you can just immediately close the editor that pops up when
+using commands such as git-bz attach or git-bz file to get the default
+behavior of asking for review depending on what the commit message
+specifies.",Ehsan Akhgari,2016-01-28T03:03:01Z,ehsan,ehsan,19,18,1
+293,git-bz-moz,1026c744dd4a59bd9fb3b6fa1000eadb0370b71e,"Merge pull request #76 from amccreight/NoAmbig
+
+Ignore any bug references in a commit past the first one.",Andrew McCreight,2016-01-27T19:47:19Z,amccreight,amccreight,4,4,0
+294,git-bz-moz,d106d3089f2ba3d0d18034718cfc82d1924d1437,"Ignore any bug references in a commit past the first one.
+
+This fixes the problem where you have a bug at the start of the patch, as with the standard Mozilla style, but also
+reference another bug in your commit message.
+
+Fixes #23.",Andrew McCreight,2015-12-17T19:10:11Z,amccreight,amccreight,4,4,0
+295,git-bz-moz,63f65b5c2122cdf46184b6f1d32b95274a60edde,"Merge pull request #72 from froydnj/runtime-error
+
+fix spelling of RuntimeError",Andrew McCreight,2015-10-15T18:19:29Z,amccreight,amccreight,4,2,2
+296,git-bz-moz,9807220b636abd279ede8bd83bbd88ef887404de,fix spelling of RuntimeError,Nathan Froyd,2015-10-16T01:52:32Z,froydnj,froydnj,4,2,2
+297,git-bz-moz,6e594ef5e11d08ef45865a9c941f9ffb52f8cda2,"Merge pull request #70 from amccreight/NoImport
+
+Remove spurious import that causes an error.",Andrew McCreight,2015-09-28T18:04:14Z,amccreight,amccreight,9,0,9
+298,git-bz-moz,cbb73fce55e53b4652b111643306bffac3a9e069,"Remove spurious import that causes an error.
+
+The import from auth causes an exception. That and the import from
+pickle are unused, so I removed them.
+
+Fixes #67.",Andrew McCreight,2015-09-28T18:00:44Z,amccreight,amccreight,9,0,9
+299,git-bz-moz,16119bd9aa591183c909864f1affc173aee21153,"Merge pull request #64 from amccreight/RestAPI
+
+REST API",Andrew McCreight,2015-09-25T18:25:39Z,amccreight,amccreight,2363,1210,1153
+300,git-bz-moz,1379594ed2480971b31327da618e00919a8e1c7b,Fix |git bz file|.,Andrew McCreight,2015-09-23T19:09:27Z,amccreight,amccreight,128,44,84
+301,git-bz-moz,61818497a51861b8f3dd31872d535d35d712158a,"Fix |git bz attach|.
+
+Fixes issue #52.",Andrew McCreight,2015-09-21T21:06:11Z,amccreight,amccreight,128,55,73
+302,git-bz-moz,86d5e8c5c0472727ca7f3d1ba1ced873d84b8d70,"Bundle up attachment requestee flags.
+
+This changes the attachment flag information to be stored in a single
+dictionary rather than a bunch of lists, and also stores the special
+"":me+"" value that indicates a + separately. This will make it easier
+to support more flags in the future.
+
+I did not update the code in create_patch that actually sets the flags
+in the request because that is all going to be completely removed
+later.",Andrew McCreight,2015-09-21T22:52:25Z,amccreight,amccreight,47,28,19
+303,git-bz-moz,8f1095aa175c65e60c983f75e76838cf0d08d3e0,"Use lambdas for append_matching_group.
+
+This will allow us to do other things for these flags.",Andrew McCreight,2015-09-17T23:02:01Z,amccreight,amccreight,17,8,9
+304,git-bz-moz,38ef120293ea4c97647f4e6ce449837761fd5ffa,Fix |git bz edit|,Andrew McCreight,2015-09-21T19:01:07Z,amccreight,amccreight,132,46,86
+305,git-bz-moz,81137c5061a508752aa5d5b69b8c664533fa4b88,"Fix the code that retrieves bug and attachment information from the server.
+
+This is enough to get |git bz apply| to work.
+
+Fixes issue #30.",Andrew McCreight,2015-09-17T22:00:53Z,amccreight,amccreight,94,44,50
+306,git-bz-moz,6e64dcc6c448837e17f7b62cc30f4eab5c719764,Rename attachmentdata to attachment_data for consistency.,Andrew McCreight,2015-09-22T21:03:52Z,amccreight,amccreight,14,7,7
+307,git-bz-moz,b70a127ebfd4964bbf7cbedc0bb97ca527a88cb3,"Fix |git bz components|.
+
+This also gets rid of the last uses of the xmlrpc stuff.",Andrew McCreight,2015-09-22T21:40:42Z,amccreight,amccreight,36,17,19
+308,git-bz-moz,a6bf8b5c7effa32927652e90a1686ca16f7fded3,"Remove auth_user and auth_password.
+
+These are no longer needed now that we are using bzexport's bugzilla
+authentication.",Andrew McCreight,2015-09-23T15:32:28Z,amccreight,amccreight,53,12,41
+309,git-bz-moz,b1668c246d86346c839ff9704d340c77f2913bb9,Implement BugServer authentication using bzauth.,Andrew McCreight,2015-09-17T21:20:24Z,amccreight,amccreight,47,39,8
+310,git-bz-moz,97a779f18a86beec107eaef10b7b01e744adac52,Implement shim for Mercurial's ui object.,Andrew McCreight,2015-09-17T21:13:04Z,amccreight,amccreight,48,48,0
+311,git-bz-moz,d7566b82de261723d6cb9e209c536e04a2afa55a,Remove the implementation of get_attachment_token.,Andrew McCreight,2015-09-17T22:26:21Z,amccreight,amccreight,15,1,14
+312,git-bz-moz,4413af22d465a569907e1f6a85fed041b66277e0,"Remove the implementation of check_for_success.
+
+Also remove a nearby comment that seems out of date.",Andrew McCreight,2015-09-17T20:49:34Z,amccreight,amccreight,26,1,25
+313,git-bz-moz,ada89b0040a05045578322d95609f2f3b6f67f02,Remove the now-unused implementation of the cache.,Andrew McCreight,2015-09-17T20:46:41Z,amccreight,amccreight,41,0,41
+314,git-bz-moz,f649f6ffc3db13422fad029bbb032f20eb796609,"Remove the implementation of BugServer.legal_values.
+
+This will get reimplemented later using the REST API.",Andrew McCreight,2015-09-17T20:45:38Z,amccreight,amccreight,25,1,24
+315,git-bz-moz,450acd2e3ef12f8500fe096a42c9c508e626d9b9,"Remove the implementation of BugServer.product_id.
+
+My later rewrite of product component getting will not use it.",Andrew McCreight,2015-09-17T20:44:41Z,amccreight,amccreight,40,1,39
+316,git-bz-moz,2e26c6a893a7c7faa58b02a6241dcd19b1e3cf1d,"Remove the implementation of BugServer.send_request.
+
+Also remove everything that is only called by it.",Andrew McCreight,2015-09-17T20:31:44Z,amccreight,amccreight,117,1,116
+317,git-bz-moz,0863860a43ea05aa57165cee893cab6af44d53b6,Remove encode_multipart_formdata and the implementation of send_post.,Andrew McCreight,2015-09-17T20:27:20Z,amccreight,amccreight,41,1,40
+318,git-bz-moz,9e3c3bea8752a0530c5b16195aa414b23ed50fd3,"Remove the implementation of BugServer.get_cookie_string().
+
+Also remove everything that is only called by it.",Andrew McCreight,2015-09-17T20:25:03Z,amccreight,amccreight,234,1,233
+319,git-bz-moz,4782d9e960b431dda7f5d313f619876379325037,Remove the implementation of the xmlrpc proxy on BugServer.,Andrew McCreight,2015-09-17T20:10:41Z,amccreight,amccreight,32,1,31
+320,git-bz-moz,9f0930d9f6f99780045d92f1c8c12c28e8610de0,Import various code from version-control-tools.,Andrew McCreight,2015-09-09T23:36:21Z,amccreight,amccreight,863,863,0
+321,git-bz-moz,badc86dd9f79bae15c948812cae73519a1b0a713,"Simplify map of changed_attachments into a list obsoleted_attachments.
+
+Now that the generality is removed, this data structure can be simplified further.",Andrew McCreight,2015-09-18T23:24:20Z,amccreight,amccreight,21,10,11
+322,git-bz-moz,caa6bec1f9578fce5596f9c5d26bee21e615c0c4,"Remove support for attachment status.
+
+bugzilla.mozilla.org does not use attachment status. Instead, the only
+thing we can do is mark patches obsolete. Removing this capability
+simplifies the code.",Andrew McCreight,2015-09-18T22:12:55Z,amccreight,amccreight,59,8,51
+323,git-bz-moz,a70e3b7ea0731909f24a4cec9b05b2d38c98bc88,"Remove edit --fix option.
+
+This sets up bug edit defaults to comment and close a bug after
+pushing commits. Again, this is superceded by pulsebot.
+
+This removes the only use of the fix_commits argument to edit_bug.
+
+That in turn removes the only use of the status argument to
+attach_commits, which in turn is the only caller of create_patch, so
+we can remove the status argument to that, too.",Andrew McCreight,2015-09-18T20:25:21Z,amccreight,amccreight,63,10,53
+324,git-bz-moz,9df425a3d8ec5b599563c841d4d39d12875ae578,"Remove 'push' command.
+
+Closes #54.
+
+This shouldn't really be needed because we have Pulsebot to update bugs",Andrew McCreight,2015-09-14T23:13:27Z,amccreight,amccreight,77,1,76
+325,git-bz-moz,382e4500212bd459bff4e5492df755dfb506b109,"Remove the edit --pushed option.
+
+It is only used in do_edit, but we immediately exit before do_edit if
+it is set.
+
+This removes the only place that calls edit_bug with a non-None
+applied_commits, which lets us in turn remove the only place that
+calls filter_patches().",Andrew McCreight,2015-09-18T20:14:34Z,amccreight,amccreight,49,4,45
+326,git-bz-moz,efaf08f8a8b1c9bad9506488ddf76d0f6b7af8af,Add more convenient ways to create a BugServer.,Andrew McCreight,2015-09-17T21:03:53Z,amccreight,amccreight,32,16,16
+327,git-bz-moz,fa09b68fd189a9d339bdf83b5d26adfd22b99a1b,"Merge pull request #61 from amccreight/Includes
+
+Fix up alphabetization of import statements.",Andrew McCreight,2015-09-18T15:01:27Z,amccreight,amccreight,11,6,5
+328,git-bz-moz,4b2232ff48d003270879e7bddf810d09daf0dea0,Fix up alphabetization of import statements.,Andrew McCreight,2015-09-17T21:19:46Z,amccreight,amccreight,11,6,5
+329,git-bz-moz,cc815ca37139990ea4a4aa83de26c788b569b9ec,"Merge pull request #60 from amccreight/Indent
+
+fix indentation in commit_needs_url",Andrew McCreight,2015-09-18T14:57:36Z,amccreight,amccreight,6,3,3
+330,git-bz-moz,d2f5e6a545de20a12c817f675791e50aae43a34c,"Merge pull request #58 from amccreight/MoreErrors
+
+handle invalid products for do_file better",Andrew McCreight,2015-09-17T17:48:51Z,amccreight,amccreight,15,7,8
+331,git-bz-moz,6bed42b7fd678b44b1a05fb0bc21dfa97024b201,"Merge pull request #57 from amccreight/AddUrl
+
+Make add_url do something useful by default (not REST API related)",Andrew McCreight,2015-09-17T17:48:32Z,amccreight,amccreight,2,1,1
+332,git-bz-moz,8678fe356555c26d20c5cc0d97f6c5e79becae73,"Merge pull request #59 from amccreight/BadUrlAmbiguity
+
+BugHandle.get_url() should account for a blank path.",Andrew McCreight,2015-09-17T17:48:24Z,amccreight,amccreight,2,1,1
+333,git-bz-moz,fce6dfc05875be2c00102f862ff3fc059482346f,fix indentation in commit_needs_url,Andrew McCreight,2015-09-11T17:33:52Z,amccreight,amccreight,6,3,3
+334,git-bz-moz,0f2b9aacdf7624513d5d0de0e0e7f19ce39b793d,"Merge pull request #47 from aethanyc/fix-bz-attach
+
+Add newline to the patch when uploading",Andrew McCreight,2015-09-17T15:14:57Z,amccreight,amccreight,2,1,1
+335,git-bz-moz,2a2bc50d98770cfb81b8736a9b2234dbbcb08237,"BugHandle.get_url() should account for a blank path.
+
+Closes #24. I just implemented what johns suggested.",Andrew McCreight,2015-09-17T15:00:18Z,amccreight,amccreight,2,1,1
+336,git-bz-moz,293353f845581dfde9f55723a7929c52df5a0907,"handle invalid products for do_file better
+
+If product_component does not contain a /, then the pattern match
+(product, component) ends up throwing an exception, so explicitly test
+for that case.
+
+Also, the error message isn't quite right: it is possible you
+specified a product but not a revision.",Andrew McCreight,2015-09-16T16:55:07Z,amccreight,amccreight,15,7,8
+337,git-bz-moz,dc7b0afc4aca17d1607d6b9cb3962ec9e414bde1,"Make add_url do something useful by default (not REST API related)
+
+Closes #49.",Andrew McCreight,2015-09-16T18:51:26Z,amccreight,amccreight,2,1,1
+338,git-bz-moz,9744e53e94a7082ce437651b62594c3f91b8f512,"Merge pull request #50 from mrbkap/save-last-comment
+
+Save the last git-bz file instead of deleting it",Andrew McCreight,2015-09-04T23:50:21Z,amccreight,amccreight,8,7,1
+339,git-bz-moz,a6abee0d20a9618b488fbda869714e285a60faff,"Save the last git-bz file instead of deleting it
+
+There's have been a few times recently where I've been trying to attach a file
+using 'git bz attach -e' where the upload will fail for one reason or another
+(most often to do with entering the reviewer's email wrong). In some cases,
+I'll have entered a long comment about my patch, which will be lost forever.
+
+This patch saves the last file in $TMPDIR/git-bz-last.txt (I hope in a
+platform-agnostic manner) so that it can be recovered if needed.",Blake Kaplan,2015-09-04T22:12:11Z,mrbkap,mrbkap,8,7,1
+340,git-bz-moz,4bdde9d270ff72f1a06943306b558dab29f2a3f7,Fix requesting review for bugs in the Firefox component,Ehsan Akhgari,2015-08-07T16:28:51Z,ehsan,ehsan,7,7,0
+341,git-bz-moz,7643f412ef5e69ead48a7b5ad36b265a55e88208,"Add newline to the patch when uploading
+
+My patch upload by 'git bz attach' often cannot be applied by 'git bz
+apply'. The reason is that the patch being corrupt at the end of the
+file. Adding a blank line at the patch will fix this issue.",Ting-Yu Lin,2015-05-11T10:05:09Z,aethanyc,aethanyc,2,1,1
+342,git-bz-moz,2d7fa1267615499452682d7742f167ef505a268a,"Merge pull request #44 from lissyx/fix-new-bugzillaUI
+
+Force using default Bugzilla presentation",Andrew McCreight,2015-04-14T13:58:54Z,amccreight,amccreight,2,1,1
+343,git-bz-moz,130c0f26fcea53e898c9668577a893696573bb83,Force using default Bugzilla presentation,Alexandre Lissy,2015-04-14T13:39:28Z,Alexandre Lissy,Alexandre Lissy,2,1,1
+344,git-bz-moz,5c3ff209922f2a07f6d40152839bf516ecdf82b9,"Merge pull request #42 from froydnj/style-cleanups
+
+Style cleanups",Andrew McCreight,2015-03-09T18:33:50Z,amccreight,amccreight,13,4,9
+345,git-bz-moz,986d6c6e5d37f6fe78dd325dd80b849a18ee6184,use `list` instead of a list comprehension in do_file,Nathan Froyd,2015-02-11T21:17:33Z,froydnj,froydnj,2,1,1
+346,git-bz-moz,db32d3413f6b4b83088ff49a30cfe5f927dddcf4,"modernize extract_and_collate_bugs
+
+- The `if` dance is a clumsy way of saying `.setdefault()`.
+- The final `yield` loop is a verbose way of saying `.iteritems()`.
+- Fixing the previous two points means we don't need the `bugs` list anymore.",Nathan Froyd,2015-02-11T21:16:23Z,froydnj,froydnj,11,3,8
+347,git-bz-moz,fa725ca1dd8a5a775b88fcbf5d5cbe7e334663a8,"Merge pull request #40 from amccreight/noreviewer
+
+Remove the reviewer name from the summary when filing a new bug.",Andrew McCreight,2015-01-21T17:50:03Z,amccreight,amccreight,9,5,4
+348,git-bz-moz,993fc7090c493bf31be22acfd9aae30480c4fff4,"Remove the reviewer from the subject for a single commit bz file.
+
+Closes #39.",Andrew McCreight,2015-01-20T19:11:01Z,amccreight,amccreight,3,2,1
+349,git-bz-moz,e89fedd04fe152b4aed488b0322c4184e0494f2b,fix comment in do_file,Andrew McCreight,2015-01-20T19:04:38Z,amccreight,amccreight,6,3,3
+350,git-bz-moz,6d372365887f77864505859fc5d821b1c88c8780,"Merge pull request #38 from ehsan/ignoreremotecommits
+
+Add an option to bypass checking for remote commits in add-url",Ehsan Akhgari,2015-01-13T04:39:27Z,ehsan,ehsan,37,26,11
+351,git-bz-moz,ae1e7db26b5df204e535fb3cbfe18047358fe60a,"Add an option to bypass checking for remote commits in add-url
+
+git branch --contains -r is extremely slow, so by default things such as
+filing a bug with an attachment while using the add-url option can be
+very slow.  This patch adds a config variable for making things faster
+by skipping this check.",Ehsan Akhgari,2014-12-30T19:37:06Z,ehsan,ehsan,37,26,11
+352,git-bz-moz,8ed5dd8ad5c9597e523ce5aa7350dd98e092acd6,"Merge pull request #37 from ehsan/attach-commits-after-rebase
+
+Parse the revlist after rebase in order to get the commits to attach",Ehsan Akhgari,2014-12-14T23:34:54Z,ehsan,ehsan,16,12,4
+353,git-bz-moz,20166b5a97918e64110c3487027a3dc6b8b19e5b,"Parse the revlist after rebase in order to get the commits to attach
+
+When the user invokes the file or attach commands with symbolic names
+to specify the commits to attach, they probably expect the symbolic
+names to be parsed after the rebase that is required to edit the
+commit message.  This patch causes us to reparse the revlist after
+rebasing when performing an add-url operation during the file and
+attach commands.
+
+Opting out of this behavior is always possible by using a commit SHA1.",Ehsan Akhgari,2014-12-13T20:55:59Z,ehsan,ehsan,16,12,4
+354,git-bz-moz,0a36fb3489396a329876f8f06072d90c69bfa6fc,"Merge pull request #36 from froydnj/master
+
+add missing whitespace option to |git bz file|",Andrew McCreight,2014-12-08T22:29:37Z,amccreight,amccreight,1,1,0
+355,git-bz-moz,7d9f28f29d4c4602ab3d559d437495554363deb7,"add missing whitespace option to |git bz file|
+
+Pull request #17 added a -w option, but failed to add the appropriate
+option to the |git bz file| command.  |git bz file| fails without this
+option, as other code complains about the unknown `ignore_all_spaces'
+option.",Nathan Froyd,2014-12-08T21:06:33Z,froydnj,froydnj,1,1,0
+356,git-bz-moz,dc57da918206fc3c0452212c5866efd9ecdfc9e5,"Default the path to an empty string
+
+Otherwise, the patterns such as the one in ff1395e0 will end up
+stringifying None, which is not what we want.",Ehsan Akhgari,2014-12-08T17:48:57Z,ehsan,ehsan,2,1,1
+357,git-bz-moz,9b20801a72b612daf8156816ca1d8ef4d7b8e0cf,"Merge pull request #35 from amccreight/reviewersplit
+
+Remove the temp file in edit_template after we're done with it",John Schoenick,2014-11-01T00:20:05Z,Nephyrin,Nephyrin,2,2,0
+358,git-bz-moz,26c3f395ca510b87a2dc4fcc0d94ad86a376279b,Remove the temp file in edit_template after we're done with it,Andrew McCreight,2014-10-31T23:45:20Z,amccreight,amccreight,2,2,0
+359,git-bz-moz,b67202f082438fb72e29140b0e5612e8f627f839,"Merge pull request #33 from lazyparser/master
+
+Add bugzilla path to xmlrpc.cgi requests.",John Schoenick,2014-08-26T18:55:02Z,Nephyrin,Nephyrin,4,2,2
+360,git-bz-moz,ff1395e03180d3c70383fe6afd9fef9a7e5564dc,Add bugzilla path to xmlrpc.cgi requests.,lazyparser,2014-08-24T14:49:40Z,lazyparser,lazyparser,4,2,2
+361,git-bz-moz,7c02255fbe3f9b1cd32f70c50f20c62a5cbc3298,"Merge pull request #32 from Nephyrin/fix-component-slash
+
+Fix splitting product/component",Andrew McCreight,2014-08-18T19:45:25Z,amccreight,amccreight,12,7,5
+362,git-bz-moz,b9635dd46e974810ba288a14a07d69aa612b9ca9,"Fix splitting product/component
+
+Core/Video/Audio should parse to product Core, component Video/Audio",John Schoenick,2014-08-18T19:10:10Z,Nephyrin,Nephyrin,12,7,5
+363,git-bz-moz,06525e2d2ed0a28d43755371fb49894a91ac6f25,"Merge pull request #29 from amccreight/response
+
+If we fail to attach a patch, try to find the title of the page bugzilla...",John Schoenick,2014-08-15T00:03:16Z,Nephyrin,Nephyrin,8,6,2
+364,git-bz-moz,2ec135762d74adbd4c2924d8fee76fa76053e65a,"If we fail to attach a patch, try to find the title of the page bugzilla returns and print that out, rather than the entire HTML page.",Andrew McCreight,2014-08-14T23:51:50Z,amccreight,amccreight,8,6,2
+365,git-bz-moz,84f4087f172a8fced83d211c529f1f20e0d9dcf6,"Merge pull request #25 from Standard8/ui-review
+
+Support ui-review flags when attaching patches",John Schoenick,2014-06-17T18:58:25Z,Nephyrin,Nephyrin,27,22,5
+366,git-bz-moz,8f189cc011d882eb6351dd5aa5a22d626112fac0,Support ui-review flags when attaching patches,Mark Banner,2014-06-16T09:30:05Z,Standard8,Standard8,27,22,5
+367,git-bz-moz,323af187f0277feb9399f85d5a100609bd931d6f,"Merge pull request #21 from amccreight/reviewersplit
+
+Split out reviewers from the description",John Schoenick,2014-04-25T21:30:20Z,Nephyrin,Nephyrin,97,96,1
+368,git-bz-moz,50fa7309bfd7048a10c59609104bd3860c495961,add reviewer splitting,Andrew McCreight,2014-04-21T18:20:26Z,amccreight,amccreight,95,94,1
+369,git-bz-moz,38563a37129ae8ba0c3c2d9a1b93cab5dc3b242a,Add *~ and *.pyc to .gitignore,Andrew McCreight,2014-04-21T18:13:43Z,amccreight,amccreight,2,2,0
+370,git-bz-moz,7b738f7f1d750432afeca81df9ada8748d393da4,Create README.md,John Schoenick,2014-04-08T21:36:56Z,Nephyrin,Nephyrin,4,4,0
+371,git-bz-moz,14ffaab4f7540caaac34ba6563e02b3254118ca6,"Merge pull request #20 from amccreight/stripcommaprefix
+
+Strip off leading commas for attachments",John Schoenick,2014-04-08T21:32:40Z,Nephyrin,Nephyrin,2,1,1

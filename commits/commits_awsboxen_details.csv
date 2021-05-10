@@ -1,0 +1,382 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,awsboxen,0a591a41e1056d20243093e8eb1fdbf751f2cac3,Another thing to do.,Ryan Kelly,2013-04-11T06:04:48Z,rfk,rfk,2,2,0
+1,awsboxen,15ff4c7d5ba0a64b60c6c93b6e338d3a47723f9b,Update README with a list of things that aren't working yet.,Ryan Kelly,2013-04-11T06:03:38Z,rfk,rfk,18,18,0
+2,awsboxen,2cbc16a767e95ee306f50be3fa801a519a9a7e3b,Basic implementation of deploy/list/info/teardown commands.,Ryan Kelly,2013-04-11T05:56:15Z,rfk,rfk,227,180,47
+3,awsboxen,076a66f1edca81d64d961537f37e42537af5cb82,"Implement basic ""teardown"" command.",Ryan Kelly,2013-04-11T04:15:18Z,rfk,rfk,17,15,2
+4,awsboxen,6862b8841aedad4de6617e29387d9979449cdd69,"Hooked up super-basic usage of CloudFormation.
+
+Running `awsboxen deploy` will now push the declared stack into AWS,
+but it can't yet create images for the declared boxen so it's pretty
+useless.",Ryan Kelly,2013-04-11T04:11:11Z,rfk,rfk,155,136,19
+5,awsboxen,cc08b693070b42bb75a90ae21830640d30ef2c23,Fix formatting of usage string.,Ryan Kelly,2013-04-10T06:06:17Z,rfk,rfk,2,1,1
+6,awsboxen,fc720b75d38576846b2c2e7feb340dee8523561c,"Add ""showconfig"" command, to test out config loading.",Ryan Kelly,2013-04-10T06:05:35Z,rfk,rfk,43,39,4
+7,awsboxen,91000214be7c6ba2fcec97173d4f8f924419aaf5,Make mergeConfig delete keys if incoming value is null,Ryan Kelly,2013-04-10T05:51:55Z,rfk,rfk,14,13,1
+8,awsboxen,0f19eb6f9ba3eb9795783d6c41d43a17513b7244,"Add loadRootConfig function, for reading .awsboxen file/dir",Ryan Kelly,2013-04-10T05:43:34Z,rfk,rfk,105,76,29
+9,awsboxen,02ab1dffcf7598836c79e3be4ab81093b91f95f5,Implement basic config file loading and merging.,Ryan Kelly,2013-04-10T05:20:58Z,rfk,rfk,140,113,27
+10,awsboxen,144b8e7303dc0f7deeaf4ebbd0fbaa7e16e91d88,Add automated jshint tests (and some unfinished code),Ryan Kelly,2013-04-10T04:40:59Z,rfk,rfk,306,289,17
+11,awsboxen,81b35c03c54d8c995aded2d3a38e720f779d4a2c,Fix package.json syntax.,Ryan Kelly,2013-04-10T03:36:21Z,rfk,rfk,6,3,3
+12,awsboxen,b0dda3401bea46d4e07f270bc3d139fe3b748c78,"Initial commit.  No working code, mostly just a README.",Ryan Kelly,2013-04-10T02:03:55Z,rfk,rfk,315,315,0
+13,awsboxen,2b9f488354523d15bd4d6af0816fe917076a995f,Add --clear-cached-boxen option to force rebuild of cached AMIs.,Ryan Kelly,2013-12-13T04:38:28Z,rfk,rfk,35,30,5
+14,awsboxen,0ac4414b98d063866d6cfd20505b03e20933fca6,Automatically upload ssh key if it's not available.,Ryan Kelly,2013-11-18T01:48:39Z,rfk,rfk,6,3,3
+15,awsboxen,b922c04e0b465107aefbd604fcf4779cc7473993,Bump dev version number,Ryan Kelly,2013-11-04T06:12:16Z,rfk,rfk,8,7,1
+16,awsboxen,2bea25213238fdd04b3984306cf7ddf7c9f65efb,Prepare 0.5.2 release,Ryan Kelly,2013-11-04T04:07:22Z,rfk,rfk,8,4,4
+17,awsboxen,dcb9cce6b288921848dfb538fa1a792719bc8982,"Update all dependencies to latest available versions.
+
+This involves a few small API changes, and a lot of newly-failing
+jshint errors.",Ryan Kelly,2013-11-04T03:02:17Z,rfk,rfk,78,48,30
+18,awsboxen,79f55456d7a6a028e6417006400f0134ea140d24,"Update README to de-emphasize nodejs, clarify current project status.",Ryan Kelly,2013-09-20T03:53:29Z,rfk,rfk,376,198,178
+19,awsboxen,c3a45673c1124132f090abda5d1c31faaf9f23f8,Bump dev version number.,Ryan Kelly,2013-09-19T07:14:33Z,rfk,rfk,10,8,2
+20,awsboxen,c1e3ee1d35f0947067d3fd4f8e159bb963ce9d69,Release version 0.5.1,Ryan Kelly,2013-09-19T07:12:59Z,rfk,rfk,6,3,3
+21,awsboxen,6fb30946ca0e4bc954f411161e395155c36eff49,Don't error out when listing in a region with no cfn templates.,Ryan Kelly,2013-09-11T02:28:48Z,rfk,rfk,12,7,5
+22,awsboxen,5c8b6a4eba15aa7913adb060acb78cb53a85ec79,Add `awsboxen validate` command.,Ryan Kelly,2013-08-30T05:06:23Z,rfk,rfk,51,50,1
+23,awsboxen,d02d455d98006320d431ee75711f3a731d2d8fe7,"Let BuildScript scripts reference template parameters using {""Ref"": ""Param""} syntax",Ryan Kelly,2013-08-26T03:22:13Z,rfk,rfk,187,118,69
+24,awsboxen,87a4c6c25684d8fd9d360228789117ebb0c634f1,Fix stackinfo reporting for ELBs with a single instance.,Ryan Kelly,2013-08-22T04:08:14Z,rfk,rfk,4,3,1
+25,awsboxen,5e020f7e03ba44f3d59dd3909256ec6d1d3aa882,"Don't rebuild AMIs if we know that their contents haven't changed.
+
+For BuildScript based AMIs, this means we only re-build them if the script
+itself has changed, not if there have been unrelated changes in the repo.",Ryan Kelly,2013-08-21T04:12:28Z,rfk,rfk,109,74,35
+26,awsboxen,0d6d49f2c481766936f0689870b43e4144c02704,"Let AWSBoxen::BuildScript boxen run multiple build scripts in series.
+
+This makes it a bit easier to share common functionality between different
+boxen.  But it's starting to get to the point where puppetizing things may
+be easier than not.",Ryan Kelly,2013-08-20T06:20:14Z,rfk,rfk,45,28,17
+27,awsboxen,7bd6bde2af5629571f0ce582e0d25518f770c793,Bump to next dev version,Ryan Kelly,2013-08-12T06:04:52Z,rfk,rfk,6,5,1
+28,awsboxen,18cfdb3944ed3b9111bb88b3f532aa309dc3c887,Release version 0.5.0,Ryan Kelly,2013-08-12T05:59:21Z,rfk,rfk,6,3,3
+29,awsboxen,82b9b6d1111d3890657d15ae67dee997125c8cb0,"Add ""awsboxen info <stack-name> <resource-name>"" command.
+
+This is useful for getting more detailed information about a particular stack
+resource.  Currently implement is the ability to list all the instances within
+an Elastic Load Balancer.",Ryan Kelly,2013-08-12T05:58:01Z,rfk,rfk,173,157,16
+30,awsboxen,8d0b02f1034424ea528ba6af227444d32885074e,Fix handling of empty --config option,Ryan Kelly,2013-08-08T06:39:20Z,rfk,rfk,2,1,1
+31,awsboxen,41dffe4b6f403b62fb10711e185e429c9f1d21bc,"Log individual stack events during deploy/teardown.
+
+This gives a much clearer picture of the progress of your deployment,
+as well as better information on any errors that occur.",Ryan Kelly,2013-08-02T05:19:05Z,rfk,rfk,108,87,21
+32,awsboxen,9835d6c8d86e785736dee6619b0e81bff7ea88d1,todos and typos,Ryan Kelly,2013-08-02T04:24:22Z,rfk,rfk,11,7,4
+33,awsboxen,3ea14fc148bd486870ba327ca6522d809fa45c7d,Remove a now-done item from the todo list,Ryan Kelly,2013-08-02T03:53:59Z,rfk,rfk,2,0,2
+34,awsboxen,b92738322b0863d7bc749fbb2c7b63b84ed61757,Add command-line option to specify the config file.,Ryan Kelly,2013-08-01T03:55:28Z,rfk,rfk,119,88,31
+35,awsboxen,a4b85cd70487992e7a69492a1b77cda42ba8cb89,Guard against calling Object.keys(null),Ryan Kelly,2013-07-26T02:30:25Z,rfk,rfk,4,2,2
+36,awsboxen,be8183c5b709d900f3bc7551a2ee13adee025311,"Tweak handing of null during config merge.
+
+Previously it would result in keys being deleted. Now we leave
+the null in place, and expect calling code to deal with it gracefully.
+This helps some corner-cases when merging sibling config files.",Ryan Kelly,2013-07-26T00:16:46Z,rfk,rfk,6,2,4
+37,awsboxen,66428b3a896d1d2fe77fcce24dfd76ba2cbf47b2,Add another idea to the TODO list,Ryan Kelly,2013-07-25T23:41:25Z,rfk,rfk,3,3,0
+38,awsboxen,8a99b35626915516c9df420c738795e62b51d8b1,Correct parsing of -D options when -F is not specified,Ryan Kelly,2013-07-16T02:26:45Z,rfk,rfk,29,13,16
+39,awsboxen,f34edb58e15fab5f1bdb24917f50854c0abb6f79,"Fix deployment to use opts.stack_name, not opts.name",Ryan Kelly,2013-07-15T05:49:46Z,rfk,rfk,12,6,6
+40,awsboxen,ffdddfb82217663a13c90d95433a8d2d2b2a0fdd,Don't create bogus empty keys when merging sibling configs,Ryan Kelly,2013-07-15T03:56:46Z,rfk,rfk,9,8,1
+41,awsboxen,69597c137c18814096762ea2af3fe520f1ef02d5,Add another todo,Ryan Kelly,2013-07-15T03:29:50Z,rfk,rfk,2,2,0
+42,awsboxen,15051bf558d53d1eb066ec45b9694701a411d47c,Document parameter-file loading in the README,Ryan Kelly,2013-07-12T08:41:29Z,rfk,rfk,66,64,2
+43,awsboxen,582a6f99452d0923df3ba4368ab8dbb55b2b6053,Implement loading of parameters from (optionally encrypted) json files.,Ryan Kelly,2013-07-12T08:25:03Z,rfk,rfk,111,93,18
+44,awsboxen,f0ff4a47868e6b8729814cfef080c8f86ea2075e,Refactor option-gathering logic into a separate submodule,Ryan Kelly,2013-07-12T04:57:15Z,rfk,rfk,246,174,72
+45,awsboxen,b36d4c3b6d7a1343a5ac5f0f1b1197f946f8887f,Add missing test config file,Ryan Kelly,2013-07-11T06:36:38Z,rfk,rfk,34,34,0
+46,awsboxen,d9bfe2eac2127d56f3f45f3f96447e9fe1cb2a2c,Cleanups and tests for param resolution in boxen defns,Ryan Kelly,2013-07-11T03:22:25Z,rfk,rfk,49,43,6
+47,awsboxen,2ead71ae148d04e1137b9c09de5f3ac3e56848ba,Bump dev version number,Ryan Kelly,2013-07-01T05:40:19Z,rfk,rfk,6,5,1
+48,awsboxen,6c338a2e3ce19e83e854b3332b2b4afacba61ba9,Prep version 0.4.0,Ryan Kelly,2013-07-01T05:37:14Z,rfk,rfk,6,3,3
+49,awsboxen,33849f36624037fe0c5ee920032c650a8651e917,"Remove the  ""UserDataFiles"" helper function.
+
+It turns out that CloudFormation::Init metadata offers broadly similar
+functionality, so there's no point duplicating it ourselves.",Ryan Kelly,2013-07-01T05:28:04Z,rfk,rfk,245,3,242
+50,awsboxen,cfc00c2ad67f398242a52ff6bc3e86101b826ea7,"Resolve some uses of {Ref} and {Fn::FindInMap} inside Boxen decls.
+
+This is required if you want to e.g. use a different base AMI depending
+on the target region.  It's nice to use the same syntax as CloudFormation
+runtime.",Ryan Kelly,2013-06-28T06:46:02Z,rfk,rfk,38,37,1
+51,awsboxen,2cb59e89b5df39761d6870a588c7f4cc06fd990c,"Rename ""projinfo.js"" to ""loadTemplate.js"".
+
+That's the only thing it actually does these days.",Ryan Kelly,2013-06-28T06:29:26Z,rfk,rfk,93,45,48
+52,awsboxen,1a103e67f2f3c48efb2be9379c6f5afd2ec40cbb,Allow setting of AWS creds and region on the command line.,Ryan Kelly,2013-06-28T06:07:12Z,rfk,rfk,46,38,8
+53,awsboxen,49be2fc4eb125a0661fcbf5d9227a0061b737e26,Add some comments on UserDataFiles to the readme,Ryan Kelly,2013-06-27T07:11:18Z,rfk,rfk,59,59,0
+54,awsboxen,5bf7a85e7b123777a10d4fbb584913b97f28c94b,Update TODOs based on latest development.,Ryan Kelly,2013-06-27T06:51:41Z,rfk,rfk,11,5,6
+55,awsboxen,3865f6f3c490d0c4f10a358fa6eac77ef4b1c4b5,Bump dev version number,Ryan Kelly,2013-06-27T06:45:16Z,rfk,rfk,2,1,1
+56,awsboxen,3aa8c04cc416ab9528a7cd18217b939f8ffcac75,"Implement ""Fn::AWSBoxen::UserDataFiles"" pre-processing function.
+
+This function is very helpful for writing config files at instance
+startup, by means of a UserData script.  The implementation could use
+a serious refactor, but it's a start.",Ryan Kelly,2013-06-27T06:31:03Z,rfk,rfk,189,188,1
+57,awsboxen,5cf2630c490a03831db3467cd1ec1769c42dfdae,Tweak how .awsbox.json decls are turned into boxen decls.,Ryan Kelly,2013-06-27T02:31:21Z,rfk,rfk,66,42,24
+58,awsboxen,bf78e3497d9d06da7da36f00a15a4f86dc95b856,Release version 0.3.0,Ryan Kelly,2013-06-25T04:17:15Z,rfk,rfk,6,3,3
+59,awsboxen,71c6811a8459143d0c1860e17b76a89070272f2c,"Assign snapshot names to match the name of their owning AMI.
+
+This should make it a bit easier to clean up snapshots that are no
+longer in use.",Ryan Kelly,2013-06-25T04:12:18Z,rfk,rfk,22,18,4
+60,awsboxen,887738aac5a7edf284ff1f25d0d0487654a87410,"Refuse to deploy if there are uncommitted changes to the repo.
+
+The new --ignore-uncommitted flag will override this, but it's off by
+default since uncommitted changes will not get propertly deployed.",Ryan Kelly,2013-06-25T03:22:15Z,rfk,rfk,53,36,17
+61,awsboxen,0f5a13bcad1e36e8ec2663dfc7e83d8185f59732,Add changelog,Ryan Kelly,2013-06-25T02:53:11Z,rfk,rfk,6,6,0
+62,awsboxen,869d6e744950e011fbc2d223f70b105c4c7f7ae2,"Read top-level ""awsboxen.json"" file in addition to "".awsboxen.json"".
+
+I find this to be cleaner when your repo as lots of additional build stuff,
+like AWSBoxen::BuildScript scripts.",Ryan Kelly,2013-06-25T02:52:25Z,rfk,rfk,7,4,3
+63,awsboxen,9667a27b9f00df9386b46ecb7063700fca925fe5,Allow '-D key=value' syntax to define template parameter values.,Ryan Kelly,2013-06-24T07:32:14Z,rfk,rfk,41,32,9
+64,awsboxen,19328d4abf9655bb47d99046dc69583b3d056fa3,Bump version to 0.2.1,Ryan Kelly,2013-06-07T03:38:39Z,rfk,rfk,2,1,1
+65,awsboxen,34852250cfe2589aae5daa66d61a479eaaec2b72,Fix potential null-deference bug.,Ryan Kelly,2013-06-07T03:38:15Z,rfk,rfk,4,3,1
+66,awsboxen,f547c84bf793fb8d960c1919c68ba32a73041e09,"Allow awsboxen config files to declare version dependencies.
+
+The top-level key AWSBoxenVersion can be set to a semver version range,
+and awsboxen will refuse to deploy if its current version does not
+satisfy that range.",Ryan Kelly,2013-06-07T02:58:40Z,rfk,rfk,43,33,10
+67,awsboxen,d92a53a82eb2f1292a62b9d38187440980e92198,Bump to version 0.1.2,Ryan Kelly,2013-06-06T22:59:19Z,rfk,rfk,2,1,1
+68,awsboxen,c867f2b13ee0d16ecf1758fcef13656b18a91bd1,Add a --version command-line option,Ryan Kelly,2013-06-06T22:58:57Z,rfk,rfk,25,25,0
+69,awsboxen,033085852461daba8e744bb54fe73b56fe539f37,Update examples in README to better match actual output.,Ryan Kelly,2013-06-03T12:40:44Z,rfk,rfk,28,18,10
+70,awsboxen,9f15b65b9ba49d3c2603129c465cc0a515c94e37,Bump to version 0.1.1,Ryan Kelly,2013-06-03T12:20:15Z,rfk,rfk,2,1,1
+71,awsboxen,715a2ca070876b5b2e2d99170be333b8ff80023f,"Fix accidental attempt to use ""+"" in AMI names.",Ryan Kelly,2013-06-03T08:30:07Z,rfk,rfk,4,2,2
+72,awsboxen,14b2dcff1285f6e4355ae68c8531d81241613faa,Update to latest awsbox dependency,Ryan Kelly,2013-05-30T22:49:45Z,rfk,rfk,2,1,1
+73,awsboxen,b44d4ebce60ea3a45c41d05b7ef21a22d8efa3eb,Add a TODO to the README,Ryan Kelly,2013-05-30T22:25:05Z,rfk,rfk,2,2,0
+74,awsboxen,552355cab462839e89669ceff43c86f41fe41756,"Commit overwritten .awsbox.json files.
+
+If they're not committed, the awsboxen freezer won't use them properly.",Ryan Kelly,2013-05-24T13:03:50Z,rfk,rfk,12,12,0
+75,awsboxen,066822d4ec58fb58894579febc329378e2e5894b,Successfully convince the buildscript to run as root,Ryan Kelly,2013-05-24T08:59:25Z,rfk,rfk,6,3,3
+76,awsboxen,4dd3cd57fecadca1947eb146ad2acba7c07dcc63,"Dont use sudo for buildscript, it doesn't work reliably when tunnelled",Ryan Kelly,2013-05-24T08:37:10Z,rfk,rfk,2,1,1
+77,awsboxen,e4555bebd51557c8542ca589e49a1e6c4f21ceb0,"Remove ""awsboxen"" prefix from AWS resource names.
+
+They're just getting too long otherwise!",Ryan Kelly,2013-05-24T08:11:00Z,rfk,rfk,2,1,1
+78,awsboxen,982c5f41c8b4c5de6c6ba256c5544b71eb8f14a7,"Tweak how profile overrides are processed, and add testcase for it.
+
+These tweaks make it easier for profiles to override part of the default
+.awsbox.json configuration while leaving other parts of intact.",Ryan Kelly,2013-05-24T08:03:37Z,rfk,rfk,232,192,40
+79,awsboxen,1b3c7fcb2551c59d272290ecc4a7a10eb236c2f8,Use sudo to execute the build script.,Ryan Kelly,2013-05-24T07:09:38Z,rfk,rfk,2,1,1
+80,awsboxen,376c8f68c59727576bcc638972eb829036b0a9a5,"Allow boxen to be built with a simple build script.
+
+This allows you to include instances that are not built via awsbox,
+e.g. a mysql or cassandra storage node.",Ryan Kelly,2013-05-24T06:46:08Z,rfk,rfk,538,452,86
+81,awsboxen,198a54827351104a6b07c1612f8bedebbdffd560,"Merge pull request #5 from chilts/fix-package-dependencies-for-awssum
+
+Fix dependencies for awssum-amazon-* packages",Ryan Kelly,2013-04-29T21:54:40Z,rfk,rfk,6,2,4
+82,awsboxen,c74c0e55b452c591e882cafd8858b4d05cb658cd,"Fix dependencies for awssum-amazon-* packages
+
+Since AwsSum has a plugin architecture, each plugin depends on awssum
+itself. Using the new peerDependencies each package pulls in awssum
+alongside itself. Also, each awssum-<provider>-<service> package also
+pulls in the relevant awssum-<provider> package too.
+
+Finally, using semver, it pays to depend on the v1.0.x patch series,
+rather than sticking with a fixed version number.",Andrew Chilton,2013-04-29T11:35:44Z,chilts,chilts,6,2,4
+83,awsboxen,493e3fd7d0cfa10ed786e9cb469b20fbc6158b0b,Tweaking package meta-data for initial release,Ryan Kelly,2013-04-18T02:33:03Z,rfk,rfk,17,2,15
+84,awsboxen,927368fbd24cd3962d18eebeece2285b777d2a43,"Make each top-level 'command' function return something useful.
+
+This might be helpful for other scripts that want to call awsboxen
+without shelling out and parsing its console output.",Ryan Kelly,2013-04-18T02:25:00Z,rfk,rfk,12,7,5
+85,awsboxen,1e2d375232e398a34be2cde3690ae9a0736d6913,Expand lint tests to check for MPL license header.,Ryan Kelly,2013-04-16T01:16:45Z,rfk,rfk,58,48,10
+86,awsboxen,f03c539b9d3ef2148efdff7c7f0d369852040ee1,"Add MPL license headers, cleanup some comments.",Ryan Kelly,2013-04-16T00:56:19Z,rfk,rfk,140,95,45
+87,awsboxen,fe478b7d50040c9e47075c65621afc4ba921f64a,"Update to awsbox 0.4.4, which lets the app start automatically on boot.",Ryan Kelly,2013-04-15T22:20:44Z,rfk,rfk,18,2,16
+88,awsboxen,06776d85fc5237fd6dd6410399d120edcfa7445f,Tag deployed stacks with their profile name and git commit hash.,Ryan Kelly,2013-04-15T05:12:10Z,rfk,rfk,64,48,16
+89,awsboxen,57ec5fffb3e0dbeba32d35569e7d581d73157618,Add workaround to start nodejs app on boot.,Ryan Kelly,2013-04-15T05:08:48Z,rfk,rfk,19,16,3
+90,awsboxen,bb0b0f4e102bd43fea1dcdf706eb76f599aed6e2,Another idea recorded in TODO section,Ryan Kelly,2013-04-15T00:22:05Z,rfk,rfk,2,2,0
+91,awsboxen,2a9f9566985d50ddb40998fe82bba9afffd82d95,Add a couple of TODO items,Ryan Kelly,2013-04-14T22:43:38Z,rfk,rfk,10,9,1
+92,awsboxen,35f82c447862c42654e11a1b57860b4f30a3692b,Fix typo in comment,Ryan Kelly,2013-04-12T14:21:42Z,rfk,rfk,5,3,2
+93,awsboxen,7ce76a076df13354ddd8c30e38a29a4f8cb6431b,Re-order commands in help string and README,Ryan Kelly,2013-04-12T14:18:27Z,rfk,rfk,20,10,10
+94,awsboxen,e15215e7846c04d086784796cc3e63a12a170d63,Tweak README to better match current state of code.,Ryan Kelly,2013-04-12T13:57:56Z,rfk,rfk,12,5,7
+95,awsboxen,578aba78535b61a83c609fec4f5d4a940adbe919,"Include CFN Output values in output from ""info"" command.
+
+This provides an easy way to get at e.g. the public loadbalancer URL.",Ryan Kelly,2013-04-12T13:43:50Z,rfk,rfk,39,31,8
+96,awsboxen,6a386bcdd7b3791165d1307089e133a7b0769890,Tweak README to better match state of code.,Ryan Kelly,2013-04-12T13:00:58Z,rfk,rfk,13,6,7
+97,awsboxen,d5215b67054f0cbd96e77e5baae3f0cd0579dc2b,Fix teardown of awsbox freezer instances.,Ryan Kelly,2013-04-12T12:15:35Z,rfk,rfk,2,1,1
+98,awsboxen,9e2ad5c920ac6e4322b59c7e64bb18a99828fc19,"Rename ""DefaultBox"" to ""AWSBox""",Ryan Kelly,2013-04-12T11:44:19Z,rfk,rfk,8,4,4
+99,awsboxen,09845a574d1c6afb70e6c7adc6ef387c6da75137,Tweak README,Ryan Kelly,2013-04-12T11:37:21Z,rfk,rfk,4,3,1
+100,awsboxen,4c3e2a5e095981f10548044308f9276a05b7ca2d,Tweak polling interval,Ryan Kelly,2013-04-12T10:48:18Z,rfk,rfk,2,1,1
+101,awsboxen,d53dd23c2b3d925f49e56f91d6ff9ca2604c4992,Tweaks for pushing non-HEAD commits into the awsbox,Ryan Kelly,2013-04-12T10:40:12Z,rfk,rfk,14,9,5
+102,awsboxen,59c59b7538d023bde9bf74e9a3fdbab0117e7b00,"Abandon the idea of passing git refs to awsboxen.
+
+This would substantially complicate things.  If you want to deploy a
+specific version, check it out before running the command.",Ryan Kelly,2013-04-12T07:16:32Z,rfk,rfk,44,17,27
+103,awsboxen,c8b4f2541923eb024ef544a907fad0302ec7e7a6,Expore awsbox deploy key as a CFN template parameter,Ryan Kelly,2013-04-12T07:09:06Z,rfk,rfk,43,26,17
+104,awsboxen,be334dc85f15386ddecbde0a5f48b67b67f3cba9,Fix workingDir for 'git checkout' command.,Ryan Kelly,2013-04-12T06:45:51Z,rfk,rfk,3,2,1
+105,awsboxen,2eb3d0be7bc857dee031850ad581e0d38be5a9ff,"Add more default resources, trying to match what awsbox spins up.",Ryan Kelly,2013-04-12T06:29:19Z,rfk,rfk,146,93,53
+106,awsboxen,22f3bbd27ed71e879e6440ed84ffaf16125233df,Make Boxen AMIs referencable as template parameters.,Ryan Kelly,2013-04-12T06:01:32Z,rfk,rfk,35,21,14
+107,awsboxen,fa5a139004c6acaccc717ecb15cdee77683da6f4,"Give frozen AMIs predictable unique names, and avoid rebuilding if already present",Ryan Kelly,2013-04-12T05:33:04Z,rfk,rfk,104,85,19
+108,awsboxen,5d63b6feaf43b25f68220f92de5362eca55d1042,"Finer control over ""awsbox freeze"" command.",Ryan Kelly,2013-04-12T04:05:50Z,rfk,rfk,50,43,7
+109,awsboxen,7a391ad3f59ea4394e562f0ab5c96250dcde30c7,"Add basic AMI freezing via awsbox.
+
+This also adds a ""freeze"" command that can be used to generate just
+the AMI, rather than doing a full deployment.",Ryan Kelly,2013-04-12T03:40:51Z,rfk,rfk,287,269,18
+110,awsboxen,bf1a2b36beb2417cdaca275f69d46faefec5039a,Tweak README to better match actual state of code.,Ryan Kelly,2013-04-11T07:01:12Z,rfk,rfk,35,24,11
+111,awsboxen,567eb910ab946ae71a1a909cf4333f8f2099d44c,"More complete setting of defaults when loading the config.
+
+This now sets up default Boxen and Resource definitions if none are specified,
+and can load data from .awsbox.json in addition to .awsboxen.json.  In theory
+this will make it capable of deploying an unmodified awsbox-enabled repo.",Ryan Kelly,2013-04-11T06:46:46Z,rfk,rfk,81,67,14
+112,awsboxen,6b4fc0e382db824921bfa86bed176dda32ed28ac,Code cleanups and comments.,Ryan Kelly,2013-04-11T06:14:52Z,rfk,rfk,57,47,10
+113,awsboxen,2b9f488354523d15bd4d6af0816fe917076a995f,Add --clear-cached-boxen option to force rebuild of cached AMIs.,Ryan Kelly,2013-12-13T04:38:28Z,rfk,rfk,35,30,5
+114,awsboxen,0ac4414b98d063866d6cfd20505b03e20933fca6,Automatically upload ssh key if it's not available.,Ryan Kelly,2013-11-18T01:48:39Z,rfk,rfk,6,3,3
+115,awsboxen,b922c04e0b465107aefbd604fcf4779cc7473993,Bump dev version number,Ryan Kelly,2013-11-04T06:12:16Z,rfk,rfk,8,7,1
+116,awsboxen,2bea25213238fdd04b3984306cf7ddf7c9f65efb,Prepare 0.5.2 release,Ryan Kelly,2013-11-04T04:07:22Z,rfk,rfk,8,4,4
+117,awsboxen,dcb9cce6b288921848dfb538fa1a792719bc8982,"Update all dependencies to latest available versions.
+
+This involves a few small API changes, and a lot of newly-failing
+jshint errors.",Ryan Kelly,2013-11-04T03:02:17Z,rfk,rfk,78,48,30
+118,awsboxen,79f55456d7a6a028e6417006400f0134ea140d24,"Update README to de-emphasize nodejs, clarify current project status.",Ryan Kelly,2013-09-20T03:53:29Z,rfk,rfk,376,198,178
+119,awsboxen,c3a45673c1124132f090abda5d1c31faaf9f23f8,Bump dev version number.,Ryan Kelly,2013-09-19T07:14:33Z,rfk,rfk,10,8,2
+120,awsboxen,c1e3ee1d35f0947067d3fd4f8e159bb963ce9d69,Release version 0.5.1,Ryan Kelly,2013-09-19T07:12:59Z,rfk,rfk,6,3,3
+121,awsboxen,6fb30946ca0e4bc954f411161e395155c36eff49,Don't error out when listing in a region with no cfn templates.,Ryan Kelly,2013-09-11T02:28:48Z,rfk,rfk,12,7,5
+122,awsboxen,5c8b6a4eba15aa7913adb060acb78cb53a85ec79,Add `awsboxen validate` command.,Ryan Kelly,2013-08-30T05:06:23Z,rfk,rfk,51,50,1
+123,awsboxen,d02d455d98006320d431ee75711f3a731d2d8fe7,"Let BuildScript scripts reference template parameters using {""Ref"": ""Param""} syntax",Ryan Kelly,2013-08-26T03:22:13Z,rfk,rfk,187,118,69
+124,awsboxen,87a4c6c25684d8fd9d360228789117ebb0c634f1,Fix stackinfo reporting for ELBs with a single instance.,Ryan Kelly,2013-08-22T04:08:14Z,rfk,rfk,4,3,1
+125,awsboxen,5e020f7e03ba44f3d59dd3909256ec6d1d3aa882,"Don't rebuild AMIs if we know that their contents haven't changed.
+
+For BuildScript based AMIs, this means we only re-build them if the script
+itself has changed, not if there have been unrelated changes in the repo.",Ryan Kelly,2013-08-21T04:12:28Z,rfk,rfk,109,74,35
+126,awsboxen,0d6d49f2c481766936f0689870b43e4144c02704,"Let AWSBoxen::BuildScript boxen run multiple build scripts in series.
+
+This makes it a bit easier to share common functionality between different
+boxen.  But it's starting to get to the point where puppetizing things may
+be easier than not.",Ryan Kelly,2013-08-20T06:20:14Z,rfk,rfk,45,28,17
+127,awsboxen,7bd6bde2af5629571f0ce582e0d25518f770c793,Bump to next dev version,Ryan Kelly,2013-08-12T06:04:52Z,rfk,rfk,6,5,1
+128,awsboxen,18cfdb3944ed3b9111bb88b3f532aa309dc3c887,Release version 0.5.0,Ryan Kelly,2013-08-12T05:59:21Z,rfk,rfk,6,3,3
+129,awsboxen,82b9b6d1111d3890657d15ae67dee997125c8cb0,"Add ""awsboxen info <stack-name> <resource-name>"" command.
+
+This is useful for getting more detailed information about a particular stack
+resource.  Currently implement is the ability to list all the instances within
+an Elastic Load Balancer.",Ryan Kelly,2013-08-12T05:58:01Z,rfk,rfk,173,157,16
+130,awsboxen,8d0b02f1034424ea528ba6af227444d32885074e,Fix handling of empty --config option,Ryan Kelly,2013-08-08T06:39:20Z,rfk,rfk,2,1,1
+131,awsboxen,41dffe4b6f403b62fb10711e185e429c9f1d21bc,"Log individual stack events during deploy/teardown.
+
+This gives a much clearer picture of the progress of your deployment,
+as well as better information on any errors that occur.",Ryan Kelly,2013-08-02T05:19:05Z,rfk,rfk,108,87,21
+132,awsboxen,9835d6c8d86e785736dee6619b0e81bff7ea88d1,todos and typos,Ryan Kelly,2013-08-02T04:24:22Z,rfk,rfk,11,7,4
+133,awsboxen,3ea14fc148bd486870ba327ca6522d809fa45c7d,Remove a now-done item from the todo list,Ryan Kelly,2013-08-02T03:53:59Z,rfk,rfk,2,0,2
+134,awsboxen,b92738322b0863d7bc749fbb2c7b63b84ed61757,Add command-line option to specify the config file.,Ryan Kelly,2013-08-01T03:55:28Z,rfk,rfk,119,88,31
+135,awsboxen,a4b85cd70487992e7a69492a1b77cda42ba8cb89,Guard against calling Object.keys(null),Ryan Kelly,2013-07-26T02:30:25Z,rfk,rfk,4,2,2
+136,awsboxen,be8183c5b709d900f3bc7551a2ee13adee025311,"Tweak handing of null during config merge.
+
+Previously it would result in keys being deleted. Now we leave
+the null in place, and expect calling code to deal with it gracefully.
+This helps some corner-cases when merging sibling config files.",Ryan Kelly,2013-07-26T00:16:46Z,rfk,rfk,6,2,4
+137,awsboxen,66428b3a896d1d2fe77fcce24dfd76ba2cbf47b2,Add another idea to the TODO list,Ryan Kelly,2013-07-25T23:41:25Z,rfk,rfk,3,3,0
+138,awsboxen,8a99b35626915516c9df420c738795e62b51d8b1,Correct parsing of -D options when -F is not specified,Ryan Kelly,2013-07-16T02:26:45Z,rfk,rfk,29,13,16
+139,awsboxen,f34edb58e15fab5f1bdb24917f50854c0abb6f79,"Fix deployment to use opts.stack_name, not opts.name",Ryan Kelly,2013-07-15T05:49:46Z,rfk,rfk,12,6,6
+140,awsboxen,ffdddfb82217663a13c90d95433a8d2d2b2a0fdd,Don't create bogus empty keys when merging sibling configs,Ryan Kelly,2013-07-15T03:56:46Z,rfk,rfk,9,8,1
+141,awsboxen,69597c137c18814096762ea2af3fe520f1ef02d5,Add another todo,Ryan Kelly,2013-07-15T03:29:50Z,rfk,rfk,2,2,0
+142,awsboxen,15051bf558d53d1eb066ec45b9694701a411d47c,Document parameter-file loading in the README,Ryan Kelly,2013-07-12T08:41:29Z,rfk,rfk,66,64,2
+143,awsboxen,582a6f99452d0923df3ba4368ab8dbb55b2b6053,Implement loading of parameters from (optionally encrypted) json files.,Ryan Kelly,2013-07-12T08:25:03Z,rfk,rfk,111,93,18
+144,awsboxen,f0ff4a47868e6b8729814cfef080c8f86ea2075e,Refactor option-gathering logic into a separate submodule,Ryan Kelly,2013-07-12T04:57:15Z,rfk,rfk,246,174,72
+145,awsboxen,b36d4c3b6d7a1343a5ac5f0f1b1197f946f8887f,Add missing test config file,Ryan Kelly,2013-07-11T06:36:38Z,rfk,rfk,34,34,0
+146,awsboxen,d9bfe2eac2127d56f3f45f3f96447e9fe1cb2a2c,Cleanups and tests for param resolution in boxen defns,Ryan Kelly,2013-07-11T03:22:25Z,rfk,rfk,49,43,6
+147,awsboxen,2ead71ae148d04e1137b9c09de5f3ac3e56848ba,Bump dev version number,Ryan Kelly,2013-07-01T05:40:19Z,rfk,rfk,6,5,1
+148,awsboxen,6c338a2e3ce19e83e854b3332b2b4afacba61ba9,Prep version 0.4.0,Ryan Kelly,2013-07-01T05:37:14Z,rfk,rfk,6,3,3
+149,awsboxen,33849f36624037fe0c5ee920032c650a8651e917,"Remove the  ""UserDataFiles"" helper function.
+
+It turns out that CloudFormation::Init metadata offers broadly similar
+functionality, so there's no point duplicating it ourselves.",Ryan Kelly,2013-07-01T05:28:04Z,rfk,rfk,245,3,242
+150,awsboxen,cfc00c2ad67f398242a52ff6bc3e86101b826ea7,"Resolve some uses of {Ref} and {Fn::FindInMap} inside Boxen decls.
+
+This is required if you want to e.g. use a different base AMI depending
+on the target region.  It's nice to use the same syntax as CloudFormation
+runtime.",Ryan Kelly,2013-06-28T06:46:02Z,rfk,rfk,38,37,1
+151,awsboxen,2cb59e89b5df39761d6870a588c7f4cc06fd990c,"Rename ""projinfo.js"" to ""loadTemplate.js"".
+
+That's the only thing it actually does these days.",Ryan Kelly,2013-06-28T06:29:26Z,rfk,rfk,93,45,48
+152,awsboxen,1a103e67f2f3c48efb2be9379c6f5afd2ec40cbb,Allow setting of AWS creds and region on the command line.,Ryan Kelly,2013-06-28T06:07:12Z,rfk,rfk,46,38,8
+153,awsboxen,49be2fc4eb125a0661fcbf5d9227a0061b737e26,Add some comments on UserDataFiles to the readme,Ryan Kelly,2013-06-27T07:11:18Z,rfk,rfk,59,59,0
+154,awsboxen,5bf7a85e7b123777a10d4fbb584913b97f28c94b,Update TODOs based on latest development.,Ryan Kelly,2013-06-27T06:51:41Z,rfk,rfk,11,5,6
+155,awsboxen,3865f6f3c490d0c4f10a358fa6eac77ef4b1c4b5,Bump dev version number,Ryan Kelly,2013-06-27T06:45:16Z,rfk,rfk,2,1,1
+156,awsboxen,3aa8c04cc416ab9528a7cd18217b939f8ffcac75,"Implement ""Fn::AWSBoxen::UserDataFiles"" pre-processing function.
+
+This function is very helpful for writing config files at instance
+startup, by means of a UserData script.  The implementation could use
+a serious refactor, but it's a start.",Ryan Kelly,2013-06-27T06:31:03Z,rfk,rfk,189,188,1
+157,awsboxen,5cf2630c490a03831db3467cd1ec1769c42dfdae,Tweak how .awsbox.json decls are turned into boxen decls.,Ryan Kelly,2013-06-27T02:31:21Z,rfk,rfk,66,42,24
+158,awsboxen,bf78e3497d9d06da7da36f00a15a4f86dc95b856,Release version 0.3.0,Ryan Kelly,2013-06-25T04:17:15Z,rfk,rfk,6,3,3
+159,awsboxen,71c6811a8459143d0c1860e17b76a89070272f2c,"Assign snapshot names to match the name of their owning AMI.
+
+This should make it a bit easier to clean up snapshots that are no
+longer in use.",Ryan Kelly,2013-06-25T04:12:18Z,rfk,rfk,22,18,4
+160,awsboxen,887738aac5a7edf284ff1f25d0d0487654a87410,"Refuse to deploy if there are uncommitted changes to the repo.
+
+The new --ignore-uncommitted flag will override this, but it's off by
+default since uncommitted changes will not get propertly deployed.",Ryan Kelly,2013-06-25T03:22:15Z,rfk,rfk,53,36,17
+161,awsboxen,0f5a13bcad1e36e8ec2663dfc7e83d8185f59732,Add changelog,Ryan Kelly,2013-06-25T02:53:11Z,rfk,rfk,6,6,0
+162,awsboxen,869d6e744950e011fbc2d223f70b105c4c7f7ae2,"Read top-level ""awsboxen.json"" file in addition to "".awsboxen.json"".
+
+I find this to be cleaner when your repo as lots of additional build stuff,
+like AWSBoxen::BuildScript scripts.",Ryan Kelly,2013-06-25T02:52:25Z,rfk,rfk,7,4,3
+163,awsboxen,9667a27b9f00df9386b46ecb7063700fca925fe5,Allow '-D key=value' syntax to define template parameter values.,Ryan Kelly,2013-06-24T07:32:14Z,rfk,rfk,41,32,9
+164,awsboxen,19328d4abf9655bb47d99046dc69583b3d056fa3,Bump version to 0.2.1,Ryan Kelly,2013-06-07T03:38:39Z,rfk,rfk,2,1,1
+165,awsboxen,34852250cfe2589aae5daa66d61a479eaaec2b72,Fix potential null-deference bug.,Ryan Kelly,2013-06-07T03:38:15Z,rfk,rfk,4,3,1
+166,awsboxen,f547c84bf793fb8d960c1919c68ba32a73041e09,"Allow awsboxen config files to declare version dependencies.
+
+The top-level key AWSBoxenVersion can be set to a semver version range,
+and awsboxen will refuse to deploy if its current version does not
+satisfy that range.",Ryan Kelly,2013-06-07T02:58:40Z,rfk,rfk,43,33,10
+167,awsboxen,d92a53a82eb2f1292a62b9d38187440980e92198,Bump to version 0.1.2,Ryan Kelly,2013-06-06T22:59:19Z,rfk,rfk,2,1,1
+168,awsboxen,c867f2b13ee0d16ecf1758fcef13656b18a91bd1,Add a --version command-line option,Ryan Kelly,2013-06-06T22:58:57Z,rfk,rfk,25,25,0
+169,awsboxen,033085852461daba8e744bb54fe73b56fe539f37,Update examples in README to better match actual output.,Ryan Kelly,2013-06-03T12:40:44Z,rfk,rfk,28,18,10
+170,awsboxen,9f15b65b9ba49d3c2603129c465cc0a515c94e37,Bump to version 0.1.1,Ryan Kelly,2013-06-03T12:20:15Z,rfk,rfk,2,1,1
+171,awsboxen,715a2ca070876b5b2e2d99170be333b8ff80023f,"Fix accidental attempt to use ""+"" in AMI names.",Ryan Kelly,2013-06-03T08:30:07Z,rfk,rfk,4,2,2
+172,awsboxen,14b2dcff1285f6e4355ae68c8531d81241613faa,Update to latest awsbox dependency,Ryan Kelly,2013-05-30T22:49:45Z,rfk,rfk,2,1,1
+173,awsboxen,b44d4ebce60ea3a45c41d05b7ef21a22d8efa3eb,Add a TODO to the README,Ryan Kelly,2013-05-30T22:25:05Z,rfk,rfk,2,2,0
+174,awsboxen,552355cab462839e89669ceff43c86f41fe41756,"Commit overwritten .awsbox.json files.
+
+If they're not committed, the awsboxen freezer won't use them properly.",Ryan Kelly,2013-05-24T13:03:50Z,rfk,rfk,12,12,0
+175,awsboxen,066822d4ec58fb58894579febc329378e2e5894b,Successfully convince the buildscript to run as root,Ryan Kelly,2013-05-24T08:59:25Z,rfk,rfk,6,3,3
+176,awsboxen,4dd3cd57fecadca1947eb146ad2acba7c07dcc63,"Dont use sudo for buildscript, it doesn't work reliably when tunnelled",Ryan Kelly,2013-05-24T08:37:10Z,rfk,rfk,2,1,1
+177,awsboxen,e4555bebd51557c8542ca589e49a1e6c4f21ceb0,"Remove ""awsboxen"" prefix from AWS resource names.
+
+They're just getting too long otherwise!",Ryan Kelly,2013-05-24T08:11:00Z,rfk,rfk,2,1,1
+178,awsboxen,982c5f41c8b4c5de6c6ba256c5544b71eb8f14a7,"Tweak how profile overrides are processed, and add testcase for it.
+
+These tweaks make it easier for profiles to override part of the default
+.awsbox.json configuration while leaving other parts of intact.",Ryan Kelly,2013-05-24T08:03:37Z,rfk,rfk,232,192,40
+179,awsboxen,1b3c7fcb2551c59d272290ecc4a7a10eb236c2f8,Use sudo to execute the build script.,Ryan Kelly,2013-05-24T07:09:38Z,rfk,rfk,2,1,1
+180,awsboxen,376c8f68c59727576bcc638972eb829036b0a9a5,"Allow boxen to be built with a simple build script.
+
+This allows you to include instances that are not built via awsbox,
+e.g. a mysql or cassandra storage node.",Ryan Kelly,2013-05-24T06:46:08Z,rfk,rfk,538,452,86
+181,awsboxen,198a54827351104a6b07c1612f8bedebbdffd560,"Merge pull request #5 from chilts/fix-package-dependencies-for-awssum
+
+Fix dependencies for awssum-amazon-* packages",Ryan Kelly,2013-04-29T21:54:40Z,rfk,rfk,6,2,4
+182,awsboxen,c74c0e55b452c591e882cafd8858b4d05cb658cd,"Fix dependencies for awssum-amazon-* packages
+
+Since AwsSum has a plugin architecture, each plugin depends on awssum
+itself. Using the new peerDependencies each package pulls in awssum
+alongside itself. Also, each awssum-<provider>-<service> package also
+pulls in the relevant awssum-<provider> package too.
+
+Finally, using semver, it pays to depend on the v1.0.x patch series,
+rather than sticking with a fixed version number.",Andrew Chilton,2013-04-29T11:35:44Z,chilts,chilts,6,2,4
+183,awsboxen,493e3fd7d0cfa10ed786e9cb469b20fbc6158b0b,Tweaking package meta-data for initial release,Ryan Kelly,2013-04-18T02:33:03Z,rfk,rfk,17,2,15
+184,awsboxen,927368fbd24cd3962d18eebeece2285b777d2a43,"Make each top-level 'command' function return something useful.
+
+This might be helpful for other scripts that want to call awsboxen
+without shelling out and parsing its console output.",Ryan Kelly,2013-04-18T02:25:00Z,rfk,rfk,12,7,5
+185,awsboxen,1e2d375232e398a34be2cde3690ae9a0736d6913,Expand lint tests to check for MPL license header.,Ryan Kelly,2013-04-16T01:16:45Z,rfk,rfk,58,48,10
+186,awsboxen,f03c539b9d3ef2148efdff7c7f0d369852040ee1,"Add MPL license headers, cleanup some comments.",Ryan Kelly,2013-04-16T00:56:19Z,rfk,rfk,140,95,45
+187,awsboxen,fe478b7d50040c9e47075c65621afc4ba921f64a,"Update to awsbox 0.4.4, which lets the app start automatically on boot.",Ryan Kelly,2013-04-15T22:20:44Z,rfk,rfk,18,2,16
+188,awsboxen,06776d85fc5237fd6dd6410399d120edcfa7445f,Tag deployed stacks with their profile name and git commit hash.,Ryan Kelly,2013-04-15T05:12:10Z,rfk,rfk,64,48,16
+189,awsboxen,57ec5fffb3e0dbeba32d35569e7d581d73157618,Add workaround to start nodejs app on boot.,Ryan Kelly,2013-04-15T05:08:48Z,rfk,rfk,19,16,3
+190,awsboxen,bb0b0f4e102bd43fea1dcdf706eb76f599aed6e2,Another idea recorded in TODO section,Ryan Kelly,2013-04-15T00:22:05Z,rfk,rfk,2,2,0
+191,awsboxen,2a9f9566985d50ddb40998fe82bba9afffd82d95,Add a couple of TODO items,Ryan Kelly,2013-04-14T22:43:38Z,rfk,rfk,10,9,1
+192,awsboxen,35f82c447862c42654e11a1b57860b4f30a3692b,Fix typo in comment,Ryan Kelly,2013-04-12T14:21:42Z,rfk,rfk,5,3,2
+193,awsboxen,7ce76a076df13354ddd8c30e38a29a4f8cb6431b,Re-order commands in help string and README,Ryan Kelly,2013-04-12T14:18:27Z,rfk,rfk,20,10,10
+194,awsboxen,e15215e7846c04d086784796cc3e63a12a170d63,Tweak README to better match current state of code.,Ryan Kelly,2013-04-12T13:57:56Z,rfk,rfk,12,5,7
+195,awsboxen,578aba78535b61a83c609fec4f5d4a940adbe919,"Include CFN Output values in output from ""info"" command.
+
+This provides an easy way to get at e.g. the public loadbalancer URL.",Ryan Kelly,2013-04-12T13:43:50Z,rfk,rfk,39,31,8
+196,awsboxen,6a386bcdd7b3791165d1307089e133a7b0769890,Tweak README to better match state of code.,Ryan Kelly,2013-04-12T13:00:58Z,rfk,rfk,13,6,7
+197,awsboxen,d5215b67054f0cbd96e77e5baae3f0cd0579dc2b,Fix teardown of awsbox freezer instances.,Ryan Kelly,2013-04-12T12:15:35Z,rfk,rfk,2,1,1
+198,awsboxen,9e2ad5c920ac6e4322b59c7e64bb18a99828fc19,"Rename ""DefaultBox"" to ""AWSBox""",Ryan Kelly,2013-04-12T11:44:19Z,rfk,rfk,8,4,4
+199,awsboxen,09845a574d1c6afb70e6c7adc6ef387c6da75137,Tweak README,Ryan Kelly,2013-04-12T11:37:21Z,rfk,rfk,4,3,1
+200,awsboxen,4c3e2a5e095981f10548044308f9276a05b7ca2d,Tweak polling interval,Ryan Kelly,2013-04-12T10:48:18Z,rfk,rfk,2,1,1
+201,awsboxen,d53dd23c2b3d925f49e56f91d6ff9ca2604c4992,Tweaks for pushing non-HEAD commits into the awsbox,Ryan Kelly,2013-04-12T10:40:12Z,rfk,rfk,14,9,5
+202,awsboxen,59c59b7538d023bde9bf74e9a3fdbab0117e7b00,"Abandon the idea of passing git refs to awsboxen.
+
+This would substantially complicate things.  If you want to deploy a
+specific version, check it out before running the command.",Ryan Kelly,2013-04-12T07:16:32Z,rfk,rfk,44,17,27
+203,awsboxen,c8b4f2541923eb024ef544a907fad0302ec7e7a6,Expore awsbox deploy key as a CFN template parameter,Ryan Kelly,2013-04-12T07:09:06Z,rfk,rfk,43,26,17
+204,awsboxen,be334dc85f15386ddecbde0a5f48b67b67f3cba9,Fix workingDir for 'git checkout' command.,Ryan Kelly,2013-04-12T06:45:51Z,rfk,rfk,3,2,1
+205,awsboxen,2eb3d0be7bc857dee031850ad581e0d38be5a9ff,"Add more default resources, trying to match what awsbox spins up.",Ryan Kelly,2013-04-12T06:29:19Z,rfk,rfk,146,93,53
+206,awsboxen,22f3bbd27ed71e879e6440ed84ffaf16125233df,Make Boxen AMIs referencable as template parameters.,Ryan Kelly,2013-04-12T06:01:32Z,rfk,rfk,35,21,14
+207,awsboxen,fa5a139004c6acaccc717ecb15cdee77683da6f4,"Give frozen AMIs predictable unique names, and avoid rebuilding if already present",Ryan Kelly,2013-04-12T05:33:04Z,rfk,rfk,104,85,19
+208,awsboxen,5d63b6feaf43b25f68220f92de5362eca55d1042,"Finer control over ""awsbox freeze"" command.",Ryan Kelly,2013-04-12T04:05:50Z,rfk,rfk,50,43,7
+209,awsboxen,7a391ad3f59ea4394e562f0ab5c96250dcde30c7,"Add basic AMI freezing via awsbox.
+
+This also adds a ""freeze"" command that can be used to generate just
+the AMI, rather than doing a full deployment.",Ryan Kelly,2013-04-12T03:40:51Z,rfk,rfk,287,269,18
+210,awsboxen,bf1a2b36beb2417cdaca275f69d46faefec5039a,Tweak README to better match actual state of code.,Ryan Kelly,2013-04-11T07:01:12Z,rfk,rfk,35,24,11
+211,awsboxen,567eb910ab946ae71a1a909cf4333f8f2099d44c,"More complete setting of defaults when loading the config.
+
+This now sets up default Boxen and Resource definitions if none are specified,
+and can load data from .awsbox.json in addition to .awsboxen.json.  In theory
+this will make it capable of deploying an unmodified awsbox-enabled repo.",Ryan Kelly,2013-04-11T06:46:46Z,rfk,rfk,81,67,14
+212,awsboxen,6b4fc0e382db824921bfa86bed176dda32ed28ac,Code cleanups and comments.,Ryan Kelly,2013-04-11T06:14:52Z,rfk,rfk,57,47,10

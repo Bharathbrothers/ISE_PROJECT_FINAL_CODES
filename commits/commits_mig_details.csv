@@ -1,0 +1,234 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,mig,60c477cabfcb1f5821cab3345fbcb5396ad84149,[major] MIG Agent: code refactoring for context management and logging,Julien Vehent,2014-01-26T00:47:28Z,jvehent,jvehent,670,489,181
+1,mig,a861c0bc9aa86ebd6319cd2aec34394e5ea13aae,[medium] MIG Agent: extract configuration,Julien Vehent,2014-01-22T17:19:39Z,jvehent,jvehent,71,71,0
+2,mig,7ec8d3e50fcd35ad8f870cf7d8188421c0f4f552,[medium] MIG PGP verification: take keyring as argument,Julien Vehent,2014-01-22T17:19:26Z,jvehent,jvehent,54,34,20
+3,mig,6882706abf193506a0e0c4dff1676c9a9ad8ac4c,MIG PGP: Add convertion from armored pubkey string to keyring,Julien Vehent,2014-01-22T17:16:19Z,jvehent,jvehent,34,34,0
+4,mig,e74b0020da971bb5001dcc3124e77892da016ef3,fix building script for pgp,Julien Vehent,2014-01-08T23:45:41Z,jvehent,jvehent,28,17,11
+5,mig,103767891fa6bc9858e1a24211c707900a9bb344,PGP: split package in two to prevent gpgme from being linked to mig agents,Julien Vehent,2014-01-08T23:45:27Z,jvehent,jvehent,122,64,58
+6,mig,9535bb81d08f1698a7ea3964e816f3374852e6b0,Mig-action-generator: use Validate() instead of doing it manually,Julien Vehent,2014-01-08T23:44:50Z,jvehent,jvehent,15,4,11
+7,mig,b5fda869fe64e4bfab4f5625924cde781b1464ed,"Agent: validate actions, includes PGP signature verification",Julien Vehent,2014-01-08T23:44:23Z,jvehent,jvehent,12,10,2
+8,mig,2481c5e2fba972d838d15448a86b2d09a61878cb,Action: add Validation function that verifies PGP signature,Julien Vehent,2014-01-08T23:43:57Z,jvehent,jvehent,44,31,13
+9,mig,6af329b44d38daf33f60ed94f5155188507cfa87,Merge branch 'pgp',Julien Vehent,2014-01-08T18:51:51Z,jvehent,jvehent,315,188,127
+10,mig,d78ca3e9c84a5e021b43915b2e5f6e1aafb89dd4,PGP: Extract signature and verification into separate package,Julien Vehent,2014-01-08T18:51:06Z,jvehent,jvehent,315,188,127
+11,mig,46316892ac32ab7f56defef8173151223aadd8b8,Checks update,Julien Vehent,2014-01-08T17:56:10Z,jvehent,jvehent,24,11,13
+12,mig,5de7bcd32811253b6297e71d39502caeec267d82,"Mig-Action-Generator: First shot at the action creator, with GPG signature handling using gpgme",Julien Vehent,2014-01-06T21:01:51Z,jvehent,jvehent,379,379,0
+13,mig,f7459e8d9dcc1a9b2b15b1a7429f05c35ee6899c,Agent: find yer own path,Julien Vehent,2014-01-06T21:00:43Z,jvehent,jvehent,2,1,1
+14,mig,d08722c7445feb2016f64a811b3c2324f108013a,Build: better default,Julien Vehent,2014-01-06T20:59:58Z,jvehent,jvehent,9,4,5
+15,mig,749998fe0ebe332b76d47569f69d1874fafa63f7,"Scheduler: Happy New Year, with a massive refactoring commit.
+
+The logic is pretty much the same as before, but this commit is a massive code
+cleanup. There is now:
+
+* proper error handling: each function uses panic internally, with a defer block
+   that transform the panic into an error, and eventually logs
+
+* syslog, log levels, asynchronous logging into LOG channel, and mig.LOG type
+
+* configuration file, loaded into global Context, accessible to all functions
+
+* Context initialization, with connection to database, broker, creation of channels
+   and other wonders is handled in context.go
+
+* split of the scheduler code into several files, more work to do on that front, 
+   particularly for the management of the Flow in flow.go
+
+* Action and Command are split out in their own files, with specific methods
+
+That's about it. Did I mention Happy New Year?",Julien Vehent,2014-01-06T20:59:27Z,jvehent,jvehent,2089,1521,568
+16,mig,4dde8bf498ca94c0c807fbc2180c55e1784078e6,agent: path bin change,Julien Vehent,2013-12-19T14:58:30Z,jvehent,jvehent,2,1,1
+17,mig,4a061b42a77cfb37ff9892141a235fce744b1570,Filechecker: fix crash on file not found or permission error,Julien Vehent,2013-12-06T01:03:08Z,jvehent,jvehent,26,15,11
+18,mig,515b7b3b8fb0ecfbee0984f05db5643eebdb6981,Reminder in build.sh,Julien Vehent,2013-12-06T01:02:44Z,jvehent,jvehent,1,1,0
+19,mig,0028ecd9f055f863598fef302c5d6d23a0098e9a,Check Auditd updated,Julien Vehent,2013-12-06T01:02:31Z,jvehent,jvehent,5,3,2
+20,mig,a094f3eecc76bcb10461af56f0612f33b5b00d76,Check: rename root password check,Julien Vehent,2013-12-05T16:29:55Z,jvehent,jvehent,7,4,3
+21,mig,d0ff26d00fdca95fbe963e4ce55e532fb443b366,README update,Julien Vehent,2013-12-05T16:27:03Z,jvehent,jvehent,175,175,0
+22,mig,23f3d208242aec0ba597a02b859481d359fe027a,Scheduler: code reorganization,Julien Vehent,2013-12-05T16:26:53Z,jvehent,jvehent,413,234,179
+23,mig,f1d0938ab40cf6e734cd12b5aaa66a8d394f574f,Agent: change heartbeat freq to 5 minutes,Julien Vehent,2013-12-05T16:26:32Z,jvehent,jvehent,3,2,1
+24,mig,c7400c3733e617f765d5909c6371cc91b96e2d83,Agent: add timeout on long running filechecks,Julien Vehent,2013-12-05T16:26:17Z,jvehent,jvehent,55,41,14
+25,mig,e262eb6824c4bf77d3734824bf17254e10297a8e,"Scheduler: Fix empty json result bug, caused by inotify pulling the file before it is fully written to disk",Julien Vehent,2013-12-05T16:24:28Z,jvehent,jvehent,17,10,7
+26,mig,25c7fde38cb8fdad42316de4d9182b7a56da4b90,Scheduler: multi-critera agent search in mongo,Julien Vehent,2013-12-05T16:23:05Z,jvehent,jvehent,8,8,0
+27,mig,996953b07fc65cec51a04a70a065ac94bf4ab0e8,Scheduler: Add timestamp on action and command,Julien Vehent,2013-12-05T16:22:26Z,jvehent,jvehent,7,4,3
+28,mig,64ab5884704063e7d79c7c7876f02c11fbf10de6,Scheduler: store actions in mongodb,Julien Vehent,2013-12-05T16:13:32Z,jvehent,jvehent,63,56,7
+29,mig,9d36cecd3bcff54e461fa25fef7ae944d065abdf,Mozilla License added,Julien Vehent,2013-12-05T16:07:24Z,jvehent,jvehent,101,101,0
+30,mig,d3b338aaa44ea6bbc77debb22b1b9bcf474df399,Auditd compliance check update,Julien Vehent,2013-12-05T16:01:17Z,jvehent,jvehent,10,8,2
+31,mig,b3089758d15b93f935e11dc51d6b86d4c9730ef7,Filechecker: code cleanup and comments,Julien Vehent,2013-12-05T16:00:47Z,jvehent,jvehent,563,274,289
+32,mig,482ee74afd338045d3ffab65fa69230b9f35a172,Build: exit on error,Julien Vehent,2013-11-01T20:38:58Z,jvehent,jvehent,1,1,0
+33,mig,1ca6eea91b9cf5c76bc6eac8948084627b17e2e0,Scheduler: Store Actions and Commands in MongoDB,Julien Vehent,2013-11-01T20:38:36Z,jvehent,jvehent,59,44,15
+34,mig,8394a70ac3203ee69cae6beb16911b0677b9d2c1,Scheduler: code prettyness,Julien Vehent,2013-11-01T20:36:04Z,jvehent,jvehent,75,39,36
+35,mig,1f825149361e9c8a1296649301ac4b8976c757ae,Scheduler: refactor command loading from file in separate function,Julien Vehent,2013-11-01T20:31:47Z,jvehent,jvehent,32,24,8
+36,mig,101bba4ccf2e2f928940e52972984dad520b9db1,"Scheduler: use variable for tmpdir, instead of hardcoded",Julien Vehent,2013-11-01T20:30:42Z,jvehent,jvehent,4,3,1
+37,mig,7ec52e4bcbe427c4c9e66b3df951caa6216b5149,Scheduler: store commands IDs in the action structure,Julien Vehent,2013-11-01T15:57:00Z,jvehent,jvehent,27,21,6
+38,mig,f46f9bbdb92ead09cc7d6c6dd2274c3089a985ae,"Rename UniqID to ID, and bump size to 64 bits with unix TS for uniqueness",Julien Vehent,2013-11-01T14:38:41Z,jvehent,jvehent,53,29,24
+39,mig,4b3c6b45659295ad8d59b2f36a5483191697db79,code cleanup,Julien Vehent,2013-10-31T16:04:05Z,jvehent,jvehent,24,13,11
+40,mig,2fb5c8948e2a181ecd3aa60a7bc46b1bae258b60,Check: LOWENCCRED regex update,Julien Vehent,2013-10-31T16:03:43Z,jvehent,jvehent,4,2,2
+41,mig,e92728d24d5acde5575dcc080d1825d146f55617,Refactor KeepAlive/Heartbeat messages,Julien Vehent,2013-10-31T16:03:25Z,jvehent,jvehent,39,21,18
+42,mig,99320d2b658ca2632a9add31c0052dc03f1e53a3,Scheduler: [bug] don't ack manually when autoack is on,Julien Vehent,2013-10-31T14:32:13Z,jvehent,jvehent,6,0,6
+43,mig,6421fcc0530c592c4cc1eb822fc1747a3555e5b0,Agent: rearrange initialization in agent mode (need further squashing),Julien Vehent,2013-10-29T13:27:01Z,jvehent,jvehent,15,9,6
+44,mig,2af9f5383c247d0f66b3e0b75df9e1a5f92610a5,Code prettyness: comments & linewraps,Julien Vehent,2013-10-29T13:18:33Z,jvehent,jvehent,24,18,6
+45,mig,2817bca128de4c12094da16b28dc521e90008355,"Agent: Filechecker module: use flexible JSON syntax in module commands
+
+This commit reworks the arguments passed to agent's modules as an
+undefined interface{} in JSON format. It will allow complex commands
+to be passed to the modules.",Julien Vehent,2013-10-29T13:17:21Z,jvehent,jvehent,131,51,80
+46,mig,0b2bab7e7ee6a3e9d79bce858b24aa14a270ce15,Filechecker: rename resultcount into matchcount for clarity,Julien Vehent,2013-10-24T14:24:52Z,jvehent,jvehent,16,8,8
+47,mig,34ddfc163f1d742f45107a92efd85de7a873b756,Scheduler: code prettyness,Julien Vehent,2013-10-24T14:24:20Z,jvehent,jvehent,52,28,24
+48,mig,7a4604cf698eeceb38de88c760c032bd5fa7a3fc,Scheduler: autoack amqp and minor messaging tweaks,Julien Vehent,2013-10-24T14:24:12Z,jvehent,jvehent,17,10,7
+49,mig,3a1c32f3de56eff043ee2c9cf689bd986d167741,Agent formatting,Julien Vehent,2013-10-24T14:22:49Z,jvehent,jvehent,255,130,125
+50,mig,3f8e8b7271f0bc9b4b9cf205ee9f2c7892240c20,Agent Filechecker: use JSON syntax for input params,Julien Vehent,2013-10-22T20:22:48Z,jvehent,jvehent,133,61,72
+51,mig,a3c42612e7273466e436c2930edc7bac2f5cb554,"Agent: call Filechecker as a package, not a separate binary
+
+Instead of calling ./filechecker, the agent will call itself with ./agent -m=filechecker",Julien Vehent,2013-10-22T00:05:44Z,jvehent,jvehent,52,33,19
+52,mig,1eac2945ef944f0b87548aa48d1f99b7af8591c0,filechecker: de-ioc terminology,Julien Vehent,2013-10-13T12:56:58Z,jvehent,jvehent,322,164,158
+53,mig,9eb2a0cd5686de41dc30a6c8a17214f6b19d1014,Agent: increase heartbeat to 10 minutes,Julien Vehent,2013-10-02T09:19:52Z,jvehent,jvehent,2,1,1
+54,mig,88e0833fc8a7d4fceb7375d59e855d4399ce9a09,build: export GO env variables,Julien Vehent,2013-09-12T00:36:19Z,jvehent,jvehent,4,2,2
+55,mig,b8499091fcfc3afb58ecc1c61f4c074db504111a,"Scheduler: Add agent pickup at startup, and a bunch of code cleanup",Julien Vehent,2013-09-12T00:36:02Z,jvehent,jvehent,333,193,140
+56,mig,012a4142ab0f1b62dcfe8f0b233d918915e61b63,Scheduler: log cleanup,Julien Vehent,2013-09-11T20:31:49Z,jvehent,jvehent,220,138,82
+57,mig,7d5f426979ee830d978d7f7172de63f043be115d,Agent: heartbeat support,Julien Vehent,2013-09-11T20:31:34Z,jvehent,jvehent,20,15,5
+58,mig,54f03025028c84d78372976e7eb427b5a16f595f,Scheduler: Add registration authorization check,Julien Vehent,2013-09-11T14:38:07Z,jvehent,jvehent,80,44,36
+59,mig,7792a95ee1dc46ec02f697a9332664206e2b0c96,Scheduler: bump channels buffer size to some magic prime number value,Julien Vehent,2013-09-10T22:24:41Z,jvehent,jvehent,10,5,5
+60,mig,3716983d9afd020fde989751514db5d4b067de1f,Added LOWENCCRED test,Julien Vehent,2013-09-10T22:23:46Z,jvehent,jvehent,8,8,0
+61,mig,93f3cbd3f996ccd6a7c465edf6c40f1b2ed9502a,cleanup old bins,Julien Vehent,2013-09-10T03:55:02Z,jvehent,jvehent,0,0,0
+62,mig,9f9d18ac8d483cde4f45aaba1e2188a3fdbd7297,scheduler: launchCommand(),Julien Vehent,2013-09-10T03:54:27Z,jvehent,jvehent,435,243,192
+63,mig,be04b309293b243baca9f15d931c3574a1781241,LOWSYSCALL compliance check,Julien Vehent,2013-09-10T00:19:50Z,jvehent,jvehent,8,8,0
+64,mig,12771bb587c8c2aeb276259966cc7cd0eae58a15,"directory watchers in inotify: check, action parsing: check, agent registration stored mongo: check, agent localisation in mongo: check, commands creation: check",Julien Vehent,2013-09-10T00:18:50Z,jvehent,jvehent,429,323,106
+65,mig,c9088425eb2e99b82065858f52fb68f391b7ca37,Cross platform compilation script,Julien Vehent,2013-09-10T00:17:15Z,jvehent,jvehent,30,25,5
+66,mig,b1f3f960948f7516700de8f821fcc32c8bc51106,"Registration support & Messaging cleanup
+
+Fixed the message types and added a special message for agent registration.
+Added support for agent specific queue and routing keys.
+And some more code reorganisation.",Julien Vehent,2013-08-13T18:00:35Z,jvehent,jvehent,348,221,127
+67,mig,30c91257545423ecf466f511c7d6396d607bbe66,WIP,Julien Vehent,2013-08-12T17:47:27Z,jvehent,jvehent,61,35,26
+68,mig,b4bb037c1aadae00c6c6309121a754fb71dd5700,"Initial commit
+
+lots of cruft to clean up, but filechecker and agent should compile.",Julien Vehent,2013-08-08T01:45:27Z,jvehent,jvehent,972,972,0
+69,mig,6a7083e2b32013674eca427a52a41384db31985c,[medium] prevent filechecker from dying on inexistant path,Julien Vehent,2014-02-25T00:51:52Z,jvehent,jvehent,5,4,1
+70,mig,91f702ba2d8e11a22e333e166060a9aa29f36b04,[doc] move development tools,Julien Vehent,2014-02-24T17:00:43Z,jvehent,jvehent,15,2,13
+71,mig,f9d469497e7edd9b7f4cfd33071d5948fb3ce99b,[minor] added compilation inotify helper,Julien Vehent,2014-02-24T05:45:54Z,jvehent,jvehent,62,62,0
+72,mig,460a994a946abdabd2cbca3410f530fccbe748ef,[doc] added some example actions,Julien Vehent,2014-02-24T01:24:55Z,jvehent,jvehent,519,519,0
+73,mig,c03a79f73350befd75eeb0664f1db47b03291bfa,"[minor] added 'verifier', a tool for checking actions or commands",Julien Vehent,2014-02-18T20:33:25Z,jvehent,jvehent,136,135,1
+74,mig,3e8397bc20b3e72bba92b5e8a6f11279a51edbe0,[minor] split validation of action syntax and signature in two functions,Julien Vehent,2014-02-18T20:32:51Z,jvehent,jvehent,30,25,5
+75,mig,cf2fe057c7032c6a65e121789deeb305ed1b4c06,[minor] fix display of action duration in scheduler logs,Julien Vehent,2014-02-18T15:51:21Z,jvehent,jvehent,4,2,2
+76,mig,e7517910d064f77b8b6486488fa29937aa9ea068,Merge branch 'api',Julien Vehent,2014-02-18T15:43:08Z,jvehent,jvehent,1258,1134,124
+77,mig,3e8bd2f641122e4a95b3fa63d16ba5366422d49a,[minor] support urlencode output in action generator tool,Julien Vehent,2014-02-18T15:37:09Z,jvehent,jvehent,19,17,2
+78,mig,259845a4d338fdcb3f6fbf11096ae46c20c3391b,[medium] API support for action create via POST values,Julien Vehent,2014-02-18T15:36:47Z,jvehent,jvehent,56,49,7
+79,mig,026f32c7f9ba660d40229724774cfef4b97b0e86,[doc] update youtube presentation,Julien Vehent,2014-02-17T16:26:14Z,jvehent,jvehent,2,1,1
+80,mig,5644dbe48fec76ee89f9cd723753b1dbb8e27826,[doc] update on configuration directives,Julien Vehent,2014-02-17T13:56:59Z,jvehent,jvehent,19,15,4
+81,mig,1c7da80b41f3231be3f4a4d6c418c2e4a07103eb,[medium] use Collection+JSON standard for API resources,Julien Vehent,2014-02-17T13:56:40Z,jvehent,jvehent,429,393,36
+82,mig,2bef59cb13217b925662b3bffd317111c95fb749,[medium] update json format to use lowercase syntax on key names,Julien Vehent,2014-02-14T17:56:45Z,jvehent,jvehent,247,135,112
+83,mig,5aef24f64c8947fb3dc4542a416c5dd063d11453,[minor] make API listening IP and Port configurable,Julien Vehent,2014-02-13T04:51:55Z,jvehent,jvehent,16,14,2
+84,mig,d4b8768c2ed3f2db1564438ad3b342a586faff15,[medium] API support for GET /api/action/<actionID>,Julien Vehent,2014-02-13T04:51:19Z,jvehent,jvehent,70,54,16
+85,mig,6dc85504ad9e99d4a979142b2db6fcd16713f28c,[minor] add extra field 'status=inflight' and 'cmdsent' to extended action,Julien Vehent,2014-02-13T04:49:51Z,jvehent,jvehent,12,7,5
+86,mig,65ce08b6dadad8748a16a858d468c9be82558c0a,[minor] rename back meta action into extended action,Julien Vehent,2014-02-13T04:49:04Z,jvehent,jvehent,8,4,4
+87,mig,b1297e0389c677bdbc1eb865a9158d1c45d4b034,"[minor] scheduler does not override action ID, the API will do it",Julien Vehent,2014-02-12T22:19:15Z,jvehent,jvehent,7,5,2
+88,mig,9378846a2d9d3a165c139a79c0be7a3a95ef8df8,[medium] base API structure and endpoint for creating actions,Julien Vehent,2014-02-11T17:06:20Z,jvehent,jvehent,509,508,1
+89,mig,82060ee0349352063ba26d74918910462c9fdfc2,[minor] move action generator code to its own folder,Julien Vehent,2014-02-10T22:13:54Z,jvehent,jvehent,2,1,1
+90,mig,c2085bd99e5ad2de3013b3f6ae7b8f75802cde8d,[doc] mongo query for exec time,Julien Vehent,2014-02-12T17:26:56Z,jvehent,jvehent,27,27,0
+91,mig,5e2de7f8ee878685c30b9240dbd33719fb72e15c,[doc] tables of content,Julien Vehent,2014-02-12T17:14:22Z,jvehent,jvehent,51,38,13
+92,mig,1efcfb1fdb3a2af42ce34ef763897d9a7dc90fa5,[doc] Added examples to mongodb query cookbook,Julien Vehent,2014-02-12T17:05:34Z,jvehent,jvehent,273,261,12
+93,mig,c808bc9d0e704a89601324de78ce21f1983a4d6f,[doc] title update in readme,Julien Vehent,2014-02-11T17:39:17Z,jvehent,jvehent,4,2,2
+94,mig,d80111b5ce32f254f31bde0a7b50e77fc289af77,[doc] youtube presentation link in README,Julien Vehent,2014-02-11T17:07:51Z,jvehent,jvehent,4,4,0
+95,mig,22f0b805221e913fa8f0554092fbc3574a5e9a02,[minor] update clean in makefile,Julien Vehent,2014-02-10T22:50:49Z,jvehent,jvehent,1,1,0
+96,mig,596b443231bf67a3e4a77a8b28bdcb0f29652787,[minor] fix postinstall script in agent rpm,Julien Vehent,2014-02-10T22:48:55Z,jvehent,jvehent,2,1,1
+97,mig,947b1a3419ce03de296e08a46332bec64fca680e,"Merge pull request #2 from gdestuynder/master
+
+[medium] add support to automatically start mig_agent after rpm install",Julien Vehent,2014-02-10T22:11:36Z,jvehent,jvehent,5,4,1
+98,mig,3b20d67fa2100434145a75f40073fbd62a0743d3,[doc] explain data storage and show some mongo query examples,Julien Vehent,2014-02-10T20:16:19Z,jvehent,jvehent,213,213,0
+99,mig,bef8089ba8ec14b454100d2b3dfbc8f2d475b4c7,[doc] update action and command examples,Julien Vehent,2014-02-10T20:15:58Z,jvehent,jvehent,345,91,254
+100,mig,79559268b6aff61504b0d9e699cf9ff5e4feff3a,[minor] add mgo module to makefile dependencies fetching,Julien Vehent,2014-02-10T20:15:28Z,jvehent,jvehent,1,1,0
+101,mig,372f7bf18426f168c36b07cd5243e8741d552db1,[minor] make AMQP timeout for agent and scheduler configurable,Julien Vehent,2014-02-10T20:15:05Z,jvehent,jvehent,68,42,26
+102,mig,ac58fb1d03eaceb832512c9b753d488565640135,[minor/bug] fix index out of range in agent when sending error back to scheduler,Julien Vehent,2014-02-08T16:25:32Z,jvehent,jvehent,3,2,1
+103,mig,85823a965fe6657af50d192e99863d0804f66b5a,[doc] iptables redirect to server rabbitmq on port 443,Julien Vehent,2014-02-08T15:02:36Z,jvehent,jvehent,11,11,0
+104,mig,dd1c06bd5153caee6c075c40b8d33ba790f7dd5c,[doc] TLS instructions,Julien Vehent,2014-02-08T04:56:04Z,jvehent,jvehent,176,143,33
+105,mig,486f3c86f4d4d443bbde21489a3d9a5bcbdee527,[minor/bug] fix name of CACERT variable in agent,Julien Vehent,2014-02-08T04:45:27Z,jvehent,jvehent,2,1,1
+106,mig,c11457f0721d826189a9847005c75cad357354e5,[medium] add TLS support for AMQPS in the Scheduler,Julien Vehent,2014-02-08T04:43:02Z,jvehent,jvehent,56,47,9
+107,mig,1cbe23e046a5252907b009e02030694323c5f55c,[medium] add TLS support for AMQPS in the Agent,Julien Vehent,2014-02-08T04:17:00Z,jvehent,jvehent,55,45,10
+108,mig,706b3773e497556045dd669afd63624ea65eec53,[minor] add rabbitmq vhost support in scheduler,Julien Vehent,2014-02-07T22:13:27Z,jvehent,jvehent,98,90,8
+109,mig,4b026a3bcc7749162665dbd5d4dc1cbdd2a42840,"[medium] add support to automatically start mig_agent
+when installing the rpm",Guillaume Destuynder,2014-02-07T19:21:08Z,gdestuynder,gdestuynder,5,4,1
+110,mig,78b522c5fcd279113df7ee370f72a5bde21e4fc5,[doc] added example action for sshd backdoor,Julien Vehent,2014-02-07T16:41:23Z,jvehent,jvehent,29,29,0
+111,mig,54d594726693bdfc15141e1c90d098809f084b6b,[doc] cleanup,Julien Vehent,2014-02-07T16:40:39Z,jvehent,jvehent,85,72,13
+112,mig,3fb4463209839c0dcd81f24ddceecfc9bafc7467,[minor] move action dir,Julien Vehent,2014-02-07T15:42:36Z,jvehent,jvehent,0,0,0
+113,mig,827cded2943839dac0eaf3b83827c25f0c5207f9,[minor] actions cleanup,Julien Vehent,2014-02-07T15:41:52Z,jvehent,jvehent,269,84,185
+114,mig,879a5ac63691afa8673306bf43b9c49a636a7403,[medium] run scheduler in background (daemonize),Julien Vehent,2014-02-07T14:47:38Z,jvehent,jvehent,28,26,2
+115,mig,6d73583a30617faf86213b38b45b210d8ef8a1d5,[medium] run agent in background (daemonize),Julien Vehent,2014-02-07T14:38:57Z,jvehent,jvehent,30,23,7
+116,mig,18c1c6cc78a24f6b929075961405bd17c2a0d49a,[minor] fix filechecker test in makefile,Julien Vehent,2014-02-07T14:14:30Z,jvehent,jvehent,2,1,1
+117,mig,90499e92960b2d9d9af7e2c26b9309e202b868a2,"[minor] clean up dependencies in make clean, and exclude them from git",Julien Vehent,2014-02-07T14:14:05Z,jvehent,jvehent,3,3,0
+118,mig,907d64580afd192f8a478bd406fc19fae9ad43e2,[minor] cleaner parameters type in filechecker,Julien Vehent,2014-02-07T14:13:24Z,jvehent,jvehent,29,13,16
+119,mig,815e6a03352bcb7f1e8fe7b85f24b07d35eebd1f,[minor] fixing some variable that got forgotten in the rewrite,Julien Vehent,2014-02-06T21:48:46Z,jvehent,jvehent,14,8,6
+120,mig,18b8de7a561233c96359de955abbc976d8c45afd,[medium/bug] fix counter issue in the routine that receives module results,Julien Vehent,2014-02-06T20:44:41Z,jvehent,jvehent,20,12,8
+121,mig,8ed909c2397dde01c8a5cf52d1ed3f12335bbb3c,[medium] scheduler rewrite to handle action syntax v1,Julien Vehent,2014-02-06T20:22:23Z,jvehent,jvehent,23,12,11
+122,mig,59c03355c3cef03bb84b296974301524905aba9b,"[major] filechecker rewrite for action syntax v1
+
+In addition of handling the new syntax format, this rewrite also cleans up a bunch
+of ugly code and bad variable names.  It also does a better job at sanitizing inputs.",Julien Vehent,2014-02-06T20:21:53Z,jvehent,jvehent,715,422,293
+123,mig,ba1078db1bf260952ee32b3a53f9d28c50cf7192,"[doc] Agent module documentation: how they work, how to write one, with example.",Julien Vehent,2014-02-06T18:00:55Z,jvehent,jvehent,269,269,0
+124,mig,3a0769928a5194184d9d3c5e4b4432ece72833da,"[major] rewrite of the agent module support to handle action syntax v1
+
+One major change is the use of ephemeral channels to receive results from
+modules. This is necessary, because action syntax v1 support having multiple
+modules in a single action, which makes the asynchronous channel workflow
+a little more complicated. More details in doc/concepts.rst.",Julien Vehent,2014-02-05T23:57:57Z,jvehent,jvehent,528,417,111
+125,mig,18da0cf278567c6836b41f8cbebf959e9a9e9dff,[minor] rename action.Arguments to action.Operations,Julien Vehent,2014-02-05T18:59:14Z,jvehent,jvehent,6,3,3
+126,mig,9e975e5797110d095bec12808dddf9205532b72a,[minor] rename action validity dates,Julien Vehent,2014-02-05T18:56:20Z,jvehent,jvehent,12,6,6
+127,mig,2c3d0ce440c0595ec64bf5bf382f85c621b650ad,[maint] gofmt,Julien Vehent,2014-02-05T18:53:26Z,jvehent,jvehent,447,222,225
+128,mig,a19f81f0ba8a991e1989f6ed098b0540feba4827,[maint] update gitignore,Julien Vehent,2014-02-05T18:46:24Z,jvehent,jvehent,1,1,0
+129,mig,42d0cbb205ce11556cca45e8d1457ba188856df5,[doc] explain configuration of agent,Julien Vehent,2014-02-05T18:30:19Z,jvehent,jvehent,242,67,175
+130,mig,4ba677698bf09ec0ac6cc99e002a7462d153de8e,[minor] move mig scheduler configuration to template,Julien Vehent,2014-02-05T16:15:41Z,jvehent,jvehent,13,10,3
+131,mig,6b78e5187462cef3e07f120ef2b50f5e45ab5d8d,"[medium] make configuration template for agent, overridden at build time with custom conf",Julien Vehent,2014-02-05T16:10:23Z,jvehent,jvehent,278,119,159
+132,mig,077398074025c9bfebc021831c5ac3ea4e0a1cbb,[minor] updated gitignore,Julien Vehent,2014-02-05T15:42:27Z,jvehent,jvehent,9,8,1
+133,mig,8fc359dcf2d9dec3fc7d4632bc614e5a8026c456,"[major] Migrate mig-action-generator to Action syntax v1
+
+This commit also disables the interactive mode. It will be re-enabled with smarter
+generation mode, conform to the new syntax.",Julien Vehent,2014-02-05T04:39:26Z,jvehent,jvehent,134,67,67
+134,mig,ddc577a9a16804806537a4704bc830a48112d5c2,"[major] Action Syntax Version 1
+
+This is a definition of the new actio syntax in the mig module. Following patches
+will migrate all components to the new action format.",Julien Vehent,2014-02-05T04:35:15Z,jvehent,jvehent,80,55,25
+135,mig,6751f37e3d4ce0fb2f25fd07083e41fe15eb2653,[doc] update to action syntax v1,Julien Vehent,2014-02-05T04:34:12Z,jvehent,jvehent,4,2,2
+136,mig,4058d908bfdfbdad0700a58d1ebf0b25ffb703dc,[doc] update on proposal for default action format,Julien Vehent,2014-02-04T17:23:14Z,jvehent,jvehent,24,10,14
+137,mig,62e6cfe5baebd36ddfb9a28f246cfd7004c95959,"[doc] example for new action format, proposal for syntaxversion 1",Julien Vehent,2014-02-04T03:48:54Z,jvehent,jvehent,76,76,0
+138,mig,cb34bc2cc4d3e7c9e4a7d70ef9d3675331828d0a,[minor] fix github url in rpm target,Julien Vehent,2014-02-03T16:13:28Z,jvehent,jvehent,6,3,3
+139,mig,0d6f8c8b719aa18e47a4937d59fd3f125b0a73b4,"[medium] Add rpm target, automatically fpm MIG
+Fix install target, had incorrect INSTALL arguments
+Missing mig.cfg install with correct mode",Guillaume Destuynder,2014-01-31T01:03:49Z,gdestuynder,gdestuynder,39,34,5
+140,mig,879f8bb89d01da7bc472a24ec8c2a981b7e41b73,[minor] Add necessary directory and config while installing mig,Guillaume Destuynder,2014-01-31T00:50:52Z,gdestuynder,gdestuynder,2,2,0
+141,mig,5ba7c2741106c999016042ba32debba36ddbef44,[medium] Honor $GNUPGHOME when looking at the pubring,Guillaume Destuynder,2014-01-31T00:49:29Z,gdestuynder,gdestuynder,7,6,1
+142,mig,a66eac7f7ede92fea6801cd4014a72c54b9fefce,"[minor] Add install code for mig action generator.
+Fix install path for privilegied binaries (sbin)",Guillaume Destuynder,2014-01-31T00:47:38Z,gdestuynder,gdestuynder,5,3,2
+143,mig,ac2437c5920c48d96e4aa11461994bf0538cb8b7,[minor] First attempt at auditd action file,Guillaume Destuynder,2014-01-31T00:45:35Z,gdestuynder,gdestuynder,131,128,3
+144,mig,ed0fdc5f74401fa97b6eba8d4f1b701c78176007,"[major] load pubkeyring for verification
+Cannot verify a signature with the seckeyring.",Guillaume Destuynder,2014-01-31T00:44:25Z,gdestuynder,gdestuynder,2,1,1
+145,mig,c0eb1bd6701f0d9e790e83b81c4fba4070bf275d,[minor] Add test for mig agent's file parsing,Guillaume Destuynder,2014-01-31T00:43:55Z,gdestuynder,gdestuynder,1,1,0
+146,mig,6b1eac103c750cf356f131b2164b77e6ce1e3c8e,[doc] use RST format,Julien Vehent,2014-02-02T16:28:53Z,jvehent,jvehent,93,60,33
+147,mig,4e83b80b5f6478e3670e27dd7a7c7a25c7068223,[doc] concepts & internal components,Julien Vehent,2014-01-30T20:16:00Z,jvehent,jvehent,146,146,0
+148,mig,8948502441b8b60d3bb2865ecf0130ecf28b3645,[minor] agent json errors in input mode,Julien Vehent,2014-01-30T04:29:58Z,jvehent,jvehent,3,3,0
+149,mig,8f323310721b9f875e886196ff284e7185669642,[doc] Fix LICENSE issues (added LICENSE header),Guillaume Destuynder,2014-01-29T00:04:30Z,gdestuynder,gdestuynder,464,461,3
+150,mig,92ead03dda074d27fe43248a125821599f560a6f,[doc] add missing AUTHORS file,Guillaume Destuynder,2014-01-28T23:56:38Z,gdestuynder,gdestuynder,5,5,0
+151,mig,0032eed1bf83aefabaf6ea59ffef441488e9bacb,[minor] basic order to shut down agents,Julien Vehent,2014-01-29T15:39:16Z,jvehent,jvehent,9,9,0
+152,mig,12d7a3c67092e3ec6456f2c8ec71466b4241e5ba,[minor] Makefile fix,Julien Vehent,2014-01-29T15:38:36Z,jvehent,jvehent,4,2,2
+153,mig,c8481e13af78ef0a498f1fc0767c4a1e892a29af,[MINOR] scheduler: don't process actions that aren't scheduled yet,Julien Vehent,2014-01-29T15:38:09Z,jvehent,jvehent,13,13,0
+154,mig,dfad5ef9b6f99ad8d12e45c5d0628825db69e775,"[MEDIUM] Add a control on file size when capturing inotify event, to prevent reading from while that aren't yet written
+
+inotify has a bad tendency to wake up too quickly",Julien Vehent,2014-01-29T15:37:43Z,jvehent,jvehent,19,19,0
+155,mig,c3bde9eaa6a405e837932f0fae6eb302173ad32a,"[MEDIUM] Scheduler: add routine for regular inspection of the spool
+
+This goroutine wakes up every minute and inspect the content of the spool
+directories. For now, it only looks for actions in the new action directory, and loads
+or removes actions based on scheduled and expiration dates. In the future, this
+routine will also check the inflight and done directories to cancel timedout actions
+and commands, and do more cleanup.",Julien Vehent,2014-01-29T15:36:29Z,jvehent,jvehent,75,75,0
+156,mig,301f492719c39c1c62fff69f2f73aa0cfdb3cc80,[MINOR] agent code reorg,Julien Vehent,2014-01-29T15:29:22Z,jvehent,jvehent,2,1,1
+157,mig,75eeb0e7c4a6922688fc1b6c87455c01f214f777,[minor] Agent: call module using action file as input ('-i' option),Julien Vehent,2014-01-29T05:08:39Z,jvehent,jvehent,31,23,8
+158,mig,23e5e5dc6be7d2e06f14eefcaa0997054e1bedb5,[minor] Makefile: prefer dash to underscore in binary names,Julien Vehent,2014-01-29T05:07:51Z,jvehent,jvehent,26,13,13
+159,mig,e1049937abae81bb52237664ef15f334d837473f,"[medium] Makefile support
+LICENSE file added",Guillaume Destuynder,2014-01-27T21:21:47Z,gdestuynder,gdestuynder,525,466,59
+160,mig,d1290c52aeaf22538efb5487d5694db8b1e53133,"[medium] Agent: support multiple PGP keys, and verify actions using all of them",Julien Vehent,2014-01-28T20:21:28Z,jvehent,jvehent,100,75,25
+161,mig,57e496c5339cff651391d4ed44a5e7d60f941267,[minor] Agent: code cleanup,Julien Vehent,2014-01-27T20:45:12Z,jvehent,jvehent,27,9,18
+162,mig,39e99374aeab9309d31434ebc921b6e5d5b3bb1f,"[medium/bug] Agent: use local keyring io.Reader (bugfix)
+
+Turns out continously reading from the end of a file doesn't work too well... who knew",Julien Vehent,2014-01-27T20:44:33Z,jvehent,jvehent,20,8,12
+163,mig,af99e084ee8ebbb9cf1141aea253da7a2a3ffd54,[medium] Agent reports run failures back to Scheduler,Julien Vehent,2014-01-26T18:28:31Z,jvehent,jvehent,86,55,31
+164,mig,49dbd267407c0a2c74f352015b0b877f2cfe9f24,[minor] Report build version in keepalive messages,Julien Vehent,2014-01-26T18:27:35Z,jvehent,jvehent,18,14,4
+165,mig,e8952e2eff5451a648ab8f1b83daf1a6ad9acbcb,[medium] agent: verify scheduleddate before running commands,Julien Vehent,2014-01-26T02:26:18Z,jvehent,jvehent,5,5,0
+166,mig,d6f8e8bd73f2cdc02d9dd1527b489ecbb11babf9,[medium] MIG Agent: make command launching generic,Julien Vehent,2014-01-26T01:41:02Z,jvehent,jvehent,157,93,64
+167,mig,0a7a33964dd878822410939a540649fda2d3ac76,[minor] debug logging by default,Julien Vehent,2014-01-26T00:48:28Z,jvehent,jvehent,2,1,1
+168,mig,28745abed2bb331af5c594d999a80629d3da2b83,[minor] Rename Action.Check into Action.Order. More general.,Julien Vehent,2014-01-26T00:48:19Z,jvehent,jvehent,32,16,16

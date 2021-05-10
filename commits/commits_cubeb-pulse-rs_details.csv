@@ -1,0 +1,661 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,cubeb-pulse-rs,781275d293f8aa9599fc13e2ea4c47bb649b0205,"Replace newtype wrappers around cubeb enums.
+
+Newtype idiom introduced incompatibility when passing/returning via FFI.",Dan Glastonbury,2017-06-07T04:03:19Z,djg,djg,111,47,64
+1,cubeb-pulse-rs,d9caf057b0eab37f01efedc037f180ace4c0df83,cubeb-pulse-rs: Update Cargo.toml to generate rust and c static lib.,Dan Glastonbury,2017-06-12T07:51:35Z,djg,djg,3,3,0
+2,cubeb-pulse-rs,132d4a7b91da529f39664bde2bf5e8df66e0849f,Update README.md to add build status badge for dev,Dan Glastonbury,2017-05-30T06:21:14Z,djg,djg,1,1,0
+3,cubeb-pulse-rs,c405e3fd209b06e6941e1fdbf512b56c33753f0b,Bring up-to-date with kinetiknz/cubeb 087dc94,Dan Glastonbury,2017-05-30T05:39:32Z,djg,djg,242,116,126
+4,cubeb-pulse-rs,f4be887f0f9fe955d0e826b9e8747c5efe4c0d50,"Apply changes from cubeb 17503c4 - Pulse layout assert (#291)
+
+* pulse: create pa stream with default layout",Dan Glastonbury,2017-05-30T05:24:43Z,djg,djg,9,6,3
+5,cubeb-pulse-rs,e0031222a883814149da90659c63d638f52dcac4,"Merge pull request #6 from djg/move-logging-to-own-module
+
+Move logging to own module",Dan Glastonbury,2017-04-26T23:54:23Z,djg,djg,148,80,68
+6,cubeb-pulse-rs,dbcd7f96aea8d249a4b78f9a7597768c9dff22eb,logging: Extract from ffi.rs to log.rs.,Dan Glastonbury,2017-04-24T07:22:47Z,Dan Glastonbury,Dan Glastonbury,148,80,68
+7,cubeb-pulse-rs,def92898c4b4e0a4cc5b55ce5abb09411d997478,"travis: Use rustup to install the i686 cross target. (#5)
+
+* travis: Use rustup to install the i686 cross target.
+
+This is easier to understand than using the external wrapper
+script, with everything defined in-tree. We lose the hack
+around doc-tests not working with cross-compilation, however.
+
+Define TARGET and FEATURES only if they are different
+from the defaults. Use rustup to install the alternate
+target support. Use posix shell parameter expansion to
+prefix the --target and --features cargo switches if the
+corresponding variables are set.
+
+Use folded blocks to improve formatting. The '>' prefix
+character folds the subsequent indented block into a single
+string with newlines removed. This lets us add and remove
+switches cleanly without long lines or continuation. Note
+however that the whole block must use the same indentation.
+
+Remove some keys which just declared default values.",Ralph Giles,2017-04-20T23:34:59Z,rillian,rillian,54,36,18
+8,cubeb-pulse-rs,9c5499d7a031e8496acbf567a697957812736308,Merge branch 'dev',Dan Glastonbury,2017-04-20T02:51:33Z,Dan Glastonbury,Dan Glastonbury,79,63,16
+9,cubeb-pulse-rs,d39e18407dd83b6c74a36d1ca3f8e4022eb15403,"Merge pull request #3 from djg/ci-setup
+
+Configure Travis CI.",Ralph Giles,2017-04-20T01:43:25Z,rillian,rillian,79,63,16
+10,cubeb-pulse-rs,faa1dcf3a061144c1f7edee76f23691eabd1f436,"Configure Travis CI.
+
+Build 32-bit/64-bit x static-link/dynamic-link",Dan Glastonbury,2017-04-18T23:57:07Z,Dan Glastonbury,Dan Glastonbury,49,49,0
+11,cubeb-pulse-rs,f4d86424928a37e044892f4dad56cf4ac292aabc,README.md: Add Travis build status badge.,Dan Glastonbury,2017-04-19T00:23:58Z,Dan Glastonbury,Dan Glastonbury,2,2,0
+12,cubeb-pulse-rs,5a5ee7aad838f5ee0ee84ee481f05af35803e42a,"Cargo.toml: Remove default feature as it causes headaches.
+
+Too many issues with static-link vs. dynamic-link.  Remove default and
+static-link and just base decision upon dynamic-link feature to pulse-ffi.",Dan Glastonbury,2017-04-19T07:29:53Z,Dan Glastonbury,Dan Glastonbury,28,12,16
+13,cubeb-pulse-rs,17056508a614b1123a028db145409190bd539d13,"Merge pull request #1 from djg/dev
+
+Port cubeb_pulse.c to rust",Dan Glastonbury,2017-04-18T23:27:46Z,djg,djg,4909,4909,0
+14,cubeb-pulse-rs,cabf88664ee306b3726531c70fade818fca1defa,"Stream: Fix 32-bit compilation issues.
+
+Replace i64 cast with c_long cast.",Dan Glastonbury,2017-04-18T23:25:47Z,Dan Glastonbury,Dan Glastonbury,6,3,3
+15,cubeb-pulse-rs,7020f3b003cf3ed5655e729a59871cb185d4a732,"Context: configure dynamic loading of libpulse.
+
+Initialize FFI functions before creation of Context.",Dan Glastonbury,2017-04-18T23:24:58Z,Dan Glastonbury,Dan Glastonbury,63,48,15
+16,cubeb-pulse-rs,ba289ce7239a8cde8d8dc50008144f508c0d6fc4,Cleanup #[derive] attributes.,Dan Glastonbury,2017-04-18T04:21:21Z,Dan Glastonbury,Dan Glastonbury,68,34,34
+17,cubeb-pulse-rs,54a07eb1f7390b1474621cf43ea34cd97d461a2b,"Clippy all the code!
+
+Implement code improvement suggestions from clippy.",Dan Glastonbury,2017-04-18T04:02:56Z,Dan Glastonbury,Dan Glastonbury,149,78,71
+18,cubeb-pulse-rs,b7d751173a2b0a02b8d7fc1c94d91dcc259122bf,Rustfmt all the code!,Dan Glastonbury,2017-04-18T02:46:45Z,Dan Glastonbury,Dan Glastonbury,2128,1318,810
+19,cubeb-pulse-rs,95a966af43240bf70a0ba6f982005d98c8e8e213,"stream_read_callback: Convert stm to *mut.
+
+stm is mutable and not const, so `stm as *const _ as *mut _` should be
+`stm as *mut _ to *mut _` to convert to a *mut c_void via type
+deduction.",Dan Glastonbury,2017-04-18T02:43:28Z,Dan Glastonbury,Dan Glastonbury,2,1,1
+20,cubeb-pulse-rs,926e56ca2092cb303319d69c5c374a5f130b6081,stream_write_callback: Remove redundant assert on stm.input_stream.,Dan Glastonbury,2017-04-18T02:39:44Z,Dan Glastonbury,Dan Glastonbury,2,1,1
+21,cubeb-pulse-rs,f776199d172af395308586a0a11048a4b37c9318,stream.rs: Enable all commented LOG calls.,Dan Glastonbury,2017-04-18T02:35:50Z,Dan Glastonbury,Dan Glastonbury,16,9,7
+22,cubeb-pulse-rs,0e64c9cffd8f15bd1ef2205d813f76f4ca3ea9a8,Stream::latency: Don't assert negative before checking return code.,Dan Glastonbury,2017-04-18T02:28:33Z,Dan Glastonbury,Dan Glastonbury,2,1,1
+23,cubeb-pulse-rs,6a95e4283bcd7dc507dd18c3bb76a51a3e2926a8,"Move PA_USEC_PER_MSEC, PA_USEC_PER_SEC to pulse-ffi crate.",Dan Glastonbury,2017-04-18T02:27:14Z,Dan Glastonbury,Dan Glastonbury,6,4,2
+24,cubeb-pulse-rs,5ad4f72d29fc32a0aa1e6a46f592d97d31044487,subscribe_success: Nest inside register_device_collection_changed.,Dan Glastonbury,2017-04-18T02:37:03Z,Dan Glastonbury,Dan Glastonbury,19,9,10
+25,cubeb-pulse-rs,ec5c0360afcf3006f9978f37c463a5547cc44cd4,sink_info_callback: Nest inside server_info_callback.,Dan Glastonbury,2017-04-18T02:12:33Z,Dan Glastonbury,Dan Glastonbury,34,17,17
+26,cubeb-pulse-rs,157a494f82d3c229ae6629875c770501d7f60861,Use ptr::null_mut() instead of 0 cast.,Dan Glastonbury,2017-04-18T02:05:42Z,Dan Glastonbury,Dan Glastonbury,14,7,7
+27,cubeb-pulse-rs,f69f5c3ace1a750ca3fd395620e766664299b8d8,PA_RATE_MAX: Move to pulse-ffi crate.,Dan Glastonbury,2017-04-18T01:54:19Z,Dan Glastonbury,Dan Glastonbury,4,2,2
+28,cubeb-pulse-rs,0095f8aa451c37138718a32bb64b8a6c75a51068,make all functions exposed to cubeb C ops tables unsafe.,Dan Glastonbury,2017-04-18T01:52:49Z,Dan Glastonbury,Dan Glastonbury,122,60,62
+29,cubeb-pulse-rs,82251ad3aeb768cd5dbfd41aa67d823448b2d3f3,Replace *i8 with *c_char in FFI.,Dan Glastonbury,2017-04-18T01:39:02Z,Dan Glastonbury,Dan Glastonbury,50,25,25
+30,cubeb-pulse-rs,427aaafff79ec2539326c2836c3876b99bfb361e,"Convert licensing comments to ISC-style.
+
+Source files now match LICENSE file.",Dan Glastonbury,2017-04-18T01:32:49Z,Dan Glastonbury,Dan Glastonbury,57,48,9
+31,cubeb-pulse-rs,3811b978aba87c961d57175f17ff547c4830e74f,Eliminate destroy! macro.,Dan Glastonbury,2017-04-18T01:28:20Z,Dan Glastonbury,Dan Glastonbury,18,3,15
+32,cubeb-pulse-rs,a8c3362364df6b51d78ac4ce93bd45a3bf627c65,ChannelMap: Default initialize to zero size and invalid values.,Dan Glastonbury,2017-04-18T01:26:17Z,Dan Glastonbury,Dan Glastonbury,12,11,1
+33,cubeb-pulse-rs,3a4a15b92c55cae2e17978fd0ffd22cf07a7cf50,"Remove empty file, destroy.rs",Dan Glastonbury,2017-04-18T01:23:22Z,Dan Glastonbury,Dan Glastonbury,0,0,0
+34,cubeb-pulse-rs,6f736d301eb79596753b29eed00e3d2d83e2fe38,Fix DataCallback to use c_long instead of i64.,Dan Glastonbury,2017-04-18T00:57:27Z,Dan Glastonbury,Dan Glastonbury,2,1,1
+35,cubeb-pulse-rs,e6b461b7a9aeee419e1ba153c07d57d29f178790,Convert DeviceType to use bitflags macro.,Dan Glastonbury,2017-04-18T00:43:34Z,Dan Glastonbury,Dan Glastonbury,87,14,73
+36,cubeb-pulse-rs,7400be3387b8c62a0eb3d932b61172c0105548e3,Convert DevicePref to use bitflags macro.,Dan Glastonbury,2017-04-18T00:34:17Z,Dan Glastonbury,Dan Glastonbury,80,12,68
+37,cubeb-pulse-rs,42a52d16488436860e01ea02a78eaab3e743847f,Convert DeviceFmt to use bitflags macro.,Dan Glastonbury,2017-04-18T00:30:29Z,Dan Glastonbury,Dan Glastonbury,123,33,90
+38,cubeb-pulse-rs,fa9fe542a9ec8e5fb51ec0ad73862ab611beb319,User ptr::null_mut() instead of 0 cast.,Dan Glastonbury,2017-04-18T02:03:32Z,Dan Glastonbury,Dan Glastonbury,5,3,2
+39,cubeb-pulse-rs,3f51735824e68158aa368307e723acf209dcf2e7,Remove cubeb-pulse-rs dependency upon libc.,Dan Glastonbury,2017-04-18T00:53:58Z,Dan Glastonbury,Dan Glastonbury,9,5,4
+40,cubeb-pulse-rs,a58d66fbb28ca0a0527111de2a112a7753dfd535,Remove libpulse-sys crate.,Dan Glastonbury,2017-04-18T03:30:27Z,Dan Glastonbury,Dan Glastonbury,1561,0,1561
+41,cubeb-pulse-rs,072d0afba3c2c691cce7d696fc1faf91c8b4ae7d,"Apply unsafe keyword as necessary.
+
+Resulting from change from libpulse-sys to pulse-ffi.  C FFI functions
+are unsafe just like extern ""C"" { pub fn ... }",Dan Glastonbury,2017-04-18T00:08:52Z,Dan Glastonbury,Dan Glastonbury,437,239,198
+42,cubeb-pulse-rs,ab8d6a1dc075a8e9fa56f41d7cdcf3293e866e3f,"Switch out libpulse-sys for pulse-ffi.
+
+pulse-ffi has a better license and allows for dynamic loading for
+pulse.so.",Dan Glastonbury,2017-04-12T03:37:52Z,Dan Glastonbury,Dan Glastonbury,1797,1789,8
+43,cubeb-pulse-rs,985c3b9d57604bc3ca8649e74ebd83186b6d2706,"Convert enums to new_type ints.
+
+Update makes constants look more like the Cubeb C API.
+
+eg: cubeb::SAMPLE_S16LE instead of CUBEB_SAMPLE_S16LE.",Dan Glastonbury,2017-04-12T03:23:08Z,Dan Glastonbury,Dan Glastonbury,245,131,114
+44,cubeb-pulse-rs,c8ed91cfc6915141fa7c6dce46ac5a97f0078ee5,Review: Consistently format macro parameters.,Dan Glastonbury,2017-03-30T07:18:00Z,Dan Glastonbury,Dan Glastonbury,12,6,6
+45,cubeb-pulse-rs,7543f0c95eacf1716afd2748af693a890af1de28,Review: Remove commented g_log_callback example.,Dan Glastonbury,2017-03-30T07:08:51Z,Dan Glastonbury,Dan Glastonbury,2,0,2
+46,cubeb-pulse-rs,5ee26dcaa9fab24d27ddfdf4481734eda3d7dfae,"Review: Replace the use of libc with std::os::raw.
+
+Removes dependency upon libc for c types.",Dan Glastonbury,2017-03-30T07:07:29Z,Dan Glastonbury,Dan Glastonbury,14,5,9
+47,cubeb-pulse-rs,99655223ab921d07135cea117ec5bb19839dd1fe,"Review: Specify explicit libc version.
+
+Set to ^0.2.20 to match version used in gecko.",Dan Glastonbury,2017-03-30T07:06:17Z,Dan Glastonbury,Dan Glastonbury,2,1,1
+48,cubeb-pulse-rs,200a8bc36e16fb45715c5a03d5f9b9b26acdcb05,Review: Pulse Audio -> PulseAudio,Dan Glastonbury,2017-03-30T07:05:58Z,Dan Glastonbury,Dan Glastonbury,2,1,1
+49,cubeb-pulse-rs,fac187ff2ce4ed1b224fcea28e5b5f57f68202f5,"Bug 1332887: return state enabled with port is NULL.
+
+Merge from kinetiknz/cubeb #224.",Dan Glastonbury,2017-03-17T01:46:58Z,Dan Glastonbury,Dan Glastonbury,4,2,2
+50,cubeb-pulse-rs,6efc9115ef9453cd51a05b709a24f00ec5331438,"Implement version checking for functions that require it.
+
+In cubeb_pulse.c, the header file that is being compiled against is
+checked for version.  Because that is unavailable through the ffi
+bindings for pulse instead use pa_get_library_version() which returns
+the version of libpulse that is linked against at runtime.",Dan Glastonbury,2017-03-16T23:56:49Z,Dan Glastonbury,Dan Glastonbury,86,53,33
+51,cubeb-pulse-rs,4605b7230b617e002e3e3a17b35e6db3ad60d483,Add AUTHORS file.,Dan Glastonbury,2017-03-10T06:47:29Z,Dan Glastonbury,Dan Glastonbury,1,1,0
+52,cubeb-pulse-rs,965a9f214edf954406586eea3547c1bc0396cb12,"Add LICENSE
+
+Use the same license as Cubeb, which this code is derived from.",Dan Glastonbury,2017-03-10T06:47:00Z,Dan Glastonbury,Dan Glastonbury,13,13,0
+53,cubeb-pulse-rs,59c1a77670d001c20289d718e4c9aee215ecc776,Create README.md,Dan Glastonbury,2017-03-10T06:34:45Z,djg,djg,3,3,0
+54,cubeb-pulse-rs,9eca1e50962f6a3eaa77454c006561c32474a13b,Include local version of libpulse-sys that supports dyld fns.,Dan Glastonbury,2017-03-14T00:52:10Z,Dan Glastonbury,Dan Glastonbury,1562,1560,2
+55,cubeb-pulse-rs,02906130fd9610f4f13e98cf86c8f1b487489f95,Initial version of cubeb_pulse.c converted to rust.,Dan Glastonbury,2017-03-10T06:28:19Z,Dan Glastonbury,Dan Glastonbury,1893,1893,0
+56,cubeb-pulse-rs,f8a2748a3b530ac1ab240f0a8dde84329320cfc5,"FFI bindings for cubeb.
+
+Generated via rust-bindgen and then handcrafted.",Dan Glastonbury,2017-03-10T06:27:09Z,Dan Glastonbury,Dan Glastonbury,733,733,0
+57,cubeb-pulse-rs,a494ee6685ad7dad904769d36edab0d5afbdc3c4,Initial repo setup,Dan Glastonbury,2017-03-10T06:24:23Z,Dan Glastonbury,Dan Glastonbury,14,14,0
+58,cubeb-pulse-rs,ce0a23ee222411d78354a3f9a6d69cafa4a39cd7,Point build badge to build action.,Matthew Gregan,2021-03-10T06:27:25Z,kinetiknz,kinetiknz,3,1,2
+59,cubeb-pulse-rs,bac719315ec71b16f7446f69319ad6fd526b76b3,Remove obsolete CI config.,Matthew Gregan,2021-03-10T06:12:38Z,kinetiknz,kinetiknz,70,0,70
+60,cubeb-pulse-rs,9bf55caf8c23101df7e3c82d03bfc93bbafa5ae9,Add build action.,Matthew Gregan,2021-02-23T22:20:18Z,kinetiknz,kinetiknz,40,40,0
+61,cubeb-pulse-rs,c87b50aebfa088c1ad30c74819d4e9829f88b2e3,Remove cubeb_stream_reset_default_device API.,Matthew Gregan,2021-02-17T00:45:38Z,kinetiknz,kinetiknz,6,1,5
+62,cubeb-pulse-rs,bf31534d08b2c16fb5e4c5834944ae3271efbd63,Use the input data ring buffer to count input frames read.,Paul Adenot,2020-10-14T15:15:53Z,padenot,padenot,29,18,11
+63,cubeb-pulse-rs,3f48de5afcf81c6a71fd71d0d7403d57739e187a,Add missing pa_stream_get_name support for `pulse-dlopen` feature.,Matthew Gregan,2020-10-07T01:06:10Z,kinetiknz,kinetiknz,26,24,2
+64,cubeb-pulse-rs,53633451b85d1193db3d9a8a69e1f963302d0ab8, Add method to change stream name,Brendan Early,2020-10-01T00:21:26Z,mymindstorm,mymindstorm,54,53,1
+65,cubeb-pulse-rs,93a615c7dc53a0c21f35eac6633faf2636d992ca,"Remove initial playback latency when full duplex (#59)
+
+* Remove initial playback latency when full duplex
+
+This is in case the input fill the ringbuffer too much before the output
+is initialized and read it.
+
+* Added trim function and decreased input_frame_count value
+
+* Fixed rust syntax error
+
+* Condition and comment change
+
+Co-authored-by: Corentin ARNOULD <corentin.arn@gmail.com>",Koalab99,2020-06-12T12:14:09Z,Koalab99,Koalab99,35,35,0
+66,cubeb-pulse-rs,3224e2dee65c0726c448484d4c3c43956b9330ec,"Added input_latency code to backend/stream.rs (#57)
+
+* Added input_latency code
+
+It is similar to latency code defined just above in the file.
+Also fixed some formating.
+
+* Fixed negative buffer latency panic
+
+I tested wrong, pulse can return negative latencies, but here is a patch
+
+* Input latency return 0 when negative
+
+* Add description for negative input latency case
+
+Co-authored-by: Corentin ARNOULD <corentin.arn@gmail.com>",Koalab99,2020-06-04T10:01:26Z,Koalab99,Koalab99,19,17,2
+67,cubeb-pulse-rs,70431f444cf164177cb3c0f060698fc35f811be5,"Add an empty (for now) method for input_latency, and bump the cubeb version",Paul Adenot,2020-04-30T13:07:39Z,padenot,padenot,6,5,1
+68,cubeb-pulse-rs,5eb38163103b0dae86de81cdaf46070bdeedc0d1,"Merge pull request #55 from achronop/revert-volume-fix
+
+Revert ""Disable server-side volume handling.""",Alex Chronopoulos,2020-04-27T18:54:39Z,achronop,achronop,60,54,6
+69,cubeb-pulse-rs,3be3d4924889153685fea67afe9a87a62e8740c4,"Revert ""Disable server-side volume handling.""
+
+This reverts commit e845327c3fe91192870a34fc2999d2f460291295.",Alex Chronopoulos,2020-04-27T18:29:04Z,achronop,achronop,60,54,6
+70,cubeb-pulse-rs,8375ed3cd2fb85add5800fa2eb6ec7bfc8e6bbf5,"Implement devices change logic.
+
+Set DONT_MOVE in input and output device if device id is specified or the CUBEB_STREAM_PREF_DISABLE_DEVICE_SWITCHING is set.",Alex Chronopoulos,2020-04-16T13:02:51Z,achronop,achronop,30,22,8
+71,cubeb-pulse-rs,e845327c3fe91192870a34fc2999d2f460291295,"Disable server-side volume handling.
+
+The API from pulseaudio is not coming, and this is causing user pain. We
+can resurrect this code when we have an API to do what we want to do.",Paul Adenot,2020-04-16T07:01:05Z,padenot,padenot,60,6,54
+72,cubeb-pulse-rs,72f813a03cefbdf8e2c58c7410f3556c79429a06,Fix warning,Paul Adenot,2020-03-30T14:55:50Z,padenot,padenot,2,1,1
+73,cubeb-pulse-rs,f05a33f01143237cb5382fade3776963f2eee736,Update ringbuf to 0.2,Paul Adenot,2020-03-30T14:55:33Z,padenot,padenot,53,12,41
+74,cubeb-pulse-rs,8069f8f4189982e0b38fa6dc8993dd4fab41f728,Add the license to Cargo.toml,Mike Hommey,2019-12-05T07:32:00Z,glandium,glandium,3,3,0
+75,cubeb-pulse-rs,9b50bc6c80ccbc6658f652cc77c0742fd1da26a6,Update semver to 0.9,Mike Hommey,2019-12-05T07:10:47Z,glandium,glandium,2,1,1
+76,cubeb-pulse-rs,f63e6e29838eb6f9343d89b69fbd25746afe7c85,"backend: Special case single channel center mapping to mono.
+
+Addresses BMO 1582442.",Matthew Gregan,2019-10-21T23:56:57Z,kinetiknz,kinetiknz,8,7,1
+77,cubeb-pulse-rs,f9eb50b87328b5ebdc4a310f9e0f445ee89aa9df,"update the info when default device changes
+
+Import the fix for: https://github.com/kinetiknz/cubeb/issues/545",Alex Chronopoulos,2019-10-01T09:44:07Z,achronop,achronop,244,129,115
+78,cubeb-pulse-rs,7bde054a320aa77cc08d55f6955f23aebb4954bb,Fix deprecated `try!` warnings for rustc nightly 1.40.,Matthew Gregan,2019-09-26T21:51:33Z,kinetiknz,kinetiknz,12,6,6
+79,cubeb-pulse-rs,bc73363b4a8bdd0a2b943e62e5443796b5a639fb,Update semver to 0.7,Bastien Orivel,2019-09-06T18:39:42Z,Eijebong,Eijebong,2,1,1
+80,cubeb-pulse-rs,094178dc2f1c18c7bf6530aecf5a21f50c5ca084,Update to cubeb-rs 0.6.0; remove panning API.,Matthew Gregan,2019-08-21T22:09:08Z,kinetiknz,kinetiknz,72,3,69
+81,cubeb-pulse-rs,ee66661422726f6db781c9043de90ccec4e3520a,"Tweak pa_buffer_attr according to Ford_Prefect's recommendations.
+
+irc.mozilla.org#media, 2019/07/05, CEST
+
+```
+11:43 <padenot>      Ford_Prefect, I'm also experimenting with various
+                     setttings for the buffer_attr here
+                     https://searchfox.org/mozilla-central/rev/b9041f813de0a05bf6de95a145d4e25004499517/media/libcubeb/cubeb-pulse-rs/src/backend/stream.rs#946
+11:44 <padenot>      I see conflicting information: Chrome's code seem to
+                     work well and does something, but the docs say
+                     something else
+11:55 <Ford_Prefect> padenot: what values?
+11:55 <padenot>      the 5 values to put in pa_buffer_attr for input and output
+11:56 <padenot>      see this comment https://cs.chromium.org/chromium/src/media/audio/pulse/pulse_util.cc?type=cs&q=pa_buffer_Attr&g=0&l=480
+12:09 <Ford_Prefect> padenot: huh, that seems to have changed since the
+                     last time I saw it. minreq = tlength / 4 is good,
+                     particularly for smaller values
+12:11 <Ford_Prefect> I'm not sure why Chrome is doing * 3, they should
+                     be okay with * 2 (so minreq will be buffer_size / 4)
+12:11 <Ford_Prefect> er, tlength
+12:12 <Ford_Prefect> I've never been able to come up with a good
+                     works-for-everything heuristic on the PA side,
+                     hence this divide-by-4 thumb rule
+```",Paul Adenot,2019-07-22T08:28:32Z,padenot,padenot,66,26,40
+82,cubeb-pulse-rs,827dc9fc4f6f30dc1c6313137ef0cedf77dcd27e,"Revert ""Revert ""Use std::mem::MaybeUninit instead of the deprecated std::mem::uninitialized""""
+
+This reverts commit a32febf6c3ec1b57e5a34bb2dd28bcbc8ffd961f.",Matthew Gregan,2019-07-19T04:47:34Z,kinetiknz,kinetiknz,75,38,37
+83,cubeb-pulse-rs,21b289516b4b5c3b46b07e88f64f38677fe028ce,Use the correct number of samples in the input buffer ringbuffer pull operation.,Paul Adenot,2019-07-22T08:21:29Z,padenot,padenot,5,3,2
+84,cubeb-pulse-rs,3a748a2df25658f1c8c5a475b9dd2ae4561b174b,"Run the PulseAudio callbacks from the output
+
+This is lots of code, but it's not particularly complex. Instead of
+driving the callbacks from the input events, this drives them using the
+output event.
+
+For this to work, the input data delivered to the program are queued
+into a lock-free ringbuffer. Then, when there is a need for output data,
+PulseAudio calls its callback, and we put the data from the ring buffer
+into a linear piece of memory, and call the callback as usual.
+
+All the complexity and duplication is because we support f32 and i16
+really.",Paul Adenot,2019-07-16T15:30:04Z,padenot,padenot,180,170,10
+85,cubeb-pulse-rs,836c1dc0901b0869be5566fe78bbd353be65bbf3,Make pa_sample_size available in Rust.,Paul Adenot,2019-07-16T15:28:30Z,padenot,padenot,18,18,0
+86,cubeb-pulse-rs,e33cba0b729ca5b91f7714e068ca1aac18018175,Bump minimum Rust version to 1.35 to match Gecko beta version requirement.,Matthew Gregan,2019-07-19T09:41:41Z,kinetiknz,kinetiknz,8,4,4
+87,cubeb-pulse-rs,a32febf6c3ec1b57e5a34bb2dd28bcbc8ffd961f,"Revert ""Use std::mem::MaybeUninit instead of the deprecated std::mem::uninitialized""
+
+This reverts commit 9d1c1292a11cf90f9450a97a1aa4604849263c45 to unblock
+landing PR #42.  Landing this change in Gecko isn't possible yet (bug
+1563877) as there's still a minimum requirement on rustc 1.35.",Matthew Gregan,2019-07-19T04:44:39Z,kinetiknz,kinetiknz,75,37,38
+88,cubeb-pulse-rs,9d1c1292a11cf90f9450a97a1aa4604849263c45,"Use std::mem::MaybeUninit instead of the deprecated std::mem::uninitialized
+
+See https://gankro.github.io/blah/initialize-me-maybe/
+
+Gecko now uses 1.36: https://bugzilla.mozilla.org/show_bug.cgi?id=1563378",Simon Sapin,2019-07-10T11:45:52Z,SimonSapin,SimonSapin,75,38,37
+89,cubeb-pulse-rs,6f7c0959cf293291e60d11a80d194556d335c1dc,"Use assert_eq instead of debug_assert_eq for safety-critical assertions.
+
+Generic methods are monomorphized,
+so for each given instance `size_of::<CB>()` is a constant.
+The assertion can therefore be optimized away
+by constant propagation and dead code elimination.",Simon Sapin,2019-07-10T11:36:10Z,SimonSapin,SimonSapin,32,16,16
+90,cubeb-pulse-rs,17c1629c323ff24d656ff9449bf50d6758aafc1a,"Set default layout when it is not configured (BMO 1518106). (#40)
+
+Set default layout when it is not configured (BMO 1518106).",Alex Chronopoulos,2019-01-23T18:50:09Z,achronop,achronop,62,61,1
+91,cubeb-pulse-rs,100b85828388d4bf8b9713fe5c5dd9dc00d8f24f,Separate input output callbacks for collection changes (BMO 1498242).,Alex Chronopoulos,2018-10-17T09:47:17Z,achronop,achronop,72,49,23
+92,cubeb-pulse-rs,798864774d7b9e65e8327ba87a753254afa3da6e,"Log rather than assert unsuccessful stream/context callbacks.
+
+Fix for BMO bug 1471922.",Matthew Gregan,2018-07-24T00:29:33Z,kinetiknz,kinetiknz,12,9,3
+93,cubeb-pulse-rs,d0bdf51ebd0a653cc4276d2346db852a3060ade0,"Use fully-qualified syntax for USecExt::to_bytes.
+
+This addresses BMO #1472001, where we fail to build with Rust nightly
+because USecExt::to_bytes implemented on USec (which is a type alias of
+u64, not a newtype) is ambiguous when nightly stdlib's u64::to_bytes is
+present.",Matthew Gregan,2018-06-28T23:02:50Z,kinetiknz,kinetiknz,6,3,3
+94,cubeb-pulse-rs,f90aecf00ed6e5c67f593b3ecf412a8f3ffc0b1f,Mark PulseContext and PulseStream #[repr(C)] to ensure ABI compatibility with libcubeb.,Matthew Gregan,2018-04-17T07:24:44Z,kinetiknz,kinetiknz,2,2,0
+95,cubeb-pulse-rs,55ce985ad6c53049355907e3df09f172827aecfd,"Fix cubeb channel layout to pulse channel map.
+
+Turns out that the clever C code I copied was incorrect.  So changed
+it to the rust idiom of iterating the bits in the bit set via
+Iterator.  Added copious tests so not to get burned if, in the future,
+this layout changes.",Dan Glastonbury,2018-03-29T03:06:05Z,djg,djg,376,365,11
+96,cubeb-pulse-rs,247b01d8e971d0680fa1cc39e63d17e0fc030556,Update versions due to change in cubeb channel layout and mixer.,Dan Glastonbury,2018-03-13T03:48:08Z,djg,djg,204,44,160
+97,cubeb-pulse-rs,4c243de050e9f27a55f401fbf046108fa3cd153d,"Remove the concept of preferred layout.
+
+Channel layout is derived by the content being played. The concept of
+preferred layout is meaningless. Either we have a layout defined, or
+we don't. There's no in-between.
+
+So we remove it.",Jean-Yves Avenard,2018-01-31T18:08:51Z,Jean-Yves Avenard,Jean-Yves Avenard,7,0,7
+98,cubeb-pulse-rs,f699773d8c4029289fcd54c3d2076a5ddd9d7109,"Check Context::connect result.
+
+This applies the same fix made in kinetiknz/cubeb#425.",Matthew Gregan,2018-03-22T02:50:50Z,kinetiknz,kinetiknz,12,8,4
+99,cubeb-pulse-rs,22cdde3e573303649a77e48a19f7ca2c4d308047,"Handle error in pa_context_get_server_info.
+
+This addresses Gecko Bug 1438414, where `debug_assert_ne!(i,
+ptr::null_mut())` fires in callback for `Context::get_server_info`.
+
+From reading the PulseAudio source code, this happens in a few error
+cases such as command timeout.",Dan Glastonbury,2018-03-06T00:39:46Z,djg,djg,45,28,17
+100,cubeb-pulse-rs,f58dc34c5af519352aed4b4cd79bb34060e59c65,Reformat all the code to rust standard.,Dan Glastonbury,2018-02-23T01:16:40Z,djg,djg,229,157,72
+101,cubeb-pulse-rs,d73a1884068bb995c2f741a289af6e1379090e73,Update to use cubeb-rs 0.4.,Dan Glastonbury,2018-02-02T03:21:14Z,djg,djg,356,180,176
+102,cubeb-pulse-rs,946f589d2809513905ea173e0b617ebf1f192a6f,"Refactor to use cubeb-rs for FFI.
+
+Remove the use of local copy of cubeb FFI bindings to use the shared
+code in cubeb-rs crates.",Dan Glastonbury,2018-01-30T01:23:18Z,djg,djg,2004,619,1385
+103,cubeb-pulse-rs,1e05277cf6642320b379510107de3b212f60a040,Fix Travis CI 32-bit builds.,Dan Glastonbury,2018-02-23T01:13:05Z,djg,djg,1,1,0
+104,cubeb-pulse-rs,deadde7d14e0010628471e33a538a0a1e59765ff,"Handle stream preferences and loopback requests.
+
+https://github.com/kinetiknz/cubeb/pull/387 introduced a preferences member on
+the stream params struct. This updates the backend to handle that member. This
+also makes the backend return the appropriate not supported error should the
+new prefs be used to request a loopback stream, as the backend does not
+currently support loopback streams.",Bryce Van Dyk,2018-01-24T16:41:40Z,SingingTree,SingingTree,23,22,1
+105,cubeb-pulse-rs,a04457b478e4588ceecae6ee346c7097a69baea3,Fix clippy suggestions.,Dan Glastonbury,2018-01-23T03:51:32Z,djg,djg,93,41,52
+106,cubeb-pulse-rs,cb7141e3aae5471b3a8ac1e4524f35d04edcdf4e,avoid deadlock when context subscribe fails,Alex Chronopoulos,2018-01-16T15:44:00Z,achronop,achronop,1,1,0
+107,cubeb-pulse-rs,71e1ecfad94354b92263b33c232dd45ed0a45ffe,"Update to bitflags 1.0
+
+The 1.0 version uses associated constants instead of module constants.",Anthony Ramine,2017-11-16T09:10:46Z,nox,nox,224,111,113
+108,cubeb-pulse-rs,864332fde124761da15c444e58889faf598a219f,Fix a few unused mut warnings on newer Rust compilers,est31,2017-10-28T04:20:07Z,est31,est31,28,14,14
+109,cubeb-pulse-rs,ee73d900c88ea6d8f5c62cf716d8bb21c8b591ea,Fomat log message in rust code,Alex Chronopoulos,2017-10-18T16:30:54Z,achronop,achronop,4,2,2
+110,cubeb-pulse-rs,2e22e5359000f11c47346c54b34182bb350fe9d3,"Improve handling when there are no pulse source/sink.
+
+Port of kinetik/cubeb PR #360.",Dan Glastonbury,2017-09-26T01:30:21Z,djg,djg,36,23,13
+111,cubeb-pulse-rs,59fbba48d46d67b535c635b84a0bcda678ce4cf2,"Merge pull request #19 from djg/fix-travis-ci
+
+travis-ci: Add missing glib 2.0 dev dep.",Ralph Giles,2017-09-25T15:22:31Z,rillian,rillian,1,1,0
+112,cubeb-pulse-rs,b2cc191213e8e54f1e509deab0daf8e2097e9d40,travis-ci: Add missing glib 2.0 dev dep.,Dan Glastonbury,2017-09-25T05:30:44Z,djg,djg,1,1,0
+113,cubeb-pulse-rs,1ac0e46e88118b1a5dd24c630047c584273719f6,Remove assertion when pulse has no sinks configured.,Dan Glastonbury,2017-09-25T05:18:50Z,djg,djg,1,0,1
+114,cubeb-pulse-rs,a386d91d7f34e6d3a949ee4fa44e848e29634587,backend: Add test for Intern.,Matthew Gregan,2017-09-05T02:36:11Z,kinetiknz,kinetiknz,26,26,0
+115,cubeb-pulse-rs,51926ee1186ab38722c4f9b7d7d9e0deada811ba,backend: Add (crude) string interning to provide stable devids.,Matthew Gregan,2017-08-31T03:06:38Z,kinetiknz,kinetiknz,54,44,10
+116,cubeb-pulse-rs,af4c679d7fa9b43cf43de4272b0d8ec82e09f3d3,context: Treat DeviceType as a bitfield.,Matthew Gregan,2017-08-31T02:25:31Z,kinetiknz,kinetiknz,4,2,2
+117,cubeb-pulse-rs,c7ecd920e83960c0b5937bac727ac3fe7a60154e,Fix unused macro warning for cstr!.,Matthew Gregan,2017-08-31T03:12:54Z,kinetiknz,kinetiknz,1,1,0
+118,cubeb-pulse-rs,04ba68d1bebc6ff240188dfdcd565f5a77be348b,cubeb-pulse-rs: Updates required by changes to Stream::get_latency().,Dan Glastonbury,2017-08-06T04:39:48Z,djg,djg,14,8,6
+119,cubeb-pulse-rs,907a7acdd2085f742c275724692589c6c5dc1b0e,"pulse-rs: Stream::get_latency return StreamLatency enum.
+
+Instead of returning tuple (u64, bool) where if bool is true
+translates to a negative latency, the latency is returned via variant
+enum where Positive and Negative makes the distinction explicit.",Dan Glastonbury,2017-08-06T04:37:53Z,djg,djg,16,14,2
+120,cubeb-pulse-rs,69927a170bb1258541648be5111e1d8a91b38f43,stream: Fix !negative assert in latency().,Dan Glastonbury,2017-08-06T04:14:00Z,djg,djg,2,1,1
+121,cubeb-pulse-rs,3b8cfba161cec66bee6a755bce102466baa92ddb,Add cubeb_stream_reset_default_device to synchronize the changes of Cubeb,Chun-Min Chang,2017-07-07T03:35:09Z,ChunMinChang,ChunMinChang,2,2,0
+122,cubeb-pulse-rs,a60ba46e8e37cbb333e0dbf320827063f65fe452,"Merge pull request #12 from djg/upstream-pa-sink-flag-fix
+
+Upstream pa sink flag fix",Matthew Gregan,2017-06-25T05:40:44Z,kinetiknz,kinetiknz,10,5,5
+123,cubeb-pulse-rs,2ae2f7ad9b2a9d205e7b5e337102702d5a7264dc,Upstream gecko Bug 1375873.,Dan Glastonbury,2017-06-24T06:39:15Z,djg,djg,8,4,4
+124,cubeb-pulse-rs,9c52e897e2e077f31b2dc0a3588447ffa7da553f,Upstream gecko Bug 1376000.,Dan Glastonbury,2017-06-24T06:36:26Z,djg,djg,2,1,1
+125,cubeb-pulse-rs,64515819cdf54a16626df5dce5f5c7cb1220d53b,Make turning ptr T into Option<T> safer.,Dan Glastonbury,2017-06-19T07:41:30Z,djg,djg,42,17,25
+126,cubeb-pulse-rs,e5d0cc6ffa8c28bbf64540f880e08c1caca007db,"cubeb-pulse-rs: Remove panic from pulse_format_to_cubeb_format
+
+Return F32NE like cubeb_pulse.c",Dan Glastonbury,2017-06-16T01:23:29Z,djg,djg,5,2,3
+127,cubeb-pulse-rs,1ca5c3399ba8f6d11431c4aedf350bdf1b14334d,"pulse-rs: Remove shift checks in flag validation.
+
+Replace the use of shift with and and-with-mask to check only valid
+flag bits are set.",Dan Glastonbury,2017-06-08T01:01:54Z,djg,djg,23,19,4
+128,cubeb-pulse-rs,b49fea01f70234d236bd0cddb239a2ceaebe8234,"pulse-rs: Change PropList interface to take rust strings.
+
+... and perform the allocation to convert to CString internally.
+Remove cstr! macro.",Dan Glastonbury,2017-06-07T03:53:25Z,djg,djg,25,13,12
+129,cubeb-pulse-rs,26066f1116e6895784eaa2f63a0f39c6b8353afb,pulse-rs: Replace implicit unref with explicit unref.,Dan Glastonbury,2017-06-05T07:26:18Z,djg,djg,96,48,48
+130,cubeb-pulse-rs,f9ccf1834867e55ee3d2821e789a710b290b1516,"pulse-rs: Replace nullable Stream with Option<Stream>
+
+In discussion with :kinetik it was decided to use more idiomatic
+Rust. Instead of being able to hold a Stream that might be invalid,
+use Option<Stream> to signal when a valid Stream is held.",Dan Glastonbury,2017-06-05T05:39:58Z,djg,djg,499,252,247
+131,cubeb-pulse-rs,1e9dbf4fdefc4b14b43cd4fee54e2901ce625cb2,"cubeb-pulse-rs: Clean up trigger_user_callback parameters.
+
+Turns out stream pointer to trigger_user_callback was only ever
+self.output_stream.",Dan Glastonbury,2017-06-05T04:56:00Z,djg,djg,29,14,15
+132,cubeb-pulse-rs,41765fd346e4a155c4ca796dd29ab793e1cee3b3,"pulse-rs: Replace nullable Context with Option<Context>
+
+In discussion with :kinetik it was decided to use more idiomatic
+Rust. Instead of being able to hold a Context that might be invalid,
+use Option<Context> to signal when a valid Context is held.",Dan Glastonbury,2017-06-05T04:05:47Z,djg,djg,229,113,116
+133,cubeb-pulse-rs,ff0808d40712b5df2837dff698fb58143c2b0752,"Remove unused pulse::{Context, Stream}::clone()",Dan Glastonbury,2017-06-02T02:09:37Z,djg,djg,12,0,12
+134,cubeb-pulse-rs,32ab5961a33585ee302ae455f8594831e97ce271,pulse::Stream::drop_record -> pulse::Stream::drop,Dan Glastonbury,2017-06-02T02:08:26Z,djg,djg,4,2,2
+135,cubeb-pulse-rs,3612ce98b1dbba27461215c80719ab3f27268b41,Macro-fy error checking and returning Operation boilerplate.,Dan Glastonbury,2017-06-01T08:11:42Z,djg,djg,72,28,44
+136,cubeb-pulse-rs,3fc92dc4ac3868b6ce0f684d578f19792ce4c67e,Remove unused fn write_with_free.,Dan Glastonbury,2017-06-01T08:11:09Z,djg,djg,29,0,29
+137,cubeb-pulse-rs,85fd1bed3750a5efdef618c0e00f112e76e71878,Remove early return from position() so not to skip unlock.,Dan Glastonbury,2017-06-01T08:10:35Z,djg,djg,2,1,1
+138,cubeb-pulse-rs,8c36d7603c87d9881b40ecb4ac4ce7194fef385a,Add comment that is_good() fns must match PulseAudio macros.,Dan Glastonbury,2017-06-01T07:39:09Z,djg,djg,4,4,0
+139,cubeb-pulse-rs,d9bea1315f3a79fdea38e34bbe6f040ca9cb3d77,Add note about wrapped functions in callbacks.,Dan Glastonbury,2017-06-01T07:07:32Z,djg,djg,226,135,91
+140,cubeb-pulse-rs,3ad41cdf4169459014870fd069afd7b37c8e07ef,Reinstate assert that get_latency result is non-negative.,Dan Glastonbury,2017-06-01T07:06:57Z,djg,djg,5,4,1
+141,cubeb-pulse-rs,0825c6ebedf2d433625cdf2c54c465bbf737f02b,cubeb-pulse-rs: Remove rr comment.,Dan Glastonbury,2017-06-01T06:26:24Z,djg,djg,1,0,1
+142,cubeb-pulse-rs,e6dca80a9b7fa123342df19b9129fc7939316d9e,cubeb-rs: Make ThreadedMainloop::signal implicitly not wait.,Dan Glastonbury,2017-06-01T06:21:10Z,djg,djg,28,14,14
+143,cubeb-pulse-rs,344ce0fb397dfac4e463f7d66b6c07f8aa9c62db,pulse-rs: Change ThreadedMainloop::Start to return Result<()>.,Dan Glastonbury,2017-06-01T06:17:34Z,djg,djg,11,8,3
+144,cubeb-pulse-rs,03f31e21996f49474fe7ba627d74b6ecca886c67,clippy fixes.,Dan Glastonbury,2017-05-05T07:07:29Z,Dan Glastonbury,Dan Glastonbury,8,4,4
+145,cubeb-pulse-rs,3a0ea205de7fae2ec3e0c50ff00d5e19e7b8dd38,pulse-rs: Changes to support extension traits.,Dan Glastonbury,2017-05-02T07:22:48Z,Dan Glastonbury,Dan Glastonbury,115,115,0
+146,cubeb-pulse-rs,f513d321f2a8e2fb5bb71dd77bd5fa2b87ce2fc1,cubeb-pulse-rs: Cleanup unsafe { } calls with extension traits.,Dan Glastonbury,2017-05-02T07:22:13Z,Dan Glastonbury,Dan Glastonbury,80,29,51
+147,cubeb-pulse-rs,b04a43bf144524c5beef2bf036974aa94a1c5577,cubeb-pulse-rs: Convert pa_stream to pulse::Stream.,Dan Glastonbury,2017-05-02T05:09:10Z,Dan Glastonbury,Dan Glastonbury,626,310,316
+148,cubeb-pulse-rs,9af83dccc10a5f187983332caa0abdddfe3779da,pulse-rs: Changes for pulse::Stream.,Dan Glastonbury,2017-05-02T05:09:32Z,Dan Glastonbury,Dan Glastonbury,497,494,3
+149,cubeb-pulse-rs,23cf9f6bfac947e17f4660562649c4d756139d7f,pulse-ffi: Changes for pulse::Stream.,Dan Glastonbury,2017-05-02T05:09:52Z,Dan Glastonbury,Dan Glastonbury,155,101,54
+150,cubeb-pulse-rs,782f6a88ad8cb1763b977ed28acbbb3af16fdc98,cubeb-pulse-rs: Convert ffi::pa_context to pulse::Context.,Dan Glastonbury,2017-05-02T00:12:43Z,Dan Glastonbury,Dan Glastonbury,598,271,327
+151,cubeb-pulse-rs,486049cc3e1f27fe9540805cab9665a123d174aa,"pulse-rs: Changes needed for pulse::Context, pulse::Operation, etc.",Dan Glastonbury,2017-06-01T04:09:39Z,djg,djg,539,526,13
+152,cubeb-pulse-rs,29285d51661537b683e826aa5c598643384b6ff1,"pulse-ffi: Changes for pulse::Context, pulse::Operation, etc.",Dan Glastonbury,2017-05-02T00:13:32Z,Dan Glastonbury,Dan Glastonbury,187,139,48
+153,cubeb-pulse-rs,c5482d0e3faa83f57ba1dd0974654f0e13090833,cubeb-pulse-rs: Convert pa_threaded_mainloop to pulse::ThreadedMainloop.,Dan Glastonbury,2017-04-27T07:12:08Z,Dan Glastonbury,Dan Glastonbury,195,96,99
+154,cubeb-pulse-rs,33a69cf875e3fdcb145d2532c97da3b5a6bb8ae5,pulse-rs: Changes needed for pulse::threaded_mainloop.,Dan Glastonbury,2017-06-01T04:05:15Z,djg,djg,626,626,0
+155,cubeb-pulse-rs,c48f697f399b852395c1bbb799174d592fb8cf6a,"cubeb-pulse-rs: Collapse indentical functions into state_from_port.
+
+De-duplication of code: state_from_sink_port and
+state_from_source_port are cut'n'paste code.",Dan Glastonbury,2017-04-27T03:55:41Z,Dan Glastonbury,Dan Glastonbury,19,3,16
+156,cubeb-pulse-rs,d98045c404f5a52a8418de9a38f76b9e92832a2b,"cubeb-pulse-rs: Cleanup pulse callbacks.
+
+* Move to function local
+* Replace generic names with names explaining function of callback.",Dan Glastonbury,2017-04-27T03:19:43Z,Dan Glastonbury,Dan Glastonbury,695,348,347
+157,cubeb-pulse-rs,5e54c5318ee79e9d3e3bdb02798792db3363ea04,cubeb-pulse-rs: Rearrange stream corking functions.,Dan Glastonbury,2017-04-27T02:50:21Z,Dan Glastonbury,Dan Glastonbury,52,22,30
+158,cubeb-pulse-rs,ce0a23ee222411d78354a3f9a6d69cafa4a39cd7,Point build badge to build action.,Matthew Gregan,2021-03-10T06:27:25Z,kinetiknz,kinetiknz,3,1,2
+159,cubeb-pulse-rs,bac719315ec71b16f7446f69319ad6fd526b76b3,Remove obsolete CI config.,Matthew Gregan,2021-03-10T06:12:38Z,kinetiknz,kinetiknz,70,0,70
+160,cubeb-pulse-rs,9bf55caf8c23101df7e3c82d03bfc93bbafa5ae9,Add build action.,Matthew Gregan,2021-02-23T22:20:18Z,kinetiknz,kinetiknz,40,40,0
+161,cubeb-pulse-rs,c87b50aebfa088c1ad30c74819d4e9829f88b2e3,Remove cubeb_stream_reset_default_device API.,Matthew Gregan,2021-02-17T00:45:38Z,kinetiknz,kinetiknz,6,1,5
+162,cubeb-pulse-rs,bf31534d08b2c16fb5e4c5834944ae3271efbd63,Use the input data ring buffer to count input frames read.,Paul Adenot,2020-10-14T15:15:53Z,padenot,padenot,29,18,11
+163,cubeb-pulse-rs,3f48de5afcf81c6a71fd71d0d7403d57739e187a,Add missing pa_stream_get_name support for `pulse-dlopen` feature.,Matthew Gregan,2020-10-07T01:06:10Z,kinetiknz,kinetiknz,26,24,2
+164,cubeb-pulse-rs,53633451b85d1193db3d9a8a69e1f963302d0ab8, Add method to change stream name,Brendan Early,2020-10-01T00:21:26Z,mymindstorm,mymindstorm,54,53,1
+165,cubeb-pulse-rs,93a615c7dc53a0c21f35eac6633faf2636d992ca,"Remove initial playback latency when full duplex (#59)
+
+* Remove initial playback latency when full duplex
+
+This is in case the input fill the ringbuffer too much before the output
+is initialized and read it.
+
+* Added trim function and decreased input_frame_count value
+
+* Fixed rust syntax error
+
+* Condition and comment change
+
+Co-authored-by: Corentin ARNOULD <corentin.arn@gmail.com>",Koalab99,2020-06-12T12:14:09Z,Koalab99,Koalab99,35,35,0
+166,cubeb-pulse-rs,3224e2dee65c0726c448484d4c3c43956b9330ec,"Added input_latency code to backend/stream.rs (#57)
+
+* Added input_latency code
+
+It is similar to latency code defined just above in the file.
+Also fixed some formating.
+
+* Fixed negative buffer latency panic
+
+I tested wrong, pulse can return negative latencies, but here is a patch
+
+* Input latency return 0 when negative
+
+* Add description for negative input latency case
+
+Co-authored-by: Corentin ARNOULD <corentin.arn@gmail.com>",Koalab99,2020-06-04T10:01:26Z,Koalab99,Koalab99,19,17,2
+167,cubeb-pulse-rs,70431f444cf164177cb3c0f060698fc35f811be5,"Add an empty (for now) method for input_latency, and bump the cubeb version",Paul Adenot,2020-04-30T13:07:39Z,padenot,padenot,6,5,1
+168,cubeb-pulse-rs,5eb38163103b0dae86de81cdaf46070bdeedc0d1,"Merge pull request #55 from achronop/revert-volume-fix
+
+Revert ""Disable server-side volume handling.""",Alex Chronopoulos,2020-04-27T18:54:39Z,achronop,achronop,60,54,6
+169,cubeb-pulse-rs,3be3d4924889153685fea67afe9a87a62e8740c4,"Revert ""Disable server-side volume handling.""
+
+This reverts commit e845327c3fe91192870a34fc2999d2f460291295.",Alex Chronopoulos,2020-04-27T18:29:04Z,achronop,achronop,60,54,6
+170,cubeb-pulse-rs,8375ed3cd2fb85add5800fa2eb6ec7bfc8e6bbf5,"Implement devices change logic.
+
+Set DONT_MOVE in input and output device if device id is specified or the CUBEB_STREAM_PREF_DISABLE_DEVICE_SWITCHING is set.",Alex Chronopoulos,2020-04-16T13:02:51Z,achronop,achronop,30,22,8
+171,cubeb-pulse-rs,e845327c3fe91192870a34fc2999d2f460291295,"Disable server-side volume handling.
+
+The API from pulseaudio is not coming, and this is causing user pain. We
+can resurrect this code when we have an API to do what we want to do.",Paul Adenot,2020-04-16T07:01:05Z,padenot,padenot,60,6,54
+172,cubeb-pulse-rs,72f813a03cefbdf8e2c58c7410f3556c79429a06,Fix warning,Paul Adenot,2020-03-30T14:55:50Z,padenot,padenot,2,1,1
+173,cubeb-pulse-rs,f05a33f01143237cb5382fade3776963f2eee736,Update ringbuf to 0.2,Paul Adenot,2020-03-30T14:55:33Z,padenot,padenot,53,12,41
+174,cubeb-pulse-rs,8069f8f4189982e0b38fa6dc8993dd4fab41f728,Add the license to Cargo.toml,Mike Hommey,2019-12-05T07:32:00Z,glandium,glandium,3,3,0
+175,cubeb-pulse-rs,9b50bc6c80ccbc6658f652cc77c0742fd1da26a6,Update semver to 0.9,Mike Hommey,2019-12-05T07:10:47Z,glandium,glandium,2,1,1
+176,cubeb-pulse-rs,f63e6e29838eb6f9343d89b69fbd25746afe7c85,"backend: Special case single channel center mapping to mono.
+
+Addresses BMO 1582442.",Matthew Gregan,2019-10-21T23:56:57Z,kinetiknz,kinetiknz,8,7,1
+177,cubeb-pulse-rs,f9eb50b87328b5ebdc4a310f9e0f445ee89aa9df,"update the info when default device changes
+
+Import the fix for: https://github.com/kinetiknz/cubeb/issues/545",Alex Chronopoulos,2019-10-01T09:44:07Z,achronop,achronop,244,129,115
+178,cubeb-pulse-rs,7bde054a320aa77cc08d55f6955f23aebb4954bb,Fix deprecated `try!` warnings for rustc nightly 1.40.,Matthew Gregan,2019-09-26T21:51:33Z,kinetiknz,kinetiknz,12,6,6
+179,cubeb-pulse-rs,bc73363b4a8bdd0a2b943e62e5443796b5a639fb,Update semver to 0.7,Bastien Orivel,2019-09-06T18:39:42Z,Eijebong,Eijebong,2,1,1
+180,cubeb-pulse-rs,094178dc2f1c18c7bf6530aecf5a21f50c5ca084,Update to cubeb-rs 0.6.0; remove panning API.,Matthew Gregan,2019-08-21T22:09:08Z,kinetiknz,kinetiknz,72,3,69
+181,cubeb-pulse-rs,ee66661422726f6db781c9043de90ccec4e3520a,"Tweak pa_buffer_attr according to Ford_Prefect's recommendations.
+
+irc.mozilla.org#media, 2019/07/05, CEST
+
+```
+11:43 <padenot>      Ford_Prefect, I'm also experimenting with various
+                     setttings for the buffer_attr here
+                     https://searchfox.org/mozilla-central/rev/b9041f813de0a05bf6de95a145d4e25004499517/media/libcubeb/cubeb-pulse-rs/src/backend/stream.rs#946
+11:44 <padenot>      I see conflicting information: Chrome's code seem to
+                     work well and does something, but the docs say
+                     something else
+11:55 <Ford_Prefect> padenot: what values?
+11:55 <padenot>      the 5 values to put in pa_buffer_attr for input and output
+11:56 <padenot>      see this comment https://cs.chromium.org/chromium/src/media/audio/pulse/pulse_util.cc?type=cs&q=pa_buffer_Attr&g=0&l=480
+12:09 <Ford_Prefect> padenot: huh, that seems to have changed since the
+                     last time I saw it. minreq = tlength / 4 is good,
+                     particularly for smaller values
+12:11 <Ford_Prefect> I'm not sure why Chrome is doing * 3, they should
+                     be okay with * 2 (so minreq will be buffer_size / 4)
+12:11 <Ford_Prefect> er, tlength
+12:12 <Ford_Prefect> I've never been able to come up with a good
+                     works-for-everything heuristic on the PA side,
+                     hence this divide-by-4 thumb rule
+```",Paul Adenot,2019-07-22T08:28:32Z,padenot,padenot,66,26,40
+182,cubeb-pulse-rs,827dc9fc4f6f30dc1c6313137ef0cedf77dcd27e,"Revert ""Revert ""Use std::mem::MaybeUninit instead of the deprecated std::mem::uninitialized""""
+
+This reverts commit a32febf6c3ec1b57e5a34bb2dd28bcbc8ffd961f.",Matthew Gregan,2019-07-19T04:47:34Z,kinetiknz,kinetiknz,75,38,37
+183,cubeb-pulse-rs,21b289516b4b5c3b46b07e88f64f38677fe028ce,Use the correct number of samples in the input buffer ringbuffer pull operation.,Paul Adenot,2019-07-22T08:21:29Z,padenot,padenot,5,3,2
+184,cubeb-pulse-rs,3a748a2df25658f1c8c5a475b9dd2ae4561b174b,"Run the PulseAudio callbacks from the output
+
+This is lots of code, but it's not particularly complex. Instead of
+driving the callbacks from the input events, this drives them using the
+output event.
+
+For this to work, the input data delivered to the program are queued
+into a lock-free ringbuffer. Then, when there is a need for output data,
+PulseAudio calls its callback, and we put the data from the ring buffer
+into a linear piece of memory, and call the callback as usual.
+
+All the complexity and duplication is because we support f32 and i16
+really.",Paul Adenot,2019-07-16T15:30:04Z,padenot,padenot,180,170,10
+185,cubeb-pulse-rs,836c1dc0901b0869be5566fe78bbd353be65bbf3,Make pa_sample_size available in Rust.,Paul Adenot,2019-07-16T15:28:30Z,padenot,padenot,18,18,0
+186,cubeb-pulse-rs,e33cba0b729ca5b91f7714e068ca1aac18018175,Bump minimum Rust version to 1.35 to match Gecko beta version requirement.,Matthew Gregan,2019-07-19T09:41:41Z,kinetiknz,kinetiknz,8,4,4
+187,cubeb-pulse-rs,a32febf6c3ec1b57e5a34bb2dd28bcbc8ffd961f,"Revert ""Use std::mem::MaybeUninit instead of the deprecated std::mem::uninitialized""
+
+This reverts commit 9d1c1292a11cf90f9450a97a1aa4604849263c45 to unblock
+landing PR #42.  Landing this change in Gecko isn't possible yet (bug
+1563877) as there's still a minimum requirement on rustc 1.35.",Matthew Gregan,2019-07-19T04:44:39Z,kinetiknz,kinetiknz,75,37,38
+188,cubeb-pulse-rs,9d1c1292a11cf90f9450a97a1aa4604849263c45,"Use std::mem::MaybeUninit instead of the deprecated std::mem::uninitialized
+
+See https://gankro.github.io/blah/initialize-me-maybe/
+
+Gecko now uses 1.36: https://bugzilla.mozilla.org/show_bug.cgi?id=1563378",Simon Sapin,2019-07-10T11:45:52Z,SimonSapin,SimonSapin,75,38,37
+189,cubeb-pulse-rs,6f7c0959cf293291e60d11a80d194556d335c1dc,"Use assert_eq instead of debug_assert_eq for safety-critical assertions.
+
+Generic methods are monomorphized,
+so for each given instance `size_of::<CB>()` is a constant.
+The assertion can therefore be optimized away
+by constant propagation and dead code elimination.",Simon Sapin,2019-07-10T11:36:10Z,SimonSapin,SimonSapin,32,16,16
+190,cubeb-pulse-rs,17c1629c323ff24d656ff9449bf50d6758aafc1a,"Set default layout when it is not configured (BMO 1518106). (#40)
+
+Set default layout when it is not configured (BMO 1518106).",Alex Chronopoulos,2019-01-23T18:50:09Z,achronop,achronop,62,61,1
+191,cubeb-pulse-rs,100b85828388d4bf8b9713fe5c5dd9dc00d8f24f,Separate input output callbacks for collection changes (BMO 1498242).,Alex Chronopoulos,2018-10-17T09:47:17Z,achronop,achronop,72,49,23
+192,cubeb-pulse-rs,798864774d7b9e65e8327ba87a753254afa3da6e,"Log rather than assert unsuccessful stream/context callbacks.
+
+Fix for BMO bug 1471922.",Matthew Gregan,2018-07-24T00:29:33Z,kinetiknz,kinetiknz,12,9,3
+193,cubeb-pulse-rs,d0bdf51ebd0a653cc4276d2346db852a3060ade0,"Use fully-qualified syntax for USecExt::to_bytes.
+
+This addresses BMO #1472001, where we fail to build with Rust nightly
+because USecExt::to_bytes implemented on USec (which is a type alias of
+u64, not a newtype) is ambiguous when nightly stdlib's u64::to_bytes is
+present.",Matthew Gregan,2018-06-28T23:02:50Z,kinetiknz,kinetiknz,6,3,3
+194,cubeb-pulse-rs,f90aecf00ed6e5c67f593b3ecf412a8f3ffc0b1f,Mark PulseContext and PulseStream #[repr(C)] to ensure ABI compatibility with libcubeb.,Matthew Gregan,2018-04-17T07:24:44Z,kinetiknz,kinetiknz,2,2,0
+195,cubeb-pulse-rs,55ce985ad6c53049355907e3df09f172827aecfd,"Fix cubeb channel layout to pulse channel map.
+
+Turns out that the clever C code I copied was incorrect.  So changed
+it to the rust idiom of iterating the bits in the bit set via
+Iterator.  Added copious tests so not to get burned if, in the future,
+this layout changes.",Dan Glastonbury,2018-03-29T03:06:05Z,djg,djg,376,365,11
+196,cubeb-pulse-rs,247b01d8e971d0680fa1cc39e63d17e0fc030556,Update versions due to change in cubeb channel layout and mixer.,Dan Glastonbury,2018-03-13T03:48:08Z,djg,djg,204,44,160
+197,cubeb-pulse-rs,4c243de050e9f27a55f401fbf046108fa3cd153d,"Remove the concept of preferred layout.
+
+Channel layout is derived by the content being played. The concept of
+preferred layout is meaningless. Either we have a layout defined, or
+we don't. There's no in-between.
+
+So we remove it.",Jean-Yves Avenard,2018-01-31T18:08:51Z,Jean-Yves Avenard,Jean-Yves Avenard,7,0,7
+198,cubeb-pulse-rs,f699773d8c4029289fcd54c3d2076a5ddd9d7109,"Check Context::connect result.
+
+This applies the same fix made in kinetiknz/cubeb#425.",Matthew Gregan,2018-03-22T02:50:50Z,kinetiknz,kinetiknz,12,8,4
+199,cubeb-pulse-rs,22cdde3e573303649a77e48a19f7ca2c4d308047,"Handle error in pa_context_get_server_info.
+
+This addresses Gecko Bug 1438414, where `debug_assert_ne!(i,
+ptr::null_mut())` fires in callback for `Context::get_server_info`.
+
+From reading the PulseAudio source code, this happens in a few error
+cases such as command timeout.",Dan Glastonbury,2018-03-06T00:39:46Z,djg,djg,45,28,17
+200,cubeb-pulse-rs,f58dc34c5af519352aed4b4cd79bb34060e59c65,Reformat all the code to rust standard.,Dan Glastonbury,2018-02-23T01:16:40Z,djg,djg,229,157,72
+201,cubeb-pulse-rs,d73a1884068bb995c2f741a289af6e1379090e73,Update to use cubeb-rs 0.4.,Dan Glastonbury,2018-02-02T03:21:14Z,djg,djg,356,180,176
+202,cubeb-pulse-rs,946f589d2809513905ea173e0b617ebf1f192a6f,"Refactor to use cubeb-rs for FFI.
+
+Remove the use of local copy of cubeb FFI bindings to use the shared
+code in cubeb-rs crates.",Dan Glastonbury,2018-01-30T01:23:18Z,djg,djg,2004,619,1385
+203,cubeb-pulse-rs,1e05277cf6642320b379510107de3b212f60a040,Fix Travis CI 32-bit builds.,Dan Glastonbury,2018-02-23T01:13:05Z,djg,djg,1,1,0
+204,cubeb-pulse-rs,deadde7d14e0010628471e33a538a0a1e59765ff,"Handle stream preferences and loopback requests.
+
+https://github.com/kinetiknz/cubeb/pull/387 introduced a preferences member on
+the stream params struct. This updates the backend to handle that member. This
+also makes the backend return the appropriate not supported error should the
+new prefs be used to request a loopback stream, as the backend does not
+currently support loopback streams.",Bryce Van Dyk,2018-01-24T16:41:40Z,SingingTree,SingingTree,23,22,1
+205,cubeb-pulse-rs,a04457b478e4588ceecae6ee346c7097a69baea3,Fix clippy suggestions.,Dan Glastonbury,2018-01-23T03:51:32Z,djg,djg,93,41,52
+206,cubeb-pulse-rs,cb7141e3aae5471b3a8ac1e4524f35d04edcdf4e,avoid deadlock when context subscribe fails,Alex Chronopoulos,2018-01-16T15:44:00Z,achronop,achronop,1,1,0
+207,cubeb-pulse-rs,71e1ecfad94354b92263b33c232dd45ed0a45ffe,"Update to bitflags 1.0
+
+The 1.0 version uses associated constants instead of module constants.",Anthony Ramine,2017-11-16T09:10:46Z,nox,nox,224,111,113
+208,cubeb-pulse-rs,864332fde124761da15c444e58889faf598a219f,Fix a few unused mut warnings on newer Rust compilers,est31,2017-10-28T04:20:07Z,est31,est31,28,14,14
+209,cubeb-pulse-rs,ee73d900c88ea6d8f5c62cf716d8bb21c8b591ea,Fomat log message in rust code,Alex Chronopoulos,2017-10-18T16:30:54Z,achronop,achronop,4,2,2
+210,cubeb-pulse-rs,2e22e5359000f11c47346c54b34182bb350fe9d3,"Improve handling when there are no pulse source/sink.
+
+Port of kinetik/cubeb PR #360.",Dan Glastonbury,2017-09-26T01:30:21Z,djg,djg,36,23,13
+211,cubeb-pulse-rs,59fbba48d46d67b535c635b84a0bcda678ce4cf2,"Merge pull request #19 from djg/fix-travis-ci
+
+travis-ci: Add missing glib 2.0 dev dep.",Ralph Giles,2017-09-25T15:22:31Z,rillian,rillian,1,1,0
+212,cubeb-pulse-rs,b2cc191213e8e54f1e509deab0daf8e2097e9d40,travis-ci: Add missing glib 2.0 dev dep.,Dan Glastonbury,2017-09-25T05:30:44Z,djg,djg,1,1,0
+213,cubeb-pulse-rs,1ac0e46e88118b1a5dd24c630047c584273719f6,Remove assertion when pulse has no sinks configured.,Dan Glastonbury,2017-09-25T05:18:50Z,djg,djg,1,0,1
+214,cubeb-pulse-rs,a386d91d7f34e6d3a949ee4fa44e848e29634587,backend: Add test for Intern.,Matthew Gregan,2017-09-05T02:36:11Z,kinetiknz,kinetiknz,26,26,0
+215,cubeb-pulse-rs,51926ee1186ab38722c4f9b7d7d9e0deada811ba,backend: Add (crude) string interning to provide stable devids.,Matthew Gregan,2017-08-31T03:06:38Z,kinetiknz,kinetiknz,54,44,10
+216,cubeb-pulse-rs,af4c679d7fa9b43cf43de4272b0d8ec82e09f3d3,context: Treat DeviceType as a bitfield.,Matthew Gregan,2017-08-31T02:25:31Z,kinetiknz,kinetiknz,4,2,2
+217,cubeb-pulse-rs,c7ecd920e83960c0b5937bac727ac3fe7a60154e,Fix unused macro warning for cstr!.,Matthew Gregan,2017-08-31T03:12:54Z,kinetiknz,kinetiknz,1,1,0
+218,cubeb-pulse-rs,04ba68d1bebc6ff240188dfdcd565f5a77be348b,cubeb-pulse-rs: Updates required by changes to Stream::get_latency().,Dan Glastonbury,2017-08-06T04:39:48Z,djg,djg,14,8,6
+219,cubeb-pulse-rs,907a7acdd2085f742c275724692589c6c5dc1b0e,"pulse-rs: Stream::get_latency return StreamLatency enum.
+
+Instead of returning tuple (u64, bool) where if bool is true
+translates to a negative latency, the latency is returned via variant
+enum where Positive and Negative makes the distinction explicit.",Dan Glastonbury,2017-08-06T04:37:53Z,djg,djg,16,14,2
+220,cubeb-pulse-rs,69927a170bb1258541648be5111e1d8a91b38f43,stream: Fix !negative assert in latency().,Dan Glastonbury,2017-08-06T04:14:00Z,djg,djg,2,1,1
+221,cubeb-pulse-rs,3b8cfba161cec66bee6a755bce102466baa92ddb,Add cubeb_stream_reset_default_device to synchronize the changes of Cubeb,Chun-Min Chang,2017-07-07T03:35:09Z,ChunMinChang,ChunMinChang,2,2,0
+222,cubeb-pulse-rs,a60ba46e8e37cbb333e0dbf320827063f65fe452,"Merge pull request #12 from djg/upstream-pa-sink-flag-fix
+
+Upstream pa sink flag fix",Matthew Gregan,2017-06-25T05:40:44Z,kinetiknz,kinetiknz,10,5,5
+223,cubeb-pulse-rs,2ae2f7ad9b2a9d205e7b5e337102702d5a7264dc,Upstream gecko Bug 1375873.,Dan Glastonbury,2017-06-24T06:39:15Z,djg,djg,8,4,4
+224,cubeb-pulse-rs,9c52e897e2e077f31b2dc0a3588447ffa7da553f,Upstream gecko Bug 1376000.,Dan Glastonbury,2017-06-24T06:36:26Z,djg,djg,2,1,1
+225,cubeb-pulse-rs,64515819cdf54a16626df5dce5f5c7cb1220d53b,Make turning ptr T into Option<T> safer.,Dan Glastonbury,2017-06-19T07:41:30Z,djg,djg,42,17,25
+226,cubeb-pulse-rs,e5d0cc6ffa8c28bbf64540f880e08c1caca007db,"cubeb-pulse-rs: Remove panic from pulse_format_to_cubeb_format
+
+Return F32NE like cubeb_pulse.c",Dan Glastonbury,2017-06-16T01:23:29Z,djg,djg,5,2,3
+227,cubeb-pulse-rs,1ca5c3399ba8f6d11431c4aedf350bdf1b14334d,"pulse-rs: Remove shift checks in flag validation.
+
+Replace the use of shift with and and-with-mask to check only valid
+flag bits are set.",Dan Glastonbury,2017-06-08T01:01:54Z,djg,djg,23,19,4
+228,cubeb-pulse-rs,b49fea01f70234d236bd0cddb239a2ceaebe8234,"pulse-rs: Change PropList interface to take rust strings.
+
+... and perform the allocation to convert to CString internally.
+Remove cstr! macro.",Dan Glastonbury,2017-06-07T03:53:25Z,djg,djg,25,13,12
+229,cubeb-pulse-rs,26066f1116e6895784eaa2f63a0f39c6b8353afb,pulse-rs: Replace implicit unref with explicit unref.,Dan Glastonbury,2017-06-05T07:26:18Z,djg,djg,96,48,48
+230,cubeb-pulse-rs,f9ccf1834867e55ee3d2821e789a710b290b1516,"pulse-rs: Replace nullable Stream with Option<Stream>
+
+In discussion with :kinetik it was decided to use more idiomatic
+Rust. Instead of being able to hold a Stream that might be invalid,
+use Option<Stream> to signal when a valid Stream is held.",Dan Glastonbury,2017-06-05T05:39:58Z,djg,djg,499,252,247
+231,cubeb-pulse-rs,1e9dbf4fdefc4b14b43cd4fee54e2901ce625cb2,"cubeb-pulse-rs: Clean up trigger_user_callback parameters.
+
+Turns out stream pointer to trigger_user_callback was only ever
+self.output_stream.",Dan Glastonbury,2017-06-05T04:56:00Z,djg,djg,29,14,15
+232,cubeb-pulse-rs,41765fd346e4a155c4ca796dd29ab793e1cee3b3,"pulse-rs: Replace nullable Context with Option<Context>
+
+In discussion with :kinetik it was decided to use more idiomatic
+Rust. Instead of being able to hold a Context that might be invalid,
+use Option<Context> to signal when a valid Context is held.",Dan Glastonbury,2017-06-05T04:05:47Z,djg,djg,229,113,116
+233,cubeb-pulse-rs,ff0808d40712b5df2837dff698fb58143c2b0752,"Remove unused pulse::{Context, Stream}::clone()",Dan Glastonbury,2017-06-02T02:09:37Z,djg,djg,12,0,12
+234,cubeb-pulse-rs,32ab5961a33585ee302ae455f8594831e97ce271,pulse::Stream::drop_record -> pulse::Stream::drop,Dan Glastonbury,2017-06-02T02:08:26Z,djg,djg,4,2,2
+235,cubeb-pulse-rs,3612ce98b1dbba27461215c80719ab3f27268b41,Macro-fy error checking and returning Operation boilerplate.,Dan Glastonbury,2017-06-01T08:11:42Z,djg,djg,72,28,44
+236,cubeb-pulse-rs,3fc92dc4ac3868b6ce0f684d578f19792ce4c67e,Remove unused fn write_with_free.,Dan Glastonbury,2017-06-01T08:11:09Z,djg,djg,29,0,29
+237,cubeb-pulse-rs,85fd1bed3750a5efdef618c0e00f112e76e71878,Remove early return from position() so not to skip unlock.,Dan Glastonbury,2017-06-01T08:10:35Z,djg,djg,2,1,1
+238,cubeb-pulse-rs,8c36d7603c87d9881b40ecb4ac4ce7194fef385a,Add comment that is_good() fns must match PulseAudio macros.,Dan Glastonbury,2017-06-01T07:39:09Z,djg,djg,4,4,0
+239,cubeb-pulse-rs,d9bea1315f3a79fdea38e34bbe6f040ca9cb3d77,Add note about wrapped functions in callbacks.,Dan Glastonbury,2017-06-01T07:07:32Z,djg,djg,226,135,91
+240,cubeb-pulse-rs,3ad41cdf4169459014870fd069afd7b37c8e07ef,Reinstate assert that get_latency result is non-negative.,Dan Glastonbury,2017-06-01T07:06:57Z,djg,djg,5,4,1
+241,cubeb-pulse-rs,0825c6ebedf2d433625cdf2c54c465bbf737f02b,cubeb-pulse-rs: Remove rr comment.,Dan Glastonbury,2017-06-01T06:26:24Z,djg,djg,1,0,1
+242,cubeb-pulse-rs,e6dca80a9b7fa123342df19b9129fc7939316d9e,cubeb-rs: Make ThreadedMainloop::signal implicitly not wait.,Dan Glastonbury,2017-06-01T06:21:10Z,djg,djg,28,14,14
+243,cubeb-pulse-rs,344ce0fb397dfac4e463f7d66b6c07f8aa9c62db,pulse-rs: Change ThreadedMainloop::Start to return Result<()>.,Dan Glastonbury,2017-06-01T06:17:34Z,djg,djg,11,8,3
+244,cubeb-pulse-rs,03f31e21996f49474fe7ba627d74b6ecca886c67,clippy fixes.,Dan Glastonbury,2017-05-05T07:07:29Z,Dan Glastonbury,Dan Glastonbury,8,4,4
+245,cubeb-pulse-rs,3a0ea205de7fae2ec3e0c50ff00d5e19e7b8dd38,pulse-rs: Changes to support extension traits.,Dan Glastonbury,2017-05-02T07:22:48Z,Dan Glastonbury,Dan Glastonbury,115,115,0
+246,cubeb-pulse-rs,f513d321f2a8e2fb5bb71dd77bd5fa2b87ce2fc1,cubeb-pulse-rs: Cleanup unsafe { } calls with extension traits.,Dan Glastonbury,2017-05-02T07:22:13Z,Dan Glastonbury,Dan Glastonbury,80,29,51
+247,cubeb-pulse-rs,b04a43bf144524c5beef2bf036974aa94a1c5577,cubeb-pulse-rs: Convert pa_stream to pulse::Stream.,Dan Glastonbury,2017-05-02T05:09:10Z,Dan Glastonbury,Dan Glastonbury,626,310,316
+248,cubeb-pulse-rs,9af83dccc10a5f187983332caa0abdddfe3779da,pulse-rs: Changes for pulse::Stream.,Dan Glastonbury,2017-05-02T05:09:32Z,Dan Glastonbury,Dan Glastonbury,497,494,3
+249,cubeb-pulse-rs,23cf9f6bfac947e17f4660562649c4d756139d7f,pulse-ffi: Changes for pulse::Stream.,Dan Glastonbury,2017-05-02T05:09:52Z,Dan Glastonbury,Dan Glastonbury,155,101,54
+250,cubeb-pulse-rs,782f6a88ad8cb1763b977ed28acbbb3af16fdc98,cubeb-pulse-rs: Convert ffi::pa_context to pulse::Context.,Dan Glastonbury,2017-05-02T00:12:43Z,Dan Glastonbury,Dan Glastonbury,598,271,327
+251,cubeb-pulse-rs,486049cc3e1f27fe9540805cab9665a123d174aa,"pulse-rs: Changes needed for pulse::Context, pulse::Operation, etc.",Dan Glastonbury,2017-06-01T04:09:39Z,djg,djg,539,526,13
+252,cubeb-pulse-rs,29285d51661537b683e826aa5c598643384b6ff1,"pulse-ffi: Changes for pulse::Context, pulse::Operation, etc.",Dan Glastonbury,2017-05-02T00:13:32Z,Dan Glastonbury,Dan Glastonbury,187,139,48
+253,cubeb-pulse-rs,c5482d0e3faa83f57ba1dd0974654f0e13090833,cubeb-pulse-rs: Convert pa_threaded_mainloop to pulse::ThreadedMainloop.,Dan Glastonbury,2017-04-27T07:12:08Z,Dan Glastonbury,Dan Glastonbury,195,96,99
+254,cubeb-pulse-rs,33a69cf875e3fdcb145d2532c97da3b5a6bb8ae5,pulse-rs: Changes needed for pulse::threaded_mainloop.,Dan Glastonbury,2017-06-01T04:05:15Z,djg,djg,626,626,0
+255,cubeb-pulse-rs,c48f697f399b852395c1bbb799174d592fb8cf6a,"cubeb-pulse-rs: Collapse indentical functions into state_from_port.
+
+De-duplication of code: state_from_sink_port and
+state_from_source_port are cut'n'paste code.",Dan Glastonbury,2017-04-27T03:55:41Z,Dan Glastonbury,Dan Glastonbury,19,3,16
+256,cubeb-pulse-rs,d98045c404f5a52a8418de9a38f76b9e92832a2b,"cubeb-pulse-rs: Cleanup pulse callbacks.
+
+* Move to function local
+* Replace generic names with names explaining function of callback.",Dan Glastonbury,2017-04-27T03:19:43Z,Dan Glastonbury,Dan Glastonbury,695,348,347
+257,cubeb-pulse-rs,5e54c5318ee79e9d3e3bdb02798792db3363ea04,cubeb-pulse-rs: Rearrange stream corking functions.,Dan Glastonbury,2017-04-27T02:50:21Z,Dan Glastonbury,Dan Glastonbury,52,22,30

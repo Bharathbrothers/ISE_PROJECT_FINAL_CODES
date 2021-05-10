@@ -1,0 +1,441 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,bro,737ce489a9ed6ff2988e1660ba9b55baebee1710,"Added CPack packaging and fix Linux compatibility.
+
+- configure wrapper had bash syntax some places; replaced w/ sh syntax
+- Added FindOpenSSL module.  The one that ships with CMake does not
+  allow for specifying a non-standard location.
+- datadir configure option changed to be relative to prefix.  This
+  simplifies the packaging from having to consider absolute paths.
+- Added macro for changing install_name of shared libs that need to
+  ship with precompiled Bro for OS X.  This is only the optional
+  libmagic and libGeoIP for now.",Jon Siwek,2010-11-01T15:52:19Z,jsiwek,jsiwek,343,302,41
+1,bro,521c30e9ba8059cef7aa95491e1e9c371c2a020e,Fix FindBIND to be compatible w/ Linux & FreeBSD.,Jon Siwek,2010-11-01T15:48:17Z,jsiwek,jsiwek,55,37,18
+2,bro,5755d59f1dfd604f3c0fb8dc09057f8cbb2436b1,Typo led to error on case sensitive filesystems,Jon Siwek,2010-11-01T15:43:41Z,jsiwek,jsiwek,2,1,1
+3,bro,105d00b9b83711269647b86488adfa8aedb85a7f,"Fix ambiguous call to abs().
+
+Observed on FreeBSD build that the compiler would emit an error claiming
+
+  Val(abs(val.int_val), TYPE_COUNT)
+
+is ambiguous because it can't make a choice between cstdlib's
+""int abs(int)"" or ""long abs(long)"" signatures.  And actually, since
+we now always use 64 bit integers for bro_int_t, we can use
+""long long llabs(long long)"".",Jon Siwek,2010-11-01T15:26:34Z,jsiwek,jsiwek,2,1,1
+4,bro,bea41f5c7370db5f6c12b9628b930c4df4431655,"Fix preprocessor logic for ethernet header choice.
+
+Checking for netinet/if_ether.h and netinet/ip6.h depended
+on including other headers first; observed when trying to
+build on FreeBSD.
+
+ARP.h was changed to conform to CMake style config.h generation.
+Definitions are not set to 1 like with autotools, so we have
+to check for definition, not just that the value is true.",Jon Siwek,2010-11-01T15:05:23Z,jsiwek,jsiwek,12,7,5
+5,bro,43cbe2a9fc72b834ddce448ced7117ab2bbb7cf7,"Added configure option to build aux. tools.
+
+Also updated submodules to fix small bug in CMake module path.",Jon Siwek,2010-10-26T22:13:33Z,jsiwek,jsiwek,30,25,5
+6,bro,884d6c406f47fef1f5ebf69a77f04cf5aff0fb41,Create empty 'site' policy directory on install,Jon Siwek,2010-10-26T21:33:47Z,jsiwek,jsiwek,2,2,0
+7,bro,30ad035fce57c6eb22ad4c0889857b17727ad092,Updated submodules.,Jon Siwek,2010-10-26T21:29:02Z,jsiwek,jsiwek,4,2,2
+8,bro,02e17e949bd9127bf2d04b2b4c801e31ce1df7f2,Added configure script to wrap cmake functionality,Jon Siwek,2010-10-26T21:26:34Z,jsiwek,jsiwek,377,276,101
+9,bro,c1e0b41275920463719e756d74e71954714f24f9,Make DATADIR (policy file install path) absolute.,Jon Siwek,2010-10-25T17:23:43Z,jsiwek,jsiwek,10,5,5
+10,bro,5765c93bd0d620188b58de5a9149dde682638feb,Changes to add install target.,Jon Siwek,2010-10-22T22:46:35Z,jsiwek,jsiwek,144,20,124
+11,bro,4ffdf892ece55e03afd7c5a2875f693e9bd5f7b2,Updated binpac submodule.,Jon Siwek,2010-10-22T21:50:34Z,jsiwek,jsiwek,2,1,1
+12,bro,1b9c041d2954bda7b4f8d0b4efd89fb18821d209,Removed unused configure checks (leftover from autotools).,Jon Siwek,2010-10-22T21:47:24Z,jsiwek,jsiwek,95,2,93
+13,bro,b0d78eab40647e745873ab7d74abc885b5c4db11,Removed ClamAV support.,Jon Siwek,2010-10-22T21:01:53Z,jsiwek,jsiwek,58,0,58
+14,bro,049bda7078352c5d98d1b018605f89519827d230,Modified .pac file dependencies.,Jon Siwek,2010-10-22T20:53:14Z,jsiwek,jsiwek,81,35,46
+15,bro,afb5bd8ce775faa16084741d7d0262dced6a6df4,Moved the logic to build BinPAC locally to FindBinPAC module.,Jon Siwek,2010-10-22T17:20:01Z,jsiwek,jsiwek,73,38,35
+16,bro,47de9965448b5098ce7c5fd73d993c184d625fd7,Make disabled optional features show as false in build summary.,Jon Siwek,2010-10-22T15:59:58Z,jsiwek,jsiwek,4,4,0
+17,bro,e22ec206ca784dcfc08ccd7bcefc8cf8a39dcf23,Added support for optional google-perftools.,Jon Siwek,2010-10-22T15:27:27Z,jsiwek,jsiwek,62,56,6
+18,bro,5ea4189011aa8ed01e0c0bc7b2c34e05984fae69,Added support for optional libGeoIP.,Jon Siwek,2010-10-21T21:16:37Z,jsiwek,jsiwek,64,56,8
+19,bro,bc1a25da37f62346844c46b25af5f726c36bb5c3,"Added forgotten libz and libmagic include dirs to the search path.
+
+This allows them to be located in a non-standard location.",Jon Siwek,2010-10-21T20:43:22Z,jsiwek,jsiwek,14,9,5
+20,bro,d043aba54d7f94f8a7226c0ad7091c88e8d64e75,Added support for optional libz.,Jon Siwek,2010-10-21T20:32:31Z,jsiwek,jsiwek,14,9,5
+21,bro,88c77fdc2525cbe9269ba68fde887488a7b90387,Added optional libmagic support.,Jon Siwek,2010-10-21T20:20:16Z,jsiwek,jsiwek,61,55,6
+22,bro,a4231c5725b51d3b8befb8a6e8dcb8e18a564d17,Removed Endace DAG support.,Jon Siwek,2010-10-21T19:39:10Z,jsiwek,jsiwek,377,3,374
+23,bro,71df50c0a5562f1aa26e85d61ff505c61879c44d,"Fixed ""Found sed"" messages from displaying on every cmake.",Jon Siwek,2010-10-21T18:21:37Z,jsiwek,jsiwek,11,7,4
+24,bro,79596c03d5fb9de45687de8797a201cb7d5b631c,Added logic to find installed BinPAC or build from source.,Jon Siwek,2010-10-21T17:58:07Z,jsiwek,jsiwek,110,94,16
+25,bro,f176cb905a4d30a607a90a22ed750410eddfb4cf,Updated submodules,Jon Siwek,2010-10-20T21:55:44Z,jsiwek,jsiwek,4,2,2
+26,bro,27d80462da797d9bd3efc6cbd02e17fec3182eab,"Fix for make_dbg_constants target always being out of date.
+
+It would cause the perl script to run with every `make` even if it's not
+really necessary.",Jon Siwek,2010-10-20T20:46:17Z,jsiwek,jsiwek,14,4,10
+27,bro,05d2c89618511c01b099afddd0d452c56cf05a7a,"Change from CMake add_definitions() to compiler flag variables.
+
+May be easier for sub-projects to override flags this way.",Jon Siwek,2010-10-20T18:22:38Z,jsiwek,jsiwek,18,12,6
+28,bro,626e23b39baccf51f2676fe890f2e62cb6b21546,"Cleaned up bison flags a little.
+
+Verbose output should now be removed with `make clean`.",Jon Siwek,2010-10-20T17:33:12Z,jsiwek,jsiwek,6,5,1
+29,bro,dab003dda6152f5f02728402553b836d45fde595,"Fixed bug in FindBISON CMake module.
+
+Compile flags will no longer pile up in subsequent calls to
+bison_target().",Jon Siwek,2010-10-20T17:30:28Z,jsiwek,jsiwek,3,2,1
+30,bro,cff67b04cd2cdc30a138abdb3cac15742ae2e562,Cleaned up some things with compiler flags and definitions.,Jon Siwek,2010-10-20T17:00:10Z,jsiwek,jsiwek,80,62,18
+31,bro,3eb9b91fc2370392d59c4798f006f9d66d322a06,Updated submodules,Jon Siwek,2010-10-19T21:56:02Z,jsiwek,jsiwek,4,2,2
+32,bro,8cd35b71169815eec689fe48bba7195739150076,Use default FindPerl CMake module and better documented sed dependency,Jon Siwek,2010-10-19T21:50:15Z,jsiwek,jsiwek,30,15,15
+33,bro,4e4a18f3afb3a7db51f737b297924146e0a9957b,First pass at cleaning up documented dependencies.,Jon Siwek,2010-10-19T21:12:15Z,jsiwek,jsiwek,70,34,36
+34,bro,87a74912b7d01a95a91e92928811dd8417d14b57,"Minor changes to custom CMake find_package() modules.
+
+- Fix typo in FindPCAP
+- FindBIND is now more explicit when looking for include dir",Jon Siwek,2010-10-19T20:53:59Z,jsiwek,jsiwek,17,11,6
+35,bro,1542a49fffe22f6c142b6f376a708a664b7c4f2d,Simplified FindPCAP CMake module.,Jon Siwek,2010-10-19T20:37:12Z,jsiwek,jsiwek,69,17,52
+36,bro,570ee48cd9f99ffe0bbcfb80e6f5a997eb73a6bb,"Removing the --disable-nbdns config option.
+
+- Asynchronous DNS resolver support assumed by default
+- HAVE_ASYNC_DNS, HAVE_NB_DNS, and USE_NB_DNS preprocessor definitions
+  removed
+- In the process, I added FindBIND and CheckNameserCompat CMake modules",Jon Siwek,2010-10-19T20:13:28Z,jsiwek,jsiwek,197,111,86
+37,bro,13569aaab7fec61ad461b47065c55019ce97d713,"Removal of the --enable-int64 config option.
+
+This will now be always on.  As such, uses of the USE_INT64 preprocessor
+definition have been cleaned out.",Jon Siwek,2010-10-19T17:39:20Z,jsiwek,jsiwek,68,2,66
+38,bro,5cad4c8789d3d31eda6dbc6e2ceb8c56b8b11612,"Misc. cleanup of soon-to-be deprecated config options.
+
+- Forgot to remove USE_SELECT_LOOP from BuildOptions.cmake
+- ACTIVE_MAPPING removed from config.h.in, code cleanup still pending
+- EXPIRE_DFA_STATES removed from config.h.in, code cleanup still pending",Jon Siwek,2010-10-19T17:20:53Z,jsiwek,jsiwek,9,0,9
+39,bro,2bd8f42c15a7708b12dbafbf31b31c61f2d2da62,"Changes to make OpenSSL a requirement.
+
+Preprocessor conditionals dependent on definition of USE_OPENSSL have been
+straightened out.",Jon Siwek,2010-10-19T17:09:10Z,jsiwek,jsiwek,242,81,161
+40,bro,efc8b24576381a7fe306783724af607f0718f029,"Removed implementation of the --disable-select-loop config option.
+
+Preprocessor conditional blocks resulting from an existing definition of
+USE_SELECT_LOOP are now always taken.",Jon Siwek,2010-10-19T15:05:54Z,jsiwek,jsiwek,20,0,20
+41,bro,79754bf6f841e5633e340f9a5b53fb308a106735,Dropping byacc support; bison now required.,Jon Siwek,2010-10-19T14:50:32Z,jsiwek,jsiwek,1354,1,1353
+42,bro,02808b0a9265b971c189ccbb7f43d0f310251503,Re-format/comment build options as we decide which ones are still relevant.,Jon Siwek,2010-10-18T21:59:52Z,jsiwek,jsiwek,66,42,24
+43,bro,dbb9562ce9cfde983fe6dc363b3231b5d8b4413a,Updated submodules.,Jon Siwek,2010-10-18T18:24:58Z,jsiwek,jsiwek,4,2,2
+44,bro,d7eb228d52b6cb0d2f9c5817fc39954d621661ef,Minor formatting changes.,Jon Siwek,2010-10-18T18:15:40Z,jsiwek,jsiwek,16,8,8
+45,bro,9d941c097ca61b419784dd09e6b6b10f38098b9f,Moved custom CMake includes up one directory.,Jon Siwek,2010-10-18T18:13:31Z,jsiwek,jsiwek,2,1,1
+46,bro,d1e0008999e4edbc52300fa7bd4adf83ba12ee0d,Minimal CMake build of Bro done.,Jon Siwek,2010-10-15T22:27:04Z,jsiwek,jsiwek,2841,2841,0
+47,bro,8e725fdc7a073cdfa8ed51d10e563c862a5ee14a,"Include errno.h in FlowSrc.cc.
+
+If the build option to use OpenSSL is set, it would eventually get pulled in
+from them, but since that option may not always be set, we should explicitly
+include it.",Jon Siwek,2010-10-14T20:15:40Z,jsiwek,jsiwek,1,1,0
+48,bro,59aaaf7ed549bd471ed06accf1411e4d9c56ec26,"Changed some autoconf-dependent preprocessor directives from #if to #ifdef.
+
+Because it just results in less typing in CMake when not having to configure
+a preprocessor definition to a specific value.",Jon Siwek,2010-10-14T20:11:04Z,jsiwek,jsiwek,26,13,13
+49,bro,a141b52dfa07fe42213846dfc22eb7f0b8397da0,Added submodules for aux and binpac.,Jon Siwek,2010-10-14T17:20:04Z,jsiwek,jsiwek,8,8,0
+50,bro,1c8393cf0c1c4792fe478127a99a980f259f2e12,Removed everything in aux subdir in preparation for git submodules.,Jon Siwek,2010-10-14T17:09:14Z,jsiwek,jsiwek,88620,0,88620
+51,bro,4f1ed0c5eff0e1425094d5e1c70657cd31348880,Merge branch 'fastpath' into devel,Seth Hall,2010-11-15T20:46:12Z,sethhall,sethhall,110,74,36
+52,bro,95951a64d6bbb5c2eef9200143519cf02059d3ab,Merge branch 'devel' into fastpath,Seth Hall,2010-11-15T20:45:33Z,sethhall,sethhall,180,79,101
+53,bro,938b1ea8e0b661d63c80b16af47c943f084fe6a4,Applied Gregor's patch from ticket #294.,Seth Hall,2010-11-15T20:44:43Z,sethhall,sethhall,110,74,36
+54,bro,cc7c3776ccab7bae73b56b68c7ce0552c2f9ad45,Added the initial syslog analyzer and policy script.,Seth Hall,2010-10-27T19:37:00Z,sethhall,sethhall,318,313,5
+55,bro,340805fe00d06736085eb17b80029e6608c7af6d,"Adding some of the initial scripts that are going to be merged from
+my script repository.",Seth Hall,2010-10-26T21:03:19Z,sethhall,sethhall,596,596,0
+56,bro,5edf0eb75d2af64602f29b4e99e64c172c2892ea,Modification from rmkml to support SSL extensions.,Seth Hall,2010-10-26T20:41:57Z,sethhall,sethhall,18,13,5
+57,bro,06ca14ea45271c7032d27b596edb4e6e787d354d,Updated SSL analyzer and Bro script with lots of new ciphers.,Seth Hall,2010-10-26T20:41:15Z,sethhall,sethhall,1818,1318,500
+58,bro,5bf18fdb7f1d54d290728ce02b95e1579b3a65f0,"Modified all of the string functions that
+used the CheckString function.  All now use
+Bytes and Len to extract the bytes from string
+arguments.  The result of this is that these
+functions now don't fail when presented with
+strings containing NULL bytes.
+
+Signed-off-by: Seth Hall <seth@icir.org>",Seth Hall,2010-10-13T18:32:27Z,sethhall,sethhall,180,79,101
+59,bro,61757ac78bbff8364c24e9aabdc612a35ae76911,Initial import of svn+ssh:://svn.icir.org/bro/trunk/bro as of r7088,Robin Sommer,2010-09-28T03:42:30Z,rsmmr,rsmmr,375799,375799,0
+60,bro,f3b148b019ee3db1ce82c92161e3aa05e45073a8,Checkpoint for logging framework,Seth Hall,2011-01-19T14:36:06Z,sethhall,sethhall,140,139,1
+61,bro,9cfef93522a55087814eab8c13ad866f19e1e439,"Fixed bug in do_split implementation.
+
+Test suite succeeds!",Seth Hall,2011-01-18T19:40:37Z,sethhall,sethhall,8,1,7
+62,bro,aa0691ba21f6456a324ccdef2967f35837bf570e,Updating submodule(s).,Robin Sommer,2011-01-16T00:32:56Z,rsmmr,rsmmr,8,4,4
+63,bro,de06588f2779b77069f3c53d129b0e26c869c2fb,"Merge remote branch 'origin/topic/jsiwek/packaging'
+
+* origin/topic/jsiwek/packaging:
+  Changes for packaging
+  Changes to CMake logic for binary packaging
+  Changes for CPack binary packaging
+  Fix package configuration macro returning from sub-project too early
+  Add warning when building and installing are done by different users
+  Fix for PackageMaker not accepting non-numeric versions
+  Fix for OS X 10.5 compile error wrt llabs()
+  Prefer static libraries for some dependencies on OS X
+  Added OS X configures options for SDK & minimum version
+  Changes to allow source packaging via CPack",Robin Sommer,2011-01-15T22:13:39Z,rsmmr,rsmmr,775,627,148
+64,bro,1d8ad8e946c87eb018b76d3ea6627a3c5f27675a,"Changes for packaging
+
+- Added 'dist' target to top-level Makefile for doing source packages
+- Added 'make-*-packages' scripts for generating binary packages
+- Fixes for the ConfigurePackaging CMake script
+  - No longer fails when package version doesn't include a patch-level
+  - Now considers the case when a package doesn't install any
+    config files and the INSTALLED_CONFIG_FILES var is empty",Jon Siwek,2011-01-15T04:25:10Z,jsiwek,jsiwek,208,185,23
+65,bro,8d4f487add74e087599b68d219dcc94895939347,"Changes to CMake logic for binary packaging
+
+- pre/post install scripts now track configuration files that may
+  be clobbered on package install/upgrade through the
+  INSTALLED_CONFIG_FILES CMake variable and attempts to make backups
+  when the distribution's file differs from the existing file.",Jon Siwek,2011-01-14T03:52:29Z,jsiwek,jsiwek,161,151,10
+66,bro,cb64bb687427cb757e8ebe77731455cba371b298,"Porting Matti's branch to git.
+
+No changes.",Robin Sommer,2011-01-13T22:58:53Z,rsmmr,rsmmr,947,794,153
+67,bro,793678205720c998caa5ea006650dd04bd64fe12,Changes for CPack binary packaging,Jon Siwek,2011-01-12T22:26:25Z,jsiwek,jsiwek,68,47,21
+68,bro,a5632aff4e971b89f216c6a1b0b19fa3ea1a7a73,"TCP Reassembler hotfix for conns > 2GB.
+
+The TCP Reassembler does not deliver any data to analyzers after the
+first 2GB due to signed integer overflow (Actually it will deliver again
+between 4--6GB, etc.) This happens silently, i.e., without content_gap
+events or Undelivered calls.
+
+See Comments in TCP_Reassembler.cc for more details.
+
+As a hotfix that seems to work I disabled the seq_to_skip features. It
+wasn't used by any analyzer or policy script (Note, that seq_to_skip is
+different from skip_deliveries).
+
+See also ticket #348",Gregor Maier,2011-01-12T17:38:13Z,Gregor Maier,Gregor Maier,90,74,16
+69,bro,5d1f1e9edb5c39219f9f83b5c874e38be915795d,Fix package configuration macro returning from sub-project too early,Jon Siwek,2011-01-12T01:30:31Z,jsiwek,jsiwek,16,7,9
+70,bro,911230b037923182e04899801db3fbc3f58dbf3d,Add warning when building and installing are done by different users,Jon Siwek,2011-01-11T21:58:18Z,jsiwek,jsiwek,14,14,0
+71,bro,06bd8baef635939ed4df8ca5e5d2b9a7ca58b355,"Fix for portmapper analyzer segfaulting when parsing portmap dump
+replies. (Gregor Maier)
+
+Closes #332.",Robin Sommer,2011-01-10T20:19:13Z,rsmmr,rsmmr,5,5,0
+72,bro,f228e32679cb488e2f06d76e6f07d28dffd9b49f,"Keep buffering state across file rotation (Justin Azoff)
+
+Closes #207. From there:
+
+    When files are rotated they lose their buffered flag, this is
+    because File::Open only does a SetBuf? when it opens the file
+    itself, but Rotate calls rotate_file to open the file.",Robin Sommer,2011-01-10T19:59:12Z,rsmmr,rsmmr,5,2,3
+73,bro,f5715e7c1481cd2c05b9559242280aea85096467,Fix for PackageMaker not accepting non-numeric versions,Jon Siwek,2011-01-10T18:58:40Z,jsiwek,jsiwek,11,11,0
+74,bro,6345129eaf6a70519de0d7714cfcecd4e278139a,A few smaller tweaks.,Robin Sommer,2011-01-07T03:17:44Z,rsmmr,rsmmr,208,25,183
+75,bro,dbca5be43c36b7dcd22a3c9c992bd5bfb6e2bddd,Applying Seth's patch from #265 adding entropy BiFs.,Robin Sommer,2011-01-07T01:16:10Z,rsmmr,rsmmr,427,423,4
+76,bro,3f6aa735e96fcfd91e8fe187b26b74bf2c82bc9d,"Fix for OS X 10.5 compile error wrt llabs()
+
+GCC < 4.1.0 possibly has a problem w/ choosing an llabs()
+unambigiously from stdlib.h and cstdlib
+
+See also http://gcc.gnu.org/bugzilla/show_bug.cgi?id=13943",Jon Siwek,2011-01-06T23:06:51Z,jsiwek,jsiwek,34,33,1
+77,bro,e1ebf81f769c2ce725deff04df71e72c33b54fc7,"Prefer static libraries for some dependencies on OS X
+
+This makes binary packaging easier because OS X doesn't ship with
+all the shared libraries we may link against (libmagic and libGeoIP
+in this case)",Jon Siwek,2011-01-06T22:59:48Z,jsiwek,jsiwek,20,18,2
+78,bro,b496d63632ebec4aa78b5721bcb52b22d8a54a9e,Added OS X configures options for SDK & minimum version,Jon Siwek,2011-01-06T22:57:25Z,jsiwek,jsiwek,8,8,0
+79,bro,fa07bcd2331db6c43fe7ccecd8b33a72766e1bb4,"Changes to allow source packaging via CPack
+
+- Refactored all packaging related stuff into a single CMake module
+- Build should no longer fail when optional sources (e.g. broctl)
+  do not exist in the source directory, instead a warning is issued
+- Additional configure options to change packaging behavior",Jon Siwek,2011-01-05T18:05:39Z,jsiwek,jsiwek,324,186,138
+80,bro,5d41794034d70bd409ff2ab1a3fcfe76752f9671,"Merge commit 'd8aecb174a0234f702b8fb882dafa70bfc5d2d61'
+
+* commit 'd8aecb174a0234f702b8fb882dafa70bfc5d2d61':
+  Escape commands given to CMake's execute_process",Robin Sommer,2011-01-05T02:12:00Z,rsmmr,rsmmr,2,1,1
+81,bro,edfdd9d436bc3d054893eb64fe0794a0a1ae3936,Updating submodule,Robin Sommer,2010-12-20T20:03:58Z,rsmmr,rsmmr,2,1,1
+82,bro,017367d362117de03f4a1d3031de1840a8c77a7d,Updating submodules,Robin Sommer,2010-12-20T20:01:26Z,rsmmr,rsmmr,8,4,4
+83,bro,4b91c79c03d228080255eeea3f03c4363d4f9e80,Merge branch 'fastpath' of git://git.icir.org/bro into fastpath,Jon Siwek,2010-12-15T17:45:51Z,jsiwek,jsiwek,101,54,47
+84,bro,9880fd6281a416606d986940c15d09a4d74f3a77,Merge branch 'master' into fastpath,Jon Siwek,2010-12-15T17:41:56Z,jsiwek,jsiwek,10,5,5
+85,bro,d8aecb174a0234f702b8fb882dafa70bfc5d2d61,Escape commands given to CMake's execute_process,Jon Siwek,2010-12-15T17:40:17Z,jsiwek,jsiwek,2,1,1
+86,bro,763a446182934679f5e56146bee26b2e7cad1f3b,"Some small tweaks to the HTTP analyzer
+
+From ticket #339 http://tracker.icir.org/bro/ticket/339 :
+
+* Fixing a couple of minor issues in the HTTP analyzer, that made the
+  analyzer raise a ProtocolViolation() on strange but seemingly legal
+  HTTP traffic. Well, the traffic might not necessarily be adhering the
+  RFC, but the server has understood it.
+
+* Also stops parsing when the message is interrupted to prevent further
+  parsing and ProtocolViolation() generation.
+
+* skip_http_entity_data: check return value of  FindAnalyzer, since it
+  can be NULL
+
+In addition:
+* http-headers.bro now loads http.bro
+
+Testsuite changes:
+* Added a new weird (empty_http_request). This shows up once in the medium
+  testsuite.
+* no change when running short testsuite",Gregor Maier,2010-12-14T03:11:05Z,Gregor Maier,Gregor Maier,60,52,8
+87,bro,b8ab0ebc22fec9e3ed132a1bbcba86ee1d88e940,"Remvoing expire timer from http_sessions.
+
+The expire timeout for the http_sessions table is unnecessary and it
+actually breaks http session semantics for long-lived sessions. The
+connection_state_remove() event can take care of cleaning up unanswered
+sessions.
+
+If a HTTP transfer exceeds the expire timer, then once the expire timer
+fires we get an ""unanswered"" HTTP request in http.log and once the
+reply is done (http_reply_done event), it fails to locate the associated
+request (because it expired) and thus results in an ""unsolicited"" HTTP
+reply being logged (althoug they should be one http session).
+
+There was a comment in the expire_function mentioning that without the
+expire timer some requests don't show up with the test-suite. However,
+after checking back with Robin, I could not reproduce this behavior.
+(Actually there's one fewer request in the output without the
+expire-timer, but this can be explained by the above observation, so
+this is not an error but the way it should be).
+
+This patch results in changes to test-suite output:
+  * Timestamps for unanswered HTTP replies differ for unanswered request
+    in the ""short"" test.
+  * Medium testcase (note: lines are sorted, they are not in the order)::
+
+	-902189670.828700 <unknown request> (0 """" [40880 (interrupted)])
+	-902189670.828700 GET /1998/b142.ps <no reply>
+	-902189670.828700 start <<IP>>:<<port>> <<IP>>:80
+	+902189670.828700 GET /1998/b142.ps (200 ""OK"" [40880 (interrupted)] <<a.host.name>>)",Gregor Maier,2010-12-11T18:51:37Z,Gregor Maier,Gregor Maier,41,2,39
+88,bro,1ff864c234ccc7d1c7c85c94e168c61e2d97bad8,Merge branch 'master' into fastpath,Gregor Maier,2010-12-11T16:46:32Z,Gregor Maier,Gregor Maier,10,5,5
+89,bro,d24f7a6aade288e9f4856b8d1d4eaf9dfda23080,Update submodules,Robin Sommer,2010-12-10T09:44:25Z,rsmmr,rsmmr,8,4,4
+90,bro,266acde342227a699e0639c53a04fbf1490f4435,Removed an accidental debugging printf.,Seth Hall,2010-12-09T21:01:19Z,sethhall,sethhall,1,0,1
+91,bro,61c99176ad9e8ca43bf7711ea385f5c97d507b33,Readded the other changes to remove CheckString calls from strings.bif.,Seth Hall,2010-12-09T20:59:08Z,sethhall,sethhall,107,49,58
+92,bro,a598bdb5556a9f2038a52a473c53a7429d8b2491,Fixed the problem with do_split function which caused it to bail 1 separator early.,Seth Hall,2010-12-09T20:23:54Z,sethhall,sethhall,75,32,43
+93,bro,0ebcf2dff4f48d3f3a7af8578405bbaa6a039590,Setting executable bit for bro-dev-path.in.,Robin Sommer,2010-12-09T10:51:11Z,rsmmr,rsmmr,0,0,0
+94,bro,3facb6a9ea7f36b321f164443024466f3f16a902,Merge remote branch 'origin/topic/cmake-port',Robin Sommer,2010-12-09T10:00:46Z,rsmmr,rsmmr,2,1,1
+95,bro,51d561c1567347316e171c6fb868ae16295cad89,Fix wrong variable names in bro-path-dev script,Jon Siwek,2010-12-08T15:51:20Z,jsiwek,jsiwek,2,1,1
+96,bro,943b5edee07a13e600c3852ee43d5ce2a7ce8de2,Merge branch 'master' into topic/cmake-port,Jon Siwek,2010-12-08T15:48:21Z,jsiwek,jsiwek,230,138,92
+97,bro,007bd744c96ab5cc0ebcc5409ea806742fddc66d,Merge branch 'master' into fastpath,Robin Sommer,2010-12-08T12:49:06Z,rsmmr,rsmmr,8,4,4
+98,bro,a5890e304ac47393bbb32338600383f9d976a275,Updating modules.,Robin Sommer,2010-12-08T12:48:38Z,rsmmr,rsmmr,8,4,4
+99,bro,690120b7572922cc3788bb66c3395c8f34ebea3e,Merge branch 'master' into fastpath,Robin Sommer,2010-12-08T12:47:38Z,rsmmr,rsmmr,246,159,87
+100,bro,c6631d148362aab0c6fd1f0e6a4db0874f0f3ffe,"Reversing the null-byte change to strings.bif once more.
+
+I'm actually not sure how that got back in again, but it did ...
+Must have been during the merges.",Robin Sommer,2010-12-08T12:46:10Z,rsmmr,rsmmr,180,101,79
+101,bro,dc5d3560f7e612229ed976c2125171ace5cef958,"Merge with Subversion repository as of r7137. Incorporated change:
+
+    * Fix for packet processing resumption when a remote Bro dies
+      during state synchronization (Robin Sommer).",Robin Sommer,2010-12-08T12:10:26Z,rsmmr,rsmmr,25,22,3
+102,bro,c690a8b2f3e322cc3afda7c461a882c3a8601652,Merge remote branch 'origin/fastpath',Robin Sommer,2010-12-08T12:01:40Z,rsmmr,rsmmr,19,12,7
+103,bro,2ad1f61bdbc1e08193272d184e61cad2549ff5d3,Merge remote branch 'origin/topic/cmake-port',Robin Sommer,2010-12-08T11:08:46Z,rsmmr,rsmmr,36,31,5
+104,bro,846237a280e2fd0fc9483b7c7e956b2120ba8a15,"Applied Gregor's patch from ticket #247 to fix compile
+time errors with OpenSSL support.",Seth Hall,2010-12-06T20:43:32Z,sethhall,sethhall,12,6,6
+105,bro,f3885f0c890dfe508ac107cf0cc047f64281dd8d,Updated submodules to master versions,Jon Siwek,2010-12-06T18:04:40Z,jsiwek,jsiwek,4,2,2
+106,bro,f5e6856bd67508f24df5fafe5d95ee4985176e0e,"Merge branch 'master' into topic/cmake-port
+
+Conflicts:
+	aux/binpac
+	aux/broctl",Jon Siwek,2010-12-06T17:58:06Z,jsiwek,jsiwek,4,2,2
+107,bro,81b8a4176f98cb95e5ee6e0f87486cc51c08f9cf,Update binpac submodule to point to master version,Jon Siwek,2010-12-06T17:53:32Z,jsiwek,jsiwek,2,1,1
+108,bro,e89182dcc0a0bc5e0a0c18904ab53656dc7827cf,"Changes to make running bro from build dir easier.
+
+The 'bro-path-dev' script is configured at make time to echo the
+right paths to policy files.",Jon Siwek,2010-12-06T17:30:52Z,jsiwek,jsiwek,30,28,2
+109,bro,5faaa21fa9d7bf8f0a6f5763de3d27262f17f856,Updating submodules,Robin Sommer,2010-12-04T01:26:22Z,rsmmr,rsmmr,8,4,4
+110,bro,efbd22a33f0183170f1e6d77ddabcd0cfea01a74,"Allow CMake generators to pass through configure
+
+The default generator is Unix Makefiles for most platforms, but this
+lets the builder easily select a different build framework depending
+on their platform (e.g. Xcode, CodeBlocks, Eclipse ...)",Jon Siwek,2010-12-02T20:23:20Z,jsiwek,jsiwek,13,11,2
+111,bro,a9113e6f46411a19b2e0ef75ae83e42dc214e339,Submodule updates,Jon Siwek,2010-11-30T21:32:57Z,jsiwek,jsiwek,4,2,2
+112,bro,a9c9fe79500879d27c28001b0de0e8979dbaa6f9,Removed some unset()'s that were missed,Jon Siwek,2010-11-30T21:17:49Z,jsiwek,jsiwek,4,2,2
+113,bro,1442af616f904fd160b593274d72375e38b34cb0,"Merge branch 'master' into topic/cmake-port
+
+Resolved Conflicts:
+	CMakeLists.txt
+	INSTALL
+	aux/binpac
+	aux/bro-aux
+	aux/broccoli
+	aux/broctl
+	cmake/CheckTypes.cmake
+	cmake/FindBIND.cmake
+	cmake/OSSpecific.cmake
+	cmake/OpenSSLTests.cmake
+	cmake/PCAPTests.cmake
+	src/CMakeLists.txt",Jon Siwek,2010-11-30T21:07:29Z,jsiwek,jsiwek,123106,306,122800
+114,bro,ba0ae22da7a2f9aa7a5806ee112386d909967d4f,"More CMake 2.6 compat changes
+
+unset() macro only in later patch-level versions of 2.6",jsiwek,2010-11-30T20:49:20Z,jsiwek,jsiwek,16,8,8
+115,bro,0f854e201b28e88d3535c36ede0061bffdb88c57,"CMake 2.6 compatibility changes
+
+Also removed Mac specific feature of rewriting optional library
+install_names.",Jon Siwek,2010-11-30T19:21:30Z,jsiwek,jsiwek,271,180,91
+116,bro,4cc24196162773a0683fc48ef4b3a9f17a2d9a1d,Updating modules to master.,Robin Sommer,2010-11-28T04:39:35Z,rsmmr,rsmmr,4,2,2
+117,bro,e47e8f791326dc71d8be567351190b90f1e21d32,Updating modules to master versions.,Robin Sommer,2010-11-28T04:29:50Z,rsmmr,rsmmr,8,4,4
+118,bro,deacce40e90c6a35a81b7615aa569f13446fc54e,Merge remote branch 'origin/topic/robin/cleanup',Robin Sommer,2010-11-28T04:10:05Z,rsmmr,rsmmr,123012,216,122796
+119,bro,a2a7ee867913629aff24daf6384bd06a6b9bd7e8,Reinserting an accidentally deleted line.,Robin Sommer,2010-11-28T03:54:58Z,rsmmr,rsmmr,1,1,0
+120,bro,c925bd43d81a0755095411ecb674044c187249a3,Portability fix for Linux: this removes the need for linux-include.,Robin Sommer,2010-11-28T01:57:04Z,rsmmr,rsmmr,12,4,8
+121,bro,121ff3965cfb8d65d907cafcd719194eefee0eba,Merge remote branch 'origin/topic/robin/svn-merge' into devel,Robin Sommer,2010-11-28T01:31:26Z,rsmmr,rsmmr,42,35,7
+122,bro,ffdd469e013280d98f53e2940fed9b599244952d,Merge remote branch 'origin/topic/robin/cleanup' into devel,Robin Sommer,2010-11-28T01:30:34Z,rsmmr,rsmmr,122819,99,122720
+123,bro,49cd33011003dde89582be5b0f5e8daafa1b68d6,Merge branch 'master' into devel,Robin Sommer,2010-11-28T01:25:09Z,rsmmr,rsmmr,9896,2304,7592
+124,bro,fabc59b2cdbbdbaf223d351ac43e7699c4f96323,Deleteing aux directories in preparation for merge,Robin Sommer,2010-11-28T01:25:09Z,rsmmr,rsmmr,81779,0,81779
+125,bro,b0cb05de64bc49120909c82b928a310a1291c98f,Merge with Subversion repository as of r7098.,Robin Sommer,2010-11-27T20:21:17Z,rsmmr,rsmmr,42,35,7
+126,bro,e95adb8055b852e335449e1861ffe42b042b1a9c,Another test commit.,Robin Sommer,2010-11-27T20:00:34Z,rsmmr,rsmmr,1,1,0
+127,bro,fb76d7fe2653050af6696ed53693346332d5d2dc,"Removing the linux-include directory from the search path.
+
+I think we don't need this anymore, but still need to verify that.",Robin Sommer,2010-11-26T23:32:24Z,rsmmr,rsmmr,1,0,1
+128,bro,4714af96579d3ca539407669c4b2d92df98a650b,"New Makefile wrapper in top-level directory.
+
+This wrapper has a few standard target for convinience, mostly
+forwarding them build/Makefile.
+
+Also adding a .gitignore to let git skip the build/ directory.",Robin Sommer,2010-11-26T23:28:05Z,rsmmr,rsmmr,29,29,0
+129,bro,2ee218fec8d1fe58220067c342b51c91ba3afc30,"Updating CHANGES and VERSION.
+
+I'm starting a new version series, 1.6-dev, to not confuse these
+with further commits to SVN.",Robin Sommer,2010-11-26T23:14:00Z,rsmmr,rsmmr,31,30,1
+130,bro,3f0ce359a2b7452bf345247a4ced0f7373451b8e,"Cleanup of the Bro distribution.
+
+* Deleting a lot of old stuff no longer maintained or needed.
+
+* Updating some of the top-level instructions.",Robin Sommer,2010-11-26T21:14:52Z,rsmmr,rsmmr,122721,40,122681
+131,bro,818f5f4c0a3476846162b2ee4298afe4c9f27e60,aux/bro-aux was still pointing to the topic branch.,Robin Sommer,2010-11-26T20:07:50Z,rsmmr,rsmmr,2,1,1
+132,bro,702e2ec0f163ee4284624cbaef0b00cccf233d4f,Updating submodules.,Robin Sommer,2010-11-25T05:32:52Z,rsmmr,rsmmr,6,3,3
+133,bro,610d081c4bd882830541b5b748803f60698ca021,"Merge with origin/topic/cmake-port.
+
+Needed to readd the broctl/broccoli/binpac submodules manually, as
+git seemed to get confused by the existing directories.",Robin Sommer,2010-11-25T05:02:08Z,rsmmr,rsmmr,9896,2304,7592
+134,bro,c1768336c4b06936068b9cbafc9343ab1dfd484f,"Removing aux/{broctl,binpac,broccoli} in preparation for merge.",Robin Sommer,2010-11-25T04:33:34Z,rsmmr,rsmmr,81779,0,81779
+135,bro,5964da43fbe5ada59cf0f294d7daf8b9e80a692e,"Better way to get source dir of configure script
+
+And updated submodules",Jon Siwek,2010-11-23T03:19:02Z,jsiwek,jsiwek,13,5,8
+136,bro,8901b302364c226cc90a245d863eaf3bfcce31c0,"Enable broccoli, broctl, aux tools by default
+
+The configure wrapper now only provides --disable options for each
+aux. package.",Jon Siwek,2010-11-23T01:42:37Z,jsiwek,jsiwek,38,20,18
+137,bro,426b940b4ce75cd491af9683ed6c4f9bd5306d39,Updated broctl submodule,Jon Siwek,2010-11-21T04:43:48Z,jsiwek,jsiwek,2,1,1
+138,bro,1b7c6b469e6f323a12a8255756f389690d9d1b55,Fix to allow tilde ($HOME) in install prefix.,Jon Siwek,2010-11-21T02:40:54Z,jsiwek,jsiwek,5,5,0
+139,bro,3b459c368c475482b7d2bb833a34f82797545c6c,Added uninstall target,Jon Siwek,2010-11-20T18:18:54Z,jsiwek,jsiwek,66,56,10
+140,bro,f3f395e30e13c000b6183e5d0c045d3635e73cb3,Update to broctl submodule,Jon Siwek,2010-11-19T19:28:52Z,jsiwek,jsiwek,2,1,1
+141,bro,4982c02eba1010c9301c993915fef357d0779b56,Source package excludes .git and generate only TGZ,Jon Siwek,2010-11-19T17:59:22Z,jsiwek,jsiwek,3,2,1
+142,bro,0878e9b8f14d11a253172f8833a7dadf2f9a9429,"Configure wrapper fixes for Broctl
+
+Made order of --enable-broctl and --enable-cluster not matter.
+
+--enable-cluster always enables Broctl in cluster configuration even if
+the other option is used.
+
+--enable-broctl will enable Broctl in standalone configuration only if
+--enable-cluster isn't present.",Jon Siwek,2010-11-19T17:28:43Z,jsiwek,jsiwek,19,16,3
+143,bro,552177c33a3cbe427143b7769df5b151cf2bcb9e,CPack's source package now ignores the build dir,Jon Siwek,2010-11-19T16:45:46Z,jsiwek,jsiwek,3,3,0
+144,bro,e4d12ea1d36a9f029815c199399d68951025714e,"Changed default CMAKE_BUILD_TYPE to RelWithDebInfo
+
+The --enable-debug option of the configure wrapper changes it to Debug.
+Removed --enable-release option of the configure wrapper.
+Updated submodules",Jon Siwek,2010-11-18T17:34:29Z,jsiwek,jsiwek,27,8,19
+145,bro,d9def9e7d569f60b59e9ad63be8fb9df9038bef6,Updated broccoli submodule,Jon Siwek,2010-11-18T03:08:44Z,jsiwek,jsiwek,2,1,1
+146,bro,30c047274f20f4ad73e2984cfc55e4217562ba5a,Updated submodules,Jon Siwek,2010-11-18T02:21:03Z,jsiwek,jsiwek,8,4,4
+147,bro,efce9dbfe255cbdcc56eaed549ffcee4a851ac8b,"Customizable error messages for missing prereqs.
+
+Adds the FindRequiredPackage() macro that wraps the functionality
+of the standard find_package() macro.",Jon Siwek,2010-11-18T01:48:34Z,jsiwek,jsiwek,75,63,12
+148,bro,ffdf9e74747c4bb31c14fa7722de107e9ddf3777,Configure wrapper checks if source directory moved,Jon Siwek,2010-11-17T16:14:49Z,jsiwek,jsiwek,25,23,2
+149,bro,6b356d464d899c81080732b0bf7cbed91015babc,Update broccoli submodule,Jon Siwek,2010-11-16T23:29:30Z,jsiwek,jsiwek,2,1,1
+150,bro,90be6b5e7d6c92a2ce49e3aa31a61d9eed9f2a0c,Policy dir follows prefix if not explicitly set,Jon Siwek,2010-11-16T23:04:47Z,jsiwek,jsiwek,4,4,0
+151,bro,15063b73fe6824c3fd700d126f51c70279c0291a,"Build summary output adjusted.
+
+By default broccoli and broctl would not explicitly show as ""false""
+(meaning disabled).",Jon Siwek,2010-11-16T20:42:45Z,jsiwek,jsiwek,2,2,0
+152,bro,7a10ccfb89808fee6a3e33abb172ed91a5034750,"Revisions to INSTALL directions
+
+And updated submodules to newer commits",Jon Siwek,2010-11-15T18:47:28Z,jsiwek,jsiwek,23,12,11
+153,bro,1b553d7ebfd273db94b9fe4106689a1d557bd70b,Updated broctl submodule,Jon Siwek,2010-11-15T00:49:27Z,jsiwek,jsiwek,2,1,1
+154,bro,3c7c0686853f76983c486f08db523644f692b117,"Renaming of DATADIR CMake variable.
+
+To POLICYDIR since that's more clear.  Also decided that restricting
+it to a subdirectory of prefix isn't much use as an option, so went
+back to having it be an absolute path.",Jon Siwek,2010-11-14T02:41:30Z,jsiwek,jsiwek,21,12,9
+155,bro,7737572aabf6b38f6ac1d89436bdc8824ac7c7fd,"Allow building auxilliary projects along with Bro.
+
+BinPAC, Broccoli, Broctl, and Bro auxilliary tools are included
+as git submodules.",Jon Siwek,2010-11-14T02:20:40Z,jsiwek,jsiwek,172,95,77
+156,bro,0221c121fcf08752693573c0404f9da2d502c89f,Updated submodules,Jon Siwek,2010-11-02T22:17:51Z,jsiwek,jsiwek,4,2,2
+157,bro,c1477103198b1dd1f74c1cccab12ec8d5ef65b5c,"configure now writes directly to CMakeCache.txt
+
+The intermediate BuildOptions.cmake file is no longer needed.",Jon Siwek,2010-11-02T18:03:58Z,jsiwek,jsiwek,170,38,132
+158,bro,7eb92d6a2d401c2f013d6db1a32b4e5c16b8ced5,Style/comment enhancements.,Jon Siwek,2010-11-02T16:58:47Z,jsiwek,jsiwek,109,64,45
+159,bro,b891379e06f1835a68840427725b9387185a4b99,Updated submodules.,Jon Siwek,2010-11-01T16:06:05Z,jsiwek,jsiwek,4,2,2

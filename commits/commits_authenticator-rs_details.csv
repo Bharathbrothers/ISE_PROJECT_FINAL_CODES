@@ -1,0 +1,545 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,authenticator-rs,18ddea68dcbc39c0faf8c63194d2e2a1b0320fc8,Add utils shared between all platforms,Tim Taubert,2017-07-11T10:20:14Z,Tim Taubert,Tim Taubert,237,101,136
+1,authenticator-rs,100c5f6ef44a1520004cf4063b6e52b41c34288b,Update macOS platform manager and monitor APIs to work with callbacks,Tim Taubert,2017-07-11T10:01:46Z,Tim Taubert,Tim Taubert,77,47,30
+2,authenticator-rs,eb312fa36eb3f881fb8a9e820e0f9eca2583ec46,"Implement proper WorkQueue and callbacks, update C API",Tim Taubert,2017-07-04T20:03:54Z,Tim Taubert,Tim Taubert,508,360,148
+3,authenticator-rs,89aec0f1bcbfea27965ac28d6e44c43726ce4683,Remove unused generic type param,Tim Taubert,2017-06-21T12:42:09Z,Tim Taubert,Tim Taubert,2,1,1
+4,authenticator-rs,dc8cc7ffac5d2c5f86f9e4dbae34b3ecb3e3b514,macOS: Implement/fix sync platform API,Tim Taubert,2017-06-20T19:32:39Z,Tim Taubert,Tim Taubert,26,12,14
+5,authenticator-rs,4aa1a22ea4fcf8fa56ad36755f8d8ac066efb27b,Remove mach dependency,Tim Taubert,2017-06-20T19:32:24Z,Tim Taubert,Tim Taubert,22,6,16
+6,authenticator-rs,a0c3a92d2f0ae2d05a7ddcea8278d13887afed91,Remove nix and bitflags dependencies,Tim Taubert,2017-06-20T13:33:45Z,Tim Taubert,Tim Taubert,137,91,46
+7,authenticator-rs,217accc8705a91ad0ac43fd430a881fca82a6c53,Add first rough C API,Tim Taubert,2017-06-20T10:03:09Z,Tim Taubert,Tim Taubert,121,121,0
+8,authenticator-rs,9fe604ebf668afba6f393d7c55b8ec471a4308e7,Make U2FManager API sync,Tim Taubert,2017-06-20T10:02:25Z,Tim Taubert,Tim Taubert,70,25,45
+9,authenticator-rs,faf54245d3b0260668b0ca3aa2eb07fee2ecb648,Override libudev-sys with our own fork that uses dlopen(),Tim Taubert,2017-06-20T10:01:08Z,Tim Taubert,Tim Taubert,3,3,0
+10,authenticator-rs,d9196a767dd49c0a5e3964f47baf5bd31215859a,Dependencies cleanup,Tim Taubert,2017-06-13T10:15:04Z,Tim Taubert,Tim Taubert,3,1,2
+11,authenticator-rs,e6ea6461dc6264dd46c90a543f12f60684e59610,"Merge pull request #18 from jcjones/7-refactor_u2fprotocol
+
+Fix #7: Refactor U2FProtocol",Tim Taubert,2017-06-13T09:34:31Z,ttaubert,ttaubert,1128,567,561
+12,authenticator-rs,218a47b1e36806dc34f318ec9b4746b2235ac01a,Fix #7 - Move U2F protocol functions out of lib.rs into u2fprotocol.rs,J.C. Jones,2017-06-12T16:30:15Z,jcjones,jcjones,1128,567,561
+13,authenticator-rs,f14df129c9ac8379636e17378c9c72f5ca247415,Reorder module/crate declarations,J.C. Jones,2017-06-12T11:45:12Z,jcjones,jcjones,24,6,18
+14,authenticator-rs,d49013e701721a35ad5404b99659ceafdfea95e0,Small cleanup for macOS monitor events,Tim Taubert,2017-05-23T18:30:40Z,Tim Taubert,Tim Taubert,16,6,10
+15,authenticator-rs,e9779596d2d8d5aff10a620e5beca702cc3de1fb,Initial Windows support,Tim Taubert,2017-05-22T19:38:57Z,Tim Taubert,Tim Taubert,627,604,23
+16,authenticator-rs,a43886755d55c7a5bf4632a8d9135231ef07483b,Small Linux cleanup,Tim Taubert,2017-05-22T16:49:23Z,Tim Taubert,Tim Taubert,27,8,19
+17,authenticator-rs,a27c16aab12a91599afd828a9f55116f6b8fe07c,Move the OSX hotplug check to be on the tail end of the device loop,J.C. Jones,2017-05-17T20:33:43Z,jcjones,jcjones,12,6,6
+18,authenticator-rs,6210b90cc2e120e625f84884bcb6997d89feff50,"Fix #16 - Improve logging
+
+Pull in the log crate and move all the OSX println statements to be at appropriate
+log levels.
+
+This also pulls in `env_logger`, an implementation of a logger, that obeys an
+environment variable RUST_LOG. I added some notes to README.md as to how to
+use it.
+
+Optimally, we don't need `env_logger` except for tests and the binary, but
+we can't eliminate it from the library form until [this PR for cargo completes](https://github.com/rust-lang/cargo/issues/1982), so we might need to refactor it out of main.rs when this becomes a Gecko lib.
+
+But maybe not? Anyway, it's easy to change down the line.",J.C. Jones,2017-05-17T19:05:03Z,jcjones,jcjones,63,42,21
+19,authenticator-rs,a8e90c7a86e8df62e7f88526ae53e510e4a9a89c,"Fix #1 - Minimize races that might access removed devices on OSX
+
+This patch changes the OSX runloop so that, before attempting to access a
+device, it should peek and see if there are any pending Add/Remove events
+from the Monitor, which runs in a different thread.
+
+Another option, which might be safer, is to use an AtomicBoolean shared between
+the Monitor and the OSX platform, named something like `events_waiting`. If I'm
+understanding the channel properly though, this patch's method should be OK,
+and doesn't push OSX's requirements out to other platforms.
+
+Note that the way I'm doing this - using the TryIter.size_hint - is probably
+somewhat inefficient, but this already has lots of milliseconds of sleep in it,
+so I'm not overly worried.",J.C. Jones,2017-05-17T18:26:15Z,jcjones,jcjones,8,7,1
+20,authenticator-rs,d6ac8b45a56c3dce828399b2f7b32441f1ffc677,Add a test for ping_device,J.C. Jones,2017-05-17T17:11:03Z,jcjones,jcjones,23,21,2
+21,authenticator-rs,20d794b04a686f6640d87dab9f56b4a3dccb77e7,"Fix #14: Don't send real data unnecessarily
+
+When the state machine demands we call register() to cause blinks during a sign(),
+this patch sets the challenge and application parameters to all zeroes. While
+not necessary for security, it's what other implementations do.",J.C. Jones,2017-05-17T17:09:15Z,jcjones,jcjones,16,9,7
+22,authenticator-rs,fb07a83df3f6d0e2f9c8054d8ecb71ac5d8d0759,"Fix #15: Resolve randomness in unit tests
+
+The `init_device` and `ping_device` methods both need a random of some sort,
+and since we want to test those methods, it seems reasonable to - like the
+challenge parameters - make the randomness be supplied by the platform. This
+also lets us potentially use different random sources per platform - which is
+probably not a good idea, but ... maybe?
+
+Anyway, this unbreaks the tests.",J.C. Jones,2017-05-17T16:14:22Z,jcjones,jcjones,38,23,15
+23,authenticator-rs,dff5fec3f52523cca4d60c77a147122480bb18de,Cleanup OSX Device Boxed Pointer,J.C. Jones,2017-05-17T15:23:26Z,jcjones,jcjones,8,6,2
+24,authenticator-rs,c498cee4db2bbfb5a72e4a4ffd82c3ef44bccdf2,Clean up public API exposed by the u2fhid module,Tim Taubert,2017-05-17T14:10:48Z,ttaubert,ttaubert,27,11,16
+25,authenticator-rs,b5dd3ad2eedec98e11462230f7aab53dae65416b,ref #7: Moved U2FManager to src/manager.rs,Tim Taubert,2017-05-17T14:03:15Z,ttaubert,ttaubert,114,60,54
+26,authenticator-rs,60facaf0e965120e77af16ec7f4053b11b74cdc2,Small follow-up / cleanup,Tim Taubert,2017-05-17T13:39:18Z,ttaubert,ttaubert,2,1,1
+27,authenticator-rs,ced35bc80314854ea4671799bc5b93f3c45e2dba,Fixes #5 and #13: Use IOHID device matching instead of filtering manually,Tim Taubert,2017-05-17T13:35:55Z,ttaubert,ttaubert,371,193,178
+28,authenticator-rs,417e3355bdee24e44a873986f30dd34f74906682,fixes #4: lib.rs::init_device must use a real nonce,Tim Taubert,2017-05-17T08:59:54Z,ttaubert,ttaubert,33,18,15
+29,authenticator-rs,25e09d65637fd45ed53d9d37032ad6b23b32a5d7,Speed up and simplify communication in macOS HID device monitor,Tim Taubert,2017-05-17T07:27:02Z,ttaubert,ttaubert,134,73,61
+30,authenticator-rs,f1550026219548ed0faf77bf95e8f549777780f2,Small cleanup for the macOS device monitor,Tim Taubert,2017-05-16T16:18:16Z,ttaubert,ttaubert,16,6,10
+31,authenticator-rs,26a2eb9428929a2ecf159641c1da5005d6eb9674,"Merge pull request #3 from jcjones/travis
+
+Resolve #2 - Support TravisCI",J.C. Jones,2017-05-16T16:10:19Z,jcjones,jcjones,21,21,0
+32,authenticator-rs,ebfd017558776afb0819f116cded4b764d11c925,"Resolve #2 - Support TravisCI
+
+Add readme.
+Add travis config.",J.C. Jones,2017-05-16T15:36:06Z,jcjones,jcjones,21,21,0
+33,authenticator-rs,4aab56a4cbeace261a3f25648af5fcd39ce161c0,Kick travis,J.C. Jones,2017-05-16T15:24:28Z,jcjones,jcjones,3,0,3
+34,authenticator-rs,bd6acd568d7a72dc622ae9f9d6ce5a4e1576534f,Add travis script,J.C. Jones,2017-05-16T15:06:26Z,jcjones,jcjones,8,8,0
+35,authenticator-rs,365d99ecf111bf7ee594c5e415029dfda27402da,No longer depend on local core-foundation-sys on OSX,J.C. Jones,2017-05-16T14:49:23Z,jcjones,jcjones,8,1,7
+36,authenticator-rs,9aacf0fc2648b5daa11ba5031c467b8eb98e0c5b,First steps towards a new U2FManager interface,Tim Taubert,2017-05-16T03:20:36Z,Tim Taubert,Tim Taubert,466,246,220
+37,authenticator-rs,fc9aade8698a2a01def08ef7b08c05e861171977,Rewrite and reorganize most of the libudev code for Linux,Tim Taubert,2017-05-15T14:41:48Z,Tim Taubert,Tim Taubert,774,532,242
+38,authenticator-rs,365d7b962ec01aee2a75cd8d578144dc06eee239,Update the textual thread design,J.C. Jones,2017-05-12T20:49:37Z,jcjones,jcjones,74,67,7
+39,authenticator-rs,4e45151a5c8d032ac2b9ff1c63c2e2cf6e4d8fd2,Remove the find keys method,J.C. Jones,2017-05-12T15:57:48Z,jcjones,jcjones,4,0,4
+40,authenticator-rs,f3c4e7922b7413768d2134b173bc91a03067b7f1,"Add sign, and avoid shutdown hangs",J.C. Jones,2017-05-11T23:28:48Z,jcjones,jcjones,487,298,189
+41,authenticator-rs,434abb0d25c5c1017c61b200873484eb4b9a41c5,More fix,J.C. Jones,2017-05-11T17:49:28Z,jcjones,jcjones,8,3,5
+42,authenticator-rs,9b5eeefd1e6377e4fdb6c4055ea4554b4e7b3897,Set a common API for the 'main' method,J.C. Jones,2017-05-11T17:34:23Z,jcjones,jcjones,139,11,128
+43,authenticator-rs,e4df17034ded440efc5d59c00d704f6092e1cca2,Only use callbacks to add/remove devices,J.C. Jones,2017-05-11T15:35:03Z,jcjones,jcjones,34,12,22
+44,authenticator-rs,cf7325aa544965329378a1b6486eadd84eec2df2,Remove unnecessary status functions,J.C. Jones,2017-05-11T15:16:44Z,jcjones,jcjones,53,14,39
+45,authenticator-rs,64c0f5353e8e220d63850c4c1d2580fb5f5550b5,Fix perform_job_for_key state transition,J.C. Jones,2017-05-11T05:43:39Z,jcjones,jcjones,25,10,15
+46,authenticator-rs,c9bdc9a7277b7516ea8966a11ea9d6f317d5731f,Add a status field to the U2FDevice trait,J.C. Jones,2017-05-11T05:19:35Z,jcjones,jcjones,83,51,32
+47,authenticator-rs,e19941e126ac9b983bd1a87c5fc8e40ae483ac59,"Move devices to be initialized by main, not find_keys",J.C. Jones,2017-05-11T04:26:13Z,jcjones,jcjones,197,81,116
+48,authenticator-rs,0cc7762a87fa26942d7c8c7fe699619e380cd80b,Fix memory crash in OSX,J.C. Jones,2017-05-09T22:24:44Z,jcjones,jcjones,16,11,5
+49,authenticator-rs,89b0d9f18262de2d3cb117ce4c6e829df879345c,Change the OSX model to use a single runloop,J.C. Jones,2017-04-26T21:34:26Z,jcjones,jcjones,454,266,188
+50,authenticator-rs,00e27c0df36f3ae2b5ffe43153fa70043f7f8838,Don't depend on the byteorder crate to parse device usage information,Tim Taubert,2017-05-09T23:32:24Z,Tim Taubert,Tim Taubert,25,14,11
+51,authenticator-rs,13457548e9e64d21d202bf04f47243cc01a99c15,Fix HID communication on Linux,Tim Taubert,2017-05-09T19:56:18Z,Tim Taubert,Tim Taubert,46,22,24
+52,authenticator-rs,ef0f5ce55ce1ca00eb4890ed9dee64c492f881ac,Merge branch 'test_fixes',J.C. Jones,2017-05-09T16:39:38Z,jcjones,jcjones,10,5,5
+53,authenticator-rs,41a81f35439ebef6543de42fa371d6b22eae9225,Fix U2F device detection on Linux,Tim Taubert,2017-05-09T16:26:57Z,Tim Taubert,Tim Taubert,168,64,104
+54,authenticator-rs,da275b158671790ceaa37dba3e53002482ca7ecf,Fix test: Continuation numbering starts at 0,J.C. Jones,2017-05-09T15:18:54Z,jcjones,jcjones,8,4,4
+55,authenticator-rs,4f34d1b76c35c562bcb2b0b6643ac17a4a6eb926,Fix for non-OSX platforms,J.C. Jones,2017-05-09T15:03:32Z,jcjones,jcjones,2,1,1
+56,authenticator-rs,684625bb25ac68a226d5038877c1a911567dc26c,"Use multiple keys, but not dynamic changes
+
+This rev can work with multiple simultaneous keys, but only for a single
+operation at a time.
+
+It also cannot handle dynamic changes.",J.C. Jones,2017-04-20T18:27:39Z,jcjones,jcjones,431,284,147
+57,authenticator-rs,0eb4a3aa8a375c13da9d9f19d65f88d14a25c713,Fix (almost) all warnings,J.C. Jones,2017-04-19T22:50:20Z,jcjones,jcjones,96,40,56
+58,authenticator-rs,c6dedbeb6d5528a60cc8781317fb573dc8763e69,Break up main,J.C. Jones,2017-04-19T22:21:34Z,jcjones,jcjones,144,84,60
+59,authenticator-rs,70aaab417a39fb8edfebdf4c5533c49b1596de43,"This commit can, in the trivial case, register and sign with a single
+Security Key assuming:
+
+1) There's only one plugged in
+2) It doesn't get unplugged
+
+It uses hardcoded values, but it works end-to-end.",J.C. Jones,2017-04-19T21:12:22Z,jcjones,jcjones,117,105,12
+60,authenticator-rs,9c45cdb480bb8cae5ccad4c72e0750a1be16df5c,Make Register work for at least a single token.,J.C. Jones,2017-04-18T23:40:36Z,jcjones,jcjones,84,61,23
+61,authenticator-rs,c5922fad60040399aeb7efb28e83eb7ebc150f1a,Initial OSX support,J.C. Jones,2017-03-31T21:07:18Z,jcjones,jcjones,704,686,18
+62,authenticator-rs,7a06fda576e1d2a318ef693349464c6ca50f3504,"Linux module cleanup, commenting",Kyle Machulis,2016-11-14T20:24:12Z,qdot,qdot,370,240,130
+63,authenticator-rs,5e0e3b1ba2a520c3c926b6deba659e61652d143a,Test cleanup,Kyle Machulis,2016-11-09T19:45:56Z,qdot,qdot,162,57,105
+64,authenticator-rs,cd6db9d35d8843bdc52dd074e82bfc1e8309a25c,Fixed APDU test.,Kyle Machulis,2016-11-08T22:43:33Z,qdot,qdot,30,24,6
+65,authenticator-rs,46a7666311057ed72da7cac9253ad59821f3b75c,Move consts to own file,Kyle Machulis,2016-11-08T21:30:18Z,qdot,qdot,147,65,82
+66,authenticator-rs,54a441682a5e53d79d2304efe355763a3036c699,Code cleanup,Kyle Machulis,2016-11-08T00:59:51Z,qdot,qdot,82,33,49
+67,authenticator-rs,1631bba1ab2efcb3d811ec41059fa7f29dcc46c8,Multi-part chunk sending now works,Kyle Machulis,2016-11-04T01:18:33Z,qdot,qdot,171,128,43
+68,authenticator-rs,6f7fa3e6c6117afcff97dacb991979fdf8575a9d,Start work on multi-packet data formation,Kyle Machulis,2016-11-03T22:47:59Z,qdot,qdot,108,65,43
+69,authenticator-rs,e02b92acef9cbcc7e1b37e4b2f98559f629809b9,Create tests for init_device,Kyle Machulis,2016-11-02T22:02:22Z,qdot,qdot,278,240,38
+70,authenticator-rs,1269f0b17a810953b34f1a3142180113e79aca39,"Detect devices, send/recv function",Kyle Machulis,2016-10-28T23:49:55Z,qdot,qdot,340,318,22
+71,authenticator-rs,d1be468f4bdc610ddc33bd0742f7854678ebb58b,feat: Get hid descriptors on linux,Kyle Machulis,2016-09-30T05:18:22Z,qdot,qdot,134,132,2
+72,authenticator-rs,a6cec4bbe7fde1d76e4c38b44f36beef2ce08e30,Adding cargo defaults,Kyle Machulis,2016-09-27T19:59:28Z,qdot,qdot,12,12,0
+73,authenticator-rs,1b1f8207061f94edc2a84637b0e176db34b10316,Initial commit,Kyle Machulis,2016-09-27T19:59:35Z,qdot,qdot,7,7,0
+74,authenticator-rs,88e8326595fead2c9d37cf0d14b6e83abe47d7e9,"use `extern ""system""` rather than `extern ""stdcall""` (#67)
+
+`extern ""stdcall""` really only has meaning on x86 Windows; I'm not even sure what calling `extern ""stdcall""` functions on x86-64 Windows does (probably bad things?).  `extern ""system""` carries the correct meaning on x86 and x86-64 (and other architectures such as AArch64), so let's use that.  (FWIW, `winapi` also uses `extern ""system""` for these functions.)",Nathan Froyd,2018-10-04T22:34:30Z,froydnj,froydnj,4,2,2
+75,authenticator-rs,ea7244febb010bb8e02c5e01dd6f2b9a0082884a,"Fix #65 - Update to WinAPI 0.3 (#66)
+
+This updates to the new package layouts for the WinAPI 0.3.x crate, which doesn't appear to have had any semantic changes over 0.2.x.",J.C. Jones,2018-09-20T20:40:08Z,jcjones,jcjones,156,87,69
+76,authenticator-rs,bd1f86042c9f7fc29a75b489d767ff431a805836,Update to rustfmt-preview for travis. Update `rustfmt`,J.C. Jones,2018-06-12T16:16:45Z,jcjones,jcjones,44,23,21
+77,authenticator-rs,aab85135fed57ffcda8aad520770de626afd3e12,Update to 0.2.0 to signify FreeBSD,J.C. Jones,2018-06-12T16:26:52Z,jcjones,jcjones,2,1,1
+78,authenticator-rs,df493ee73aef1f7e4d6e59a4b1d94805619f0c73,"rustfmt
+
++ mention FreeBSD in readme",Greg V,2018-04-16T18:56:16Z,unrelentingtech,unrelentingtech,55,34,21
+79,authenticator-rs,398a7665f22066ae1d0ade5553c0a3184af010b3,"Add FreeBSD (uhid + devd) support
+
+Tested with a YubiKey 4.",Greg V,2018-04-16T17:59:40Z,unrelentingtech,unrelentingtech,390,386,4
+80,authenticator-rs,48d87933a122c3447dfe183761cdd6b97df86976,"Extract hidproto module from linux::hidraw
+
+Make the protocol parts independent of Linux code, in preparation for
+adding FreeBSD support.",Greg V,2018-04-16T12:29:05Z,unrelentingtech,unrelentingtech,316,168,148
+81,authenticator-rs,d10061ae2dab7727495975c889d5ac922dfc78cb,Bug 1464015 - Web Authentication - Rework IPC layer for future Android/Windows support r=jcj,Tim Taubert,2018-05-30T14:08:55Z,Tim Taubert,Tim Taubert,6,2,4
+82,authenticator-rs,85e51312c00086e62086cf4237857de15d4989b4,"Bug 1460301 - Web Authentication - Don't use U2F_PING to initialize tokens r=jcj
+
+Fixes #63",Tim Taubert,2018-05-14T15:40:21Z,Tim Taubert,Tim Taubert,48,3,45
+83,authenticator-rs,6d62a6ff07ff1673286d069b9b59048dab233435,Remove unused imports,Tim Taubert,2018-05-07T09:00:45Z,Tim Taubert,Tim Taubert,2,0,2
+84,authenticator-rs,467fe94c4d77c2c5608f39226cac22e78919a7c1,"Merge pull request #64 from jrmuizel/update-cf
+
+Update core-foundation and use it to clean up some code.",Tim Taubert,2018-05-07T08:59:18Z,ttaubert,ttaubert,101,27,74
+85,authenticator-rs,a3f447c3d19bc6425ee9f7ee72a78f3224f8b7b3,"Use core-foundation to create the CFDictionary
+
+This removes a bunch of code and takes advantage of the helpers from
+core-foundation.",Jeff Muizelaar,2018-05-04T19:21:20Z,jrmuizel,jrmuizel,89,21,68
+86,authenticator-rs,547a1d7f32b57f6f844f4cb46424bcc4951f045c,Update to core-foundation-sys 0.6.0,Jeff Muizelaar,2018-05-04T19:06:47Z,jrmuizel,jrmuizel,24,12,12
+87,authenticator-rs,75f7c07668c246d6c9d018a723e70d907cf2c867,Bug 1459174 - Web Authentication - Use sha2 crate instead of rust-crypto for example/main r=jcj,Tim Taubert,2018-05-04T12:41:50Z,Tim Taubert,Tim Taubert,21,9,12
+88,authenticator-rs,acf6c21a4c2357dd7d99f007437513cb88fc5633,Bug 1459173 - Web Authentication - rustfmt u2f-hid-rs r=jcj,Tim Taubert,2018-05-04T12:41:24Z,Tim Taubert,Tim Taubert,60,30,30
+89,authenticator-rs,ade23f79563e081d6fcc0aeaca75118f666b17a7,Sync logging changes from mozilla-central,Tim Taubert,2018-04-23T10:05:35Z,Tim Taubert,Tim Taubert,8,4,4
+90,authenticator-rs,198fefad6f42a25c605b30d149fc9e71f9f89209,Bug 1444547 - Propagate proper error codes from u2f-hid-rs to WebAuthn r=jcj,Tim Taubert,2018-03-14T19:09:56Z,Tim Taubert,Tim Taubert,258,146,112
+91,authenticator-rs,6cf528044386487157f4436800a9261a129071d3,Bug 1443248 - Udpate u2fhid crate to depend on core-foundation-sys 0.5 r=ttaubert,Matt Brubeck,2018-03-07T11:08:27Z,mbrubeck,mbrubeck,3,1,2
+92,authenticator-rs,edba11b05626b231d59c0f84ec8b220a76be46af,Bug 1442557 - [u2f-hid-rs] Keep polling excluded devices when creating credentials r=jcj,Tim Taubert,2018-03-02T15:09:04Z,Tim Taubert,Tim Taubert,23,15,8
+93,authenticator-rs,f1f0bce6818c8c321587168b4e66dbe585a77ff3,"Example fix, and README update",J.C. Jones,2018-02-26T15:55:16Z,jcjones,jcjones,19,14,5
+94,authenticator-rs,275ab2d98d752a41bbe57e7c8c3bdf56cf495de7,rustfmt,J.C. Jones,2018-02-26T15:39:35Z,jcjones,jcjones,266,137,129
+95,authenticator-rs,5d48380e5809059e16c6174ff5ea29adb4c44cac,Travis update,J.C. Jones,2018-02-26T15:21:30Z,jcjones,jcjones,6,5,1
+96,authenticator-rs,f112c443077d0a8b12243d50ac9049a867dcd67a,"Bug 1406471 - Web Authentication - Implement FIDO AppID Extension r=jcj,smaug",Tim Taubert,2018-02-22T10:11:47Z,Tim Taubert,Tim Taubert,162,125,37
+97,authenticator-rs,90ceba1249400137982be09bf00a74c669ed73aa,Bug 1437487 - [u2f-hid-rs] Allow passing an empty key handles list r=jcj,Tim Taubert,2018-02-12T15:04:42Z,Tim Taubert,Tim Taubert,12,0,12
+98,authenticator-rs,39b0e370d9f11b6e917baa44e7d869f90a61ef58,Be a bit safer with the example tool,J.C. Jones,2018-01-26T19:06:24Z,jcjones,jcjones,9,7,2
+99,authenticator-rs,6dded23378cf7a2b81eaa8c5b4731d63637acbc0,"Bug 1406467 - Web Authentication - WD-07 Updates to Make Assertion r=jcj,smaug
+
+Summary:
+Add support for PublicKeyCredentialRequestOptions.userVerification. For now
+this basically means that we'll abort the operation with NotAllowed, as we
+don't support user verification yet.
+
+Pass PublicKeyCredentialDescriptor.transports through to the token manager
+implementations. The softoken will ignore those and pretend to support all
+transports defined by the spec. The USB HID token will check for the ""usb""
+transport and either ignore credentials accordingly, or abort the operation.
+
+Note: The `UserVerificationRequirement` in WebIDL is defined at https://w3c.github.io/webauthn/#assertion-options
+
+Reviewers: jcj, smaug
+
+Reviewed By: jcj, smaug
+
+Bug #: 1406467
+
+Differential Revision: https://phabricator.services.mozilla.com/D338",Tim Taubert,2018-01-10T09:55:38Z,Tim Taubert,Tim Taubert,147,118,29
+100,authenticator-rs,08d3b5495d31ebc695cb2233cbecfeb145bcbff0,Bug 1406462 - Web Authentication - Add support for authenticator selection criteria and attachment types r=jcj,Tim Taubert,2017-11-30T09:38:36Z,Tim Taubert,Tim Taubert,76,64,12
+101,authenticator-rs,c735e327817bfd8a66e674162ef8b6aee5d9952a,"Merge pull request #59 from ttaubert/statemachine
+
+One StateMachine to rule them all, fixes #58",Tim Taubert,2017-11-22T19:53:44Z,ttaubert,ttaubert,727,238,489
+102,authenticator-rs,ed0728d259f757c54705dae9d0cba9e5fb488dab,"One StateMachine to rule them all, fixes #58",Tim Taubert,2017-11-21T13:57:59Z,Tim Taubert,Tim Taubert,727,238,489
+103,authenticator-rs,921bc46b6816fc647b80abb5266d8bfb65047ca2,"Merge pull request #57 from ttaubert/remove-khmatcher
+
+Remove KeyHandleMatcher, Implement per-device threads on Windows, fixes #47",Tim Taubert,2017-11-21T18:38:49Z,ttaubert,ttaubert,554,185,369
+104,authenticator-rs,296f6707b3da1e098dff866b8bc5d6d734a15515,"Remove KeyHandleMatcher, Implement per-device threads on Windows, fixes #47",Tim Taubert,2017-11-21T10:57:29Z,Tim Taubert,Tim Taubert,554,185,369
+105,authenticator-rs,7d9f31a8a2c807153f712c5e4943b8e60d92674b,"Merge pull request #56 from ttaubert/no-khmatcher-linux
+
+Linux-part of #47: Implement per-device threads, don't use the KeyHandleMatcher",Tim Taubert,2017-11-20T17:04:02Z,ttaubert,ttaubert,450,216,234
+106,authenticator-rs,32721767831e21d15639ed751383d376171a8d68,"Linux-part of #47: Implement per-device threads, don't use the KeyHandleMatcher",Tim Taubert,2017-11-20T15:42:53Z,Tim Taubert,Tim Taubert,450,216,234
+107,authenticator-rs,ceede2fd8ee566edbdd47236b4dcfcf13c9cdda8,Follow-up: CFRelease() the IOHIDManager in the SendableRunLoop test,Tim Taubert,2017-11-17T09:05:03Z,Tim Taubert,Tim Taubert,4,4,0
+108,authenticator-rs,1b1d79e65366f0457c3c183a36c86a11a04fb836,"Let stubs fail, instead of running until cancellation",Tim Taubert,2017-11-16T20:22:04Z,Tim Taubert,Tim Taubert,11,6,5
+109,authenticator-rs,c02ac553ca455e6fe06985fe65f59a0c81f196d8,Use CFRetain() to ensure the CFRunLoop! is kept alive as long as we need it,Tim Taubert,2017-11-16T20:26:18Z,Tim Taubert,Tim Taubert,365,215,150
+110,authenticator-rs,ef4332519a26ede281c2b1a8786de32f2cfd6479,Small cleanup macos::Transaction::new(),Tim Taubert,2017-11-15T03:55:41Z,Tim Taubert,Tim Taubert,5,2,3
+111,authenticator-rs,a6f911dbdc74fabd81c078913b7bb99ed3869941,Rewrite macOS IOHIDManager communication and state machine r=jcj,Tim Taubert,2017-11-09T10:12:27Z,Tim Taubert,Tim Taubert,785,402,383
+112,authenticator-rs,368c327ec787e02d93468e5f2574ebec30388cee,"Bug 1412125, part 2 - Fix dom/ mode lines. r=qdot
+
+This was automatically generated by the script modeline.py.
+
+MozReview-Commit-ID: BgulzkGteAL",Andrew McCreight,2017-11-01T16:29:45Z,amccreight,amccreight,2,2,0
+113,authenticator-rs,fc0c9bfe681db8d1f548887e877069f1841c71aa,Remove unnescary `mut`,Alex Gaynor,2017-10-16T15:32:01Z,alex,alex,2,1,1
+114,authenticator-rs,e3ad6aa37f09469b44542f9fa7109fa2dd9201cc,Allow build failures from Rust nightly,Xidorn Quan,2017-10-27T01:05:26Z,upsuper,upsuper,4,4,0
+115,authenticator-rs,d52c7a1debb932467b8e3b33322e0c9dc985823b,Bug 1404556 - Support libc::ioctl() call on musl libc,Tim Taubert,2017-10-04T10:12:55Z,Tim Taubert,Tim Taubert,8,7,1
+116,authenticator-rs,674c4769c4191d5a30cb4f7f54b2c48a3fdfa786,Bug 1400668 - Fix Android builds by adding the key_handles arg to the stub PlatformManager,Tim Taubert,2017-09-21T14:25:20Z,Tim Taubert,Tim Taubert,1,1,0
+117,authenticator-rs,4d965aacd74ce7b11b299ce0523f14f8180d4e74,Bug 1400668 - Process key handle exclusion list when registering a token r=jcj,Tim Taubert,2017-09-21T14:11:18Z,Tim Taubert,Tim Taubert,496,355,141
+118,authenticator-rs,d5e05c2fd032e95be59b30fb64a0f34d9bbd5d7e,rustfmt fixes,Tim Taubert,2017-09-19T14:42:14Z,Tim Taubert,Tim Taubert,114,56,58
+119,authenticator-rs,75cea47bf35eb683972ff67d9d1c7785cd75c55d,Bug 1400559 - Move runloop code into its own crate r=jcj,Tim Taubert,2017-09-16T14:03:33Z,Tim Taubert,Tim Taubert,331,88,243
+120,authenticator-rs,0df1b460f064318c791200983d45209f9ff0d28b,Remove white space at the beginning of the license,Tim Taubert,2017-09-19T13:42:24Z,ttaubert,ttaubert,2,1,1
+121,authenticator-rs,268402946970ac8f74042f1114ae8d1a16d167c3,"Merge pull request #46 from jcjones/fennec_cross_compile
+
+Fix u2f-hid-rs to compile Fennec from OSX",Tim Taubert,2017-09-19T08:23:54Z,ttaubert,ttaubert,10,1,9
+122,authenticator-rs,306c753275b786a019c1599b02e5ccf5facaa91b,"Bug 1400927 - Fix Android build. r?jcj
+
+One cannot use #[cfg(target_os)] checks in build.rs.
+Build scripts can be used to generate code so the target
+is set to the host platform when they are compiled.
+
+Having this setting exported an unconditional link
+depencency whenever the host was macOS, which broke
+cross-compiling, in particular for fennec builds
+targetting Android.
+
+Instead, declare the IOKit dependency on the `extern`
+block which imports the symbol inside macOS-specific
+code. That way final link still works, but the extra
+dependency is only enabled when appropriate for the
+final target, like the other platform-dependent code.",Ralph Giles,2017-09-18T22:18:16Z,rillian,rillian,10,1,9
+123,authenticator-rs,2ea634cd6169d2e4fe10aa9683b25e3dae43e6b3,Bug 1400513 - u2f-hid-rs: fuzzers should use a deterministic cmd byte r=jcj,Tim Taubert,2017-09-17T18:12:15Z,Tim Taubert,Tim Taubert,24,13,11
+124,authenticator-rs,e3919dce4bb05071b0193effd4b462e05f456266,"All unsupported platforms to use stub
+
+error[E0432]: unresolved import `platform::PlatformManager`
+  --> src/manager.rs:10:5
+   |
+10 | use platform::PlatformManager;
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^ Maybe a missing `extern crate platform;`?",Jan Beich,2017-09-15T00:44:17Z,jbeich,jbeich,4,2,2
+125,authenticator-rs,d17dd0501c2fa1a363e8ad8c4da60b4ff30fed76,Update C API type names to be a tad more expressive,Tim Taubert,2017-09-14T13:48:48Z,Tim Taubert,Tim Taubert,34,17,17
+126,authenticator-rs,2f09d61559b1f033528a385c0e2e85044668588d,"Cleanup linux/hidraw, support long item format",Tim Taubert,2017-09-14T12:40:50Z,Tim Taubert,Tim Taubert,119,93,26
+127,authenticator-rs,c02a80e08565fabc077b3867142d37c1dc218dbf,Add MPL license,J.C. Jones,2017-09-13T22:47:07Z,jcjones,jcjones,490,490,0
+128,authenticator-rs,038f49ee75bde2b883b5015bbd133dd2d84bc12f,"Merge pull request #41 from ttaubert/issue/39-apdu-unpacking
+
+fixes #39: properly unpack status codes from APDUs",Tim Taubert,2017-08-31T14:02:32Z,ttaubert,ttaubert,64,28,36
+129,authenticator-rs,76c5a43c509f2208edada959e03ecc2af5e4a46f,"Take 2-byte status instead of separate hi,lo arguments",Tim Taubert,2017-08-30T19:53:40Z,Tim Taubert,Tim Taubert,18,9,9
+130,authenticator-rs,f8d68cac4a11c0f4f1c70fed57a15655c9d78a6d,fixes #39: properly unpack status codes from APDUs,Tim Taubert,2017-08-30T10:47:01Z,Tim Taubert,Tim Taubert,58,25,33
+131,authenticator-rs,4ad45c0b33c40b890da4916a3a573aca5f58033f,"Merge pull request #38 from jcjones/android_blank_build
+
+Add a stub for Android, so that builds on Android compile OK.",Tim Taubert,2017-08-30T07:48:40Z,ttaubert,ttaubert,44,44,0
+132,authenticator-rs,a44835b64bb68cb77bda5cb5907b28aae607fc00,"Add a stub for Android, so that builds on Android compile OK.",J.C. Jones,2017-08-28T23:07:52Z,jcjones,jcjones,44,44,0
+133,authenticator-rs,65aa343862ee3a9e401326daa277ef854ea9de4f,README update,J.C. Jones,2017-08-14T16:57:52Z,jcjones,jcjones,22,20,2
+134,authenticator-rs,93347e77b74c02830226e49a33a996f55c5c9fc7,Rustfmt,Manish Goregaokar,2017-08-10T21:10:12Z,Manishearth,Manishearth,10,7,3
+135,authenticator-rs,5e6149efc3d8327c285c5cbb9c2978b1d529f801,Fix most clippy issues,Manish Goregaokar,2017-08-10T21:04:37Z,Manishearth,Manishearth,24,12,12
+136,authenticator-rs,38dd1b26ba934240b475ce291fffd492a5eeef88,"Merge pull request #31 from jcjones/asan
+
+Use clang's AddressSanitizer for unit tests on Rust Nightly builds",J.C. Jones,2017-08-09T19:02:07Z,jcjones,jcjones,9,5,4
+137,authenticator-rs,69d933b33af6f45c3dc64a7974ccc4e4c354b8a4,Be less verbose with ASAN builds,J.C. Jones,2017-08-09T17:56:39Z,jcjones,jcjones,15,4,11
+138,authenticator-rs,69d428c2edcbf4eee8269ba84a96926a439e84cd,"For nightly builds, run the tests with ASAN.",J.C. Jones,2017-08-09T13:51:59Z,jcjones,jcjones,14,11,3
+139,authenticator-rs,f2c806e9851ad89a528b45000cbd2be105900a52,"Fix 32-bit builds on Windows
+
+Windows' calls to SetupDiGetDeviceInterfaceDetailW were failing on 32-bit
+builds because the contract to provide a ""DeviceInterfaceDetailData"" struct
+with an internal size ""cbSize"" equal to the size of the struct wasn't being
+fulfilled. Sizeof(DeviceInterfaceDetailData) on 64-bit is 8 bytes, whereas
+on 32-bit it is 4 bytes. The API documentation [1] says that the ""cbSize""
+should always be sizeof, but setting it to the struct size is actually wrong,
+as it's mis-packed. Various references point out that the correct [2][3]
+size is 4 bytes + the size of a TCHAR, e.g., 6 bytes.
+
+[1] https://msdn.microsoft.com/en-us/library/windows/hardware/ff551120(v=vs.85).aspx
+[2] http://pinvoke.net/default.aspx/setupapi.SetupDiGetDeviceInterfaceDetail
+[3] https://stackoverflow.com/questions/30981181/c-sharp-usb-driver-from-c-setupdigetdeviceinterfacedetail",J.C. Jones,2017-08-09T00:20:17Z,jcjones,jcjones,11,10,1
+140,authenticator-rs,f7f081935db25013cf6b299716186d7b2732879a,Remove some duplicate code from DeviceMap implementations,Tim Taubert,2017-08-08T14:22:57Z,Tim Taubert,Tim Taubert,143,59,84
+141,authenticator-rs,27325341aefa774936f6a301a583d0760e2bbf59,Some more minor cleanup,Tim Taubert,2017-08-08T13:26:51Z,Tim Taubert,Tim Taubert,51,17,34
+142,authenticator-rs,7b2b253ae1e972730029d9ce5a35849d07327beb,Clean up u2fproto and tests,Tim Taubert,2017-08-08T13:15:15Z,Tim Taubert,Tim Taubert,596,190,406
+143,authenticator-rs,a05cacbf950944dc6c23d93eb86ec3c4c43270ba,macOS: fix UAF for real by boxing Device.scratch_buf[],Tim Taubert,2017-08-04T15:33:40Z,Tim Taubert,Tim Taubert,23,14,9
+144,authenticator-rs,79d09e9f79e3c41653ffc3457e54dbd7e4b91bac,Make u2f_version_is_v2() return an io::Result<bool>,Tim Taubert,2017-08-04T09:38:16Z,Tim Taubert,Tim Taubert,35,12,23
+145,authenticator-rs,6ea24615971e2a759c1c34a88f4fbfe2b074cf0f,Remove IOHIDDeviceID and make IOHIDDeviceRef a proper struct that derives what we need,Tim Taubert,2017-08-03T22:12:03Z,Tim Taubert,Tim Taubert,35,11,24
+146,authenticator-rs,58508c80e2b23d243b88b8b311862ea6a2aa03d3,Give examples/main timeouts in milliseconds,Tim Taubert,2017-08-03T20:53:01Z,Tim Taubert,Tim Taubert,4,2,2
+147,authenticator-rs,aeddb5cfa810604bc5b400dc07cb1d51eeabb4ab,Fixes #8: Add runloop tests,Tim Taubert,2017-08-03T20:49:48Z,Tim Taubert,Tim Taubert,64,58,6
+148,authenticator-rs,9537c9ac48283086a9a308d9329d53f6698f1f13,macOS: Add DeviceMap to track devices in the platform manager,Tim Taubert,2017-08-03T14:22:19Z,Tim Taubert,Tim Taubert,121,68,53
+149,authenticator-rs,2e9262e0edac55279f790925091dfbfa9cf0d57c,macOS: Move HID input report handling to the Device,Tim Taubert,2017-08-03T14:06:50Z,Tim Taubert,Tim Taubert,162,82,80
+150,authenticator-rs,bd8c4a7e1c607b5bc83176e23a34a546f5a6d64f,macOS: fix UAF by storing scratch_buf[] with the Device,Tim Taubert,2017-08-03T13:38:31Z,Tim Taubert,Tim Taubert,18,9,9
+151,authenticator-rs,e62c5fe880b3dff42666549befa2ae1573ccb4b2,macOS: remove unsafe Report type and use Vec<u8> instead,Tim Taubert,2017-08-03T13:36:01Z,Tim Taubert,Tim Taubert,37,12,25
+152,authenticator-rs,cbea18b5d0f90e10f17af6123e43e26073bde6de,Move set_report() into Device::write(),Tim Taubert,2017-08-03T13:28:27Z,Tim Taubert,Tim Taubert,50,23,27
+153,authenticator-rs,38ea83fb0bbaffa70059321b4461b012a90f0750,Fixes #28: Start fuzzing U2F HID protocol parsers and writers,Tim Taubert,2017-08-03T13:13:13Z,Tim Taubert,Tim Taubert,176,175,1
+154,authenticator-rs,496005e97662761d6d95d4a0da4cd0091eb075b9,"Merge pull request #30 from ttaubert/u2f-packets
+
+Simplify U2F packet communication, remove unused fields",Tim Taubert,2017-08-03T13:15:07Z,ttaubert,ttaubert,410,141,269
+155,authenticator-rs,4ceee629abb7b9e6784f24b25139e999d22a1775,"Simplify U2F packet communication, remove unused fields",Tim Taubert,2017-08-02T21:05:27Z,Tim Taubert,Tim Taubert,410,141,269
+156,authenticator-rs,65adea0769c8e375cc1d6589375dcfd6fb620d56,"Merge pull request #27 from ttaubert/issue/26-unsafe-hid-types
+
+Fixes #26: Copy bytes instead of using unsafe casting for HID types",Tim Taubert,2017-08-02T17:42:08Z,ttaubert,ttaubert,522,310,212
+157,authenticator-rs,3160df45546e3046069985f32fb758920aa0f045,Fixes #26: Copy bytes instead of using unsafe casting for HID types,Tim Taubert,2017-08-01T14:13:22Z,Tim Taubert,Tim Taubert,522,310,212
+158,authenticator-rs,9111bac96d6e2818fdd55c7324e2f8b2ccff59d6,"OSX HID interaction cleanup
+
+Clean up runloops and devices correctly after an operation.
+Keep track of datagram lengths from the read callback.",J.C. Jones,2017-07-31T19:37:25Z,jcjones,jcjones,30,25,5
+159,authenticator-rs,34ebfe9861a24ea51dc511a0ba1e7a069e6c5d6a,"Be safer with from_u8_array and byte layouts
+
+- from_u8_array is dangerous; it can cast improper arrays into structures.
+  Note that this change leaves it still dangerous for buffer underruns, where
+  it might walk onto someting else on the stack.
+
+- The byte layouts for the structures were marked packed, which as of Rust 1.0
+  has undefined behavior. So switch to repr(C), which is what we want anyway.[1]
+
+[1] https://doc.rust-lang.org/nomicon/other-reprs.html#reprc",J.C. Jones,2017-07-31T23:07:42Z,jcjones,jcjones,17,11,6
+160,authenticator-rs,0c69e5ac5a17e71447ceae45b94b06b74f4fa750,Fix #24: Refactor unwrap instances to be safe,J.C. Jones,2017-07-31T20:13:50Z,jcjones,jcjones,15,12,3
+161,authenticator-rs,5c49632b3d84d43028343f1eb37a84ca3dfe874d,Let the C API generate and return random transaction IDs (instead of taking them as arguments),Tim Taubert,2017-07-28T09:57:58Z,Tim Taubert,Tim Taubert,60,33,27
+162,authenticator-rs,d3c94f6bc6e6664357690521590370c90486be05,Correct J.C.'s email address,J.C. Jones,2017-07-27T19:13:13Z,jcjones,jcjones,2,1,1
+163,authenticator-rs,45c0894a471a2e83d9985cc27f8b94a4d588e8eb,"Merge pull request #23 from jcjones/rustfmt
+
+Run rustfmt, and configure Travis to enforce rustfmt.",Tim Taubert,2017-07-27T17:31:29Z,ttaubert,ttaubert,2110,1329,781
+164,authenticator-rs,6da667a37fc18aac9b10fa88a5a865a3bc6c4790,"Run rustfmt, and configure Travis to enforce rustfmt.",J.C. Jones,2017-07-27T16:05:15Z,jcjones,jcjones,2110,1329,781
+165,authenticator-rs,8f202ca539aa0f635c4e0a915cb6c6013d3d4b07,Small cleanup in macos::Device::read(),Tim Taubert,2017-07-14T17:40:42Z,Tim Taubert,Tim Taubert,12,6,6
+166,authenticator-rs,cd93c65733854c74ddaf08f29d59a2ea759c0bd8,Code cleanup and some reorganization,Tim Taubert,2017-07-14T13:43:10Z,Tim Taubert,Tim Taubert,554,233,321
+167,authenticator-rs,0027eaa5c836efb24f224a319ccd354eac0da6e1,Fixes #22: Add ability to check whether a device monitor is still alive,Tim Taubert,2017-07-14T13:12:53Z,Tim Taubert,Tim Taubert,58,37,21
+168,authenticator-rs,b5f2de37bb3c1b9e27c6c5e42d32f0122e55d753,Fixes #21: Update Windows platform manager to new API,Tim Taubert,2017-07-14T08:27:31Z,Tim Taubert,Tim Taubert,117,55,62
+169,authenticator-rs,f8b5e2256e95ed2756eb3b396fba645352d95d8b,Update readme,J.C. Jones,2017-07-12T18:18:45Z,jcjones,jcjones,12,8,4
+170,authenticator-rs,a4d6ef0104f0aeb075f2bcfbcb0a9831c5f872a5,"Remove libudev-sys override, only needed when building Gecko",Tim Taubert,2017-07-12T08:59:51Z,Tim Taubert,Tim Taubert,3,0,3
+171,authenticator-rs,3983d1c3218424f944cabf12e27a7654fbecd4bc,Let sign() take multiple key handles and return the one that signed,Tim Taubert,2017-07-11T14:14:11Z,Tim Taubert,Tim Taubert,183,108,75
+172,authenticator-rs,27f2b7b8c4df90c37356a7f135f25c026ef8bdbc,Add U2FKeyHandles to C API,Tim Taubert,2017-07-11T13:33:33Z,Tim Taubert,Tim Taubert,106,87,19
+173,authenticator-rs,9fb318a15e2bd3184b9949b2211b2bb1955ee5a0,Move main.rs to examples/,Tim Taubert,2017-07-11T12:29:54Z,Tim Taubert,Tim Taubert,6,4,2
+174,authenticator-rs,660a701b45977cb5d184380061dfc8cec4f696be,"Ensure OpenBSD has `use std::io` (#140)
+
+* Ensure OpenBSD has `use std::io`
+
+Fix #139 and https://bugzilla.mozilla.org/show_bug.cgi?id=1666701
+
+* Version bump 0.3.1",J.C. Jones,2020-10-07T16:18:20Z,jcjones,jcjones,3,2,1
+175,authenticator-rs,5b27c97ce9258992d571b15b963fbceda3f3475f,"Rust 1.46 clippy fixes (#135)
+
+* Fix linux unneeded extra
+
+* Other clippy issues
+
+* Review update
+
+* Clippy for the webdriver feature, also enable in CI
+
+* More clippy
+
+* More clippy",J.C. Jones,2020-09-17T17:48:39Z,jcjones,jcjones,66,31,35
+176,authenticator-rs,026ce088b977ef665c7f2e252082184e3024358e,Fix webdriver tests on the rebase,J.C. Jones,2020-09-15T15:30:19Z,jcjones,jcjones,49,32,17
+177,authenticator-rs,7d732d75fe58124195311224e0ebc58f1ccc8d1e,"Rebase on v0.3.0 new errors, etc.",J.C. Jones,2020-09-14T21:53:27Z,jcjones,jcjones,53,34,19
+178,authenticator-rs,ec2d1bc5edffd7ee29cbb7bc81fe23bb65d44c32,Review feedback,J.C. Jones,2020-09-14T21:10:32Z,jcjones,jcjones,4,2,2
+179,authenticator-rs,3a9a892099c2f5fc47c2cfbe982c84ac1a329f10,Add all WebDriver methods to control TestToken,J.C. Jones,2020-09-01T17:41:13Z,jcjones,jcjones,1028,827,201
+180,authenticator-rs,385b25d182c9e6a56fc187a32cd512d1c1864338,WebDriver implementation,J.C. Jones,2020-08-14T22:15:13Z,jcjones,jcjones,964,958,6
+181,authenticator-rs,38e640d45a91a0362dff1c3d952689c1468fd15a,"Tagging v0.3.0
+
+Major changes:
+* Move to Rust 2018 edition #125
+* Remove dependency on boxfnonce #121
+* Reworked error handling #130
+* Added a higher-level AuthenticatorService that can use multiple backends #123
+* Changed the C API to use the new AuthenticatorService #123
+* Added a Status channel for backends #122
+* Now obtaining HID report sizes from the descriptors #112
+* Add authenticator USB and Firmware details to the C API #93",J.C. Jones,2020-09-10T20:25:51Z,jcjones,jcjones,2,1,1
+182,authenticator-rs,6f913a2cbb4751b96ae108df7858b7747a4d1ef2,Review update,J.C. Jones,2020-09-10T17:39:25Z,jcjones,jcjones,13,4,9
+183,authenticator-rs,75179d6cfb23a18db8cf88f6dcfacf39ead62651,Update all other platforms with the new error mechanism,J.C. Jones,2020-09-02T04:50:14Z,jcjones,jcjones,84,52,32
+184,authenticator-rs,5b475603b1541070d4b4e507b8d42f3e228f4a88,Better errors - only MacOS,J.C. Jones,2020-09-02T00:33:21Z,jcjones,jcjones,394,251,143
+185,authenticator-rs,1ebb134e714728cd2b16f07982b1783c18d753f4,"Absorb status updates at the C API, rather than letting the channel error
+
+Issue #132 will plumb the status channel through to the actual C API signatures.
+
+Fixes #131",J.C. Jones,2020-09-10T15:41:18Z,jcjones,jcjones,26,22,4
+186,authenticator-rs,a73c504f31ed2676bb3fa9cfa976c32a975e0bdd,"Add a higher-level AuthenticatorService that can query multiple backends
+
+- This moves the callback mechanism into its own file, as it gets more complex
+- Reworks the C API to use the AuthenticatorService",J.C. Jones,2020-08-05T03:52:10Z,jcjones,jcjones,1059,921,138
+187,authenticator-rs,51c576a2db8bb2abb2efe66ad80a950d84ebf98b,Create status channel for MacOS,J.C. Jones,2020-07-28T04:36:15Z,jcjones,jcjones,179,150,29
+188,authenticator-rs,c270f850382732eeea5a2ee1d74e51fca4ad146c,Check CFGetTypeID for GetProperty on MacOS,J.C. Jones,2020-08-10T20:35:03Z,jcjones,jcjones,10,10,0
+189,authenticator-rs,b820bd23dc57de6b2b3644480edb04eb8863ab43,"Add authenticator USB and Firmware details to the C API
+
+Fixes #92",J.C. Jones,2019-06-12T00:03:35Z,jcjones,jcjones,397,363,34
+190,authenticator-rs,2cb1ff04fbe534559831ca9861466f4837c67ffd,crates.io listing improvements,J.C. Jones,2020-08-07T19:26:15Z,jcjones,jcjones,6,6,0
+191,authenticator-rs,663408ee0f62665fca2a084faeffba9d97acb8f0,"edition 2018 fix for OpenBSD
+
+Also line ending in run_cross.sh",J.C. Jones,2020-08-06T20:45:38Z,jcjones,jcjones,4,2,2
+192,authenticator-rs,9f365c6c347b5faf2119ef8b81a2828ce23c10ab,stub fix,J.C. Jones,2020-08-06T03:52:21Z,jcjones,jcjones,2,1,1
+193,authenticator-rs,43c3bb0b9c6d6c88e0f0ef99319aa62673bc7300,cargo fix freebsd,J.C. Jones,2020-08-06T00:41:33Z,jcjones,jcjones,10,5,5
+194,authenticator-rs,2f671b15078c4d8e720a9f6a6c27f1f7391f837a,more targets,J.C. Jones,2020-08-06T00:40:31Z,jcjones,jcjones,161,83,78
+195,authenticator-rs,df2d127278b59a2da45c3c3ee6a3d252ffab2051,"cargo fix, move to edition 2018",J.C. Jones,2020-08-06T00:15:39Z,jcjones,jcjones,178,91,87
+196,authenticator-rs,9c65976d8aaf6325a16de5c1037c3dc17c8d23e7,"Without having to cheat with a closure, static lifetime no longer is necessary for the StateCallback's Fn trait. Thanks Dana",J.C. Jones,2020-08-04T03:23:05Z,jcjones,jcjones,2,1,1
+197,authenticator-rs,e4cbf17b81e8da38610e9fb61a555d96b7792ef4,Rework callbacks in all other platforms,J.C. Jones,2020-08-03T22:16:42Z,jcjones,jcjones,24,12,12
+198,authenticator-rs,d5d1a49424bd453bbc03ae174c6849fc89eb5ece,Genericize StateCallback for MacOS,J.C. Jones,2020-08-03T22:01:38Z,jcjones,jcjones,17,8,9
+199,authenticator-rs,c67bdd9e98b9ec7da907b69ca77117b7401e379d,Remove boxfnonce and rename to StateCallback on MacOS,J.C. Jones,2020-08-03T21:54:31Z,jcjones,jcjones,46,19,27
+200,authenticator-rs,4b04311128a35cd93538984bcac879a235d22f87,Don't try to fuzz on Windows,J.C. Jones,2020-07-27T20:45:43Z,jcjones,jcjones,2,1,1
+201,authenticator-rs,db432d1213adb9679ea6cdb73042a8d762a77f96,Fixup Device struct initialization,J.C. Jones,2020-07-27T20:44:47Z,jcjones,jcjones,4,2,2
+202,authenticator-rs,0b264c0537f5eb22b24eb964d6b8283711d0f92f,"Oops, ASAN is only for Linux",J.C. Jones,2020-07-27T20:26:48Z,jcjones,jcjones,2,1,1
+203,authenticator-rs,406a89664da82467cbecbef90d3c6b401cc30db5,Unlock winapi to 0.3+,J.C. Jones,2020-07-27T20:16:33Z,jcjones,jcjones,2,1,1
+204,authenticator-rs,4f9b817ec41b31de69143d5cc1c6235ebf7ba27c,Switch to mem::MaybeUninit,J.C. Jones,2020-07-27T20:11:08Z,jcjones,jcjones,33,18,15
+205,authenticator-rs,c37ee014c252b1dbc6e8c6952431c215753333cc,Build for Windows on Travis,J.C. Jones,2020-07-27T17:44:46Z,jcjones,jcjones,21,9,12
+206,authenticator-rs,0d630a663c0231396498aa88825f466418a73f66,Don't fuzz except on stable,J.C. Jones,2020-07-27T21:36:09Z,jcjones,jcjones,8,4,4
+207,authenticator-rs,45e622d032c9d44363648d4a95cc5c54f95234ab,Use build only for most cross targets,J.C. Jones,2020-07-27T21:21:21Z,jcjones,jcjones,6,3,3
+208,authenticator-rs,858cf3c7ff004b456288649ff06606025fc09a50,Add cross cross-platform testing tools,J.C. Jones,2020-07-27T18:56:19Z,jcjones,jcjones,31,31,0
+209,authenticator-rs,68e26cf09f0481aee70198d5c73b37ba4c4e2fc3,Check cargo-fuzz on Travis,J.C. Jones,2020-07-27T17:39:51Z,jcjones,jcjones,3,3,0
+210,authenticator-rs,8fc3deade587743a7bacb8a04e37ffb88036f41f,rustfmt src/linux,J.C. Jones,2020-07-27T17:31:01Z,jcjones,jcjones,32,24,8
+211,authenticator-rs,deaf434548ec5b1bd48bac137c66a84fc2b62318,"Add rustfmt, cargo test, and clippy to the pre-commit config",J.C. Jones,2020-07-27T17:34:05Z,jcjones,jcjones,24,24,0
+212,authenticator-rs,4c1469a2cecca92cc28616f2b4eca95483bedf39,Fix fuzzing targets to use stable cargo-fuzz,J.C. Jones,2020-07-27T17:33:45Z,jcjones,jcjones,28,16,12
+213,authenticator-rs,72742e6e020274aba513def9a91b1889f0fda6f8,Fixups for PR #112,J.C. Jones,2020-07-27T17:54:55Z,jcjones,jcjones,46,35,11
+214,authenticator-rs,8f264642c5aa0c19dd6eb923c2aa05da8ba3d4bd,"Extract in/out HID report sizes from descriptors
+
+The U2F/CTAP specifications for the HID transport allow arbitrary
+sizes for the HID input/output reports, not just the standard 64 bytes.
+This commit adds the general logic needed to deal with varying report
+sizes and implements the relevant descriptor parsing for Linux.",Fabian Henneke,2020-04-28T16:23:28Z,fmeum,fmeum,236,209,27
+215,authenticator-rs,4299734ca13a7714c6f93754ada17927dfacaa32,"Be more accepting for dependency versions, v0.2.15",J.C. Jones,2020-07-22T20:18:20Z,jcjones,jcjones,6,3,3
+216,authenticator-rs,c30bffc22715505bff5727005393c69ff3cc14f4,v0.2.14,J.C. Jones,2020-07-22T19:49:08Z,jcjones,jcjones,2,1,1
+217,authenticator-rs,fdd6f76226ec533590ed184cf76c76a5f5cad61f,Cleanup pulled-revision issues with sha2 and bindgen,J.C. Jones,2020-07-22T19:55:17Z,jcjones,jcjones,4,2,2
+218,authenticator-rs,0202a14ffb873386171b9e9bed2197d55e9e4dfd,rustfmt the NetBSD implementation,J.C. Jones,2020-07-22T20:01:40Z,jcjones,jcjones,41,19,22
+219,authenticator-rs,9ae1f963530945c106c70d1b4fc520e42f61bca5,Add NetBSD support.,Taylor R Campbell,2020-07-15T04:21:01Z,Taylor R Campbell,Taylor R Campbell,418,416,2
+220,authenticator-rs,0e7c0428c55849bb9d0af65710b1e963ef2efd94,Bump core-foundation dependency,Jeff Muizelaar,2020-07-17T18:55:20Z,jrmuizel,jrmuizel,2,1,1
+221,authenticator-rs,258f36414787deb829f796f2ad96308ed407a9a2,Version v0.2.13,J.C. Jones,2020-06-29T19:19:52Z,jcjones,jcjones,2,1,1
+222,authenticator-rs,5be4b75cfe3b8a358bdc1465994c0c87db29fa5e,"Fix race condition causing repeated sign requests
+
+The `break` only caused the inner loop to break, so the Transaction would
+continue until the StateMachine itself is cancelled by the U2FManager,
+which only happens when it is dropped.
+
+This means that there would be a period in which the sign request is fully
+done, but the manager is not yet dropped in which one or more other sign
+requests can execute.",L. K. Post,2020-06-28T16:45:11Z,Crote,Crote,4,2,2
+223,authenticator-rs,9015fc7e2a61491187b9cace7c7d0a902e53c211,Catch a couple more upcoming clippy:: tags,J.C. Jones,2020-06-29T17:11:37Z,jcjones,jcjones,7,5,2
+224,authenticator-rs,043945a5d91a1968004282701a6a1346811a54c1,Add missing bindings for mips*,Mike Hommey,2020-06-04T07:24:42Z,glandium,glandium,6,6,0
+225,authenticator-rs,73c2d00d79c087865330aef08f01a983fa002462,Cleanup clippy issues,J.C. Jones,2020-06-29T16:25:57Z,jcjones,jcjones,18,9,9
+226,authenticator-rs,fb6bb17a135b2d897adebac80ac378f53eb73028,Bump to 0.2.12,J.C. Jones,2020-04-08T19:50:09Z,jcjones,jcjones,2,1,1
+227,authenticator-rs,1b1be8f6824ca925d3f434568b7baec559a10ddb,Fix #108 - ioctl bindings for ppc64BE,J.C. Jones,2020-04-08T19:48:39Z,jcjones,jcjones,5,5,0
+228,authenticator-rs,918047f83c2765e90e54710a40bff107ddc12faa,Fix link on GitHub,rugk,2020-04-07T17:06:33Z,rugk,rugk,2,1,1
+229,authenticator-rs,7dd36535cf3ec8368144a39dadf9b149c7f4dffb,Bump to version 0.2.11,J.C. Jones,2020-04-08T19:09:46Z,jcjones,jcjones,2,1,1
+230,authenticator-rs,bd069c71ca3b97dafde2e88ef9b9967776656130,Update for MacOS core-foundation v0.7.0,J.C. Jones,2020-04-08T19:09:23Z,jcjones,jcjones,3,2,1
+231,authenticator-rs,1b328fa0b3ab6aff63300002df243bbb6acc88fe,Update core-foundation dependency,Dzmitry Malyshau,2020-04-08T15:28:52Z,kvark,kvark,2,1,1
+232,authenticator-rs,d6397f2b2dd994337e9487cb0f5b353bd3bffb97,Add PowerPC (32-bit big-endian) ioctl definitions,David Michael,2020-03-16T00:44:08Z,dm0-,dm0-,3,3,0
+233,authenticator-rs,30e308c4f1f88097c3b34940492b23570463d7ee,Bump to v0.2.10,J.C. Jones,2020-03-10T17:05:51Z,jcjones,jcjones,2,1,1
+234,authenticator-rs,c4768002c1981a4ffc1bfa2a3a318eabe327f87b,Add mips64el build support.,Wang Qing,2020-03-10T06:47:42Z,ClarkWang-2013,ClarkWang-2013,10,10,0
+235,authenticator-rs,9a494043012ce212a1ec76c83222097d19a9c165,Fix #105: Fails to build on s390x,Martin Sirringhaus,2020-02-28T07:24:55Z,Martin Sirringhaus,Martin Sirringhaus,10,10,0
+236,authenticator-rs,23beab9bcee28ddac86a5b62f02f30aa73913011,Bump to v0.2.9,J.C. Jones,2020-01-22T04:56:32Z,jcjones,jcjones,2,1,1
+237,authenticator-rs,076bd020802d46df788a7357b9f80ed0a31866d7,Add pre-commit,J.C. Jones,2020-01-22T04:55:43Z,jcjones,jcjones,14,12,2
+238,authenticator-rs,2496cda472eee36ce8796c36e2ee477de43c0ae5,Add newlines to avoid mercurial commit errors,J.C. Jones,2020-01-22T04:53:07Z,jcjones,jcjones,10,5,5
+239,authenticator-rs,2dda4002b2a9ec96357c061cbc6182a4e5314014,version 0.2.8,J.C. Jones,2020-01-17T20:36:35Z,jcjones,jcjones,2,1,1
+240,authenticator-rs,938e1ad2c763d5507bb5689ef93882c133353028,Version bump to 0.2.7,J.C. Jones,2020-01-17T18:30:03Z,jcjones,jcjones,2,1,1
+241,authenticator-rs,50d63729a82efc77292ed10f56fd7654a875fa8d,Add necessary build files for 32- and 64-bit ARM and 32-bit x86,J.C. Jones,2020-01-17T20:32:12Z,jcjones,jcjones,9,9,0
+242,authenticator-rs,980ed7066a1c9b30ba37fa087aba2d129fa11ca1,Add OpenBSD to the README,J.C. Jones,2020-01-17T18:04:21Z,jcjones,jcjones,2,1,1
+243,authenticator-rs,a6b69fec5bb525301a01e57f3bf299002aa5ba2e,"Add OpenBSD support to authenticator-rs
+
+This implementation uses OpenBSD's fido(4) interface which provides
+restricted USB HID access to FIDO/U2F security keys.  fido(4) is a new
+driver in OpenBSD 6.7 (6.6-current at the time of this writing);
+running this code on older releases will simply not find the security
+keys which is OK as full backwards compatibility is not desired.
+
+See also: http://man.openbsd.org/fido.4",Reyk Floeter,2019-12-07T02:39:34Z,reyk,reyk,304,304,0
+244,authenticator-rs,f68eae9984988bdc1ad86ecb2c4913769010f483,"Ignore communication on unknown channels (in HID transport protocol)
+
+The ctap over hid protocol spec allows for different applications to
+communicate with the authenticator at the same time. This is done by
+allocating a ""channel"" for each application. An application should
+ignore messages coming on channels it does not know.
+(see
+https://fidoalliance.org/specs/fido-v2.0-ps-20190130/fido-client-to-authenticator-protocol-v2.0-ps-20190130.html#usb-channels)
+
+See also https://bugs.chromium.org/p/chromium/issues/detail?id=998452
+for a similar bug which was fixed in chrome.",Jonathan Verner,2019-11-25T09:43:44Z,Jonathan Verner,Jonathan Verner,20,10,10
+245,authenticator-rs,4ae6c62192cb15410917eec6d7dae961678eb2fd,"Update for clippy errors (#104)
+
+* Update for clippy errors
+* cargo fmt",J.C. Jones,2020-01-17T18:02:16Z,jcjones,jcjones,74,63,11
+246,authenticator-rs,bed20ff19e04e0490511225793ceabb6b250f67a,"Merge pull request #101 from glandium/rand
+
+Update rand to 0.7",J.C. Jones,2019-12-16T17:59:07Z,jcjones,jcjones,2,1,1
+247,authenticator-rs,0fa9dbc8c0e13bb34778f6f776feae74d7d6dd14,Update rand to 0.7,Mike Hommey,2019-12-05T06:41:01Z,glandium,glandium,2,1,1
+248,authenticator-rs,d08a08542e52394102eb185555e2002a60bcec60,Merge branch 'estokes-master',J.C. Jones,2019-10-09T20:31:15Z,jcjones,jcjones,165,133,32
+249,authenticator-rs,066e51ba57ffdd57c056014f54ebebc4fa64ebdb,rustfmt,J.C. Jones,2019-10-09T20:30:57Z,jcjones,jcjones,6,3,3
+250,authenticator-rs,d49a76ef3f795172542f730200dbcf2b34982ec7,remove unused std::mem,J.C. Jones,2019-10-09T20:30:23Z,jcjones,jcjones,1,0,1
+251,authenticator-rs,d4ceec36a29ab36c77c1af9160a6ea9f060ba8f1,generate ioctl bindings for x86_64,Eric Stokes,2019-09-16T19:29:43Z,estokes,estokes,3,3,0
+252,authenticator-rs,79c5954179764b2d7182d70459449e2c3dd3a8f7,"make the generation of ioctl bindings an optional feature, and add bindings for powerpc64le",Eric Stokes,2019-09-16T19:24:59Z,estokes,estokes,89,80,9
+253,authenticator-rs,7e312b3be958b99423fce4122323bba174167c1a,use bindgen to make linux hidraw access portable,Eric Stokes,2019-09-14T05:48:00Z,estokes,estokes,90,59,31
+254,authenticator-rs,674fd0b46bd1659973bbf8db5e7a4e819a38b9cb,"Merge pull request #91 from Eijebong/forgotten-stuff
+
+Add a missing constant",J.C. Jones,2019-05-22T21:08:40Z,jcjones,jcjones,3,2,1
+255,authenticator-rs,216957867566d74e63443f0e417855adb24dc6f6,"Add a missing constant and bump version
+
+This was added in the crate while it was in the m-c tree but was never
+merged into the original repository",Bastien Orivel,2019-05-22T20:23:34Z,Eijebong,Eijebong,3,2,1
+256,authenticator-rs,10ba5db337878a98bcf8aef7a1a44b90fd080eca,Release 0.2.5,J.C. Jones,2019-05-21T17:44:26Z,jcjones,jcjones,5,4,1
+257,authenticator-rs,69a33ba139f9d8a0bf752e9d1adfe7f38f384c6d,Update with new repo location,J.C. Jones,2019-05-03T18:00:05Z,jcjones,jcjones,6,2,4
+258,authenticator-rs,9c403d034631ea0b604c7d0f5d3377a147a3cf46,Issue #50 - Rename project to `authenticator-rs` with the package name `authenticator`,J.C. Jones,2019-03-27T17:49:44Z,jcjones,jcjones,78,39,39
+259,authenticator-rs,7fac8b1f384f35c84b2ee35daf2defef763375c4,"Update rand back to 0.6 (#77)
+
+#76 is fixed by https://github.com/rust-random/rand/pull/720",Bastien Orivel,2019-02-27T17:56:51Z,Eijebong,Eijebong,2,1,1
+260,authenticator-rs,39a2f10c7600c1f3b834860f117cd562bbfb1095,Version bump to v0.2.4,J.C. Jones,2019-01-15T14:24:55Z,jcjones,jcjones,4,2,2
+261,authenticator-rs,02adc9153f4765d60304fa918426d01b5eb4efca,Move back to rand 0.5.5 per issue #76,J.C. Jones,2019-01-15T14:24:14Z,jcjones,jcjones,4,2,2
+262,authenticator-rs,25f637b7ad14083239227585a7540f059ff2ecf0,"Update all the things (#75)
+
+* Update devd-rs to 0.3
+
+* Update rand to 0.6
+
+* Update sha2 to 0.8
+
+* Update base64 to 0.10
+
+* Update env_logger to 0.6",Bastien Orivel,2019-01-15T14:02:44Z,Eijebong,Eijebong,16,8,8
+263,authenticator-rs,26a203290fbb5c912fc109b97f7ba2634725f2cd,clippy updates for rust 1.31.0,J.C. Jones,2018-12-14T17:52:06Z,jcjones,jcjones,4,3,1
+264,authenticator-rs,9818cb7d997b53ebdc25f40b3c313a6246d99d94,rustfmt updates for rust 1.31.0,J.C. Jones,2018-12-14T17:43:02Z,jcjones,jcjones,39,17,22
+265,authenticator-rs,6b65672d1307406490a35a7dff5b179aea74e5bc,Clang-format u2fhid-capi.h for mozilla-central,J.C. Jones,2018-12-14T17:30:42Z,jcjones,jcjones,42,16,26
+266,authenticator-rs,02537383189d10969ef2bb9e2fb073cbe2054b02,Version 0.2.3,J.C. Jones,2018-12-11T22:06:27Z,jcjones,jcjones,2,1,1
+267,authenticator-rs,9bf83bc429d7f3e0692490ac4ce256cf4cf17ff0,"Fix travis (#73)
+
+* Only do clippy on stable
+
+* Update cargo fmt",J.C. Jones,2018-12-04T02:54:28Z,jcjones,jcjones,18,7,11
+268,authenticator-rs,d1d36d10442b0850f5ea9f5111a41b519fc5fee4,"Fix #60 - Only use core-foundation (#71)
+
+Earlier versions of core-foundation lacked runloop support, among other things,
+prompting us to use core-foundation-sys. >0.6 supports everything needed out of
+-sys, so let's retire direct use of core-foundation-sys.",J.C. Jones,2018-11-28T21:31:09Z,jcjones,jcjones,21,8,13
+269,authenticator-rs,790240a7cb66c53575c5a1debbbae5ac61b54e4d,"Fix #35 - Run Clippy at TravisCI, and clean up Clippy warnings (#70)
+
+* Add fuzzing corpuses to gitignore
+
+* Fix #35 - Run Clippy at TravisCI, and clean up Clippy warnings
+
+Lots of this is taken from https://github.com/serianox/u2f-hid-rs/tree/ci --
+thanks @serianox!",J.C. Jones,2018-10-25T10:00:37Z,jcjones,jcjones,116,62,54
+270,authenticator-rs,78a71f2b46e415b2aabfc807ca5cbebb08371af4,"Make rust fmt run on ""stable"" only for TravisCI, and run it. (#69)",J.C. Jones,2018-10-23T07:53:29Z,jcjones,jcjones,44,22,22
+271,authenticator-rs,9a7966979668da1f03878ae4bf148c13582e639d,rustfmt,J.C. Jones,2018-10-22T14:22:45Z,jcjones,jcjones,27,18,9
+272,authenticator-rs,62ddc466cea463634165008a84acf46b5a89266a,Remove unused import to resolve build warning on macOS (#68),Alex Gaynor,2018-10-22T14:21:36Z,alex,alex,2,0,2
+273,authenticator-rs,971b00eb370bf30475329c2e6c722e751eae84fb,Version bump to 0.2.2,J.C. Jones,2018-10-04T22:35:27Z,jcjones,jcjones,2,1,1

@@ -1,0 +1,1121 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,lmdb-rs,64ae95ba163a3fa2542aefecc348ddcf9711643c,0.7.0,Dan Burkert,2017-07-03T01:11:56Z,danburkert,danburkert,10,5,5
+1,lmdb-rs,15fe40a8e3372c1df6bbdce9ce56fee09209a5f7,Implement Debug for public types (#16),Craig M. Brandenburg,2017-07-03T01:02:59Z,cmbrandenburg,cmbrandenburg,54,51,3
+2,lmdb-rs,fc92971dcac24d4e88b5b9c612c70889e8b3ffbc,"Add crate doc root
+
+https://github.com/brson/rust-api-guidelines#c-html-root",Dan Burkert,2017-06-25T21:28:50Z,danburkert,danburkert,6,6,0
+3,lmdb-rs,8d23b1acca3d449b1871025ee04289ad517cd340,Bump bitflags to 0.9,Dan Burkert,2017-06-25T21:17:29Z,danburkert,danburkert,52,26,26
+4,lmdb-rs,f6343a283a07dc3cc701e58329005c986dc437af,Update crate metadata and CI,Dan Burkert,2017-06-25T19:35:47Z,danburkert,danburkert,74,35,39
+5,lmdb-rs,76f000df0746be0fd4bf9416a16c9ed711359bc2,"Remove NulError
+
+For whatever reason, the 1.8.0 toolchain isn't happy with NulError. It
+wasn't necessary anyway.",Dan Burkert,2017-06-25T19:16:19Z,danburkert,danburkert,4,2,2
+6,lmdb-rs,2c43e693e65ca16476780bdd8442c5e1cb933022,"Fix potential use-after-free
+
+Clippy pointed out this potential use-after-free of a CString buffer. I
+don't think in this case it caused an issue because the temporary
+CString _should_ outlive the function call (at least, that's how C++
+works...), however it's refactor-brittle, so best to fix.
+
+https://github.com/Manishearth/rust-clippy/wiki#temporary_cstring_as_ptr",Dan Burkert,2017-06-25T19:04:45Z,danburkert,danburkert,13,6,7
+7,lmdb-rs,de8bdbd8900933a1bf92dd8da0fda67de7414a44,Bump LMDB to 0.9.21,Dan Burkert,2017-06-25T18:46:16Z,danburkert,danburkert,2,1,1
+8,lmdb-rs,14a5332e966c8357403ba481d1696e144dcc6d88,"Disable rustfmt by default (#14)
+
+This effects issue #11.",Craig M. Brandenburg,2017-06-25T17:21:26Z,cmbrandenburg,cmbrandenburg,1,1,0
+9,lmdb-rs,2e36a93c615e752264cc8e93f522243ee9b6d0de,Fix typo. (#10),Bruce Mitchener,2016-07-20T17:12:32Z,waywardmonkeys,waywardmonkeys,2,1,1
+10,lmdb-rs,83b1d33fde128991f4ad95854ac7d172e90db987,0.6.0,Dan Burkert,2016-07-17T20:33:41Z,danburkert,danburkert,6,3,3
+11,lmdb-rs,473173d14a6cae12bf8363814ae59281b614a16a,bump bitflags version,Dan Burkert,2016-07-17T20:33:03Z,danburkert,danburkert,10,5,5
+12,lmdb-rs,c43a2ee7933964b524eee1151fa91121ac3b7561,appveyor,Dan Burkert,2016-07-17T20:03:07Z,danburkert,danburkert,22,22,0
+13,lmdb-rs,0d20eb4b595c8713c0ee69aa9472220d46bf2129,tweaks to enable windows builds with msvc (#9),Chip Collier,2016-07-17T19:52:34Z,photex,photex,28,25,3
+14,lmdb-rs,9b5d48c89aed611bd233c2c415793d6dc77b94d9,make IterDup public,Dan Burkert,2016-07-12T05:10:25Z,danburkert,danburkert,3,2,1
+15,lmdb-rs,7517b13d92b0b9c746f163e6f79b2eaf6a25fe2c,"Expose lmdb::Iter publicly (#8)
+
+I'm trying to make a newtype wrapper around it, and can't because
+it's in `lmdb::cursor`, which isn't public.",Tony Arcieri,2016-07-12T00:39:39Z,tarcieri,tarcieri,3,2,1
+16,lmdb-rs,53fd6afdb6a88ef81fe03fcce07bb3ec9ecff5b9,Test iter_from/iter_dup_from with nonexistent keys,Tony Arcieri,2016-07-10T23:01:36Z,tarcieri,tarcieri,3,3,0
+17,lmdb-rs,a5200104dcc5ffdbe400a2ae660ce4f9a9573976,"Have iter_from/iter_dup_from return a Result
+
+It previously called unwrap() which panics if a key isn't found",Tony Arcieri,2016-07-10T22:27:22Z,tarcieri,tarcieri,18,9,9
+18,lmdb-rs,23e33ccd8620932c1fa8a18dead9680fe9d39ffe,update doc links,Dan Burkert,2016-02-26T07:33:01Z,danburkert,danburkert,6,3,3
+19,lmdb-rs,d1bca3410fa43825f3e17d410e55c56784e51b0f,new doc upload token,Dan Burkert,2016-02-26T07:29:11Z,danburkert,danburkert,2,1,1
+20,lmdb-rs,e99a3ba6557d4ab3c250643368f7eee3fbde86b4,1.2.0 minimum rustc version,Dan Burkert,2016-02-26T06:26:45Z,danburkert,danburkert,2,1,1
+21,lmdb-rs,9261a89e2b5da50c53f549ec8ae83fb5a937766c,update to LMDB 0.9.18,Dan Burkert,2016-02-26T06:45:52Z,danburkert,danburkert,2,1,1
+22,lmdb-rs,e7d941231e784bde3412a5cec786753d54e633fb,bump bitflags version,Dan Burkert,2016-02-26T06:30:27Z,danburkert,danburkert,2,1,1
+23,lmdb-rs,da50b1e7b1efa5d242e6abaa2dfd0674a1bc4823,travis-cargo,Dan Burkert,2016-02-26T06:26:45Z,danburkert,danburkert,26,12,14
+24,lmdb-rs,ed14e9a8fcbec221a3236c3940306a7ebf8d0060,fix doc uploads,Dan Burkert,2015-12-02T05:29:25Z,danburkert,danburkert,3,1,2
+25,lmdb-rs,f8bebda5801f040f9ebcad344c349eb6fa804511,update travis config,Dan Burkert,2015-12-02T05:19:39Z,danburkert,danburkert,35,29,6
+26,lmdb-rs,a27d07bc4e2a84a9aad2d5923ddf9af939665630,0.5.0,Dan Burkert,2015-12-01T04:26:58Z,danburkert,danburkert,16,6,10
+27,lmdb-rs,f7498117306ea87e63c9b0e676ef09dba15d87df,Generic key/data arguments,Dan Burkert,2015-12-01T04:20:17Z,danburkert,danburkert,282,153,129
+28,lmdb-rs,c101fa5c1f183fc4b976c9c60781377dd1aa56ff,Update for stable Rust,Dan Burkert,2015-12-01T03:52:22Z,danburkert,danburkert,97,31,66
+29,lmdb-rs,cf967d1929d251f837363e67750fb9bda814f467,use libc crate,Dan Burkert,2015-04-03T06:21:34Z,danburkert,danburkert,7,5,2
+30,lmdb-rs,52d663fcf9990f981359f571798ffd2200688e5e,cleanup slice creation,Dan Burkert,2015-04-03T05:04:04Z,danburkert,danburkert,23,8,15
+31,lmdb-rs,d27d6a493e8ab376cc022509109b080638b2c1c6,0.4.3,Dan Burkert,2015-04-03T02:39:20Z,danburkert,danburkert,6,3,3
+32,lmdb-rs,04882e53ad8bceaade79cb3f9fa0ee177905764f,update for rustc 1.0.0-nightly (2e3b0c051 2015-04-01) (built 2015-04-01),Dan Burkert,2015-04-03T02:33:49Z,danburkert,danburkert,30,12,18
+33,lmdb-rs,ddd747f798f14c172179ae6894dd4de70e6c3eb3,0.4.2,Dan Burkert,2015-03-21T17:33:36Z,danburkert,danburkert,5,3,2
+34,lmdb-rs,87ccf55e0a4e73f402a6ac01610dbd2bdf367864,0.4.1,Dan Burkert,2015-03-21T17:32:05Z,danburkert,danburkert,7,3,4
+35,lmdb-rs,414505e8ba636429fdc703bc6445da1c5bba7147,use relative import of size_t,Dan Burkert,2015-03-21T17:27:40Z,danburkert,danburkert,11,6,5
+36,lmdb-rs,8453e39bd8505de202306fca4e7734e1286cd89c,make benchmarks portable,caosiliang,2015-03-21T04:59:19Z,sybblow,sybblow,10,5,5
+37,lmdb-rs,8e52bdbb791fc7610494b30cb6e13be0baddb113,update for rustc 1.0.0-nightly (e2fa53e59 2015-03-20) (built 2015-03-20),Dan Burkert,2015-03-21T17:23:01Z,danburkert,danburkert,174,87,87
+38,lmdb-rs,28660edc12920aea21f49142b946f05803fed685,"path, fs, and io are no longer feature gated",Dan Burkert,2015-03-14T22:26:34Z,danburkert,danburkert,6,2,4
+39,lmdb-rs,b6f3b7b9ccffc5dc7c89e7836107a00ef1643225,std::env is stable,Dan Burkert,2015-03-06T18:38:25Z,danburkert,danburkert,2,1,1
+40,lmdb-rs,2752cc644b81a4aa88babcb8bbf281cde28cce6d,reenable lints,Dan Burkert,2015-02-27T19:09:17Z,danburkert,danburkert,9,1,8
+41,lmdb-rs,80d02b8ca0b1cdecf8f418430ffae3c3ca36b87b,0.4.0,Dan Burkert,2015-02-27T19:06:12Z,danburkert,danburkert,6,3,3
+42,lmdb-rs,e33598b9b000e28f07bf3b5e24ad6b04620d0165,Completely remove old_io,Dan Burkert,2015-02-27T19:05:17Z,danburkert,danburkert,95,49,46
+43,lmdb-rs,735bd511c9cdbc3649cd491504dbfe791deb3af7,use stdlib TempDir,Dan Burkert,2015-02-27T07:33:17Z,danburkert,danburkert,58,27,31
+44,lmdb-rs,71ea09c938cbd20055294536431ef5891b7ac124,update travis doc key,Dan Burkert,2015-02-23T06:50:55Z,danburkert,danburkert,2,1,1
+45,lmdb-rs,ec3cde7df727e232e20c943410150900ac50c141,0.3.0,Dan Burkert,2015-02-23T06:28:13Z,danburkert,danburkert,21,11,10
+46,lmdb-rs,79f36662df433bb067bf20ade7f546776d9ddad7,Drop Lmdb prefix on Error and Result,Dan Burkert,2015-02-23T06:23:14Z,danburkert,danburkert,235,111,124
+47,lmdb-rs,21df9369dc6c81264a3ec0694762ad7a95bd4e34,tweak travis,Dan Burkert,2015-02-23T05:30:38Z,danburkert,danburkert,9,0,9
+48,lmdb-rs,0c1c7cadfa72c1dbdd9f9b30287ec932aebf0040,update to new CString API,Dan Burkert,2015-02-23T05:25:55Z,danburkert,danburkert,21,11,10
+49,lmdb-rs,dee8811fd0ba3c25cb484fc642b466b88917016b,update for rustc 1.0.0-nightly (522d09dfe 2015-02-19) (built 2015-02-20),Dan Burkert,2015-02-23T04:44:33Z,danburkert,danburkert,128,67,61
+50,lmdb-rs,36a3a0100f2e6ed66f3ee5afaa223a9d9a5666a1,update all but tests for rustc 1.0.0-nightly (00df3251f 2015-02-08 23:24:33 +0000),Dan Burkert,2015-02-10T07:52:15Z,danburkert,danburkert,10,5,5
+51,lmdb-rs,5b8204bab0196d1ec785aea279b15f53e3c35371,Remove bindgen buildtime generation,Dan Burkert,2015-02-10T06:39:27Z,danburkert,danburkert,162,138,24
+52,lmdb-rs,2c0c641a82de542a0a04779c8a858a0a561e98ca,update for rustc 1.0.0-nightly (f1398d273 2015-01-31 20:21:02 +0000),Dan Burkert,2015-02-04T05:51:51Z,danburkert,danburkert,2,1,1
+53,lmdb-rs,37db788f1cdc54595719f5499d84c165b4918324,update for rustc 1.0.0-nightly (1d00c545e 2015-01-30 19:56:34 +0000),Dan Burkert,2015-02-01T06:31:02Z,danburkert,danburkert,53,32,21
+54,lmdb-rs,27bfa93a0a26728f0f01b54c0016d5ff0874c9a9,transition to bitflags crate,Dan Burkert,2015-01-20T06:40:13Z,danburkert,danburkert,11,8,3
+55,lmdb-rs,15ac361762799cd8585ba4b5bb1f104ec1adb1ae,Update for rustc 1.0.0-nightly (ed530d7a3 2015-01-16 22:41:16 +0000),Dan Burkert,2015-01-20T06:34:26Z,danburkert,danburkert,86,31,55
+56,lmdb-rs,a6a88e76fc66d42e32168267997182ef6199b190,Fiddle with travis configuration,Dan Burkert,2015-01-17T21:57:43Z,danburkert,danburkert,2,1,1
+57,lmdb-rs,81b387c41ba5df5871daf9831e0586fd96af1a03,use upstream bindgen,Dan Burkert,2015-01-11T22:56:29Z,danburkert,danburkert,2,1,1
+58,lmdb-rs,bef05bb61359b40dd0b7a036107b5106ac2549aa,Allow unstable,Dan Burkert,2015-01-10T20:52:33Z,danburkert,danburkert,3,3,0
+59,lmdb-rs,61035b625eda8f17cf8d6ca1bed338c9ce1d4ed5,Allow unstable; rename uint,Dan Burkert,2015-01-10T20:38:07Z,danburkert,danburkert,13,7,6
+60,lmdb-rs,0b202ecd56894b7feae09a852df35cbc09dab23d,Update for rustc 1.0.0-nightly (44a287e6e 2015-01-08 17:03:40 -0800),Dan Burkert,2015-01-10T20:30:01Z,danburkert,danburkert,10,5,5
+61,lmdb-rs,d8a7b61a12d5ebe5f1e7edea03fdd9bc3471ba7a,update .travis.yml,Dan Burkert,2015-01-09T07:16:09Z,danburkert,danburkert,15,8,7
+62,lmdb-rs,951ca804e234569619ac88f85e43359ed50c2f11,Execute bindgen in build.rs,Dan Burkert,2015-01-09T07:07:44Z,danburkert,danburkert,34,25,9
+63,lmdb-rs,7ffc6df87fe330d7e76ed0b2c903b7432820a75d,fix build for rustc 1.0.0-nightly (ea6f65c5f 2015-01-06 19:47:08 +0000),Dan Burkert,2015-01-09T03:53:40Z,danburkert,danburkert,31,20,11
+64,lmdb-rs,1b2dbfc6e76bf0240e7f954313efe171be6ca4e0,add duplicate item iterator,Dan Burkert,2015-01-06T02:24:42Z,danburkert,danburkert,12,11,1
+65,lmdb-rs,a2abd1846081b64728692376e464326097ccc041,add duplicate iterators,Dan Burkert,2015-01-06T02:10:59Z,danburkert,danburkert,126,75,51
+66,lmdb-rs,8897ad4eab982a16c7242896706fe9f379a3f5f2,Begin adding more iterators,Dan Burkert,2014-12-31T00:05:42Z,danburkert,danburkert,174,143,31
+67,lmdb-rs,ab7f5512984cd9299a00e4f887f4c12edc13eb39,open and create databases in transaction,Dan Burkert,2014-12-22T05:40:25Z,danburkert,danburkert,100,55,45
+68,lmdb-rs,0d01789de9ef6631dc8a41c9232fb532c64ae904,close_db and drop_db are unsafe,Dan Burkert,2014-12-22T05:23:15Z,danburkert,danburkert,132,83,49
+69,lmdb-rs,9facaae12482053ecdd1dc03ecbc1fd50182180b,rename transaction and cursor opening functions; improve docs,Dan Burkert,2014-12-22T04:20:47Z,danburkert,danburkert,230,133,97
+70,lmdb-rs,25f240282e681eab647360155c8941ae80ebea8c,flatten Transaction::get return type,Dan Burkert,2014-12-22T03:30:41Z,danburkert,danburkert,73,36,37
+71,lmdb-rs,ae49ecef6bf15458a322a8656daf9a67d98f8991,reintroduce LmdbError as enum,Dan Burkert,2014-12-22T03:15:04Z,danburkert,danburkert,205,137,68
+72,lmdb-rs,1d220c2116cec5a00c41b74a5de5c7a79ada640c,add more docs,Dan Burkert,2014-12-22T02:30:46Z,danburkert,danburkert,2,2,0
+73,lmdb-rs,f8f13b3e86eb9558288cbfa151e70c86d8fe6dfe,cleanup flag docs,Dan Burkert,2014-12-22T02:28:03Z,danburkert,danburkert,234,111,123
+74,lmdb-rs,c745961037c1fb3c611f2dd59ddf3c5151ce0f53,Flag constants for lmdb-sys; move bitflags! to lmdb proper,Dan Burkert,2014-12-21T22:01:38Z,danburkert,danburkert,579,324,255
+75,lmdb-rs,b1c1bb5b0b50831be64b2d8892726bac165f0d04,simplify cursor struct hierarchy,Dan Burkert,2014-12-21T21:20:17Z,danburkert,danburkert,81,39,42
+76,lmdb-rs,11836f84a46db597a0bfb221cd628a60ffc7b22b,simplify transaction struct hierarchy,Dan Burkert,2014-12-21T21:16:04Z,danburkert,danburkert,234,107,127
+77,lmdb-rs,69431c15bb8b272607158b7916ad15d16b0b96b8,Nested transactions,Dan Burkert,2014-12-21T08:42:56Z,danburkert,danburkert,53,44,9
+78,lmdb-rs,d46d974c3f45f465a9cb6d8ea267448b351dadf1,Add InactiveTransaction,Dan Burkert,2014-12-21T03:26:38Z,danburkert,danburkert,70,65,5
+79,lmdb-rs,07aaace72f56baa90e8f34097937084d15b10302,Fix Travis: Add llvm to environment,Dan Burkert,2014-12-20T22:31:07Z,danburkert,danburkert,12,10,2
+80,lmdb-rs,c83dc25eaab3e393deaefb2660555f88b36f1558,Fix Travis: use clang compiler,Dan Burkert,2014-12-20T22:28:01Z,danburkert,danburkert,1,1,0
+81,lmdb-rs,c38f094aff93c7dc1f989b8a213cf588d15ff12c,add rand put and get benchmarks,Dan Burkert,2014-12-20T22:24:35Z,danburkert,danburkert,188,161,27
+82,lmdb-rs,a37bf556f2ca6c906129983806c2877838182cf9,rustc 0.13.0-nightly (99d6956c3 2014-12-18 20:32:07 +0000),Dan Burkert,2014-12-20T19:52:16Z,danburkert,danburkert,2,1,1
+83,lmdb-rs,40f499eb862a87d96f768a012da84d8b4491f7e5,make ReadTransaction::get return option; cleanup tests,Dan Burkert,2014-12-19T10:20:40Z,danburkert,danburkert,264,97,167
+84,lmdb-rs,6b00d64e5b6da3aa0431c0dab3320ca8acfd5b2c,move iter to cursor; cleanup iter benchmarks,Dan Burkert,2014-12-19T08:21:36Z,danburkert,danburkert,118,54,64
+85,lmdb-rs,8016ebad3b657bd8744cf0bd376e2022ae50bcef,benchmark cursor against raw LMDB calls,Dan Burkert,2014-12-19T07:38:30Z,danburkert,danburkert,191,103,88
+86,lmdb-rs,c5ec2c6ed3cfbcfd0332a867c3ad969ff353af39,remove lifetime shadowing,Dan Burkert,2014-12-19T06:55:04Z,danburkert,danburkert,12,6,6
+87,lmdb-rs,0d4db9f645eb58877cb3a5c7bf6c07ca5e7acf98,depend on upstream rust-bindgen,Dan Burkert,2014-12-19T06:54:29Z,danburkert,danburkert,2,1,1
+88,lmdb-rs,31243bf9abcf12c7e6a41b1453064eda50e8a8d7,put LmdbError on a diet,Dan Burkert,2014-12-17T07:38:26Z,danburkert,danburkert,97,23,74
+89,lmdb-rs,8cdc8bef22f0885968ea8f453855d4c3eed0ec97,cursor benchmark.  Faster with try!(lmdb_result...,Dan Burkert,2014-12-17T07:21:47Z,danburkert,danburkert,30,9,21
+90,lmdb-rs,b65caa3f4d261bf34f820fbcdb4f84ecc6656904,simple iterator impl with benchmarks,Dan Burkert,2014-12-17T06:54:00Z,danburkert,danburkert,185,177,8
+91,lmdb-rs,9ab71e29b166eca702ee16f7d81c6bdbf10eaf82,First cut at a higher-level api,Dan Burkert,2014-12-07T22:23:00Z,danburkert,danburkert,1137,596,541
+92,lmdb-rs,22b7a50ac0730f70d75edb98ed8c973c969e7fcb,zero-copy put api.,Dan Burkert,2014-12-07T00:42:56Z,danburkert,danburkert,82,66,16
+93,lmdb-rs,b21d5e92a4d59aa195fcf4ecd937429fb53841a1,Cursor put/del support,Dan Burkert,2014-12-03T05:01:10Z,danburkert,danburkert,134,108,26
+94,lmdb-rs,bed03ebff62dcd2156e261dad0c17962bcd21a66,Cursor get support.,Dan Burkert,2014-11-24T07:08:07Z,danburkert,danburkert,469,383,86
+95,lmdb-rs,ef8f09ae522da8634457425bcfad3fafd0c5f008,Use gcc Cargo helper instead of makefile in lmdb-sys,Dan Burkert,2014-11-24T06:18:00Z,danburkert,danburkert,62,21,41
+96,lmdb-rs,19961b33ac6f7d29e7f66868992fecc990ddc39f,Fix Transaction destructor bugs. Add concurrency tests.,Dan Burkert,2014-11-24T03:52:25Z,danburkert,danburkert,186,165,21
+97,lmdb-rs,a40c89662ad299c76255bf83b959e431d9d58859,lmdb-sys,Dan Burkert,2014-11-23T19:59:59Z,danburkert,danburkert,90,83,7
+98,lmdb-rs,a090f18f9dfb19acbe9a28e35298248644c6380a,Add travis,Dan Burkert,2014-11-23T11:28:15Z,danburkert,danburkert,28,22,6
+99,lmdb-rs,14de57067a8f2c7c7f102a4aacc82465e5e26f91,Initial commit,Dan Burkert,2014-11-23T11:04:56Z,danburkert,danburkert,1220,1220,0
+100,lmdb-rs,8fbc9fc5126bb8dcc7bc498c2e4bbd3133dca3b8,"Merge pull request #33 from mykmelez/publish-0.11.2
+
+update patch version for lmdb-rkv 0.11.2",Myk Melez,2019-02-06T22:10:24Z,mykmelez,mykmelez,6,3,3
+101,lmdb-rs,d3ff0039d6271dd35347790a829a9b562dce467a,"update patch version for lmdb-rkv 0.11.2
+
+Update the patch version for lmdb-rkv to 0.11.2 and the lmdb-rkv-sys dependency version to 0.8.2 in preparation for publishing lmdb-rkv 0.11.2.",Myk Melez,2019-02-06T21:14:57Z,mykmelez,mykmelez,6,3,3
+102,lmdb-rs,a3f56c86cdb3bd6219bcc630a1f9bc96ad49f500,"Merge pull request #32 from mykmelez/publish-lmdb-rkv-sys-0.8.2
+
+update patch version for lmdb-rkv-sys 0.8.2",Myk Melez,2019-02-06T21:43:52Z,mykmelez,mykmelez,4,2,2
+103,lmdb-rs,d5963565f47dbcf78d964fc84eb0092621de9754,update patch version for lmdb-rkv-sys 0.8.2,Myk Melez,2019-02-06T21:27:14Z,mykmelez,mykmelez,4,2,2
+104,lmdb-rs,c84f0604a44b16de1f88e85017636527b8efd985,"Merge pull request #31 from mykmelez/revert-android-workaround
+
+Revert ""Fix Android cross-compile build: `cargo build --target armv7-linux-androideabi`""",Nan Jiang,2019-02-06T14:04:36Z,ncloudioj,ncloudioj,17,6,11
+105,lmdb-rs,4e86c7e476366161372eb0922e5a93bae3b380e6,"Revert ""Fix Android cross-compile build: `cargo build --target armv7-linux-androideabi`""
+
+This reverts commit ef250445c192c5fd8630e9b29f2589b467b80e81.",Myk Melez,2019-02-05T21:10:04Z,mykmelez,mykmelez,17,6,11
+106,lmdb-rs,343bf9307755c44d52684d93e69609ee4e5278ce,"Merge pull request #30 from mykmelez/use-mdb.RE/0.9-moz-branch
+
+use the mdb.RE/0.9-moz branch",Myk Melez,2019-02-05T18:23:45Z,mykmelez,mykmelez,2,1,1
+107,lmdb-rs,6760948a3885b24c0bdc0e52628f4a2a11b3b78e,"use the mdb.RE/0.9-moz branch
+
+In order to make downstream changes to LMDB, switch the lmdb-sys/lmdb submodule to its mdb.RE/0.9-moz branch, which is based on the upstream mdb.RE/0.9 (i.e. 0.9 release) branch of LMDB.",Myk Melez,2019-02-05T18:09:16Z,mykmelez,mykmelez,2,1,1
+108,lmdb-rs,401374f6e1abf217ada2ea2108c1fdb7979f1d4a,"Merge pull request #29 from mykmelez/mozilla-lmdb-submodule
+
+switch to mozilla/lmdb submodule",Myk Melez,2019-02-05T17:50:02Z,mykmelez,mykmelez,2,1,1
+109,lmdb-rs,575a4cec9d7c65f84a0cc749b8647609576d5527,switch to mozilla/lmdb submodule,Myk Melez,2019-02-05T17:27:06Z,mykmelez,mykmelez,2,1,1
+110,lmdb-rs,02ff5879e89fc1a13fb98d374c1dcdd22154981e,"Merge pull request #27 from mykmelez/use-lmdb-rkv-sys
+
+use newly published lmdb-rkv-sys crate with upgraded LMDB version 0.9.23",Nan Jiang,2019-01-29T02:23:22Z,ncloudioj,ncloudioj,8,4,4
+111,lmdb-rs,ce8b7dd9e45a8ccf4cf6420988e15463de767ed8,use newly published lmdb-rkv-sys crate with upgraded LMDB version 0.9.23,Myk Melez,2019-01-29T01:11:02Z,mykmelez,mykmelez,8,4,4
+112,lmdb-rs,4202c597c0a78b6f2fe7bb7dcdf24946b7535c59,"Merge pull request #26 from mykmelez/update-lmdb-to-0.9.23
+
+update LMDB to latest stable release version 0.9.23",Nan Jiang,2019-01-29T00:49:26Z,ncloudioj,ncloudioj,12,6,6
+113,lmdb-rs,7456a07993b86a5fab22fee764cb482ccbc91e5e,update LMDB to latest stable release version 0.9.23,Myk Melez,2019-01-11T21:50:37Z,mykmelez,mykmelez,12,6,6
+114,lmdb-rs,6ab015502b5e2ea7ea34a4259cf9cb6f318c4a9c,"Merge pull request #21 from mykmelez/publish-0.11.0
+
+update minor version for breaking change in #14",Myk Melez,2018-12-20T01:00:58Z,mykmelez,mykmelez,4,2,2
+115,lmdb-rs,8dfcf0ec7124f7fd2b6e75feb5a663a28b7cae15,Merge branch 'master' into publish-0.11.0,Myk Melez,2018-12-20T00:33:57Z,mykmelez,mykmelez,6,3,3
+116,lmdb-rs,bdf573ae9777383e25843e15216c0fd9b1dc2f4c,"Merge pull request #22 from mykmelez/update-minimum-rust-version
+
+fix build bustage on obsolete and nightly Rust",Myk Melez,2018-12-20T00:33:31Z,mykmelez,mykmelez,6,3,3
+117,lmdb-rs,846268ef92b9c05baa5338ed535ed6c15799e130,panic instead of ignoring error,Myk Melez,2018-12-20T00:17:56Z,mykmelez,mykmelez,4,2,2
+118,lmdb-rs,6a3bee7cea15379bcadf2570190775fdbd038737,explicitly destructure Ok result,Myk Melez,2018-12-19T23:46:48Z,mykmelez,mykmelez,4,2,2
+119,lmdb-rs,0c04ac7ea08a6ed6046efb50e20e74aced4fcbb3,require Rust 1.30,Myk Melez,2018-12-19T22:32:49Z,mykmelez,mykmelez,2,1,1
+120,lmdb-rs,67d627cb04453d16f1e600c65cab34068e0b60c2,update minor version for breaking change in #14,Myk Melez,2018-12-19T22:15:23Z,mykmelez,mykmelez,4,2,2
+121,lmdb-rs,cfaf37deaa2b09b957dba0e35088d275066c9667,"Merge pull request #14 from mykmelez/return-error-result-from-iter
+
+return error result only from Iterator.next()",Myk Melez,2018-12-19T22:12:13Z,mykmelez,mykmelez,182,127,55
+122,lmdb-rs,85b87a3c7fdb45d844bbc4dbd0d29e15d646f3a1,"Merge pull request #20 from mykmelez/publish-0.10.0
+
+update minor version to 0.10.0 for breaking change in #18",Myk Melez,2018-12-05T16:21:27Z,mykmelez,mykmelez,4,2,2
+123,lmdb-rs,0b2cff0c83fb5c6b78afc36c71ff8b8da0ebca2b,update minor version for breaking change in #18,Myk Melez,2018-12-05T15:26:26Z,mykmelez,mykmelez,4,2,2
+124,lmdb-rs,08b828075192b85d617b1d8a80b1fbe5aa14e50f,"Merge pull request #19 from mykmelez/publish-0.9.1
+
+Publish 0.9.1",Myk Melez,2018-12-05T03:31:41Z,mykmelez,mykmelez,8,4,4
+125,lmdb-rs,f6444786cfed495b5d6d81d9cf70bf385359245b,also modify html_root_url in lib.rs,Myk Melez,2018-12-05T03:02:23Z,mykmelez,mykmelez,2,1,1
+126,lmdb-rs,f4e45a2f3a807953a4c2ea7237c03b96d31269f8,"update patch version to 0.9.1
+
+In preparation for publishing a new version after the fix to RwTransaction.del() in #17.",Myk Melez,2018-12-05T02:57:01Z,mykmelez,mykmelez,2,1,1
+127,lmdb-rs,65507bde0aca4a6998e28f8e2a660a03ea3308f2,remove trailing whitespace,Myk Melez,2018-12-05T02:56:27Z,mykmelez,mykmelez,4,2,2
+128,lmdb-rs,3a7824fba851433778cfde46f236bc5c2479e6d1,"Merge pull request #18 from rrichardson/iter-dup-test
+
+fix for #17 - deleting values from an iter_dup db fails",Myk Melez,2018-12-04T22:21:52Z,mykmelez,mykmelez,74,66,8
+129,lmdb-rs,8ff1b47e26a704e90b4549a7da451afc78439c34,verifying that None passed to del in ITER_DUP dbs will delete all matching keys,Rick Richardson,2018-12-04T02:43:15Z,rrichardson,rrichardson,4,4,0
+130,lmdb-rs,7e4914e6cef1047c92d29a9aa45526f5613e73d5,"Merge pull request #11 from mykmelez/correct-default-map-size
+
+correct size of default memory map",Myk Melez,2018-12-03T20:42:15Z,mykmelez,mykmelez,2,1,1
+131,lmdb-rs,5aa123cdbc06ba498ece32f3d3b579ae94dec173,updated Transaction::del. Fixes #17,Rick Richardson,2018-12-03T03:28:13Z,rrichardson,rrichardson,34,16,18
+132,lmdb-rs,8599e4051ebe152e77795635e95b601d6e9815c2,added test for deleting values from an iter_dup db,Rick Richardson,2018-12-03T03:04:14Z,rrichardson,rrichardson,60,58,2
+133,lmdb-rs,af923dc62dc95eb833a552e391f52bf37a30dc60,explicitly identify reference in match patterns,Myk Melez,2018-12-01T01:11:51Z,mykmelez,mykmelez,16,8,8
+134,lmdb-rs,09d76561f53aed060276b16d2b270b91c6a9eb32,Merge branch 'master' into return-error-result-from-iter,Myk Melez,2018-12-01T00:50:53Z,mykmelez,mykmelez,64,64,0
+135,lmdb-rs,9091ba18bbb54920f811f7e0e85a18d28acc0672,"Merge pull request #16 from mozilla/azure-pipelines
+
+Set up CI with Azure Pipelines",Myk Melez,2018-12-01T00:50:24Z,mykmelez,mykmelez,64,64,0
+136,lmdb-rs,a558fab5908ac8f09dbd0eb63fd599c97d570c0e,"convert Iter/IterDup to enums
+
+Instead of boxing Iter/IterDup to generalize across both successful and failed attempts to get an iterator, we make Iter and IterDup be enums with Ok and Err variants, where the Ok variant behaves like the current implementations, and the Err variant always returns an error.",Myk Melez,2018-12-01T00:46:48Z,mykmelez,mykmelez,149,95,54
+137,lmdb-rs,ea1386f8da7a44ba5578fc36f8c97804baf5ff91,Merge branch 'master' into return-error-result-from-iter,Myk Melez,2018-11-30T23:50:45Z,mykmelez,mykmelez,30,17,13
+138,lmdb-rs,1b6cef9c3b7af1a86d1fa90eddacc909d0ede44c,move back to default azure-pipelines.yml config file,Myk Melez,2018-11-30T23:38:39Z,mykmelez,mykmelez,6,3,3
+139,lmdb-rs,7dc94e470b794dccb1b145c558285b75579d3678,Set up CI with Azure Pipelines,azure-pipelines[bot],2018-11-21T18:35:43Z,azure-pipelines[bot],azure-pipelines[bot],64,64,0
+140,lmdb-rs,f8a4dbf3f071450b3f318d59d4dcd2081826c117,"Merge pull request #15 from mykmelez/publish-0.9.0
+
+also update version in html_root_url in lib.rs",Myk Melez,2018-11-19T23:43:54Z,mykmelez,mykmelez,2,1,1
+141,lmdb-rs,7f2ab01e09d939fa5432ff21d9bba5535a3236e7,also update version in html_root_url in lib.rs,Myk Melez,2018-11-19T22:42:05Z,mykmelez,mykmelez,2,1,1
+142,lmdb-rs,0bdfb17e519b9f864beee27c796f9eb3339ce9ec,"Merge pull request #12 from mykmelez/publish-0.9.0
+
+update minor version for breaking change to Cursor::iter_dup_of",Myk Melez,2018-11-19T22:40:14Z,mykmelez,mykmelez,2,1,1
+143,lmdb-rs,e1b3a8ecce54f31ea7b5c49d8cd7937babbc7785,update minor version for breaking change to Cursor::iter_dup_of,Myk Melez,2018-11-19T22:14:31Z,mykmelez,mykmelez,2,1,1
+144,lmdb-rs,a32a67310f69fa3cdda5c67eb3cca7e2d8645d7b,Merge branch 'return-error-result' into return-error-result-from-iter,Myk Melez,2018-10-23T00:21:48Z,mykmelez,mykmelez,4,0,4
+145,lmdb-rs,09bd1de39b3f2069d9387005d85ddd4b49c92b96,remove unnecessary commented-out code,Myk Melez,2018-10-23T00:21:31Z,mykmelez,mykmelez,4,0,4
+146,lmdb-rs,6f06c1c1e9e815909699b5f6e3c122e9e7ed17eb,remove test that is no longer relevant,Myk Melez,2018-10-23T00:20:36Z,mykmelez,mykmelez,10,0,10
+147,lmdb-rs,04c7de8b37ec5206eea25b72d3e7d0602ba5d31a,empty commit to force CI rebuild,Myk Melez,2018-10-23T00:03:12Z,mykmelez,mykmelez,0,0,0
+148,lmdb-rs,7f4395918997583cb3461b3f8db5c308e86aa775,empty commit to force CI rebuild,Myk Melez,2018-10-23T00:02:20Z,mykmelez,mykmelez,0,0,0
+149,lmdb-rs,6ff053db6a0d6fe95380fe8dc7330f02ef3c413e,correct size of default memory map,Myk Melez,2018-10-22T23:13:44Z,mykmelez,mykmelez,2,1,1
+150,lmdb-rs,6414b83a10c00311b19dc59365942c1c590c6def,alias Box<Iter> type to BoxedIter; make iter_dup_from return iterator too,Myk Melez,2018-10-22T22:44:25Z,mykmelez,mykmelez,33,20,13
+151,lmdb-rs,58d46ec4d94e5df980086c78cd4a69173c4c78e6,return Iter that produces error result from Cursor.iter*,Myk Melez,2018-10-22T21:45:40Z,mykmelez,mykmelez,32,16,16
+152,lmdb-rs,99f24f745d9506ea8ecf0b8012dc20d5d5b14ed9,fix test failure; clarify iterator collection type,Myk Melez,2018-10-22T18:28:32Z,mykmelez,mykmelez,7,6,1
+153,lmdb-rs,c3cb55c8255134f38dc70b997683acac32b6a1b4,demonstrate various uses of API,Myk Melez,2018-08-08T05:56:29Z,mykmelez,mykmelez,35,34,1
+154,lmdb-rs,3fcf9306df3b63ddff39e97023c42ded83301ec7,make Cursor::iter_*() methods return Result instead of panicking,Myk Melez,2018-08-07T21:33:40Z,mykmelez,mykmelez,66,33,33
+155,lmdb-rs,6c975fa87af7543d750814d2490665c3521d4456,"Merge pull request #10 from mykmelez/merge-danburkert-master
+
+merge danburkert/master",Myk Melez,2018-08-06T20:39:10Z,mykmelez,mykmelez,149,85,64
+156,lmdb-rs,023997c715e2a3629e986a7a8f74f48a14c151ad,Merge remote-tracking branch 'danburkert/master' into merge-danburkert-master,Myk Melez,2018-08-06T17:14:18Z,mykmelez,mykmelez,149,85,64
+157,lmdb-rs,c64f0b4f8280190525a6430388e714739f18976b,"Simplify empty database iter handling
+
+This commit changes the API of Cursor::iter_dup_of, and is thus a
+breaking change.",Dan Burkert,2018-08-03T06:43:06Z,danburkert,danburkert,99,42,57
+158,lmdb-rs,c616e3d51e9de4b07b3c97345ba66b358a6a7cb7,Don't panic on iter_start() on an empty db.,Marshall Pierce,2018-03-31T20:02:14Z,marshallpierce,marshallpierce,39,36,3
+159,lmdb-rs,342e50d387dcb46f398dbf44f965f6ff49a303df,ignore NotFound error when seeking to key in iter_from/iter_dup_from,Myk Melez,2018-05-25T02:54:30Z,mykmelez,mykmelez,37,24,13
+160,lmdb-rs,984d53b2cd10a6019debeca3965e4c376534fa75,confirm that iter_from/iter_dup_from seek to first key >= specified key,Myk Melez,2018-05-25T01:28:54Z,mykmelez,mykmelez,16,13,3
+161,lmdb-rs,126aa4cd6c1a6c8d06861ecb9181e61b1775ca94,Test iter_from/iter_dup_from with nonexistent keys,Tony Arcieri,2016-07-10T23:01:36Z,tarcieri,tarcieri,3,3,0
+162,lmdb-rs,869e16d1d2ded035dd776b4d4a53ce846b76a2ef,"Have iter_from/iter_dup_from return a Result
+
+It previously called unwrap() which panics if a key isn't found",Tony Arcieri,2016-07-10T22:27:22Z,tarcieri,tarcieri,18,9,9
+163,lmdb-rs,ef250445c192c5fd8630e9b29f2589b467b80e81,Fix Android cross-compile build: `cargo build --target armv7-linux-androideabi`,Joseph Ross,2018-06-26T21:41:29Z,jnross,jnross,17,11,6
+164,lmdb-rs,c240c9243bc738d251df583f4ac64194ee7ff5cd,"Update pkg-config dependency to 0.3.2
+
+Earlier versions of pkg-config don't build with any post-1.0 rust
+compiler.
+
+This is an attempt to get lmdb, and some non-trivial crates which depend
+on it, building with `-Z minimal-versions`. See
+https://github.com/rust-lang/cargo/issues/5657 for more information.",Daniel Wagner-Hall,2018-06-28T19:12:32Z,illicitonion,illicitonion,2,1,1
+165,lmdb-rs,2f5a1c26156b0e0b0434a3ee0fc0269d971d49b4,"Update .appveyor.yml
+
+Linking lmdb with MinGW has begun failing due to [1], so this commit
+disables it.
+
+[1]: https://github.com/rust-lang/rust/issues/47048",Dan Burkert,2018-08-03T07:20:55Z,danburkert,danburkert,19,9,10
+166,lmdb-rs,12b4611006d5ba3bf80840faaa31a8b2e2bb6e88,Add a note for windows UNC path,Nan Jiang,2018-08-03T21:23:34Z,ncloudioj,ncloudioj,6,4,2
+167,lmdb-rs,da792699bfbbafe3ed8cd147a5d551ce747c195c,"Merge pull request #9 from mykmelez/update-version-for-crate-name-change
+
+update patch version for crate name change",Myk Melez,2018-08-02T23:27:35Z,mykmelez,mykmelez,2,1,1
+168,lmdb-rs,4b3cbdc0f5090e788901f64854b32c5fda318719,update patch version for crate name change,Myk Melez,2018-08-02T23:14:31Z,mykmelez,mykmelez,2,1,1
+169,lmdb-rs,fcccc59ae41e62e5753fe62153e46f919d49aeca,"Merge pull request #8 from mykmelez/retain-crate-name
+
+retain crate name for backward-compatibility",Myk Melez,2018-08-02T23:13:45Z,mykmelez,mykmelez,3,3,0
+170,lmdb-rs,64781cb66c87ff69639f74ef0e2e108031481126,retain crate name for backward-compatibility,Myk Melez,2018-08-02T22:57:36Z,mykmelez,mykmelez,3,3,0
+171,lmdb-rs,6cbb067e00beb1bee4de67d62d95ad716298a37f,"Merge pull request #7 from mykmelez/publish-as-lmdb-rkv
+
+prepare to publish on crates.io as lmdb-rkv package",Myk Melez,2018-08-02T22:41:18Z,mykmelez,mykmelez,16,8,8
+172,lmdb-rs,6d345e6ceb062a7f345f9502b068adbabacf6131,prepare to publish on crates.io as lmdb-rkv package,Myk Melez,2018-08-02T17:19:53Z,mykmelez,mykmelez,16,8,8
+173,lmdb-rs,6bc9c2dc820adff97283b62fbe2f26eae876f76a,"Merge pull request #4 from mykmelez/fork-readme
+
+update URLs and credit upstream repo",Myk Melez,2018-07-30T00:49:46Z,mykmelez,mykmelez,11,6,5
+174,lmdb-rs,a8f46056043afe6e13bf9bad7f7d4d8499da7aa3,Merge branch 'master' into fork-readme,Myk Melez,2018-07-30T00:42:57Z,mykmelez,mykmelez,43,35,8
+175,lmdb-rs,f250a08c92740f6a986f44147b07932219ecd69c,"Merge pull request #3 from mykmelez/work-around-appveyor-bustage
+
+temporarily disable MinGW builds",Myk Melez,2018-07-30T00:23:46Z,mykmelez,mykmelez,11,7,4
+176,lmdb-rs,ab1b1f67eec59398a423eed29e3f9127b33824ee,Merge branch 'master' into work-around-appveyor-bustage,Myk Melez,2018-07-30T00:16:19Z,mykmelez,mykmelez,32,28,4
+177,lmdb-rs,168b804e673c7a9b747f05b7cc7be0888d2eed5a,"Merge pull request #2 from mykmelez/iter-from-ignore-not-found
+
+Iter from ignore not found",Myk Melez,2018-07-27T17:25:05Z,mykmelez,mykmelez,37,24,13
+178,lmdb-rs,eb9185ebbac673b78a2741c4be00584b4ed51721,"Merge pull request #1 from mykmelez/iter-from-result
+
+ Have iter_from/iter_dup_from return a Result",Myk Melez,2018-07-27T17:19:50Z,mykmelez,mykmelez,35,24,11
+179,lmdb-rs,2b9ab786b008c4b223036a9e3879c9556b17d784,update URLs and credit upstream repo,Myk Melez,2018-07-24T23:29:48Z,mykmelez,mykmelez,11,6,5
+180,lmdb-rs,0dde7307c593f1156276a2697cd1ae3371ffe6c2,temporarily disable MinGW builds,Myk Melez,2018-07-24T23:23:01Z,mykmelez,mykmelez,11,7,4
+181,lmdb-rs,fe6bcde6c24ec75046a46eb3e3d52700689245f1,ignore NotFound error when seeking to key in iter_from/iter_dup_from,Myk Melez,2018-05-25T02:54:30Z,mykmelez,mykmelez,37,24,13
+182,lmdb-rs,d6dad15f3ec6ec662822ee87ae586c18a004c744,confirm that iter_from/iter_dup_from seek to first key >= specified key,Myk Melez,2018-05-25T01:28:54Z,mykmelez,mykmelez,16,13,3
+183,lmdb-rs,e274651f5ffc046bccfd4e15be1e6880170a53b4,Merge branch 'master' into iter-from-result,Myk Melez,2018-05-25T01:00:29Z,mykmelez,mykmelez,519,375,144
+184,lmdb-rs,90e88809954459869953cfa595ecd1e644bbfc87,0.8.0,Dan Burkert,2018-03-03T18:25:22Z,danburkert,danburkert,10,5,5
+185,lmdb-rs,5a70b18c0a655036f39deb9162ff28f36c4f6fe3,Remove deny(warnings),Dan Burkert,2018-03-03T18:36:23Z,danburkert,danburkert,1,0,1
+186,lmdb-rs,e8e58fd04c6a1d3bcab71b488293e8ecd49a4dc2,Add test for Environment::stats,Dan Burkert,2018-03-03T18:33:48Z,danburkert,danburkert,40,39,1
+187,lmdb-rs,09af4d92b70583de728054fe827d7a4f03522870,Update docs and small tweaks,Dan Burkert,2018-03-03T18:22:25Z,danburkert,danburkert,46,32,14
+188,lmdb-rs,e5dbfc81bb795194d19de40fafa7f13a20d4ac41,Update README.md,Dan Burkert,2018-03-03T17:53:11Z,danburkert,danburkert,2,1,1
+189,lmdb-rs,8e0bdab382203ab2097b2c8d03bc72d1bac11cd4,"doc(hidden) -> pub(crate)
+
+fixes #17",Dan Burkert,2018-03-03T17:50:36Z,danburkert,danburkert,23,9,14
+190,lmdb-rs,d0fda113ca880a1bc21fc215c74ee0251295ab28,try! -> ?,Dan Burkert,2018-03-03T17:44:09Z,danburkert,danburkert,53,25,28
+191,lmdb-rs,c15f22c88427c4b4b90a23fbcbd6630489b283c2,Typo in documentation (#22),Arthur Gautier,2018-03-03T17:45:05Z,baloo,baloo,2,1,1
+192,lmdb-rs,0f613773c1a73516992d42a0f900c1627c115b53,"Update dependencies and add database statistics (#23)
+
+Add database statistics in a new `Stats` type
+
+Also bundles a few other changes:
+
+- Switch from `gcc` crate to `cc` for building lmdb
+- Bump `bitflags` crate to 1.0
+- Bump minimum required `rustc` from `1.8` to `1.20`
+
+This is a breaking change.",zach,2018-03-03T17:21:57Z,zshipko,zshipko,87,69,18
+193,lmdb-rs,6539d449f0bc669e5b1e2357ecae07d1d1c37f6c,0.7.2,Dan Burkert,2017-09-09T19:59:07Z,danburkert,danburkert,10,5,5
+194,lmdb-rs,4d85f7390fa78823b61a5053f9cded89f5691d94,Convert to Cargo workspace project,Dan Burkert,2017-09-09T20:01:02Z,danburkert,danburkert,5,5,0
+195,lmdb-rs,547841a3e287c96e734532114bf5d7cfb7d4a29c,"Compile lmdb with opt level O2
+
+LMDB segfaults reliably with newer GCC versions when compiled with O3.
+Regression test included.
+
+fixes #21",Dan Burkert,2017-09-09T17:52:17Z,danburkert,danburkert,53,42,11
+196,lmdb-rs,ee5968dd2538bcb616a4f6994db40899a476da91,reset lmdb-sys path-dep for next cycle,Dan Burkert,2017-07-03T01:26:00Z,danburkert,danburkert,2,1,1
+197,lmdb-rs,b2efebf54a1bb2411a63f2f1831d79c9e82db955,0.7.1,Dan Burkert,2017-07-15T22:55:35Z,danburkert,danburkert,10,5,5
+198,lmdb-rs,4b9327818283b20d18207d9d56fa76f5346ff267,case mdb_strerror output to *const c_char (#19),Sam Rijs,2017-07-15T22:48:52Z,srijs,srijs,3,2,1
+199,lmdb-rs,37b241c7b6d659a9a85d00f05bea757cbc3641ff,reset lmdb-sys path-dep for next cycle,Dan Burkert,2017-07-03T01:26:00Z,danburkert,danburkert,2,1,1
+200,lmdb-rs,df1c2f56e3088f097c719c57b9925ab51e26f3f4,iter_dup_of returns other values after a delete (#80),Tom,2020-07-02T12:05:30Z,freesig,freesig,44,43,1
+201,lmdb-rs,4363ec04260b8f1c7db6b1f5c0e1c59fd009c228,"Bump version to 0.14.0
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T11:38:40Z,victorporof,victorporof,4,2,2
+202,lmdb-rs,74a3453dc23b99fea4e031e633d500cdec34dcf4,"Bump version to 0.11.0
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T11:37:39Z,victorporof,victorporof,4,2,2
+203,lmdb-rs,4c0b5ce09176f08ea6ac59e377a7534eaa46ff32,"Fix type `mode_t` type errors after updating bindings (#78)
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor Porof,2020-03-10T11:30:32Z,victorporof,victorporof,2,1,1
+204,lmdb-rs,a98be116654d0b85f4015d6bc596a0bbde836503,"Bump version to 0.10.2
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T11:16:08Z,victorporof,victorporof,4,2,2
+205,lmdb-rs,902dce440a8c4cdb3b03ba219384592f48b94573,"Bump version to 0.13.1
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T11:03:15Z,victorporof,victorporof,4,2,2
+206,lmdb-rs,df2cd5646f0cffb4b216b21a721d5d117a8cb141,"Fix bindings. (#77)
+
+* Fix bindings.
+
+PR #74 introduced a manually-generated change to the bindings that I
+accidentally broke in #76.
+
+* Specify the ""runtime"" feature of bindgen.
+
+As it became non-default in https://github.com/rust-lang/rust-bindgen/pull/1620.
+
+* Make binding generation work properly on Windows too.",Emilio Cobos Álvarez,2020-03-10T11:01:30Z,emilio,emilio,17,8,9
+207,lmdb-rs,f0fa429eaa2f3c5e4ff87cc0dd04d98c248a1ef7,"Bump version to 0.13.0
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T10:26:17Z,victorporof,victorporof,4,2,2
+208,lmdb-rs,4d4594c4e242f274c356c614cae5b754f0e2cc75,"Bump version to 0.10.1
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T10:14:06Z,victorporof,victorporof,4,2,2
+209,lmdb-rs,dccf69c306d22275636eb1fad9b9ed47877343f4,Update bindgen. (#76),Emilio Cobos Álvarez,2020-03-10T10:02:03Z,emilio,emilio,8,6,2
+210,lmdb-rs,41982021537808180525e648470cd8c1d0a13fde,"Bump version to 0.10.0
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-12-06T17:10:15Z,victorporof,victorporof,4,2,2
+211,lmdb-rs,a604c2d976a60cf501596b3f3bd08fbd44ed0ecf,"Support windows FileHandle types (#74)
+
+* Support windows FileHandle types
+
+* Add a test to check that copy works on windows",Clément Renault,2019-12-06T14:08:48Z,Kerollmops,Kerollmops,30,29,1
+212,lmdb-rs,5f5245ad4d7cd59388cb08577daad92f24a946c2,"Bump version to 0.9.6
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-10-27T04:37:58Z,victorporof,victorporof,4,2,2
+213,lmdb-rs,b6e5ad193ad9d2cf06ae30287ae1e6c07bac34f0,Test with 32-bit database on 32-bit systems (#72),Myk Melez,2019-10-27T04:34:48Z,mykmelez,mykmelez,17,8,9
+214,lmdb-rs,f1c3ba853c374526070acc655084e18c8c7b2533,Make bindgen optional (#70),quininer,2019-10-27T04:31:42Z,quininer,quininer,19,13,6
+215,lmdb-rs,ea0d09ff0223dea17bcbfbdabb090171a97692d3,"Fix an embarrassing typo in #68. (#69)
+
+Sigh. The line as it is is just 0.51, which is fine, kinda, but doesn't
+accomplish what I want :(",Emilio Cobos Álvarez,2019-09-27T06:23:33Z,emilio,emilio,6,3,3
+216,lmdb-rs,bab675502fce87fda55739b11a40dcbab9880e66,"Don't use bindgen's default features, and use old syn and quote until the rest of mozilla-central updates to 1.0. (#68)
+
+This prevents dependencies like which to be built, which is unnecessary, and
+avoids duplicate versions of syn / quote in Gecko.",Emilio Cobos Álvarez,2019-09-26T15:16:12Z,emilio,emilio,6,3,3
+217,lmdb-rs,a0f3c0543402d766035e73de84f0ba210216b0f7,"Bump lmdb and lmdb-sys versions to 0.12.3 and 0.9.3 respectively
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-25T05:28:07Z,victorporof,victorporof,8,4,4
+218,lmdb-rs,07a1d767f0744c6ce1b4c01f96c398b979ab9a59,"Merge pull request #67 from mozilla/optional-clang
+
+Remove with-clang feature in favor of using $CC",Victor Porof,2019-09-25T05:27:06Z,victorporof,victorporof,30,14,16
+219,lmdb-rs,ab1d7117a7e1a2fdb4e6fe607ba567390226bc63,"Temporarily work around CI failure on linux nightlies
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-24T18:15:59Z,victorporof,victorporof,5,5,0
+220,lmdb-rs,bfc6137aecc222a1995476af2ea467256b5d21a6,"Remove with-clang feature in favor of using $CC
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-24T16:06:07Z,victorporof,victorporof,25,9,16
+221,lmdb-rs,31b148f8975f74f8f7318b781dbe125207af4ee6,"Bump lmdb and lmdb-sys versions to 0.12.2 and 0.9.2 respectively
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-24T06:37:17Z,victorporof,victorporof,8,4,4
+222,lmdb-rs,6b47f7923a431e3be17bcaa83ba9cc63d088bb89,"Use relaxed dependency versions (pre 0.12) for better build compat with m-c (#66)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-24T06:35:12Z,victorporof,victorporof,18,9,9
+223,lmdb-rs,d64faaf718538244325c57125f8d8c301e2e8b1e,Force retrigger CI builds,Victor Porof,2019-09-18T06:45:13Z,victorporof,victorporof,0,0,0
+224,lmdb-rs,ec5790bc8263b71716eae2279075ac15cc4fb9ba,"Bump version to 0.12.1
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-17T06:38:49Z,victorporof,victorporof,4,2,2
+225,lmdb-rs,e06ffdb534a55472c2bc7b8662452cc1f2a48650,"Bump version to 0.9.1
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-17T06:33:37Z,victorporof,victorporof,4,2,2
+226,lmdb-rs,dd9a2fb2b754dcea4b7c12604852bd22e53a7da8,"Merge pull request #65 from mozilla/instrument-build
+
+Use libfuzzer instrumentation options for building",Victor Porof,2019-09-14T05:29:56Z,victorporof,victorporof,60,56,4
+227,lmdb-rs,c79ced82068ccdd8d378c688956ee84aa4a660d6,"Use more recent versions of distro and clang on linux
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T11:16:16Z,victorporof,victorporof,1,0,1
+228,lmdb-rs,28f17aac0e6c3da49cbc5d7df556e9fdbb2e470a,"Use official clang on osx
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T08:49:33Z,victorporof,victorporof,8,8,0
+229,lmdb-rs,7372e414224de0a492bd4563528faf3f811b4ea0,"Test instrumentation features on CI on linux and osx
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T08:27:47Z,victorporof,victorporof,6,6,0
+230,lmdb-rs,b92f9a2053293e50cbf9aad31edb9107e2db16d8,"Add features for building with fuzzing but not linking libfuzzer
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T09:13:02Z,victorporof,victorporof,15,15,0
+231,lmdb-rs,0603615a2dc2a0073d3a2f6c65b6b9a35165ea2e,"Add features for building with asan and fuzzing
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T08:17:00Z,victorporof,victorporof,30,27,3
+232,lmdb-rs,8fc50a8f749a8133628c332eac38e807ad10d1c2,"Use all compiler flags from the makefile when building (#64)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T17:30:02Z,victorporof,victorporof,3,3,0
+233,lmdb-rs,0810db76b38e0712e8c830b25b6140cf80147893,"Merge pull request #63 from mozilla/toml-updates
+
+Toml updates",Victor Porof,2019-09-12T13:45:49Z,victorporof,victorporof,29,17,12
+234,lmdb-rs,928f3c8af326c7f139172b6eb1f46d85e09b2d1a,"Have documentation and homepage urls for the crates.io page
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-12T12:38:07Z,victorporof,victorporof,10,4,6
+235,lmdb-rs,76767e9e75703eb584dd10fde6b92a5005c5e0a5,"Use CI badges for the crates.io page, mirroring what lmdb-rkv does
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-12T12:26:20Z,victorporof,victorporof,4,4,0
+236,lmdb-rs,358f4284505428836790a1efdc729e41859e359d,"Use a simple lib name for lmdb-rkv-sys, mirroring what lmdb-rkv does
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-12T12:25:48Z,victorporof,victorporof,15,9,6
+237,lmdb-rs,472c9260596e36960ac9ed9ab6382563ecd0b7c1,"Merge pull request #59 from mozilla/tests
+
+More testing",Victor Porof,2019-09-12T11:03:43Z,victorporof,victorporof,78,76,2
+238,lmdb-rs,77c0ee393e6a877096a562bdbf28d5233da6bf93,"Display verbose cargo version in logs
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T09:24:45Z,victorporof,victorporof,4,2,2
+239,lmdb-rs,d7d448f2650c3531844a57851a47492d40580367,"Expect failure on win 32
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T09:07:05Z,victorporof,victorporof,12,12,0
+240,lmdb-rs,b3fe3714052d3b90913471aef40b4149f38887e4,"Add test program from https://gist.github.com/mykmelez/ac75a7ab0a0d09a7d709be63806d01d7
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-10T08:00:12Z,victorporof,victorporof,62,62,0
+241,lmdb-rs,67a9c6b990f8f52a67fdb72ce786cc841d04f3a8,"Merge pull request #60 from mozilla/format-pass
+
+Formatting passes and enable linting on CI",Victor Porof,2019-09-11T13:36:07Z,victorporof,victorporof,1090,628,462
+242,lmdb-rs,f05f1c1cce0e245022caed36b4a490f3844ccd8a,"Run rustfmt and clippy on CI
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T08:48:32Z,victorporof,victorporof,11,11,0
+243,lmdb-rs,2622fb2ebf738e4610859792d7ebf0d84f689205,"Disable clippy on generated bindings
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T09:14:45Z,victorporof,victorporof,3,2,1
+244,lmdb-rs,2970b17c715d81f5462f1b3d3495d62b7b54a821,"More clippy passes on all targets (cargo clippy --all-targets --all-features -- -D warnings -A clippy::match-ref-pats -A clippy::needless-lifetimes)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T08:44:43Z,victorporof,victorporof,32,15,17
+245,lmdb-rs,bca20c45c4a4c87726f3dd0237ae0d6a68e9ef69,"Clippy pass (cargo clippy -- -D warnings -A clippy::match-ref-pats -A clippy::needless-lifetimes)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T08:38:46Z,victorporof,victorporof,31,17,14
+246,lmdb-rs,2acd21c52929725ab3093b93c835992682acaa69,"Rustfmt pass (cargo +nightly fmt --all)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T08:07:34Z,victorporof,victorporof,1041,594,447
+247,lmdb-rs,ea60c303fe7c238a1b4354d797d4a874fff23b93,"Enable rustfmt and copy config from the rkv project
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T08:00:37Z,victorporof,victorporof,8,7,1
+248,lmdb-rs,027f2712ae77d8969d4f75472cfa96be2f3b1b58,"Bump version to 0.12, update authors
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-05T14:05:27Z,victorporof,victorporof,6,3,3
+249,lmdb-rs,df2dc926ac6e3925c19b5cba5a50042bb8f89e3d,"Merge pull request #58 from mozilla/lmdb-tests
+
+Run lmdb tests alongside `cargo test`",Victor Porof,2019-09-05T13:59:31Z,victorporof,victorporof,33,33,0
+250,lmdb-rs,1436ed3e08ff983f022b70aa2921291f3f0fe945,"Refresh environment variables before attempting to build lmdb
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-05T13:24:17Z,victorporof,victorporof,1,1,0
+251,lmdb-rs,11dee0bfc211d2d44efe3c904328b305fd097303,"Install gcc on appveyor CI
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-05T12:55:27Z,victorporof,victorporof,2,2,0
+252,lmdb-rs,af9500bfd90207cc665866b4f052c994dd7892dc,"Install make on appveyor CI
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-05T12:33:36Z,victorporof,victorporof,2,2,0
+253,lmdb-rs,05dd05998dc6970a349746c4bc6f687be19fc862,"Run lmdb tests alongside `cargo test`
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-05T09:29:15Z,victorporof,victorporof,28,28,0
+254,lmdb-rs,97d6a7510f4f62459944799ccfd8875f2bd1542d,"Merge pull request #56 from mozilla/update-lmdb
+
+Update lmdb to latest version and other goodies",Victor Porof,2019-09-05T09:02:19Z,victorporof,victorporof,1900,1559,341
+255,lmdb-rs,6bd379824c16354500ad285e8b357ebee126ffe6,"Don't generate bindings as part of the build phase
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-04T14:53:11Z,victorporof,victorporof,1523,1466,57
+256,lmdb-rs,a4776c095718be954a1ee316a88381d1721456ce,"Format yml files
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:19:49Z,victorporof,victorporof,144,72,72
+257,lmdb-rs,577228969eef4d5983ead6a2e189cb69cda146c3,"Remove explicit support for rust 1.30 on travis
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:19:24Z,victorporof,victorporof,2,1,1
+258,lmdb-rs,a5ceeb29d50e682c2bbdc29267b05c81aeea8580,"Bump version to 0.9.0
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:12:04Z,victorporof,victorporof,4,2,2
+259,lmdb-rs,13d77dd00469336358a231eb1da510ec6bd0cea8,"Update all dependencies to their latest version for the main crate
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:26:12Z,victorporof,victorporof,10,5,5
+260,lmdb-rs,cac5b8d5d124e509e4c671390b04e9f9882aa0fd,"Update all dependencies to their latest version for the sys crate
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:08:56Z,victorporof,victorporof,8,4,4
+261,lmdb-rs,bd45823f11cb86234830b7989dfab0fbebf3fc32,"Use `flag_if_supported` instead of `flag` when compiling liblmdb
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:08:15Z,victorporof,victorporof,2,1,1
+262,lmdb-rs,a07f50b3981ce0e03c531719401ba5791a7e466a,"Hide warnings while building
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-30T15:52:21Z,victorporof,victorporof,1,1,0
+263,lmdb-rs,208992590eb18376c8a8fd35bdb7d03a7207e1a4,"Allow cc to handle build optimizations
+
+Fixes #54
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-30T15:52:04Z,victorporof,victorporof,2,0,2
+264,lmdb-rs,b6720b8937e847637b894bbb7008d1c46a852960,"Create bindings automatically using rust-bindgen
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-30T15:30:32Z,victorporof,victorporof,324,67,257
+265,lmdb-rs,596539ce728c0be7b02df249ec08260d727097b5,"Update lmdb and to latest version of mdb.RE/0.9.24-moz branch
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-30T13:34:57Z,victorporof,victorporof,2,1,1
+266,lmdb-rs,96477e069a9d021efd25d9c9ecf8eb157bf1a077,"Merge pull request #52 from mykmelez/separate-benches-from-tests
+
+Separate benches from tests",Myk Melez,2019-06-22T08:20:05Z,mykmelez,mykmelez,529,287,242
+267,lmdb-rs,b6798d5a1bf15c8ed899cfebb4153f88824bc3f0,"Merge pull request #55 from mykmelez/publish-lmdb-rkv-sys-0.8.6
+
+update patch version for lmdb-rkv-sys 0.8.6",Myk Melez,2019-06-22T07:47:57Z,mykmelez,mykmelez,4,2,2
+268,lmdb-rs,71dcd1b4e0ffb2a3dbaaa38163c25145e53defbf,Merge branch 'master' into separate-benches-from-tests,Myk Melez,2019-06-22T07:41:12Z,mykmelez,mykmelez,40,38,2
+269,lmdb-rs,0983b3188b78a9338a13e1a5bc4240dbf7dd85d0,update patch version for lmdb-rkv-sys 0.8.6,Myk Melez,2019-06-22T07:38:47Z,mykmelez,mykmelez,4,2,2
+270,lmdb-rs,bffb9a668e7dc9112904aaf95053a2f46084c9ce,"Merge pull request #53 from mykmelez/prioritize-testing-and-document-publication
+
+prioritize testing lmdb-rkv with in-tree lmdb-rkv-sys; document publication",Myk Melez,2019-06-22T07:36:38Z,mykmelez,mykmelez,40,38,2
+271,lmdb-rs,81982782a49b7d5f398e8f19aec5cddf334ad5b6,update lmdb-sys/lmdb to tip of mdb.RE/0.9-moz branch,Myk Melez,2019-06-22T07:21:44Z,mykmelez,mykmelez,2,1,1
+272,lmdb-rs,3f8057bfe2e4b1b2bf1c4868f78f6e4ff7deb8c4,prioritize testing lmdb-rkv with in-tree lmdb-rkv-sys; document publication,Myk Melez,2019-06-21T22:03:46Z,mykmelez,mykmelez,38,37,1
+273,lmdb-rs,e51b36e8a9278bcd1bb5f44a1f8275f2ac441588,update CI configurations,Myk Melez,2019-06-20T23:18:55Z,mykmelez,mykmelez,46,35,11
+274,lmdb-rs,5849f37f314add0b44027fd9dc53a9031f2fe5bd,separate benches from tests,Myk Melez,2019-06-20T22:40:45Z,mykmelez,mykmelez,483,252,231
+275,lmdb-rs,04e544977fe859993f4c98d5b9ec6346130ff3e2,"Merge pull request #51 from mykmelez/publish-lmdb-rkv-sys-0.8.5
+
+update patch version for lmdb-rkv-sys 0.8.5",Myk Melez,2019-06-20T20:30:21Z,mykmelez,mykmelez,4,2,2
+276,lmdb-rs,cf1c2338992e7af3001d00110d15665d2266ad98,update patch version for lmdb-rkv-sys 0.8.5,Myk Melez,2019-06-20T18:56:16Z,mykmelez,mykmelez,4,2,2
+277,lmdb-rs,62a5db10b9293e06f62146be59c133ad50c8f456,"Merge pull request #50 from mykmelez/lmdb-assert-page-search
+
+update lmdb-sys/lmdb submodule to tip of mdb.RE/0.9-moz branch",Myk Melez,2019-06-20T18:53:53Z,mykmelez,mykmelez,2,1,1
+278,lmdb-rs,f7cdbda6c948031862934a08c72c9371a5ec1e1f,update lmdb-sys/lmdb submodule to tip of mdb.RE/0.9-moz branch,Myk Melez,2019-06-20T17:20:18Z,mykmelez,mykmelez,2,1,1
+279,lmdb-rs,f07097113096e8c622a43432ff5fed28ef89a402,"Merge pull request #49 from mykmelez/publish-lmdb-rkv-sys-0.8.4
+
+publish lmdb-rkv-sys 0.8.4",Myk Melez,2019-06-06T23:07:25Z,mykmelez,mykmelez,6,3,3
+280,lmdb-rs,6bfec5736ad328b17334f0984de73d9a1df7666b,update patch version for lmdb-rkv-sys 0.8.4,Myk Melez,2019-06-06T22:50:03Z,mykmelez,mykmelez,4,2,2
+281,lmdb-rs,d54b8f218bacb3e004793799d6ddc4435627de68,update to latest version of mdb.RE/0.9-moz branch,Myk Melez,2019-06-06T22:49:01Z,mykmelez,mykmelez,2,1,1
+282,lmdb-rs,52151c295afd5178b5146fa3024f1a7753eecb4c,"Merge pull request #48 from yangby-cryptape/fix-typo
+
+Fix typo",Myk Melez,2019-05-16T17:02:21Z,mykmelez,mykmelez,4,2,2
+283,lmdb-rs,c85d3657a7ae2e2ea040944e864b763981373fa0,Fix typo,Boyu Yang,2019-05-13T14:21:59Z,yangby-cryptape,yangby-cryptape,4,2,2
+284,lmdb-rs,4c86d591be783ab21a0f48fadf97e455e24daba4,"Merge pull request #45 from mykmelez/publish-lmdb-rkv-0.11.4
+
+update lmdb-rkv-sys dependency to 0.8.3 and patch version for lmdb-rkv to 0.11.4",Myk Melez,2019-04-15T18:59:38Z,mykmelez,mykmelez,6,3,3
+285,lmdb-rs,f9f619f8d75019f3baed025ded121cc370e08d69,update lmdb-rkv-sys dependency to 0.8.3 and patch version for lmdb-rkv to 0.11.4,Myk Melez,2019-04-15T18:22:21Z,mykmelez,mykmelez,6,3,3
+286,lmdb-rs,413d6d166db5aed8d38e5e9d43a9b42d3debe4d8,"Merge pull request #44 from mykmelez/publish-lmdb-rkv-sys-0.8.3
+
+update patch version for lmdb-rkv-sys 0.8.3",Myk Melez,2019-04-15T18:17:44Z,mykmelez,mykmelez,4,2,2
+287,lmdb-rs,0a69d027f339ddf2d63cd532275e8c840fc965fe,update patch version for lmdb-rkv-sys 0.8.3,Myk Melez,2019-04-15T17:38:16Z,mykmelez,mykmelez,4,2,2
+288,lmdb-rs,61b451f8950320b8375b2cb34e9934483e13c079,"Merge pull request #43 from mykmelez/configure-mdb-idl-logn
+
+enable configuration of MDB_IDL_LOGN",Myk Melez,2019-04-15T17:06:55Z,mykmelez,mykmelez,53,52,1
+289,lmdb-rs,0c37ccb2d374d6c0904e6816b303ed64f8c8b7d6,update to latest version of mdb.RE/0.9-moz branch,Myk Melez,2019-04-12T21:52:15Z,mykmelez,mykmelez,2,1,1
+290,lmdb-rs,babc0594df116906c86674299ea13e6d96b2c54e,add feature flags to define MDB_IDL_LOGN macro,Myk Melez,2019-04-12T21:38:39Z,mykmelez,mykmelez,51,51,0
+291,lmdb-rs,99359f4cab3dbc2e5216ed7fbde41ef4d51bed77,"Merge pull request #42 from ncloudioj/db-stats
+
+Add database level stat function",Myk Melez,2019-04-05T22:01:52Z,mykmelez,mykmelez,121,117,4
+292,lmdb-rs,8a46f68f5fab8de8cc41ca227707dfb310184290,Refactor Stat,Nan Jiang,2019-04-04T16:53:04Z,ncloudioj,ncloudioj,15,10,5
+293,lmdb-rs,10697cda7b2e023d968c6dd6a85ba1c5e6fb84c1,Add database level stat function,Nan Jiang,2019-04-04T16:18:09Z,ncloudioj,ncloudioj,114,111,3
+294,lmdb-rs,d62da60df53ec37a4d73eaafbcb626103c2f42e4,Add freelist to environment (#41),Nan Jiang,2019-04-04T14:41:33Z,ncloudioj,ncloudioj,90,85,5
+295,lmdb-rs,9996feebe04e6bc1baace3c606734a8a30754f37,"Merge pull request #39 from mozilla/publish-0.11.3
+
+update patch version for lmdb-rkv 0.11.3",Myk Melez,2019-03-29T00:16:12Z,mykmelez,mykmelez,4,2,2
+296,lmdb-rs,8f50c35fdc61b53de5ad6470fbadf5977b640029,update patch version for lmdb-rkv 0.11.3,Myk Melez,2019-03-28T19:25:14Z,mykmelez,mykmelez,4,2,2
+297,lmdb-rs,ca00a0986c76333b3c0ab81c889a73e068c3cf65,"Expose set_map_size from environment (#36)
+
+* Expose set_map_size from environment
+
+* Export Info
+
+* Review fixes",Nan Jiang,2019-03-20T14:57:05Z,ncloudioj,ncloudioj,120,119,1
+298,lmdb-rs,d9569a3397c6c5288ba40c42c1dc76e3bace888d,"Merge pull request #34 from mykmelez/exclude-ci-configs
+
+exclude CI config files from package",Nan Jiang,2019-02-08T00:19:12Z,ncloudioj,ncloudioj,8,8,0
+299,lmdb-rs,e383eb0dbef419a5945c37afdc982e395b67296a,exclude CI config files from package,Myk Melez,2019-02-07T22:21:34Z,mykmelez,mykmelez,8,8,0
+300,lmdb-rs,df1c2f56e3088f097c719c57b9925ab51e26f3f4,iter_dup_of returns other values after a delete (#80),Tom,2020-07-02T12:05:30Z,freesig,freesig,44,43,1
+301,lmdb-rs,4363ec04260b8f1c7db6b1f5c0e1c59fd009c228,"Bump version to 0.14.0
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T11:38:40Z,victorporof,victorporof,4,2,2
+302,lmdb-rs,74a3453dc23b99fea4e031e633d500cdec34dcf4,"Bump version to 0.11.0
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T11:37:39Z,victorporof,victorporof,4,2,2
+303,lmdb-rs,4c0b5ce09176f08ea6ac59e377a7534eaa46ff32,"Fix type `mode_t` type errors after updating bindings (#78)
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor Porof,2020-03-10T11:30:32Z,victorporof,victorporof,2,1,1
+304,lmdb-rs,a98be116654d0b85f4015d6bc596a0bbde836503,"Bump version to 0.10.2
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T11:16:08Z,victorporof,victorporof,4,2,2
+305,lmdb-rs,902dce440a8c4cdb3b03ba219384592f48b94573,"Bump version to 0.13.1
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T11:03:15Z,victorporof,victorporof,4,2,2
+306,lmdb-rs,df2cd5646f0cffb4b216b21a721d5d117a8cb141,"Fix bindings. (#77)
+
+* Fix bindings.
+
+PR #74 introduced a manually-generated change to the bindings that I
+accidentally broke in #76.
+
+* Specify the ""runtime"" feature of bindgen.
+
+As it became non-default in https://github.com/rust-lang/rust-bindgen/pull/1620.
+
+* Make binding generation work properly on Windows too.",Emilio Cobos Álvarez,2020-03-10T11:01:30Z,emilio,emilio,17,8,9
+307,lmdb-rs,f0fa429eaa2f3c5e4ff87cc0dd04d98c248a1ef7,"Bump version to 0.13.0
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T10:26:17Z,victorporof,victorporof,4,2,2
+308,lmdb-rs,4d4594c4e242f274c356c614cae5b754f0e2cc75,"Bump version to 0.10.1
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T10:14:06Z,victorporof,victorporof,4,2,2
+309,lmdb-rs,dccf69c306d22275636eb1fad9b9ed47877343f4,Update bindgen. (#76),Emilio Cobos Álvarez,2020-03-10T10:02:03Z,emilio,emilio,8,6,2
+310,lmdb-rs,41982021537808180525e648470cd8c1d0a13fde,"Bump version to 0.10.0
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-12-06T17:10:15Z,victorporof,victorporof,4,2,2
+311,lmdb-rs,a604c2d976a60cf501596b3f3bd08fbd44ed0ecf,"Support windows FileHandle types (#74)
+
+* Support windows FileHandle types
+
+* Add a test to check that copy works on windows",Clément Renault,2019-12-06T14:08:48Z,Kerollmops,Kerollmops,30,29,1
+312,lmdb-rs,5f5245ad4d7cd59388cb08577daad92f24a946c2,"Bump version to 0.9.6
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-10-27T04:37:58Z,victorporof,victorporof,4,2,2
+313,lmdb-rs,b6e5ad193ad9d2cf06ae30287ae1e6c07bac34f0,Test with 32-bit database on 32-bit systems (#72),Myk Melez,2019-10-27T04:34:48Z,mykmelez,mykmelez,17,8,9
+314,lmdb-rs,f1c3ba853c374526070acc655084e18c8c7b2533,Make bindgen optional (#70),quininer,2019-10-27T04:31:42Z,quininer,quininer,19,13,6
+315,lmdb-rs,ea0d09ff0223dea17bcbfbdabb090171a97692d3,"Fix an embarrassing typo in #68. (#69)
+
+Sigh. The line as it is is just 0.51, which is fine, kinda, but doesn't
+accomplish what I want :(",Emilio Cobos Álvarez,2019-09-27T06:23:33Z,emilio,emilio,6,3,3
+316,lmdb-rs,bab675502fce87fda55739b11a40dcbab9880e66,"Don't use bindgen's default features, and use old syn and quote until the rest of mozilla-central updates to 1.0. (#68)
+
+This prevents dependencies like which to be built, which is unnecessary, and
+avoids duplicate versions of syn / quote in Gecko.",Emilio Cobos Álvarez,2019-09-26T15:16:12Z,emilio,emilio,6,3,3
+317,lmdb-rs,a0f3c0543402d766035e73de84f0ba210216b0f7,"Bump lmdb and lmdb-sys versions to 0.12.3 and 0.9.3 respectively
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-25T05:28:07Z,victorporof,victorporof,8,4,4
+318,lmdb-rs,07a1d767f0744c6ce1b4c01f96c398b979ab9a59,"Merge pull request #67 from mozilla/optional-clang
+
+Remove with-clang feature in favor of using $CC",Victor Porof,2019-09-25T05:27:06Z,victorporof,victorporof,30,14,16
+319,lmdb-rs,ab1d7117a7e1a2fdb4e6fe607ba567390226bc63,"Temporarily work around CI failure on linux nightlies
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-24T18:15:59Z,victorporof,victorporof,5,5,0
+320,lmdb-rs,bfc6137aecc222a1995476af2ea467256b5d21a6,"Remove with-clang feature in favor of using $CC
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-24T16:06:07Z,victorporof,victorporof,25,9,16
+321,lmdb-rs,31b148f8975f74f8f7318b781dbe125207af4ee6,"Bump lmdb and lmdb-sys versions to 0.12.2 and 0.9.2 respectively
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-24T06:37:17Z,victorporof,victorporof,8,4,4
+322,lmdb-rs,6b47f7923a431e3be17bcaa83ba9cc63d088bb89,"Use relaxed dependency versions (pre 0.12) for better build compat with m-c (#66)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-24T06:35:12Z,victorporof,victorporof,18,9,9
+323,lmdb-rs,d64faaf718538244325c57125f8d8c301e2e8b1e,Force retrigger CI builds,Victor Porof,2019-09-18T06:45:13Z,victorporof,victorporof,0,0,0
+324,lmdb-rs,ec5790bc8263b71716eae2279075ac15cc4fb9ba,"Bump version to 0.12.1
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-17T06:38:49Z,victorporof,victorporof,4,2,2
+325,lmdb-rs,e06ffdb534a55472c2bc7b8662452cc1f2a48650,"Bump version to 0.9.1
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-17T06:33:37Z,victorporof,victorporof,4,2,2
+326,lmdb-rs,dd9a2fb2b754dcea4b7c12604852bd22e53a7da8,"Merge pull request #65 from mozilla/instrument-build
+
+Use libfuzzer instrumentation options for building",Victor Porof,2019-09-14T05:29:56Z,victorporof,victorporof,60,56,4
+327,lmdb-rs,c79ced82068ccdd8d378c688956ee84aa4a660d6,"Use more recent versions of distro and clang on linux
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T11:16:16Z,victorporof,victorporof,1,0,1
+328,lmdb-rs,28f17aac0e6c3da49cbc5d7df556e9fdbb2e470a,"Use official clang on osx
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T08:49:33Z,victorporof,victorporof,8,8,0
+329,lmdb-rs,7372e414224de0a492bd4563528faf3f811b4ea0,"Test instrumentation features on CI on linux and osx
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T08:27:47Z,victorporof,victorporof,6,6,0
+330,lmdb-rs,b92f9a2053293e50cbf9aad31edb9107e2db16d8,"Add features for building with fuzzing but not linking libfuzzer
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T09:13:02Z,victorporof,victorporof,15,15,0
+331,lmdb-rs,0603615a2dc2a0073d3a2f6c65b6b9a35165ea2e,"Add features for building with asan and fuzzing
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T08:17:00Z,victorporof,victorporof,30,27,3
+332,lmdb-rs,8fc50a8f749a8133628c332eac38e807ad10d1c2,"Use all compiler flags from the makefile when building (#64)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T17:30:02Z,victorporof,victorporof,3,3,0
+333,lmdb-rs,0810db76b38e0712e8c830b25b6140cf80147893,"Merge pull request #63 from mozilla/toml-updates
+
+Toml updates",Victor Porof,2019-09-12T13:45:49Z,victorporof,victorporof,29,17,12
+334,lmdb-rs,928f3c8af326c7f139172b6eb1f46d85e09b2d1a,"Have documentation and homepage urls for the crates.io page
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-12T12:38:07Z,victorporof,victorporof,10,4,6
+335,lmdb-rs,76767e9e75703eb584dd10fde6b92a5005c5e0a5,"Use CI badges for the crates.io page, mirroring what lmdb-rkv does
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-12T12:26:20Z,victorporof,victorporof,4,4,0
+336,lmdb-rs,358f4284505428836790a1efdc729e41859e359d,"Use a simple lib name for lmdb-rkv-sys, mirroring what lmdb-rkv does
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-12T12:25:48Z,victorporof,victorporof,15,9,6
+337,lmdb-rs,472c9260596e36960ac9ed9ab6382563ecd0b7c1,"Merge pull request #59 from mozilla/tests
+
+More testing",Victor Porof,2019-09-12T11:03:43Z,victorporof,victorporof,78,76,2
+338,lmdb-rs,77c0ee393e6a877096a562bdbf28d5233da6bf93,"Display verbose cargo version in logs
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T09:24:45Z,victorporof,victorporof,4,2,2
+339,lmdb-rs,d7d448f2650c3531844a57851a47492d40580367,"Expect failure on win 32
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T09:07:05Z,victorporof,victorporof,12,12,0
+340,lmdb-rs,b3fe3714052d3b90913471aef40b4149f38887e4,"Add test program from https://gist.github.com/mykmelez/ac75a7ab0a0d09a7d709be63806d01d7
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-10T08:00:12Z,victorporof,victorporof,62,62,0
+341,lmdb-rs,67a9c6b990f8f52a67fdb72ce786cc841d04f3a8,"Merge pull request #60 from mozilla/format-pass
+
+Formatting passes and enable linting on CI",Victor Porof,2019-09-11T13:36:07Z,victorporof,victorporof,1090,628,462
+342,lmdb-rs,f05f1c1cce0e245022caed36b4a490f3844ccd8a,"Run rustfmt and clippy on CI
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T08:48:32Z,victorporof,victorporof,11,11,0
+343,lmdb-rs,2622fb2ebf738e4610859792d7ebf0d84f689205,"Disable clippy on generated bindings
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T09:14:45Z,victorporof,victorporof,3,2,1
+344,lmdb-rs,2970b17c715d81f5462f1b3d3495d62b7b54a821,"More clippy passes on all targets (cargo clippy --all-targets --all-features -- -D warnings -A clippy::match-ref-pats -A clippy::needless-lifetimes)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T08:44:43Z,victorporof,victorporof,32,15,17
+345,lmdb-rs,bca20c45c4a4c87726f3dd0237ae0d6a68e9ef69,"Clippy pass (cargo clippy -- -D warnings -A clippy::match-ref-pats -A clippy::needless-lifetimes)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T08:38:46Z,victorporof,victorporof,31,17,14
+346,lmdb-rs,2acd21c52929725ab3093b93c835992682acaa69,"Rustfmt pass (cargo +nightly fmt --all)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T08:07:34Z,victorporof,victorporof,1041,594,447
+347,lmdb-rs,ea60c303fe7c238a1b4354d797d4a874fff23b93,"Enable rustfmt and copy config from the rkv project
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T08:00:37Z,victorporof,victorporof,8,7,1
+348,lmdb-rs,027f2712ae77d8969d4f75472cfa96be2f3b1b58,"Bump version to 0.12, update authors
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-05T14:05:27Z,victorporof,victorporof,6,3,3
+349,lmdb-rs,df2dc926ac6e3925c19b5cba5a50042bb8f89e3d,"Merge pull request #58 from mozilla/lmdb-tests
+
+Run lmdb tests alongside `cargo test`",Victor Porof,2019-09-05T13:59:31Z,victorporof,victorporof,33,33,0
+350,lmdb-rs,1436ed3e08ff983f022b70aa2921291f3f0fe945,"Refresh environment variables before attempting to build lmdb
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-05T13:24:17Z,victorporof,victorporof,1,1,0
+351,lmdb-rs,11dee0bfc211d2d44efe3c904328b305fd097303,"Install gcc on appveyor CI
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-05T12:55:27Z,victorporof,victorporof,2,2,0
+352,lmdb-rs,af9500bfd90207cc665866b4f052c994dd7892dc,"Install make on appveyor CI
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-05T12:33:36Z,victorporof,victorporof,2,2,0
+353,lmdb-rs,05dd05998dc6970a349746c4bc6f687be19fc862,"Run lmdb tests alongside `cargo test`
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-05T09:29:15Z,victorporof,victorporof,28,28,0
+354,lmdb-rs,97d6a7510f4f62459944799ccfd8875f2bd1542d,"Merge pull request #56 from mozilla/update-lmdb
+
+Update lmdb to latest version and other goodies",Victor Porof,2019-09-05T09:02:19Z,victorporof,victorporof,1900,1559,341
+355,lmdb-rs,6bd379824c16354500ad285e8b357ebee126ffe6,"Don't generate bindings as part of the build phase
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-04T14:53:11Z,victorporof,victorporof,1523,1466,57
+356,lmdb-rs,a4776c095718be954a1ee316a88381d1721456ce,"Format yml files
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:19:49Z,victorporof,victorporof,144,72,72
+357,lmdb-rs,577228969eef4d5983ead6a2e189cb69cda146c3,"Remove explicit support for rust 1.30 on travis
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:19:24Z,victorporof,victorporof,2,1,1
+358,lmdb-rs,a5ceeb29d50e682c2bbdc29267b05c81aeea8580,"Bump version to 0.9.0
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:12:04Z,victorporof,victorporof,4,2,2
+359,lmdb-rs,13d77dd00469336358a231eb1da510ec6bd0cea8,"Update all dependencies to their latest version for the main crate
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:26:12Z,victorporof,victorporof,10,5,5
+360,lmdb-rs,cac5b8d5d124e509e4c671390b04e9f9882aa0fd,"Update all dependencies to their latest version for the sys crate
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:08:56Z,victorporof,victorporof,8,4,4
+361,lmdb-rs,bd45823f11cb86234830b7989dfab0fbebf3fc32,"Use `flag_if_supported` instead of `flag` when compiling liblmdb
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:08:15Z,victorporof,victorporof,2,1,1
+362,lmdb-rs,a07f50b3981ce0e03c531719401ba5791a7e466a,"Hide warnings while building
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-30T15:52:21Z,victorporof,victorporof,1,1,0
+363,lmdb-rs,208992590eb18376c8a8fd35bdb7d03a7207e1a4,"Allow cc to handle build optimizations
+
+Fixes #54
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-30T15:52:04Z,victorporof,victorporof,2,0,2
+364,lmdb-rs,b6720b8937e847637b894bbb7008d1c46a852960,"Create bindings automatically using rust-bindgen
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-30T15:30:32Z,victorporof,victorporof,324,67,257
+365,lmdb-rs,596539ce728c0be7b02df249ec08260d727097b5,"Update lmdb and to latest version of mdb.RE/0.9.24-moz branch
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-30T13:34:57Z,victorporof,victorporof,2,1,1
+366,lmdb-rs,96477e069a9d021efd25d9c9ecf8eb157bf1a077,"Merge pull request #52 from mykmelez/separate-benches-from-tests
+
+Separate benches from tests",Myk Melez,2019-06-22T08:20:05Z,mykmelez,mykmelez,529,287,242
+367,lmdb-rs,b6798d5a1bf15c8ed899cfebb4153f88824bc3f0,"Merge pull request #55 from mykmelez/publish-lmdb-rkv-sys-0.8.6
+
+update patch version for lmdb-rkv-sys 0.8.6",Myk Melez,2019-06-22T07:47:57Z,mykmelez,mykmelez,4,2,2
+368,lmdb-rs,71dcd1b4e0ffb2a3dbaaa38163c25145e53defbf,Merge branch 'master' into separate-benches-from-tests,Myk Melez,2019-06-22T07:41:12Z,mykmelez,mykmelez,40,38,2
+369,lmdb-rs,0983b3188b78a9338a13e1a5bc4240dbf7dd85d0,update patch version for lmdb-rkv-sys 0.8.6,Myk Melez,2019-06-22T07:38:47Z,mykmelez,mykmelez,4,2,2
+370,lmdb-rs,bffb9a668e7dc9112904aaf95053a2f46084c9ce,"Merge pull request #53 from mykmelez/prioritize-testing-and-document-publication
+
+prioritize testing lmdb-rkv with in-tree lmdb-rkv-sys; document publication",Myk Melez,2019-06-22T07:36:38Z,mykmelez,mykmelez,40,38,2
+371,lmdb-rs,81982782a49b7d5f398e8f19aec5cddf334ad5b6,update lmdb-sys/lmdb to tip of mdb.RE/0.9-moz branch,Myk Melez,2019-06-22T07:21:44Z,mykmelez,mykmelez,2,1,1
+372,lmdb-rs,3f8057bfe2e4b1b2bf1c4868f78f6e4ff7deb8c4,prioritize testing lmdb-rkv with in-tree lmdb-rkv-sys; document publication,Myk Melez,2019-06-21T22:03:46Z,mykmelez,mykmelez,38,37,1
+373,lmdb-rs,e51b36e8a9278bcd1bb5f44a1f8275f2ac441588,update CI configurations,Myk Melez,2019-06-20T23:18:55Z,mykmelez,mykmelez,46,35,11
+374,lmdb-rs,5849f37f314add0b44027fd9dc53a9031f2fe5bd,separate benches from tests,Myk Melez,2019-06-20T22:40:45Z,mykmelez,mykmelez,483,252,231
+375,lmdb-rs,04e544977fe859993f4c98d5b9ec6346130ff3e2,"Merge pull request #51 from mykmelez/publish-lmdb-rkv-sys-0.8.5
+
+update patch version for lmdb-rkv-sys 0.8.5",Myk Melez,2019-06-20T20:30:21Z,mykmelez,mykmelez,4,2,2
+376,lmdb-rs,cf1c2338992e7af3001d00110d15665d2266ad98,update patch version for lmdb-rkv-sys 0.8.5,Myk Melez,2019-06-20T18:56:16Z,mykmelez,mykmelez,4,2,2
+377,lmdb-rs,62a5db10b9293e06f62146be59c133ad50c8f456,"Merge pull request #50 from mykmelez/lmdb-assert-page-search
+
+update lmdb-sys/lmdb submodule to tip of mdb.RE/0.9-moz branch",Myk Melez,2019-06-20T18:53:53Z,mykmelez,mykmelez,2,1,1
+378,lmdb-rs,f7cdbda6c948031862934a08c72c9371a5ec1e1f,update lmdb-sys/lmdb submodule to tip of mdb.RE/0.9-moz branch,Myk Melez,2019-06-20T17:20:18Z,mykmelez,mykmelez,2,1,1
+379,lmdb-rs,f07097113096e8c622a43432ff5fed28ef89a402,"Merge pull request #49 from mykmelez/publish-lmdb-rkv-sys-0.8.4
+
+publish lmdb-rkv-sys 0.8.4",Myk Melez,2019-06-06T23:07:25Z,mykmelez,mykmelez,6,3,3
+380,lmdb-rs,6bfec5736ad328b17334f0984de73d9a1df7666b,update patch version for lmdb-rkv-sys 0.8.4,Myk Melez,2019-06-06T22:50:03Z,mykmelez,mykmelez,4,2,2
+381,lmdb-rs,d54b8f218bacb3e004793799d6ddc4435627de68,update to latest version of mdb.RE/0.9-moz branch,Myk Melez,2019-06-06T22:49:01Z,mykmelez,mykmelez,2,1,1
+382,lmdb-rs,52151c295afd5178b5146fa3024f1a7753eecb4c,"Merge pull request #48 from yangby-cryptape/fix-typo
+
+Fix typo",Myk Melez,2019-05-16T17:02:21Z,mykmelez,mykmelez,4,2,2
+383,lmdb-rs,c85d3657a7ae2e2ea040944e864b763981373fa0,Fix typo,Boyu Yang,2019-05-13T14:21:59Z,yangby-cryptape,yangby-cryptape,4,2,2
+384,lmdb-rs,4c86d591be783ab21a0f48fadf97e455e24daba4,"Merge pull request #45 from mykmelez/publish-lmdb-rkv-0.11.4
+
+update lmdb-rkv-sys dependency to 0.8.3 and patch version for lmdb-rkv to 0.11.4",Myk Melez,2019-04-15T18:59:38Z,mykmelez,mykmelez,6,3,3
+385,lmdb-rs,f9f619f8d75019f3baed025ded121cc370e08d69,update lmdb-rkv-sys dependency to 0.8.3 and patch version for lmdb-rkv to 0.11.4,Myk Melez,2019-04-15T18:22:21Z,mykmelez,mykmelez,6,3,3
+386,lmdb-rs,413d6d166db5aed8d38e5e9d43a9b42d3debe4d8,"Merge pull request #44 from mykmelez/publish-lmdb-rkv-sys-0.8.3
+
+update patch version for lmdb-rkv-sys 0.8.3",Myk Melez,2019-04-15T18:17:44Z,mykmelez,mykmelez,4,2,2
+387,lmdb-rs,0a69d027f339ddf2d63cd532275e8c840fc965fe,update patch version for lmdb-rkv-sys 0.8.3,Myk Melez,2019-04-15T17:38:16Z,mykmelez,mykmelez,4,2,2
+388,lmdb-rs,61b451f8950320b8375b2cb34e9934483e13c079,"Merge pull request #43 from mykmelez/configure-mdb-idl-logn
+
+enable configuration of MDB_IDL_LOGN",Myk Melez,2019-04-15T17:06:55Z,mykmelez,mykmelez,53,52,1
+389,lmdb-rs,0c37ccb2d374d6c0904e6816b303ed64f8c8b7d6,update to latest version of mdb.RE/0.9-moz branch,Myk Melez,2019-04-12T21:52:15Z,mykmelez,mykmelez,2,1,1
+390,lmdb-rs,babc0594df116906c86674299ea13e6d96b2c54e,add feature flags to define MDB_IDL_LOGN macro,Myk Melez,2019-04-12T21:38:39Z,mykmelez,mykmelez,51,51,0
+391,lmdb-rs,99359f4cab3dbc2e5216ed7fbde41ef4d51bed77,"Merge pull request #42 from ncloudioj/db-stats
+
+Add database level stat function",Myk Melez,2019-04-05T22:01:52Z,mykmelez,mykmelez,121,117,4
+392,lmdb-rs,8a46f68f5fab8de8cc41ca227707dfb310184290,Refactor Stat,Nan Jiang,2019-04-04T16:53:04Z,ncloudioj,ncloudioj,15,10,5
+393,lmdb-rs,10697cda7b2e023d968c6dd6a85ba1c5e6fb84c1,Add database level stat function,Nan Jiang,2019-04-04T16:18:09Z,ncloudioj,ncloudioj,114,111,3
+394,lmdb-rs,d62da60df53ec37a4d73eaafbcb626103c2f42e4,Add freelist to environment (#41),Nan Jiang,2019-04-04T14:41:33Z,ncloudioj,ncloudioj,90,85,5
+395,lmdb-rs,9996feebe04e6bc1baace3c606734a8a30754f37,"Merge pull request #39 from mozilla/publish-0.11.3
+
+update patch version for lmdb-rkv 0.11.3",Myk Melez,2019-03-29T00:16:12Z,mykmelez,mykmelez,4,2,2
+396,lmdb-rs,8f50c35fdc61b53de5ad6470fbadf5977b640029,update patch version for lmdb-rkv 0.11.3,Myk Melez,2019-03-28T19:25:14Z,mykmelez,mykmelez,4,2,2
+397,lmdb-rs,ca00a0986c76333b3c0ab81c889a73e068c3cf65,"Expose set_map_size from environment (#36)
+
+* Expose set_map_size from environment
+
+* Export Info
+
+* Review fixes",Nan Jiang,2019-03-20T14:57:05Z,ncloudioj,ncloudioj,120,119,1
+398,lmdb-rs,d9569a3397c6c5288ba40c42c1dc76e3bace888d,"Merge pull request #34 from mykmelez/exclude-ci-configs
+
+exclude CI config files from package",Nan Jiang,2019-02-08T00:19:12Z,ncloudioj,ncloudioj,8,8,0
+399,lmdb-rs,e383eb0dbef419a5945c37afdc982e395b67296a,exclude CI config files from package,Myk Melez,2019-02-07T22:21:34Z,mykmelez,mykmelez,8,8,0
+400,lmdb-rs,df1c2f56e3088f097c719c57b9925ab51e26f3f4,iter_dup_of returns other values after a delete (#80),Tom,2020-07-02T12:05:30Z,freesig,freesig,44,43,1
+401,lmdb-rs,4363ec04260b8f1c7db6b1f5c0e1c59fd009c228,"Bump version to 0.14.0
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T11:38:40Z,victorporof,victorporof,4,2,2
+402,lmdb-rs,74a3453dc23b99fea4e031e633d500cdec34dcf4,"Bump version to 0.11.0
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T11:37:39Z,victorporof,victorporof,4,2,2
+403,lmdb-rs,4c0b5ce09176f08ea6ac59e377a7534eaa46ff32,"Fix type `mode_t` type errors after updating bindings (#78)
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor Porof,2020-03-10T11:30:32Z,victorporof,victorporof,2,1,1
+404,lmdb-rs,a98be116654d0b85f4015d6bc596a0bbde836503,"Bump version to 0.10.2
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T11:16:08Z,victorporof,victorporof,4,2,2
+405,lmdb-rs,902dce440a8c4cdb3b03ba219384592f48b94573,"Bump version to 0.13.1
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T11:03:15Z,victorporof,victorporof,4,2,2
+406,lmdb-rs,df2cd5646f0cffb4b216b21a721d5d117a8cb141,"Fix bindings. (#77)
+
+* Fix bindings.
+
+PR #74 introduced a manually-generated change to the bindings that I
+accidentally broke in #76.
+
+* Specify the ""runtime"" feature of bindgen.
+
+As it became non-default in https://github.com/rust-lang/rust-bindgen/pull/1620.
+
+* Make binding generation work properly on Windows too.",Emilio Cobos Álvarez,2020-03-10T11:01:30Z,emilio,emilio,17,8,9
+407,lmdb-rs,f0fa429eaa2f3c5e4ff87cc0dd04d98c248a1ef7,"Bump version to 0.13.0
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T10:26:17Z,victorporof,victorporof,4,2,2
+408,lmdb-rs,4d4594c4e242f274c356c614cae5b754f0e2cc75,"Bump version to 0.10.1
+
+Signed-off-by: Victor <victor.porof@gmail.com>",Victor,2020-03-10T10:14:06Z,victorporof,victorporof,4,2,2
+409,lmdb-rs,dccf69c306d22275636eb1fad9b9ed47877343f4,Update bindgen. (#76),Emilio Cobos Álvarez,2020-03-10T10:02:03Z,emilio,emilio,8,6,2
+410,lmdb-rs,41982021537808180525e648470cd8c1d0a13fde,"Bump version to 0.10.0
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-12-06T17:10:15Z,victorporof,victorporof,4,2,2
+411,lmdb-rs,a604c2d976a60cf501596b3f3bd08fbd44ed0ecf,"Support windows FileHandle types (#74)
+
+* Support windows FileHandle types
+
+* Add a test to check that copy works on windows",Clément Renault,2019-12-06T14:08:48Z,Kerollmops,Kerollmops,30,29,1
+412,lmdb-rs,5f5245ad4d7cd59388cb08577daad92f24a946c2,"Bump version to 0.9.6
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-10-27T04:37:58Z,victorporof,victorporof,4,2,2
+413,lmdb-rs,b6e5ad193ad9d2cf06ae30287ae1e6c07bac34f0,Test with 32-bit database on 32-bit systems (#72),Myk Melez,2019-10-27T04:34:48Z,mykmelez,mykmelez,17,8,9
+414,lmdb-rs,f1c3ba853c374526070acc655084e18c8c7b2533,Make bindgen optional (#70),quininer,2019-10-27T04:31:42Z,quininer,quininer,19,13,6
+415,lmdb-rs,ea0d09ff0223dea17bcbfbdabb090171a97692d3,"Fix an embarrassing typo in #68. (#69)
+
+Sigh. The line as it is is just 0.51, which is fine, kinda, but doesn't
+accomplish what I want :(",Emilio Cobos Álvarez,2019-09-27T06:23:33Z,emilio,emilio,6,3,3
+416,lmdb-rs,bab675502fce87fda55739b11a40dcbab9880e66,"Don't use bindgen's default features, and use old syn and quote until the rest of mozilla-central updates to 1.0. (#68)
+
+This prevents dependencies like which to be built, which is unnecessary, and
+avoids duplicate versions of syn / quote in Gecko.",Emilio Cobos Álvarez,2019-09-26T15:16:12Z,emilio,emilio,6,3,3
+417,lmdb-rs,a0f3c0543402d766035e73de84f0ba210216b0f7,"Bump lmdb and lmdb-sys versions to 0.12.3 and 0.9.3 respectively
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-25T05:28:07Z,victorporof,victorporof,8,4,4
+418,lmdb-rs,07a1d767f0744c6ce1b4c01f96c398b979ab9a59,"Merge pull request #67 from mozilla/optional-clang
+
+Remove with-clang feature in favor of using $CC",Victor Porof,2019-09-25T05:27:06Z,victorporof,victorporof,30,14,16
+419,lmdb-rs,ab1d7117a7e1a2fdb4e6fe607ba567390226bc63,"Temporarily work around CI failure on linux nightlies
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-24T18:15:59Z,victorporof,victorporof,5,5,0
+420,lmdb-rs,bfc6137aecc222a1995476af2ea467256b5d21a6,"Remove with-clang feature in favor of using $CC
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-24T16:06:07Z,victorporof,victorporof,25,9,16
+421,lmdb-rs,31b148f8975f74f8f7318b781dbe125207af4ee6,"Bump lmdb and lmdb-sys versions to 0.12.2 and 0.9.2 respectively
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-24T06:37:17Z,victorporof,victorporof,8,4,4
+422,lmdb-rs,6b47f7923a431e3be17bcaa83ba9cc63d088bb89,"Use relaxed dependency versions (pre 0.12) for better build compat with m-c (#66)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-24T06:35:12Z,victorporof,victorporof,18,9,9
+423,lmdb-rs,d64faaf718538244325c57125f8d8c301e2e8b1e,Force retrigger CI builds,Victor Porof,2019-09-18T06:45:13Z,victorporof,victorporof,0,0,0
+424,lmdb-rs,ec5790bc8263b71716eae2279075ac15cc4fb9ba,"Bump version to 0.12.1
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-17T06:38:49Z,victorporof,victorporof,4,2,2
+425,lmdb-rs,e06ffdb534a55472c2bc7b8662452cc1f2a48650,"Bump version to 0.9.1
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-17T06:33:37Z,victorporof,victorporof,4,2,2
+426,lmdb-rs,dd9a2fb2b754dcea4b7c12604852bd22e53a7da8,"Merge pull request #65 from mozilla/instrument-build
+
+Use libfuzzer instrumentation options for building",Victor Porof,2019-09-14T05:29:56Z,victorporof,victorporof,60,56,4
+427,lmdb-rs,c79ced82068ccdd8d378c688956ee84aa4a660d6,"Use more recent versions of distro and clang on linux
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T11:16:16Z,victorporof,victorporof,1,0,1
+428,lmdb-rs,28f17aac0e6c3da49cbc5d7df556e9fdbb2e470a,"Use official clang on osx
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T08:49:33Z,victorporof,victorporof,8,8,0
+429,lmdb-rs,7372e414224de0a492bd4563528faf3f811b4ea0,"Test instrumentation features on CI on linux and osx
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T08:27:47Z,victorporof,victorporof,6,6,0
+430,lmdb-rs,b92f9a2053293e50cbf9aad31edb9107e2db16d8,"Add features for building with fuzzing but not linking libfuzzer
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T09:13:02Z,victorporof,victorporof,15,15,0
+431,lmdb-rs,0603615a2dc2a0073d3a2f6c65b6b9a35165ea2e,"Add features for building with asan and fuzzing
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T08:17:00Z,victorporof,victorporof,30,27,3
+432,lmdb-rs,8fc50a8f749a8133628c332eac38e807ad10d1c2,"Use all compiler flags from the makefile when building (#64)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-13T17:30:02Z,victorporof,victorporof,3,3,0
+433,lmdb-rs,0810db76b38e0712e8c830b25b6140cf80147893,"Merge pull request #63 from mozilla/toml-updates
+
+Toml updates",Victor Porof,2019-09-12T13:45:49Z,victorporof,victorporof,29,17,12
+434,lmdb-rs,928f3c8af326c7f139172b6eb1f46d85e09b2d1a,"Have documentation and homepage urls for the crates.io page
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-12T12:38:07Z,victorporof,victorporof,10,4,6
+435,lmdb-rs,76767e9e75703eb584dd10fde6b92a5005c5e0a5,"Use CI badges for the crates.io page, mirroring what lmdb-rkv does
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-12T12:26:20Z,victorporof,victorporof,4,4,0
+436,lmdb-rs,358f4284505428836790a1efdc729e41859e359d,"Use a simple lib name for lmdb-rkv-sys, mirroring what lmdb-rkv does
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-12T12:25:48Z,victorporof,victorporof,15,9,6
+437,lmdb-rs,472c9260596e36960ac9ed9ab6382563ecd0b7c1,"Merge pull request #59 from mozilla/tests
+
+More testing",Victor Porof,2019-09-12T11:03:43Z,victorporof,victorporof,78,76,2
+438,lmdb-rs,77c0ee393e6a877096a562bdbf28d5233da6bf93,"Display verbose cargo version in logs
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T09:24:45Z,victorporof,victorporof,4,2,2
+439,lmdb-rs,d7d448f2650c3531844a57851a47492d40580367,"Expect failure on win 32
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T09:07:05Z,victorporof,victorporof,12,12,0
+440,lmdb-rs,b3fe3714052d3b90913471aef40b4149f38887e4,"Add test program from https://gist.github.com/mykmelez/ac75a7ab0a0d09a7d709be63806d01d7
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-10T08:00:12Z,victorporof,victorporof,62,62,0
+441,lmdb-rs,67a9c6b990f8f52a67fdb72ce786cc841d04f3a8,"Merge pull request #60 from mozilla/format-pass
+
+Formatting passes and enable linting on CI",Victor Porof,2019-09-11T13:36:07Z,victorporof,victorporof,1090,628,462
+442,lmdb-rs,f05f1c1cce0e245022caed36b4a490f3844ccd8a,"Run rustfmt and clippy on CI
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T08:48:32Z,victorporof,victorporof,11,11,0
+443,lmdb-rs,2622fb2ebf738e4610859792d7ebf0d84f689205,"Disable clippy on generated bindings
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T09:14:45Z,victorporof,victorporof,3,2,1
+444,lmdb-rs,2970b17c715d81f5462f1b3d3495d62b7b54a821,"More clippy passes on all targets (cargo clippy --all-targets --all-features -- -D warnings -A clippy::match-ref-pats -A clippy::needless-lifetimes)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T08:44:43Z,victorporof,victorporof,32,15,17
+445,lmdb-rs,bca20c45c4a4c87726f3dd0237ae0d6a68e9ef69,"Clippy pass (cargo clippy -- -D warnings -A clippy::match-ref-pats -A clippy::needless-lifetimes)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T08:38:46Z,victorporof,victorporof,31,17,14
+446,lmdb-rs,2acd21c52929725ab3093b93c835992682acaa69,"Rustfmt pass (cargo +nightly fmt --all)
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T08:07:34Z,victorporof,victorporof,1041,594,447
+447,lmdb-rs,ea60c303fe7c238a1b4354d797d4a874fff23b93,"Enable rustfmt and copy config from the rkv project
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-11T08:00:37Z,victorporof,victorporof,8,7,1
+448,lmdb-rs,027f2712ae77d8969d4f75472cfa96be2f3b1b58,"Bump version to 0.12, update authors
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-05T14:05:27Z,victorporof,victorporof,6,3,3
+449,lmdb-rs,df2dc926ac6e3925c19b5cba5a50042bb8f89e3d,"Merge pull request #58 from mozilla/lmdb-tests
+
+Run lmdb tests alongside `cargo test`",Victor Porof,2019-09-05T13:59:31Z,victorporof,victorporof,33,33,0
+450,lmdb-rs,1436ed3e08ff983f022b70aa2921291f3f0fe945,"Refresh environment variables before attempting to build lmdb
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-05T13:24:17Z,victorporof,victorporof,1,1,0
+451,lmdb-rs,11dee0bfc211d2d44efe3c904328b305fd097303,"Install gcc on appveyor CI
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-05T12:55:27Z,victorporof,victorporof,2,2,0
+452,lmdb-rs,af9500bfd90207cc665866b4f052c994dd7892dc,"Install make on appveyor CI
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-05T12:33:36Z,victorporof,victorporof,2,2,0
+453,lmdb-rs,05dd05998dc6970a349746c4bc6f687be19fc862,"Run lmdb tests alongside `cargo test`
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-05T09:29:15Z,victorporof,victorporof,28,28,0
+454,lmdb-rs,97d6a7510f4f62459944799ccfd8875f2bd1542d,"Merge pull request #56 from mozilla/update-lmdb
+
+Update lmdb to latest version and other goodies",Victor Porof,2019-09-05T09:02:19Z,victorporof,victorporof,1900,1559,341
+455,lmdb-rs,6bd379824c16354500ad285e8b357ebee126ffe6,"Don't generate bindings as part of the build phase
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-09-04T14:53:11Z,victorporof,victorporof,1523,1466,57
+456,lmdb-rs,a4776c095718be954a1ee316a88381d1721456ce,"Format yml files
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:19:49Z,victorporof,victorporof,144,72,72
+457,lmdb-rs,577228969eef4d5983ead6a2e189cb69cda146c3,"Remove explicit support for rust 1.30 on travis
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:19:24Z,victorporof,victorporof,2,1,1
+458,lmdb-rs,a5ceeb29d50e682c2bbdc29267b05c81aeea8580,"Bump version to 0.9.0
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:12:04Z,victorporof,victorporof,4,2,2
+459,lmdb-rs,13d77dd00469336358a231eb1da510ec6bd0cea8,"Update all dependencies to their latest version for the main crate
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:26:12Z,victorporof,victorporof,10,5,5
+460,lmdb-rs,cac5b8d5d124e509e4c671390b04e9f9882aa0fd,"Update all dependencies to their latest version for the sys crate
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:08:56Z,victorporof,victorporof,8,4,4
+461,lmdb-rs,bd45823f11cb86234830b7989dfab0fbebf3fc32,"Use `flag_if_supported` instead of `flag` when compiling liblmdb
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-31T06:08:15Z,victorporof,victorporof,2,1,1
+462,lmdb-rs,a07f50b3981ce0e03c531719401ba5791a7e466a,"Hide warnings while building
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-30T15:52:21Z,victorporof,victorporof,1,1,0
+463,lmdb-rs,208992590eb18376c8a8fd35bdb7d03a7207e1a4,"Allow cc to handle build optimizations
+
+Fixes #54
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-30T15:52:04Z,victorporof,victorporof,2,0,2
+464,lmdb-rs,b6720b8937e847637b894bbb7008d1c46a852960,"Create bindings automatically using rust-bindgen
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-30T15:30:32Z,victorporof,victorporof,324,67,257
+465,lmdb-rs,596539ce728c0be7b02df249ec08260d727097b5,"Update lmdb and to latest version of mdb.RE/0.9.24-moz branch
+
+Signed-off-by: Victor Porof <victor.porof@gmail.com>",Victor Porof,2019-08-30T13:34:57Z,victorporof,victorporof,2,1,1
+466,lmdb-rs,96477e069a9d021efd25d9c9ecf8eb157bf1a077,"Merge pull request #52 from mykmelez/separate-benches-from-tests
+
+Separate benches from tests",Myk Melez,2019-06-22T08:20:05Z,mykmelez,mykmelez,529,287,242
+467,lmdb-rs,b6798d5a1bf15c8ed899cfebb4153f88824bc3f0,"Merge pull request #55 from mykmelez/publish-lmdb-rkv-sys-0.8.6
+
+update patch version for lmdb-rkv-sys 0.8.6",Myk Melez,2019-06-22T07:47:57Z,mykmelez,mykmelez,4,2,2
+468,lmdb-rs,71dcd1b4e0ffb2a3dbaaa38163c25145e53defbf,Merge branch 'master' into separate-benches-from-tests,Myk Melez,2019-06-22T07:41:12Z,mykmelez,mykmelez,40,38,2
+469,lmdb-rs,0983b3188b78a9338a13e1a5bc4240dbf7dd85d0,update patch version for lmdb-rkv-sys 0.8.6,Myk Melez,2019-06-22T07:38:47Z,mykmelez,mykmelez,4,2,2
+470,lmdb-rs,bffb9a668e7dc9112904aaf95053a2f46084c9ce,"Merge pull request #53 from mykmelez/prioritize-testing-and-document-publication
+
+prioritize testing lmdb-rkv with in-tree lmdb-rkv-sys; document publication",Myk Melez,2019-06-22T07:36:38Z,mykmelez,mykmelez,40,38,2
+471,lmdb-rs,81982782a49b7d5f398e8f19aec5cddf334ad5b6,update lmdb-sys/lmdb to tip of mdb.RE/0.9-moz branch,Myk Melez,2019-06-22T07:21:44Z,mykmelez,mykmelez,2,1,1
+472,lmdb-rs,3f8057bfe2e4b1b2bf1c4868f78f6e4ff7deb8c4,prioritize testing lmdb-rkv with in-tree lmdb-rkv-sys; document publication,Myk Melez,2019-06-21T22:03:46Z,mykmelez,mykmelez,38,37,1
+473,lmdb-rs,e51b36e8a9278bcd1bb5f44a1f8275f2ac441588,update CI configurations,Myk Melez,2019-06-20T23:18:55Z,mykmelez,mykmelez,46,35,11
+474,lmdb-rs,5849f37f314add0b44027fd9dc53a9031f2fe5bd,separate benches from tests,Myk Melez,2019-06-20T22:40:45Z,mykmelez,mykmelez,483,252,231
+475,lmdb-rs,04e544977fe859993f4c98d5b9ec6346130ff3e2,"Merge pull request #51 from mykmelez/publish-lmdb-rkv-sys-0.8.5
+
+update patch version for lmdb-rkv-sys 0.8.5",Myk Melez,2019-06-20T20:30:21Z,mykmelez,mykmelez,4,2,2
+476,lmdb-rs,cf1c2338992e7af3001d00110d15665d2266ad98,update patch version for lmdb-rkv-sys 0.8.5,Myk Melez,2019-06-20T18:56:16Z,mykmelez,mykmelez,4,2,2
+477,lmdb-rs,62a5db10b9293e06f62146be59c133ad50c8f456,"Merge pull request #50 from mykmelez/lmdb-assert-page-search
+
+update lmdb-sys/lmdb submodule to tip of mdb.RE/0.9-moz branch",Myk Melez,2019-06-20T18:53:53Z,mykmelez,mykmelez,2,1,1
+478,lmdb-rs,f7cdbda6c948031862934a08c72c9371a5ec1e1f,update lmdb-sys/lmdb submodule to tip of mdb.RE/0.9-moz branch,Myk Melez,2019-06-20T17:20:18Z,mykmelez,mykmelez,2,1,1
+479,lmdb-rs,f07097113096e8c622a43432ff5fed28ef89a402,"Merge pull request #49 from mykmelez/publish-lmdb-rkv-sys-0.8.4
+
+publish lmdb-rkv-sys 0.8.4",Myk Melez,2019-06-06T23:07:25Z,mykmelez,mykmelez,6,3,3
+480,lmdb-rs,6bfec5736ad328b17334f0984de73d9a1df7666b,update patch version for lmdb-rkv-sys 0.8.4,Myk Melez,2019-06-06T22:50:03Z,mykmelez,mykmelez,4,2,2
+481,lmdb-rs,d54b8f218bacb3e004793799d6ddc4435627de68,update to latest version of mdb.RE/0.9-moz branch,Myk Melez,2019-06-06T22:49:01Z,mykmelez,mykmelez,2,1,1
+482,lmdb-rs,52151c295afd5178b5146fa3024f1a7753eecb4c,"Merge pull request #48 from yangby-cryptape/fix-typo
+
+Fix typo",Myk Melez,2019-05-16T17:02:21Z,mykmelez,mykmelez,4,2,2
+483,lmdb-rs,c85d3657a7ae2e2ea040944e864b763981373fa0,Fix typo,Boyu Yang,2019-05-13T14:21:59Z,yangby-cryptape,yangby-cryptape,4,2,2
+484,lmdb-rs,4c86d591be783ab21a0f48fadf97e455e24daba4,"Merge pull request #45 from mykmelez/publish-lmdb-rkv-0.11.4
+
+update lmdb-rkv-sys dependency to 0.8.3 and patch version for lmdb-rkv to 0.11.4",Myk Melez,2019-04-15T18:59:38Z,mykmelez,mykmelez,6,3,3
+485,lmdb-rs,f9f619f8d75019f3baed025ded121cc370e08d69,update lmdb-rkv-sys dependency to 0.8.3 and patch version for lmdb-rkv to 0.11.4,Myk Melez,2019-04-15T18:22:21Z,mykmelez,mykmelez,6,3,3
+486,lmdb-rs,413d6d166db5aed8d38e5e9d43a9b42d3debe4d8,"Merge pull request #44 from mykmelez/publish-lmdb-rkv-sys-0.8.3
+
+update patch version for lmdb-rkv-sys 0.8.3",Myk Melez,2019-04-15T18:17:44Z,mykmelez,mykmelez,4,2,2
+487,lmdb-rs,0a69d027f339ddf2d63cd532275e8c840fc965fe,update patch version for lmdb-rkv-sys 0.8.3,Myk Melez,2019-04-15T17:38:16Z,mykmelez,mykmelez,4,2,2
+488,lmdb-rs,61b451f8950320b8375b2cb34e9934483e13c079,"Merge pull request #43 from mykmelez/configure-mdb-idl-logn
+
+enable configuration of MDB_IDL_LOGN",Myk Melez,2019-04-15T17:06:55Z,mykmelez,mykmelez,53,52,1
+489,lmdb-rs,0c37ccb2d374d6c0904e6816b303ed64f8c8b7d6,update to latest version of mdb.RE/0.9-moz branch,Myk Melez,2019-04-12T21:52:15Z,mykmelez,mykmelez,2,1,1
+490,lmdb-rs,babc0594df116906c86674299ea13e6d96b2c54e,add feature flags to define MDB_IDL_LOGN macro,Myk Melez,2019-04-12T21:38:39Z,mykmelez,mykmelez,51,51,0
+491,lmdb-rs,99359f4cab3dbc2e5216ed7fbde41ef4d51bed77,"Merge pull request #42 from ncloudioj/db-stats
+
+Add database level stat function",Myk Melez,2019-04-05T22:01:52Z,mykmelez,mykmelez,121,117,4
+492,lmdb-rs,8a46f68f5fab8de8cc41ca227707dfb310184290,Refactor Stat,Nan Jiang,2019-04-04T16:53:04Z,ncloudioj,ncloudioj,15,10,5
+493,lmdb-rs,10697cda7b2e023d968c6dd6a85ba1c5e6fb84c1,Add database level stat function,Nan Jiang,2019-04-04T16:18:09Z,ncloudioj,ncloudioj,114,111,3
+494,lmdb-rs,d62da60df53ec37a4d73eaafbcb626103c2f42e4,Add freelist to environment (#41),Nan Jiang,2019-04-04T14:41:33Z,ncloudioj,ncloudioj,90,85,5
+495,lmdb-rs,9996feebe04e6bc1baace3c606734a8a30754f37,"Merge pull request #39 from mozilla/publish-0.11.3
+
+update patch version for lmdb-rkv 0.11.3",Myk Melez,2019-03-29T00:16:12Z,mykmelez,mykmelez,4,2,2
+496,lmdb-rs,8f50c35fdc61b53de5ad6470fbadf5977b640029,update patch version for lmdb-rkv 0.11.3,Myk Melez,2019-03-28T19:25:14Z,mykmelez,mykmelez,4,2,2
+497,lmdb-rs,ca00a0986c76333b3c0ab81c889a73e068c3cf65,"Expose set_map_size from environment (#36)
+
+* Expose set_map_size from environment
+
+* Export Info
+
+* Review fixes",Nan Jiang,2019-03-20T14:57:05Z,ncloudioj,ncloudioj,120,119,1
+498,lmdb-rs,d9569a3397c6c5288ba40c42c1dc76e3bace888d,"Merge pull request #34 from mykmelez/exclude-ci-configs
+
+exclude CI config files from package",Nan Jiang,2019-02-08T00:19:12Z,ncloudioj,ncloudioj,8,8,0
+499,lmdb-rs,e383eb0dbef419a5945c37afdc982e395b67296a,exclude CI config files from package,Myk Melez,2019-02-07T22:21:34Z,mykmelez,mykmelez,8,8,0

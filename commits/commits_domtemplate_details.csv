@@ -1,0 +1,135 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,domtemplate,08775ecefbad511c5adaba78aa80101b81ada2fa,update package.json to v0.3.10,Joe Walker,2012-06-07T22:13:23Z,joewalker,joewalker,2,1,1
+1,domtemplate,f3bea29cb8ca2567010a9e52c8f368aec9999971,"Bug 762673 (dom0events): Support setting events with strings
+
+It's so surprising that this isn't supported that it's almost a bug:
+  <div onclick=""func('${blah}');""></div>
+The reason is that we try to support this:
+  <div onclick=""${data.func}""></div>
+Where func is automagically bound to data. But sometimes we want to call
+functions from the environment, not from the data.",Joe Walker,2012-06-07T22:12:25Z,joewalker,joewalker,67,49,18
+2,domtemplate,e7638ffb8f668e018de35fb94959df0dfaa28b79,"Bug 762673 (dom0events): console.assert isn't everywhere
+
+But ok is so simple we might as well define it ourselves.",Joe Walker,2012-06-07T22:11:34Z,joewalker,joewalker,6,5,1
+3,domtemplate,02f0f09e4848177af1161950b9ea1c3ffb87f56b,"Bug 757488 (livelist): Conditionally pop
+
+Bugfix: only pop nodes when we pushed them.",Joe Walker,2012-05-29T15:56:55Z,joewalker,joewalker,6,5,1
+4,domtemplate,f324721fa41093cf498a2a844c4b24e7d1d6e169,"Bug 757488 (livelist): Implement node stack
+
+Previous commit removed 'delete __element' because we sometimes need to
+hang onto a node longer than this system allowed, and noted a stack as
+being a better implementation. Failing to delete __element is a memory
+leak, and doing it properly isn't that hard, so we did it.",Joe Walker,2012-05-29T11:00:36Z,joewalker,joewalker,3,3,0
+5,domtemplate,c782c21bdee6ed0585a3619424b9b8c6c9c273f7,"Bug 757488 (livelist): Don't delete __element
+
+The correct solution is to have a stack for __element so we push and pop
+as we walk the tree, however this is more change than I want to do right
+now. This is a quick hack that fixes a bug.
+
+See bug 691011 for a better fix.",Joe Walker,2012-05-29T10:59:26Z,joewalker,joewalker,1,0,1
+6,domtemplate,883676edc9c9d322d2d334c441edc738c9136e82,"Bug 757488 (livelist): Clone the NodeList before iterating
+
+NodeLists can be live, in which case _maybeImportNode can remove them from
+the document, and thus the NodeList, which in turn breaks iteration.
+So first we clone the list",Joe Walker,2012-05-29T10:59:03Z,joewalker,joewalker,13,8,5
+7,domtemplate,2fb06f81867095fb4c6d5edf333fe2470df9a871,update package.json to v0.3.9,Joe Walker,2012-04-18T12:32:13Z,joewalker,joewalker,2,1,1
+8,domtemplate,58125f88a4f327c0c55d9a9fb6938a517dac065e,Merge branch 'master' of github.com:joewalker/domtemplate,Joe Walker,2012-04-18T12:29:19Z,joewalker,joewalker,6,3,3
+9,domtemplate,5278f32d712dd1eea7d1398ae04053d12de2cb81,add exports lines,Joe Walker,2012-04-18T12:28:10Z,joewalker,joewalker,14,12,2
+10,domtemplate,9ee9cc3f285c880ea998904c61b030d3341e21b5,"Merge pull request #1 from samastur/master
+
+Wrong ID values in documentation",Joe Walker,2012-04-09T10:37:07Z,joewalker,joewalker,6,3,3
+11,domtemplate,8e8a2adf7ce2fded5d6e1e7f43dfa4806fa21e63,Documentation fix (wrong IDs),Marko Samastur,2012-04-02T17:49:16Z,samastur,samastur,6,3,3
+12,domtemplate,7fad14f616c61456f2dfe840cc4a30f4ac43547b,update package.json to 0.3.8,Joe Walker,2012-02-13T21:52:37Z,joewalker,joewalker,2,1,1
+13,domtemplate,65c820a0e523a72b24efc3069d0cabba0c101f33,"Upgrade tests: respect imports to work in the browser and
+work with a promise that completes asynchronously",Joe Walker,2012-02-13T21:51:26Z,joewalker,joewalker,59,35,24
+14,domtemplate,db0e1eb0c2a86a9d62baba4a5925f36b310a8f2e,"Sync promise with browser implementation
+Adds trap/always and makes completion asynchronous",Joe Walker,2012-02-13T15:48:59Z,joewalker,joewalker,264,235,29
+15,domtemplate,504a1e11d3486e7408c7794efb3f1ab9932a6877,Harness update for better stack traces,Joe Walker,2012-02-13T15:48:10Z,joewalker,joewalker,8,2,6
+16,domtemplate,2d648dfa9aeb7e66b729bbd1e7145818ed996632,Minor documentation update,Joe Walker,2012-02-13T15:47:43Z,joewalker,joewalker,2,1,1
+17,domtemplate,72cd8422c11cd59b2d337c2544147535d8083dd4,update package.json to 0.3.7,Joe Walker,2012-02-13T10:43:24Z,joewalker,joewalker,2,1,1
+18,domtemplate,8a3c0c888c3a4cf4b82acf7afcc850bb573d45d4,Update documentation,Joe Walker,2012-02-13T11:13:45Z,joewalker,joewalker,7,7,0
+19,domtemplate,13107e5a99eb1d9e4504c18e51c5a807da69b903,Update test harness so test pages are identical between moz and web,Joe Walker,2012-02-13T10:41:53Z,joewalker,joewalker,96,58,38
+20,domtemplate,5b9698b28702b643296acc0be9feb9bc79adb599,"Bug 723432 (undefined): Attributes need blankNullUndefined love
+Can't think why this wasn't obvious before.",Joe Walker,2012-02-13T10:25:57Z,joewalker,joewalker,21,20,1
+21,domtemplate,a17733a60c753bfcb0696f88e0e53f7f19029024,"Revert removal of try/catch block
+Change acc9fdf420184136f9aeb3cdc17d8f54e0330759 was a bad idea
+this reverses it out. It also removes the environment output
+which was just confusing the real error",Joe Walker,2012-02-09T13:44:20Z,joewalker,joewalker,38,21,17
+22,domtemplate,10a709e4c206f9d4c315dcd6d3c5330298aaeba0,Simplify test harness,Joe Walker,2012-02-09T13:42:47Z,joewalker,joewalker,35,20,15
+23,domtemplate,47506ad619964438d3c54a89dfa8172c59dcadbc,Bug 723432 (undefined): Tests for blankNullUndefined,Joe Walker,2012-02-03T13:26:01Z,joewalker,joewalker,17,17,0
+24,domtemplate,40f14f5ca6217499d4155e285d7fa88fed213ce5,"Bug 723432 (undefined): Allow blankNullUndefined to override
+presentation of null and undefined to use ''",Joe Walker,2012-02-03T13:25:40Z,joewalker,joewalker,9,6,3
+25,domtemplate,b15eceedb50d1d7fd8f2466247e0cee3423ba158,Merge branch 'master' of github.com:mozilla/domtemplate,Joe Walker,2012-01-05T14:34:10Z,joewalker,joewalker,7,5,2
+26,domtemplate,d80af9925887d6325b23ee70e7b4046d86b4b58c,Version 0.3.6,Joe Walker,2012-01-05T14:31:50Z,joewalker,joewalker,2,1,1
+27,domtemplate,0bb6917184e07bd25386f05abd3581b31f013936,"Minor formatting plus, add executeSoon for better moz compat",Joe Walker,2012-01-05T13:49:59Z,joewalker,joewalker,12,7,5
+28,domtemplate,1ff8fb3af90ffb1d6210bc741b2e5bac2dcc2bcb,update package.json to v0.3.5,Joe Walker,2011-12-31T16:31:03Z,joewalker,joewalker,2,1,1
+29,domtemplate,acc9fdf420184136f9aeb3cdc17d8f54e0330759,"Don't setup another stack frame
+it's just confusing when the parent has done it already",Joe Walker,2011-12-31T16:30:22Z,joewalker,joewalker,35,15,20
+30,domtemplate,c61c88d1e707ddc6c4d14750aab084be4b1965cc,Don't allow multi line contexts which are common in scripts,Joe Walker,2011-12-31T16:29:40Z,joewalker,joewalker,2,1,1
+31,domtemplate,4c7168cf83b8376f969cf98ac2d58b00c3d6bda7,Make error messages single line,Joe Walker,2011-12-31T16:29:08Z,joewalker,joewalker,3,1,2
+32,domtemplate,ae23c164a2f31e925a12f29e9814fc93055a9d27,Inline _toNode which allows us to support,Joe Walker,2011-12-31T16:28:28Z,joewalker,joewalker,43,27,16
+33,domtemplate,5d78a6ca27b1ed1b163247e8cd56409a700447c7,Adding package.json for npm,Joe Walker,2011-12-29T12:57:37Z,joewalker,joewalker,17,17,0
+34,domtemplate,efb2dc63b6b617e345f55679cc3defcbb1d4c317,"Explicitly use exports
+The detecting version caused more problems than it solved",Joe Walker,2011-12-29T12:56:50Z,joewalker,joewalker,4,1,3
+35,domtemplate,4cf34638f3c523840c8d54cb1c9aa7ac7b36693c,There are still environments (e.g. node) where Node is undefined,Joe Walker,2011-12-29T12:56:05Z,joewalker,joewalker,2,1,1
+36,domtemplate,ed7365154af4baf8f010213ee6d01b7f4d3b17b8,Add doc pointer,Joe Walker,2011-12-29T12:55:31Z,joewalker,joewalker,5,5,0
+37,domtemplate,43ea6edb89f128c08cf02892b8f4e2d2db5919a4,Allow stack to be pre-configured,Joe Walker,2011-12-29T12:55:15Z,joewalker,joewalker,17,14,3
+38,domtemplate,872edff417922585429fd7c0fe4d1ec98e98288c,Tweak documentation example 5 to be clearer,Joe Walker,2011-11-30T13:28:36Z,joewalker,joewalker,7,5,2
+39,domtemplate,f70082c412f4957c441fdf040ef28bdb38b15b96,Attempt to prevent indentation bug,Joe Walker,2011-11-24T18:26:56Z,joewalker,joewalker,5,3,2
+40,domtemplate,8c64411e3b27bcbf1e6ffb6a6d0309a3a992163b,Further documentation tweaks,Joe Walker,2011-11-24T15:27:32Z,joewalker,joewalker,102,51,51
+41,domtemplate,29b401d3d8d9c7aacad0ee7647adcad0225a8c48,Revised documentation,Joe Walker,2011-11-24T15:22:18Z,joewalker,joewalker,314,181,133
+42,domtemplate,b57037ec6a2493d89a1427a34d49401602003ba7,Simplify constructor,Joe Walker,2011-11-18T17:01:22Z,joewalker,joewalker,2,1,1
+43,domtemplate,71b350c019534a17cc171bc994062dfbf1c4ddc7,Add tests for new no-eval functionality,Joe Walker,2011-11-16T15:49:26Z,joewalker,joewalker,31,29,2
+44,domtemplate,9b6e40e50b32b320438ce0d9f17e3441431b0adc,Have _envEval call _property if the script is a property path,Joe Walker,2011-11-16T15:48:48Z,joewalker,joewalker,35,25,10
+45,domtemplate,e92cd3702e3cd080159e0d550d408fd8b660205d,"Setup template with the correct options, and some docs",Joe Walker,2011-11-16T15:48:13Z,joewalker,joewalker,18,14,4
+46,domtemplate,d4c34bf18dfe18986011176259a0a8f95022d886,Cache the _splitSpecial regexp,Joe Walker,2011-11-16T15:47:02Z,joewalker,joewalker,8,7,1
+47,domtemplate,386437fcebde0e52fb719e5ffce3edd9975a2cf7,"Cache the _templateRegion regex.
+Someone that knows more about me on regexps might comment on the perf issue",Joe Walker,2011-11-16T15:46:25Z,joewalker,joewalker,15,12,3
+48,domtemplate,ef12ea68d0c20557e96fa10e31a43e8f3e230d98,Add a shortcut function for the simple template case,Joe Walker,2011-11-16T12:31:16Z,joewalker,joewalker,9,9,0
+49,domtemplate,e25543d87138e8390cf6356d892e6df41ce7e615,Add options to Templater constructor for eval control,Joe Walker,2011-11-16T12:28:39Z,joewalker,joewalker,3,2,1
+50,domtemplate,f0509e9c4328d2e44e8cad8563be5338d42833b4,Bug 701712 (template): Add test to make sure,Joe Walker,2011-11-11T19:44:49Z,joewalker,joewalker,10,10,0
+51,domtemplate,b0df4681e696551b6b856eab89999c532731e3c1,Bug 701712 (template): Check thing for non-null-ness,Joe Walker,2011-11-11T19:44:29Z,joewalker,joewalker,2,1,1
+52,domtemplate,34fe01c4b78a52adc3cdd115f1b02eb9718d7828,Correctly import promise,Joe Walker,2011-11-11T19:44:16Z,joewalker,joewalker,1,1,0
+53,domtemplate,91f89de9cbfe125bb5a10cdbb69361bf12f29674,Remove unwanted comments,Joe Walker,2011-11-11T19:43:46Z,joewalker,joewalker,6,0,6
+54,domtemplate,55e7cd247cd29ba1afca121846bda1ca470425df,Keep Promise in sync with the other promises,Joe Walker,2011-11-11T19:42:20Z,joewalker,joewalker,24,12,12
+55,domtemplate,7d58f7a85c00b4d105a2c4ee401cecbbd98b6215,Bug 692424 (promise): Adding lost of tests,Joe Walker,2011-10-07T16:09:14Z,joewalker,joewalker,195,166,29
+56,domtemplate,a5c36d0864db7ed85fa93f8ccee96a96b8f30eb8,Minor Tweak: else/catch should be on new line,Joe Walker,2011-10-07T16:06:48Z,joewalker,joewalker,9,6,3
+57,domtemplate,89274bddfba4934b17fd4bcb5d78ab732ece75ed,"Bug 692424 (promise): Adding tests. INCOMPLETE
+Checking in because we have a crasher that I want to check",Joe Walker,2011-10-07T13:05:55Z,joewalker,joewalker,98,98,0
+58,domtemplate,0406586ec45413f8439978f474c3bb687dec9819,Bug 692424 (promise): A better way to avoid memory leaks,Joe Walker,2011-10-07T13:05:07Z,joewalker,joewalker,4,2,2
+59,domtemplate,b7dc9cd0fa86d58d2a9b603135b260066f6b6ce6,Bug 692424 (promise): console isn't always present,Joe Walker,2011-10-07T13:04:29Z,joewalker,joewalker,13,5,8
+60,domtemplate,7c820cb6f8ec8529768e7d533c585e270e90b8df,Minor Tweak: line wrapping,Joe Walker,2011-10-07T13:03:33Z,joewalker,joewalker,3,2,1
+61,domtemplate,14961855dfb69bced4ebcf5e746b09dec0cdd721,Minor Tweak: Give the Promse ctor a name,Joe Walker,2011-10-05T13:56:14Z,joewalker,joewalker,3,2,1
+62,domtemplate,0a3fac67b6f01c04cfe719375de10d56a4ff2e45,"Bug 692031 (asyncloop): Use template rather than node
+node is where to put it, which is the same in the sync case",Joe Walker,2011-10-05T10:00:16Z,joewalker,joewalker,6,3,3
+63,domtemplate,23a7bb97392afb82d942b3579367f8f52a302f5b,Bug 692054 (element): Remove __element when done,Joe Walker,2011-10-05T09:59:20Z,joewalker,joewalker,1,1,0
+64,domtemplate,cdada149693d95994f46f284587a64ffc42842dd,Minor Tweak: Improve comments,Joe Walker,2011-10-05T09:46:19Z,joewalker,joewalker,4,2,2
+65,domtemplate,c70bfe5b13d573cbd324ea546d3b14f678cd4536,"Bug 691012 (chrometest): Use test file from firefox chrome
+with test harness to make it work in the browser",Joe Walker,2011-10-05T09:45:44Z,joewalker,joewalker,358,259,99
+66,domtemplate,ba7bd50ea4892c24b463113f29a656562f03a3ab,Abstract async handling to _handleAsync function,Joe Walker,2011-09-08T11:55:45Z,joewalker,joewalker,120,51,69
+67,domtemplate,583e86d49f509ea31febce0d62750e322e67d8a0,Ensure promise path doesn't also include non-promise path,Joe Walker,2011-09-08T10:36:20Z,joewalker,joewalker,6,4,2
+68,domtemplate,c7670cbfd52299d87a66c11ea61d6573fa98be26,Doc tweak,Joe Walker,2011-09-08T10:24:27Z,joewalker,joewalker,2,1,1
+69,domtemplate,2480910cd628b5d46724c1c6a4b6385b66e2480e,Minor doc tweaks,Joe Walker,2011-09-08T10:19:34Z,joewalker,joewalker,6,3,3
+70,domtemplate,46c418b6286e082f8be5acb37f061be91427b10c,We found a way to fix the environment in FF. So we can assume Node.,Joe Walker,2011-09-08T10:19:20Z,joewalker,joewalker,2,1,1
+71,domtemplate,447600b67958272807632784f54aee8b7cddc2b6,Ensure that all private members have a _ prefix,Joe Walker,2011-09-08T10:18:46Z,joewalker,joewalker,76,38,38
+72,domtemplate,50ddb1d57ad575e6bf7ddb881b9fbbd20bc0ec71,"Merge branch 'master' into async
+
+Conflicts:
+	test/index.html",Joe Walker,2011-09-06T15:24:34Z,joewalker,joewalker,0,0,0
+73,domtemplate,249c457a6f8bef5f1203037615fb6031bd342e9b,Update unit test to parallel changes on async branch,Joe Walker,2011-09-06T15:21:49Z,joewalker,joewalker,303,17,286
+74,domtemplate,070276db18a65e8d5c6d0205853073d9349723d2,"Merge branch 'master' into async
+
+Conflicts:
+	lib/domtemplate.js",Joe Walker,2011-09-06T15:05:29Z,joewalker,joewalker,11,4,7
+75,domtemplate,76cc265a2e608454a89c71e9d585e065d3f01654,Sync with changes from mozilla-central,Joe Walker,2011-09-06T14:51:13Z,joewalker,joewalker,16,7,9
+76,domtemplate,1d0f2d49310081f69b24846536c3230045d2c472,"Update version number and date, add missing promise file",Joe Walker,2011-08-26T11:54:32Z,joewalker,joewalker,209,208,1
+77,domtemplate,0c8bb51f6ceb5dcb2f52cc8b9f7ee5972712d7d8,"Added async template processing
+Removed custom unit tests",Joe Walker,2011-08-26T11:52:15Z,joewalker,joewalker,613,212,401
+78,domtemplate,7915aea7d6c4670ff743a9c61ea4f8a4a0d12f93,Documentation fixes,Joe Walker,2010-12-06T13:31:48Z,joewalker,joewalker,26,14,12
+79,domtemplate,8b0345eb366253784e836089079d94588d521331,minor code tidyups,Joe Walker,2010-09-21T13:18:45Z,joewalker,joewalker,19,11,8
+80,domtemplate,1d4a8996efa721da776346564d3248bcb8962b94,clarify that the license is MPL/GPL/LGPL,Joe Walker,2010-09-21T10:35:47Z,joewalker,joewalker,472,471,1
+81,domtemplate,3f8a56de103727372758ec03abc7f80d45914d8b,github markdown links dont always work as expected,Joe Walker,2010-09-21T10:21:10Z,joewalker,joewalker,516,258,258
+82,domtemplate,dc02100f4149812f4d83e2526aaa091fe5bc0d56,"adding tests, reorg docs",Joe Walker,2010-09-21T10:12:58Z,joewalker,joewalker,931,645,286
+83,domtemplate,c0e0fc933d396ba98b04d84761c0ef50277c5c6d,fixing bullets in readme,Joe Walker,2010-09-20T21:19:36Z,joewalker,joewalker,5,5,0
+84,domtemplate,17b4360a5ee256a8e3e67b26e81c8445de0c8303,Updated docs,Joe Walker,2010-09-20T21:17:35Z,joewalker,joewalker,367,232,135
+85,domtemplate,efc26345ce7a06f4c2252bca1a766fcf0a54d961,initial commit,Joe Walker,2010-09-20T17:23:10Z,joewalker,joewalker,592,592,0

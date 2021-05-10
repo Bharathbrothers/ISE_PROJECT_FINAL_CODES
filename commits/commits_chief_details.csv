@@ -1,0 +1,139 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,chief,fdc732f0d6121ee88cb1b405251364f55d6fdd62,new changelog URL,Jake Maul,2016-02-01T23:53:45Z,superawesome,superawesome,2,1,1
+1,chief,b5ba485149a0b24d9c72a6002250148cb3cf3526,"Merge pull request #15 from superawesome/master
+
+PEP3333 compatibility, needed for gunicorn-0.17.2+",Jake Maul,2015-05-21T16:18:00Z,superawesome,superawesome,23,11,12
+2,chief,5a5a0e09560be405a00a22cf569e0e88fbdd715c,indentation fix,Jake Maul,2015-05-21T16:17:25Z,Jake Maul,Jake Maul,2,1,1
+3,chief,03e65f570a95aae870d889e85c707d02a42aada1,Merge remote-tracking branch 'upstream/master',Jake Maul,2015-05-21T02:22:59Z,Jake Maul,Jake Maul,0,0,0
+4,chief,dc4fece60907510d0414814af4aec5ef946d9cdf,"wrap string returns to browser with bytes()
+
+This is needed for PEP3333 support, which is required for
+gunicorn-0.17.2 and above. Note that in reality, only strings using
+external variables (namely '(who, app_name, webapp_ref)') need this. For
+bare strings with no (or only local) variables seem to work fine. For
+consistency, though, we just do everything.",Jake Maul,2015-05-21T02:19:44Z,Jake Maul,Jake Maul,4,2,2
+5,chief,f42492bfeb344f3bff70bae9463329cccd6907a6,"move newline characters into prefix_notify() calls
+
+simplifies the next commit...",Jake Maul,2015-05-21T02:19:02Z,Jake Maul,Jake Maul,16,8,8
+6,chief,d3ff7dcdf2e8cd1f5edb6c5c8ccd2364057b7c3a,"one more yield/notify to consolidate
+
+also changing it to prefix_notify for consistency",Jake Maul,2015-05-21T02:17:35Z,Jake Maul,Jake Maul,3,1,2
+7,chief,103da6c59fd14eeaf1fc3035e82b3609229acc70,"Merge pull request #14 from superawesome/master
+
+using yield to report status as the deploy progresses",Jake Maul,2015-05-20T20:15:19Z,superawesome,superawesome,19,11,8
+8,chief,b645d4620c9539889c37d694b0931482d79c0636,better yield design- have notify/prefix_notify return their messages,Jake Maul,2015-05-20T20:00:57Z,Jake Maul,Jake Maul,22,10,12
+9,chief,2de879ae63f3d301651a0fa78daa2172d2d6fb27,"using yield to report status as the deploy progresses
+
+Some output is better than no output. Without do_update() returning or
+yielding *something*, after clicking the button, the browser just hangs
+at ""waiting for response from..."". Yield is better than return because
+it returns some status in real time.
+
+Better would be to actually be printing the log file as we go, but
+offhand I don't know how to do that. :)",Jake Maul,2015-05-20T01:25:55Z,Jake Maul,Jake Maul,5,5,0
+10,chief,693ad79d087ac0a8f4a815d2711c9cdbf7dfaa84,better .gitignore,Jake Maul,2014-06-04T19:14:41Z,Jake Maul,Jake Maul,2,2,0
+11,chief,d625a521d4ce2f6d835fed223a50d828b8c21790,adding changelog support,Jake Maul,2014-06-04T18:56:12Z,Jake Maul,Jake Maul,8,8,0
+12,chief,9ca7261a52077a57b650ff6b41a72368295f5396,Update README.markdown,Brandon Burton,2013-10-09T20:59:27Z,solarce,solarce,6,5,1
+13,chief,41d6bc91e221c14e26f89ab0dc0ad69f6cf9d138,preparing README for v0.1.4,Brandon Burton,2013-06-13T16:41:26Z,solarce,solarce,1,1,0
+14,chief,f09c945d0c7fcda267acbb1d964586ff3d531385,Update chief.py,Jeremy Orem,2013-06-12T17:14:41Z,oremj,oremj,2,1,1
+15,chief,1e5276bbc339ca8c765d7cb5fb712cb7b64ef7b9,"Update chief.py
+
+GET doesn't exist in flask.",Jeremy Orem,2013-06-12T17:10:00Z,oremj,oremj,2,1,1
+16,chief,c9c6a6814e6bc39d83939d4128b878119dcba319,updating README for v0.1.3 release,Brandon Burton,2013-06-05T06:44:38Z,solarce,solarce,2,1,1
+17,chief,b42394dedd7bbc4a64f78c9c511c9499713fc332,updating README for v0.3 release,Brandon Burton,2013-06-05T06:40:58Z,solarce,solarce,5,4,1
+18,chief,8cf14d6075bfb13d09fd4679d9b56c9897947027,Allow custom scripts.,Jeremiah Orem,2013-05-13T23:55:43Z,oremj,oremj,39,28,11
+19,chief,358849bacbc35716d9ec16b41bd751b61ec41bd0,"Support for more ""task runners"". This opens up the possibility of using
+fab.",Jeremiah Orem,2013-05-13T23:31:26Z,oremj,oremj,6,4,2
+20,chief,0b4603c0437e48ea0de4a8b9600f19b2bbe0bced,"Update chief.py
+
+Truncate ref.",Jeremy Orem,2013-04-22T16:11:14Z,oremj,oremj,2,1,1
+21,chief,bda6585f95f3ffd6d10277e12a20b62546fdd2a6,"Merge pull request #11 from willkg/history-pages-9
+
+Fix paging half-heartedly",Chris,2013-04-22T15:36:58Z,cturra,cturra,26,26,0
+22,chief,0d5a529a614548ebcf6b5b13de29d1d599fce4bb,Swap out hard pushbot integration with a generic notifier hook.,Jeremiah Orem,2013-04-19T16:05:48Z,oremj,oremj,26,5,21
+23,chief,57155ba9018336fc2d8880169b21c19d621ea60c,Yield was triggering an exception.,Jeremiah Orem,2013-04-19T01:04:22Z,oremj,oremj,5,0,5
+24,chief,dc96a17ebbaab594d69664e7f251516567c6cdfe,Make notifications more verbose.,Jeremiah Orem,2013-04-19T00:49:53Z,oremj,oremj,14,11,3
+25,chief,8765569b28d48e6ba76b0aff82f216836a8ece69,Add notification support.,Jeremiah Orem,2013-04-19T00:29:08Z,oremj,oremj,57,49,8
+26,chief,718127921c2a679c02db92e34a8fef29b7d61c15,"Fix paging half-heartedly
+
+This adds paging to the history/ section so we're not displaying *all*
+the results.
+
+The paging kind of sucks though since we have to pull back all the results
+from redis since they're stored by keys and not by timestamp and we want
+to sort them by timestamp before paging.",Will Kahn-Greene,2013-04-14T20:13:47Z,willkg,willkg,26,26,0
+27,chief,70d3724955340ac046ed19e8fcfde4875dfd9867,"Merge pull request #7 from willkg/license-fix
+
+Add license/copyright notice",Brandon Burton,2013-03-24T17:08:51Z,solarce,solarce,13,13,0
+28,chief,b487b10fece427bc4e3a4bf5332bdca34eda58f2,Add license/copyright notice,Will Kahn-Greene,2013-03-20T21:36:45Z,willkg,willkg,13,13,0
+29,chief,8222286f4d10afcaddf3912e26300db0f7d708e7,updating README for v0.1.2.1,Brandon Burton,2013-03-18T19:17:08Z,solarce,solarce,1,1,0
+30,chief,62e17b97c2657a4fddb95260f8fb010c4016d84a,"fixed bug in html for /chief/ index page, fixed #5",Brandon Burton,2013-03-18T19:15:42Z,solarce,solarce,2,1,1
+31,chief,4546e722af3c7c9493b16b63e2bab2d71d9e64f6,"small tweaks to fpm to be easier to roll the rpm, for #4",Brandon Burton,2013-03-18T18:24:24Z,solarce,solarce,7,1,6
+32,chief,d4a07e4794df7f93683468fb3de52fbe26978ca6,updated README with v0.1.2 and how to make rpm. fixed #4,Brandon Burton,2013-03-18T18:06:03Z,solarce,solarce,22,17,5
+33,chief,b13ca301a1f1773082f77e21f317900a541c5716,"made it so that the server name is set based on hostname, so URLs are constructed properly in the list, fixes #3",Brandon Burton,2013-03-14T19:21:03Z,solarce,solarce,7,4,3
+34,chief,281096b369320024e3f1800744ea38f5df75c23d,"added route so that chief/ now gives a list of available webapp, may need some tuning and style, but is functional",Brandon Burton,2013-03-14T18:41:45Z,solarce,solarce,9,9,0
+35,chief,1cc7f9cc23961b45ea4b5b41f66e3fa4b9aae7d0,"adds logs directory, fixes #2",Brandon Burton,2013-03-09T00:12:59Z,solarce,solarce,0,0,0
+36,chief,c2baa82cae87f6b25739f6b930856f4766e9ffc4,"adds logs directory, fixes #2",Brandon Burton,2013-03-09T00:12:11Z,solarce,solarce,0,0,0
+37,chief,fdf7c6333dacb6144c59182fba22680f2e0fd43b,Merge branch 'master' of github.com:mozilla/chief,Brandon Burton,2013-03-09T00:12:11Z,solarce,solarce,0,0,0
+38,chief,d6ca7d4e621d6e7f45117b184bb5a52e5a6ebb19,"a chief deployment won't work without a logs directory, no reason it can't be in the repo",Brandon Burton,2013-03-09T00:09:42Z,solarce,solarce,3,2,1
+39,chief,fc30a60bb0f515600f70f88a074bb73fe7648dc5,"a chief deployment won't work without a logs directory, no reason it can't be in the repo",Brandon Burton,2013-03-09T00:09:42Z,solarce,solarce,0,0,0
+40,chief,2b1aca7b848096db9197bda12bfe4a98164cf419,"preparing for v0.1 to make an rpm, fixed #1",Brandon Burton,2013-03-09T00:00:48Z,solarce,solarce,4,4,0
+41,chief,e38fa9b6ee28f96040104c3866530b169d978a2c,"No more big gray button in Webkit.
+
+You're welcome, @cvan",Matt Basta,2012-10-12T21:11:43Z,mattbasta,mattbasta,2,2,0
+42,chief,a62273433928cd586e4159a3f3feca4c6ea6358c,"Merge pull request #2 from jasonthomas/master
+
+changes template to fix image and input field width",Jeremy Orem,2012-10-12T19:04:26Z,oremj,oremj,5,4,1
+43,chief,aa931a1d213e6e8155a2ebc8010a2ae6199bc410,changes template to fix image and input field width,Jason Thomas,2012-10-12T18:40:02Z,jasonthomas,jasonthomas,5,4,1
+44,chief,6a0d98fa0718f2e4b49902f0e23da7dd28287408,"Merge pull request #1 from jasonthomas/master
+
+Add loadtesting to chief",Jeremy Orem,2012-10-12T17:44:47Z,oremj,oremj,114,113,1
+45,chief,92e5a19aaa1c32dc289868463855ffc373db7d5a,big yellow button!,Jason Thomas,2012-10-12T16:51:03Z,jasonthomas,jasonthomas,2,1,1
+46,chief,980cc1bf2c1dae53a47e4c1fa46da0073c3ed772,add loadtest template,Jason Thomas,2012-10-12T16:50:30Z,jasonthomas,jasonthomas,76,76,0
+47,chief,53a17cb7c5474f7734b11c7f90f2caf1a3151992,submit loadtests via chief,Jason Thomas,2012-10-12T15:59:34Z,jasonthomas,jasonthomas,38,37,1
+48,chief,08795e82234edc22c158870e7e57a1016300a712,fix history,Jeremiah Orem,2012-09-07T21:12:42Z,oremj,oremj,2,1,1
+49,chief,91f545eea85086d152c27d134c0a2fd30cdb1be7,use log name instead of ref in history,Jeremiah Orem,2012-09-07T21:08:55Z,oremj,oremj,5,3,2
+50,chief,91ef46ea8b4b2b38f76502bd63cbdcb02a8ac142,Send log name to pushbot.,Jeremiah Orem,2012-08-09T22:01:40Z,oremj,oremj,12,7,5
+51,chief,f9614962d4b3137fe1984b94999ea8bef797e55a,allow underscores and dashes,Jeremiah Orem,2012-08-08T22:25:00Z,oremj,oremj,2,1,1
+52,chief,43a99562296fd3af848824c9c05ba3e0fe26be35,"Merge pull request #5 from jasonthomas/master
+
+Keep track of deployment history in chief",Jeremy Orem,2012-08-07T22:46:40Z,oremj,oremj,95,93,2
+53,chief,0fb9d46dc1ad71a1836c10195f1fb864c78e59a6,add link to history on index,Jason Thomas,2012-08-07T22:41:18Z,jasonthomas,jasonthomas,5,4,1
+54,chief,6673634f1598ff6cbd93ebbda9b491c6ca004eff,fix log path,Jason Thomas,2012-08-07T15:47:17Z,jasonthomas,jasonthomas,2,1,1
+55,chief,5541fab7376b9ddc5d2cf83d927c10a7bc410cf1,view history of previous deployments,Jason Thomas,2012-08-07T15:43:50Z,jasonthomas,jasonthomas,85,82,3
+56,chief,41af16d2fa323e4f1c2ddceb60d536c9ede22fc0,add timestamp to logname,Jason Thomas,2012-08-06T18:15:37Z,jasonthomas,jasonthomas,5,3,2
+57,chief,f1c7e3787bf55f87832256659d9b92a56615586f,store history of deploys in redis,Jason Thomas,2012-08-06T17:05:59Z,jasonthomas,jasonthomas,10,9,1
+58,chief,374b109a510766b2add44f2190be5f371b922b70,"Change form order, so browsers will remember passwords correctly.",Jeremy Orem,2012-04-17T16:40:35Z,oremj,oremj,4,2,2
+59,chief,3611a8c937caba3e24baceffbd9e0448bc3cb9ac,Update README.markdown,Jeremy Orem,2012-04-09T20:20:09Z,oremj,oremj,2,1,1
+60,chief,6cc4d25d7641bf661a0e0bad911ad946db649f21,add README,Jeremy Orem,2012-04-09T20:12:36Z,oremj,oremj,17,17,0
+61,chief,f8d97e00eb50192e652e12c39d08df9c4383dded,template bug fix,Jeremy Orem,2011-11-16T20:50:47Z,oremj,oremj,2,1,1
+62,chief,0da740621c20e0efe497a07503f324d8518bd125,show incorrect password error on incorrect password,Jeremy Orem,2011-11-16T20:45:44Z,oremj,oremj,24,15,9
+63,chief,75d874746dcbed8da6d9907f147e4e4e65cf8258,avoid escaping out of commander,Jeremiah Orem,2011-11-15T18:31:30Z,oremj,oremj,4,2,2
+64,chief,bba1563bb35ca97991a215bc78a6a4516a87f5e0,make button image relative,Jeremiah Orem,2011-11-11T18:23:32Z,oremj,oremj,2,1,1
+65,chief,15e8f06f1bca380497eaadf6b94778c223c239ea,need name not label,Jeremiah Orem,2011-11-11T18:16:30Z,oremj,oremj,6,3,3
+66,chief,f85208c0f778dbe2315112db155680b0b2b232e4,s/tag/ref/,Jeremiah Orem,2011-11-11T18:14:43Z,oremj,oremj,2,1,1
+67,chief,3a8f118660287f3e2e1a11639d25e21dfdd97806,add WTForms to requirements,Jeremiah Orem,2011-11-11T18:11:32Z,oremj,oremj,1,1,0
+68,chief,7d33a2af82d02770c62a475fe3baffd6760adacd,WTForms for forms.,Jeremiah Orem,2011-11-11T18:10:29Z,oremj,oremj,47,33,14
+69,chief,50ed9e5be5ce606ecec3f39d1cf76983ca279d3a,"Merge pull request #1 from potch/master
+
+I made the button all pretty.",Jeremy Orem,2011-11-11T17:47:12Z,oremj,oremj,66,50,16
+70,chief,922677666afa8f2a2d1360354df78eacc6a2166c,button so shiny,Matt Claypotch,2011-11-11T01:31:04Z,potch,potch,66,50,16
+71,chief,8271ef6726925baec473889b1aa99fb73d218ebf,make chief identify itself,Jeremy Orem,2011-10-20T17:10:09Z,oremj,oremj,5,3,2
+72,chief,c22ff7a7e1481f583a95b56a9adf22883a565afb,fix post keys assertion,Jeremy Orem,2011-10-20T16:48:40Z,oremj,oremj,2,1,1
+73,chief,d24a26ee11eb69f18e7f7d159f17965ad88bbb74,take out a few more zamboni references,Jeff Balogh,2011-10-20T16:32:53Z,Jeff Balogh,Jeff Balogh,6,3,3
+74,chief,8900c73c6cfae4aecb427bf60ea073eb6a86df54,make commander script location configurable,Jeremy Orem,2011-10-20T16:27:06Z,oremj,oremj,4,2,2
+75,chief,ada582724f7880ca2dd97dc5bf2057d26a052065,Allow 1 chief for multiple apps.,Jeremy Orem,2011-10-20T02:23:01Z,oremj,oremj,61,35,26
+76,chief,81a25fe34ab242fbdaccae23d9d56c05d9570413,vendor is managed as a submodule now,Jeff Balogh,2011-10-17T20:02:01Z,Jeff Balogh,Jeff Balogh,19,8,11
+77,chief,62cd1356f19d121051baf619d288946be9eba587,publish an event on failure,Jeff Balogh,2011-08-23T20:09:11Z,Jeff Balogh,Jeff Balogh,39,22,17
+78,chief,1a7a30ef728c1b686e7dc546985f75ed8640815a,make the pubsub channel configurable,Jeff Balogh,2011-08-23T20:08:41Z,Jeff Balogh,Jeff Balogh,5,4,1
+79,chief,2b5af25d1d8d9f7608916d13bdcde6902bfb8648,use check_call so we stop on errors (bug 680568),Jeff Balogh,2011-08-22T18:49:55Z,Jeff Balogh,Jeff Balogh,7,3,4
+80,chief,0c8aa9bb3cf4c5f9516a76b8291822c7469bf4b3,plain text output,Jeremy Orem,2011-08-01T23:57:12Z,oremj,oremj,6,3,3
+81,chief,b2d56f78a9d065a6ea57b47cadb0a5e06e3fc408,"Have to allow POST.
+Sanitize log filename.",Jeremy Orem,2011-08-01T23:55:23Z,oremj,oremj,7,5,2
+82,chief,154b3f73c10714727b9a85737dfa330b3087e50c,Convert to flask app.,Jeremy Orem,2011-08-01T23:32:17Z,oremj,oremj,98,50,48
+83,chief,62245f3ea97af1f9b517aae70359533cdda899ce,identify the pusher,Jeff Balogh,2011-06-02T17:37:42Z,Jeff Balogh,Jeff Balogh,10,6,4
+84,chief,ed5b039255fc560b7e9c65b718edadf7105af247,publish events to redis during a push,Jeff Balogh,2011-06-02T17:34:35Z,Jeff Balogh,Jeff Balogh,29,29,0
+85,chief,cac8ffe965e2fc60d75df7d49cb420112e06cde1,get a title,Jeff Balogh,2011-05-26T16:45:14Z,Jeff Balogh,Jeff Balogh,1,1,0
+86,chief,b3ea699bfab55bb05b5dbe0d3996d6a802955a09,critical style changes,Jeff Balogh,2011-05-25T19:26:09Z,Jeff Balogh,Jeff Balogh,25,24,1
+87,chief,cc02ab329b27bd34a1c4ac4e8e3fc708febb065e,turn off python output buffering,Jeff Balogh,2011-05-25T18:50:20Z,Jeff Balogh,Jeff Balogh,2,2,0
+88,chief,9e08af133ab38854217ce903d6d8397478fffbe3,chief is an app to deploy code with commander,Jeff Balogh,2011-05-25T18:40:41Z,Jeff Balogh,Jeff Balogh,54,54,0

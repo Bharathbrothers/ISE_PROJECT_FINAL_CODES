@@ -1,0 +1,106 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,libdmg-hfsplus,a745334bb2c28614ae8d1f6d00cdd09b7213ab67,"Merge pull request #1 from glandium/static-openssl
+
+dmg: Allow to statically link against OpenSSL",Gregory Szorc,2018-01-05T18:55:20Z,indygreg,indygreg,8,1,7
+1,libdmg-hfsplus,2ee327795680101d36f9700bd0fb618362237718,"dmg: Allow to statically link against OpenSSL
+
+It turns out FindOpenSSL, which is included:
+- respects the OPENSSL_USE_STATIC_LIBS to force the openssl libraries to
+  be linked statically (and only those).
+- provides variables for the individual libraries.
+
+The latter means dmg/CMakeLists.txt doesn't actually need to search for
+libcrypto on its own, but can just use whatever FindOpenSSL found, which
+respects OPENSSL_USE_STATIC_LIBS.
+
+Unfortunately, statically linking libcrypto requires linking against
+libdl, so we also link CMAKE_DL_LIBS when OPENSSL_USE_STATIC_LIBS is set.",Mike Hommey,2017-12-28T10:58:33Z,glandium,glandium,8,1,7
+2,libdmg-hfsplus,ba04b00435a0853f1499d751617177828ee8ec00,hfslib: set permissions when extracting,Andreas Persson,2015-06-19T16:04:33Z,andreas56,andreas56,11,9,2
+3,libdmg-hfsplus,2763b65c94b7d15d060ba271ed348477ce82087b,hfslib: create copies instead of symlinks on Windows,Andreas Persson,2015-06-19T15:50:15Z,andreas56,andreas56,147,88,59
+4,libdmg-hfsplus,1d72dd62a13632134667a378f926e8904f70bf25,Fix a couple of memory leaks,Drew Fisher,2015-05-30T21:32:18Z,zarvox,zarvox,9,6,3
+5,libdmg-hfsplus,c173eaec8837e2f4484294abef4039288ea84650,hfslib: support extracting symlinks,Drew Fisher,2015-05-30T21:32:15Z,zarvox,zarvox,37,31,6
+6,libdmg-hfsplus,cff9c53c59dd28487fe44a351583921130e90ab2,hfsplus addall: copy permissions from source,Drew Fisher,2015-05-30T21:32:06Z,zarvox,zarvox,12,11,1
+7,libdmg-hfsplus,809de91b18bb7b926599d84b2cb3c70bde69246b,Add missing declaration to hfsplus.h for attrFile,Drew Fisher,2015-02-12T19:23:29Z,Drew Fisher,Drew Fisher,1,1,0
+8,libdmg-hfsplus,ea5fa3c3ed75de33437504fcee1d558f91f2bb70,Use tabs more consistently,Drew Fisher,2015-02-12T19:23:02Z,Drew Fisher,Drew Fisher,672,336,336
+9,libdmg-hfsplus,d3c361f0db0bc1d0a71d4da108044ef77f3b25dc,Add bzip2 support to dmgfile as well,Drew Fisher,2015-02-12T19:09:21Z,Drew Fisher,Drew Fisher,18,17,1
+10,libdmg-hfsplus,9fd968b61c063cb8804e6a90ea729a942b1e555b,dmg: support reading bz2-compressed runs,Drew Fisher,2015-01-08T03:40:36Z,Drew Fisher,Drew Fisher,25,22,3
+11,libdmg-hfsplus,f0cda6021d3c891e90ebced7fade4371e29b7eee,Initial bzip2 support,Dave Vasilevsky,2013-12-06T01:49:24Z,vasi,vasi,32,19,13
+12,libdmg-hfsplus,4834fcf4c16063332ea4950884788a4d79f2bd01,Add `make install` instruction,Mickaël Bergem,2015-03-19T20:25:02Z,Mickaël Bergem,Mickaël Bergem,1,1,0
+13,libdmg-hfsplus,6ecee90fdb8e0ae3b4de315ed9758dbea248466c,"Merge pull request #2 from aerofs/fix-install-dirs
+
+Install the binaries into the ./bin folder (usually `/usr/local/bin`)",huguesb,2015-03-19T19:27:30Z,huguesb,huguesb,6,3,3
+14,libdmg-hfsplus,bd826c2d21d978a796ea6c735ad4df2cc7cbd40c,"Merge pull request #1 from aerofs/fix-install-doc
+
+Update installation instructions",huguesb,2015-03-19T19:26:32Z,huguesb,huguesb,5,5,0
+15,libdmg-hfsplus,49bf61494d8f5fd1e8f5548496e2424aaf4bbdf6,"Update installation instructions
+
+No Makefiles are present in the subfolders, update instructions.",Mickaël,2015-03-19T18:46:40Z,MickaelBergem,MickaelBergem,5,5,0
+16,libdmg-hfsplus,e9bacce2e9b3d345edd709f8c7760c8a553e4ad9,Install the binaries into the ./bin folder (usually `/usr/local/bin`),Mickaël Bergem,2015-03-19T19:07:43Z,Mickaël Bergem,Mickaël Bergem,6,3,3
+17,libdmg-hfsplus,fcec7d6b9d2cf5ec7fd8530bcef12c2e038c8e1f,implemented attr command,root,2013-11-11T12:36:31Z,root,root,124,123,1
+18,libdmg-hfsplus,b4673001b086104aa634763ed9d1044ed7e20669,fixed CRC in convertDMG if no DDM present,root,2013-11-11T12:35:08Z,root,root,1,1,0
+19,libdmg-hfsplus,756153e98431dc09c74b9db2cd740c382703fff7,added seekDmgPartition() to pick partitions in already opened DMG,Eugene Homyakov,2012-04-06T12:10:05Z,hamstergene,hamstergene,23,15,8
+20,libdmg-hfsplus,bc434eb65eb7d89751245ba2892bad84c36c1dd1,Eclipse/Xcode projects not needed with CMake,Eugene Homyakov,2012-04-04T12:22:36Z,hamstergene,hamstergene,855,0,855
+21,libdmg-hfsplus,cedc693dd5a307e92a38cfd3e59fb1b6da092399,fixed broken extract and convert-to-iso,Eugene Homyakov,2012-04-04T12:16:39Z,hamstergene,hamstergene,48,25,23
+22,libdmg-hfsplus,5ea10fcb19b4048a8f15837fc7865dfb90284f68,fixed possible crash,Eugene Homyakov,2012-04-04T11:42:57Z,hamstergene,hamstergene,2,1,1
+23,libdmg-hfsplus,e0d71fb86640bdf851a8d22757be4df144f6f44c,dead code removed,Eugene Homyakov,2012-04-04T11:42:40Z,hamstergene,hamstergene,33,0,33
+24,libdmg-hfsplus,dc8aa739262bd5b76037f673fd93770d961e890f,fixed compilation after checksum improvements,Eugene Homyakov,2012-04-04T11:38:56Z,hamstergene,hamstergene,28,14,14
+25,libdmg-hfsplus,417343557d9bbd730df0a3de8054c72175ae13a0,add header files to cmake-generated projects,Eugene Homyakov,2012-04-04T11:38:18Z,hamstergene,hamstergene,6,3,3
+26,libdmg-hfsplus,05ced11474d907586c8a02d4459710f072171b3b,removed XCode user pref from version control,Eugene Homyakov,2012-04-04T11:20:39Z,hamstergene,hamstergene,1683,0,1683
+27,libdmg-hfsplus,d59c3d7c2231400848dfd08d177741d598a1e3e3,"fixed compilation, improved checksums, resources",Eugene Homyakov,2012-04-04T11:03:25Z,hamstergene,hamstergene,250,177,73
+28,libdmg-hfsplus,d4a253cae40fb4b38377273eb1f89f21c4cb224a,"ADC support for libdmg-hfsplus
+
+adds decompression support only. code is from dmg2img
+(http://vu1tur.eu.org/tools/) and is available under the GPL",Derrick Brashear,2010-03-07T13:47:13Z,Derrick Brashear,Derrick Brashear,150,149,1
+29,libdmg-hfsplus,761fdc3b835ee107ecdb03612b8ec25ec5c43eb8,Updated from xpwn branch,planetbeing,2008-11-09T14:39:02Z,planetbeing,planetbeing,528594,1367,527227
+30,libdmg-hfsplus,cec5c79e40ff2e96db67b8b5922e2dfe20532355,changed includes structure,planetbeing,2008-05-21T14:48:02Z,planetbeing,planetbeing,103,55,48
+31,libdmg-hfsplus,d35792981f8b57c3d23ff2d79c5feb0c90862e56,Merge branch 'master' of git@github.com:planetbeing/libdmg-hfsplus,planetbeing,2008-05-21T14:03:13Z,planetbeing,planetbeing,14,8,6
+32,libdmg-hfsplus,dd6978de7f19c7839632844791166b66bdddc7c2,Fix up line endings,planetbeing,2008-05-21T13:59:40Z,planetbeing,planetbeing,17868,8934,8934
+33,libdmg-hfsplus,a271a20d70ed720241995d41201041a2cd4a71b0,"gah, more changes necessary to get cross-compiling on Linux to work",planetbeing,2008-05-17T08:11:37Z,planetbeing,planetbeing,10,6,4
+34,libdmg-hfsplus,482dcea1d9c377958e6654598e354b75c611e403,further changes to openssl makefiles for easier cross-compilation,planetbeing,2008-05-17T07:52:43Z,planetbeing,planetbeing,4,2,2
+35,libdmg-hfsplus,fbfc3af263f73fdce0d298d1869587af62233bd9,"changed openssl makefile so it defers to already set ranlib, ar",planetbeing,2008-05-17T07:42:05Z,planetbeing,planetbeing,4,2,2
+36,libdmg-hfsplus,9f1ef5034e2acde3f477f28727dd3d436ead39e2,added freebsd changes from olivier@gid0.org,planetbeing,2008-05-17T04:10:42Z,planetbeing,planetbeing,4300,3,4297
+37,libdmg-hfsplus,af443645e252e3415d4ed164ef7f55f871a273a1,changed to GPL license,planetbeing,2008-05-16T20:11:30Z,planetbeing,planetbeing,681,676,5
+38,libdmg-hfsplus,2c2791e113ec0b66a370960c815137fc0f146fc3,Moved out some of the higher level dmg functions as well,planetbeing,2008-05-16T19:24:42Z,planetbeing,planetbeing,1031,528,503
+39,libdmg-hfsplus,4aa9b90d5c423d52a14540da168ee450191aaed0,centralized some higher level utility functions of hfs,planetbeing,2008-05-16T18:58:47Z,planetbeing,planetbeing,1665,691,974
+40,libdmg-hfsplus,8efb3727dde6c0b8e862a4e65067a356d4984a03,Separated abstractfile from dmg,planetbeing,2008-05-16T17:34:17Z,planetbeing,planetbeing,99,51,48
+41,libdmg-hfsplus,842d55e1b76177feab70cb1ad4a4147eadff46eb,Gave more fine-grained traversal controls to getRecordFromPath. rm now removes the symlink rather than the symlink target. move is also improved.,planetbeing,2008-05-15T23:31:14Z,planetbeing,planetbeing,172,70,102
+42,libdmg-hfsplus,c4211b9aff2cc0eb914f5c4b7816c51dbb82f014,fixed read/write over multiple extents and added public interface to btree debugging function,planetbeing,2008-05-07T01:47:16Z,planetbeing,planetbeing,38,25,13
+43,libdmg-hfsplus,e411c85011c70adc0efc2739a6bdfd00d202d8a0,Not strcasestr on Windows,planetbeing,2008-05-05T16:10:45Z,planetbeing,planetbeing,2,1,1
+44,libdmg-hfsplus,cfbfb11143689879e681b14e7f1a6a7059545f7d,Fixed symlink problem with addall,planetbeing,2008-05-05T15:55:09Z,planetbeing,planetbeing,31633,15524,16109
+45,libdmg-hfsplus,e3e22f44952e2c78d680708e09fd8ad5d34e15ed,made auto-detect default behavior if no partition explicitly specified,planetbeing,2008-05-04T06:02:36Z,planetbeing,planetbeing,10,5,5
+46,libdmg-hfsplus,f82d95eddff844533db6deecb2eb34e142c91857,merged some changes,planetbeing,2008-05-01T20:34:22Z,planetbeing,planetbeing,16014,8074,7940
+47,libdmg-hfsplus,7f780a5bb185f3ad00fed4123fb2610dfb401196,Merge branch 'master' of git@github.com:planetbeing/libdmg-hfsplus,planetbeing,2008-04-30T04:39:28Z,planetbeing,planetbeing,0,0,0
+48,libdmg-hfsplus,0906cd62b4a28b5cac2b9d45cf7fa39c7be66c60,Fixed base64 conversion regression. oops,David,2008-04-30T04:31:21Z,David,David,7,3,4
+49,libdmg-hfsplus,f5974f77d4fe133d877fc1ded40c1e5f0e000c5e,Fixed base64 conversion regression. oops,David,2008-04-30T04:31:21Z,David,David,7,3,4
+50,libdmg-hfsplus,7b235156db7389c881dbdb3caa304d9aeb61b26f,needed file for proper make,planetbeing,2008-04-29T10:45:47Z,planetbeing,planetbeing,9,9,0
+51,libdmg-hfsplus,699d71bbe1f0bd9f76811036c6171af418960a5d,"Noticed that in win32, off_t is only 32-bits regardless of the FILE_OFFSET_BITS option. You have to use off64_t.",planetbeing,2008-04-28T23:56:36Z,planetbeing,planetbeing,1,1,0
+52,libdmg-hfsplus,d955a9ec1f2de0f9f6636ccca827929c8e22e6e7,"Pulled in an (adapted) version of openssl so libcrypto can be statically compiled in. Yes, it is huge and yes, most parts of libcrypto is not used, but it makes the build process simpler on mingw/Windows.",planetbeing,2008-04-28T10:42:11Z,planetbeing,planetbeing,478290,476592,1698
+53,libdmg-hfsplus,851850c1efc74ca0b7fae883d89c29be3217476e,Added eclipse IDE support,planetbeing,2008-04-27T21:56:38Z,planetbeing,planetbeing,211,211,0
+54,libdmg-hfsplus,4e083621e335c5eb3500fd8ae5e093d86087fd5c,Changed primary detection algorithm so that it just uses the first HFS+/HFSX partition it finds.,planetbeing,2008-04-27T18:15:46Z,planetbeing,planetbeing,2,1,1
+55,libdmg-hfsplus,830be463c40afa5e9ac09ce4b481e1a47ffa5af1,Added experimental support for HFS+ style case-folding.,planetbeing,2008-04-27T17:51:29Z,planetbeing,planetbeing,460,456,4
+56,libdmg-hfsplus,1915dd816f868c6ee22ec1e787201ba8034acafc,Fixed for g++ again,planetbeing,2008-04-27T16:30:10Z,planetbeing,planetbeing,4,2,2
+57,libdmg-hfsplus,753ac5335bec9d4b4a1aa775d44a60480e277c66,Changed to dynamic block sizes for filevault,planetbeing,2008-04-27T14:49:56Z,planetbeing,planetbeing,61,30,31
+58,libdmg-hfsplus,f40af2c7446226378c005748c761ea14cfd96c25,Explained in README about the new libcrypto dependency for FileVault,planetbeing,2008-04-27T14:36:00Z,planetbeing,planetbeing,11,11,0
+59,libdmg-hfsplus,75ad992658601985c435e604bb414b8682673221,"Added hdutil, which is a cool way of directly accessing a HFS filesystem compressed into a DMG encrypted with FileVault. Surprisingly not that slow.",planetbeing,2008-04-27T14:25:00Z,planetbeing,planetbeing,1085,1061,24
+60,libdmg-hfsplus,2fb2b51d31635276f1a10b46a7117dd5920ad928,Fixed g++ build,planetbeing,2008-04-27T11:35:48Z,planetbeing,planetbeing,105,80,25
+61,libdmg-hfsplus,1a9962128d0e3a6ac6c3325f47267dbfa5e98690,Fixed XCode build and cleaned up warnings,planetbeing,2008-04-27T11:32:09Z,planetbeing,planetbeing,123,71,52
+62,libdmg-hfsplus,a1686df5282aeb94b5f5607cf2440eb13a89dffa,Added XCode project,planetbeing,2008-04-27T11:09:31Z,planetbeing,planetbeing,2247,2247,0
+63,libdmg-hfsplus,38eb2b64ad07869962833711000a5aca3a714996,"Added more version independence to FileVault code, in case version 1 every needs to be implemented. Also enabled FileVault files to be expanded safely, not that anyone really needs to write FileVault files.",planetbeing,2008-04-27T09:17:17Z,planetbeing,planetbeing,37,31,6
+64,libdmg-hfsplus,00afc82f9293574c18a5da5caf4886bbf932be06,updated README to reflect Makefile changes,planetbeing,2008-04-26T18:39:53Z,planetbeing,planetbeing,3,3,0
+65,libdmg-hfsplus,4b0f0db50883b640b4886f000e90e0e9cb2f3785,"Tinkered with valgrind, the makefiles, and enabled using filevault encrypted files as a backing source for dmg actions, so you can decrypt and extract at the same time",planetbeing,2008-04-26T18:38:02Z,planetbeing,planetbeing,747,507,240
+66,libdmg-hfsplus,b9fef5d9a836a9239e1d7e9ee203e6a8e07393f0,"clarified that these tools are currently only suitable to be accessed by programs, not people",planetbeing,2008-04-26T13:43:50Z,planetbeing,planetbeing,5,5,0
+67,libdmg-hfsplus,f62d27f19aa37c7f2ccf92267ddc06f4b8c7304c,fixed dangerous bug with move which could result in a crash or other unpredicatable behavior before move manages to add back the record it removed.,planetbeing,2008-04-26T13:39:50Z,planetbeing,planetbeing,8,5,3
+68,libdmg-hfsplus,25f8277b810fa65a5353dbfb757b874d2aa18308,Fixed bug with not properly concatenating paths in addall,planetbeing,2008-04-26T13:26:56Z,planetbeing,planetbeing,2,1,1
+69,libdmg-hfsplus,f70e57b620fda352e49d812110964ed5d0838306,Fixed memory leak with add,planetbeing,2008-04-26T13:23:25Z,planetbeing,planetbeing,4,3,1
+70,libdmg-hfsplus,21a07d9302a0ef7ca6cd4e465eb19476f86965bb,"Changed all the dmg stuff to work off the new AbstractFile type. Should make it easier to do stuff like on-the-fly decryption, etc.",planetbeing,2008-04-26T13:14:47Z,planetbeing,planetbeing,945,473,472
+71,libdmg-hfsplus,02803ab414e7bff5014043a615c9e32cbabf47d8,Fixed markdown for the code parts,planetbeing,2008-04-24T19:46:15Z,planetbeing,planetbeing,16,9,7
+72,libdmg-hfsplus,d2c7ac03b2d138abc3ce88239c21a9c3420d1118,Switched to markdown for README,planetbeing,2008-04-24T19:40:13Z,planetbeing,planetbeing,10,4,6
+73,libdmg-hfsplus,6b1f36a052d409e15b63b62f4fd97a782818de6a,Maybe it's better not to explicitly specify CC,planetbeing,2008-04-24T15:21:35Z,planetbeing,planetbeing,2,0,2
+74,libdmg-hfsplus,a5a049022280b7ec730a440e63fb174b852de5ea,Fixed bugs and implemented iso to dmg conversion,planetbeing,2008-04-24T15:15:11Z,planetbeing,planetbeing,430,236,194
+75,libdmg-hfsplus,780984d5dd0d3c9b9b74f8e539e60cc4e8335521,Fixed block descriptor bug (didn't seem to affect anything in practice). Partial implementation of iso to dmg,planetbeing,2008-04-24T14:42:09Z,planetbeing,planetbeing,202,192,10
+76,libdmg-hfsplus,78422cd0b4f6e02c91d5204a890b0a619aa7b35e,Added conversion from dmg to iso,planetbeing,2008-04-24T13:20:40Z,planetbeing,planetbeing,69,62,7
+77,libdmg-hfsplus,cfbf065901c28fbb47d63f274a5ab3766f664069,"Apparently localtime() can return NULL for some dates, causing ls to crash for certain unusual dates",planetbeing,2008-04-22T04:47:35Z,planetbeing,planetbeing,15,12,3
+78,libdmg-hfsplus,aa5add7cfce0cce914a78f8d4259654dd41252ee,Fixed some pedantic stuff for compiling with g++,planetbeing,2008-04-22T04:24:32Z,planetbeing,planetbeing,61,32,29
+79,libdmg-hfsplus,068833912eb8de1008d5c2116e3374dcfbd00ee3,Added readme,planetbeing,2008-04-22T02:21:50Z,planetbeing,planetbeing,48,48,0
+80,libdmg-hfsplus,7bdafe2823ed493115ab0ca0cc3d6ea83edf7e2d,forgot hfs,unknown,2008-04-20T18:33:18Z,unknown,unknown,4681,4681,0
+81,libdmg-hfsplus,4b2a89cc11dc2b74f1cd075e7ad45f5d8578c0bf,First commit,unknown,2008-04-20T18:24:20Z,unknown,unknown,59670,59670,0

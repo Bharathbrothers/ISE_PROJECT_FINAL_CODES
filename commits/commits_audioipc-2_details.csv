@@ -1,0 +1,905 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,audioipc-2,de8326d9217c9edd21d5dd1958cb951883a5a7dc,Minimal changes to server/src/channel.rs to make it build in-tree.,Matthew Gregan,2017-11-10T02:51:12Z,kinetiknz,kinetiknz,10,7,3
+1,audioipc-2,304ceb31bf375ed16ab71d8f71e85ef8994b75d9,"Import (deprecated) mio::channel code from upstream.
+
+This is a reimport that drops any local changes and brings in the entire
+file.  A follow-up commit will apply the minimal local changes to fix the
+in-tree build.
+
+Imported from https://github.com/carllerche/mio/tree/0da987e21e0b4d71fa0607f779d979a615f3dbc7",Matthew Gregan,2017-11-10T02:40:33Z,kinetiknz,kinetiknz,243,191,52
+2,audioipc-2,300cdfb3d81fd9423828d51f9163fd518a7326d5,Update to error-chain 0.11.0 to fix rustc nightly warning spam.,Matthew Gregan,2017-11-22T00:25:22Z,kinetiknz,kinetiknz,8,4,4
+3,audioipc-2,f13dfe7901a20bc5dfa27c42a0475f554f036124,"server: Don't warn! on EINTR, just return to the caller.",Matthew Gregan,2017-11-14T23:51:03Z,kinetiknz,kinetiknz,1,1,0
+4,audioipc-2,cd0745a66b97720293a2d2341efb33fb92a03293,"Connect callback send/receive with Mutex.
+
+state_callback() and data_callback() can be called from multiple
+threads.  To protect the send/receive pair of calls, a Mutex is added
+to Connection to prevent one thread from starving when two threads try
+to wait on the socket in recvmsg.
+
+(From bugzil.la/1414623)",Dan Glastonbury,2017-11-13T23:32:05Z,djg,djg,30,19,11
+5,audioipc-2,28685f506a35cf768429da4c4b9a60a5809c03db,Make state_callback synchronous.,Dan Glastonbury,2017-11-10T03:14:23Z,djg,djg,22,20,2
+6,audioipc-2,ac9f2d426ce2df5ddbbf04ed736fd862987ab997,"Convert some error!s into warn!s.
+
+Mainly this is to stop ""ERROR:audioipc_server: server poll error:
+Interrupted system call (os error 4)"" appearing in unrelated Gecko test
+logs.",Matthew Gregan,2017-11-03T01:55:38Z,kinetiknz,kinetiknz,6,3,3
+7,audioipc-2,d17a7c097a18b6cce6fdbc7f468066503ef69460,Drop any live ServerConns first when dropping Server.,Matthew Gregan,2017-10-26T05:11:46Z,kinetiknz,kinetiknz,11,11,0
+8,audioipc-2,281fbde5e5fa8d6b902671a380c6a0909a6c8871,audioipc: Handle EINTR from recvmsg/sendmsg calls.,Dan Glastonbury,2017-10-25T04:47:48Z,djg,djg,49,29,20
+9,audioipc-2,9e2b0500ad0176a49712445559f3876cf7206eba,client: Handle all the error cases in send_recv! macro.,Dan Glastonbury,2017-10-25T01:10:37Z,djg,djg,38,26,12
+10,audioipc-2,b2d3abf87459d0234b7885d18d6fc42bb408a590,"audioipc: ""socket write"" is wrong.
+
+The error is coming from a recvmsg on the socket, not a write. Change
+the error message to better reflect the situation.",Dan Glastonbury,2017-10-25T01:09:39Z,djg,djg,3,2,1
+11,audioipc-2,73d0bb20cb47cd64a466b34ed7517591ef843b1a,audioipc: Replace 3 error types with 1.,Dan Glastonbury,2017-10-25T01:08:25Z,djg,djg,6,2,4
+12,audioipc-2,193e1c13eee4eff7388a9fff9fcf6c0b6d159a3a,"server: Grow slabs as needed.
+
+Fix panic reported in gecko bug 1410107 but growing the slabs that
+hold client connections and streams.",Dan Glastonbury,2017-10-24T05:09:47Z,djg,djg,27,25,2
+13,audioipc-2,4c43f423d7416c7ab87066470192170df44f620c,"client: Try connecting to in-process server if parent process server doesn't exist.
+
+This is a follow up to pull #13 to unbreak the case where the server and
+client are running in the same process, such as when Gecko's chrome process
+needs an audio stream.
+
+It may be worth handling this situation in a different way (i.e. with a fast
+path that avoids IPC) in the future.",Matthew Gregan,2017-10-19T03:53:41Z,kinetiknz,kinetiknz,11,8,3
+14,audioipc-2,c466287bf3144ef98dbbcee2b678a3332a827ad9,"Make get_uds_path take an id argument and use this for unique socket paths.
+
+Inside Gecko, this'll use the chrome process pid as the unique ID and the
+content processes can fetch this via getppid.  This works as long as the
+connection is established before the sandbox is enabled, but we already rely
+on that by using the FS visible socket path.
+
+The test programs audioserver/audioclient don't run in a process hierarchy,
+so we simply use an id of 1 for this case.
+
+This is a temporary solution for BMO bug 1407490 until we have a chance to
+do something nicer along the lines discussed in BMO bug 1405877.",Matthew Gregan,2017-10-16T02:31:08Z,kinetiknz,kinetiknz,41,32,9
+15,audioipc-2,08d12cb5fd66e1c79f28e29b2370e5176d8934d4,audioipc: Make temporary shm paths unique per-process.,Matthew Gregan,2017-10-12T04:20:51Z,kinetiknz,kinetiknz,3,2,1
+16,audioipc-2,c4c47ee45a42eef04458abfd20506b4253084d04,"Revert the reentrancy hacks for max_channel_count and get_backend_id.
+
+BMO bugs 1403041 and 1403043 have fixes for this, so we can revert the hacks
+in the remoting code.",Matthew Gregan,2017-09-28T01:51:22Z,kinetiknz,kinetiknz,12,4,8
+17,audioipc-2,2f9cfcef5634614c17ce9d2be52bb1d7c8207496,"Remove obsolete Gecko patches in gecko/
+
+These have been landed in Gecko (in modified form) already.  Eventually
+we'll strip this dir from the history completely.",Matthew Gregan,2017-09-26T03:21:23Z,kinetiknz,kinetiknz,138581,0,138581
+18,audioipc-2,b5559d28ce19f960d7a016692a2b9742d36f03a7,Match dep versions with current Gecko versions.,Matthew Gregan,2017-09-26T02:49:47Z,kinetiknz,kinetiknz,12,6,6
+19,audioipc-2,c449b9e5f901ac0fd86e9400cece440eb73be163,"Move local (our) crates to top of toml, alpha sort rest of deps.",Matthew Gregan,2017-09-26T02:43:41Z,kinetiknz,kinetiknz,26,13,13
+20,audioipc-2,f9edd5778f1212ea5351dae91d28bc6c743b5f86,"Intern enumerated devids and verify them when using stream_init.
+
+We're currently passing devids across IPC as (effectively) pointers, which
+is unsafe since it's impossible to verify they're valid when received.  As a
+short-term fix, turn the devids into opaque ""tokens"" by interning the
+pointer value on the server and verifying they're valid before use when
+received.
+
+This solution isn't ideal from a security/auditability perspective, since a
+missing verification at any point of use could result in memory unsafety.
+At some stage this solution will be replaced by something more robust.",Matthew Gregan,2017-09-25T03:57:21Z,kinetiknz,kinetiknz,37,28,9
+21,audioipc-2,207987a9fd463870f6f6fd626651cb47b066514a,Quit stream_thread on receive error rather than continuing.,Matthew Gregan,2017-09-25T01:42:52Z,kinetiknz,kinetiknz,2,1,1
+22,audioipc-2,702a862641431325046b1ffd6af92ef9895a4b7f,"Temporarily disable in_callback assert for Context::max_channel_count.
+
+This is used reentrantly from Gecko's MSG via CloseAudioInputImpl creating a
+new AudioCallbackDriver, which calls this to size various data structures
+within the class.
+
+This also adds a temporary hack to lie about the max channel count to avoid
+a real deadlock.",Matthew Gregan,2017-09-25T01:41:18Z,kinetiknz,kinetiknz,9,6,3
+23,audioipc-2,b85cb7a670c25a4bc9c3864b02af62b4d9df6249,"Temporarily disable in_callback assert for Context::backend_id.
+
+This is used from Gecko's AudioStream::DataCallback to work around a bug in
+the winmm backend.",Matthew Gregan,2017-09-25T01:40:41Z,kinetiknz,kinetiknz,3,2,1
+24,audioipc-2,e0eb4d111c8b07776867854d76dee4f0733c222b,"Assert that cubeb is not being used reentrantly from within the {data,state}_callback.",Matthew Gregan,2017-09-25T01:38:13Z,kinetiknz,kinetiknz,42,42,0
+25,audioipc-2,0c13023be30643760faa02ad3c069b4992201b9c,Convert a number of unwrap/panic cases into error returns.,Matthew Gregan,2017-09-25T01:36:06Z,kinetiknz,kinetiknz,87,62,25
+26,audioipc-2,1a9e3ca871955d9d934cf1218e1d69d22559d2ab,Drop the noisiest logs down to trace level.,Matthew Gregan,2017-09-25T01:33:57Z,kinetiknz,kinetiknz,18,9,9
+27,audioipc-2,758473ac2e9084c725206d9377b6e66466504942,Wait for poll thread to actually stop in audioipc_server_stop to avoid shutdown races.,Matthew Gregan,2017-09-25T01:30:41Z,kinetiknz,kinetiknz,26,22,4
+28,audioipc-2,4f2e63e4f5e70e08e503438e779af3f3b2f77668,"server: Handle partial sends from the pending queue.
+
+The processing of the pending queue didn't handle if part of a message
+was sent. If one byte was send from the pending Bytes, then the whole
+Bytes buffer was marked as being sent.
+
+This could explain the out-of-sync deserialization problem that was
+seen in a try failure where the deserializer wanted more bytes than
+was in the byte slice handed to it.",Dan Glastonbury,2017-09-21T04:58:03Z,djg,djg,36,24,12
+29,audioipc-2,a5bd905aba51a26213864b4ffa40b143b4d9b468,"server: Remove unwrap() from data/state callback.
+
+Don't panic! when failing to send.",Dan Glastonbury,2017-09-20T05:41:59Z,djg,djg,21,14,7
+30,audioipc-2,33081bb98ce5938d5a00beb2550ed7035689acac,"audioipc: Add FIFO for holding received fds.
+
+It looks like it's possible to split a message receive between
+receiving back-to-back messages with associated fds, so storing a
+single fd doesn't work.  Replace the single fd with a queue of fds,
+stored as AutoCloseFd so we don't leak fds if an error occurs before
+all the fds are connected to their respective message.",Dan Glastonbury,2017-09-20T04:05:19Z,djg,djg,28,18,10
+31,audioipc-2,1dbd0ab9df3fd8d24361b3022c10fbeffab5f085,"audioipc: Handle partially received messages.
+
+If decoder.decode returns Ok(None) than there wasn't enough data in
+the buffer to complete construction of a message.  Try receiving more
+data.",Dan Glastonbury,2017-09-19T03:39:00Z,djg,djg,6,5,1
+32,audioipc-2,2504544d1be76e69f737f800b15b167fd6212a72,"audioipc: Wrap connection fd in AutoCloseFd.
+
+To prevent leaking fd if a received fd is never taken.",Dan Glastonbury,2017-09-18T23:53:04Z,djg,djg,18,13,5
+33,audioipc-2,e065cee5ca93b73ee66ef531c07fe70ee9526563,"audioipc: Extend connection to handle message coalescing.
+
+Data callback message was being received along with state callback
+message which was then never processed.
+
+Had to modify receive_with_fd to process any data available in the
+recv_buffer which resulted in storing received fd on the connection
+and pushing the logic to combine msg & fd to calling logic.",Dan Glastonbury,2017-09-18T23:17:17Z,djg,djg,97,67,30
+34,audioipc-2,fbacd6aea51496fc32a2bfea051ff5ea2ed65a31,clippy suggested improvements.,Dan Glastonbury,2017-09-05T03:39:05Z,djg,djg,242,128,114
+35,audioipc-2,56013f240f861e046fc0769dc2c79c4fecf58c99,"audioipc: Hack in length prefix messages.
+
+So the receiving end in the server doesn't get confused.",Dan Glastonbury,2017-09-01T09:28:05Z,djg,djg,48,25,23
+36,audioipc-2,ec71b3b30381c555cf01f1eb5c5999ad4d5c095f,"server: Integrate async send/recv into server loop.
+
+Did a fair bit of refactoring.",Dan Glastonbury,2017-09-01T09:27:17Z,djg,djg,748,436,312
+37,audioipc-2,c5f33b036f2c0d572fde5fab18bb4e6740a6af1f,audioipc: Implement SendFd/RecvFd for both UnixStreams.,Dan Glastonbury,2017-09-01T09:24:48Z,djg,djg,33,28,5
+38,audioipc-2,9309bb9ab93cb449c10a159d33960059803785ed,audioipc: Add bincode-based codecs that work with BytesMut.,Dan Glastonbury,2017-08-31T05:28:48Z,djg,djg,136,136,0
+39,audioipc-2,6858de7c7270ce877bde94daec5445fc79a2acee,audioipc: Add helpers for working with non-blocking streams.,Dan Glastonbury,2017-08-31T05:25:04Z,djg,djg,159,151,8
+40,audioipc-2,7a8e90488f81e7f1335f2158af0af0a88c0cdcc9,"audioipc: Reorganize RecvFd,SendFd a little.",Dan Glastonbury,2017-08-31T05:18:08Z,djg,djg,62,31,31
+41,audioipc-2,532380b09af54826ec1167250ac6040c049e7e94,audioipc: Remove kludge to handle EAGAIN/EWOULDBLOCK.,Dan Glastonbury,2017-08-31T05:11:31Z,djg,djg,29,3,26
+42,audioipc-2,9780677fcf536daf06b1be8e80cda1953617af9e,Fix sendmsg fd leak.,Matthew Gregan,2017-09-12T03:19:04Z,kinetiknz,kinetiknz,89,84,5
+43,audioipc-2,5b20b979b65a6a44d2fcdc74df40033100b2f279,server: Remote state_callback calls to client.,Matthew Gregan,2017-09-06T01:47:50Z,kinetiknz,kinetiknz,8,8,0
+44,audioipc-2,a83726be07e563075d9b2f99dacc19e1191c2510,Hold ClientContext lock over entire send/recv transaction.,Matthew Gregan,2017-08-30T06:43:58Z,kinetiknz,kinetiknz,62,38,24
+45,audioipc-2,fedf6ea872e9a3a3d543f95414e942bade94dd41,server: Crate version pinning to match gecko requirements.,Dan Glastonbury,2017-08-25T05:34:29Z,djg,djg,8,4,4
+46,audioipc-2,e738dddee56a6491710737f208aafecfa6c60149,audioclient: Bump cubeb dep from 0.2 to 0.3,Dan Glastonbury,2017-08-23T01:16:21Z,djg,djg,2,1,1
+47,audioipc-2,6629d6814ab483c219ddc495d0d3a513897f67d8,"Create cubeb::Context on demand.
+
+MozReview-Commit-ID: 1fIbwYj1Qqq",Dan Glastonbury,2017-08-22T01:26:11Z,djg,djg,77,42,35
+48,audioipc-2,2415b6e9c2285bf98928bfa0fa7d6af74fd6f1a0,"Add a simple shared memory wrapper and replace Vec copies across socket with shm updates.
+
+When a client connects, the server creates two files to be used shared
+memory mappings, immediately deletes them (retaining the fds), then mmap()s
+the fds.  The retained fds are then sent to the client to be mmap()ed into
+the client's address space.",Matthew Gregan,2017-08-15T05:07:26Z,kinetiknz,kinetiknz,287,245,42
+49,audioipc-2,3754a504dadcf9f2296215af829da05818c6527b,"HACK: retry sendmsg/recvmsg on EAGAIN.
+
+This is the wrong approach since it wastes resources spinning on an fd, but
+it's sufficient to get IPC working within Gecko until a complete fix where
+the server pays attention to the poll status of the fds is ready.",Matthew Gregan,2017-08-18T00:19:33Z,kinetiknz,kinetiknz,27,25,2
+50,audioipc-2,233a1efd59aea1901542b920a6c1b6d864f19274,Update gecko patches,Dan Glastonbury,2017-08-15T01:58:40Z,djg,djg,1381149,137054,1244095
+51,audioipc-2,72c85f38dd2f72555a460d6c6ee5e413428ff386,"Temporarily remove nix dependency on sendmsg and recvmsg.
+
+This includes limited implementations of sendmsg/recvmsg to suit our
+need, allowing the removal of the nix dependency.
+
+nix 0.9 is removed because it requires glibc symbols later than
+2.12 (specifically, setns) and therefore is unusable within Gecko.",Matthew Gregan,2017-08-14T01:39:04Z,kinetiknz,kinetiknz,135,89,46
+52,audioipc-2,dcaeff0189a4de3a80206f2d004a9f641be0ba7e,length-prefix messages to handle buffer coalescing.,Matthew Gregan,2017-08-04T04:23:20Z,kinetiknz,kinetiknz,10,8,2
+53,audioipc-2,c4ea1c2d678a89171f057a288c0c423ee9d6f537,Turn two invalid-ish unreachables into panics.,Matthew Gregan,2017-08-04T04:11:31Z,kinetiknz,kinetiknz,4,2,2
+54,audioipc-2,2aa17018df689dd9bffb58086576e8127b40f0ec,Typo fix.,Matthew Gregan,2017-08-04T03:45:55Z,kinetiknz,kinetiknz,2,1,1
+55,audioipc-2,212cfbb6f69f46784d2967e07490b94dda75b11c,"Close fd after sendmsg to avoid a resource leak.
+
+We take ownership of the fd in SendFd::send_fd and it's duplicated into the
+receiving side, so it's our responsibility to close it on the sending side
+once we're done with it.",Matthew Gregan,2017-08-04T03:28:06Z,kinetiknz,kinetiknz,15,11,4
+56,audioipc-2,661127822b079b28669100bc91bfec573a617258,Push IntoRawFd conversion as deep as possible to reduce the number of locations carrying a RawFd directly.,Matthew Gregan,2017-08-04T03:16:43Z,kinetiknz,kinetiknz,12,6,6
+57,audioipc-2,8082bba9c2b17a26f6d6f190f08bbbf95e961ae4,Minor cleanup in callback buffer reinterpretation.,Matthew Gregan,2017-08-04T03:02:15Z,kinetiknz,kinetiknz,12,7,5
+58,audioipc-2,dc9f2dc327b7d4ae5b18ffda6bd8b6f9ec37038f,audioipc: Bump nix to version 0.9,Dan Glastonbury,2017-08-11T00:59:30Z,djg,djg,12,8,4
+59,audioipc-2,1c715edf838c76510fd8c644d4c89375bfc91090,"server: Drop dependency upon mio-more.
+
+This crate is not on crates.io which makes vendoring into gecko hard.
+Since the crate is a dumping ground for features removed from mio
+crate. I copied the required parts locally and simplified what was
+required to remove warnings.",Dan Glastonbury,2017-08-11T00:58:14Z,djg,djg,264,258,6
+60,audioipc-2,c69a9d6e87859474b0a272e5097bb34c600941ce,"server: Use mio-more::channel.
+
+To shut up deprecated spam.",Dan Glastonbury,2017-08-08T03:58:42Z,djg,djg,4,3,1
+61,audioipc-2,e40b9211e1a7f17c9b738d3fb9037563ada02746,"client - Fix compilation error.
+
+error[E0507]: cannot move out of dereference of raw pointer
+  --> client/src/context.rs:92:24",Dan Glastonbury,2017-08-08T03:51:15Z,djg,djg,2,1,1
+62,audioipc-2,997f4d3e9194fd8b5cb10bb8bdde79f2c8b974de,"Remove workspace-reorg branch specification.
+
+Update now that cubeb-rs/workspace-reorg has been reviewed and merged
+into cubeb-rs/master.",Dan Glastonbury,2017-08-08T03:48:26Z,djg,djg,14,7,7
+63,audioipc-2,87cad2345b1595ef6377644b83f678ddd00429c0,"client: RefCell<Connection> -> Mutex<Connection>
+
+When running in gecko, multiple threads call into cubeb which was
+causing RefCell::borrow_mut() to panic that it was already borrowed.",Dan Glastonbury,2017-08-07T22:47:29Z,djg,djg,10,5,5
+64,audioipc-2,eecf99fed95a3a3c7305a215e680e54a228f3f22,rename cubeb_remote_init to audioipc_client_init.,Dan Glastonbury,2017-08-04T04:02:08Z,djg,djg,4,2,2
+65,audioipc-2,e98c4ec4017be70225f84d45a093183f52d582d9,WIP B - Import changes made during integration with Gecko.,Dan Glastonbury,2017-07-28T07:09:44Z,djg,djg,119,90,29
+66,audioipc-2,285d56bc1b87777d7c9e3424dd4905c2bb8a3c7e,WIP A - Patches against gecko.,Dan Glastonbury,2017-07-28T07:04:41Z,djg,djg,1245622,1245622,0
+67,audioipc-2,8afbaad8ad9bca7a040f4ba77d227e63adc11f2c,WIP 9 - Where in we make dial tone via a UnixStream.,Dan Glastonbury,2017-07-18T07:04:49Z,djg,djg,230,191,39
+68,audioipc-2,aad2930dfe652bcdfe59008adacf595e66bed3e0,"WIP 8 - The one where it makes noise.
+
+audioclient can connect to audioserver and cause the server to create
+a stream that plays random samples.",Dan Glastonbury,2017-07-18T03:22:41Z,djg,djg,138,100,38
+69,audioipc-2,ca14e846a7bbebed97ca1d7a65777d799fc31dfe,WIP 7 - Implement the final parts of Stream interface on Server side.,Dan Glastonbury,2017-07-17T21:24:01Z,djg,djg,288,212,76
+70,audioipc-2,71711c68a34b0eafd997a8c6863b306f6edc2cb1,WIP 6 - Client side stream init,Dan Glastonbury,2017-07-14T03:33:48Z,djg,djg,103,85,18
+71,audioipc-2,956f842837229e135d4557130fa39cf9906d81a5,WIP 5 - Client-side Stream msgs + device enumeration.,Dan Glastonbury,2017-07-14T02:54:12Z,djg,djg,481,395,86
+72,audioipc-2,2124eb456f47225a3512b0b201a25852ca385cc0,"WIP 4 - Implement clientserver
+
+Create a client that connects to server and requests basic context
+level information from the remote server.",Dan Glastonbury,2017-07-13T04:18:58Z,djg,djg,163,149,14
+73,audioipc-2,16062e57888e8fc0ab946fc6a4fd2319155b77ee,WIP 3 - It all compiles!,Dan Glastonbury,2017-07-13T00:35:08Z,djg,djg,243,148,95
+74,audioipc-2,baea1325f5f925a0234118549085f76d9f9c18da,WIP 2,Dan Glastonbury,2017-07-12T11:21:21Z,djg,djg,659,560,99
+75,audioipc-2,5b4ad163462aab5db011df948ef105192b33e975,WIP,Dan Glastonbury,2017-07-11T10:22:18Z,djg,djg,252,226,26
+76,audioipc-2,c13c41d9da02e607bb64fef47c1ade0e52e05413,Add .gitignore,Dan Glastonbury,2017-07-10T08:44:47Z,djg,djg,2,2,0
+77,audioipc-2,073e65ffae125e6af66c3dfe13fd00585cedb830,Reorganise to use cubeb-rs crates,Dan Glastonbury,2017-07-10T08:42:26Z,djg,djg,347,347,0
+78,audioipc-2,18e3e9fc3e9bf3143266187cef21be785b6667b8,initial repo creation,Dan Glastonbury,2017-07-06T03:31:32Z,djg,djg,1,1,0
+79,audioipc-2,743a07c2f591f93134a4d68470b90ae1f1cde0b0,Use kinetiknz/tokio's v0.1.x-uds branch temporarily.,Matthew Gregan,2019-07-12T05:37:31Z,kinetiknz,kinetiknz,5,5,0
+80,audioipc-2,96dc0217e54d64beecda73e540201791414ca464,"Update Windows-specific code for Tokio 0.1.
+
+This allows us to drop our local fork of tokio_named_pipes in favour
+of the maintained upstream version (which has not yet been released on
+crates.io since maintainership changed).",Matthew Gregan,2019-07-09T10:20:30Z,kinetiknz,kinetiknz,205,8,197
+81,audioipc-2,b61cd4763b57371689b7f0493e0bb67754eeb078,Switch from tokio_core Core to Tokio 0.1 (current_thread) Runtime.,Matthew Gregan,2019-07-09T07:41:55Z,kinetiknz,kinetiknz,153,68,85
+82,audioipc-2,3dad0d5b999c1925a85b6bb5538fc6ad3f8293be,Switch from tokio_core Handle to tokio_reactor Handle.,Matthew Gregan,2019-07-09T05:05:16Z,kinetiknz,kinetiknz,18,10,8
+83,audioipc-2,cad71661644066cc97301144231efd87383c75dd,"Switch to tokio-uds 0.2.5.  Requires patched tokio-uds to export clear_*_ready.
+
+Modified-by: Matthew Gregan <kinetik@flim.org>",Matthew Gregan,2019-07-09T03:38:41Z,kinetiknz,kinetiknz,37,21,16
+84,audioipc-2,9b0e4425e0c2f46ce2788e968ff9aabff334cab9,client: Remove t! macro.,Matthew Gregan,2019-07-04T05:04:48Z,kinetiknz,kinetiknz,14,3,11
+85,audioipc-2,7c27a0f800ebfb2b20c17a828413c9670547608c,client: Clean up error handling in client RPC setup.,Matthew Gregan,2019-07-04T04:41:32Z,kinetiknz,kinetiknz,18,6,12
+86,audioipc-2,a064ba65ad2cdcebd30c99e2fae8de953432f0ac,"Remove unused core::spawn{,_fn}.",Matthew Gregan,2019-07-04T02:34:24Z,kinetiknz,kinetiknz,16,0,16
+87,audioipc-2,dad6bf16a281393b3f5e06ab36846b1ec4e1643a,Remove unnecessary UnsafeCell from SharedMemSlice.,Matthew Gregan,2019-07-19T01:59:52Z,kinetiknz,kinetiknz,15,4,11
+88,audioipc-2,d6fad2cbe41e6b99ea27922083c0117afde79a3e,"Update to memmap 0.7.
+
+Closes #47.",Matthew Gregan,2019-07-11T23:28:21Z,kinetiknz,kinetiknz,90,53,37
+89,audioipc-2,0416e404c2619fda6fe9516c7cb09840b2ac529f,"Extend audioipc_server_start to accept a context name to be passed to cubeb_init.
+
+This allows fixing BMO #1488666.",Matthew Gregan,2019-07-12T06:11:59Z,kinetiknz,kinetiknz,33,22,11
+90,audioipc-2,64f3854787c4085cd59cb426ee566c4d223f409b,"Support libcubeb backend selection via new parameter to audioipc_server_start().
+
+This is needed for BMO #1439925.",Matthew Gregan,2019-07-12T02:06:33Z,kinetiknz,kinetiknz,29,25,4
+91,audioipc-2,cb6ee87b3a7ae4a1531db0ef70d27ccf6a2aa998,Move device_collection_changed handling to CubebServerCallbacks.,Matthew Gregan,2019-07-10T08:46:32Z,kinetiknz,kinetiknz,45,25,20
+92,audioipc-2,b864464bb9c10a0940a4ff1c9733bbc0a3cb7138,Return invalid_parameter error from process_register_device_collection_changed when device type is unknown.,Matthew Gregan,2019-07-10T08:33:17Z,kinetiknz,kinetiknz,50,26,24
+93,audioipc-2,ca1e8c249876a28c4165e75b48aabb091ffd8b89,Correctly handle multiple callback registration in register_device_collection_changed remoting.,Matthew Gregan,2019-07-02T11:20:13Z,kinetiknz,kinetiknz,111,82,29
+94,audioipc-2,aa86d0d62dd7f23501d06385f2998c1258a1b919,Clarify error reporting in ContextSetupDeviceCollectionCallback.,Matthew Gregan,2019-07-02T05:29:51Z,kinetiknz,kinetiknz,4,2,2
+95,audioipc-2,bc6d7d1d14f2de3bd9c0a9b063efceb42bdf6258,Rename CubebServer.rpc to make its purpose clearer.,Matthew Gregan,2019-07-02T05:05:37Z,kinetiknz,kinetiknz,10,5,5
+96,audioipc-2,019843337dbb434d5eb7758d9ac4f39151eaba17,Reformat ContextRegisterDeviceCollectionChanged slightly.,Matthew Gregan,2019-07-02T05:04:31Z,kinetiknz,kinetiknz,7,2,5
+97,audioipc-2,0fdb2a8a45d4ac27c0a5def36140304714f9e963,Update to cubeb-rs 0.5.5.,Matthew Gregan,2019-07-02T01:07:53Z,kinetiknz,kinetiknz,8,4,4
+98,audioipc-2,bf55b8ab2197297ca11bedae7b58cfcb144fb30b,"Drop unsafe lifetime hackery from ClientContext::backend_id.
+
+Relies on https://github.com/djg/cubeb-rs/pull/42",Matthew Gregan,2019-06-28T01:32:46Z,kinetiknz,kinetiknz,5,2,3
+99,audioipc-2,21f244e0a0051950b09899e3c85016be7f9c21c0,Implement remoting for cubeb_stream_register_device_changed_callback.,Matthew Gregan,2019-06-26T11:49:21Z,kinetiknz,kinetiknz,72,68,4
+100,audioipc-2,c20c11e57f86293e4138976c3419b5705fe090eb,Make SHM_AREA_SIZE const common between client and server.,Matthew Gregan,2019-06-26T10:13:41Z,kinetiknz,kinetiknz,17,7,10
+101,audioipc-2,93acb4153ce065023327934b0be7b6f31f9c4e7c,Implement remoting for cubeb_register_device_collection_changed.,Matthew Gregan,2019-06-25T03:14:21Z,kinetiknz,kinetiknz,246,233,13
+102,audioipc-2,984d974aeb0439881243384242b927e14253b8fa,Use u8 instead of libc::uint8_t to avoid deprecation warning.,Matthew Gregan,2019-06-25T03:30:06Z,kinetiknz,kinetiknz,2,1,1
+103,audioipc-2,6f30ff7658bc07fe2e612b7aebe755727085e8ea,Return appropriate error from unimplemented cubeb_stream_register_device_changed_callback.,Matthew Gregan,2019-06-21T19:38:23Z,kinetiknz,kinetiknz,2,1,1
+104,audioipc-2,46cae1861f0d26a59d2902d4e39de0b66ff9c6ef,Implement remoting for cubeb_get_backend_id.,Matthew Gregan,2019-06-21T19:35:13Z,kinetiknz,kinetiknz,16,12,4
+105,audioipc-2,b8dfeb4ed94cb7eacae8ac08db0a6aadbfca19f4,Update to audio_thread_priority 0.15.0 and tweak logging levels.,Paul Adenot,2019-07-11T22:34:46Z,padenot,padenot,10,5,5
+106,audioipc-2,3b6f9998cfabfae69c362d180c6f3b35e2c4a75c,"Boost priority of audio threads when possible.
+
+Closes #27.",Paul Adenot,2019-06-25T03:20:07Z,padenot,padenot,162,141,21
+107,audioipc-2,fd56198506287cbe95b7da3fd93665a47ff8dd96,"remove unnecessary `mut`
+
+Newer versions of Rust complain about this by default.",Nathan Froyd,2019-05-09T20:03:31Z,froydnj,froydnj,2,1,1
+108,audioipc-2,9bb53d5ba11bf30252ba7a29041bf424ff5aeb58,"Handle optional cmsghdr padding by initializing remaining fields with zero-initialized cmsghdr.
+
+Fixes BMO #1536613.",Matthew Gregan,2019-03-20T22:33:38Z,kinetiknz,kinetiknz,8,6,2
+109,audioipc-2,42f6a5f3d44c95bc2322e7a58c131022db4cf1f8,"Use AtomicUsize::new instead of deprecated ATOMIC_USIZE_INIT.
+
+Closes #56.",Matthew Gregan,2019-03-20T22:02:47Z,kinetiknz,kinetiknz,4,2,2
+110,audioipc-2,d3360fdfeebe0218483205f04c6dc32548b900ef,"Only build cmsghdr.c on Unix-like platforms.
+
+Closes #57.",Matthew Gregan,2019-03-20T21:54:43Z,kinetiknz,kinetiknz,8,5,3
+111,audioipc-2,4b749ca86f26e8980a32d44c0c3161a1843e2586,"Revert ClientContext::init error handling behaviour.
+
+ClientContext::init would previously always succeed, even if later calls
+against the context would fail.  The addition of the ClientConnect message
+to ClientContext::init could cause an early error return without providing
+the caller with a valid context.",Matthew Gregan,2018-03-18T22:02:01Z,kinetiknz,kinetiknz,4,3,1
+112,audioipc-2,137eb45d702f628cae622d374975903c23a7a814,Bump cubeb-rs deps to pick up MinGW build fix.,Matthew Gregan,2019-03-06T21:31:45Z,kinetiknz,kinetiknz,8,4,4
+113,audioipc-2,9600391d94854d971ed723e3499c0ab8ede3045b,Integrate bugfix from BMO 1500468.,Matthew Gregan,2019-03-05T02:05:43Z,kinetiknz,kinetiknz,2,1,1
+114,audioipc-2,af7e8113bc2587c67f67ec85eaaa8479d3107113,Address review comments.,Matthew Gregan,2019-02-22T03:43:21Z,kinetiknz,kinetiknz,418,188,230
+115,audioipc-2,e8e6400fbf081ac843ea8d8a8c5a91de31196b05,Update cubeb-* deps.,Matthew Gregan,2018-12-05T03:58:41Z,kinetiknz,kinetiknz,8,4,4
+116,audioipc-2,56be44eccde6b51513d3971f0cf16b29a22e383d,Downgrade mio-named-pipes version to avoid unnecessary dep changes in Gecko vendoring.,Matthew Gregan,2018-12-04T21:49:57Z,kinetiknz,kinetiknz,2,1,1
+117,audioipc-2,c7270883498e349064daa673ac0d6ed3f5e3e239,Stub out IPCTest on Windows.,Matthew Gregan,2018-12-01T05:44:42Z,kinetiknz,kinetiknz,76,72,4
+118,audioipc-2,7c17f720c4befbac2c39564aad5bcea77bb297f1,Implement Windows backends for (Async)MessageStream and Framed(WithFds).,Matthew Gregan,2018-12-01T05:12:29Z,kinetiknz,kinetiknz,658,634,24
+119,audioipc-2,5de2ca07d08d6203efacd4d39a8a131857307f50,Factor UnixStream (Tokio) into platform agnostic AsyncMessageStream.,Matthew Gregan,2018-11-30T06:45:58Z,kinetiknz,kinetiknz,159,116,43
+120,audioipc-2,187e635ae3eac0710cbb6ce4178f93d45bd9e349,Factor UnixStream (net and tokio variants) into platform agnostic MessageStream/AsyncMessageStream.,Matthew Gregan,2018-11-30T06:30:10Z,kinetiknz,kinetiknz,79,58,21
+121,audioipc-2,9323ed6d6f09753daed5a4d79df8a7aa245f2034,Factor RawFd in to platform-agnostic PlatformHandle.,Matthew Gregan,2018-09-25T08:25:34Z,kinetiknz,kinetiknz,140,119,21
+122,audioipc-2,67edab7fd1a0cd47cb7ef057834b20937d4bb699,Fix cross-platform cmsghdr tests by generating valid cmsghdr in C.,Matthew Gregan,2018-06-15T19:01:10Z,kinetiknz,kinetiknz,61,53,8
+123,audioipc-2,c2148b95128f5e54ef1d18e5e457a2fa45e7ac43,Silence error_chain deprecation warnings to fix build on nightly compiler.,Matthew Gregan,2019-02-04T21:45:21Z,kinetiknz,kinetiknz,2,2,0
+124,audioipc-2,362f383cffa321ac833ebcd298a8c28f0fd15ef1,"Clean up reslicing of audio buffers in AudioIPC's server data callback.
+
+This also fixes a bug for input-only streams where we would pass the output
+frame size (0) and try to use it as the input frame size, causing input-only
+streams to fail to capture any data.",Matthew Gregan,2018-12-14T21:42:02Z,kinetiknz,kinetiknz,51,23,28
+125,audioipc-2,24befc0193601cd8972ec90aa246cc82456a1f45,Clean up reslicing of audio buffers in AudioIPC's server data callback.,Matthew Gregan,2018-12-14T21:04:43Z,kinetiknz,kinetiknz,12,7,5
+126,audioipc-2,1033cf7e4b5d14a138004bbb8708b2a1c3821939,Refactor AudioIPC to make way for multiple OS backends (Windows support),Matthew Gregan,2018-10-23T05:52:35Z,kinetiknz,kinetiknz,1171,590,581
+127,audioipc-2,572d6a6a16501cde726dcc09604a0cbc895d93e3,Add missing license headers and rerun rustfmt.,Matthew Gregan,2018-09-02T12:26:18Z,kinetiknz,kinetiknz,150,92,58
+128,audioipc-2,77d96d5dc975d7f7efe140941957bd553e84e2a1,"server: Move CubebServer to server submodule, clean up top-level lib.rs.",Matthew Gregan,2018-09-02T12:26:09Z,kinetiknz,kinetiknz,917,471,446
+129,audioipc-2,e6ab345d6319422f897a14f46a69049792567271,Move SendMsg/RecvMsg traits and impls to msg submodule.,Matthew Gregan,2018-09-02T12:25:59Z,kinetiknz,kinetiknz,77,37,40
+130,audioipc-2,97ecf4663cd21b775dcf3c61a0d440646a9bef4a,"Minor code refactorings.
+
+- Make several pub items private.
+- Delete unused code hidden by being marked public.
+- Remove unused code hidden by disabled dead_code warning.
+- Add a warning to AudioIpcInitParams regarding Gecko ABI.",Matthew Gregan,2018-09-02T12:25:50Z,kinetiknz,kinetiknz,87,20,67
+131,audioipc-2,709eeb98ce93d949f05f7ecd8a7f15162b44dfad,"Relax log crate dependency version.
+
+From https://bugzilla.mozilla.org/show_bug.cgi?id=1490674",Andreas Tolfsen,2018-10-23T03:35:06Z,andreastt,andreastt,6,3,3
+132,audioipc-2,0f7dca5a501d0bf2292c899e94d631c9c3940560,"Update init sequence for Windows types.
+
+Introduce PlatformHandleType typedef in audioipc to match Gecko's
+FileDescriptor.
+
+Switch AudioIpcInitParams and audioipc_server_new_client file descriptor types
+from int to PlatformHandleType to prep for Windows port changes.",Matthew Gregan,2018-01-22T00:21:06Z,kinetiknz,kinetiknz,13,11,2
+133,audioipc-2,f4b3e19a10bf54e144eead6ce177cde70dee2d54,"Fixed a deprecation warning due to an API change in serializing integers
+
+Resolves https://bugzilla.mozilla.org/show_bug.cgi?id=1498244",Alex Gaynor,2018-10-12T16:14:33Z,Alex Gaynor,Alex Gaynor,2,1,1
+134,audioipc-2,6c75db0abcdc48043e29afa52c5ee8d86b4a86d0,Fix compile error in ipctest,Matt Brubeck,2018-09-18T17:25:26Z,mbrubeck,mbrubeck,1,1,0
+135,audioipc-2,3d716fe897ccb3ea43a2af0c794ea57c433400d7,"Add registration hook for AudioIPC threads.
+
+This is for BMO bug 1476405.",Kris Maglione,2018-07-29T20:51:04Z,kmaglione,kmaglione,28,23,5
+136,audioipc-2,70334c66f82994974b2fa6536a27a4263c322972,client: Don't pass shm pointers to data callback for unconfigured stream directions.,Matthew Gregan,2018-05-30T01:07:12Z,kinetiknz,kinetiknz,51,37,14
+137,audioipc-2,01e59e423527f47e0c54243cf686e37936cc9731,ipctest stack size is too small on macOS.,Matthew Gregan,2018-05-30T01:03:28Z,kinetiknz,kinetiknz,2,1,1
+138,audioipc-2,6114a0e9dd084f790083fafbac61808352b72b5e,Convert tabs accidentally introduced in 1826cb7c to spaces.,Matthew Gregan,2018-05-29T23:28:33Z,kinetiknz,kinetiknz,4,2,2
+139,audioipc-2,1826cb7c7477cafa21212b577836ebee5244e1fe,"audioipc: Build fix for cmsghdr on MUSL targets.
+
+Closes #43.",Jory A. Pratt,2018-05-29T23:25:51Z,anarchpenguin,anarchpenguin,2,2,0
+140,audioipc-2,219a811b62b83bd6e4cb54ae6aebc56bbb43203c,server: Bump version to 0.2.3.,Dan Glastonbury,2018-04-18T01:29:02Z,djg,djg,2,1,1
+141,audioipc-2,d8972b14d3ba7ce42fdb696c433308f6ae4f2869,"server: Remove the use of cubeb::Stream helper class.
+
+The cubeb::Stream wrapper, around cubeb_core::Stream, which provides
+the convenience of supplying data and state callbacks as closures,
+makes it hard to debug the shutdown of streams.
+
+This change effectively reverts the stream init code to pre cubeb-0.4
+version and keeps all the related state in ServerStreamCallbacks.",Dan Glastonbury,2018-04-18T01:22:25Z,djg,djg,316,208,108
+142,audioipc-2,df59fad50a05ddbeed0e76e8d3af22c432cd3066,audioipc: Bump version to 0.2.4.,Dan Glastonbury,2018-04-18T01:14:53Z,djg,djg,2,1,1
+143,audioipc-2,a789a2786733d6ca1c432516d8d1305c9ced6819,"audioipc: Shutdown RPC when request queue is finished.
+
+Rust futures mark the end of Stream with Async::Ready(None).  When all
+outstanding handles to the RPC channel are closed, self.requests
+returns Async::Ready(None) and we mark that Driver as not running.
+This causes the task running on the tokio core to finish, causing a
+cascade of drops, resulting in the transport socket being closed,
+which the other end detects, causing it to shutdown too.",Dan Glastonbury,2018-04-18T01:07:09Z,djg,djg,2,2,0
+144,audioipc-2,72cab9b8d93d496c5fc183dc3adc939ac10d9c72,"audioipc: Mark messages::StreamParams as #[repr(C)]
+
+This struct needs to match the memory layout of cubeb_stream_params.",Dan Glastonbury,2018-04-18T01:05:05Z,djg,djg,1,1,0
+145,audioipc-2,0333edb0ba35dc11b46084178cf5d02b275e206f,"Adjust logging levels.
+
+Make debug level less spammy.",Dan Glastonbury,2018-04-18T01:12:31Z,djg,djg,22,11,11
+146,audioipc-2,12636ba451265a909ffae4a04b638f1cda1409c2,"client: ClientStream didn't implement user_ptr correctly.
+
+cubeb streams must start with a context and user ptr. ClientStream
+wasn't updated when the rest of cubeb was. This resulted in trying to
+drop a Box<...> to a NULL ptr because self.token was being used as the
+value of user_ptr.",Dan Glastonbury,2018-04-17T08:01:45Z,djg,djg,10,9,1
+147,audioipc-2,bd52d3cec653a334ddcdf823e3a5e65072bfe6c2,"ipctest: Check the status result from libc::waitpid.
+
+If the forked process died from a signal, eg. SIGSEGV, the result was
+silently ignored and it appeared that the test worked successfully.",Dan Glastonbury,2018-04-17T07:59:08Z,djg,djg,18,15,3
+148,audioipc-2,a4625688e4b28740ada15a3cf0abfe9ce21c3389,"client: Add user_ptr field to ClientStream for cubeb_stream_user_ptr.
+
+Also mark ClientContext and ClientStream #[repr(C)] to ensure the field
+layout matches what the libcubeb C ABI expects.",Matthew Gregan,2018-04-17T07:18:52Z,kinetiknz,kinetiknz,8,8,0
+149,audioipc-2,c84ad4a4e957df27c654ba796620f450a574a757,Fix ipctest after mixer changes.,Matthew Gregan,2018-04-05T12:16:06Z,kinetiknz,kinetiknz,6,2,4
+150,audioipc-2,2cb76321ca79c02afb880949a8b0abd5af28380c,"Sync code with Gecko version.
+
+This brings in minor adjustments to cover the cubeb(-rs) mixer changes.",Matthew Gregan,2018-04-05T12:15:23Z,kinetiknz,kinetiknz,20,2,18
+151,audioipc-2,f9c68f78b77b9df918e5b1995a4248fcce02f8be,Update ipctest Cargo.toml for new cubeb-rs version.,Matthew Gregan,2018-04-05T05:27:28Z,kinetiknz,kinetiknz,2,1,1
+152,audioipc-2,d87a1e2302c71082e48cc449a4521b670b720fd7,Sync Cargo.tomls with Gecko versions.,Matthew Gregan,2018-04-04T22:26:05Z,kinetiknz,kinetiknz,8,4,4
+153,audioipc-2,b93386611d7d9689c4f0177a4704f0adc16bc2d1,ipctest: Setup audio client with 1 thread with 4kB stack.,Dan Glastonbury,2018-03-08T05:13:15Z,djg,djg,9,8,1
+154,audioipc-2,a7bbbf153413b1617680512e1b092002673ba9b9,"client: Bump version to 0.4.0
+
+Because of breaking interface change to audioipc_client_init.",Dan Glastonbury,2018-03-08T05:22:10Z,djg,djg,2,1,1
+155,audioipc-2,ead320ae24fdf8540efa909f35bec9b78925186a,"client: Change audioipc_client_init to take extra params.
+
+Added `pool_size` (thread count) and `stack_size` params to
+`server_connection` as parameters to initialize AudioIPC client.
+
+* pool_size: Controls the number of threads created in the pool.
+* stack_size: Controls the size of the stack allocated per thread
+              in the pool.
+
+Because `audioipc_context_init` is a thin wrapper on
+`cubeb_context_init` style init, the extra params are passed via a
+thread local global variable.",Dan Glastonbury,2018-03-08T05:05:03Z,djg,djg,67,58,9
+156,audioipc-2,94eb08a062e1e84e867c20bd56cd250c8aeec7ce,Bump futures-cpupool minimum to 0.1.8 for stack_size API.,Dan Glastonbury,2018-03-08T04:57:53Z,djg,djg,2,1,1
+157,audioipc-2,f6c4829f826950fc059dbf7b33e8aa9e20c447a5,Update bincode to 1.0 and bump version,Bastien Orivel,2018-03-07T19:24:55Z,Eijebong,Eijebong,13,7,6
+158,audioipc-2,7e866e5ba304b271ab4c504a354ed7aa628343b8,"Update to futures 0.1.18.
+
+It shouldn't be necessary anymore to pin to a specific version used by
+Gecko.  The Gecko `mach vendor rust` script will automatically pull in a
+version that satisfies the requirements from all dependencies.  Relaxing
+the pinning here will make it easier to upgrade other crates in Gecko's
+dependency graph.",Matt Brubeck,2018-03-05T16:23:52Z,mbrubeck,mbrubeck,18,7,11
+159,audioipc-2,79c1622259b03ef58744da5e6501f95be81272cb,server: Bump version to 0.2.2,Dan Glastonbury,2018-03-02T22:55:52Z,djg,djg,2,1,1
+160,audioipc-2,5b0edb27c5d9c314958315868333e25e87eb04ae,server: Map stream errors correctly.,Dan Glastonbury,2018-03-02T22:54:59Z,djg,djg,24,12,12
+161,audioipc-2,2c633cc6605dd416d6654621fb5c9769a2154601,Update to bincode 0.9,Matt Brubeck,2018-03-02T18:11:32Z,mbrubeck,mbrubeck,8,4,4
+162,audioipc-2,933fb48b252a10569ba8d598541577c6f2dc308f,Format all the code with default rustfmt settings.,Dan Glastonbury,2018-02-21T07:13:04Z,djg,djg,523,234,289
+163,audioipc-2,3efe6fd5be2c724a426b051747c463abb5306cac,Update to work with cubeb-rs 0.4,Dan Glastonbury,2018-02-12T01:37:25Z,djg,djg,602,288,314
+164,audioipc-2,6ba98cf8f3e19bcbdccbf1987b28873086e2fd7c,Update to working with cubeb-backend 0.3.,Dan Glastonbury,2018-01-30T02:09:26Z,djg,djg,29,16,13
+165,audioipc-2,b0b4060ef51d6375fa4f95c85d59640109a7aca1,Avoid using '{:?}' in log levels other than debug! and trace!.  Closes #28.,Matthew Gregan,2018-01-30T03:02:43Z,kinetiknz,kinetiknz,10,5,5
+166,audioipc-2,247806099e7ba3552df2707866f0267698be1330,Build fixes after cubeb-rs version bump.,Matthew Gregan,2018-01-30T03:02:26Z,kinetiknz,kinetiknz,16,8,8
+167,audioipc-2,d7798606aa590ef402344b7a519a0053725a9805,Add stream params preferences member for compat with cubeb. Bump versions.,Bryce Van Dyk,2018-01-26T14:51:36Z,SingingTree,SingingTree,17,10,7
+168,audioipc-2,71cc67f44b803e0288997247c060375196f1cf9b,Bump version to 0.2.0.,Dan Glastonbury,2017-11-03T04:35:38Z,djg,djg,16,11,5
+169,audioipc-2,62cae5e7f0299bb24e7f269492ddcaabac43ebb6,client: Refactor the client side to use tokio rpc.,Dan Glastonbury,2017-11-02T01:42:29Z,djg,djg,558,297,261
+170,audioipc-2,2fd0548cc8bcd6587827d44856fb1b3b5cc3418b,server: Refactor the server side to use tokio rpc.,Dan Glastonbury,2017-10-31T23:22:40Z,djg,djg,1383,335,1048
+171,audioipc-2,abc8df58f3d747a7e3bbd5635c01f63344ce9bb7,"audioipc: Re-write to use tokio instead of mio.
+
+Introduces RPC client and server protocol handlers inspired by
+tokio-proto/tokio-service.",Dan Glastonbury,2017-10-31T23:22:13Z,djg,djg,2568,1957,611
+172,audioipc-2,dd7f567d23118fa06ed93955e7b55fe158ad9487,rustfmt: Change max width from 120 to 95.,Dan Glastonbury,2018-01-19T01:45:47Z,Dan Glastonbury,Dan Glastonbury,2,1,1
+173,audioipc-2,2565ddfcacbc14e1ac0d66af1a4154c07050bba2,client: Indentation fix in ClientContext::drop.,Matthew Gregan,2017-12-18T04:25:10Z,kinetiknz,kinetiknz,2,1,1
+174,audioipc-2,650599f04c2e7bcb6ccb1c7c08f286f7eb23655f,server: Wait for Quit response in ServerWrapper::shutdown.,Matthew Gregan,2017-12-18T02:24:14Z,kinetiknz,kinetiknz,7,7,0
+175,audioipc-2,bbf8495ee565b108828898ec034b3fce606a6d36,ipctest: Use fork() to move client side of test into separate process.,Matthew Gregan,2017-11-29T23:43:48Z,kinetiknz,kinetiknz,14,12,2
+176,audioipc-2,0608494db0453bd44af7ec2e19e15cf6b92b86c2,"Remove path-based connection support.
+
+This removes audioclient and integrates it into audioserver (now renamed to
+ipctest) and removes any remaining path-based connection support that was
+only used for the local test server/client.",Matthew Gregan,2017-11-29T22:38:42Z,kinetiknz,kinetiknz,173,29,144
+177,audioipc-2,6e220093351b39c83eaf73df2f0a3eaee3d6aea9,"audioserver: Switch to using C API and remove server::run.
+
+This also removes the pid-based get_uds_path handling, leaving fd-based
+connections for Gecko and the old path-based connection for the local test
+server and client.",Matthew Gregan,2017-11-29T22:14:50Z,kinetiknz,kinetiknz,83,16,67
+178,audioipc-2,517cb753ad6317153ee3fb5065a112164022c8eb,"Add support for bootstrapping IPC connections via an existing file descriptor.
+
+To avoid issues with sandboxed temporary directories and support tighter
+sandboxing, add support to the client to instantiate a connection from a
+file descriptor passed in via the C API.
+
+On the server side, add a new C API for creating a new connection via a
+socket pair, allowing Gecko to deal with passing the client side file
+descriptor to the content process as necessary.
+
+This effectively obsoletes the existing server connection method based on
+get_uds_path, and that code can be removed in the near future.",Matthew Gregan,2017-11-08T20:41:11Z,kinetiknz,kinetiknz,163,128,35
+179,audioipc-2,ccbb20890402225171557eb87b77b17fc69cc22c,Silence new (1.51) clippy warnings.,Matthew Gregan,2021-04-01T05:09:15Z,kinetiknz,kinetiknz,3,3,0
+180,audioipc-2,1181c79291aeff68a7629b827a826fa49bea9410,audioipc: Add support for ashmem to shm.rs.,Matthew Gregan,2021-03-23T02:44:50Z,kinetiknz,kinetiknz,38,33,5
+181,audioipc-2,93472615194969d669e147e37efad9a59a3b04ce,audioipc: Try `shm_open` before falling back to temp file.,Matthew Gregan,2021-03-18T00:49:20Z,kinetiknz,kinetiknz,16,14,2
+182,audioipc-2,0c7678c80a8f8fb3de6b8648be3b9f81f18d2a7f,Run clippy on CI.,Matthew Gregan,2021-03-16T21:55:51Z,kinetiknz,kinetiknz,6,5,1
+183,audioipc-2,1a1f5bd0002727574910678ecc154548ae2bbb58,Various clippy fixes.,Matthew Gregan,2021-03-16T21:53:06Z,kinetiknz,kinetiknz,126,56,70
+184,audioipc-2,409856f9bb1ec8aa4394851c3b9f54a05c002ede,Add build action.,Matthew Gregan,2021-03-09T06:46:28Z,kinetiknz,kinetiknz,45,45,0
+185,audioipc-2,8fb5ff19fba7b09e8e66598122421e68a5c573ac,"audioipc: Build fix for 32-bit systems.
+
+Follow up to 4d405d06.",Matthew Gregan,2021-02-25T02:42:25Z,kinetiknz,kinetiknz,4,2,2
+186,audioipc-2,a5fd9eef3dd1cadd56a3444d43278b70fc37f636,server: Drop unused SharedMem after RPC setup.,Matthew Gregan,2021-02-24T08:17:21Z,kinetiknz,kinetiknz,23,15,8
+187,audioipc-2,4d405d06a0e683abc2d79096cd3db10632754a11,"Use VM-backed anonymous shmem regions on Windows (#115)
+
+* audioipc: Simplify SharedMem API wrapper.
+
+* audioipc: Add custom Windows SharedMem using VM-backed regions.
+
+* audioipc: Various handle-related tidyups.
+
+- duplicate_platformhandle now closes source handle only if
+  `close_source` is true
+- Remove explicit `into_file` drop of handles where normal
+  drop handling will close anyway.",Matthew Gregan,2021-02-24T07:58:47Z,kinetiknz,kinetiknz,602,318,284
+188,audioipc-2,fa262b59144d9d860bbbb8a10bdd38a8a03ddef0,server: Clean up ServerStream if stream_init fails.,Matthew Gregan,2021-02-17T04:27:54Z,kinetiknz,kinetiknz,6,5,1
+189,audioipc-2,ca5abc4bb056e18e4b8e5b2bb5ed9a8a21443ee7,Add license metadata to Cargo.toml,Matthew Gregan,2021-02-17T10:47:11Z,kinetiknz,kinetiknz,4,4,0
+190,audioipc-2,ae60fdf9319e8535b500f978d34a15983d0882ff,Remove cubeb_stream_reset_default_device API.,Matthew Gregan,2021-02-17T00:45:00Z,kinetiknz,kinetiknz,21,4,17
+191,audioipc-2,1234921742c6cfd874bac974666b4367eb2eee2d,client: wait for CallbackServer to drop before finishing ClientStream drop.,Matthew Gregan,2021-02-01T10:19:45Z,kinetiknz,kinetiknz,18,17,1
+192,audioipc-2,2fd5403bb19f6301d4d2178f569ef03860bb5374,"Revert ""audioipc: Update to bincode 1.3.""
+
+This reverts commit b0f2a7a9325a8866be13875260df2dceb1de2388.",Matthew Gregan,2021-01-29T07:39:15Z,kinetiknz,kinetiknz,8,4,4
+193,audioipc-2,b2e89c00f3ba83a740b7a8097741885b03eded83,Fix some clippy warnings,Sylvestre Ledru,2020-11-11T09:03:05Z,sylvestre,sylvestre,28,7,21
+194,audioipc-2,b0f2a7a9325a8866be13875260df2dceb1de2388,"audioipc: Update to bincode 1.3.
+
+Part of BMO #1675534.",Alessio Placitelli,2020-11-11T05:53:33Z,Dexterp37,Dexterp37,8,4,4
+195,audioipc-2,db32323c92b2b4f5ca2e702dcf987fedc1e71768,server: Fix potential race in CubebDeviceCollectionManager.,Matthew Gregan,2020-10-14T09:18:44Z,kinetiknz,kinetiknz,81,30,51
+196,audioipc-2,e925e82ca9887af9b04d92a5e304b5df94942c79,"Split stream initialization into two phases.
+
+Split StreamCreate into StreamCreate and StreamInit.  StreamCreate performs
+the pre-libcubeb IPC setup and StreamInit completes the libcubeb stream
+initialization.  This avoids a circular dependency where a server-side
+StreamInit needed to send messages back to the client before the client
+could progress far enough to receive and process them.
+
+Fix for BMO 1661398.",Matthew Gregan,2020-10-20T04:59:25Z,kinetiknz,kinetiknz,178,91,87
+197,audioipc-2,c474b0b78f49b86531bf09f4c0e4af2e16cf15a9,"Implement remoting for cubeb_stream_set_name.
+
+Related to kinetiknz/cubeb#615",Matthew Gregan,2020-10-06T22:23:52Z,kinetiknz,kinetiknz,24,19,5
+198,audioipc-2,56be0bfc252096818ea8e1bd8cff1de315a623df,audio_thread_priority 0.23.4,Paul Adenot,2020-07-15T09:38:15Z,padenot,padenot,6,3,3
+199,audioipc-2,91df250365bb188211e5532fa35cd9555894c727,Update audio_thread_priority to 0.23.3,Paul Adenot,2020-07-09T15:37:25Z,padenot,padenot,6,3,3
+200,audioipc-2,c04a660a1fbb728de0833c87f1c92e97021359d9,audioipc: Close process handle after use.,Matthew Gregan,2020-06-10T00:03:21Z,kinetiknz,kinetiknz,14,9,5
+201,audioipc-2,1234212a0fa6d1f559825d988a0b088cd70e9710,server: Re-init libcubeb rather than caching failure.,Matthew Gregan,2020-06-02T12:17:41Z,kinetiknz,kinetiknz,63,43,20
+202,audioipc-2,430c08efd00e64a56c3066c9bc0cb0ffd96785b8,audioipc: Avoid calling poll_complete when dropped outside task context.,Matthew Gregan,2020-06-10T03:44:21Z,kinetiknz,kinetiknz,22,14,8
+203,audioipc-2,1b2747695088ee5f8216bda9a7a4c4bd7655608e,Return the correct message when getting input latency,Paul Adenot,2020-05-13T13:54:51Z,padenot,padenot,2,1,1
+204,audioipc-2,dff25d063bdaec162c1595afc07d5327556b3444,"audioipc: Switch to my fork of mio-named-pipes.
+
+See https://bugzilla.mozilla.org/show_bug.cgi?id=1631965",Matthew Gregan,2020-05-05T21:15:54Z,kinetiknz,kinetiknz,2,1,1
+205,audioipc-2,d5c07e962073841dc992a7848a9b1effaac9c25f,Add the stream_get_input_latency member and bump cubeb to 0.7 accordingly,Paul Adenot,2020-04-30T17:16:23Z,padenot,padenot,22,18,4
+206,audioipc-2,9cd4fe5288078169f15ab6c41d67b771996e1dca,client: Bump cubeb-backend to 0.6.3.,Matthew Gregan,2020-04-13T22:53:18Z,kinetiknz,kinetiknz,2,1,1
+207,audioipc-2,198b2003731b3940cbc5f2aff858cef2fb132f37,Use mio-named-pipes from crates.io.,Anthony Ramine,2020-04-07T20:29:46Z,nox,nox,4,2,2
+208,audioipc-2,8afffbe610a99dc426901c4c2ac7a9ad301f6769,Clean up version constraints in audioipc manifest.,Anthony Ramine,2020-04-07T20:28:23Z,nox,nox,8,4,4
+209,audioipc-2,7dd1ea825f3f58dbaf20137441ff7e243c3bdc09,reformat recent changes with rustfmt,Sylvestre Ledru,2020-03-24T11:36:35Z,sylvestre,sylvestre,38,18,20
+210,audioipc-2,7f7c997eb9c311ae19167cffd60ef9421c2b2fa7,"client: Handle shmem setup error gracefully.
+
+This could fail due to low available address space (for example), so
+unwrapping the Result is inappropriate.",Matthew Gregan,2020-03-17T04:43:56Z,kinetiknz,kinetiknz,16,14,2
+211,audioipc-2,791200db040d7b4945ae0f14f46bf4ccb45c22c5,"Avoid using the pointer of a temporary variable
+
+The `std::ffi::CString::new(id).unwrap()` will create a temporary
+variable. `std::ffi::CString::new(id).unwrap().as_ptr()` is a pointer
+pointing to a temporary variable. Using this pointer directly is unsafe
+since we cannot make sure the variable is alive when the pointer is
+referred. It's save the variable returned from `CString::new()` and use
+its pointer (in the same scope of the variable) when we need.",Chun-Min Chang,2020-03-12T17:58:50Z,ChunMinChang,ChunMinChang,3,2,1
+212,audioipc-2,2a76fbedd24db47390abbbb0add8ddec6f727e53,server: Use Display trait instead of Error::description.,Kartikaya Gupta,2020-03-16T02:13:35Z,staktrace,staktrace,5,2,3
+213,audioipc-2,9e4f94a50e7b94d13b820f36b73ee9d07b4afdc1,audioipc: Try memfd before /dev/shm in open_shm_file.,Matthew Gregan,2020-03-06T12:26:14Z,kinetiknz,kinetiknz,18,14,4
+214,audioipc-2,3e44866ac700e9880d9a88e3970133ca46b85d38,"server: Don't reset DevIdMap on enumerate.
+
+The existing code had the lifetime of a cubeb_devid slightly wrong.  It
+doesn't start and stop at each enumerate, it belongs to a fixed set of
+possible cubeb_devids tied to the lifetime of the cubeb context.
+enumerate presents a (possibly incomplete, due to device removal) view of
+that set.
+
+- Remove DevIdMap::reset
+- DevIdMap::to_handle checks for existing mapping before inserting",Matthew Gregan,2020-03-06T11:46:04Z,kinetiknz,kinetiknz,13,5,8
+215,audioipc-2,7019efc67bf6582f23815fbda80298ea6d5445da,audioipc: Hard-error on ENOSPC when preallocating.,Matthew Gregan,2020-02-27T02:38:35Z,kinetiknz,kinetiknz,53,38,15
+216,audioipc-2,c1fb17119e2160e8488e7776345c0131640e1489,"audioipc: Preallocate shm area before mapping to avoid late faults.
+
+The existing code attempts to preallocate the shm area with
+File::set_len, but that approach doesn't work on filesystems that
+allow sparse files.  Accessing a mapped page in a shm area where the
+backing file is lazily allocated can fault with SIGBUS (on Unix-like
+platforms) due to low disk space.  To avoid this difficult to handle
+failure mode, preallocate the entire shm area using OS-specific
+techniques before mapping.
+
+This change also also reworks the shm API slightly to take a path
+fragment rather than a complete path.  This allows the shm code to try
+creating the shm via preferential paths (e.g. /dev/shm on Linux)
+before falling back to safe defaults.",Matthew Gregan,2020-02-24T05:15:17Z,kinetiknz,kinetiknz,145,105,40
+217,audioipc-2,6b85cb5cf2c521bd89d67091f6cba8014732b01d,"Rustfmt the code
+
+rustfmt $(fd \.rs$)
+with rustfmt 1.4.11-stable (1838235 2019-12-03)",Sylvestre Ledru,2020-02-27T09:14:24Z,sylvestre,sylvestre,164,97,67
+218,audioipc-2,9099bc1b1aebe6a2a3a977a246082aa743733c39,server: Map cubeb_devids to IPC-portable handles.,Matthew Gregan,2020-02-20T04:25:29Z,kinetiknz,kinetiknz,55,52,3
+219,audioipc-2,4ecd137ab09c78e4ffecfd6775ba9ea952aed5a9,Add cbindgen.toml to client and server.,Matthew Gregan,2020-02-12T22:07:59Z,kinetiknz,kinetiknz,56,56,0
+220,audioipc-2,c17a3561f04d67ab6acb97f331b9a0758d3b4f70,audioipc: Add thread shutdown callback to CoreThread.,Matthew Gregan,2020-02-11T02:05:48Z,kinetiknz,kinetiknz,25,19,6
+221,audioipc-2,4823c577e6bd5333a97a46d1417f6a82a0976ea7,Bump audio_thread_priority version to 0.22.,Matthew Gregan,2020-01-31T09:57:01Z,kinetiknz,kinetiknz,6,3,3
+222,audioipc-2,bc369ec35d2e40544c5273beb935e23d3fe60e04,server: Rename stream macro to try_stream.,Matthew Gregan,2020-01-30T20:25:34Z,kinetiknz,kinetiknz,18,9,9
+223,audioipc-2,2a04111adc325f3cdc7a6f6dff3ad0e64768ebb4,server: Error rather than panic in debug logging.,Matthew Gregan,2020-01-30T00:53:25Z,kinetiknz,kinetiknz,10,6,4
+224,audioipc-2,52ac8c0d06ec0f1dd150ccddff9eceb7c5427d23,server: Debug logging for BMO 1594216.,Matthew Gregan,2019-11-07T03:30:51Z,kinetiknz,kinetiknz,36,26,10
+225,audioipc-2,5890aa92bc3694690afc6c75b9d88578bb3b822e,server: Downgrade ServerStreamCallbacks::data_callback error! logging to debug!.,Matthew Gregan,2019-11-07T03:26:07Z,kinetiknz,kinetiknz,2,1,1
+226,audioipc-2,86d49ddfca8b016a4b60b0b3fef76052194b8aa3,"Use correct end of IPC transport in appropriate place.
+
+On some platforms, IPC connections are asymmetric and may have different
+behaviour on the ""server"" and ""client"" ends.  Ensure we correctly pass
+the ""client"" end to the ""client"" and use the ""server"" end in the
+""server"".",Matthew Gregan,2020-01-21T22:49:15Z,kinetiknz,kinetiknz,56,28,28
+227,audioipc-2,ea5ef3a69f123e67a9f81dec48fb7def5c87465d,"Ensure {Client,Server}Handler's transport is closed on drop.",Matthew Gregan,2020-01-21T22:46:27Z,kinetiknz,kinetiknz,2,2,0
+228,audioipc-2,80d6bb88be8010dece26ac074b9955c29d17073a,"Switch to local fork of tokio-named-pipes.
+
+Local changes to tokio-named-pipes included.  Most importantly, calling
+shutdown correctly.  Other changes are build fixes only.",Matthew Gregan,2020-01-21T22:43:38Z,kinetiknz,kinetiknz,26,14,12
+229,audioipc-2,42880aa8da6b98e9c65cdaaa46ce855a2df9d076,"Import tokio_named_pipes from upstream.
+
+This is a verbatim import of https://github.com/NikVolf/tokio-named-pipes/blob/0afa6247222a7aa6e8b370e949a0f4007f0018b6/src/lib.rs",Matthew Gregan,2020-01-21T22:39:09Z,kinetiknz,kinetiknz,154,154,0
+230,audioipc-2,588949ebd67fff7af3932fe46f5ec8af57c9b832,ipctest: Clean up previous fix per comments in PR #87.,Matthew Gregan,2020-01-24T00:08:43Z,kinetiknz,kinetiknz,14,7,7
+231,audioipc-2,afc7c184db5afa8b04752e49d9ce39a8328e8c93,"ipctest: Fix random hang during startup.
+
+Observed on macOS: sometimes during startup, ipctest would hang after
+printing the startup banner.
+
+It turns out that the ipctest child could hang waiting for a lock deep
+inside tokio; however the lock had been taken (and dropped) in the
+parent during initialization.  fork() would just happen to clone the
+process at a bad time, leaving tokio's internal state unusable in the
+child.
+
+To avoid this entire class of problem, ipctest on Unix now uses a
+similar technique to Windows to bootstrap - after the client fd is
+allocated, ipctest forks and then execs to reset its process state
+before continuing with the audioipc tests.",Matthew Gregan,2020-01-22T02:34:21Z,kinetiknz,kinetiknz,40,32,8
+232,audioipc-2,875d3b63f5d409ed4e11cea009b2a0c80e9efe21,"audioipc: Make PlatformHandle non-Copy, close handles on drop.",Matthew Gregan,2020-01-22T01:06:10Z,kinetiknz,kinetiknz,131,74,57
+233,audioipc-2,60088b9de22e262f553953e390fed2cc4e478d3f,rpc: Clear in_flight requests on drop.,Matthew Gregan,2020-01-22T01:05:50Z,kinetiknz,kinetiknz,12,12,0
+234,audioipc-2,c7a9f37572f0da80ae8f9ae32137717582467a90,"Rework cmsg.rs internals to address portability issues.
+
+- Replace our versions of CMSG_SPACE and CMSG_LEN with libc implementations.
+- Avoid depending on our version of CMSG_ALIGN, since it's non-portable.
+- Avoid need for align_buf, since we always leave the buffer correctly aligned now.",Matthew Gregan,2020-01-20T06:14:57Z,kinetiknz,kinetiknz,62,24,38
+235,audioipc-2,9249d770e6f62bddb5e00bb248b31495597d3387,"Use audio_thread_priority version 0.21 to fix a compilation issue on Linux when using musl
+
+This fixes https://github.com/djg/audioipc-2/issues/80.",Paul Adenot,2019-11-04T10:42:55Z,padenot,padenot,6,3,3
+236,audioipc-2,8af8083a9a6179bc9fe041c9e5059cea0a0e6fe0,Follow up fix for f9aad7d1.,Matthew Gregan,2019-10-22T01:11:23Z,kinetiknz,kinetiknz,5,4,1
+237,audioipc-2,8f2a9e0a8b53d9cb6f80d2a1e92dd0f087b4865d,cargo fmt,Matthew Gregan,2019-10-17T01:16:25Z,kinetiknz,kinetiknz,81,36,45
+238,audioipc-2,5209a44a07929e4ae243fdc32731750653704aad,server: Slightly clean up CONTEXT_KEY definition.,Matthew Gregan,2019-10-17T00:46:49Z,kinetiknz,kinetiknz,3,1,2
+239,audioipc-2,f9aad7d1ce15818723aabe55d3305590dd59cb72,"client: Use CpuPoolInitParams mechanism to communicate server_connection fd to ClientContext.
+
+Replace CpuPoolInitParams with AudioIpcInitParams so the G_SERVER_FD global can be removed.",Matthew Gregan,2019-10-17T00:39:03Z,kinetiknz,kinetiknz,76,10,66
+240,audioipc-2,a71b68b337cd81af8ff1360d98e5f9640f6f3146,server: Prefer once_cell over lazy_static.,Matthew Gregan,2019-10-16T23:54:50Z,kinetiknz,kinetiknz,13,6,7
+241,audioipc-2,1e9e3ba51472bd78d1f412f44dd0d06e5772fc3f,server: Treat data_callback error as drain to work around cubeb_wasapi bug.,Matthew Gregan,2019-10-16T07:56:41Z,kinetiknz,kinetiknz,9,7,2
+242,audioipc-2,3e366c8d6652669762f4dcc0c3f615b43c336313,client: Avoid double-closing server connection on shutdown.,Matthew Gregan,2019-10-16T07:54:22Z,kinetiknz,kinetiknz,6,3,3
+243,audioipc-2,e5b5e4bf85290edce1c687fe82e7f3888a023c23,audioipc: Use unique shm temp filename to avoid file in use races on Windows.,Matthew Gregan,2019-10-16T07:43:33Z,kinetiknz,kinetiknz,20,16,4
+244,audioipc-2,20cb573dbc2756ea97991aaa0cc357106e304df8,audioipc: Bump message size limit to 1MB.,Matthew Gregan,2019-10-16T07:37:30Z,kinetiknz,kinetiknz,32,18,14
+245,audioipc-2,b82970f6106ceec4a8f599eda631775eb5d5afaf,Don't wait for the answer when asking for the render thread to be promoted.,Paul Adenot,2019-10-10T13:14:12Z,padenot,padenot,10,2,8
+246,audioipc-2,f2da5c9ffea358a3342ec93f8918126d61fed7cc,"audioipc: Rework Windows implementation of MessageStream.
+
+Fixes a bug where abusing as_raw_handle() (since mio_named_pipes lacks
+into_raw_handle()) resulted in double closing or early closing of named
+pipe handles.",Matthew Gregan,2019-10-08T05:44:03Z,kinetiknz,kinetiknz,31,23,8
+247,audioipc-2,31de904fa288efe629a2c651b2e6906a752e962c,"audioipc: Work around tokio_named_pipes assuming at least 1kB available.
+
+NamedPipe::read_buf uses a 1kB temporary internally, but fails to handle the
+situation where the buffer passed in via buf is smaller than 1kB.
+
+https://github.com/NikVolf/tokio-named-pipes/blob/0afa6247222a7aa6e8b370e949a0f4007f0018b6/src/lib.rs#L103",Matthew Gregan,2019-10-08T05:10:20Z,kinetiknz,kinetiknz,6,6,0
+248,audioipc-2,50ab21410f35d57ca93c86382556c44c8017227c,"server: Add a platform initialization hook that runs before cubeb_init.
+
+So far, we only use this to initialize COM on Windows.",Matthew Gregan,2019-10-08T05:01:17Z,kinetiknz,kinetiknz,20,19,1
+249,audioipc-2,f0b152f6a5e03ccf9f3079f44f37f1d0cb464277,client: Also use run_in_callback during DeviceCollectionServer's callback.,Matthew Gregan,2019-10-08T04:48:32Z,kinetiknz,kinetiknz,19,11,8
+250,audioipc-2,f0c3295d4d7bb3531c1cffebfff5a890bc3bdb87,client: Replace set_in_callback pairs with run_in_callback closure wrapper.,Matthew Gregan,2019-10-08T04:47:33Z,kinetiknz,kinetiknz,69,41,28
+251,audioipc-2,d269cc0679f100341194fa064e1efc1d9952914d,Build fix on non-linux platforms,Paul Adenot,2019-09-27T13:51:42Z,padenot,padenot,5,2,3
+252,audioipc-2,11fbdc04dcb8ea60a20ade035a444edf4f9c4a93,Gecko re-sync: use the right audio_thread_priority version,Paul Adenot,2019-09-26T12:46:03Z,padenot,padenot,5,3,2
+253,audioipc-2,b27ff2f8de0bb441051c29ef91559fab109b4b24,"Remove the code to start the audio callback threads early, and add a message to promote a thread to RT from the server process.
+
+With `audio_thread_priority` version `0.20` it's possible to promote a
+thread to real-time from another process. This allows removing the
+workaround that was previously done to create the threads early before
+the sandbox lockdown.
+
+Additionaly, this patch adds a new message that allows passing a
+`RtPriorityThreadInfo` struct via IPC, so that the server can promote
+a client thread in a sandboxed process.
+
+This is part of BMO#1575883.",Paul Adenot,2019-09-25T14:40:05Z,padenot,padenot,176,70,106
+254,audioipc-2,de0fc58cf1e87079027fce06b50eeffa6ae23d54,"audioipc: cargo-udeps reports scoped-tls is unused, so remove.",Matthew Gregan,2019-09-08T23:36:32Z,kinetiknz,kinetiknz,1,0,1
+255,audioipc-2,3710c4ebe4c3afb7c574955c73b037dc1b65146d,Update slab to 0.4,Bastien Orivel,2019-09-06T18:50:54Z,Eijebong,Eijebong,32,12,20
+256,audioipc-2,0efa98cc350f77f3479c78d17aa934bf9b5fba16,Update scoped-tls to 1.0,Bastien Orivel,2019-09-06T18:28:46Z,Eijebong,Eijebong,2,1,1
+257,audioipc-2,db5ec30a7c4df634f85355799455578d02761344,Update to cubeb-rs 0.6.0; remove panning API.,Matthew Gregan,2019-08-21T22:18:15Z,kinetiknz,kinetiknz,22,4,18
+258,audioipc-2,143668821a59c9a60da0b3a510f18e5c99f57649,"Bump audio_thread_priority to 0.18.
+
+Per https://bugzilla.mozilla.org/show_bug.cgi?id=1570948 and https://bugzilla.mozilla.org/show_bug.cgi?id=1574914.",Matthew Gregan,2019-08-20T02:36:10Z,kinetiknz,kinetiknz,4,2,2
+259,audioipc-2,f6f56c4352ee4c1b5e483e4594c4c3f309246ceb,Refactor CubebDeviceCollectionManager::update slightly.,Matthew Gregan,2019-07-29T22:52:27Z,kinetiknz,kinetiknz,6,2,4
+260,audioipc-2,c831a2a04d6cc0f9f355e67e674e1c536de45d2d,server: Don't swallow errors in register_device_collection_changed.,Matthew Gregan,2019-07-29T04:32:19Z,kinetiknz,kinetiknz,44,26,18
+261,audioipc-2,959be8b71bd8d931a9e94276dde1dd718f52fca4,"Use plain #[cfg] instead of cfg_if!{} to avoid extra indentation.
+
+No logic changes, just formatting.",Matthew Gregan,2019-07-26T04:40:02Z,kinetiknz,kinetiknz,151,74,77
+262,audioipc-2,177ebd969a6a7926326f7f04bd7c11fc0cbfbaa1,client: Fix Linux build after 2018 conversion.,Matthew Gregan,2019-07-26T02:06:55Z,kinetiknz,kinetiknz,2,1,1
+263,audioipc-2,410db5cf976763df53f08b926c29a1f2869b34d6,Reduce duplication of IN/OUT enable/disable cases in CubebDeviceCollectionManager.,Matthew Gregan,2019-07-26T01:33:12Z,kinetiknz,kinetiknz,113,44,69
+264,audioipc-2,78b4c060c17c15d1da18c30f13266d5d78537bdf,Add CubebDeviceCollectionManager to handle mapping between CubebServer and shared cubeb context.,Matthew Gregan,2019-07-13T00:49:57Z,kinetiknz,kinetiknz,215,171,44
+265,audioipc-2,9ac51c47d35bd6b41c2cc533cec3e11e3c78b69d,cargo fix --edition-idioms,Matthew Gregan,2019-07-23T21:53:56Z,kinetiknz,kinetiknz,16,8,8
+266,audioipc-2,064ac2d06280c846d014a8112eddeac1187dc5d9,Rename 'remote' to 'handle' in places we replaced a Tokio Remote with a Handle.,Matthew Gregan,2019-07-23T21:16:20Z,kinetiknz,kinetiknz,24,12,12
+267,audioipc-2,bd1cc2e7a9fe5d4f4cca433a1060016110440cc3,Update ipctest to log 0.4 to match other crates.,Matthew Gregan,2019-07-23T04:23:24Z,kinetiknz,kinetiknz,2,1,1
+268,audioipc-2,61d286ab234598ccde29471a1216d68c40c5bf63,Rename async.rs to async_msg.rs.,Matthew Gregan,2019-07-23T04:18:39Z,kinetiknz,kinetiknz,4,2,2
+269,audioipc-2,1e209237cbc504f2eb72556e37fef159ad101fa6,Sort crate imports in Cargo.toml.,Matthew Gregan,2019-07-23T03:26:47Z,kinetiknz,kinetiknz,22,11,11
+270,audioipc-2,6cf02bfae4e51fc32c963556f6d6de0a8583adfe,cargo fmt after 2018 conversion.,Matthew Gregan,2019-07-23T03:20:06Z,kinetiknz,kinetiknz,46,24,22
+271,audioipc-2,c4a0b6d3a8948c5fa53952f77826b9872cf97083,Update to Rust 2018 edition.,Matthew Gregan,2019-07-23T03:19:01Z,kinetiknz,kinetiknz,140,48,92
+272,audioipc-2,7e128edc2b23ecb7f71bf31397c374f03be4b86e,cargo fmt pass.,Matthew Gregan,2019-07-23T02:48:17Z,kinetiknz,kinetiknz,676,386,290
+273,audioipc-2,0785b902b9d81ec77080fb0aa0373e7952ed4553,Address most clippy issues.,Matthew Gregan,2019-07-23T02:41:28Z,kinetiknz,kinetiknz,97,49,48
+274,audioipc-2,7ca93a229ecd20da94d53d9629174aaad074f9b4,"Clean up crate imports.
+
+- Drop several unused crates.
+- Mark platform-specific crates as necessary on import.
+- Mark platform-specific crates in Cargo.toml.",Matthew Gregan,2019-07-23T02:17:51Z,kinetiknz,kinetiknz,35,19,16
+275,audioipc-2,fcbe510669f6fb310fe5a28565f7e1d4eaaddd79,Warn about unused crate imports.,Matthew Gregan,2019-07-23T02:03:15Z,kinetiknz,kinetiknz,4,4,0
+276,audioipc-2,07d25a6a9d6edf71bfb649b65078b81d74c28fb1,ipctest: Fix build on Windows.,Matthew Gregan,2019-07-23T02:01:50Z,kinetiknz,kinetiknz,2,1,1
+277,audioipc-2,ca41acd27b0fa8c0e5f2ba4868ce69730e1efc11,Temporarily switch to local fork of tokio-uds's stream.rs until upstream PR 1294 is resolved.,Matthew Gregan,2019-07-22T23:39:15Z,kinetiknz,kinetiknz,40,24,16
+278,audioipc-2,ddc8e95a31837e2c8b2232e2a1bdbe194677fc71,"audioipc: Add copy of tokio-uds/src/stream.rs as tokio_uds_stream.rs.
+
+Copied from upstream revision
+25e835c5b7e2cfeb9c22b1fd576844f6814a9477 (tokio-uds 0.2.5).",Matthew Gregan,2019-07-22T23:33:47Z,kinetiknz,kinetiknz,356,356,0
+279,audioipc-2,ccbb20890402225171557eb87b77b17fc69cc22c,Silence new (1.51) clippy warnings.,Matthew Gregan,2021-04-01T05:09:15Z,kinetiknz,kinetiknz,3,3,0
+280,audioipc-2,1181c79291aeff68a7629b827a826fa49bea9410,audioipc: Add support for ashmem to shm.rs.,Matthew Gregan,2021-03-23T02:44:50Z,kinetiknz,kinetiknz,38,33,5
+281,audioipc-2,93472615194969d669e147e37efad9a59a3b04ce,audioipc: Try `shm_open` before falling back to temp file.,Matthew Gregan,2021-03-18T00:49:20Z,kinetiknz,kinetiknz,16,14,2
+282,audioipc-2,0c7678c80a8f8fb3de6b8648be3b9f81f18d2a7f,Run clippy on CI.,Matthew Gregan,2021-03-16T21:55:51Z,kinetiknz,kinetiknz,6,5,1
+283,audioipc-2,1a1f5bd0002727574910678ecc154548ae2bbb58,Various clippy fixes.,Matthew Gregan,2021-03-16T21:53:06Z,kinetiknz,kinetiknz,126,56,70
+284,audioipc-2,409856f9bb1ec8aa4394851c3b9f54a05c002ede,Add build action.,Matthew Gregan,2021-03-09T06:46:28Z,kinetiknz,kinetiknz,45,45,0
+285,audioipc-2,8fb5ff19fba7b09e8e66598122421e68a5c573ac,"audioipc: Build fix for 32-bit systems.
+
+Follow up to 4d405d06.",Matthew Gregan,2021-02-25T02:42:25Z,kinetiknz,kinetiknz,4,2,2
+286,audioipc-2,a5fd9eef3dd1cadd56a3444d43278b70fc37f636,server: Drop unused SharedMem after RPC setup.,Matthew Gregan,2021-02-24T08:17:21Z,kinetiknz,kinetiknz,23,15,8
+287,audioipc-2,4d405d06a0e683abc2d79096cd3db10632754a11,"Use VM-backed anonymous shmem regions on Windows (#115)
+
+* audioipc: Simplify SharedMem API wrapper.
+
+* audioipc: Add custom Windows SharedMem using VM-backed regions.
+
+* audioipc: Various handle-related tidyups.
+
+- duplicate_platformhandle now closes source handle only if
+  `close_source` is true
+- Remove explicit `into_file` drop of handles where normal
+  drop handling will close anyway.",Matthew Gregan,2021-02-24T07:58:47Z,kinetiknz,kinetiknz,602,318,284
+288,audioipc-2,fa262b59144d9d860bbbb8a10bdd38a8a03ddef0,server: Clean up ServerStream if stream_init fails.,Matthew Gregan,2021-02-17T04:27:54Z,kinetiknz,kinetiknz,6,5,1
+289,audioipc-2,ca5abc4bb056e18e4b8e5b2bb5ed9a8a21443ee7,Add license metadata to Cargo.toml,Matthew Gregan,2021-02-17T10:47:11Z,kinetiknz,kinetiknz,4,4,0
+290,audioipc-2,ae60fdf9319e8535b500f978d34a15983d0882ff,Remove cubeb_stream_reset_default_device API.,Matthew Gregan,2021-02-17T00:45:00Z,kinetiknz,kinetiknz,21,4,17
+291,audioipc-2,1234921742c6cfd874bac974666b4367eb2eee2d,client: wait for CallbackServer to drop before finishing ClientStream drop.,Matthew Gregan,2021-02-01T10:19:45Z,kinetiknz,kinetiknz,18,17,1
+292,audioipc-2,2fd5403bb19f6301d4d2178f569ef03860bb5374,"Revert ""audioipc: Update to bincode 1.3.""
+
+This reverts commit b0f2a7a9325a8866be13875260df2dceb1de2388.",Matthew Gregan,2021-01-29T07:39:15Z,kinetiknz,kinetiknz,8,4,4
+293,audioipc-2,b2e89c00f3ba83a740b7a8097741885b03eded83,Fix some clippy warnings,Sylvestre Ledru,2020-11-11T09:03:05Z,sylvestre,sylvestre,28,7,21
+294,audioipc-2,b0f2a7a9325a8866be13875260df2dceb1de2388,"audioipc: Update to bincode 1.3.
+
+Part of BMO #1675534.",Alessio Placitelli,2020-11-11T05:53:33Z,Dexterp37,Dexterp37,8,4,4
+295,audioipc-2,db32323c92b2b4f5ca2e702dcf987fedc1e71768,server: Fix potential race in CubebDeviceCollectionManager.,Matthew Gregan,2020-10-14T09:18:44Z,kinetiknz,kinetiknz,81,30,51
+296,audioipc-2,e925e82ca9887af9b04d92a5e304b5df94942c79,"Split stream initialization into two phases.
+
+Split StreamCreate into StreamCreate and StreamInit.  StreamCreate performs
+the pre-libcubeb IPC setup and StreamInit completes the libcubeb stream
+initialization.  This avoids a circular dependency where a server-side
+StreamInit needed to send messages back to the client before the client
+could progress far enough to receive and process them.
+
+Fix for BMO 1661398.",Matthew Gregan,2020-10-20T04:59:25Z,kinetiknz,kinetiknz,178,91,87
+297,audioipc-2,c474b0b78f49b86531bf09f4c0e4af2e16cf15a9,"Implement remoting for cubeb_stream_set_name.
+
+Related to kinetiknz/cubeb#615",Matthew Gregan,2020-10-06T22:23:52Z,kinetiknz,kinetiknz,24,19,5
+298,audioipc-2,56be0bfc252096818ea8e1bd8cff1de315a623df,audio_thread_priority 0.23.4,Paul Adenot,2020-07-15T09:38:15Z,padenot,padenot,6,3,3
+299,audioipc-2,91df250365bb188211e5532fa35cd9555894c727,Update audio_thread_priority to 0.23.3,Paul Adenot,2020-07-09T15:37:25Z,padenot,padenot,6,3,3
+300,audioipc-2,c04a660a1fbb728de0833c87f1c92e97021359d9,audioipc: Close process handle after use.,Matthew Gregan,2020-06-10T00:03:21Z,kinetiknz,kinetiknz,14,9,5
+301,audioipc-2,1234212a0fa6d1f559825d988a0b088cd70e9710,server: Re-init libcubeb rather than caching failure.,Matthew Gregan,2020-06-02T12:17:41Z,kinetiknz,kinetiknz,63,43,20
+302,audioipc-2,430c08efd00e64a56c3066c9bc0cb0ffd96785b8,audioipc: Avoid calling poll_complete when dropped outside task context.,Matthew Gregan,2020-06-10T03:44:21Z,kinetiknz,kinetiknz,22,14,8
+303,audioipc-2,1b2747695088ee5f8216bda9a7a4c4bd7655608e,Return the correct message when getting input latency,Paul Adenot,2020-05-13T13:54:51Z,padenot,padenot,2,1,1
+304,audioipc-2,dff25d063bdaec162c1595afc07d5327556b3444,"audioipc: Switch to my fork of mio-named-pipes.
+
+See https://bugzilla.mozilla.org/show_bug.cgi?id=1631965",Matthew Gregan,2020-05-05T21:15:54Z,kinetiknz,kinetiknz,2,1,1
+305,audioipc-2,d5c07e962073841dc992a7848a9b1effaac9c25f,Add the stream_get_input_latency member and bump cubeb to 0.7 accordingly,Paul Adenot,2020-04-30T17:16:23Z,padenot,padenot,22,18,4
+306,audioipc-2,9cd4fe5288078169f15ab6c41d67b771996e1dca,client: Bump cubeb-backend to 0.6.3.,Matthew Gregan,2020-04-13T22:53:18Z,kinetiknz,kinetiknz,2,1,1
+307,audioipc-2,198b2003731b3940cbc5f2aff858cef2fb132f37,Use mio-named-pipes from crates.io.,Anthony Ramine,2020-04-07T20:29:46Z,nox,nox,4,2,2
+308,audioipc-2,8afffbe610a99dc426901c4c2ac7a9ad301f6769,Clean up version constraints in audioipc manifest.,Anthony Ramine,2020-04-07T20:28:23Z,nox,nox,8,4,4
+309,audioipc-2,7dd1ea825f3f58dbaf20137441ff7e243c3bdc09,reformat recent changes with rustfmt,Sylvestre Ledru,2020-03-24T11:36:35Z,sylvestre,sylvestre,38,18,20
+310,audioipc-2,7f7c997eb9c311ae19167cffd60ef9421c2b2fa7,"client: Handle shmem setup error gracefully.
+
+This could fail due to low available address space (for example), so
+unwrapping the Result is inappropriate.",Matthew Gregan,2020-03-17T04:43:56Z,kinetiknz,kinetiknz,16,14,2
+311,audioipc-2,791200db040d7b4945ae0f14f46bf4ccb45c22c5,"Avoid using the pointer of a temporary variable
+
+The `std::ffi::CString::new(id).unwrap()` will create a temporary
+variable. `std::ffi::CString::new(id).unwrap().as_ptr()` is a pointer
+pointing to a temporary variable. Using this pointer directly is unsafe
+since we cannot make sure the variable is alive when the pointer is
+referred. It's save the variable returned from `CString::new()` and use
+its pointer (in the same scope of the variable) when we need.",Chun-Min Chang,2020-03-12T17:58:50Z,ChunMinChang,ChunMinChang,3,2,1
+312,audioipc-2,2a76fbedd24db47390abbbb0add8ddec6f727e53,server: Use Display trait instead of Error::description.,Kartikaya Gupta,2020-03-16T02:13:35Z,staktrace,staktrace,5,2,3
+313,audioipc-2,9e4f94a50e7b94d13b820f36b73ee9d07b4afdc1,audioipc: Try memfd before /dev/shm in open_shm_file.,Matthew Gregan,2020-03-06T12:26:14Z,kinetiknz,kinetiknz,18,14,4
+314,audioipc-2,3e44866ac700e9880d9a88e3970133ca46b85d38,"server: Don't reset DevIdMap on enumerate.
+
+The existing code had the lifetime of a cubeb_devid slightly wrong.  It
+doesn't start and stop at each enumerate, it belongs to a fixed set of
+possible cubeb_devids tied to the lifetime of the cubeb context.
+enumerate presents a (possibly incomplete, due to device removal) view of
+that set.
+
+- Remove DevIdMap::reset
+- DevIdMap::to_handle checks for existing mapping before inserting",Matthew Gregan,2020-03-06T11:46:04Z,kinetiknz,kinetiknz,13,5,8
+315,audioipc-2,7019efc67bf6582f23815fbda80298ea6d5445da,audioipc: Hard-error on ENOSPC when preallocating.,Matthew Gregan,2020-02-27T02:38:35Z,kinetiknz,kinetiknz,53,38,15
+316,audioipc-2,c1fb17119e2160e8488e7776345c0131640e1489,"audioipc: Preallocate shm area before mapping to avoid late faults.
+
+The existing code attempts to preallocate the shm area with
+File::set_len, but that approach doesn't work on filesystems that
+allow sparse files.  Accessing a mapped page in a shm area where the
+backing file is lazily allocated can fault with SIGBUS (on Unix-like
+platforms) due to low disk space.  To avoid this difficult to handle
+failure mode, preallocate the entire shm area using OS-specific
+techniques before mapping.
+
+This change also also reworks the shm API slightly to take a path
+fragment rather than a complete path.  This allows the shm code to try
+creating the shm via preferential paths (e.g. /dev/shm on Linux)
+before falling back to safe defaults.",Matthew Gregan,2020-02-24T05:15:17Z,kinetiknz,kinetiknz,145,105,40
+317,audioipc-2,6b85cb5cf2c521bd89d67091f6cba8014732b01d,"Rustfmt the code
+
+rustfmt $(fd \.rs$)
+with rustfmt 1.4.11-stable (1838235 2019-12-03)",Sylvestre Ledru,2020-02-27T09:14:24Z,sylvestre,sylvestre,164,97,67
+318,audioipc-2,9099bc1b1aebe6a2a3a977a246082aa743733c39,server: Map cubeb_devids to IPC-portable handles.,Matthew Gregan,2020-02-20T04:25:29Z,kinetiknz,kinetiknz,55,52,3
+319,audioipc-2,4ecd137ab09c78e4ffecfd6775ba9ea952aed5a9,Add cbindgen.toml to client and server.,Matthew Gregan,2020-02-12T22:07:59Z,kinetiknz,kinetiknz,56,56,0
+320,audioipc-2,c17a3561f04d67ab6acb97f331b9a0758d3b4f70,audioipc: Add thread shutdown callback to CoreThread.,Matthew Gregan,2020-02-11T02:05:48Z,kinetiknz,kinetiknz,25,19,6
+321,audioipc-2,4823c577e6bd5333a97a46d1417f6a82a0976ea7,Bump audio_thread_priority version to 0.22.,Matthew Gregan,2020-01-31T09:57:01Z,kinetiknz,kinetiknz,6,3,3
+322,audioipc-2,bc369ec35d2e40544c5273beb935e23d3fe60e04,server: Rename stream macro to try_stream.,Matthew Gregan,2020-01-30T20:25:34Z,kinetiknz,kinetiknz,18,9,9
+323,audioipc-2,2a04111adc325f3cdc7a6f6dff3ad0e64768ebb4,server: Error rather than panic in debug logging.,Matthew Gregan,2020-01-30T00:53:25Z,kinetiknz,kinetiknz,10,6,4
+324,audioipc-2,52ac8c0d06ec0f1dd150ccddff9eceb7c5427d23,server: Debug logging for BMO 1594216.,Matthew Gregan,2019-11-07T03:30:51Z,kinetiknz,kinetiknz,36,26,10
+325,audioipc-2,5890aa92bc3694690afc6c75b9d88578bb3b822e,server: Downgrade ServerStreamCallbacks::data_callback error! logging to debug!.,Matthew Gregan,2019-11-07T03:26:07Z,kinetiknz,kinetiknz,2,1,1
+326,audioipc-2,86d49ddfca8b016a4b60b0b3fef76052194b8aa3,"Use correct end of IPC transport in appropriate place.
+
+On some platforms, IPC connections are asymmetric and may have different
+behaviour on the ""server"" and ""client"" ends.  Ensure we correctly pass
+the ""client"" end to the ""client"" and use the ""server"" end in the
+""server"".",Matthew Gregan,2020-01-21T22:49:15Z,kinetiknz,kinetiknz,56,28,28
+327,audioipc-2,ea5ef3a69f123e67a9f81dec48fb7def5c87465d,"Ensure {Client,Server}Handler's transport is closed on drop.",Matthew Gregan,2020-01-21T22:46:27Z,kinetiknz,kinetiknz,2,2,0
+328,audioipc-2,80d6bb88be8010dece26ac074b9955c29d17073a,"Switch to local fork of tokio-named-pipes.
+
+Local changes to tokio-named-pipes included.  Most importantly, calling
+shutdown correctly.  Other changes are build fixes only.",Matthew Gregan,2020-01-21T22:43:38Z,kinetiknz,kinetiknz,26,14,12
+329,audioipc-2,42880aa8da6b98e9c65cdaaa46ce855a2df9d076,"Import tokio_named_pipes from upstream.
+
+This is a verbatim import of https://github.com/NikVolf/tokio-named-pipes/blob/0afa6247222a7aa6e8b370e949a0f4007f0018b6/src/lib.rs",Matthew Gregan,2020-01-21T22:39:09Z,kinetiknz,kinetiknz,154,154,0
+330,audioipc-2,588949ebd67fff7af3932fe46f5ec8af57c9b832,ipctest: Clean up previous fix per comments in PR #87.,Matthew Gregan,2020-01-24T00:08:43Z,kinetiknz,kinetiknz,14,7,7
+331,audioipc-2,afc7c184db5afa8b04752e49d9ce39a8328e8c93,"ipctest: Fix random hang during startup.
+
+Observed on macOS: sometimes during startup, ipctest would hang after
+printing the startup banner.
+
+It turns out that the ipctest child could hang waiting for a lock deep
+inside tokio; however the lock had been taken (and dropped) in the
+parent during initialization.  fork() would just happen to clone the
+process at a bad time, leaving tokio's internal state unusable in the
+child.
+
+To avoid this entire class of problem, ipctest on Unix now uses a
+similar technique to Windows to bootstrap - after the client fd is
+allocated, ipctest forks and then execs to reset its process state
+before continuing with the audioipc tests.",Matthew Gregan,2020-01-22T02:34:21Z,kinetiknz,kinetiknz,40,32,8
+332,audioipc-2,875d3b63f5d409ed4e11cea009b2a0c80e9efe21,"audioipc: Make PlatformHandle non-Copy, close handles on drop.",Matthew Gregan,2020-01-22T01:06:10Z,kinetiknz,kinetiknz,131,74,57
+333,audioipc-2,60088b9de22e262f553953e390fed2cc4e478d3f,rpc: Clear in_flight requests on drop.,Matthew Gregan,2020-01-22T01:05:50Z,kinetiknz,kinetiknz,12,12,0
+334,audioipc-2,c7a9f37572f0da80ae8f9ae32137717582467a90,"Rework cmsg.rs internals to address portability issues.
+
+- Replace our versions of CMSG_SPACE and CMSG_LEN with libc implementations.
+- Avoid depending on our version of CMSG_ALIGN, since it's non-portable.
+- Avoid need for align_buf, since we always leave the buffer correctly aligned now.",Matthew Gregan,2020-01-20T06:14:57Z,kinetiknz,kinetiknz,62,24,38
+335,audioipc-2,9249d770e6f62bddb5e00bb248b31495597d3387,"Use audio_thread_priority version 0.21 to fix a compilation issue on Linux when using musl
+
+This fixes https://github.com/djg/audioipc-2/issues/80.",Paul Adenot,2019-11-04T10:42:55Z,padenot,padenot,6,3,3
+336,audioipc-2,8af8083a9a6179bc9fe041c9e5059cea0a0e6fe0,Follow up fix for f9aad7d1.,Matthew Gregan,2019-10-22T01:11:23Z,kinetiknz,kinetiknz,5,4,1
+337,audioipc-2,8f2a9e0a8b53d9cb6f80d2a1e92dd0f087b4865d,cargo fmt,Matthew Gregan,2019-10-17T01:16:25Z,kinetiknz,kinetiknz,81,36,45
+338,audioipc-2,5209a44a07929e4ae243fdc32731750653704aad,server: Slightly clean up CONTEXT_KEY definition.,Matthew Gregan,2019-10-17T00:46:49Z,kinetiknz,kinetiknz,3,1,2
+339,audioipc-2,f9aad7d1ce15818723aabe55d3305590dd59cb72,"client: Use CpuPoolInitParams mechanism to communicate server_connection fd to ClientContext.
+
+Replace CpuPoolInitParams with AudioIpcInitParams so the G_SERVER_FD global can be removed.",Matthew Gregan,2019-10-17T00:39:03Z,kinetiknz,kinetiknz,76,10,66
+340,audioipc-2,a71b68b337cd81af8ff1360d98e5f9640f6f3146,server: Prefer once_cell over lazy_static.,Matthew Gregan,2019-10-16T23:54:50Z,kinetiknz,kinetiknz,13,6,7
+341,audioipc-2,1e9e3ba51472bd78d1f412f44dd0d06e5772fc3f,server: Treat data_callback error as drain to work around cubeb_wasapi bug.,Matthew Gregan,2019-10-16T07:56:41Z,kinetiknz,kinetiknz,9,7,2
+342,audioipc-2,3e366c8d6652669762f4dcc0c3f615b43c336313,client: Avoid double-closing server connection on shutdown.,Matthew Gregan,2019-10-16T07:54:22Z,kinetiknz,kinetiknz,6,3,3
+343,audioipc-2,e5b5e4bf85290edce1c687fe82e7f3888a023c23,audioipc: Use unique shm temp filename to avoid file in use races on Windows.,Matthew Gregan,2019-10-16T07:43:33Z,kinetiknz,kinetiknz,20,16,4
+344,audioipc-2,20cb573dbc2756ea97991aaa0cc357106e304df8,audioipc: Bump message size limit to 1MB.,Matthew Gregan,2019-10-16T07:37:30Z,kinetiknz,kinetiknz,32,18,14
+345,audioipc-2,b82970f6106ceec4a8f599eda631775eb5d5afaf,Don't wait for the answer when asking for the render thread to be promoted.,Paul Adenot,2019-10-10T13:14:12Z,padenot,padenot,10,2,8
+346,audioipc-2,f2da5c9ffea358a3342ec93f8918126d61fed7cc,"audioipc: Rework Windows implementation of MessageStream.
+
+Fixes a bug where abusing as_raw_handle() (since mio_named_pipes lacks
+into_raw_handle()) resulted in double closing or early closing of named
+pipe handles.",Matthew Gregan,2019-10-08T05:44:03Z,kinetiknz,kinetiknz,31,23,8
+347,audioipc-2,31de904fa288efe629a2c651b2e6906a752e962c,"audioipc: Work around tokio_named_pipes assuming at least 1kB available.
+
+NamedPipe::read_buf uses a 1kB temporary internally, but fails to handle the
+situation where the buffer passed in via buf is smaller than 1kB.
+
+https://github.com/NikVolf/tokio-named-pipes/blob/0afa6247222a7aa6e8b370e949a0f4007f0018b6/src/lib.rs#L103",Matthew Gregan,2019-10-08T05:10:20Z,kinetiknz,kinetiknz,6,6,0
+348,audioipc-2,50ab21410f35d57ca93c86382556c44c8017227c,"server: Add a platform initialization hook that runs before cubeb_init.
+
+So far, we only use this to initialize COM on Windows.",Matthew Gregan,2019-10-08T05:01:17Z,kinetiknz,kinetiknz,20,19,1
+349,audioipc-2,f0b152f6a5e03ccf9f3079f44f37f1d0cb464277,client: Also use run_in_callback during DeviceCollectionServer's callback.,Matthew Gregan,2019-10-08T04:48:32Z,kinetiknz,kinetiknz,19,11,8
+350,audioipc-2,f0c3295d4d7bb3531c1cffebfff5a890bc3bdb87,client: Replace set_in_callback pairs with run_in_callback closure wrapper.,Matthew Gregan,2019-10-08T04:47:33Z,kinetiknz,kinetiknz,69,41,28
+351,audioipc-2,d269cc0679f100341194fa064e1efc1d9952914d,Build fix on non-linux platforms,Paul Adenot,2019-09-27T13:51:42Z,padenot,padenot,5,2,3
+352,audioipc-2,11fbdc04dcb8ea60a20ade035a444edf4f9c4a93,Gecko re-sync: use the right audio_thread_priority version,Paul Adenot,2019-09-26T12:46:03Z,padenot,padenot,5,3,2
+353,audioipc-2,b27ff2f8de0bb441051c29ef91559fab109b4b24,"Remove the code to start the audio callback threads early, and add a message to promote a thread to RT from the server process.
+
+With `audio_thread_priority` version `0.20` it's possible to promote a
+thread to real-time from another process. This allows removing the
+workaround that was previously done to create the threads early before
+the sandbox lockdown.
+
+Additionaly, this patch adds a new message that allows passing a
+`RtPriorityThreadInfo` struct via IPC, so that the server can promote
+a client thread in a sandboxed process.
+
+This is part of BMO#1575883.",Paul Adenot,2019-09-25T14:40:05Z,padenot,padenot,176,70,106
+354,audioipc-2,de0fc58cf1e87079027fce06b50eeffa6ae23d54,"audioipc: cargo-udeps reports scoped-tls is unused, so remove.",Matthew Gregan,2019-09-08T23:36:32Z,kinetiknz,kinetiknz,1,0,1
+355,audioipc-2,3710c4ebe4c3afb7c574955c73b037dc1b65146d,Update slab to 0.4,Bastien Orivel,2019-09-06T18:50:54Z,Eijebong,Eijebong,32,12,20
+356,audioipc-2,0efa98cc350f77f3479c78d17aa934bf9b5fba16,Update scoped-tls to 1.0,Bastien Orivel,2019-09-06T18:28:46Z,Eijebong,Eijebong,2,1,1
+357,audioipc-2,db5ec30a7c4df634f85355799455578d02761344,Update to cubeb-rs 0.6.0; remove panning API.,Matthew Gregan,2019-08-21T22:18:15Z,kinetiknz,kinetiknz,22,4,18
+358,audioipc-2,143668821a59c9a60da0b3a510f18e5c99f57649,"Bump audio_thread_priority to 0.18.
+
+Per https://bugzilla.mozilla.org/show_bug.cgi?id=1570948 and https://bugzilla.mozilla.org/show_bug.cgi?id=1574914.",Matthew Gregan,2019-08-20T02:36:10Z,kinetiknz,kinetiknz,4,2,2
+359,audioipc-2,f6f56c4352ee4c1b5e483e4594c4c3f309246ceb,Refactor CubebDeviceCollectionManager::update slightly.,Matthew Gregan,2019-07-29T22:52:27Z,kinetiknz,kinetiknz,6,2,4
+360,audioipc-2,c831a2a04d6cc0f9f355e67e674e1c536de45d2d,server: Don't swallow errors in register_device_collection_changed.,Matthew Gregan,2019-07-29T04:32:19Z,kinetiknz,kinetiknz,44,26,18
+361,audioipc-2,959be8b71bd8d931a9e94276dde1dd718f52fca4,"Use plain #[cfg] instead of cfg_if!{} to avoid extra indentation.
+
+No logic changes, just formatting.",Matthew Gregan,2019-07-26T04:40:02Z,kinetiknz,kinetiknz,151,74,77
+362,audioipc-2,177ebd969a6a7926326f7f04bd7c11fc0cbfbaa1,client: Fix Linux build after 2018 conversion.,Matthew Gregan,2019-07-26T02:06:55Z,kinetiknz,kinetiknz,2,1,1
+363,audioipc-2,410db5cf976763df53f08b926c29a1f2869b34d6,Reduce duplication of IN/OUT enable/disable cases in CubebDeviceCollectionManager.,Matthew Gregan,2019-07-26T01:33:12Z,kinetiknz,kinetiknz,113,44,69
+364,audioipc-2,78b4c060c17c15d1da18c30f13266d5d78537bdf,Add CubebDeviceCollectionManager to handle mapping between CubebServer and shared cubeb context.,Matthew Gregan,2019-07-13T00:49:57Z,kinetiknz,kinetiknz,215,171,44
+365,audioipc-2,9ac51c47d35bd6b41c2cc533cec3e11e3c78b69d,cargo fix --edition-idioms,Matthew Gregan,2019-07-23T21:53:56Z,kinetiknz,kinetiknz,16,8,8
+366,audioipc-2,064ac2d06280c846d014a8112eddeac1187dc5d9,Rename 'remote' to 'handle' in places we replaced a Tokio Remote with a Handle.,Matthew Gregan,2019-07-23T21:16:20Z,kinetiknz,kinetiknz,24,12,12
+367,audioipc-2,bd1cc2e7a9fe5d4f4cca433a1060016110440cc3,Update ipctest to log 0.4 to match other crates.,Matthew Gregan,2019-07-23T04:23:24Z,kinetiknz,kinetiknz,2,1,1
+368,audioipc-2,61d286ab234598ccde29471a1216d68c40c5bf63,Rename async.rs to async_msg.rs.,Matthew Gregan,2019-07-23T04:18:39Z,kinetiknz,kinetiknz,4,2,2
+369,audioipc-2,1e209237cbc504f2eb72556e37fef159ad101fa6,Sort crate imports in Cargo.toml.,Matthew Gregan,2019-07-23T03:26:47Z,kinetiknz,kinetiknz,22,11,11
+370,audioipc-2,6cf02bfae4e51fc32c963556f6d6de0a8583adfe,cargo fmt after 2018 conversion.,Matthew Gregan,2019-07-23T03:20:06Z,kinetiknz,kinetiknz,46,24,22
+371,audioipc-2,c4a0b6d3a8948c5fa53952f77826b9872cf97083,Update to Rust 2018 edition.,Matthew Gregan,2019-07-23T03:19:01Z,kinetiknz,kinetiknz,140,48,92
+372,audioipc-2,7e128edc2b23ecb7f71bf31397c374f03be4b86e,cargo fmt pass.,Matthew Gregan,2019-07-23T02:48:17Z,kinetiknz,kinetiknz,676,386,290
+373,audioipc-2,0785b902b9d81ec77080fb0aa0373e7952ed4553,Address most clippy issues.,Matthew Gregan,2019-07-23T02:41:28Z,kinetiknz,kinetiknz,97,49,48
+374,audioipc-2,7ca93a229ecd20da94d53d9629174aaad074f9b4,"Clean up crate imports.
+
+- Drop several unused crates.
+- Mark platform-specific crates as necessary on import.
+- Mark platform-specific crates in Cargo.toml.",Matthew Gregan,2019-07-23T02:17:51Z,kinetiknz,kinetiknz,35,19,16
+375,audioipc-2,fcbe510669f6fb310fe5a28565f7e1d4eaaddd79,Warn about unused crate imports.,Matthew Gregan,2019-07-23T02:03:15Z,kinetiknz,kinetiknz,4,4,0
+376,audioipc-2,07d25a6a9d6edf71bfb649b65078b81d74c28fb1,ipctest: Fix build on Windows.,Matthew Gregan,2019-07-23T02:01:50Z,kinetiknz,kinetiknz,2,1,1
+377,audioipc-2,ca41acd27b0fa8c0e5f2ba4868ce69730e1efc11,Temporarily switch to local fork of tokio-uds's stream.rs until upstream PR 1294 is resolved.,Matthew Gregan,2019-07-22T23:39:15Z,kinetiknz,kinetiknz,40,24,16
+378,audioipc-2,ddc8e95a31837e2c8b2232e2a1bdbe194677fc71,"audioipc: Add copy of tokio-uds/src/stream.rs as tokio_uds_stream.rs.
+
+Copied from upstream revision
+25e835c5b7e2cfeb9c22b1fd576844f6814a9477 (tokio-uds 0.2.5).",Matthew Gregan,2019-07-22T23:33:47Z,kinetiknz,kinetiknz,356,356,0

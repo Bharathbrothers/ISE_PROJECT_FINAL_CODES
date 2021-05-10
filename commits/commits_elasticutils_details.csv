@@ -1,0 +1,606 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,elasticutils,f1ce00cfcb63bf7dc5e6e538cf65720496159e05,Match requirements to setup.py,Will Kahn-Greene,2012-06-23T18:38:22Z,willkg,willkg,4,2,2
+1,elasticutils,fd6267bb05cc848286ddfbeea4a8bacb6cbe4dff,"Tweak F so that it allows for F()
+
+This is something I implemented in the sumo branch to allow for an empty
+F. It makes it a lot easier to start with an F and add filters depending
+on what the user requested and also handle the case where there are
+no filters.
+
+e.g.
+
+    f = F()
+    f = f | F(tag='awesome')
+
+Prior to this change, that would result in:
+
+    {""or_"": [{}, {""tag"": ""awesome""}]}
+
+which makes ES grumpy and for good reason.",Will Kahn-Greene,2012-06-16T01:19:00Z,willkg,willkg,43,37,6
+2,elasticutils,810fcd42fae4a1804a8d47dcfb93a7743305f80c,Document InvalidFieldActionError,Will Kahn-Greene,2012-06-15T23:39:37Z,willkg,willkg,5,5,0
+3,elasticutils,3924a6864651c05d6feb19e61caeca4966b9adec,"32. Raise error for bad field actions
+
+Fixes #32.",Will Kahn-Greene,2012-06-15T23:37:49Z,willkg,willkg,14,13,1
+4,elasticutils,adefd10b55da4e2be45048c7f2e1a99b05ed35f3,Add link to elasticsearch-paramedic,Will Kahn-Greene,2012-06-15T23:12:27Z,willkg,willkg,9,9,0
+5,elasticutils,cafe7d4ed03e6c50da784a593f5756527a18809a,"Nix About ElasticUtils header
+
+It's redundant and takes up a bunch of vertical space which means the
+text is further down the page than it should be.",Will Kahn-Greene,2012-06-11T12:32:15Z,willkg,willkg,3,0,3
+6,elasticutils,0ac78e81f9f5e67d006bd0c2629f9b9d3e2c2dab,"More query doc work
+
+Ricky asked what the elasticsearch JSON looks like if you have filters
+and queries in it. I thought about that and decided to add more to the
+overview section so that there's a big example coupled with what it
+equates to in curl and then the rest of the document talks about
+individual pieces.
+
+I also added a separate section about S.",Will Kahn-Greene,2012-06-09T13:01:01Z,willkg,willkg,94,89,5
+7,elasticutils,5d96df7c3fe069dea00ba0e396ad5bde358113be,"Overhaul docs
+
+This adds contributor docs and cleans up some of the elasticutils
+usage docs, too. It adds a lot of examples and expands on the existing
+text.
+
+This also adds a requirements-dev.txt which makes it a little easier
+to install for hacking.
+
+Still a lot of docs-work to do, but I think this is a nice first pass.",Will Kahn-Greene,2012-06-08T21:38:48Z,willkg,willkg,684,490,194
+8,elasticutils,370f2c89296909d8ae171afa43ef2b71b8539823,"Update author and author_email
+
+This is more correct.",Will Kahn-Greene,2012-06-08T19:29:45Z,willkg,willkg,3,1,2
+9,elasticutils,6d7f4bf266abc50b787b55cf3d008dd536a0618f,"Cleanup for 0.3 release
+
+This release covers everything we've done so far before we start making
+some bigger changes.
+
+I also changed the author information to me representing that Dave has
+passed the torch for project maintenance to me.
+
+Also included some of jezdez's changes to project scaffolding files. Thank
+you!",Will Kahn-Greene,2012-06-01T21:52:26Z,willkg,willkg,285,83,202
+10,elasticutils,4ee61efb6ed9b112e210069fd8815b3eeb6bb085,Add IRC to README and docs,Will Kahn-Greene,2012-05-18T15:19:59Z,willkg,willkg,7,6,1
+11,elasticutils,7256d1bacfa742c5aaef6ec8fdf1ff0072f140dd,Change default timeout to 5 seconds,Will Kahn-Greene,2012-03-28T18:24:53Z,willkg,willkg,2,1,1
+12,elasticutils,7d1c1cebfab1777ede5486038919d3e9fe0b3057,"Fix get_es to be more useful. Close 24.
+
+get_es takes arguments which allow you to create different kinds of
+ES objects. Particularly, this is useful for indexing where you really
+want a different timeout value.
+
+Adds tests.
+
+Updates the documentation.",Will Kahn-Greene,2012-03-28T17:32:27Z,willkg,willkg,119,99,20
+13,elasticutils,f7c43e2871af621ff557a5e2a9ccc384aa27758a,"Add settings to fake_settings
+
+This makes it easier to build the docs.",Will Kahn-Greene,2012-03-28T17:31:26Z,willkg,willkg,3,3,0
+14,elasticutils,e697b4a872d66453ca9c687aca20e4c8b557daa1,"Fix the example so it doesn't use ""str""
+
+Stomping on builtins is naughty.",Will Kahn-Greene,2012-03-28T17:30:57Z,willkg,willkg,4,2,2
+15,elasticutils,9450fa0041a0038ae09324e1ff3056113b1c6ae5,"Tweak tests
+
+* moved teardown_class closer to setup_class so it's easier to keep
+  in my head.
+* changed index name from 'test' to 'elasticutilstest' which is
+  far less likely to be in use and thus deleted when you run the tests.
+* pull the index name from ES_INDEXES rather than hard code it.",Will Kahn-Greene,2012-03-20T13:49:30Z,willkg,willkg,27,16,11
+16,elasticutils,50b54fe5fb20ae388f36c22f45a483ef86962b93,"Add debugging docs; tweak testing docs
+
+* added a note about elasticsearch-head
+* added Rob's suggestions on debugging with ES_DUMP_CURL
+* tweaked the text of the testing docs to make it easier to parse",Will Kahn-Greene,2012-03-19T18:53:44Z,willkg,willkg,66,58,8
+17,elasticutils,552e733d46e5239428eb80fca3f58f0290731932,"Add basic project details to docs
+
+This makes it easier for people who happened upon the docs to make
+their way to the rest of the project resources.",Will Kahn-Greene,2012-03-19T15:22:15Z,willkg,willkg,16,15,1
+18,elasticutils,3cadee2c096064a8ef65be447101d0e26c7a0c33,"fix stupid mistake
+
+I changed the name of the README, but missed updating setup.py.",Will Kahn-Greene,2012-03-19T15:21:43Z,willkg,willkg,2,1,1
+19,elasticutils,859af1cca772c77f55855d3ac9745e98bb047791,Add LICENSE; flesh out README,Will Kahn-Greene,2012-03-19T15:06:28Z,willkg,willkg,55,54,1
+20,elasticutils,6fe7c09c07ea72ddcdbdf9dfdbd289bd2f948678,Updating github urls in docs,Will Kahn-Greene,2012-03-02T20:32:17Z,willkg,willkg,4,2,2
+21,elasticutils,c9fc5f44718a49f75a71db4c7b4a79cc5d2ae8f8,Honor ES_DISABLED for tasks.,Dave Dash,2011-12-25T14:19:12Z,davedash,davedash,6,6,0
+22,elasticutils,943e799587b9dcb0d0c8c7665f2e1812619b12a8,Smarter ESTestCase,Dave Dash,2011-12-24T18:05:09Z,davedash,davedash,5,4,1
+23,elasticutils,ca58e231805f014a38ec665d8dec8dcd88988a16,Smarter ESTestCase,Dave Dash,2011-12-24T17:14:26Z,davedash,davedash,14,9,5
+24,elasticutils,35e4e76435f1e2c83bd82ceeb066d04504695092,Force pyes to work.,Dave Dash,2011-12-22T23:03:34Z,davedash,davedash,7,6,1
+25,elasticutils,64a55ebaed0973a0027f3a0fffdfd8b7d083a903,Pinning to pyes 0.15,Dave Dash,2011-12-22T22:32:54Z,davedash,davedash,10,8,2
+26,elasticutils,9823b6053f260b9ef8fa9f9743a8818340129480,Truth about testing.,Dave Dash,2011-12-22T16:01:43Z,davedash,davedash,2,1,1
+27,elasticutils,577b2ea383bc1ee8a275a1c793e63e58168fae80,Remove,Dave Dash,2011-12-22T02:32:18Z,davedash,davedash,7,7,0
+28,elasticutils,9a71dc30072fceaa625da090eb101105b276e9c4,Forgot an import,Dave Dash,2011-12-22T01:13:05Z,davedash,davedash,2,2,0
+29,elasticutils,0ad05c045735aa7b34d7e8b203c59228ccbbfd58,"Insolent fool, models aren't self filtering, they must talk to their manager.",Dave Dash,2011-12-22T01:09:25Z,davedash,davedash,2,1,1
+30,elasticutils,096dc8d67113a8629aac18974c45be30ae3cdeaf,Update elasticutils/__init__.py,Dave Dash,2011-12-21T21:03:21Z,davedash,davedash,2,1,1
+31,elasticutils,2876d0adff6b72c45b5ad3d552d98efdffa2dc6c,Fix typo in docstring,Dave Dash,2011-12-21T00:02:31Z,davedash,davedash,2,1,1
+32,elasticutils,9b861dc1cb17b0f99283c5e34ba4a4416f89c3b7,Fix typo in docstring,Dave Dash,2011-12-20T23:49:59Z,davedash,davedash,1,1,0
+33,elasticutils,95e12c0a5c7fa2fd2e7dae369522c9153c2e264e,Adding DJcelery to requirements-extra,Dave Dash,2011-12-20T23:48:13Z,davedash,davedash,1,1,0
+34,elasticutils,7529f2d328ed1fcc0e66bf2c800ebc399cc71bd8,requirements inheritence,Dave Dash,2011-12-20T23:44:31Z,davedash,davedash,1,1,0
+35,elasticutils,d340ef95154d3cce5112549ba32749b0fec914ac,Cron tasks just got meta.,Dave Dash,2011-12-19T22:30:16Z,davedash,davedash,29,28,1
+36,elasticutils,f3dbb8905adab108ddf4fd468a183afd76538279,Celery task for indexing.,Dave Dash,2011-12-19T21:36:08Z,davedash,davedash,40,40,0
+37,elasticutils,28a09aa4b371250fb844df84546929bc57a7ad46,mixin,Dave Dash,2011-12-19T20:52:56Z,davedash,davedash,76,61,15
+38,elasticutils,b22ca1d73333f9c10cad76fd4f0ba04da5ad02ef,"Add docs for doctypes, ES_TIMEOUT, and ES building
+
+ElasticUtils builds queries with a series of assumptions about how the
+index is laid out.  This documents that.
+
+Adds documentation for ES_TIMEOUT.
+
+Added a note about creating ES objects if you want an ES that isn't
+cached thread-local.  This makes it easier to build an ES with
+settings different than those in settings.py.  It's just a note to
+make things easier.",Will Kahn-Greene,2011-11-23T14:13:21Z,willkg,willkg,30,29,1
+39,elasticutils,3d4acc57356dd8931285d7a74a37fcda51b31cfd,"Merge pull request #19 from andymckay/master
+
+Give users a clue why they are getting an annoying pythrift error",Dave Dash,2011-12-08T16:50:12Z,davedash,davedash,6,6,0
+40,elasticutils,fd91d6a556b6c94ff594b1ea743baa899421bd88,Give users a clue why they are getting an annoying pythrift error,Andy McKay,2011-12-06T00:58:38Z,Andy McKay,Andy McKay,6,6,0
+41,elasticutils,8aa0e6b6c973b5b43295024add2608a4def2d5d5,"Merge pull request #9 from erikrose/paving-order-by
+
+Make order_by() pave over any previous orderings, just like Django.",Dave Dash,2011-10-10T23:50:44Z,davedash,davedash,1,1,0
+42,elasticutils,338fd0afbb57d6d907c49eda0f9ffbeac766373a,"Merge pull request #8 from seanmonstar/master
+
+fix __repr__ method to not create new size query",Dave Dash,2011-10-10T22:45:24Z,davedash,davedash,23,17,6
+43,elasticutils,67ba1bb8dd8e9383ceb5a16cf8d05a8957aeef50,test repr(S) doesn't make a different query,Sean McArthur,2011-10-10T18:49:16Z,seanmonstar,seanmonstar,21,16,5
+44,elasticutils,50d618bcc9d11ce4382001ce58a8418a32e2cd97,fix __repr__ method to not create new size query,Sean McArthur,2011-10-10T16:47:04Z,seanmonstar,seanmonstar,2,1,1
+45,elasticutils,61d617e60002e9eeb783bd75c9fd07310d076217,"Merge pull request #6 from willkg/fixes
+
+Fixes minor documentation issues",Dave Dash,2011-09-15T20:31:20Z,davedash,davedash,81,40,41
+46,elasticutils,526cf71075fb62d529d889b92eb2ae30f200f67b,"Fixes minor documentation issues
+
+* the docs didn't mention the repository, so doing a google search leads you
+  to rfd.org but at that point, you don't know where to get the code or how
+  to download it or anything.
+* fixes some reST formatting issues and sphinx-docs errors
+* (cosmetic) removes an unused import in setup.py
+* tweaks some configure documentation",Will Kahn-Greene,2011-09-13T15:10:30Z,willkg,willkg,81,40,41
+47,elasticutils,bf61dd750d46865f7f63b2049182f30c3d4d9e7e,"Make order_by() pave over any previous orderings, just like Django.",Erik Rose,2011-09-14T21:48:27Z,erikrose,erikrose,1,1,0
+48,elasticutils,2de4fa9f1e930630f27295846e98c0eb9936f061,"Merge pull request #5 from jbalogh/master
+
+let us address multiple search indexes",Dave Dash,2011-09-09T17:57:34Z,davedash,davedash,23,16,7
+49,elasticutils,d500e9a908210612bb88ab59e49378a0610e16f4,allow for multiple indexes,Jeff Balogh,2011-09-06T18:02:27Z,Jeff Balogh,Jeff Balogh,23,16,7
+50,elasticutils,39ca34fc373f315875393ec50844a6076530fefe,"Merge pull request #4 from erikrose/typo
+
+Correct a typo in query documentation.",Dave Dash,2011-08-31T13:52:00Z,davedash,davedash,2,1,1
+51,elasticutils,c44f1a06dde48a5c789308dd5d7d1c11350b8f26,Correct a typo in query documentation.,Erik Rose,2011-08-31T06:10:44Z,erikrose,erikrose,2,1,1
+52,elasticutils,31ba4c9b4b08f5fe3a254dfb39b279fa52e0c0c8,"Merge pull request #3 from seanmonstar/master
+
+ported zamboni ES class into S",Dave Dash,2011-08-11T23:58:29Z,davedash,davedash,677,455,222
+53,elasticutils,7afc0ff0355228cc1f042a0f6bad7b0bdf897e07,documentation for the converted S object from zamboni,Sean McArthur,2011-08-11T23:39:19Z,seanmonstar,seanmonstar,117,81,36
+54,elasticutils,d26b0ffbb97d13567865dfbafe9ee0b735527e16,"update F.__invert__ to remove the 'not' if NOTed again
+
+whitespace and a comment",Sean McArthur,2011-08-10T00:15:14Z,seanmonstar,seanmonstar,17,9,8
+55,elasticutils,5466a970a396c1fb2349f49131165010c0e4c870,only AND filters in an F is there are more than one,Sean McArthur,2011-08-05T18:15:11Z,seanmonstar,seanmonstar,10,8,2
+56,elasticutils,04f6fd9e4018f5d5550a19ccb20c5a91a71a2954,"adding repr version, for useful shell debugging",Sean McArthur,2011-08-04T23:19:57Z,seanmonstar,seanmonstar,10,10,0
+57,elasticutils,cd7ef1e3a32ed49b46355082700c27d2497faa27,comment docs for many of the methods,Sean McArthur,2011-08-03T23:42:24Z,seanmonstar,seanmonstar,54,51,3
+58,elasticutils,93d8366bc9502fa9cad7ee9216ae60046a670c68,"ported zamboni's object into S, added AND and NOT to F, using order_by instead of custom_score",Sean McArthur,2011-08-03T21:09:10Z,seanmonstar,seanmonstar,503,313,190
+59,elasticutils,72c0b37a4636b14a7746d7856d5a1f82f177f396,Minor doc tweaks,Dave Dash,2011-08-11T22:41:00Z,davedash,davedash,24,21,3
+60,elasticutils,a14e1baf14b855494979cb6f7c8b7711c7f84117,Sensible defaults,Dave Dash,2011-08-11T22:25:34Z,davedash,davedash,3,2,1
+61,elasticutils,f090c1c8aaaf0dafd6719b4161b5cd9ce068a5fc,Merge branch 'wrapper',Dave Dash,2011-07-14T20:44:07Z,davedash,davedash,46,43,3
+62,elasticutils,3a56589ba04ec5b7c2cd8811230e4aaec275eedb,Minor fixes,Dave Dash,2011-07-14T20:43:54Z,davedash,davedash,6,5,1
+63,elasticutils,6c0893b48731e885986d3ee747e233cc959dab54,A generic wrapper to require ES for a view.,Dave Dash,2011-07-13T18:29:22Z,davedash,davedash,40,38,2
+64,elasticutils,4b36737e5865e12ee2e85311c4204b4fe82f639b,"Merge pull request #2 from rfreebern/custom_score_query
+
+Custom score query",Dave Dash,2011-07-06T18:29:24Z,davedash,davedash,107,95,12
+65,elasticutils,37d11dcad30403a5c75698f05e34342a368dc38d,Support custom score queries; add __str__ method,Ryan Freebern,2011-07-02T01:43:58Z,rfreebern,rfreebern,80,68,12
+66,elasticutils,2f11b7136ab49e8f0c5554288eb5093984b786c4,Added section on running tests.,Ryan Freebern,2011-07-05T15:31:27Z,rfreebern,rfreebern,27,27,0
+67,elasticutils,cef11c83fa7e12e7e4a393b553d05eb2ec7c2ae8,Added :ref:,Dave Dash,2011-07-04T03:17:53Z,davedash,davedash,2,2,0
+68,elasticutils,3511d3195f7c77420ff59eccdbf408b36c379a60,Support for order_by,Dave Dash,2011-06-29T02:10:13Z,davedash,davedash,28,27,1
+69,elasticutils,1a82dd77142e7686bed41d1e56be8fb424cab7e1,Now supporting ES_TIMEOUT,Dave Dash,2011-06-28T19:08:50Z,davedash,davedash,4,3,1
+70,elasticutils,094a1d0af59fef296017ffdd18f4fdab55a826ea,pypi version bump,Dave Dash,2011-05-17T21:54:29Z,davedash,davedash,6,3,3
+71,elasticutils,82b83195cd2f3d798ea518b4ff4dd6a282ba5b4a,Making things less alarming if they are disabled.,Dave Dash,2011-06-15T21:47:20Z,davedash,davedash,2,1,1
+72,elasticutils,1bac89307b60ca7e34aeba1a70bb35ed0a697d62,Fixed testcase,Dave Dash,2011-06-14T17:38:48Z,davedash,davedash,9,4,5
+73,elasticutils,751891d0314b8e338707ee13200569f2901d6866,Documentaion,Dave Dash,2011-06-10T21:29:07Z,davedash,davedash,225,149,76
+74,elasticutils,43760a0a8eebbd4bfff7fe2a8addb12b414443a7,Use this for ElasticSearch tests.,Dave Dash,2011-06-10T18:14:55Z,davedash,davedash,29,29,0
+75,elasticutils,e2273340ebe4dc19f4701ae3b4e2db52ad994c05,Now accepting dicts for queries in case fanciness is required,Dave Dash,2011-06-08T23:21:36Z,davedash,davedash,5,4,1
+76,elasticutils,8f63012a93f3dfd2920e5e7ef1da7bc187c57af3,Better pagination support.,Dave Dash,2011-06-08T21:49:16Z,davedash,davedash,34,25,9
+77,elasticutils,46488e6d914ab49346421032f850de1f398629b4,Support for total and scritped facets,Dave Dash,2011-06-06T23:28:12Z,davedash,davedash,29,27,2
+78,elasticutils,ccc0a119f789ec410a552c0d2fea3620ea57a3c0,Filtering... 201,Dave Dash,2011-05-17T21:49:24Z,davedash,davedash,78,75,3
+79,elasticutils,b0aceee11f08f8e293e464cd35497bee4dc48603,S is the new Q,Dave Dash,2011-05-17T21:48:59Z,davedash,davedash,32,18,14
+80,elasticutils,b4f14c1163bf3803e42fde428cc6461ca09e87cc,Using es_settings for test settings,Dave Dash,2011-05-17T21:38:37Z,davedash,davedash,4,2,2
+81,elasticutils,c358282bdcc75e2f939a377f5bbf47d6653885cd,"Merge pull request #1 from sivy/master
+
+God, I'm being pedentic, but...",Dave Dash,2011-05-17T20:17:48Z,davedash,davedash,2,1,1
+82,elasticutils,beefaebb3f7663bcad76332257c44a6a04d714df,"Being a pedant (correct spelling on ""filter"")",Steve Ivy,2011-05-17T19:12:35Z,Steve Ivy,Steve Ivy,2,1,1
+83,elasticutils,937f67b65a3178d6a184bbbaf4b48db2366e134a,Initial code commit.,Dave Dash,2011-05-17T16:21:36Z,davedash,davedash,212,212,0
+84,elasticutils,7fb135aace5e0735369bfc140d50319f7743f43b,Documentation,Dave Dash,2011-05-16T23:06:11Z,davedash,davedash,552,552,0
+85,elasticutils,d18d09b80afd4634d66ac2eb4e72875f0436c90b,Initial commit.,Dave Dash,2011-05-16T22:27:51Z,davedash,davedash,1,1,0
+86,elasticutils,bd64d60d2954643bff1313a68162005a1076cbd8,"Overhaul query docs
+
+* changes some of the formatting so that we get interlinking for
+  free
+* add a bunch of things to the API section
+* remove ""verbose content"" that duplicates content in the docstrings
+  and in some cases was out-of-date or just plain wrong",Will Kahn-Greene,2013-01-26T18:42:22Z,willkg,willkg,480,252,228
+87,elasticutils,6fc64ac0de44ee654181a5082bb43435d61ce38a,"Add documentation; fix MappingType defaults
+
+Adds a bunch of docstrings.
+
+MappingType should be overridden. The get_indexes and
+get_mapping_type_name methods were returning default values that
+didn't make any sense. Better to raise NotImplementedError.",Will Kahn-Greene,2013-01-26T18:41:11Z,willkg,willkg,129,116,13
+88,elasticutils,690f4b31fd9be1e8d0db3959415410c2f341d4c2,"Implement execute
+
+Previously you could only force an S to execute the search as a
+side effect of requesting something out of it (count, facet_counts,
+an iterable of results). This allows you to execute the search
+and get back a SearchResults instance which has some interesting
+things on it like a .results property which has the complete
+ES response body.",Will Kahn-Greene,2013-01-25T15:39:00Z,willkg,willkg,47,41,6
+89,elasticutils,5c1676536fac0a94b904179c3364ec56dce628f2,"Tweak release process
+
+We should run the sample docs to make sure they work correctly.",Will Kahn-Greene,2013-01-19T20:42:16Z,willkg,willkg,3,2,1
+90,elasticutils,bec5319fcb343c270745f7c603bbfb0a6fb785b4,"Add quickstart to docs
+
+I'm not sure this is the best quickstart, but it provides another
+example that someone can copy and paste and fiddle with.",Will Kahn-Greene,2013-01-19T20:41:04Z,willkg,willkg,142,142,0
+91,elasticutils,18f497b5e153ae2a03d86539e535b943bbd2d3d6,"Fix Indexable.refresh_index and es args
+
+pyelasticsearch refresh doesn't take a timeout, so nixing that.
+
+Additionally, it's more flexible if Indexable had its own get_es()
+class method that it defaults to using that can be easily overridden.
+So I tweaked that code a little.",Will Kahn-Greene,2013-01-17T21:30:08Z,willkg,willkg,56,44,12
+92,elasticutils,f8e637e751ae39ab6ae3cf9f35c540ff616846db,Add link to pyelasticsearch docs,Will Kahn-Greene,2013-01-17T20:52:31Z,willkg,willkg,5,3,2
+93,elasticutils,b086f47a7c04cda759afb2df44dd012b466f85c4,"Tweak django tests to skip better
+
+If django isn't installed, we want all the django tests to get skipped.
+This fixes an issue with get_es not existing because it doesn't get
+imported because django isn't installed.",Will Kahn-Greene,2013-01-17T16:31:42Z,willkg,willkg,83,49,34
+94,elasticutils,dfee06475bced41de74544b9f1284443712b1811,"Nix todo, add docs for bulk_index, fix requirements",Will Kahn-Greene,2013-01-13T16:24:36Z,willkg,willkg,19,12,7
+95,elasticutils,4afec1825a8d17a82f6c674ca479247c85359b53,"Nix max_retries; add ElasticSearch caching
+
+* nixed max_retries because I personally think it's got a confusing
+  name and, like revival_delay, it's probably not something someone is
+  going to use often
+* added caching of ElasticSearch object creation with tests",Will Kahn-Greene,2013-01-11T15:37:30Z,willkg,willkg,130,119,11
+96,elasticutils,4afdfe1ba9861c1131b9c8706be752fad41c6757,Add bulk_indexing support to Indexable with tests,Will Kahn-Greene,2013-01-10T20:57:40Z,willkg,willkg,91,90,1
+97,elasticutils,114f0c99db4aecc8bd212af3b8c8994349bec34d,Massive docs overhaul,Will Kahn-Greene,2013-01-10T16:13:05Z,willkg,willkg,508,365,143
+98,elasticutils,9bed7b5ce27e0841023b6d9ba464f1249fcedfec,"Update requirements
+
+We require at least pyelasticsearch 0.3, but it's not out, yet.",Will Kahn-Greene,2013-01-10T15:51:32Z,willkg,willkg,7,3,4
+99,elasticutils,992155e8b434fa28bc2d56758729f0216906da33,"Update sample_facets.py to new API
+
+This updates it to the new API, uses pyelasticsearch, and tweaks
+some of the comments.",Will Kahn-Greene,2013-01-09T15:40:02Z,willkg,willkg,41,23,18
+100,elasticutils,6ccf9dde3e52751852c7bc132fbd585473ce704b,"Massive update to pyelasticsearch
+
+* nix pyes things
+* update to pyelasticsearch things
+* fixes MLT so it works with pyelasticsearch (requires fixes that
+  should be in pyelasticsearch 0.3 when that gets released)
+* changes MLT fields argument to mlt_fields
+* nixes all the dump curl code
+* cleans up imports
+* fixes defaults so that S defaults to searching all indexes and
+  all doctypes
+* adjusts errors so they all derive from ElasticUtilsError
+* cleans up get_es() and S.get_es() so they're correct
+* add DeprecationWarning for deprecated things
+* update test code for MLT
+
+In elasticutils.contrib.django:
+
+* ditch the thread-local caching of ElasticSearch objects (we'll
+  implement something better soon since pyelasticsearch's ElasticSearch
+  objects are thread-safe)
+* removed statsd code from the django-related code
+* change ES_HOSTS to ES_URLS
+* update index method (need to add a new bulk_index method)
+* update test code for django-related bits",Will Kahn-Greene,2012-12-13T19:09:38Z,willkg,willkg,527,199,328
+101,elasticutils,1e2d795057c43f10ce18ffa7b4a5518bd2582189,Update version to v0.7.dev,Will Kahn-Greene,2013-01-17T16:35:24Z,willkg,willkg,4,2,2
+102,elasticutils,033550b57a550283f95a26906827119669fc915b,Tweak formatting in CHANGELOG,Will Kahn-Greene,2013-01-17T14:58:15Z,willkg,willkg,2,1,1
+103,elasticutils,5b371f9454f1864d75b00e2d78560476aef2d806,Prep for 0.6 release,Will Kahn-Greene,2013-01-17T14:53:02Z,willkg,willkg,9,5,4
+104,elasticutils,fad62880a4b06c3c38b4da2c377f8e28863fdb5e,"Issue #89. Added note that EU doesn't work with ES 0.19.9.
+
+The problem is this one:
+
+https://github.com/elasticsearch/elasticsearch/issues/2205
+
+This was a bug in ElasticSearch 0.19.9 that was fixed in 0.19.10 so
+I added a note to the docs stating ElasticUtils doesn't work with
+ElasticSearch 0.19.9.",Will Kahn-Greene,2013-01-17T14:23:29Z,willkg,willkg,9,9,0
+105,elasticutils,86481a37acb7cb3fde3c5ff2713b68b97868055e,"Tweak sample_facets.py
+
+* clarifies some of the comments
+* adds a `.es()` chainable to the S so if someone changes the HOST,
+  it's looking at the right place",Will Kahn-Greene,2013-01-17T13:38:08Z,willkg,willkg,26,19,7
+106,elasticutils,e075dbe45cf2d5debb83709e1d3c51c01fa2760b,Add Mike to CONTRIBUTORS,Will Kahn-Greene,2013-01-16T22:30:51Z,willkg,willkg,1,1,0
+107,elasticutils,d850af8b891322086f6100967f40e494ea45cb35,Implement prefix filter support,Will Kahn-Greene,2013-01-16T22:19:41Z,willkg,willkg,30,21,9
+108,elasticutils,4510d6af90644300c6891c458c55d590887db23d,"Fix test errors if django is not installed
+
+If django is not installed, then we don't import get_es and then this
+code fails. But we don't need the get_es method on QueryTest anyhow,
+so this nixes it.",Will Kahn-Greene,2013-01-16T22:18:55Z,willkg,willkg,4,0,4
+109,elasticutils,197221b06a04f03be4b517ebcd5cfd6b3d4000de,"Merge pull request #91 from mythmon/run-tests-helper
+
+Add run_tests.py to setup Django for testing.",Will Kahn-Greene,2013-01-16T22:33:12Z,willkg,willkg,48,38,10
+110,elasticutils,cddc7f6d025e0e4afbd150162670480e8f127c8d,"Add run_tests.py to setup Django for testing.
+
+This will set up the Django environment so the Django-specific tests can
+run. If Django is not present, the setup will be skipped and the tests
+will be run normally. The testsuite will skip any Django-specific tests
+in this case. This simplifies running the full test suite.",Mike Cooper,2012-12-12T22:03:15Z,mythmon,mythmon,48,38,10
+111,elasticutils,714a5c95ad479ed913c27de86a6a1f58a0a1a58a,"Issue 90. Nix silly exception ""handling""
+
+The problem here is that it's logging as an error and then re-raising.
+That's kind of irritating. It's better to just let it propagate back
+to the application and let it do whatever it wants to do.
+
+Amongst other things, this is less spammy with sentry.",Will Kahn-Greene,2012-12-03T15:14:38Z,willkg,willkg,17,6,11
+112,elasticutils,ccff9b21fa2c4589bd906cd3538dbe9f0c4438bd,"Fix stupid mistakes
+
+* I had a bad import, so the Django tests were getting skipped--fixed
+  that.
+* Fixing that unearthed failing tests--fixed those.",Will Kahn-Greene,2012-10-17T15:14:00Z,willkg,willkg,14,7,7
+113,elasticutils,1578b373d16de3c7a0de490fd39ad6d38aefcdb1,"Issue 85. Fix IndexMissingException.
+
+Alleviate problems from a bug in pyes 0.15.",Will Kahn-Greene,2012-10-17T13:20:17Z,willkg,willkg,7,6,1
+114,elasticutils,7dcc0344d22b6b5ea2ab33066a2f26634dfcc734,"Issue 84. Fix get_indexes/get_doctypes silliness
+
+All the S.get_indexes() returned a list of indexes except the one
+in Django contrib which could return a basestring or a list of
+indexes.
+
+Ditto for S.get_doctypes().
+
+This fixes that, adds docs, and adds tests.",Will Kahn-Greene,2012-10-16T20:57:04Z,willkg,willkg,85,79,6
+115,elasticutils,cd762175496467684581736d1b15a24c49ab7ae4,Fix v0.5/v0.6 issues in changelog,Will Kahn-Greene,2012-10-16T19:47:25Z,willkg,willkg,12,6,6
+116,elasticutils,675419fd8b5e4911ffd38d2d0c78bc36f9dbddd6,Update hacking_howto about django reqs.,Will Kahn-Greene,2012-09-21T23:10:35Z,willkg,willkg,6,4,2
+117,elasticutils,374d22429834914cbc5441fc3fe0f2b729a0ee8d,"Fix boosted text_phrase queries
+
+text_phrase queries are really just text queries, so they require the
+same value_key name. This fixes that and also writes a test for boosts
+that runs through ES so we can verify it doesn't kick up a
+SeachPhaseWhateverThingy.",Will Kahn-Greene,2012-09-21T22:54:27Z,willkg,willkg,15,11,4
+118,elasticutils,a478db3556cb76b671fda23d5cbe51ffac609aed,Update release date for 0.5; add TOC,Will Kahn-Greene,2012-09-21T17:17:07Z,willkg,willkg,8,6,2
+119,elasticutils,292e18dcddcf9ff43fa0b06c9a9e9231b2db99d1,Add Giorgos to CONTRIBUTORS list,Will Kahn-Greene,2012-09-21T14:30:56Z,willkg,willkg,1,1,0
+120,elasticutils,afbd458f6fdd93509f1723d7f39de8b9a577a3cb,Update CHANGELOG,Will Kahn-Greene,2012-09-20T20:57:33Z,willkg,willkg,4,4,0
+121,elasticutils,456641049ae30401fde50c71e679277f98c5529e,"Fix error from last commit
+
+It's MaxRetryError--not MaxRetryException.",Will Kahn-Greene,2012-09-20T19:03:45Z,willkg,willkg,4,2,2
+122,elasticutils,dc20e3de56884a1ddf2df6abdc34390138d66416,"Fix es_required_or_50x decorator
+
+This tweaks the es_required_or_50x decorator to handle other ElasticSearch
+errors and also improves the documentation. It also allows for template
+overrides and nixes the msg arguments--they seemed less flexible.
+
+Note: These decorators have no tests in the test suite, yet.",Will Kahn-Greene,2012-09-19T21:26:26Z,willkg,willkg,116,86,30
+123,elasticutils,6e033446a5e22c26cdb11636ffbaceafa07fa629,Add note about refreshing after indexing.,Will Kahn-Greene,2012-09-19T22:40:46Z,willkg,willkg,7,7,0
+124,elasticutils,23bd386863c9934af93340ccd0288bc8873f2d47,Add note about id and .index(),Will Kahn-Greene,2012-09-19T19:29:50Z,willkg,willkg,7,7,0
+125,elasticutils,cefa09d19c8bda4eb9f21f1e7fcb3ca1c9f42930,"Issue 74. Fix F operand mutations
+
+Operations on F shouldn't mutate the operands. This fixes the code
+so it does a deepcopy of the filters before doing things with them.",Will Kahn-Greene,2012-09-14T02:03:20Z,willkg,willkg,73,61,12
+126,elasticutils,c2c1481af7473463b8dbaba4fbfa062a25a521f6,Tweak the filter caching text further.,Will Kahn-Greene,2012-09-11T18:59:03Z,willkg,willkg,9,8,1
+127,elasticutils,6b74736183035f4b4f9d25b2111937b35e0e9805,Add note about caching/speed in filter vs. query,Will Kahn-Greene,2012-09-11T18:56:39Z,willkg,willkg,4,3,1
+128,elasticutils,ae2402822cc924063dc6b2d2faae87a80a25a8bd,"Issue 70. Fix date_histogram handling.
+
+* add handling for date_histogram in facet_counts
+* fix facet_counts to raise an exception rather than silently act
+  dumb if it doesn't recognize the _type",Will Kahn-Greene,2012-09-07T20:38:58Z,willkg,willkg,74,68,6
+129,elasticutils,547b6e2a0a0349350fdba12de5c01d0fe1bfae25,"Implement MappingType and rewrite everything around it
+
+tl;dr: This is a big rewrite with huge API-breaking changes.
+
+This replaces the old model-type system with the new MappingType
+system. This adds a degree of separation between models (traditionally
+stored in a db) and documents (stored in ElasticSearch).
+
+Untyped S works just like in v0.4 with the exception that if you
+don't specify values_dict or values_list, you now get back a list
+of DefaultMappingType which are slightly more useful than dicts.
+
+You can now create an S typed by a MappingType which makes it easier
+to specify the index and doctype, but also allows you to tie
+business logic to search results and also tie that back to db
+objects in a lazy-loading way. For example, say you had a description
+field and wanted to have a truncated version of it::
+
+    class MyMappingType(MappingType):
+        def description_truncated(self):
+            return self.description[:100]
+
+    res = list(S(MyMappingType).query(description__text='stormy night'))[0]
+
+    print res.description_truncated()
+
+Also, inextricably linked with this commit is a minor rewrite of the
+test suite. They should run faster now, are better organized, and should
+be easier to write in the future. test_django.py doesn't look like it
+was written by a shrewdness of apes any more.
+
+Also fixed a bug where `fields` was affected by ``values_list`` and
+``values_dict`` calls---the two need to be separated.",Will Kahn-Greene,2012-08-30T00:30:54Z,willkg,willkg,1361,892,469
+130,elasticutils,b3a302345f79c1e19ab46a065bd5cf61643cef39,Change _decorate_with_metadata to be less private,Will Kahn-Greene,2012-08-28T20:43:59Z,willkg,willkg,8,4,4
+131,elasticutils,4333f0b4391aebbb976e612e4ead27e15c840bff,"Add James Socol to CONTRIBUTORS
+
+Bah--he contributed ages ago and I missed adding him.",Will Kahn-Greene,2012-09-04T17:41:30Z,willkg,willkg,1,1,0
+132,elasticutils,e5952f730835e97b184d7a5444841182a984c47b,Set version to 0.6.dev,Will Kahn-Greene,2012-09-04T17:31:32Z,willkg,willkg,4,2,2
+133,elasticutils,cc3e17cd186be05d76fc4c9044f5526bc2f854c0,Update CHANGELOG; prepare for v0.5 release,Will Kahn-Greene,2012-09-04T17:30:35Z,willkg,willkg,12,8,4
+134,elasticutils,c457402521230a4e6c427c04658105fc036ee801,"Tweak the search chapter title
+
+Since it uses the ES Search API, it's better to call it ""Searching
+with S"" rather than ""Querying with S"".",Will Kahn-Greene,2012-09-04T16:31:21Z,willkg,willkg,6,3,3
+135,elasticutils,64b02a4d5d9db49ba3d31d364243c03e48269e94,Re-add index to TOC.,Will Kahn-Greene,2012-09-04T16:06:10Z,willkg,willkg,7,7,0
+136,elasticutils,0fb6c14482d5b806e751dfb58c79177b578c320c,"Issue 54. Add docs for order-by
+
+This also adds API documentation. It's not great because the docstrings
+need work, but it's better!",Will Kahn-Greene,2012-09-04T15:57:55Z,willkg,willkg,125,112,13
+137,elasticutils,623133eff0d28cac47a105382f209872c3196595,"Tweak MLT code; add docs
+
+* tweaks the MLT class so that s isn't required anymore
+* adds an es argument
+* adds documentation
+* adds two more tests to make sure the s vs. index/doctype works
+  correctly",Will Kahn-Greene,2012-09-04T14:58:03Z,willkg,willkg,202,164,38
+138,elasticutils,4ecefc901bb91b82b1fde6eb051540cef2b58e72,Add Ricky to list,Will Kahn-Greene,2012-08-31T20:50:43Z,willkg,willkg,1,1,0
+139,elasticutils,591bed3c3e9bed0bd853d208105695111923b820,"Fix Issue #53 - Implement more like this.
+
+Adds a MLT class for making _mlt API calls.",Ricky Rosario,2012-08-30T21:31:32Z,rlr,rlr,152,152,0
+140,elasticutils,3009e0824b03a7d0da0f696a3ec965d1343d00a1,"DEFAULT_INDEXES and DEFAULT_DOCTYPES are plural
+
+These two defaults were wrong--they're both plural and should be a list
+of strings. Other values are wrong.
+
+This fixes that and also fixes a bunch of tests that broke because of it.",Will Kahn-Greene,2012-08-31T18:15:45Z,willkg,willkg,17,10,7
+141,elasticutils,d71c14fd360886a72b29639a039de611fda9fda2,Issue 66. Add test for __in filter field action,Will Kahn-Greene,2012-08-30T16:16:15Z,willkg,willkg,3,3,0
+142,elasticutils,7d532373c91f60276021ee1bfbf72bc679cdcc35,"Issue 63. Fix bad field action silent errors
+
+This fixes query processing so if you have an invalid field action, it
+now raises an exception--just like filters.",Will Kahn-Greene,2012-08-30T14:53:49Z,willkg,willkg,8,8,0
+143,elasticutils,557104d2e92aa7929fa39c1c36a9645f8ae240a1,Issue 60. Implement terms query.,Will Kahn-Greene,2012-08-30T14:51:43Z,willkg,willkg,10,10,0
+144,elasticutils,964d866a930efe03bca5b3150b9d1e4f16a78e43,Add Chris to CONTRIBUTORS,Will Kahn-Greene,2012-08-27T16:54:47Z,willkg,willkg,1,1,0
+145,elasticutils,548db51adadf4b91b6279a63b154fbdc2ad42626,"Merge pull request #62 from wraithan/patch-1
+
+Add in missing colon in debugging docs",Will Kahn-Greene,2012-08-27T16:55:48Z,willkg,willkg,2,1,1
+146,elasticutils,9760bfc1d46997b5b3341cf8f280b517b5e7249c,Add in missing colon in debugging docs,Chris McDonald,2012-08-27T16:46:47Z,wraithan,wraithan,2,1,1
+147,elasticutils,357f3ff19ac9087aa51602812de1e3a6ee72d3e9,"Overhaul Django SearchMixin and docs
+
+* overhauls SearchMixin to be more useful and flexible but continue to
+  have useful defaults
+* this overhauls a lot of the documentation for the contrib.django stuff
+  and makes more of it correct",Will Kahn-Greene,2012-08-27T11:00:15Z,willkg,willkg,394,316,78
+148,elasticutils,4b305a442b34c210993390a8c0631c8aefa62213,"Fix django reqs file; add docs reqs file
+
+This should fix autodoc stuff on ReadTheDocs.",Will Kahn-Greene,2012-08-24T21:08:22Z,willkg,willkg,9,8,1
+149,elasticutils,9b157db7e227069344fa2161121715dcdf107146,Only need one fake settings file,Will Kahn-Greene,2012-08-24T19:49:58Z,willkg,willkg,5,1,4
+150,elasticutils,92f35dc654d13c9cc6252e9feda857ce6435756c,"Expose version in elasticutils.__version__
+
+This also renames elasticutils.VERSION to elasticutils.PYES_VERSION
+to avoid convusion.",Will Kahn-Greene,2012-08-24T18:24:32Z,willkg,willkg,9,7,2
+151,elasticutils,51a2248047c4f6dabe0fbeec471fcb86f11baf93,"Merge pull request #57 from jsocol/master
+
+Fix two small issues",Will Kahn-Greene,2012-08-21T18:36:48Z,willkg,willkg,2,2,0
+152,elasticutils,fdf09e8e0c7879a8651feab3c1552a772a7ee116,Ignore pycs and install all requirements.,James Socol,2012-08-21T18:28:39Z,James Socol,James Socol,2,2,0
+153,elasticutils,9008257136e9b50f0fa268b07e0ab6dcdd78be7a,"Issue 51. Implement .demote()
+
+This implements boosting query support, though it does it by dealing
+with the positive and negative queries as two separate things.",Will Kahn-Greene,2012-08-06T22:41:49Z,willkg,willkg,88,85,3
+154,elasticutils,98f210e2b3fe2451b63ad6abbf50e8ab690ef5a3,Add python language version classifiers,Will Kahn-Greene,2012-08-06T15:43:07Z,willkg,willkg,2,2,0
+155,elasticutils,414e4388a6d10afa9a001715ed036b86a258c9f2,"Add release process
+
+Mostly I'm adding this so I don't have to go figure it out again. Way
+easier to just document it and then it's documented for future
+maintainers.",Will Kahn-Greene,2012-08-02T12:51:31Z,willkg,willkg,34,33,1
+156,elasticutils,371ddf2c4beb79b82b1154abfa1efdd6bc5e379a,Change version to 0.5.dev,Will Kahn-Greene,2012-08-02T12:51:14Z,willkg,willkg,4,2,2
+157,elasticutils,34ee6f4c8e3ee8bf517c4bc38553fb23592df206,Prepare for 0.4 release,Will Kahn-Greene,2012-07-31T21:24:17Z,willkg,willkg,9,5,4
+158,elasticutils,871fde507b4c5db21f7db6654521ba2e9993c54b,"Change format_text to format_explanation
+
+Also fixes issues with it.",Will Kahn-Greene,2012-07-31T17:59:15Z,willkg,willkg,10,6,4
+159,elasticutils,d316f47de05a75e58a631218ddf254c2665959bb,Update CHANGELOG,Will Kahn-Greene,2012-07-28T18:35:28Z,willkg,willkg,9,6,3
+160,elasticutils,ebd3900f7172a223cec891aec825c557329e3dd6,"Issue 27, 50. Add query_string and text_phrase.
+
+* add support for query_string and text_phrase
+* adds documentation for both
+* adds handling for 'term' action
+* nixes documentation for startswith which is deprecated for prefix
+  (though both work for now)
+* adds documentation for queries vs. filters
+* adds tests for the different query types",Will Kahn-Greene,2012-07-28T18:28:51Z,willkg,willkg,115,101,14
+161,elasticutils,4d454e0293b4d0947e8b9ddad5f32c26e691b320,"Add ngrep to debugging chapter
+
+It's super handy when writing sample programs that fiddle with things.",Will Kahn-Greene,2012-07-26T00:53:10Z,willkg,willkg,17,17,0
+162,elasticutils,27a375f250a308392d0fd15bd4553b3b6fdf8bd0,Add sample program for facets,Will Kahn-Greene,2012-07-26T00:48:27Z,willkg,willkg,152,152,0
+163,elasticutils,3fa555d3a7475e43fec4fdd1ee30398961882064,"Fix facet_counts
+
+I intended to implement it like Django Haystack where it's a method
+on the S (or SQS in their case), but I implemented it as a property.
+
+This fixes the discrepancy.",Will Kahn-Greene,2012-07-25T21:39:53Z,willkg,willkg,3,1,2
+164,elasticutils,73b7ca964d82d7c3df7158d4f08a77a582891dde,Fix docs on facet_counts,Will Kahn-Greene,2012-07-25T21:35:46Z,willkg,willkg,10,6,4
+165,elasticutils,836525b4e9e147e6588092c797e89c784dda0b79,Update CHANGELOG,Will Kahn-Greene,2012-07-21T00:33:31Z,willkg,willkg,3,3,0
+166,elasticutils,b81327a1728ee0cfde5ff99033bc55a6ed2e669d,"Issue 42. Implement highlight
+
+This is a first pass at implementing highlight and it implements
+all the bits I need for SUMO.
+
+However, there's a lot of other stuff you can do with highlight
+and the docs I wrote don't really cover everything like why
+pre/post_tags need to be lists, fragment lengths, .. So there's
+more to do, but that can be done under the auspices of a different
+issue..",Will Kahn-Greene,2012-07-19T16:22:05Z,willkg,willkg,185,185,0
+167,elasticutils,a27d7ca8d0c74d6fa2ae0ad2c3760b62adf26076,Update CHANGELOG,Will Kahn-Greene,2012-07-19T13:25:00Z,willkg,willkg,14,14,0
+168,elasticutils,ba7b8a0a0e0cb159b5b91b12973f34ecf6fc877c,"Issue 28. Implement query-time field boosts
+
+This adds support for query-time field boosts. The docs cover how they
+work and get used.
+
+I also cleaned up _process_queries a little to make it less redundant
+and I fixed the test_query.py which was using a typed S and shouldn't
+have been.",Will Kahn-Greene,2012-07-18T14:33:54Z,willkg,willkg,137,124,13
+169,elasticutils,79932908c252703b86c2b9fc5bf8d27c77f90904,"Issue 38. Explain support
+
+This adds support for 'explain' flag in searches, documentation, tests,
+and a function that formats the resulting explanation output so it's
+human-readable.
+
+The latter is kind of a nice-to-have, so I stuck it in utils.py. It's
+not documented, yet, because I figure it could use some work.",Will Kahn-Greene,2012-07-03T23:58:48Z,willkg,willkg,165,158,7
+170,elasticutils,b2c0abd72b59ea97f255ed69f7617dba11e3ebc1,"Fix section on count/len in docs
+
+q.count() != len(q)
+
+Suggesting those are the same is wrogn!",Will Kahn-Greene,2012-07-03T18:35:38Z,willkg,willkg,32,28,4
+171,elasticutils,38310a53263e0a6b3e12e1ba43d17eaefcf8ad6f,Remove exxtraneous list/dict call,Will Kahn-Greene,2012-07-03T17:38:45Z,willkg,willkg,2,1,1
+172,elasticutils,2c12e2a2e70b85625ffd85e4d6013e2328893d19,"Add seealso sections to docs
+
+Adds links to the ES docs in relevant portions of the documentation.",Will Kahn-Greene,2012-07-03T17:21:06Z,willkg,willkg,104,84,20
+173,elasticutils,d33449f194bb6ee55abbcd65add533810722b0e2,"Issue 43. Reimplement facets
+
+This reworks facets so that the API is cleaner and easier to use. It
+now has a .facet() which acts as a shorthand but doesn't do things
+you might not expect and it has a .facet_raw() which yields unto
+you the full expressive power of the ES facet.
+
+This adds some more tests and documentation and updates the CHANGELOG,
+too.",Will Kahn-Greene,2012-07-03T00:32:58Z,willkg,willkg,363,312,51
+174,elasticutils,28f9fdf18aa7eb5723f3ecf26508eb3fd0b393a6,Tweak versions again,Will Kahn-Greene,2012-07-02T21:45:45Z,willkg,willkg,7,4,3
+175,elasticutils,c37875631e86dd5aa59c84483f33a980d4388295,"Update version number
+
+Also added examples in the comments so it's easier to know the scheme.",Will Kahn-Greene,2012-07-02T21:43:51Z,willkg,willkg,5,4,1
+176,elasticutils,2a69e1b2323002ab089bad15383d31bceb794151,Add note about single field and values_list,Will Kahn-Greene,2012-07-02T21:41:30Z,willkg,willkg,14,14,0
+177,elasticutils,94a2170b1e82e87836149ab68ea7c0e421cb422b,"Fix list results
+
+If there was only one item in self.fields, then you'd end up with
+a flat list of things instead of a list of tuples. We want that
+to be consistent, though, so if we know we're in that situation, we
+fix it accordingly.
+
+This is a little awkward if you really want a flat list. Maybe we
+should make that easier in the future.",Will Kahn-Greene,2012-07-02T16:54:47Z,willkg,willkg,24,13,11
+178,elasticutils,c90bd92c8bf35aaf726a6e7043a097968adcfd79,"Update MANIFEST
+
+Needed to update the requirements lines in MANIFEST. I changed it
+so that we shouldn't have to update it again even if we add more
+to it.",Will Kahn-Greene,2012-06-29T09:08:59Z,willkg,willkg,2,1,1
+179,elasticutils,b1dad0d79f6fefb46e270c6023b12c2ad3133157,"Update docs
+
+* updates and clarifies a bunch of bits in the documentation.
+* updates the documentation in respects to typed S and untyped S
+  and search results and all that.
+* went through and tested the facet code. This updates the facet
+  documentation.
+* PEP-257 fixes",Will Kahn-Greene,2012-06-28T15:58:09Z,willkg,willkg,535,317,218
+180,elasticutils,85650288b356292f9c1924313a76ac4fbc117c6c,"Fix results; allow for untyped S; moar tests
+
+* changes ""values"" to ""values_list"" which is better
+* allows for untyped S, so you can do S() and get dict results
+* fixes edge cases with specifying fields (from SUMO branch)
+* adds a bunch of tests results-related functionality (most of
+  the tests come from SUMO branch)
+* require type_ for elasticutils.contrib.django.S",Will Kahn-Greene,2012-06-28T17:26:25Z,willkg,willkg,201,154,47
+181,elasticutils,3daf91b44730e55e5788d751d894c530ac71c5ff,Fix tests so they run without Django,Will Kahn-Greene,2012-06-28T15:45:23Z,willkg,willkg,81,76,5
+182,elasticutils,b5c8ba6b63f06bbb5ed820149e1afc35f13b0298,Fix requirements files,Will Kahn-Greene,2012-06-28T13:54:31Z,willkg,willkg,19,5,14
+183,elasticutils,587e3071bf9ed06051fa879670f1299f455e6d2c,"Issue 41. Move django bits to contrib
+
+This reworks the codebase so that it doesn't require Django. There
+are some API breaking things here, but hopefully the changes required
+for users will be minimal.",Will Kahn-Greene,2012-06-28T00:17:32Z,willkg,willkg,966,686,280
+184,elasticutils,e5b06fef9cae2285df95138a11b2a5c500c2f7b7,Update changelog and add it to docs,Will Kahn-Greene,2012-06-26T13:30:49Z,willkg,willkg,27,24,3
+185,elasticutils,d060782d4a3249ac36002945d8dbdb247b0310be,"Issue 39. Clean up test code
+
+* move the test code under elasticutils/
+* split up tests into a couple of files
+* create an ElasticTestCsae that skips tests if ElasticSearch isn't
+  running
+* changes the existing elasticutils/tests.py to djangolib.py---this
+  is the start of the Django shim
+* update documentation
+
+The result of all this is that now you can run tests by:
+
+    DJANGO_SETTINGS_MODULE=es_settings nosetests",Will Kahn-Greene,2012-06-24T01:40:29Z,willkg,willkg,267,186,81

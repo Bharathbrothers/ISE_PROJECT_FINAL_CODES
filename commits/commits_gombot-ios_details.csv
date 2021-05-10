@@ -1,0 +1,46 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,gombot-ios,7952c3ec7d45cc2d487b0a3ddc25623124f91947,"Changed timeouts:  clipboard cleared after one minute, pin required after 2 minutes.
+Also, things copied from detailview also get cleared.",Dan Walkowski,2013-02-12T19:26:27Z,Dan Walkowski,Dan Walkowski,9,7,2
+1,gombot-ios,6287c9c8e89add4ba266c754535ccf6a02217d4f,"final discussed features implemented:
+- password is cleared from clipboard after 45 seconds
+- pin is not required for 90 seconds after app closed.
+
+both of these could be configured from UI, but are hard coded at the moment.",Dan Walkowski,2013-02-12T07:56:51Z,Dan Walkowski,Dan Walkowski,282,180,102
+2,gombot-ios,b526f289baa8d91beff45e4f8f36433b199d348a,multithreaded update  issues squashed,Dan Walkowski,2013-02-07T23:31:50Z,Dan Walkowski,Dan Walkowski,39,21,18
+3,gombot-ios,b84d40333f0a874444f4c5605057503402454bf6,Live updating of site list,Dan Walkowski,2013-02-06T22:17:52Z,Dan Walkowski,Dan Walkowski,746,572,174
+4,gombot-ios,9df6593ce1bad39cfa5265807b3ff1f9e60e1395,"correctly display all fields of site item in details page, including breaking out arrays and dictionaries into lists.  Added first pass at error messages for login page.",Dan Walkowski,2013-01-23T19:01:18Z,Dan Walkowski,Dan Walkowski,89,70,19
+5,gombot-ios,32062e2e4eac1331371abbd3ea7b2ee05679f395,"Detail view now shows all fields, even ones not used by this app.  Encrypt and upload code is ready, tested and works, if/when we want to make this a read/write client.  (just noticed that IV calculation is missing!)",Dan Walkowski,2013-01-18T19:24:19Z,Dan Walkowski,Dan Walkowski,266,138,128
+6,gombot-ios,cc51e8119cfff7a72ff92de28ef50a8315221a95,"rewrote networking code to use two-stage freshness check then get data.  am authenticating against live (tobmog) server, with real account and real data.  at this point, everything works, aside from a number of sad paths that need friendly error messages",Dan Walkowski,2013-01-12T01:24:11Z,Dan Walkowski,Dan Walkowski,158,105,53
+7,gombot-ios,e69a505e49916b568572a38c281f8f6a568616e8,"fix data leakage and copying.  Authview handles most auth errors gracefully now, though without user feedback",Dan Walkowski,2013-01-04T01:29:37Z,Dan Walkowski,Dan Walkowski,208,126,82
+8,gombot-ios,dcff31b3a1f9e2396bb7977abd98112aa13c6dda,"new data format correctly parsed.  encrypted data being downloaded from dropbox on pin failure. Reachability onboard, but not being used yet.",Dan Walkowski,2013-01-02T23:43:41Z,Dan Walkowski,Dan Walkowski,786,768,18
+9,gombot-ios,0d1c5a24f0014351dc56e79aaf3e492e8b014714,incorrect logging removal fixed,Dan Walkowski,2012-12-21T18:50:05Z,Dan Walkowski,Dan Walkowski,2,1,1
+10,gombot-ios,a699e3ea8c7ecad74d03ae7841430b6973c1b47c,"cleaned, tests brought online, are passing.",Dan Walkowski,2012-12-21T01:03:15Z,Dan Walkowski,Dan Walkowski,236,88,148
+11,gombot-ios,d60d7706326d92f524261d82c991a7c9586e3dc7,update GombotDB.m to KDF v1.3,Brian Warner,2012-12-19T21:26:08Z,warner,warner,14,8,6
+12,gombot-ios,936b86c37a051db262e3a4584d72fd15b2b7c24b,iOS: note need for constant-time MAC comparison,Brian Warner,2012-12-19T02:37:52Z,warner,warner,1,1,0
+13,gombot-ios,3194dd380389fac5e9823870647a17351bd64950,"iOS: compute and check HMAC before attempting to decrypt message
+
+We do this *before* decryption to prevent a padding-oracle attack.",Brian Warner,2012-12-19T02:12:28Z,warner,warner,13,10,3
+14,gombot-ios,5fecf537a798bffc7bc1f6788c93f51c0cd9f276,"iOS: update KDF/encryption to v1.2
+
+i.e. masterKey uses SECRET+"":""+PASSWORD and salt of ""master"", removed
+cryptKey, all of [data/AES, data/HMAC, authentication] are derived
+directly from masterKey, added versionPrefix.",Brian Warner,2012-12-19T02:07:43Z,warner,warner,67,37,30
+15,gombot-ios,f11f682922fc0a635af46a2b8cac83d2f4df342d,test writing in progress,Dan Walkowski,2012-12-18T23:54:03Z,Dan Walkowski,Dan Walkowski,40,30,10
+16,gombot-ios,23ff0caf16b402f6e8cb00d9d763b677e3b8fac3,icon modified,Dan Walkowski,2012-12-17T23:16:24Z,Dan Walkowski,Dan Walkowski,0,0,0
+17,gombot-ios,c37d50acb9b700eaed59acde0aad8a90a1203a82,database file decryption is working,Dan Walkowski,2012-12-17T23:11:40Z,Dan Walkowski,Dan Walkowski,908,752,156
+18,gombot-ios,8f915be500da6fb58ae6da4b3e24bf8c180513a1,ignore XCode stuff,Dan Walkowski,2012-12-05T00:29:46Z,Dan Walkowski,Dan Walkowski,2,2,0
+19,gombot-ios,c636a605d0e17d81315b9eb224d8c2e5fa6887a3,ideleted files,Dan Walkowski,2012-12-05T00:25:51Z,Dan Walkowski,Dan Walkowski,972,0,972
+20,gombot-ios,2fd862f4f6b1c1dd427f99d78698214cb593af35,"remove unneeded code commented out, and also test whether I can commit and push now that this is linked to the github repo",Dan Walkowski,2012-12-05T00:13:54Z,Dan Walkowski,Dan Walkowski,11,0,11
+21,gombot-ios,e0eaa161823ee2cb185330094fd415d59700f5b7,many missing and duplicate files straightened out,Dan Walkowski,2012-12-04T23:54:26Z,Dan Walkowski,Dan Walkowski,1332,1236,96
+22,gombot-ios,9ec2ce398ddb9a3c99b3171bbc2bc358bf8bbd80,pbkdf2 code now has matching test vector,Dan Walkowski,2012-12-04T23:17:33Z,Dan Walkowski,Dan Walkowski,90,69,21
+23,gombot-ios,1c59f85c25fafe4aa3fafeaaa54418e5d5db7a6f,pbkdf2 key generation,Dan Walkowski,2012-12-04T21:24:26Z,Dan Walkowski,Dan Walkowski,350,229,121
+24,gombot-ios,bbdd7a90f019c7c27eca3363b51c665f8940c681,"updated for Friday demo, plus new icon",Dan Walkowski,2012-12-03T19:31:58Z,Dan Walkowski,Dan Walkowski,1250,971,279
+25,gombot-ios,002d9bf21ed6528aa9611258fca0bf3fce7b16e2,new keypad and lights complete,Dan Walkowski,2012-11-28T22:51:07Z,Dan Walkowski,Dan Walkowski,240,147,93
+26,gombot-ios,8c797a001432866707b8d26925c69a4658a9acd0,zooming logo.  making GombotDB changeover,Dan Walkowski,2012-11-28T17:57:34Z,Dan Walkowski,Dan Walkowski,83,26,57
+27,gombot-ios,9a8c316ccc93ae6d5a95e14564de04d6e14605a6,animated background,Dan Walkowski,2012-11-28T00:27:23Z,Dan Walkowski,Dan Walkowski,86,66,20
+28,gombot-ios,80105498f5ebcd6ee8ec8af778b45427ddd759a9,"working, without decryption, just prior to GombotDB refactoring",Dan Walkowski,2012-11-27T22:43:32Z,Dan Walkowski,Dan Walkowski,863,734,129
+29,gombot-ios,11e3205406fedcf26fb02b76c96baf3f37269d51,"search, copy, etc. all work",Dan Walkowski,2012-11-17T00:19:49Z,Dan Walkowski,Dan Walkowski,269,220,49
+30,gombot-ios,e321be640dd9a62cb69f37cf03ff419c8d124d25,"pin code entry works, and keeps track of failed attempts",Dan Walkowski,2012-11-14T07:13:44Z,Dan Walkowski,Dan Walkowski,155,119,36
+31,gombot-ios,d47af60e88fd184e0daf82d4f2218d39952f6271,details page works. copy pass and launch works.,Dan Walkowski,2012-11-13T23:01:19Z,Dan Walkowski,Dan Walkowski,477,366,111
+32,gombot-ios,e36d1e04068d0ebed13f76825af7a863d19822c5,nearly working!,Dan Walkowski,2012-11-12T21:06:30Z,Dan Walkowski,Dan Walkowski,664,649,15
+33,gombot-ios,a40b945ef43d771a806a05d5658e5f117cf67b67,Initial Commit,Dan Walkowski,2012-11-09T23:16:28Z,Dan Walkowski,Dan Walkowski,783,783,0

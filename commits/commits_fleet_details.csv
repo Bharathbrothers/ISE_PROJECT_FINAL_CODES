@@ -1,0 +1,1567 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,fleet,ac9a38c207f6114118aab93bed55f327c104b75e,"Login page scaffolding (#142)
+
+* LoginPage component and route
+
+* animated SVG background image utility
+
+* Kolide text, User, Lock, & Kolide logo SVG icons
+
+* styleguide
+
+* Adds global footer
+
+* Adds InputFieldWithIcon component
+
+* Adds LoginForm component
+
+* Render LoginForm from the LoginPage",Mike Stone,2016-09-12T15:14:07Z,mikestone14,mikestone14,968,950,18
+1,fleet,82cad97c04f5c1dcd6e2207a543d13eaea3f1afb,"rename mock datastore to inmem (#150)
+
+* rename mock datastore to inmem
+
+* fix tests",Victor Vrantchan,2016-09-10T01:39:38Z,groob,groob,46,23,23
+2,fleet,300b7ac2db6548bf4f7a87d6e5be2322d767d9c5,"pretty-print JSON response. (#147)
+
+NOTE: SetIndent() was introduce in 1.7",Victor Vrantchan,2016-09-09T12:34:53Z,groob,groob,8,6,2
+3,fleet,05b1afd635195fcb8ea992bdb27ab17eb5bdc07a,"Update user properties (#143)
+
+* renamed NeedsPasswordReset field for clarity
+This field was not obvious when it should be set or checked. This makes it a bit more obious.
+The property should only be set if the password request was requested by an admin.
+Having this property checked should
+- invalidate current user auth token
+- force user to reset password on their next login
+- NOT send a password reset email
+
+* add GravatarURL property
+we considered uploading and storing an image url in the future as well
+
+* Add a user property to save the user's job role/position",Victor Vrantchan,2016-09-08T22:57:05Z,groob,groob,182,93,89
+4,fleet,a0a035f2c48afd4f5efcccf20cea3dfa7f4d143b,Icon component setup & bg image (#133),Mike Stone,2016-09-08T12:50:44Z,mikestone14,mikestone14,526,521,5
+5,fleet,8bf2b7ee7bb0b633c8a55ee42f13f3b2ab3353ff,Forgot to specify that logout is post (#136),Mike Arpaia,2016-09-08T02:58:25Z,marpaia,marpaia,4,2,2
+6,fleet,e7cabd0b73c47bf8386e292a19189e0bc0399fc9,Removing npm install --dev flag (#137),Mike Arpaia,2016-09-08T02:57:05Z,marpaia,marpaia,2,1,1
+7,fleet,251043970b409f965065cca7101bceb3f4c3e7b4,"Header based JWT authentication (#131)
+
+* add a test data subcommand
+
+* updated sessions stuff
+
+* merge and tests",Mike Arpaia,2016-09-08T01:24:11Z,marpaia,marpaia,921,341,580
+8,fleet,906bf795263bd9ad83aebfd416f676229c196b4d,Changes CSS styles to JS using Radium (#129),Mike Stone,2016-09-07T20:07:45Z,mikestone14,mikestone14,284,181,103
+9,fleet,88e4be20df638f27da9adcf1b307669d92c41d63,stdmux api routes should have a slash at the end (#132),Victor Vrantchan,2016-09-07T20:02:55Z,groob,groob,6,2,4
+10,fleet,3ffc1028e474f1d3860fcf5df943933cf883baa5,move serving static assets outside of the API handler (#130),Victor Vrantchan,2016-09-07T19:19:54Z,groob,groob,35,18,17
+11,fleet,8436e3ea173c9f827b3bf8db66f5a24adb76ae38,Removing unused mock package (#128),Mike Arpaia,2016-09-07T03:26:44Z,marpaia,marpaia,240,0,240
+12,fleet,47e28d29aabe27ab53485d0d306a7a228ba46b69,Redux configuration (#122),Mike Stone,2016-09-07T00:04:02Z,mikestone14,mikestone14,100,64,36
+13,fleet,ff92f6749a03ee83fde3722798445002bc32f32e,"Osqueryd Service (#119)
+
+* host service stuff
+
+* working on the osquery service api
+
+* log status and results logs",Mike Arpaia,2016-09-06T21:28:07Z,marpaia,marpaia,461,428,33
+14,fleet,bad0d624525227bbcd747db80881f7a9f4c5adbf,Remove eslint config from package.json (#126),Mike Arpaia,2016-09-06T21:22:57Z,marpaia,marpaia,35,0,35
+15,fleet,47aa83a9115b3883268fc643e11c3e6b5b6bbff1,Move test setup out of root (#124),Mike Arpaia,2016-09-06T21:13:03Z,marpaia,marpaia,2,1,1
+16,fleet,cab34eb46cd953992c87ef766084f376e9c48e4c,Moving development docker-compose out of root (#125),Mike Arpaia,2016-09-06T21:09:25Z,marpaia,marpaia,0,0,0
+17,fleet,7a67e98eda5ce441bdddc04c2dceea915e488952,Making JS tests windows friendly (#123),Mike Arpaia,2016-09-06T21:00:34Z,marpaia,marpaia,61,36,25
+18,fleet,a90645a95f11596b22a7cbe8c08f2594b0d9bee2,Testing/linting setup (#120),Mike Stone,2016-09-06T18:41:16Z,mikestone14,mikestone14,138,116,22
+19,fleet,1e36dabbdc3605d3f79318aa75c1750069e3d99e,Adding the watch flag to webpack (#118),Mike Stone,2016-09-06T15:23:33Z,mikestone14,mikestone14,2,1,1
+20,fleet,9be7eacc73e7dcfa853e27c8a8d2944ec5b071b0,generate-dev,Mike Arpaia,2016-09-06T15:08:11Z,marpaia,marpaia,5,4,1
+21,fleet,0a3f29ade5ef2030c0428d7b050bd0ec26862446,"small fixes in endpoint error handling (#117)
+
+* space in ,omitempty does not omit the field
+https://play.golang.org/p/TF_itLk50g
+
+* return service errors as part of the response struct",Victor Vrantchan,2016-09-06T15:02:11Z,groob,groob,44,22,22
+22,fleet,b5b4796a5d428684d73c1f4e34fd56b1fc06fe81,rm go generate,Mike Arpaia,2016-09-05T22:02:38Z,marpaia,marpaia,2,0,2
+23,fleet,6bdf3fba4b5dbfe9075f19afb8bc3a1b0dbc85cd,cleaning up some development files (#115),Mike Arpaia,2016-09-05T21:58:49Z,marpaia,marpaia,99,11,88
+24,fleet,a06f5b2afb15525d835f341247ea2d81eee0085b,"main and readme updates (#114)
+
+* main and readme updates
+
+* go vet error",Mike Arpaia,2016-09-05T21:40:34Z,marpaia,marpaia,135,47,88
+25,fleet,6c26faae1a8cb8b24a09dc085a48804f7f53ca3f,"Merge pull request #103 from kolide/kittypes
+
+Merge go-kit service implementation into master",Mike Arpaia,2016-09-05T20:07:37Z,marpaia,marpaia,11158,5191,5967
+26,fleet,121af829d08d3fcfca3394e4d0438a507c44f67e,removing old server implementation (#109),Mike Arpaia,2016-09-05T20:03:58Z,marpaia,marpaia,5469,108,5361
+27,fleet,95d66bc6f47df3615afd63da1fdee4b6385ebe76,using the wrong context,Mike Arpaia,2016-09-05T19:53:55Z,marpaia,marpaia,2,1,1
+28,fleet,b7becf64280b5d30d2c0ce9f9b04527539220eb9,"Sessions endpoints (#108)
+
+* renaming auth service to sessions service
+
+* service method implementations
+
+* endpoint and transport and transport tests
+
+* Authenticate tests",Mike Arpaia,2016-09-05T19:50:57Z,marpaia,marpaia,354,341,13
+29,fleet,05f8fb3263991a81b48e646cc11195969573a8d3,Serve frontend in kitserver (#107),Mike Arpaia,2016-09-05T14:15:58Z,marpaia,marpaia,60,59,1
+30,fleet,186f96b8e875565128f48e92078f379d8b194111,Handler tests (#106),Mike Arpaia,2016-09-04T19:43:12Z,marpaia,marpaia,182,149,33
+31,fleet,1abc44790e250d8e20c8802939e76a65d3b49a19,Transport users tests (#105),Mike Arpaia,2016-09-04T18:31:17Z,marpaia,marpaia,147,147,0
+32,fleet,1f6c8a82deb4a81fd716920b789550822956cf47,Updating the docker image to go 1.7 (#104),Mike Arpaia,2016-09-04T15:55:26Z,marpaia,marpaia,4,2,2
+33,fleet,53a1fe8d84c6398cf844d584787d6f243b35c181,"queries and packs services via go-kit (#102)
+
+* osquery services via go-kit
+
+* Visual Studio Code configurations
+
+* create query and pack endpoints
+
+* organizing files more scalably
+
+* modify query and pack endpoints
+
+* delete query and pack endpoints
+
+* get query and pack endpoints
+
+* get all queries and packs endpoints
+
+* add and remove queries from packs
+
+* test stubs
+
+* removing some indirection
+
+* query service tests
+
+* service pack tests
+
+* transport tests
+
+* adding config file flag back
+
+* organizing package kolide
+
+* get queries in pack endpoint
+
+* run tests on 1.7?
+
+* no 1.7 image :(
+
+* typo in circle.yml",Mike Arpaia,2016-09-04T05:13:42Z,marpaia,marpaia,2456,2055,401
+34,fleet,5b78c0a7cccec6d574b1e7ad08937bed4020e9c1,Organizing cobra commands (#100),Mike Arpaia,2016-09-03T17:25:16Z,marpaia,marpaia,979,506,473
+35,fleet,9ab09f122a5db3ba7d8b97a850d05a8db8733415,"update user service (#101)
+
+- Added all required methods for a UserService
+- Added authentication handlers `/api/login` and `/api/logout`
+- Added authMiddleware for authentication for `/api/v1/kolide` path
+- Added authorization middleware for each endoint
+- Added validation middleware for validating API inputs
+- Began work on logging middleware",Victor Vrantchan,2016-09-01T04:51:38Z,groob,groob,1643,1319,324
+36,fleet,b08d5cfb54447026d2f6330f6a34ddcc844475b0,add more user auth methods,Victor Vrantchan,2016-08-29T17:04:07Z,groob,groob,123,76,47
+37,fleet,0bb0ce888897fcfca476ea60fdefb43b05b9ca1e,update glide,Victor Vrantchan,2016-08-29T13:10:09Z,groob,groob,17,15,2
+38,fleet,c04e4f82dd28b03ee6052ceee129ea6955645ac7,add setpassword to service,Victor Vrantchan,2016-08-29T13:07:23Z,groob,groob,1,1,0
+39,fleet,739bd2924cb93620874f1fbff43c9d4baaef9cf7,add tests for set password,Victor Vrantchan,2016-08-29T00:29:56Z,groob,groob,87,72,15
+40,fleet,d611dc7786264513248d6a7d45d1b21772eb6327,add WriteActions context,Victor Vrantchan,2016-08-28T15:12:04Z,groob,groob,7,6,1
+41,fleet,a07e9c7d774f288fb23be73f90f5b37c3428363c,go-kit server layout,Victor Vrantchan,2016-08-28T03:59:17Z,groob,groob,1313,1177,136
+42,fleet,2946eeabfc56d97f6394bf3ed736f3e92add3464,"add Dockerfile (#94)
+
+* add Dockerfile to build",Victor Vrantchan,2016-08-25T13:25:02Z,groob,groob,115,91,24
+43,fleet,41fe404ef1f0728508fb8130ef09a1edbc89a8f6,"HTTP Controller updates for label queries (#96)
+
+Add controller methods for:
+
+* Retrieving label queries
+* Storing results of label queries",Zachary Wasserman,2016-08-24T23:50:28Z,zwass,zwass,608,584,24
+44,fleet,3f81dda638be2596fcde107d3490898bebb127e3,"Query management backend (#95)
+
+* initial data model modifications
+
+* stubbing out http api endpoints
+
+* becoming more restful
+
+* GetAllQueries
+
+* GetAllPacks
+
+* GetQuery
+
+* GetPack
+
+* fixing datastore tests
+
+* CreateQuery
+
+* CreatePack
+
+* ModifyQuery
+
+* ModifyPack
+
+* DeleteQuery
+
+* DeletePack
+
+* AddQueryToPack
+
+* DeleteQueryFromPack
+
+* todo change route URI
+
+* fixing go vet
+
+* comments
+
+* universal url id parsing api",Mike Arpaia,2016-08-24T02:30:55Z,marpaia,marpaia,2215,2098,117
+45,fleet,202319e83a62c1573c61f35d04190a68fee64a87,"Add method for recording label query results (#92)
+
+* New datastore method for recording label query results
+* Add to label query test",Zachary Wasserman,2016-08-22T15:46:18Z,zwass,zwass,123,106,17
+46,fleet,b8d4c78f62acf3a79b1e6f457f40e012b7966260,"Integration tests (#90)
+
+* tests for auth endpoints
+
+* create user test and fatals instead of panics
+
+* more tests
+
+* remove init viper config setting
+
+* stubbing
+
+* more tests
+
+* more tests
+
+* organizing auth and users files
+
+* rest of auth tests
+
+* password reset tests",Mike Arpaia,2016-08-20T06:56:49Z,marpaia,marpaia,2029,1665,364
+47,fleet,06402eefe92caf85161e0393a16efa931add3bb5,Removing bindata.go,Mike Arpaia,2016-08-20T01:39:31Z,marpaia,marpaia,287,0,287
+48,fleet,578b81558cc23c30cceacd2fa166794cb5417304,"add build container for testing in ci (#89)
+
+build fails if container exit code fails. 
+One step closer to #71",Victor Vrantchan,2016-08-20T00:05:24Z,groob,groob,52,35,17
+49,fleet,7ec484633aada7081f62ba457e7df6991de84e95,"Add GetLabelQueriesForHost (#86)
+
+* Add/update models for label queries
+* Write functions to determine which label queries should run for a given host
+* Tests",Zachary Wasserman,2016-08-19T18:24:59Z,zwass,zwass,507,337,170
+50,fleet,1062f0c91246f169a13dbc2c3b4a3e245f17b26b,"add datastore tests (#87)
+
+import original mysql drivers instead of the gorm dialect
+comment blank imports for db drivers, but leave in datastore rather than main",Victor Vrantchan,2016-08-19T04:57:00Z,groob,groob,295,191,104
+51,fleet,26e2a7c02599efbdc306a06a9e977a57311395df,Isolate gorm to the plugin and add back sqlite3 (#85),Mike Arpaia,2016-08-19T01:20:33Z,marpaia,marpaia,29,22,7
+52,fleet,46a35d49b44a9ad109095b2a2dcfd9384b4cb29a,Updating prepare connection syntax to be the same as serve,Mike Arpaia,2016-08-19T00:55:25Z,marpaia,marpaia,26,12,14
+53,fleet,d92992b3dd0f5b07dd2e03f02488a624bdf9eb10,"Session shuffle and rename app to server (#84)
+
+* renaming campaign to email
+
+* moving session management code to the new kolide/datastore pattern
+
+* removing global configuration variables in favor of config
+
+* moving email operations to package kolide
+
+* moving app to server
+
+* using http.ListenAndServeTLS instead of a method on *gin.Engine
+
+* remove the kolide.go dependency on gin",Mike Arpaia,2016-08-19T00:45:39Z,marpaia,marpaia,1310,738,572
+54,fleet,5d8ca61472aa6dbfcaad15e1e847d9466cd94d70,"Domain Types (#83)
+
+* create datastore package with New func to create a db connection
+
+* separate creating a user object from saving to db
+temporarily pass db around through gin context to compile app
+main should create the datastore and pass it in to http handler explicitly instead
+
+* create datastore from config params
+
+* move gorm specific code to gorm.go
+
+* re-export app.NewUser
+
+* test new user
+
+* add User() method for getting a user
+temporary, the API will improve once I add filters
+
+refactor test func to use sqlite by default and mysql if available
+
+* add save user
+
+* move some users tests to datastore, temporarily remove user tests from app
+
+* add EnrollHost and test
+
+* move enrollhost to datastore
+
+* all enrollment tests now in datastore
+
+* add datastore_test for re-enroll
+
+* it compiles now...
+
+* move other interfaces to models
+
+* start wrapping errors in database error
+
+* add tests for campaign
+
+* move users to package kolide
+
+* move hosts and passwordrequests
+
+* package kolide
+
+* moving all types to package kolide
+
+* making new osquery endpoints use groob's new pattern",Victor Vrantchan,2016-08-18T21:16:44Z,groob,groob,3455,1243,2212
+55,fleet,9f8706bb43378224a917088e681fde25e89b983f,Organizing the README a wee bit (#82),Mike Arpaia,2016-08-18T18:04:56Z,marpaia,marpaia,160,90,70
+56,fleet,49fe2ed59595445e75be12e058609239812ff410,Add osquery log file paths to list of env variables (#81),Zachary Wasserman,2016-08-18T00:31:37Z,zwass,zwass,2,2,0
+57,fleet,8ca650468895249026f3b13e179102173332beb7,"New flag to disable banner: --disable-banner (#80)
+
+* New flag to disable banner: --disable-banner
+
+* Move globals into configuration
+
+* Changing tool category name to logging",Mike Arpaia,2016-08-17T23:53:28Z,marpaia,marpaia,29,17,12
+58,fleet,503ae54f46ba42ffbbfa88b48625e464b86438b1,"Ingest status and result logs (#77)
+
+* Implement log endpoint for status/result log ingestion
+* Define interface for log handlers: OsqueryResultHandler and OsqueryStatusHandler
+* Initial implementation of file logger handlers
+* Unit + integration tests
+
+Closes #7",Zachary Wasserman,2016-08-17T19:45:29Z,zwass,zwass,696,594,102
+59,fleet,0c51890b30aa1776f9c97198273fe12cb55782e3,"replace godep in favor of glide and using vendor directory
+update make deps step in Makefile
+update workflow for managing third party dependencies in README
+closes #24, #47",Victor Vrantchan,2016-08-13T21:49:19Z,groob,groob,384,242,142
+60,fleet,736bce5033a63961c1858e109d608ee3ee7a1ed7,"Email-based password reset (#54)
+
+* No more hard deletes
+
+* scaffolding for password reset endpoint
+
+* Ensure password reset state is accounted for in VC checks
+
+* password reset endpoints and data structures
+
+* ability to change password with reset token
+
+* smtp server connection pool management
+
+* stubbing out the sending of the email
+
+* adding mailhog via docker
+
+* HTML emails with confgurable host name
+
+* fixing typo in the comments
+
+* Fixing merge which undid DatabaseError replacement
+
+* documentation in the readme
+
+* webpack shortcut for components
+
+* removing a sneaky merge line that snuck in
+
+* temporary email content api
+
+* tests for password reset flow
+
+* fixing go vet
+
+* comments and making all db use `&value` rather than `reference`
+
+* more correct usage of the errors library and moving email sending to it's own method
+
+* using the wrong error
+
+* fixing email mock object error
+
+* less incorrect error usage
+
+* rebasing and merging
+
+* http constants for status code
+
+* using ParseAndValidateJSON instead of BindJSON
+
+* validate instead of binding in struct tags
+
+* NewFromError instead of New",Mike Arpaia,2016-08-12T19:20:29Z,marpaia,marpaia,1063,839,224
+61,fleet,ce9b7b9f91aa09b7d5ad5b9059e4de1fced82e66,removing the old config library from the test runner,Mike Arpaia,2016-08-12T18:46:15Z,marpaia,marpaia,1,0,1
+62,fleet,49d43522a31f8fa3fba577a2722dd38d2504c30d,fixing the build,Mike Arpaia,2016-08-12T18:31:27Z,marpaia,marpaia,26,19,7
+63,fleet,45dbac4354c7852a42a7d28049bdd2e289425e83,Using viper and cobra for config/commands (#67),Mike Arpaia,2016-08-12T18:05:48Z,marpaia,marpaia,473,231,242
+64,fleet,809a010a1d31226bbba9fe953fd95e26ab9cebb7,"Initial implementation of osqueryd enrollment + tests (#36)
+
+*EnrollHost now generates a node key and stores host information into the DB
+* Unit and integration tests
+
+Closes #6",Zachary Wasserman,2016-08-11T20:50:03Z,zwass,zwass,370,356,14
+65,fleet,4db4e95b385559b0a6fffe868e37d6eaa140746f,Add *.test to .gitignore (#64),Zachary Wasserman,2016-08-11T16:44:00Z,zwass,zwass,1,1,0
+66,fleet,64d16b8a16760ff5051a75537946197fee90f0bb,README and workflow updates (#62),Mike Arpaia,2016-08-10T15:31:27Z,marpaia,marpaia,278,213,65
+67,fleet,b13f99ac37c638c67f8fddb4f8402247547384f4,README and Makefile typo fixes,Mike Arpaia,2016-08-10T05:21:58Z,marpaia,marpaia,39,10,29
+68,fleet,3a9381c5b3cb6630842f078964a277a7d3fdd044,"React Base (#61)
+
+* Add sensible React base to the app for frontend
+
+This PR attempts to ""reactify"" Kolide and provide a sane development environment
+that a front-end engineer would probably expect.
+
+This PR accomplishes by doing the following:
+
+1. Reorganizes the app into a `server/` and `client/` folders to keep golang
+logic separated from react logic.
+
+2. Adds an ""asset pipeline"" via webpack which knows how to build a js
+and css bundle.
+
+3. Packages up all static assets in a go-bindata file so that the binary
+remains portable without external file dependencies.
+
+1. Add a Makefile with several targets that will be common in everyday
+development. For example, we have `serve` target which spins up a nodejs
+reverse proxy on port 8081 which then watches for changed files, automatically
+rebuilds the app, and hot loads the new JS/CSS in.
+
+ **Note:** Please use `make` to build the app, not `go build` as there are
+now several things that need to be orchestrated beyond the go code to build the app.
+
+* Create build if it doesn't exist, and use `go get`
+
+* Improve README to reflect new dev workflow
+
+* Document css vars and funcs and use alias paths
+
+* makefile and structure modifications",Mike Arpaia,2016-08-10T05:15:44Z,marpaia,marpaia,543,526,17
+69,fleet,b6ac5b1bdb7b67d2c4b09fa5be88667fcecf40ea,Updating README and documentation to reflect local building and testing (#58),Mike Arpaia,2016-08-10T02:17:07Z,marpaia,marpaia,74,16,58
+70,fleet,604e3e4fb048c3b9d4a3d4b195f6ed330fcb8b3e,"Improve error handling throughout backend (#50)
+
+* New function `errors.ReturnError` for writing errors into the HTTP response
+* New type `KolideError` that includes additional error context
+* Validation and application errors are reported in a consistent JSON format
+* Add 404 handler
+* Refactored error handling throughout codebase to use new error patterns",Zachary Wasserman,2016-08-10T02:04:28Z,zwass,zwass,1216,787,429
+71,fleet,2c15647b6edcc6fa3185503f350a28e3e1c84cd7,"Fix certificate path in development config (#55)
+
+Also adds error checking to `RunTLS`",Zachary Wasserman,2016-08-09T23:18:03Z,zwass,zwass,15,9,6
+72,fleet,2ee93d4724dd0a52bd29df699a680f685e845aa3,"Documenting HTTP handlers using Swagger format (#43)
+
+More tooling for using Swagger will come soon. For now, use whatever you'd
+like.",Mike Arpaia,2016-08-09T17:48:53Z,marpaia,marpaia,299,287,12
+73,fleet,2d2d667f4a571928c9bdaec4afbfc50f67d7d81b,Attempt to clean the codebase (#53),Mike Arpaia,2016-08-09T17:24:29Z,marpaia,marpaia,548,286,262
+74,fleet,9181ae9c3db1c8605d085f441376e3c503a6b490,Adding a circle config file (#52),Mike Arpaia,2016-08-09T03:42:24Z,marpaia,marpaia,16,13,3
+75,fleet,be6ac06be68b992e027f42e6ba00d1bb29e392a5,Updating README with CircleCI badge (#51),Mike Arpaia,2016-08-09T02:50:38Z,marpaia,marpaia,13,1,12
+76,fleet,bc8ea99924930fdd67e79a233e24e46c85425840,fixing typo in travis config,Mike Arpaia,2016-08-09T00:37:35Z,marpaia,marpaia,6,3,3
+77,fleet,37eea618218f4f43c3891d93eb3e1a8ed9d13c2f,removing tip from go builds because it takes too long,Mike Arpaia,2016-08-08T16:55:37Z,marpaia,marpaia,1,0,1
+78,fleet,0a0bf41b166b1edb3ea8abe002380012f3b638e1,slack configurations for travis ci,Mike Arpaia,2016-08-08T16:54:15Z,marpaia,marpaia,5,4,1
+79,fleet,404406b821351feb3bfdc7adb6476bc359e6b0dd,TravisCI configurations (#46),Mike Arpaia,2016-08-08T16:50:54Z,marpaia,marpaia,45,20,25
+80,fleet,fe2bf7eb2be657ba6255020296591a657a097e21,"Moving sessions code into sub-package (#42)
+
+Since the sessions code mostly stands on it's own, I wanted to break the
+dependencies apart from it and move it into it's own package.",Mike Arpaia,2016-08-05T17:47:41Z,marpaia,marpaia,1579,844,735
+81,fleet,cd8057e86083ca490340713a095c799e7d52bd08,"Turn down logging in tests except after failure (#41)
+
+When tests succeed, there is now no logging of DB queries or HTTP
+requests. If a test fails, the logs will be output.",Zachary Wasserman,2016-08-05T04:10:23Z,zwass,zwass,85,53,32
+82,fleet,670aab219b32cc701909594bcce604d7028a8e9c,Use crypto/rand instead of math/rand,Mike Arpaia,2016-08-04T22:44:54Z,marpaia,marpaia,2,1,1
+83,fleet,f2628b171577c38959c7e8b1796234b480af9eba,Ascii art fyeah (#38),Mike Arpaia,2016-08-04T22:42:29Z,marpaia,marpaia,19,19,0
+84,fleet,4687812f399e66310bab2a278c83bbe9c50e15d5,"Sessions in MySQL (#37)
+
+* Sessions in MySQL
+
+* Reclaiming some names
+
+* session renewal without new cookies on every request
+
+* comments and docstrings
+
+* light organization in vc generation
+
+* go vet
+
+* endpoints for session management
+
+* Merging @zwass' commit with mine
+
+* Updating salt generation to use crypt/rand
+
+* use getRandomText for session keys
+
+* VC no longer needs a DB or to return an error
+
+* getRandomText docstring
+
+* Only use session via the SessionBackend API
+
+* Set session backend with the request, similar to db",Mike Arpaia,2016-08-04T22:38:13Z,marpaia,marpaia,1468,983,485
+85,fleet,d9f776c7567a75f1a43a7d8f9b7fbf2c61685693,"Use Godep to vendor in all dependencies (#40)
+
+This commit vendors in all of our dependencies using
+[GoDep](https://github.com/tools/godep). We are forgoing using a vendor/ folder to avoid checking in deps into the repo.
+
+Note: Never manually modify `Godeps/Godeps.json` this file is dynamically
+by the godep CLI
+
+Common Actions:
+
+To add a new package foo/bar, do this:
+
+1. Run `go get foo/bar`
+1. Edit your code to import foo/bar.
+1. Run `godep save` (or `godep save ./...`).
+
+To update a package from your `$GOPATH`, do this:
+
+1. Run `go get -u foo/bar`
+1. Run `godep update foo/bar`. (You can use the `...` wildcard, for example
+`godep update foo/...`).",Jason Meller,2016-08-04T20:57:22Z,terracatta,terracatta,152,144,8
+86,fleet,5c349a458dfea16201ebd96a2e2e31e7d6e8a55f,"Eliminate DB globals + refactor tests (#39)
+
+* Eliminate global DB connections. Instead, one connection is established (with the underlying object supporting pooling) and passed through the gin.Context. This allows test/prod to inject the appropriate DB object into the context.
+* Refactor tests appropriately for this new style of DB connection
+* Fix a bug in the routing caught by refactoring of tests",Zachary Wasserman,2016-08-04T18:41:47Z,zwass,zwass,959,427,532
+87,fleet,5ad7c07e0c19031dbe205d8e2907b5542ac5d8ee,"Dockerize app (#32)
+
+This commit adds both a Dockerfile and updates the docker-compose.yml with local mounting so that you can standup a consistent dev environment. Please view the project README for more information.",Jason Meller,2016-08-04T15:41:18Z,terracatta,terracatta,116,88,28
+88,fleet,6fa241336305c71bd7689cb16c7013ab4baf65a2,"Add logging and convenience methods (#34)
+
+* Add request logging.
+* Catch/log panic in request handlers.
+* Add `mustGetDB` method that gets a DB connection or panics. This can simplify
+  boilerplate in handlers.
+* Consolidate `file` and `line` in logged fields to `location`.
+* Set default log level to `WarnLevel`.
+* Log a warning when Kolide is started with the example config.
+* Turn on DB logging in debug mode.",Zachary Wasserman,2016-08-03T15:01:59Z,zwass,zwass,54,52,2
+89,fleet,24638413c48fdb229e740fe4b01dbdc1dae20cea,"Endpoint integration tests (#28)
+
+* Quick fix where JWTRenewalMiddleware wasn't saving the update session to the client
+
+* integration tests for all user/account management HTTP endpoints
+
+close #15
+
+* Combine checks in CheckUser
+
+* Moving t.Fatals into utility functions
+
+* Simplifying get user by id or username flow
+
+* Fixing incorrect error log message
+
+* Simplifying checkUser compare",Mike Arpaia,2016-08-02T22:39:20Z,marpaia,marpaia,796,624,172
+90,fleet,fc1b8eaa05829da046b846ff4aa4ec7ed162e8b8,"Add bootup output to reflect that kolide binary is serving (#29)
+
+Example output:
+
+```bash
+$ kolide-ose serve
+=> kolide 0.1.0 application starting on https://:8080
+=> Run `kolide help serve` for more startup options
+Use Ctrl-C to stop
+
+time=""2016-08-02T14:25:02-07:00"" level=info msg=""some info logs!""
+file=proc.go func=runtime.main line=188
+time=""2016-08-02T14:25:02-07:00"" level=error msg=""some error logs :(""
+file=proc.go func=runtime.main line=188
+```
+
+close #26",Mike Arpaia,2016-08-02T21:42:37Z,marpaia,marpaia,8,6,2
+91,fleet,c802a2dbc0a7638c902b2b94ab97d952e7c10290,"Cleaning up the salt generation function (#30)
+
+close #19",Mike Arpaia,2016-08-02T21:41:50Z,marpaia,marpaia,29,6,23
+92,fleet,82968a94307f85ad5cb8f91e2852a2fdc6a195ed,Add configs + documentation for testing with dockerized osqueryd (#22),Zachary Wasserman,2016-08-02T19:09:30Z,zwass,zwass,254,203,51
+93,fleet,b74c2c52e8ef478d5960cf3ffa6b775c55b51ec5,"Add drone.io badge to the README (#21)
+
+close #18",Mike Arpaia,2016-08-01T23:44:08Z,marpaia,marpaia,4,3,1
+94,fleet,eee370e12786857e638e470fc234602b2c387f67,"Authentication, authorization and user management (#10)",Mike Arpaia,2016-08-01T23:32:20Z,marpaia,marpaia,1753,1716,37
+95,fleet,91e78d276f8e7ff9aa6428b930bf9a40ce933055,Initial commit,Mike Arpaia,2016-07-25T03:30:45Z,marpaia,marpaia,629,629,0
+96,fleet,24bb68b9107a8e178356e8e61b7dffc9a5e40578,Rename GetAll* methods to List* (#291),Zachary Wasserman,2016-10-07T17:26:48Z,zwass,zwass,135,69,66
+97,fleet,db57aaa1fc7fe3657d5684cec35ff87141d1dbb2,"Filter unchanged attributes when updating user (#293)
+
+* Only send changed user attributes to the server
+
+* Improve flash message styles
+
+* Do not allow admins to demote or disable their own account
+
+* Disable admin actions against self",Mike Stone,2016-10-07T17:07:02Z,mikestone14,mikestone14,130,98,32
+98,fleet,1cce02cf86e33234661c280e269b88636fcbfda8,"Fix bug causing empty lists to return as null in GetAll/List endpoints (#286)
+
+Fixes #285",Zachary Wasserman,2016-10-06T16:24:12Z,zwass,zwass,11,6,5
+99,fleet,7221aac50f0393235a69533ba96474f25045fcec,"only set AdminForcedPasswordReset if payload value is true (#289)
+
+Fixes #287",Victor Vrantchan,2016-10-06T12:43:09Z,groob,groob,8,5,3
+100,fleet,d0dcfefd25f8e5781ab97ee9f6e83db3f5fce0bf,Fix incorrect decode function in GetAllQueries (#284),Zachary Wasserman,2016-10-06T00:35:07Z,zwass,zwass,2,1,1
+101,fleet,85a8e92b96563f53b0b2b1e4c21871d1b96d853a,"Implement endpoints for host service methods (#280)
+
+- Remove service methods for modifying hosts",Zachary Wasserman,2016-10-06T00:10:44Z,zwass,zwass,292,157,135
+102,fleet,23bed0c56db38a170b3a5c966ea6d30f826ae33b,"App config (#281)
+
+* Adds call to API client to get config
+
+* Saves config in redux state",Mike Stone,2016-10-05T23:43:37Z,mikestone14,mikestone14,252,245,7
+103,fleet,a1e18abb049664b9435ab15fb22120e718d1f62b,Update host labels in distributed query ingestion (#278),Zachary Wasserman,2016-10-05T15:56:29Z,zwass,zwass,79,53,26
+104,fleet,06047efac400f395299e17fd720514ec9799e8bd,Do not send request body for GET requests (#279),Mike Stone,2016-10-05T14:03:55Z,mikestone14,mikestone14,34,24,10
+105,fleet,19f6eddfebfeda59f0bb793b0bfc6334d03f95e6,"Update host details in distributed query ingestion (#274)
+
+- Introduce a new pattern for defining/ingesting detail queries
+- Add many relevant host details:
+  - Platform
+  - osquery Version
+  - Memory
+  - Hostname
+  - UUID
+  - OS Version
+  - Uptime
+  - Primary interface MAC
+  - Primary interface IP
+- Fix parsing for inconsistent JSON schema returned from osquery
+- Tests",Zachary Wasserman,2016-10-05T00:17:55Z,zwass,zwass,472,416,56
+106,fleet,10dd855a77cf46ebfb4bef1c5ab5cc6d67b790ce,"styles the dropdown component (#271)
+
+* styles the dropdown component
+
+* Updates Dropdown component to behave like other form fields",Mike Stone,2016-10-04T22:24:39Z,mikestone14,mikestone14,139,84,55
+107,fleet,facee9bd895c804aaa2c7c64c023275f529744d2,"Target input select (#272)
+
+* Adds react-select package
+
+* Implement react-select for selecting query targets
+
+* log all form data when a query is run",Mike Stone,2016-10-04T22:11:52Z,mikestone14,mikestone14,98,89,9
+108,fleet,07400e7d4c2d13c239740e758c5ad8b21db7bac2,bug-fix/reset password page (#275),Mike Stone,2016-10-04T22:11:35Z,mikestone14,mikestone14,33,19,14
+109,fleet,a47ee32e9ff364b352bdedd30bfa299f303d3311,Stop showing unauthenticated error for new session on login page (#273),Mike Stone,2016-10-04T20:51:30Z,mikestone14,mikestone14,57,42,15
+110,fleet,12f8c0b6718449da0e402fb89a07fcdf5efa589d,"Datastore cleaning (#262)
+
+This PR reorganizes a bunch of the files in datastore such that all datastore implementations are consistently broken up into multiple files. Additionally, the datastore tests follow a similar pattern and can easily be applied to any complete datastore implementation.",Mike Arpaia,2016-10-04T20:34:36Z,marpaia,marpaia,2682,1326,1356
+111,fleet,59c194a7f410796ec7ac29afd41e04bbfd77ec92,Perform migration at startup when using inmem datastore (#270),Zachary Wasserman,2016-10-04T03:35:56Z,zwass,zwass,4,4,0
+112,fleet,0a1ca0c4fb52a945bc4521915d41173aa07013c1,Enable serve over HTTPS (#263),Zachary Wasserman,2016-10-03T21:47:31Z,zwass,zwass,23,21,2
+113,fleet,352c3cf004f03676f6529bbee6a00e66bd4f480f,Moving footer to it's own component (#268),Mike Arpaia,2016-10-03T19:51:44Z,marpaia,marpaia,3,2,1
+114,fleet,9312247661c0f3e1c06592028a4b6e3ecb8d2ccb,Removing environment specific config (#266),Mike Arpaia,2016-10-03T19:50:28Z,marpaia,marpaia,28,2,26
+115,fleet,a0a911d9b29bd51f4fe3ff6fbd9c46eacf4f1788,"Moving stylesheets to styles directory (#267)
+
+close #265",Mike Arpaia,2016-10-03T19:49:32Z,marpaia,marpaia,6,3,3
+116,fleet,24d7212f3eb53f8a61f52b8f4dc60eb0304b37b7,"Lower test verbocity in Makefile (#259)
+
+I think that the output here is much more useful when allowing go to
+determine when the output of a test should be displayed.",Mike Arpaia,2016-10-03T18:28:53Z,marpaia,marpaia,2,1,1
+117,fleet,6ebc460b6688702a60d2927564a618934e3478f3,"Admin user management (#233)
+
+Admin user management page",Mike Stone,2016-10-03T17:54:22Z,mikestone14,mikestone14,1779,1665,114
+118,fleet,a03347489c9afa0f3897396528984dca3eeb3bb0,"Osquery Configuration Control (#244)
+
+Label management APIs and an osquery config endpoint based on active pack and label state.",Mike Arpaia,2016-10-03T03:14:35Z,marpaia,marpaia,1290,1162,128
+119,fleet,6d1c963bfafbc2fa78434761b3d864d27c4d5a87,Flesh out log ingestion endpoint/service methods (#258),Zachary Wasserman,2016-10-01T02:18:27Z,zwass,zwass,242,203,39
+120,fleet,32f291a0646cae53ec520df72680d2c709854b92,"New query page (#254)
+
+* Sidebar/Layout improvements
+
+* New Query route and page
+
+* Display text editor
+
+* Gradient style longhand
+
+* Slider button component
+
+* Move new query section to component
+
+* Kolide Ace theme
+
+* Styles slider on page
+
+* run query on CMD + Enter
+
+* clicking hosts sends user to homepage
+
+* SaveQueryForm component
+
+* Splits NewQuery component JSX into multiple dumb components
+
+* InputField component
+
+* save query form
+
+* new query
+
+* styleguide
+
+* moves all new query form logic to the new query form
+
+* Kolide theme for osquery tables",Mike Stone,2016-09-30T18:55:15Z,mikestone14,mikestone14,1682,1609,73
+121,fleet,57c9cb145f54726d37e3f89e9fbdc7f9d187507e,send cookies in request (#256),Victor Vrantchan,2016-09-30T13:21:51Z,groob,groob,1,1,0
+122,fleet,74aaa14dded784cd22302eeb756449a1c7163882,"Implement osquery datastore methods for inmem datastore (#255)
+
+- Implement osquery datastore methods
+- Update tests for compatibility with inmem
+
+Closes #255",Zachary Wasserman,2016-09-30T01:19:51Z,zwass,zwass,483,423,60
+123,fleet,09e988626f9d11602552daa09709d3b3c7b8b982,update the CI build script to use the 1.7 tag (#251),Victor Vrantchan,2016-09-29T15:16:30Z,groob,groob,6,3,3
+124,fleet,ba528a46f1bf0a3f8800e5a31feeaf5ba591755d,"Build endpoints for osquery service methods (#245)
+
+- Establish a pattern for host authentication
+- Establish a pattern for error JSON
+- Add transport and make endpoint functions
+- Fix discovered bugs + update tests",Zachary Wasserman,2016-09-29T04:21:39Z,zwass,zwass,908,753,155
+125,fleet,6fb96d98f7d7f2aa2e1ac8cf671d04217ecacb13,"Adds endpoints to invite new users to the application. (#235)
+
+User service checks that tokens are valid on new user signups.
+Closes #230",Victor Vrantchan,2016-09-29T02:44:05Z,groob,groob,1365,1124,241
+126,fleet,738d7253c2073f153ea4bdcfd7058851d2e9325c,"Login form displays error message (#243)
+
+* Login form displays error message
+
+* default bad auth to a generic error for the client",Mike Stone,2016-09-29T00:46:45Z,mikestone14,mikestone14,95,75,20
+127,fleet,24b9baec1f723c9cbbfeb85841530fd86e261d6f,"add prometheus endpoint (#236)
+
+generate metrics for Users, Appconfig and Session services",Victor Vrantchan,2016-09-28T11:35:15Z,groob,groob,403,380,23
+128,fleet,a97e5d7874a7d5cdb400b88c5e90717bceca1154,"Update version variable names in Makefile (#248)
+
+close #247",Mike Arpaia,2016-09-28T10:23:06Z,marpaia,marpaia,12,6,6
+129,fleet,1409c294af13f054aadd9da310f9ec9fd95c621e,"Add awesome card stacking animations on login (#246)
+
+* Add awesome card stacking animations on login
+
+* Fix linter error
+
+* Fix proptypes warning and clean up if/then logic
+
+* True up vh units
+
+* Make logout pixel perfect with login form",Jason Meller,2016-09-28T10:16:09Z,terracatta,terracatta,205,122,83
+130,fleet,a3878f0a3b22c28521eba5204761513b89eee137,"Add LabelQueriesForHost to OsqueryStore (#242)
+
+Also includes bug fixes and tests for related datastore methods.",Zachary Wasserman,2016-09-26T20:05:36Z,zwass,zwass,135,105,30
+131,fleet,0482f1292693f7d28a3f72a6a48e555dc5612d40,Organizing go code (#241),Mike Arpaia,2016-09-26T18:48:55Z,marpaia,marpaia,276,135,141
+132,fleet,372dac83040c6bf9a719e71d208701de01c50291,"Create context packages (#228)
+
+add token context package
+add viewer context package
+add host context package
+update authenticated middleware to set viewer context or return error
+re-organize API handler",Victor Vrantchan,2016-09-26T17:14:39Z,groob,groob,1015,490,525
+133,fleet,58ac5dc1918f006efea4252fcc3ce207730f9736,Removing generated assets from source control (#239),Mike Arpaia,2016-09-26T17:13:11Z,marpaia,marpaia,58,2,56
+134,fleet,bfb74b5974fd5298b2e27abd542f74f3a9ae4206,Removes duplicate package: react-dom (#240),Mike Stone,2016-09-26T17:11:37Z,mikestone14,mikestone14,5,2,3
+135,fleet,14240cbabfdfc00f86ff3719b091ed7ff13852e5,update password reset check for user PATCH request (#238),Victor Vrantchan,2016-09-26T16:29:51Z,groob,groob,9,3,6
+136,fleet,1e5a0f8f888c2799898fe01d5ef97dba302bf255,change force_password_reset flag to false after a succesful reset (#237),Victor Vrantchan,2016-09-26T15:49:10Z,groob,groob,1,1,0
+137,fleet,f8337eeaacadc6e843fae07c68f0256e260a7c18,Only shows bg image for login/logout routes (#234),Mike Stone,2016-09-23T21:20:02Z,mikestone14,mikestone14,111,83,28
+138,fleet,55307de42dadf03d5ead5545d6f07a9fdbdbbb03,"SCSS Pipeline and style fixes (#229)
+
+* Add SCSS pipeline and fix login style issues
+
+* Fix nav styles and make tests pass
+
+* Fix nav header styles and animations
+
+* Change font-size to 13px on nav
+
+* Fix duplicate specificity of styles",Jason Meller,2016-09-23T18:04:01Z,terracatta,terracatta,354,220,134
+139,fleet,1d5596941adbe9997b6bcbc543b1af0197d1c331,"update how permission errors are updated to the client (#187)
+
+Closes #152 
+allow batching of permission errors
+refactor some of the error handling in encodeError
+clean up some of the error messages",Victor Vrantchan,2016-09-23T02:41:58Z,groob,groob,286,174,112
+140,fleet,c4924be4d485b125453ff2d22d3ec08f285981d5,"Responsive nav (#225)
+
+* Allow specifying debounce options
+
+* responsive nav styles
+
+* animate sub items in skinny nav",Mike Stone,2016-09-22T13:20:13Z,mikestone14,mikestone14,171,136,35
+141,fleet,26b1e70ac31b256097fa03ee177d8eb58e2c6e75,"App config api (#223)
+
+Add GET and PATCH endpoints for /kolide/config to get/update current app configuration",Victor Vrantchan,2016-09-22T00:45:57Z,groob,groob,308,308,0
+142,fleet,a3e26b6b9a882f7b4445e624427e9e0c1dbbbf45,"build all branches, using master as latest (#226)
+
+* build all branches, using master as latest
+Split devs and build step to cache dependencies on CI
+Add dockerignore to speed up docker build",Victor Vrantchan,2016-09-22T00:43:48Z,groob,groob,18,11,7
+143,fleet,56824171039b6260767390d9ffff81761b4d67bb,Cleaning up some documentation and comments (#221),Mike Arpaia,2016-09-22T00:40:26Z,marpaia,marpaia,12,7,5
+144,fleet,665aac54cb79bffa62809ba2988ebd70887fa393,"Various css tweaks (#224)
+
+* Ensure login background remains centered
+
+* Update Kolidecons to the latest version",Jason Meller,2016-09-21T16:48:07Z,terracatta,terracatta,34,33,1
+145,fleet,d5d3d4ce175f3855b913dcfc7da680cbbcd68ee7,"Updating some docker compose functionality (#220)
+
+close #210",Mike Arpaia,2016-09-21T12:22:53Z,marpaia,marpaia,26,20,6
+146,fleet,8f16bd8bcc21dc30dceadf1486ad9393d78f7858,"Send configuration + label queries in distributed reads (#215)
+
+This PR is the beginning of distributed query work. For now we are focusing on using the distributed query subsystem to retrieve the basic configuration information (currently just platform), and run the label queries.
+
+A mockable clock interface is also added to the service struct, allowing us to inject a clock as a dependency, and write unit tests that can control the time.",Zachary Wasserman,2016-09-21T03:08:11Z,zwass,zwass,389,312,77
+147,fleet,bba69412b9c9db65012931c3e7e27f690391ed74,"Side panel (#216)
+
+* admin layout component
+
+* Admin Dashboard page
+
+* styleguide
+
+* AdminSidePanel component
+
+* Use Kolide logo
+
+* Renames AdminSidePanel to SidePanel
+
+* Avatar component to render user's gravatar image
+
+* Adds CoreLayout with rendered SidePanel",Mike Stone,2016-09-21T03:07:32Z,mikestone14,mikestone14,756,737,19
+148,fleet,b1a40361456a568b569a5e02e91912fabcab649b,Table test style creation of dev users (#218),Mike Arpaia,2016-09-21T03:07:18Z,marpaia,marpaia,55,33,22
+149,fleet,c972e031c7be8e06b491df6a284e5c46f5d9d662,"Make utility to run server in dev mode (#219)
+
+Often when I'm building, I'll do the following:
+
+```
+make generate
+make build
+./build/kolide.exe serve --dev
+```
+
+It would be nicer if I could just use make to run the dev server instead
+of having to type out the full path every time:
+
+```
+make generate
+make build
+make run
+```",Mike Arpaia,2016-09-20T23:26:44Z,marpaia,marpaia,14,13,1
+150,fleet,eb13b33b4d53828c7648c2bce8df3e866d4329a4,Use the window location origin as the API origin (#217),Mike Stone,2016-09-20T22:36:36Z,mikestone14,mikestone14,23,6,17
+151,fleet,7a30db5772e96cb661558201ac6007e23a21efea,Add custom icon font for front-end use (#212),Jason Meller,2016-09-20T19:23:24Z,terracatta,terracatta,95,94,1
+152,fleet,45d6b1e32f783cde87eb559fdd75d22985a85aa3,"Auth errors (#185)
+
+Return well formatted authentication errors to the client
+Log the reason for an error serveside but return a masked/generic reason to the client
+Assert go errors by behavior rather than type.",Victor Vrantchan,2016-09-20T19:22:54Z,groob,groob,52,30,22
+153,fleet,21944bcc296439e5e2a7d6042afdde7996320ee7,"add missed fields on user (#213)
+
+* add missed fields
+
+* check for nil on optional values first",Victor Vrantchan,2016-09-20T18:54:20Z,groob,groob,20,18,2
+154,fleet,6ef0c7959224a2536ddf73e9e3656e13cc6d9c8e,Fixing order issues with Webpack and removing bail switch (#214),Mike Arpaia,2016-09-20T18:54:07Z,marpaia,marpaia,5,3,2
+155,fleet,2f5ee8607de7ae739c99c8bee2e51085b4482ce4,"Authenticated routes (#207)
+
+* Redirects authenticated routes to /login when user not authenticated or loading
+
+* Redirect to login when call to get user fails",Mike Stone,2016-09-20T18:17:31Z,mikestone14,mikestone14,89,80,9
+156,fleet,d2f1e749ab5b93994dbf011822e91c06a848f9de,Fixing Makefile for OS X (#211),Mike Arpaia,2016-09-20T18:03:42Z,marpaia,marpaia,8,7,1
+157,fleet,5f1fc8123fb1c94825a20fa0e6d163b3f885cb44,"Button style changes (#188)
+
+* GradientButton style improvements
+
+* SVG variant cleanup
+
+* client side validations",Mike Stone,2016-09-20T17:43:46Z,mikestone14,mikestone14,355,216,139
+158,fleet,8878acd848a7c8a7bafe65507602be34655fad96,Moves static images to the assets directory (#205),Mike Stone,2016-09-20T17:40:13Z,mikestone14,mikestone14,4,2,2
+159,fleet,9ba53333fd939ae2f45b75cbb6603357a89d6b84,README and CONTRIBUTING documentation (#199),Mike Arpaia,2016-09-20T17:32:00Z,marpaia,marpaia,247,213,34
+160,fleet,973ef9dbd18b801396b71e87134b86cf2451699e,"User response - job position (#208)
+
+* add job role to user reponses
+
+* add test user job role",Victor Vrantchan,2016-09-20T17:03:51Z,groob,groob,12,12,0
+161,fleet,225afb750fcaddc8c7321c907f9c42e8e3069823,Clean and organize mocha test configurations (#202),Mike Arpaia,2016-09-20T13:42:46Z,marpaia,marpaia,6,2,4
+162,fleet,4b425eb524282c97a186040e1062af741efc066a,ESLint fixes and cleaning (#203),Mike Arpaia,2016-09-20T13:42:08Z,marpaia,marpaia,26,7,19
+163,fleet,aacd1d6b9cc3c625ebac700fa99cb0ca611cedb3,"Removing underscored import of config from main (#200)
+
+This should no longer be necessary.",Mike Arpaia,2016-09-20T10:48:45Z,marpaia,marpaia,1,0,1
+164,fleet,ff94c091bdab6e55143b7b9e3ac5b290fcfe119b,Removing keep files (#201),Mike Arpaia,2016-09-20T10:47:57Z,marpaia,marpaia,0,0,0
+165,fleet,52dee0e379ccc819107bd3b7297b7e78d92cf355,Removing old gitignore lines (#204),Mike Arpaia,2016-09-20T10:47:23Z,marpaia,marpaia,1,0,1
+166,fleet,942df18a63b25b2b9910ba511e69e426a7704103,Updates to Makefile (#197),Mike Arpaia,2016-09-20T02:37:47Z,marpaia,marpaia,114,76,38
+167,fleet,dd1565936b7063258ad9c94819d3a5ce97f3c20b,"Logout (#195)
+
+* moves login page styles to reusable component
+
+* Redirects successful login to homepage after 3s
+
+* Adds logout form
+
+* Adds logout page
+
+* Adds logout link to homepage
+
+* Adds gravatarURL to logged in user
+
+* Configure API Client to hit /me endpoint
+
+* Fetch user when the app loads
+
+* Configured API Client to make logout requests
+
+* Handle logout flow in redux
+
+* Logout form styles
+
+* Logout user when the logout form is submitted",Mike Stone,2016-09-19T23:43:35Z,mikestone14,mikestone14,740,697,43
+168,fleet,428351d3a8eb5cc6f942508aead07956a9fc01ad,Serializable config types (#141),Mike Arpaia,2016-09-19T23:11:39Z,marpaia,marpaia,60,43,17
+169,fleet,2f8db0d18406403c9a722ae47365e8becc4b61ba,"render react template from binaryfs (#196)
+
+Closes #194 
+* render react template from binaryfs",Victor Vrantchan,2016-09-19T23:06:41Z,groob,groob,21,18,3
+170,fleet,e29609813195cf59f1c934f418aca6b8c7546a0f,"Docker Push of new builds (#192)
+
+* wip
+
+* add build step
+
+* remove filter?
+
+* circle does not rebuild on force push
+
+* circle does not rebuild on force push
+
+* add branch filter
+
+* use build flag on builder
+
+* push
+
+* add circle env variable set
+
+* redeploy",Victor Vrantchan,2016-09-19T22:54:57Z,groob,groob,22,21,1
+171,fleet,2ba72e27868586907f0cb79bdf32d48c77692429,"add authentication/nil check for /me endpoint to prevent panic (#193)
+
+* add authentication/nil check for /me endpoint to prevent panic
+
+* update function call",Victor Vrantchan,2016-09-19T20:50:31Z,groob,groob,5,4,1
+172,fleet,6581b10b89dbb7814b862965635a1c7cf070bb3d,Debounce utility to only allow 1 click per second (#190),Mike Stone,2016-09-19T18:41:47Z,mikestone14,mikestone14,41,35,6
+173,fleet,09178a9ee8e53a826ac61a5b55ad70ef18d2b0d3,Autofocus first field on forms (#191),Mike Stone,2016-09-19T18:33:43Z,mikestone14,mikestone14,15,15,0
+174,fleet,0e08a6e6987631f7246cba7295fb3e77810385c7,"Reset password page submit (#184)
+
+* API client sends reset password requests
+
+* ResetPasswordPage actions and reducer
+
+* Reset password happy path",Mike Stone,2016-09-19T15:35:38Z,mikestone14,mikestone14,316,301,15
+175,fleet,482d025d05a3fbb7f53d453fce45790a275030d6,"Reset password page (#181)
+
+* Extracts stacked boxes UI to a re-usable component
+
+* Presence validator
+
+* Equality validator
+
+* Adds ResetPasswordFrom
+
+* PasswordResetPage component and route
+
+* Ex icon on forgot pw page goes to login
+
+* Smooth out the fonts so they match the mocks
+
+* Remove dynamic background and refactor colors",Mike Stone,2016-09-16T21:19:37Z,mikestone14,mikestone14,882,597,285
+176,fleet,cfdd665673870d33878d62f91543f63ac3feda7b,Fixes multiple logos on login successful page (#173),Mike Stone,2016-09-16T17:32:54Z,mikestone14,mikestone14,51,18,33
+177,fleet,1de9f6bd897733d634f67e1ea9b080b4b0fbc372,nicer validation errors (#180),Victor Vrantchan,2016-09-16T15:23:48Z,groob,groob,87,55,32
+178,fleet,5ea9115a959c1497507f84be8d6fa0a214378c19,"Forgot password submit (#168)
+
+* Authentication middleware
+
+* API client refactor
+
+* Configure API client to make forgot_password requests
+
+* Successfully submit forgot password form
+
+* Display server errors for unknown email address",Mike Stone,2016-09-16T13:55:46Z,mikestone14,mikestone14,650,576,74
+179,fleet,a069ec9acf9d14c04d5e4e2c6eb29a49c21aa9b3,"add devMode MailService to speed up testing (#178)
+
+running with the dev flag will print the content of an email to stdout",Victor Vrantchan,2016-09-16T12:55:09Z,groob,groob,26,24,2
+180,fleet,f46a951da32d77cf488ae23445b35bc586799fb0,"Add /me route (#177)
+
+* i like how I wrote this to never call svc direcly
+
+* rename func
+
+* apparently not everywhere
+
+* add service method for authenticated user
+
+* oops forgot to check this in",Victor Vrantchan,2016-09-16T04:35:52Z,groob,groob,99,92,7
+181,fleet,fab4759926625ec80b4353d36c16e8ffb23a3f0e,"Fix bug creating session with 0 timestamp (#171)
+
+If AccessedAt is left in the zero value, MySQL will complain with the following
+error: Error 1292: Incorrect datetime value: '0000-00-00' for column 'accessed_at' at row 1. Now we initialize AccessedAt when creating a new
+session.",Zachary Wasserman,2016-09-15T22:53:47Z,zwass,zwass,24,21,3
+182,fleet,0ac63c9963180972fe99261ed07dce32a96f1a80,"Allow with Logins with email address (#174)
+
+The Auth service now accepts emails in the username field
+The UserService now rejects user creation if the user has @ in the username.",Victor Vrantchan,2016-09-15T19:27:55Z,groob,groob,97,75,22
+183,fleet,f968ae3f8f4ca5a54130e5934711ce6e13e11ca5,"Default to MySQL store and add --dev flag (#170)
+
+Switches the default datastore back to MySQL, and adds a --dev flag to the
+serve command that will cause the in-memory datastore to be used.
+
+Closes #166",Zachary Wasserman,2016-09-15T17:20:36Z,zwass,zwass,86,60,26
+184,fleet,0702dccb7fade18af2892033b5a6df7ed6b13cd1,"Only attempt to parse config file if it is specified by flag (#169)
+
+Previously, the behavior was to search for the config file in a variety of
+locations. Now we only attempt to load a config file if it has been explicitly
+specified with `-c` or `--config`.
+
+Fixes #165.",Zachary Wasserman,2016-09-15T15:44:05Z,zwass,zwass,21,9,12
+185,fleet,df19fd4b7c3b49b0a2c4478aaadaa061cedd3338,"Update users service (#156)
+
+Closes #144 #145 #160 
+Implements PATCH method on user and endpoint middleware for authnz
+Implements `reset_password` (with token) and `forgot_password` endpoints
+Added godoc comments for UserService interface
+Shift to using testify/assert in test code
+Multiple fixes/changes to the UserService API",Victor Vrantchan,2016-09-15T14:52:17Z,groob,groob,1650,1083,567
+186,fleet,40af0d29ef2f3b1dd32ce5ea03c52499704bedbf,"Forgot password (#162)
+
+* GradientButton components
+
+* Style guide updates
+
+* Display errors and override styles for InputFieldWithIcon
+
+* Envelope Icon
+
+* Login page form submission (#157)
+
+* API client utility
+
+* moves test helpers to the test directory
+
+* Utility to namespace local storage keys
+
+* LoginSuccessfulPage component
+
+* Check icon
+
+* adds auth to redux state
+
+* successful form submission
+
+* Allow tests to load dummy SVG static images & test fixes
+
+* ForgotPassword Page, Form & route
+
+* Email validator",Mike Stone,2016-09-14T20:31:54Z,mikestone14,mikestone14,636,578,58
+187,fleet,713c248f2e8e6ca2b6fbd0c7676ffeacb267658c,Simplify test error check (#167),Zachary Wasserman,2016-09-14T19:15:14Z,zwass,zwass,5,1,4
+188,fleet,e8384a765588782658c440c6952e25950e0ad363,assertifying the tests (#163),Mike Arpaia,2016-09-14T18:40:51Z,marpaia,marpaia,485,125,360
+189,fleet,da05e360acc2cf4aacb875787e6a8f8a54a16c55,"print version info (#164)
+
+add version package and print version commands
+make build now sets build info like git branch and revision when creating a binary.",Victor Vrantchan,2016-09-14T17:19:11Z,groob,groob,127,124,3
+190,fleet,885db1a597bf3f5d6987d393c8a9b88399277013,"Refactoring for config patterns (#159)
+
+This PR refactors most of the codebase to use the new config patterns implemented in #149. Now the core service keeps a copy of the KolideConfig struct, and service methods can reference the configuration in that struct when they need it. The most significant refactoring is in the sessions code, separating the business logic from the storage layer.",Zachary Wasserman,2016-09-14T16:11:06Z,zwass,zwass,552,270,282
+191,fleet,b638ae186d1215485d1ebcd24c27b0a7ad7fb373,"Login page form submission (#157)
+
+* API client utility
+
+* moves test helpers to the test directory
+
+* Utility to namespace local storage keys
+
+* LoginSuccessfulPage component
+
+* Check icon
+
+* adds auth to redux state
+
+* successful form submission
+
+* Allow tests to load dummy SVG static images & test fixes",Mike Stone,2016-09-13T19:50:37Z,mikestone14,mikestone14,919,653,266
+192,fleet,6cb05a58e659f5e6a8adcd7c5875e5a1225aacb3,"Pattern for defining and loading application configuration (#149)
+
+This provides a new pattern for defining and loading configuration for the Kolide server. With this PR, configuration is stored in the `config.KolideConfig` struct, and loaded through `config.Manager`. Refer to the patterns in `config/config.go` and `cli/prepare.go` to see how configuration is defined and used.
+
+A follow-up PR will work on removing further references to `viper` throughout the codebase, instead preferring to access configuration through the strongly typed `KolideConfig`.",Zachary Wasserman,2016-09-12T17:26:56Z,zwass,zwass,727,487,240
+193,fleet,370cc4efa85f6181dc4e2d210062c299966ec2ce,rm .vscode,Mike Arpaia,2016-09-12T16:29:30Z,marpaia,marpaia,19,0,19
+194,fleet,5e9f93d08a5e33303d35767c45aaae1b1864647d,Add assets folder so we can serve images (#155),Jason Meller,2016-09-12T16:11:18Z,terracatta,terracatta,14,9,5
+195,fleet,a27752fd2cb356b4ecab8a85f70225cc443e4e8c,jwtKey should be []byte but string is returned (#154),Victor Vrantchan,2016-09-12T15:31:58Z,groob,groob,3,2,1
+196,fleet,dd16f6d918dde2cee80efce9359b74d947787f18,Fix missing JSON tag for labels (#510),Zachary Wasserman,2016-11-18T00:51:30Z,zwass,zwass,4,2,2
+197,fleet,cb6c840776dcc1bb9a39b5ffd373cf76940b949c,Removing hardcoded icons and replacing with icon font (#506),Kyle Knight,2016-11-17T18:16:09Z,Kyle Knight,Kyle Knight,978,39,939
+198,fleet,bb62993ea592bc15be61a7ec58d5978e879ca44f,"Hosts side panel (#472)
+
+* Host side panel
+
+* Query form handles labels
+
+* QueryComposer handles labels
+
+* ManageHostsPage add label transitions
+
+* Stop preventing default on click outside of ellipsis menu
+
+* get labels from API
+
+* use real label data in hosts side panel
+
+* create label on label form submit
+
+* adds platform dropdown
+
+* Validate query text
+
+* Label header
+
+* validate presence of query text",Mike Stone,2016-11-17T17:12:41Z,mikestone14,mikestone14,1173,1007,166
+199,fleet,eff7f60dc2e53df0dfc8de407bec43371e58a860,"Fixes for bugs in MySQL migration (#501)
+
+* Fix users table name in MySQL ListUsers
+* Fix invalid SQL
+* Implement MarkHostSeen
+* Partial fix for targets autocompletion",Zachary Wasserman,2016-11-16T23:12:59Z,zwass,zwass,30,23,7
+200,fleet,34625ce4d00b660355e1829c2679ecda9599f767,Add service method/endpoint for creating distributed query campaign (#485),Zachary Wasserman,2016-11-16T21:07:50Z,zwass,zwass,462,266,196
+201,fleet,eb3f3cd7658b152305d3e541aa6db89383c0d304,removing some dependencies from glide (#493),Mike Arpaia,2016-11-16T18:38:31Z,marpaia,marpaia,202,10,192
+202,fleet,bf4ee40c41a2a4a746ef6d0f128c18b110890afa,"Fixing make generate-dev (#492)
+
+This commit adds the SQL bindata file generation to generate-dev",Mike Arpaia,2016-11-16T17:56:40Z,marpaia,marpaia,1,1,0
+203,fleet,587d5c9a097267b42b51de1ed34f28a62ffbfd15,removing gorm struct tags (#491),Mike Arpaia,2016-11-16T17:48:43Z,marpaia,marpaia,38,19,19
+204,fleet,c1866c48c4e2a0056fc438eeec74648eb2a99117,"User registration (#453)
+
+* RegistrationPage with Breadcrumbs
+
+* Registration Form
+
+* client-side validations
+
+* Form page headers and description
+
+* Form HOC",Mike Stone,2016-11-16T16:58:25Z,mikestone14,mikestone14,1239,1224,15
+205,fleet,6a825c11e335a6ae5e7121bd124f4f11d04dc124,"Datastore refactor (#439)
+
+Removed Gorm, replaced it with Sqlx
+
+* Added SQL bundling command to Makfile
+
+* Using go-kit logger
+
+* Added soft delete capability
+
+* Changed SearchLabel to accept a variadic param for optional omit list
+instead of array
+
+* Gorm removed
+
+* Refactor table structures to use CURRENT_TIMESTAMP mysql function
+
+* Moved Inmem datastore into it's own package
+
+* Updated README
+
+* Implemented code review suggestions from @zwass
+
+* Removed reference to Gorm from glide.yaml",John Murphy,2016-11-16T13:47:49Z,murphybytes,murphybytes,4716,2945,1771
+206,fleet,73e04c6cbeb1d75d656e9f7dd93f29b800293f1a,Ignore icons and fonts (#484),Mike Stone,2016-11-15T19:43:33Z,mikestone14,mikestone14,3,2,1
+207,fleet,29ef9e3ce800ccdb52ff8c833d098735c69e3317,Rearranging Files & Killing Off colors.js (#482),Kyle Knight,2016-11-15T18:52:17Z,Kyle Knight,Kyle Knight,317,176,141
+208,fleet,1d06ad80c8e022f994568d8e785762f9c970030c,"Use tmpfs with dev MySQL instances (#483)
+
+This results in ~100x speedup in MySQL tests.",Zachary Wasserman,2016-11-15T18:06:33Z,zwass,zwass,40,22,18
+209,fleet,0746e15cad5bd333e20f53d2ec47531a3fa9dedc,User Menu (#478),Kyle Knight,2016-11-15T17:17:33Z,Kyle Knight,Kyle Knight,349,276,73
+210,fleet,752710ccf1038f91735ad21671db94e98133b7b9,Return count of hosts in targets search for each label (#480),Mike Arpaia,2016-11-14T20:10:28Z,marpaia,marpaia,6,6,0
+211,fleet,9c38d6d19eb8f91b01fdb72f5cfb587d40ebcd5a,Update osquery service methods for distributed queries (#476),Zachary Wasserman,2016-11-14T18:22:54Z,zwass,zwass,344,271,73
+212,fleet,b0e856c3699142ebefa7d2a8c44c607e2bdfc5b3,"Update target select (#464)
+
+* Stop sending click event to click handler prop
+
+* Delineates between hosts & labels in dropdown options
+
+* Render target details when a moreInfoTarget is present
+
+* Remove moreInfoTarget when the select is closed
+
+* Remove modal
+
+* refactor formatting targets API response
+
+* Adds + icon to dropdown options
+
+* Restructures dropdown rendering",Mike Stone,2016-11-14T17:32:13Z,mikestone14,mikestone14,863,314,549
+213,fleet,8296e46ef4fc2403fa3b93f7b97012cb3e0416f3,Updating icons to Fort Awesome (#474),Kyle Knight,2016-11-14T15:29:44Z,Kyle Knight,Kyle Knight,386,211,175
+214,fleet,feb9f38a6d7f2dcebfcfe6c37c35946689a884c8,Realigning avatar on User Management Page (#475),Kyle Knight,2016-11-14T15:28:15Z,Kyle Knight,Kyle Knight,3,1,2
+215,fleet,cd2981e76b1c169e2178615575e39e173c95d711,Updating styles on Admin User Management (#463),Kyle Knight,2016-11-11T14:42:23Z,Kyle Knight,Kyle Knight,141,82,59
+216,fleet,2a9e27e426fe7aa5c05d296b4a640698c577a4e5,"add mysql and redis services (#471)
+
+enable redis and mysql tests in CircleCI environment
+switch redis test to use UTC time - https://github.com/golang/go/issues/17885",Victor Vrantchan,2016-11-11T02:04:26Z,groob,groob,33,19,14
+217,fleet,0b6df0cd73efea19304d667badf0a4047173b43b,Fix changed ID column name in DistributedQueriesForHost query (#473),Zachary Wasserman,2016-11-11T01:01:39Z,zwass,zwass,2,1,1
+218,fleet,2b24dcc73191932400dc2c3c4275bbde25b1303d,get users if the only user in state is the current user (#470),Mike Stone,2016-11-10T20:29:50Z,mikestone14,mikestone14,52,50,2
+219,fleet,ea6ca72f4316319eafdfac1017e5ce0e225910df,Removing icons from Dropdown (#469),Kyle Knight,2016-11-10T19:37:16Z,Kyle Knight,Kyle Knight,13,0,13
+220,fleet,67024ceace9620d3dc09def5cb0435c735a95bca,Update styles on Dropdown component (#462),Kyle Knight,2016-11-10T16:33:04Z,Kyle Knight,Kyle Knight,212,141,71
+221,fleet,5d8a42a959a244c3043ff98627d0faebfd2d54c8,"Fix page in RequireSetup check (#465)
+
+The previous value would require setup unless there were at least 2 users. Now
+one user is sufficient to proceed past setup.",Zachary Wasserman,2016-11-10T00:35:49Z,zwass,zwass,2,1,1
+222,fleet,af6a5ee1b64305e5118c051e6b02eb0648d9c9ac,"Add datastore methods for distributed queries (#458)
+
+New datastore methods are introduced for creating/updating
+distributed query campaigns, as well as determining the active
+distributed queries for a given host.",Zachary Wasserman,2016-11-09T23:33:16Z,zwass,zwass,342,323,19
+223,fleet,c8b9b15ef284797f5c75e4d9c8cf2935fed48e67,Fix failing MySQL tests for packs (#457),Zachary Wasserman,2016-11-09T23:31:47Z,zwass,zwass,66,17,49
+224,fleet,42f055eaa3d83a39a8d8ec75da8db267bbb9a22e,typescript version (#443),Mike Arpaia,2016-11-09T22:58:23Z,marpaia,marpaia,2,1,1
+225,fleet,37df94f7fa7ca3107ca041eaa29e99512a516681,"Convert to ts (#386)
+
+Converts email validator and  Avatar component to typescript",Mike Stone,2016-11-09T22:54:34Z,mikestone14,mikestone14,93,50,43
+226,fleet,995d86e90259a791a05349a4420f8eb16239771d,"Get targets from API (#459)
+
+* API client getTargets
+
+* change label to display_text
+
+* filters options
+
+* send selected targets to server
+
+* get targets when selected targets are added or removed
+
+* show 0 unique hosts when no targets have been selected",Mike Stone,2016-11-09T18:08:00Z,mikestone14,mikestone14,244,137,107
+227,fleet,ac14215e21f13bc737018c38e009d44a4a79b584,"create first time setup endpoint (#436)
+
+The endpoint is only active if there are no users in the datastore.
+While the endpoint is active, it also disables all the other API endpoints, and /config returns `{""require_setup"":true}`
+for #378",Victor Vrantchan,2016-11-09T17:19:07Z,groob,groob,201,188,13
+228,fleet,0388297fd89fcdbb8e28666c1682cff7e72dc6e3,Fix missing primary key designation in DistributedQueryExecutions (#450),Zachary Wasserman,2016-11-09T17:09:29Z,zwass,zwass,2,1,1
+229,fleet,675c40ea15259d3e665aae936d6644e41b1768a7,"Cleanup in service_users_test (#460)
+
+- Use subtests where appropriate
+- Attempt to fix #445",Zachary Wasserman,2016-11-09T16:52:25Z,zwass,zwass,91,47,44
+230,fleet,1469a7a37e5be1bbebcfcf64a7151c73ecd0180f,"formData mimics query attribute names (#461)
+
+This fixes a bug that allowed users to submit the form to update a
+query when no changes were made",Mike Stone,2016-11-09T16:44:58Z,mikestone14,mikestone14,16,8,8
+231,fleet,74240f647b146ce014ee189a244b40b4fdea7bcd,Updating Button Styles (#454),Kyle Knight,2016-11-09T15:38:21Z,Kyle Knight,Kyle Knight,134,84,50
+232,fleet,b4572b7327dfe2ed2168027d39014e32f4bbbe9b,Converting use of native select elements to react-select library (#440),Kyle Knight,2016-11-09T14:26:15Z,Kyle Knight,Kyle Knight,128,66,62
+233,fleet,ecf9eddbca8ec881bc163518edd88ffb44a7bc50,Styling New Query page forms (#451),Kyle Knight,2016-11-09T14:00:40Z,Kyle Knight,Kyle Knight,139,102,37
+234,fleet,991fd6c146ea22e6188b4c28e7c6bef7d4bf1a61,"Ensure tables are dropped after panic in test (#456)
+
+Prior to this, a panic in the test function would leave data in the database.
+Now we ensure that tables are dropped even after a panic.",Zachary Wasserman,2016-11-08T21:46:36Z,zwass,zwass,9,3,6
+235,fleet,00d479a3b6296d78d8d8c573e0ae6bef09b7aec5,Updating login form to fix password letter spacing (#452),Kyle Knight,2016-11-08T14:36:05Z,Kyle Knight,Kyle Knight,2,1,1
+236,fleet,63e84715c75c39593ab21a2ac71778a7243b967b,"Update query (#446)
+
+* Api client update query
+
+* Update query when user clicks ""Save Changes""
+
+* Update query text",Mike Stone,2016-11-08T14:23:25Z,mikestone14,mikestone14,125,116,9
+237,fleet,cd68b27715c3a9a84d4f33cb3b5e5ecde55730ce,Renaming button classes to be modifiers instead of elements (#449),Kyle Knight,2016-11-08T14:20:35Z,Kyle Knight,Kyle Knight,55,23,32
+238,fleet,01e7ac2b6c431d815c5296694f2b55bcc91a46e4,"Create query (#382)
+
+* API call to create queries
+
+* Add queries to redux
+
+* create query when query form is submitted
+
+* Redirect to ShowQueryPage after creating query
+
+* Removes theme dropdown and NewQuery component header
+
+* Extract NewQueryPage component state to redux state
+
+* Pass logic down to NewQuery component as props
+
+* Changes NewQuery component name to QueryComposer
+
+* Render NewQueryPage for /queries/:id route
+
+* Update ReduxConfig for loading a single resource
+
+* QueryPage tests
+
+* Get query when the query page loads
+
+* catch errors when query is invalid
+
+* Renames UpdateQueryForm to QueryForm to re-usability
+
+* Changes InputField to a controlled component
+
+* Always render the Query Form on Query Pages",Mike Stone,2016-11-07T16:42:39Z,mikestone14,mikestone14,2284,1341,943
+239,fleet,def24499b5195624b0aad21d3b3e6cae0a7120c6,"store WebAddress config in datastore (#421)
+
+moves web address config to datastore so that it can be configured by a user
+in the Web UI.
+rename OrgInfo struct to AppConfig.
+
+For #363
+For #378",Victor Vrantchan,2016-11-04T20:44:38Z,groob,groob,257,165,92
+240,fleet,9be166b8345575c7a02f5045c3ef580b633a4446,Rename Elipsis to Ellipsis (#431),Kyle Knight,2016-11-04T17:06:11Z,Kyle Knight,Kyle Knight,29,14,15
+241,fleet,a2504a3364b38bc4f62b3d53c93c71ffd92da9d3,Removing alerts from sidebar (#427),Mike Arpaia,2016-11-03T21:23:09Z,marpaia,marpaia,8,0,8
+242,fleet,ca33d238d89ef63128d0aef73689092c5f867041,Converting JS/Radium styles to SCSS (#360),Kyle Knight,2016-11-03T19:40:54Z,Kyle Knight,Kyle Knight,4197,1915,2282
+243,fleet,b518447b31108d94d6453c5e79af35dcc0031787,"correctly save user properties during ModifyUser call. (#395)
+
+fixes #351
+
+because RequestPasswordReset does it's own db query/save,
+call it at the end, after all properties have already been saved.",Victor Vrantchan,2016-11-03T16:50:32Z,groob,groob,21,10,11
+244,fleet,9c476a39fff7caf8fa2fea22d3d83995e67fe8d4,Stop trying to get the users config when there is no user (#411),Mike Stone,2016-11-03T01:32:05Z,mikestone14,mikestone14,2,1,1
+245,fleet,97de2bc5aaae7f7bee80235b70cb73b641a634e1,"Label API Updates (#413)
+
+close #403
+close #404
+close #412",Mike Arpaia,2016-11-03T01:17:23Z,marpaia,marpaia,473,143,330
+246,fleet,94106f87e4797adc194260d27dcbf889d25c47ad,Resolve import paths from the frontend directory (#396),Mike Stone,2016-11-02T15:54:43Z,mikestone14,mikestone14,26,15,11
+247,fleet,7ebebbb7b19b2447b04365a8f35298c00dcf7e7f,Target search endpoint (#339),Mike Arpaia,2016-11-02T14:59:53Z,marpaia,marpaia,1018,984,34
+248,fleet,262a48f8ebdd05b85e51a9635e9ec5af703ea442,"Datastores for buffering distributed query results (#346)
+
+A new datastore interface is needed for buffering incoming distributed query results to be sent to the client. This PR attempts to define and implement that interface.
+
+It is intended that the ReadChannel() method be used by the goroutine that will push query results down a websocket to the client. Passing the results through this channel will allow that goroutine to perform a select on both the channel and the websocket, in order to properly handle IO.",Zachary Wasserman,2016-10-31T22:51:19Z,zwass,zwass,498,494,4
+249,fleet,0faa3a55fb854caf709bab812aa659256a472229,Make context imports consistent (#359),Zachary Wasserman,2016-10-31T22:18:05Z,zwass,zwass,21,9,12
+250,fleet,c5339ddb7640cee155bdcffa8e3e2a444c9be5c3,Fixing bug where non-updated query object is returned (#361),Mike Arpaia,2016-10-31T22:00:04Z,marpaia,marpaia,6,3,3
+251,fleet,4f83220870dfa0311b1db4c08eb5838e55c553d3,Add description field to Query (#358),Mike Arpaia,2016-10-31T21:05:02Z,marpaia,marpaia,10,10,0
+252,fleet,cd7f925fdbc5350c59b486baaf49341971aa8ab2,Typescript (#355),Mike Stone,2016-10-31T21:02:06Z,mikestone14,mikestone14,81,62,19
+253,fleet,41d2d9ca57489d8308aac968c4f74072c6090933,Add queries and labels in dev mode (#349),Zachary Wasserman,2016-10-31T18:11:27Z,zwass,zwass,111,94,17
+254,fleet,64d1924af4aa4c8e72163ebe23c1871e60a447eb,"Save query form (#353)
+
+* Removes SaveQuerySection
+
+* Updates to NewQuery & SaveQueryForm
+
+* SaveQueryFormModal
+
+* Load the SaveQueryFormModal on ""Save Query"" click
+
+* Run query button
+
+* hide modal form after submit
+
+* Disable run query btn without selected targets",Mike Stone,2016-10-31T18:08:54Z,mikestone14,mikestone14,791,359,432
+255,fleet,023729c1a6898ed438b67dca86f690fcb713ca45,Organizing linters in Makefile (#356),Mike Arpaia,2016-10-31T13:56:13Z,marpaia,marpaia,8,6,2
+256,fleet,4c6c0a2b05f1741c0b093e34c3640c7a7849d851,Adding scss-lint and cleaning up styles (#354),Kyle Knight,2016-10-28T21:25:57Z,Kyle Knight,Kyle Knight,751,464,287
+257,fleet,faf58c90192eccbf7cdbceb615ea0dc2033552ab,Login/Logout Restyling & Code Cleanup (#338),Kyle Knight,2016-10-28T15:01:08Z,Kyle Knight,Kyle Knight,109,61,48
+258,fleet,e2a5502e213d7243d600c84bfa4b2aaccaf9c589,"Select targets (#340)
+
+* Api client get targets
+
+* Allow entities to parse full api response
+
+* responsive nav style fixes
+
+* Add disabled prop to button
+
+* Add targets from API to target select input
+
+* customize target rendering in input field
+
+* call API on select target input change
+
+* display # hosts selected
+
+* Adds new icons to icon font
+
+* Customize select targets input options
+
+* Update directory structure
+
+* restructure select targets input
+
+* Adds hosts to labels
+
+* Host modal styles
+
+* ShadowBoxInput component
+
+* TargetInfoModal for labels
+
+* consistent entity response in api client stubs
+
+* Fix bug removing multiple hosts in target select input
+
+* change Button component to use css classes",Mike Stone,2016-10-27T16:14:30Z,mikestone14,mikestone14,1872,1563,309
+259,fleet,950586c1001a87606dfd2844182dee4ebce43597,"update datastore logger (#344)
+
+remove dependency on logrus
+adapt go-kit/log interface to gorm logger
+allow debug logging flag",Victor Vrantchan,2016-10-25T15:30:14Z,groob,groob,22,14,8
+260,fleet,efffe50a552bacf0a4f456bd72a69d6dc347d783,"update mysql test setup (#343)
+
+reuse a single conneciton pool
+close connection gracefully at the end of tests
+setup and teardown tables in between each test",Victor Vrantchan,2016-10-25T15:01:14Z,groob,groob,55,29,26
+261,fleet,ee3d96eb53aa7b89d9cfe55a03bcdc542d9c1086,"Update eslint (#337)
+
+* Updates eslint packages
+
+* Expected parentheses around arrow function argument having a body with curly braces
+
+* Prop type `object` is forbidden
+
+* Visible, non-interactive elements should not have mouse or keyboard event listeners
+
+* Prop type is defined but not used
+
+* Unexpected use of file extension ""jsx""
+
+* Expected 'this' to be used by class method
+
+* HTML entities must be escaped
+
+* Prevent default behavior on more options button click",Mike Stone,2016-10-21T23:13:41Z,mikestone14,mikestone14,546,333,213
+262,fleet,aa275751b2db11e6581bb312d45ecb87f47712cb,"Client side query validation (#335)
+
+* validate query text
+
+* Update structure of submitted SaveQueryForm data
+
+* form calls correct prop function when invalid query text
+
+* Lowercase directory names",Mike Stone,2016-10-21T21:58:13Z,mikestone14,mikestone14,303,214,89
+263,fleet,10c32bc47fd926415aa6714e24e72ac12baa12d6,Adds missing packages for style imports (#336),Mike Stone,2016-10-21T21:22:57Z,mikestone14,mikestone14,2,2,0
+264,fleet,b0da10cd4d875b9f2fb78737d0313f48278abb35,Allow SCSS to import globs (#332),Kyle Knight,2016-10-21T15:57:33Z,Kyle Knight,Kyle Knight,238,147,91
+265,fleet,d2e31146c669433a4715fc6cc7e13c01a3e38ed6,"Fix bugs with password resets (#330)
+
+- Permissions error with admin forced password reset
+- Redirecting on successful admin forced password reset
+- URL fix for forgot password reset
+- Use JWT key for password reset request",Zachary Wasserman,2016-10-20T19:09:51Z,zwass,zwass,77,68,9
+266,fleet,a81f08b07bbe29223e3f450c197b366c2cadb831,"Sidepanel refactor (#329)
+
+* Moves side panels into the side_panel directory
+
+* Adds SecondarySidePanelContainer component
+
+* Renames MainSidePanel to SiteNavSidePanel",Mike Stone,2016-10-20T12:43:25Z,mikestone14,mikestone14,88,59,29
+267,fleet,de0141f7dff5e7eb015f25d0ee1064cda8e3bb7f,Removing extraneous # in Makefile (#331),Mike Arpaia,2016-10-19T22:14:26Z,marpaia,marpaia,2,1,1
+268,fleet,c07702330d670931560bcf259cbd7d0f05cba510,"Cleaning JavaScript imports and if statements (#327)
+
+* Moving entityGetter to utility folder
+
+* Import whitespace and if statement braces
+
+* newlines between multi-line if's",Mike Arpaia,2016-10-19T20:22:18Z,marpaia,marpaia,233,194,39
+269,fleet,bdee0516e6c82fe9e58f1a1c54e914971ad6dff3,Removing sqlite from the codebase (#324),Mike Arpaia,2016-10-19T14:46:33Z,marpaia,marpaia,140,57,83
+270,fleet,98ca32b783c8846c1be5ad853d7a9f21cb10529d,"Complete, working inmem datastore implementation (#319)",Mike Arpaia,2016-10-17T19:30:47Z,marpaia,marpaia,367,271,96
+271,fleet,1acd011ca91085461b38f6936965c0c461639d6b,"Show hosts page (#311)
+
+* Adds manage hosts page and improves side bar functionality
+
+* API client get hosts
+
+* Adds hosts to redux state
+
+* Adds host details component
+
+* Manage hosts page renders host details
+
+* ElipsisMenu component
+
+* Add ElipsisMenu to HostDetails
+
+* Adds HOC to detect clicks outside component
+
+* clicks outside ElipsisMenu close the tooltip
+
+* Adds icons to host details component",Mike Stone,2016-10-17T18:55:03Z,mikestone14,mikestone14,802,772,30
+272,fleet,05cb15d63c8dada1c3c4707376e3b9bd727954bf,Fix pointer handling in inmem nextID (#323),Zachary Wasserman,2016-10-17T17:11:23Z,zwass,zwass,2,1,1
+273,fleet,e38dd40699358de3be984530fb1ec1be401db459,Update kolidecons to the latest version (#321),Jason Meller,2016-10-17T16:06:32Z,terracatta,terracatta,109,85,24
+274,fleet,f9bb9de665b44485b349abc20de4cdbf214413bc,Add ordering options for List* methods (#318),Zachary Wasserman,2016-10-17T14:01:14Z,zwass,zwass,212,202,10
+275,fleet,b57514e9d2113390ab5cf259b6e3485809f4a262,Redirect users to correct location after login (#316),Mike Stone,2016-10-17T13:27:22Z,mikestone14,mikestone14,99,95,4
+276,fleet,1597ad23a4a759236921121c2340cbc88fcc97e1,Fix NewHost bug introduced in #312 (#317),Zachary Wasserman,2016-10-16T11:56:20Z,zwass,zwass,1,1,0
+277,fleet,4100eea2a855c8ae801eb80f4420fee064db5cf1,Add detail_update_time in createDevHosts (#315),Zachary Wasserman,2016-10-14T22:32:55Z,zwass,zwass,42,22,20
+278,fleet,beda051de2adc82ba4dd2e91b95e2b46b6bbb35a,"Show invited users (#297)
+
+* Adds loadAll action to redux entity config
+
+* API Client get invites
+
+* Add invites to the user management page
+
+* Updates user block styles on user management page
+
+* Submit modal form on enter
+
+* Modify details form styles
+
+* Enter submits edit user form
+
+* Removes unused admin dashboard page
+
+* API Client - revoke invites
+
+* Delete invite entities in redux
+
+* Revoke invites from admin manage users page
+
+* Show success flash message after user invite is revoked",Mike Stone,2016-10-14T21:08:57Z,mikestone14,mikestone14,946,767,179
+279,fleet,daeecfb244acbaac128498e813f4442c7e162d13,"Fix bug in inmem ID generation (#312)
+
+Fixes #308",Zachary Wasserman,2016-10-14T16:15:04Z,zwass,zwass,40,26,14
+280,fleet,d9b98b22d6cc18cd68c86a703a771e4c5c86f42e,Minor cleanup in service_invites_test (#313),Zachary Wasserman,2016-10-14T16:01:26Z,zwass,zwass,14,8,6
+281,fleet,4b88ae6e2c06c594269aba779ab515edc7016759,Apply consistent naming conventions across server files (#310),Zachary Wasserman,2016-10-14T15:59:27Z,zwass,zwass,188,94,94
+282,fleet,106eae4515b67a0166646bc16872c1a6b256c2dc,Update os_version test data to reflect real data (#314),Zachary Wasserman,2016-10-13T21:56:02Z,zwass,zwass,4,2,2
+283,fleet,7f636aef4f48ea47e46d8da28bbc52fe3a3e4be2,"Add pagination to List* endpoints (#309)
+
+- Introduce kolide.ListOptions to store pagination params (in the future it can
+  also store ordering/filtering params)
+- Refactor service/datastore methods to take kolide.ListOptions
+- Implement pagination",Zachary Wasserman,2016-10-13T18:21:47Z,zwass,zwass,572,475,97
+284,fleet,f9fa3e289f5231d0ab6361c474052a0b68283c09,Return host 'status' with host endpoints (#307),Zachary Wasserman,2016-10-12T21:41:35Z,zwass,zwass,30,23,7
+285,fleet,01f20372f2ad7ac818306e28a842a66c343a3ddf,"Populate the in-memory database with fake hosts (#304)
+
+* Populate the in-memory database with fake hosts
+
+Similarly to how we create two fake users, this PR adds two fake hosts to
+the in-memory database that is used in dev mode.
+
+* using more realistic physical memory values",Mike Arpaia,2016-10-12T19:19:27Z,marpaia,marpaia,40,40,0
+286,fleet,93eaae7454c03ab2d1abddecf32ffde1e3939bf7,"Lowercase strings which should be case insensitive, like email and username. (#302)
+
+Fixes #299
+Closes #300",Victor Vrantchan,2016-10-12T16:35:34Z,groob,groob,64,51,13
+287,fleet,f6a3fafd2c099b272b10a401a5d3da536fff8a9a,"option to use real SMTP config in dev mode (#301)
+
+* move devMode fixture creation to separate functions
+
+* use real SMTP server if SMTP config is provided in dev mode",Victor Vrantchan,2016-10-12T16:35:14Z,groob,groob,106,63,43
+288,fleet,7b5021fb14e08b8afeb2a4600b93253b3c50925b,"Turning the GC off at build-time on Windows (#303)
+
+The way that you define environment variables for a single command
+is slightly different than how it's done on nix. This PR adds a simple
+switch to the Makefile to use the correct approach on the appropriate
+operating system.",Mike Arpaia,2016-10-12T16:25:59Z,marpaia,marpaia,8,7,1
+289,fleet,ae1e4d9bf080a9fb4cedd6ebd64318d61f0fed50,"increasing the heap size improves `go build` speed. (#298)
+
+set GOGC=off to reduce the time it takes to `go build` when starting with no compiled dependencies.",Victor Vrantchan,2016-10-12T12:36:31Z,groob,groob,2,1,1
+290,fleet,337822fde3a61fdf9c81156e034364a91e146100,"remove unused cors headers (#296)
+
+no need for CORS middleware since we're using the same origin for the frontend.",Victor Vrantchan,2016-10-11T21:10:20Z,groob,groob,17,1,16
+291,fleet,86d231917002ae64691431f9f64f4b57280dd0e5,"Bug - authenticate on refresh (#295)
+
+* Saves user in state on login success
+
+* stop storing user token in state",Mike Stone,2016-10-11T18:50:18Z,mikestone14,mikestone14,22,11,11
+292,fleet,5d0cac882ad2dfefdff6a3c2455b4cef11e3351d,Move API responses under top-level keys (#292),Zachary Wasserman,2016-10-11T16:22:11Z,zwass,zwass,512,143,369
+293,fleet,58c37335249eacee8784322d24b0d5f25f3006fa,"Add hosts (#294)
+
+* New hosts route
+
+* Adds source code pro font
+
+* New Host Page
+
+* make Icons clickable
+
+* Adds clipboard icon
+
+* highlight icon & show helper text when text copied
+
+* Method 2 text
+
+* Fixes Firefox bug
+
+* Fix spelling error",Mike Stone,2016-10-11T16:10:41Z,mikestone14,mikestone14,444,437,7
+294,fleet,2c17e641cb44e2fd7f8534f0f375cfa9f5ca558a,"Invite new users (#290)
+
+* API client - invite users
+
+* configure invites as a redux entity
+
+* Invite user form submits invite from user management page",Mike Stone,2016-10-11T15:34:52Z,mikestone14,mikestone14,299,278,21
+295,fleet,23ffa5be622b812c28e4ce0f223d448536a00f2c,"Query side panel (#269)
+
+* QuerySidePanel component
+
+* Adds all osquery table names to ace editor mode
+
+* kolide theme for strings
+
+* Detect OS from browser
+
+* Show utility and specs availability as 'All Platforms'
+
+* Show column description as alt text",Mike Stone,2016-10-11T15:32:39Z,mikestone14,mikestone14,3476,3390,86

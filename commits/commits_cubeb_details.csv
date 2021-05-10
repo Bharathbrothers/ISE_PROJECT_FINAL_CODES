@@ -1,0 +1,400 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,cubeb,aa7e73ccb46753debd925f2eadad3133abbc1165,"winmm-thread branch was inadequately tested and needs more work.  reverted.
+
+Revert ""Merge branch 'winmm-thread'""
+
+This reverts commit a6f53cd78f0f3694545eaf92250157d8943db03e, reversing
+changes made to b3c51b824f77e3fedea12c726712c0f03e1dc14a.
+
+Conflicts:
+
+	src/cubeb_winmm.c",Matthew Gregan,2011-09-26T02:18:18Z,kinetiknz,kinetiknz,116,67,49
+1,cubeb,22cfd70139808f659d123296c43c58c478b90ac9,start refactoring alsa code.,Matthew Gregan,2011-09-22T04:03:39Z,kinetiknz,kinetiknz,100,54,46
+2,cubeb,572c7651db5a5133f607aca741e61ee2489c2a32,winmm: warning no longer applies.,Matthew Gregan,2011-09-22T03:59:26Z,kinetiknz,kinetiknz,2,0,2
+3,cubeb,a6f53cd78f0f3694545eaf92250157d8943db03e,"Merge branch 'winmm-thread'
+
+Conflicts:
+	src/cubeb_winmm.c",Matthew Gregan,2011-09-22T03:57:52Z,kinetiknz,kinetiknz,116,50,66
+4,cubeb,b3c51b824f77e3fedea12c726712c0f03e1dc14a,winmm: minor formatting changes.,Matthew Gregan,2011-09-22T03:53:20Z,kinetiknz,kinetiknz,7,4,3
+5,cubeb,ce8a7c9bfa5270709c4652c2474ffb95e804b066,coreaudio: fire drained when last queued buffer is free and stop relying on unreliable (on 10.5) IsRunning listener.,Matthew Gregan,2011-09-22T03:39:07Z,kinetiknz,kinetiknz,36,5,31
+6,cubeb,d96c2b08a55bc0c6d53f508934d8f922768ff475,coreaudio: remove debugging printfs.,Matthew Gregan,2011-09-22T03:31:56Z,kinetiknz,kinetiknz,11,1,10
+7,cubeb,08da964af317afa3aaf591c221e7d2025c5b626f,add test_tone to gitignore.,Matthew Gregan,2011-09-22T03:06:28Z,kinetiknz,kinetiknz,2,1,1
+8,cubeb,503085dd0adf1e154d274d17604860a7f2ee6bb4,"Merge pull request #3 from rillian/tone
+
+Add a test program which plays a synthesized tone",Matthew Gregan,2011-09-22T03:01:35Z,kinetiknz,kinetiknz,121,121,0
+9,cubeb,370c3fdef10039666c95c2b433b00036ce051754,"Add a test program which plays a synthesized tone
+
+Currently 'make check' just checks the API using silence. For
+functional testing, it's nice to generate audible output to
+verify the code is talking to the platform and hardware correctly.
+
+This commit adds a 'test_tone.c' based on the example code
+in the api documentation. It plays a simple synthesized
+tone for one second.
+
+Since playing audio automatically can be surprising, I didn't
+add it to the tests. It must be run manually.",Ralph Giles,2011-09-21T23:16:48Z,rillian,rillian,121,121,0
+10,cubeb,5d4669af7e760effc6de6583026f90cd99c28f1c,"Merge branch 'master' of github.com:kinetiknz/cubeb
+
+Conflicts:
+	Makefile.am",Matthew Gregan,2011-09-20T01:05:57Z,kinetiknz,kinetiknz,60,54,6
+11,cubeb,f09da0f01515ac6f7b26315466d8fac158962cf6,"Merge pull request #1 from rillian/build
+
+autotools support for switching backends.",Matthew Gregan,2011-09-20T01:00:48Z,kinetiknz,kinetiknz,55,51,4
+12,cubeb,f3ad57194345a1c9e613e538bd93f88f75e406f6,"Merge pull request #2 from rillian/master
+
+update the example code to match the current API headers.",Matthew Gregan,2011-09-20T00:59:00Z,kinetiknz,kinetiknz,6,3,3
+13,cubeb,adab8acb9cdc189302b0325ec31d4a2a83404f1a,Update the example code to match the current API headers.,Ralph Giles,2011-09-20T00:06:06Z,rillian,rillian,6,3,3
+14,cubeb,9aee9b745e2622230ee74bc47a38a5e1a79534e8,"Fix a typo: build the pulse backend when pulseaudio is selected.
+
+Previously the makefile build cubeb_coreaudio.c when pulseaudio
+was selected as well as when coreaudio was selected.
+
+Tested on Linux and MacOS X.",Ralph Giles,2011-09-19T21:27:16Z,rillian,rillian,2,1,1
+15,cubeb,5f3acc1ab2db582ddbe368525dc3e3fa26ee78c0,"Detect and compile the appropriate platform backend.
+
+Rather than hard-wiring which cubeb implementation to build,
+check for available header files for the various platorm
+audio APIs and generate the source list in the makefile
+conditionally.
+
+Tested on MacOS X with coreaudio.",Ralph Giles,2011-09-17T20:21:53Z,rillian,rillian,55,51,4
+16,cubeb,690c0c0afbf384cf7a7d4b611442189ccd6df491,update TODO.,Matthew Gregan,2011-09-16T18:31:51Z,kinetiknz,kinetiknz,226,25,201
+17,cubeb,cafae4fd7dd4d91e51b33bbdad11e78aa4226e6d,alsa: assert arguments.,Matthew Gregan,2011-09-02T05:26:05Z,kinetiknz,kinetiknz,28,27,1
+18,cubeb,cd4e4503c11d04c9a3d2a1968cd904b4ff196708,switch default build to alsa until build system is implemented properly.,Matthew Gregan,2011-09-01T02:58:25Z,kinetiknz,kinetiknz,4,2,2
+19,cubeb,afd4afbb88a30e6f21b5553e18a5181d69bc59f8,"alsa: revert previous simplification, it's not a large enough win.
+
+This reverts commit e86128d272599b66c2084ea278c9ae0a6405c8ba.",Matthew Gregan,2011-09-01T02:40:29Z,kinetiknz,kinetiknz,62,38,24
+20,cubeb,e86128d272599b66c2084ea278c9ae0a6405c8ba,alsa: start simplifying descriptor management by assuming each pcm provides only one descriptor.,Matthew Gregan,2011-08-31T04:14:14Z,kinetiknz,kinetiknz,62,24,38
+21,cubeb,fbb684c25d1b3a3258296e757001614c3dcda050,alsa: simplify active stream management.,Matthew Gregan,2011-08-30T06:35:04Z,kinetiknz,kinetiknz,64,25,39
+22,cubeb,69631c8209d4cebb99d3e0cab4a6037fff157e98,warning fixes.,Matthew Gregan,2011-08-30T05:53:34Z,kinetiknz,kinetiknz,29,19,10
+23,cubeb,122447ff356909c0827764d641af1d78a60f7748,"alsa: remove unnecessary safe_{read,write} wrappers.  insert newly activated
+streams at the start of the active streams list.  switch to doubly-linked
+lists and store the list node in the stream to aid fast removal.",Matthew Gregan,2011-08-30T05:43:21Z,kinetiknz,kinetiknz,217,83,134
+24,cubeb,cd8f9d2032fecc9a1eb3904db7c3103fea72d248,winmm: cast waveOutOpen arg to fix compile error.,Matthew Gregan,2011-08-30T02:43:47Z,kinetiknz,kinetiknz,8,2,6
+25,cubeb,f590d31e52786bab48847019d74c9a5045b90bee,winmm: experimental implementation using CALLBACK_THREAD.,Matthew Gregan,2011-08-29T05:19:39Z,kinetiknz,kinetiknz,110,49,61
+26,cubeb,c93fc14828130aed82f7ef98301a8618d764ec02,use #defines for stream parameters in tests.,Matthew Gregan,2011-08-29T03:56:02Z,kinetiknz,kinetiknz,53,29,24
+27,cubeb,a1dcfd3d31cb1b993d0d7aff13a90dfa69d52a47,alsa: remove unworkable buffer configuration code.,Matthew Gregan,2011-08-29T03:55:28Z,kinetiknz,kinetiknz,84,12,72
+28,cubeb,d4bd437d74deabf495d71dfe5e561dbb2f501bfb,add big-endian and native-endian variants of sample formats.,Matthew Gregan,2011-08-22T05:23:58Z,kinetiknz,kinetiknz,54,45,9
+29,cubeb,f61ca7b709a75d62b40e79a179ac879e2a08d985,remove set_volume tests.,Matthew Gregan,2011-08-19T04:52:10Z,kinetiknz,kinetiknz,9,0,9
+30,cubeb,cf4f8b1e120b2209f116faca8ff12aeaad512ff5,change cubeb_stream_init's latency parameter from frames to milliseconds.,Matthew Gregan,2011-08-18T03:33:51Z,kinetiknz,kinetiknz,54,28,26
+31,cubeb,ba6409a5b7b6b2b4547f3799cb6e084fa1d2f528,remove CUBEB_SAMPLE_U8 use from tests.,Matthew Gregan,2011-08-18T03:17:33Z,kinetiknz,kinetiknz,16,8,8
+32,cubeb,bcbeeabd5c77c8b6140dcce6743b925aae263e3c,remove cubeb_stream_set_volume.  remove CUBEB_SAMPLE_U8.,Matthew Gregan,2011-08-18T03:15:15Z,kinetiknz,kinetiknz,80,1,79
+33,cubeb,55ea210d3ad0cc4e435f0452bc4627715aef1b26,alsa: rework using ALSA's non-blocking poll API.,Matthew Gregan,2011-08-18T03:12:02Z,kinetiknz,kinetiknz,549,436,113
+34,cubeb,a48b2f472bfd427b0f3dac2130b5db6249bcbee2,coreaudio: add diagnostics and logging while attempting to track down a lost IsRunning listener invocation.,Matthew Gregan,2011-08-18T03:11:31Z,kinetiknz,kinetiknz,30,27,3
+35,cubeb,89c433feb5b4fea89f89a83b34ee0dd21868d26c,pulse: reorder stream members to avoid dead space.,Matthew Gregan,2011-08-08T03:45:50Z,kinetiknz,kinetiknz,2,1,1
+36,cubeb,1de1d1705978df20f64c4989f532ff726b33338a,coreaudio: remove listener before stopping queue.,Matthew Gregan,2011-08-08T03:45:19Z,kinetiknz,kinetiknz,14,10,4
+37,cubeb,1e65ec8c2f31ecf4430e99e8d0bbc088141e4ab1,coreaudio: stop queue before disposing it.,Matthew Gregan,2011-08-05T04:22:04Z,kinetiknz,kinetiknz,4,4,0
+38,cubeb,5b9ec3fbffe401423eccdb8d7ba11e778dca7317,alsa: initial attempt at alsa backend.,Matthew Gregan,2011-08-03T04:46:11Z,kinetiknz,kinetiknz,323,323,0
+39,cubeb,c9e7f9a1cc7eda9c6bea22342c0433b0d026f105,force-enable assert.,Matthew Gregan,2011-08-03T04:45:56Z,kinetiknz,kinetiknz,3,3,0
+40,cubeb,aea39501d1df75510fd3619c8c6fc550144d3287,test: check end position.  allow stream to settle at startup.,Matthew Gregan,2011-08-03T04:45:29Z,kinetiknz,kinetiknz,5,5,0
+41,cubeb,ab69f9ba8de62a8ed9d8ffc61dff42e56f4385a2,dsound: add incomplete directsound backend.,Matthew Gregan,2011-07-26T05:45:52Z,kinetiknz,kinetiknz,588,588,0
+42,cubeb,65b788c5ada5123616e6cc111ef25efaec000dfa,winmm: add winmm backend.,Matthew Gregan,2011-07-26T05:45:34Z,kinetiknz,kinetiknz,442,442,0
+43,cubeb,6fffac9217f8571c7d418e00754acfcab7fc951b,coreaudio: install IsRunning listener at startup.  fix buffer rounding.,Matthew Gregan,2011-07-26T05:45:17Z,kinetiknz,kinetiknz,40,25,15
+44,cubeb,68b80e502783979b51d204d07572b06c2913217f,fix import botch up.,Matthew Gregan,2011-07-08T04:26:19Z,kinetiknz,kinetiknz,0,0,0
+45,cubeb,5045555f25c608e7b63bf9ed7eb64dbe017f35b4,initial import (from 892ca582fe32577392a9843f14b8c5370df6ed78).,Matthew Gregan,2011-07-08T04:23:47Z,kinetiknz,kinetiknz,4141,4141,0
+46,cubeb,f80317b6fb9d5ca9e5040c920b74c0b50873132f,pulse: remove state callback before freeing userdata.,Matthew Gregan,2013-02-05T02:46:13Z,kinetiknz,kinetiknz,2,2,0
+47,cubeb,86d1469f5f8120e438a23fe5a452fd0fe55ac964,pulse: drain timing and error handling fixes.  addresses bmo# 752401.,Matthew Gregan,2013-02-04T03:45:42Z,kinetiknz,kinetiknz,132,78,54
+48,cubeb,0f53b9b70c4e6af9da4a7eb0d38a7757c5a10edd,bump version post-release.,Matthew Gregan,2012-12-05T03:33:15Z,kinetiknz,kinetiknz,2,1,1
+49,cubeb,d238150bbacccfb97e62499b0e79a834fcbbd102,bump version for 0.2 release.,Matthew Gregan,2012-12-05T03:06:05Z,kinetiknz,kinetiknz,2,1,1
+50,cubeb,91193654a4b8ed2e60cdc3ed6ad05bc55fa847f0,build fixes for VC++2010.  update Makefile.am to build optimized by default.,Matthew Gregan,2012-12-05T02:55:34Z,kinetiknz,kinetiknz,62,47,15
+51,cubeb,682231bb0fea0f1f904de823f0aa3aa4851378b4,winmm: process work items in batches to avoid stream starvation.,Matthew Gregan,2012-12-04T20:33:43Z,kinetiknz,kinetiknz,12,9,3
+52,cubeb,9cd4846d6b7bf274038482e86d566abcef431e85,build system fixes for make dist.,Matthew Gregan,2012-12-03T00:58:38Z,kinetiknz,kinetiknz,11,6,5
+53,cubeb,f76c996cae249665c71e4a9272d219f121a75d9e,audiounit: fix build on 10.5.,Matthew Gregan,2012-12-03T00:39:38Z,kinetiknz,kinetiknz,23,20,3
+54,cubeb,aebe03df937eccda1d0a07300973678b9ea30a07,audiounit: stop using deprecated component API.  clean up OS X build steps.,Matthew Gregan,2012-12-02T23:53:46Z,kinetiknz,kinetiknz,19,9,10
+55,cubeb,d2c45250a59c20a16427be0f1eb592b5176f43df,changes to support building with MinGW.  fixes #10.,Matthew Gregan,2012-11-30T23:18:30Z,kinetiknz,kinetiknz,42,27,15
+56,cubeb,98769a7861b067125a76c97ddb51c5db8f528b75,winmm: change priority of RDP and Vista latency kludges.,Matthew Gregan,2012-11-18T22:40:29Z,kinetiknz,kinetiknz,10,5,5
+57,cubeb,6e9ffc59202f95f09e5adb895d10eaedf36a6ea2,"alsa: remove ugly PA detection, detect PA from the snd_config.",Matthew Gregan,2012-11-13T05:04:40Z,kinetiknz,kinetiknz,23,4,19
+58,cubeb,8da7b2a4410f8d3ba9d2922be8760a7b24e957d3,winmm: let high latency mode use different minimums depending on the environment.,Matthew Gregan,2012-11-13T02:58:43Z,kinetiknz,kinetiknz,16,8,8
+59,cubeb,1bc23c6e2e4920f38f7aa56ec56ef5e379e18cf7,alsa: deal with handle_underrun workaround failing with old PA plugins.,Matthew Gregan,2012-11-01T04:11:09Z,kinetiknz,kinetiknz,24,19,5
+60,cubeb,8b971e00efee022f4248b3a8ed4e4a8600f2a429,"winmm: detect situations where winmm needs higher latency (Vista, RDP) and force a minimum latency value.",Matthew Gregan,2012-11-01T03:28:57Z,kinetiknz,kinetiknz,35,35,0
+61,cubeb,dfdf4a3c0f813717819f633f8bd3099c3e58ee8a,alsa: extend the hack from d8f950c4 to cover cases where the pulse pcm is a slave.,Matthew Gregan,2012-10-31T02:17:25Z,kinetiknz,kinetiknz,183,124,59
+62,cubeb,e5837ecbb2389abd7e6635f4339878c5e4c1e1d5,audiounit: make unit deinit failures non-fatal too.,Matthew Gregan,2012-10-26T03:58:31Z,kinetiknz,kinetiknz,13,4,9
+63,cubeb,9d44b732da8f1cbe8ff8f721b2c2ce18c6a11bf4,add OpenSL ES backend.,Matthew Gregan,2012-10-23T04:16:01Z,kinetiknz,kinetiknz,338,336,2
+64,cubeb,f4c927fb1c2dc0a0580d0bca4bd267c34febada4,audiounit: make unit initialization failures non-fatal.,Matthew Gregan,2012-10-18T04:57:10Z,kinetiknz,kinetiknz,34,24,10
+65,cubeb,d8f950c4ec324d1a0602a142c5fa5df331178ffc,alsa: resurrect the less dirty hack from 1aa0058d and make it work with dynamic ALSA configs.,Matthew Gregan,2012-09-04T02:59:43Z,kinetiknz,kinetiknz,121,116,5
+66,cubeb,15b980b9c6b6b2ab23ffc057043c2240ea9bea91,revert accidental change to configure.ac.,Matthew Gregan,2012-08-24T03:00:46Z,kinetiknz,kinetiknz,2,1,1
+67,cubeb,f352bef061d794bb7edc9b91a3972aa5d2778dbc,add -Wno-unused to Makefile.am,Matthew Gregan,2012-08-24T02:56:22Z,kinetiknz,kinetiknz,13,6,7
+68,cubeb,8ac4e6b347ba9f2da9ac7cee6d24bdf4e4179ac0,upgrade Doxyfile to 1.8.x,Matthew Gregan,2012-08-24T02:53:53Z,kinetiknz,kinetiknz,493,367,126
+69,cubeb,4a0dfb6322a00b453f30d3b088c791562053d88f,audiounit: fix build after coreaudio -> audiounit rename.,Matthew Gregan,2012-08-21T08:35:36Z,kinetiknz,kinetiknz,6,3,3
+70,cubeb,2d7d3e8f2ecabb70d2723f3c86fcb591a84b7f85,alsa: error out of cubeb_stream_start when stream is in an invalid state.,Matthew Gregan,2012-08-16T06:46:40Z,kinetiknz,kinetiknz,4,4,0
+71,cubeb,bd65f80c8ef9e56d9cfabf2e125d420bc926bc97,alsa: initialize stream's last activity timer when starting stream.,Matthew Gregan,2012-08-16T06:40:44Z,kinetiknz,kinetiknz,1,1,0
+72,cubeb,fa7cf6ecfe1a082cd255569172a62a3df3122fee,alsa: second attempt: define _XOPEN_SOURCE to fix a BSD build issue.  fixes #6.,Matthew Gregan,2012-08-13T09:28:44Z,kinetiknz,kinetiknz,2,1,1
+73,cubeb,15dcc9b31baddd1d301d30d4cce5c4698036fe7f,alsa: define _POSIX_C_SOURCE directly to fix a BSD build issue.  fixes issue #6.,Matthew Gregan,2012-08-06T04:53:58Z,kinetiknz,kinetiknz,2,1,1
+74,cubeb,697b5c1279bf723d93b9d5f08e1fec6a6382bb77,"Check for __BIG_ENDIAN__ when testing endianess.
+Thanks to Tobias Netzel for the patch.",Matthew Gregan,2012-08-06T03:09:19Z,kinetiknz,kinetiknz,2,1,1
+75,cubeb,bea7b0ac335f01352e4ccb4caa5f8984cb78c1fb,"Revert ""Revert ""alsa: add a dirty hack to detect the PA plugin and round up the requested latency.""""
+
+Resurrect this workaround until a better one is available.
+
+This reverts commit 668fb554f6d6d4b48f28bca4a914f595ef038657.",Matthew Gregan,2012-07-31T03:40:00Z,kinetiknz,kinetiknz,26,26,0
+76,cubeb,30f0f3120563efdda2c21af5da309430c97def31,"Revert ""alsa: add a less dirty hack to detect the PA plugin and disable the flaky underrun handling in the plugin.""
+
+This isn't a sufficient workaround for all cases.
+
+This reverts commit 1aa0058d0729eb85505df104cd1ac072432c6d24.",Matthew Gregan,2012-07-31T03:39:37Z,kinetiknz,kinetiknz,106,3,103
+77,cubeb,1aa0058d0729eb85505df104cd1ac072432c6d24,alsa: add a less dirty hack to detect the PA plugin and disable the flaky underrun handling in the plugin.,Matthew Gregan,2012-07-30T04:57:20Z,kinetiknz,kinetiknz,106,103,3
+78,cubeb,668fb554f6d6d4b48f28bca4a914f595ef038657,"Revert ""alsa: add a dirty hack to detect the PA plugin and round up the requested latency.""
+
+This reverts commit f3116936eba69aced240df7db77264269f3f95ae.",Matthew Gregan,2012-07-30T04:10:12Z,kinetiknz,kinetiknz,26,0,26
+79,cubeb,f3116936eba69aced240df7db77264269f3f95ae,alsa: add a dirty hack to detect the PA plugin and round up the requested latency.,Matthew Gregan,2012-07-16T21:02:14Z,kinetiknz,kinetiknz,26,26,0
+80,cubeb,a69ff28da1996ab11e6c62cc7e6dd41731bdd549,fix whitespace in test_tone.c,Matthew Gregan,2012-07-16T21:00:12Z,kinetiknz,kinetiknz,2,1,1
+81,cubeb,582601f0fcebdf2d61cb636d935f3ba71a3a95e7,Fix tests after changing state callback signature.,Matthew Gregan,2012-06-06T03:33:12Z,kinetiknz,kinetiknz,12,5,7
+82,cubeb,21d9678eb9755761f7a9d26253189b926258de7c,sndio: fix latency calculation and S16BE handling.,Alexandre Ratchov,2012-06-02T07:14:08Z,ratchov,ratchov,5,2,3
+83,cubeb,491b026766cb7488b36b65b916bf80c4eaf2e476,Remove return type from state callback as it was never intended to support one.,Matthew Gregan,2012-06-02T01:50:40Z,kinetiknz,kinetiknz,17,7,10
+84,cubeb,6a6ed2607e3c457768659495532c58480df1e40d,alsa: increase cubeb_run_thread stack size to avoid blowing the stack with some alsa configurations.,Matthew Gregan,2012-06-02T01:33:19Z,kinetiknz,kinetiknz,2,1,1
+85,cubeb,3aad0a0a7bdb8db2c8cb6d4abede853507206e12,import sndio backend for OpenBSD.,Alexandre Ratchov,2012-05-23T03:04:11Z,ratchov,ratchov,301,299,2
+86,cubeb,fef0c99932ef7005d2acdb238feea56e94d66759,add cubeb_get_backend_id.  fixes #5.,Matthew Gregan,2012-05-22T00:38:50Z,kinetiknz,kinetiknz,41,41,0
+87,cubeb,612118caa85bee3f0ed1e169d54f78305ad39c72,alsa: remove debug mutex wrapper.,Matthew Gregan,2012-05-21T03:26:53Z,kinetiknz,kinetiknz,199,56,143
+88,cubeb,6401ab5c7b12860272908822a96cf50d6bb28275,"alsa: add a per-stream cond and wait for a safe state before stopping.
+
+also move the active stream limit check to the top of stream_init (and
+separate from stream registration), since it's possible to temporarily
+exceed the limit if sufficient stream_init calls happen in parallel.
+
+fix state transition clobbering caused by wrapping stream_refill in
+PROCESSING/RUNNING transition by having stream_refill return the intended
+final state.",Matthew Gregan,2012-05-21T03:16:44Z,kinetiknz,kinetiknz,185,118,67
+89,cubeb,c74db657dfb0ce19e49850625be89b7d60b6695b,minor comment clean up.,Matthew Gregan,2012-05-15T04:35:12Z,kinetiknz,kinetiknz,6,3,3
+90,cubeb,35dc1d5c8cc94244b3094b59e3d69cb523bfedf5,alsa: major simplification of stream and timer registration management.,Matthew Gregan,2012-05-15T00:33:09Z,kinetiknz,kinetiknz,766,240,526
+91,cubeb,da17df35fa3b22c447cc435c6f4753454ec7a7d2,pulse: tweak minreq calculation per bmo# 751030.,Matthew Gregan,2012-05-07T04:53:12Z,kinetiknz,kinetiknz,6,3,3
+92,cubeb,d7368445b56327015cad554cb62a4be31051ed4e,pulse: address mwu\'s review comments from bmo# 751030.,Matthew Gregan,2012-05-07T00:14:12Z,kinetiknz,kinetiknz,7,4,3
+93,cubeb,f2c941de0ed68f0d267228cde35ef9b612546f78,alsa: finish wrapping pthread_mutex_t.,Matthew Gregan,2012-05-04T01:09:40Z,kinetiknz,kinetiknz,28,22,6
+94,cubeb,b5026e5d575a9f4c09bfd36a309e4aee00df54a0,test: add progress indicator to test_sanity.,Matthew Gregan,2012-05-04T01:02:37Z,kinetiknz,kinetiknz,39,24,15
+95,cubeb,84431e0acf986174ec165d9ad556cf8abb0eb92f,more tests.,Matthew Gregan,2012-05-02T04:53:57Z,kinetiknz,kinetiknz,72,72,0
+96,cubeb,519fed174df09fba7f8c15103dd73f3cb5282166,fix link flags.,Matthew Gregan,2012-05-02T04:53:45Z,kinetiknz,kinetiknz,2,1,1
+97,cubeb,5dff139617a05e20c813ce257645dbc2ee44724c,add leak suppresion file for valgrind.,Matthew Gregan,2012-05-02T04:50:07Z,kinetiknz,kinetiknz,36,36,0
+98,cubeb,ef934741cc395e3cae49722b0a57dea479efe25f,"winmm, directsound: run refill thread at a higher priority.",Matthew Gregan,2012-05-01T03:34:34Z,kinetiknz,kinetiknz,4,4,0
+99,cubeb,faeaadae513c9850fd7418bd0e25493c4545390c,alsa: set silent ALSA error handler once only.,Matthew Gregan,2012-04-20T03:45:32Z,kinetiknz,kinetiknz,10,8,2
+100,cubeb,6f8f75098fcf28934d0422fbfe1db27028b158fe,alsa: fix remaining issues noted by XXX in the comments.,Matthew Gregan,2012-04-20T03:41:59Z,kinetiknz,kinetiknz,44,27,17
+101,cubeb,1442364b4170f85c2b54c4d2bf83645355ccbb78,"alsa: locking changes, stream limit hack, revert pipe2() change.
+
+ref count waitables and move waitable processing outside of context lock.
+
+pipe2() is only available on recent(ish) Linux kernels, so revert to pipe()
+with explicit fcntl() calls again.
+
+add a mutex wrapper that allows asserting the mutex is (and isn't) held.",Matthew Gregan,2012-04-19T02:52:09Z,kinetiknz,kinetiknz,380,304,76
+102,cubeb,dc1d021488bd1fe0d9dffcc48f43500ea5e1e456,winmm: drop stream lock on data_callback error.,Matthew Gregan,2012-04-05T02:45:59Z,kinetiknz,kinetiknz,1,1,0
+103,cubeb,f694eb07f5def6ed3de5693c7cb2610a4761d5d6,"alsa: rename reaper to watchdog, fix unlock in stream_start, warning fixes.",Matthew Gregan,2012-04-05T02:30:59Z,kinetiknz,kinetiknz,56,21,35
+104,cubeb,3ef8175c72c40f02d68181d882a51d86d54eff6f,"winmm: per documentation, there is no need to reprepare buffers when shrinking dwBufferLength.",Matthew Gregan,2012-04-04T03:01:26Z,kinetiknz,kinetiknz,25,7,18
+105,cubeb,ab11b43f7b4510264db856745f3656b90d669d7d,winmm: define GUIDs locally to avoid linking issues with ksguid.lib.,Matthew Gregan,2012-04-04T02:47:07Z,kinetiknz,kinetiknz,5,5,0
+106,cubeb,0f7c61093d0763bdda70b4911e062bc1e4e42200,winmm: horrible stream limit hack.,Matthew Gregan,2012-04-04T02:45:03Z,kinetiknz,kinetiknz,25,25,0
+107,cubeb,a70254cdcdedad871b7f5d07da6ce6cf32fd18a0,winmm: simplify cubeb_buffer_thread work loop.,Matthew Gregan,2012-04-04T02:40:21Z,kinetiknz,kinetiknz,8,3,5
+108,cubeb,4e6579ed772523624afe7e76022773a7ddaf3d92,audiounit: minor code cleanup.,Matthew Gregan,2012-03-23T01:47:17Z,kinetiknz,kinetiknz,21,14,7
+109,cubeb,b195d665997f5db44c8b17818c9493432ccc06c9,alsa: set silent error handler for ALSA warnings.,Matthew Gregan,2012-03-19T01:40:00Z,kinetiknz,kinetiknz,8,8,0
+110,cubeb,1188ca3429acd752ca335ae0085c57354f55ec0b,winmm: make winmm API errors non-fatal; return rather than asserting.,Matthew Gregan,2012-03-19T01:00:47Z,kinetiknz,kinetiknz,63,40,23
+111,cubeb,7c3694f078168fc86887a5bcce9383f44cd4e1b6,alsa: dedup assertions.,Matthew Gregan,2012-03-18T23:37:53Z,kinetiknz,kinetiknz,16,5,11
+112,cubeb,d6b8fca38071a2d96a890d9bb2d1074df78d1b96,alsa: document bug workarounds.  clarify some naming.,Matthew Gregan,2012-03-18T23:11:22Z,kinetiknz,kinetiknz,34,13,21
+113,cubeb,9854706b67297e24de28f73fc54ed9f64a592c1f,alsa: rename state_dumper to reaper and document it's purpose.,Matthew Gregan,2012-03-18T22:55:10Z,kinetiknz,kinetiknz,71,24,47
+114,cubeb,c1f812ab9b2be92ed323a9e490377308e43b200c,alsa: fixes for hung pcm streams and various alsa configurations.,Matthew Gregan,2012-03-16T04:20:08Z,kinetiknz,kinetiknz,119,107,12
+115,cubeb,be256d2a159d2286e78f08f55929646f097629d1,winmm: refactor buffer management code.,Matthew Gregan,2012-03-16T04:08:11Z,kinetiknz,kinetiknz,92,50,42
+116,cubeb,39e511c1f19e8c6dfbdbfd5d9fb4ed9706f578d4,test_tone: remove unused include.,Matthew Gregan,2012-03-16T03:59:40Z,kinetiknz,kinetiknz,1,0,1
+117,cubeb,9e5aa46dda2c25c56fdef8bf449e7b5ab8b9ca03,link cubeb DSO against platform library directly so that the correct version symbols are used.,Matthew Gregan,2012-03-08T02:29:40Z,kinetiknz,kinetiknz,6,3,3
+118,cubeb,e159006ccc8043326f0714757d6fda0962d8032b,add CUBEB_STATE_ERROR to the API.,Matthew Gregan,2012-03-08T02:28:51Z,kinetiknz,kinetiknz,3,2,1
+119,cubeb,55027da69a6be4d0ec90c8cf57e240fb389c2d43,directsound: convert to sensible line endings.,Matthew Gregan,2012-03-08T02:26:48Z,kinetiknz,kinetiknz,1160,580,580
+120,cubeb,97b8e162a8e887016325a58348fc819348e77726,"audioqueue,audiounit,directsound,pulse: minor cleanups.",Matthew Gregan,2012-03-08T02:26:23Z,kinetiknz,kinetiknz,11,11,0
+121,cubeb,6540d32b8f032f1c0321be3682e0e1479129d328,winmm: wrap WAVEOUT use in a lock.,Matthew Gregan,2012-03-08T02:20:23Z,kinetiknz,kinetiknz,31,29,2
+122,cubeb,d2dfec0546bdb6e9fdd7517cd0c7cd32b91d7292,"alsa: rework locking, remove overly clever message passing code, rename some functions.",Matthew Gregan,2012-02-01T04:58:09Z,kinetiknz,kinetiknz,453,226,227
+123,cubeb,38b7d9df494eaca03108dd56366b63836c87f67d,make CUBEB_ERROR_INVALID_FORMAT an explicit negative value.,Matthew Gregan,2012-01-18T01:14:40Z,kinetiknz,kinetiknz,6,3,3
+124,cubeb,0d0209225e334b256c72432723de811c8b9592f4,"winmm, directsound: fix bytes_per_frame calculator for s16.",Matthew Gregan,2012-01-18T01:13:34Z,kinetiknz,kinetiknz,4,2,2
+125,cubeb,4faab781b18e4e1e33340bd889e9b3af8ce2e3f5,coreaudio: rename to audioqueue.  add audiounit backend.,Matthew Gregan,2012-01-05T03:25:06Z,kinetiknz,kinetiknz,265,256,9
+126,cubeb,ddfaaf39c1a15cfb1a04ce62d6bd253737fc764a,always build test_sanity.,Matthew Gregan,2011-12-07T00:19:55Z,kinetiknz,kinetiknz,4,1,3
+127,cubeb,18acb6fda09d4f16f30e9a27b807e4471018ce4e,add status of directsound code to TODO.,Matthew Gregan,2011-12-01T04:20:06Z,kinetiknz,kinetiknz,1,1,0
+128,cubeb,fc6e838a0078a10ecc306f5c671c07ec2bfe7607,alsa: take lock in refill.  resume stream earlier.,Matthew Gregan,2011-12-01T04:18:30Z,kinetiknz,kinetiknz,13,11,2
+129,cubeb,ed04e5a0d6ee369d55181026a495214815880796,alsa: fix refill error handling.,Matthew Gregan,2011-12-01T03:31:35Z,kinetiknz,kinetiknz,6,3,3
+130,cubeb,c9f2831c17107217e29f4528ac55370e88d8439f,alsa: post rework code cleanup.,Matthew Gregan,2011-12-01T03:07:34Z,kinetiknz,kinetiknz,438,232,206
+131,cubeb,dccd4a4918fc97fc0054eb7ed0f113b21aafb71c,Merge branch 'master' into alsa-refactor,Matthew Gregan,2011-11-28T05:00:32Z,kinetiknz,kinetiknz,2,0,2
+132,cubeb,6644a44049bc3f510d494ceac051cf9a528046a8,winmm: remove bogus empty-slist assert.,Matthew Gregan,2011-11-28T05:00:26Z,kinetiknz,kinetiknz,2,0,2
+133,cubeb,bc43c03221ba4db078373f8a8e012446638a8452,Merge branch 'master' into alsa-refactor,Matthew Gregan,2011-11-25T03:54:53Z,kinetiknz,kinetiknz,23,12,11
+134,cubeb,055ac9f222878b6889e26e1b0efc7c27b9ecaf00,"pulse: pa_stream_drain is useless (see PA bug# 866), so use a timer instead.",Matthew Gregan,2011-11-25T03:50:13Z,kinetiknz,kinetiknz,23,12,11
+135,cubeb,b54c7c05a44f83949438ada97b222e68004787ac,alsa: first pass at a poll abstraction.  fix drain by using new poll timer object.,Matthew Gregan,2011-11-25T01:55:12Z,kinetiknz,kinetiknz,650,408,242
+136,cubeb,4a8043881c5620a7cf6dfb6766f77be1fdddbc20,alsa: set processing thread stack size to minimum.  fix up includes.,Matthew Gregan,2011-11-08T02:36:55Z,kinetiknz,kinetiknz,18,14,4
+137,cubeb,082d71e9fa3a4a9240f2c2258a60e4c3cf6b2f3e,"alsa: remove unused buffer/period logging, remove rv check on snd_pcm_pause calls.",Matthew Gregan,2011-11-02T00:18:54Z,kinetiknz,kinetiknz,23,2,21
+138,cubeb,0fc8dc16109964ec34c6dc4c89339f836d837350,"alsa: comment on thread safety, and rename some things for consistency.",Matthew Gregan,2011-10-28T05:39:38Z,kinetiknz,kinetiknz,70,37,33
+139,cubeb,e637f8bf351525508d98f9be825469b382ecc33c,Merge branch 'master' into alsa-refactor,Matthew Gregan,2011-10-27T06:09:52Z,kinetiknz,kinetiknz,20,10,10
+140,cubeb,179f2fbcdd0a2c3a0325d9d60a09ad29bff2a9ec,Fix ALSA header name and string tests in configure.ac.,Matthew Gregan,2011-10-27T06:03:31Z,kinetiknz,kinetiknz,20,10,10
+141,cubeb,517bd84e00c5d47b6f102f315e443e09d0b43ade,Merge branch 'master' into alsa-refactor,Matthew Gregan,2011-10-02T22:59:40Z,kinetiknz,kinetiknz,168,104,64
+142,cubeb,cf84db8e5130fed91043d65173f1759bfa23dd70,pulse: remove unused context_success_callback implementation.,Matthew Gregan,2011-10-02T22:59:05Z,kinetiknz,kinetiknz,6,0,6
+143,cubeb,092f5347caa8388e7f1dbb95ab04aca7e3611add,"Explicitly cap rate, channels, and latency.",Matthew Gregan,2011-10-02T22:54:41Z,kinetiknz,kinetiknz,40,36,4
+144,cubeb,641cd67d306f93ad4eaf48552f5b1a8ed677a020,"winmm,dsound: remove unnecessary SetThreadPriority.",Matthew Gregan,2011-09-27T01:51:46Z,kinetiknz,kinetiknz,4,0,4
+145,cubeb,237886be5b1bd45315ba8b5dfdb9e7e7ce07b337,winmm: cast to avoid double to size_t warning.,Matthew Gregan,2011-09-26T02:21:19Z,kinetiknz,kinetiknz,2,1,1
+146,cubeb,f93d02a7ebb7c91cfd4e1fbcf928f3b00bbf6787,remove pragmas around jack includes.,Matthew Gregan,2013-09-19T02:30:01Z,kinetiknz,kinetiknz,2,0,2
+147,cubeb,1e5a43a5ec052b0902d392bc1875ce262d12039a,post-merge build fixes.,Matthew Gregan,2013-09-19T02:29:35Z,kinetiknz,kinetiknz,6,3,3
+148,cubeb,19555d6a26cd2cca409e8d109993ceba6c62511a,"Merge pull request #34 from Ace17/jack_support
+
+JACK output support",Matthew Gregan,2013-09-19T02:23:22Z,kinetiknz,kinetiknz,668,640,28
+149,cubeb,91ba1ce62fc02ab655db9629c38fbc0af19742b4,Remove dead variable,Sebastien Alaiwan,2013-09-05T17:50:34Z,Sebastien Alaiwan,Sebastien Alaiwan,1,0,1
+150,cubeb,ab537beb8a24764e67324590a19b5f6fc8b7c067,Mark function as static,Sebastien Alaiwan,2013-09-05T17:17:51Z,Sebastien Alaiwan,Sebastien Alaiwan,3,2,1
+151,cubeb,9f18dd5e535eeb01186b1588f533d6441c4f3ad2,Factor libspeex configuration in configure script,Sebastien Alaiwan,2013-09-02T20:11:27Z,Sebastien Alaiwan,Sebastien Alaiwan,16,8,8
+152,cubeb,a977c19162e1b956587f21b0a3fd397f0a2e04e8,Small Makefile.am factorization: use a define to decide wether to include libspeex resampler or not,Sebastien Alaiwan,2013-09-02T20:07:06Z,Sebastien Alaiwan,Sebastien Alaiwan,11,9,2
+153,cubeb,2be0fb4647186e231ef55a9b0039109cf40e3991,Jack output: add support for stream draining,Sebastien Alaiwan,2013-09-02T19:55:08Z,Sebastien Alaiwan,Sebastien Alaiwan,55,37,18
+154,cubeb,42693935b8dee883085312fc5189221b207c2246,Merge branch 'coverage' into jack_support,Sebastien Alaiwan,2013-09-02T19:17:03Z,Sebastien Alaiwan,Sebastien Alaiwan,26,4,22
+155,cubeb,282b18911329f347278387a3b818645c28827736,Re-enable drain test,Sebastien Alaiwan,2013-09-02T19:16:49Z,Sebastien Alaiwan,Sebastien Alaiwan,6,2,4
+156,cubeb,d4923cd5ce83edc668f0633658b4863427ed8fd6,Remove duplicated version of 'delay',Sebastien Alaiwan,2013-09-02T18:50:58Z,Sebastien Alaiwan,Sebastien Alaiwan,20,2,18
+157,cubeb,52dbfb3fb1217d4e90d3e56141f4c1b89f5f2e78,"Merge pull request #33 from Ace17/master
+
+A better audio test program",Matthew Gregan,2013-09-02T05:51:12Z,kinetiknz,kinetiknz,242,218,24
+158,cubeb,6c82f12ad6f43b44c2fa598fd9807a4887d9138e,Workaround link issue when integrated in Firefox,Sebastien Alaiwan,2013-09-01T08:40:20Z,Sebastien Alaiwan,Sebastien Alaiwan,2,2,0
+159,cubeb,3f765bcd43478ca4b582e2478db48199f563c92f,Add JACK audio output support,Sebastien Alaiwan,2013-08-31T09:12:13Z,Sebastien Alaiwan,Sebastien Alaiwan,604,603,1
+160,cubeb,21c386756ee3c014a7278bd8e670b0fd0913fa34,Add audio format test program,Sebastien Alaiwan,2013-08-31T07:47:09Z,Sebastien Alaiwan,Sebastien Alaiwan,178,177,1
+161,cubeb,1295337883e20181f3d6299e5ad2e38942f40615,Move 'delay' function and M_PI definition to a shared file,Sebastien Alaiwan,2013-08-31T07:43:43Z,Sebastien Alaiwan,Sebastien Alaiwan,64,41,23
+162,cubeb,36659a5649fb31c180c39e70ea761e00354c0106,"Merge pull request #32 from padenot/master
+
+Mozilla bugs 893307 & 900380",Matthew Gregan,2013-08-07T19:33:24Z,kinetiknz,kinetiknz,17,14,3
+163,cubeb,cf921a7cbec65236731b770fe8a7b2936fb30c23,"Mozilla Bug 900380
+
+Don't assume GetMixFormat gives us a WAVEFORMATEXTENSIBLE, even if the docs say
+so.",Paul ADENOT,2013-08-07T12:55:41Z,padenot,padenot,11,9,2
+164,cubeb,f308abfad498889c7d3959b04f6308368b4fd96d,"Mozilla Bug Bug 893307
+
+Compute the number of bytes per frame before upmix in a correct way when using
+surround speakers in the WASAPI backend.",Paul ADENOT,2013-08-07T12:52:43Z,padenot,padenot,3,2,1
+165,cubeb,5fe1a4c4af1540e6ef0921c61c3272c08fb35ae0,"Mozilla Bug 893307
+
+Copy the left channel to the right channel when playing mono on
+surround sound system using WASAPI.",Paul ADENOT,2013-08-07T12:51:48Z,padenot,padenot,3,3,0
+166,cubeb,5beac74eab38b7026404888a8cee7675017c7407,"Merge pull request #31 from padenot/master
+
+Mozilla Bug 893307 - Handle surround speaker setup.",Matthew Gregan,2013-07-26T11:45:12Z,kinetiknz,kinetiknz,104,92,12
+167,cubeb,b4889ef31625a7b34b25215df0773b9bcd7444a2,Mozilla Bug 893307 - Handle surround speaker setup.,Paul ADENOT,2013-07-26T10:52:51Z,padenot,padenot,104,92,12
+168,cubeb,f82d1c2c269c452ac4052da404c6b0a42aff3c66,"Merge pull request #30 from padenot/master
+
+Mozilla Bug 895378 - Send an DRAINED event when we are draining and shut...",Matthew Gregan,2013-07-19T19:17:42Z,kinetiknz,kinetiknz,5,5,0
+169,cubeb,0fd07c045ac34203a6be41c190d2e66afc2e9299,"Merge pull request #29 from michaelwu/bug889652
+
+Bug 889652 - Add support for building with pulseaudio support on gonk",Matthew Gregan,2013-07-19T19:17:30Z,kinetiknz,kinetiknz,14,11,3
+170,cubeb,7ed685b5b400d44f062ec96e00d49ba553de49b8,Mozilla Bug 895378 - Send an DRAINED event when we are draining and shutdown is requested in the WASAPI cubeb backend.,Paul ADENOT,2013-07-19T12:03:50Z,padenot,padenot,5,5,0
+171,cubeb,17785f5e2e77d170f9fd20bebfeea1a6161706cf,"Bug 889652 - Add support for building with pulseaudio support on gonk, r=kinetik",Michael Wu,2013-07-19T05:52:04Z,michaelwu,michaelwu,14,11,3
+172,cubeb,3246b37960ac519aaea505bab0060c7484746f35,"Merge pull request #28 from cjacek/master
+
+ Fixed typo in cubeb_audiotrack.c.",Matthew Gregan,2013-07-12T18:18:51Z,kinetiknz,kinetiknz,2,1,1
+173,cubeb,bcde581fd71df6e8965cc279b88102d325ba0c06,Fixed typo in cubeb_audiotrack.c.,Paul Adenot,2013-07-12T09:57:27Z,padenot,padenot,2,1,1
+174,cubeb,78486c6de9adc197bb52e121767b4f0c766ed79c,"Merge pull request #27 from cjacek/master
+
+Fixed cross compiling with WASAPI support.",Matthew Gregan,2013-07-11T23:34:33Z,kinetiknz,kinetiknz,9,5,4
+175,cubeb,91f1c0d9e74874bf6703011e3222549634abc2ca,Fixed cross compiling with WASAPI support.,Jacek Caban,2013-07-11T12:01:31Z,jacekcw,jacekcw,9,5,4
+176,cubeb,d64540087ed0c88c8037a48b7af86390fc583051,Add ALSA and PulseAudio deps for Travis-CI.,Matthew Gregan,2013-07-09T03:29:07Z,kinetiknz,kinetiknz,3,3,0
+177,cubeb,7e9b86b6e5d6d1f7a538f158137a2f1cd39721b3,Add .travis.yml,Matthew Gregan,2013-07-09T03:21:26Z,kinetiknz,kinetiknz,5,5,0
+178,cubeb,feeda7e5e2c73fd6a653937f428e46b0e6b06633,Remove accidentally acquired cruft.,Matthew Gregan,2013-07-02T00:07:46Z,kinetiknz,kinetiknz,2884,0,2884
+179,cubeb,72967ced34f1e99e135ebd9521c55854907e460d,"Merge pull request #26 from padenot/master
+
+Wasapi Backend",Matthew Gregan,2013-07-02T00:06:12Z,kinetiknz,kinetiknz,5664,5658,6
+180,cubeb,0e28f2e67f26b307a908e2385e77e369429a52da,"Import new WASAPI backend and speex resampler, initial build system changes.",Paul Adenot,2013-06-26T14:29:57Z,padenot,padenot,5659,5655,4
+181,cubeb,95c8e8d03c7f3db95111722acc118bcf38db4505,Typo fix in get_max_channels documentation.,Matthew Gregan,2013-06-07T03:42:08Z,kinetiknz,kinetiknz,2,1,1
+182,cubeb,4867591751c9266e37d77bd05aac8858a902e97f,Remove unnecessary struct keywords.,Matthew Gregan,2013-04-29T04:51:18Z,kinetiknz,kinetiknz,16,8,8
+183,cubeb,0403e5b383d4b1387ca17f61e07a7b658e3984e1,Sync back mozilla-central changes.,Paul ADENOT,2013-06-10T20:47:06Z,padenot,padenot,5,3,2
+184,cubeb,c21d25a9a37027e0aaf55d88303b88147761979b,Typo fix in get_max_channels documentation.,Matthew Gregan,2013-06-07T03:42:08Z,kinetiknz,kinetiknz,2,1,1
+185,cubeb,cb67cda09d6e4b392099c615a2a16fddb741cce8,Merge branch 'master' of github.com:kinetiknz/cubeb,Matthew Gregan,2013-06-07T03:41:00Z,kinetiknz,kinetiknz,203,202,1
+186,cubeb,3f7313987c10b23e468022eea3408dc1c200e930,"Merge pull request #25 from padenot/master
+
+Max channel count + build fix",Matthew Gregan,2013-06-07T03:40:36Z,kinetiknz,kinetiknz,203,202,1
+187,cubeb,48e0ede42c66ec3acacf1f602f6f2d1dca672161,Fix copy/paste error in src/cubeb_opensl.c,Paul ADENOT,2013-06-05T14:01:50Z,padenot,padenot,2,1,1
+188,cubeb,d64ea6260ebf804cf651a0d28888a19f96dbb088,"Fix the standalone build when using pulse.
+
+The pulseaudio backend now needs to link agains dl because it uses dlopen and
+friends.",Paul ADENOT,2013-05-31T09:56:20Z,padenot,padenot,3,2,1
+189,cubeb,9c5d094031c142667461b96f59a3b15e76975de4,"Mozilla bug 865244 - Add cubeb_stream_get_max_channels.
+
+This function returns the maximum number of channel available on the current
+hardware/platform.",Paul ADENOT,2013-05-31T09:46:48Z,padenot,padenot,200,200,0
+190,cubeb,199535ce7b3206a14cd0f7c86f32eee2641ce40e,Remove unnecessary struct keywords.,Matthew Gregan,2013-04-29T04:51:18Z,kinetiknz,kinetiknz,16,8,8
+191,cubeb,d2576fdb49422d09b8ed667b76dd637c841448e5,"Merge pull request #24 from padenot/master
+
+Mozilla bug 809558 (followup)",Matthew Gregan,2013-04-17T19:41:59Z,kinetiknz,kinetiknz,4,2,2
+192,cubeb,d398f6bf925fa467c406bfb6767e76c4b41feb34,"Mozilla Bug 809558 (followup)
+
+Pass in the channel when calling the ctor in the audiotrack backend. For some
+reason this chunk was missing in 3ac8db8.",Paul ADENOT,2013-04-17T11:51:15Z,padenot,padenot,4,2,2
+193,cubeb,951a3c6a88aa723e222715a89bfdc65f547ddf9e,"Merge pull request #23 from padenot/unlock-getclock-pulse
+
+Mozilla Bug 861936 - Allow calling cubeb_stream_get_position while in th...",Matthew Gregan,2013-04-16T22:24:20Z,kinetiknz,kinetiknz,14,11,3
+194,cubeb,0ee99961c027a35d496469c920c97dad332d3dc7,Mozilla Bug 861936 - Allow calling cubeb_stream_get_position while in the callback when using the pulseaudio backend.,Paul ADENOT,2013-04-16T13:06:04Z,padenot,padenot,14,11,3
+195,cubeb,3ac8db88d940a1b338f96f1f09c337fc64a8472e,"Merge pull request #22 from wesj/master
+
+Mozilla bug 809558 - Add stream type support",Matthew Gregan,2013-04-16T00:24:12Z,kinetiknz,kinetiknz,10,5,5
+196,cubeb,62632198752fee08693fea1c412a21e8d98e58b8,Add stream type support,wesj,2013-04-16T00:17:16Z,wesj,wesj,10,5,5
+197,cubeb,a2f8aca29015dc0c0e0ac67e3710cd2df5d042c4,"Merge pull request #21 from padenot/master
+
+Mozilla Bug 859805 - Make libcubeb work on Android (2.3)",Matthew Gregan,2013-04-11T11:03:03Z,kinetiknz,kinetiknz,44,33,11
+198,cubeb,08c2428434794aa3b619361732965656f9b205d7,"Mozilla Bug 859805 - Make libcubeb work on Android (2.3)
+
+Add the correct mangled symbol for getMinFrameCount, and use the old (Froyo)
+channel layout enum when running on Gingerbread (2.3).",Paul ADENOT,2013-04-11T09:28:35Z,padenot,padenot,44,33,11
+199,cubeb,bfaee9a6c7a15dfe8ae2ffda8dcd156d5a562010,"Merge pull request #19 from michaelwu/fixes
+
+opensl: buffer handling fixes.",Matthew Gregan,2013-03-21T21:28:47Z,kinetiknz,kinetiknz,13,11,2
+200,cubeb,3f12a704e0a5f79aacdb8c683cb0667eb2e935f4,"Mozilla bug 853077 - Don't queue empty buffers in the opensles cubeb backend, r=kinetik",Michael Wu,2013-03-21T19:11:33Z,michaelwu,michaelwu,9,7,2
+201,cubeb,5e2c07a7a0463d28d44d7260c12220c21263df51,"Mozilla bug 852966 - Free audio buffers when freeing stream in opensl cubeb backend, r=kinetik",Michael Wu,2013-03-21T19:08:43Z,michaelwu,michaelwu,4,4,0
+202,cubeb,49892c1637b4c6b99c6f92c179ba0c3a167082cf,opensl: fix warning caused by type of bufferqueue_callback.,Matthew Gregan,2013-03-20T04:27:54Z,kinetiknz,kinetiknz,3,2,1
+203,cubeb,c9c97571980ca77c990a763802c11682a332cbd6,"opensl: bring back OpenSLES_Android.h, we need it.",Matthew Gregan,2013-03-15T00:52:57Z,kinetiknz,kinetiknz,1,1,0
+204,cubeb,a5425f90ac5f8a5f46b8dab494c252ca9cb4927e,rename sles_definitions.h (build fix).,Matthew Gregan,2013-03-15T00:23:22Z,kinetiknz,kinetiknz,2,1,1
+205,cubeb,f63060a67f4b4300b81b860a487b31cccb160ab0,rename sles_definitions.h.,Matthew Gregan,2013-03-14T23:38:08Z,kinetiknz,kinetiknz,0,0,0
+206,cubeb,cb6a1d9c34313a01c4776ed1b30703d17295ef1b,"Merge pull request #18 from landryb/master
+
+sndio: Fix compile error after switchable-backends work.",Matthew Gregan,2013-03-14T21:11:40Z,kinetiknz,kinetiknz,4,2,2
+207,cubeb,72c2b0e2f3acc2101455510f0c282090f4cdc971,Fix cubeb/sndio (#851149),Landry Breuil,2013-03-14T21:04:06Z,landryb,landryb,4,2,2
+208,cubeb,0c7d97523096a7d4ae363974393d06f77c4592c9,"Merge pull request #17 from padenot/android-headers
+
+Mozilla Bug 850770: Import a modified version of an Android header",Matthew Gregan,2013-03-14T19:35:13Z,kinetiknz,kinetiknz,71,69,2
+209,cubeb,1be166f9a5f40368e9ebee4def40d6bc3e9341fd,"Import a modified version of an Android header
+
+The SLES/OpenSLES_AndroidConfiguration.h header in the Android NDK has a bug
+where the whole file is wrapped in |#ifdef __cplusplus| macro, so we can't get
+Android specific OpenSLES values. This patch imports the header, with those
+macros removed.
+
+Additionaly, this patch moves the Android-specific headers in an src/android/
+directory.",Paul ADENOT,2013-03-14T15:46:06Z,padenot,padenot,71,69,2
+210,cubeb,3b6aa33d306492a10643c7097333923cbd1d4b71,"Merge pull request #16 from padenot/master
+
+Add audiotrack backend in cubeb.c",Matthew Gregan,2013-03-12T19:35:09Z,kinetiknz,kinetiknz,6,6,0
+211,cubeb,4f5bbaffe4bc5572fcb22561f07a634a145001ce,Add audiotrack backend in cubeb.c,Paul ADENOT,2013-03-12T14:42:40Z,padenot,padenot,6,6,0
+212,cubeb,087c8ba9c8e15864eca6dce2473207b346ccf3aa,"opensl,directsound: initialize context ops.",Matthew Gregan,2013-03-12T03:33:07Z,kinetiknz,kinetiknz,4,4,0
+213,cubeb,ba9c1a5729c8ff11a1227345dfab9d745c4d7dd1,audiotrack: cubeb_ops must be first member of struct cubeb.,Matthew Gregan,2013-03-11T22:47:02Z,kinetiknz,kinetiknz,2,1,1
+214,cubeb,b6ebebae38e872c69ea93934bba0c8a071a131e0,"Merge pull request #15 from padenot/audiotrack
+
+audiotrack: New backend for Android (from https://bugzilla.mozilla.org/show_bug.cgi?id=839415)",Matthew Gregan,2013-03-11T22:45:31Z,kinetiknz,kinetiknz,500,499,1
+215,cubeb,77784a9d7e500917f37b37488fdedddcbb41896a,"Mozilla bug 698328 - AudioTrack.cpp backend for Android.
+
+This uses android/log.h to check that we are on Android in configure.ac, and is
+rebased on top of the backend switching changes.",Paul ADENOT,2013-03-11T14:25:22Z,padenot,padenot,500,499,1
+216,cubeb,625c02f363a7312b74f09e9642f8386cd9afc240,syntax-only cleanups.,Matthew Gregan,2013-03-11T03:12:39Z,kinetiknz,kinetiknz,12,6,6
+217,cubeb,327077a43a4d1d9f0ece2d3cd313a413178f246f,s/ifdef/if defined/g a few more places.,Matthew Gregan,2013-03-11T03:06:26Z,kinetiknz,kinetiknz,48,24,24
+218,cubeb,f2d524c34b6f75d85053034c3075c2ff08383769,s/ifdef/if defined/g,Matthew Gregan,2013-03-11T03:04:13Z,kinetiknz,kinetiknz,18,11,7
+219,cubeb,0c239b0dac4001eddc5964aa0b50f91c9887cb53,"Merge pull request #14 from marcofreda527/master
+
+opensl: Add support for specifying a stream type via SLAndroidConfigurationItf (from https://bugzilla.mozilla.org/show_bug.cgi?id=839415)
+
+Note that this is an Android-specific extension for now.",Matthew Gregan,2013-03-11T03:01:15Z,kinetiknz,kinetiknz,77,76,1
+220,cubeb,deba82a2157b4f06ef1a898b149ddbfd8a05bd17,Add the support of SLAndroidConfigurationItf to config stream type.,Marco Chen,2013-03-11T02:40:05Z,marcofreda527,marcofreda527,77,76,1
+221,cubeb,b56cf57ceb0bf4c9f675fe977b457b54d1a8e08b,Merge branch 'switchable-backends',Matthew Gregan,2013-03-10T22:18:31Z,kinetiknz,kinetiknz,1380,948,432
+222,cubeb,4ef829917e381568900ae4d666a17046ea09dabc,reorder initialization of audioqueue and directsound.,Matthew Gregan,2013-03-10T22:16:30Z,kinetiknz,kinetiknz,10,5,5
+223,cubeb,8aa3d5f6741cedcf1fbc828d923e7c453b84fc5b,remove generic stream_params validation from backend stream_init since it was moved to the shared code.,Matthew Gregan,2013-03-08T04:47:04Z,kinetiknz,kinetiknz,36,0,36
+224,cubeb,5b21c035e36a06b2d3237a7e9286a3c3305535b8,"directsound,winmm: remove C99 struct initializer syntax.",Matthew Gregan,2013-03-08T04:41:36Z,kinetiknz,kinetiknz,32,16,16
+225,cubeb,b02ddb3efdd3587593cc819c0baa15cf0356f105,"Merge pull request #13 from jussi-kalliokoski/patch-1
+
+Don't use obsolete AM_CONFIG_HEADER, fixes #12",Matthew Gregan,2013-02-27T21:55:13Z,kinetiknz,kinetiknz,2,1,1
+226,cubeb,08093136b25680e725e80d28eeac800bf203dfed,"Don't use obsolete AM_CONFIG_HEADER, fixes #12",Jussi Kalliokoski,2013-02-27T18:38:03Z,jussi-kalliokoski,jussi-kalliokoski,2,1,1
+227,cubeb,7d73e142e81145a2964c7426374742ed2efa9f42,make config.h conditional.,Matthew Gregan,2013-02-27T03:17:56Z,kinetiknz,kinetiknz,2,2,0
+228,cubeb,cfec68177b664cd152648014b959b2cfbb4bd0c7,pulse: dlclose libpulse when destroying context.,Matthew Gregan,2013-02-27T03:15:24Z,kinetiknz,kinetiknz,13,8,5
+229,cubeb,6f5c22dbdfab8cd68542e90ce20de3860e4dda31,sndio: build fix.,Matthew Gregan,2013-02-27T03:13:31Z,kinetiknz,kinetiknz,2,1,1
+230,cubeb,63e9608595eb336b9fbd1e010bef52788034421d,missed renames.  call internal destroy rather than going through vtable.,Matthew Gregan,2013-02-27T03:12:31Z,kinetiknz,kinetiknz,68,37,31
+231,cubeb,1829b2b0fd45c034b6676346e7e48338c64803d3,remove pulse DSO from buildtime link flags.,Matthew Gregan,2013-02-27T02:51:44Z,kinetiknz,kinetiknz,4,2,2
+232,cubeb,927c95a7fddfad4e2108513bce4726462c8aa455,pulse: load pulse DSO and symbols at runtime.,Matthew Gregan,2013-02-27T02:51:20Z,kinetiknz,kinetiknz,218,156,62
+233,cubeb,d70602be7e918e08e81ed2ae88149071ecc974d3,remove pedantic from CFLAGS.,Matthew Gregan,2013-02-27T02:50:47Z,kinetiknz,kinetiknz,2,1,1
+234,cubeb,e2ed527f9737267eef65921c79154a495a52b090,clean up backend initialization logic.,Matthew Gregan,2013-02-27T02:50:10Z,kinetiknz,kinetiknz,88,48,40
+235,cubeb,7fbc1f69a63372dbff0b8fa81d8802f5c94c1ff2,"winmm: build fixes.
+directsound: (re)disable build until it can be fixed.",Matthew Gregan,2013-02-21T01:44:16Z,kinetiknz,kinetiknz,48,27,21
+236,cubeb,2ab9cc1bd458d5bc3d3ffb3afc9173d276c20c4b,"Merge pull request #11 from marcofreda527/master
+
+opensl: destroy SLObject before calling dlclose().",Matthew Gregan,2013-02-20T10:15:27Z,kinetiknz,kinetiknz,2,1,1
+237,cubeb,ec74d0bc1df7009eef41ffcf2ada4d85d3cf64c2,OpenSLES: Destory outMix & engine before closing libOpenSLES.so,Marco Chen,2013-02-20T10:06:31Z,marcofreda527,marcofreda527,2,1,1
+238,cubeb,f143a031c163bc3666bdb76aa1e06f2869532b95,"audiounit, audioqueue, sndio: build fixes.",Matthew Gregan,2013-02-20T05:15:16Z,kinetiknz,kinetiknz,34,26,8
+239,cubeb,033dbd1a4bce4dc61fe8aa8cc601271b377b99a4,rework backend detection in configure.,Matthew Gregan,2013-02-20T04:38:20Z,kinetiknz,kinetiknz,198,110,88
+240,cubeb,c1f5c80cbdaf3148fe9ec60884210b094da51812,allow building more than one backend at once.,Matthew Gregan,2013-02-19T04:06:43Z,kinetiknz,kinetiknz,140,100,40
+241,cubeb,15a6b29cecc30ef0e4eb2e52917999a583b36c52,pulse: build fix.,Matthew Gregan,2013-02-19T03:16:33Z,kinetiknz,kinetiknz,2,1,1
+242,cubeb,498740e765730c6537e7fbd872a23c162b914524,start work on switchable cubeb backends.,Matthew Gregan,2013-02-19T03:09:09Z,kinetiknz,kinetiknz,775,554,221
+243,cubeb,c03ad1ea1a6963c3fcd66bdf340bb9d638637368,directsound: apply fix from e945dbd0.,Matthew Gregan,2013-02-19T02:49:00Z,kinetiknz,kinetiknz,4,1,3
+244,cubeb,49f2565ff54192821b9b717988399a875d3b1c61,winmm: restore the WAVE_FORMATEX path because WAVE_FORMAT_EXTENSIBLE does not work on some systems.,Matthew Gregan,2013-02-17T22:52:30Z,kinetiknz,kinetiknz,12,10,2
+245,cubeb,e945dbd052793a7faba3e9064d03bd6781b02692,winmm: fix a dumb bug initializing WAVE_FORMAT_EXTENSIBLE formats.  remove the WAVE_FORMATEX path since WAVE_FORMAT_EXTENSIBLE works everywhere.,Matthew Gregan,2013-02-07T23:09:16Z,kinetiknz,kinetiknz,16,3,13

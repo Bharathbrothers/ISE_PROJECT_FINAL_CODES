@@ -1,0 +1,3333 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,angle,fe453651c48eef34e49dd5a1cf29ebeab707126a,"Blend conformance bugfixes.
+
+Trac #11327
+
+Fixes a bug where color conversion swapped blue and green values.
+Fixes a bug where CONSTANT_COLOR/CONSTANT_ALPHA conflict guard
+failed to check for ONE_MINUS variants.
+
+Author: Shannon Woods
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@27 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-16T06:23:28Z,daniel@transgaming.com,daniel@transgaming.com,14,10,4
+1,angle,12d5407ec2fd0725b1e0cae5af084056288c1e82,"Handle sampling from incomplete textures
+
+TRAC #11321
+
+Context owns incomplete textures of each texture type.
+Also fix completeness determination: check minfilter to see if mipmapping is on.
+
+Author:    Andrew Lewycky
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@26 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-16T06:23:26Z,daniel@transgaming.com,daniel@transgaming.com,93,79,14
+2,angle,416485fb9c73ca14c062c6bf2d5ee3926831ba00,"Select texture type based on program usage.
+
+TRAC #11410
+
+Add Program::getSamplerType() and internal machinery to track the reported sampler uniforms.
+Make State::samplerTexture into a 2D array with a dimension for sampler type.
+Context::applyTextures queries the sampler type and asks for the right texture.
+
+Author:    Andrew Lewycky
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@25 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-16T06:23:23Z,daniel@transgaming.com,daniel@transgaming.com,97,76,21
+3,angle,9efa6f6b3d323ef3f6d26cd74a6229e76bf43e19,"Provide default return values for unreachable code paths.
+
+TRAC #11414
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@24 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-16T06:23:20Z,daniel@transgaming.com,daniel@transgaming.com,10,6,4
+4,angle,c7d8a9351ceaf50bc19a4d3f20cc07fcb9fd7860,"Whitespace fixes (trailing whitespace, CRLF).
+
+TRAC #11414
+
+Author:    Andrew Lewycky
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@23 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-16T06:16:45Z,daniel@transgaming.com,daniel@transgaming.com,24,12,12
+5,angle,79b820b73a34c146704bddf0114847d73fcf9608,"Compiler - implement gl_FrontFacing
+TRAC #11368
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+From:    Nicolas Capens <nicolas@transgaming.com>
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@22 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-16T05:48:57Z,daniel@transgaming.com,daniel@transgaming.com,25,17,8
+6,angle,9b5f5443d613e82326cb5af3b829b7e34af2f969,"Compiler - implement gl_FragCoord
+TRAC #11381
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@21 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-16T05:43:55Z,daniel@transgaming.com,daniel@transgaming.com,48,37,11
+7,angle,998dd9ffa1c54572ff52822f32817b88f8a34521,"Factor out all operators that are invalid for ES2.
+TRAC #11347
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@20 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-16T05:38:01Z,daniel@transgaming.com,daniel@transgaming.com,267,10,257
+8,angle,4143049817a4f5f3a2ec47897c5b52249d4d17e0,"Implement non-support for compressed textures.
+
+TRAC #11339
+
+* glCompressedTexImage2D and glCompressedTexSubImage2D verify
+parameters and then fail with GL_INVALID_ENUM since there are no supported formats.
+* glGetIntegerv recognises GL_NUM_COMPRESSED_TEXTURE_FORMATS
+(returns 0) and GL_COMPRESSED_TEXTURE_FORMATS (returns none).
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Original-Author:    Andrew Lewycky <andrew.lewycky@transgaming.com>
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@19 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-11T20:36:18Z,daniel@transgaming.com,daniel@transgaming.com,35,31,4
+9,angle,00c75964b6eef547b54d8a2b6c175f94508cc317,"Support glTexSubImage2D.
+
+TRAC #1167
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky <andrew.lewycky@transgaming.com>
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@18 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-11T20:36:15Z,daniel@transgaming.com,daniel@transgaming.com,554,343,211
+10,angle,c21c227174ae9b23d4b719ca42694646d8dea122,"Vertex data translation broke the text in PVR samples.
+
+TRAC #11412
+
+Indexed rendering was always broken because the size
+calculated was offset incorrectly (part of a removed optimisation).
+copyComponents was broken when I switched from
+incremental addressing to explicitly-indexed addressing.
+
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky <andrew.lewycky@transgaming.com>
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@17 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-11T19:44:45Z,daniel@transgaming.com,daniel@transgaming.com,6,3,3
+11,angle,86487c20aafda34bfe3dccee51a868283ff882f2,"Compiler - implement gl_DepthRange
+TRAC #11380
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens <nicolas@transgaming.com>
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@16 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-11T19:41:43Z,daniel@transgaming.com,daniel@transgaming.com,276,159,117
+12,angle,0f7aaf530b2aad644d4aab01c493517dedf3f62f,"Add support for Vertex Buffer Data Translation
+
+TRAC #11024
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky <andrew.lewycky@transgaming.com>
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@15 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-11T19:41:38Z,daniel@transgaming.com,daniel@transgaming.com,1793,1481,312
+13,angle,45d035808ab6bb3afbe40590b1b17837b2f307b5,"Compiler - access struct fields
+TRAC #11379
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens <nicolas@transgaming.com>
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@14 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-11T19:41:29Z,daniel@transgaming.com,daniel@transgaming.com,188,99,89
+14,angle,fbb6dfa3d6f6e74bee91e4dd7da275cdd4f96284,"Compiler - handle high loop iteration counts
+TRAC #11345
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens <nicolas@transgaming.com>
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@13 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-11T19:41:25Z,daniel@transgaming.com,daniel@transgaming.com,8,5,3
+15,angle,29d270053560d5fb8b35fb4446fdb1fb453585f3,"Support redefinition of textures through glTexImage2D.
+
+TRAC #11316.
+Keep a dirty data flag, recreate the texture when it is set.
+Texture now owns getTexture() and calls a virtual
+createTexture method when the derived classes need to recreate.
+
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky <andrew.lewycky@transgaming.com>
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@12 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-11T19:41:22Z,daniel@transgaming.com,daniel@transgaming.com,298,146,152
+16,angle,fab5a1ae7809758c6c2fd4a39f3cc5122b262c32,"Remove trailing whitespace.
+
+TRAC #11024
+
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky <andrew.lewycky@transgaming.com>
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@11 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-11T19:22:30Z,daniel@transgaming.com,daniel@transgaming.com,166,83,83
+17,angle,1697302adc6572fa31e0a83ebd64935587696591,"Use std::min/max instead of the Windows macros.
+
+TRAC #11024
+
+* Define NOMINMAX so that the Windows headers don't define min or max.
+* Use std::min/std::max where we were using the min/max macros.
+
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky <andrew.lewycky@transgaming.com>
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@10 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-11T19:22:19Z,daniel@transgaming.com,daniel@transgaming.com,46,26,20
+18,angle,e2b2212912010fafc2675485f8ddd67c6b29130d,"Whitespace fixes.
+
+TRAC #11024
+
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky <andrew.lewycky@transgaming.com>
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@9 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-11T19:22:14Z,daniel@transgaming.com,daniel@transgaming.com,24,12,12
+19,angle,64eedfd706495ea398551af3f193be5746706a65,"Added codereview settings file.
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@6 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-03-10T23:51:56Z,alokp@chromium.org,alokp@chromium.org,4,4,0
+20,angle,4a9d65cba6c877c9006bc70e21e57f705d993b72,"Implemented support for GL_STENCIL_INDEX8 renderbuffers
+TRAC #11366
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@5 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-08T21:30:56Z,daniel@transgaming.com,daniel@transgaming.com,38,33,5
+21,angle,680553bf90d0f8a598ddccf7d624999b8393562f,"Compiler - implement faceforward
+TRAC #11365
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@4 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-08T21:30:52Z,daniel@transgaming.com,daniel@transgaming.com,54,52,2
+22,angle,2884b78ae11e676806434854b49d7076649fa50d,"Fix regression from HRESULT checking changes
+TRAC #11234
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@3 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-08T21:30:48Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+23,angle,4f39fd99568ce175f04b5ed72062bfed0fa41803,"Initial import from TransGaming
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@2 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-08T20:26:45Z,daniel@transgaming.com,daniel@transgaming.com,34230,34230,0
+24,angle,eff14256dba77b6dcd65a1d3425c4f06b0de39f4,"Initial directory structure.
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@1 736b8ea6-26fd-11df-bfd4-992fa37f6226",(no author),2010-03-03T19:46:25Z,(no author),(no author),0,0,0
+25,angle,bb274c35d5807d44288f0d44d05807e23e1f2b26,"Fixes incorrect error handling in GetAttribLocation
+TRAC #11657
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@128 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:21Z,daniel@transgaming.com,daniel@transgaming.com,10,9,1
+26,angle,d91cfe7e3c01a557fb1c0dc8bf0655c8a5b1d34b,"Implemented struct equality
+TRAC #11727
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@127 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:17Z,daniel@transgaming.com,daniel@transgaming.com,277,231,46
+27,angle,950f993b889937fe22d9481143cdb83cb729b772,"Compiler - split header, body and footer output
+TRAC #11798
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@126 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:14Z,daniel@transgaming.com,daniel@transgaming.com,67,42,25
+28,angle,73c2c2eddc2a114c7e37702110d02748542627c6,"Implements correct error handling for DetachShader
+TRAC #11663
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@125 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:11Z,daniel@transgaming.com,daniel@transgaming.com,27,25,2
+29,angle,79f6677d389bc31041e821158bea897a873ebf71,"Implements support for IsEnabled
+TRAC #11750
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@124 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:09Z,daniel@transgaming.com,daniel@transgaming.com,18,18,0
+30,angle,bb3d9d03b707f5415538909d2cd2f0aede0d2292,"Implements glGetUniform
+TRAC #11647
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@123 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:06Z,daniel@transgaming.com,daniel@transgaming.com,163,161,2
+31,angle,9a95e2bb66c3829d721daa18adc22f1c8168f08f,"Implements Uniform*i{v}
+TRAC #11649
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@122 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:03Z,daniel@transgaming.com,daniel@transgaming.com,420,403,17
+32,angle,f4a0c8e8083cbed565f913e9f4999751fe1465a5,"Implements support for boolean uniforms
+TRAC #11734
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@121 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:01Z,daniel@transgaming.com,daniel@transgaming.com,314,298,16
+33,angle,d1acd1ed5a29e8ff9b19130a0858ffac40517a3d,"Implemented function prototyping and in/out parameters
+TRAC #11725
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@120 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:25:57Z,daniel@transgaming.com,daniel@transgaming.com,86,81,5
+34,angle,afb239577f8ede33b0dcf921a07e6f5e6a309fd4,"Implemented glReadPixels for the implementation-dependent format
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@119 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:25:54Z,daniel@transgaming.com,daniel@transgaming.com,8,6,2
+35,angle,26e9604f9e887e256e268d742223f5cda643c07e,"update contributors list
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@118 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-10T05:29:13Z,daniel@transgaming.com,daniel@transgaming.com,2,2,0
+36,angle,13881545ced98cd2ec7b175389c95bf23574bf53,"Compiling error in x64: WidenToFour template incorrect type.
+
+TRAC #11811
+
+Submitted-by: Aitor Moreno
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@117 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-10T05:29:11Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+37,angle,fe56515917d8108f194c12d777f78bfef73cdbe1,"Implemented support for user-defined structures
+TRAC #11730
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@116 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-10T05:29:07Z,daniel@transgaming.com,daniel@transgaming.com,229,134,95
+38,angle,f52561c2b6da876bf934910b4c375c3d019a4d01,"Can't change attribute locations after original link
+
+TRAC #11290
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@115 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-10T05:29:04Z,daniel@transgaming.com,daniel@transgaming.com,5,0,5
+39,angle,7441c9cc25dc54efd341362a865aa7d9b68991c4,"Associate the sample.sln file with visual C++ express.
+Trac #11802
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@114 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-08T15:01:05Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+40,angle,3fe7fe5d5f9079ec5cdfb07f0b65734dd5e891a0,"Fix compilation of glslang.l in release mode.
+Trac #11802
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@113 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-08T15:00:59Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+41,angle,ea5a6ad71ae5b7f1ec627c6ca91b1425cc42da9e,"Re-Associate ANGLE.sln with VC++ Express
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@112 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-08T03:51:26Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+42,angle,12d38031a55fe2250e37076e789827698b302f49,"Remove GLES2/glextimg.h
+Trac #11785
+This is not an official khronos header
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@111 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-08T03:51:23Z,daniel@transgaming.com,daniel@transgaming.com,55,0,55
+43,angle,fe4b827b2b580c3fc4fd80fdb5a0087f539c0073,"Fix the GL entry function prototypes to match new GLES header
+Trac #11785
+The changes were void -> GLvoid and char -> GLchar.
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@110 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-08T03:51:20Z,daniel@transgaming.com,daniel@transgaming.com,89,47,42
+44,angle,04694067c435626b2cfd09d77255f98cce241eb4,"Refresh KHR headers from Khronos svn@10929
+Trac #11785
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@109 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-08T03:51:18Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+45,angle,c68e92993bb880e3a3d87e39ee70ecab38033366,"Refresh GLES2 header files from Khronos svn@10929
+Trac #11785
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@108 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-08T03:51:15Z,daniel@transgaming.com,daniel@transgaming.com,447,306,141
+46,angle,fe110ab75414bd085c4f5f6579f4a0dea3728712,"Refresh EGL files from Khronos svn@10929
+Trac #11785
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@107 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-08T03:51:12Z,daniel@transgaming.com,daniel@transgaming.com,116,99,17
+47,angle,4195fc431c9e39614508ac059362ce3a7aed856f,"Resolve conflict between default cube map and 2D textures in texture map.
+
+TRAC #11625
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@106 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-08T03:51:09Z,daniel@transgaming.com,daniel@transgaming.com,38,19,19
+48,angle,4a35ef2d4d1839d6fa008fd8471ebc25f1d2b665,"Break up loops with over 255 iterations.
+TRAC# 11724
+fixes acos/asin conformance
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@105 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-08T03:51:06Z,daniel@transgaming.com,daniel@transgaming.com,178,175,3
+49,angle,cf2560dda87ab83eb60a350057baedbd24dce0c5,"Always build libEGL and libGLESv2 as shared libraries. They do not work as static libraries so there is no point in parametrizing the library type.
+Review URL: http://codereview.appspot.com/810045
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@104 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-04-07T20:39:57Z,alokp@chromium.org,alokp@chromium.org,4,2,2
+50,angle,0270ef140e1cc9fb0e6f4cdfb02d35d5136b5639,"Changed the default character set to be UNICODE, the same as chromium. Changes to fix compile errors and warnings.
+Review URL: http://codereview.appspot.com/816046
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@103 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-04-07T19:57:20Z,alokp@chromium.org,alokp@chromium.org,78,24,54
+51,angle,777f26727bd71c435f93387fd593e3790544bb49,"Implements type conversion for queries.
+TRAC #11593
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Also adds missing query parameters.
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@102 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-07T03:25:16Z,daniel@transgaming.com,daniel@transgaming.com,577,492,85
+52,angle,5441d665e16121c0ba872ad7db1af459bc0cf664,"Compiler - Wrong Result from Matrix Multiply
+TRAC #11751
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@101 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-07T03:25:11Z,daniel@transgaming.com,daniel@transgaming.com,65,58,7
+53,angle,403c9e5961c91a0d4f2fc17d14798736a6b7b21b,"Added libGLESv2, libEGL, and all samples to GYP.
+Review URL: http://codereview.appspot.com/878042
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@100 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-04-06T17:53:31Z,alokp@chromium.org,alokp@chromium.org,384,310,74
+54,angle,27bf89bb308a316d10fe476babaded6401032508,"Fixes an improper comparison in map
+TRAC #11649
+Implementing this fix here because it's causing the glUniform
+conformance test not to pass. TranslatedBuffer would have problems
+during reloadCurrentValues because its required space and its current
+size were equal.
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@99 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-06T16:31:25Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+55,angle,29d56fbb60c635df7efb5ae6bf426b63870bda03,"Added GYP build files. GYP files are needed for integration with chromium and cross-platform build for glsl translator. It would really be nice if we did not have to maintain two build systems. For now I have only moved the GLSL translator to gyp build system. Please note that the gyp files awkwardly have build_ prefix so they do not conflict with the manually-maintained sln files.
+Review URL: http://codereview.appspot.com/885043
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@98 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-04-06T15:42:22Z,alokp@chromium.org,alokp@chromium.org,1511,806,705
+56,angle,0e3358a6aae3e3d54e29f17297187f2f078e1ef3,"Compiler - implement proper varying linking
+TRAC #11716
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@97 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-05T20:32:42Z,daniel@transgaming.com,daniel@transgaming.com,199,140,59
+57,angle,279e38ad145fddb049616bf6f42c529864e4e8e7,"Compiler - fix mat3 conformance
+TRAC #11723
+Matrix elements are accessed as [col][row] in GLSL and [row][col] in HLSL. Fixed this by transposing all matrix uniforms so they have a row-major layout. Then transpose them in the shader every time they're used in matrix math.
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@96 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-03T20:56:13Z,daniel@transgaming.com,daniel@transgaming.com,34,23,11
+58,angle,57a0bab8e1ae33932c12cf2dc53e89b0c79920a5,"ShaderSource does not generate needed errors
+TRAC #11664
+Generate GL_INVALID_VALUE when shader name is 0
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@95 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-03T20:56:10Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+59,angle,296ca9cc4ad7c8891673d74cea7c75b8fe49bc92,"Compiler - match pixel and vertex shader profiles
+TRAC #11717
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@94 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-03T20:56:07Z,daniel@transgaming.com,daniel@transgaming.com,37,34,3
+60,angle,cbbca00b05171f1438a2cac83c4e59f55543bb74,"Use the latest D3DX version for D3DXCompileShader instead of forcing D3DX9_31
+TRAC #11347
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@93 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-01T13:39:32Z,daniel@transgaming.com,daniel@transgaming.com,4,1,3
+61,angle,41187f1d1257ffc205a777fbe348bcbe7dd49bc6,"Fix glGetShaderSource conformance
+TRAC #11718
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@92 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-01T13:39:29Z,daniel@transgaming.com,daniel@transgaming.com,6,3,3
+62,angle,376e10643667be33b15b1e831876d5f6769e214e,"Added support for loops.
+Review URL: http://codereview.appspot.com/802047
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@91 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-03-31T20:25:53Z,alokp@chromium.org,alokp@chromium.org,45,43,2
+63,angle,3d2707820e0b59d2277bfa0a4eee7c0910ac7b5b,"Changes to pass 'abs' conformance tests.
+Review URL: http://codereview.appspot.com/858041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@90 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-03-30T20:33:38Z,alokp@chromium.org,alokp@chromium.org,18,9,9
+64,angle,2cf1771fd8529995c333671a3035027567e14664,"Removed tabs. Fixed formatting. Only white-space changes.
+Review URL: http://codereview.appspot.com/849043
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@89 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-03-30T20:33:18Z,alokp@chromium.org,alokp@chromium.org,2882,1440,1442
+65,angle,dd037b2a85b3e3fff73b6d04014f7030a2ceb99f,"Added support for user-defined structs. And fixed a bug in function return type.
+Review URL: http://codereview.appspot.com/849042
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@88 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-03-30T18:47:20Z,alokp@chromium.org,alokp@chromium.org,37,26,11
+66,angle,d25ab251094d86350299e9ebde5df7486b4cc69a,"Compiler - fix redeclaration of initialized globals
+TRAC #11617
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@87 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-30T03:36:26Z,daniel@transgaming.com,daniel@transgaming.com,23,8,15
+67,angle,ab58025b62992e382f8732099f0a9eb61c154d72,"Use unique intermediate directories for translator projects
+
+TRAC #11635
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@86 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-30T03:36:22Z,daniel@transgaming.com,daniel@transgaming.com,12,6,6
+68,angle,6c78521ea3e781a39878ce5f4693af72d08e4cdf,"Implement glGetAttachedShaders and glGetShaderPrecisionFormat.
+TRAC #11599
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@85 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-30T03:36:17Z,daniel@transgaming.com,daniel@transgaming.com,102,92,10
+69,angle,02bc159423ff4972677895e95f27c14bbc264961,"Support software vertex processing
+TRAC #11632
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@84 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-30T03:36:13Z,daniel@transgaming.com,daniel@transgaming.com,38,25,13
+70,angle,4388487c8eb68b472ac8a9ab67def88c3e60c4d0,"Moved code to unmangle function name to a common place and used it in both OutputGLSL and OutputHLSL.
+Review URL: http://codereview.appspot.com/838041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@83 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-03-30T00:08:52Z,alokp@chromium.org,alokp@chromium.org,105,54,51
+71,angle,60fe407c363266a1bfe9c33832815ee7a09a188a,"Added TIntermSelection::usesTernaryOperator() to distinguish between selection nodes using ternary operator and if-else. Used in both OutputGLSL and OutputHLSL.
+Review URL: http://codereview.appspot.com/830042
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@82 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-03-29T20:58:29Z,alokp@chromium.org,alokp@chromium.org,61,37,24
+72,angle,1180ea73f55d4f1c71e14b12760f3601a8ecebf8,"Fixed the title of texture-wrap sample.
+Review URL: http://codereview.appspot.com/834041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@81 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-03-29T19:43:46Z,alokp@chromium.org,alokp@chromium.org,2,1,1
+73,angle,76dbf17ff1e6a2fd99023b4f21cd2d5078a617cd,"Support UNSIGNED_BYTE indices in DrawElements
+
+Trac #11393
+Support was added a prior patch but this wasn't activated
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@80 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-28T19:36:20Z,daniel@transgaming.com,daniel@transgaming.com,1,0,1
+74,angle,5e8907315087f3ecf86b2fbd0a3dcbac904bc727,"Update .gitignore
+
+Use better wildcards to hide files we don't commit
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@79 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-28T19:36:18Z,daniel@transgaming.com,daniel@transgaming.com,14,3,11
+75,angle,0361b92f3f185ca0751034a0b987047d66ef8fc8,"Compiler - active uniforms and attributes
+
+TRAC #11590
+Preparation refactoring that removes UniformType since there are already GL enums for uniform types.
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@78 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-28T19:36:15Z,daniel@transgaming.com,daniel@transgaming.com,68,28,40
+76,angle,93a96c3eeec95b2044be4966edf9dfe8876b96c7,"Compiler - implement vector times matrix operation
+
+TRAC #11611
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@77 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-28T19:36:13Z,daniel@transgaming.com,daniel@transgaming.com,47,31,16
+77,angle,cba5057cf320b691cda0ad2dedd65ff0db3981bc,"Compiler - implement shader and program queries
+TRAC #11599
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@76 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-28T19:36:09Z,daniel@transgaming.com,daniel@transgaming.com,240,217,23
+78,angle,e78c0c997588268343b45e309601a94e590acf9e,"Compiler - only declare used HLSL functions
+TRAC #11315
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@75 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-28T19:36:06Z,daniel@transgaming.com,daniel@transgaming.com,273,137,136
+79,angle,5e417109f62eba713bb9e4be6124d59ae5494951,"fix warning for std::copy
+
+TRAC #11558
+
+* VertexDataManager::internalPreRenderValidate operates directly on the output pointer.
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@74 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-26T04:08:53Z,daniel@transgaming.com,daniel@transgaming.com,6,1,5
+80,angle,b994e3bd4668b51698135f6ef535ef3f4a15bd47,"fix warning from ""normalized"" cast
+
+TRAC #11556
+
+* Restore warning C4800.
+* Compare GLboolean normalized against GL_TRUE per the spec.
+
+Signed-off-by: Daniel Koch
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@73 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-26T04:08:50Z,daniel@transgaming.com,daniel@transgaming.com,6,1,5
+81,angle,f8b58a0cb3e310c627d765e8f2ee64f7b3c1c0ff,"Support translating indices.
+
+TRAC #11393
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@72 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-26T04:08:45Z,daniel@transgaming.com,daniel@transgaming.com,334,245,89
+82,angle,d989add518de48be887292aeb6d98751e03f5cf5,"Compiler - implement gl_PointCoord and point size clamping
+
+TRAC #11592
+Fixed a regression caused by bad merging.
+Author: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@71 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-26T04:08:42Z,daniel@transgaming.com,daniel@transgaming.com,6,6,0
+83,angle,ccad59f0464a3a5b025eb06bb38b1ade2057cf0b,"Compiler - implement gl_PointCoord and point size clamping
+
+TRAC #11592
+Author: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@70 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-26T04:08:39Z,daniel@transgaming.com,daniel@transgaming.com,18,11,7
+84,angle,76b820852b116d79187e5af5457a45065f656bda,"Added GLSL backend for ESSL translator.
+Review URL: http://codereview.appspot.com/698041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@69 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-03-24T17:59:39Z,alokp@chromium.org,alokp@chromium.org,2440,2026,414
+85,angle,32e58cdedbee0b5add027c7d051faaac254724b8,"Implements support for setting/getting line width.
+
+TRAC #11531
+Implements glLineWidth, and provides glGet results for
+LINE_WIDTH and ALIASED_LINE_WIDTH_RANGE.
+
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@68 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-24T09:44:10Z,daniel@transgaming.com,daniel@transgaming.com,29,26,3
+86,angle,debe2591ccec4beede1a0742510b72f56bc60b53,"HLSL compilation shouldn't assume a 3.0 profile
+
+TRAC #11054
+Signed-off-by: Daniel Koch
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@67 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-24T09:44:08Z,daniel@transgaming.com,daniel@transgaming.com,9,6,3
+87,angle,d37dec85de9775ca1702bb67323fb155898a7b38,"The trace parameter is better termed 'message' instead of 'argument'
+
+Trac #11526
+Signed-off-by: Shannon Woods
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@66 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-24T09:44:05Z,daniel@transgaming.com,daniel@transgaming.com,6,3,3
+88,angle,24a0486194be415d11943aea86de35b0797ff212,"Add smoke.tga for gles2\ParticleSystem sample
+
+Trac #11596
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@65 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-24T09:44:03Z,daniel@transgaming.com,daniel@transgaming.com,0,0,0
+89,angle,f64dd04c4c8f3741e84253b43db7a7eb0003bc73,"Fix warning from ""normalized"" cast.
+
+TRAC #11556
+
+Disable warning C4800 as it does not indicate defects in the code, just the compiler.
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+Author: Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@64 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-24T09:44:00Z,daniel@transgaming.com,daniel@transgaming.com,4,4,0
+90,angle,5539a34f2497a75948f77866686b7940eab8b634,"Added a few samples from GLES 2.0 book.
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@63 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-03-22T19:34:05Z,alokp@chromium.org,alokp@chromium.org,5695,5695,0
+91,angle,ea0e1af4c3db538081d776e4ec1a588ca82cb9d9,"Minor reshuffling of directory structure in preparation of ESSL to GLSL compiler work.
+1. Added include/GLSLANG which includes compiler API
+2. Deleted src/include and moved the header files to the same directory as the corresponding source files
+3. Modied include path to be relative to src/. I have only fixed paths for files I moved. We should fix it for all new files at least. It is much easier to see where an included file is coming from.
+
+I noticed that a few libGLESv2 source files include headers from libEGL project, which seems wrong. I think we should address this issue. Next step: move compiler source files to compiler/frontend and create two new projects compiler/glsl_backend and compiler/hlsl_backend.
+
+Review URL: http://codereview.appspot.com/662042
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@62 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-03-22T19:33:14Z,alokp@chromium.org,alokp@chromium.org,180,61,119
+92,angle,0599dc6def95077e28128908795d90a634014b22,"To output debug info use the TRACE macro instead of calling trace()
+
+Trac #11526
+Signed-off-by: Shannon Woods
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@61 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-21T04:31:36Z,daniel@transgaming.com,daniel@transgaming.com,10,5,5
+93,angle,b5b0616063ccb5c22a8f50339d47e134d6b9cd9a,"Refactor the parenthesis from the TRACE/FIXME/ERR macros
+
+Trac #11526
+Signed-off-by: Shannon Woods
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@60 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-21T04:31:32Z,daniel@transgaming.com,daniel@transgaming.com,385,220,165
+94,angle,d4620a36311fc87edd1685af98aca00097f0db75,"Don't crash on a null pointer passed to glBufferData
+
+TRAC #11528
+
+ * Initialise buffer to 0 if BufferData is called with data = NULL
+   (special case: if not resizing, just leave the old data in place).
+ * BufferSubData ignores calls with data = NULL
+ * Replace Buffer::data_t with GLubyte.
+
+Author:    Andrew Lewycky
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@59 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-21T04:31:28Z,daniel@transgaming.com,daniel@transgaming.com,29,20,9
+95,angle,159acdf5f6370e89f3deda77cd3752ad11d3f76c,"Corrects scissor & viewport initialization.
+
+TRAC #11134
+Takes viewport/scissor dimensions from surface at first makeCurrent, rather
+than from display at context construction.
+
+Author:    Shannon Woods
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@58 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-21T04:31:24Z,daniel@transgaming.com,daniel@transgaming.com,23,21,2
+96,angle,ace5e6635884b86afb3997ab21e29b9af92e0c81,"Implements support for FRONT_AND_BACK culling.
+
+TRAC #11331
+
+Author:    Shannon Woods
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@57 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-21T04:31:20Z,daniel@transgaming.com,daniel@transgaming.com,36,29,7
+97,angle,5949aa10c60aeab86dcd32ee9d77d5b3fb8185e0,"Adds support for hints
+
+TRAC #11343
+Author:    Shannon Woods
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@56 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-21T04:31:15Z,daniel@transgaming.com,daniel@transgaming.com,28,27,1
+98,angle,3489e3ae55d26d613a21dfed54614f51bb69a5aa,"Implement glPixelStorei for Tex(Sub)Image2D.
+
+TRAC #11475
+
+Author:    Andrew Lewycky
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@55 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-21T04:31:11Z,daniel@transgaming.com,daniel@transgaming.com,163,99,64
+99,angle,7051b97e7616c45742349818bd4bf971d870c0c7,"Default textures to non-renderable.
+
+TRAC #11309
+
+* Lift getRenderTarget() into base class Texture.
+* Add pure virtual convertToRenderTarget() and getSurface().
+
+Author:    Andrew Lewycky
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@54 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-21T04:31:07Z,daniel@transgaming.com,daniel@transgaming.com,303,253,50
+100,angle,842f7a4ebf04907352adb57d98e067ec0aad4e45,"Partial TexSubImage after FBO rendering overwrites entire image.
+
+TRAC #11439
+
+* Store texel data in IDirect3DSurface9 rather than client memory.
+* TexSubImage uploads new data immediately.
+* Fix 5551 texture format conversion.
+
+Author:    Andrew Lewycky
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@53 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-21T04:31:03Z,daniel@transgaming.com,daniel@transgaming.com,263,179,84
+101,angle,bbb6cd0c6d3d39c8635fe739cfd0634879ab8803,"Fix starting indices other than 0 for DrawArrays
+
+TRAC #11495
+
+Author:    Andrew Lewycky
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@52 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-21T04:30:59Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+102,angle,3d53fda08d20bf14f4eafe2b7fb69fa8a21e6896,"ANGLE | Compiler - implement the ternary operator
+
+TRAC #11421
+Doesn't take short-circuiting behavior into account yet.
+Author:    Nicolas Capens
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@51 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-21T04:30:55Z,daniel@transgaming.com,daniel@transgaming.com,37,25,12
+103,angle,adb5087a9fab17dc04da9390ce2918f113d1f1c7,"ANGLE | Don't perform any filtering when swapping
+
+TRAC #11513
+Author:    Nicolas Capens
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@50 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-21T04:30:52Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+104,angle,d70aa3398a662651e31c0c79feb2e7fff2b09580,"Delete empty folders after reorganization
+Trac #11406
+
+
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@48 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T13:59:53Z,daniel@transgaming.com,daniel@transgaming.com,0,0,0
+105,angle,4da3d935313f9d68c62def50c12c9491166f4dee,"update .gitignore file for new file locations
+Trac #11406
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@47 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T13:13:32Z,daniel@transgaming.com,daniel@transgaming.com,27,14,13
+106,angle,14c4631c46d342af9d0774db8c03cf924079f83d,"Fix include paths in libEGL.vcproj
+Trac #11406
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@46 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T13:13:30Z,daniel@transgaming.com,daniel@transgaming.com,4,2,2
+107,angle,63e472ddd5e87eedb1bf8d6640fb22f5a0d7dbbf,"Fix include paths for libGLESv2.vcproj
+Trac #11406
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@45 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T13:13:28Z,daniel@transgaming.com,daniel@transgaming.com,4,2,2
+108,angle,50290ec93b571961fc29c70fcdd5f1a32bfffe3f,"Fix the case of all directories used by compiler.vcproj
+Trac #11406
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@44 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T13:13:26Z,daniel@transgaming.com,daniel@transgaming.com,50,25,25
+109,angle,7f9901776a13c511143a1f1b0296dd50da77567f,"Rename Compiler.vcproj -> compiler.proj and fix solution properties
+Trac #11406
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@43 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T13:13:24Z,daniel@transgaming.com,daniel@transgaming.com,6,3,3
+110,angle,f08666967d0510c45806b0e4f65a11e4b314af5f,"mv Include -> include
+Trac #11406
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@42 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T13:13:18Z,daniel@transgaming.com,daniel@transgaming.com,0,0,0
+111,angle,f4d3a314423a8db4d3a660c0ebaaa0f27122633e,"mv ANGLE.sln -> src/ANGLE.sln
+Trac #11406
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@41 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T13:13:13Z,daniel@transgaming.com,daniel@transgaming.com,0,0,0
+112,angle,7c46b9e695649ea493c7905d718aa200d2a3c7a3,"mv libGLESv2 -> src/libGLESv2
+Trac #11406
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@40 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T13:12:58Z,daniel@transgaming.com,daniel@transgaming.com,0,0,0
+113,angle,203934dcad0f10317590a38a9fc090f3145e1b9a,"mv libEGL -> src/libEGL
+Trac #11406
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@39 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T13:12:52Z,daniel@transgaming.com,daniel@transgaming.com,0,0,0
+114,angle,b5462fcee052155556eb4368cd67b68a01bc3c90,"mv Include/*.h -> /src/include/
+Trac #11406
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@38 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T13:12:47Z,daniel@transgaming.com,daniel@transgaming.com,0,0,0
+115,angle,acc511303304febe92e4ea1dc7f9df794f04ddfc,"mv Compiler/* -> src/compiler/*
+Trac #11406
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@37 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T13:12:17Z,daniel@transgaming.com,daniel@transgaming.com,0,0,0
+116,angle,42b207dad5bb924a61e58ebd5c05a874039786cc,"mv Compiler/Preprocessor -> src/compiler/preprocessor
+Trac #11406
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@36 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T13:12:07Z,daniel@transgaming.com,daniel@transgaming.com,0,0,0
+117,angle,395d503519e8d6e7ab46c6ab6188d8e7571caf03,"Move Compiler/Tools -> src/compiler/tools
+Trac #11406
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@35 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T13:12:00Z,daniel@transgaming.com,daniel@transgaming.com,0,0,0
+118,angle,5903aeb1f972a707040338f870b93ccc30b858e1,"Move Common -> src/common
+Trac #11406
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@34 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T13:11:57Z,daniel@transgaming.com,daniel@transgaming.com,0,0,0
+119,angle,1e64143178a5c74e7dc15fc8c78916c52e989352,"Add README and license information for bison and flex
+
+Trac #11422
+Signed-off-by: Shannon Woods
+Signed-off-by: Gavriel State
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@33 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T03:58:59Z,daniel@transgaming.com,daniel@transgaming.com,391,391,0
+120,angle,1436e26153252125ece83ea19f848e037164e1d9,"Implements separate stencil support to proposed WebGL limitations
+
+TRAC #11450
+Author:    Shannon Woods
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@32 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T03:58:56Z,daniel@transgaming.com,daniel@transgaming.com,8,5,3
+121,angle,f67f82ec8c9584eca32aefdbc2a6d00efb49e369,"Compiler - implement break/continue
+
+TRAC #11441
+Author:  Nicolas Capens
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@31 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T03:58:54Z,daniel@transgaming.com,daniel@transgaming.com,6,3,3
+122,angle,49bce7ef4a218f9848a5b00c45f0365e3d80ac9e,"Compiler - implement matrix construction and equality
+
+TRAC #11440
+Author: Nicolas Capens
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@30 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-17T03:58:51Z,daniel@transgaming.com,daniel@transgaming.com,57,53,4
+123,angle,7a2c2809742a825ff11d3dbb49d17f6c7caf33ef,"Correcting un-returned depth size in utility function.
+
+TRAC #11333
+Implemented during masking conformance testing.
+
+Author: Shannon Woods
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@29 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-16T06:23:33Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+124,angle,0009d62451a167ac88e6454ae6be6e25d3b853ba,"Creates new depthstencils for surfaces.
+
+Trac #11396
+
+Creates new depthstencils for new windows when multiple windows exist,
+repurposes original depthstencil if old windows have all been destroyed.
+Author: Shannon Woods
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@28 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-03-16T06:23:31Z,daniel@transgaming.com,daniel@transgaming.com,89,75,14
+125,angle,256b751db214250b44d34a6a25f4ccbbab3bfeda,"Fixed broken build. Somehow glslang.y got left out while renaming constUnion to ConstantUnion.
+TBR=dgkoch@transgaming.com
+Review URL: http://codereview.appspot.com/1116041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@228 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-05T16:51:49Z,alokp@chromium.org,alokp@chromium.org,38,19,19
+126,angle,6ff56fd489bde0e36f9c3938618208b0e9c9de7d,"Renamed constUnion class to ConstantUnion.
+Review URL: http://codereview.appspot.com/1106042
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@227 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-05T16:37:50Z,alokp@chromium.org,alokp@chromium.org,176,88,88
+127,angle,428d15873f44c7da878da9bb05da0276a6f7c1ee,"Makes the State struct a member of Context, rather than its parent.
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@226 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-04T03:35:25Z,daniel@transgaming.com,daniel@transgaming.com,1171,771,400
+128,angle,19ffc24b0e886710aa6052c01ea93fc923f059c4,"Moves non-D3D-specific utility functions to the gl namespace.
+TRAC #12043
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@225 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-04T03:35:21Z,daniel@transgaming.com,daniel@transgaming.com,120,60,60
+129,angle,713914b5ae7f541b8f78358915347e8c479c1c19,"Implements PACK_ALIGNMENT for ReadPixels
+TRAC #11484
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@224 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-04T03:35:17Z,daniel@transgaming.com,daniel@transgaming.com,93,48,45
+130,angle,ce3d0f2f386ee8d9e00ce99d114435b552f24224,"Implemented eglGetProcAddress
+TRAC #12102
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@223 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-04T03:35:14Z,daniel@transgaming.com,daniel@transgaming.com,50,47,3
+131,angle,bade892718c21f30ee9d648d7cff886f2168d5f4,"Untabify libGLESv2.def
+TRAC #12102
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@222 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-04T03:35:11Z,daniel@transgaming.com,daniel@transgaming.com,298,149,149
+132,angle,6b99840876b4be79ff9c346801c9fe679e9886fe,"Correct use of anonymous / nameless struct
+TRAC #12108
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@221 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-04T03:35:07Z,daniel@transgaming.com,daniel@transgaming.com,4,2,2
+133,angle,a499cfc5ff7bf68367a9fd1903b6a556d27794f4,"Fixed multiple issues with struct declaration and construction.
+Review URL: http://codereview.appspot.com/1076041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@220 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-03T23:14:49Z,alokp@chromium.org,alokp@chromium.org,201,108,93
+134,angle,2986a8cbcb9b0731e2ea6fad0f93f5c4be9be144,"Implemented a bunch of missing constructs.
+Review URL: http://codereview.appspot.com/1031045
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@219 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-04-30T22:32:32Z,alokp@chromium.org,alokp@chromium.org,216,120,96
+135,angle,4f3ce807111f34819669c2f9fef0d90e10b7bb62,"Output propagated struct constants as literals
+TRAC #11809
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@218 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:39:15Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+136,angle,51d0dc2a6b3e834ec5afe0a9e76922bad510605d,"Declare structures before uniform definitions and support varying arrays
+TRAC #11809
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@217 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:39:11Z,daniel@transgaming.com,daniel@transgaming.com,337,174,163
+137,angle,a637e55f6ffbfe27cd0a0fa9ca61636e137f2336,"Support anonymous structures
+TRAC #11809
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@216 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:39:08Z,daniel@transgaming.com,daniel@transgaming.com,28,27,1
+138,angle,3aa7420b5a9b99668090d6260ad2bc51ffafda5c,"Fix parenthesis balance
+TRAC #11809
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@215 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:39:04Z,daniel@transgaming.com,daniel@transgaming.com,4,2,2
+139,angle,9e78e5edfda0d54d0a862be1c7d780bb08542325,"Fix Shader compilation failures with nested #ifdefs
+
+TRAC #12054
+
+Don't exit from CPPelse prematurely.
+Clear elsedepth when entering a new #if nesting level.
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@214 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:39:02Z,daniel@transgaming.com,daniel@transgaming.com,7,4,3
+140,angle,951243464f93a0ac869df3af0c9f3af79c0193da,"Deleting program does not delete shaders that are marked
+
+TRAC #12012
+
+Resolve the crash on context deletion.
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@213 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:38:58Z,daniel@transgaming.com,daniel@transgaming.com,20,11,9
+141,angle,a87bdf533de27209b975ffbdf6dcf50ca53cacac,"Check for multisample conformance
+
+TRAC #11747
+
+Only warn about sample coverage settings in a multisample context.
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@212 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:38:55Z,daniel@transgaming.com,daniel@transgaming.com,15,9,6
+142,angle,d1f667fed411ec35be41543ee8fdc2b91b086b4a,"Ensure ShaderBinary is conformant
+
+TRAC #12061
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@211 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:38:52Z,daniel@transgaming.com,daniel@transgaming.com,8,2,6
+143,angle,f31401573e2d3452e29e802720a24727b775f764,"Append [0] to active array uniform names
+TRAC #11796
+Singed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@210 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:38:50Z,daniel@transgaming.com,daniel@transgaming.com,5,5,0
+144,angle,8ee00ea24fd54bbf6a3986ee0ff4d28c914167b3,"Investigate issues with transform_viewport conformance
+
+TRAC #12035
+
+transform_viewport failed when rendering into an Nx1 or 1xN viewport.
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@209 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:38:47Z,daniel@transgaming.com,daniel@transgaming.com,4,1,3
+145,angle,aede63013ff388a676ce3a6af981cf480e956f3c,"Implements PolygonOffset
+TRAC #11719
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@208 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:35:48Z,daniel@transgaming.com,daniel@transgaming.com,20,17,3
+146,angle,c3a0e946e912497f086aa9cdac69697ca5c29f8d,"Fixes program validation regression.
+TRAC #11654
+The sampler validation at render time was occurring before uniforms
+were applied and samplers were bound to their texture units. Sampler
+validation now occurs after shaders and textures have been applied.
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@207 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:35:45Z,daniel@transgaming.com,daniel@transgaming.com,36,20,16
+147,angle,dec19e2014ee1bafc643c269172496c77283acde,"Detect and report multiple #version directives
+TRAC #12072
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@206 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:35:42Z,daniel@transgaming.com,daniel@transgaming.com,20,10,10
+148,angle,b41c977b3fce8c81f08751d17f8c17b7352753b8,"Implemented support for lists of arrays
+TRAC #12075
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@205 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:35:39Z,daniel@transgaming.com,daniel@transgaming.com,3,3,0
+149,angle,ead23047490b652cdaedb6ed3deb8558f8d94c27,"Add all structure definitions to constructor map and simplify initialization
+TRAC #11809
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@204 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:35:36Z,daniel@transgaming.com,daniel@transgaming.com,41,11,30
+150,angle,7a7003c383810d65845e73c2f13f29507c0b8823,"Output structure declarations and constructors in the header
+TRAC #11809
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@203 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:35:33Z,daniel@transgaming.com,daniel@transgaming.com,86,66,20
+151,angle,67de6d6c6d33179fd0a8da65b5f629c29095cabb,"Refactored outputTriplet to allow complex string expressions
+TRAC #11809
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@202 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:35:30Z,daniel@transgaming.com,daniel@transgaming.com,225,114,111
+152,angle,71cd868d1411a7f212e93b70a7f90fccb6b7944b,"Deleting program does not delete shaders that are marked
+
+TRAC #12012
+
+Also fixes failure to delete flagged program upon glUseProgram(0).
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@201 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:35:25Z,daniel@transgaming.com,daniel@transgaming.com,33,19,14
+153,angle,feba9ba5e60ef66afe928b4996a5a1d964d64d3a,"Undecorate uniform names when computing max length
+TRAC #12050
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@200 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:32:45Z,daniel@transgaming.com,daniel@transgaming.com,29,19,10
+154,angle,6369186708281a8e97b1d0e81198a192bc725dd2,"Implemented complex vector/matrix construction
+TRAC #11868
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@199 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:32:42Z,daniel@transgaming.com,daniel@transgaming.com,388,252,136
+155,angle,bef0b6d93e4cfb2df850be790a34108108bc7e87,"Allow matrix-in-matrix construction
+TRAC #11868
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@198 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:32:39Z,daniel@transgaming.com,daniel@transgaming.com,16,10,6
+156,angle,ea15b0edc09d6c4fd6a1477221b77d1848059708,"Change ParseHelper.cpp indenting from tabs to spaces
+TRAC #11868
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@197 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:32:36Z,daniel@transgaming.com,daniel@transgaming.com,2060,1030,1030
+157,angle,86a7a138c5166feda08f21dd48e69b3a5408a1e6,"Implements ValidateProgram
+TRAC #11654
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@196 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-29T03:32:32Z,daniel@transgaming.com,daniel@transgaming.com,99,96,3
+158,angle,0b6b834a6d018e581737619da65cf0cfe26a699d,"Support matrix attributes
+
+TRAC #11095
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@195 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-26T15:33:45Z,daniel@transgaming.com,daniel@transgaming.com,119,107,12
+159,angle,fbc09533f131522467c355cc4fcb1a8612edb7de,"Allow other attachment points for glFramebufferTexture2D
+TRAC #12040
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@194 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-26T15:33:41Z,daniel@transgaming.com,daniel@transgaming.com,42,33,9
+160,angle,0bbb031dc8f797a92efc3dcf758758fde5a9acee,"Only output faceforward when needed
+TRAC #12042
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@193 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-26T15:33:39Z,daniel@transgaming.com,daniel@transgaming.com,135,86,49
+161,angle,c164135ce9f8349e410252299b59737a3f5320dd,"Implemented querying GL_BLEND_COLOR
+TRAC #12039
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@192 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-26T15:33:36Z,daniel@transgaming.com,daniel@transgaming.com,9,8,1
+162,angle,c103b60cda514fe88d098c714bfbb143bfc18746,"Support BufferData with size zero.
+
+TRAC #12027
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@191 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-23T18:34:58Z,daniel@transgaming.com,daniel@transgaming.com,20,15,5
+163,angle,c46c9c0773fab800b8e3024be5ef8e608391cb0d,"Implements GetFramebufferAttachmentParameteriv
+TRAC #11876
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@190 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-23T18:34:55Z,daniel@transgaming.com,daniel@transgaming.com,119,118,1
+164,angle,916ffaa9ae5aeab3f0ce8ec351dd91dd86d54b23,"Implements support for retrieving uniforms by subscripted name.
+TRAC #11796
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@189 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-23T18:34:52Z,daniel@transgaming.com,daniel@transgaming.com,401,261,140
+165,angle,c5c1538032c31b18b28a1f2026924197ae954de9,"Fixed glGetShaderPrecisionFormat output
+TRAC #12041
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@188 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-23T18:34:49Z,daniel@transgaming.com,daniel@transgaming.com,6,2,4
+166,angle,69f084b1b789393bf264c8a4b5d0b5dcd0079c67,"Fix matrix by matrix multiplication
+TRAC #11751
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@187 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-23T18:34:46Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+167,angle,eab1ef126b3118ac06b715e236f6b805f668b46d,"Removed unnecessary include paths. Removed the dependency on unistd.h. Moved the generated files to intermediate directory so that the source is not polluted.
+
+These changes only affect the gyp build system because they required flex-bison options that are not supported by old binaries in compiler/tools. Another reason to switch to gyp build system.
+Review URL: http://codereview.appspot.com/994041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@186 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-04-23T17:33:49Z,alokp@chromium.org,alokp@chromium.org,21,9,12
+168,angle,a72f9eef8a9e9e32ab6bec0a3d31f669148f98e0,"svn property changes to ignore:
+- third_party/cygwin
+- third_party/gyp
+- build/Debug
+- build/Release
+
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@185 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-04-23T17:29:18Z,alokp@chromium.org,alokp@chromium.org,0,0,0
+169,angle,277ec1830df6b5207237a29a87d9cf53dcef1f0d,"Added support for building glsl translator on posix platforms.
+Review URL: http://codereview.appspot.com/958043
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@184 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-04-23T16:07:34Z,alokp@chromium.org,alokp@chromium.org,160,148,12
+170,angle,d2cf25db0b560b2f55ce5674d431f0b51788304c,"Make all globals static
+TRAC #12015
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@183 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-22T16:27:35Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+171,angle,1b3a8155c2181971bbd6671331826d420a707220,"Fix getActiveUniform array size and refactor uniform size
+TRAC #11929
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@182 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-22T13:35:37Z,daniel@transgaming.com,daniel@transgaming.com,321,186,135
+172,angle,09fbfefa893ce612518580d76f0ddb79cef45384,"Implemented glGetActiveUniform
+TRAC #11929
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@181 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-22T13:35:31Z,daniel@transgaming.com,daniel@transgaming.com,222,157,65
+173,angle,85423183fb4153007c98f3fb0ed166c673890ccc,"Implemented glGetActiveAttrib
+TRAC #11929
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@180 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-22T13:35:27Z,daniel@transgaming.com,daniel@transgaming.com,201,166,35
+174,angle,d99bd45f94adafe495912dce761e25875d0aeb30,"Wrap mode affects NPOT texture completeness
+
+TRAC #11861
+
+If mipmapping is enabled, then each side of a texture must be a power-of-two or using CLAMP_TO_EDGE wrapping in that direction.
+Correct the mipmap size calculation to match the spec.
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@179 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-22T13:35:25Z,daniel@transgaming.com,daniel@transgaming.com,22,15,7
+175,angle,e7e43fb9928d7d5a6be342393aa057e9b094ac1b,"Make it easier to disable tracing
+
+TRAC #11979
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@178 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-22T13:35:23Z,daniel@transgaming.com,daniel@transgaming.com,4,3,1
+176,angle,b4ff1f8f6ffcf796b5e12b55b851d8e0362afcc3,"Implemented aliased attributes support
+TRAC #11092
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@177 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-22T13:35:18Z,daniel@transgaming.com,daniel@transgaming.com,229,103,126
+177,angle,f9ef107fefddd1778f72ec3de8514c1c330dce97,"Implement scoping
+TRAC #11975
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@176 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-22T13:35:16Z,daniel@transgaming.com,daniel@transgaming.com,19,16,3
+178,angle,6e49740d209cb2f87485c5aa8e19e1321636f464,"Added DX SDK search paths to libGLESv2.
+Now it builds if these aren't in the default search path.
+Should it support x64 targets as well?
+Review URL: http://codereview.appspot.com/949041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@175 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-04-20T20:34:15Z,apatrick@chromium.org,apatrick@chromium.org,2,2,0
+179,angle,e4b08c8cf83571f832e4558e1a2cb539ed006f4f,"Implement VertexAttrib
+
+TRAC #11878
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@174 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-20T18:53:06Z,daniel@transgaming.com,daniel@transgaming.com,133,123,10
+180,angle,bf2b52a313e5e4e3f2c50d047038714a64236b80,"Implement GL_LINE_LOOP primitive handling
+
+TRAC #11823
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@173 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-20T18:53:03Z,daniel@transgaming.com,daniel@transgaming.com,19,11,8
+181,angle,93a8147fbae2491f75e88c329ca4a2669652c918,"Support FBO attachment to cubemaps
+
+TRAC #11364
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@172 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-20T18:52:58Z,daniel@transgaming.com,daniel@transgaming.com,286,205,81
+182,angle,e6842296d00cda4d731782f1e7f22006ea277c4f,"Fix more relative #include paths (mostly header files)
+
+Trac #11408
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@171 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-20T18:52:50Z,daniel@transgaming.com,daniel@transgaming.com,80,41,39
+183,angle,e8c0ca29e17766718d855b3f1f1087b4af3487c0,"Don't advertise 10, 10, 10, 2 RGBA format
+
+TRAC #11610
+
+The color_ramp conformance test renders each colour and reads it back to verify it, but it uses ReadPixels with UNSIGNED_BYTE with does not have enough precision.
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@170 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-20T18:52:47Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+184,angle,18b426be775acc96d6c2503298dd73a22579cc7f,"Implement support for mipmap generation (CopyTexImage2D regression)
+
+TRAC #11338
+
+CopyTex(Sub)Image2D was broken by the coordinate space change. Render targets are rendered flipped in the Y axis.
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@169 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-20T18:52:44Z,daniel@transgaming.com,daniel@transgaming.com,16,8,8
+185,angle,4901fca3aae82f4130bfe8e721891e806a14188e,"Implements GetRenderbufferParameteriv
+TRAC #11877
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@168 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-20T18:52:41Z,daniel@transgaming.com,daniel@transgaming.com,116,115,1
+186,angle,70d312a701f0011695c84d0705a4072ae1f5fb7e,"Implements color renderbuffers
+TRAC #11890
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@167 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-20T18:52:38Z,daniel@transgaming.com,daniel@transgaming.com,53,48,5
+187,angle,3e7c803314663cdb408c7b3a5229b355d05a9d5c,"Remove usage of relative paths for #include search path
+Trac #11408
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@166 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-20T18:52:35Z,daniel@transgaming.com,daniel@transgaming.com,16,8,8
+188,angle,bbf56f755e0dd78c7650c52531ce412fcaaafa2b,"Use directory qualified #include files
+
+Trac #11408
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@165 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-20T18:52:13Z,daniel@transgaming.com,daniel@transgaming.com,341,187,154
+189,angle,e07980c45f2856e661f0858727e0da9c387d2096,"removed execute permissions on smoke.tga
+(was causing problems on windows)
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@164 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-20T18:52:09Z,daniel@transgaming.com,daniel@transgaming.com,0,0,0
+190,angle,86f7c9df3768b5d2e27be6e0b40c42259038e228,"Only output referenced attributes, uniforms and varyings
+TRAC #11590
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@163 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-20T18:52:06Z,daniel@transgaming.com,daniel@transgaming.com,77,60,17
+191,angle,5024cc4940de181fd2d94dbb9803516c84c2e4af,"Implemented biased textureCube sampling
+TRAC #11884
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@162 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-20T18:52:04Z,daniel@transgaming.com,daniel@transgaming.com,131,106,25
+192,angle,8fd99e2696eddc41732d84c3a35f057d51c2f9cf,"Implement support for mipmap generation
+
+TRAC #11338
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@161 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-20T18:52:00Z,daniel@transgaming.com,daniel@transgaming.com,225,205,20
+193,angle,5d2bee9325195b9f090d3ae820fe0c8fab955c00,"Implements GetTexParameteriv
+TRAC #11721
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@160 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-20T18:51:56Z,daniel@transgaming.com,daniel@transgaming.com,74,72,2
+194,angle,743d773d803bc8dca615f47dc6822557f223c75b,"Accidentally moved a read of translated[i].stride before the write.
+
+TRAC #11847
+
+(Fixes PVR-RenderToTexture regression)
+
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@159 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-15T20:45:32Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+195,angle,a0c34d27e1567f60473d34c7d27a345a32a93e12,"Fixed crashes caused by a string buffer overflow
+TRAC #11888
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@158 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-15T20:45:30Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+196,angle,005c73922fdfeb1593b1e3ffd25f825d883d9c84,"Create unique names for unnamed parameters
+TRAC #11873
+HLSL requires parameter names in function prototypes
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@157 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-15T20:45:27Z,daniel@transgaming.com,daniel@transgaming.com,48,31,17
+197,angle,bb8853289b9d04e9da697c7deab79f442f1d935b,"Don't crash on null conditional block
+TRAC #11871
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@156 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-15T20:45:24Z,daniel@transgaming.com,daniel@transgaming.com,5,4,1
+198,angle,7127f2076db15e754d4dc4e63eab4794037814fb,"Initialize all shader variables
+TRAC #11869
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@155 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-15T20:45:22Z,daniel@transgaming.com,daniel@transgaming.com,6,3,3
+199,angle,76039476564cce21b5f31088ce21dac2e1ca74e4,"Fixed the GLSL ES version
+TRAC #11867
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@154 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-15T20:45:18Z,daniel@transgaming.com,daniel@transgaming.com,9,5,4
+200,angle,5af6427dc3c1842611a81455ad520cf95ab8d3dd,"Implemented gl_FrontFacing for lines and points
+TRAC #11419
+Lines and points are always considered front-facing
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@153 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-15T20:45:12Z,daniel@transgaming.com,daniel@transgaming.com,46,31,15
+201,angle,e007896b1a07e2a7275021dc32fd8750db8d9e88,"Implements GetVertexAttrib
+TRAC #11653
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@152 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-15T20:45:08Z,daniel@transgaming.com,daniel@transgaming.com,99,87,12
+202,angle,aa0ccbd9f0397bf6332c990af1c9bce2cbe241cb,"Implements GetBufferParameteriv
+TRAC #11720
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@151 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-15T20:45:05Z,daniel@transgaming.com,daniel@transgaming.com,39,38,1
+203,angle,34dc3e8a5ed785e3a6e17bd91f8bb73e78345a26,"Creating a 0x0 texture fails.
+
+TRAC #11792
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@150 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-15T20:45:02Z,daniel@transgaming.com,daniel@transgaming.com,242,139,103
+204,angle,aa1ff8798156d34a0d7942e601257a7b42e8d3cf,"Translate/lift vertex attributes when input stride or offset is not a multiple of 4.
+
+TRAC #11847
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@149 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-15T20:44:58Z,daniel@transgaming.com,daniel@transgaming.com,33,27,6
+205,angle,b587598cb8771d0da8ed94ddbbd9dc038117ce59,"Implemented short-circuiting behavior for the ternary operator
+TRAC #11444
+This is achieved by turning the ternary operator into conditional code.
+The UnfoldSelect intermediate code traverser places this conditional
+code before the statement containing the ternary operator (aka. select).
+The computed value is assigned to a temporary variable.
+On outputting the actual statement the ternary operator is
+replaced by the temporary variable.
+
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@148 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-15T20:44:53Z,daniel@transgaming.com,daniel@transgaming.com,214,198,16
+206,angle,ec55d29a1cb45b6f4d31a9da049342233fd9b2bd,"Clean up old comments
+TRAC #11444
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@147 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-15T20:44:49Z,daniel@transgaming.com,daniel@transgaming.com,11,4,7
+207,angle,edab063ed2aab549be641fb7b8a308139c0bb800,"Add NOMINMAX define to the compiler projects
+Trac #11859
+To be consistent with the rest of the projects and GYP.
+Signed-off-by: Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@146 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T19:53:53Z,daniel@transgaming.com,daniel@transgaming.com,10,5,5
+208,angle,bb2e9636170c634f04658468e85e9a44413b0809,"Fail compilation on empty source string
+TRAC #11814
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@145 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T19:53:50Z,daniel@transgaming.com,daniel@transgaming.com,6,6,0
+209,angle,3c010c02d5528e6eef5de84da6cb9a20cc445828,"Remove name clash warnings
+TRAC #11314
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@144 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T19:53:47Z,daniel@transgaming.com,daniel@transgaming.com,96,48,48
+210,angle,72d0b52e4001280fc563fc46ce3fbe984b9e661f,"Decorate all GLSL user-defined names with an underscore to avoid name clashes
+TRAC #11314
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@143 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T19:53:44Z,daniel@transgaming.com,daniel@transgaming.com,113,72,41
+211,angle,5ac521598c317694176e531e11b8771a034c38f9,"Corrects a green/blue channel swap in loadImageData
+TRAC #11630
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@142 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T19:53:38Z,daniel@transgaming.com,daniel@transgaming.com,4,2,2
+212,angle,c847820dc802a58292433e443bec099bcec3e1e3,"Corrects error handling in UseProgram
+TRAC #11666
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@141 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T19:53:35Z,daniel@transgaming.com,daniel@transgaming.com,14,13,1
+213,angle,d1abe5b0edc45ca37f2e9db21ba8b1f20c6b704c,"Corrects error handling in GetUniformLocation
+TRAC #11845
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@140 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T19:53:33Z,daniel@transgaming.com,daniel@transgaming.com,9,8,1
+214,angle,23953e3ef3bfdec596bed0be52569553bfad6032,"Fixes error handling in GetAttachedShaders
+TRAC #11846
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@139 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T19:53:31Z,daniel@transgaming.com,daniel@transgaming.com,9,8,1
+215,angle,8976c1e864c4ff67847854f71d57acd2e296276e,"Store all matrices as column-major and transpose when needed
+TRAC #11825
+Due to the difference in [][] matrix indexing between GLSL and HLSL, all matrices are stored in transposed format (column-major from the HLSL point of view), and transposed back when performing matrix math. Previously some paths didn't follow this principle.
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@138 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T19:53:27Z,daniel@transgaming.com,daniel@transgaming.com,88,20,68
+216,angle,47c058c32e2ec923b88ca32d9d6a1f196b3d27dd,"Fixing compile error. GYP projects use NOMINMAX to suppress non-standard VC++ min/max.
+Review URL: http://codereview.appspot.com/892046
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@137 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-04-13T15:30:05Z,alokp@chromium.org,alokp@chromium.org,2,1,1
+217,angle,277b7142ed6a45f1067f36a472df3c28231bf5ef,"Fixes error handling in LinkProgram
+TRAC #11821
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@136 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:44Z,daniel@transgaming.com,daniel@transgaming.com,9,8,1
+218,angle,8e6a6be85ed1851b513316a5e45c25db2f427f65,"Fixes error handling in ShaderSource
+TRAC #11664
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@135 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:41Z,daniel@transgaming.com,daniel@transgaming.com,11,9,2
+219,angle,75401e61fb26eb68681287697db11aed5ed14edb,"Fixes improper error generation by DeleteShader
+TRAC #11662
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@134 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:39Z,daniel@transgaming.com,daniel@transgaming.com,34,34,0
+220,angle,0cefaf45e478eaa0b12da186e1dec64f8d1c7c02,"Fixes error handling in CompileShader
+TRAC #11822
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@133 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:36Z,daniel@transgaming.com,daniel@transgaming.com,9,8,1
+221,angle,b8c28eddec129967128e458a0ceb4fa4cacdaa77,"Implement CopyTex(Sub)Image2D
+
+TRAC #11474
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@132 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:32Z,daniel@transgaming.com,daniel@transgaming.com,1011,967,44
+222,angle,980798393d9aa0d94ac8dea6e1179249a925f273,"Fixes error handling in BindAttribLocation
+TRAC #11661
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@131 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:29Z,daniel@transgaming.com,daniel@transgaming.com,14,13,1
+223,angle,cf4aa8790c19e200b9a667e56d1c8cea45db5417,"Checks link status of program before returning attribute locations.
+TRAC #11658
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@130 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:27Z,daniel@transgaming.com,daniel@transgaming.com,5,5,0
+224,angle,e9d6ed036a79dd3a5b578df058113a5354aff068,"Corrects error handling in AttachShader
+TRAC #11659
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@129 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-04-13T03:26:23Z,daniel@transgaming.com,daniel@transgaming.com,23,21,2
+225,angle,a3bbfd43feec81a921a14dff68e17bf25f3cfd25,"Fixes double-decoration when getUniformLocation is called from defineUniform.
+TRAC #12437
+
+This fixes the WebGL Teapot Per Pixel sample rendering
+
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@329 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-06-07T02:06:09Z,daniel@transgaming.com,daniel@transgaming.com,31,18,13
+226,angle,8f05d1aa870d3c451a0756375974d7e198caad73,"Save D3D state before altering it for masked clears
+TRAC #12380
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@328 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-06-07T02:06:03Z,daniel@transgaming.com,daniel@transgaming.com,50,50,0
+227,angle,9c212cae5fb3bdbec1dbce9e4f7792f1f62a6b4c,"Fixed warnings in release build. Trace was not defined properly.
+Review URL: http://codereview.appspot.com/1484041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@327 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-06-02T22:53:00Z,alokp@chromium.org,alokp@chromium.org,2,1,1
+228,angle,84a96288642f03b2b2338696710cba37c7f4a7b2,"Moved windows-only targets into OS==win conditional.
+Review URL: http://codereview.appspot.com/1473043
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@325 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-06-02T22:26:52Z,alokp@chromium.org,alokp@chromium.org,396,205,191
+229,angle,dd7948b3ae3fea788c9876b47900b2a4b9e66f11,"According to spec, the stencil ref is clamped to the range [0,2^s-1]
+
+The clamp to zero occurs on set since negative values will never be useful.
+The clamp to 2^s - 1 occurs on use since it is dependant on the currently bound stencil buffer
+
+Original-Author: Jim Hauxwell <james@dattrax.co.uk>
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@324 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-06-02T16:12:34Z,daniel@transgaming.com,daniel@transgaming.com,13,9,4
+230,angle,91b7232040421124718471d0c8ee2c629dafe42d,"Removed the dependency of compiler on common. This is done to make compiler self-sufficient so that it is easier to consume by external developers. I tried to replace all instances of assert by simply redefining assert(x) to ASSERT(x), but was getting a lot of compile errors. I still need to investigate that.
+Review URL: http://codereview.appspot.com/1461041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@323 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-06-02T15:50:56Z,alokp@chromium.org,alokp@chromium.org,125,107,18
+231,angle,4e4facd4a1120f77e35b53cd4ba7d5a8adefddcf,"Refactored InfoSink. I have replaced most instances of sprintf with std::ostringstream to make it safer. I have made sure that everything still compiles and passes conformance tests.
+Review URL: http://codereview.appspot.com/1391041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@322 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-06-02T15:21:22Z,alokp@chromium.org,alokp@chromium.org,372,150,222
+232,angle,e37888d1534ce97db0afccf53d79b128b914a763,"Add support for various egl Get methods
+Trac #12375
+This patch stores the current READ/DRAW and display in the context and
+allows these eglGets to work.
+
+Original-Author: Jim Hauxwell <james@dattrax.co.uk>
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@321 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-27T16:45:46Z,daniel@transgaming.com,daniel@transgaming.com,82,77,5
+233,angle,5ac5dd25ae463e77b84967a07a8ace7fc2e4658a,"Correct the eglMakeCurrent return value on lost context (syntax)
+TRAC #11233
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@320 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-27T15:02:27Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+234,angle,561637aed1efa4da2d518424c6751c417550b0ba,"Avoid using instancing on hardware where it does not work well enough.
+
+TRAC #12392
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@319 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-27T15:02:21Z,daniel@transgaming.com,daniel@transgaming.com,11,10,1
+235,angle,13b2dd874a59a07741d7c0788d4c9d3c08d2043d,"Used ""not"" instead of ""!"" for vectors.
+Review URL: http://codereview.appspot.com/1324041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@318 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-26T18:35:23Z,alokp@chromium.org,alokp@chromium.org,2,1,1
+236,angle,d88b7736fc95833d92f45d4741f8bcf6850fefa8,"Do not write extraneous semi-colons - some glsl compilers are do not like that even though it is so easy to ignore.
+Review URL: http://codereview.appspot.com/1301041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@317 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-26T15:13:14Z,alokp@chromium.org,alokp@chromium.org,136,80,56
+237,angle,90033b9eb50df23ff1769d3da36606a9d7537a75,"ShInitialize/ShFinalize is designed to be called once per process, or it would crash at random locations. I changed ShFinalize() to properly cleanup and reset global variables so that they can be called multiple times. I think that the compiler setup is much more complicated than it needs to be. It unnecessarily uses global variables. A custom pool allocator is overkill too. 
+Review URL: http://codereview.appspot.com/1238045
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@316 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-24T15:02:43Z,alokp@chromium.org,alokp@chromium.org,17,13,4
+238,angle,866f318d05e836e8d7e957059ab1a608e08aa856,"TextureColorbufferProxy must query the texture to get the latest width & height.
+
+TRAC #12372
+
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@315 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-20T19:28:22Z,daniel@transgaming.com,daniel@transgaming.com,62,32,30
+239,angle,81655a720e752e0f0107993b6b575c5411f3a01e,"Use instancing for non-array vertex attributes.
+
+TRAC #12303
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@314 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-20T19:18:17Z,daniel@transgaming.com,daniel@transgaming.com,309,237,72
+240,angle,8c9ff193e301c0a03c86901ec49400379322245d,"Add Jim Hauxwell as a contributor
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@313 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-20T19:18:11Z,daniel@transgaming.com,daniel@transgaming.com,3,2,1
+241,angle,b28a23bd8b270fb63a06b0820ef00b9d6db864ef,"Fixes query for active texture
+TRAC #12374
+
+Original-Author: Jim Hauxwell <james@dattrax.co.uk>
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@312 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-20T19:18:06Z,daniel@transgaming.com,daniel@transgaming.com,80,40,40
+242,angle,c6c6f0272dd81ae040d87e604894c6e81c7c6e1d,"Report an EGL_CONTEXT_LOST error on D3DERR_DEVICELOST
+Trac #11233
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@311 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-20T19:18:00Z,daniel@transgaming.com,daniel@transgaming.com,28,23,5
+243,angle,a2a95e7c9bf6150361a92ba59c3f7cee29daf967,"Implement scoped structure declarations
+TRAC# 12110
+Signed-off-by: Shannon Woods
+Singed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@310 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-20T19:17:55Z,daniel@transgaming.com,daniel@transgaming.com,468,254,214
+244,angle,8026c67712ba78b55372695c5e99b33469f93dbb,"Fixed struct name lexing
+TRAC #12110
+Unlike built-in types, structs can be redefined (in a different scope).
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@309 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-20T19:17:48Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+245,angle,838bceaee2fa69be3ba1cf05a4e4df37cd063a7e,"Detect draws that would read outside the vertex buffer.
+
+TRAC #12340
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@308 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-20T19:17:42Z,daniel@transgaming.com,daniel@transgaming.com,77,60,17
+246,angle,8b9f4cc8d09102532e49c907a70176465a0dc0e6,"Fix FORCE_REF_RAST definition
+TRAC #12343
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@307 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-20T19:17:35Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+247,angle,741a588e708cf16f588ac79311a4c3ddfaed6d7b,"Add defines to enable the reference rasterizer
+TRAC #12343
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@306 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-20T19:17:29Z,daniel@transgaming.com,daniel@transgaming.com,9,8,1
+248,angle,89b054348c8636cfab70fd8ef09b6c4432ade4d4,"Fixed compile error with gcc 4.4.
+TBR=gman@chromium.org
+Review URL: http://codereview.appspot.com/1199047
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@305 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-19T20:13:10Z,alokp@chromium.org,alokp@chromium.org,1,1,0
+249,angle,1bcc3fd59936bfa85a7393579f9419f39704ff58,"Patching changes from thestig@chromium.org for fixing ANGLE build with gcc 4.4 on Karmic. The original CL is here: http://codereview.appspot.com/1255042/show
+The only changes I have maded is moved the inclusion of stdint.h from PoolAlloc.h to PoolAlloc.cpp with #ifndef _MSC_VER guard.
+Review URL: http://codereview.appspot.com/1220044
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@304 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-19T17:08:44Z,alokp@chromium.org,alokp@chromium.org,8,6,2
+250,angle,5d4c28f9d598ed0198e88abbb2a9d23e38c196cc,"Removes check for framebuffer == 0 in glRenderbufferStorage
+TRAC #12346
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@303 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-19T07:14:19Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+251,angle,178adff757c7b3627b60ee3d71db745d83920abd,"Give sorted configs a unique ID without changing the original set
+TRAC #12323
+This fixes building on Visual C++ 2010, which has const iterators for STL sets as specified by C++0x.
+Signed-off-by: Shannon Woods
+Singed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@302 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-18T18:52:04Z,daniel@transgaming.com,daniel@transgaming.com,97,50,47
+252,angle,cd0a9a888bcae98d577308e6eb2602f0f424e2ea,"Define GL_FRAGMENT_PRECISION_HIGH
+TRAC #12266
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@301 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-18T18:51:59Z,daniel@transgaming.com,daniel@transgaming.com,34,19,15
+253,angle,e0d7d43460e1ac2b42910f3d8e969be1f1386f8e,"Fix DepthRange location
+TRAC #12279
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@300 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-18T18:51:52Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+254,angle,defa1c39acecbb1402ee23e1cda70d8b028956ff,"Use plain data arrays for Buffer storage
+TRAC #12299
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@299 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-18T18:51:45Z,daniel@transgaming.com,daniel@transgaming.com,100,37,63
+255,angle,91fd1de6bbc2543db9808e4614317b1b88373c30,"Caches the location of generic uniforms
+TRAC #12215
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@298 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-18T18:51:40Z,daniel@transgaming.com,daniel@transgaming.com,93,85,8
+256,angle,15a4d2ef5a906451a9a93acdbfd2534fc779601e,"Explicitly set optimizations to /O2 in Release build
+TRAC #12287
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@297 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-18T18:51:34Z,daniel@transgaming.com,daniel@transgaming.com,3,3,0
+257,angle,5a722c7fad3b25062fa20241da9d1969ef795969,"Disable checked STL iterators in Release build
+TRAC #12287
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@296 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-18T18:51:26Z,daniel@transgaming.com,daniel@transgaming.com,8,4,4
+258,angle,e7273f4ed0df4069601b48268fb1d0490f67a903,"Inline any suitable function in Release build
+TRAC #12287
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@295 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-18T18:51:17Z,daniel@transgaming.com,daniel@transgaming.com,4,4,0
+259,angle,a36f98efb5e70eec8763c0f11046b899929a04a4,"Correct GLboolean handling for glColorMask and glSampleCoverage
+TRAC #11597
+Signed-off-by: Shannon Woods
+Signed-off-bY: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@294 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-18T18:51:09Z,daniel@transgaming.com,daniel@transgaming.com,12,6,6
+260,angle,a5d7623d5974736daee11c08dc2d705194f3a89f,"Enforce fragment precision qualifier requirement
+TRAC #12156
+The fragment shader has no default precision qualifier for floating-point types,
+so compilation should fail when it's not set explicitly globally or per declaration.
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@293 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-17T09:58:47Z,daniel@transgaming.com,daniel@transgaming.com,262,181,81
+261,angle,0578f81c9adb4697a783ee620fae4ebabf42f1dd,"Untabify compiler code
+TRAC #12156
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@292 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-17T09:58:39Z,daniel@transgaming.com,daniel@transgaming.com,2186,1093,1093
+262,angle,0a311a467c9c803f4f9f10632eb290f8bcbfac16,"ensure mBaseTexture is initialized
+
+Trac #12298
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@291 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-17T09:58:33Z,daniel@transgaming.com,daniel@transgaming.com,1,1,0
+263,angle,d08ea900b6adb900a80b1e8e0603d30d00b7d808,"Reduces STL size calls.
+TRAC #12281
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@290 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-14T19:41:36Z,daniel@transgaming.com,daniel@transgaming.com,15,10,5
+264,angle,4e89d233e5f83ad7de85f010d8e6e39706ef1830,"Cleaned up Common.h. Removed unnecessary includes and typedefs. Removed tabs from PoolAlloc.h and replaced UINT_PTR with uintptr_t.
+Review URL: http://codereview.appspot.com/1221041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@289 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-14T19:37:21Z,alokp@chromium.org,alokp@chromium.org,490,223,267
+265,angle,cff1aff5ddf7d897fac24b6ef0e0f64a7358ec13,"Fixed compile error on a few linux buildbots. Included string.h for memset. 
+Review URL: http://codereview.appspot.com/1218041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@288 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-14T19:24:22Z,alokp@chromium.org,alokp@chromium.org,1,1,0
+266,angle,2b7ebdb9423575a6b6acf817888c25b4035f4384,"Switches stl copy in bufferSubData for a memcpy
+TRAC #12215
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@287 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-14T17:31:24Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+267,angle,202ff653bc842a63aea1f58f62b47b23ba2101ee,"Caches parameters for SetStreamSource calls
+TRAC #12239
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@286 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-14T17:31:19Z,daniel@transgaming.com,daniel@transgaming.com,17,16,1
+268,angle,2d84df0ca81b7a30fbdb7228ef37cdefaf88c753,"Cache D3D constant handles with their associated uniforms.
+TRAC #12237
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@285 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-14T17:31:13Z,daniel@transgaming.com,daniel@transgaming.com,96,66,30
+269,angle,d8e937244598228277d37dce907331535b1a09b4,"Implicitly define GL_ES
+TRAC #12257
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@284 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-14T17:31:09Z,daniel@transgaming.com,daniel@transgaming.com,21,15,6
+270,angle,c808c5a9ea52391e1c927767dd9b3438191af57c,"When NONPOW2CONDITIONAL is set, limit NPOTs to a single level.
+
+TRAC #12250
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@283 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-14T17:31:01Z,daniel@transgaming.com,daniel@transgaming.com,134,86,48
+271,angle,4af7acca9d3952b7e6ae3d4d788325bffbd710c0,"Implemented varying packing
+TRAC #11736
+The OpenGL ES Shading Language 1.00 rev. 17 appendix A section 7 page 111, details how varyings should be packed into generic varying registers. To implement this the HLSL main() function is now generated and appended to the code during link time, where the packing and mapping can happen.
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@282 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-14T17:30:53Z,daniel@transgaming.com,daniel@transgaming.com,1128,779,349
+272,angle,d7c9810183ab27a3c39f28f38428475f1c0c018d,"Only output DepthRange, xor() and mod() when used
+TRAC #11736
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@281 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-14T17:30:48Z,daniel@transgaming.com,daniel@transgaming.com,128,92,36
+273,angle,c6977ce557af325e57449f1d07acce7baad0f8cc,"Fixed initialization and comparison of variable Types
+TRAC #12262
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@280 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-14T17:30:42Z,daniel@transgaming.com,daniel@transgaming.com,16,13,3
+274,angle,13eeeededac527e5f8ed87c4bdd46128cbe68a01,"Fixed reporting unlinked varyings
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@279 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-14T17:30:38Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+275,angle,9bc5d2351894584c3537d14eb8e69678d1910692,"Add predefined macro GL_ES
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@278 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-14T17:30:33Z,daniel@transgaming.com,daniel@transgaming.com,8,8,0
+276,angle,edff8dc8bb092dfa7465f4ac5afbae811f758077,"Report an error on the use of the line continuation character
+TRAC #12260
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@277 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-14T17:30:27Z,daniel@transgaming.com,daniel@transgaming.com,15,5,10
+277,angle,3debd2b43bd496365dbce44480dbbf05f30b4401,"Make faceforward match the conformance test.
+
+TRAC #12252
+
+The conformance test checks the dot product for >= 0.
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@276 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-13T02:07:34Z,daniel@transgaming.com,daniel@transgaming.com,24,12,12
+278,angle,6a94b97d70c6dfc2914b5dc869f1ead811ae29bb,"eglChooseConfig must return filtered size when configs is NULL.
+
+TRAC #12234
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@275 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-13T02:02:34Z,daniel@transgaming.com,daniel@transgaming.com,104,52,52
+279,angle,7e0ed77c7f6457b76e623cf6c8f19742fe67783a,"Added a space between ']]'. Flex 2.5.33, which is used on MAC does not like this.
+Review URL: http://codereview.appspot.com/1119044
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@274 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-12T21:16:46Z,alokp@chromium.org,alokp@chromium.org,4,2,2
+280,angle,91a01a16942675ffabe33d3fc874150b61a5059b,"Fixed compile error on MAC. Fixed TMap to use std::pair<const K, V> as pool_allocator parameter. Replaced all instances of std::map with TMap. I wonder if this pool_allocator is worth all this complexity.
+Review URL: http://codereview.appspot.com/1182042
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@273 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-12T18:39:04Z,alokp@chromium.org,alokp@chromium.org,28,12,16
+281,angle,b1e8c6fbabe5d23cbae9bf911e72615308d8175a,"Getting ready to fix compile-errors on mac. This CL only contains cosmetic changes. Removed SGI_STL blocks. Removed tabs and fixed formatting.
+Review URL: http://codereview.appspot.com/1138043
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@272 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-12T18:35:53Z,alokp@chromium.org,alokp@chromium.org,410,192,218
+282,angle,4071e6610cb036d85d0780df6e4c67f95d754fd5,"Consider out-of-range texture units to be incomplete.
+
+TRAC #12224
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@271 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-12T16:51:16Z,daniel@transgaming.com,daniel@transgaming.com,20,12,8
+283,angle,a71cdd7c48ea59bad94ee104a595622fa324bbe3,"Save render state across glFinish.
+
+TRAC #12164
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@270 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-12T16:51:14Z,daniel@transgaming.com,daniel@transgaming.com,9,9,0
+284,angle,2c42c6c34a6169a83799b21df697f3c5f7377ee2,"eglInitialize must not update major and minor if they are NULL.
+
+TRAC #12235
+
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@269 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-12T16:51:11Z,daniel@transgaming.com,daniel@transgaming.com,4,2,2
+285,angle,0df1687198b6abafd3477a926f7f91b272bc3bb9,"Add HLSL error messages to the info log when compileToBinary fails
+Trac #12245
+Otherwise.. it could be empty.
+
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@268 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-12T16:51:08Z,daniel@transgaming.com,daniel@transgaming.com,1,1,0
+286,angle,5a0b0a8b9066d06f46c5a9b5b621d13677624e6c,"Minimizes texture state changes
+TRAC #12203
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@267 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-12T03:45:07Z,daniel@transgaming.com,daniel@transgaming.com,135,108,27
+287,angle,41d8dd85ad4931d2f693333235efb93c99912543,"Add better error checking on buffer updates
+
+TRAC #12186
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@266 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-12T03:45:03Z,daniel@transgaming.com,daniel@transgaming.com,77,53,24
+288,angle,c828b1495ab9f771005388bd7cbc5108c4275226,"Improve TranslatedVertexBuffer::map performance
+
+TRAC #11392
+
+- For small draws, load stride 0 streams into regular streaming buffer
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@265 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-12T03:42:04Z,daniel@transgaming.com,daniel@transgaming.com,124,77,47
+289,angle,9a0606cf9aa00296b82b25d145c7b128cc6d62e1,"Improve TranslatedVertexBuffer::map performance
+
+TRAC #11392
+
+- Don't use the identity translation buffer, but always copy into a streaming buffer.
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@264 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-12T03:42:00Z,daniel@transgaming.com,daniel@transgaming.com,150,43,107
+290,angle,442b7debdb2502d0873191ba36796b068178c553,"Re-enable debug tracing by default
+TRAC #12158
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@263 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-12T03:41:01Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+291,angle,73248ecc912cb4c8957abef6ede3d63555328ff7,"Mark configs with a format different from the display mode as conformant
+TRAC #12197
+EGL_NON_CONFORMANT_CONFIG is not a flag, and these configs do pass conformance on all tested devices.
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@262 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-12T03:40:40Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+292,angle,339ae70162e96fe38b5c55a05645b634b0934c83,"Minimizes changes of the depth stencil buffer
+TRAC #12154
+This patch reduces calls to SetDepthStencilSurface
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@261 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-12T03:40:20Z,daniel@transgaming.com,daniel@transgaming.com,23,22,1
+293,angle,a79f9d18cba5a9c4b564d3d2f777b585f61f19b0,"Minimizes render state changes
+TRAC #12154
+This patch reduces redundant calls to SetRenderState
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@260 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-12T03:40:01Z,daniel@transgaming.com,daniel@transgaming.com,511,351,160
+294,angle,092bd4814d98a283ff3e6eab6896908d7c947ddc,"Minimizes render target changes
+TRAC #12154
+This patch reduces calls to SetRenderTarget.
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@259 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-12T03:39:36Z,daniel@transgaming.com,daniel@transgaming.com,54,52,2
+295,angle,9c502882d55eb1b0310b30214d026e31dd7da7f7,"Fixed crash on 64-bit posix platform. stdint.h was not being included and wrong size of uintptr_t was being used.
+Review URL: http://codereview.appspot.com/1153044
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@258 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-11T13:40:29Z,alokp@chromium.org,alokp@chromium.org,8,2,6
+296,angle,1ddd1dd483f412284504c5f49cefabf8f69ef4b2,"Restore state after Blit operations
+
+TRAC #12202
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@257 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-11T02:29:34Z,daniel@transgaming.com,daniel@transgaming.com,96,95,1
+297,angle,db1afef67a8eee06523895471bb86a6945ac7a32,"Improve performance in Surface::swap
+
+TRAC #12145
+
+- Create the flip RT texture once.
+- Use state blocks for swap and restore all previous state.
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@256 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-11T02:29:31Z,daniel@transgaming.com,daniel@transgaming.com,184,146,38
+298,angle,4fa08339e2f67491a1ed8af0862776c0e07b4a50,"Prevent redundant uniform updates
+TRAC #12154
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@255 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-11T02:29:27Z,daniel@transgaming.com,daniel@transgaming.com,123,95,28
+299,angle,ff42c63940ece979fef59c7fc4aa2b49ebe85161,"Changes to compile translator_glsl on linux.
+Review URL: http://codereview.appspot.com/1153043
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@254 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-10T15:14:30Z,alokp@chromium.org,alokp@chromium.org,59,6,53
+300,angle,92680f9cb65d7ee4426197fcb9412dfc222917cf,"The script for flex and bison was not being generated properly on linux. Extra quotes were being generated in the command-line around output-file path. This change gets around the problem by expanding string variables instead of list. This has another nice side effect that output file path need not be repeated twice.
+Review URL: http://codereview.appspot.com/1163041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@253 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-10T15:14:11Z,alokp@chromium.org,alokp@chromium.org,23,14,9
+301,angle,616ffcf47c463fd789649a3d607882282b585792,"Optimized getPresentInterval
+TRAC #12180
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@252 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-07T19:01:49Z,daniel@transgaming.com,daniel@transgaming.com,44,28,16
+302,angle,d091b198513bf333d1d95d9fbd9834b1864fe5b8,"Mark configs with a format different from the display mode as non-conformant
+TRAC #12197
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@251 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-07T19:01:47Z,daniel@transgaming.com,daniel@transgaming.com,22,11,11
+303,angle,d1f6fdeb99c61fe7c15e1ec56d3a8a17cda69bbd,"Don't enumerate configs for depth/stencil formats not supported by any hardware
+TRAC #12197
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@250 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-07T19:01:43Z,daniel@transgaming.com,daniel@transgaming.com,4,2,2
+304,angle,7664e55aab5d9b234eed60ee6bbd08b29071ada8,"Making glsl-translator cross-platform. Removed unnecessary inclusion of windows.h.
+Review URL: http://codereview.appspot.com/1136042
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@249 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-07T14:33:36Z,alokp@chromium.org,alokp@chromium.org,4,0,4
+305,angle,0f18961bee6d6c7ea9667e3f376f38530d5c4309,"Prevent atan2 from generating a NaN
+TRAC #12184
+This is necessary because a NaN generated in flattened conditional code fails to get discarded on certain devices.
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@248 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-07T13:03:36Z,daniel@transgaming.com,daniel@transgaming.com,25,15,10
+306,angle,adf02846363ad7b47c83bf578928003e1c06cb12,"Clarify config enumeration
+TRAC #12170
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@247 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-07T13:03:33Z,daniel@transgaming.com,daniel@transgaming.com,10,5,5
+307,angle,5bd0ce30a4af72a999776f14a0c1b915c860c136,"Disable the stencil test when no stencil buffer
+TRAC #12181
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@246 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-07T13:03:31Z,daniel@transgaming.com,daniel@transgaming.com,20,19,1
+308,angle,a54da4e5a1e9f987e9ce2f09c03fe0a4c7f3b552,"Implemented inline structure construction
+TRAC #12109
+Based on Alok Priyadarshi's approach for structure construction in OutputGLSL.cpp
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@245 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-07T13:03:28Z,daniel@transgaming.com,daniel@transgaming.com,204,81,123
+309,angle,92984ef0ad7b4e0ad5a2303967d3142c7f62cf41,"Replaces fmod with modf.
+Review URL: http://codereview.appspot.com/1125043
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@244 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-06T22:49:37Z,alokp@chromium.org,alokp@chromium.org,3,2,1
+310,angle,b892fc6604e5382e7c3658bb35b4ceee8a74c60e,"Make sure that floats are written with at least one decimal point.
+Review URL: http://codereview.appspot.com/1144041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@243 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-06T19:10:34Z,alokp@chromium.org,alokp@chromium.org,19,15,4
+311,angle,194522f621105a9c1af7654ab6840badddaad24e,"Fixed all issues with variable and function argument declaration. Multiple declarations of arrays in the same line had bugs. Also sepearated out declaration of varaibles and function arguments which makes it easier to understand.
+Review URL: http://codereview.appspot.com/1142041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@242 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-06T19:09:26Z,alokp@chromium.org,alokp@chromium.org,190,112,78
+312,angle,baeb8c5b37df94bea6e34fc44453cb2e7c1a6d4e,"Skip drawing to a zero-area render target
+TRAC #12172
+This also generates a GL_INVALID_FRAMEBUFFER_OPERATION error when glClear attempt to operate on an invalid or incomplete framebuffer.
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@241 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-05T18:50:39Z,daniel@transgaming.com,daniel@transgaming.com,26,22,4
+313,angle,3e4c6004be276d5ec4a768d11f6b2f34b90450fc,"Implement GL_OES_element_index_uint
+
+TRAC #11951
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@240 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-05T18:50:13Z,daniel@transgaming.com,daniel@transgaming.com,334,158,176
+314,angle,97bffae52355aec627b21c64d64cb1f81f42f5b6,"currentValueOffset can remain uninitialized
+
+TRAC #12171
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@239 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-05T18:49:44Z,daniel@transgaming.com,daniel@transgaming.com,10,6,4
+315,angle,f2f8d3c970ea20b04fa5c4e28c07b0b56d06c427,"Don't use a depth buffer on swap
+TRAC #12160
+This prevents the draw call from failing when the depth buffer isn't as large as the render target.
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@238 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-05T18:49:29Z,daniel@transgaming.com,daniel@transgaming.com,1,1,0
+316,angle,00035fe16d653c8bdadd3c306d94823364178fde,"fix trace for glTexParameteri
+Trac# 12155
+Signed-off-by: Shannon Woods
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@237 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-05T18:49:03Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+317,angle,b9ab9a29228d7c36343b180072f84a36669909b7,"Output final .lib and .dll files to the top-level lib/ folder
+Trac #11499
+
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@236 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-05T18:48:40Z,daniel@transgaming.com,daniel@transgaming.com,4,4,0
+318,angle,b6bd727d23c16a4b1c96634d65b3c1548ecb5bae,"Implemented eglSwapInterval
+TRAC #12137
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@235 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-05T18:48:22Z,daniel@transgaming.com,daniel@transgaming.com,52,41,11
+319,angle,fc23fe28b4646060980d36b49e5215f98639b65f,"Fixed retrieving a render target interface and not releasing it
+TRAC #12149
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@234 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-05T18:48:17Z,daniel@transgaming.com,daniel@transgaming.com,8,4,4
+320,angle,c9def0b65df8bf12fd311351ea7007ee0307199e,"Reset mSceneStarted on Reset
+TRAC #12139
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@233 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-05T18:48:06Z,daniel@transgaming.com,daniel@transgaming.com,6,3,3
+321,angle,8ede24f7b871595ca18aa8a935de20deb31dac2a,"Skip clear when writes masked
+TRAC #12157
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@232 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-05T18:47:58Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+322,angle,ae072afe19ea491e1008318c9a659e5c07a27a11,"Minimize BeginScene / EndScene calls
+TRAC #12139
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@231 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-05T18:47:28Z,daniel@transgaming.com,daniel@transgaming.com,120,81,39
+323,angle,c28e76bee9380e2b76a71e293970a7aa3628cb18,"Fix config depth bits and centralize device type control
+TRAC #12120
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@230 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-05-05T18:47:16Z,daniel@transgaming.com,daniel@transgaming.com,8,3,5
+324,angle,b3f7fb68c650f8109a3dd8cb26452a141a7afde0,"Recursively write ConstantUnion to correctly construct structs.
+Review URL: http://codereview.appspot.com/1108041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@229 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-05-05T18:21:51Z,alokp@chromium.org,alokp@chromium.org,144,103,41
+325,angle,0fa74639c53999632348d9a7aca7fa1b05339477,"Allow blitting to a render texture in BlitFramebuffer.
+
+Change the type check to allow blitting between render buffers and render textures. Store the format for render textures so that resolving to a render texture Colorbuffer will pass the format check.
+
+BUG=37
+
+Review URL: http://codereview.appspot.com/2205043
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@430 736b8ea6-26fd-11df-bfd4-992fa37f6226",enne@chromium.org,2010-09-21T16:18:52Z,enne@chromium.org,enne@chromium.org,24,22,2
+326,angle,9398a6b28a9922d59f4aafdd20f9622717d4a93a,"I hope this will fix a generateMipmaps crash when needRenderTarget fails.
+
+This fixes this crash in 7.0.524.0 on a user's Windows XP service pack 3 box.
+
+0x014946f3 	[libGLESv2.dll 	- texture.cpp:1382] 	gl::Texture2D::generateMipmaps()
+0x0149786f 	[libGLESv2.dll 	- libglesv2.cpp:2114] 	glGenerateMipmap
+0x01c53199 	[chrome.dll 	- gles2_cmd_decoder.cc:2437] 	gpu::gles2::GLES2DecoderImpl::DoGenerateMipmap(unsigned int)
+0x01c52216 	[chrome.dll 	- gles2_cmd_decoder.cc:2214] 	gpu::gles2::GLES2DecoderImpl::DoCommand(unsigned int,unsigned int,void const *)
+0x01c4fa78 	[chrome.dll 	- cmd_parser.cc:56] 	gpu::CommandParser::ProcessCommand()
+0x01c4f8ba 	[chrome.dll 	- gpu_processor.cc:100] 	gpu::GPUProcessor::ProcessCommands()
+0x01ecdcce 	[chrome.dll 	- callback.h:119] 	CallbackImpl<BrowsingDataRemover,void ( BrowsingDataRemover::*)(void),Tuple0>::RunWithParams(Tuple0 const &)
+0x01c4f2d9 	[chrome.dll 	- callback.h:79] 	CallbackRunner<Tuple0>::Run()
+0x01c4edce 	[chrome.dll 	- command_buffer_service.cc:80] 	gpu::CommandBufferService::Flush(int)
+0x01d6b9b1 	[chrome.dll 	- gpu_command_buffer_stub.cc:129] 	GpuCommandBufferStub::OnFlush(int,gpu::CommandBuffer::State *)
+
+This might be glGenerateMipmaps after a device lost.
+
+
+Review URL: http://codereview.appspot.com/2227044
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@429 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-09-20T19:07:49Z,apatrick@chromium.org,apatrick@chromium.org,10,10,0
+327,angle,e860f0797d0076c9884d72c03c07721fbfc33268,"Trying to fix bug crash when eglCreateWindowSurface (or any other code that causes createDevice to be invoked) is called and CreateDevice reports DEVICELOST or NOTAVAILABLE.
+
+This was a Windows XP service pack 3 box.
+
+0x10002545 	[libegl.dll 	- display.cpp:340] 	egl::Display::createDevice()
+0x10002912 	[libegl.dll 	- display.cpp:468] 	egl::Display::getDevice()
+0x01d6a80f 	[chrome.dll 	- gpu_info_collector_win.cc:29] 	gpu_info_collector::CollectGraphicsInfo(GPUInfo *)
+0x01d68eca 	[chrome.dll 	- gpu_thread.cc:104] 	GpuThread::OnEstablishChannel(int)
+
+Previously createDevice only checked for out of memory and the ASSERT(SUCCEEDED(result)) has no effect in release builds.
+
+I simulated the failure in a debugger and discovered a second place where a null dereference would occur in this case.
+
+I don't think this crash is technically correct but it prevents crashes.
+Review URL: http://codereview.appspot.com/2217043
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@428 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-09-20T19:06:56Z,apatrick@chromium.org,apatrick@chromium.org,1182,593,589
+328,angle,4d5962cdba664fd1602c9565ba7014353b0f2649,"Texture2D::getRenderTarget does not assume that needsRenderTarget succeeded.
+
+Specifically, it checks that mTexture is not null.
+
+This is to fix this crash that has been happening out in the wild:
+
+0x01444822 	[libGLESv2.dll 	- texture.cpp:1417] 	gl::Texture2D::getRenderTarget(unsigned int)
+0x01445615 	[libGLESv2.dll 	- texture.cpp:2048] 	gl::Texture::TextureColorbufferProxy::getRenderTarget()
+0x01453bb0 	[libGLESv2.dll 	- context.cpp:1579] 	gl::Context::applyRenderTarget(bool)
+0x01455395 	[libGLESv2.dll 	- context.cpp:2413] 	gl::Context::clear(unsigned int)
+0x014460c4 	[libGLESv2.dll 	- libglesv2.cpp:611] 	glClear
+0x01c53b75 	[chrome.dll 	- gles2_cmd_decoder.cc:3021] 	gpu::gles2::GLES2DecoderImpl::ClearUnclearedRenderbuffers(unsigned int,gpu::gles2::FramebufferManager::FramebufferInfo *)
+0x01c53cee 	[chrome.dll 	- gles2_cmd_decoder.cc:3078] 	gpu::gles2::GLES2DecoderImpl::DoFramebufferTexture2D(unsigned int,unsigned int,unsigned int,unsigned int,int)
+0x01c57c7d 	[chrome.dll 	- gles2_cmd_decoder_autogen.h:756] 	gpu::gles2::GLES2DecoderImpl::HandleFramebufferTexture2D(unsigned int,gpu::gles2::FramebufferTexture2D const &)
+0x01c52197 	[chrome.dll 	- gles2_cmd_decoder.cc:2214] 	gpu::gles2::GLES2DecoderImpl::DoCommand(unsigned int,unsigned int,void const *)
+0x01c4fa78 	[chrome.dll 	- cmd_parser.cc:56] 	gpu::CommandParser::ProcessCommand()
+0x01c4f8ba 	[chrome.dll 	- gpu_processor.cc:100] 	gpu::GPUProcessor::ProcessCommands()
+
+It was a Windows XP service pack 3 box with Chrome 7.0.524.0. ANGLE was at r418 in this build. I suspect it attempted to glClear after a device lost, which caused needsRenderTarget to fail.
+
+This will hopefully patch it up so it doesn't crash. We'll need to check we aren't assuming mTexture is not null elsewhere.
+
+
+Review URL: http://codereview.appspot.com/2233045
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@427 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-09-20T19:02:30Z,apatrick@chromium.org,apatrick@chromium.org,12,11,1
+329,angle,d10f869dfaff5160578437a14735768f86c5e339,"Fixed masked glClear
+TRAC #13577
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@426 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-09-16T19:56:52Z,daniel@transgaming.com,daniel@transgaming.com,2,2,0
+330,angle,7beea4084f47ae019b5a93b03a5136c9265dc444,"Added API to query for active attribs and uniforms. These functions are modeled after glGetShaderiv, glGetProgramiv, glGetActiveAttrib, and glGetActiveUniform. The main difference between this and OpenGL API is that we do not have programs - just shaders.
+BUG=26
+Review URL: http://codereview.appspot.com/2183041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@425 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-09-15T21:18:34Z,alokp@chromium.org,alokp@chromium.org,716,437,279
+331,angle,8d012dfca24b1151bdda0599d26ca79eb7817cf2,"Added assertion to RefCountObject destructor that mRefCount is zero.
+
+Review URL: http://codereview.appspot.com/2180041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@424 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-09-15T18:26:44Z,apatrick@chromium.org,apatrick@chromium.org,1,1,0
+332,angle,4e3bad4e639732bab6787aca9de5aa5ca3d3496a,"Changed raw pointers to RefCountObject to BindingPointers.
+
+I suspect there is a bug whereby an owning reference to a RefCountObject is temporarily assigned to a BindingPointer, causing it to be destroyed and making the owning raw pointer go dangling.
+
+Making this change for mColorbufferProxy seemed to fix a crash in Chrome with canvas 2D.
+
+This was previously landed in r417 and r418.
+
+Review URL: http://codereview.appspot.com/2108047
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@423 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-09-15T17:31:48Z,apatrick@chromium.org,apatrick@chromium.org,67,25,42
+333,angle,ff8bdfb065ddd9202cc27df894ad39f1a024fdd4,"Backing out r417 and r418.
+
+I will recommit these as two separate patches: one for ID invalidation and one for reference counting issue.
+
+I will not recommit the FBO changes and since the GLES2 spec will soon make it undefined whether FBOs are in a shared namespace.
+
+
+Review URL: http://codereview.appspot.com/2154045
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@422 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-09-15T17:27:49Z,apatrick@chromium.org,apatrick@chromium.org,299,118,181
+334,angle,a9cd70acc3ed442d45ee0ac37b04db8f44ee625c,"Fix glGetActiveUniform for samplers
+TRAC #13522
+Original patch by Jim Hauxwell, fixed for full test suite conformance.
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@421 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-09-15T15:48:57Z,daniel@transgaming.com,daniel@transgaming.com,18,16,2
+335,angle,cf66ebb8a9c6462a07d62501831b1aa35f0f0284,"Renaming Context::mDepthStencilDirty flag to mDepthStencilInitialized to avoid breaking consistency
+http://codereview.appspot.com/2187041/
+(Having trouble checking it in with gcl so going straight to subversion)
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@420 736b8ea6-26fd-11df-bfd4-992fa37f6226",vangelis@chromium.org,2010-09-14T22:15:43Z,vangelis@chromium.org,vangelis@chromium.org,8,4,4
+336,angle,85dc42bf6b360f9fb9a3f3ab7c730f9ab5572a0c,"Reset DepthStencilSurface after Context::markAllStateDirty() has been called.
+
+Landing on Vangelis' behalf.
+
+Original review: http://codereview.appspot.com/2184041/
+
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@419 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-09-14T03:10:08Z,apatrick@chromium.org,apatrick@chromium.org,7,6,1
+337,angle,9e287141aa7d57eecab5cc52a5f15998154d0fdf,"Missing file.
+
+TBR=vangelis@chromium.org
+
+Review URL: http://codereview.appspot.com/2147046
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@418 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-09-11T03:46:57Z,apatrick@chromium.org,apatrick@chromium.org,24,8,16
+338,angle,5525502df8d53eb906a28f1fcb68c01e58e134ae,"Replaced raw pointers to RefCountObject to BindingPointer.
+
+This fixes the ANGLE crashes in Chrome when using canvas 2D.
+
+The issue was this:
+
+Renderbuffer *mColorbufferProxy = new RenderBuffer(...); // Reference count is zero.
+
+BindingPointer<RenderBuffer> tempRef;
+tempRef.set(mColorbufferProxy); // Reference count is one.
+
+tempRef.set(NULL); // Reference count is zero and object is destroyed, leaving mColorbufferProxy dangling.
+
+I also initially suspected the problem was that FBOs are not treated as shared and the implementation of shared FBOs is still in the patch. I believe GLES2 supports shared FBOs.
+
+My reading of the GLES2 spec is that when a shared object is deleted, it loses its id but retains its state if left bound elsewhere. I added that to RefCountObject.
+
+
+
+Review URL: http://codereview.appspot.com/2120045
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@417 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-09-11T02:12:47Z,apatrick@chromium.org,apatrick@chromium.org,275,173,102
+339,angle,d303ef9a9961a9da9f80a7c4366ecc96aae18316,"ANGLE supports GL_OES_standard_derivatives now.
+BUG=25
+Review URL: http://codereview.appspot.com/2122048
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@416 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-09-09T17:30:15Z,alokp@chromium.org,alokp@chromium.org,45,30,15
+340,angle,8815d7f2964301987a72e7a3a431f5df059f3e37,"Added support for associating functions with extensions and performing validation when those functions are used in a shader.
+BUG=25
+Review URL: http://codereview.appspot.com/2141046
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@415 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-09-09T17:30:03Z,alokp@chromium.org,alokp@chromium.org,68,56,12
+341,angle,b19403a10cd926035841c821f5688f24d03d9dfe,"Removed unnecessary member variables from TIntermAggregate. Replaced operator overloading with a proper function in TFunction.
+Review URL: http://codereview.appspot.com/2137043
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@414 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-09-08T17:56:26Z,alokp@chromium.org,alokp@chromium.org,53,24,29
+342,angle,ad771eb2cf60b25e20ad52fd3562c5426b3f5981,"Added mechanism to predefine associated macros for extensions. Also refactored the way extension behavior is initialized and updated.
+Please note that I still need to add validation that appropriate extensions are enabled before using an extension function.
+BUG=25
+Review URL: http://codereview.appspot.com/2139042
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@413 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-09-07T17:36:23Z,alokp@chromium.org,alokp@chromium.org,84,56,28
+343,angle,8f0f24a04576a6da17b086923586c6c688c55cf5,"Removed support for unused/deprecated extension - GL_3DL_array_object.
+TEST=conformance tests.
+Review URL: http://codereview.appspot.com/2043043
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@412 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-09-01T21:06:24Z,alokp@chromium.org,alokp@chromium.org,194,42,152
+344,angle,4b6b4f79a27e0d203e810e1185525b56b9c14695,"Removes unused IsFloatingPoint function from utilities.cpp
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@411 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-09-01T18:13:40Z,daniel@transgaming.com,daniel@transgaming.com,12,0,12
+345,angle,fe208885642b9a148ad73e830d7623c3a53ab84a,"Replaces Windows line endings with Unix where needed
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@410 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-09-01T15:47:57Z,daniel@transgaming.com,daniel@transgaming.com,92,46,46
+346,angle,1297d92b2dac331b0b6d49e4241b675840c2a87b,"Implements support for renderable floating point textures.
+TRAC #12909
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@409 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-09-01T15:47:47Z,daniel@transgaming.com,daniel@transgaming.com,140,118,22
+347,angle,0db0d6c88fabd966d8bba2d3ff20d66d620863ef,"Replaces swap chain lazily when the swap interval is changed.
+
+It does not appear to be possible to pass a presentation interval to Present() or change it after creating the swap chain, short of calling Reset(). I decided to try fixing it by replacing the swap chain under the same conditions as a window resize.
+
+I tested it with a modified version of the simple vertex shader sample, passing various values to eglSwapInterval.
+
+My reading of the EGL spec might be wrong but I believe the interval state should be associated with the surface bound to the current context, rather than the display.
+
+
+
+Review URL: http://codereview.appspot.com/2036044
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@408 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-08-31T20:00:18Z,apatrick@chromium.org,apatrick@chromium.org,102,64,38
+348,angle,6a20d10812d05619e32eaa56cb1b93a1cc14e27f,"Ensure mInfoLog is nulled out after it is deleted.
+Issue=27
+Original-Author: Vladimir Vukicevic
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@407 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-31T13:54:27Z,daniel@transgaming.com,daniel@transgaming.com,1,1,0
+349,angle,d36c6a0a2674ded25b28b92f4b9fc22191d8ab61,"Implemented recovering from a lost device by context recreation.
+TRAC #13222
+Singed-off-by: Daniel Koch
+
+Author:    Nicolas Capens <nicolas@transgaming.com>
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@406 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-31T12:15:09Z,daniel@transgaming.com,daniel@transgaming.com,162,128,34
+350,angle,d3bd0ad320fb246d9b42a0161c27eeb56c7e9160,"Implemented GL_NV_fence extension.
+I believe I have implemented all features according to the spec.
+The application is to allow the Chrome command buffer scheduler to be smarter about deciding which command buffer to process. For example, if a WebGL app issued a call to ReadPixels, the scheduler will issue a fence and defer executing the ReadPixels until the status goes true. It can continue to work on other command buffers in the meantime.
+I tested by modifying the vertex shader demo. After issuing the SwapBuffers i made issue a fence and loop until the status went true and verified it looped several times. I also tested that by calling FinishFence before going into the loop that is did not loop at all.
+
+Review URL: http://codereview.appspot.com/1965043
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@405 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-08-30T18:55:36Z,apatrick@chromium.org,apatrick@chromium.org,480,479,1
+351,angle,0a337e93bf945dc76d8d4f77912ea00e25986bb3,"Implement support for floating point textures.
+Trac #12909
+
+Implements GL_OES_texture_float, GL_OES_texture_half_float,
+GL_OES_texture_float_linear, and GL_OES_texture_half_float_linear
+when supported by the hardware.
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods <shannon.woods@transgaming.com>
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@404 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-28T17:38:27Z,daniel@transgaming.com,daniel@transgaming.com,596,537,59
+352,angle,06098890abb48bf02b1fc77c67ed373ce2268151,"Allow derivative functions if derivative extension is enabled. I still need to add validation for ""#extension GL_OES_standard_derivatives : enable"".
+BUG=25
+Review URL: http://codereview.appspot.com/1965045
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@403 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-08-26T19:36:42Z,alokp@chromium.org,alokp@chromium.org,58,33,25
+353,angle,94a86ad8f1ace86e9dc08088cd2e85d0b9f842f0,"Adding support for OES_standard_derivatives extension. This is not the complete implementation. Sending it to get feedback on the API. Is it OK to add extension support into TBuiltInResource? I could create a new struct for extensions but that would lead to API change.
+BUG=25
+Review URL: http://codereview.appspot.com/1953047
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@402 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-08-25T20:02:11Z,alokp@chromium.org,alokp@chromium.org,152,88,64
+354,angle,575e7910fff8b908a2e84dbaa3ad66274b2e5553,"Changed glFlush to not wait until issued event is processed.
+
+I think these reduced synchronization guarantees are still compliant with the spec. I found that this significantly improved the frame rate for some of our demos (40 fps to 50fps for one on my box). I will change the demo so that it does not call glFlush at all but I still think this is a valuable change.
+
+The OpenGL ES2 spec says:
+
+""The command
+
+void Flush( void );
+
+indicates that all commands that have previously been sent to the GL must complete in finite time.""
+
+My reading of it is that any GL calls previously issued will be processed at some point in the future but not necessarily prior to glFlush returning. I believe that issuing the D3D event and then calling GetData once with the flush flag should meet these requirements.
+
+I also added some assertions to glFinish because I was paranoid that if issuing an event ever failed, the spin loop might never terminate.
+
+
+Review URL: http://codereview.appspot.com/1941049
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@401 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-08-25T18:07:12Z,apatrick@chromium.org,apatrick@chromium.org,19,11,8
+355,angle,58e54298613fdba6967399a66c453385e44c7db2,"Cleanup TType and related classes:
+1. Removed unused functions
+2. Removed unnecessary virtuality of functions
+3. Grouped related functions together
+
+TEST=conformance tests
+Review URL: http://codereview.appspot.com/1984047
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@400 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-08-24T21:40:03Z,alokp@chromium.org,alokp@chromium.org,418,227,191
+356,angle,1ac37d803056d43af3f280fc52e924f7e4167aa8,"Optimizes Texture::loadImageData
+TRAC #13046
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@399 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-24T19:21:31Z,daniel@transgaming.com,daniel@transgaming.com,330,237,93
+357,angle,1dcea9f8586d5a8c2d622839c6d1bc336ee2b6d1,"Implements a special case for temporary surface creation for DXT low mip levels.
+TRAC #12908
+The lowest mip levels for DXT textures will have dimensions < 4, so a D3D
+texture cannot be created to hold them offscreen directly. Instead, we must
+create a larger texture one of whose mip levels would be the desired dimension,
+and store the surface from that texture for later inclusion in the final
+texture.
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@398 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-24T19:21:27Z,daniel@transgaming.com,daniel@transgaming.com,25,23,2
+358,angle,0186813531a7e8f47d584ca7fb54a73ed99d19be,"Implements compressed textures.
+TRAC #12714
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@397 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-24T19:21:17Z,daniel@transgaming.com,daniel@transgaming.com,544,524,20
+359,angle,f5cde48355a3bbb9df53de132c7843dece8a5bab,"Allocates a texture rather than an offscreen plain surface for new textures.
+TRAC #12908
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@396 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-24T19:21:11Z,daniel@transgaming.com,daniel@transgaming.com,7,6,1
+360,angle,d36c2971e879d37c3569746cdadc0e5712924376,"Advertises the GL_OES_rgb8_rgba8 extension.
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@395 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-24T19:21:07Z,daniel@transgaming.com,daniel@transgaming.com,1,1,0
+361,angle,6397754a3c08d4edf108f245904064367b2d9602,"Implements support for rgb8 and rgba8 renderbuffer storage formats
+TRAC #12717
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@394 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-24T19:21:02Z,daniel@transgaming.com,daniel@transgaming.com,9,8,1
+362,angle,3ea20e7cbc8af736af8bdf2d8f229f2555c67500,"Fixes a bug where framebuffer_multisample was not properly being
+added to the extension string.
+TRAC #12966
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@393 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-24T19:20:58Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+363,angle,97446d2f49b2cd6fa03c1e45ed29f16a5347706a,"Implements multisample resolve capability
+TRAC #12716
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@392 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-24T19:20:54Z,daniel@transgaming.com,daniel@transgaming.com,3,2,1
+364,angle,d470a1b5d32140021501269f1deb9f144fd6faa7,"Implements multisample fragment operations
+TRAC #12711
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@391 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-24T19:20:48Z,daniel@transgaming.com,daniel@transgaming.com,50,48,2
+365,angle,1f135d86ab03ef260de7d653625f916644ddd747,"Implements glRenderbufferMultisampleStorage
+TRAC #12714
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@390 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-24T19:20:36Z,daniel@transgaming.com,daniel@transgaming.com,359,328,31
+366,angle,4cbc590fb59d7211ebb59b9bcfcc36f3880009d9,"Implements blitFramebuffer
+TRAC #12713
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@389 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-24T19:20:26Z,daniel@transgaming.com,daniel@transgaming.com,365,360,5
+367,angle,ca7c008a891aef5fd0a7f279c4061f553651075f,"Initializes renderbuffer formats for attachments to the default framebuffer.
+TRAC #12864
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@388 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-24T19:20:20Z,daniel@transgaming.com,daniel@transgaming.com,23,20,3
+368,angle,a27ff1eeaf40f6d509ad8ec978f27f9fd55c4315,"Creates separate bind points for read & write framebuffers.
+TRAC #12712
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@387 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-24T19:20:11Z,daniel@transgaming.com,daniel@transgaming.com,259,188,71
+369,angle,b707a3b755be4e22dbffade7fa05f97a102c6d6f,"Added runtime checks for GetClientRect errors.
+
+I noticed that if the window handle is invalid, the resulting rect will be uninitialized. This change makes it fail immediately.
+
+Review URL: http://codereview.appspot.com/2009042
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@386 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-08-23T23:12:51Z,apatrick@chromium.org,apatrick@chromium.org,14,12,2
+370,angle,32cfaf4b4882185b000eb30c9b420f1cf06aa9c5,"TIntermBinary::promote() was incorrectly marking the type of result as const in some cases. The result can only be const if both operands are const. Also cleaned up the function to remove redundant/repeated checks.
+BUG=24
+TEST=OpenGL ES 2.0 Conformance tests
+Review URL: http://codereview.appspot.com/1938047
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@385 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-08-23T21:01:13Z,alokp@chromium.org,alokp@chromium.org,113,47,66
+371,angle,94e1934d3704f8f791652f7bc28579869d3f2448,"Fixed crash on context lost.
+
+This fixes the crash on lost context for vista and windows 7 if suitable drivers are available. It now uses D3D9Ex when available and this only reports lost contexts for hardware failures and suchlike.
+
+Testing procedure was:
+- run simple_vertex_shader without this change.
+- ctrl+alt+del to lock machine.
+- return to desktop.
+- observe that simple_vertex_shader crashes.
+- repeat with this change and check that simple_vertex_shader is still animating.
+- simulate the code path that an XP machine would take using the debugger and check that old behavior is preserved.
+
+I decided to load D3D9.DLL at runtime for a couple of reasons. First, I didn't want to assume that older implementations of D3D9 would have the Direct3DCreate9Ex entry point. Second, it might be advantageous for some applications to not have a load time dependency on D3D9. I didn't address this for D3DX9 because it's a little harder - there's no clear way to determine which D3DX9_x.DLL library to open. At least D3DX9_x.DLL does not seem to import D3D9.DLL and D3DX is separately redistributable so there is still some advantage to be had.
+Review URL: http://codereview.appspot.com/1951044
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@384 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-08-17T22:19:58Z,apatrick@chromium.org,apatrick@chromium.org,62,57,5
+372,angle,b3999348999ae86bfc8fd2d543eec2c51f6a2c8f,"Added comment about return values of ShInitialize() and ShFinalize().
+Review URL: http://codereview.appspot.com/1980041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@383 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-08-12T19:46:23Z,alokp@chromium.org,alokp@chromium.org,2,2,0
+373,angle,6ad6ce8d0b57f10bf44a20c351a904d47e1b023e,"Fixed Display::initialize so it does not crash for devices that do not support PS 2.0.
+
+The crash occurs when createDevice attempts to dereference mD3d9, which is NULL.
+
+
+Review URL: http://codereview.appspot.com/1956042
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@382 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-08-12T00:16:16Z,apatrick@chromium.org,apatrick@chromium.org,124,61,63
+374,angle,c7b6eba93f276186c3a3380f673efc465bae8607,"Fixed warnings about deprecated conversion from string constant to char*. Submitted by timeless.
+BUG=18
+Review URL: http://codereview.appspot.com/1936041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@381 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-08-09T22:33:53Z,alokp@chromium.org,alokp@chromium.org,4,2,2
+375,angle,b416e70e9097c13e21ec6fe5f2c055135eb5060c,"Some compilers do not support standard STL allocator interface. Also removed _Charalloc function only needed by VC++6.0, which we do not support. Submitted by Eagle.Lu.
+BUG=19
+Review URL: http://codereview.appspot.com/1913048
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@380 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-08-09T22:32:56Z,alokp@chromium.org,alokp@chromium.org,21,14,7
+376,angle,434fdf21d5a489cd2a4d54dcb56e32d34de407f0,"Fix warnings about unused variables. Submitted by timeless.
+BUG=15
+Review URL: http://codereview.appspot.com/1916046
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@379 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-08-09T22:31:36Z,alokp@chromium.org,alokp@chromium.org,4,0,4
+377,angle,bcfba4c3f307b9388a8100278743eb0cf3eff81a,"Fix warnings about comparison/assignement between signed and unsigned types. Submitted by timeless.
+BUG=13
+Review URL: http://codereview.appspot.com/1895051
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@378 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-08-09T22:30:49Z,alokp@chromium.org,alokp@chromium.org,6,3,3
+378,angle,6eed5eb2804a3b2d65790d42a97e2cba69855041,"ret = yyparse(...) is dropped in PaParseStrings. Submitted by timeless.
+BUG=16
+Review URL: http://codereview.appspot.com/1868056
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@377 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-08-09T22:29:59Z,alokp@chromium.org,alokp@chromium.org,2,1,1
+379,angle,b2dfd8ea304f696554b3b698f1086cf209c3edca,"Fix warnings about initialization order in the class initialization list. Submitted by timeless.
+BUG=14
+Review URL: http://codereview.appspot.com/1850054
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@376 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-08-09T22:28:19Z,alokp@chromium.org,alokp@chromium.org,43,26,17
+380,angle,0a57618aa90ff39ce256a3af665e05dfc94de284,"Reject shaders that invoke functions hidden by variable or struct name.
+BUG=22
+Review URL: http://codereview.appspot.com/1855057
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@375 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-08-09T17:16:27Z,alokp@chromium.org,alokp@chromium.org,17,10,7
+381,angle,003e7b135a51892ac073ef2aa953b706121f6e23,"We were trying to change a const_iterator which was rightly caught by SunStudio compiler. Submitted by Eagle.Lu.
+BUG=19
+Review URL: http://codereview.appspot.com/1879049
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@374 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-08-09T17:14:46Z,alokp@chromium.org,alokp@chromium.org,2,1,1
+382,angle,5223af6b2743fe7645733b9869f2e612a74fc8b4,"Replaced __inline with inline to make it compile with SunStudio compiler. Submitted by Eagle.Lu.
+BUG=19
+Review URL: http://codereview.appspot.com/1910047
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@373 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-08-09T17:14:09Z,alokp@chromium.org,alokp@chromium.org,6,3,3
+383,angle,f8de41fb6b253d80865acae3f53bef68ecfda6a4,"Adding separate license file for the preprocessor code and removing the ANGLE boilerplate license from those files.
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@372 736b8ea6-26fd-11df-bfd4-992fa37f6226",vangelis@google.com,2010-08-09T16:51:37Z,vangelis@google.com,vangelis@google.com,130,45,85
+384,angle,5783308ef94e24e40b8e6a02b384b189e4ae200b,"Add Al and Vlad to contributors file
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@371 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-08T04:50:02Z,daniel@transgaming.com,daniel@transgaming.com,2,2,0
+385,angle,a9198d9c6f62314af67729f2127666534680a4bb,"Implement EXT_texture_format_BGRA8888 and EXT_read_format_bgra
+Trac #13050, Issue=21
+Original Author: Vladimir Vukicevic
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@370 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-08T04:49:56Z,daniel@transgaming.com,daniel@transgaming.com,86,86,0
+386,angle,bc3699da7c2494c1ccf025287cbc48a6af97662e,"Implements fixes for problems discovered running San Angeles demo on Chrome
+TRAC #13077
+ - clamp scissor to rendertarget size
+ - ensure textures are renderable when required
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@369 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-05T14:48:49Z,daniel@transgaming.com,daniel@transgaming.com,16,13,3
+387,angle,31273558e8c745498120cf8b0c62f6fcf521ea68,"Fixes erroneous copy in subImage calls after failure is already detected.
+TRAC #13074
+Also adds initializations for missed Texture members.
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@368 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-08-04T13:42:44Z,daniel@transgaming.com,daniel@transgaming.com,58,33,25
+388,angle,257e8d0f82000171ea831bdaeae84691275278a0,"Added missing sources to build_angle.gyp.
+
+Review URL: http://codereview.appspot.com/1907043
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@367 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-07-28T23:07:39Z,apatrick@chromium.org,apatrick@chromium.org,2,2,0
+389,angle,37fa3c8eee93eabbd29b09a43181b9e6b206755b,"Removes Windows-style line endings from Display.cpp
+TRAC #12714
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@366 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-07-28T19:21:21Z,daniel@transgaming.com,daniel@transgaming.com,102,51,51
+390,angle,da6e263cede2f850a62f6b4e250fc5b13518da24,"Support window resizing
+
+TRAC #12660
+
+Automatically resize the D3D swap chain when the eglSwapBuffers is called and the presentation window has changed size.
+Also change D3D device init to be performed once when the Display is created using a hidden 1x1 window.
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@365 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-07-28T19:21:18Z,daniel@transgaming.com,daniel@transgaming.com,433,257,176
+391,angle,9ecb9f9d504e71672a610183c34ae33ab276aef4,"Sharing for buffer, texture and renderbuffer objects.
+
+TRAC #12496
+
+Derive Renderbuffer, Texture and Buffer from RefCountObject.
+This class keeps a reference count for all objects that need cross-context
+reference counting, and also the object id.
+Restructure Renderbuffers to create a wrapper object and a storage object.
+Use BindingPointer for all binding points instead of binding by object id.
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@364 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-07-28T19:21:12Z,daniel@transgaming.com,daniel@transgaming.com,1086,655,431
+392,angle,0d25b005e33f4a87067bbdec58fe66fe2981df6c,"Create shared contexts.
+
+TRAC #12498
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@363 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-07-28T19:21:07Z,daniel@transgaming.com,daniel@transgaming.com,74,59,15
+393,angle,bbc57796e8e2c44591442279e9b95de2a25f39a7,"Checks completeness of framebuffer before read operations.
+TRAC #12565
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@362 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-07-28T19:21:05Z,daniel@transgaming.com,daniel@transgaming.com,22,20,2
+394,angle,0190f8456303c453de71a0a93f3dd11a01e6d54e,"Fixes FBO completeness check
+
+TRAC #12571
+Automatically passes default framebuffer, and fails
+framebuffers which have no color attachments.
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@361 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-07-28T19:21:02Z,daniel@transgaming.com,daniel@transgaming.com,139,74,65
+395,angle,da13f3e902a857ce2b9a6420347335de05696b08,"Adds resource manager class.
+TRAC #12493
+The resource manager class is now in charge of allocation &
+management of objects which may be shared by multiple contexts.
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@360 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-07-28T19:20:56Z,daniel@transgaming.com,daniel@transgaming.com,931,598,333
+396,angle,9930531afdce769db6dec54df3759fffa0e4e663,"Remove wrong and unnecessary check attribute check.
+
+TRAC #12580
+
+Wrong because it should be checking active attributes, not inactive attributes.
+Unnecessary because when a buffer is deleted, all the vertex attrib client state bindings are cleared.
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@359 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-07-28T19:20:54Z,daniel@transgaming.com,daniel@transgaming.com,6,0,6
+397,angle,cdacc8e27117f22035bb56150899e1e52bb542d6,"Implement GL_OES_packed_depth_stencil
+TRAC #12336
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@358 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-07-28T19:20:50Z,daniel@transgaming.com,daniel@transgaming.com,334,189,145
+398,angle,162267d63a794a8ddee2765f2aade4bc877416a6,"fix spacing issue due to manual merge
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@357 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-07-28T19:20:48Z,daniel@transgaming.com,daniel@transgaming.com,2,1,1
+399,angle,4f921eb4e67dcd37e5c03ccb6fb579de02e69b9b,"Renamed dx_Window to dx_Viewport
+TRAC #11594
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@356 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-07-28T19:20:44Z,daniel@transgaming.com,daniel@transgaming.com,20,10,10
+400,angle,be5a0867c492300e43a5ed018f1536dd583695aa,"Implement gl_PointCoord on SM3 hardware
+TRAC #11594
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@355 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-07-28T19:20:37Z,daniel@transgaming.com,daniel@transgaming.com,85,50,35
+401,angle,b75e523ab190d89596632787c605221905b47ae9,"Use TestCooperativeLevel instead of ValidateDevice to check for device loss.
+
+TRAC #12547
+
+ValidateDevice checks for correct rendering state as well, which we don't need.
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@354 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-07-28T19:13:47Z,daniel@transgaming.com,daniel@transgaming.com,3,1,2
+402,angle,34b99cdf6c75dce4a9809a63af160918de84b282,"De-allocate memory in ShFinalize(). There still seems to be a bug here if the translator is used in a multi-threaded environment. It seems memory local to only one thread is being deallocated - the thread from which ShFinalize() is called. I will look into it closely in the next CL.
+Review URL: http://codereview.appspot.com/1878044
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@353 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-07-27T18:37:55Z,alokp@chromium.org,alokp@chromium.org,156,76,80
+403,angle,5eb4609cd0fcc835f8b687f3b67efd0554f43695,"Encapsulate expressions with ternary operators with brackets. This preserves the order of precedence when ternary expressions are used in a compound expression.
+BUG=20
+Review URL: http://codereview.appspot.com/1894041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@352 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-07-26T18:15:21Z,alokp@chromium.org,alokp@chromium.org,8,6,2
+404,angle,e4249f0217bed043d645b6e01ae7d26f7c3e0093,"Refactored the way symbol tables are initialized and stored. This was done in response to the addition of EShSpec.
+Symbol table entries depend on three things - language, spec (not now but may eventually), and built-in resources.
+We used to build two global symbol-tables - one for each language. During each compile, one of the symbol table was
+copied and resource-specific stuff was added. I have moved the symbol table to TCompiler that gets initilized when
+compiler is created and reused for each compile. This makes it much cleaner and extensible in case a spec requires
+special entries to be added to the symbol table.
+
+PS: Sorry for the long CL, but all of it needed to be done in one CL. I have verified that everything still compiles
+and passes all conformance tests.
+Review URL: http://codereview.appspot.com/1864044
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@351 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-07-26T18:13:52Z,alokp@chromium.org,alokp@chromium.org,1427,680,747
+405,angle,6db8cab4b8386cf3fb65da7ae11568e51e4b1327,"ReadPixels recovers from device lost error.
+
+I found that when I switch desktops, GetRenderTargetData will return D3DERR_DEVICELOST. It is unclear to me whether ReadPixels should report a GL error in this case and if so, which one. I went with GL_OUT_OF_MEMORY. Let me know if that's wrong.
+
+This change is not sufficient to make eglGetError report EGL_CONTEXT_LOST. For a program doing exclusively offscreen rendering, ReadPixels might be the only place where D3DERR_DEVICELOST can be detected. The GLES code can't call egl::setCurrentError though. I'm not sure how to fix that.
+
+
+
+
+Review URL: http://codereview.appspot.com/1692053
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@350 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-07-22T20:39:50Z,apatrick@chromium.org,apatrick@chromium.org,18,9,9
+406,angle,c54bf507cdd389d91fb3379e463b1e41b248fe62,"Further cleanup of ShaderLang.h. Removed redundant/unused macros and enum fields.
+Review URL: http://codereview.appspot.com/1842046
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@349 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-07-22T16:49:09Z,alokp@chromium.org,alokp@chromium.org,39,16,23
+407,angle,774d70630a690b2449afdccfb29612393c65f212,"Cleaned up translator API. Deleted unsupported dead code.
+BUG=9
+Review URL: http://codereview.appspot.com/1665050
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@348 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-07-21T18:55:45Z,alokp@chromium.org,alokp@chromium.org,537,42,495
+408,angle,a300988e459a502197e000a3a494d886ef44df54,"Check for reserved prefixes (gl_, webgl_, and _webgl_) in struct and field names. GLES2 and WebGL both require this for all identifiers - variable, function, struct, and field names. ANGLE was only validating variable and function names.
+BUG=11
+Review URL: http://codereview.appspot.com/1856046
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@347 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-07-21T18:54:37Z,alokp@chromium.org,alokp@chromium.org,9,9,0
+409,angle,613ef31a9f7c6f99b064df68894e0a9ba4857025,"Added checks for webgl_ and _webgl_ reserved identifiers. This currently only checks variable and function names. Struct names and field names will be added in the another CL.
+BUG=11
+Review URL: http://codereview.appspot.com/1674050
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@346 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-07-21T18:54:22Z,alokp@chromium.org,alokp@chromium.org,28,23,5
+410,angle,bad6c2a42b3bfd3fd33c6572370379ff970b6fff,"Added <stdio.h> include for sprintf. It broke Chrome downstream when I bumped the rev.
+
+
+Review URL: http://codereview.appspot.com/1879042
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@345 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-07-20T20:19:51Z,apatrick@chromium.org,apatrick@chromium.org,1,1,0
+411,angle,29cd91af30e76623b2c12a90b43378a9b97bb6d1,"Added an option for specifying language specification in preparation for supporting WebGL in addition to GLES2. This CL just replaces unused debugOptions variable with EShSpec variable.
+BUG=11
+Review URL: http://codereview.appspot.com/1692051
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@344 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-07-16T19:30:45Z,alokp@chromium.org,alokp@chromium.org,49,28,21
+412,angle,01b666f225e0f0b42c553a0581ba30f9dc46682d,"Fixed compilation error on mingw. Used _MSC_VER for MSVC-specific code instead of WIN32. Recieved patch from cjacek.
+BUG=12
+Review URL: http://codereview.appspot.com/1694049
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@343 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-07-16T19:27:45Z,alokp@chromium.org,alokp@chromium.org,10,5,5
+413,angle,9abe956ea6c3651bc8e1fe8a8aaab140f4a95528,"Removed the precision check creating spurious error messages
+TRAC #12641
+The precision of compiler temporaries doesn't require checking,
+and would be hard to determine at parse time. We only require
+correct precisions for declarations, which is checked separately.
+So we can safely remove the check for binary operations.
+
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@342 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-06-24T13:02:21Z,daniel@transgaming.com,daniel@transgaming.com,12,3,9
+414,angle,c6f5340070f0f8621621b31b3bc07fc3e2d4bd91,"Clear must ignore buffers that are not present.
+
+TRAC #12643
+
+IDirect3DDevice9::Clear will fail if asked to clear a buffer that is not present, so we have to be careful what we pass to it.
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@341 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-06-24T13:02:19Z,daniel@transgaming.com,daniel@transgaming.com,8,6,2
+415,angle,4c03fa69a386e80f857521b51834b5eb28fbe1f3,"Fix NPOT completeness rule.
+
+TRAC #12561
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@340 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-06-24T13:02:16Z,daniel@transgaming.com,daniel@transgaming.com,15,10,5
+416,angle,353569a9ca0b3cf9905c229494cc175bd7d6fae5,"Eliminates redundant calls to GetDeviceCaps
+TRAC #12283
+Signed-off-by: Daniel Koch
+
+Author:    Shannon Woods
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@339 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-06-24T13:02:12Z,daniel@transgaming.com,daniel@transgaming.com,54,28,26
+417,angle,8187fa8f131c7ce6fbc6b32e3e424904b599019e,"Added some includes.
+
+My Unbuntu 10.04 gcc configuration seems to need <stdio.h> to use some of the string printf functions like vsnprintf.
+The translator is building for me now.
+
+Review URL: http://codereview.appspot.com/1717041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@337 736b8ea6-26fd-11df-bfd4-992fa37f6226",apatrick@chromium.org,2010-06-15T22:09:28Z,apatrick@chromium.org,apatrick@chromium.org,4,4,0
+418,angle,cba04990eccd1bb7b71733ac3c5a5de0bacbfd5d,"Added parentheses around a few operators so that if they are used in a compound statement, order of operations is preserved.
+BUG=5
+TEST=OpenGL ES 2.0 conformance tests.
+Review URL: http://codereview.appspot.com/1691041
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@336 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-06-14T20:36:41Z,alokp@chromium.org,alokp@chromium.org,11,6,5
+419,angle,334aa1f35915641c13a778c8313ffa90e13b445d,"Handled case where selection nodes that use ternary operators are part of a sequence. Usually they are part of an assignment.
+BUG=4
+TEST=OpenGL ES 2.0 conformance tests, specifically operators test.
+Review URL: http://codereview.appspot.com/1643043
+
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@335 736b8ea6-26fd-11df-bfd4-992fa37f6226",alokp@chromium.org,2010-06-11T23:38:29Z,alokp@chromium.org,alokp@chromium.org,16,8,8
+420,angle,7d3849bd7c7bf59056b206cbfa2e10ddb06aaa48,"Fix build when a project patch contains spaces
+
+Trac #11553
+
+With improvements so it works in release mode and on Win7 as well.
+
+Original-Author: Jim Hauxwell
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@334 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-06-08T16:07:55Z,daniel@transgaming.com,daniel@transgaming.com,16,8,8
+421,angle,306cc952a06cc52e1a85d9479b7a82cac6368a62,"Workaround for drivers that apparently don't disable instancing when we ask.
+
+TRAC #12479
+
+This affects text rendering in Nexuiz.
+The text will be drawn as if the colour attribute is static rather than array,
+and all text will be drawn using the shadow colour.
+
+Signed-off-by: Shannon Woods
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@333 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-06-08T16:07:47Z,daniel@transgaming.com,daniel@transgaming.com,5,5,0
+422,angle,1c233ff4440bad1216edb06997d0b32736fed6d4,"Increase the number of supported attribs (12) and texture units (16)
+TRAC #12313
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Daniel Koch
+
+Author:    Nicolas Capens
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@332 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-06-08T14:13:00Z,daniel@transgaming.com,daniel@transgaming.com,6,3,3
+423,angle,b0a1dcccf6ca68e2bca60abfff60314a45fef6e6,"Fix regression due to float printing changes
+Trac #12501
+
+This was caused by the change from printf to iostream printing.
+Sets the float formatting to ""default"" which is neither fixed or scientific and request 8 digits of precision.
+This appears to be mostly equivalent to the previous ""%.8g"".
+If the non-fractional case, we set it to fixed and use 1 unit of precision after the decimal.
+
+Signed-off-by: Andrew Lewycky
+Signed-off-by: Shannon Woods
+Signed-off-by: Ken Russell
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@331 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-06-07T02:06:26Z,daniel@transgaming.com,daniel@transgaming.com,7,5,2
+424,angle,fce644e28e2773cd804e0dbedb7b2c74af315af6,"Don't rely on (potentially) unsupported vertex attribute types.
+
+TRAC #11391
+Checks for optional vertex declaration formats and falls back to FLOAT1-4 if more direct formats are not supporte
+
+Signed-off-by: Nicolas Capens
+Signed-off-by: Daniel Koch
+
+Author:    Andrew Lewycky
+
+git-svn-id: https://angleproject.googlecode.com/svn/trunk@330 736b8ea6-26fd-11df-bfd4-992fa37f6226",daniel@transgaming.com,2010-06-07T02:06:20Z,daniel@transgaming.com,daniel@transgaming.com,368,261,107

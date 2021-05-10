@@ -1,0 +1,935 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,agithub,1584f47f78e7db4aeee9f5c93d56d53f330aef6b,"Rename RequestBuilder to IncompleteRequest
+
+Now instead of
+
+```
+>>> g.issues
+<class 'agithub.github.RequestBuilder'>: I don't know about /issues
+```
+
+you get
+
+```
+>>> g.issues
+<class 'agithub.github.IncompleteRequest'>: /issues
+```
+
+The new wording is appropriate both as an error message (we see it is incomplete!) and in logs (yeah we wanted to see the URL being constructed).
+(The guiding principle I used: ""Just state the facts, let the reader derive value judgements from that."")",Joachim Durchholz,2015-05-12T07:03:18Z,toolforger,toolforger,18,8,10
+1,agithub,2bd9ff92f4275997f091862ca600dadd6313ec6e,"Merge branch 'jp/unit-tests'
+
+* jp/unit-tests:
+  New unit tests for RequestBuilder
+  Documentation fixups",Jonathan Paugh,2015-05-10T19:44:56Z,jpaugh,jpaugh,63,61,2
+2,agithub,2091f081677671e05e1b5ec386fa0d885f1335cb,New unit tests for RequestBuilder,Jonathan Paugh,2015-05-10T19:41:14Z,jpaugh,jpaugh,59,59,0
+3,agithub,9e21307f738775cc0dfffd5e84185dfb4966d43b,Documentation fixups,Jonathan Paugh,2015-05-10T19:36:49Z,jpaugh,jpaugh,4,2,2
+4,agithub,9241ded82c09d346c5787b998418f5a95baf809a,"Merge pull request #12 from AbletonAppDev/fix-Client-patch-method
+
+Fix Client.patch() method",Jonathan Paugh,2015-03-24T17:30:03Z,jpaugh,jpaugh,4,2,2
+5,agithub,61b598b669e954ab1cce6a3563e4739270f57dbd,"Merge pull request #15 from Jucyio/master
+
+Support creating Github objects by passing only a token",Jonathan Paugh,2015-03-24T16:28:12Z,jpaugh,jpaugh,64,46,18
+6,agithub,ce3da282f2b12f91fb948f18869e290a1672784d,Update README.md to document token-based authentication.,Uriel Corfa,2015-03-24T04:15:02Z,korfuri,korfuri,7,6,1
+7,agithub,d75c8c01c57c0223bfb75f9a7b2ddb9087476d38,"Add unittests for Github object creation scenarios.
+
+Simply run with `./agithub_test.py`.",Uriel Corfa,2015-03-24T04:12:12Z,korfuri,korfuri,27,27,0
+8,agithub,969128bfbb9c08b3468b51da6256990bcf3b05ac,"Allow creating a Github object without specifying a username when a
+token is provided.
+
+Fixes #11",Uriel Corfa,2015-03-24T03:07:39Z,korfuri,korfuri,30,13,17
+9,agithub,ab68d0bba97dfc9185e663399ebf157b9eedc364,Replace non-existing attribute PATCH by 'PATCH' in Client.patch(),ala,2014-10-29T17:42:47Z,ala-ableton,ala-ableton,2,1,1
+10,agithub,ab4ee108cc36cedc0a3e5f1f2b82133419bd1e74,Update .gitignore to really ignore .pyc/.pyo files,ala,2014-10-29T17:21:04Z,ala-ableton,ala-ableton,2,1,1
+11,agithub,f017760184c4f4848f117d00cface313916e1f04,"Merge pull request #9 from JensTimmerman/patch-2
+
+set content type to json if you're sending json.",Jonathan Paugh,2014-08-04T16:49:18Z,jpaugh,jpaugh,9,9,0
+12,agithub,9799606767312c2c1c5b2d81e552d144fa7e2661,set content type to json if you're sending json.,Jens Timmerman,2014-07-04T09:53:57Z,JensTimmerman,JensTimmerman,9,9,0
+13,agithub,b6a68cec99315b80054e846c1bea76ee7c080b03,"Remove TODO file. It has been superseded by the ChangeLog
+
+The important TODOs have already been migrated to the new change-log.
+
+The other stuff is so old and contextual that I don't even remember what
+I was thinking about. (Whatever cool features they were, someone might
+think to do them someday.)",Jonathan Paugh,2014-06-14T18:21:17Z,jpaugh,jpaugh,10,0,10
+14,agithub,5413564b6153cef8f6df4248f82e5b037d11882d,"Tweak README
+
+    - Add &ndash; in date range
+    - Misspelling of ""Not Found""",Jonathan Paugh,2014-06-14T04:19:40Z,jpaugh,jpaugh,4,2,2
+15,agithub,9be4a640b63a296a331a5b90ad98cc9e921e2073,Add ChangeLog,Jonathan Paugh,2014-06-14T03:24:18Z,jpaugh,jpaugh,131,131,0
+16,agithub,2846f2d7d291d79e59ce9f928a06a68c2966a726,"Add class for Facebook's graph API
+
+To get this to properly decode the (text/javascript) return values, we
+have to trick the Content class into thinking it's the same as
+application/json. Time (and someone who knows the Facebook API better
+than me) well tell whether this is adequate and handles all cases.",Jonathan Paugh,2014-06-14T00:09:49Z,jpaugh,jpaugh,26,26,0
+17,agithub,afd73e4494ee45c184cdb064252369194e3e2c42,"New REST API: SalesForce
+
+It can at least connect to SalesForce's REST API anonymously. May also
+work for authenticated connections. Works with json, but (currently),
+not XML.",Jonathan Paugh,2014-06-12T23:38:52Z,jpaugh,jpaugh,37,37,0
+18,agithub,e8673f73fad203b90d7c5b219253d53e0e1fa9d8,"New class API: Toplevel API object
+
+This class is the superclass for Github (and any new REST clients we may
+invent). It add the setClient and setConnectionProperties methods (to
+Github) to solidify the external API for setting up these things. This
+makes it much easier to create new subclasses, since the __init__() can
+consist of merely 2 method calls.",Jonathan Paugh,2014-06-12T17:37:27Z,jpaugh,jpaugh,47,33,14
+19,agithub,2ab5e29aaf3551e2123d2146c5d95fdbbd15b9e9,"Client.__init__: Do not force ConnectionProperties to be passed early
+
+Client:
+    - Allow setConnectionProperties to be called after __init__
+
+Github:
+    - Call setConnectionProperties after calling Client(). This makes it
+      clearer what we're doing",Jonathan Paugh,2014-06-12T17:29:10Z,jpaugh,jpaugh,8,3,5
+20,agithub,9f6d233a462f2ccf4ae96823509d16733980d76c,"New method Client.setConnectionProperties()
+
+We want a special, santioned way to pass ConnectionProperties to a
+Client, rather than kludging it into the __init__() args. We also gain a
+way to reset the connection properties later, or to delay setting them
+innitially.
+
+Add Client.setconnectionproperties(), which sets (or resets) the default
+headers to use for future requests.
+
+Do not modify Client._default_headers. Instead, use a new
+Client.default_headers variable; this allows setConnectionProperties to
+be idempotent, starting from the same dict of default headers each time.",Jonathan Paugh,2014-06-12T17:13:37Z,jpaugh,jpaugh,31,21,10
+21,agithub,44e8da123fd87baae9e82a59969ce7f165d52baa,"Enforce case restrictions (lowercase) in Client.default_headers
+
+Since we're already mutating self.default_headers from Client.__init__,
+we ought to enforce the case restrictions we rely on. This is especially
+important since the new API flexibility (à la ConnectionProperties)
+will soon allow user-code to add support for their own APIs.",Jonathan Paugh,2014-06-12T16:37:20Z,jpaugh,jpaugh,6,6,0
+22,agithub,a50e3c016f4bb14875d5516802c7a9c33830a178,"Add extra_headers to ConnectionProperties
+
+Every API will have a different set of application-specific headers
+specific to it. For GitHub, this includes (only) the accept header.
+
+Add extra_headers slot to ConnectionProperties
+    - intialize Client._default_headers with this dict within __init__
+    - Pass GitHub's accept header via this mechanism, moving it from the
+      ""global"" _default_headers to the per-client _default_headers",Jonathan Paugh,2014-06-12T16:27:17Z,jpaugh,jpaugh,14,11,3
+23,agithub,1fa9ed745ae0db4961b200b0366659864e6d992a,"Client.get_connection(): Do not allow authenticated sessions over HTTP
+
+Trying to authenticate over a non-secure channel is almost certainly a
+mistake. Therefore, we make it as inconvenient as possible to do so.",Jonathan Paugh,2014-06-12T06:47:16Z,jpaugh,jpaugh,7,6,1
+24,agithub,9962bcf571898854677c05697249c0d15a852f52,"ConnectionProperties (secure_http): Allow non-secure connections
+
+Some APIs may not be available over HTTPS like GitHub's. We want to
+support those, too.
+
+Add secure_http connection property, which determines whether to use
+HTTP or HTTPS",Jonathan Paugh,2014-06-12T06:33:44Z,jpaugh,jpaugh,10,8,2
+25,agithub,89422f3b594738b0aae534183babbb6e317d3167,"New class ConnectionProperties, removes hard-coded connection info
+
+AGithub's ""API transparency"" means it could become quite usable with
+many other REST APIs; but it has several hard-coded bits which refer to
+the GitHub API. The new ConnectionProperties class paves the way to
+genericity, by allowing us to abstract over the details of individual
+REST APIs.
+
+New class ConnectionProperties
+    - which is now threaded through the Client initialization code
+
+Client.get_connection()
+    - The API base URL is now a member (api_url) of
+      ConnectionProperties, rather than a hard-coded constant, in
+      Client.get_connection().",Jonathan Paugh,2014-06-12T05:59:10Z,jpaugh,jpaugh,35,33,2
+26,agithub,2ff177676278612400ef4d4f28e118148d59df46,Add TODO: XML Support,Jonathan Paugh,2014-06-12T23:58:14Z,jpaugh,jpaugh,2,2,0
+27,agithub,00de322f239ba0e3eb533002ae2add80eb93c404,Add TODO: Support compression,Jonathan Paugh,2014-06-12T18:46:19Z,jpaugh,jpaugh,3,3,0
+28,agithub,c9efcc5b89824b24079492b7a38aaa65bd9a06b2,"test/init*Session: Instantiate arbitrary API subclasses
+
+Github isn't the only valid API class now, and we need to test others as
+well.",Jonathan Paugh,2014-06-12T21:43:39Z,jpaugh,jpaugh,13,7,6
+29,agithub,b51a380e2fba9d9223e08f8d947f0a144756aeaf,"test: New test test_userrepos
+
+The first authenticated-only test",Jonathan Paugh,2014-06-12T21:38:21Z,jpaugh,jpaugh,6,6,0
+30,agithub,a42abb1ba38f3a4d8f6415959fc1b93ed67c55cd,"test: Allow tests to probe whether they have an authenticated session
+
+Sometimes, a test should only run with an authenticated (or anonymous)
+session. In these cases, the test needs a way to test for this, and
+Skip if the proper condition isn't met.",Jonathan Paugh,2014-06-12T21:36:20Z,jpaugh,jpaugh,7,7,0
+31,agithub,7bc84c3aa8bfb07d78ba4a8151a5fe29b04b9ac6,"tests/runTest: Allow tests to return Pass, Fail, and Skip voluntarily
+
+Rather than decoding the status value, sometimes it is more convenient
+to have tests return the Pass/Fail/Skip result directly.",Jonathan Paugh,2014-06-12T21:34:43Z,jpaugh,jpaugh,4,3,1
+32,agithub,a799f3f0515873f7aab4c5b02c88aa4a871a9e2f,"Add test infrastructure
+
+It's about time we had a testsuite! For now, it uses only a very basic,
+ad-hoc test framework, but it works!",Jonathan Paugh,2014-06-12T21:10:46Z,jpaugh,jpaugh,150,150,0
+33,agithub,83129c739a18b92fba5b711ed92b023fa36dd8a3,Update TODO file,Jonathan Paugh,2014-06-08T00:03:36Z,jpaugh,jpaugh,4,1,3
+34,agithub,7fcdec79e61679114ecca53eefef5489e329a028,"Make response headers available to user-code
+
+Originally, the Client.request() method did not pass the response
+headers back to the user, to avoid unnecessary distraction. But,
+obviously, the headers will often be needed for further processing.
+Therefore, we make them available as the Github.getheaders() method.
+
+- Client.request()
+    stash away the headers of the last response in self.headers
+
+- Github.getheaders()
+    retrieve the headers from the client",Jonathan Paugh,2014-06-07T23:55:13Z,jpaugh,jpaugh,17,17,0
+35,agithub,4aaa761487d6f7bf47d924801d27ef8952665244,Bug: Ensure Client.auth_header is always defined,Jonathan Paugh,2014-06-12T06:46:12Z,jpaugh,jpaugh,1,1,0
+36,agithub,8e6aa055217a91a3ed95e476bb8db385701890ea,"Bug: Python-3 support for password authentication
+
+Encode the username and password as UTF-8 byte-strings before doing
+base64 encoding on them.
+
+By rights, We ought to have been doing this encoding explicitly all
+along. But in Python-3, failing to do so results in a TypeError, so we
+can no longer claim naïveté.",Jonathan Paugh,2014-06-12T15:21:41Z,jpaugh,jpaugh,3,2,1
+37,agithub,d8e8514ac4f7f42d6eaadd27f458c94a855e3178,doc bug: Fixup the README,Jonathan Paugh,2014-06-07T23:54:58Z,jpaugh,jpaugh,10,5,5
+38,agithub,616967b9530e3f2b4100ee51331e9f88129a2f7b,"Version bump v1.2
+
+Should have done this when splitting off the maint branch, but alas!",Jonathan Paugh,2014-06-12T15:28:48Z,jpaugh,jpaugh,2,1,1
+39,agithub,adbe7b401485911a9970a1a53f86aab68131dd15,"Merge pull request #8 from JensTimmerman/patch-2
+
+whitespace fix",Jonathan Paugh,2014-06-11T23:15:52Z,jpaugh,jpaugh,2,1,1
+40,agithub,d970e87d5fd972701373aca90ab7c85abc2dd1aa,"whitespace fix
+
+self,handlerName is to close to self.handlerName for me, also this is consistent with the rest of the code.",Jens Timmerman,2014-06-10T15:24:04Z,JensTimmerman,JensTimmerman,2,1,1
+41,agithub,6561cd2d507ee216203371ec149f81b1bbde7e0f,"Bug: Don't print() headers after each requent
+
+This debugging code escaped the radar.",Jonathan Paugh,2014-06-07T21:51:07Z,jpaugh,jpaugh,2,0,2
+42,agithub,6f0ba8e6b4f6cfaea6efc587a8b1c448dda054a5,"Bug: Add __getitem__ and __repr__ to Github class
+
+It was formerly impossible to do something like
+
+    g = Github()
+    g['repos']['jpaugh']['agithub']
+
+Not that you'd want to, but it keeps the API consistent, just in case.",Jonathan Paugh,2014-06-07T21:43:01Z,jpaugh,jpaugh,4,4,0
+43,agithub,3b2c91f4c6aee1b28e6981c47cbd4f8c5a8b597e,"Rewrite README to reflect new project status
+
+agithub has really come a long way since its introduction, and the
+README needs to reflect the new state of things better. Instead of being
+a quick stop-gap to help me grasp the Github API, it is featureful ---
+and perhaps even robust.",Jonathan Paugh,2014-06-07T19:03:24Z,jpaugh,jpaugh,234,153,81
+44,agithub,89c55de95e721cff61c3826cb42392fc68ddd20c,"Bug: Only charset-decode the body if it makes sense for the media-type
+
+This means that decode_body() will only be called from the various
+media-type handlers that support it.",Jonathan Paugh,2014-06-07T16:09:19Z,jpaugh,jpaugh,4,3,1
+45,agithub,3a285a1402420b64b95960fab49fcd8f252dc0e3,"Content: media-type specific handlers (json, unknown)
+
+Add media-type specific behaviors to Content(). For now, only json and
+unknown media types are supported.",Jonathan Paugh,2014-06-06T21:57:10Z,jpaugh,jpaugh,20,14,6
+46,agithub,3fbdede633b9bd8fd12159488b8858314280241d,"Internal change: Add new Content class to handle content-type handling
+
+Interpreting the server's response correctly involves quite a bit of
+juggling; this class helps organize the decoding and other processing of
+the response body quite nicely.
+
+For now, only decoding is handled properly, although we plan to handle
+per media-type behavior later.
+
+Content:
+    - Decode the body according to the charset
+
+Client.request:
+    - Use the new Content class to handle the charset decoding",Jonathan Paugh,2014-06-06T21:52:12Z,jpaugh,jpaugh,78,57,21
+47,agithub,4f192190f69d31ae65114c40d3fe8d9700f8e0bc,Add accept header: ask for v3 of the github API,Jonathan Paugh,2014-06-06T20:10:50Z,jpaugh,jpaugh,2,2,0
+48,agithub,c96c6bfabeb7af9704604c2b06d0ea242a02ff62,"Style: Conform Authorization header to lowercase, as with the others
+
+This is not strictly required, since we must unconditionally override
+the Authorization header, but it makes it consistent to the other header
+names.",Jonathan Paugh,2014-06-06T18:48:59Z,jpaugh,jpaugh,2,1,1
+49,agithub,9342aafffef30b7c52d092f1081af48605ebceca,"Allow user code to override the User-Agent
+
+Move User-Agent to the default headers dict, making it (only) a default
+value.",Jonathan Paugh,2014-06-06T18:47:59Z,jpaugh,jpaugh,5,4,1
+50,agithub,f9c0feea0dceec73dc23057333179dde14cf5c1e,"Allow inserting default headers without overriding explicit headers
+
+New internal method Client._fix_headers
+    - Doctors the header names to be lowercase and
+    - Inserts any default headers which cannot be found in them
+
+New internal constant _default_headers
+    - list of header fields to include by default",Jonathan Paugh,2014-06-06T18:43:14Z,jpaugh,jpaugh,19,19,0
+51,agithub,079743332f1e98e816e92ec291dd652d971f902b,General README fix-ups,Jonathan Paugh,2014-06-06T18:07:00Z,jpaugh,jpaugh,16,8,8
+52,agithub,35424ab92452f8388304a5e46a569eb0b624d33f,Version bump v1.1,Jonathan Paugh,2014-06-06T19:00:43Z,jpaugh,jpaugh,2,1,1
+53,agithub,2ba3794d48fe937dd73fec8aeaec28a59a305cc3,Include the version in the user-agent header,Jonathan Paugh,2014-06-06T19:00:00Z,jpaugh,jpaugh,3,2,1
+54,agithub,66b5f8ccfd4d882d34f10b9ed252210f263ed859,Start version-tracking. Let's call this v1.0,Jonathan Paugh,2014-06-06T18:00:32Z,jpaugh,jpaugh,2,2,0
+55,agithub,103e4125e2e3ad44a4eac8a61b45ed0eec17bd96,Now supports both PATCH and DELETE!,Jonathan Paugh,2014-06-06T17:58:59Z,jpaugh,jpaugh,2,0,2
+56,agithub,ce2ace2ff80f60aaf00c67fc413eb1e844298d22,Add PATCH http method: Client.patch(),Jens Timmerman,2014-06-06T17:52:47Z,JensTimmerman,JensTimmerman,8,8,0
+57,agithub,ce1d46feaa0abadb0723a77003c760f7eaaa6a4c,Update copyright information,Jonathan Paugh,2014-02-15T18:58:00Z,jpaugh,jpaugh,6,3,3
+58,agithub,c9abd0f4bc1b109142a37174a270fac509dd95e4,Update README: Take Python 3 support off the TODO list,Jonathan Paugh,2014-02-15T18:28:37Z,jpaugh,jpaugh,8,0,8
+59,agithub,82554cbacdf0956d81c1c76b5c07a139a53e446b,"Add Python 3.x support; maintain Python 2.x compatibility
+
+There are two issues here:
+
+    * encoding/decoding of bytes/str (3.x) and str/unicode (2.x)
+    * module renaming
+
+The first problem arises because Python 3 forces us to be more explicit
+about character encodings. This is a Good Thing, because otherwise, we
+are left as defenseless, or Just Plain Wrong.
+
+The second is really just a ""janitorial"" nuisance: Rename the offending
+modules, and all references, and we are good to go.",Jonathan Paugh,2014-02-15T18:11:09Z,jpaugh,jpaugh,27,24,3
+60,agithub,4fa14ce3fc23bd51718b5cb8838b5aa02ea3dead,"bug Client: use content-type (charset) to decode response body
+
+We've been assuming all along that the response body was encoded as
+ASCII. While that is questionable all by itself, upgrading to Python 3.0
+will force us to do explicit decoding; so we may as well get it right
+now.
+
+Introduces a new method Client.get_charset to parse the content-type
+header and return the charset",Jonathan Paugh,2014-02-15T18:04:24Z,jpaugh,jpaugh,20,17,3
+61,agithub,9e4bd5be34d1852a267d2ddcc68795b130719411,Style Client: Rearrange methods into sensical order,Jonathan Paugh,2014-02-15T15:12:46Z,jpaugh,jpaugh,18,10,8
+62,agithub,8c3cf44fe2d90c69313159b24d432cefed91eca2,Client: add head method,Jonathan Paugh,2014-02-15T15:10:47Z,jpaugh,jpaugh,5,5,0
+63,agithub,b6400c56b8b774509fd17307a0cbaf6ed88dee89,Add .gitignore,Jonathan Paugh,2014-02-15T15:36:40Z,jpaugh,jpaugh,2,2,0
+64,agithub,ce332ce5e8c10b009979a4dd9a5a7b44211f1d37,"bug Client: Always set self.username, to None if need be
+
+Otherwise, the code will fail with no username provided",Jonathan Paugh,2014-02-15T15:31:50Z,jpaugh,jpaugh,2,1,1
+65,agithub,bf95841123a91b4389e0b1dc1f4cd037794bdb9c,bug: Pretty sure these were debug statements...,Jonathan Paugh,2014-02-15T15:25:43Z,jpaugh,jpaugh,4,2,2
+66,agithub,75b0bfa6ae7a4a8883d77ac761b70497413c1274,bug: RequestBuild.__getattr__: missing colon after else,Jonathan Paugh,2014-02-15T15:14:29Z,jpaugh,jpaugh,2,1,1
+67,agithub,c01cff5760cfd3723ff176de593c2cb011041062,Style: Reindent 2 -> 4 spaces,Jonathan Paugh,2014-02-15T15:01:32Z,jpaugh,jpaugh,268,134,134
+68,agithub,531744f6ceb0ba08bf0138a1581af82b972f9df8,"RequestBuild.__repr__: Display self.url instead of triggering ""I don't know...""",Jonathan Paugh,2014-02-15T14:59:30Z,jpaugh,jpaugh,2,1,1
+69,agithub,ed9b2c2b80e2a88864635bee4faefe719629ad81,"Style wibble: Use else branch to show alternatives
+
+Having multiple return-points is confusing. Let's at least indent the
+alternatives to the same level",Jonathan Paugh,2014-02-15T14:55:47Z,jpaugh,jpaugh,5,3,2
+70,agithub,637931120bf58414b75c7d1178bb45fd93d635a2,Doc RequestBuilder: Rewrite docstring; it makes much more sense now!,Jonathan Paugh,2014-02-15T14:54:19Z,jpaugh,jpaugh,17,12,5
+71,agithub,2367c85677695cfb21a28f15a55690a0bddbf886,"Doc: less ambiguous; we're talking about a Github object, not the website",Jonathan Paugh,2014-02-15T14:34:11Z,jpaugh,jpaugh,6,3,3
+72,agithub,00fd4c749481248ee6aec4fd5801f7c7c3f130a6,"Update examples to use new username
+
+May as well have working examples",Jonathan Paugh,2014-02-15T14:30:51Z,jpaugh,jpaugh,13,8,5
+73,agithub,604119fe12403a5c9795a13012bf1e499a829baa,"Merge pull request #5 from tedwards/master
+
+Modified request to always include a useragent",Jonathan Paugh,2014-02-15T14:08:49Z,jpaugh,jpaugh,3,1,2
+74,agithub,9496364e50a2733c15f8c4f4d495817116ff38fd,Modified request to always include a useragent per http://developer.github.com/v3/#user-agent-required,Tim Edwards,2013-12-06T06:04:34Z,tedwards,tedwards,3,1,2
+75,agithub,0e96c9ddddc60c28bbe4e3474ed93279cd414be2,"Merge pull request #4 from schimfim/patch-1
+
+Fixed bug in Client.__init__",Jonathan Paugh,2013-10-09T21:57:33Z,jpaugh,jpaugh,3,1,2
+76,agithub,acf3eeaa7b62074177797d5f4f7c72ba3202513a,"Fixed bug in Client.__init__
+
+Moved ""self.username = username"" up. Otherwise hash_pass will be called (for user/pwd authent.) before username is set.",uncleWalter,2013-07-28T17:30:24Z,schimfim,schimfim,3,1,2
+77,agithub,7ecbc1074fce508cf5c7dabf3b3d73acd1b27a40,"README.md: Lie less
+
+I'm not working with Python or the Github API right now, so this project
+has fallen into disrepair. However, I'm confidient that /you/ could fix
+it. :-)",Jonathan Paugh,2013-04-26T05:45:17Z,jpaugh,jpaugh,16,12,4
+78,agithub,1e2575825b165c1cb7cbd85c22e2561fc4d434d3,"Combine all code into agithub.py
+
+As per Jen Timmerman's suggestion, agithub is now a single module. The
+code is small enough that doing otherwise actually makes it more
+awkward.",Jonathan Paugh,2013-04-26T05:28:40Z,jpaugh,jpaugh,137,65,72
+79,agithub,b67f83718b60a4c394954af738221ad4cfa0d0fa,"Merge pull request #3 from JensTimmerman/patch-1
+
+set user-agent when not authenticated",Jonathan Paugh,2013-04-26T05:17:09Z,jpaugh,jpaugh,4,3,1
+80,agithub,989de02ac5978b799678cc6ef6626e930bd9c162,set user-agent when not authenticated,Jens Timmerman,2013-04-25T14:28:04Z,JensTimmerman,JensTimmerman,4,3,1
+81,agithub,e69ec295e029d26f2b9d1f35ed4c402f75bf6567,"Merge pull request #1 from JensTimmerman/master
+
+fix AttributeError: 'Client' object has no attribute 'username'",Jonathan Paugh,2012-12-30T22:11:56Z,jpaugh,jpaugh,3,2,1
+82,agithub,4e1ee49477f0183490aa9812c2c75c42397e90e3,"always set username, even if none",Jens Timmerman,2012-10-23T13:59:27Z,JensTimmerman,JensTimmerman,3,2,1
+83,agithub,4f8c9f75913d6b5cf4726c1a391c0f840d10d2a1,"client: added Client.delete method
+
+Now, we can DELETE /stuff, as in:
+
+g.user.following.octocat.delete()
+
+No, octocat, we're not following you no more.",Jonathan Paugh,2012-06-25T14:51:12Z,jpaugh,jpaugh,5,5,0
+84,agithub,e2b909fcbc10f9f4115ad3f5de449a0fd071588a,"client: added Client.put() method.
+
+Now, we can put stuff, like to follow a user:
+
+g.user.following.octocat.put()",Jonathan Paugh,2012-06-25T14:49:52Z,jpaugh,jpaugh,5,5,0
+85,agithub,e42db95756372b3640c83c2c2b42f5b1e6377827,"Removed 'body' param from Client.get() method
+
+GET requests shouldn't have a body, shoud they? No.",Jonathan Paugh,2012-06-25T14:48:14Z,jpaugh,jpaugh,4,2,2
+86,agithub,994bb5a4e0cbee47d912b6d058c493b96e63611b,"Fix: client no longer freaks on non-JSON body in the response
+
+Now, if the response contains a non-JSON body, it just gets passed back
+as-is. That is an order of magnitude more robust (heh), but still a far
+cry from using mimetypes approprately. At least the user code can ""know""
+what's comming, and at least work for, e.g. tarballs.",Jonathan Paugh,2012-06-25T14:39:34Z,jpaugh,jpaugh,7,5,2
+87,agithub,f7743fc550774dfb7f2ff69533f15561a366abc1,"Add support for authenticating client with oauth token
+
+Basic auth is easy, and it's over SSL anyway, so secure, but, ""Eh, why
+not?"" I'm sure someone, somewhere will want oauth support ;-)",Jonathan Paugh,2012-06-25T14:33:19Z,jpaugh,jpaugh,23,16,7
+88,agithub,500edb39e80b382480a8a0e81645c3ba76a47eab,"get rid of login madness in client
+
+Later, I'll think about changing username ==> login in the client init
+kwargs, but it's madness to support both. I was confused, you were
+confused, now it's behind us.",Jonathan Paugh,2012-06-25T14:25:10Z,jpaugh,jpaugh,9,1,8
+89,agithub,56e44877462c8f1c4238b66481cfd492f106e1a2,"Hide away client's implementation of http methods
+
+Since I plan to support more http methods in client, I don't want to
+hard-code in get and post in the RequestBuilder. It should rely on it's
+client's idea of what methods are supported. OTOH, it's client should
+actually have a clue about what it supports.",Jonathan Paugh,2012-06-25T14:22:06Z,jpaugh,jpaugh,7,6,1
+90,agithub,8e434b2f225c7fbdf880d2a5a1d488c42e8cbc08,"Use functools.partial instead of curry
+
+I just found out that Python's stdlib has a library for operations on
+functions--Which makes total sense, what with how decorators work and
+all. So, I should use their amazing, and more generic implementation of
+the same thing: partial function application. Say goodbye to curry()!",Jonathan Paugh,2012-06-25T14:17:56Z,jpaugh,jpaugh,17,6,11
+91,agithub,17af74cb58a1e79dd5dfcc30650f64bcb0d4dc45,cosmetic: changed repr of RequestBuilders,Jonathan Paugh,2012-06-25T14:10:38Z,jpaugh,jpaugh,2,1,1
+92,agithub,f3f2ef89965f589b9ec5728c468565eb3394f70a,doc fix: TODO still referred to old PartialAPIWhatever,Jonathan Paugh,2012-06-25T14:01:43Z,jpaugh,jpaugh,2,1,1
+93,agithub,7e9c432415df6bb4718be7f2f1dda56b1f5fdd8d,"readme: corrected some errors, and fixed some whitespace issues.",Jonathan Paugh,2012-06-25T14:00:20Z,jpaugh,jpaugh,22,11,11
+94,agithub,3dda500551b05916bea434129472b88801e7ee47,"Renamed class PartialAPICall => RequestBuilder
+
+Hopefully, this makes more sense, and also allows adding actual ""Partial
+Requests"" in the future.",Jonathan Paugh,2012-06-25T13:54:42Z,jpaugh,jpaugh,19,9,10
+95,agithub,e6f284059c995229d6f7513d9e7921ab69e52d07,readme: changed intro a bit,Jonathan Paugh,2012-06-25T13:51:26Z,jpaugh,jpaugh,4,2,2
+96,agithub,70e9a878c5dcc76da777060e3b25349602164661,"Coded a really sweet github api. It's short and sweet!
+
+The Agnostic Github API",Jonathan Paugh,2012-06-22T22:50:30Z,jpaugh,jpaugh,258,258,0
+97,agithub,9f44e8f862161dd5f5b6f65ee812e173291b5132,"Merge pull request #69 from gene1wood/fix-version-errors
+
+Revert move to SCM driven version number derived from VCS and back to hard coded version",Gene Wood,2019-11-12T17:15:47Z,gene1wood,gene1wood,36,20,16
+98,agithub,2ba9cb3ca5afecdd3de9b4a947afcee88f6fd5dc,"Revert move to SCM driven version number derived from VCS and back to hard coded version
+
+Change VERSION constant from string version (e.g. 2.2.1) back to semver list (e.g. [2, 2, 1])
+Replace STR_VERSION constant
+This reverts b189a1ecbd44022bb4348d823c3ae8a83b023f57
+Also move to version 2.2.2",Gene Wood,2019-11-12T16:40:37Z,gene1wood,gene1wood,36,20,16
+99,agithub,86ef5038450f4d1afa9f226b5ee05a4c8e6685f4,"Merge pull request #68 from gene1wood/release-2.2.1
+
+Release 2.2.1",Gene Wood,2019-10-08T00:00:39Z,gene1wood,gene1wood,175,123,52
+100,agithub,31b0d6b915e3b3fb3e552f8ff24a384e2790e914,"Release 2.2.1
+
+Update CHANGELOG",Gene Wood,2019-10-07T23:53:07Z,gene1wood,gene1wood,21,20,1
+101,agithub,043109445152f39a8ca7bb6ba20060c5f3cca6cd,Enable travis CI for unit tests,Gene Wood,2019-10-07T23:46:09Z,gene1wood,gene1wood,7,7,0
+102,agithub,2fcbe59ddb62726bd60aced866c1781e1ee075dc,Add .gitattributes to prevent CHANGELOG conflicts,Gene Wood,2019-10-07T23:45:57Z,gene1wood,gene1wood,2,2,0
+103,agithub,8cb25b3750f5e07dd353785c425ce90b60b9c144,Update gitignore to be explicit about the .* files to ignore,Gene Wood,2019-10-07T23:45:43Z,gene1wood,gene1wood,2,1,1
+104,agithub,9bfcbd8aa7bff9e72ea2c3cef9c3d9b5c3691534,"Add GitHub unit test
+
+This doesn't yet mock the response from GitHub, it makes a live call
+This call could be ratelimited or fail due to transient network issues
+Once we switch to using requests we'll want to mock out this GitHub
+response",Gene Wood,2019-10-07T23:42:25Z,gene1wood,gene1wood,12,12,0
+105,agithub,f745fa244f2b77f8fe524a0507407f5de7aee80e,Fix README link,Gene Wood,2019-10-07T23:33:22Z,gene1wood,gene1wood,3,1,2
+106,agithub,b189a1ecbd44022bb4348d823c3ae8a83b023f57,"Move to SCM driven version number derived from VCS instead of hard coded version
+
+Change VERSION constant from semver list (e.g. [2, 2, 1]) to string version (e.g. 2.2.1)
+Remove STR_VERSION constant",Gene Wood,2019-10-07T22:50:01Z,gene1wood,gene1wood,27,15,12
+107,agithub,534b46c4b9555c6f62657359732437b6775509f7,"Enable long_description in package
+
+Fix package URL",Gene Wood,2019-10-07T22:46:44Z,gene1wood,gene1wood,9,8,1
+108,agithub,6872af65802c0ff76da774a3711b1bc7f29453ba,PEP008 fixes,Gene Wood,2019-10-07T22:44:56Z,gene1wood,gene1wood,17,11,6
+109,agithub,e5808c39597ad08d218f8aadd97362e82d739a19,"Enable tox testing
+
+Remove mock module to avoid collision with builtin mock module name. Moved Client class inside into agithub_test",Gene Wood,2019-10-07T16:54:00Z,gene1wood,gene1wood,75,46,29
+110,agithub,8d5ef2d36675ef759e0d73fb48bccac0dd17e739,"Merge pull request #66 from huma23/issue62
+
+Removed lower() on reading rate-limit header",Gene Wood,2019-10-07T12:47:23Z,gene1wood,gene1wood,4,2,2
+111,agithub,fb83257b60c4dc38147b5438af6e99446ac38995,Removed lower() on reading rate-limit header,huma23,2019-09-19T10:16:35Z,harry239,harry239,4,2,2
+112,agithub,4f33627de8e8b8977b83ea009692a97f08c19ac4,"Add code of conduct
+
+Fixes #59",Gene Wood,2019-03-28T15:02:55Z,gene1wood,gene1wood,8,8,0
+113,agithub,3854ff7d6303362c5e35342fea8a07c4079de800,Update setup.py to v2.2.0,Gene Wood,2019-01-28T17:40:37Z,gene1wood,gene1wood,2,1,1
+114,agithub,9bc18ad36daf74894cb532be5c4065a72dc95532,"Merge pull request #54 from gene1wood/prep-2-2-release
+
+v2.2.0 Release",Gene Wood,2019-01-28T17:37:58Z,gene1wood,gene1wood,635,412,223
+115,agithub,4c80588c439fea2ed562088281291e2da42366e7,"v2.2.0 release
+
+Updated Changelog",Gene Wood,2019-01-16T17:59:38Z,gene1wood,gene1wood,8,8,0
+116,agithub,55e2b024cf0b06fd4f4fb7b64fd1b9f29a87701a,"Documentation improvements
+
+Separate documentation for generic agithub use and GitHub client specific use
+Change generic examples to functional code that runs
+Create new ""Specific REST APIs"" section
+Fix malformed markdown
+Add extensibility example
+Pull details about headers and body parameters out of semantics section into dedicated parameters section",Gene Wood,2019-01-16T17:52:01Z,gene1wood,gene1wood,287,247,40
+117,agithub,4de064a255117cb56b01c126f75b42975173e273,"GitHub ratelimit bugfixes and new sleep option
+
+Bugfix failed detecting http status 403
+Bugfix detecting X-RateLimit-Remaining and X-RateLimit-Reset (due to being lowercase)
+Add sleep_on_ratelimit option to enable the user disable sleeping when they run out of GitHub ratelimit
+Add sleep_until_more_ratelimit method to sleep until GitHub will accept more requests
+Add logging to GitHub client
+Change get_additional_pages to use passed in method, bodyData and headers instead of assuming method get
+Add a check for when agithub is going through paginated pages but runs out of ratelimit in the process and isn't allowed to sleep",Gene Wood,2019-01-16T17:44:28Z,gene1wood,gene1wood,62,48,14
+118,agithub,5d88b8c26a2955dd24dc07f69f03bb1ead9135c0,Clean up docstrings,Gene Wood,2019-01-16T17:37:37Z,gene1wood,gene1wood,19,10,9
+119,agithub,9b211f4eafc843f24ba32a638eb25666a3ab5e0f,Remove explicit passing of paginate as it's contained in kwargs,Gene Wood,2019-01-16T17:36:47Z,gene1wood,gene1wood,4,2,2
+120,agithub,abea9b3de2bd050bf5db83467d5e874e56859d0f,Remove duplicate line in gitignore,Gene Wood,2019-01-16T17:35:22Z,gene1wood,gene1wood,1,0,1
+121,agithub,d64bd6b6c18f2e44153bc5a24e6302b9af812f36,"Cleanup README
+
+Change to relative links
+PEP008 example python
+Remove non breaking spaces
+Fix nested lists
+Update current repo URL",Gene Wood,2019-01-07T22:03:40Z,gene1wood,gene1wood,69,30,39
+122,agithub,96576aa2f10c52da66b77f92abd3f01359a1e8ef,"Remove call for a new maintainer now that gene1wood and mozilla have stepped in
+
+Reverts b47661df9e62224a69216a2f11dbe574990349d2",Gene Wood,2019-01-03T21:18:09Z,gene1wood,gene1wood,2,0,2
+123,agithub,3e312808413a5986b2e39a297ae3c32daead9e3b,"Update Changelog to the Keepachangelog format
+
+Renamed file
+Removed upcoming todo list from changelog (see #52 for what to do with that content)",Gene Wood,2019-01-03T20:56:09Z,gene1wood,gene1wood,195,73,122
+124,agithub,bc0f47210ef08e39e4976e787b038ff752bfe0bd,"Merge pull request #49 from gene1wood/pagination
+
+Add support for GitHub pagination and ratelimiting",Gene Wood,2019-01-03T20:36:17Z,gene1wood,gene1wood,95,91,4
+125,agithub,3dc6dd4fee75e9331668e4fd2f42d4961a54e6fb,"Add support for GitHub pagination and ratelimiting
+
+Create a new GitHubClient class which extends the Client class by modifying
+the `request` method and creating four new methods
+* Establish a new `paginate` parameter to the constructor
+* Modify the `request` method to
+  * check if there aren't any allowed requests remaining due to ratelimiting
+    and if so wait the designated amount of time before making the request.
+  * if the `paginate` parameter is true, look in the payload of the response
+    page for a [link header](https://tools.ietf.org/html/rfc5988) and if found
+    extend the fetched data by calling the `get_additional_pages` method
+* Create the `no_ratelimit_remaining` method to check if there are no
+  remaining requests allowed
+* Create the `get_additional_pages` method which calls the
+  `get_next_link_url` method to determine if there are additional pages. If
+  so, fetch the next page and recursively continue fetching pages until the
+  last page is fetched
+* Create the `get_next_link_url` method which parses the link header and
+  either returns the next page if there is one or an empty string if not
+* Create the `ratelimit_seconds_remaining` method which returns the number
+  of seconds remaining until the ratelimit is cleared",Gene Wood,2018-06-08T22:10:55Z,gene1wood,gene1wood,95,91,4
+126,agithub,dc50e1c7062641dbe071146165205808744c482b,"Merge pull request #47 from cmarqu/patch-1
+
+Small typofixes.",Gene Wood,2018-05-18T17:12:12Z,gene1wood,gene1wood,6,3,3
+127,agithub,6e65bace266d9c131e0b014d5899b7201be3cd1b,Small typofixes.,Colin Marquardt,2018-05-18T16:56:14Z,cmarqu,cmarqu,6,3,3
+128,agithub,2b7951d2a00633fca42534b77617d936d98eaa98,"Merge pull request #46 from gene1wood/revert-some-autoformatting
+
+Revert a few auto formatted comments and code structures",Gene Wood,2018-04-14T06:54:17Z,gene1wood,gene1wood,30,10,20
+129,agithub,5e5b81a89cceb840e970387b6dd6bcf569490484,"Revert a few auto formatted comments and code structures
+
+Some of code changes in #38 were done by software and it broke a few URLs in docstrings
+as well as reformatting a columnar printout.
+This reverts those back",Gene Wood,2018-04-14T06:39:23Z,gene1wood,gene1wood,30,10,20
+130,agithub,d830de7d705a6473cd2bab277803efdad2805b59,Update setup.cfg to match PyPI package v2.1,Gene Wood,2018-04-14T06:10:46Z,gene1wood,gene1wood,6,4,2
+131,agithub,82cbfb851f31fa3af54b98b3ff179c0751bce0ef,"Merge pull request #38 from jaredhobbs/master
+
+Synchronize repo with PyPI package v2.1",Gene Wood,2018-04-14T06:07:06Z,gene1wood,gene1wood,454,254,200
+132,agithub,d78b731394b09fd5b6c8edb8bd5c5855a94ac6db,remove merge conflict,Jared Hobbs,2018-03-07T07:10:54Z,jaredhobbs,jaredhobbs,3,0,3
+133,agithub,8c048fa6b4843c0a5c04477c49b2a8c203acbdfe,Merge branch 'master' of https://github.com/mozilla/agithub,Jared Hobbs,2018-03-07T07:10:10Z,jaredhobbs,jaredhobbs,90,73,17
+134,agithub,dbf7014e2504333c58a39153aa11bbbdd080f6ac,Update changelog with 2.1 release,Gene Wood,2018-03-07T04:23:58Z,gene1wood,gene1wood,23,12,11
+135,agithub,d01ee12f2ae14ee7955ff6a3c517b5670a4ee609,"Merge pull request #36 from gene1wood/fix-doc-typo
+
+Fix mistake in token example and broken links in README",Gene Wood,2018-03-06T22:38:30Z,gene1wood,gene1wood,8,4,4
+136,agithub,d2bd56efd4cf7f9441b120205f7fb53025a48e87,Fix broken links,Gene Wood,2018-01-13T05:07:49Z,gene1wood,gene1wood,6,3,3
+137,agithub,a26cf43a41dbfc974cff97321d93112ea847ecee,Fix mistake in token example in README,Gene Wood,2018-01-12T17:49:03Z,gene1wood,gene1wood,2,1,1
+138,agithub,b47661df9e62224a69216a2f11dbe574990349d2,"Announce need for new maintainer
+
+Point readers to #35, announcing my resignation as maintainer",Jonathan Paugh,2017-11-16T17:58:06Z,jpaugh,jpaugh,2,2,0
+139,agithub,68ac1ca401fa869a9a1137feb595d1be236948ea,"Merge pull request #28 from zeph/master
+
+typo & sample",Jonathan Paugh,2017-06-09T18:07:56Z,jpaugh,jpaugh,6,5,1
+140,agithub,f96dd1e875e5611d0c75748b247909fec6b16924,typo & sample,Guido Serra,2017-06-08T22:26:00Z,gserra-olx,gserra-olx,6,5,1
+141,agithub,069e990d406226bd02650357ebaf8dc54b450ec2,"Merge pull request #26 from topic2k/appveyor_client
+
+Add client for AppVeyor REST API",Jonathan Paugh,2017-02-17T18:20:20Z,jpaugh,jpaugh,49,49,0
+142,agithub,7feae962fd4b22b9a2db1ab53b6787ae61df0cc0,Correct spelling failure,topic2k,2017-02-13T19:16:10Z,topic2k,topic2k,2,1,1
+143,agithub,eddc3c70d94cf83fe2c72e535b5bf6af1f4685db,"Add client for AppVeyor REST API
+https://www.appveyor.com/docs/api/",topic2k,2017-02-13T18:56:19Z,topic2k,topic2k,49,49,0
+144,agithub,46e87975b107daf688b657b078b1670de289ed09,Update copyright statement in license,Jonathan Paugh,2016-09-17T15:39:17Z,jpaugh,jpaugh,2,1,1
+145,agithub,f970a726afd4a6bccd39e70a1eaf2b9edb05307f,comment out setup.cfg egg_info variables,Jared Hobbs,2016-06-27T15:18:13Z,jaredhobbs,jaredhobbs,4,2,2
+146,agithub,a089489acdf967130c4b538993e42f6ef1bb7447,Merge branch 'master' of https://github.com/jpaugh/agithub,Jared Hobbs,2016-06-27T15:14:49Z,jaredhobbs,jaredhobbs,722,477,245
+147,agithub,285837c353eefb12723de23117b952f126a6ce92,"Merge pull request #23 from topic2k/patch-2
+
+GitHub: Fix a syntax error",Jonathan Paugh,2016-05-20T15:01:47Z,jpaugh,jpaugh,2,1,1
+148,agithub,6a494fd7315511234b5ad4852033babf676bcc34,Fix a syntax error,topic2k,2016-05-18T17:17:37Z,topic2k,topic2k,2,1,1
+149,agithub,5545b25bb94df60c8fc6395000c90ad689e4e832,"Merge pull request #22 from topic2k/patch-1
+
+GitHub: Don't include empty authorization header when unauthenticated",Jonathan Paugh,2016-04-23T11:39:11Z,jpaugh,jpaugh,8,5,3
+150,agithub,a8f7d74037801a98cd0cfd18f7b2f4512c83513d,"Unauthenticated mode for GitHub
+
+If GitHub() is called with no username/password-pair and no token, don't add authorization=None to headers.",topic2k,2016-04-22T18:49:17Z,topic2k,topic2k,8,5,3
+151,agithub,81e1e576ca6d539fec97f413727db1c8dc5b31ec,"Merge pull request #21 from jwelch92/master
+
+Fix for error with funMangledMediaType and RequestBody ignoring mtype from headers",Jonathan Paugh,2016-04-03T21:08:18Z,jpaugh,jpaugh,5,2,3
+152,agithub,2af6f0419d37568515e5a82f6c408f900930c1c4,"Fix for error with funMangledMediaType
+
+- Changed RequestBody.process() to use Body.mangled_mtype() instead of self.funMangledMediaType
+- Changed RequestBody init call to parseContentType to use dict.get() instead of getattr to avoid passing None regardless of headers.",Jared Welch,2016-03-25T00:18:37Z,Jared Welch,Jared Welch,5,2,3
+153,agithub,2d88996abdad5f458b1e4b5fa061d6a42abf7991,"bug ConnectionProperties.constructUrl: Remove extra ""/""
+
+Some APIs cannot tolerate an extra path separator",Jonathan Paugh,2016-03-11T20:51:55Z,Jonathan Paugh,Jonathan Paugh,2,1,1
+154,agithub,791c253da4e0ab3f3b6333ac52347d55ce5d1ee3,"Bug: Remove print debugging lines
+
+Whoops!",Jonathan Paugh,2016-03-11T20:51:34Z,Jonathan Paugh,Jonathan Paugh,2,0,2
+155,agithub,3c2b99c7bba97ed7d2cd608f970854bf3c626033,"bug agithub.base: connection_properties -> prop
+
+This must have been a historical name; probably copied over from the
+outdated next branch",Jonathan Paugh,2016-03-11T20:19:44Z,Jonathan Paugh,Jonathan Paugh,6,4,2
+156,agithub,6706c3f84c794330f4b9c653f0f6ea01e5ac8474,"Merge branch 'enterprise'
+
+* enterprise:
+  Allow easy customization of GitHub api root",Jonathan Paugh,2016-03-09T20:31:22Z,Jonathan Paugh,Jonathan Paugh,2,1,1
+157,agithub,8fd61ff40cde1156082f2e7e385733a547175817,Add Client for Maven Central (search),Jonathan Paugh,2016-03-09T20:24:50Z,Jonathan Paugh,Jonathan Paugh,16,16,0
+158,agithub,bf035a3013e3b42b95572fbea70eaa8e5e517601,bug Client.request: Do not delete content-type header if it does not exist,Jonathan Paugh,2016-03-09T20:22:47Z,Jonathan Paugh,Jonathan Paugh,3,2,1
+159,agithub,13be3e0b12d7f611f4a1b51f340eb465a595262b,Update ChangeLog,Jonathan Paugh,2016-01-17T15:36:14Z,jpaugh,jpaugh,10,0,10
+160,agithub,ede899600af0fe3bc859fe515d3a8882e9131e69,"Start 2.1 development
+
+Also, update the ChangeLog",Jonathan Paugh,2016-01-17T15:32:05Z,jpaugh,jpaugh,51,32,19
+161,agithub,a84c16fc32d40a10743ed51653c7e51b58067f19,"Set default request content-type to 'application/json'
+
+Before the RequestBody was introduced, all request bodies were assumed
+to be JSON data. We'd like to keep this behavior because
+
+    * JSON is expected to be a common value for this field
+    * It's one less thing existing users will need to upgrade",Jonathan Paugh,2016-01-17T15:22:49Z,jpaugh,jpaugh,9,7,2
+162,agithub,ea6191a1c3a3dce17e9c435fe6800c34cf843b3c,"New class RequestBody: Content-Type encoding of the request body
+
+Client:
+    - The HTTP methods which accept a body now pass it unchanged to
+      Client.request
+    - Client.request now constructs a RequestBody, and uses it to
+      process the user-supplied body
+
+RequestBody
+    Handles charset encoding and media-type serialization; it is
+    structured very similarly to ResponseBody",Jonathan Paugh,2016-01-17T15:12:09Z,jpaugh,jpaugh,64,56,8
+163,agithub,d6dea8eec3ede8523c601bc4b0f81abb4a585a1b,Update README,Jonathan Paugh,2016-01-17T02:50:09Z,jpaugh,jpaugh,17,9,8
+164,agithub,7c6b4e5a41d1667bca309fea64af0a7671805a63,Update the documentation,Jonathan Paugh,2016-01-17T02:39:12Z,jpaugh,jpaugh,160,89,71
+165,agithub,56bb6679dbe938c83fd19cfe4a8deda84060f010,Add out-of-date notice to ChangeLog,Jonathan Paugh,2016-01-17T01:41:49Z,jpaugh,jpaugh,8,8,0
+166,agithub,1133c7ee5973c5369144e0f9d3a9cb9306d20a3a,bug: Python3-compatible imports,Jonathan Paugh,2016-01-17T01:39:33Z,jpaugh,jpaugh,12,6,6
+167,agithub,ea5ddf00c0b82f83877e57675b4ddc5a0de2c021,2.0: Major version bump,Jonathan Paugh,2016-01-17T01:27:33Z,jpaugh,jpaugh,4,2,2
+168,agithub,7c523d4ebd428898215dc59c478862c4df35226e,"Merge branch 'new/digital-ocean'
+
+* new/digital-ocean:
+  Add DigitalOcean
+  New feature: specify an unconditional prefix in the ConnectionProperties
+  Refactor: Move filterEmptyHeaders to ConnectionProperties
+  Refactor and doc update: IncompleteRequest
+  Move authentication to the site-specific code
+  bug ResponseBody: Set mediatype when No content-type is given",Jonathan Paugh,2016-01-17T01:26:28Z,jpaugh,jpaugh,116,78,38
+169,agithub,6e5074cf969f8667e633ab2fa3373e83402e7610,Add DigitalOcean,Jonathan Paugh,2016-01-17T00:23:52Z,jpaugh,jpaugh,23,23,0
+170,agithub,79fd121d3e4c0b70b5f441dce1e100683ab93dda,"New feature: specify an unconditional prefix in the ConnectionProperties
+
+This useful, say, to indicate that you wish to use a specific version of
+the upstream API, such as with DigitalOcean",Jonathan Paugh,2016-01-17T01:15:03Z,jpaugh,jpaugh,8,7,1
+171,agithub,dcefaa0a84cba012d55e94fd712159a98f2fc193,Refactor: Move filterEmptyHeaders to ConnectionProperties,Jonathan Paugh,2016-01-17T01:14:39Z,jpaugh,jpaugh,32,18,14
+172,agithub,3a6653b98586c8c131bba9f3aa42941a9cf8cce5,Refactor and doc update: IncompleteRequest,Jonathan Paugh,2016-01-17T01:14:05Z,jpaugh,jpaugh,11,6,5
+173,agithub,afe5ed4ef6563951eb472a496f411d9061198fa5,Move authentication to the site-specific code,Jonathan Paugh,2016-01-17T00:23:21Z,jpaugh,jpaugh,58,32,26
+174,agithub,7c3335172488b156d6a0c747a9173b02f57e6f22,bug ResponseBody: Set mediatype when No content-type is given,Jonathan Paugh,2016-01-17T00:34:04Z,jpaugh,jpaugh,2,1,1
+175,agithub,8a444206679c74063c2871dc0f667947c48e0f36,"Split ResponseBody into a superclass (Body) and subclass (ResponseBody)
+
+Body contains those parts of a response body which are conceptually or
+algorithmically shared with a request body, such as content-type
+decoding. This is in preparation for a new RequestBody class.",Jonathan Paugh,2016-01-14T04:29:27Z,jpaugh,jpaugh,33,17,16
+176,agithub,7c02d0c0cd1e8e6d5793a14579fc43f54cae2c7b,"ResponseBody: Proper parsing of Content-Type header
+
+We've been ignoring the standard (RFC 2068) for a while now, instead
+expecting every media-type to include a charset parameter (and only
+that). Now, we corectly handle multiple, varied media-type parameters,
+giving our media-type handlers that much more flexibility.
+
+getContentType removed, superseded by parseContentType
+
+new method parseContentType
+    - Stores self.mediatype
+    - Stores self.ctypeParameters, a dict of the parameters
+    - Sets charset correctly, even if it was implicit, so the handler's
+      don't have to implement any ""default logic"" for it",Jonathan Paugh,2016-01-14T02:36:40Z,jpaugh,jpaugh,56,38,18
+177,agithub,731b6129260b2acb49e18da5ce550c0c1e68873c,Rename internal class Content -> ResponseBody,Jonathan Paugh,2016-01-14T02:13:54Z,jpaugh,jpaugh,14,7,7
+178,agithub,cbb028814321aa1757a6164b3a0fc47ec5aa176d,"Fix RequestBody RFC Compliance: unknown media-type = application/octet-stream
+
+As per RFC-2068, Section 7.2.1, line 2364, we use the official
+'application/octet-stream' media-type for unknown entity-bodies, instead
+of the ad-hoc 'x-application/unknown' media-type.",Jonathan Paugh,2016-01-14T02:09:27Z,jpaugh,jpaugh,10,6,4
+179,agithub,2689782d148fe60489ab71a83c01baddceea97ad,Update copyright notices,Jonathan Paugh,2016-01-14T02:03:29Z,jpaugh,jpaugh,14,14,0
+180,agithub,f835846b73de63c439efce59296b6cab3a5518c0,"Get the capitalization of GitHub correct
+
+Also, fix up some module imports in the test code. It's not all right,
+but it's a start",Jonathan Paugh,2016-01-14T02:01:24Z,jpaugh,jpaugh,65,31,34
+181,agithub,3965f37c8acd44202050c64629416e8400a095cb,Restructure project,Jonathan Paugh,2016-01-14T00:14:58Z,jpaugh,jpaugh,753,384,369
+182,agithub,cad1926c62f25d7ba412e5d795c3f4efbae7aaf3,Fixed version number (back) to 1.3,Jonathan Paugh,2016-01-13T02:18:29Z,jpaugh,jpaugh,2,1,1
+183,agithub,12163f789a155fbb03cbaf058276fa1a2fbf7559,Ignore agithub.egg-info,Jonathan Paugh,2016-01-13T01:47:55Z,jpaugh,jpaugh,1,1,0
+184,agithub,68815863c0ccbfc5cf4da37ded9d6e4389763033,Make a real python package,Jonathan Paugh,2016-01-13T01:44:14Z,jpaugh,jpaugh,53,40,13
+185,agithub,f6fdf4ca061a83dc914cc662ef55635d57da5131,"Merge pull request #19 from marcoslhc/master
+
+Create setup.py for easy pip install",Jonathan Paugh,2016-01-13T01:12:24Z,jpaugh,jpaugh,16,16,0
+186,agithub,4d48ca26f5a235fddd8fcf233ac73c843e093271,add manifest and dist to gitignore,Jared Hobbs,2016-01-12T17:51:50Z,jaredhobbs,jaredhobbs,2,2,0
+187,agithub,de8084777e74c205013471da4a40793c6f7fc395,add more info for the cheese shop,Jared Hobbs,2016-01-12T17:34:15Z,jaredhobbs,jaredhobbs,15,14,1
+188,agithub,8373a472e789e15b10c75d38dacd79b094bf3e4e,cleanup/flake8,Jared Hobbs,2016-01-12T17:18:18Z,jaredhobbs,jaredhobbs,347,192,155
+189,agithub,de6107ba7e9a94ef167a6fd7103e8783a591b860,Create setup.py for easy pip install,Marcos Hernández,2016-01-12T14:55:08Z,marcoslhc,marcoslhc,16,16,0
+190,agithub,656dc608bea00c9cdaaef9354f8ddac956b2afc9,add setup.py,Jared Hobbs,2016-01-11T17:48:06Z,jaredhobbs,jaredhobbs,7,7,0
+191,agithub,b1c1985f0468aa421ab8e059333651b39c6f7f5e,Allow easy customization of GitHub api root,Ben Straub,2015-10-10T22:39:30Z,ben,ben,2,1,1
+192,agithub,393da87c7b1b1840f9adba0df8817f16988ef130,Set up python package for the source code,Jonathan Paugh,2015-08-29T14:59:39Z,jpaugh,jpaugh,43,43,0
+193,agithub,87725532e6a5c70c4cc22627ae29ddcf36491568,Release v1.3,Jonathan Paugh,2015-09-01T01:31:20Z,jpaugh,jpaugh,38,19,19
+194,agithub,b2f2e0f32c5799dd7c719d6efc31c866610e7a6b,"Merge pull request #16 from toolforger/patch-1
+
+Rename RequestBuilder to IncompleteRequest
+
+This removes an Easter-egg, but it is too helpful a change to pass up.",Jonathan Paugh,2015-05-13T12:54:50Z,jpaugh,jpaugh,36,17,19
+195,agithub,e4c02cd3a8703d5273111669f4e02ce6d19c28d8,Update agithub_test.py,Joachim Durchholz,2015-05-12T14:05:19Z,toolforger,toolforger,16,8,8
+196,agithub,4041e444bbb339dad515d7c0aa52c03ca58ebca7,Update README.md,Joachim Durchholz,2015-05-12T14:04:06Z,toolforger,toolforger,2,1,1
+197,agithub,9f44e8f862161dd5f5b6f65ee812e173291b5132,"Merge pull request #69 from gene1wood/fix-version-errors
+
+Revert move to SCM driven version number derived from VCS and back to hard coded version",Gene Wood,2019-11-12T17:15:47Z,gene1wood,gene1wood,36,20,16
+198,agithub,2ba9cb3ca5afecdd3de9b4a947afcee88f6fd5dc,"Revert move to SCM driven version number derived from VCS and back to hard coded version
+
+Change VERSION constant from string version (e.g. 2.2.1) back to semver list (e.g. [2, 2, 1])
+Replace STR_VERSION constant
+This reverts b189a1ecbd44022bb4348d823c3ae8a83b023f57
+Also move to version 2.2.2",Gene Wood,2019-11-12T16:40:37Z,gene1wood,gene1wood,36,20,16
+199,agithub,86ef5038450f4d1afa9f226b5ee05a4c8e6685f4,"Merge pull request #68 from gene1wood/release-2.2.1
+
+Release 2.2.1",Gene Wood,2019-10-08T00:00:39Z,gene1wood,gene1wood,175,123,52
+200,agithub,31b0d6b915e3b3fb3e552f8ff24a384e2790e914,"Release 2.2.1
+
+Update CHANGELOG",Gene Wood,2019-10-07T23:53:07Z,gene1wood,gene1wood,21,20,1
+201,agithub,043109445152f39a8ca7bb6ba20060c5f3cca6cd,Enable travis CI for unit tests,Gene Wood,2019-10-07T23:46:09Z,gene1wood,gene1wood,7,7,0
+202,agithub,2fcbe59ddb62726bd60aced866c1781e1ee075dc,Add .gitattributes to prevent CHANGELOG conflicts,Gene Wood,2019-10-07T23:45:57Z,gene1wood,gene1wood,2,2,0
+203,agithub,8cb25b3750f5e07dd353785c425ce90b60b9c144,Update gitignore to be explicit about the .* files to ignore,Gene Wood,2019-10-07T23:45:43Z,gene1wood,gene1wood,2,1,1
+204,agithub,9bfcbd8aa7bff9e72ea2c3cef9c3d9b5c3691534,"Add GitHub unit test
+
+This doesn't yet mock the response from GitHub, it makes a live call
+This call could be ratelimited or fail due to transient network issues
+Once we switch to using requests we'll want to mock out this GitHub
+response",Gene Wood,2019-10-07T23:42:25Z,gene1wood,gene1wood,12,12,0
+205,agithub,f745fa244f2b77f8fe524a0507407f5de7aee80e,Fix README link,Gene Wood,2019-10-07T23:33:22Z,gene1wood,gene1wood,3,1,2
+206,agithub,b189a1ecbd44022bb4348d823c3ae8a83b023f57,"Move to SCM driven version number derived from VCS instead of hard coded version
+
+Change VERSION constant from semver list (e.g. [2, 2, 1]) to string version (e.g. 2.2.1)
+Remove STR_VERSION constant",Gene Wood,2019-10-07T22:50:01Z,gene1wood,gene1wood,27,15,12
+207,agithub,534b46c4b9555c6f62657359732437b6775509f7,"Enable long_description in package
+
+Fix package URL",Gene Wood,2019-10-07T22:46:44Z,gene1wood,gene1wood,9,8,1
+208,agithub,6872af65802c0ff76da774a3711b1bc7f29453ba,PEP008 fixes,Gene Wood,2019-10-07T22:44:56Z,gene1wood,gene1wood,17,11,6
+209,agithub,e5808c39597ad08d218f8aadd97362e82d739a19,"Enable tox testing
+
+Remove mock module to avoid collision with builtin mock module name. Moved Client class inside into agithub_test",Gene Wood,2019-10-07T16:54:00Z,gene1wood,gene1wood,75,46,29
+210,agithub,8d5ef2d36675ef759e0d73fb48bccac0dd17e739,"Merge pull request #66 from huma23/issue62
+
+Removed lower() on reading rate-limit header",Gene Wood,2019-10-07T12:47:23Z,gene1wood,gene1wood,4,2,2
+211,agithub,fb83257b60c4dc38147b5438af6e99446ac38995,Removed lower() on reading rate-limit header,huma23,2019-09-19T10:16:35Z,harry239,harry239,4,2,2
+212,agithub,4f33627de8e8b8977b83ea009692a97f08c19ac4,"Add code of conduct
+
+Fixes #59",Gene Wood,2019-03-28T15:02:55Z,gene1wood,gene1wood,8,8,0
+213,agithub,3854ff7d6303362c5e35342fea8a07c4079de800,Update setup.py to v2.2.0,Gene Wood,2019-01-28T17:40:37Z,gene1wood,gene1wood,2,1,1
+214,agithub,9bc18ad36daf74894cb532be5c4065a72dc95532,"Merge pull request #54 from gene1wood/prep-2-2-release
+
+v2.2.0 Release",Gene Wood,2019-01-28T17:37:58Z,gene1wood,gene1wood,635,412,223
+215,agithub,4c80588c439fea2ed562088281291e2da42366e7,"v2.2.0 release
+
+Updated Changelog",Gene Wood,2019-01-16T17:59:38Z,gene1wood,gene1wood,8,8,0
+216,agithub,55e2b024cf0b06fd4f4fb7b64fd1b9f29a87701a,"Documentation improvements
+
+Separate documentation for generic agithub use and GitHub client specific use
+Change generic examples to functional code that runs
+Create new ""Specific REST APIs"" section
+Fix malformed markdown
+Add extensibility example
+Pull details about headers and body parameters out of semantics section into dedicated parameters section",Gene Wood,2019-01-16T17:52:01Z,gene1wood,gene1wood,287,247,40
+217,agithub,4de064a255117cb56b01c126f75b42975173e273,"GitHub ratelimit bugfixes and new sleep option
+
+Bugfix failed detecting http status 403
+Bugfix detecting X-RateLimit-Remaining and X-RateLimit-Reset (due to being lowercase)
+Add sleep_on_ratelimit option to enable the user disable sleeping when they run out of GitHub ratelimit
+Add sleep_until_more_ratelimit method to sleep until GitHub will accept more requests
+Add logging to GitHub client
+Change get_additional_pages to use passed in method, bodyData and headers instead of assuming method get
+Add a check for when agithub is going through paginated pages but runs out of ratelimit in the process and isn't allowed to sleep",Gene Wood,2019-01-16T17:44:28Z,gene1wood,gene1wood,62,48,14
+218,agithub,5d88b8c26a2955dd24dc07f69f03bb1ead9135c0,Clean up docstrings,Gene Wood,2019-01-16T17:37:37Z,gene1wood,gene1wood,19,10,9
+219,agithub,9b211f4eafc843f24ba32a638eb25666a3ab5e0f,Remove explicit passing of paginate as it's contained in kwargs,Gene Wood,2019-01-16T17:36:47Z,gene1wood,gene1wood,4,2,2
+220,agithub,abea9b3de2bd050bf5db83467d5e874e56859d0f,Remove duplicate line in gitignore,Gene Wood,2019-01-16T17:35:22Z,gene1wood,gene1wood,1,0,1
+221,agithub,d64bd6b6c18f2e44153bc5a24e6302b9af812f36,"Cleanup README
+
+Change to relative links
+PEP008 example python
+Remove non breaking spaces
+Fix nested lists
+Update current repo URL",Gene Wood,2019-01-07T22:03:40Z,gene1wood,gene1wood,69,30,39
+222,agithub,96576aa2f10c52da66b77f92abd3f01359a1e8ef,"Remove call for a new maintainer now that gene1wood and mozilla have stepped in
+
+Reverts b47661df9e62224a69216a2f11dbe574990349d2",Gene Wood,2019-01-03T21:18:09Z,gene1wood,gene1wood,2,0,2
+223,agithub,3e312808413a5986b2e39a297ae3c32daead9e3b,"Update Changelog to the Keepachangelog format
+
+Renamed file
+Removed upcoming todo list from changelog (see #52 for what to do with that content)",Gene Wood,2019-01-03T20:56:09Z,gene1wood,gene1wood,195,73,122
+224,agithub,bc0f47210ef08e39e4976e787b038ff752bfe0bd,"Merge pull request #49 from gene1wood/pagination
+
+Add support for GitHub pagination and ratelimiting",Gene Wood,2019-01-03T20:36:17Z,gene1wood,gene1wood,95,91,4
+225,agithub,3dc6dd4fee75e9331668e4fd2f42d4961a54e6fb,"Add support for GitHub pagination and ratelimiting
+
+Create a new GitHubClient class which extends the Client class by modifying
+the `request` method and creating four new methods
+* Establish a new `paginate` parameter to the constructor
+* Modify the `request` method to
+  * check if there aren't any allowed requests remaining due to ratelimiting
+    and if so wait the designated amount of time before making the request.
+  * if the `paginate` parameter is true, look in the payload of the response
+    page for a [link header](https://tools.ietf.org/html/rfc5988) and if found
+    extend the fetched data by calling the `get_additional_pages` method
+* Create the `no_ratelimit_remaining` method to check if there are no
+  remaining requests allowed
+* Create the `get_additional_pages` method which calls the
+  `get_next_link_url` method to determine if there are additional pages. If
+  so, fetch the next page and recursively continue fetching pages until the
+  last page is fetched
+* Create the `get_next_link_url` method which parses the link header and
+  either returns the next page if there is one or an empty string if not
+* Create the `ratelimit_seconds_remaining` method which returns the number
+  of seconds remaining until the ratelimit is cleared",Gene Wood,2018-06-08T22:10:55Z,gene1wood,gene1wood,95,91,4
+226,agithub,dc50e1c7062641dbe071146165205808744c482b,"Merge pull request #47 from cmarqu/patch-1
+
+Small typofixes.",Gene Wood,2018-05-18T17:12:12Z,gene1wood,gene1wood,6,3,3
+227,agithub,6e65bace266d9c131e0b014d5899b7201be3cd1b,Small typofixes.,Colin Marquardt,2018-05-18T16:56:14Z,cmarqu,cmarqu,6,3,3
+228,agithub,2b7951d2a00633fca42534b77617d936d98eaa98,"Merge pull request #46 from gene1wood/revert-some-autoformatting
+
+Revert a few auto formatted comments and code structures",Gene Wood,2018-04-14T06:54:17Z,gene1wood,gene1wood,30,10,20
+229,agithub,5e5b81a89cceb840e970387b6dd6bcf569490484,"Revert a few auto formatted comments and code structures
+
+Some of code changes in #38 were done by software and it broke a few URLs in docstrings
+as well as reformatting a columnar printout.
+This reverts those back",Gene Wood,2018-04-14T06:39:23Z,gene1wood,gene1wood,30,10,20
+230,agithub,d830de7d705a6473cd2bab277803efdad2805b59,Update setup.cfg to match PyPI package v2.1,Gene Wood,2018-04-14T06:10:46Z,gene1wood,gene1wood,6,4,2
+231,agithub,82cbfb851f31fa3af54b98b3ff179c0751bce0ef,"Merge pull request #38 from jaredhobbs/master
+
+Synchronize repo with PyPI package v2.1",Gene Wood,2018-04-14T06:07:06Z,gene1wood,gene1wood,454,254,200
+232,agithub,d78b731394b09fd5b6c8edb8bd5c5855a94ac6db,remove merge conflict,Jared Hobbs,2018-03-07T07:10:54Z,jaredhobbs,jaredhobbs,3,0,3
+233,agithub,8c048fa6b4843c0a5c04477c49b2a8c203acbdfe,Merge branch 'master' of https://github.com/mozilla/agithub,Jared Hobbs,2018-03-07T07:10:10Z,jaredhobbs,jaredhobbs,90,73,17
+234,agithub,dbf7014e2504333c58a39153aa11bbbdd080f6ac,Update changelog with 2.1 release,Gene Wood,2018-03-07T04:23:58Z,gene1wood,gene1wood,23,12,11
+235,agithub,d01ee12f2ae14ee7955ff6a3c517b5670a4ee609,"Merge pull request #36 from gene1wood/fix-doc-typo
+
+Fix mistake in token example and broken links in README",Gene Wood,2018-03-06T22:38:30Z,gene1wood,gene1wood,8,4,4
+236,agithub,d2bd56efd4cf7f9441b120205f7fb53025a48e87,Fix broken links,Gene Wood,2018-01-13T05:07:49Z,gene1wood,gene1wood,6,3,3
+237,agithub,a26cf43a41dbfc974cff97321d93112ea847ecee,Fix mistake in token example in README,Gene Wood,2018-01-12T17:49:03Z,gene1wood,gene1wood,2,1,1
+238,agithub,b47661df9e62224a69216a2f11dbe574990349d2,"Announce need for new maintainer
+
+Point readers to #35, announcing my resignation as maintainer",Jonathan Paugh,2017-11-16T17:58:06Z,jpaugh,jpaugh,2,2,0
+239,agithub,68ac1ca401fa869a9a1137feb595d1be236948ea,"Merge pull request #28 from zeph/master
+
+typo & sample",Jonathan Paugh,2017-06-09T18:07:56Z,jpaugh,jpaugh,6,5,1
+240,agithub,f96dd1e875e5611d0c75748b247909fec6b16924,typo & sample,Guido Serra,2017-06-08T22:26:00Z,gserra-olx,gserra-olx,6,5,1
+241,agithub,069e990d406226bd02650357ebaf8dc54b450ec2,"Merge pull request #26 from topic2k/appveyor_client
+
+Add client for AppVeyor REST API",Jonathan Paugh,2017-02-17T18:20:20Z,jpaugh,jpaugh,49,49,0
+242,agithub,7feae962fd4b22b9a2db1ab53b6787ae61df0cc0,Correct spelling failure,topic2k,2017-02-13T19:16:10Z,topic2k,topic2k,2,1,1
+243,agithub,eddc3c70d94cf83fe2c72e535b5bf6af1f4685db,"Add client for AppVeyor REST API
+https://www.appveyor.com/docs/api/",topic2k,2017-02-13T18:56:19Z,topic2k,topic2k,49,49,0
+244,agithub,46e87975b107daf688b657b078b1670de289ed09,Update copyright statement in license,Jonathan Paugh,2016-09-17T15:39:17Z,jpaugh,jpaugh,2,1,1
+245,agithub,f970a726afd4a6bccd39e70a1eaf2b9edb05307f,comment out setup.cfg egg_info variables,Jared Hobbs,2016-06-27T15:18:13Z,jaredhobbs,jaredhobbs,4,2,2
+246,agithub,a089489acdf967130c4b538993e42f6ef1bb7447,Merge branch 'master' of https://github.com/jpaugh/agithub,Jared Hobbs,2016-06-27T15:14:49Z,jaredhobbs,jaredhobbs,722,477,245
+247,agithub,285837c353eefb12723de23117b952f126a6ce92,"Merge pull request #23 from topic2k/patch-2
+
+GitHub: Fix a syntax error",Jonathan Paugh,2016-05-20T15:01:47Z,jpaugh,jpaugh,2,1,1
+248,agithub,6a494fd7315511234b5ad4852033babf676bcc34,Fix a syntax error,topic2k,2016-05-18T17:17:37Z,topic2k,topic2k,2,1,1
+249,agithub,5545b25bb94df60c8fc6395000c90ad689e4e832,"Merge pull request #22 from topic2k/patch-1
+
+GitHub: Don't include empty authorization header when unauthenticated",Jonathan Paugh,2016-04-23T11:39:11Z,jpaugh,jpaugh,8,5,3
+250,agithub,a8f7d74037801a98cd0cfd18f7b2f4512c83513d,"Unauthenticated mode for GitHub
+
+If GitHub() is called with no username/password-pair and no token, don't add authorization=None to headers.",topic2k,2016-04-22T18:49:17Z,topic2k,topic2k,8,5,3
+251,agithub,81e1e576ca6d539fec97f413727db1c8dc5b31ec,"Merge pull request #21 from jwelch92/master
+
+Fix for error with funMangledMediaType and RequestBody ignoring mtype from headers",Jonathan Paugh,2016-04-03T21:08:18Z,jpaugh,jpaugh,5,2,3
+252,agithub,2af6f0419d37568515e5a82f6c408f900930c1c4,"Fix for error with funMangledMediaType
+
+- Changed RequestBody.process() to use Body.mangled_mtype() instead of self.funMangledMediaType
+- Changed RequestBody init call to parseContentType to use dict.get() instead of getattr to avoid passing None regardless of headers.",Jared Welch,2016-03-25T00:18:37Z,Jared Welch,Jared Welch,5,2,3
+253,agithub,2d88996abdad5f458b1e4b5fa061d6a42abf7991,"bug ConnectionProperties.constructUrl: Remove extra ""/""
+
+Some APIs cannot tolerate an extra path separator",Jonathan Paugh,2016-03-11T20:51:55Z,Jonathan Paugh,Jonathan Paugh,2,1,1
+254,agithub,791c253da4e0ab3f3b6333ac52347d55ce5d1ee3,"Bug: Remove print debugging lines
+
+Whoops!",Jonathan Paugh,2016-03-11T20:51:34Z,Jonathan Paugh,Jonathan Paugh,2,0,2
+255,agithub,3c2b99c7bba97ed7d2cd608f970854bf3c626033,"bug agithub.base: connection_properties -> prop
+
+This must have been a historical name; probably copied over from the
+outdated next branch",Jonathan Paugh,2016-03-11T20:19:44Z,Jonathan Paugh,Jonathan Paugh,6,4,2
+256,agithub,6706c3f84c794330f4b9c653f0f6ea01e5ac8474,"Merge branch 'enterprise'
+
+* enterprise:
+  Allow easy customization of GitHub api root",Jonathan Paugh,2016-03-09T20:31:22Z,Jonathan Paugh,Jonathan Paugh,2,1,1
+257,agithub,8fd61ff40cde1156082f2e7e385733a547175817,Add Client for Maven Central (search),Jonathan Paugh,2016-03-09T20:24:50Z,Jonathan Paugh,Jonathan Paugh,16,16,0
+258,agithub,bf035a3013e3b42b95572fbea70eaa8e5e517601,bug Client.request: Do not delete content-type header if it does not exist,Jonathan Paugh,2016-03-09T20:22:47Z,Jonathan Paugh,Jonathan Paugh,3,2,1
+259,agithub,13be3e0b12d7f611f4a1b51f340eb465a595262b,Update ChangeLog,Jonathan Paugh,2016-01-17T15:36:14Z,jpaugh,jpaugh,10,0,10
+260,agithub,ede899600af0fe3bc859fe515d3a8882e9131e69,"Start 2.1 development
+
+Also, update the ChangeLog",Jonathan Paugh,2016-01-17T15:32:05Z,jpaugh,jpaugh,51,32,19
+261,agithub,a84c16fc32d40a10743ed51653c7e51b58067f19,"Set default request content-type to 'application/json'
+
+Before the RequestBody was introduced, all request bodies were assumed
+to be JSON data. We'd like to keep this behavior because
+
+    * JSON is expected to be a common value for this field
+    * It's one less thing existing users will need to upgrade",Jonathan Paugh,2016-01-17T15:22:49Z,jpaugh,jpaugh,9,7,2
+262,agithub,ea6191a1c3a3dce17e9c435fe6800c34cf843b3c,"New class RequestBody: Content-Type encoding of the request body
+
+Client:
+    - The HTTP methods which accept a body now pass it unchanged to
+      Client.request
+    - Client.request now constructs a RequestBody, and uses it to
+      process the user-supplied body
+
+RequestBody
+    Handles charset encoding and media-type serialization; it is
+    structured very similarly to ResponseBody",Jonathan Paugh,2016-01-17T15:12:09Z,jpaugh,jpaugh,64,56,8
+263,agithub,d6dea8eec3ede8523c601bc4b0f81abb4a585a1b,Update README,Jonathan Paugh,2016-01-17T02:50:09Z,jpaugh,jpaugh,17,9,8
+264,agithub,7c6b4e5a41d1667bca309fea64af0a7671805a63,Update the documentation,Jonathan Paugh,2016-01-17T02:39:12Z,jpaugh,jpaugh,160,89,71
+265,agithub,56bb6679dbe938c83fd19cfe4a8deda84060f010,Add out-of-date notice to ChangeLog,Jonathan Paugh,2016-01-17T01:41:49Z,jpaugh,jpaugh,8,8,0
+266,agithub,1133c7ee5973c5369144e0f9d3a9cb9306d20a3a,bug: Python3-compatible imports,Jonathan Paugh,2016-01-17T01:39:33Z,jpaugh,jpaugh,12,6,6
+267,agithub,ea5ddf00c0b82f83877e57675b4ddc5a0de2c021,2.0: Major version bump,Jonathan Paugh,2016-01-17T01:27:33Z,jpaugh,jpaugh,4,2,2
+268,agithub,7c523d4ebd428898215dc59c478862c4df35226e,"Merge branch 'new/digital-ocean'
+
+* new/digital-ocean:
+  Add DigitalOcean
+  New feature: specify an unconditional prefix in the ConnectionProperties
+  Refactor: Move filterEmptyHeaders to ConnectionProperties
+  Refactor and doc update: IncompleteRequest
+  Move authentication to the site-specific code
+  bug ResponseBody: Set mediatype when No content-type is given",Jonathan Paugh,2016-01-17T01:26:28Z,jpaugh,jpaugh,116,78,38
+269,agithub,6e5074cf969f8667e633ab2fa3373e83402e7610,Add DigitalOcean,Jonathan Paugh,2016-01-17T00:23:52Z,jpaugh,jpaugh,23,23,0
+270,agithub,79fd121d3e4c0b70b5f441dce1e100683ab93dda,"New feature: specify an unconditional prefix in the ConnectionProperties
+
+This useful, say, to indicate that you wish to use a specific version of
+the upstream API, such as with DigitalOcean",Jonathan Paugh,2016-01-17T01:15:03Z,jpaugh,jpaugh,8,7,1
+271,agithub,dcefaa0a84cba012d55e94fd712159a98f2fc193,Refactor: Move filterEmptyHeaders to ConnectionProperties,Jonathan Paugh,2016-01-17T01:14:39Z,jpaugh,jpaugh,32,18,14
+272,agithub,3a6653b98586c8c131bba9f3aa42941a9cf8cce5,Refactor and doc update: IncompleteRequest,Jonathan Paugh,2016-01-17T01:14:05Z,jpaugh,jpaugh,11,6,5
+273,agithub,afe5ed4ef6563951eb472a496f411d9061198fa5,Move authentication to the site-specific code,Jonathan Paugh,2016-01-17T00:23:21Z,jpaugh,jpaugh,58,32,26
+274,agithub,7c3335172488b156d6a0c747a9173b02f57e6f22,bug ResponseBody: Set mediatype when No content-type is given,Jonathan Paugh,2016-01-17T00:34:04Z,jpaugh,jpaugh,2,1,1
+275,agithub,8a444206679c74063c2871dc0f667947c48e0f36,"Split ResponseBody into a superclass (Body) and subclass (ResponseBody)
+
+Body contains those parts of a response body which are conceptually or
+algorithmically shared with a request body, such as content-type
+decoding. This is in preparation for a new RequestBody class.",Jonathan Paugh,2016-01-14T04:29:27Z,jpaugh,jpaugh,33,17,16
+276,agithub,7c02d0c0cd1e8e6d5793a14579fc43f54cae2c7b,"ResponseBody: Proper parsing of Content-Type header
+
+We've been ignoring the standard (RFC 2068) for a while now, instead
+expecting every media-type to include a charset parameter (and only
+that). Now, we corectly handle multiple, varied media-type parameters,
+giving our media-type handlers that much more flexibility.
+
+getContentType removed, superseded by parseContentType
+
+new method parseContentType
+    - Stores self.mediatype
+    - Stores self.ctypeParameters, a dict of the parameters
+    - Sets charset correctly, even if it was implicit, so the handler's
+      don't have to implement any ""default logic"" for it",Jonathan Paugh,2016-01-14T02:36:40Z,jpaugh,jpaugh,56,38,18
+277,agithub,731b6129260b2acb49e18da5ce550c0c1e68873c,Rename internal class Content -> ResponseBody,Jonathan Paugh,2016-01-14T02:13:54Z,jpaugh,jpaugh,14,7,7
+278,agithub,cbb028814321aa1757a6164b3a0fc47ec5aa176d,"Fix RequestBody RFC Compliance: unknown media-type = application/octet-stream
+
+As per RFC-2068, Section 7.2.1, line 2364, we use the official
+'application/octet-stream' media-type for unknown entity-bodies, instead
+of the ad-hoc 'x-application/unknown' media-type.",Jonathan Paugh,2016-01-14T02:09:27Z,jpaugh,jpaugh,10,6,4
+279,agithub,2689782d148fe60489ab71a83c01baddceea97ad,Update copyright notices,Jonathan Paugh,2016-01-14T02:03:29Z,jpaugh,jpaugh,14,14,0
+280,agithub,f835846b73de63c439efce59296b6cab3a5518c0,"Get the capitalization of GitHub correct
+
+Also, fix up some module imports in the test code. It's not all right,
+but it's a start",Jonathan Paugh,2016-01-14T02:01:24Z,jpaugh,jpaugh,65,31,34
+281,agithub,3965f37c8acd44202050c64629416e8400a095cb,Restructure project,Jonathan Paugh,2016-01-14T00:14:58Z,jpaugh,jpaugh,753,384,369
+282,agithub,cad1926c62f25d7ba412e5d795c3f4efbae7aaf3,Fixed version number (back) to 1.3,Jonathan Paugh,2016-01-13T02:18:29Z,jpaugh,jpaugh,2,1,1
+283,agithub,12163f789a155fbb03cbaf058276fa1a2fbf7559,Ignore agithub.egg-info,Jonathan Paugh,2016-01-13T01:47:55Z,jpaugh,jpaugh,1,1,0
+284,agithub,68815863c0ccbfc5cf4da37ded9d6e4389763033,Make a real python package,Jonathan Paugh,2016-01-13T01:44:14Z,jpaugh,jpaugh,53,40,13
+285,agithub,f6fdf4ca061a83dc914cc662ef55635d57da5131,"Merge pull request #19 from marcoslhc/master
+
+Create setup.py for easy pip install",Jonathan Paugh,2016-01-13T01:12:24Z,jpaugh,jpaugh,16,16,0
+286,agithub,4d48ca26f5a235fddd8fcf233ac73c843e093271,add manifest and dist to gitignore,Jared Hobbs,2016-01-12T17:51:50Z,jaredhobbs,jaredhobbs,2,2,0
+287,agithub,de8084777e74c205013471da4a40793c6f7fc395,add more info for the cheese shop,Jared Hobbs,2016-01-12T17:34:15Z,jaredhobbs,jaredhobbs,15,14,1
+288,agithub,8373a472e789e15b10c75d38dacd79b094bf3e4e,cleanup/flake8,Jared Hobbs,2016-01-12T17:18:18Z,jaredhobbs,jaredhobbs,347,192,155
+289,agithub,de6107ba7e9a94ef167a6fd7103e8783a591b860,Create setup.py for easy pip install,Marcos Hernández,2016-01-12T14:55:08Z,marcoslhc,marcoslhc,16,16,0
+290,agithub,656dc608bea00c9cdaaef9354f8ddac956b2afc9,add setup.py,Jared Hobbs,2016-01-11T17:48:06Z,jaredhobbs,jaredhobbs,7,7,0
+291,agithub,b1c1985f0468aa421ab8e059333651b39c6f7f5e,Allow easy customization of GitHub api root,Ben Straub,2015-10-10T22:39:30Z,ben,ben,2,1,1
+292,agithub,393da87c7b1b1840f9adba0df8817f16988ef130,Set up python package for the source code,Jonathan Paugh,2015-08-29T14:59:39Z,jpaugh,jpaugh,43,43,0
+293,agithub,87725532e6a5c70c4cc22627ae29ddcf36491568,Release v1.3,Jonathan Paugh,2015-09-01T01:31:20Z,jpaugh,jpaugh,38,19,19
+294,agithub,b2f2e0f32c5799dd7c719d6efc31c866610e7a6b,"Merge pull request #16 from toolforger/patch-1
+
+Rename RequestBuilder to IncompleteRequest
+
+This removes an Easter-egg, but it is too helpful a change to pass up.",Jonathan Paugh,2015-05-13T12:54:50Z,jpaugh,jpaugh,36,17,19
+295,agithub,e4c02cd3a8703d5273111669f4e02ce6d19c28d8,Update agithub_test.py,Joachim Durchholz,2015-05-12T14:05:19Z,toolforger,toolforger,16,8,8
+296,agithub,4041e444bbb339dad515d7c0aa52c03ca58ebca7,Update README.md,Joachim Durchholz,2015-05-12T14:04:06Z,toolforger,toolforger,2,1,1

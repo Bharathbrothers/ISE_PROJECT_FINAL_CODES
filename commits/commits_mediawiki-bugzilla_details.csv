@@ -1,0 +1,742 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,mediawiki-bugzilla,fc6efe71747cfac1a30dbcc3661992f478107199,"Fix Undefined index: bugs in BugzillaOutput.class.php on line 85
+
+Notice: Undefined index: bugs in /var/www/wiki/mediawiki/core/extensions/mediawiki-bugzilla/BugzillaOutput.class.php on line 85
+
+Not got the config quite right for a different MW install
+
+I guess the constructor of BugzillaOutput should check that the returned data is halfway valid too...
+
+        $this->query = BugzillaQuery::create($config['type'], $options, $title);
+
+        // Bubble up any query errors
+        if( $this->query->error ) {
+            $this->error = $this->query->error;
+        }
+
+Also trimmed some trailing whitespace at the same time",Reedy,2013-03-30T02:05:41Z,reedy,reedy,24,12,12
+1,mediawiki-bugzilla,7f1d0a1fbef679b2232bd9eeb0d8bc10667590df,"More generic layout for caching.
+
+- new $wgBugzillaCacheType, replaces $wgBugzillaUseCache and $wgCacheObject
+  with mysql, apc, memcache, postgresql, sqlite, dummy types;
+- new Bugzilla::getCacheClass() and ::getCache() static methods;
+- new BugzillaCacheI::setup() abstract method, called by BugzillaCreateCache();
+- new BugzillaCacheSql class, handling any generic MW SQL-backend;
+  BugzillaCacheMysql is dropped;
+- separate SQL CREATE TABLE definitions for MySQL, PostgreSQL and SQLite;
+- base64_encode/decode cached values, fixes SQL escaping issues;
+- drop cache db fetched_at column.",Romain d'Alverny,2012-08-06T15:36:17Z,rdalverny,rdalverny,368,231,137
+2,mediawiki-bugzilla,fa11bbeb362699584479a83b36d7ed8a90fe5b21,"Merge pull request #15 from brandonsavage/bug729259
+
+Allow multiple parameters and clean up the way we go about handling defa...",brandonsavage,2012-12-11T17:20:49Z,brandonsavage,brandonsavage,20,18,2
+3,mediawiki-bugzilla,7ba55fd73065ebfdafb926e2694c5e95f4fcf9e1,"Merge pull request #9 from brandonsavage/caching_changes
+
+Improving the caching mechanism, in preparation for providing a memcache...",brandonsavage,2012-12-11T16:44:28Z,brandonsavage,brandonsavage,143,103,40
+4,mediawiki-bugzilla,bc3a498998899c5af964f71dfd255c517016c957,Fixing conflict.,Brandon Savage,2012-12-11T16:37:33Z,brandonsavage,brandonsavage,2,2,0
+5,mediawiki-bugzilla,4621948c1d26911a1c55d3411bc19e800ed1ae60,Fixing API issues with database caching.,Brandon Savage,2012-08-14T15:27:55Z,brandonsavage,brandonsavage,74,40,34
+6,mediawiki-bugzilla,e4865dd3643a74f5450c609039e55740d863dbdd,Allow multiple parameters and clean up the way we go about handling default fields.,Brandon Savage,2012-09-19T14:47:54Z,brandonsavage,brandonsavage,20,18,2
+7,mediawiki-bugzilla,496349bd1de62830024af67912f6b146ba527d66,"Merge pull request #14 from AdrianGaudebert/fix-static-create-in-bugzillaquery
+
+Fixed a warning, the create method of BuzillaQuery was not static.",brandonsavage,2012-08-21T13:50:30Z,brandonsavage,brandonsavage,2,1,1
+8,mediawiki-bugzilla,51062e826ecbd3afcfeb100790495bf5ab05659c,"Fixed a warning, the create method of BuzillaQuery was not static.",Adrian Gaudebert,2012-08-21T08:43:57Z,adngdb,adngdb,2,1,1
+9,mediawiki-bugzilla,e845ebdde72d99fc66de010c8a84ef0cc86a35ba,Fixing API issues with database caching.,Brandon Savage,2012-08-14T15:27:55Z,brandonsavage,brandonsavage,71,39,32
+10,mediawiki-bugzilla,eddd666c5fd93fe886d1a2b9655d355da6c4ed67,"Merge pull request #11 from rdalverny/use_xmlrpc_api
+
+Add rough support for XML-RPC API (Bug.search)",brandonsavage,2012-07-31T17:08:37Z,brandonsavage,brandonsavage,82,81,1
+11,mediawiki-bugzilla,a3d0a085e444d30758228f7cfe0af90da1eeaecd,Add rough support for XML-RPC API (Bug.search),Romain d'Alverny,2012-07-27T15:27:39Z,rdalverny,rdalverny,82,81,1
+12,mediawiki-bugzilla,a471208230cbd92c2b6e87a859fd2cc15271bc10,Removing examples directory.,Brandon Savage,2012-07-26T13:40:08Z,brandonsavage,brandonsavage,15127,0,15127
+13,mediawiki-bugzilla,d152ee97c7f0a9b3b40abd6e552fdd74f2e76b6e,Adding memcache class for IT to utilize.,Brandon Savage,2012-06-04T19:11:54Z,brandonsavage,brandonsavage,37,37,0
+14,mediawiki-bugzilla,9f56cca557010e28466333b15ffd9807f354b836,"Improving the caching mechanism, in preparation for providing a memcache option for IT to utilize in production.",Brandon Savage,2012-05-31T16:46:12Z,brandonsavage,brandonsavage,28,23,5
+15,mediawiki-bugzilla,be3c68a2ae2a7fa8dfb689421011fff9e80cebeb,"Merge pull request #8 from brandonsavage/master
+
+Configuration changes",Chris Lonnen,2012-05-31T16:43:30Z,lonnen,lonnen,84,45,39
+16,mediawiki-bugzilla,49d18d72688fbf88be85653c3c9ca7ea7b97df50,Improving configuration files for  mediawiki-bugzilla to indicate how and what to configure.,Brandon Savage,2012-05-31T14:19:36Z,brandonsavage,brandonsavage,84,45,39
+17,mediawiki-bugzilla,577896384a21e889687a4c6a343b4e2897a118b9,"Merge pull request #7 from LegNeato/master
+
+Several bugfixes from contributor LegNeato",brandonsavage,2012-05-30T16:27:57Z,brandonsavage,brandonsavage,725,623,102
+18,mediawiki-bugzilla,bc55a7feb97bdefb69cb4ef5da9ad23a11cf3d63,Fix logic for person display when there is no real name,Christian Legnitto,2012-05-16T06:23:18Z,LegNeato,LegNeato,8,7,1
+19,mediawiki-bugzilla,862ad6770efe903a37889a505a471fbef962df6b,"Use $data, as it is already there and less chars (functionally equivalent)",Christian Legnitto,2012-05-16T06:10:16Z,LegNeato,LegNeato,4,2,2
+20,mediawiki-bugzilla,0cc44f0561024200d299ad8ea0e29db3d15ff291,Add support for people fields,Christian Legnitto,2012-05-16T06:04:25Z,LegNeato,LegNeato,49,49,0
+21,mediawiki-bugzilla,dc54decd0bd6667144e8d2822dec0e93585c9263,"Some versions of mediawiki don't provide frame, set it to null by default",Christian Legnitto,2012-05-16T05:10:27Z,LegNeato,LegNeato,2,1,1
+22,mediawiki-bugzilla,ec12253b22a985ffba056f364c7b223e69b45144,Add default support for array types,Christian Legnitto,2012-05-16T05:10:05Z,LegNeato,LegNeato,6,5,1
+23,mediawiki-bugzilla,ad5b265451f04e02c90fb117a19b1047dd95f558,"Rebase LegNeato repo on top of mozilla repo. Update Readme, fix line endings",Christian Legnitto,2012-04-29T21:30:38Z,LegNeato,LegNeato,139,116,23
+24,mediawiki-bugzilla,f3978bcca64a905cada594a7d05d72b7101e9152,Make the jQuery tables look slightly better,Christian Legnitto,2012-04-16T03:58:26Z,LegNeato,LegNeato,25,21,4
+25,mediawiki-bugzilla,bf20a79bdc1baa747c83f4f3f2b24ce5e3cfa4ce,Add a new pie chart type. Support small/medium/large pie chart size,Christian Legnitto,2012-04-16T03:33:32Z,LegNeato,LegNeato,139,121,18
+26,mediawiki-bugzilla,1e43de6bc166ae325ec2ee6f2b560db047df9cd7,Make bar charts use whole numbers in the scale,Christian Legnitto,2012-04-16T01:26:18Z,LegNeato,LegNeato,2,1,1
+27,mediawiki-bugzilla,5a4db4a462ea41984ffdf306d5a732204c62349e,"Fix support for jquery tables, add the ability to specify fields,
+refactor templates, add support for a simple HTML list output type, add
+some CSS classes for bugs in various states, ignore all sorts of
+swap files in the .gitignore",Christian Legnitto,2012-04-13T09:02:21Z,LegNeato,LegNeato,341,288,53
+28,mediawiki-bugzilla,060a430bf8fad34d2995fb60b71e2f9b2b63c5f1,"Fix a typo, return early when there is an error",Christian Legnitto,2012-04-11T06:44:20Z,LegNeato,LegNeato,3,2,1
+29,mediawiki-bugzilla,d0a1f77d67260a23f64a78de3236ddf578de5d27,Report json errors to the user,Christian Legnitto,2012-04-11T06:38:24Z,LegNeato,LegNeato,35,24,11
+30,mediawiki-bugzilla,ab4852f7c8932d575553dc64411693085d25b99e,"Merge pull request #3 from lmandel/master
+
+Updated fix for bugs 729605",brandonsavage,2012-03-02T16:11:44Z,brandonsavage,brandonsavage,18,9,9
+31,mediawiki-bugzilla,a850e116d843d6b40140244a444509b33fb1d436,Enabling caching by default for real.,Brandon Savage,2012-03-02T16:05:43Z,brandonsavage,brandonsavage,2,1,1
+32,mediawiki-bugzilla,e11d2daea8d37fa892148683fc233ae4daef03a5,"Revert ""Enabling caching by default."" It changes the wrong line.
+
+This reverts commit 36b841a28e445ed758953fbad64e5fe90127e152.",Brandon Savage,2012-03-02T16:04:08Z,brandonsavage,brandonsavage,1,1,0
+33,mediawiki-bugzilla,36b841a28e445ed758953fbad64e5fe90127e152,Enabling caching by default.,Brandon Savage,2012-03-02T15:59:32Z,brandonsavage,brandonsavage,1,0,1
+34,mediawiki-bugzilla,a210a376851a3c50faf33fd797a9c6fda7088cc4,Corrected local script references.,Lawrence Mandel,2012-03-01T18:53:20Z,lmandel,lmandel,14,7,7
+35,mediawiki-bugzilla,3e0879ec297ea93be4648feba2aa1d5edc62a468,"Fix for bug 729605 - changed addScript to addScriptFile for local js file
+references.",Lawrence Mandel,2012-03-01T17:19:46Z,lmandel,lmandel,4,2,2
+36,mediawiki-bugzilla,b8f86dc2e0395e20a1ecc4c2f8ee8b77e63f1340,Fix for bug 731456 - allow for use for templates in bug queries.,Lawrence Mandel,2012-03-01T17:10:33Z,lmandel,lmandel,4,2,2
+37,mediawiki-bugzilla,822d6a04deb946dd8e77cb0fb1cd04b20d56539d,"Merge pull request #1 from lmandel/master
+
+Fixes for mixed scripting and broken bug links",brandonsavage,2012-02-28T21:18:15Z,brandonsavage,brandonsavage,1577,1571,6
+38,mediawiki-bugzilla,bab34fbe5f787d4a587cdbba83acd598b0187762,Fixed bug links in bug table.,Lawrence Mandel,2012-02-28T20:13:58Z,lmandel,lmandel,5,3,2
+39,mediawiki-bugzilla,d09fcde71c3d7c91f959ca381377a06bbc5fbafa,Added jquery and jquery ui.,Lawrence Mandel,2012-02-28T20:04:23Z,lmandel,lmandel,1564,1564,0
+40,mediawiki-bugzilla,e74d0004b9d9bed9e5f8d1f9039e2619da0f7606,Added local copies of jquery and jquery ui.,Lawrence Mandel,2012-02-28T20:00:19Z,lmandel,lmandel,8,4,4
+41,mediawiki-bugzilla,8857ad00556c4d50c74254eac745d47e5f7c7480,Fixing minor error in the SQL that broke things for IT.,Brandon Savage,2012-02-02T16:51:48Z,brandonsavage,brandonsavage,4,2,2
+42,mediawiki-bugzilla,f0b8a82d309a336e3c9fdab19911ce37190d95c4,Removing a reference to SMARTY that inadvertently remained.,Brandon Savage,2011-12-13T16:51:23Z,brandonsavage,brandonsavage,2,0,2
+43,mediawiki-bugzilla,9116f3418da1371bc5b29ccd273c23191059fa3b,Merging commits from dev into master.,Brandon Savage,2011-12-13T16:44:45Z,brandonsavage,brandonsavage,55,18,37
+44,mediawiki-bugzilla,16fb2267660de380b0abbfb201316b13c2523ba8,"Merge pull request #7 from brandonsavage/charting_changes
+
+Adding charting library and improving the charting of the application.",Christian Legnitto,2011-11-16T00:24:52Z,LegNeato,LegNeato,29633,29625,8
+45,mediawiki-bugzilla,a09b27149f9c039de8d5ec3b8768ef7a2b98b5ab,"Merge pull request #5 from brandonsavage/cache_changes
+
+Cache changes",Christian Legnitto,2011-11-16T00:24:18Z,LegNeato,LegNeato,113,52,61
+46,mediawiki-bugzilla,8c4fd3a7914ad06000799a6304342b30c48cddeb,Adding charting library and improving the charting of the application.,Brandon Savage,2011-11-08T21:50:53Z,brandonsavage,brandonsavage,29633,29625,8
+47,mediawiki-bugzilla,ee1a897ceed2663f02f60e9c7cde9b2d61aef37d,Adding a charting library for local chart storage and incorporating the charting into the template system.,Brandon Savage,2011-11-08T21:48:21Z,brandonsavage,brandonsavage,29625,29617,8
+48,mediawiki-bugzilla,5f6a41f7f73b7ee4ede38a6f28988475f863ce02,merging cache_changes,Brandon Savage,2011-11-08T20:32:35Z,brandonsavage,brandonsavage,113,52,61
+49,mediawiki-bugzilla,5608d768ca6a6ae4b69f8d110201fa412ec3bbc3,"Typical PHP standards dictate that you should avoid calling methods
+in a base class that are not at least stubbed or declared abstract;
+the declaration or stubbing of those methods prevents the
+inadvertent extension of the base class without the declaration of
+all methods the base class depends on.",Brandon Savage,2011-11-08T19:52:22Z,brandonsavage,brandonsavage,4,3,1
+50,mediawiki-bugzilla,56e22ec2bf49cf843c536b28473050543d33bdba,Removing SMARTY templating from the extension.,Brandon Savage,2011-11-08T15:59:35Z,brandonsavage,brandonsavage,70,28,42
+51,mediawiki-bugzilla,da5e21a0c9732e48b3a219c71f27803fe97611d6,"Several modifications relating to caching and overall behavior:
+
+* Request data from the API when no data is available in the cache, by default
+* Removal of the BugzillaJob API, since it is not needed to update the cache",Brandon Savage,2011-11-07T13:46:41Z,brandonsavage,brandonsavage,98,24,74
+52,mediawiki-bugzilla,08088e8320dffd25791432f05239106456b622a3,"Adding a cache dummy for those times you want to test ONLY the functionality of the app, not the caching.",Brandon Savage,2011-11-07T13:37:02Z,brandonsavage,brandonsavage,49,45,4
+53,mediawiki-bugzilla,837eb807805b119e9f212768ad230bf290f55bb0,"Merge pull request #4 from brandonsavage/cache_changes
+
+Changes to mediawiki-bugzilla from brandonsavage",Christian Legnitto,2011-10-24T23:32:25Z,LegNeato,LegNeato,169,102,67
+54,mediawiki-bugzilla,09b3ad8c08028121f8b437c7fbb03dd7b48e0a4c,Finishing up work on improving the caching system.,Brandon Savage,2011-10-20T15:49:35Z,brandonsavage,brandonsavage,141,83,58
+55,mediawiki-bugzilla,60858fe541a83063f48008fbccfdfaaf528fc445,Adding an interface for caching.,Brandon Savage,2011-10-18T17:20:39Z,brandonsavage,brandonsavage,12,12,0
+56,mediawiki-bugzilla,178dafdabff00c5ac78d08bca19ea3f5753fba17,Minor config changes to make the configuration more efficient.,Brandon Savage,2011-10-18T15:29:35Z,brandonsavage,brandonsavage,14,6,8
+57,mediawiki-bugzilla,f18818d92f226cc363ba6fe465004087e802a0fc,Fixing a small bug that resulted in a 404 when clicking on a bug.,Brandon Savage,2011-10-18T15:20:19Z,brandonsavage,brandonsavage,2,1,1
+58,mediawiki-bugzilla,3a16e296656ee37343bbf7d17b0e2274eccc40d6,"Merge pull request #1 from KWierso/patch-1
+
+s/substitue/substitute/",Christian Legnitto,2011-08-19T00:03:02Z,LegNeato,LegNeato,2,1,1
+59,mediawiki-bugzilla,04cf8b5729ca207aef5ac231e952a2023c5d9b1c,s/substitue/substitute/,KWierso,2011-08-18T06:37:40Z,KWierso,KWierso,2,1,1
+60,mediawiki-bugzilla,b62c6d906285252dc9deeb1ac93078e550ff5895,"Big refactoring.
+
+* Better code
+* Caching
+* Uses job queue to pull from bugzilla",Christian Legnitto,2011-08-09T06:49:25Z,LegNeato,LegNeato,588,450,138
+61,mediawiki-bugzilla,274ea295bae7ff9620141bd8668f358e5c027a88,Add support docs for data table info,Christian Legnitto,2011-08-05T06:48:39Z,LegNeato,LegNeato,6,5,1
+62,mediawiki-bugzilla,da0caef09a15fdca5ce23ed90569f15a47f478fc,Make private function private,Christian Legnitto,2011-07-29T01:28:57Z,LegNeato,LegNeato,2,1,1
+63,mediawiki-bugzilla,441fd5b0df411ce8ede253ef9f27a4322f97c147,README formatting,Christian Legnitto,2011-07-29T01:15:50Z,LegNeato,LegNeato,2,1,1
+64,mediawiki-bugzilla,7b8873a6378a96cb5d9c5b8b1b2c2a528b1efaf3,README formatting,Christian Legnitto,2011-07-29T01:14:04Z,LegNeato,LegNeato,10,5,5
+65,mediawiki-bugzilla,81317a8baf92988398c144597681477a251996f5,Add installation instructions,Christian Legnitto,2011-07-29T01:08:51Z,LegNeato,LegNeato,14,14,0
+66,mediawiki-bugzilla,d89337184d66d0f9e33d49e321802e72cb943525,Add screenshot,Christian Legnitto,2011-07-29T00:57:27Z,LegNeato,LegNeato,4,4,0
+67,mediawiki-bugzilla,9c2581b2a714bf872ddffe02dbe32b74d98d08fb,Markdown fixes to README,Christian Legnitto,2011-07-29T00:49:39Z,LegNeato,LegNeato,12,6,6
+68,mediawiki-bugzilla,5fff5ee947dfd8c32c6cc56c550724e6f2107e20,Remove random file,Christian Legnitto,2011-07-29T00:47:27Z,LegNeato,LegNeato,63,0,63
+69,mediawiki-bugzilla,7cde8fa8cfacb5133e691663364242a15f08aaff,Add README,Christian Legnitto,2011-07-29T00:46:25Z,LegNeato,LegNeato,63,63,0
+70,mediawiki-bugzilla,8590a4fc09c423fcd947d1b95b6ec3323eecddd3,Initial upload to GitHub,Christian Legnitto,2011-07-28T23:23:39Z,LegNeato,LegNeato,9048,9048,0
+71,mediawiki-bugzilla,d9052f37ebe0cb66b3a0ed1088334eec556d2f22,re-enable caching as it seems stable now,eziegenhorn,2017-11-02T18:04:33Z,ziegeer,ziegeer,3,0,3
+72,mediawiki-bugzilla,3ca6be662db7de3c2dfc38836cc59d14abec809f,temporarily disable caching due to bugginess,eziegenhorn,2017-11-02T01:47:38Z,ziegeer,ziegeer,3,3,0
+73,mediawiki-bugzilla,593c3cb1a4b64a025781126d7b1f739ef37b6962,"Merge pull request #99 from dylanwh/include-fields-trim-spaces
+
+use preg_split() instead of explode()",Eric Ziegenhorn,2017-10-30T21:20:34Z,ziegeer,ziegeer,2,1,1
+74,mediawiki-bugzilla,48baeb3285e7599912a3a12a3714cab94ea6b136,use preg_split() instead of explode(),Dylan William Hardison,2017-10-30T21:02:36Z,dylanwh,dylanwh,2,1,1
+75,mediawiki-bugzilla,c80f83fcd5548273a194a5afbe21486acc6cfa8d,"Merge pull request #98 from dylanwh/fix-querystrings
+
+replace http_build_query() which breaks include_fields with a custom function that works.  Bug 1412429.",Eric Ziegenhorn,2017-10-30T18:52:10Z,ziegeer,ziegeer,31,29,2
+76,mediawiki-bugzilla,b5c43fd5e16b94320708faefba83969590f1359d,wrong variable,Dylan William Hardison,2017-10-30T17:43:08Z,dylanwh,dylanwh,2,1,1
+77,mediawiki-bugzilla,85a604a642f70625bcf5fa9ec676785b0c9656a3,replace http_build_query() with a protected method that generates correct query strings,Dylan William Hardison,2017-10-30T17:36:17Z,dylanwh,dylanwh,31,29,2
+78,mediawiki-bugzilla,c53fe087e21b2a831d073e8aafa5323666af83ed,"Merge pull request #92 from rdalverny/use_wm_cache
+
+Use MediaWiki cache strategy and code",Christian Legnitto,2017-05-11T05:10:25Z,LegNeato,LegNeato,425,49,376
+79,mediawiki-bugzilla,4ab225d731db2e19069ffa1ac11dbc47b0377b44,"Update README.md
+
+* Add minimum MediaWiki version.
+* Fix embedded image.",Christian Legnitto,2017-05-11T05:06:40Z,LegNeato,LegNeato,3,2,1
+80,mediawiki-bugzilla,d9a61866d08c11157b9c0428a1e42f3a95622c33,"Merge pull request #96 from hexmode/master
+
+Modifications for wikimo upgrade",Christian Legnitto,2017-05-11T05:04:47Z,LegNeato,LegNeato,133,72,61
+81,mediawiki-bugzilla,69e9757f9ab8268b4e399ee645bea98792154bcf,ignore charts,Mark A. Hershberger,2017-05-11T04:50:50Z,hexmode,hexmode,2,1,1
+82,mediawiki-bugzilla,48cc3e6918535e7351999769cad2ddcbc987ac4b,Use __DIR__ instead of undefined $cwd,Mark A. Hershberger,2017-05-11T04:26:21Z,hexmode,hexmode,4,2,2
+83,mediawiki-bugzilla,36a3ef8f3b9e69f4e36159df9b597b8fc7393b92,Fix up some left over HTTP/Request2 stuff,Mark A. Hershberger,2017-05-11T04:20:34Z,hexmode,hexmode,13,5,8
+84,mediawiki-bugzilla,19aab3e0cae70d662d1ce781f62248028c983f23,better handling for size parameter if not given,Mark A. Hershberger,2017-05-11T04:19:56Z,hexmode,hexmode,11,5,6
+85,mediawiki-bugzilla,4e20bebea3c1c15543e84a384c3fd9cdca07a72f,Handle undefined values better,Mark A. Hershberger,2017-05-11T04:18:46Z,hexmode,hexmode,31,26,5
+86,mediawiki-bugzilla,8c5d03ca27ee73d7a9292db5bcf25cb9b2978fdf,fix array to string error,Mark A. Hershberger,2017-05-11T04:17:12Z,hexmode,hexmode,2,1,1
+87,mediawiki-bugzilla,9e93601fa883272a7e279d6f287875d080fac103,merge,Mark A. Hershberger,2017-05-10T21:53:05Z,hexmode,hexmode,80,37,43
+88,mediawiki-bugzilla,177d161ae4e8db7dc955581a6f4ca71eed4d9d1a,"Remove dependency on HTTP::Request2 from PEAR
+
+Use MW's internal HTTP lib
+(also add ignores)",Mark A. Hershberger,2017-05-10T21:42:36Z,hexmode,hexmode,89,39,50
+89,mediawiki-bugzilla,eaa6d855c30d6435313978a88864413fc74bcd73,"Use MediaWiki cache strategy and code
+
+This removes all BugzillaCache* classes and code that used it,
+replaces it with MediaWiki `wfGetCache($wgMainCacheType)`,
+which provides sensibly the same set of options.
+
+Doing so also simplifies a first install, by removing specific
+configuration for this extension.",Romain d'Alverny,2016-09-27T09:23:40Z,rdalverny,rdalverny,425,49,376
+90,mediawiki-bugzilla,59c74e67bec35aaa44d35c144bff703a74b2a048,"Merge pull request #91 from rdalverny/add_number_display
+
+Add number display",Christian Legnitto,2016-12-28T00:02:15Z,LegNeato,LegNeato,64,35,29
+91,mediawiki-bugzilla,ec96ccc509396f3164c54eec4158974321781f87,"Merge pull request #88 from rdalverny/show_full_query_link
+
+Add a link to the Bugzilla query in the table summary",Christian Legnitto,2016-12-28T00:01:02Z,LegNeato,LegNeato,9,9,0
+92,mediawiki-bugzilla,bcf8e55004e0b84721ee9fe8c1a9f48968896fed,"Merge pull request #87 from rdalverny/refactor_options
+
+Refactor consistent options",Christian Legnitto,2016-12-27T23:59:50Z,LegNeato,LegNeato,387,243,144
+93,mediawiki-bugzilla,19997caa0f7e3ea7229dcd5569e7773733c792e4,"Merge pull request #82 from rdalverny/nicer_empty_state
+
+Do not show table if no bug is returned by Bugzilla API",Christian Legnitto,2016-12-27T23:57:19Z,LegNeato,LegNeato,22,14,8
+94,mediawiki-bugzilla,2295f67bfc86f7c89c26de5cb9649eedf13d68bf,Remove tests already settled in prepare_options(),Romain d'Alverny,2016-09-27T09:46:07Z,rdalverny,rdalverny,23,1,22
+95,mediawiki-bugzilla,78434ecbc4b65d07dfb6587a8cd751309717b672,Add test case,Romain d'Alverny,2016-09-22T11:16:24Z,rdalverny,rdalverny,7,6,1
+96,mediawiki-bugzilla,23d2b18c9c8eb36b12f4a48275f259839d19d420,Refactor _generate_id(),Romain d'Alverny,2016-09-16T15:55:53Z,rdalverny,rdalverny,69,19,50
+97,mediawiki-bugzilla,793def52e60ace33330e323c6108874823a386f0,Refactor how we add synthetic fields to query,Romain d'Alverny,2016-09-16T15:52:04Z,rdalverny,rdalverny,89,59,30
+98,mediawiki-bugzilla,3c6933fbd44579469610e2d3112449e84dffa77b,"Ensure a consistent, working options data structure
+
+Before this change, we were not so sure about the consistency of
+the BugzillaQuery $options member: there were several duplicate
+tests checking for 'include_fields' existence, type and correctness.
+
+This adds a prepare_options() method which validates configuration
+JSON string:
+- if it's not a valid JSON, it sets an error as before,
+- if it's an empty string or JSON, it sets a working default,
+  so first time users get a working experience at once.
+
+This also introduces tests for this change, to document
+prepare_options() behaviour.",Romain d'Alverny,2016-09-16T15:21:46Z,rdalverny,rdalverny,182,152,30
+99,mediawiki-bugzilla,19f3c3554b0222f436c99474e0ddca73a5f3680b,"Move query fetch() invocation out of the constructors
+
+Before this change, the invocation order was the following:
+ - BugzillaRender(...),
+ - Bugzilla::create(...),
+ - new BugzillaOutput(...),
+ - BugzillaQuery::create(...),
+ - new BugzillaRESTQuery(...),
+ - $this->fetch() => triggers the actual HTTP request.
+
+That's not great for testing separate entities.
+
+This change allows to build the whole chain above without
+implicitly triggering fetch().",Romain d'Alverny,2016-09-16T14:48:10Z,rdalverny,rdalverny,23,9,14
+100,mediawiki-bugzilla,3e0412ffa5bc4ab1eea0d39821b86cfa5e5e592c,Fix syntax typo,Romain d'Alverny,2016-09-27T07:52:07Z,rdalverny,rdalverny,2,1,1
+101,mediawiki-bugzilla,45f3c05e2d0d91552627e6f1929cf37b25b872d3,Fail nicely if GD extension is not available,Romain d'Alverny,2016-09-27T09:35:25Z,rdalverny,rdalverny,8,8,0
+102,mediawiki-bugzilla,f5bd15987bd5e5fcc570ec696408c471a255cd03,"Add number display option
+
+Use it as an inlined HTML tag:
+<bugzilla type=""count"" display=""number"">{}</bugzilla>
+
+Fixes: #44",Romain d'Alverny,2016-09-27T09:31:32Z,rdalverny,rdalverny,15,14,1
+103,mediawiki-bugzilla,b8432376e3b50cc6c8955b3b2076e007013a5e67,Refactor how BugzillaOutput class is selected,Romain d'Alverny,2016-09-27T09:31:05Z,rdalverny,rdalverny,41,13,28
+104,mediawiki-bugzilla,a69e3f3b27baec5fd9ebdccba7e1356d0dbce453,"Set a user agent when querying remote API
+
+A $wgBugzillaExtVersion is defined as a global,
+used by a new BugzillaRESTQuery::user_agent() method.
+
+Initial version is arbitrarily set at 1.0.0 to begin with,
+but that, and the versioning scheme to adopt, is left to discussion
+(I'd suggest http://semver.org).",Romain d'Alverny,2016-09-16T07:47:25Z,rdalverny,rdalverny,15,14,1
+105,mediawiki-bugzilla,b11a49620b0e21eb6f4f653688d27997d70a96c4,Add vendor to gitignore,Romain d'Alverny,2016-09-26T23:51:52Z,rdalverny,rdalverny,1,1,0
+106,mediawiki-bugzilla,1852110938bc450e6d7bbff9b61ee8a367468c9c,"Add code style & linting rules for PHP
+
+This is based on Mediawiki boilerplate composer.json & phpcs.xml.
+This adds a Makefile too.
+
+To setup:
+
+  $ make install-dev
+  $ make lint
+  $ make cs",Romain d'Alverny,2016-09-26T23:32:52Z,rdalverny,rdalverny,43,43,0
+107,mediawiki-bugzilla,496a073649fee9cbf63563b2f847841c152995e7,"Add a link to the Bugzilla query in the table summary
+
+Fixes: #45",Romain d'Alverny,2016-09-22T17:11:14Z,rdalverny,rdalverny,9,9,0
+108,mediawiki-bugzilla,3ba6f2cdf24453309aaf74e7a169da5d9a65d330,"Do not show table if no bug is returned by Bugzilla API
+
+See: https://github.com/mozilla/mediawiki-bugzilla/issues/50
+
+Division by $all=0 has been addressed by dfcec1f50a5c3e8093114ef79e3bd63ea728b2c6
+so #50 may be closed.
+
+Bugzilla uses 'Zarro Boogs found.' but even that may change:
+https://bugzilla.mozilla.org/show_bug.cgi?id=313647
+
+Replaces: https://github.com/mozilla/mediawiki-bugzilla/pull/51",Romain d'Alverny,2016-09-08T18:22:14Z,rdalverny,rdalverny,22,14,8
+109,mediawiki-bugzilla,a03ebd7c339aa51afe86a2f47eb0a83882de5f6e,Fix typo,Christian Legnitto,2015-12-02T10:31:07Z,LegNeato,LegNeato,2,1,1
+110,mediawiki-bugzilla,e211fc73035d520ffdf9e11285d62c8d488351fe,"Merge pull request #74 from rhabacker/json-rpc
+
+Add json rpc support",Christian Legnitto,2015-12-02T10:29:59Z,LegNeato,LegNeato,108,101,7
+111,mediawiki-bugzilla,b5143c3551be37bc5c37c01af259c25c329b65c7,"Merge pull request #76 from dennisroczek/master
+
+add license file + listing at Special:Version",Christian Legnitto,2015-10-01T23:11:39Z,LegNeato,LegNeato,376,376,0
+112,mediawiki-bugzilla,dff922b4dd5b683aaeae3b878a5213805698b335,"Merge pull request #73 from rhabacker/master
+
+postgresql fixes",Christian Legnitto,2015-10-01T23:10:50Z,LegNeato,LegNeato,10,5,5
+113,mediawiki-bugzilla,0dc1a98e0377035cca2d344e43860c6b12cc83e8,add license file + listing at Special:Version,dennisroczek,2015-10-01T22:49:47Z,dennisroczek,dennisroczek,376,376,0
+114,mediawiki-bugzilla,14af44261aeca3b5338afd47e48126fe3035e18b,"Fixup of 80cc683e605302f90e38094c92949bbbbf8a785f.
+
+Mysql requires a specific sql syntax.",Ralf Habacker,2015-09-09T12:10:43Z,Ralf Habacker,Ralf Habacker,16,12,4
+115,mediawiki-bugzilla,02edbf59a6e1ef31029466b783f09f2ebd046bbc,Fix array json syntax.,Ralf Habacker,2015-09-08T07:32:55Z,Ralf Habacker,Ralf Habacker,2,1,1
+116,mediawiki-bugzilla,65ee9b8078bbf50e6cfabf692e656386e25798a5,Add JSON-RPC query support.,Ralf Habacker,2015-09-08T09:02:15Z,Ralf Habacker,Ralf Habacker,90,88,2
+117,mediawiki-bugzilla,80cc683e605302f90e38094c92949bbbbf8a785f,Make database cache entry deleting independent from database type.,Ralf Habacker,2015-09-08T07:30:34Z,Ralf Habacker,Ralf Habacker,2,1,1
+118,mediawiki-bugzilla,6e198f98ecdfd350e840ad9c2b2df6faa45ac0e9,Fix postgresql syntax,Ralf Habacker,2015-09-07T09:12:43Z,Ralf Habacker,Ralf Habacker,8,4,4
+119,mediawiki-bugzilla,a5cfdcc04068bc70e252ed0cce10ad5d263b226f,"Merge pull request #72 from mozilla/fixtables
+
+added proper classes to tables",Christie Koehler,2015-07-19T23:06:23Z,christi3k,christi3k,2,1,1
+120,mediawiki-bugzilla,a337f6345a0528623e92e9260979bddf8bc1b5ac,added proper classes to tables,Christie Koehler,2015-07-19T23:04:24Z,christi3k,christi3k,2,1,1
+121,mediawiki-bugzilla,c52b2ddc6e518c6724e7aa114139dffabd4e4661,"Merge pull request #69 from edmorley/add-stats-option
+
+Bug 1168463 - Add an option to hide bug resolution statistics",Christie Koehler,2015-07-15T20:49:40Z,christi3k,christi3k,26,24,2
+122,mediawiki-bugzilla,9b954613b6b056504b666a9c080bc04adc6f07cf,"Merge pull request #71 from edmorley/less-verbose-names
+
+Bug 1168491 - Make people fields less verbose if real name set",Christie Koehler,2015-07-15T20:49:27Z,christi3k,christi3k,4,1,3
+123,mediawiki-bugzilla,ca37570bdb8cbfa68adabf17e831c1a950b4c573,"Bug 1168491 - Make people fields less verbose if real name set
+
+Previously if the real name was set, both the name (ie partial email
+address) and real name was displayed, now only the real name is shown.",Ed Morley,2015-05-26T18:12:53Z,Ed Morley,Ed Morley,4,1,3
+124,mediawiki-bugzilla,b16a5f47843997fe0bf73c7e18f8b2015e71c1a6,"Bug 1168463 - Add an option to hide bug resolution statistics
+
+This adds the ability to turn off the bug resolution statistics, eg:
+'44 Total; 0 Open (0%); 40 Resolved (90.91%); 4 Verified (9.09%);'
+
+Using a new ""stats"" option:
+  <bugzilla stats=""hide"">
+    ...
+  </bugzilla>
+
+Fixes #55.",Ed Morley,2015-05-26T16:45:27Z,Ed Morley,Ed Morley,26,24,2
+125,mediawiki-bugzilla,68180ffc846bc5277ffa4b6cd689ec15ac4f78c9,"Merge pull request #66 from edmorley/pagination-all
+
+Bug 1117090 - Add ""All"" as a pagination option",Christie Koehler,2015-01-21T18:28:02Z,christi3k,christi3k,2,1,1
+126,mediawiki-bugzilla,4f77040d118ca735ab96a5d16b149264ffc5a510,"Bug 1117090 / issue #65 - Add ""All"" as a pagination option",Ed Morley,2015-01-02T13:14:10Z,Ed Morley,Ed Morley,2,1,1
+127,mediawiki-bugzilla,a1e2d3ebc431f323d13f7ea3e80aaea21e61f816,"Merge pull request #63 from christi3k/master
+
+Updated bugzilla api endpoint.",Christie Koehler,2014-10-23T19:37:40Z,christi3k,christi3k,2,1,1
+128,mediawiki-bugzilla,8366fb35eb05fd0bef5793ac1b0dd227fec1042f,Updated bugzilla api endpoint. Fixes Issue #62 and https://bugzilla.mozilla.org/show_bug.cgi?id=1085409,Christie Koehler,2014-10-22T14:18:44Z,christi3k,christi3k,2,1,1
+129,mediawiki-bugzilla,a2c64856714c31b31954a8a8022ea93c2337ef03,"Merge pull request #56 from edmorley/disable-initial-sort
+
+Prevent jquery datatable from overriding the initial sort order",Ed Morley,2014-08-20T13:48:02Z,edmorley,edmorley,2,2,0
+130,mediawiki-bugzilla,fd13cf213a6d1930c7ba81b9cd0ec600b3f9e9f3,"Prevent jquery datatable from overriding the initial sort order
+
+This fixes https://github.com/mozilla/mediawiki-bugzilla/issues/43",Ed Morley,2014-07-01T20:19:09Z,edmorley,edmorley,2,2,0
+131,mediawiki-bugzilla,8fb2cf0180a5183381fd3019d2b90c8564869f0b,"Merge pull request #54 from superawesome/patch-4
+
+differentiate verified vs resolved",Selena Deckelmann,2014-05-22T23:39:40Z,selenamarie,selenamarie,21,15,6
+132,mediawiki-bugzilla,6c9a07b48e2de005efe6915528a0a6533d3e90d0,"differentiate verified vs resolved
+
+Bug 1004616 indicates it would be convenient to show separate counts/percentages for resolved vs verified. Tested/working on wiki-dev.allizom.org.",superawesome,2014-05-14T06:44:42Z,superawesome,superawesome,21,15,6
+133,mediawiki-bugzilla,66a1680e026f0aa17a4c0006d816f3fe650ba07f,"Merge pull request #53 from superawesome/patch-3
+
+Fix divide-by-zero error",Selena Deckelmann,2014-05-09T19:28:21Z,selenamarie,selenamarie,2,1,1
+134,mediawiki-bugzilla,dfcec1f50a5c3e8093114ef79e3bd63ea728b2c6,"Fix divide-by-zero error
+
+Silly case when a search returns no results. Minimal visual impact, but reduces error_log volume and cuts out the largest error reported in New Relic.",superawesome,2014-05-09T19:26:28Z,superawesome,superawesome,2,1,1
+135,mediawiki-bugzilla,a4b1fe3a890f44cfd7585f42c726d1d308e4f7d6,"Merge pull request #52 from superawesome/patch-2
+
+Fix end-of-table calculations",Laura Thomson,2014-05-01T22:18:52Z,lauraxt,lauraxt,4,2,2
+136,mediawiki-bugzilla,1ef4804fb0415d0a26f2e44e7e71ac7045078a03,"Update table.tpl
+
+PHP echo is a language construct, not a function. Doh!",superawesome,2014-05-01T22:15:54Z,superawesome,superawesome,2,1,1
+137,mediawiki-bugzilla,97d9a177035288e1e0c0a70cea156f97003d4c27,"Fix end-of-table calculations
+
+1) Open, Resolved, and All counters were not shown.
+
+2) Resolved counter did not include ""VERIFIED"" bugs, which should be considered a type of resolved.",superawesome,2014-05-01T22:10:25Z,superawesome,superawesome,4,2,2
+138,mediawiki-bugzilla,8d6f865ec599ad3d476c7179fa60cc765b0427a4,"Merge pull request #48 from superawesome/patch-1
+
+Convert most resources to use ResourceLoader",Robert Helmer,2014-04-28T19:44:26Z,rhelmer,rhelmer,30,21,9
+139,mediawiki-bugzilla,1428a5486119e0b843fbba5524130e376c14eb44,"Convert most resources to use ResourceLoader
+
+This fixes some compatibility issues between this module and modern MediaWiki's, namely around jQuery and jQueryUI. Without this, the Bugzilla tables shown are offset to the right due to improperly formatted CSS.
+
+This extension loads an jQuery plugin (DataTables) that does the pagination, which necessitates this being placed in ""top"" instead of the default ""bottom"".
+
+Better might be to install the actual MW extension that someone has created just for this (http://www.mediawiki.org/wiki/Extension:DataTables), but that's a bit larger scope and I'm not quite ready to go that far just yet.
+
+Tested and working on wiki-dev.allizom.org, though I have not significantly looked for regressions.",superawesome,2014-04-26T01:23:31Z,superawesome,superawesome,30,21,9
+140,mediawiki-bugzilla,bd1a0494d0e4934a33bf6e94bdc7b182e16ed47b,"Merge pull request #47 from christi3k/master
+
+Fix js error that breaks table sorting (bug 858844) 
+Merging per IRC request from @superawesome",Selena Deckelmann,2014-04-25T21:05:22Z,selenamarie,selenamarie,22,13,9
+141,mediawiki-bugzilla,2a50ccd4f0c69e405e22759ad4b004a38fd06392,declare global wgVersion,Christie Koehler,2014-04-24T21:48:46Z,christi3k,christi3k,1,1,0
+142,mediawiki-bugzilla,7c7c9a3d8c4122d42139b319bebd7e7fe575bc9b,Load local jquery and jqueryui only for mw versions prior to 1.17.,Christie Koehler,2014-04-15T01:03:32Z,christi3k,christi3k,21,12,9
+143,mediawiki-bugzilla,e463ed5a83820c138e7e09ae7270f9124e7439dc,"Merge pull request #42 from darchons/patch-1
+
+Don't specify table styles for list display",brandonsavage,2014-04-11T00:26:08Z,brandonsavage,brandonsavage,2,1,1
+144,mediawiki-bugzilla,01c00437b4c1f847eb4ad9f5de2d66dbb2567e44,"Don't specify table styles for list display
+
+The .bugzilla and .ui-helper-reset classes are useful for table display. However, when using list display, these styles make the resulting list look very out of place in a wiki page.",Jim Chen,2013-12-19T03:54:33Z,darchons,darchons,2,1,1
+145,mediawiki-bugzilla,47b5f9f2fcfbc68ed584817c05f6cb893d70a13c,"Merge pull request #41 from reedy/lossless
+
+Losslessly compress images",brandonsavage,2013-10-14T18:35:46Z,brandonsavage,brandonsavage,0,0,0
+146,mediawiki-bugzilla,d4f0ce9b09045351271adf1e512b12f604bc23d1,"Merge pull request #38 from brandonsavage/bug884943whitespace
+
+Fixes 884943 - Removing min height CSS elements, allowing tables to be the right height for their data.",brandonsavage,2013-10-14T18:35:15Z,brandonsavage,brandonsavage,2,0,2
+147,mediawiki-bugzilla,e021f844069ef6f61c8a3eea6eff9f3204aaaf97,"Merge pull request #37 from cargan/master
+
+added posibility to configure output table pagination",brandonsavage,2013-10-14T18:34:41Z,brandonsavage,brandonsavage,13,10,3
+148,mediawiki-bugzilla,492057c935815fbf7d31a2b4b43c234235aedd47,Losslessly compress images,Reedy,2013-10-13T16:49:04Z,reedy,reedy,0,0,0
+149,mediawiki-bugzilla,58a6a684f1025629102e7383ca7691bbb9b942af,"Fixes 884943 - Removing min height CSS elements, allowing tables to be the right height for their data.",Brandon Savage,2013-09-16T14:05:58Z,brandonsavage,brandonsavage,2,0,2
+150,mediawiki-bugzilla,a1cb9bb2edff3c3ae100cca62e24ab405a68d272,"Merge pull request #36 from pablofiu/patch-1
+
+added links in the Requeriments section (file ""README.md"")",brandonsavage,2013-09-06T14:40:46Z,brandonsavage,brandonsavage,4,2,2
+151,mediawiki-bugzilla,ceb37ed9e1e47252cdb57279977348bb615ffc15,added posibility to configure outpu table pagination,cargan,2013-09-04T06:36:33Z,cargan,cargan,13,10,3
+152,mediawiki-bugzilla,173af03431873498395c5b9b002b3206694cd712,added links in the Requeriments section,Pablo Alejandro Fiumara,2013-09-01T03:08:52Z,pablofiumara,pablofiumara,4,2,2
+153,mediawiki-bugzilla,7cf12ee473496e65494cdc0de658cdef7aea4919,"Merge pull request #35 from brandonsavage/percentresolved
+
+Fixes Bug 908299 - Adding an open/resolved/total/percent complete report to the bug table.",Laura Thomson,2013-08-22T21:54:09Z,lauraxt,lauraxt,12,11,1
+154,mediawiki-bugzilla,3b825f60b66d922c96a12b7594533b1fbcb3368f,"Merge pull request #34 from brandonsavage/licensing
+
+Fixes Bug 855560 - Adding the Mozilla MPL license header to all Mozilla-created source files.",Adrian Gaudebert,2013-08-22T18:14:16Z,adngdb,adngdb,105,65,40
+155,mediawiki-bugzilla,097034f25997d8df97c16b575060474611ddb316,Fixes Bug 908299 - Adding an open/resolved/total/percent complete report to the bug table.,Brandon Savage,2013-08-22T17:44:30Z,brandonsavage,brandonsavage,12,11,1
+156,mediawiki-bugzilla,840c35d3b029114c336a6e7ffeddcdb855896187,Fixes Bug 855560 - Adding the Mozilla MPL license header to all Mozilla-created source files.,Brandon Savage,2013-08-22T17:34:20Z,brandonsavage,brandonsavage,105,65,40
+157,mediawiki-bugzilla,e45493ad1ae5b22cf2149c3cf85e125bb9fdc291,"Merge pull request #32 from reedy/keyidentifier
+
+Quote 'key' as it's a reserved word",brandonsavage,2013-07-25T21:22:57Z,brandonsavage,brandonsavage,6,3,3
+158,mediawiki-bugzilla,2addc5267077eb7e022bf605441ae5d59711e0d7,Quote 'key' as it's a reserved word,Reedy,2013-06-07T14:10:12Z,reedy,reedy,6,3,3
+159,mediawiki-bugzilla,04b4ef21d596b0cc3bd899e308b61c39bd9d7bb6,"Merge pull request #31 from reedy/initialcleanuppassv2
+
+Initial cleanup (v2)",brandonsavage,2013-04-24T16:41:57Z,brandonsavage,brandonsavage,194,105,89
+160,mediawiki-bugzilla,01914d443b3a450de574406f66971832abaa2db6,Fix path to i18n file,Reedy,2013-04-21T21:03:12Z,reedy,reedy,2,1,1
+161,mediawiki-bugzilla,bb26504bd90b32464c7969a0769406145c4687d7,"Initial cleanup (v2)
+
+Fixed query bug in BugzillaCacheMysql
+
+Add missing } to web/css/bugzilla.css
+
+Normalised indenting levels (still ketp as spaces!)
+
+Minimal internationalisation
+
+Removed un-needed ?>",Reedy,2013-04-21T20:55:47Z,reedy,reedy,194,105,89
+162,mediawiki-bugzilla,2e2d44768f274913954a011715e70052b5c2e72b,"Merge pull request #29 from reedy/sqlcache
+
+Check return value from select()",brandonsavage,2013-04-18T18:32:37Z,brandonsavage,brandonsavage,31,16,15
+163,mediawiki-bugzilla,fef46eb606efd4ac681e2606e559a85a9a20609d,"Merge pull request #28 from reedy/sqlcleanup
+
+Update MySQL. Honour table and index prefixes. Make index name more spec...",brandonsavage,2013-04-09T20:02:23Z,brandonsavage,brandonsavage,23,7,16
+164,mediawiki-bugzilla,3f33d7755279373640e70d02a7f3c1014ddbe7e5,"Check return value from select()
+
+Don't manually quote, or encode strings
+
+Minor documentation fixups",Reedy,2013-04-08T19:43:38Z,reedy,reedy,31,16,15
+165,mediawiki-bugzilla,0d6e79836ebdc60e97b93796678f8feca3a92487,"Update MySQL. Honour table and index prefixes. Make index name more specific
+
+Add unique index on key for SQLite
+
+Delete old cache.sql file from root",Reedy,2013-04-08T19:34:11Z,reedy,reedy,23,7,16
+166,mediawiki-bugzilla,e1d9ecf286a4d7aca81c21b3b933b46bb7f8860d,"Merge pull request #25 from reedy/pcharts213
+
+Update pCharts to 2.1.3",brandonsavage,2013-04-04T19:37:26Z,brandonsavage,brandonsavage,28838,14416,14422
+167,mediawiki-bugzilla,dc728f79ff99ab2f889ef2415459b126b7bf1f29,Remove .DS_Store,Reedy,2013-04-04T19:35:16Z,reedy,reedy,0,0,0
+168,mediawiki-bugzilla,c1607d750a03ed9e89d3d00fbd866a3ccb5fdf5c,"Merge pull request #21 from reedy/bugsundefinedindex
+
+Fix Undefined index: bugs in BugzillaOutput.class.php on line 85",brandonsavage,2013-04-04T17:20:48Z,brandonsavage,brandonsavage,24,12,12
+169,mediawiki-bugzilla,7249470af29746225e1d079c79b9d43b43e8135c,"Merge pull request #13 from rdalverny/rework_cache
+
+More generic layout for caching.",brandonsavage,2013-04-04T17:01:20Z,brandonsavage,brandonsavage,368,231,137
+170,mediawiki-bugzilla,9cb5225719b4b9f0e81b8fdbb15d05dec15a2f74,"Update pCharts to 2.1.3
+
+Remove useless index.php as no examples folder",Reedy,2013-04-02T15:50:12Z,reedy,reedy,28838,14416,14422
+171,mediawiki-bugzilla,d9052f37ebe0cb66b3a0ed1088334eec556d2f22,re-enable caching as it seems stable now,eziegenhorn,2017-11-02T18:04:33Z,ziegeer,ziegeer,3,0,3
+172,mediawiki-bugzilla,3ca6be662db7de3c2dfc38836cc59d14abec809f,temporarily disable caching due to bugginess,eziegenhorn,2017-11-02T01:47:38Z,ziegeer,ziegeer,3,3,0
+173,mediawiki-bugzilla,593c3cb1a4b64a025781126d7b1f739ef37b6962,"Merge pull request #99 from dylanwh/include-fields-trim-spaces
+
+use preg_split() instead of explode()",Eric Ziegenhorn,2017-10-30T21:20:34Z,ziegeer,ziegeer,2,1,1
+174,mediawiki-bugzilla,48baeb3285e7599912a3a12a3714cab94ea6b136,use preg_split() instead of explode(),Dylan William Hardison,2017-10-30T21:02:36Z,dylanwh,dylanwh,2,1,1
+175,mediawiki-bugzilla,c80f83fcd5548273a194a5afbe21486acc6cfa8d,"Merge pull request #98 from dylanwh/fix-querystrings
+
+replace http_build_query() which breaks include_fields with a custom function that works.  Bug 1412429.",Eric Ziegenhorn,2017-10-30T18:52:10Z,ziegeer,ziegeer,31,29,2
+176,mediawiki-bugzilla,b5c43fd5e16b94320708faefba83969590f1359d,wrong variable,Dylan William Hardison,2017-10-30T17:43:08Z,dylanwh,dylanwh,2,1,1
+177,mediawiki-bugzilla,85a604a642f70625bcf5fa9ec676785b0c9656a3,replace http_build_query() with a protected method that generates correct query strings,Dylan William Hardison,2017-10-30T17:36:17Z,dylanwh,dylanwh,31,29,2
+178,mediawiki-bugzilla,c53fe087e21b2a831d073e8aafa5323666af83ed,"Merge pull request #92 from rdalverny/use_wm_cache
+
+Use MediaWiki cache strategy and code",Christian Legnitto,2017-05-11T05:10:25Z,LegNeato,LegNeato,425,49,376
+179,mediawiki-bugzilla,4ab225d731db2e19069ffa1ac11dbc47b0377b44,"Update README.md
+
+* Add minimum MediaWiki version.
+* Fix embedded image.",Christian Legnitto,2017-05-11T05:06:40Z,LegNeato,LegNeato,3,2,1
+180,mediawiki-bugzilla,d9a61866d08c11157b9c0428a1e42f3a95622c33,"Merge pull request #96 from hexmode/master
+
+Modifications for wikimo upgrade",Christian Legnitto,2017-05-11T05:04:47Z,LegNeato,LegNeato,133,72,61
+181,mediawiki-bugzilla,69e9757f9ab8268b4e399ee645bea98792154bcf,ignore charts,Mark A. Hershberger,2017-05-11T04:50:50Z,hexmode,hexmode,2,1,1
+182,mediawiki-bugzilla,48cc3e6918535e7351999769cad2ddcbc987ac4b,Use __DIR__ instead of undefined $cwd,Mark A. Hershberger,2017-05-11T04:26:21Z,hexmode,hexmode,4,2,2
+183,mediawiki-bugzilla,36a3ef8f3b9e69f4e36159df9b597b8fc7393b92,Fix up some left over HTTP/Request2 stuff,Mark A. Hershberger,2017-05-11T04:20:34Z,hexmode,hexmode,13,5,8
+184,mediawiki-bugzilla,19aab3e0cae70d662d1ce781f62248028c983f23,better handling for size parameter if not given,Mark A. Hershberger,2017-05-11T04:19:56Z,hexmode,hexmode,11,5,6
+185,mediawiki-bugzilla,4e20bebea3c1c15543e84a384c3fd9cdca07a72f,Handle undefined values better,Mark A. Hershberger,2017-05-11T04:18:46Z,hexmode,hexmode,31,26,5
+186,mediawiki-bugzilla,8c5d03ca27ee73d7a9292db5bcf25cb9b2978fdf,fix array to string error,Mark A. Hershberger,2017-05-11T04:17:12Z,hexmode,hexmode,2,1,1
+187,mediawiki-bugzilla,9e93601fa883272a7e279d6f287875d080fac103,merge,Mark A. Hershberger,2017-05-10T21:53:05Z,hexmode,hexmode,80,37,43
+188,mediawiki-bugzilla,177d161ae4e8db7dc955581a6f4ca71eed4d9d1a,"Remove dependency on HTTP::Request2 from PEAR
+
+Use MW's internal HTTP lib
+(also add ignores)",Mark A. Hershberger,2017-05-10T21:42:36Z,hexmode,hexmode,89,39,50
+189,mediawiki-bugzilla,eaa6d855c30d6435313978a88864413fc74bcd73,"Use MediaWiki cache strategy and code
+
+This removes all BugzillaCache* classes and code that used it,
+replaces it with MediaWiki `wfGetCache($wgMainCacheType)`,
+which provides sensibly the same set of options.
+
+Doing so also simplifies a first install, by removing specific
+configuration for this extension.",Romain d'Alverny,2016-09-27T09:23:40Z,rdalverny,rdalverny,425,49,376
+190,mediawiki-bugzilla,59c74e67bec35aaa44d35c144bff703a74b2a048,"Merge pull request #91 from rdalverny/add_number_display
+
+Add number display",Christian Legnitto,2016-12-28T00:02:15Z,LegNeato,LegNeato,64,35,29
+191,mediawiki-bugzilla,ec96ccc509396f3164c54eec4158974321781f87,"Merge pull request #88 from rdalverny/show_full_query_link
+
+Add a link to the Bugzilla query in the table summary",Christian Legnitto,2016-12-28T00:01:02Z,LegNeato,LegNeato,9,9,0
+192,mediawiki-bugzilla,bcf8e55004e0b84721ee9fe8c1a9f48968896fed,"Merge pull request #87 from rdalverny/refactor_options
+
+Refactor consistent options",Christian Legnitto,2016-12-27T23:59:50Z,LegNeato,LegNeato,387,243,144
+193,mediawiki-bugzilla,19997caa0f7e3ea7229dcd5569e7773733c792e4,"Merge pull request #82 from rdalverny/nicer_empty_state
+
+Do not show table if no bug is returned by Bugzilla API",Christian Legnitto,2016-12-27T23:57:19Z,LegNeato,LegNeato,22,14,8
+194,mediawiki-bugzilla,2295f67bfc86f7c89c26de5cb9649eedf13d68bf,Remove tests already settled in prepare_options(),Romain d'Alverny,2016-09-27T09:46:07Z,rdalverny,rdalverny,23,1,22
+195,mediawiki-bugzilla,78434ecbc4b65d07dfb6587a8cd751309717b672,Add test case,Romain d'Alverny,2016-09-22T11:16:24Z,rdalverny,rdalverny,7,6,1
+196,mediawiki-bugzilla,23d2b18c9c8eb36b12f4a48275f259839d19d420,Refactor _generate_id(),Romain d'Alverny,2016-09-16T15:55:53Z,rdalverny,rdalverny,69,19,50
+197,mediawiki-bugzilla,793def52e60ace33330e323c6108874823a386f0,Refactor how we add synthetic fields to query,Romain d'Alverny,2016-09-16T15:52:04Z,rdalverny,rdalverny,89,59,30
+198,mediawiki-bugzilla,3c6933fbd44579469610e2d3112449e84dffa77b,"Ensure a consistent, working options data structure
+
+Before this change, we were not so sure about the consistency of
+the BugzillaQuery $options member: there were several duplicate
+tests checking for 'include_fields' existence, type and correctness.
+
+This adds a prepare_options() method which validates configuration
+JSON string:
+- if it's not a valid JSON, it sets an error as before,
+- if it's an empty string or JSON, it sets a working default,
+  so first time users get a working experience at once.
+
+This also introduces tests for this change, to document
+prepare_options() behaviour.",Romain d'Alverny,2016-09-16T15:21:46Z,rdalverny,rdalverny,182,152,30
+199,mediawiki-bugzilla,19f3c3554b0222f436c99474e0ddca73a5f3680b,"Move query fetch() invocation out of the constructors
+
+Before this change, the invocation order was the following:
+ - BugzillaRender(...),
+ - Bugzilla::create(...),
+ - new BugzillaOutput(...),
+ - BugzillaQuery::create(...),
+ - new BugzillaRESTQuery(...),
+ - $this->fetch() => triggers the actual HTTP request.
+
+That's not great for testing separate entities.
+
+This change allows to build the whole chain above without
+implicitly triggering fetch().",Romain d'Alverny,2016-09-16T14:48:10Z,rdalverny,rdalverny,23,9,14
+200,mediawiki-bugzilla,3e0412ffa5bc4ab1eea0d39821b86cfa5e5e592c,Fix syntax typo,Romain d'Alverny,2016-09-27T07:52:07Z,rdalverny,rdalverny,2,1,1
+201,mediawiki-bugzilla,45f3c05e2d0d91552627e6f1929cf37b25b872d3,Fail nicely if GD extension is not available,Romain d'Alverny,2016-09-27T09:35:25Z,rdalverny,rdalverny,8,8,0
+202,mediawiki-bugzilla,f5bd15987bd5e5fcc570ec696408c471a255cd03,"Add number display option
+
+Use it as an inlined HTML tag:
+<bugzilla type=""count"" display=""number"">{}</bugzilla>
+
+Fixes: #44",Romain d'Alverny,2016-09-27T09:31:32Z,rdalverny,rdalverny,15,14,1
+203,mediawiki-bugzilla,b8432376e3b50cc6c8955b3b2076e007013a5e67,Refactor how BugzillaOutput class is selected,Romain d'Alverny,2016-09-27T09:31:05Z,rdalverny,rdalverny,41,13,28
+204,mediawiki-bugzilla,a69e3f3b27baec5fd9ebdccba7e1356d0dbce453,"Set a user agent when querying remote API
+
+A $wgBugzillaExtVersion is defined as a global,
+used by a new BugzillaRESTQuery::user_agent() method.
+
+Initial version is arbitrarily set at 1.0.0 to begin with,
+but that, and the versioning scheme to adopt, is left to discussion
+(I'd suggest http://semver.org).",Romain d'Alverny,2016-09-16T07:47:25Z,rdalverny,rdalverny,15,14,1
+205,mediawiki-bugzilla,b11a49620b0e21eb6f4f653688d27997d70a96c4,Add vendor to gitignore,Romain d'Alverny,2016-09-26T23:51:52Z,rdalverny,rdalverny,1,1,0
+206,mediawiki-bugzilla,1852110938bc450e6d7bbff9b61ee8a367468c9c,"Add code style & linting rules for PHP
+
+This is based on Mediawiki boilerplate composer.json & phpcs.xml.
+This adds a Makefile too.
+
+To setup:
+
+  $ make install-dev
+  $ make lint
+  $ make cs",Romain d'Alverny,2016-09-26T23:32:52Z,rdalverny,rdalverny,43,43,0
+207,mediawiki-bugzilla,496a073649fee9cbf63563b2f847841c152995e7,"Add a link to the Bugzilla query in the table summary
+
+Fixes: #45",Romain d'Alverny,2016-09-22T17:11:14Z,rdalverny,rdalverny,9,9,0
+208,mediawiki-bugzilla,3ba6f2cdf24453309aaf74e7a169da5d9a65d330,"Do not show table if no bug is returned by Bugzilla API
+
+See: https://github.com/mozilla/mediawiki-bugzilla/issues/50
+
+Division by $all=0 has been addressed by dfcec1f50a5c3e8093114ef79e3bd63ea728b2c6
+so #50 may be closed.
+
+Bugzilla uses 'Zarro Boogs found.' but even that may change:
+https://bugzilla.mozilla.org/show_bug.cgi?id=313647
+
+Replaces: https://github.com/mozilla/mediawiki-bugzilla/pull/51",Romain d'Alverny,2016-09-08T18:22:14Z,rdalverny,rdalverny,22,14,8
+209,mediawiki-bugzilla,a03ebd7c339aa51afe86a2f47eb0a83882de5f6e,Fix typo,Christian Legnitto,2015-12-02T10:31:07Z,LegNeato,LegNeato,2,1,1
+210,mediawiki-bugzilla,e211fc73035d520ffdf9e11285d62c8d488351fe,"Merge pull request #74 from rhabacker/json-rpc
+
+Add json rpc support",Christian Legnitto,2015-12-02T10:29:59Z,LegNeato,LegNeato,108,101,7
+211,mediawiki-bugzilla,b5143c3551be37bc5c37c01af259c25c329b65c7,"Merge pull request #76 from dennisroczek/master
+
+add license file + listing at Special:Version",Christian Legnitto,2015-10-01T23:11:39Z,LegNeato,LegNeato,376,376,0
+212,mediawiki-bugzilla,dff922b4dd5b683aaeae3b878a5213805698b335,"Merge pull request #73 from rhabacker/master
+
+postgresql fixes",Christian Legnitto,2015-10-01T23:10:50Z,LegNeato,LegNeato,10,5,5
+213,mediawiki-bugzilla,0dc1a98e0377035cca2d344e43860c6b12cc83e8,add license file + listing at Special:Version,dennisroczek,2015-10-01T22:49:47Z,dennisroczek,dennisroczek,376,376,0
+214,mediawiki-bugzilla,14af44261aeca3b5338afd47e48126fe3035e18b,"Fixup of 80cc683e605302f90e38094c92949bbbbf8a785f.
+
+Mysql requires a specific sql syntax.",Ralf Habacker,2015-09-09T12:10:43Z,Ralf Habacker,Ralf Habacker,16,12,4
+215,mediawiki-bugzilla,02edbf59a6e1ef31029466b783f09f2ebd046bbc,Fix array json syntax.,Ralf Habacker,2015-09-08T07:32:55Z,Ralf Habacker,Ralf Habacker,2,1,1
+216,mediawiki-bugzilla,65ee9b8078bbf50e6cfabf692e656386e25798a5,Add JSON-RPC query support.,Ralf Habacker,2015-09-08T09:02:15Z,Ralf Habacker,Ralf Habacker,90,88,2
+217,mediawiki-bugzilla,80cc683e605302f90e38094c92949bbbbf8a785f,Make database cache entry deleting independent from database type.,Ralf Habacker,2015-09-08T07:30:34Z,Ralf Habacker,Ralf Habacker,2,1,1
+218,mediawiki-bugzilla,6e198f98ecdfd350e840ad9c2b2df6faa45ac0e9,Fix postgresql syntax,Ralf Habacker,2015-09-07T09:12:43Z,Ralf Habacker,Ralf Habacker,8,4,4
+219,mediawiki-bugzilla,a5cfdcc04068bc70e252ed0cce10ad5d263b226f,"Merge pull request #72 from mozilla/fixtables
+
+added proper classes to tables",Christie Koehler,2015-07-19T23:06:23Z,christi3k,christi3k,2,1,1
+220,mediawiki-bugzilla,a337f6345a0528623e92e9260979bddf8bc1b5ac,added proper classes to tables,Christie Koehler,2015-07-19T23:04:24Z,christi3k,christi3k,2,1,1
+221,mediawiki-bugzilla,c52b2ddc6e518c6724e7aa114139dffabd4e4661,"Merge pull request #69 from edmorley/add-stats-option
+
+Bug 1168463 - Add an option to hide bug resolution statistics",Christie Koehler,2015-07-15T20:49:40Z,christi3k,christi3k,26,24,2
+222,mediawiki-bugzilla,9b954613b6b056504b666a9c080bc04adc6f07cf,"Merge pull request #71 from edmorley/less-verbose-names
+
+Bug 1168491 - Make people fields less verbose if real name set",Christie Koehler,2015-07-15T20:49:27Z,christi3k,christi3k,4,1,3
+223,mediawiki-bugzilla,ca37570bdb8cbfa68adabf17e831c1a950b4c573,"Bug 1168491 - Make people fields less verbose if real name set
+
+Previously if the real name was set, both the name (ie partial email
+address) and real name was displayed, now only the real name is shown.",Ed Morley,2015-05-26T18:12:53Z,Ed Morley,Ed Morley,4,1,3
+224,mediawiki-bugzilla,b16a5f47843997fe0bf73c7e18f8b2015e71c1a6,"Bug 1168463 - Add an option to hide bug resolution statistics
+
+This adds the ability to turn off the bug resolution statistics, eg:
+'44 Total; 0 Open (0%); 40 Resolved (90.91%); 4 Verified (9.09%);'
+
+Using a new ""stats"" option:
+  <bugzilla stats=""hide"">
+    ...
+  </bugzilla>
+
+Fixes #55.",Ed Morley,2015-05-26T16:45:27Z,Ed Morley,Ed Morley,26,24,2
+225,mediawiki-bugzilla,68180ffc846bc5277ffa4b6cd689ec15ac4f78c9,"Merge pull request #66 from edmorley/pagination-all
+
+Bug 1117090 - Add ""All"" as a pagination option",Christie Koehler,2015-01-21T18:28:02Z,christi3k,christi3k,2,1,1
+226,mediawiki-bugzilla,4f77040d118ca735ab96a5d16b149264ffc5a510,"Bug 1117090 / issue #65 - Add ""All"" as a pagination option",Ed Morley,2015-01-02T13:14:10Z,Ed Morley,Ed Morley,2,1,1
+227,mediawiki-bugzilla,a1e2d3ebc431f323d13f7ea3e80aaea21e61f816,"Merge pull request #63 from christi3k/master
+
+Updated bugzilla api endpoint.",Christie Koehler,2014-10-23T19:37:40Z,christi3k,christi3k,2,1,1
+228,mediawiki-bugzilla,8366fb35eb05fd0bef5793ac1b0dd227fec1042f,Updated bugzilla api endpoint. Fixes Issue #62 and https://bugzilla.mozilla.org/show_bug.cgi?id=1085409,Christie Koehler,2014-10-22T14:18:44Z,christi3k,christi3k,2,1,1
+229,mediawiki-bugzilla,a2c64856714c31b31954a8a8022ea93c2337ef03,"Merge pull request #56 from edmorley/disable-initial-sort
+
+Prevent jquery datatable from overriding the initial sort order",Ed Morley,2014-08-20T13:48:02Z,edmorley,edmorley,2,2,0
+230,mediawiki-bugzilla,fd13cf213a6d1930c7ba81b9cd0ec600b3f9e9f3,"Prevent jquery datatable from overriding the initial sort order
+
+This fixes https://github.com/mozilla/mediawiki-bugzilla/issues/43",Ed Morley,2014-07-01T20:19:09Z,edmorley,edmorley,2,2,0
+231,mediawiki-bugzilla,8fb2cf0180a5183381fd3019d2b90c8564869f0b,"Merge pull request #54 from superawesome/patch-4
+
+differentiate verified vs resolved",Selena Deckelmann,2014-05-22T23:39:40Z,selenamarie,selenamarie,21,15,6
+232,mediawiki-bugzilla,6c9a07b48e2de005efe6915528a0a6533d3e90d0,"differentiate verified vs resolved
+
+Bug 1004616 indicates it would be convenient to show separate counts/percentages for resolved vs verified. Tested/working on wiki-dev.allizom.org.",superawesome,2014-05-14T06:44:42Z,superawesome,superawesome,21,15,6
+233,mediawiki-bugzilla,66a1680e026f0aa17a4c0006d816f3fe650ba07f,"Merge pull request #53 from superawesome/patch-3
+
+Fix divide-by-zero error",Selena Deckelmann,2014-05-09T19:28:21Z,selenamarie,selenamarie,2,1,1
+234,mediawiki-bugzilla,dfcec1f50a5c3e8093114ef79e3bd63ea728b2c6,"Fix divide-by-zero error
+
+Silly case when a search returns no results. Minimal visual impact, but reduces error_log volume and cuts out the largest error reported in New Relic.",superawesome,2014-05-09T19:26:28Z,superawesome,superawesome,2,1,1
+235,mediawiki-bugzilla,a4b1fe3a890f44cfd7585f42c726d1d308e4f7d6,"Merge pull request #52 from superawesome/patch-2
+
+Fix end-of-table calculations",Laura Thomson,2014-05-01T22:18:52Z,lauraxt,lauraxt,4,2,2
+236,mediawiki-bugzilla,1ef4804fb0415d0a26f2e44e7e71ac7045078a03,"Update table.tpl
+
+PHP echo is a language construct, not a function. Doh!",superawesome,2014-05-01T22:15:54Z,superawesome,superawesome,2,1,1
+237,mediawiki-bugzilla,97d9a177035288e1e0c0a70cea156f97003d4c27,"Fix end-of-table calculations
+
+1) Open, Resolved, and All counters were not shown.
+
+2) Resolved counter did not include ""VERIFIED"" bugs, which should be considered a type of resolved.",superawesome,2014-05-01T22:10:25Z,superawesome,superawesome,4,2,2
+238,mediawiki-bugzilla,8d6f865ec599ad3d476c7179fa60cc765b0427a4,"Merge pull request #48 from superawesome/patch-1
+
+Convert most resources to use ResourceLoader",Robert Helmer,2014-04-28T19:44:26Z,rhelmer,rhelmer,30,21,9
+239,mediawiki-bugzilla,1428a5486119e0b843fbba5524130e376c14eb44,"Convert most resources to use ResourceLoader
+
+This fixes some compatibility issues between this module and modern MediaWiki's, namely around jQuery and jQueryUI. Without this, the Bugzilla tables shown are offset to the right due to improperly formatted CSS.
+
+This extension loads an jQuery plugin (DataTables) that does the pagination, which necessitates this being placed in ""top"" instead of the default ""bottom"".
+
+Better might be to install the actual MW extension that someone has created just for this (http://www.mediawiki.org/wiki/Extension:DataTables), but that's a bit larger scope and I'm not quite ready to go that far just yet.
+
+Tested and working on wiki-dev.allizom.org, though I have not significantly looked for regressions.",superawesome,2014-04-26T01:23:31Z,superawesome,superawesome,30,21,9
+240,mediawiki-bugzilla,bd1a0494d0e4934a33bf6e94bdc7b182e16ed47b,"Merge pull request #47 from christi3k/master
+
+Fix js error that breaks table sorting (bug 858844) 
+Merging per IRC request from @superawesome",Selena Deckelmann,2014-04-25T21:05:22Z,selenamarie,selenamarie,22,13,9
+241,mediawiki-bugzilla,2a50ccd4f0c69e405e22759ad4b004a38fd06392,declare global wgVersion,Christie Koehler,2014-04-24T21:48:46Z,christi3k,christi3k,1,1,0
+242,mediawiki-bugzilla,7c7c9a3d8c4122d42139b319bebd7e7fe575bc9b,Load local jquery and jqueryui only for mw versions prior to 1.17.,Christie Koehler,2014-04-15T01:03:32Z,christi3k,christi3k,21,12,9
+243,mediawiki-bugzilla,e463ed5a83820c138e7e09ae7270f9124e7439dc,"Merge pull request #42 from darchons/patch-1
+
+Don't specify table styles for list display",brandonsavage,2014-04-11T00:26:08Z,brandonsavage,brandonsavage,2,1,1
+244,mediawiki-bugzilla,01c00437b4c1f847eb4ad9f5de2d66dbb2567e44,"Don't specify table styles for list display
+
+The .bugzilla and .ui-helper-reset classes are useful for table display. However, when using list display, these styles make the resulting list look very out of place in a wiki page.",Jim Chen,2013-12-19T03:54:33Z,darchons,darchons,2,1,1
+245,mediawiki-bugzilla,47b5f9f2fcfbc68ed584817c05f6cb893d70a13c,"Merge pull request #41 from reedy/lossless
+
+Losslessly compress images",brandonsavage,2013-10-14T18:35:46Z,brandonsavage,brandonsavage,0,0,0
+246,mediawiki-bugzilla,d4f0ce9b09045351271adf1e512b12f604bc23d1,"Merge pull request #38 from brandonsavage/bug884943whitespace
+
+Fixes 884943 - Removing min height CSS elements, allowing tables to be the right height for their data.",brandonsavage,2013-10-14T18:35:15Z,brandonsavage,brandonsavage,2,0,2
+247,mediawiki-bugzilla,e021f844069ef6f61c8a3eea6eff9f3204aaaf97,"Merge pull request #37 from cargan/master
+
+added posibility to configure output table pagination",brandonsavage,2013-10-14T18:34:41Z,brandonsavage,brandonsavage,13,10,3
+248,mediawiki-bugzilla,492057c935815fbf7d31a2b4b43c234235aedd47,Losslessly compress images,Reedy,2013-10-13T16:49:04Z,reedy,reedy,0,0,0
+249,mediawiki-bugzilla,58a6a684f1025629102e7383ca7691bbb9b942af,"Fixes 884943 - Removing min height CSS elements, allowing tables to be the right height for their data.",Brandon Savage,2013-09-16T14:05:58Z,brandonsavage,brandonsavage,2,0,2
+250,mediawiki-bugzilla,a1cb9bb2edff3c3ae100cca62e24ab405a68d272,"Merge pull request #36 from pablofiu/patch-1
+
+added links in the Requeriments section (file ""README.md"")",brandonsavage,2013-09-06T14:40:46Z,brandonsavage,brandonsavage,4,2,2
+251,mediawiki-bugzilla,ceb37ed9e1e47252cdb57279977348bb615ffc15,added posibility to configure outpu table pagination,cargan,2013-09-04T06:36:33Z,cargan,cargan,13,10,3
+252,mediawiki-bugzilla,173af03431873498395c5b9b002b3206694cd712,added links in the Requeriments section,Pablo Alejandro Fiumara,2013-09-01T03:08:52Z,pablofiumara,pablofiumara,4,2,2
+253,mediawiki-bugzilla,7cf12ee473496e65494cdc0de658cdef7aea4919,"Merge pull request #35 from brandonsavage/percentresolved
+
+Fixes Bug 908299 - Adding an open/resolved/total/percent complete report to the bug table.",Laura Thomson,2013-08-22T21:54:09Z,lauraxt,lauraxt,12,11,1
+254,mediawiki-bugzilla,3b825f60b66d922c96a12b7594533b1fbcb3368f,"Merge pull request #34 from brandonsavage/licensing
+
+Fixes Bug 855560 - Adding the Mozilla MPL license header to all Mozilla-created source files.",Adrian Gaudebert,2013-08-22T18:14:16Z,adngdb,adngdb,105,65,40
+255,mediawiki-bugzilla,097034f25997d8df97c16b575060474611ddb316,Fixes Bug 908299 - Adding an open/resolved/total/percent complete report to the bug table.,Brandon Savage,2013-08-22T17:44:30Z,brandonsavage,brandonsavage,12,11,1
+256,mediawiki-bugzilla,840c35d3b029114c336a6e7ffeddcdb855896187,Fixes Bug 855560 - Adding the Mozilla MPL license header to all Mozilla-created source files.,Brandon Savage,2013-08-22T17:34:20Z,brandonsavage,brandonsavage,105,65,40
+257,mediawiki-bugzilla,e45493ad1ae5b22cf2149c3cf85e125bb9fdc291,"Merge pull request #32 from reedy/keyidentifier
+
+Quote 'key' as it's a reserved word",brandonsavage,2013-07-25T21:22:57Z,brandonsavage,brandonsavage,6,3,3
+258,mediawiki-bugzilla,2addc5267077eb7e022bf605441ae5d59711e0d7,Quote 'key' as it's a reserved word,Reedy,2013-06-07T14:10:12Z,reedy,reedy,6,3,3
+259,mediawiki-bugzilla,04b4ef21d596b0cc3bd899e308b61c39bd9d7bb6,"Merge pull request #31 from reedy/initialcleanuppassv2
+
+Initial cleanup (v2)",brandonsavage,2013-04-24T16:41:57Z,brandonsavage,brandonsavage,194,105,89
+260,mediawiki-bugzilla,01914d443b3a450de574406f66971832abaa2db6,Fix path to i18n file,Reedy,2013-04-21T21:03:12Z,reedy,reedy,2,1,1
+261,mediawiki-bugzilla,bb26504bd90b32464c7969a0769406145c4687d7,"Initial cleanup (v2)
+
+Fixed query bug in BugzillaCacheMysql
+
+Add missing } to web/css/bugzilla.css
+
+Normalised indenting levels (still ketp as spaces!)
+
+Minimal internationalisation
+
+Removed un-needed ?>",Reedy,2013-04-21T20:55:47Z,reedy,reedy,194,105,89
+262,mediawiki-bugzilla,2e2d44768f274913954a011715e70052b5c2e72b,"Merge pull request #29 from reedy/sqlcache
+
+Check return value from select()",brandonsavage,2013-04-18T18:32:37Z,brandonsavage,brandonsavage,31,16,15
+263,mediawiki-bugzilla,fef46eb606efd4ac681e2606e559a85a9a20609d,"Merge pull request #28 from reedy/sqlcleanup
+
+Update MySQL. Honour table and index prefixes. Make index name more spec...",brandonsavage,2013-04-09T20:02:23Z,brandonsavage,brandonsavage,23,7,16
+264,mediawiki-bugzilla,3f33d7755279373640e70d02a7f3c1014ddbe7e5,"Check return value from select()
+
+Don't manually quote, or encode strings
+
+Minor documentation fixups",Reedy,2013-04-08T19:43:38Z,reedy,reedy,31,16,15
+265,mediawiki-bugzilla,0d6e79836ebdc60e97b93796678f8feca3a92487,"Update MySQL. Honour table and index prefixes. Make index name more specific
+
+Add unique index on key for SQLite
+
+Delete old cache.sql file from root",Reedy,2013-04-08T19:34:11Z,reedy,reedy,23,7,16
+266,mediawiki-bugzilla,e1d9ecf286a4d7aca81c21b3b933b46bb7f8860d,"Merge pull request #25 from reedy/pcharts213
+
+Update pCharts to 2.1.3",brandonsavage,2013-04-04T19:37:26Z,brandonsavage,brandonsavage,28838,14416,14422
+267,mediawiki-bugzilla,dc728f79ff99ab2f889ef2415459b126b7bf1f29,Remove .DS_Store,Reedy,2013-04-04T19:35:16Z,reedy,reedy,0,0,0
+268,mediawiki-bugzilla,c1607d750a03ed9e89d3d00fbd866a3ccb5fdf5c,"Merge pull request #21 from reedy/bugsundefinedindex
+
+Fix Undefined index: bugs in BugzillaOutput.class.php on line 85",brandonsavage,2013-04-04T17:20:48Z,brandonsavage,brandonsavage,24,12,12
+269,mediawiki-bugzilla,7249470af29746225e1d079c79b9d43b43e8135c,"Merge pull request #13 from rdalverny/rework_cache
+
+More generic layout for caching.",brandonsavage,2013-04-04T17:01:20Z,brandonsavage,brandonsavage,368,231,137
+270,mediawiki-bugzilla,9cb5225719b4b9f0e81b8fdbb15d05dec15a2f74,"Update pCharts to 2.1.3
+
+Remove useless index.php as no examples folder",Reedy,2013-04-02T15:50:12Z,reedy,reedy,28838,14416,14422

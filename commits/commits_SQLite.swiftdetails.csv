@@ -1,0 +1,2620 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,SQLite.swift,a0db7e624d32e088f84518b5ca7b12674a0d78d6,"Update README with basic, type-safe query-building example
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-21T17:03:44Z,stephencelis,stephencelis,38,20,18
+1,SQLite.swift,523c0da42c0c290a2d10aed59fc44cbbfebc4ab9,"Update playground with type-safe query builder
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-21T16:50:07Z,stephencelis,stephencelis,194,108,86
+2,SQLite.swift,4896eae274b4ee0c422a6a2ef058221693375ad4,"Add type-safe SQL expression builder
+
+A bit more declarative sugar for building queries, e.g.:
+
+    // given
+    let users = db[""users""]
+    let admin = Expression<Bool>(""admin"")
+    let age = Expression<Int>(""age"")
+
+    users.filter(admin && age >= 30).order(age.desc)
+    // SELECT * FROM users WHERE (admin) AND (age >= 30) ORDER BY age DESC
+
+    users.group(age, having: count(age) == 1)
+    // SELECT * FROM users GROUP BY age HAVING count(age) = 1
+
+Everything is an expression now, and depending on the type can interact
+differently. This means we can now use bindings everywhere with little
+effort.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-14T06:47:44Z,stephencelis,stephencelis,1687,1193,494
+3,SQLite.swift,8bebe4b8f306be6c2c3926b2d14006911070213e,"Remove extra Datatype extensions
+
+Let's stick with the core and make it reliable. People can always cast
+values before sending them to SQLite queries if they differ.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-15T02:50:55Z,stephencelis,stephencelis,56,0,56
+4,SQLite.swift,3b3d07f1a496cd813184c6d80a20d4d7011a4d67,"Fix test typo
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-15T02:50:42Z,stephencelis,stephencelis,2,1,1
+5,SQLite.swift,a7f300ff75b4a8c268a3ba2060d405aff3692239,"Don't re-append internal query bindings
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-14T22:02:27Z,stephencelis,stephencelis,2,1,1
+6,SQLite.swift,24a5643901b33457ab6235dc11ef1f6b4d0cbf42,"Simplify short one-liners
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-14T03:28:02Z,stephencelis,stephencelis,24,6,18
+7,SQLite.swift,40eae84f655f3f8bb7b0c7c39aa7266d855f85d1,"Add basic query building example to README
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-14T03:27:37Z,stephencelis,stephencelis,26,26,0
+8,SQLite.swift,2bbdf2cc9149a108de766d5eb1b0b920f7b225b6,"Add SQLite.Values typealias
+
+It represents a dictionary of values, you know, `[String: Datatype?]`.
+
+Handy for preparing inserts, updates and the like:
+
+    let alice: Values = [""email"": ""alice@example.com""]
+    users.insert(alice)
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-14T01:13:18Z,stephencelis,stephencelis,29,14,15
+9,SQLite.swift,91ac404f198a4add56364e426c9325d1b8b88fbb,"Reorganize README
+
+Features come first.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-14T01:13:00Z,stephencelis,stephencelis,21,11,10
+10,SQLite.swift,e87a6a3f466e933b0737379f210a79cffcff67f0,"Fix README SQL syntax error
+
+Yet another case for the Query builder.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-14T01:12:36Z,stephencelis,stephencelis,2,1,1
+11,SQLite.swift,09d3fbd7f4583ceefff53017982e6cc28f3fd817,"Better wording
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-13T19:36:25Z,stephencelis,stephencelis,4,2,2
+12,SQLite.swift,d74732d916e28fe6b46d9488d4d8a396003d4a3c,"I don't need space
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-13T19:10:24Z,stephencelis,stephencelis,2,1,1
+13,SQLite.swift,83837bfa2da8a48c7ee4548a932df10cf3489314,"Tabs vs. spaces, the eternal struggle
+
+This is what I get for switching editors.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-13T18:56:51Z,stephencelis,stephencelis,6,3,3
+14,SQLite.swift,8438d8049ebe78955cdb444e270f0015d9f386dc,"Update playground with Query examples
+
+Edits throughout. Let's also change ""example.com"" to a better example.
+There's no need for boring domain names in unnetworked code.
+
+Also: an indentation fix for one of the fragment files. Consistency!
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-13T18:27:46Z,stephencelis,stephencelis,247,223,24
+15,SQLite.swift,6961bfeb66f58ba352768fcd561c4d1e793762dd,"Add lazy, chained query builder
+
+This commit brings the expressiveness of Active Record query building to
+SQLite.swift.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-08T13:50:02Z,stephencelis,stephencelis,952,952,0
+16,SQLite.swift,cc9344c6def4fd4f3b0b650fda50dc9a67925ef8,"Playground cleanup
+
+Just a little bit of editing.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-13T18:36:15Z,stephencelis,stephencelis,10,5,5
+17,SQLite.swift,300fe421374e0d01671fc6c2088368a988062782,"Documentation fixes
+
+ - Remove private transaction function documentation.
+
+ - Add public savepoint function documentation.
+
+ - Clarity: savepoints aren't quite transactions.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-13T18:34:35Z,stephencelis,stephencelis,21,10,11
+18,SQLite.swift,60a935ca46250db68a2b2cb54ec8dc6bdba61fba,"Add a better example of iteration row access
+
+We should show how we can access data where we can (rather than hide
+behind a println).
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-13T18:33:15Z,stephencelis,stephencelis,6,3,3
+19,SQLite.swift,825d6b287a1d15e6a017ecea727fa7a89f1478af,"Fix download link
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-13T18:31:00Z,stephencelis,stephencelis,2,1,1
+20,SQLite.swift,fa3b4358e8204b867a9761d7a1a22caf1f8ff685,"MARK protocol extensions
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-08T14:43:12Z,stephencelis,stephencelis,3,3,0
+21,SQLite.swift,38ab269b7c16f625ecd2ede287d7bfda6482674b,"One-liners can be on one line
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-08T14:42:57Z,stephencelis,stephencelis,4,1,3
+22,SQLite.swift,7d8751a525d1d4324c2b19770c3d15233c50fcd4,"Update test to use quoted column name
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-08T14:42:13Z,stephencelis,stephencelis,2,1,1
+23,SQLite.swift,b037b3adafe32dff019d59e02daf7660d94ef37e,"SQLite.swift
+
+The beginning of small, simple, safe SQLite wrapper for Swift.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-03T05:42:14Z,stephencelis,stephencelis,2645,2645,0
+24,SQLite.swift,5483ba7af2072fd367ed645c249ad9326f02aac8,"Fix quoting
+
+Swift.split only splits when a string of length results, so quotes at
+the beginning and end of a string are lost (rather than captured in an
+empty string). Here we use reduce instead to escape quotation marks.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-22T21:03:45Z,stephencelis,stephencelis,78,45,33
+25,SQLite.swift,c7625386bc04d54bfe7bf83a7f05f389750767c2,"Expose Statement.columnNames
+
+7fa9a57cee70cbd9a06eea9531377b19c9447581 removed Statement.values, which
+provided dictionary access to a row. It was removed to avoid bugs when
+joining tables with ambiguous column names. Developers should have the
+ability to introspect enough to extend Statement themselves, though,
+should they so choose.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-22T18:51:46Z,stephencelis,stephencelis,2,1,1
+26,SQLite.swift,cb4f3ed8ed3b1cf5a12aed941b2d8b30214d8748,"Document expression identifier quoting
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-22T18:48:59Z,stephencelis,stephencelis,2,2,0
+27,SQLite.swift,1ed56b9b078790d3caa97ae6d682091b12b2b036,"Prefer an < 80-column README
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-22T18:45:48Z,stephencelis,stephencelis,3,2,1
+28,SQLite.swift,05313fcf218911e0b91de06b8089b27e67b68176,"Quote column names
+
+Literal expressions are now made with `init(literal:)`:
+
+    Expression<Int>(literal: ""1 + 1"")
+
+By default, `init(_:)` is for identifiers, like column names:
+
+    Expression<Int>(""id"") // returns quoted identifier: \""id\""
+
+This makes things a bit safer and more flexible.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-22T18:41:48Z,stephencelis,stephencelis,775,389,386
+29,SQLite.swift,0a22008e60b85bea95b8af24cc115f985190ec31,"Quote table (query) names
+
+This makes it possible to have tables named ""table"", tables with spaces,
+quotation marks, etc.
+
+Columns still aren't quoted because they're generic expressions, but
+perhaps we can move towards something like:
+
+    let id = Expression<Int>(""id"")
+    // equivalent to `Expression<Int>(literal: quote(identifier: ""id""))`
+
+    users[id] // ""users"".""id""
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-22T17:36:36Z,stephencelis,stephencelis,427,222,205
+30,SQLite.swift,36cd61b4289ab2940a8231c928ae9a0fa7719fe5,"Avoid word repetition in README
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-22T17:35:08Z,stephencelis,stephencelis,3,1,2
+31,SQLite.swift,05dab30cfc34d732db50b9e5f09cb9d8f10fb302,"Documentation tweaks
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-21T01:58:49Z,stephencelis,stephencelis,14,7,7
+32,SQLite.swift,6538900c7c3d8730c32813c5af2cdf7d34210177,"Update README requirements
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-20T18:04:43Z,stephencelis,stephencelis,3,2,1
+33,SQLite.swift,0ef090dd55898d0fab9b3d19d9819c15bdd670b6,"Document pure-Swift-ness
+
+Yes, it uses Foundation for a couple things under the hood.
+
+Yes, this could change in the future.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-20T18:02:59Z,stephencelis,stephencelis,1,1,0
+34,SQLite.swift,15183934123e2bf223a6381a9995c87b1f5fc76d,"Document setters
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-20T16:59:14Z,stephencelis,stephencelis,64,62,2
+35,SQLite.swift,a167a06bf7d8a9f2bf23e3686361b3383ffe1894,"Avoid segfault on Release builds
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-20T16:04:55Z,stephencelis,stephencelis,36,18,18
+36,SQLite.swift,f5ab9b1198dbfb70fc10ca1d869516f38cc1be89,"Add Documentation: First Draft
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-19T17:15:04Z,stephencelis,stephencelis,1238,1236,2
+37,SQLite.swift,bc9390ee37cc684e8709050ae6dcd3c677e3c177,"Make columnNames private before someone relies on it
+
+My rule is: don't publicize an API unless it's proven itself to have
+legitimate, public use.
+
+I broke my rule. Oops.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-19T15:49:40Z,stephencelis,stephencelis,2,1,1
+38,SQLite.swift,41879204d557d6db7e95c9c9175cd4b114edca83,"Allow ifnull to be called with expressions
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-19T08:55:04Z,stephencelis,stephencelis,26,22,4
+39,SQLite.swift,5faf7a92598b4b9f22dee35e2c62622fd0b52fe0,"Schema creation simplification
+
+ 1. Prefer INTEGER inline primary keys
+
+ 2. Make primaryKey/defaultValue/references mutually exclusive.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-19T01:53:49Z,stephencelis,stephencelis,145,64,81
+40,SQLite.swift,a9ac8f5191d5e547ae5474805a372424bb953240,"Don't support Expression<T?> primary keys
+
+Primary keys aren't generally NULL-able, so let's not support the
+interface.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-19T01:00:24Z,stephencelis,stephencelis,22,6,16
+41,SQLite.swift,ccd197de6a8132554426b07b76d63cac8ca568ae,"Document Binding's internal purpose
+
+(And warn against conforming to it.)
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-18T23:03:07Z,stephencelis,stephencelis,5,5,0
+42,SQLite.swift,245ca91d8a4c4cbc68cee3f8066af5667bcf6f41,"Ensure Value extensions have datatypes conforming to Binding
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-18T22:54:45Z,stephencelis,stephencelis,2,1,1
+43,SQLite.swift,356f54d7d81264780db5549803e1e9c6c1881a70,"Simplify the creation of expressions from values
+
+This way, if you extend a custom type, you can instantiate expressions
+from instances rather easily:
+
+    Expression<NSDate>(value: NSDate())
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-18T21:46:40Z,stephencelis,stephencelis,162,83,79
+44,SQLite.swift,236ee4f404bde86e45030fb889faab5932a32716,"Better row value access and error messaging
+
+ 1. If I request an unambiguous column, just return it.
+
+ 2. If I request an ambiguous column, suggest disambiguated versions.
+
+ 3. If I request an unknown column, report the known columns.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-17T18:57:45Z,stephencelis,stephencelis,18,14,4
+45,SQLite.swift,837cb4140b3ad0b0ebc5ba163f58e0644b32d3e3,"Add DISTINCT aggregate helpers
+
+E.g.,
+
+    users.count(distinct: age)
+    // SELECT count(DISTINCT age) FROM users
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-17T18:02:34Z,stephencelis,stephencelis,108,102,6
+46,SQLite.swift,e1940e1081fabbccc1397c0de2d0ba969b056654,"Restrict min/max to comparable values
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-17T17:31:44Z,stephencelis,stephencelis,20,8,12
+47,SQLite.swift,7fa9a57cee70cbd9a06eea9531377b19c9447581,"Namespace Row column names
+
+A developer asks a SQLite statement, ""What is the column name at this
+index?""
+
+It responds: ""id.""
+
+""But SQLite,"" she asks, ""I'm joining another table which also has a
+column name 'id.' What is the table name at this index?""
+
+It responds: ""Undefined symbols for architecture.""
+
+The world crumbles under the developer's feet.
+
+--
+
+SQLite doesn't preserve column metadata unless compiled with
+SQLITE_ENABLE_COLUMN_METADATA, and it isn't, by default, so we can't
+rely on it. So for every column of a result set, we only have the column
+name to work with.
+
+We can't trick SQLite by being explicit: if we namespace a column
+(""SELECT table.column"") doesn't preserve the namespace in the result
+set, and neither does aliasing (""table.column AS unambiguous_column"").
+
+I guess we'll need to manage the logic ourselves:
+
+ 1. If a Query calls select with specific column names, honor the
+    namespacing or lack thereof explicitly.
+
+ 2. If a Query calls select with a namespaced star, honor the
+    namespacing while expanding the columns.
+
+ 3. If a Query joins another table and the select is the default, *,
+    namespace all expanded columns.
+
+ 4. If a Query does not join another table, do not namespace expanded
+    columns.
+
+I think the third point may be problematic without proper error
+handling, but otherwise think the interface is intuitive enough.
+
+This commit removes the Statement.values dictionary, as it cannot return
+all data in a result set with ambiguous column names.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-17T16:36:12Z,stephencelis,stephencelis,84,57,27
+48,SQLite.swift,b1f7105b46d53b7f3d0ae83aac09c41a3c9709a0,"Don't rely on public Expression.SQL property
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-17T02:31:47Z,stephencelis,stephencelis,19,10,9
+49,SQLite.swift,8279881a7fe94bcc61ff60ebb7fdea7448ad621d,"Store JOIN metadata
+
+We can defer expansion to statement compile time. We need this data
+intact to properly expand ""SELECT *"" and ""SELECT table.*"".
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-16T20:28:58Z,stephencelis,stephencelis,11,6,5
+50,SQLite.swift,270e7e4312973abeb55664316b610aa876dd8701,"Store Query columns individually
+
+We need to defer joining the expressions prematurely so that we can
+expand each one during statement execution.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-16T20:21:03Z,stephencelis,stephencelis,13,9,4
+51,SQLite.swift,d8595993757c6a370ada989d5e05a4a40bfc2a65,"Make sure NSData is private (for now)
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-16T08:41:00Z,stephencelis,stephencelis,2,1,1
+52,SQLite.swift,4a5c8bf06c8a076530d67ffdafd87e9fc6ed8ae5,"Add simple aggregation example
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-16T02:38:08Z,stephencelis,stephencelis,3,3,0
+53,SQLite.swift,e5c4cf827306118f0cd927e9d0527989e91ba06c,"README SQL FIX
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-16T02:37:07Z,stephencelis,stephencelis,2,1,1
+54,SQLite.swift,4de1277d5dc6c431b88f4cb1f110cfc17f119bf0,"Document loss of purity
+
+At least the dependencies on Foundation are implementation details that
+can be swapped out at any time.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-16T02:29:32Z,stephencelis,stephencelis,2,1,1
+55,SQLite.swift,0b1c179562a43000522e747504ea14626a6b47bc,"Enforce Equatable/Comparable datatypes in expressions
+
+This prevents BLOB columns from being compared (though they can be
+equated). If someone has a valid reason for extending Blob to be
+Comparable, I'm all ears. In the meantime, it seems like an accident
+waiting to happen.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-16T02:19:54Z,stephencelis,stephencelis,106,56,50
+56,SQLite.swift,35066a66c3bdb729f27f8de639a7dd7470ab7571,"BLOB support
+
+Via a new struct, Blob. Blob, like NSData, exposes `bytes` and `length`
+(and actually uses NSData under the hood, for the sake of memory
+management).
+
+Without any extensions, you can use Blob's public interface, though it's
+slightly verbose:
+
+    let data = UIImagePNGRepresentation(image)
+    let blob = Blob(bytes: data.bytes, length: data.length)
+    users.insert(avatar <- blob)
+
+Simple extension simplifies:
+
+    extension Blob {
+        init(_ data: NSData) {
+            self.init(bytes: data.bytes, length: data.length)
+        }
+        public var data -> NSData {
+            return NSData(bytes: bytes, length: length)
+        }
+    }
+
+    users.insert(avatar <- Blob(UIImagePNGRepresentation(image)))
+    // INSERT INTO users (avatar) VALUES (x'...')
+
+You can, of course, extend further to suit your needs:
+
+    extension Blob {
+        init(_ image: UIImage) {
+            self.init(UIImagePNGRepresentation(image))
+        }
+        public var image -> UIImage {
+            return UIImage(data: data)
+        }
+    }
+
+    users.insert(avatar <- Blob(image))
+    // INSERT INTO users (avatar) VALUES (x'...')
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-14T16:29:10Z,stephencelis,stephencelis,129,91,38
+57,SQLite.swift,40b05b2426c62e99a10508eaee6b6ccb82adf6d5,"Perform internal database operations in FIFO queue
+
+This breaks our embargo with Foundation, but our application had been
+suffering as a result.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-14T16:18:52Z,stephencelis,stephencelis,40,25,15
+58,SQLite.swift,db6d6621b4e1d67af1346311fbd215568b312a4a,"Add custom datatype support
+
+This will be more helpful when proper BLOB support is available (for
+easy serialization/deserialization of binary data (images, etc.), but in
+the meantime it allows you to support dates flexibly.
+
+E.g., an NSDate TEXT column:
+
+    extension NSDate: Value {
+        public typealias Datatype = String
+        public class var declaredDatatype: String {
+            return Datatype.declaredDatatype
+        }
+        public class func fromDatatypeValue(datatypeValue: Datatype) -> NSDate {
+            return formatter.dateFromString(datatypeValue)!
+        }
+        public var datatypeValue: Datatype {
+            return formatter.stringFromDate(self)
+        }
+    }
+
+Or, an NSDate INTEGER column:
+
+    extension NSDate: Value {
+        public typealias Datatype = Int
+        public class var declaredDatatype: String {
+            return Datatype.declaredDatatype // or ""DATETIME""
+        }
+        public class func fromDatatypeValue(datatypeValue: Datatype) -> NSDate {
+            return self(timeIntervalSince1970: NSTimeInterval(datatypeValue))
+        }
+        public var datatypeValue: Datatype {
+            return Datatype(timeIntervalSince1970)
+        }
+    }
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-15T23:32:35Z,stephencelis,stephencelis,802,511,291
+59,SQLite.swift,96b818ff517dd432c0aabe75048e0d6517bd6995,"Kill underused typealias, Values
+
+This was more useful before the introduction of Expression.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-15T03:07:31Z,stephencelis,stephencelis,7,2,5
+60,SQLite.swift,8f37d949747c4e5905b36f0da6ec7502b0b85234,"Remove public Value protocol methods
+
+There was originally the promise of serializing/deserializing your own
+types, but without a way to set up the expectation on both sides of the
+exchange this approach was naive. We can revisit this using
+Expression<T> in the future, but we need more directly applicable
+functions.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-14T16:21:59Z,stephencelis,stephencelis,89,27,62
+61,SQLite.swift,636dad592e5cd766078e9f8db2ef62130793ca1e,"Add CREATE/DROP VIEW helpers
+
+Mostly uses reusable logic from the previous commit.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-12T04:11:05Z,stephencelis,stephencelis,30,30,0
+62,SQLite.swift,fd36a347d0d1f08a90ce086ff53408ab4b53cec2,"Add temporary, if{Not,}Exists helpers, ADD/DROP VIEW
+
+The naming is kind of ugly, but practical.
+
+    db.create(table: users, temporary: true, ifNotExists: true) { t // ..
+    db.create(table: users, temporary: true, ifNotExists: true, from: query)
+    db.drop(table: users, ifExists: true)
+
+    db.create(index: users, unique: true, ifNotExists: true, on: email)
+    db.drop(index: users, ifExists: true, on: email)
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-12T04:05:15Z,stephencelis,stephencelis,102,80,22
+63,SQLite.swift,e0af6610738fefb8931ea1010c3fcb1c467aad63,"Cleanup
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-12T03:28:12Z,stephencelis,stephencelis,4,2,2
+64,SQLite.swift,ec66a9baa54444a5a739687441e3e969b23a6b93,"Add INSERT INTO ... SELECT helpers
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-12T03:18:12Z,stephencelis,stephencelis,18,18,0
+65,SQLite.swift,c8ea381aba6667688bf7651f70868edc7ed91ace,"Add INSERT INTO ... DEFAULT VALUES helpers
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-12T03:10:05Z,stephencelis,stephencelis,26,22,4
+66,SQLite.swift,ad5ffa694235bb49b1e2db44176157fc935ec787,"Rename ALTER TABLE ... RENAME helper from alter to rename
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-12T02:57:03Z,stephencelis,stephencelis,6,3,3
+67,SQLite.swift,38f46675d24b9a3a869dc29636e548b52d202e91,"Add CREATE TABLE ... AS helper
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-12T02:54:48Z,stephencelis,stephencelis,23,20,3
+68,SQLite.swift,71df60e29c40947eea8192a367762bd4d985c107,"Add ALTER TABLE schema helpers
+
+Supports RENAME TO:
+
+    db.alter(table: users, rename: ""people"")
+
+And ADD COLUMN:
+
+    let name = Expression<String?>(""name"")
+    db.alter(table: users, add: name)
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-12T00:20:10Z,stephencelis,stephencelis,126,108,18
+69,SQLite.swift,b2a6814180ea150a739f566bc1bc94c77cf1ef55,"Support default expressions (like CURRENT_*)
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-11T23:26:39Z,stephencelis,stephencelis,144,127,17
+70,SQLite.swift,9aeb90d6c69b5e5f5bd1e4dd8fc600b5b7fa1292,"Remove println
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-11T23:24:11Z,stephencelis,stephencelis,1,0,1
+71,SQLite.swift,addd7c0c670fdc4dbb29e7cdeeb3610aefded27d,"Accuracy in README output
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-11T21:19:13Z,stephencelis,stephencelis,2,1,1
+72,SQLite.swift,51c6a90f1391ffc0b4d2e9b0b1c3ae2414622edd,"Add `make repl`
+
+Gives us easy SQLite.swift access in the Swift REPL on the command line.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-11T21:06:01Z,stephencelis,stephencelis,5,5,0
+73,SQLite.swift,0e28ad9c7cc1c8f9bdd2a4843292f2f28821a44a,"Add missing question
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-11T19:55:43Z,stephencelis,stephencelis,2,1,1
+74,SQLite.swift,c5380dcdafacb72cdcec5f1361c9d72d6c3c6046,"README fixes
+
+Feels more like REREADME.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-11T19:22:53Z,stephencelis,stephencelis,6,3,3
+75,SQLite.swift,cc39c56cc13381d68bf60406d0190dc6c788f407,"More README tweaks
+
+Show non-optional vs. optional return values.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-11T19:21:25Z,stephencelis,stephencelis,10,5,5
+76,SQLite.swift,975fad0d195309f467577dc95585e13de1f53c50,"Update README with NULLable, optional expressions
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-11T17:03:27Z,stephencelis,stephencelis,10,7,3
+77,SQLite.swift,51e7f95edcff3580706c91f91c95fc8a37c9a4a4,"Add optional support to NULLable expressions
+
+This adds support for Expression<T?> to denote SQL expessions that may
+evaluate to NULL. It's verbose given the number of permutations to
+overload most operators, but brings a lot of benefits to the table:
+
+ 1. Stricter typing. The compiler will let you know if you do something
+    like try to compare a NOT NULL column to nil.
+
+        let age = Expression<Int?>(""age"")
+        let id = Expression<Int>(""id"")
+        users.filter(age == nil)
+        users.filter(id == nil) // Won't compile. Meaningless.
+
+    Functions like coalesce and ifnull will also require optional
+    expressions.
+
+ 2. Automatic NOT NULL support during schema creation.
+
+        t.column(age) // age INTEGER
+        t.column(id)  // id INTEGER NOT NULL
+
+ 3. Perhaps most importantly, the ability to automatically unwrap a row
+    and return a value directly.
+
+        user[age]     // Optional(30)
+        user[id]      // 1
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-10T17:09:23Z,stephencelis,stephencelis,1455,885,570
+78,SQLite.swift,61fc66202edbacb0f1d79e5cead0f87fd8695363,"Update README for legibility
+
+This removes some of the more powerful examples in the spirit of being
+more readable. A wiki is coming, and so is a revamped playground, but
+writing is hard :)
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-10T03:23:13Z,stephencelis,stephencelis,102,49,53
+79,SQLite.swift,387ca6eb57a606a79dd448065f60f14b04843db2,"Conform statement to BooleanType
+
+Makes it easy to use `if` for whether or not a statement ran and succeeded.
+
+Ideally, this would also disambiguate Query.{insert,update,delete}, but
+it does not (rdar forthcoming).
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-10T02:50:46Z,stephencelis,stephencelis,7,7,0
+80,SQLite.swift,af82c47cb4065dae6dceab75fda1a5ef85d05325,"Optional changes around Database.lastChanges and Query.{update,delete}
+
+ 1. Database.lastChanges will no longer return an optional. We could
+    still scope it by checking totalChanges > 0, but it doesn't seem
+    worth it for that one case. This gives us a bit more flexibility.
+
+ 2. Query.update and Query.delete now return optional Ints for changes.
+    This makes it easier to check if a statement succeeded or not using
+    `if`-`let`, and it makes it easier to run fire-and-forget statements
+    by simply tacking on a `?` or `!`.
+
+        // used for the flat map on an optional new ROWID, below
+        let findByID: Int -> Query { users.filter(id == $0) }
+
+        let alice = users.insert(email <- ""alice@me.com"").map(findByID)
+        alice?.update(admin <- true)?
+        alice?.delete()?
+
+    Optionals make it easier to disambiguate inline.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-10T02:19:19Z,stephencelis,stephencelis,96,48,48
+81,SQLite.swift,9523dd87d7a0dfef93302d53d1ae3ea14cd6ac30,"Clean up tests to use Query alias/subscript
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-10T00:08:07Z,stephencelis,stephencelis,20,7,13
+82,SQLite.swift,a50278290b5bf324f22fdec239706cf6bc21b2ef,"Throw assertions for all non-constraint-based errors
+
+Even constraint failures can be programmer error, so we probably want to
+revisit this in the future.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-09T02:52:02Z,stephencelis,stephencelis,5,4,1
+83,SQLite.swift,f588d5e5d160d40decb7d200276abc21f1a3f2b1,"Add protection around foreign key constraints
+
+SQLite3 disables foreign key constraints by default. Let's throw an
+assertion to alert developers when they create a constraint with a
+connection that hasn't enabled them.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-09T01:10:26Z,stephencelis,stephencelis,11,11,0
+84,SQLite.swift,3c1ecc2a302110d2198cecbe5cd4048ccd4528b8,"Add Database userVersion getter/setter
+
+For getting/setting the PRAGMA user_version.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-09T00:47:18Z,stephencelis,stephencelis,13,13,0
+85,SQLite.swift,b3bf4ea576fb68ee3f19fc0ebbd259be13d922ca,"Remove partial index support (for now)
+
+It's not widely available: SQLite3 3.8.0 introduced it, which appears to
+ship with Yosemite, but not iOS. Regardless, the build is failing on
+Travis's new Mac VMs, so more investigation is necessary to support
+this properly.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-08T20:40:31Z,stephencelis,stephencelis,20,10,10
+86,SQLite.swift,869bd4c5d993a7d1177bf7231b1b4845c0a82284,"Add CREATE/DROP INDEX helpers
+
+Index name is auto-generated.
+
+    db.create(index: users, on: email, unique: true)
+    // CREATE UNIQUE INDEX index_users_on_email ON users (email)
+
+    db.drop(index: users, on: email)
+    // DROP INDEX index_users_on_email
+
+Partial indexes are available where applicable. At this time, Yosemite
+ships with support; iOS does not.
+
+    db.create(index: users.filter(verified), on: email)
+    // CREATE INDEX index_users_on_email ON users (email) WHERE verified
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-08T20:19:58Z,stephencelis,stephencelis,63,63,0
+87,SQLite.swift,2accda6d983afeed1c4c0b721d497f3a1e9d913c,"Add CREATE/DROP TABLE schema helpers
+
+CREATE TABLE uses a builder to create a table. Our usual example:
+
+    db.create(table: users) { t in
+        t.column(id, primaryKey: true)
+        t.column(email, null: false, unique: true)
+        t.column(manager_id, references: users[id])
+    }
+    // CREATE TABLE users(
+    //     id INTEGER PRIMARY KEY,
+    //     email TEXT NOT NULL UNIQUE,
+    //     manager_id INTEGER REFERENCES users(id)
+    // )
+
+There are other table-level helpers for PRIMARY KEY (for composite
+keys), UNIQUE, CHECK, and FOREIGN KEY (for UPDATE/DELETE hooks).
+
+A few notes on foreign keys:
+
+ 1. The shorthand, `references:` only supports INTEGER PRIMARY KEYs
+    right now. This is subject to change, but single primary keys are
+    generally INTEGERs, so let's encourage it as a best practice for
+    now. (It's still possible to use the `foreignKey` function to link
+    non-integer keys.)
+
+ 2. Foreign keys do not work out-of-the-box with SQLite, as foreign key
+    support is off by default. We'll probably want to enable them by
+    default in the (near) future.
+
+ 3. Composite foreign keys are not supported (yet).
+
+DROP TABLE omits the builder.
+
+    db.drop(table: users)
+    // DROP TABLE users
+
+Both `create` and `drop` functions call `table` out as an explicitly
+named parameter to both emphasize the action and provide room for INDEX
+helpers (and, potentially, TRIGGER and VIEW helpers).
+
+Neither yet support the IF NOT EXISTS clause. This wordiness doesn't
+feel right as a named parameter.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-02T21:30:43Z,stephencelis,stephencelis,478,459,19
+88,SQLite.swift,3986bc561111cf500ede82df31113931d5d477cb,"Cleanup
+
+ - Whitespace woes.
+ - Use an optional instead of an empty string.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-02T22:54:07Z,stephencelis,stephencelis,22,11,11
+89,SQLite.swift,af29b39968e4f313075fea132bab7a1d79d1e3fa,Merge remote-tracking branch 'alecthomas/master',Stephen Celis,2014-11-02T22:42:20Z,stephencelis,stephencelis,70,63,7
+90,SQLite.swift,622bc3940fab30a66b76beaf6950b981c395822b,Add enum for ON CONFLICT clause and use it for .replace().,Alec Thomas,2014-11-02T21:07:03Z,alecthomas,alecthomas,47,28,19
+91,SQLite.swift,049e943f9639caf0b2d812cfc6c05870a9c819f6,"Another FIXME to FIX when Swift is ready
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-02T19:20:00Z,stephencelis,stephencelis,2,2,0
+92,SQLite.swift,a43a3e72cce8aadf60ef9c41a01fa06014471d95,"CI updates
+
+ 1. Support xcpretty, for the pretty.
+ 2. Test both Mac and iOS environments.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-02T19:18:59Z,stephencelis,stephencelis,13,12,1
+93,SQLite.swift,833e9a35d25bb233e93e06de10b7d5e1cd9f06a6,"Add Row object
+
+Behaves like a dictionary, mostly, but provides typed access to a row's
+values. Query objects yield them on iteration/access:
+
+    let email = Expression<String>(""email"")
+    let users = db[""users""]
+
+    for user in users.select(email) {
+        if let email = user[email] {
+            // email is String
+        }
+    }
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-02T17:19:42Z,stephencelis,stephencelis,74,68,6
+94,SQLite.swift,a966cb5eec6380b7ee9c4432265327277358f57b,"Update README and Playground to reflect actual expression building
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-02T17:16:08Z,stephencelis,stephencelis,12,6,6
+95,SQLite.swift,6e1a1fc7a3f36f974be20635716383c3138ef747,Support REPLACE statement.,Alec Thomas,2014-11-02T12:16:13Z,alecthomas,alecthomas,47,47,0
+96,SQLite.swift,cd4b7fa2872d635c64ccb2a2ec65c09542013435,"Add namespace helper (for extensibility)
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-02T02:15:44Z,stephencelis,stephencelis,20,15,5
+97,SQLite.swift,ff8ae71ea666b2b1ba973c160bdddb2e3c135a7b,"Add table[*]
+
+To select from a specific table only.
+
+    users
+        .select(users[*])
+        .join(managers, on: managers[id] == users[manager_id])
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-02T02:04:41Z,stephencelis,stephencelis,13,12,1
+98,SQLite.swift,4c72b714d7cd40c3e34823729a2894eb191932d1,"Add Travis CI support
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-25T20:34:18Z,stephencelis,stephencelis,14,10,4
+99,SQLite.swift,df490925340ed8efdf60d1f1cbb4bd288643c4a3,"Add table[column] namespacing helpers
+
+If you have an ambiguous column, you can prefix it with a namespace by
+simply subscripting the table with the column.
+
+    let id = Expression<Int>(""id"")
+    let manager_id = Expression<Int>(""manager_id"")
+    let users = db[""users""]
+    let managers = users.alias(""managers"")
+
+    users.join(managers, on: users[manager_id] == managers[id])
+
+Unfortunately, Swift does not (yet) support subscript<T> (see
+rdar://18673897), so I've had to hardcode in the common types by hand.
+
+Note: This is not a idempotent (yet). Expressions need to be enhanced
+with prefix/suffix data to be idempotent. This would help with ASC/DESC
+and expression-level aliasing, as well.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-02T00:25:17Z,stephencelis,stephencelis,108,83,25
+100,SQLite.swift,77c753609d05e215e2240f5d0f89b460eceb3a6f,"Add table alias helper
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-02T00:24:54Z,stephencelis,stephencelis,23,20,3
+101,SQLite.swift,b29d7ff38b3b7b6825988c3cb2268d10ad80b271,"Query shouldn't be Expressible yet
+
+In all likelihood, a Query.expression will be a SELECT statement in the
+future.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-02T00:20:51Z,stephencelis,stephencelis,8,0,8
+102,SQLite.swift,e1b94003ae1e68074e5a88f3abd222a5d0720484,"Move comment to re-enable documentation
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-01T23:31:37Z,stephencelis,stephencelis,2,1,1
+103,SQLite.swift,ffaa1ddf530c2e275bf1a7f8806a15a1bdf309c2,"Documentation fixes
+
+Copy-paste an error several times and you have more than several errors.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-01T16:36:33Z,stephencelis,stephencelis,18,9,9
+104,SQLite.swift,53909e4cdbeadb90f498062a6c7926dde584a17c,"Workaround for segfault
+
+Archive currently triggers a segfault with the addition of these two
+postfix operators. The bug has been reported to Apple with
+<rdar://18825175> and this commit acts as a less-than-DRY workaround in
+the meantime.
+
+Reported-by: Ferran Vilà Conesa <@fnva>
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-30T16:34:23Z,stephencelis,stephencelis,10,8,2
+105,SQLite.swift,1f185e20c056a31138ba9e16bcd268c6d9c18f13,"Add collation operator
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-29T23:39:57Z,stephencelis,stephencelis,21,21,0
+106,SQLite.swift,162ee29058445369fe75884254f8756576db7ba6,"From: Apple Developer Relations
+
+> Engineering has determined that your bug report is a duplicate of
+> another issue and will be closed.
+
+> The open or closed status of the original bug report your issue was
+> duplicated to appears in the yellow ""Duplicate of XXXXXXXX"" section of
+> the bug reporter user interface. This section appears near the top of
+> the right column's bug detail view just under the bug number, title,
+> state, product and rank.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-27T14:51:19Z,stephencelis,stephencelis,4,2,2
+107,SQLite.swift,7969c13933fb62c8d276cdad15281c1c928fb5d4,"Support select(distinct: *)
+
+It requires changing select(*) to select(all: *), but this is a small
+concession to make when calling `distinct: *` is going to be much more
+common (`all: *` is technically the default).
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-27T14:49:59Z,stephencelis,stephencelis,43,28,15
+108,SQLite.swift,d8b80a80892433124cc4634a277d5b374e720228,"Use helpers wherever possible
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-27T07:35:59Z,stephencelis,stephencelis,4,2,2
+109,SQLite.swift,0f36bc165f815c5fb0a4d8aa1a7b5c5aa7d34bee,"Reorganize ASC/DESC
+
+They're main computer variables, not Expressible extension material.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-27T07:34:31Z,stephencelis,stephencelis,16,8,8
+110,SQLite.swift,38602e69f448a32d47b345cb3c2022da071f1390,"Add SELECT DISTINCT helper
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-27T07:34:09Z,stephencelis,stephencelis,29,24,5
+111,SQLite.swift,c5f822ff2460e0f162eda6c77ecb69d57908dbaf,"Surround boolean expressions with parentheses
+
+Better fidelity.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-27T07:33:30Z,stephencelis,stephencelis,22,11,11
+112,SQLite.swift,a6e974120a4ce2eb457ea471f1b8a96c3ff412ab,"Use parentheses consistently to group expressions
+
+It makes the compiled statements slightly muddier, but precedence should
+always be retained now.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-27T06:41:39Z,stephencelis,stephencelis,24,14,10
+113,SQLite.swift,b44ea4db4a520b33ca936e47c448a99ace6bb8a5,"Share schemes (for CI, eventually)
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-27T06:41:10Z,stephencelis,stephencelis,220,220,0
+114,SQLite.swift,7d98891ba6d043d033afa5174aab4a7fe18a7c4e,"Support XOR
+
+SQLite may not, but we can.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-27T04:55:40Z,stephencelis,stephencelis,31,31,0
+115,SQLite.swift,ec29abd2bc3c6b3970a4d58cfafca00abe572863,"Maintain expression precedence
+
+We need to surround expressions with parentheses to guarantee that Swift
+precedence is preserved.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-27T04:54:30Z,stephencelis,stephencelis,138,71,67
+116,SQLite.swift,9c83be672c060232cfd83363d49d1863016c5b5c,"Add ++/-- postfix Setter operators
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-27T04:20:30Z,stephencelis,stephencelis,11,11,0
+117,SQLite.swift,da03002cbd4679814405c3f5524d7e4e36434bf2,"Let's not use `where` where we can avoid it
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-27T02:43:18Z,stephencelis,stephencelis,38,19,19
+118,SQLite.swift,f0c677698c526338ca73f4ef33ff6270c90d0989,"Add enhanced setter functions
+
+Firstly, we now support set(Expression<T>, Expression<T>), for mutations
+that involve database state. With this, we also create a bunch of
+operator-equals overrides. Now this is possible:
+
+    let amount = 100.0
+    db.transaction(
+        checking.update(balance -= amount),
+        savings.update(balance += amount)
+    )
+    // BEGIN DEFERRED TRANSACTION
+    // UPDATE accounts SET balance = balance - 100.0 WHERE ...
+    // UPDATE accounts SET balance = balance + 100.0 WHERE ...
+    // COMMIT TRANSACTION
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-27T02:38:09Z,stephencelis,stephencelis,354,271,83
+119,SQLite.swift,479140cc61d784e3673fe597aca96a4c5ebe8127,"Remove SortDirection
+
+No longer used after Expression<T>.{asc,desc} was implemented.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-25T21:49:10Z,stephencelis,stephencelis,12,0,12
+120,SQLite.swift,c076184afee39f0917888b7ebab8534d439dd29c,"Reorganize
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-25T18:32:52Z,stephencelis,stephencelis,11,5,6
+121,SQLite.swift,29973e965c87cb7d927a9867065c2240a2c318ea,"Comments can be more descriptive with even one letter
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-25T16:56:24Z,stephencelis,stephencelis,2,1,1
+122,SQLite.swift,b609ab0be4606ace0cc26871df310c3306226bf6,"Add documentation to Query methods
+
+They were lost in the Expression refactor shuffle.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-25T16:54:01Z,stephencelis,stephencelis,55,55,0
+123,SQLite.swift,26bfbdffaa4cd752ce5a9dee27487d335eb1f7f0,"Improved INSERT/UPDATE syntax
+
+E.g.,
+
+    users.insert(name <- ""Alice"", admin <- true)
+
+I know, I know, this goes beyond operator overloading into custom
+operator territory, but hear me out! You don't NEED to use the
+operator. I think it works particularly well here, but if you protest:
+
+    users.insert(set(name, ""Alice""), set(admin, true))
+
+In any case, this is an improvement on the existing state of things. A
+block-using builder just to set a bunch of values is a cumbersome
+affair. We needn't use blocks where we can avoid it.
+
+Suggested by Thomas Denney <http://programmingthomas.com>.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-10-25T16:46:28Z,stephencelis,stephencelis,164,97,67
+124,SQLite.swift,3df3ed734bfbf23fce979dadd7611635b68448ab,"Avoid circular reference
+
+The REPL particularly hates this. This does mean, however, that `step()`
+needs to live on the statement itself, not the cursor.
+
+In fact, cursor may be better accessed as `row`, so let's do just that:
+
+    while stmt.step() {
+        let id = stmt.row[0] as Int
+        // ...
+    }
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T20:01:20Z,stephencelis,stephencelis,49,26,23
+125,SQLite.swift,76ad0d873377da98a34cac646454f1bf488fc51a,"Allow statements to reiterate
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T20:00:41Z,stephencelis,stephencelis,14,13,1
+126,SQLite.swift,fc0cf38e417e4fd81ebf98c6edc2191122537e9c,"Support expression aliasing
+
+This commit adds support for expression aliasing:
+
+    let maxAge = max(age).alias(""max_age"")
+    for row in users.select(name, maxAge).group(name) {
+       println(""the oldest \(row[name]) is \(row[maxAge]!)"")
+       // the oldest Stephen is 30
+    }
+    // SELECT ""name"", (max(""age"")) AS ""max_age"" FROM ""users"" GROUP BY ""name""
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T19:26:59Z,stephencelis,stephencelis,37,35,2
+127,SQLite.swift,74e80d3eb4b1108b37c2acec3321cf27f5037843,"Un-camelcase collating sequence names
+
+As with .Autoincrement, let the standard be to merely capitalize the
+raw, uppercased value. This is a breaking change and .NoCase and .RTrim
+must be changed to .Nocase and .Rtrim.
+
+Let's also better document RTRIM.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T01:02:22Z,stephencelis,stephencelis,33,19,14
+128,SQLite.swift,82f9c752a493097e74580b098f6bfba9e202e6cf,"Add minimal documentation for AUTOINCREMENT
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T00:51:55Z,stephencelis,stephencelis,3,3,0
+129,SQLite.swift,26a4ef72b727bd076aeb8a3f6b86e662093dd968,"Add Stack Overflow link
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T00:37:37Z,stephencelis,stephencelis,13,8,5
+130,SQLite.swift,5380d5b502bd76ea99fe0ec54785f6bacd1cb8c1,"Preserve 64-bit integers on 32-bit platforms
+
+This commit ensures the preservation of 64-bit integers on 32-bit
+platforms by replacing Int with Int64 as the basic, raw binding type.
+
+Int (like Bool before it) is supported in the expression layer as a
+Value type. The one part of the query layer that has changed is that
+rowids are now emitted as Int64, which means you should probably update
+your expressions:
+
+    let id = Expression<Int64>(""id"")
+
+Because integer literals convert to Double where they can (and not
+Int64), there were some confusing results in the raw SQL layer:
+
+    db.scalar(""SELECT * FROM users WHERE id = ?"", 1)
+    // SELECT * FROM users WHERE id = 1.0
+
+To avoid this (and make binding simpler), both Int and Bool now conform
+to Bindable.
+
+    db.run(""SELECT * FROM users WHERE admin = ?"", false)
+
+When a row is unpacked into an array of bindings or scalar, however,
+INTEGER values will always become Int64. Thus some gotchas:
+
+    for row in stmt {
+        row[0] as! Int // crashes, even if an integer
+    }
+    stmt.scalar() as? Int // silently fails, even if an integer
+
+Cursors, meanwhile, can return Bool and Int values just fine.
+
+    while stmt.cursor.step() {
+        stmt.cursor[0] as Int
+    }
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-02T06:39:06Z,stephencelis,stephencelis,793,421,372
+131,SQLite.swift,eff065121c34926f64823f6c0917e886b0ec13cf,"Make asc/desc idempotent, query reversible
+
+This commit adds behavior that internally tracks ascending/descending
+state on expressions, expanding only when necessary. This makes it
+possible to reverse queries by reversing each of the stored sort
+descriptors.
+
+    let sorted = users.order(name)
+    // SELECT * FROM ""users"" ORDER BY ""name""
+    let reversed = sorted.reverse()
+    // SELECT * FROM ""users"" ORDER BY ""name"" DESC
+    let rereversed = reversed.reverse()
+    // SELECT * FROM ""users"" ORDER BY ""name"" ASC
+
+This also allows for more array-like access, including `last`:
+
+    users.last
+    // SELECT * FROM ""users"" ORDER BY ""ROWID"" DESC LIMIT 1
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-01T17:11:27Z,stephencelis,stephencelis,112,87,25
+132,SQLite.swift,12cdc95e95c899fd64d144f4d78bd76d0b672798,"Add basic documentation to Expression
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-28T21:28:12Z,stephencelis,stephencelis,27,23,4
+133,SQLite.swift,97dca41789e238739d8f3f74fb4d88fcda35d3eb,"Remove unnecessary conversions
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-01T17:14:40Z,stephencelis,stephencelis,6,3,3
+134,SQLite.swift,01724ad5a8283491ee3854eff31db75e151a818f,"Remove unneeded ""unowned""
+
+Lazy blocks aren't actually retained, so there's no need to use
+""unowned"" in these instances.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-28T19:56:32Z,stephencelis,stephencelis,8,3,5
+135,SQLite.swift,8431ca3c075eaaf062137fd44ba986693e2d1c08,"Conform to Printable, not DebugPrintable
+
+DebugPrintable provides valuable information for debugging when left to
+the defaults. Meanwhile, let Database/Statement be printable:
+
+ - Database prints the path
+ - Statement prints the raw SQL
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-28T19:53:28Z,stephencelis,stephencelis,15,8,7
+136,SQLite.swift,e55fb57295bffd3a663a920552c6c9075c989522,"Expose Cursor for raw statement row access
+
+Allows for direct access to a column value as any SQLite type without
+the intermediary array of optional values.
+
+    let stmt = db.prepare(""SELECT age FROM users"")
+    while stmt.step() {
+        let age = stmt.cursor[0] as String // ""30""
+        // ...
+    }
+
+The cursor should be the default value that is yielded to the for loop,
+but Swift's current inability to resolve the following prevents that
+from working well:
+
+    for row in stmt {
+        let age = row[0] as Binding? as? String // passes compilation
+        let age = row[0] as? String             // fails
+    }
+
+If the above case is resolved (rdar://19997098), then we can avoid
+automatically unpacking every row into an array by default. This means
+the following won't work:
+
+    let rows = Array(stmt)
+
+But the following will:
+
+    let rows = map(stmt) { Array($0) }
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-28T19:16:58Z,stephencelis,stephencelis,132,80,52
+137,SQLite.swift,9ddad9cff4a68268f3c4942bcc304e445a4227a8,"No need for Statement.database to ever change
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-28T18:46:12Z,stephencelis,stephencelis,2,1,1
+138,SQLite.swift,e107dfba16e8aa0c0ed6c660f8b11c03e3bf07f7,"Use a consistent documentation voice
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-28T18:42:58Z,stephencelis,stephencelis,4,2,2
+139,SQLite.swift,159baa4dd60544387c11e44b619074595f5ca153,"Document custom collations
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-28T18:42:42Z,stephencelis,stephencelis,19,19,0
+140,SQLite.swift,7ee7afc58db92d46b89939ec94df2ec4c9359518,"Support any collection type for the contains function
+
+Makes more sense in Swift 1.2 given Set.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-24T17:08:06Z,stephencelis,stephencelis,11,5,6
+141,SQLite.swift,9eca2a78468199a20821457c0619019bd5efe75b,"Update documentation
+
+ - Properly represent quoted collations/functions
+
+ - Expose documentation for ALTER TABLE ADD COLUMN with COLLATE
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-24T16:26:36Z,stephencelis,stephencelis,8,3,5
+142,SQLite.swift,fd131101e108cc5770478d2de3813673b233ff5c,"Enforce a four-space indent in Xcode
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-24T16:14:23Z,stephencelis,stephencelis,3,3,0
+143,SQLite.swift,d0480aff950084bf6f3dfc06e66d8393710cb833,"Escape function identifiers
+
+It's possible to define function identifiers that must be quoted (with
+spaces, etc.), so let's quote them.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-24T16:13:14Z,stephencelis,stephencelis,85,46,39
+144,SQLite.swift,531cd47709667123caa618fce791ae8429469fd6,"Escape collation identifiers
+
+It's possible to define collation identifiers that must be quoted (with
+spaces, etc.), so let's quote them.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-24T16:06:02Z,stephencelis,stephencelis,29,18,11
+145,SQLite.swift,acb66725c5904fb94b905b1fe550633293cf98eb,"Move create(function:) to Database.swift
+
+It's more of a core function than a type-safe enhancement.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-20T00:58:43Z,stephencelis,stephencelis,102,51,51
+146,SQLite.swift,4961138e0c3c2533557560250d4d82e35b349041,"Add custom collation support
+
+For example:
+
+    db.create(collation: ""NODIACRITIC"") { lhs, rhs in
+        return lhs.compare(rhs, options: .DiacriticInsensitiveSearch)
+    }
+    let stmt = db.prepare(
+        ""SELECT * FROM venues ORDER BY name COLLATE NODIACRITIC""
+    )
+
+With the type-safe interface:
+
+    restaurants.order(collate(.Custom(""NODIACRITIC""), name))
+    // SELECT * FROM ""restaurants"" ORDER BY ""name"" COLLATE NODIACRITIC
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-19T17:25:08Z,stephencelis,stephencelis,80,71,9
+147,SQLite.swift,6355b6d367244ca3d3bd25581536163a9ee78d5e,"SQLITE_DETERMINISTIC is not defined in iOS 8.1
+
+It's there in OS X and iOS 8.3, though, so let's just make it a no-op
+for older versions.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-18T01:51:35Z,stephencelis,stephencelis,2,2,0
+148,SQLite.swift,228d9d36ed8788891e1ea424cd7fbcad421a2be6,"Make Products the last group
+
+Having Vendor at the bottom made for a slightly more confusing
+installation.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-17T17:18:08Z,stephencelis,stephencelis,2,1,1
+149,SQLite.swift,c5739d3cafa6408840c7cc99806787797761de68,"Document foreign composite key support
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-17T03:48:44Z,stephencelis,stephencelis,4,1,3
+150,SQLite.swift,8d1e2f1913e53bc45da84e682a57adde7969a88b,"Primary/foreign key update
+
+ - Require non-optional, typed expressions for primaryKey() columns (up
+   to 3 columns)
+
+ - Added type-safe, composite foreignKey() helpers (up to 3 columns)
+
+ - Remove foreignKey() that references: Query (not type-safe)
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-17T03:37:17Z,stephencelis,stephencelis,77,49,28
+151,SQLite.swift,795642ea26eae61136f6560272e152a672434e13,"Ensure CHECK expressions are contained within parentheses
+
+While the Expression<Bool> passed usually contains parentheses, it's not
+guaranteed, which means we should avoid potential runtime assertions.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-17T02:46:09Z,stephencelis,stephencelis,8,4,4
+152,SQLite.swift,08b468cccfe1e3aa7b11f664a88e795aeb55c579,"Allow ALTER TABLE ADD COLUMN to specify COLLATE
+
+String columns only.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-17T02:39:50Z,stephencelis,stephencelis,44,42,2
+153,SQLite.swift,d150f950dd0a6d7d4010962630825abcae622a31,"Fix Swift 1.2 branch README link
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-17T00:43:33Z,stephencelis,stephencelis,3,2,1
+154,SQLite.swift,a464062cc3c6bb8bf7d2cbc0e92cc9e5561a7657,"Clean up count() helpers
+
+ - Remove count(Expression<V>), because it's the same as count(*).
+
+ - Remove count(DISTINCT *), because it doesn't make sense or, for that
+   matter, work.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-17T00:22:09Z,stephencelis,stephencelis,42,18,24
+155,SQLite.swift,8d0c122498f36c652b0acc9ef180eb11ebcc2176,"Support SQLITE_DETERMINISTIC SQL functions
+
+Adds an optional parameter to the create(function:) function, allowing
+deterministic functions to be optimized.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-16T23:50:51Z,stephencelis,stephencelis,163,87,76
+156,SQLite.swift,0bf9daf183669941b9bbc4b3e0d1591310f9f345,"Documentation consistency
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-16T23:32:44Z,stephencelis,stephencelis,2,1,1
+157,SQLite.swift,8fbc215b9f5d3f2f7bbeadcd74f50a375196b6bc,"Fix documentation
+
+ - Close code block
+
+ - Swift 1.1 syntax on master
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-16T23:29:20Z,stephencelis,stephencelis,7,5,2
+158,SQLite.swift,babbd4d8d835b8511bf1d2a3e3472c9c8e0ab267,"Add Database.foreignKeys configuration
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-16T23:23:30Z,stephencelis,stephencelis,15,13,2
+159,SQLite.swift,3d7ad5dfb8c6590355b6a92556ae47ffca8addaf,"Hint what ""bundling a database with your app"" means
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-16T21:40:29Z,stephencelis,stephencelis,2,1,1
+160,SQLite.swift,7a1845d8b995f96aaa515c528091fa0c9f2ec6a1,"Add a note about Swift 1.2.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-16T21:30:03Z,stephencelis,stephencelis,3,3,0
+161,SQLite.swift,09513108703cd3b596b9c23fc312ae74e6965e6e,"Instructions for Frameworkless Targets
+
+For the following scenarios, mostly:
+
+ - iOS 7 supports Swift, but not frameworks.
+
+ - OS X command line tools do not support frameworks.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-16T21:21:46Z,stephencelis,stephencelis,24,24,0
+162,SQLite.swift,ec760288474335781f2031eb134a07767404d016,"Document SQLCipher installation
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-16T05:03:17Z,stephencelis,stephencelis,28,28,0
+163,SQLite.swift,11822e79fe1d7fcee5f586b148975e53fc9d564e,"Don't make inferred types explicit
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-16T04:44:40Z,stephencelis,stephencelis,6,3,3
+164,SQLite.swift,95a01c40713f8e6b48d772faf623c402545aac7a,"Remove stray playground expression
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-16T03:49:53Z,stephencelis,stephencelis,2,0,2
+165,SQLite.swift,9613d86eecf4f8af2001243b3bfba499dfb5e10b,"Temporarily remove Travis CI support
+
+Would love to keep it, but it's erroneously failing right now.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-16T02:39:18Z,stephencelis,stephencelis,10,1,9
+166,SQLite.swift,d6e752cc1b964722f839610638b4809b254596ca,"Universal Framework
+
+Should simplify installation.
+
+When SQLCipher support was introduced, we also needed to add a new
+target with the dependency, per platform. By flattening the platforms,
+we only need one extra target, SQLiteCipher.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-01-16T23:37:20Z,stephencelis,stephencelis,1371,332,1039
+167,SQLite.swift,5044e008b5ee401b52f9f4d3f04aa1bbe66c07d0,enable SQLITE_TEMP_STORE according to documentation,Danny Thuering,2015-02-14T11:14:12Z,Danny Thuering,Danny Thuering,1,1,0
+168,SQLite.swift,f557962f8b4e6588b47c9dcf48d58fe35c8f2449,fix iOS build settings; add sqlcipher enabled Mac build target,Danny Thuering,2015-02-14T10:58:55Z,Danny Thuering,Danny Thuering,335,300,35
+169,SQLite.swift,acbe934edf6a7d54baf81c5bdbd7a3d13539f610,add target for sqlcipher enabled iOS build,Danny Thuering,2015-02-14T10:37:47Z,Danny Thuering,Danny Thuering,335,318,17
+170,SQLite.swift,bb4b2fe1424a3a5938b14939d308f2c4ec42aa67,change string length calculation,Danny Thuering,2015-02-13T21:15:19Z,Danny Thuering,Danny Thuering,4,2,2
+171,SQLite.swift,ddffcdf84fd4f9d142a714ba6c5a853fa9b7411e,refactor,Danny Thuering,2015-02-13T19:18:16Z,Danny Thuering,Danny Thuering,4,1,3
+172,SQLite.swift,6142bb0deec1b158e399e662c9a27920a14c5e6c,add sqlcipher support,Danny Thuering,2015-02-13T19:15:58Z,Danny Thuering,Danny Thuering,128,122,6
+173,SQLite.swift,45bb2ad53fcbe1e4876cd0b46ab7594e9af9af5c,"ID -> Id/id
+
+Let's be conventional.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-11T17:41:25Z,stephencelis,stephencelis,118,59,59
+174,SQLite.swift,132a8c066cc8bd6093e95a6d2ae4755e1e35a82f,"Document loosely-typed SQL function creation
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-11T17:37:57Z,stephencelis,stephencelis,17,17,0
+175,SQLite.swift,27f195efae4d3bbe7df1229c9c0109b1418fbe88,"Make example date formatter(s) more precise
+
+Include milliseconds; avoid `abbreviation`; use `forSecondsFromGMT`.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-11T17:28:35Z,stephencelis,stephencelis,7,4,3
+176,SQLite.swift,8f29fc56e005b1a89bfa52eda96c07f9e321832f,"Add casting
+
+Using `as`, AS in SQLite:
+
+    let age = Expression<Int>(""age"")
+    cast(age) as Expression<String>
+    // CAST (""age"" AS TEXT)
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-02T19:49:55Z,stephencelis,stephencelis,18,18,0
+177,SQLite.swift,c5881a8a67df214a2518963e7ca8eba23496d1ca,"Add block transaction helper
+
+A series of statements is not always enough. Sometimes you need
+application logic in there.
+
+    db.transaction { _ in
+        // ...
+        return success ? .Commit : .Rollback
+    }
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-05T16:54:42Z,stephencelis,stephencelis,24,18,6
+178,SQLite.swift,e0bb518416ce59d4f738372d4b3f91ba67345212,"Let's not shadow properties with variables
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-05T16:53:50Z,stephencelis,stephencelis,4,2,2
+179,SQLite.swift,0584e7971c01c6fe21945a9d0b9916eeff7f90f1,"Use SQLITE_OPEN_FULLMUTEX for thread-safety
+
+SQLite recommends it to avoid threading issues (which we're occasionally
+seeing), and they're enabled by default, so let's incur the slight
+performance penalty in the interest of avoiding the occasional crash.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-05T05:04:09Z,stephencelis,stephencelis,2,1,1
+180,SQLite.swift,a89afcb4014a0432150707bceb2bf654935d53bd,"Don't always convert sequences into arrays
+
+Using globals, we can avoid that step.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-05T05:03:17Z,stephencelis,stephencelis,8,4,4
+181,SQLite.swift,cde0c1b3c19fe3256379d3acd7d89a4ca7c21195,"Handle SQLite status codes where applicable
+
+Two of our bridging functions can return errors. Let's handle them.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-05T05:02:40Z,stephencelis,stephencelis,24,12,12
+182,SQLite.swift,8ba08493bb20b926e8dd7bc968e2defe888a72ed,"2015: The year of header cleanup
+
+Let's update our copyright to reflect the current year.
+
+Let's get rid of licenses on files that don't need them.
+
+Let's include the project's URL.
+
+Let's make other minor changes.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-05T05:01:08Z,stephencelis,stephencelis,124,32,92
+183,SQLite.swift,a7cf5f2f0dd39b6ed9f722147bf343d67f86fed1,"Update documentation to reflect Bool's current status
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-05T04:59:13Z,stephencelis,stephencelis,1,0,1
+184,SQLite.swift,eb93c8445f931a15fd473441a749ca174a3f4578,"Document custom SQL function creation
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-05T04:58:32Z,stephencelis,stephencelis,42,42,0
+185,SQLite.swift,b63e359ddf889f01f6e0a88d36166b4c2647be6a,"Add support for custom SQL functions
+
+This brings both a basic, raw bridge to sqlite3_create_function_v2(), as
+well as powerful type-safe shims, generating readymade functions
+(closures) for SQLite.swift's type-safe API.
+
+The basic bridge takes a simple closure that is called with an array of
+SQL-friendly values and returns a SQL-friendly result. E.g.,
+
+    db.create(function: ""typeConformsTo"") { args in
+        switch (args[0], args[1]) {
+        case let (UTI as String, conformsToUTI as String):
+            return Int(UTTypeConformsTo(UTI, conformsToUTI))
+        default:
+            return nil
+        }
+    }
+    let stmt = db.prepare(""SELECT * FROM files WHERE typeConformsTo(UTI, ?)"")
+    for row in stmt.bind(kUTTypeImage) { /* ... */ }
+
+The type-safe shims, however, are safer, transparently convert
+expressions to value types, and return callable closures.
+
+    let typeConformsTo: (Expression<String>, String) -> Expression<Bool> = (
+        db.create(function: ""typeConformsTo"") { UTI, conformsToUTI in
+            return UTTypeConformsTo(UTI, conformsToUTI) != 0
+        }
+    )
+    for row in files.filter(typeConformsTo(type, kUTTypeImage)) { /* ... */ }
+    // SELECT * FROM ""files"" WHERE typeConformsTo(""type"", 'public.image')
+
+Currently, the type-safe shims only support functions with zero to two
+arguments (Swift's dynamics are lacking at the moment, and manually
+shimming even two arguments was time-consuming).
+
+Future considerations:
+
+  - SQLite performance improves when deterministic functions are marked
+    SQLITE_DETERMINISTIC. We may want to expose this configuration option
+    in the future, e.g., with a default argument:
+
+        db.create(function: ""name"", deterministic: true)
+
+  - SQLite function overloading precedence is determined by an
+    explicitly-given argument count. We hardcode this to `-1` at this
+    time.
+
+  - Custom aggregate functions require ""step"" and ""final"" callbacks,
+    which aren't exposed at this time.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-05T04:03:36Z,stephencelis,stephencelis,460,455,5
+186,SQLite.swift,b025b9074b778c7ae5befdbbd15d994f8455e18e,"Adjust rdar comments for legibility
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-04T16:39:41Z,stephencelis,stephencelis,4,2,2
+187,SQLite.swift,3a101d2905c2e0b0a1f6e2fc7a5436cd1912b1a8,"Make Blob Expressible
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-04T16:37:58Z,stephencelis,stephencelis,19,19,0
+188,SQLite.swift,fc61295b214333b4327a64c2a7a9e91f9efcea72,"Remove Bool support from thin SQLite layer
+
+SQLite doesn't really support BOOLEAN values (they're just INTEGERs), so
+let's remove support for it in the thin layer.
+
+Bool now conforms to Value, which means the type-safe layer can use it
+freely and more safely.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-04T04:17:26Z,stephencelis,stephencelis,138,61,77
+189,SQLite.swift,d52d3af9cf043fd8658e6fdad8762af184d2948b,"Remove redundant type constraints
+
+Value requires that Datatype conforms to Binding, so there's no need to
+specify the type requirement again in generic functions.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-04T04:34:16Z,stephencelis,stephencelis,136,68,68
+190,SQLite.swift,7ea33c51b94bfcd1af0f48027c93d49e0cba89b5,"Update contains function to support any Value
+
+Otherwise, only the raw bindings were supported.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-04T04:29:17Z,stephencelis,stephencelis,4,2,2
+191,SQLite.swift,f48707a663bbc37bab0afe36004c53936dd2cdd0,"Add formatter locale to documentation
+
+Reported-by: https://github.com/stephencelis/SQLite.swift/issues/58
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-03T21:20:55Z,stephencelis,stephencelis,1,1,0
+192,SQLite.swift,eee33ef0e17005894f65bf85462298543ecc761e,"Non-framework compatibility
+
+This makes it so the SQLite module isn't required for use, addressing a
+problem brought up in issue #51.
+
+This also allows for iOS 7 support (though I wouldn't recommend it).
+
+The steps are as follows:
+
+ 1. Copy ""SQLite Common"" into your project. (Optionally delete ""SQLite
+    Common.xcconfig"" and ""SQLite-Bridging-Header.h"".)
+
+ 2. Add the following to your bridging header (create one if you don't
+    already have one):
+
+        #import <sqlite3.h>
+        #include ""SQLite-Bridging.h""
+
+ 3. In the ""Link Binary With Libraries"" Build Phase, add
+    ""libsqlite3.dylib"".
+
+Not the most elegant, but it works for now.
+
+The aggregate function band-aid is also less-than-desirable, but it
+isn't exposed for public use.
+
+Dearest Apple,
+
+Please add `import sqlite3` to your public set of module maps.
+
+Your obt svt,
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-01-27T17:11:37Z,stephencelis,stephencelis,178,109,69
+193,SQLite.swift,06dde2c01b830c6d27090c5640e575bc3dc9ace4,"Update Travis CI configuration
+
+Xcode 6.1 is now the default.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-01-23T18:54:00Z,stephencelis,stephencelis,1,0,1
+194,SQLite.swift,94387c73aeb336c813dcfaec847152cfabb47609,"Merge pull request #50 from juliensagot/master
+
+Fix documentation",Stephen Celis,2015-01-23T23:12:33Z,stephencelis,stephencelis,2,1,1
+195,SQLite.swift,c1df37bbeb7f75350b171bef8a6635a821aeda98,Fix documentation,Julien Sagot,2015-01-23T23:09:34Z,juliensagot,juliensagot,2,1,1
+196,SQLite.swift,21d705e23c2f36e71b27476d0748d2eadf564b66,"Add/publicize array savepoint functions
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-01-23T17:45:33Z,stephencelis,stephencelis,22,21,1
+197,SQLite.swift,b5ca7d4982841c4ef89be887ed61f8abbceed38f,"Publicize transaction function with array signature
+
+Till Swift supports converting an array to a variadic list, we run into
+the problem where the compiler gives up on complex statements.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-01-23T17:44:04Z,stephencelis,stephencelis,14,12,2
+198,SQLite.swift,3b96ca4d6f2a907297b843fde2a70f7fffd18760,"Follow the chain
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-01-23T17:42:56Z,stephencelis,stephencelis,2,1,1
+199,SQLite.swift,748495db9da254949b32082fb5ef8fe04368c6bf,"Fix documentation typo
+
+A person can dream, but there is no Date yet.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-01-23T17:38:39Z,stephencelis,stephencelis,2,1,1
+200,SQLite.swift,f4cb77e7da4ae6bfcae732b593ad2bcd7ff8c1ec,"Merge pull request #45 from juliensagot/master
+
+Add transaction method which takes an array of Statements as its unique parameter",Stephen Celis,2015-01-22T18:38:48Z,stephencelis,stephencelis,11,11,0
+201,SQLite.swift,e1ee5cad0e949936a820448c67007b3cd6710fda,Fix brackets,Julien Sagot,2015-01-20T22:03:45Z,juliensagot,juliensagot,2,1,1
+202,SQLite.swift,c6cf5bdf3faefc6f4b5234b2a1ff3c6cac4a95bb,Add transaction method which takes an array of Statements as its unique parameter,Julien Sagot,2015-01-20T19:10:10Z,Julien Sagot,Julien Sagot,11,11,0
+203,SQLite.swift,1af591ac2ff4b409b5542e7b5241d186260beded,"Show Travis CI badge for master branch
+
+Let's not scare people off because of experimental pushes.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-01-17T20:50:43Z,stephencelis,stephencelis,2,1,1
+204,SQLite.swift,86d9fe7f8eaa4d1c94df547c818c37f2fde9cbf9,"Fix typos
+
+ - Add missing, closing paren
+ - Fix copypasta function name
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-01-12T22:21:28Z,stephencelis,stephencelis,4,2,2
+205,SQLite.swift,4f2baec7ac339a52f3f8d220bcdd37204f4b2a67,"Merge pull request #31 from kasrak/master
+
+Allow values to insert to be passed as array of setters",Stephen Celis,2015-01-09T15:51:57Z,stephencelis,stephencelis,42,39,3
+206,SQLite.swift,5aab11cbd7b4595a1346ff637d90e0f16feee186,"Consistency in multiple variable initialization
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-12-19T17:29:44Z,stephencelis,stephencelis,3,1,2
+207,SQLite.swift,1f070f75229aea0fc1fa3ef0d913a1ff48d27566,"Properly expand table.* columns
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-12-19T17:22:05Z,stephencelis,stephencelis,29,25,4
+208,SQLite.swift,89b577210b3612fcabc433c02b327d3f5086e00f,Allow values to update/replace to be passed as an array,Kasra Kyanzadeh,2014-12-19T02:02:50Z,kasrak,kasrak,28,26,2
+209,SQLite.swift,bca031667e84a518215a63691a1c0787f7a37c70,"Allow values to insert to be passed as array of setters
+
+This lets the columns to be built up dynamically. For example:
+
+    var values = [name <- ""Alice""]
+
+    if shouldSetEmail {
+        values.append(email <- ""alice@mac.com"")
+    }
+
+    if let insertedID = users.insert(values) {
+        ...
+    }",Kasra Kyanzadeh,2014-12-17T22:28:12Z,kasrak,kasrak,14,13,1
+210,SQLite.swift,01cb756df15a3298fdff0b4a942390a3c86b0045,"Add note about IS and IS NOT in operator documentation
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-12-16T18:47:41Z,stephencelis,stephencelis,24,13,11
+211,SQLite.swift,1c048fd32a419dae3b738130cdc05d25a91638a9,"Fix whitespace issues in documentation
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-12-16T18:46:55Z,stephencelis,stephencelis,40,20,20
+212,SQLite.swift,c4fa24fcc85562d62ade880ee857816fd5806ac1,"Don't create intermediate dictionary for Query iteration
+
+Row objects can instead maintain a column name mapping and store the raw
+statement row. This dramatically improves performance when iterating
+rows and lazily accessing data.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-12-15T22:30:46Z,stephencelis,stephencelis,34,15,19
+213,SQLite.swift,4133091ac2887741c1fd2248f12ad25d8aade9bc,"Lazily cache column names on Query iteration
+
+Improves performance significantly.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-12-15T22:22:17Z,stephencelis,stephencelis,38,20,18
+214,SQLite.swift,2a9f7e82fab9442d9a850820e8998e191e826828,"Map rows returned in Statement iteration
+
+It ends up being about 0.7 times faster than using a mutable array per
+row.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-12-15T21:42:47Z,stephencelis,stephencelis,24,11,13
+215,SQLite.swift,0b9e49498c3585225b0486672e583feaac7b1f08,"Add whitespace to operator functions for readability
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-12-15T21:39:38Z,stephencelis,stephencelis,526,263,263
+216,SQLite.swift,36836d32971a36c06dbf98184055f8a0b1adc129,"Literal convertible
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-12-15T21:38:55Z,stephencelis,stephencelis,2,1,1
+217,SQLite.swift,6c491fe42e8820ab2017a0a330e4f7c5b0ced44f,"Expose REPL errors
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-12-15T21:38:14Z,stephencelis,stephencelis,2,1,1
+218,SQLite.swift,798ee8eb9ba3f637031d0099bc792caac4a1a458,"Add support for INTEGER PRIMARY KEY AUTOINCREMENT
+
+E.g.,
+
+    t.column(id, primaryKey: .Autoincrement)
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-12-06T22:00:47Z,stephencelis,stephencelis,98,47,51
+219,SQLite.swift,6bf712d97910aea0abb8bf407463e01d9e2df3c2,"Clarify Value protocol conformance
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-26T16:46:24Z,stephencelis,stephencelis,2,1,1
+220,SQLite.swift,ab5c18c104701ae1c0dbde988cc7f83d7a59e63f,"Add quoting to example
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-26T16:44:55Z,stephencelis,stephencelis,2,1,1
+221,SQLite.swift,8670d1c6b2c0f2ca5f022ed7ed1c0175d6736db9,"Add filtering examples
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-24T03:53:57Z,stephencelis,stephencelis,12,12,0
+222,SQLite.swift,2f2ca7dfc296af4d4e13063fb3e6ab288cfc276f,"Document contains/IN
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-24T03:53:45Z,stephencelis,stephencelis,11,6,5
+223,SQLite.swift,f1141b6872422967bdf8711b4f18acc712cac459,"Add missing quotes
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2014-11-23T17:29:49Z,stephencelis,stephencelis,2,1,1
+224,SQLite.swift,03b27f9a5fb5eba46d3d4d5c856d670d66c92332,"Fix General Query.delete() documentation
+
+Fixes #179.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-08-19T02:16:28Z,stephencelis,stephencelis,2,1,1
+225,SQLite.swift,043137e1322ffbdec34db894b10cb0d8bfd6b9e8,"Coverage improvements
+
+Because ""age"" is already an Expression<Int?>, many test paths weren't
+being hit.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-06-08T11:30:53Z,stephencelis,stephencelis,8,7,1
+226,SQLite.swift,89d16192bb73bf179c08c30227fbd9e52be6bf32,"Merge pull request #153 from huynhphan89/master
+
+Add select functions with array param for query builder",Stephen Celis,2015-07-15T12:13:08Z,stephencelis,stephencelis,18,18,0
+227,SQLite.swift,f791d36a6019e244be47d8b5bf997745585b1b91,Add select functions with array param for query builder,huynhpl,2015-07-15T02:41:56Z,huynhphan89,huynhphan89,18,18,0
+228,SQLite.swift,fde8c3391b265eb34b6407e3665160fb981b6857,"SwiftCov support
+
+84.8% coverage so far.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-06-07T16:21:53Z,stephencelis,stephencelis,25,25,0
+229,SQLite.swift,743530d1e56c86b5cd4df5153839a98ecb05bf5f,"Update Installation image
+
+Let's not let things go stale.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-31T12:48:46Z,stephencelis,stephencelis,0,0,0
+230,SQLite.swift,0fcd4af08f9386c07968d2454a4db6cc915ed5b8,"Indent manual SQLCipher instructions under manual
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-31T01:33:01Z,stephencelis,stephencelis,2,1,1
+231,SQLite.swift,3f08767c857c99bb76c2bf3b203bf6fa019ebfd5,"Restore Travis
+
+Finally ;) Xcode 6.3 support:
+
+http://blog.travis-ci.com/2015-05-26-xcode-63-beta-general-availability/
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-31T01:15:04Z,stephencelis,stephencelis,19,18,1
+232,SQLite.swift,9dd044657d74b3c3fbe4bf8bf9484431e3e476f1,"More direction for CocoaPods users
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-20T02:36:41Z,stephencelis,stephencelis,4,4,0
+233,SQLite.swift,e1258056429861066c3fa3f4902f8c1e58dbe0a1,"SQLCipher CocoaPods support
+
+Using a sub-spec, it's easy to use SQLCipher, as well:
+
+    pod 'SQLite.swift/Cipher', git: # ...
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-20T02:20:00Z,stephencelis,stephencelis,55,38,17
+234,SQLite.swift,9bfae5c0b5070290662a560c553649bd87c581e3,"Playground updates
+
+Document the new way of initializing database connections. And stop
+saying ""instantiate"" all the time.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-18T01:50:42Z,stephencelis,stephencelis,8,4,4
+235,SQLite.swift,7627523bd56c882add575ac69cd5f8c6a45ef4fa,"CocoaPods support
+
+With 0.37, we get custom module map support, and with that we can cobble
+together a working framework!
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-17T23:27:53Z,stephencelis,stephencelis,82,80,2
+236,SQLite.swift,8f64e357c3a6668c5f011c91ba33be3e8d4b88d0,"Remove dummy framework
+
+We can load the SDK header from our custom module map, instead.
+
+Let's also link to the iphoneos SDK header, since it shouldn't matter:
+it's always identical to the iphonesimulator header, and at worst a
+version behind the macosx header.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-17T23:08:23Z,stephencelis,stephencelis,233,20,213
+237,SQLite.swift,17212976887ef37a6c6877990a4ba5e6b950e6e5,"Stop nagging me, Xcode
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-16T22:24:48Z,stephencelis,stephencelis,6,3,3
+238,SQLite.swift,6e71ca9c149c6997a43b3b4134bc9186f8a25d22,"Simplify lazy variables
+
+No need for a closure for one-liners.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:47:59Z,stephencelis,stephencelis,11,6,5
+239,SQLite.swift,27f0bf8cafb3dd2f512c310b21857b3f98c9c53d,"Add nullability attributes to Objective-C code
+
+Just a small improvement for the code internally.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:46:56Z,stephencelis,stephencelis,23,13,10
+240,SQLite.swift,cd5567b95ed3aac18461d3a86f5e854a73b7dbe5,"Documentation improvements
+
+Generally: formatting is better than none. And documentation is better
+than none.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:46:21Z,stephencelis,stephencelis,60,40,20
+241,SQLite.swift,17e0f96d8b3fbc50f557108f52c35b28859b5e2e,"Simplify limit() logic
+
+At least for the functional mindset. A short one-liner should be more
+readable than an if-else.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:45:08Z,stephencelis,stephencelis,6,1,5
+242,SQLite.swift,6d9fb5c6ea626f73c4bf37b79940c902d29f46b7,"Remove private group() function
+
+It's used as a funnel and shouldn't be called directly. After all,
+`having: nil` makes no sense.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:44:04Z,stephencelis,stephencelis,17,5,12
+243,SQLite.swift,6bc2aed199bf40dae42aeba618a093f14689eb5e,"Document the collation enumeration
+
+It deserves it.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:43:24Z,stephencelis,stephencelis,9,9,0
+244,SQLite.swift,895282da9d9c3c7b873fe5e7d44923198aa6148b,"Remove unnecessary default
+
+There's no reason to initialize an expression literal without a SQL
+string.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:42:32Z,stephencelis,stephencelis,4,2,2
+245,SQLite.swift,7749e3ee7923e79177b1c94b54d3439c2a32aed5,"Make `lastError` optional
+
+Return it only when the result code is an error code.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:41:39Z,stephencelis,stephencelis,40,34,6
+246,SQLite.swift,3203dfdf5319cd699adde77045bf10e7cd34cc1c,"Better document defaults
+
+And fix the documentation for the create function shims while we're at
+it.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:39:25Z,stephencelis,stephencelis,38,26,12
+247,SQLite.swift,c4cba1d83364d45f258dddff1564a74f60d00c37,"Make Database initialization more Swift-like
+
+Carrying over "":memory:"" and """" seems less-than-ideal.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:37:59Z,stephencelis,stephencelis,97,88,9
+248,SQLite.swift,ef9c07c1d2571eda15beeb5df6fec118d2ec660b,"Simplify asynchronous testing
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:35:39Z,stephencelis,stephencelis,77,33,44
+249,SQLite.swift,5794555c918f7022001282f62fe2c43cbfb97b3d,"Standardize void types
+
+Let's follow the Apple convention:
+
+  - () for parameters
+  - Void for return types
+
+https://devforums.apple.com/message/1133616#1133616
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-12T22:48:29Z,stephencelis,stephencelis,234,117,117
+250,SQLite.swift,533e47e6d57cdf8e1d6729b34f830639c41f2f8b,"Swift prefers camelCase
+
+Pulling snake_case over for an interface isn't necessary.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-06T22:27:39Z,stephencelis,stephencelis,10,5,5
+251,SQLite.swift,e7fbda4ebd5554d61397454217a9d5e71a197892,"Update requirements in documentation
+
+This is why you keep it DRY.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-06T22:27:08Z,stephencelis,stephencelis,2,1,1
+252,SQLite.swift,effa1bf832c0519cb8fe69b8b6da6aff4152c36a,"Update Contributing Guidelines
+
+This should assist some users on their way to submitting an issue or
+shortly thereafter.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-06T22:19:02Z,stephencelis,stephencelis,131,127,4
+253,SQLite.swift,3a0435ebce11fd31e7a4176eacff5f3350e70782,"Update README for insert/update/delete changes
+
+It's no longer overload soup.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-03T03:21:54Z,stephencelis,stephencelis,10,5,5
+254,SQLite.swift,868b379ee3d6cab70b9190177d0b2a94703636a1,"Better examples
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-02T14:48:14Z,stephencelis,stephencelis,17,11,6
+255,SQLite.swift,b5aabd0881ce33cc6df39bd8cc6a0fde96581e0a,"Consistency
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-02T14:47:53Z,stephencelis,stephencelis,2,1,1
+256,SQLite.swift,a5011f4a216fb9e60ee33aa17c84c5831d1db5fa,"Simplify query change interface
+
+The fact that `insert()`, `update()`, and `delete()` have a number of
+overloads that can only be disambiguated by specifying a type, a tuple
+member, or `!` is a big point of confusion for new users of
+SQLite.swift. The overloads add some interesting patterns to the mix,
+but aren't worth the pain points.
+
+If we eliminate the overloads, we can insert/update/delete in place.
+This allows for subtle bugs to be introduced into apps (where the
+developer doesn't check for a rowid or that an update/delete was
+successful), but is a tradeoff we'll have to make. It doesn't make sense
+to enforce a different kind of interface/access at the expense of
+confusion.
+
+Given:
+
+    let user = email <- ""alice@mac.com"")
+
+The old way:
+
+    users.insert(user)!
+    let rowid = users.insert(user)!
+    if let rowid = users.insert(user) { /* ... */ }
+    let (rowid, statement) = users.insert(user)
+    // etc.
+
+The new way:
+
+    users.insert(user)
+    let rowid = users.insert(user).rowid!
+    if let rowid = users.insert(user).rowid { /* ... */ }
+    let (rowid, statement) = users.insert(user)
+    // etc.
+
+Slightly and rarely more verbose and readable, with less confusing
+compiler errors and hand-holding.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-02T14:37:37Z,stephencelis,stephencelis,499,222,277
+257,SQLite.swift,14573e4c83c71d7e37a8fa306303e2525e5ba9f5,"Remove replace(...) in favor of insert(or:...)
+
+It's more flexible to expose all the ON CONFLICT actions.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-30T13:40:53Z,stephencelis,stephencelis,83,30,53
+258,SQLite.swift,38a585c470cc1f2c4d88101e94f6a3eb6d6b9908,"Make rowid public
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-30T13:37:37Z,stephencelis,stephencelis,4,2,2
+259,SQLite.swift,e19813d0a385a0d551d94d75c649b20ad0db64ba,"Expose REGEXP operator
+
+Still need to create(function: ""regexp"") yourself.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-30T13:36:49Z,stephencelis,stephencelis,23,15,8
+260,SQLite.swift,532a3777ccd1164284c3329cb06d671f82386d0e,"Make aggregate function shims private
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-30T13:35:45Z,stephencelis,stephencelis,120,61,59
+261,SQLite.swift,610138e7f88920180811e98762adf4e1b353f9df,"UTF-8 the docs
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-30T13:34:55Z,stephencelis,stephencelis,8,4,4
+262,SQLite.swift,036288a8dd64bd74e30105870cfaef449bddbffe,"Revert ""Use single module map file for sqlite3 shim""
+
+This reverts commit 2bf90d49cc982589b6d7ed9585f3f8f41ccf3263.
+
+It looks like the module map's path is not relative to the SDK root
+after all (as seen by reporters of #120).",Stephen Celis,2015-04-28T12:40:44Z,stephencelis,stephencelis,37,27,10
+263,SQLite.swift,cb71a4339a158d5b58c5415c579a644781b817cb,"Disable App Extension requirement for test targets
+
+Otherwise we get a warning every time we build them.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-27T13:14:33Z,stephencelis,stephencelis,4,4,0
+264,SQLite.swift,2bf90d49cc982589b6d7ed9585f3f8f41ccf3263,"Use single module map file for sqlite3 shim
+
+Per the following:
+
+https://twitter.com/jckarter/status/590928617770602496
+
+Fixes #116.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-27T13:01:42Z,stephencelis,stephencelis,37,10,27
+265,SQLite.swift,213920b2f65d7ae92bb2c93cfa02a2e6e19f8ee9,"Fix ALTER TABLE documentation
+
+Copypasta typically tastes a bit funny.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-27T12:51:06Z,stephencelis,stephencelis,10,6,4
+266,SQLite.swift,8a85d80b0e8acf5f29a71e3abedc016e83381571,"DRY up project configuration
+
+Let's utilize the xcconfig file where we can. In this case, ensure that
+the 8.0 deployment target applies to everything.
+
+Fixes #119.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-27T12:49:55Z,stephencelis,stephencelis,55,17,38
+267,SQLite.swift,1db85271f275e8189c6891439cf8168e05d3fa51,"Clarify what kinds of Frameworkless bugs to report
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-24T13:32:50Z,stephencelis,stephencelis,2,1,1
+268,SQLite.swift,7844bf715a0e8e83f7f6cb9e8b63bccf8d0d96ad,"Move fts3_tokenizer to ease Frameworkless Target install
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-24T13:30:31Z,stephencelis,stephencelis,12,6,6
+269,SQLite.swift,078a76b6b74bf62606ea5828ea1d6f42a55361a4,Change the deployment target to 8.0,Stefan Arentz,2015-04-17T17:43:16Z,st3fan,st3fan,4,2,2
+270,SQLite.swift,60d523c298b85b151a409d15644a78291288264a,Set Allow App Extension API Only,Stefan Arentz,2015-04-17T17:41:26Z,st3fan,st3fan,6,6,0
+271,SQLite.swift,571f9a5a6e44ef053ea00e74145099580298f421,"Don't drop offset when fetching first row
+
+Fixes #110.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-19T12:35:49Z,stephencelis,stephencelis,9,8,1
+272,SQLite.swift,38b50fc11666f5fb5bffc9df95f05d28c8515066,"Add basic contributing guidelines
+
+A word-for-word of the README's ""Communication"" section, for now, but
+hopefully it'll steer more people looking for general help toward Stack
+Overflow.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-17T23:03:22Z,stephencelis,stephencelis,10,10,0
+273,SQLite.swift,09466f34f238996eec1f4fc9ebd4d1703dac0ab6,"Update Apple documentation link
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-17T22:52:33Z,stephencelis,stephencelis,2,1,1
+274,SQLite.swift,d287345320ee9dde7eb10d98f0aab57400f39ce7,"Upgrade Playground
+
+It's not as pretty, but it's the only supported solution.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-16T15:15:13Z,stephencelis,stephencelis,701,221,480
+275,SQLite.swift,3abd6213b2cf62b586fdf79fb6180984ddbe456a,"Merge pull request #104 from confile/patch-1
+
+Insert alternative transaction statement",Stephen Celis,2015-04-14T21:53:01Z,stephencelis,stephencelis,10,10,0
+276,SQLite.swift,4def261613d6d5bc5e74c3f0da6c3a7974061351,"Add missing import
+
+The early module map refactor left SQLCipher users high and dry :(
+
+This should fix #100.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-14T14:38:19Z,stephencelis,stephencelis,2,2,0
+277,SQLite.swift,2b0abb08acaf4423bf95449fa4b56e5bc503b2d1,Insert alternative transaction statement,Confile,2015-04-14T14:00:17Z,Confile,Confile,10,10,0
+278,SQLite.swift,82156295351070ea15c110ce3137a839b6f5c85a,"Clarify iOS 7 instructions
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-13T18:34:49Z,stephencelis,stephencelis,4,2,2
+279,SQLite.swift,3e8f7d3bfd5cea57f71de52f3527515e6f61c24d,"Update installation image
+
+SQLite.swift is a universal framework now, so let's avoid any confusion.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-13T01:36:04Z,stephencelis,stephencelis,0,0,0
+280,SQLite.swift,1474f15eb5aeab1ebcf32293440dfd30de80031a,"Clarify SQLCipher installation
+
+It's no longer hidden away in a ""Vendor"" group.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-13T00:12:43Z,stephencelis,stephencelis,8,4,4
+281,SQLite.swift,44820eab1131d0cbcff1c27b18a64ccac1c8e66e,"Update SQLCipher
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-13T00:07:32Z,stephencelis,stephencelis,2,1,1
+282,SQLite.swift,8749e2ec2f380106ba688665aa3052e6baf873c2,"Don't embed subframework
+
+It's primarily there for compilation.
+
+A fix for App Store rejections ITMS-90205 and ITMS-90206 (closes #88).
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-12T18:13:14Z,stephencelis,stephencelis,20,0,20
+283,SQLite.swift,31752f03194aa830c9bf41637ef1674817876330,"Update OS X header to point to SDK
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-12T17:28:55Z,stephencelis,stephencelis,2,1,1
+284,SQLite.swift,849d4efe8632eee1bbee036453a52dc8a7e99426,"Support IN condition against subquery
+
+Closes #94
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-11T14:27:24Z,stephencelis,stephencelis,9,8,1
+285,SQLite.swift,fc086d0db479d3a3a9cd210ee5fabde1a0a0d606,"Swift 1.2 GM
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-09T01:29:29Z,stephencelis,stephencelis,4,2,2
+286,SQLite.swift,2cc0a17243bce27da7d754d72a58b737db3dead8,"Make assertionFailures fatalErrors
+
+Should prevent compilation errors for certain schemes.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-09T00:55:58Z,stephencelis,stephencelis,8,4,4
+287,SQLite.swift,0708a2705cbc6bdddb20eed556377ed5a2054625,"Tighten naming conventions with SQLite
+
+We should prefer, in the raw interface, at least, the same naming
+conventions as SQLite. This should make it easier to transition with
+less of a need to reference the documentation.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-28T20:45:48Z,stephencelis,stephencelis,100,50,50
+288,SQLite.swift,ad8ec5844de859f51edbc3b383b9d414cd0b84a6,"Conventionally mark Objective-C implementation details private
+
+Basically, prefix ""_"" all the things. Ideally we could hide these
+implementation details altogether, but it doesn't appear to be possible
+in a Swift framework (yet).
+
+Additionally, by creating and casting our own opaque structs in the
+""bridging"" header, we can avoid exposing the inner sqlite3 module.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-28T20:27:05Z,stephencelis,stephencelis,188,96,92
+289,SQLite.swift,550c1df43c834844795ded093450e0a8b5131688,"Ess, queue, el.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-25T07:33:35Z,stephencelis,stephencelis,18,9,9
+290,SQLite.swift,9d83e2f3fa912588f6ed441e3b464060f740aa5e,"Remove unnecessary abstraction
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-24T17:58:33Z,stephencelis,stephencelis,4,1,3
+291,SQLite.swift,6abd3f4f3152588f3d2fa4797422823cc6655949,"Update, commit, and rollback hook support
+
+Should make it easy, e.g., to create an interface for a table view to
+register for updates.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-24T17:56:52Z,stephencelis,stephencelis,174,174,0
+292,SQLite.swift,540df5941a93dbff34f28257b3a415868ed47bf3,"Add parameter names to callback functions
+
+Makes things more intelligible when autocompleting functions and their
+closures.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-24T17:54:23Z,stephencelis,stephencelis,30,15,15
+293,SQLite.swift,05cf90fbf7e82264e0d20b75a02e1ee016afd915,"Query interrupt support
+
+Adds the ability to interrupt a database connection during a
+long-running query.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-24T16:57:30Z,stephencelis,stephencelis,27,26,1
+294,SQLite.swift,24cd4051696f3131ae57682e2bb111229bcc848f,"Plug C block memory leaks
+
+The database connection can retain them well enough.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-23T16:04:07Z,stephencelis,stephencelis,35,23,12
+295,SQLite.swift,1fea119c0a4917989ce080b46b0f306e01de392c,"Mark transaction/savepoint block helpers @noescape
+
+They execute immediately, so there's no reason to worry about capture
+semantics.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-22T17:19:32Z,stephencelis,stephencelis,4,2,2
+296,SQLite.swift,f02b75a93027f584b20e27b784db0958b0567d80,"Mark create(table:) @noescape
+
+This removes the `self.` requirement from the block, which should lead
+to better legibility in some cases.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-22T17:15:37Z,stephencelis,stephencelis,8,1,7
+297,SQLite.swift,628a2893c0de596635d5f215fae3c108df47bbe6,"Use an embedded module instead of a bridging header
+
+I'd taken advantage of the fact that renaming the umbrella header
+disabled the framework bridging header check, which is a bug and could
+stop working at any moment.
+
+Instead, let's embed a `sqlite3` framework module that points to the
+appropriate system header.
+
+As soon as the system provides an appropriate `sqlite3` module at the
+system level, we merely have to delete this internal dependency.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-21T23:53:00Z,stephencelis,stephencelis,383,300,83
+298,SQLite.swift,a06a550ddd81c2be72e1114cfd770532b481ffa3,"Custom Tokenizers
+
+This brings preliminary support for custom FTS tokenizers, registered
+using the following incantation:
+
+    db.register(tokenizer: ""name"") { input in
+        // ... extract first token and range here
+        return (token, range) // return normalized token and range
+    }
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-11T15:38:39Z,stephencelis,stephencelis,545,452,93
+299,SQLite.swift,5ac56d78c0fb8b3521e5058dc1fe1281ca1de100,"Swift 1.2 beta 3
+
+Nested functions no longer require `self`.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-15T15:32:03Z,stephencelis,stephencelis,2,1,1
+300,SQLite.swift,b1b27d5db5954a076c3c7c4f4dcb5658458a9e0c,Updating documentation for forced downcast,Sam Sherar,2015-02-27T23:04:37Z,ssherar,ssherar,4,2,2
+301,SQLite.swift,440579e36d5ed83d0f9c103af7ae0c29c268c230,"Enable -whole-module-optimization
+
+A feature of Swift 1.2. Slows builds down when the framework first
+builds and whenever it changes, but performs significantly faster.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-24T17:04:01Z,stephencelis,stephencelis,8,8,0
+302,SQLite.swift,ae868916ea619b71db3693a8189e41c3e3e41d76,"Swift 1.2 beta 2
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-23T19:12:55Z,stephencelis,stephencelis,17,10,7
+303,SQLite.swift,5532303135d228d4bb4dee52a8f2cf2df5ac1dfd,"Swift 1.2 beta 1
+
+Most things should work as they have been, with a few notes:
+
+  - The `db.transaction` helpers that took variadic auto-closures have
+    been removed (Swift no longer supports variadic auto-closures).
+    Update path: use `&&` and `||` for control flow:
+
+        db.transaction() &&
+            stmt1 &&
+            stmt2 &&
+            db.commit() || db.rollback()
+
+    Or use the block-based helper:
+
+        db.transaction { _ in
+            stmt1.run()
+            if stmt1.failed { return .Rollback }
+            stmt2.run()
+            if stmt2.failed { return .Rollback }
+            return .Commit
+        }
+
+    Note: You'll need to explicitly call/return COMMIT and ROLLBACK now.
+
+  - There appears to be a bug in Swift causing 2 memory-related,
+    over-releasing crashes in the test suite. Filed: rdar://19782170
+
+Many bugs marked FIXME with links to rdars are now fixable and have been
+fixed.
+
+The tests have also been heavily refactored (they were abusing the power
+of `@autoclosure`, which has been curtailed with `@noescape`), but
+should be generally more readable, if slightly less flexible.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-10T16:59:10Z,stephencelis,stephencelis,2819,1362,1457
+304,SQLite.swift,83f08f721591003b95a03bf6c6139da5b8fee737,"Add argument count to create(function:)
+
+Allows for the definition of multiple functions with the same name but a
+differing number of arguments.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-22T17:41:13Z,stephencelis,stephencelis,82,43,39
+305,SQLite.swift,6f3eef7619ddbf1e97726dc87008bf322db86e29,"Basic R*Tree module support
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-21T18:57:58Z,stephencelis,stephencelis,58,58,0
+306,SQLite.swift,c82559f6e51461d8d98146fe1b7617bca34a8d73,"Document FTS
+
+And update a few other documentation-related things along the way.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-21T18:28:24Z,stephencelis,stephencelis,54,49,5
+307,SQLite.swift,4521c358272e4d0df412d81bbca97325f181d918,"README cleanup
+
+ - Stop using numeric link references.
+ - Document discrepancy between SQLCipher and FTS4
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-21T17:58:06Z,stephencelis,stephencelis,58,33,25
+308,SQLite.swift,e0e94a3bd67972dd74ccf254ec1110b8a0c6d063,"Highlight unhighlighted documentation
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-21T17:31:48Z,stephencelis,stephencelis,2,1,1
+309,SQLite.swift,83bbd896fa336c763288590e777d0090bfe37d98,"Fix some old archive-only segfaults
+
+Looking forward to Swift 1.2!
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-11T16:10:35Z,stephencelis,stephencelis,39,18,21
+310,SQLite.swift,ae7d539f4d18cdd064a8cece9e6765a217e12b6a,"Update for Xcode 6.2
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-11T16:10:15Z,stephencelis,stephencelis,6,3,3
+311,SQLite.swift,86af78632bd872e53567ee1bb5de2a158fc93ee4,"Always remove inferred types
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-08T23:18:46Z,stephencelis,stephencelis,2,1,1
+312,SQLite.swift,ba9a175e73b657e223c290c1d05aa4d884dc5ad7,"Prefer tuple assignment in initializers
+
+For now, anyhow. Style changes, after all.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-08T23:18:12Z,stephencelis,stephencelis,3,1,2
+313,SQLite.swift,c7c5cf9524acaef606f5f345c532ab7b0fdf2fca,"Very basic FTS support
+
+This commit provides basic helpers for creating virtual tables with
+fts4() and for running match queries against them.
+
+Still needed:
+
+ - Custom tokenizer support (and the ability to build with ""unicode61""
+   and ""icu"" tokenizers)
+
+ - Better support for offsets(), snippet(), matchinfo()
+
+ - Additional FTS4 options: http://www.sqlite.org/fts3.html#fts4_options
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-08T23:01:46Z,stephencelis,stephencelis,105,103,2
+314,SQLite.swift,96f4b35dec47794231d199d7cd87580e6bf91a33,"PRIMARY KEY cleanup
+
+Let's enable defaults for primary keys, and let's not bother with a
+uniqueness parameter, since it's implied.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-06T02:03:56Z,stephencelis,stephencelis,54,25,29
+315,SQLite.swift,a705c40e7c00dce60f6896122b62ec937f94538f,"Merge pull request #78 from xenadu/master
+
+Support non-integer primary key in shorthand function",Stephen Celis,2015-03-06T00:28:06Z,stephencelis,stephencelis,38,32,6
+316,SQLite.swift,2b3780cccac7cb9d38b3d887ec8515b265c490b6,Support non-integer primary key in shorthand function,Russ Bishop,2015-03-04T18:22:12Z,xenadu,xenadu,38,32,6
+317,SQLite.swift,10ce76ff94726182dbcb61fb9b25d41c6dba0fca,"Fix Makefile SLOC check
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T23:24:38Z,stephencelis,stephencelis,2,1,1
+318,SQLite.swift,87946a6e95e53086e7499740636002f26089ea9a,"Fix column access on joined subqueries
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T23:24:12Z,stephencelis,stephencelis,16,13,3
+319,SQLite.swift,0ba651defd8159f2c820bfd74071031d376b62cf,"Basic subquery support
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T22:31:19Z,stephencelis,stephencelis,62,57,5
+320,SQLite.swift,1efaf8b87b072a17fca47b4ed5f092f00739f8ff,"Change ALTER TABLE RENAME TO signature
+
+This is mainly important for migrations, so let's take the old table
+name as a string and pass in a query as the new table, instead.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T21:37:50Z,stephencelis,stephencelis,7,4,3
+321,SQLite.swift,992bb380a8d0565bcdc48fef280c2c576e46980a,"Re-use expression aliasing on a query's table
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T21:29:05Z,stephencelis,stephencelis,103,55,48
+322,SQLite.swift,b8c6605c38b2d0fb06a9f8f70224eef5bff34710,"Remove unnecessary typealiasing
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T20:27:14Z,stephencelis,stephencelis,12,4,8
+323,SQLite.swift,0d6c6412455f414c1e89612389740b9b3cb0d7fa,"It's technically a rowid, not a row id
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T20:07:19Z,stephencelis,stephencelis,18,9,9
+324,SQLite.swift,03b27f9a5fb5eba46d3d4d5c856d670d66c92332,"Fix General Query.delete() documentation
+
+Fixes #179.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-08-19T02:16:28Z,stephencelis,stephencelis,2,1,1
+325,SQLite.swift,043137e1322ffbdec34db894b10cb0d8bfd6b9e8,"Coverage improvements
+
+Because ""age"" is already an Expression<Int?>, many test paths weren't
+being hit.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-06-08T11:30:53Z,stephencelis,stephencelis,8,7,1
+326,SQLite.swift,89d16192bb73bf179c08c30227fbd9e52be6bf32,"Merge pull request #153 from huynhphan89/master
+
+Add select functions with array param for query builder",Stephen Celis,2015-07-15T12:13:08Z,stephencelis,stephencelis,18,18,0
+327,SQLite.swift,f791d36a6019e244be47d8b5bf997745585b1b91,Add select functions with array param for query builder,huynhpl,2015-07-15T02:41:56Z,huynhphan89,huynhphan89,18,18,0
+328,SQLite.swift,fde8c3391b265eb34b6407e3665160fb981b6857,"SwiftCov support
+
+84.8% coverage so far.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-06-07T16:21:53Z,stephencelis,stephencelis,25,25,0
+329,SQLite.swift,743530d1e56c86b5cd4df5153839a98ecb05bf5f,"Update Installation image
+
+Let's not let things go stale.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-31T12:48:46Z,stephencelis,stephencelis,0,0,0
+330,SQLite.swift,0fcd4af08f9386c07968d2454a4db6cc915ed5b8,"Indent manual SQLCipher instructions under manual
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-31T01:33:01Z,stephencelis,stephencelis,2,1,1
+331,SQLite.swift,3f08767c857c99bb76c2bf3b203bf6fa019ebfd5,"Restore Travis
+
+Finally ;) Xcode 6.3 support:
+
+http://blog.travis-ci.com/2015-05-26-xcode-63-beta-general-availability/
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-31T01:15:04Z,stephencelis,stephencelis,19,18,1
+332,SQLite.swift,9dd044657d74b3c3fbe4bf8bf9484431e3e476f1,"More direction for CocoaPods users
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-20T02:36:41Z,stephencelis,stephencelis,4,4,0
+333,SQLite.swift,e1258056429861066c3fa3f4902f8c1e58dbe0a1,"SQLCipher CocoaPods support
+
+Using a sub-spec, it's easy to use SQLCipher, as well:
+
+    pod 'SQLite.swift/Cipher', git: # ...
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-20T02:20:00Z,stephencelis,stephencelis,55,38,17
+334,SQLite.swift,9bfae5c0b5070290662a560c553649bd87c581e3,"Playground updates
+
+Document the new way of initializing database connections. And stop
+saying ""instantiate"" all the time.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-18T01:50:42Z,stephencelis,stephencelis,8,4,4
+335,SQLite.swift,7627523bd56c882add575ac69cd5f8c6a45ef4fa,"CocoaPods support
+
+With 0.37, we get custom module map support, and with that we can cobble
+together a working framework!
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-17T23:27:53Z,stephencelis,stephencelis,82,80,2
+336,SQLite.swift,8f64e357c3a6668c5f011c91ba33be3e8d4b88d0,"Remove dummy framework
+
+We can load the SDK header from our custom module map, instead.
+
+Let's also link to the iphoneos SDK header, since it shouldn't matter:
+it's always identical to the iphonesimulator header, and at worst a
+version behind the macosx header.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-17T23:08:23Z,stephencelis,stephencelis,233,20,213
+337,SQLite.swift,17212976887ef37a6c6877990a4ba5e6b950e6e5,"Stop nagging me, Xcode
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-16T22:24:48Z,stephencelis,stephencelis,6,3,3
+338,SQLite.swift,6e71ca9c149c6997a43b3b4134bc9186f8a25d22,"Simplify lazy variables
+
+No need for a closure for one-liners.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:47:59Z,stephencelis,stephencelis,11,6,5
+339,SQLite.swift,27f0bf8cafb3dd2f512c310b21857b3f98c9c53d,"Add nullability attributes to Objective-C code
+
+Just a small improvement for the code internally.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:46:56Z,stephencelis,stephencelis,23,13,10
+340,SQLite.swift,cd5567b95ed3aac18461d3a86f5e854a73b7dbe5,"Documentation improvements
+
+Generally: formatting is better than none. And documentation is better
+than none.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:46:21Z,stephencelis,stephencelis,60,40,20
+341,SQLite.swift,17e0f96d8b3fbc50f557108f52c35b28859b5e2e,"Simplify limit() logic
+
+At least for the functional mindset. A short one-liner should be more
+readable than an if-else.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:45:08Z,stephencelis,stephencelis,6,1,5
+342,SQLite.swift,6d9fb5c6ea626f73c4bf37b79940c902d29f46b7,"Remove private group() function
+
+It's used as a funnel and shouldn't be called directly. After all,
+`having: nil` makes no sense.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:44:04Z,stephencelis,stephencelis,17,5,12
+343,SQLite.swift,6bc2aed199bf40dae42aeba618a093f14689eb5e,"Document the collation enumeration
+
+It deserves it.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:43:24Z,stephencelis,stephencelis,9,9,0
+344,SQLite.swift,895282da9d9c3c7b873fe5e7d44923198aa6148b,"Remove unnecessary default
+
+There's no reason to initialize an expression literal without a SQL
+string.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:42:32Z,stephencelis,stephencelis,4,2,2
+345,SQLite.swift,7749e3ee7923e79177b1c94b54d3439c2a32aed5,"Make `lastError` optional
+
+Return it only when the result code is an error code.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:41:39Z,stephencelis,stephencelis,40,34,6
+346,SQLite.swift,3203dfdf5319cd699adde77045bf10e7cd34cc1c,"Better document defaults
+
+And fix the documentation for the create function shims while we're at
+it.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:39:25Z,stephencelis,stephencelis,38,26,12
+347,SQLite.swift,c4cba1d83364d45f258dddff1564a74f60d00c37,"Make Database initialization more Swift-like
+
+Carrying over "":memory:"" and """" seems less-than-ideal.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:37:59Z,stephencelis,stephencelis,97,88,9
+348,SQLite.swift,ef9c07c1d2571eda15beeb5df6fec118d2ec660b,"Simplify asynchronous testing
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-13T23:35:39Z,stephencelis,stephencelis,77,33,44
+349,SQLite.swift,5794555c918f7022001282f62fe2c43cbfb97b3d,"Standardize void types
+
+Let's follow the Apple convention:
+
+  - () for parameters
+  - Void for return types
+
+https://devforums.apple.com/message/1133616#1133616
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-12T22:48:29Z,stephencelis,stephencelis,234,117,117
+350,SQLite.swift,533e47e6d57cdf8e1d6729b34f830639c41f2f8b,"Swift prefers camelCase
+
+Pulling snake_case over for an interface isn't necessary.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-06T22:27:39Z,stephencelis,stephencelis,10,5,5
+351,SQLite.swift,e7fbda4ebd5554d61397454217a9d5e71a197892,"Update requirements in documentation
+
+This is why you keep it DRY.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-06T22:27:08Z,stephencelis,stephencelis,2,1,1
+352,SQLite.swift,effa1bf832c0519cb8fe69b8b6da6aff4152c36a,"Update Contributing Guidelines
+
+This should assist some users on their way to submitting an issue or
+shortly thereafter.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-06T22:19:02Z,stephencelis,stephencelis,131,127,4
+353,SQLite.swift,3a0435ebce11fd31e7a4176eacff5f3350e70782,"Update README for insert/update/delete changes
+
+It's no longer overload soup.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-03T03:21:54Z,stephencelis,stephencelis,10,5,5
+354,SQLite.swift,868b379ee3d6cab70b9190177d0b2a94703636a1,"Better examples
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-02T14:48:14Z,stephencelis,stephencelis,17,11,6
+355,SQLite.swift,b5aabd0881ce33cc6df39bd8cc6a0fde96581e0a,"Consistency
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-02T14:47:53Z,stephencelis,stephencelis,2,1,1
+356,SQLite.swift,a5011f4a216fb9e60ee33aa17c84c5831d1db5fa,"Simplify query change interface
+
+The fact that `insert()`, `update()`, and `delete()` have a number of
+overloads that can only be disambiguated by specifying a type, a tuple
+member, or `!` is a big point of confusion for new users of
+SQLite.swift. The overloads add some interesting patterns to the mix,
+but aren't worth the pain points.
+
+If we eliminate the overloads, we can insert/update/delete in place.
+This allows for subtle bugs to be introduced into apps (where the
+developer doesn't check for a rowid or that an update/delete was
+successful), but is a tradeoff we'll have to make. It doesn't make sense
+to enforce a different kind of interface/access at the expense of
+confusion.
+
+Given:
+
+    let user = email <- ""alice@mac.com"")
+
+The old way:
+
+    users.insert(user)!
+    let rowid = users.insert(user)!
+    if let rowid = users.insert(user) { /* ... */ }
+    let (rowid, statement) = users.insert(user)
+    // etc.
+
+The new way:
+
+    users.insert(user)
+    let rowid = users.insert(user).rowid!
+    if let rowid = users.insert(user).rowid { /* ... */ }
+    let (rowid, statement) = users.insert(user)
+    // etc.
+
+Slightly and rarely more verbose and readable, with less confusing
+compiler errors and hand-holding.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-05-02T14:37:37Z,stephencelis,stephencelis,499,222,277
+357,SQLite.swift,14573e4c83c71d7e37a8fa306303e2525e5ba9f5,"Remove replace(...) in favor of insert(or:...)
+
+It's more flexible to expose all the ON CONFLICT actions.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-30T13:40:53Z,stephencelis,stephencelis,83,30,53
+358,SQLite.swift,38a585c470cc1f2c4d88101e94f6a3eb6d6b9908,"Make rowid public
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-30T13:37:37Z,stephencelis,stephencelis,4,2,2
+359,SQLite.swift,e19813d0a385a0d551d94d75c649b20ad0db64ba,"Expose REGEXP operator
+
+Still need to create(function: ""regexp"") yourself.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-30T13:36:49Z,stephencelis,stephencelis,23,15,8
+360,SQLite.swift,532a3777ccd1164284c3329cb06d671f82386d0e,"Make aggregate function shims private
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-30T13:35:45Z,stephencelis,stephencelis,120,61,59
+361,SQLite.swift,610138e7f88920180811e98762adf4e1b353f9df,"UTF-8 the docs
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-30T13:34:55Z,stephencelis,stephencelis,8,4,4
+362,SQLite.swift,036288a8dd64bd74e30105870cfaef449bddbffe,"Revert ""Use single module map file for sqlite3 shim""
+
+This reverts commit 2bf90d49cc982589b6d7ed9585f3f8f41ccf3263.
+
+It looks like the module map's path is not relative to the SDK root
+after all (as seen by reporters of #120).",Stephen Celis,2015-04-28T12:40:44Z,stephencelis,stephencelis,37,27,10
+363,SQLite.swift,cb71a4339a158d5b58c5415c579a644781b817cb,"Disable App Extension requirement for test targets
+
+Otherwise we get a warning every time we build them.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-27T13:14:33Z,stephencelis,stephencelis,4,4,0
+364,SQLite.swift,2bf90d49cc982589b6d7ed9585f3f8f41ccf3263,"Use single module map file for sqlite3 shim
+
+Per the following:
+
+https://twitter.com/jckarter/status/590928617770602496
+
+Fixes #116.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-27T13:01:42Z,stephencelis,stephencelis,37,10,27
+365,SQLite.swift,213920b2f65d7ae92bb2c93cfa02a2e6e19f8ee9,"Fix ALTER TABLE documentation
+
+Copypasta typically tastes a bit funny.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-27T12:51:06Z,stephencelis,stephencelis,10,6,4
+366,SQLite.swift,8a85d80b0e8acf5f29a71e3abedc016e83381571,"DRY up project configuration
+
+Let's utilize the xcconfig file where we can. In this case, ensure that
+the 8.0 deployment target applies to everything.
+
+Fixes #119.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-27T12:49:55Z,stephencelis,stephencelis,55,17,38
+367,SQLite.swift,1db85271f275e8189c6891439cf8168e05d3fa51,"Clarify what kinds of Frameworkless bugs to report
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-24T13:32:50Z,stephencelis,stephencelis,2,1,1
+368,SQLite.swift,7844bf715a0e8e83f7f6cb9e8b63bccf8d0d96ad,"Move fts3_tokenizer to ease Frameworkless Target install
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-24T13:30:31Z,stephencelis,stephencelis,12,6,6
+369,SQLite.swift,078a76b6b74bf62606ea5828ea1d6f42a55361a4,Change the deployment target to 8.0,Stefan Arentz,2015-04-17T17:43:16Z,st3fan,st3fan,4,2,2
+370,SQLite.swift,60d523c298b85b151a409d15644a78291288264a,Set Allow App Extension API Only,Stefan Arentz,2015-04-17T17:41:26Z,st3fan,st3fan,6,6,0
+371,SQLite.swift,571f9a5a6e44ef053ea00e74145099580298f421,"Don't drop offset when fetching first row
+
+Fixes #110.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-19T12:35:49Z,stephencelis,stephencelis,9,8,1
+372,SQLite.swift,38b50fc11666f5fb5bffc9df95f05d28c8515066,"Add basic contributing guidelines
+
+A word-for-word of the README's ""Communication"" section, for now, but
+hopefully it'll steer more people looking for general help toward Stack
+Overflow.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-17T23:03:22Z,stephencelis,stephencelis,10,10,0
+373,SQLite.swift,09466f34f238996eec1f4fc9ebd4d1703dac0ab6,"Update Apple documentation link
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-17T22:52:33Z,stephencelis,stephencelis,2,1,1
+374,SQLite.swift,d287345320ee9dde7eb10d98f0aab57400f39ce7,"Upgrade Playground
+
+It's not as pretty, but it's the only supported solution.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-16T15:15:13Z,stephencelis,stephencelis,701,221,480
+375,SQLite.swift,3abd6213b2cf62b586fdf79fb6180984ddbe456a,"Merge pull request #104 from confile/patch-1
+
+Insert alternative transaction statement",Stephen Celis,2015-04-14T21:53:01Z,stephencelis,stephencelis,10,10,0
+376,SQLite.swift,4def261613d6d5bc5e74c3f0da6c3a7974061351,"Add missing import
+
+The early module map refactor left SQLCipher users high and dry :(
+
+This should fix #100.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-14T14:38:19Z,stephencelis,stephencelis,2,2,0
+377,SQLite.swift,2b0abb08acaf4423bf95449fa4b56e5bc503b2d1,Insert alternative transaction statement,Confile,2015-04-14T14:00:17Z,Confile,Confile,10,10,0
+378,SQLite.swift,82156295351070ea15c110ce3137a839b6f5c85a,"Clarify iOS 7 instructions
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-13T18:34:49Z,stephencelis,stephencelis,4,2,2
+379,SQLite.swift,3e8f7d3bfd5cea57f71de52f3527515e6f61c24d,"Update installation image
+
+SQLite.swift is a universal framework now, so let's avoid any confusion.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-13T01:36:04Z,stephencelis,stephencelis,0,0,0
+380,SQLite.swift,1474f15eb5aeab1ebcf32293440dfd30de80031a,"Clarify SQLCipher installation
+
+It's no longer hidden away in a ""Vendor"" group.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-13T00:12:43Z,stephencelis,stephencelis,8,4,4
+381,SQLite.swift,44820eab1131d0cbcff1c27b18a64ccac1c8e66e,"Update SQLCipher
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-13T00:07:32Z,stephencelis,stephencelis,2,1,1
+382,SQLite.swift,8749e2ec2f380106ba688665aa3052e6baf873c2,"Don't embed subframework
+
+It's primarily there for compilation.
+
+A fix for App Store rejections ITMS-90205 and ITMS-90206 (closes #88).
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-12T18:13:14Z,stephencelis,stephencelis,20,0,20
+383,SQLite.swift,31752f03194aa830c9bf41637ef1674817876330,"Update OS X header to point to SDK
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-12T17:28:55Z,stephencelis,stephencelis,2,1,1
+384,SQLite.swift,849d4efe8632eee1bbee036453a52dc8a7e99426,"Support IN condition against subquery
+
+Closes #94
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-11T14:27:24Z,stephencelis,stephencelis,9,8,1
+385,SQLite.swift,fc086d0db479d3a3a9cd210ee5fabde1a0a0d606,"Swift 1.2 GM
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-09T01:29:29Z,stephencelis,stephencelis,4,2,2
+386,SQLite.swift,2cc0a17243bce27da7d754d72a58b737db3dead8,"Make assertionFailures fatalErrors
+
+Should prevent compilation errors for certain schemes.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-04-09T00:55:58Z,stephencelis,stephencelis,8,4,4
+387,SQLite.swift,0708a2705cbc6bdddb20eed556377ed5a2054625,"Tighten naming conventions with SQLite
+
+We should prefer, in the raw interface, at least, the same naming
+conventions as SQLite. This should make it easier to transition with
+less of a need to reference the documentation.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-28T20:45:48Z,stephencelis,stephencelis,100,50,50
+388,SQLite.swift,ad8ec5844de859f51edbc3b383b9d414cd0b84a6,"Conventionally mark Objective-C implementation details private
+
+Basically, prefix ""_"" all the things. Ideally we could hide these
+implementation details altogether, but it doesn't appear to be possible
+in a Swift framework (yet).
+
+Additionally, by creating and casting our own opaque structs in the
+""bridging"" header, we can avoid exposing the inner sqlite3 module.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-28T20:27:05Z,stephencelis,stephencelis,188,96,92
+389,SQLite.swift,550c1df43c834844795ded093450e0a8b5131688,"Ess, queue, el.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-25T07:33:35Z,stephencelis,stephencelis,18,9,9
+390,SQLite.swift,9d83e2f3fa912588f6ed441e3b464060f740aa5e,"Remove unnecessary abstraction
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-24T17:58:33Z,stephencelis,stephencelis,4,1,3
+391,SQLite.swift,6abd3f4f3152588f3d2fa4797422823cc6655949,"Update, commit, and rollback hook support
+
+Should make it easy, e.g., to create an interface for a table view to
+register for updates.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-24T17:56:52Z,stephencelis,stephencelis,174,174,0
+392,SQLite.swift,540df5941a93dbff34f28257b3a415868ed47bf3,"Add parameter names to callback functions
+
+Makes things more intelligible when autocompleting functions and their
+closures.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-24T17:54:23Z,stephencelis,stephencelis,30,15,15
+393,SQLite.swift,05cf90fbf7e82264e0d20b75a02e1ee016afd915,"Query interrupt support
+
+Adds the ability to interrupt a database connection during a
+long-running query.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-24T16:57:30Z,stephencelis,stephencelis,27,26,1
+394,SQLite.swift,24cd4051696f3131ae57682e2bb111229bcc848f,"Plug C block memory leaks
+
+The database connection can retain them well enough.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-23T16:04:07Z,stephencelis,stephencelis,35,23,12
+395,SQLite.swift,1fea119c0a4917989ce080b46b0f306e01de392c,"Mark transaction/savepoint block helpers @noescape
+
+They execute immediately, so there's no reason to worry about capture
+semantics.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-22T17:19:32Z,stephencelis,stephencelis,4,2,2
+396,SQLite.swift,f02b75a93027f584b20e27b784db0958b0567d80,"Mark create(table:) @noescape
+
+This removes the `self.` requirement from the block, which should lead
+to better legibility in some cases.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-22T17:15:37Z,stephencelis,stephencelis,8,1,7
+397,SQLite.swift,628a2893c0de596635d5f215fae3c108df47bbe6,"Use an embedded module instead of a bridging header
+
+I'd taken advantage of the fact that renaming the umbrella header
+disabled the framework bridging header check, which is a bug and could
+stop working at any moment.
+
+Instead, let's embed a `sqlite3` framework module that points to the
+appropriate system header.
+
+As soon as the system provides an appropriate `sqlite3` module at the
+system level, we merely have to delete this internal dependency.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-21T23:53:00Z,stephencelis,stephencelis,383,300,83
+398,SQLite.swift,a06a550ddd81c2be72e1114cfd770532b481ffa3,"Custom Tokenizers
+
+This brings preliminary support for custom FTS tokenizers, registered
+using the following incantation:
+
+    db.register(tokenizer: ""name"") { input in
+        // ... extract first token and range here
+        return (token, range) // return normalized token and range
+    }
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-11T15:38:39Z,stephencelis,stephencelis,545,452,93
+399,SQLite.swift,5ac56d78c0fb8b3521e5058dc1fe1281ca1de100,"Swift 1.2 beta 3
+
+Nested functions no longer require `self`.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-15T15:32:03Z,stephencelis,stephencelis,2,1,1
+400,SQLite.swift,b1b27d5db5954a076c3c7c4f4dcb5658458a9e0c,Updating documentation for forced downcast,Sam Sherar,2015-02-27T23:04:37Z,ssherar,ssherar,4,2,2
+401,SQLite.swift,440579e36d5ed83d0f9c103af7ae0c29c268c230,"Enable -whole-module-optimization
+
+A feature of Swift 1.2. Slows builds down when the framework first
+builds and whenever it changes, but performs significantly faster.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-24T17:04:01Z,stephencelis,stephencelis,8,8,0
+402,SQLite.swift,ae868916ea619b71db3693a8189e41c3e3e41d76,"Swift 1.2 beta 2
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-23T19:12:55Z,stephencelis,stephencelis,17,10,7
+403,SQLite.swift,5532303135d228d4bb4dee52a8f2cf2df5ac1dfd,"Swift 1.2 beta 1
+
+Most things should work as they have been, with a few notes:
+
+  - The `db.transaction` helpers that took variadic auto-closures have
+    been removed (Swift no longer supports variadic auto-closures).
+    Update path: use `&&` and `||` for control flow:
+
+        db.transaction() &&
+            stmt1 &&
+            stmt2 &&
+            db.commit() || db.rollback()
+
+    Or use the block-based helper:
+
+        db.transaction { _ in
+            stmt1.run()
+            if stmt1.failed { return .Rollback }
+            stmt2.run()
+            if stmt2.failed { return .Rollback }
+            return .Commit
+        }
+
+    Note: You'll need to explicitly call/return COMMIT and ROLLBACK now.
+
+  - There appears to be a bug in Swift causing 2 memory-related,
+    over-releasing crashes in the test suite. Filed: rdar://19782170
+
+Many bugs marked FIXME with links to rdars are now fixable and have been
+fixed.
+
+The tests have also been heavily refactored (they were abusing the power
+of `@autoclosure`, which has been curtailed with `@noescape`), but
+should be generally more readable, if slightly less flexible.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-02-10T16:59:10Z,stephencelis,stephencelis,2819,1362,1457
+404,SQLite.swift,83f08f721591003b95a03bf6c6139da5b8fee737,"Add argument count to create(function:)
+
+Allows for the definition of multiple functions with the same name but a
+differing number of arguments.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-22T17:41:13Z,stephencelis,stephencelis,82,43,39
+405,SQLite.swift,6f3eef7619ddbf1e97726dc87008bf322db86e29,"Basic R*Tree module support
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-21T18:57:58Z,stephencelis,stephencelis,58,58,0
+406,SQLite.swift,c82559f6e51461d8d98146fe1b7617bca34a8d73,"Document FTS
+
+And update a few other documentation-related things along the way.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-21T18:28:24Z,stephencelis,stephencelis,54,49,5
+407,SQLite.swift,4521c358272e4d0df412d81bbca97325f181d918,"README cleanup
+
+ - Stop using numeric link references.
+ - Document discrepancy between SQLCipher and FTS4
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-21T17:58:06Z,stephencelis,stephencelis,58,33,25
+408,SQLite.swift,e0e94a3bd67972dd74ccf254ec1110b8a0c6d063,"Highlight unhighlighted documentation
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-21T17:31:48Z,stephencelis,stephencelis,2,1,1
+409,SQLite.swift,83bbd896fa336c763288590e777d0090bfe37d98,"Fix some old archive-only segfaults
+
+Looking forward to Swift 1.2!
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-11T16:10:35Z,stephencelis,stephencelis,39,18,21
+410,SQLite.swift,ae7d539f4d18cdd064a8cece9e6765a217e12b6a,"Update for Xcode 6.2
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-11T16:10:15Z,stephencelis,stephencelis,6,3,3
+411,SQLite.swift,86af78632bd872e53567ee1bb5de2a158fc93ee4,"Always remove inferred types
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-08T23:18:46Z,stephencelis,stephencelis,2,1,1
+412,SQLite.swift,ba9a175e73b657e223c290c1d05aa4d884dc5ad7,"Prefer tuple assignment in initializers
+
+For now, anyhow. Style changes, after all.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-08T23:18:12Z,stephencelis,stephencelis,3,1,2
+413,SQLite.swift,c7c5cf9524acaef606f5f345c532ab7b0fdf2fca,"Very basic FTS support
+
+This commit provides basic helpers for creating virtual tables with
+fts4() and for running match queries against them.
+
+Still needed:
+
+ - Custom tokenizer support (and the ability to build with ""unicode61""
+   and ""icu"" tokenizers)
+
+ - Better support for offsets(), snippet(), matchinfo()
+
+ - Additional FTS4 options: http://www.sqlite.org/fts3.html#fts4_options
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-08T23:01:46Z,stephencelis,stephencelis,105,103,2
+414,SQLite.swift,96f4b35dec47794231d199d7cd87580e6bf91a33,"PRIMARY KEY cleanup
+
+Let's enable defaults for primary keys, and let's not bother with a
+uniqueness parameter, since it's implied.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-06T02:03:56Z,stephencelis,stephencelis,54,25,29
+415,SQLite.swift,a705c40e7c00dce60f6896122b62ec937f94538f,"Merge pull request #78 from xenadu/master
+
+Support non-integer primary key in shorthand function",Stephen Celis,2015-03-06T00:28:06Z,stephencelis,stephencelis,38,32,6
+416,SQLite.swift,2b3780cccac7cb9d38b3d887ec8515b265c490b6,Support non-integer primary key in shorthand function,Russ Bishop,2015-03-04T18:22:12Z,xenadu,xenadu,38,32,6
+417,SQLite.swift,10ce76ff94726182dbcb61fb9b25d41c6dba0fca,"Fix Makefile SLOC check
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T23:24:38Z,stephencelis,stephencelis,2,1,1
+418,SQLite.swift,87946a6e95e53086e7499740636002f26089ea9a,"Fix column access on joined subqueries
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T23:24:12Z,stephencelis,stephencelis,16,13,3
+419,SQLite.swift,0ba651defd8159f2c820bfd74071031d376b62cf,"Basic subquery support
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T22:31:19Z,stephencelis,stephencelis,62,57,5
+420,SQLite.swift,1efaf8b87b072a17fca47b4ed5f092f00739f8ff,"Change ALTER TABLE RENAME TO signature
+
+This is mainly important for migrations, so let's take the old table
+name as a string and pass in a query as the new table, instead.
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T21:37:50Z,stephencelis,stephencelis,7,4,3
+421,SQLite.swift,992bb380a8d0565bcdc48fef280c2c576e46980a,"Re-use expression aliasing on a query's table
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T21:29:05Z,stephencelis,stephencelis,103,55,48
+422,SQLite.swift,b8c6605c38b2d0fb06a9f8f70224eef5bff34710,"Remove unnecessary typealiasing
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T20:27:14Z,stephencelis,stephencelis,12,4,8
+423,SQLite.swift,0d6c6412455f414c1e89612389740b9b3cb0d7fa,"It's technically a rowid, not a row id
+
+Signed-off-by: Stephen Celis <stephen@stephencelis.com>",Stephen Celis,2015-03-03T20:07:19Z,stephencelis,stephencelis,18,9,9

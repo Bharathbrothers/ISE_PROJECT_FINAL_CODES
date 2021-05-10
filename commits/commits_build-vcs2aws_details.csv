@@ -1,0 +1,138 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,build-vcs2aws,0e4599d1cf569c3a9326100a00d7a214e270810d,"Monitor if we can reach *.m.o
+
+Crude approach to email if we can not reach servers after 2 hours.",Hal Wine,2016-05-19T23:09:30Z,hwine,hwine,22,22,0
+1,build-vcs2aws,9f4902c55ecf09a38e1f3728088de6a6b78fb61b,"Move modern crontab under ansible control
+
+Previously, these entries had been in user vcs2vcs crontab, manually
+edited.",Hal Wine,2016-05-19T21:25:50Z,hwine,hwine,23,23,0
+2,build-vcs2aws,2fd1e1607992403c2faf25d5a30bd87341bea66e,"cron: disable combine_mapfile, no longer needed
+
+Added a tag: 'cron_update' to allow only this task to be run",Hal Wine,2016-05-10T21:58:15Z,hwine,hwine,4,1,3
+3,build-vcs2aws,9c32c6edb913c2ef68463520ee9982a9058f15cb,"Update name to match AWS
+
+Old name was confusing, this one more intentional.",Hal Wine,2016-02-16T22:26:48Z,hwine,hwine,4,2,2
+4,build-vcs2aws,fab8690b206355ecf3152fe78e8674dad739da77,"Backup critical files before overwriting
+
+Shutting the barn door after https://bugzil.la/1188918#c4",Hal Wine,2015-07-30T16:12:35Z,hwine,hwine,8,6,2
+5,build-vcs2aws,ae0f3a2db95e89057a578ad063dcad6c17804dd7,"Provide mapfile access to legacy mapper.
+
+Legacy mapper needs to copy the /tmp/vcs-sync/* files to the server it
+is running on (currently cruncher). This ssh-key was created
+specifically for this task, and is restricted to only allowing rsync
+from that directory.",Hal Wine,2015-07-30T03:22:59Z,hwine,hwine,1,1,0
+6,build-vcs2aws,78388b955f7874e42096e8b9b241335cfd153639,Update authorized user list on production.,Hal Wine,2015-07-30T03:20:16Z,hwine,hwine,5,3,2
+7,build-vcs2aws,3963c3305b305cec2442edec760bbbd62b758010,"Enable --traceback on hg commands.
+
+Simplifies debugging.",Hal Wine,2015-07-29T22:10:46Z,hwine,hwine,3,3,0
+8,build-vcs2aws,a3f1cd4e323433b2eaab440aaea5ce3ebedaab6d,"Specify preferences for bundleclone
+
+These should be the defaults, but let's be specific, per recommendation
+in the documentation.",Hal Wine,2015-07-24T02:58:38Z,hwine,hwine,14,11,3
+9,build-vcs2aws,fbc93cc6bffe615bd60cbba94641e013bc4cdedb,Standard ec2 dynamic inventory,Hal Wine,2015-07-24T02:44:18Z,hwine,hwine,922,922,0
+10,build-vcs2aws,82e4c124a91c9b5ebfafbc329746009cf3244cf4,"Have all jobs use bundleclone
+
+https://mozilla-version-control-tools.readthedocs.org/en/latest/hgmo/bundleclone.html#hgmo-bundleclone
+offers considerable improvements in processing time and load, and is
+backwards compatible.
+
+To simplify matters, we install and configure bundleclone for the
+vcs2vcs account. (This avoids messy modifications to the mozharness
+scripts.)
+
+The version of bundleclone.py installed here is:
+    $ hg log -l 1 __init__.py
+    changeset:   2475:fbe2c3357bf9
+    user:        Gregory Szorc <gps@mozilla.com>
+    date:        Wed Jun 03 11:53:44 2015 -0700
+    summary:     bundleclone: make compatible with Mercurial 2.6 (bug 1170838); r=smacleod",Hal Wine,2015-07-24T02:38:02Z,hwine,hwine,559,553,6
+11,build-vcs2aws,453927c3fef889a518c558dbfcc919a15c319420,Changed time to avoid other jobs,Hal Wine,2015-07-23T22:45:16Z,hwine,hwine,2,1,1
+12,build-vcs2aws,0a061ec25dfdf1149ecce4b80701e0d1a55d58e6,"Support individual repo migration from scl3->aws
+
+A bit of a hack, but useful to copy repos newly added to the scl3 hosts
+to the aws host
+
+Can (and should) be deleted after we're out of scl3",Hal Wine,2015-07-23T17:07:48Z,hwine,hwine,96,96,0
+13,build-vcs2aws,3c5471b9ed311583793bd8f99cccec164950b35d,bug 1185542 - touch tmp files to avoid purge; r=me,Hal Wine,2015-07-21T19:01:32Z,hwine,hwine,8,4,4
+14,build-vcs2aws,07b4908fe3ef380ad4e2fdec3408b08eeca61641,"Modify modern_software, add vcs_sync_build; r=hwine
+
+vcs_sync_build is the additional 'instance' of vcs-sync-modern that was
+running in scl3, modifying playbook to sync the production changes made
+by hand and the playbook",Anhad Jai Singh,2015-06-17T23:43:43Z,ffledgling,ffledgling,16,8,8
+15,build-vcs2aws,fe124e3bd0782b316b1eb7ff96c47c32d1d4703e,"Merge pull request #21 from hwine/fix-pip
+
+Cleanup for pip version check",Hal Wine,2015-06-10T03:38:41Z,hwine,hwine,19,10,9
+16,build-vcs2aws,d0102bacee3eb7a33115d533f8c3a79cc62c919c,"Cleanup for pip version check
+
+See https://bugzil.la/1152749 for details. Only ""all version"" approach
+is to add the pip.conf file",Hal Wine,2015-06-09T20:23:11Z,hwine,hwine,19,10,9
+17,build-vcs2aws,ce4ae945f182a12bea48dfdb2e7cdb2efaed75fa,"Merge pull request #20 from hwine/file_renames
+
+No generic names in files/",Hal Wine,2015-06-08T21:53:45Z,hwine,hwine,4,2,2
+18,build-vcs2aws,e88d28ed0a76d97250dc1d0d1299393b36f36529,"No generic names in files/
+
+Too many different levels of accounts to leave config files generically
+named. I just renamed, since legacy should be disappearing, rather than
+add to the directory depth.
+
+Passes --syntax-check & --check",Hal Wine,2015-06-08T21:45:43Z,hwine,hwine,4,2,2
+19,build-vcs2aws,e341b8e49ea6d8ab5d75501f9892eaa39dc2376b,"Merge pull request #19 from hwine/add_known_hosts
+
+Reorganized key handling",Hal Wine,2015-06-06T22:44:00Z,hwine,hwine,75,52,23
+20,build-vcs2aws,873114537a8068bc1a37162fd0d0334369466340,"Reorganized key handling
+
+Renamed several files to better convey contents:
+    files/user_keys -> files/host_user_keys
+    files/data_keys -> files/vcs_sync_user_keys
+    install_keys.playbook.yml -> tasks/install_keys.yml
+
+Created a new playbook, `update_secrets.yml` which includes
+`tasks/install_keys.yml` so it can be run separately.
+
+Added git.mozilla.org to the new file files/vcs_sync_known_hosts, which
+is what started this reorg. :)",Hal Wine,2015-06-06T22:35:40Z,hwine,hwine,75,52,23
+21,build-vcs2aws,4347e09f27c170473fdd96be8c2cc7cc7c72d330,"Merge pull request #17 from hwine/fix-check-modern
+
+Add warning for bash version<4; fix early error supression",Anhad Jai Singh,2015-06-05T19:51:31Z,ffledgling,ffledgling,13,11,2
+22,build-vcs2aws,af82841402252cb86d90db6636a9313ef77babcd,"Deal with OSX 10.10 bash version
+
+Script needs 4, osx ships with 3. Allow user to supply upgraded bash.",Hal Wine,2015-06-05T19:37:46Z,hwine,hwine,8,7,1
+23,build-vcs2aws,0e0e77f08e4d449dbbce9b7a899a6bc6cd5dee32,"Ensure user/script errors displayed.
+
+Closing stderr is needed for the remote communication part of the
+script. Closing it earlier masks bash errors, and script generated
+errors.",Hal Wine,2015-06-05T18:57:32Z,hwine,hwine,5,4,1
+24,build-vcs2aws,b7406c1b083e6dcb2d99d8897a558ff624f56cb3,Remove root user nastiness from check-modern-l10n,Anhad Jai Singh,2015-06-05T04:01:19Z,ffledgling,ffledgling,7,5,2
+25,build-vcs2aws,9e16cea1ac124f93c50f8dadc988f53425451e98,Bugfixes and improvements in check-modern-l10n; r=hwine,Anhad Jai Singh,2015-06-05T02:33:28Z,ffledgling,ffledgling,40,27,13
+26,build-vcs2aws,630b9e6b011984074fe4645d5bf23368cff7c352,Modern spot checking script,Anhad Jai Singh,2015-06-05T01:23:24Z,ffledgling,ffledgling,45,45,0
+27,build-vcs2aws,fb74f56444da7c72dc2d2ce8f20165b2e7326717,"Adding:
+1. Modern Software provisioning playbook
+2. SSH-Keys
+3. Key install playbook (un-tested ATM)",Anhad Jai Singh,2015-06-03T21:39:18Z,ffledgling,ffledgling,117,113,4
+28,build-vcs2aws,db40a89da304e410f6591068ed51d619df33bf9c,Updated config to reflect changes in production,Anhad Jai Singh,2015-05-27T20:08:06Z,ffledgling,ffledgling,9,7,2
+29,build-vcs2aws,48698b10b0c1c6d8170bf2c6ba05bbb6e894987c,"Repository Cleanup; Updated TODO; Added README;
+
+Removed old testing/WIP/out-dated playbooks
+Updated TODO for repo
+Added basic readme, with pointer to recently updated Wiki",Anhad Jai Singh,2015-05-22T03:06:59Z,ffledgling,ffledgling,206,34,172
+30,build-vcs2aws,ffed017b635341271ff6a10fe30ccc48373aaa80,"Changes to config.yml for actual production testing of legacy
+Updated TODO with list of other things to keep in mind",Anhad Jai Singh,2015-05-21T00:18:39Z,ffledgling,ffledgling,15,13,2
+31,build-vcs2aws,c095275558032ea6c18e83a4cab9283a34a78554,Working 1st iteration of legacy config,Anhad Jai Singh,2015-05-20T18:18:46Z,ffledgling,ffledgling,46,37,9
+32,build-vcs2aws,8b63f9d8aebefa004808a1d4ed9f8cf7fa01954e,WIP Software provisoning for legacy,Anhad Jai Singh,2015-05-20T17:55:04Z,ffledgling,ffledgling,111,102,9
+33,build-vcs2aws,9088d577449a4b7376debd47695932f650015cb3,Added legacy software provisioning; Updated TODO; WIP,Anhad Jai Singh,2015-05-20T00:39:49Z,ffledgling,ffledgling,70,70,0
+34,build-vcs2aws,5e374be92b3d28146c07d5482ed92cf4566fe563,"Added mounting of volumes into playbook
+Checked for persistence across umount+dettach and attach+mount, works",Anhad Jai Singh,2015-05-19T02:47:22Z,ffledgling,ffledgling,20,12,8
+35,build-vcs2aws,589d331271fb3b8cf8b93f7783171c13fbac0752,"Added formatting freshly created Volumes
+Problem: Accidentally forgot to commit the updated config.yml and
+provision_instances.playbook.yml with the last commit. Committing now, but
+should ideally be fixed so that those files exist with previous commit for
+easier roll-back.",Anhad Jai Singh,2015-05-19T02:23:43Z,ffledgling,ffledgling,19,19,0
+36,build-vcs2aws,d61c50aead11b2899ac73d1a6ecff70706cfb032,Idempotent work-book passes most scenarios I can think of atm,Anhad Jai Singh,2015-05-19T00:18:58Z,ffledgling,ffledgling,15,11,4
+37,build-vcs2aws,264e1aae460e6db3153cbd6f155b2322f5a1ae83,Volumes tagging now works as expected,Anhad Jai Singh,2015-05-18T23:42:15Z,ffledgling,ffledgling,42,40,2
+38,build-vcs2aws,257e30c1dcad3a819b2e27fd099048b7cf47302e,"We have lift-off, mapping is working",Anhad Jai Singh,2015-05-15T01:59:51Z,ffledgling,ffledgling,84,64,20
+39,build-vcs2aws,307608811b2593d1d0e05307146f91f51aba9b95,"messy commit, WIP",Anhad Jai Singh,2015-05-14T22:10:39Z,ffledgling,ffledgling,116,116,0
+40,build-vcs2aws,6e3920d05db3c3a322cf48f97a7f0cae238cd7b0,Fix missing key setup problem,Anhad Jai Singh,2015-05-14T03:07:11Z,ffledgling,ffledgling,13,9,4
+41,build-vcs2aws,43d1a047c666c3d404cb32577824b12c1e948279,K.I.S.S-ing these playbooks,Anhad Jai Singh,2015-05-13T00:00:11Z,ffledgling,ffledgling,65,65,0
+42,build-vcs2aws,d01c44127f83ad7858e50387932dc2fbf76d4323,"Updated plabook
+
+Signed-off-by: Anhad Jai Singh <ffledgling@gmail.com>",Anhad Jai Singh,2015-05-12T21:50:31Z,ffledgling,ffledgling,124,124,0

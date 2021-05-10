@@ -1,0 +1,1401 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,fjord,29634e38a559d845638940b342432bf8e561320a,"Yak-shaving with index infrastructure
+
+I moved everything around to nix some weirdness with where things
+were at and interrelationships between them.",Will Kahn-Greene,2012-09-07T21:18:05Z,willkg,willkg,121,57,64
+1,fjord,ebe574b81675c18c3adf4addb4b67e21c4aeb7e0,Uncomment collect_static line in update_site.py,Will Kahn-Greene,2012-09-07T18:29:37Z,willkg,willkg,5,3,2
+2,fjord,36ac528f8e2119d6e1b36ed1c71ae869f2dfa951,Add jingo-minify to vendor-local/vendor.pth,Will Kahn-Greene,2012-09-07T18:20:32Z,willkg,willkg,1,1,0
+3,fjord,80e9cad2d5db807500bdaef844ebbf98e19be505,"[bug 788527] Implement search index admin
+
+This version of the search index admin doesn't do much other than tell
+you what's going on index/mapping-type wise in your system.",Will Kahn-Greene,2012-09-06T18:22:09Z,willkg,willkg,157,157,0
+4,fjord,a5f9430169499253f9ec74d889fb706b81b21f74,[bug 788527] Enable admin and adminplus,Will Kahn-Greene,2012-09-06T15:29:04Z,willkg,willkg,20,11,9
+5,fjord,6a2e8495fcd53b60ebd75c95810d516390107ba3,"Switch to using jingo-minify.
+
+django-compressor can't do offline bundling, which is bad, so we are
+ditching it. jingo-minify is a bit different, but better for deployment.
+
+At this point, even during development when DEBUG=True, './manage.py
+collectstatic' must be run so all the files are in the right place.
+TODO: Fix this.",Mike Cooper,2012-09-05T22:08:24Z,mythmon,mythmon,82,48,34
+6,fjord,40b569be67ff6d1459a788fab8eca8acc5009e26,"Use a forked version of jingo-minify.
+
+This brings in a feature that allows jingo-minify to better support
+Django 1.4 style static media. It provides an options for using
+STATIC_URL instead of MEDIA_URL.",Mike Cooper,2012-09-06T17:06:03Z,mythmon,mythmon,4,4,0
+7,fjord,2bcfa3fdde842e6940ffe8827a2740f7beae5cc0,"Fix 'createsuperuser' text.
+
+It's likely that the person has created a superuser already after
+running ./manage.py syncdb. This tweaks the text to account for that.",Will Kahn-Greene,2012-09-06T15:44:17Z,willkg,willkg,3,2,1
+8,fjord,de3aeeb9c03574920d46208d9879c53e6e6dab6e,"[bug 788524] Document ES/indexing
+
+This adds documentation for ES maintenance. And documents settings
+in ``fjord/settings/base.py``.",Will Kahn-Greene,2012-09-05T18:21:36Z,willkg,willkg,205,190,15
+9,fjord,855702468fdd32d6f34d4be852f7c6a8e41d81e9,"[bug 784742] Add indexing infrastructure
+
+* add elasticutils and pyes to vendor-local
+* add esreindex, esdelete and esstatus commands
+* add SimpleIndex class
+* add the infrastructure and utility functions for indexing and
+  searching
+* add default settings to fjord/settings/base.py
+* add ElasticTestCase
+* add test for chunked
+
+Outstanding things covered in other bugs:
+
+* needs documentation: installing ES, index maintenance, etc
+* needs admin pages for reindexing and index maintenance
+* needs live indexing infrastructure",Will Kahn-Greene,2012-09-05T17:12:21Z,willkg,willkg,568,565,3
+10,fjord,ca7f9473cc7c7294455b8b2b28ff19e35e4e7dbd,"Update vendor to latest playodh-lib
+
+This picks up the upgrade to bleach v1.1.5.",Will Kahn-Greene,2012-09-05T18:57:42Z,willkg,willkg,2,1,1
+11,fjord,b34ae2c897e1fae1be27bbdf3a742685a919bcfa,[bug 784742] Add pyes and elasticutils,Will Kahn-Greene,2012-09-05T16:56:13Z,willkg,willkg,9911,9911,0
+12,fjord,1f28796dc06a10fcfecc5a46d9cfa738bb2a755c,"Fix vendor docs
+
+The section about adding vendor libraries with pip was slightly wrong.
+I also added a note about adding specific libraries because it took
+me a while to figure it out with pyes.",Will Kahn-Greene,2012-08-31T01:33:29Z,willkg,willkg,21,16,5
+13,fjord,2e2e5f9f1be2a11a3fcef720dc6b162e9552a1d3,[bug 788286] Add django-adminplus,Will Kahn-Greene,2012-09-05T13:58:56Z,willkg,willkg,15,10,5
+14,fjord,b359348b8fc3ec2514e6a8f50e61e06304f1a030,"Update update_site.py script
+
+This adds some settings that need to be there. This isn't tested
+yet, though.",Will Kahn-Greene,2012-09-04T19:23:38Z,willkg,willkg,8,4,4
+15,fjord,e2e8b444e7c14ab11cd3dcaa93c2681a0f50bc43,Fix svn locale url,Will Kahn-Greene,2012-09-04T19:18:49Z,willkg,willkg,2,1,1
+16,fjord,931a4fc0c5d9e936810f21636a45eff0f8f2bc51,"Fix docs
+
+* add link to installing Python mysql stuff on OSX Mountain Lion
+* fix docs about database for testing",Will Kahn-Greene,2012-08-31T19:02:22Z,willkg,willkg,13,10,3
+17,fjord,cef82daa5db57d370c701202698c6939b12a28dc,"Add stage banner,  controlled by a setting.",Mike Cooper,2012-08-31T17:24:49Z,mythmon,mythmon,81,66,15
+18,fjord,4d17848d21e5d9f416dc9548aac5d203ff020f75,Fix settings docs in hacking_howto,Will Kahn-Greene,2012-08-31T16:15:25Z,willkg,willkg,5,2,3
+19,fjord,052a96389a9e2b90f823474e5dbd01e4902202c1,Update README,Will Kahn-Greene,2012-08-31T15:54:10Z,willkg,willkg,21,20,1
+20,fjord,95c97e10b296067e1dbae5dbf2e4791bd86cbe61,"[bug 781714] Feedback forms for Firefox Desktop.
+
+Implements generic `/feedack` page that routes to different feedback
+forms (though currently there is only one choice), and the happy/sad
+flow from previous input. Redirects to Thank You page after feedback is
+recorded.
+
+Also, modify LocalizingClient to also add a user agent to requests made
+during testing.",Mike Cooper,2012-08-27T18:17:32Z,mythmon,mythmon,1185,1169,16
+21,fjord,3b578ebc220a2097bdcffd84891bbd8a00df0a56,"[Bug 781718] Dashboard structure, recent feedback.
+
+Add some structure to the dashboard page and a list of recent feedbacks.
+This still needs to bring in a lot of the other features of the
+dashboard, such as sorting and filtering, but it is a useful first step.
+
+Unlike other front end code, this was not migrated from old input, but
+was written from scratch to look very similar.",Mike Cooper,2012-08-29T23:42:02Z,mythmon,mythmon,252,232,20
+22,fjord,fa1576dda71bf018ff2ff2cd8f3d51d58ee49296,"Update docs
+
+* add section for generating sample data
+* fix parse error in l10n docs",Will Kahn-Greene,2012-08-30T18:15:26Z,willkg,willkg,12,11,1
+23,fjord,207db0b75ec5818904d8cadcb04c12b75211fe32,"Add sampledata command
+
+This gives us a structure for easily adding sample data in an instance
+which will make it easier for developers to get up to speed quickly.
+
+This uses the same code that Jingo uses for importing a module that
+might not exist, but in such a way that it doesn't mask valid ImportError
+problems.",Will Kahn-Greene,2012-08-30T14:20:43Z,willkg,willkg,81,79,2
+24,fjord,513987282f2a6cc5cba2f9358cdc001ca7b31d69,"[Bug 781714] Infrastructure for feedback views.
+
+- Added base templates and other infrastructre for to get ready for
+  migrating feedback views and templates.
+- Added a few stub pages for links, so that the templates compile
+  correctly.
+- Converted the old CSS files to LESS.
+- Use a CSS normalize, instead of a CSS reset.",Mike Cooper,2012-08-24T20:00:31Z,mythmon,mythmon,1558,1500,58
+25,fjord,18b5196c2b1c15c279b4ac09db40234c4feab1c9,"Enable user agent middleware.
+
+Also, move it to `fjord.base.middleware`.",Mike Cooper,2012-08-23T22:34:10Z,mythmon,mythmon,45,24,21
+26,fjord,5626d5a3fa9efc1006d7b56134943aacd196079e,"[bug 778466] Update l10n docs
+
+* add l10n conventions from playdoh docs (easier to have it in one place)
+* add l10n strings maintenance from playdoh docs (easier to have it
+  in one place and we can use our project-specific things)",Will Kahn-Greene,2012-08-22T15:09:54Z,willkg,willkg,153,142,11
+27,fjord,3e730b9d43d847d6f0526fedbd386402ec220fde,"Fix minor issues with ua-detect code
+
+I should have seen some/more of these in review, but missed them.
+
+This corrects a couple of issues and tidies up the API a bit.",Will Kahn-Greene,2012-08-23T14:27:25Z,willkg,willkg,70,32,38
+28,fjord,204ab75b853b5a8cb0b47fd72c13bc5eb87f41e5,Add README for docs pointer,Will Kahn-Greene,2012-08-23T15:00:25Z,willkg,willkg,2,2,0
+29,fjord,3d7ceb4c21547292b53db37c64af579ef060ebcc,"[Bug 781721] Add browser detection function.
+
+Detect platform and Firefox version based on a useragent string. This is
+provided as a function and as a middleware that can automatically put
+the values in request.BROWSER.
+
+This makes no attempt to try and work with non-Firefox browsers. It
+does not support Fennec, but does properly detect the new Firefox
+for android with version >14.",Mike Cooper,2012-08-16T19:51:07Z,mythmon,mythmon,598,598,0
+30,fjord,e518ee83d6a98eae476b47bdee9370331bc950f9,Make nose tests work properly.,Mike Cooper,2012-08-16T19:55:35Z,mythmon,mythmon,3,2,1
+31,fjord,b162a78c791a51a6ca4555e1f3cadb6cd0ba1520,"[bug 781709] Implement Simple feedback table
+
+* add model maker infrastructure
+* add caching infrastructure
+* add migrations to feedback app
+* add smart_truncate and test
+* add Simple table
+* add simple model maker",Will Kahn-Greene,2012-08-20T21:17:37Z,willkg,willkg,203,202,1
+32,fjord,14c5073437e1ddfde3857042e967a5352527da6a,"Fix vendor-local docs
+
+This fixes the docs for adding a new library to vendor-local.",Will Kahn-Greene,2012-08-20T21:13:10Z,willkg,willkg,14,9,5
+33,fjord,b0cc5e35b65a259a78e05b8e00fc030d7f42695a,Add django-cache-machine,Will Kahn-Greene,2012-08-20T21:12:43Z,willkg,willkg,9,9,0
+34,fjord,3a399b615d618f9797cda5e559174b8e0c61cbf6,"[bug 778466] Add mobile template scaffolding
+
+* adds a querystring override for mobile-ness
+* adds a non-mobile and mobile template for testing
+* adds tests for querystring override middleware",Will Kahn-Greene,2012-08-16T19:50:47Z,willkg,willkg,101,91,10
+35,fjord,3ec6064174075fe32a52559b9a5738b62e05e56f,Remove extra .gitignore,Will Kahn-Greene,2012-08-17T04:38:29Z,willkg,willkg,0,0,0
+36,fjord,d9f0180d4e6734d02de621b266f105f4e5dc6da7,"Add test infrastructure
+
+* add LocalizingClient
+* add MobileTestCase",Will Kahn-Greene,2012-08-17T04:37:49Z,willkg,willkg,30,30,0
+37,fjord,aa2bfb839435c612b43a0c78a2565786a9c95cf4,"Docs overhaul and l10n docs
+
+This adds a bunch of content related to maintaining the db, creating
+migrations, updating localizations, and a bunch of inter-linking.",Will Kahn-Greene,2012-08-16T14:51:30Z,willkg,willkg,185,163,22
+38,fjord,a9e2d16cee4c49a762354df91b4003d84e7f6d25,"[bug 778466] Fix DOMAIN_METHODS
+
+The value was a tuple because it has a trailing comma. This breaks
+babel and localization stuff.",Will Kahn-Greene,2012-08-15T22:03:15Z,willkg,willkg,2,1,1
+39,fjord,f4e74eaaa49e6cc2eb1dbde9fae89daa52458ff3,"[bug 781184] Initial analytics, feedback and search apps",Will Kahn-Greene,2012-08-13T21:22:01Z,willkg,willkg,19,17,2
+40,fjord,875d6b1a2bd8bb7f662f752bab3c4691ac564ab4,"Update docs
+
+* added vendor docs
+* moved contact information
+* tweaked hacking howto fixing links
+* add testing docs",Will Kahn-Greene,2012-08-03T16:28:07Z,willkg,willkg,326,300,26
+41,fjord,f26b7074dd9b96ada76e2bc075bd1b886876860b,Add first test,Will Kahn-Greene,2012-08-08T18:13:50Z,willkg,willkg,3,3,0
+42,fjord,0ada5f45ee6b868c76322f247e266bd8a388e93f,"Fix jenkins.sh
+
+We're using django 1.4.1, so we don't have an apps directory.",Will Kahn-Greene,2012-08-08T18:10:34Z,willkg,willkg,2,1,1
+43,fjord,c9c9e81763fa3e195ded99fd521f38879500ff5f,"Apply Andy's fixes to jenkins.sh
+
+Andy had a series of fixes to jenkins.sh that he did a couple of months
+ago that haven't made it to playdoh, yet.
+
+This applies the rest of them to our jenkins.sh.",Will Kahn-Greene,2012-08-08T17:31:58Z,willkg,willkg,4,3,1
+44,fjord,1faa8be671c366ddeedce2bb8f1cb7b2ffe7f683,"Jenkins script fixes
+
+This fixes the problem where the script tries to put the local.py file
+in the wrong place and tries to import settings.base from the wrong
+place.",Will Kahn-Greene,2012-08-08T17:27:39Z,willkg,willkg,4,2,2
+45,fjord,bc6ec20692fcfa99e40a9f9300e8cd1ee3d2e693,"Tweak setup.py info
+
+Adds classifiers, tweaks formatting, etc",Will Kahn-Greene,2012-08-06T15:48:42Z,willkg,willkg,32,20,12
+46,fjord,26334f2bf26375db5b19d8bacbed1916b8ceb236,"[bug 779271] Update to django 1.4.1
+
+This updates playdoh-lib which picks up the update to django 1.4.1.
+
+Given that we've got no code right now, I'm just pushing it out and
+skipping the peer review.",Will Kahn-Greene,2012-08-03T15:10:25Z,willkg,willkg,2,1,1
+47,fjord,789f9d6a15a1c3b47f501754d8a826f2b5a11c51,"[Bug 778373] Finish scaffolding of codebase.
+
+Document how to get to system up and running, get South set up and in
+the vendor-local lib, and remove the remaining Playdoh base examples.",Mike Cooper,2012-08-02T15:30:02Z,mythmon,mythmon,11937,11231,706
+48,fjord,eebed8d7c396518bb9d11e204562728b60e1ef32,First pass at Playdoh -> Fjord,Will Kahn-Greene,2012-07-27T00:51:41Z,willkg,willkg,631,528,103
+49,fjord,4f863ccec959595314a76557f67fe0263496cd8b,Initial playdoh project at fbad81395a251e3659b141d0249afd06f5cfde3f,Will Kahn-Greene,2012-07-27T00:46:23Z,willkg,willkg,2294,2294,0
+50,fjord,149abc6d82576108c95c175d623ada30ff66d684,Cosmetic: Add comment for ResponseEmail model,Will Kahn-Greene,2013-03-05T19:55:15Z,willkg,willkg,2,2,0
+51,fjord,701bed2bde05ea1b64c927b0c0ae7ad29fa463eb,Cosmetic: Add comment for test.,Will Kahn-Greene,2013-03-05T19:54:52Z,willkg,willkg,9,5,4
+52,fjord,d851106ad9c83f98f400bfe29dc9b0444c18bfef,"Cosmetic: ""constants"" should be all uppercase",Will Kahn-Greene,2013-03-05T19:54:23Z,willkg,willkg,4,2,2
+53,fjord,e22326950bffc226d1a1d10da6aba552e0aaec0c,Add test for generatedata,Will Kahn-Greene,2013-03-05T19:53:49Z,willkg,willkg,9,9,0
+54,fjord,3c346bd3589c98836e9e1ea6bdac88711252ed1d,"[bug 847752] Fix ua parser
+
+* fix a couple of edge cases in the parser so it's more resilient
+* change parser so it returns None for browser_version rather than
+  0.0.0. None is what we use to denote that we couldn't parse
+  anything useful.
+* add test cases for issues fixed
+* add some docs including a note about how this function should
+  never throw an exception and if it does, that's a bug
+* minor pep-8 stuff",Will Kahn-Greene,2013-03-05T18:42:49Z,willkg,willkg,50,33,17
+55,fjord,5092960659c6111b5f813018d85737196c856eec,"Update django-browserid to 07a6ee5f
+
+07a6ee5f is likely to become django-browserid 0.8. This updates us
+to that.",Will Kahn-Greene,2013-03-05T02:58:31Z,willkg,willkg,10,5,5
+56,fjord,ec4f05d6754b26a03e90e91002a58841b7d9a749,"Add persona include.js to dashboard
+
+I screwed up when I un-super()'d things before and missed this. Without
+this, persona login doesn't work.",Will Kahn-Greene,2013-03-05T02:55:35Z,willkg,willkg,1,1,0
+57,fjord,de8b55200e8f7e6ad99be005444f56fd4ff9f736,"Fix bad test
+
+This fixes a test that was always returning true despite the fact that
+one of the cases fails. This fixes the test, but one case still fails.",Will Kahn-Greene,2013-03-05T02:35:57Z,willkg,willkg,7,4,3
+58,fjord,f846be3605168b918f665d76a3e31daf46add63a,"Handle ElasticHttpError in dashboard
+
+If the index doesn't exist or the mapping type is wrong, then
+pyelasticsearch kicks up an ElasticHttpError. This picks up the fix
+in elasticutils that handles that in the es_required_or_50x decorator.",Will Kahn-Greene,2013-03-04T22:46:40Z,willkg,willkg,2,1,1
+59,fjord,24428d9bae06d6dc7620f2aa8789a7ea06e6a312,"Change ""Simple"" to ""Response""
+
+The plan has changed since when we originally envisioned it.
+""Response"" is a better name for it than ""Simple"" which isn't a
+noun and is harder to talk about.",Will Kahn-Greene,2013-03-04T22:25:26Z,willkg,willkg,250,174,76
+60,fjord,f69b6462244558cf7b43ceb9a97c8228d26e818d,"Bundle inheritance is bad
+
+Pretty sure I added this a bit ago. Now nixing it because it was
+dumb.",Will Kahn-Greene,2013-03-04T21:06:13Z,willkg,willkg,17,9,8
+61,fjord,c990ce86ce05fe918d9b5a19a950249cb6fa3519,[bug 845942] Add Google Analytics,Will Kahn-Greene,2013-03-04T20:49:11Z,willkg,willkg,16,16,0
+62,fjord,41591362426b625b19d99244a59f34a84ad04e5b,Add basic sla covering feedback submitting platforms,Will Kahn-Greene,2013-02-26T20:15:30Z,willkg,willkg,26,26,0
+63,fjord,70230ad66a6b0402b85c1841f1c3a9f29042959e,"Tweak to update_site.py
+
+* tell us the current date/time
+* tell us log -3 so we know where it's at",Will Kahn-Greene,2013-02-26T19:37:21Z,willkg,willkg,5,4,1
+64,fjord,c837d587e0ed647784ec6379719707a72d31f97e,Cosmetic tweaks,Will Kahn-Greene,2013-02-26T19:23:42Z,willkg,willkg,8,4,4
+65,fjord,950574024316dfb75ececc09ecb37f7df2188a7e,"[bug 832569] Support Firefox for Android
+
+* add two fields to the Simple table: device and manufacturer.
+* tweak _handle_feedback_post so that it knows about _type which is
+  the old way of doing things
+* tweak the mapping code so it's easier to read (it's probably not the
+  best idea, but it is easier to read)
+* add a bunch of tests",Will Kahn-Greene,2013-02-22T22:00:35Z,willkg,willkg,252,231,21
+66,fjord,70bfa7096fd64e6aea6f849d63878b1c8d6c6427,"Fix site so there is no more admin login page
+
+If you logged in with persona, went to the admin, then clicked on
+""logout"", you'd end up on the admin login page which you had
+to manually leave by typing a url in the urlbar.
+
+This fixes that.",Will Kahn-Greene,2013-02-22T21:58:11Z,willkg,willkg,2,2,0
+67,fjord,3cb5f3ecc6f5bcd2046739b3d378181b16c4da18,"Rearrange how mobile files are stored.
+
+* Instead of `static/mobile/{css,img,js}/` use `static/{css,img,js}/mobile/`
+* Call the mobile minification bundles 'mobile/foo' instead of 'foo-mobile'
+* Use a consistent pattern for relative urls in css.",Mike Cooper,2013-02-22T20:44:01Z,mythmon,mythmon,34,17,17
+68,fjord,7cdb1b28f5d9d8a5f001898054cceb5ed3d7146b,"Tweak dashboard template for mobile
+
+* add a better stub that uses the mobile base
+* nix the dev-banner for mobile templates --- it's too big and hard
+  to get to go away. we'll do something different later.",Will Kahn-Greene,2013-02-22T19:22:53Z,willkg,willkg,15,5,10
+69,fjord,27ee94d5e31e37aff7869f35ed045ee2eebc042e,"[Bug 781715] Add mobile feedback.
+
+* Add a mobile base template.
+* Beef up routing to handle this workflow.
+* Extract some behavior from the desktop view to reuse it.
+* Tests for all of this.",Mike Cooper,2013-02-11T23:35:59Z,mythmon,mythmon,756,709,47
+70,fjord,97fcdfcc20031ae1204c8fd4353a505ce8a897a9,Add mock library.,Mike Cooper,2013-02-21T18:20:22Z,mythmon,mythmon,28870,28870,0
+71,fjord,3c99ccca1490ca6c4008621de41517167392501d,"Update playdoh-lib: this is a no-op
+
+Picks up:
+
+b9ee4a5 Update to Django 1.4.5",Will Kahn-Greene,2013-02-22T16:46:16Z,willkg,willkg,2,1,1
+72,fjord,813ddc03b652d0594bc9cb540a5a5f50a196a073,Add TODO for removing stubs,Will Kahn-Greene,2013-02-12T19:03:48Z,willkg,willkg,3,2,1
+73,fjord,a61e9b957e98a8c9b94eb1f35015f99d41d87162,Nix unused import,Will Kahn-Greene,2013-02-12T19:03:21Z,willkg,willkg,2,1,1
+74,fjord,01346be40e2b5282caf01946e535645d920fb0f1,"[bug 834279] Add persona authentication
+
+* add persona support for authentication. it's set up such that it doesn't
+  create new accounts--accounts must be created manually by an admin.
+* put browserid.js file in base bundle
+* change the dashboard templates to inherit the site_js block
+  from base.html
+* attempt to add comments that explain what's going on so it makes
+  sense to future developrs
+* add documentation to help new people set persona
+* tweak navbar to add a section on the right",Will Kahn-Greene,2013-02-11T16:10:48Z,willkg,willkg,126,107,19
+75,fjord,71ad610b1a8f3bf04a51ec9ee48a5af77ade451d,"[bug 841770] Update playdoh-lib
+
+72cace3 Update to django 1.4.4  r=peterbe
+baf3a33 Update funfactory  r=peterbe
+1db7782 upgrade django-arecibo, r=andymckay",Will Kahn-Greene,2013-02-19T23:12:28Z,willkg,willkg,2,1,1
+76,fjord,f86f7e72137eac8ca95135e39b24a5f8c247e354,"[bug 832574] Allow admin to delete feedback
+
+In the case where someone adds feedback to the site that needs to be
+deleted, we need a way to delete it. This adds that to the admin, but
+prevents admin from adding new feedback via the admin and also
+changing existing feedback.",Will Kahn-Greene,2013-02-13T17:44:22Z,willkg,willkg,34,34,0
+77,fjord,e4cf00f8ff2b0fd3dcbd80bb5fab7721757f1e43,"Cosmetic: Fix docs
+
+We're not using django-compressor at the moment.",Will Kahn-Greene,2013-02-11T14:52:36Z,willkg,willkg,4,3,1
+78,fjord,6829e1b8707ecccd74bd52940453bd857a147997,"Switch poxx.py from ""swedish chef"" to pirate",Will Kahn-Greene,2013-02-07T19:59:00Z,willkg,willkg,305,234,71
+79,fjord,233589c797dc594bda07d70367d778b30da7e1cd,User agent is two words.,Mike Cooper,2013-01-25T18:20:08Z,mythmon,mythmon,44,22,22
+80,fjord,9e5603246945e4325c68c0494996d4508be60c87,"[Bug 832572] Add support for detecting FxOS.
+
+Also, ditch django-mobility's detection, because we are doing all of
+it's work anyways. Mobility is still used for the mobile view decorator,
+because that still works fine, and doesn't need rewritten.",Mike Cooper,2013-01-25T01:22:01Z,mythmon,mythmon,151,113,38
+81,fjord,a2fe60d5e9720eb864ba4ee21c386b9187b03c11,"Wait for a yellow status when setting up indexes.
+
+Before, I would get random errors about shards not being available. Erik
+Rose told me that this is because I made an index, but then didn't wait
+for it to propogate to the shards. He gave me a line of code to wait for
+the sync.
+
+I noticed I had to add it in several places, always right after a call
+to `setup_indexes()`. So I made that function do that. I also removed
+the refresh calls right after any `setup_index()` calls, because refresh
+is called in that function.
+
+The old way of working around this was to sleep a bit during refreshes.
+That isn't as good as this way, so I nuked the old way, including the
+docs for it.",Mike Cooper,2013-01-24T22:53:12Z,mythmon,mythmon,26,4,22
+82,fjord,8ba726599ca642f06419fc200cbcd0eb37dfc68c,PEP-8 pass.,Will Kahn-Greene,2013-01-17T22:37:10Z,willkg,willkg,88,49,39
+83,fjord,7522d74fee1bef8eade3b5bbc9ab60c1c713a989,"[bug 832037] Switch to pyelasticsearch master tip
+
+pyelasticsearch 0.3 has a problem where it uses an endpoint for bulk
+indexing that doesn't work with ES prior to 0.18.0. I fixed it and
+this switches us to using a fixed version.",Will Kahn-Greene,2013-01-24T20:55:07Z,willkg,willkg,3283,5,3278
+84,fjord,ac1707befb8e6173612580d85bea8973367a6574,"[Bug 832037] Update for pyelasticsearch-based elasticutils
+
+This updates the codebase to use the pyelasticsearch-based elasticutils
+from master tip.
+
+Generally the changes are pretty minor. Most of them are to handle
+the pyelasticsearch exceptions rather than the pyes ones. A few are
+because some of the API bits changed in elasticutils. Then there's
+some very minor cleanup.",Will Kahn-Greene,2013-01-17T22:35:51Z,willkg,willkg,175,101,74
+85,fjord,5ee255db7804f17c38e5c53c06ac86f67aeadd1e,"[Bug 832037] Update elasticutils; get new requirements
+
+This updates to the master tip of elasticutils which uses pyelasticasearch.
+It ditches pyes.
+It adds pyelasticsearch and its requirements.
+
+It fails tests because the code changes haven't been made, yet.",Will Kahn-Greene,2013-01-17T19:34:50Z,willkg,willkg,40986,31082,9904
+86,fjord,ece33d4838199d96988f1ff3b7f40452af64363b,"Fix vendor docs for vendor-local/packages/
+
+I feel like I keep twiddling with these and somehow they're always
+slightly wrong. It's weird.",Will Kahn-Greene,2013-01-17T19:33:14Z,willkg,willkg,6,4,2
+87,fjord,4fadd482ea2c2ca0ee193746d890dbc6300edcf0,"[Bug 799693] Zero fill histogram data.
+
+Fill the graph with data at every day along the X axis, instead of
+allowing missing data to be interpolated. Care is taken to make sure
+that these extra zero points align to the spacing of the rest of the
+points (24 hours per point).
+
+Other, related changes:
+
+- If start or end is not specified, they have default values now.
+- The infinity date selector was replaced with a 90 day button.
+- The one day selector now hides the graph.
+
+The zero fill algorithm benefits from having non-None start and end
+times, and these changes help with that.",Mike Cooper,2012-10-18T23:19:09Z,mythmon,mythmon,18,10,8
+88,fjord,abd6465056f4289ea1048f0dc90681296b071605,"[bug 825912] Upgrade playdoh-lib and django
+
+This updates playdoh-lib:
+
+ffb6542 Merge pull request #29 from peterbe/revert-django-browserid-0.7.1
+0b784af Revert ""upgrade to django-browserid==0.7.1""
+5f367d6 Merge pull request #27 from peterbe/upgrade-django-browserid
+d1d4eed upgrade to django 1.4.3, r=mkelly
+a78e698 upgrade to django-browserid==0.7.1
+8508fd6 Merge pull request #25 from willkg/ordereddict-fix
+9ea2e90 Add ordereddict
+d357594 upgrading funfactory for latest urlencode() fix, r=willkg
+22bfbe9 Merge pull request #23 from willkg/celery-2.5-update
+275892b Add celery 2.5.5 and friends
+92de02f Remove celery 2.1.4, djcelery 2.1.4 and amqplib 0.8",Will Kahn-Greene,2013-01-02T16:14:26Z,willkg,willkg,2,1,1
+89,fjord,bab4e72050a269508ac4596e9a7c3142d9426df0,"[Bug 799691] The histogram data is in UTC.
+
+This makes the graph lines and the graph data points line up. This only
+changes flot's expectations to match what elastic is ending it.
+
+When elasticsearch returns histogram data with a period of 1 day (like
+we are doing on the histogram) the timestamps it returns have the hours
+of a UTC midnight date, regardless of what timezone the aggregate set
+represents.
+
+This means that when the server is working in Pacific time, it
+aggregates a Pacific day worth of data, sums it up, and then returns it
+labeled with a timestamp. This timestamp, when output, is the midnight
+of a UTC day (calculating the hours past midnight only returns 0 if you
+assume UTC), even if localtime on the server is Pacific.
+
+Even if we change to forcing a particular timezone in the future, this
+will still be true, and elasticwill still label this data with UTC,
+regardless of the input.
+
+Because of this, flot needs to be told the data is UTC, not browser
+local time.",Mike Cooper,2012-10-22T20:47:06Z,mythmon,mythmon,1,0,1
+90,fjord,6d29f56dc503d9617e0715f6553fc341c280415f,"[Bug 805020] Don't checkout any branch on vendor.
+
+Vendor is a gitsubmodule, which means we should be obeying git's idea of
+what commit it should be on. We should not checkout out a particular
+branch, because this can cause changes to come in to early, such as the
+celery 2.6 upgrade, which caused bug 805020.
+
+Additionally, I added --recursive to the submodule checkout in the main
+repo, since we aren't doing this explicitly in vendor anymore.",Mike Cooper,2012-10-24T20:33:05Z,mythmon,mythmon,5,1,4
+91,fjord,7bb276efa87ffdc4d5674f912d1d4bf2577fe418,"[Bug 799693] Zero fill histogram data.
+
+Fill the graph with data at every day along the X axis, instead of
+allowing missing data to be interpolated. Care is taken to make sure
+that these extra zero points align to the spacing of the rest of the
+points (24 hours per point).
+
+Other minor, related changes:
+
+- If start or end is not specified, they have default values now.
+- The infinity date selector was replaced with a 90 day button.
+- The one day selector now hides the graph.
+- Due to the fixed, relative time frame, tests have been changed to use
+  relative dates.
+
+The zero fill algorithm benefits from having non-None start and end
+times, and these changes help with that.",Mike Cooper,2012-10-18T23:19:09Z,mythmon,mythmon,202,164,38
+92,fjord,5a70d621aa7bf102bec874eb1b582a539e6e7eca,Update playdoh-lib to pick up django 1.4.2,Will Kahn-Greene,2012-10-18T17:08:51Z,willkg,willkg,2,1,1
+93,fjord,8c2d8b68275844e500a76d903f7fb31875824e02,"Update elasticutils to master tip
+
+This updates elasticutils to master tip. The changes are mostly
+cosmetic:
+
+* 1578b37 - Issue 85. Fix IndexMissingException.
+* 7dcc034 - Issue 84. Fix get_indexes/get_doctypes silliness
+* cd76217 - Fix v0.5/v0.6 issues in changelog
+* 675419f - Update hacking_howto about django reqs.
+* 374d224 - Fix boosted text_phrase queries
+* a478db3 - Update release date for 0.5; add TOC
+* 292e18d - Add Giorgos to CONTRIBUTORS list
+* afbd458 - Update CHANGELOG",Will Kahn-Greene,2012-10-17T13:36:39Z,willkg,willkg,2,1,1
+94,fjord,ae1221d31688facabd5e392fb6533f477cd5794f,"[Bug 722388] Collect emails from users.
+
+This adds a checkbox and a input box to the survey form. The checkbox is
+to indicate the user wants to give an email address, and the input field
+is for the email address, and only shows up after the box has been
+checked.
+
+This email address is stored in a seperate table with a foreign key, for
+possible security benefits down the road.",Mike Cooper,2012-10-08T19:44:42Z,mythmon,mythmon,253,246,7
+95,fjord,2c651b7083ec368ebf226364a1a1aba5f5ec147e,"Add migration for datetime change.
+
+This should have been done when we changed this in the model, but it
+wasn't.",Mike Cooper,2012-10-08T19:44:00Z,mythmon,mythmon,37,37,0
+96,fjord,73e16196a811b6105147f706a92ab17c31f3bae0,Ignore locales.,James Socol,2012-10-03T19:52:09Z,James Socol,James Socol,1,1,0
+97,fjord,3cf42e8ec1b248cfcbe87fc366e129b4c3e93ebc,[fix bug 790046] Add statsd middleware.,James Socol,2012-10-03T19:50:30Z,James Socol,James Socol,2,2,0
+98,fjord,7029529193d465f58aa7c4cabd9ad8150de72bfd,Add requirements for statsd.,James Socol,2012-10-03T19:40:42Z,James Socol,James Socol,10,10,0
+99,fjord,c16a56f47292190f1c5e83618e893d3ea459bea3,Fix pep8 issues.,Will Kahn-Greene,2012-10-02T05:29:17Z,willkg,willkg,9,4,5
+100,fjord,48261ccc4743ec465b85056bdbe8b2b74a83c213,"Nix tower-related hacks
+
+We no longer need to set SETTINGS_MODULE in override_settings now that
+we have an up-to-date tower with the fix.",Will Kahn-Greene,2012-10-02T05:25:47Z,willkg,willkg,7,2,5
+101,fjord,a327733a58721660a5f4d5e22cd4d44872a816d1,"Update playdoh-lib; remove local jingo-minify
+
+* update playdoh-lib: this pulls in our fixes to tower and jingo-minify
+* remove jingo-minify from vendor-local: don't need it anymore because
+  playdoh-lib has the changes we need",Will Kahn-Greene,2012-10-02T05:20:35Z,willkg,willkg,7,1,6
+102,fjord,40edfee61379d17b49369a9fe94f0f9683cd1a90,"[Bug 795049] Use smart_datetime for date ranges.
+
+In particular this adds safety for the `TypeErrors` thrown by `strptime`
+when the string contains null bytes, but it is also a generally good
+thing.",Mike Cooper,2012-09-28T16:32:27Z,mythmon,mythmon,90,65,25
+103,fjord,b8a4f7342a28525fe309a66309c9749f61d72005,"Add test_locales.sh script
+
+This makes it super easy to test strings issues on a site.",Will Kahn-Greene,2012-09-27T15:32:54Z,willkg,willkg,258,258,0
+104,fjord,6bede1a3494bc77cc9a1c0ad624210e0fc873b48,Gettextify ungettextificationed string,Will Kahn-Greene,2012-09-27T15:12:35Z,willkg,willkg,2,1,1
+105,fjord,3da625565ebfb59157c60e057c63325792c717b1,Tweak docs to be clearer,Will Kahn-Greene,2012-09-27T13:32:56Z,willkg,willkg,4,2,2
+106,fjord,9f388a3f88afa770173c45ba9b37488716097967,"Replace fjord.sampledata with django-eadred
+
+I spent some time extracting the sampledata application out as a separate
+project so we could use it in Kitsune (and other places as well). This
+switches fjord over to using that.
+
+One nice thing eadred has is the ability to pass parameters from the
+command line to the generate_sampledata functions. This allows us to
+easily allow for different kinds of sample data generation: reproducible
+data set for contributors, randomized large data set for testing the
+dashboard, icky data set for testing security and unicode handling, ...",Will Kahn-Greene,2012-09-27T13:26:56Z,willkg,willkg,49,10,39
+107,fjord,f80344516afbb564edc56776143d90541b025209,"[Bug 793847] Implement date filtering.
+
+This includes a jquery-ui datepicker for selecting dates.",Mike Cooper,2012-09-24T21:48:09Z,mythmon,mythmon,195,183,12
+108,fjord,b47cfd2fd9cbc488e19d716d98e3d803d6239d47,Add jquery-ui datepicker.,Mike Cooper,2012-09-26T18:44:35Z,mythmon,mythmon,361,361,0
+109,fjord,cd9a2d42d06d2ad261c8a28b0c8ae0ac1718ecc7,"[Bug 794439] Int safety for page numbers.
+
+Page numbers now use a util function smart_int, that will return a
+default value in the case of any problems.",Mike Cooper,2012-09-26T17:27:07Z,mythmon,mythmon,35,32,3
+110,fjord,dc6268c0b246dd85ce9f6398773ba2cf28dc83ca,"[Bug 793847] Add search box to feedback list.
+
+This uses elastic search text, text_phrase, and fuzzy queries.",Mike Cooper,2012-09-24T23:27:52Z,mythmon,mythmon,63,53,10
+111,fjord,fd42e5476ef0270a4b5eb45731a8c8c1cab4ee80,"[bug 794095] Add settings/celery-settings views
+
+* add app settings view so we can see server configuration
+* add celery settings view so we can see celery configuration
+* add wsgi env view so we can see the wsgi environment (though we haven't
+  needed this, yet)
+
+Note: The template is a Django template, so it uses Django template stuff.
+Also, I lifted this from Kitsune so it's pretty much the same code that's
+in Kitsune with some very minor cleanup.",Will Kahn-Greene,2012-09-25T20:00:19Z,willkg,willkg,72,72,0
+112,fjord,2b46d7c07869a84c63e8987cf87d64aac2646fd2,[Bug 793710] Fix colors of graph in other locales.,Mike Cooper,2012-09-24T16:33:54Z,mythmon,mythmon,8,4,4
+113,fjord,ac48fccc9c543e77c0aa1a3dae79eed879aacb31,Fix svn url in cli example,Will Kahn-Greene,2012-09-24T17:00:29Z,willkg,willkg,2,1,1
+114,fjord,2f3e0d6341c2a79838b01c3462bc9497cda8fb59,"[Bug 788529] Live Indexing
+
+Add live indexing code to Simple feedback items. This is a bit simpler
+than how kitsune does it, because a) we use a newer better version of
+EU, and we have a simpler elasticsearch set up. Also, this does live
+unindexing when objects are deleted from the database.
+
+* Added a decorator that can be used to easily set up live indexing
+  for any model that can be indexed.
+* Added a setting, `ES_LIVE_INDEX`, which defaults to True.
+* The default TestCase clsas now sets ES_LIVE_INDEX to False, so non-ES
+  tests work with ES.",Mike Cooper,2012-09-18T23:55:54Z,mythmon,mythmon,155,141,14
+115,fjord,8add2f50d6c9dd8935c9976531576eea97f24cd7,"[Bug 792918] Improve CSS for the stage warning.
+
+Before the notice looked different on the feedback and the dashboard
+pages, because of different included styles. Now the style is included
+with the notice, so it will be consistent across the site.",Mike Cooper,2012-09-20T23:22:42Z,mythmon,mythmon,71,38,33
+116,fjord,7cea16d6ff7c4753546e8fbe5425ba98b03c2206,"[bug 791381] Fix dashboard regarding ES errors
+
+This fixes the dashboard page so that if there are any
+ElasticSearch-related errors, it shows the es_down.html template.
+
+In doing this, I tweaked the structure of the dashboard.html template
+so that I could extend it for the es_down.html template. I also
+pulled in a new version of ElasticUtils.",Will Kahn-Greene,2012-09-20T18:56:08Z,willkg,willkg,137,73,64
+117,fjord,f3c8e8acb63766fe7a13ddf10c77117248727d9b,Remove stub test.,Will Kahn-Greene,2012-09-21T13:52:34Z,willkg,willkg,3,0,3
+118,fjord,adb7b4170d32a33e28bd5560b42cff04892c1a63,"Apply 10e3aac to 500.html template, too.",Will Kahn-Greene,2012-09-21T14:17:36Z,willkg,willkg,2,1,1
+119,fjord,10e3aaca4fc099d9950a2f9484ef7cba9dc6c63e,"Make ""Firefox Input"" in title l10n-izable.",Will Kahn-Greene,2012-09-21T14:04:20Z,willkg,willkg,2,1,1
+120,fjord,af35344b86408857bc9fcb970d635f81c8a73d8c,Fix strings missing gettext-ification,Will Kahn-Greene,2012-09-21T13:58:04Z,willkg,willkg,7,4,3
+121,fjord,c60ec4cc19c48b638a7fb24c9278440e6b8789ed,"Force /services/throw-error to work in tests.
+
+This helps Jenkins not fail things.",Mike Cooper,2012-09-21T00:17:04Z,mythmon,mythmon,3,3,0
+122,fjord,af3483b61b5b40d8928322ded4e9a6650497ee14,[Bug 791415] Add pretty 404 and 500 error pages.,Mike Cooper,2012-09-17T19:30:56Z,mythmon,mythmon,121,91,30
+123,fjord,5eb748e5cf86e5ce72d9e87900664642542c0176,Fix l10n issues on dashboard,Will Kahn-Greene,2012-09-20T18:20:33Z,willkg,willkg,14,7,7
+124,fjord,f46752ef34d455c5a8c969062d6873a83034cf0d,"Tweak strings
+
+Line 11 and 20 had the same string but it was slightly different. This
+tweaks the title so that they're the same.",Will Kahn-Greene,2012-09-20T15:04:36Z,willkg,willkg,2,1,1
+125,fjord,bd1f229e54ccc1be370ad9f78137ce668575e1db,Add note to docs about ES 0.19.9 not working,Will Kahn-Greene,2012-09-19T18:14:44Z,willkg,willkg,12,9,3
+126,fjord,644d90f7a80553872c95199de8a1f692643b7a6e,"Add explanation to services/monitor page
+
+Note: I did this to verify that the input-dev server is updating
+correctly.",Will Kahn-Greene,2012-09-19T14:49:03Z,willkg,willkg,5,5,0
+127,fjord,7cda7d651cd48d2a56ce24cb743d2bf6f68a35f6,[bug 791067] Fix favicon.,Will Kahn-Greene,2012-09-18T19:39:59Z,willkg,willkg,2,1,1
+128,fjord,07d977923762670c488905200bd4f1e674a050af,"[bug 791785] Fix test_monitor_view on jenkins
+
+This mocks the establish_connection rabbitmq stuff so that the test
+will pass on Jenkins which has no rabbitmq stuff.
+
+Note: I'm faking a mocking library--when we add Mock to vendor-local/
+we should fix this.",Will Kahn-Greene,2012-09-17T21:36:01Z,willkg,willkg,8,8,0
+129,fjord,5dad9d2e8efe48bcb8ef9929822e898835608677,"Clean up services/monitor/ view.
+
+This makes it less funky in regards to all the various states it
+could end up in and also makes it way easier to add new components.",Will Kahn-Greene,2012-09-17T21:15:36Z,willkg,willkg,133,59,74
+130,fjord,c26774515c543e1527602fb47045feaa98a9c8cd,Tweak test_monitor_view: Fix stupid mistake,Will Kahn-Greene,2012-09-17T18:53:24Z,willkg,willkg,7,2,5
+131,fjord,991b169e60fa01f3057daa28f1283caabf05b9c6,Tweak test_monitor_view: show all exceptions,Will Kahn-Greene,2012-09-17T18:44:16Z,willkg,willkg,5,5,0
+132,fjord,38a5e5a5b73f8701cfc0be8e17672e3999c7523f,Tweak test_monitor_view: add statii printing,Will Kahn-Greene,2012-09-17T18:40:30Z,willkg,willkg,3,2,1
+133,fjord,11d07fe3cb61758d2b493f2191b89f539e3596c3,"Tweak test_monitor_view to show better errors
+
+This test is failing in Jenkins. This tweaks the test to tell us more
+about why.",Will Kahn-Greene,2012-09-17T18:33:56Z,willkg,willkg,13,11,2
+134,fjord,f71fb2f6bfd0d19c1b8ccd1dbbb001236f851654,"[bug 791468] Add ES to /services/monitor
+
+This checks to see if ES is running and that there is an index.
+
+This also tweaks the service monitor test case to be an ElasticTestCase
+because it's checking ES connectivity and whether the index exists and
+we need it to look at the right index.",Will Kahn-Greene,2012-09-17T15:26:58Z,willkg,willkg,33,31,2
+135,fjord,6913a0020f818b6dd3a1f71b48916cc69cfea59b,"Clean up /services/monitor code
+
+This moves a lot of business logic out of the template and into the
+view. It also cleans up the view code so it's easier to read and more
+consistent.",Will Kahn-Greene,2012-09-17T15:25:59Z,willkg,willkg,59,29,30
+136,fjord,36ff7391fffb49d6fa439a7d954120ef78131be4,"Convert this test to an elastic test, for safety.
+
+Since MobileQueryStringOverrideTest accesses the dashboard (since the
+dashboard is the front page), it needs to be using the correct elastic
+search index, so it needs to be a ElasticTestCase, instead of a normal
+TestCase.",Mike Cooper,2012-09-14T21:56:42Z,mythmon,mythmon,11,8,3
+137,fjord,f64687c11ab94282b53066f2cd51d0de1d17d70b,"Emergency patch to fix ES errors
+
+This is an emergency patch to fix ES errors so the front page works
+through the weekend despite us missing a bunch of things.
+
+There are TODO items to address the three spots we should fix in
+better ways.",Will Kahn-Greene,2012-09-15T01:12:24Z,willkg,willkg,93,64,29
+138,fjord,8b16b1d340a7337ae57b3c7a0bf75ddc59d6f507,"Implement Dashboard
+
+The dashboard has a histogram that shows amount of input over time and a
+filter/facet sidebar to drill down on data. The selected feedback items
+are displayed below the graph. This is a fairly faithful reproduction of
+old input, but written from scratch.
+
+This uses Flot to draw the graphs, and ES to generate data. There are no
+SQL queries made in generating this page.",Mike Cooper,2012-08-31T20:59:26Z,mythmon,mythmon,5058,5014,44
+139,fjord,93409fd1ac0332ba05e6a43eda1b7938d67206f2,"Add PyQuery.
+
+Also it's dependencies, lxml, and cssselect.
+
+lxml requires compiling, so it is in requirements/compiled.txt",Mike Cooper,2012-09-13T18:37:37Z,mythmon,mythmon,6925,6925,0
+140,fjord,09271783a493653f7fe80a18bd1cb913f0f663c8,"Update to the latest version of ElasticUtils.
+
+This gets us two things:
+
+1. EU doesn't throw away data from histogram facets.
+2. Fixes a EU bug in which working with filters could be destructive.",Mike Cooper,2012-09-10T16:30:37Z,mythmon,mythmon,2,1,1
+141,fjord,4b051f78727d7509dfa2ea45dfc8b5237c81c51d,"Update how we include/exclude apps and middleware.
+
+Use funfactory's get_apps and get_middleware functions, which simplifiy
+adding and removing things from the settings variables.",Mike Cooper,2012-09-06T23:02:18Z,mythmon,mythmon,62,33,29
+142,fjord,ef1b83bb59812dd4a501219bca83f58e24e5a2e6,"[bug 790833] Add basic service monitor page
+
+This is probably missing some stuff, but it gives us a basic monitoring
+page we can use to figure out what's going on.",Will Kahn-Greene,2012-09-13T14:34:19Z,willkg,willkg,203,202,1
+143,fjord,a57c2b5971af158fef428fb973697cfd16b9827a,"[bug 790998] Add memcached infrastructure
+
+* add docs for CACHES setting
+* add python-memcached package",Will Kahn-Greene,2012-09-13T16:07:29Z,willkg,willkg,2318,2310,8
+144,fjord,6407f746435aed2f74e2f6abe382153e233f06c8,"Change STAGE setting to SHOW_STAGE_NOTICE
+
+SHOW_STAGE_NOTICE is a little clearer in regards to what we're using
+it for. Plus it's easier to explain documentation-wise.",Will Kahn-Greene,2012-09-13T13:42:03Z,willkg,willkg,6,3,3
+145,fjord,2412b65dfbb582668a33f97376a692e864de5d4b,"[bug 790693] Re-fix csrf issues.
+
+Turns out the previous two commits never made it to -dev--it's not
+updating.
+
+Regardless, this makes that form csrf-exempt. That's better since it'll
+reduce sessions and the csrf protection isn't wildly helpful for that
+form.",Will Kahn-Greene,2012-09-13T01:44:58Z,willkg,willkg,5,3,2
+146,fjord,f024ce5b1b79a2958cef1ccd2acaab7a340e1529,"Revert ""[bug 790693] Fix csrf issues.""
+
+This reverts commit ccb05c05fa5f2a93e944db66fb07dec4aedcc76e.
+
+This didn't fix the issue (memcached problem?). So we're going to revert
+it and nix csrf for this form.",Will Kahn-Greene,2012-09-13T01:39:39Z,willkg,willkg,6,2,4
+147,fjord,ccb05c05fa5f2a93e944db66fb07dec4aedcc76e,"[bug 790693] Fix csrf issues.
+
+Pretty sure the reason this form isn't working on -dev is because
+it's lacking csrf. Plus the feedback forms need to work anonymously,
+so I added the decorator, too.",Will Kahn-Greene,2012-09-13T01:01:54Z,willkg,willkg,6,4,2
+148,fjord,b24a7deab683f5bf634dd8a450636a0eb1e0be48,"[bug 790634] Update jingo-minify
+
+This switched jingo-minify back to the correct git repository and also
+updates it to master tip which has the rest of the static/media fixes.",Will Kahn-Greene,2012-09-12T15:45:53Z,willkg,willkg,4,2,2
+149,fjord,4561ae7c8017b0c8751427464aeb2d64ea0a22c8,"[bug 788527] Add indexing to search admin
+
+* add indexing-related celery tasks
+* add indexing form in admin
+* add reset form in admin
+* add record history to admin
+* add test for index_chunk_test
+* fix ES test infrastructure to work correctly
+* updated ES docs",Will Kahn-Greene,2012-09-08T02:09:30Z,willkg,willkg,438,417,21
+150,fjord,a55e10be5c8540b5ac18f1f29d09eb8c1f7d7f70,"[bug 878069] Add locales from languages.json
+
+This adds all the locales to PROD_LANGUAGES that are currently in
+languages.json. This allows users to enter feedback in the feedback
+forms and have it capture the locale from the HTTP Accept-Language
+header rather than en-US because their locale isn't in the list.",Will Kahn-Greene,2013-06-04T17:57:06Z,willkg,willkg,94,94,0
+151,fjord,14d65297b0423b549b9e731c9c35c6ae89186ac5,Fix POST mutability problem,Will Kahn-Greene,2013-06-03T12:41:41Z,willkg,willkg,4,2,2
+152,fjord,5fc564b7803c36e89b71ae3c170fb64726776aa0,"Fix failing test
+
+Missed this one.",Will Kahn-Greene,2013-05-31T20:27:30Z,willkg,willkg,2,1,1
+153,fjord,2a0093bb275f2c9ffbd4f879c02ea522d36603c5,"[bug 878206] Fix happy hardcoding horseshit
+
+This un-hardcodes Firefox for Android responses and sets the happy
+value based on the _type value correctly.
+
+Note: Our tests were wrong before: 1 is happy, 2 is sad and 3 is idea,
+but our tests were coded such that 1 was happy and 0 was sad or
+something like that. This fixes that, too.",Will Kahn-Greene,2013-05-31T20:13:07Z,willkg,willkg,30,27,3
+154,fjord,599372005a205c28bf9f789da503d4010b845fae,Add ES version to search admin and status cmd,Will Kahn-Greene,2013-05-30T19:22:43Z,willkg,willkg,54,48,6
+155,fjord,20199e725f31b646ccd74c9b075e8773dba68923,"Change match/match_phrase to text/text_phrase
+
+Input isn't working on -dev environment. My hunch is that it's because
+I'm using ES things that the -dev environment ES doesn't support.",Will Kahn-Greene,2013-05-29T01:42:43Z,willkg,willkg,40,20,20
+156,fjord,bf9758335a2c5c5eafb7bf09f8fdbd9c727520d7,Switch jenkins to use better ES host,Will Kahn-Greene,2013-05-28T21:22:57Z,willkg,willkg,1,1,0
+157,fjord,af13d62a084293874b35e31aabb244dfcf688c69,Fix elasticutils update errors,Will Kahn-Greene,2013-05-28T21:10:27Z,willkg,willkg,7,3,4
+158,fjord,5e0a983aae82f1b1a314cc8af457b89eee3fb9f0,[bug 874286] Switch to query parser,Will Kahn-Greene,2013-05-23T21:04:34Z,willkg,willkg,201,193,8
+159,fjord,c59d53d3bd25fecc32c07b9aba2ec0911515cb8c,Update elasticutils to 0.7,Will Kahn-Greene,2013-05-23T21:04:12Z,willkg,willkg,274,215,59
+160,fjord,c78efdd01299dafb170167fb5b157ac90277c351,Adding six,Will Kahn-Greene,2013-05-23T21:00:15Z,willkg,willkg,1911,1911,0
+161,fjord,61dc02af39968a78b5e9105803e8002fae833c21,Add Bogomil to CONTRIBUTORS,Will Kahn-Greene,2013-05-24T13:59:57Z,willkg,willkg,1,1,0
+162,fjord,7f2ee21bb0a6a399f1bb1df9a71b510288ac94de,[bug 875692] Fix overlapping content in footer,bogomil,2013-05-24T08:06:13Z,bogomil,bogomil,2,1,1
+163,fjord,d1aae0d5f6a7c279bde52e74883c10a31b58ca60,[bug 793850] Fix atom links,Will Kahn-Greene,2013-05-22T00:36:40Z,willkg,willkg,6,3,3
+164,fjord,2c7c60fa6acc8449a85937585024ba1592d28de3,"[bug 793850] Add product to mapping
+
+This adds a new field called ""product"" to the mapping. This holds the
+name of the product which is based on the browser and platform. This
+assumes that ""Firefox for Android"" is always ""Firefox"" browser on
+the ""Android"" platform.
+
+This fixes tests accordingly.
+
+This adds Firefox for Android to the sampledata generator.",Will Kahn-Greene,2013-05-21T20:46:52Z,willkg,willkg,58,39,19
+165,fjord,c92af0e80207d19c7725c2f50d27670b55aecd56,"Fix version filter
+
+If the user isn't filtering on product, then we should ignore the version
+filter.
+
+The better fix would also nix it from the url, but that's a lot harder
+and requires some non-trivial rewiring so I'm going to do this for now
+and if that's not sufficient then figure out a different fix.",Will Kahn-Greene,2013-05-21T20:01:08Z,willkg,willkg,26,23,3
+166,fjord,4e76587ef3ff529199acbe7d40e604f51d5873a1,[bug 793850] Add product/version filters to dashboard,Will Kahn-Greene,2013-05-21T18:35:00Z,willkg,willkg,132,108,24
+167,fjord,a43777c58497f6c3b2d87b7324e768d6d5500b79,"Set CELERYD_TASK_SOFT_TIME_LIMIT to 10 minutes
+
+This will reduce indexing failures.",Will Kahn-Greene,2013-05-21T14:47:47Z,willkg,willkg,4,4,0
+168,fjord,02d1ffeda3ba964f87453a4ae52a5d49220c2469,Drop chunk size down to 10000,Will Kahn-Greene,2013-05-21T14:43:59Z,willkg,willkg,2,1,1
+169,fjord,596eb04354a25c036968e650cbe4a1391393c338,"[bug 873635] Fix index_chunk and esreindex output
+
+* fix index_chunk to break up the documents to bulk index in small
+  chunks
+* fix recreate_index to wait until a shard is yellow before continuing
+* fix esreindex command output so the deltas and ETAs are more correct",Will Kahn-Greene,2013-05-20T21:38:18Z,willkg,willkg,58,32,26
+170,fjord,e1c9700458704dba77d80c17377a380f6ccb30d9,"[bug 867560] Add Atom and JSON feed outputs
+
+This fixes some pep-8 things, too.",Will Kahn-Greene,2013-05-16T21:38:53Z,willkg,willkg,167,152,15
+171,fjord,9963d9c5e8d13c9729c9399d8e30f855b9428747,[bug 866449] Add mobile template for response,Will Kahn-Greene,2013-05-16T18:51:35Z,willkg,willkg,61,61,0
+172,fjord,9e13a64028c2d824561124f1f553b7cdacf6b4f3,[bug 872118] Add New Relic wsgi middleware to wsgi file.,Ricky Rosario,2013-05-14T20:03:27Z,rlr,rlr,17,17,0
+173,fjord,ccc730d9a3bba9499b051e0f2d950d08440dac40,"[bug 790045] Nix unneeded configuration
+
+The logging stuff already gets set up in funfactory/log_settings.py
+so we don't need to set it in base.py, too.",Will Kahn-Greene,2013-05-09T18:21:36Z,willkg,willkg,3,1,2
+174,fjord,2539797da28fb5056cb2f7fa6b1369e7c377fc7b,"[bug 801003] Add tests from Cheng's document
+
+This adds a few explicit tests from Cheng's document. Nothing wildly
+exciting here, though.",Will Kahn-Greene,2013-05-09T17:57:51Z,willkg,willkg,53,52,1
+175,fjord,57ff1e520593fa8c7a10918f6330f36747fc7dae,Update LICENSE,Will Kahn-Greene,2013-05-03T21:05:47Z,willkg,willkg,2,1,1
+176,fjord,68eef805fce3f962cb028d0e959e321501a2ff4a,Fix services view to not be localized,Will Kahn-Greene,2013-05-03T19:59:05Z,willkg,willkg,29,15,14
+177,fjord,87dcb660c2e061fe138450a4ad3921a10ae2541d,[bug 866827] Prevent site crawling,Will Kahn-Greene,2013-05-03T19:29:57Z,willkg,willkg,25,22,3
+178,fjord,7f6189facfeda32893e050ca1bf92d534208312e,Nix errant print statement,Will Kahn-Greene,2013-05-03T19:30:41Z,willkg,willkg,1,0,1
+179,fjord,1370ef321a286c2f08b2dea97ecfefa655b643ad,[bug 868403] Fix OverflowError in smart_int,Will Kahn-Greene,2013-05-03T18:17:04Z,willkg,willkg,5,4,1
+180,fjord,3b39732e755ef1b5ff487ae270b76a36093c7ac4,Add some more onboarding steps,Will Kahn-Greene,2013-04-29T13:17:23Z,willkg,willkg,8,7,1
+181,fjord,f0066eed57784f505050122faa2e589ee72677cc,Add onboarding docs,Will Kahn-Greene,2013-04-29T13:05:55Z,willkg,willkg,26,26,0
+182,fjord,92fc1b0d94c3090da48e2701ae9ceb9d2d17339f,[bug 858511] Add permalink and view for responses,Will Kahn-Greene,2013-04-13T13:11:33Z,willkg,willkg,112,108,4
+183,fjord,a0b752290b149d6e6505583f024905c7d819afdc,"[bug 862625] Add happy/sad redirects
+
+This adds redirects for handling /happy and /sad which are urls that
+are being used somewhere. As soon as those urls are fixed we can
+remove these redirects. This is covered in bug #862844.",Will Kahn-Greene,2013-04-17T15:50:01Z,willkg,willkg,31,30,1
+184,fjord,53680af8bb025f1bdf47d56de895a5ff77d6b42b,pep-8 pass,Will Kahn-Greene,2013-04-16T14:54:53Z,willkg,willkg,12,4,8
+185,fjord,673957d39aa6054f520ef642a6cbf5be78754a82,Fix typo,Will Kahn-Greene,2013-04-12T16:42:37Z,willkg,willkg,2,1,1
+186,fjord,c43655a03cf9cb7d76800faf88ea4395e68ade81,"Update maintenance section, fix parse issue
+
+* updates the ""add a new locale"" section to include examples and
+  full instructions--this should be pretty solid not
+* fix a parsing issue in the hacking howto
+* break up the index TOC into two sections for better findability",Will Kahn-Greene,2013-04-13T13:10:40Z,willkg,willkg,47,32,15
+187,fjord,f722cbeae25cc0dba1d9d070c5e7e8896db28162,"Update playdoh-lib
+
+This picks up:
+
+9327312 Update funfactory
+56ac66b Merge pull request #37 from dpoirier/update-django-multidb-router
+1bdbc40 Update django-multidb-router to ignore .pycs
+efa6125 Merge pull request #35 from gcapizzi/master
+3fab887 Upgrade commonware to 0.4.2
+578ce1c Merge pull request #34 from Pike/update-requests-1.1.0
+f23dc06 update requests to 1.1.0",Will Kahn-Greene,2013-04-11T18:47:17Z,willkg,willkg,2,1,1
+188,fjord,8186ae8c28ea435d2a66fd00884bd9ab0337aa37,"Nix jenkins usage of requirements/dev.txt file
+
+The file is horribly out of date. I'm not sure why Jenkins was using it.",Will Kahn-Greene,2013-04-12T14:35:51Z,willkg,willkg,1,0,1
+189,fjord,79b0e3946eb77fd12c27720fbe109f2e8dd203b6,"Nix unused files
+
+We don't use these requirements files and the funfactory requirements
+files they pull from are ridiculously out of date. So, best to nix
+them.",Will Kahn-Greene,2013-04-12T14:33:15Z,willkg,willkg,7,0,7
+190,fjord,132b9cfa827646aea0a976fb9d1f3094a3a1804e,"Add CONTRIBUTORS file
+
+I really thought we had one. Oops!",Will Kahn-Greene,2013-04-12T14:30:24Z,willkg,willkg,15,15,0
+191,fjord,3f925cd96d40372fd77a57b3e1fa8fe5210da200,"[bug 854022] feedback should have links for the data
+
+Add links for datestamp, platform and locale.",Joshua Smith,2013-04-09T22:58:42Z,Joshua Smith,Joshua Smith,15,10,5
+192,fjord,507d3acbe0b71b003177ec89b144c565b384406b,[bug 860754] Adding Malay (ms),Will Kahn-Greene,2013-04-11T15:23:56Z,willkg,willkg,15,8,7
+193,fjord,d48290870515f968ed00328fdcb004659dd7e5fa,Cosmetic documentation tweak.,Will Kahn-Greene,2013-04-10T16:10:09Z,willkg,willkg,5,2,3
+194,fjord,b82f0df4442b7466810cef9ee16c31cafaa9aca3,Fix browser check,Will Kahn-Greene,2013-04-10T15:05:58Z,willkg,willkg,6,5,1
+195,fjord,b9d824a6c84f24ecf0a8afc4a50bff1ba5ce07fb,"[bug 855671] Handle phony addon using FfA feedback
+
+Firefox for Android users could be using the phony addon which changes
+their user agent to something else. The problem being that our code
+would throw an exception because various fields in the feedback
+response table can't have nulls.
+
+This changes how we parse user agent strings so that instead of None
+we now use ""Unknown"".
+
+This lets Firefox for Android phony users to enter in feedback and
+we'll capture the phony user agent, keep the feedback and attribute
+it to ""Unknown"".",Will Kahn-Greene,2013-04-10T02:03:57Z,willkg,willkg,74,49,25
+196,fjord,117500974f922ae44d0d7360c5082d13f169778e,Update elasticsearch docs regarding the version to use,Will Kahn-Greene,2013-04-09T15:14:59Z,willkg,willkg,10,3,7
+197,fjord,f2dbad13978db49c040cd977753e890fcb1d0f6b,"Default ES_LIVE_INDEXING on local installs to False
+
+The hacking howto considers ElasticSearch advanced setup, so the
+local.py-dist should be start with ES_LIVE_INDEXING set to False.",Will Kahn-Greene,2013-04-09T15:01:22Z,willkg,willkg,9,7,2
+198,fjord,fc902a12708b4038afe26a6698db1175992b6f8d,"[bug 857416] Fix infinite redirect problem
+
+This sets DEV_LANGUAGES in local.py-dist because there are cases where
+it doesn't get set in funfactory.
+
+This also slims down locale.py-dist, updates the documentation, and
+clarifies how things are set up.",Will Kahn-Greene,2013-04-08T19:18:34Z,willkg,willkg,228,108,120
+199,fjord,32faec230038f4f91de7db3ee42b0ef5c4488363,Add convert_date_string helper,Will Kahn-Greene,2013-04-08T14:36:54Z,willkg,willkg,44,43,1
+200,fjord,394d2f52c35432020920463badcbc244464e2aa8,Give graph note more space on top,Will Kahn-Greene,2013-04-04T18:14:54Z,willkg,willkg,1,1,0
+201,fjord,625e85bd27957c779902f45a31c38534d3a7eb8c,"[bug 855588] Fix timezone labels
+
+Change the UTC title to PST since that's much closer to correct. (It's
+still wrong for PDT datetimes.)",Will Kahn-Greene,2013-04-04T17:19:26Z,willkg,willkg,5,4,1
+202,fjord,a1d08369f2ecad554ebbd88cb6eaa225835fbe38,"[bug 805012] Add note about timezone
+
+Add a note that all dates and times are in Pacific Time.",Will Kahn-Greene,2013-04-04T17:14:49Z,willkg,willkg,6,6,0
+203,fjord,ac1cb95225645992969a790a8cace05385e27eb3,Add link to GetInvolved page to docs,Will Kahn-Greene,2013-04-04T14:57:57Z,willkg,willkg,5,5,0
+204,fjord,541681c25a887746843a0dd4e426595eea529315,Add exciting note,Will Kahn-Greene,2013-04-04T12:52:07Z,willkg,willkg,8,8,0
+205,fjord,32077ddeccded7c9ba048c8cb9a21f9c00b292b4,Oops! Missed an important step,Will Kahn-Greene,2013-04-04T12:45:21Z,willkg,willkg,4,4,0
+206,fjord,28af34f52a3361946fcbfafed3903ffc8635e2f6,Add docs for adding locales,Will Kahn-Greene,2013-04-04T12:41:05Z,willkg,willkg,35,35,0
+207,fjord,39ab28080a592fd16cb32a2178d47071b2432c22,[bug #839014] Add Burmese to Input,Will Kahn-Greene,2013-04-03T21:57:42Z,willkg,willkg,1,1,0
+208,fjord,ee660b34795054d9c5bad785a3fb9deab2548a3f,"Remove update_product_details from deploy
+
+The way it's set up in playdoh, you have to update it by hand on the
+local machine, then check in the changes into git, then deploy that.
+If we call this in the deploy script, then it'll get all confused.",Will Kahn-Greene,2013-04-03T21:56:35Z,willkg,willkg,11,0,11
+209,fjord,6101050e34cc7161250f0d966805221e59feca96,Update product details.,Will Kahn-Greene,2013-04-03T21:55:58Z,willkg,willkg,32,16,16
+210,fjord,f273a645941e93dc7ae7ec7b0ec4e68c535e2b10,"Merge pull request #84 from bobsilverberg/docs
+
+Update hacking_howto.rst to add tip for MySQL error message and clarify CACHES setting",Will Kahn-Greene,2013-04-03T20:35:47Z,willkg,willkg,11,8,3
+211,fjord,b9a2ddfc32ae12e55646a36a84bea6c064ce5247,"[bug 856873] Never ever ever cache feedback view
+
+This marks the feedback view as never_cache. This should nix/reduce
+the csrf problems we were having where some HTTP responses were
+cached and didn't have an anoncsrf cookie.",Will Kahn-Greene,2013-04-03T18:54:37Z,willkg,willkg,4,4,0
+212,fjord,5a3d4b3f64ff75cd8ecb3d9dc32af02beafa051e,Address pull request comments,Bob Silverberg,2013-04-03T17:03:37Z,bobsilverberg,bobsilverberg,8,5,3
+213,fjord,0f08efd4d71924fd4f42f90f69bad00e4e0be063,"Cosmetic: Prettify the PROD_LANGUAGES list
+
+I didn't spend any time on this yesterday on account of needing to get
+stuff done quickly. But, this makes it sane.",Will Kahn-Greene,2013-04-03T12:52:01Z,willkg,willkg,48,44,4
+214,fjord,67abac162b13662f54a8a5546be40c1681feed29,Update acking_howto.rst to add tip for MySQL error message and clarify CACHES setting,Bob Silverberg,2013-04-03T02:58:05Z,bobsilverberg,bobsilverberg,9,6,3
+215,fjord,d2d4a919b1dcd1399cc064e6f87e778c5e345b61,"[bug 855672] Set PROD_LANGUAGES
+
+So. Many. LANGUAGES.
+
+Setting PROD_LANGUAGES to what DEV_LANGUAGES is on my machine which
+is calculated by funfactory based on the contents of the locales/
+directory.",Will Kahn-Greene,2013-04-02T21:21:38Z,willkg,willkg,6,6,0
+216,fjord,121278a5c171290c46f98f58c11fdc91dcacd938,"[bug 855672] Add update_product_details to deploy
+
+* adds update_product_details call to deploy--this is a stop-gap
+  measure until we have cron set up for input
+* nix /bin/ line in .gitignore",Will Kahn-Greene,2013-04-02T20:00:18Z,willkg,willkg,19,16,3
+217,fjord,9730722de89fa5852f3f0963a3381b68f7a3ef39,"[bug 855671] Fix Windows version parsing for Firefox 3.6
+
+Bug 855671 covers two problems with UserAgent parsing. This fixes
+one of them and adds a test for the second, but I wasn't able
+to reproduce the second, so I'm puzzled.",Will Kahn-Greene,2013-04-01T19:51:07Z,willkg,willkg,47,42,5
+218,fjord,5d44e71da2835ff9cdeb9fa21d0fcd8645c4365a,"Revert ""Nix helpful admin login requirement""
+
+This reverts commit 684dc38622d6cbe70879fb900ce5d73146a0cb40.
+
+We can put it back in because we're going to stick with LDAP basic
+auth.",Will Kahn-Greene,2013-03-29T00:47:22Z,willkg,willkg,2,2,0
+219,fjord,684dc38622d6cbe70879fb900ce5d73146a0cb40,"Nix helpful admin login requirement
+
+Pretty sure this is causing the redirect that's halting bug #853644.",Will Kahn-Greene,2013-03-28T17:30:12Z,willkg,willkg,2,0,2
+220,fjord,6e63defbde8a37fead5bb298b17f75998694f7ac,"Cosmetic change
+
+Changes ""Search"" to ""ElasticSearch"".",Will Kahn-Greene,2013-03-25T20:33:50Z,willkg,willkg,2,1,1
+221,fjord,0dc8ef7ba8265cac4ff03c541fee68e3fb63cd88,"Nix ES_INDEXING_TIMEOUT and es_indexing_es()
+
+The default timeout for making a connection is 5s. The indexing timeout
+was 30s. That's something I implemented a year ago in Kitsune when I
+didn't quite understand what was going on.
+
+We really don't need it and so it's better to just nix it for reduced
+complexity.",Will Kahn-Greene,2013-03-25T20:24:51Z,willkg,willkg,39,10,29
+222,fjord,7828d1d48c5f7faa72fcbb291f9727089d6bf157,Pyflakes fixes,Will Kahn-Greene,2013-03-20T21:08:57Z,willkg,willkg,5,3,2
+223,fjord,f93d3f935908a986cead38728d58e69b4bf6700f,"[bug 848960] Remove function view
+
+Nix a bunch of dead code. Pretty sure this is causing the deprecation
+warnings that Chris is seeing, too.",Will Kahn-Greene,2013-03-20T21:02:46Z,willkg,willkg,11,0,11
+224,fjord,d546c461334ead4cbef60e436a414c32b49b9c6b,"Merge pull request #78 from solarce/master
+
+removing schematic call",Brandon Burton,2013-03-19T23:54:50Z,solarce,solarce,1,0,1
+225,fjord,359f9f50730e9a22112ad387ccbbad1535e5daaa,"removing call to schematic, uses south",Brandon Burton,2013-03-19T23:45:58Z,solarce,solarce,1,0,1
+226,fjord,1681443c44c0194667231d22fbd16ab2f8ff4901,"Merge pull request #77 from solarce/master
+
+better defaults for commander_settings.py-dist, tweaks to update.py for staging",Mike Cooper,2013-03-19T22:06:07Z,mythmon,mythmon,30,17,13
+227,fjord,7a97049cffc9901b38373ac2ce9c651d736ad974,better defaults for commander_settings.py-dist and some tweaks to update.py to make it work in staging,Brandon Burton,2013-03-19T22:01:21Z,solarce,solarce,30,17,13
+228,fjord,88b2795f7e78c95d63f4c54c7c47641080e83f69,"Merge pull request #76 from solarce/master
+
+moving update logic into commander compatible script for use with chief",Will Kahn-Greene,2013-03-18T20:18:01Z,willkg,willkg,28,4,24
+229,fjord,fdedb6061b52092437f70c15a3b2e62ff96e5f77,removing deploy.py as it's unneeded,Brandon Burton,2013-03-18T19:51:02Z,solarce,solarce,139,0,139
+230,fjord,24784c1297fc05a05c5b7b9f871645c424d7dc89,moving update logic into commander compatible script for use with chief,Brandon Burton,2013-03-18T19:49:10Z,solarce,solarce,119,119,0
+231,fjord,2b06374a037fd0eb2644c19d53aef983b13d320f,[Bug 850921] Fix typo. s/keyboard/keyword/.,Mike Cooper,2013-03-14T00:06:57Z,mythmon,mythmon,2,1,1
+232,fjord,c27192a72c31e184919335d3b3cee48e9430abef,[bug 850460] Fix login-failure infinite vortex,Will Kahn-Greene,2013-03-12T22:54:21Z,willkg,willkg,2,1,1
+233,fjord,45504ea7a059d287dbb789ff59144d82183775b0,"Reorganize how routing deals with FfA.
+
+I didn't like the way this was originally implemented. It split routing
+logic into several functions, and it seemed inelegant to me. This change
+makes the special case of handling Firefox for Android's old feedback
+method relatively self contained in a separate view. Then it collapses
+all the routing logic back into a single function.
+
+To handle the CSRF problem, the routing view is now csrf_exempt, and
+each individual prodchan view is marked as csrf_project, except for
+FfA's specific view.
+
+This commit essentially removes the changes from commit
+70bfa7096fd64e6aea6f849d63878b1c8d6c6427 and rewrites them a in
+different way.",Mike Cooper,2013-03-04T23:01:22Z,mythmon,mythmon,79,46,33
+234,fjord,287598d39a8829327e6c23453062c515e7069779,Fix bug introduced in 905dca6,Will Kahn-Greene,2013-03-12T21:49:44Z,willkg,willkg,2,1,1
+235,fjord,01b952aa3d247db44b27e6065b721e02c5c61d8c,"Update README
+
+This will be very true very soon.",Will Kahn-Greene,2013-03-12T21:24:40Z,willkg,willkg,2,1,1
+236,fjord,905dca6c840d69c85498ed238aae2ff7032a95b6,"Test celery failure sends email
+
+Note: This explicitly adds a bug to the celery index_item_task so as
+to verify that deployments are working correctly on -dev and also
+that celery workers are set up correctly to send error email.",Will Kahn-Greene,2013-03-12T20:00:30Z,willkg,willkg,8,5,3
+237,fjord,02ab0ff671f17791c65b7c7fd2620c3c025ad080,Docs updates,Will Kahn-Greene,2013-03-12T19:12:17Z,willkg,willkg,155,95,60
+238,fjord,7a3a97a9fa55f74eb4f43e69baf535f106383e41,"[bug 848568] Direct non-firefox browsers to download page
+
+This is a stop-gap fix until we can figure out what we want to
+implement and have some time to do it.",Will Kahn-Greene,2013-03-08T23:02:08Z,willkg,willkg,118,117,1
+239,fjord,a2c87a157a5a340b84c22e435637618a4c2e1827,"Lock down services/* urls
+
+We only want these available to site admin or on non-prod servers.",Will Kahn-Greene,2013-03-08T20:54:19Z,willkg,willkg,27,19,8
+240,fjord,faff2cf23f6d41555772bcf66444f251f2852c1b,"Update django-statsd to 7af5cbf9
+
+Changes:
+
+7af5cbf Merge pull request #24 from crankycoder/vng/metlog_prefix
+bd9235e * added support to moz_metlog client to support the STATSD_PREFIX in django settings * forced the use of django < 1.5 f
+bb60197 bump version to 0.3.8.5
+f229781 Merge pull request #21 from youngbob/master
+f8d3860 Merge pull request #20 from ConsumerAffairs/master
+7f4ee09 Update url imports for Django 1.4+
+0b061de don't report 500 for Http404
+9ccb0f8 add in gauge support
+97f37ea Merge pull request #19 from youngbob/master
+ce8c1b8 Implement gauge. Alternate clients now inherit from the null client.
+940dab3 Merge pull request #18 from robhudson/formatting
+e269ef7 Cleaned up table formatting and padding
+d578cf1 bump version with the last two bug fixes
+fcf57a3 Merge pull request #17 from tominsam/master
+5dc7a6e self-closing divs aren't valid, and this one is trapping the global debug toolbar djDebugWindow view.
+fe2de5c Merge pull request #16 from glogiotatidis/master
+0934a1f Cope with non Tastypie URLs.
+43a8e95 cope with non tastypie urls
+163507a add in some tastypie middleware
+cca1a3d add in message about the client
+79d2534 add in a nose client",Will Kahn-Greene,2013-03-08T20:58:26Z,willkg,willkg,2,1,1
+241,fjord,d582e01f1b073a74cd35e078d5e5d27612011afa,"[bug 848960] Fix deprecated celery.decorator usage
+
+This should nix the warnings from celery about celery.decorators
+being deprecated.",Will Kahn-Greene,2013-03-08T19:44:46Z,willkg,willkg,2,1,1
+242,fjord,7a2b992e9a343c8ae86ad9fe3cd3a990ebcb565c,Fix admin to use Response.uncached,Will Kahn-Greene,2013-03-08T00:56:10Z,willkg,willkg,5,5,0
+243,fjord,9afec471883b6fe8d321c0b5f12aadc85828598f,"Add mobile login_failure page
+
+This isn't possible to get to because we don't have links to log in
+when on mobile. But ... when we do, then this will be important.
+
+Also adds tests.",Will Kahn-Greene,2013-03-07T23:55:19Z,willkg,willkg,52,41,11
+244,fjord,2bdb5b89491876161e144be28bbf1ff716d161d4,"Add missing about page
+
+It was stubbed out before. This implements it.
+
+I also implmeneted it for mobile, but the mobile templates don't have
+a footer, so there's no way to get there right now.",Will Kahn-Greene,2013-03-07T23:53:09Z,willkg,willkg,69,66,3
+245,fjord,9a02d410f957342fc1823027dafa8b3fdd4121a9,"Add samplesize option to generatedata
+
+* rework response model maker to have better defaults
+* rework sampledata so that there's less code, more variations, and
+  also supports ""give me a ton of data right now""
+* add a note to the hacking howto docs",Will Kahn-Greene,2013-03-07T18:51:26Z,willkg,willkg,176,139,37
+246,fjord,bb76914f25dd2f76d07346b51eccfd437e60c087,Change ES_HOSTS to ES_URLS in admin,Will Kahn-Greene,2013-03-07T20:50:46Z,willkg,willkg,2,1,1
+247,fjord,6015d72b03bdf1fdd212e69bcd4e553163ca203a,"Fix login
+
+If there's no index or ES is down, then you see the es_down page. That
+page has no histogram, so the dashboard.js code was erroring out which
+prevented the browserid stuff from setting up and thus you couldn't
+log in.
+
+This fixes that.",Will Kahn-Greene,2013-03-06T15:04:27Z,willkg,willkg,9,8,1
+248,fjord,416f03c3016c70aca4b6d4992c144df6040e6549,Switch django-eadred to v0.2 tag,Will Kahn-Greene,2013-03-06T00:02:41Z,willkg,willkg,2,1,1
+249,fjord,36b1f34ec9ac6bfe9d4b4449eb4323ad698265b2,"Nix fjord/locale/ directory
+
+This was from importing from playdoh, but I have no idea what
+it's doing here and we don't use it.",Will Kahn-Greene,2013-03-05T19:55:29Z,willkg,willkg,92,0,92
+250,fjord,7200d993c3193a26832a3890e8528bc9c94352c2,"[bug 926921] Show everything to folks with permission
+
+This adjusts the response details page to show all the details (except
+the email address) to people with ""clearance"".
+
+At some point, we should talk about what's ok to show everyone. It's
+possible all this information is fine to show everyone.",Will Kahn-Greene,2013-11-14T02:10:46Z,willkg,willkg,107,92,15
+251,fjord,ad4c92d0411391322475ba90aa5f62698b1de1cb,[bug 902032] Add total count to spam dupliactes report,Will Kahn-Greene,2013-11-13T18:00:55Z,willkg,willkg,7,7,0
+252,fjord,97cd90adcc9a48c5b5c962ea659aeb9b80892558,Fix dumb typo,Will Kahn-Greene,2013-11-13T16:19:05Z,willkg,willkg,2,1,1
+253,fjord,e74c91044cd61d5f6065d97f1cfd653684ceb00f,[bug 902032] Add summary to spam duplicate report,Will Kahn-Greene,2013-11-13T16:12:46Z,willkg,willkg,54,52,2
+254,fjord,3484fde6a005dd4137a008d72f790246bd644729,"[bug 902032] Add spam duplicates report
+
+This report shows the last n days of duplicate feedback.
+
+At some point, we might want to add buttons or something to delete-all
+and delete-all-but-one to aid in cleaning up the things gleaned from this
+report.",Will Kahn-Greene,2013-11-12T20:43:36Z,willkg,willkg,142,136,6
+255,fjord,6b895fa68364dd14ef2743ba489268177cf807d5,Cosmetic moving of code around,Will Kahn-Greene,2013-11-12T15:32:03Z,willkg,willkg,28,14,14
+256,fjord,649eeb92bf705a050ff1536e2fb720a64e734451,"[bug 902032] Disable form button
+
+This disables the form submit button when you submit your feedback",Will Kahn-Greene,2013-11-12T22:37:06Z,willkg,willkg,1,1,0
+257,fjord,2abca90f1035562b17218aeecaaf9a243ff2c01f,"[bug 936625] Add country to serializer
+
+This adds the country to the serializer so it gets captured by the API
+and stored in the db.
+
+This adds a test that wouldn't have found this problem, but is a good
+test to have anyhow since it makes sure all the pieces line up and that
+we're testing a ""maximal"" API call.",Will Kahn-Greene,2013-11-11T13:56:00Z,willkg,willkg,51,50,1
+258,fjord,d48e9c911d8023f0e6d4dd01ec1477dc1a0cf392,Tweak jenkins to run manage.py with python,Will Kahn-Greene,2013-11-07T21:17:19Z,willkg,willkg,4,2,2
+259,fjord,02794ef098f3bffbe9132b2432c3bb851f2be201,Fix jenkins to build static files,Will Kahn-Greene,2013-11-07T21:15:12Z,willkg,willkg,9,5,4
+260,fjord,9e5be1a70936ce206e9f99dd90e4f26b3a78616e,Add debugging print statment for jenkins,Will Kahn-Greene,2013-11-07T20:53:52Z,willkg,willkg,2,2,0
+261,fjord,cee3f1ab044f1c6ea279a70e7efd995bf8f1fe30,Add TEMPLATE_DEBUG=True to jenkins env,Will Kahn-Greene,2013-11-07T20:45:54Z,willkg,willkg,4,2,2
+262,fjord,445d8a975bfb799595808e11ef798b049a448b86,Another jenkins/test-harness tweak,Will Kahn-Greene,2013-11-07T20:34:26Z,willkg,willkg,2,1,1
+263,fjord,45e63dc890d7dca39452c3dfd6ead99a4fc739ba,"[bug 934721] Move privacy text up
+
+* move privacy text up to just under description textarea
+* remove some extraneous html containers
+* nix character counter--that was never implemented
+* tighten up some of the vertical whitespace",Will Kahn-Greene,2013-11-07T19:24:36Z,willkg,willkg,39,18,21
+264,fjord,ca11bd0202fc5baa5e9e4f01c139120627bec222,Move bits from jenkins script to test settings,Will Kahn-Greene,2013-11-07T19:08:52Z,willkg,willkg,7,4,3
+265,fjord,6cd116f45e487e4a6d0b62b9761cb5cf95a7f324,"Clean up test harness
+
+* ditch use of test_utils
+* tweak test harness to use the raw django test harness plus
+  cache clearing which we need to do because we're throttling
+* switch the ""silence south"" code to be a nose plugin (taken from
+  captain)
+* fix some tests to use the right TestCase",Will Kahn-Greene,2013-11-07T17:18:37Z,willkg,willkg,71,44,27
+266,fjord,5f28b87cc3ce272587e6c4670c38d8c650f97219,Attempt 2 to make tests stop failing,Will Kahn-Greene,2013-11-07T16:15:37Z,willkg,willkg,3,3,0
+267,fjord,41155f8a53677614786e59748f400f000153ecbf,Fix dumb typo in jenkins fix I just did,Will Kahn-Greene,2013-11-07T16:08:18Z,willkg,willkg,1,0,1
+268,fjord,04655bedceb02b70f398ba4b6c88dba748fa38ba,Add HMAC_KEYS to jenkins script,Will Kahn-Greene,2013-11-07T16:07:11Z,willkg,willkg,2,2,0
+269,fjord,7d7f93676f42616f522038133493d02b997ec8fb,"[bug 907872] Add analytics group and scaffolding
+
+* added contenttype, permission and group for analyzers
+* added dashboard pages for ""analyzers"" and ""spam"" with filler text
+* switch to Django nose test runner
+* rework dashboard template hierarchy
+* adds a 403 template
+* requires the analytics.can_view_dashboard permission to see the
+  analytics_dashboard and spam_dashboard views
+* switches to using ""first_name"" everywhere we greet someone
+* fixes the dashboard link so that /, /dashboard and /dashboard/
+  all work and go to the same place",Will Kahn-Greene,2013-11-06T16:28:20Z,willkg,willkg,363,334,29
+270,fjord,7a260af8a66ff783193be02786dbbfd7a8e6c53f,"[bug 929647] Fix throttling to use correct ip
+
+This fixes an egregious error I made where the ip address was being
+incorrectly pulled from REMOTE_ADDR but should be pulled from
+HTTP_X_CLUSTER_CLIENT_IP because our servers are behind a reverse proxy.",Will Kahn-Greene,2013-11-04T15:00:00Z,willkg,willkg,19,16,3
+271,fjord,c426735500c37792672ff9043c01957cfa0039ef,"[bug 929647] Add django-ratelimit and throttling
+
+This throttles the web form at 100/h. We can tweak that as we need to.
+
+Further, responses that are throttled go to the Thanks page with no
+indication they've been throttled. This is currently by design, but we
+may want to change this behavior later if it proves problematic.",Will Kahn-Greene,2013-10-29T21:29:33Z,willkg,willkg,48,48,0
+272,fjord,a230011371a5139e76be1563f2e712f82e69cce2,[bug 933068] Add Uruguay,Will Kahn-Greene,2013-10-31T03:01:24Z,willkg,willkg,1,1,0
+273,fjord,45ab721a87bb3c1ba31c145d43b4cd696bce6ae2,[bug 933068] Add Peru and Mexico,Will Kahn-Greene,2013-10-31T01:05:28Z,willkg,willkg,2,2,0
+274,fjord,167143d80ae28293ed5635b1faac0a39203a5864,[bug 754615] Add url as related link to Atom feed,Will Kahn-Greene,2013-10-28T15:37:35Z,willkg,willkg,47,43,4
+275,fjord,2d2566ee017a745ae8da0008aee8d2d131df4112,"[bug 918959] Strip that whitespace!
+
+This tweaks Response.save() to strip description whitespace before
+saving to the db. We can do this in other places, but given that all
+those other places feed in through here, it makes sense to do it here.
+
+This also includes a data migration to strip all the existing responses.",Will Kahn-Greene,2013-10-25T19:54:50Z,willkg,willkg,65,64,1
+276,fjord,015c82ac1a0881ad52247262c0c672b2104bd12f,"[bug 929664] Truncate description at 10000
+
+This truncates the description at 10,000 characters. I'm doing it in
+code-space rather than database-space because we're probably going to
+tweak the value a bit as time goes on and it's easier to do that in
+code.
+
+This includes a data migration to fix all the existing responses. In
+my db, this fixes 163 of them.",Will Kahn-Greene,2013-10-25T18:24:09Z,willkg,willkg,81,81,0
+277,fjord,a2a831410f8c305abeb3bb30bd2ccfa14a18eec6,"[bug 930109] Infer FxOS version from UA
+
+This adds some JS to infer the FxOS version from the UA in the Firefox
+OS form.",Will Kahn-Greene,2013-10-23T19:45:03Z,willkg,willkg,45,42,3
+278,fjord,bb21e76f0e112ba0f708a44ac325ad251e861e5d,"Update dennis to 0.3.9
+
+0.3.8 and 0.3.9 fix a couple of issues with false positivies. Might as
+well pull them in now.",Will Kahn-Greene,2013-10-23T13:18:54Z,willkg,willkg,2,1,1
+279,fjord,b27dde92d44bb83aadeaa23bc0a993e9f445acab,Add LG Fireweb,Will Kahn-Greene,2013-10-22T18:47:42Z,willkg,willkg,1,1,0
+280,fjord,7f4c026cd4587bf3ea3b82c61d2999d3efee12d4,"Removing vagrant stuff
+
+We don't use vagrant, so this is just clutter.",Will Kahn-Greene,2013-10-21T16:14:42Z,willkg,willkg,53,0,53
+281,fjord,9d156740ce6ac56d331b4661ad373273b19adc38,Nix superfluous SITE_URL,Will Kahn-Greene,2013-10-18T00:16:05Z,willkg,willkg,2,0,2
+282,fjord,64188852a0341bdf1bbabbf50cb3773efa650979,"Update django-browserid to master tip (post 0.9)
+
+This updates django-browserid to master tip which is after the 0.9
+release. This will fix some of the ImproperlyConfigured issues and some
+other problems we were having, too.",Will Kahn-Greene,2013-10-17T21:44:09Z,willkg,willkg,12,5,7
+283,fjord,2a29fb919efbe7a6fb9b2218c50314e51351849e,Update test_locales.sh to use dennis,Will Kahn-Greene,2013-10-16T14:06:47Z,willkg,willkg,374,2,372
+284,fjord,dd125813fceb54e31749a3e5426f3247711eeeb0,"Update dennis
+
+This updates dennis to a version that has django commands which allows
+us to ditch a bunch of code.",Will Kahn-Greene,2013-10-15T20:51:46Z,willkg,willkg,52,3,49
+285,fjord,d86475c313f78f8f300542581f12f8fb1cbfb416,"[bug #926892] Nix manufacturer from Firefox OS form
+
+This tweaks the code so that we no longer split the device name into
+manufacturer and device but instead stick the whole thing in the device
+column. This lines up with what the feedback form in settings in Firefox
+OS will do (bug #851189).",Will Kahn-Greene,2013-10-15T13:20:06Z,willkg,willkg,21,8,13
+286,fjord,d76e8e9a9af6e791c24c59a168bddaede9872db3,Tweak compile-mo to tell me what it's doing,Will Kahn-Greene,2013-10-14T18:27:24Z,willkg,willkg,1,1,0
+287,fjord,a4b0ba8655d61fde610bc74ef40f23a8f04eb9fe,"Tweak email verification
+
+If the email input value is just whitespace or empty, then we should let
+the form submit. This makes it a little more inline with the label which
+says ""(optional)"".",Will Kahn-Greene,2013-10-14T14:05:24Z,willkg,willkg,14,8,6
+288,fjord,c0a6add576935b0acd2be21995cf72d1f846177f,"[bug #913613] Fix to use .ajax instead of .post
+
+.post was sending the data urlencoded. .ajax sends it correctly.",Will Kahn-Greene,2013-10-11T22:28:33Z,willkg,willkg,35,19,16
+289,fjord,ed0fa8612ac9c8c46b644141edaa2ced31d38b47,"Wrap ""All dates and times..."" string in gettext call",Will Kahn-Greene,2013-10-11T22:12:17Z,willkg,willkg,2,1,1
+290,fjord,7026774eaadeb0e0e249b4955043f4a0a8d3e58b,"[bug 913613] Add wave 2 countries, fix ui
+
+The previous ui for choosing countries didn't scale well for lots of
+countries. So I switched it to a select box. I switched the devices
+chooser to a select box, too, figuring fewer kinds of ui inputs the
+better.
+
+This also adds wave 2 countries that have shown up in public
+announcements.",Will Kahn-Greene,2013-10-11T19:18:47Z,willkg,willkg,71,34,37
+291,fjord,16d6593748c3bfff66623bb8008cbc018ac5b119,jshint pass,Will Kahn-Greene,2013-10-11T19:37:58Z,willkg,willkg,10,5,5
+292,fjord,8ee8f24a58039d288ae82e0bd8ad57e4e1b337e0,"Fix country name l10n
+
+This uses gettext translations if they're available and degrades
+to product details if not.
+
+This way we can add new countries and the likelihood that the country
+name is translated already is very high.",Will Kahn-Greene,2013-10-10T17:21:56Z,willkg,willkg,104,81,23
+293,fjord,7ab05756169550f16f8381abd60cfb1650fbfe38,Nix a bunch of card transitions,Will Kahn-Greene,2013-10-01T14:42:04Z,willkg,willkg,9,5,4
+294,fjord,f67656e1318189e9e22c699235600afa451efce7,"Reduce header text lengths
+
+This will make it easier to add a Next button in the header in the future.",Will Kahn-Greene,2013-10-01T14:21:10Z,willkg,willkg,2,1,1
+295,fjord,a01ab31109ba0e6525a45488e121aec6e999b29f,"[bug 922412] Fix in-progress; add spinner
+
+This nixes most of the text on the in-progress card and adds a spinner.
+Users won't feel like they missed something if it goes sailing by. Plus
+it indicates it's ""doing something"" and no user action is required.",Will Kahn-Greene,2013-10-01T14:15:32Z,willkg,willkg,15,9,6
+296,fjord,3582f08c3f7d37500d61e2c85c49bbd43f641122,Fix form router for Firefox OS form,Will Kahn-Greene,2013-09-30T22:44:42Z,willkg,willkg,32,7,25
+297,fjord,deae208e344fc0c17f6f8e7747a576e4c55bfcfd,"[bug 913613] Implement new Firefox OS feedback form
+
+This form differs from the existing mobile feedback form in that it has
+two additional fields that are Firefox OS specific.
+
+This form submits data using the Input API.
+
+This requires some Selenium tests, but I'm landing it now so it can
+get a UX/UI pass. Once I get the ok, then I can upload strings for
+translation. Then I'll backgrack and work on Selenium tests to cover all
+the possible flows.",Will Kahn-Greene,2013-09-18T19:18:02Z,willkg,willkg,626,622,4
+298,fjord,dd42fe3ad6e2ba8f6a276b7035c2408e83cd4d0e,"Add SELENIUM_FIREFOX_PATH for sad-path environments
+
+I have Firefox Nightly earlier in my path than Firefox stable. Nightly
+has problems with Selenium that haven't been fixed, yet, (or something
+like that). This allows me to specify exactly which Firefox binary to
+use without having to fiddle with my PATH environment variable which
+caused other problems because of virtual environments and such.
+
+It defaults to exactly what happened before, so if it worked for you
+before, you should see no change with this change.",Will Kahn-Greene,2013-09-26T18:05:43Z,willkg,willkg,10,9,1
+299,fjord,17b810becded547d19297bbb8f42fdf13a829604,Update selenium from 2.33 to 2.35,Will Kahn-Greene,2013-09-26T18:03:07Z,willkg,willkg,593,444,149
+300,fjord,23e3921109747fe93985a61aead511b23186cb09,Add link to Input in Verbatim,Will Kahn-Greene,2013-09-26T11:45:01Z,willkg,willkg,7,4,3
+301,fjord,80f26103478a536b95a2d34f6df2c69970e1653f,Tweak bug template for l10n errors,Will Kahn-Greene,2013-09-24T13:08:35Z,willkg,willkg,9,5,4
+302,fjord,4e12fbe038d127e7686a3094ee474336b1d0106a,"Update dennis to 0.3.6
+
+This updates dennis to 0.3.6 which fixes some issues with malformed lint
+rule.",Will Kahn-Greene,2013-09-23T19:48:04Z,willkg,willkg,2,1,1
+303,fjord,752fb2b23fdebbfcc61f8d82bbed51fbf6b70b4c,[bug 917994] Handle Windows NT 6.3,Will Kahn-Greene,2013-09-18T20:10:00Z,willkg,willkg,59,59,0
+304,fjord,82591131e458d16b6514f57c98e1d5709f8fc96a,"[bug 917779] Give Firefox OS some space
+
+* change ""FirefoxOS"" to ""Firefox OS"" across the project
+* data migration to convert ""FirefoxOS"" to ""Firefox OS"" in platform
+  field
+* fix browser detection to not add .0 to end of Firefox OS versions
+* add tests for all Firefox OS user agents plus one non-sensical one
+* data migration to convert non-sensical Firefox OS versions to ''",Will Kahn-Greene,2013-09-18T14:48:24Z,willkg,willkg,228,203,25
+305,fjord,ff988bdae5a08ad7661c16a37aeb7e02edf5131f,"[bug 915695] Infer FxOS version from Gecko version
+
+This adds some code to infer the FxOS version from the Gecko
+version specified in the browser parts of the user agent. This
+isn't a perfect way to get the version--there's a bunch of data
+that doesn't have the right Gecko versions. However, it's
+probably accurate for certain Gecko versions.
+
+This includes a data migration that backfills the data.",Will Kahn-Greene,2013-09-17T22:12:37Z,willkg,willkg,156,148,8
+306,fjord,bd424032606de1931b21c94d174f5c15ae94662e,"Move settings.VALID_PRODUCTS to PRODUCTS in feedback
+
+This changes things so that valid options for the Input feedback
+web forms and API will all be located in fjord/feedback/config.py
+to make for easier maintenance.",Will Kahn-Greene,2013-09-17T15:40:24Z,willkg,willkg,23,11,12
+307,fjord,363e200b1e405e75cbbcaa416911bf7e78bd42cb,"Fix minor issues with empty string changes
+
+* fix the admin so I can filter things with '' values
+* data migration for the version column which I missed",Will Kahn-Greene,2013-09-16T14:59:07Z,willkg,willkg,67,66,1
+308,fjord,8a66f055e3db05facb1d3b3aed9600f756c4e07c,"[bug 916551] Update Django to 1.4.8
+
+* 32967d8 Merge pull request #46 from jgmize/update-django-1.4.8
+* 9f1cc0c Update to Django 1.4.8",Will Kahn-Greene,2013-09-16T13:37:36Z,willkg,willkg,2,1,1
+309,fjord,96afa742a6830dab55d4e0869aeae5a0020c5d3e,"[bug 905390] Restrict product choices in API
+
+This restricts the possible products in the API to a select few. We do
+this to reduce chaos in the data.",Will Kahn-Greene,2013-09-13T16:25:41Z,willkg,willkg,57,54,3
+310,fjord,b2453cc8e7e8827d5b11ad99a05f1c78905ecf9a,Fix test which allows typo to get through,Will Kahn-Greene,2013-09-13T15:03:13Z,willkg,willkg,2,1,1
+311,fjord,2a9a576d2a3695430c90b1c9643918a7642e41f7,Fix dumb typo,Will Kahn-Greene,2013-09-13T14:43:17Z,willkg,willkg,2,1,1
+312,fjord,c1986e9b954e0f8bb31784b9385a391dfa1f41c2,"Fix indexing to index """" values
+
+This redoes a bunch of janky code to be more correct and work with l10n.",Will Kahn-Greene,2013-09-13T01:15:15Z,willkg,willkg,127,76,51
+313,fjord,b5de28db354d0d92066383e22c46c316f2472d76,"[bug 905372] Change 'Unknown' to ''
+
+This reworks the data production side of Fjord so that it uses """"
+instead of ""Unknown"" when it can't infer things. This puts it in line
+with the API defaults which are """" and thus should make the data more
+consistent between data produced by the API and data produced by the web
+form.
+
+At this time, there are only 395 responses that have ""Unknown"" in them.
+The migration will fix those to """" and we'll use """" going forward.
+
+The wry twist is that """" is a lousy value for the ui, so for ui display
+purposes, we convert """" to ""Unknown"".",Will Kahn-Greene,2013-09-12T18:53:01Z,willkg,willkg,189,128,61
+314,fjord,acca4f002e86876884d3e1a4a86ce9bc7b0227dd,"[bug 914199] Update playdoh-lib.
+
+39be91e Merge pull request #45 from rlr/update-django-147
+8ffcea3 Update to Django 1.4.7
+5c9eeb8 Update funfactory r=mkelly",Ricky Rosario,2013-09-11T14:26:58Z,rlr,rlr,2,1,1
+315,fjord,38430ed3265240c5d83d9a2078b69c202f3ddad3,Clarify l10n deployment bits,Will Kahn-Greene,2013-08-21T19:21:34Z,willkg,willkg,24,21,3
+316,fjord,fa0ca73aabf7160131bec8e7c47a3d1c4e705a4c,"Tweak serializer save code to be more correct
+
+This switches the save code to be in save_object() rather than
+save() which is more correct in regards to how django-rest-framework
+expects you to do things.",Will Kahn-Greene,2013-08-15T13:58:06Z,willkg,willkg,15,8,7
+317,fjord,1c24ea2680f85a69e91cf4768332fdb3aaf5a61a,[bug 895675] Disable HTML view of api,Will Kahn-Greene,2013-08-14T20:41:45Z,willkg,willkg,5,4,1
+318,fjord,2076472efd1856446ab132e38a59367cb2b86fc8,"[bug 895675] Measure throttle failures
+
+If someone bumps into a throttle failure (i.e. they were throttled), then
+we want to incr statsd so we can measure how often it happens and thus
+become illuminated to problems.",Will Kahn-Greene,2013-07-26T13:47:29Z,willkg,willkg,11,10,1
+319,fjord,13aefedf238e94f5d95226f8dd120af437c0b03c,[bug 895675] Implement feedback posting api,Will Kahn-Greene,2013-07-24T20:27:21Z,willkg,willkg,448,446,2
+320,fjord,ef554c1a26a319917d20898edf2a27ef0cfdcc8b,[bug 895675] Add django-rest-framework,Will Kahn-Greene,2013-07-23T19:05:18Z,willkg,willkg,5,5,0
+321,fjord,3131ea87e642624dcf16d3231b8cb685ed81fd5b,"[bug 904732] Update to Django 1.4.6
+
+This updates playdoh-lib and picks up the Django update as well as a
+bunch of other stuff:
+
+91561d9 Update to Django 1.4.6  r=r1cky
+198b178 Merge pull request #42 from dpoirier/update-tower
+e8e6095 Update tower
+77d2cc7 Merge pull request #36 from jsocol/arecibo
+54be25a Merge pull request #40 from peterbe/upgrade-django-session-csrf
+963f25c upgrade django-session-csrf for safer keys
+ba468e6 upgrading django-session-csrf to avoid possible
+MemcachedKeyLengthError, r=Osmose
+d5db036 Drop django-arecibo.",Will Kahn-Greene,2013-08-13T23:15:39Z,willkg,willkg,2,1,1
+322,fjord,6b66d5a4dccee13d55267373ea3f11bec741d9c3,Add james.ini to .gitignore,Will Kahn-Greene,2013-08-13T23:14:38Z,willkg,willkg,1,1,0
+323,fjord,985887c487b890e44c780f754821269b8271bc26,"Update py-bcrypt version
+
+This has no effect in production since we use Persona for
+authentication.
+
+However, it does affect our test system since py-bcrypt (which is
+referenced in the funfactory compiled.txt file) is pegged at 0.2 and
+that's not available on pypi anymore.
+
+So updating it to fix our test system.",Will Kahn-Greene,2013-08-12T18:57:48Z,willkg,willkg,7,6,1
+324,fjord,ed6184f7c89a4f3ec52d801bf7482c36c4e87c5b,"Add second data migration to fix responses
+
+The 0008 data migration takes a long time to run. It missed a bunch
+of responses which I think were created after the sql query was
+run, so the ids weren't included in the batch.
+
+We could fix the 0008 data migration, go back and run it again, but
+it's way easier to just write a new data migration to patch the
+situation.",Will Kahn-Greene,2013-08-12T16:50:35Z,willkg,willkg,68,68,0
+325,fjord,377a0c0d6022f7974f68dcc4dbdc389e35b03da4,Update admin re: recent model changes,Will Kahn-Greene,2013-08-12T15:34:33Z,willkg,willkg,6,3,3
+326,fjord,24c3b4852573341104ce039656b714dd5a447c05,Add FirefoxOS to sampledata generator,Will Kahn-Greene,2013-08-06T20:59:22Z,willkg,willkg,3,3,0
+327,fjord,137069bb360cf1caf5e38bae08defbbff7aa641e,"[bug 898417] Add fields to Response
+
+* adds product, channel, version and translated_description to the
+  Response model
+* backfills the existing data with inferred values for these fields
+* updates indexing logic to use product field rather than inferring
+  the value from the platform field; ditto for version",Will Kahn-Greene,2013-08-03T13:07:57Z,willkg,willkg,336,295,41
+328,fjord,8c37c8a7a52abb1428b5550f26783f933c102336,Add blurb about translated strings errors,Will Kahn-Greene,2013-08-03T13:07:39Z,willkg,willkg,22,22,0
+329,fjord,f8e9a6ba2b440d8d67802d661379f46ece56e107,"Update dennis to 0.3.4
+
+0.3.4 includes a fix to the linter which results in fewer false positives
+when linting strings.",Will Kahn-Greene,2013-07-30T17:29:00Z,willkg,willkg,2,1,1
+330,fjord,bfd5b5112bbdc2aada757cde29ab3476caeff31a,"Fix sampledata generation to use bulk_create
+
+This makes generating large sample sets much faster.",Will Kahn-Greene,2013-07-30T16:00:27Z,willkg,willkg,37,29,8
+331,fjord,ef7163a18ee1cf11c1290f2a8832d8cf39fb552c,Adjust test_polint to be less stdout-spammy,Will Kahn-Greene,2013-07-29T17:09:24Z,willkg,willkg,2,1,1
+332,fjord,7acbc45c0b6262e10ef4b0f5baffe46c123bbbd0,"[bug 875313] Use compile-linted-mo.sh in update script
+
+This changes the update_locales part of the update script which we
+use for deployments to use compile-linted-mo.sh instead of compile-mo.sh.
+
+This will cause the deploy logs to contain a list of the files that
+were compiled and the ones that are BUSTED. For now, we'll have to check
+that for .po files that have errors that need to be fixed.",Will Kahn-Greene,2013-07-16T21:50:46Z,willkg,willkg,21,17,4
+333,fjord,033905c5d5e02f073155741cfbe1816a301d61e0,"[bug 875313] Add compile-linted-mo.sh script
+
+This uses polint to selectively compile .po files to .mo files iff
+they don't have egregious errors.",Will Kahn-Greene,2013-07-16T21:49:51Z,willkg,willkg,55,55,0
+334,fjord,d5d02b5b07c909bf733fc200a168a87593bb75ff,"[bug 875313] Add polint management command
+
+This adds a polint management command which uses dennis in the django
+project environment to lint .po files.",Will Kahn-Greene,2013-07-16T20:48:52Z,willkg,willkg,67,57,10
+335,fjord,db72b58abc000bb20a4215888c209379558132e9,"[bug 875313] add dennis and polib to vendor-local
+
+This adds dennis which is a utility for linting .po files. It requires
+polib.",Will Kahn-Greene,2013-07-16T20:37:35Z,willkg,willkg,10740,10738,2
+336,fjord,508d6044ca5bd41e50ed80f0b098dc008d51b992,Fix Xvfb target errors and case,Will Kahn-Greene,2013-07-25T20:59:45Z,willkg,willkg,10,5,5
+337,fjord,ae30ab607bd326e337463fe4a241411d4675c9b2,"[bug 897668] Add support for FirefoxOS product facet
+
+This moves the code to a product property on the Response model. It also
+adds support for determining whether the response is for the FirefoxOS
+product.",Will Kahn-Greene,2013-07-24T20:59:11Z,willkg,willkg,21,14,7
+338,fjord,8baaceb76704891ed4dd70e5668352e8ef2201fa,"Remove and readd South to correct place per docs
+
+Somehow we installed South into vendor-local in a different way than
+everything else. This fixes that.",Will Kahn-Greene,2013-07-15T21:16:57Z,willkg,willkg,468,234,234
+339,fjord,2937a647ba0242909eb783b814a15e86e03cb7af,"Update testing docs re: collectstatic and compress_assets
+
+LiveServerTestCase spins up a server with DEBUG=False so we need to
+run collectstatic and compress_assets commands before running tests.
+This clarifies that in the docs.
+
+Plus this fixes some other testing docs issues from when I copy
+and pasted it from Kitsune docs.",Will Kahn-Greene,2013-07-12T15:02:40Z,willkg,willkg,179,70,109
+340,fjord,894ca2c4df92a19726422ef299f43013a07d8d54,"[bug 891549] Document LiveServerTestCase tests
+
+I copy and pasted the docs from Kitsune. If they are right there, they're
+probably right here.",Will Kahn-Greene,2013-07-09T21:30:51Z,willkg,willkg,122,109,13
+341,fjord,ac5e9174087f3a59f433dee6c2374bbfb166c853,Use relative URLs for background images.,Ricky Rosario,2013-06-18T03:05:54Z,rlr,rlr,26,13,13
+342,fjord,b78b6b36a6881312cba09df9011f92bafa49cdb0,"[bug 883196] Use ""Helvetica Neue"" where available (Mac).",Ricky Rosario,2013-06-18T03:04:44Z,rlr,rlr,10,5,5
+343,fjord,04fb669e8b72c25bfeab2fe5c0afd52fef9f7eba,"[Bug 831128] Fix for overlong feedback strings mess with the layout
+
+Fixed the CSS in fjord/base/static/css/fjord.less for class opinion and p to
+include word-wrapping. This fixes that.",Rajul,2013-06-08T06:07:47Z,haathi,haathi,3,3,0
+344,fjord,357ec16cace33398e8bc68c57de28309ce0569e3,"[Bug 848467] Selenium set up and two tests.
+
+If selenium can't start the webdriver for some reason (for example,
+Firefox isn't installed because it is running on Jenkins) then the test
+will be skipped.",Mike Cooper,2013-06-04T17:16:33Z,mythmon,mythmon,66,65,1
+345,fjord,a1e44e74475daa7b12ddca1d32bafe0996075fbd,"Add Selenium.
+
+This is a pip install because a git clone was going to be over a
+gigabyte worth of stuff. Not acceptable.",Mike Cooper,2013-06-03T22:13:06Z,mythmon,mythmon,8889,8889,0
+346,fjord,c6d663b6858d50731874ca656e567c1e7ea5b885,"[bug 879738] Fix description cleaning
+
+The description field of responses should require more than just
+whitespace. This fixes that.",Will Kahn-Greene,2013-06-05T13:00:20Z,willkg,willkg,28,25,3
+347,fjord,01e47d1fb781f19453cf3787b02ac48021a366cb,"[bug 879644] Fix page in new query
+
+When doing a new keyword query, we should go back to page 1.",Will Kahn-Greene,2013-06-05T13:12:29Z,willkg,willkg,2,1,1
+348,fjord,5653e90bfee818c250a997d2e9592baf74299399,"Nix long language names
+
+This is kind of hacky. What's going on is that the locale field is 8
+characters max and these three (one of which isn't valid anyhow)
+languages exceed 8 characters. One isn't valid. The other two I've
+never seen before. So... I'm just going to remove them for now.",Will Kahn-Greene,2013-06-05T13:09:04Z,willkg,willkg,3,0,3
+349,fjord,e2c780fca35197ba3564ba4490a452e7cf034340,"Nix the DEV_LANGUAGES thing
+
+It's annoying as all hell to have DEV_LANGUAGES and PROD_LANGUAGES where
+one is generated and the other is set in stone and you see different
+things depending on whether you're in a dev environment or not. It
+essentially means you could be donig some work, all tests pass, you
+push it to master and then it dies on stage or prod because those
+are different.
+
+This nixes that and reduces the amount of misery in our lives.
+Now there is only PROD_LANGUAGES.",Will Kahn-Greene,2013-06-04T18:21:03Z,willkg,willkg,26,3,23

@@ -1,0 +1,409 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,audisp-json,ac958223cf9d7f76508aad93b978c75cc6d8f6ff,Add tips on how to configure auditd for prod servers,Guillaume Destuynder,2014-02-28T19:02:05Z,gdestuynder,gdestuynder,21,21,0
+1,audisp-json,a785e5b5ef803393a1d02c084e4e217d031e62d9,Remove evil additional tabs for readability,Guillaume Destuynder,2014-02-27T06:52:04Z,Guillaume Destuynder,Guillaume Destuynder,4,2,2
+2,audisp-json,babe74d2cc99fbb8a9f3d8c8f288fde8ed9ac079,"Change dep for debian from libaudit0 to auditd:
+since diff deb-based distros use libaudit0 or libaudit1 it makes it
+easier to install (single package for all) even thus technically, this
+plugin really depends on libaudit",Guillaume Destuynder,2014-02-26T21:34:09Z,gdestuynder,gdestuynder,2,1,1
+3,audisp-json,128b3f74e131398293f4b060e3c94d9a8dff51ee,Bump version to 1.3,Guillaume Destuynder,2014-02-18T22:42:51Z,gdestuynder,gdestuynder,2,1,1
+4,audisp-json,8be3a6d7162e9009def5deca07ae345a03bf3f15,"fix leak with attributes, always make sure the list if deleted
+use alloca where applicable for niceness ;-)",Guillaume Destuynder,2014-02-18T22:41:21Z,gdestuynder,gdestuynder,37,25,12
+5,audisp-json,f7c007f104efd46e6ded60429452782accab82e7,Bump version,Guillaume Destuynder,2014-02-18T19:46:28Z,gdestuynder,gdestuynder,2,1,1
+6,audisp-json,a21364e9e659788e14769f832ae03778c31014e3,Fix *erm* memleak in get_username,Guillaume Destuynder,2014-02-18T19:18:02Z,gdestuynder,gdestuynder,14,10,4
+7,audisp-json,039555b8053d955354a52674f01db25d4c327d7a,add fpm version support (starting at 1.1),Guillaume Destuynder,2014-02-12T00:48:06Z,gdestuynder,gdestuynder,6,4,2
+8,audisp-json,d68d2f16ca4c4ad3b2898ba8d2c60e0e38908cef,"set duser and duid for the original user, easier to figure out on the
+as-manager side",Guillaume Destuynder,2014-02-12T00:40:08Z,gdestuynder,gdestuynder,8,2,6
+9,audisp-json,4dbd21cd06f29f3f1bff55e28eca96ff3f47bbe2,Only make on modified file ;-),Guillaume Destuynder,2014-02-12T00:39:53Z,gdestuynder,gdestuynder,4,2,2
+10,audisp-json,065437fb2232a07de1d5221693a118a04e42bc58,"Fix spacing issue when strings are cut
+""Fix"" horrible string len calculation",Guillaume Destuynder,2014-02-11T23:50:32Z,gdestuynder,gdestuynder,63,38,25
+11,audisp-json,a0489f03309b0efb402c7aa092111215e719d0cd,ensure uid gets written in the msg (not overwritten by suid),Guillaume Destuynder,2014-02-08T02:45:36Z,gdestuynder,gdestuynder,2,1,1
+12,audisp-json,d3451d907f42065c2ae529bd46b588bc3790fb60,"Fix bug in handling getpwuid_r
+it does not set the pwd struct to null when no match is found",Guillaume Destuynder,2014-02-08T02:43:47Z,gdestuynder,gdestuynder,5,4,1
+13,audisp-json,1f48ade833372fde1d6c791b30660dfaf772573c,fixes for rpm/deb build,Guillaume Destuynder,2014-01-16T01:18:26Z,gdestuynder,gdestuynder,12,7,5
+14,audisp-json,44e28046cca22708bb35a1e317a2808048342791,Correct debian dependencies,Guillaume Destuynder,2014-01-16T00:54:48Z,gdestuynder,gdestuynder,2,1,1
+15,audisp-json,6e12ee45db6b42e1d2309a653e9b7cc138467ce2,"Support automatic build for RPM, DEB via FPM",Guillaume Destuynder,2014-01-16T00:44:11Z,gdestuynder,gdestuynder,49,45,4
+16,audisp-json,d5f323a046b64d519ef41af45cff0c76a406f776,Initial commit - ported from github.com/gdestuynder/audit-cef,Guillaume Destuynder,2014-01-15T19:43:06Z,gdestuynder,gdestuynder,943,943,0
+17,audisp-json,9710a7773418d0e45196ca5a138ced0dd7d218c9,Re-introduce ppid (parent process id) in order to be able to recreate the exact process tree from logs,Guillaume Destuynder,2016-02-12T22:07:47Z,gdestuynder,gdestuynder,2,2,0
+18,audisp-json,60a1a4f4cfa42a2b486a1297cd8bf6eef0eb0352,Bump 2.1.0,Guillaume Destuynder,2015-12-17T14:30:49Z,gdestuynder,gdestuynder,2,1,1
+19,audisp-json,b5d608202771256a83d678aabb27899b7920f78c,manage queue list size (drop when max reached) and check queue every audispd=>audisp-json read,Guillaume Destuynder,2015-12-17T04:48:30Z,gdestuynder,gdestuynder,10,10,0
+20,audisp-json,fad2329ab882082fbae09ec7f3857c161392dad8,"Send debug logs to the debug facility, not info ;-)",Guillaume Destuynder,2015-12-17T03:22:34Z,gdestuynder,gdestuynder,2,1,1
+21,audisp-json,b4640e2f0427cc17c919581e859c7870a430e189,Replace ring function by linked-list to avoid unnecessary msg loss (different trade-off),Guillaume Destuynder,2015-12-15T19:39:53Z,gdestuynder,gdestuynder,116,39,77
+22,audisp-json,cb9445de28e53640f601c6a8ddf66988797977bf,Add phony for clean target,Guillaume Destuynder,2015-12-15T19:38:39Z,gdestuynder,gdestuynder,2,2,0
+23,audisp-json,dce871650bdb24c524e6a56ee2e1e23350be2305,Change some fixed-len to dynamic or #defined len for clarity,Guillaume Destuynder,2015-08-07T22:00:15Z,gdestuynder,gdestuynder,13,8,5
+24,audisp-json,1def633399f2b9d8df0307242ab86fd9f4ad1c55,"While msg can never be bigger  than MAX_AUDIT_MESSAGE_LEN (8970) due to the code flow - reusing the MAX_JSON_MSG_SIZE
+(4096) for message arguments is not exacly nice neither it is accurate. (and could be security relevant if the code change).
+Ensuring whole message is always smaller than MAX_JSON_MSG_SIZE instead.",Guillaume Destuynder,2015-06-27T00:52:52Z,gdestuynder,gdestuynder,4,2,2
+25,audisp-json,a9320a10bc982cf82bf780922b883d1ce0690113,Fix size of cmp len checks. Works otherwise but not very nice.,Guillaume Destuynder,2015-06-18T20:03:36Z,gdestuynder,gdestuynder,4,2,2
+26,audisp-json,b05bf088442d5723ee87d63041400fd7a510aeed,More error checking (https://github.com/gdestuynder/audisp-json/pull/5/files),Guillaume Destuynder,2015-06-18T19:32:32Z,gdestuynder,gdestuynder,13,10,3
+27,audisp-json,8429edb2d12fe5021ace416401635618fc09b646,Warn on message lost if the ring buffer is overflown,Guillaume Destuynder,2015-06-09T21:44:36Z,gdestuynder,gdestuynder,2,2,0
+28,audisp-json,ebeb8605dd1d7292dd10c4d90e22cfb170eed887,"Bugfix: while we support keep-alive, lets not yell about it if it works (100-continue) or for any other informational
+HTTP message for that matter (we still care about non-200 success msgs)",Guillaume Destuynder,2015-06-09T21:37:24Z,gdestuynder,gdestuynder,2,1,1
+29,audisp-json,d054df6fb3c52741b65e6be83a61bdc93048afba,"Fix reorder_hack to be enabl-able on the cli,
+Bugfix/typo properly reset start ;)",Guillaume Destuynder,2015-06-08T16:07:52Z,gdestuynder,gdestuynder,6,3,3
+30,audisp-json,f14839127e69e157fa0441465d85e9853e34d038,"Bump to version 2.0.0 to avoid versionning confusing (1.9 > 1.14)
+Some more documentation in the readme",Guillaume Destuynder,2015-06-06T01:54:23Z,gdestuynder,gdestuynder,13,12,1
+31,audisp-json,96959df0a735fc13ad5faafe2c72fa5405e7d0a1,bump 1.14,Guillaume Destuynder,2015-06-06T01:49:36Z,gdestuynder,gdestuynder,2,1,1
+32,audisp-json,90949fd2e50d2130638bca9f12efb8afefc803a3,"Change processing logic for efficiency and compat
+- Re-enter select() loop as often as necessary
+- No longer run a certain amount of times, this does not work the same way with all versions of libcurl
+- Bugfix uninitialized returned value from get_username (doh...)
+- Correct ring buffer handling not to overflow the buffer (doh...)
+- A little bit of tidying",Guillaume Destuynder,2015-06-06T01:42:41Z,gdestuynder,gdestuynder,203,110,93
+33,audisp-json,48973b9d949a2a031a36e963ffc7db25dd8c6541,Version bump 1.13,Guillaume Destuynder,2015-06-04T00:03:24Z,gdestuynder,gdestuynder,2,1,1
+34,audisp-json,a425468ad1bb08b517b2b6fe695332701221efd5,"Always consume all msgs when program end even if ring buffer is empty (bugfix)
+Only give curl one chance to set a timeout (2 perform runs) - this may be tweaked further to statically define the
+timeout instead of limiting attempts in the future",Guillaume Destuynder,2015-06-04T00:01:50Z,gdestuynder,gdestuynder,7,6,1
+35,audisp-json,59dbda0731121c0cd129c99cff4a53fa781bde0b,Bump 1.12,Guillaume Destuynder,2015-06-03T23:50:54Z,gdestuynder,gdestuynder,2,1,1
+36,audisp-json,1aca90640b125d9ee7f189d90de777e6812943f2,"Support for max_curl_runs - ensure we exit the select/perform loop sufficiently quickly without affecting CURL global
+timeout (of 5s)
+If messages are still in the queue, the last perform cleanup will attempt to send them all.",Guillaume Destuynder,2015-06-03T23:44:27Z,gdestuynder,gdestuynder,25,19,6
+37,audisp-json,fa7cc178d3322d51669b1620760fbd9a4bea7bcc,"Code cleanups, -Wall debug support",Guillaume Destuynder,2015-06-03T23:07:44Z,gdestuynder,gdestuynder,13,5,8
+38,audisp-json,b99f16bfcf453d3b34f441b9408e41d4d70470d5,Bump to 1.11,Guillaume Destuynder,2015-06-03T22:48:35Z,gdestuynder,gdestuynder,2,1,1
+39,audisp-json,8c231a0964d389c5dbdb685036217ab1f3f21261,Allow to force program termination on double keyboard interrupt (nicer to the user/debugger),Guillaume Destuynder,2015-06-03T22:47:58Z,gdestuynder,gdestuynder,5,5,0
+40,audisp-json,2cfafb1f70133b87d386f3326c11e8b4d8e7e2ce,"Handle sig_int, properly call handlers
+Handlers values wouldn't be actually handled as it was since you'd have to wait for fgets loops to complete/fail. Now calling handlers
+within the loop.",Guillaume Destuynder,2015-06-03T22:40:47Z,gdestuynder,gdestuynder,16,13,3
+41,audisp-json,51ffa8973f2f8e1c34f97fe9652358051ae05537,Fix conflicting scope of signal variables,Guillaume Destuynder,2015-06-03T22:26:50Z,gdestuynder,gdestuynder,18,9,9
+42,audisp-json,c3fe24849e75a3f4cb0f5a99efd80b69c3cd0a08,Add support for config.curl_filelog - a file path to write curl errors (default is stderr which is hard to capture),Guillaume Destuynder,2015-06-03T21:51:34Z,gdestuynder,gdestuynder,32,30,2
+43,audisp-json,05a5cae797a2e69184eaa1704179792aa06b8253,"Don't default to debug 0, default to no debug so that user can set it on the CLI.",Guillaume Destuynder,2015-06-03T21:51:11Z,gdestuynder,gdestuynder,2,1,1
+44,audisp-json,a711d70eaf5a96ba6af1dc074a034e0459adfe08,bump version 1.10,Guillaume Destuynder,2015-05-01T17:49:38Z,gdestuynder,gdestuynder,2,1,1
+45,audisp-json,e4cb43029e62b70c5b727a1e0095990b08b5b1f0,"Add support for logging adjtime as JSON msg, fixes issue https://github.com/gdestuynder/audisp-json/issues/3",Guillaume Destuynder,2015-05-01T17:49:00Z,gdestuynder,gdestuynder,10,9,1
+46,audisp-json,6daf465b2f2bd32a3da2776ab992b675f329eed4,Bump to version 1.9,Guillaume Destuynder,2015-04-29T22:58:02Z,gdestuynder,gdestuynder,2,1,1
+47,audisp-json,88114d7c4f9c27cc7b8a4a4406c6ce3ca8f37509,Merge branch 'master' of github.com:gdestuynder/audisp-json,Guillaume Destuynder,2015-04-29T22:57:41Z,gdestuynder,gdestuynder,7,7,0
+48,audisp-json,d574fdf42c8c2e551ff6c11309f95c8a0e3eb16c,"Change MAX_ATTR_SIZE to MAX_AUDIT_MESSAGE_LENGTH
+
+While not exactly accurate and bigger than needed, this ensure there is always enough space under normal operating
+conditions (calculating attr size is hard because it depends on all other attributes in the string)
+
+Alternative would be to chop the string first,then add quoting, which is nicer, but also slower.",Guillaume Destuynder,2015-04-29T22:55:53Z,gdestuynder,gdestuynder,2,1,1
+49,audisp-json,27fcf1a157226f07a3866bb72f55d98885f1b2aa,"Merge pull request #2 from bhourigan/master
+
+Updating README.rst to be consistent with build instructions outlined in...",Guillaume Destuynder,2015-04-07T19:36:25Z,Guillaume Destuynder,Guillaume Destuynder,7,7,0
+50,audisp-json,385c59e024cbeb08a8da966fde898e71877f6fa9,Updating README.rst to be consistent with build instructions outlined in https://bugzilla.mozilla.org/show_bug.cgi?id=1112233,Brian Hourigan,2015-04-07T19:32:19Z,bhourigan,bhourigan,7,7,0
+51,audisp-json,8159b0c98a1cdf6fb26c1b3f365c0c04c3a82fac,Bump version 1.8,Guillaume Destuynder,2015-04-07T18:25:52Z,gdestuynder,gdestuynder,2,1,1
+52,audisp-json,1f7018f58a90e0ae2d429b24cbbeb805c41b6f70,Merge branch 'master' of github.com:gdestuynder/audisp-json,Guillaume Destuynder,2015-02-06T19:11:52Z,gdestuynder,gdestuynder,23,5,18
+53,audisp-json,ec26a9d5f43cd43da89f429f0ed85b2b3c482be7,Ported config load fix from https://github.com/gdestuynder/audisp-cef/commit/2acd2bb21a50a99adbefb0b527033dd71bf496da,Guillaume Destuynder,2015-02-06T19:11:31Z,gdestuynder,gdestuynder,8,4,4
+54,audisp-json,cc8a47239697eaf5143608f4ca9a4ba6ff42dad5,"Update README.rst
+
+Cleanup old doc",Guillaume Destuynder,2015-01-28T01:20:54Z,Guillaume Destuynder,Guillaume Destuynder,8,2,6
+55,audisp-json,048b37c6df3bc5e0ec050fcf5a4d94ed48294bec,"Update README.rst
+
+Update config examples to match how audisp-json works.",Guillaume Destuynder,2015-01-28T01:18:54Z,Guillaume Destuynder,Guillaume Destuynder,15,3,12
+56,audisp-json,0ffe7b8b7a65b5b38cbee5ad4854b2832ac55d57,Check if we need to re-call curl_multi_perform immediately (curl 7.2+),Guillaume Destuynder,2015-01-16T17:59:29Z,gdestuynder,gdestuynder,4,3,1
+57,audisp-json,19d7f2f9a753ed3cc5c4f1a8e25e76cc0c5c4dc8,Bump version 1.7,Guillaume Destuynder,2015-01-14T10:50:05Z,gdestuynder,gdestuynder,2,1,1
+58,audisp-json,addb0043fc4ae21701db21173741e9a3c2cb8142,"Fix matching (null) string.
+
+I don't even know how this happened. Uff.",Guillaume Destuynder,2015-01-14T10:48:37Z,gdestuynder,gdestuynder,2,1,1
+59,audisp-json,0a61a015356e84af540334eec66cd3cd7502900f,Support for ANOM_PROMISCUOUS (interface going in/out of promicuous mode) message type,Guillaume Destuynder,2015-01-13T23:45:10Z,gdestuynder,gdestuynder,53,52,1
+60,audisp-json,8298f4c1fa1d161778ecf9c434a73ffd68a1a9d9,Update doc on message format to correspond to the code.,Guillaume Destuynder,2015-01-05T16:10:25Z,gdestuynder,gdestuynder,41,24,17
+61,audisp-json,9d8d64cab87332cbc0b4bfeb50c663df9af50187,"Support passing options to fpm via FPMOPTS
+
+e.g: make rpm FPMOPTS=""--replaces audisp-cef""",Guillaume Destuynder,2014-12-19T14:33:15Z,gdestuynder,gdestuynder,11,7,4
+62,audisp-json,897c144f60f71984c5b9beb76bdd0516d67135b3,"Ignore execve syscalls with no EXECVE message, v1.6
+
+Also fixes a comment typo
+Also enhance the reordering hack to attempt to output single messages
+Also disables reordering by default
+and finally, enable ignoring these execve syscalls with no EXECVE message by default.
+
+See source code for more information on why this is done.
+
+compilation:
+make REORDER_HACK=1 (for the reorder hack..)
+make IGNORE_EMPTY_EXECVE_COMMAND=0 (to disable empty execves, you'll have an empty summary field in the json message for
+these)",Guillaume Destuynder,2014-12-19T13:57:15Z,gdestuynder,gdestuynder,54,48,6
+63,audisp-json,93b646314c4c05cb3ebd0bcdad77c2ebc20a2158,"Added buffering to REORDER_HACK and various string, alloc, etc checks
+Also fixed reorder logic and a few comments",Guillaume Destuynder,2014-12-18T19:09:51Z,gdestuynder,gdestuynder,132,108,24
+64,audisp-json,85b4a2e36bc1027e4171c6dc94ec01a074120102,use mirror ring buffer,Guillaume Destuynder,2014-12-17T14:33:31Z,gdestuynder,gdestuynder,30,14,16
+65,audisp-json,d94cdc3d38a5d1afce764870e810c1eaf9df497d,clarify a bit attribute management,Guillaume Destuynder,2014-12-17T12:49:07Z,gdestuynder,gdestuynder,8,4,4
+66,audisp-json,b21ef1bf0d18db5b0a5f7f8ab1c2320812471d9f,dont shorten values ;),Guillaume Destuynder,2014-12-17T11:49:41Z,gdestuynder,gdestuynder,2,1,1
+67,audisp-json,cd4b97d336a7ed9801d47c6d797734c7cd1787b2,"support DEBUG=1 (symbols) and DEBUG=2 (symbols + json output)
+fix REORDER_HACK so that you can actually turn it off ;)",Guillaume Destuynder,2014-12-17T11:16:42Z,gdestuynder,gdestuynder,9,7,2
+68,audisp-json,9e6eeac3308980c1e4c171e7e5cad9d8ba507170,"Added REORDER_HACK hack. Removed unused strstok function.
+REORDER_HACK reorder the messages so that they come in sequential order.
+This allows libaudit to properly correlate the event id and create a complete event.
+Without the hack, the event would have empty attributes/fields.
+
+Note that when this is fixed in libaudit the hack should be disabled as it's neither nice, neither fast.
+You can disable it at compile time with `make REORDER_HACK=0'",Guillaume Destuynder,2014-12-13T11:51:49Z,gdestuynder,gdestuynder,101,89,12
+69,audisp-json,af8dbfeffc61449ccde2a925575254ac287716fc,fix debian package dependency names for libcurl,Guillaume Destuynder,2014-12-12T15:50:39Z,gdestuynder,gdestuynder,4,2,2
+70,audisp-json,e17a55631f761dcf32989f15ce2386eafb55acbd,"Change curl processing logic - avoids null posts
+
+This ensures that curl only process handles that exist. There was a wrong assumption that curl_nr_h was keeping a
+consistent state, including when it's passed to curl. It's in fact only returning the current state.
+Note that I don't think this specified, hence the confusion.",Guillaume Destuynder,2014-11-22T01:38:50Z,gdestuynder,gdestuynder,45,12,33
+71,audisp-json,e85eb5c8623b6d9414cc85ce287004fb442c83bb,Indent fix,Guillaume Destuynder,2014-11-22T01:20:45Z,gdestuynder,gdestuynder,2,1,1
+72,audisp-json,2a65b5666dc9705eaa1d1431bcab48d6516709c1,"Copy postfields in curl, don't race on free.",Guillaume Destuynder,2014-11-22T00:45:09Z,gdestuynder,gdestuynder,6,2,4
+73,audisp-json,9d8ee1bc94cad4d962104158c2fe9d1f775fcf8f,"Also remove keys and values if message == ""(null)""
+i.e. if the conversion to string has already happened and the string is not NULL anymore (but a string that says so)
+Actually fixes issue 1 :)",Guillaume Destuynder,2014-11-21T23:09:06Z,gdestuynder,gdestuynder,2,1,1
+74,audisp-json,e807c9499e955b96bad7552dc2e10e88d82e006b,Fixes issue 1: do not add fields when value is NULL,Guillaume Destuynder,2014-11-21T22:56:40Z,gdestuynder,gdestuynder,10,6,4
+75,audisp-json,2128e21744470492f2d2799519e4835c9b72d00b,documentation for curl_cainfo option,Guillaume Destuynder,2014-11-01T03:59:26Z,gdestuynder,gdestuynder,1,1,0
+76,audisp-json,742fbbb50a4571ca7fd212d4009a7c6c492ffd3b,"Support for setting cainfo (ie a particular ca to trust)
+Some cleanup",Guillaume Destuynder,2014-11-01T03:57:17Z,gdestuynder,gdestuynder,32,24,8
+77,audisp-json,19e432a6c53c9cce4f8ec7c46139ab70b0bab989,separate libcurl and http code error in case libcurl fails first,Guillaume Destuynder,2014-11-01T03:49:44Z,gdestuynder,gdestuynder,9,7,2
+78,audisp-json,03f1f82b3778ade6605c089696969be0162558e7,"added all invalid json string cases from
+https://bitbucket.org/zserge/jsmn/",Guillaume Destuynder,2014-10-24T21:17:15Z,gdestuynder,gdestuynder,3,2,1
+79,audisp-json,dcb234bb96d848f10346ff6fe44cd858f965f5ee,"unescape json summary
+unescape also now removes LF and CR as that's not valid JSON",Guillaume Destuynder,2014-10-24T21:05:02Z,gdestuynder,gdestuynder,16,9,7
+80,audisp-json,7769555303ae311450784243361598402921e2f9,"Reorganize setting category/summary so that we can always pick what we want as summary regardless of the order of
+messages",Guillaume Destuynder,2014-10-24T06:20:17Z,gdestuynder,gdestuynder,99,66,33
+81,audisp-json,1f02cd150360af3cedd346b5438cef069bad69ac,Set details.summary in AUDIT_EXECVE so that the summary is able to reflect the full command,Guillaume Destuynder,2014-10-24T05:54:44Z,gdestuynder,gdestuynder,12,7,5
+82,audisp-json,837c00a628a22657212ac2bd486f6d41c4ff0774,Support more write-like and chown-like syscalls,Guillaume Destuynder,2014-10-24T05:48:00Z,gdestuynder,gdestuynder,5,3,2
+83,audisp-json,e14f0b4c1bc46326d40c0d033afd63faef6df9cf,"Ensure PROGRAM_VERSION is always str
+Typo fix for PROGRAM_NAME definition",Guillaume Destuynder,2014-10-24T05:22:41Z,gdestuynder,gdestuynder,4,2,2
+84,audisp-json,f9a9347bd57d6b236117fa05c0a7777e89e00978,Don't quote the version or itll be quoted in the USER_AGENT,Guillaume Destuynder,2014-06-25T01:00:28Z,gdestuynder,gdestuynder,2,1,1
+85,audisp-json,043345382eb75ae416afb0dcc087cca4e6e901f6,"Throw error in syslog if mozdef returns an error code
+
+If HTTP response from MozDef is non-200 - OK, inform us via syslog.",Guillaume Destuynder,2014-06-24T23:43:41Z,gdestuynder,gdestuynder,8,7,1
+86,audisp-json,6da2cf9d4218a6f3d54aec2ec1ad5695d3a55102,auid is already translated to a more-human value in JSON: originaluid,Guillaume Destuynder,2014-06-24T00:11:26Z,gdestuynder,gdestuynder,4,2,2
+87,audisp-json,79cb842673801cf14c66054f90879340ccb6d71e,Use processname as logger processname and details.processname as audited program's process name,Guillaume Destuynder,2014-06-23T23:38:56Z,gdestuynder,gdestuynder,11,5,6
+88,audisp-json,5f99fe593d6da19412e5b58b6628463ae8d7c130,More details about the message format.,Guillaume Destuynder,2014-06-23T23:32:57Z,gdestuynder,gdestuynder,36,35,1
+89,audisp-json,df313a86ee8cb175da8767094ab164b57ac9b13b,"Get process name from ""comm"" when available",Guillaume Destuynder,2014-06-23T22:50:20Z,gdestuynder,gdestuynder,6,5,1
+90,audisp-json,e5414c057f46848a4ad2d5fca2a03ede327a930b,"Comments++
+Add lookup for processname (from pid) to get the userland-view of process names in case its != comm field.",Guillaume Destuynder,2014-06-23T22:17:20Z,gdestuynder,gdestuynder,34,25,9
+91,audisp-json,fad6dcb424abef0c10a64e2cc2fb5486229f154f,"Make summary customizable, add DEBUG option
+
+make DEBUG=1 to see JSON messages on stdout
+json_msg.summary is now on the heap so we can add some attributes to it instead of a dumb message only.",Guillaume Destuynder,2014-06-20T02:18:15Z,gdestuynder,gdestuynder,45,35,10
+92,audisp-json,eeaa62fdf79f65e00f857dc9fe59b13de85e5090,"Use fread_unlocked for speed.
+Prettify some parts of the code.
+Set the havejson match on the SYSCALL record type only, we don't want partial records with EXECVE.
+Added comment that explains why this may happen - this can be fixed by libaudit or the kernel.",Guillaume Destuynder,2014-06-20T01:39:56Z,gdestuynder,gdestuynder,26,18,8
+93,audisp-json,5079cc5337e7a9b0b7fd88a8534a2bcb1c84d330,only send json for execve when we have the complete msg,Guillaume Destuynder,2014-05-06T00:23:44Z,gdestuynder,gdestuynder,14,7,7
+94,audisp-json,7865bd25b29d3e3e751cf89ddfb6a7fc91dcdd8b,cleanups,Guillaume Destuynder,2014-05-05T23:22:22Z,gdestuynder,gdestuynder,14,9,5
+95,audisp-json,290467cd61ca4b0fe30ae650984b36d4f5d1526c,free msg since its copied in libcurl,Guillaume Destuynder,2014-05-05T22:22:20Z,gdestuynder,gdestuynder,10,6,4
+96,audisp-json,bfca50fd88db5a5a81dba4e9286011be56411873,Enforce types,Guillaume Destuynder,2014-05-05T21:27:22Z,gdestuynder,gdestuynder,12,6,6
+97,audisp-json,e2e9bb6d8c22b23b02643c41daa0d16c83a4cca7,"Support for SSP and FORTIFY_SOURCE by default
+
+Correct errors related to FORTIFY_SOURCE checks.
+Drop and re-add handle during curl multi cleanup.
+Always allocate the json attribute so that it gets deallocated properly (as we use the ""(null)"" translation for NULL
+strings anyway.",Guillaume Destuynder,2014-05-05T18:57:22Z,gdestuynder,gdestuynder,25,15,10
+98,audisp-json,c8f21d12321a42ea4c23f82fd31417b39ae9efe9,death to spaces,Guillaume Destuynder,2014-04-30T00:42:50Z,gdestuynder,gdestuynder,2,1,1
+99,audisp-json,71a8c6e63f3d9a0146accb71009934a6e0b16077,indent,Guillaume Destuynder,2014-04-30T00:35:37Z,gdestuynder,gdestuynder,2,1,1
+100,audisp-json,6cbc96db8e2d5826c9a6d0267a0e8cc2eb3d0153,modeline (vim),Guillaume Destuynder,2014-04-30T00:10:44Z,gdestuynder,gdestuynder,3,2,1
+101,audisp-json,0c82e8d89658e4cc9a37f8caa0cc855c998dba49,configuration file details,Guillaume Destuynder,2014-04-29T23:23:25Z,gdestuynder,gdestuynder,9,9,0
+102,audisp-json,9f302ea38ec917a2c62759e87e339430af687100,"Implement sending of messages via libcurl
+
+Uses a ring buffer (msg_list) to fill in messages at a max of 512 messages currently.
+Then uses select to run curl_multi functions.",Guillaume Destuynder,2014-04-27T16:57:39Z,gdestuynder,gdestuynder,385,295,90
+103,audisp-json,31b10e14e2ed1611b96e0022286be7cb95504ce5,"create json message
+convert all CEF attrs to json details
+remove extra_record and associated code as its no longer necessary (the
+json msg can have any number of attributes)",Guillaume Destuynder,2014-04-04T06:10:02Z,gdestuynder,gdestuynder,314,162,152
+104,audisp-json,03c9d13e06241009f12163dac0fa7571bb2dc46a,Set program version at compile time,Guillaume Destuynder,2014-04-04T06:09:34Z,gdestuynder,gdestuynder,7,4,3
+105,audisp-json,86f0b93409bc7c53774039e98202e00bb99f6a8b,"json conversion cleanups
+mozdef_url configuration",Guillaume Destuynder,2014-04-03T01:14:45Z,gdestuynder,gdestuynder,74,9,65
+106,audisp-json,e8633f26ec371f456748a978b534f0e06ae6ee70,Modifying json msg format,Guillaume Destuynder,2014-04-02T23:49:18Z,gdestuynder,gdestuynder,10,5,5
+107,audisp-json,b3f0dc2d2670a25e4819414c253f553f39e61758,Quick conversion to json - doesn't actually work or anything,Guillaume Destuynder,2014-04-02T23:40:31Z,gdestuynder,gdestuynder,337,208,129
+108,audisp-json,ba2011625aa1d08e48e4376877011a0ecb3ed311,added documentation on message format,Guillaume Destuynder,2014-03-26T19:01:21Z,gdestuynder,gdestuynder,52,52,0
+109,audisp-json,1805c2bab7ad76baeeb9f72ae0a2979803dc5870,Details on msg handling and build deps,Guillaume Destuynder,2014-03-26T18:36:08Z,Guillaume Destuynder,Guillaume Destuynder,13,13,0
+110,audisp-json,88e30d45ad1e672c4b6009ec9570f8c84f5678d2,match program name in log,Guillaume Destuynder,2014-03-26T05:04:04Z,gdestuynder,gdestuynder,2,1,1
+111,audisp-json,1fc3f0a079d56c66ab1f3d43fc027a668aad9432,Version bump 1.4,Guillaume Destuynder,2014-03-26T04:38:41Z,Guillaume Destuynder,Guillaume Destuynder,4,2,2
+112,audisp-json,87bb6258d98d1b76eeb7844107f7a31d7778958b,"Handle error if gethostbyname fails
+
+handling gethostname() isn't enough",Guillaume Destuynder,2014-03-26T04:38:23Z,Guillaume Destuynder,Guillaume Destuynder,17,13,4
+113,audisp-json,67e04ab13c3827b1932bd9d0246f44031b9525be,"Lookup hostname using gethostbyname instead of uts
+
+Using uts doesn't work if the host has only a nodename, which is often the case on misconfigured systems.
+gethostbyname will consolidate the nodename and whatever domainname by using a socket and NIS/YP/NSCD instead of uts (""uname"").
+
+Also fixed an indent issue.",Guillaume Destuynder,2014-03-20T00:55:29Z,Guillaume Destuynder,Guillaume Destuynder,20,12,8
+114,audisp-json,3be6404691b9c8ee129ea18411e5bfcc4d875a55,"Update README.rst
+
+fix the syslog-ng example",Guillaume Destuynder,2014-03-19T23:22:19Z,Guillaume Destuynder,Guillaume Destuynder,3,2,1
+115,audisp-json,63a7469faa91854d863715d951fa1fa6dc578e5c,"convert to rst, add syslog-ng examples",Guillaume Destuynder,2014-02-28T19:27:55Z,gdestuynder,gdestuynder,117,66,51
+116,audisp-json,b8ee150da4879c898bee1cc3bb461648877ed39c,Merge branch 'master' of github.com:gdestuynder/audisp-cef,Guillaume Destuynder,2014-02-28T19:03:27Z,gdestuynder,gdestuynder,4,2,2
+117,audisp-json,9710a7773418d0e45196ca5a138ced0dd7d218c9,Re-introduce ppid (parent process id) in order to be able to recreate the exact process tree from logs,Guillaume Destuynder,2016-02-12T22:07:47Z,gdestuynder,gdestuynder,2,2,0
+118,audisp-json,60a1a4f4cfa42a2b486a1297cd8bf6eef0eb0352,Bump 2.1.0,Guillaume Destuynder,2015-12-17T14:30:49Z,gdestuynder,gdestuynder,2,1,1
+119,audisp-json,b5d608202771256a83d678aabb27899b7920f78c,manage queue list size (drop when max reached) and check queue every audispd=>audisp-json read,Guillaume Destuynder,2015-12-17T04:48:30Z,gdestuynder,gdestuynder,10,10,0
+120,audisp-json,fad2329ab882082fbae09ec7f3857c161392dad8,"Send debug logs to the debug facility, not info ;-)",Guillaume Destuynder,2015-12-17T03:22:34Z,gdestuynder,gdestuynder,2,1,1
+121,audisp-json,b4640e2f0427cc17c919581e859c7870a430e189,Replace ring function by linked-list to avoid unnecessary msg loss (different trade-off),Guillaume Destuynder,2015-12-15T19:39:53Z,gdestuynder,gdestuynder,116,39,77
+122,audisp-json,cb9445de28e53640f601c6a8ddf66988797977bf,Add phony for clean target,Guillaume Destuynder,2015-12-15T19:38:39Z,gdestuynder,gdestuynder,2,2,0
+123,audisp-json,dce871650bdb24c524e6a56ee2e1e23350be2305,Change some fixed-len to dynamic or #defined len for clarity,Guillaume Destuynder,2015-08-07T22:00:15Z,gdestuynder,gdestuynder,13,8,5
+124,audisp-json,1def633399f2b9d8df0307242ab86fd9f4ad1c55,"While msg can never be bigger  than MAX_AUDIT_MESSAGE_LEN (8970) due to the code flow - reusing the MAX_JSON_MSG_SIZE
+(4096) for message arguments is not exacly nice neither it is accurate. (and could be security relevant if the code change).
+Ensuring whole message is always smaller than MAX_JSON_MSG_SIZE instead.",Guillaume Destuynder,2015-06-27T00:52:52Z,gdestuynder,gdestuynder,4,2,2
+125,audisp-json,a9320a10bc982cf82bf780922b883d1ce0690113,Fix size of cmp len checks. Works otherwise but not very nice.,Guillaume Destuynder,2015-06-18T20:03:36Z,gdestuynder,gdestuynder,4,2,2
+126,audisp-json,b05bf088442d5723ee87d63041400fd7a510aeed,More error checking (https://github.com/gdestuynder/audisp-json/pull/5/files),Guillaume Destuynder,2015-06-18T19:32:32Z,gdestuynder,gdestuynder,13,10,3
+127,audisp-json,8429edb2d12fe5021ace416401635618fc09b646,Warn on message lost if the ring buffer is overflown,Guillaume Destuynder,2015-06-09T21:44:36Z,gdestuynder,gdestuynder,2,2,0
+128,audisp-json,ebeb8605dd1d7292dd10c4d90e22cfb170eed887,"Bugfix: while we support keep-alive, lets not yell about it if it works (100-continue) or for any other informational
+HTTP message for that matter (we still care about non-200 success msgs)",Guillaume Destuynder,2015-06-09T21:37:24Z,gdestuynder,gdestuynder,2,1,1
+129,audisp-json,d054df6fb3c52741b65e6be83a61bdc93048afba,"Fix reorder_hack to be enabl-able on the cli,
+Bugfix/typo properly reset start ;)",Guillaume Destuynder,2015-06-08T16:07:52Z,gdestuynder,gdestuynder,6,3,3
+130,audisp-json,f14839127e69e157fa0441465d85e9853e34d038,"Bump to version 2.0.0 to avoid versionning confusing (1.9 > 1.14)
+Some more documentation in the readme",Guillaume Destuynder,2015-06-06T01:54:23Z,gdestuynder,gdestuynder,13,12,1
+131,audisp-json,96959df0a735fc13ad5faafe2c72fa5405e7d0a1,bump 1.14,Guillaume Destuynder,2015-06-06T01:49:36Z,gdestuynder,gdestuynder,2,1,1
+132,audisp-json,90949fd2e50d2130638bca9f12efb8afefc803a3,"Change processing logic for efficiency and compat
+- Re-enter select() loop as often as necessary
+- No longer run a certain amount of times, this does not work the same way with all versions of libcurl
+- Bugfix uninitialized returned value from get_username (doh...)
+- Correct ring buffer handling not to overflow the buffer (doh...)
+- A little bit of tidying",Guillaume Destuynder,2015-06-06T01:42:41Z,gdestuynder,gdestuynder,203,110,93
+133,audisp-json,48973b9d949a2a031a36e963ffc7db25dd8c6541,Version bump 1.13,Guillaume Destuynder,2015-06-04T00:03:24Z,gdestuynder,gdestuynder,2,1,1
+134,audisp-json,a425468ad1bb08b517b2b6fe695332701221efd5,"Always consume all msgs when program end even if ring buffer is empty (bugfix)
+Only give curl one chance to set a timeout (2 perform runs) - this may be tweaked further to statically define the
+timeout instead of limiting attempts in the future",Guillaume Destuynder,2015-06-04T00:01:50Z,gdestuynder,gdestuynder,7,6,1
+135,audisp-json,59dbda0731121c0cd129c99cff4a53fa781bde0b,Bump 1.12,Guillaume Destuynder,2015-06-03T23:50:54Z,gdestuynder,gdestuynder,2,1,1
+136,audisp-json,1aca90640b125d9ee7f189d90de777e6812943f2,"Support for max_curl_runs - ensure we exit the select/perform loop sufficiently quickly without affecting CURL global
+timeout (of 5s)
+If messages are still in the queue, the last perform cleanup will attempt to send them all.",Guillaume Destuynder,2015-06-03T23:44:27Z,gdestuynder,gdestuynder,25,19,6
+137,audisp-json,fa7cc178d3322d51669b1620760fbd9a4bea7bcc,"Code cleanups, -Wall debug support",Guillaume Destuynder,2015-06-03T23:07:44Z,gdestuynder,gdestuynder,13,5,8
+138,audisp-json,b99f16bfcf453d3b34f441b9408e41d4d70470d5,Bump to 1.11,Guillaume Destuynder,2015-06-03T22:48:35Z,gdestuynder,gdestuynder,2,1,1
+139,audisp-json,8c231a0964d389c5dbdb685036217ab1f3f21261,Allow to force program termination on double keyboard interrupt (nicer to the user/debugger),Guillaume Destuynder,2015-06-03T22:47:58Z,gdestuynder,gdestuynder,5,5,0
+140,audisp-json,2cfafb1f70133b87d386f3326c11e8b4d8e7e2ce,"Handle sig_int, properly call handlers
+Handlers values wouldn't be actually handled as it was since you'd have to wait for fgets loops to complete/fail. Now calling handlers
+within the loop.",Guillaume Destuynder,2015-06-03T22:40:47Z,gdestuynder,gdestuynder,16,13,3
+141,audisp-json,51ffa8973f2f8e1c34f97fe9652358051ae05537,Fix conflicting scope of signal variables,Guillaume Destuynder,2015-06-03T22:26:50Z,gdestuynder,gdestuynder,18,9,9
+142,audisp-json,c3fe24849e75a3f4cb0f5a99efd80b69c3cd0a08,Add support for config.curl_filelog - a file path to write curl errors (default is stderr which is hard to capture),Guillaume Destuynder,2015-06-03T21:51:34Z,gdestuynder,gdestuynder,32,30,2
+143,audisp-json,05a5cae797a2e69184eaa1704179792aa06b8253,"Don't default to debug 0, default to no debug so that user can set it on the CLI.",Guillaume Destuynder,2015-06-03T21:51:11Z,gdestuynder,gdestuynder,2,1,1
+144,audisp-json,a711d70eaf5a96ba6af1dc074a034e0459adfe08,bump version 1.10,Guillaume Destuynder,2015-05-01T17:49:38Z,gdestuynder,gdestuynder,2,1,1
+145,audisp-json,e4cb43029e62b70c5b727a1e0095990b08b5b1f0,"Add support for logging adjtime as JSON msg, fixes issue https://github.com/gdestuynder/audisp-json/issues/3",Guillaume Destuynder,2015-05-01T17:49:00Z,gdestuynder,gdestuynder,10,9,1
+146,audisp-json,6daf465b2f2bd32a3da2776ab992b675f329eed4,Bump to version 1.9,Guillaume Destuynder,2015-04-29T22:58:02Z,gdestuynder,gdestuynder,2,1,1
+147,audisp-json,88114d7c4f9c27cc7b8a4a4406c6ce3ca8f37509,Merge branch 'master' of github.com:gdestuynder/audisp-json,Guillaume Destuynder,2015-04-29T22:57:41Z,gdestuynder,gdestuynder,7,7,0
+148,audisp-json,d574fdf42c8c2e551ff6c11309f95c8a0e3eb16c,"Change MAX_ATTR_SIZE to MAX_AUDIT_MESSAGE_LENGTH
+
+While not exactly accurate and bigger than needed, this ensure there is always enough space under normal operating
+conditions (calculating attr size is hard because it depends on all other attributes in the string)
+
+Alternative would be to chop the string first,then add quoting, which is nicer, but also slower.",Guillaume Destuynder,2015-04-29T22:55:53Z,gdestuynder,gdestuynder,2,1,1
+149,audisp-json,27fcf1a157226f07a3866bb72f55d98885f1b2aa,"Merge pull request #2 from bhourigan/master
+
+Updating README.rst to be consistent with build instructions outlined in...",Guillaume Destuynder,2015-04-07T19:36:25Z,Guillaume Destuynder,Guillaume Destuynder,7,7,0
+150,audisp-json,385c59e024cbeb08a8da966fde898e71877f6fa9,Updating README.rst to be consistent with build instructions outlined in https://bugzilla.mozilla.org/show_bug.cgi?id=1112233,Brian Hourigan,2015-04-07T19:32:19Z,bhourigan,bhourigan,7,7,0
+151,audisp-json,8159b0c98a1cdf6fb26c1b3f365c0c04c3a82fac,Bump version 1.8,Guillaume Destuynder,2015-04-07T18:25:52Z,gdestuynder,gdestuynder,2,1,1
+152,audisp-json,1f7018f58a90e0ae2d429b24cbbeb805c41b6f70,Merge branch 'master' of github.com:gdestuynder/audisp-json,Guillaume Destuynder,2015-02-06T19:11:52Z,gdestuynder,gdestuynder,23,5,18
+153,audisp-json,ec26a9d5f43cd43da89f429f0ed85b2b3c482be7,Ported config load fix from https://github.com/gdestuynder/audisp-cef/commit/2acd2bb21a50a99adbefb0b527033dd71bf496da,Guillaume Destuynder,2015-02-06T19:11:31Z,gdestuynder,gdestuynder,8,4,4
+154,audisp-json,cc8a47239697eaf5143608f4ca9a4ba6ff42dad5,"Update README.rst
+
+Cleanup old doc",Guillaume Destuynder,2015-01-28T01:20:54Z,Guillaume Destuynder,Guillaume Destuynder,8,2,6
+155,audisp-json,048b37c6df3bc5e0ec050fcf5a4d94ed48294bec,"Update README.rst
+
+Update config examples to match how audisp-json works.",Guillaume Destuynder,2015-01-28T01:18:54Z,Guillaume Destuynder,Guillaume Destuynder,15,3,12
+156,audisp-json,0ffe7b8b7a65b5b38cbee5ad4854b2832ac55d57,Check if we need to re-call curl_multi_perform immediately (curl 7.2+),Guillaume Destuynder,2015-01-16T17:59:29Z,gdestuynder,gdestuynder,4,3,1
+157,audisp-json,19d7f2f9a753ed3cc5c4f1a8e25e76cc0c5c4dc8,Bump version 1.7,Guillaume Destuynder,2015-01-14T10:50:05Z,gdestuynder,gdestuynder,2,1,1
+158,audisp-json,addb0043fc4ae21701db21173741e9a3c2cb8142,"Fix matching (null) string.
+
+I don't even know how this happened. Uff.",Guillaume Destuynder,2015-01-14T10:48:37Z,gdestuynder,gdestuynder,2,1,1
+159,audisp-json,0a61a015356e84af540334eec66cd3cd7502900f,Support for ANOM_PROMISCUOUS (interface going in/out of promicuous mode) message type,Guillaume Destuynder,2015-01-13T23:45:10Z,gdestuynder,gdestuynder,53,52,1
+160,audisp-json,8298f4c1fa1d161778ecf9c434a73ffd68a1a9d9,Update doc on message format to correspond to the code.,Guillaume Destuynder,2015-01-05T16:10:25Z,gdestuynder,gdestuynder,41,24,17
+161,audisp-json,9d8d64cab87332cbc0b4bfeb50c663df9af50187,"Support passing options to fpm via FPMOPTS
+
+e.g: make rpm FPMOPTS=""--replaces audisp-cef""",Guillaume Destuynder,2014-12-19T14:33:15Z,gdestuynder,gdestuynder,11,7,4
+162,audisp-json,897c144f60f71984c5b9beb76bdd0516d67135b3,"Ignore execve syscalls with no EXECVE message, v1.6
+
+Also fixes a comment typo
+Also enhance the reordering hack to attempt to output single messages
+Also disables reordering by default
+and finally, enable ignoring these execve syscalls with no EXECVE message by default.
+
+See source code for more information on why this is done.
+
+compilation:
+make REORDER_HACK=1 (for the reorder hack..)
+make IGNORE_EMPTY_EXECVE_COMMAND=0 (to disable empty execves, you'll have an empty summary field in the json message for
+these)",Guillaume Destuynder,2014-12-19T13:57:15Z,gdestuynder,gdestuynder,54,48,6
+163,audisp-json,93b646314c4c05cb3ebd0bcdad77c2ebc20a2158,"Added buffering to REORDER_HACK and various string, alloc, etc checks
+Also fixed reorder logic and a few comments",Guillaume Destuynder,2014-12-18T19:09:51Z,gdestuynder,gdestuynder,132,108,24
+164,audisp-json,85b4a2e36bc1027e4171c6dc94ec01a074120102,use mirror ring buffer,Guillaume Destuynder,2014-12-17T14:33:31Z,gdestuynder,gdestuynder,30,14,16
+165,audisp-json,d94cdc3d38a5d1afce764870e810c1eaf9df497d,clarify a bit attribute management,Guillaume Destuynder,2014-12-17T12:49:07Z,gdestuynder,gdestuynder,8,4,4
+166,audisp-json,b21ef1bf0d18db5b0a5f7f8ab1c2320812471d9f,dont shorten values ;),Guillaume Destuynder,2014-12-17T11:49:41Z,gdestuynder,gdestuynder,2,1,1
+167,audisp-json,cd4b97d336a7ed9801d47c6d797734c7cd1787b2,"support DEBUG=1 (symbols) and DEBUG=2 (symbols + json output)
+fix REORDER_HACK so that you can actually turn it off ;)",Guillaume Destuynder,2014-12-17T11:16:42Z,gdestuynder,gdestuynder,9,7,2
+168,audisp-json,9e6eeac3308980c1e4c171e7e5cad9d8ba507170,"Added REORDER_HACK hack. Removed unused strstok function.
+REORDER_HACK reorder the messages so that they come in sequential order.
+This allows libaudit to properly correlate the event id and create a complete event.
+Without the hack, the event would have empty attributes/fields.
+
+Note that when this is fixed in libaudit the hack should be disabled as it's neither nice, neither fast.
+You can disable it at compile time with `make REORDER_HACK=0'",Guillaume Destuynder,2014-12-13T11:51:49Z,gdestuynder,gdestuynder,101,89,12
+169,audisp-json,af8dbfeffc61449ccde2a925575254ac287716fc,fix debian package dependency names for libcurl,Guillaume Destuynder,2014-12-12T15:50:39Z,gdestuynder,gdestuynder,4,2,2
+170,audisp-json,e17a55631f761dcf32989f15ce2386eafb55acbd,"Change curl processing logic - avoids null posts
+
+This ensures that curl only process handles that exist. There was a wrong assumption that curl_nr_h was keeping a
+consistent state, including when it's passed to curl. It's in fact only returning the current state.
+Note that I don't think this specified, hence the confusion.",Guillaume Destuynder,2014-11-22T01:38:50Z,gdestuynder,gdestuynder,45,12,33
+171,audisp-json,e85eb5c8623b6d9414cc85ce287004fb442c83bb,Indent fix,Guillaume Destuynder,2014-11-22T01:20:45Z,gdestuynder,gdestuynder,2,1,1
+172,audisp-json,2a65b5666dc9705eaa1d1431bcab48d6516709c1,"Copy postfields in curl, don't race on free.",Guillaume Destuynder,2014-11-22T00:45:09Z,gdestuynder,gdestuynder,6,2,4
+173,audisp-json,9d8ee1bc94cad4d962104158c2fe9d1f775fcf8f,"Also remove keys and values if message == ""(null)""
+i.e. if the conversion to string has already happened and the string is not NULL anymore (but a string that says so)
+Actually fixes issue 1 :)",Guillaume Destuynder,2014-11-21T23:09:06Z,gdestuynder,gdestuynder,2,1,1
+174,audisp-json,e807c9499e955b96bad7552dc2e10e88d82e006b,Fixes issue 1: do not add fields when value is NULL,Guillaume Destuynder,2014-11-21T22:56:40Z,gdestuynder,gdestuynder,10,6,4
+175,audisp-json,2128e21744470492f2d2799519e4835c9b72d00b,documentation for curl_cainfo option,Guillaume Destuynder,2014-11-01T03:59:26Z,gdestuynder,gdestuynder,1,1,0
+176,audisp-json,742fbbb50a4571ca7fd212d4009a7c6c492ffd3b,"Support for setting cainfo (ie a particular ca to trust)
+Some cleanup",Guillaume Destuynder,2014-11-01T03:57:17Z,gdestuynder,gdestuynder,32,24,8
+177,audisp-json,19e432a6c53c9cce4f8ec7c46139ab70b0bab989,separate libcurl and http code error in case libcurl fails first,Guillaume Destuynder,2014-11-01T03:49:44Z,gdestuynder,gdestuynder,9,7,2
+178,audisp-json,03f1f82b3778ade6605c089696969be0162558e7,"added all invalid json string cases from
+https://bitbucket.org/zserge/jsmn/",Guillaume Destuynder,2014-10-24T21:17:15Z,gdestuynder,gdestuynder,3,2,1
+179,audisp-json,dcb234bb96d848f10346ff6fe44cd858f965f5ee,"unescape json summary
+unescape also now removes LF and CR as that's not valid JSON",Guillaume Destuynder,2014-10-24T21:05:02Z,gdestuynder,gdestuynder,16,9,7
+180,audisp-json,7769555303ae311450784243361598402921e2f9,"Reorganize setting category/summary so that we can always pick what we want as summary regardless of the order of
+messages",Guillaume Destuynder,2014-10-24T06:20:17Z,gdestuynder,gdestuynder,99,66,33
+181,audisp-json,1f02cd150360af3cedd346b5438cef069bad69ac,Set details.summary in AUDIT_EXECVE so that the summary is able to reflect the full command,Guillaume Destuynder,2014-10-24T05:54:44Z,gdestuynder,gdestuynder,12,7,5
+182,audisp-json,837c00a628a22657212ac2bd486f6d41c4ff0774,Support more write-like and chown-like syscalls,Guillaume Destuynder,2014-10-24T05:48:00Z,gdestuynder,gdestuynder,5,3,2
+183,audisp-json,e14f0b4c1bc46326d40c0d033afd63faef6df9cf,"Ensure PROGRAM_VERSION is always str
+Typo fix for PROGRAM_NAME definition",Guillaume Destuynder,2014-10-24T05:22:41Z,gdestuynder,gdestuynder,4,2,2
+184,audisp-json,f9a9347bd57d6b236117fa05c0a7777e89e00978,Don't quote the version or itll be quoted in the USER_AGENT,Guillaume Destuynder,2014-06-25T01:00:28Z,gdestuynder,gdestuynder,2,1,1
+185,audisp-json,043345382eb75ae416afb0dcc087cca4e6e901f6,"Throw error in syslog if mozdef returns an error code
+
+If HTTP response from MozDef is non-200 - OK, inform us via syslog.",Guillaume Destuynder,2014-06-24T23:43:41Z,gdestuynder,gdestuynder,8,7,1
+186,audisp-json,6da2cf9d4218a6f3d54aec2ec1ad5695d3a55102,auid is already translated to a more-human value in JSON: originaluid,Guillaume Destuynder,2014-06-24T00:11:26Z,gdestuynder,gdestuynder,4,2,2
+187,audisp-json,79cb842673801cf14c66054f90879340ccb6d71e,Use processname as logger processname and details.processname as audited program's process name,Guillaume Destuynder,2014-06-23T23:38:56Z,gdestuynder,gdestuynder,11,5,6
+188,audisp-json,5f99fe593d6da19412e5b58b6628463ae8d7c130,More details about the message format.,Guillaume Destuynder,2014-06-23T23:32:57Z,gdestuynder,gdestuynder,36,35,1
+189,audisp-json,df313a86ee8cb175da8767094ab164b57ac9b13b,"Get process name from ""comm"" when available",Guillaume Destuynder,2014-06-23T22:50:20Z,gdestuynder,gdestuynder,6,5,1
+190,audisp-json,e5414c057f46848a4ad2d5fca2a03ede327a930b,"Comments++
+Add lookup for processname (from pid) to get the userland-view of process names in case its != comm field.",Guillaume Destuynder,2014-06-23T22:17:20Z,gdestuynder,gdestuynder,34,25,9
+191,audisp-json,fad6dcb424abef0c10a64e2cc2fb5486229f154f,"Make summary customizable, add DEBUG option
+
+make DEBUG=1 to see JSON messages on stdout
+json_msg.summary is now on the heap so we can add some attributes to it instead of a dumb message only.",Guillaume Destuynder,2014-06-20T02:18:15Z,gdestuynder,gdestuynder,45,35,10
+192,audisp-json,eeaa62fdf79f65e00f857dc9fe59b13de85e5090,"Use fread_unlocked for speed.
+Prettify some parts of the code.
+Set the havejson match on the SYSCALL record type only, we don't want partial records with EXECVE.
+Added comment that explains why this may happen - this can be fixed by libaudit or the kernel.",Guillaume Destuynder,2014-06-20T01:39:56Z,gdestuynder,gdestuynder,26,18,8
+193,audisp-json,5079cc5337e7a9b0b7fd88a8534a2bcb1c84d330,only send json for execve when we have the complete msg,Guillaume Destuynder,2014-05-06T00:23:44Z,gdestuynder,gdestuynder,14,7,7
+194,audisp-json,7865bd25b29d3e3e751cf89ddfb6a7fc91dcdd8b,cleanups,Guillaume Destuynder,2014-05-05T23:22:22Z,gdestuynder,gdestuynder,14,9,5
+195,audisp-json,290467cd61ca4b0fe30ae650984b36d4f5d1526c,free msg since its copied in libcurl,Guillaume Destuynder,2014-05-05T22:22:20Z,gdestuynder,gdestuynder,10,6,4
+196,audisp-json,bfca50fd88db5a5a81dba4e9286011be56411873,Enforce types,Guillaume Destuynder,2014-05-05T21:27:22Z,gdestuynder,gdestuynder,12,6,6
+197,audisp-json,e2e9bb6d8c22b23b02643c41daa0d16c83a4cca7,"Support for SSP and FORTIFY_SOURCE by default
+
+Correct errors related to FORTIFY_SOURCE checks.
+Drop and re-add handle during curl multi cleanup.
+Always allocate the json attribute so that it gets deallocated properly (as we use the ""(null)"" translation for NULL
+strings anyway.",Guillaume Destuynder,2014-05-05T18:57:22Z,gdestuynder,gdestuynder,25,15,10
+198,audisp-json,c8f21d12321a42ea4c23f82fd31417b39ae9efe9,death to spaces,Guillaume Destuynder,2014-04-30T00:42:50Z,gdestuynder,gdestuynder,2,1,1
+199,audisp-json,71a8c6e63f3d9a0146accb71009934a6e0b16077,indent,Guillaume Destuynder,2014-04-30T00:35:37Z,gdestuynder,gdestuynder,2,1,1
+200,audisp-json,6cbc96db8e2d5826c9a6d0267a0e8cc2eb3d0153,modeline (vim),Guillaume Destuynder,2014-04-30T00:10:44Z,gdestuynder,gdestuynder,3,2,1
+201,audisp-json,0c82e8d89658e4cc9a37f8caa0cc855c998dba49,configuration file details,Guillaume Destuynder,2014-04-29T23:23:25Z,gdestuynder,gdestuynder,9,9,0
+202,audisp-json,9f302ea38ec917a2c62759e87e339430af687100,"Implement sending of messages via libcurl
+
+Uses a ring buffer (msg_list) to fill in messages at a max of 512 messages currently.
+Then uses select to run curl_multi functions.",Guillaume Destuynder,2014-04-27T16:57:39Z,gdestuynder,gdestuynder,385,295,90
+203,audisp-json,31b10e14e2ed1611b96e0022286be7cb95504ce5,"create json message
+convert all CEF attrs to json details
+remove extra_record and associated code as its no longer necessary (the
+json msg can have any number of attributes)",Guillaume Destuynder,2014-04-04T06:10:02Z,gdestuynder,gdestuynder,314,162,152
+204,audisp-json,03c9d13e06241009f12163dac0fa7571bb2dc46a,Set program version at compile time,Guillaume Destuynder,2014-04-04T06:09:34Z,gdestuynder,gdestuynder,7,4,3
+205,audisp-json,86f0b93409bc7c53774039e98202e00bb99f6a8b,"json conversion cleanups
+mozdef_url configuration",Guillaume Destuynder,2014-04-03T01:14:45Z,gdestuynder,gdestuynder,74,9,65
+206,audisp-json,e8633f26ec371f456748a978b534f0e06ae6ee70,Modifying json msg format,Guillaume Destuynder,2014-04-02T23:49:18Z,gdestuynder,gdestuynder,10,5,5
+207,audisp-json,b3f0dc2d2670a25e4819414c253f553f39e61758,Quick conversion to json - doesn't actually work or anything,Guillaume Destuynder,2014-04-02T23:40:31Z,gdestuynder,gdestuynder,337,208,129
+208,audisp-json,ba2011625aa1d08e48e4376877011a0ecb3ed311,added documentation on message format,Guillaume Destuynder,2014-03-26T19:01:21Z,gdestuynder,gdestuynder,52,52,0
+209,audisp-json,1805c2bab7ad76baeeb9f72ae0a2979803dc5870,Details on msg handling and build deps,Guillaume Destuynder,2014-03-26T18:36:08Z,Guillaume Destuynder,Guillaume Destuynder,13,13,0
+210,audisp-json,88e30d45ad1e672c4b6009ec9570f8c84f5678d2,match program name in log,Guillaume Destuynder,2014-03-26T05:04:04Z,gdestuynder,gdestuynder,2,1,1
+211,audisp-json,1fc3f0a079d56c66ab1f3d43fc027a668aad9432,Version bump 1.4,Guillaume Destuynder,2014-03-26T04:38:41Z,Guillaume Destuynder,Guillaume Destuynder,4,2,2
+212,audisp-json,87bb6258d98d1b76eeb7844107f7a31d7778958b,"Handle error if gethostbyname fails
+
+handling gethostname() isn't enough",Guillaume Destuynder,2014-03-26T04:38:23Z,Guillaume Destuynder,Guillaume Destuynder,17,13,4
+213,audisp-json,67e04ab13c3827b1932bd9d0246f44031b9525be,"Lookup hostname using gethostbyname instead of uts
+
+Using uts doesn't work if the host has only a nodename, which is often the case on misconfigured systems.
+gethostbyname will consolidate the nodename and whatever domainname by using a socket and NIS/YP/NSCD instead of uts (""uname"").
+
+Also fixed an indent issue.",Guillaume Destuynder,2014-03-20T00:55:29Z,Guillaume Destuynder,Guillaume Destuynder,20,12,8
+214,audisp-json,3be6404691b9c8ee129ea18411e5bfcc4d875a55,"Update README.rst
+
+fix the syslog-ng example",Guillaume Destuynder,2014-03-19T23:22:19Z,Guillaume Destuynder,Guillaume Destuynder,3,2,1
+215,audisp-json,63a7469faa91854d863715d951fa1fa6dc578e5c,"convert to rst, add syslog-ng examples",Guillaume Destuynder,2014-02-28T19:27:55Z,gdestuynder,gdestuynder,117,66,51
+216,audisp-json,b8ee150da4879c898bee1cc3bb461648877ed39c,Merge branch 'master' of github.com:gdestuynder/audisp-cef,Guillaume Destuynder,2014-02-28T19:03:27Z,gdestuynder,gdestuynder,4,2,2

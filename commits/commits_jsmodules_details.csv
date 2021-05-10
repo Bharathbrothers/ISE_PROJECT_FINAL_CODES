@@ -1,0 +1,85 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,jsmodules,197c2ff78d50b1a26637de91845f3b624da4d1b3,Lazily listen for quit-application on the first sync-async call and bail out if the notification is sent while waiting for the callback.,Edward Lee,2009-10-08T19:07:38Z,Mardak,Mardak,49,47,2
+1,jsmodules,be93c8847a70b26f39305eb01e361e3cd7edd3c4,Write setTimeout nsITimer.notify in a way that keeps the timer object alive.,Edward Lee,2009-10-08T02:02:28Z,Mardak,Mardak,11,6,5
+2,jsmodules,206fa18436727fc7a34c7f1db8ee6604f58a811d,Change cb.fail() cb.throw() that also throws the data passed in to stop the caller execution.,Edward Lee,2009-06-04T02:03:44Z,Mardak,Mardak,12,9,3
+3,jsmodules,dc38fea1b7f957dd3ab6f1bb768dc4a88c8efc29,Allow async. functions to trigger an exception at the sync. function caller by doing onComplete.fail().,Edward Lee,2009-06-04T01:50:06Z,Mardak,Mardak,65,65,0
+4,jsmodules,aac81d898b13a80720d6f5a715cf14b6fce3e65e,Prevent outside access to internal callback data but still allow Sync to access that data.,Edward Lee,2009-06-04T01:08:08Z,Mardak,Mardak,50,42,8
+5,jsmodules,71673adbf9492f0628f1584bcbb51a09b1533195,"Add test for passing a ""this"" to the sync. function and extracting the callback.",Edward Lee,2009-06-04T00:30:39Z,Mardak,Mardak,9,9,0
+6,jsmodules,84762772cb37e788c46bced78a65e28fddeb1337,Remove Sync().onComplete functionality changing ability and replace with Sync.withCb().,Edward Lee,2009-06-04T00:25:52Z,Mardak,Mardak,93,47,46
+7,jsmodules,7486e96096d8e30c99762f3ebf38688667586d63,Test using Sync with an async function that takes no arguments.,Edward Lee,2009-06-03T04:17:55Z,Mardak,Mardak,21,21,0
+8,jsmodules,a3bdaf8570d8037d75aaba495de051b3ec69af6f,Allow sync. functions to be called more than once and have each sync. invocation instance separate from each other.,Edward Lee,2009-06-03T04:17:04Z,Mardak,Mardak,69,51,18
+9,jsmodules,cd9ad0092d928091716cd4dd3f8040dd4f38640c,Give some leeway (5ms) when checking if a function took a certain amount of time to run.,Edward Lee,2009-06-03T03:37:53Z,Mardak,Mardak,31,16,15
+10,jsmodules,ecedb85ce4b5eaab50875284a9f2202f6b035a33,Remove Function.prototype.sync/bind and Sync.sync and replace with just Sync as the one-simple-great way to make things sync.,Edward Lee,2009-06-03T01:58:46Z,Mardak,Mardak,86,17,69
+11,jsmodules,26f49a731a2f532283740460c2fcae412b2499cd,Test that sync.onComplete allows async functions that indirectly take the callback through its args.,Edward Lee,2009-06-02T06:38:47Z,Mardak,Mardak,19,19,0
+12,jsmodules,a1e71e87bcb05f045185f8cb1136ba9f30088a5e,Allow extracting of the sync. function callback to make the sync. call not inject the callback.,Edward Lee,2009-06-02T06:30:45Z,Mardak,Mardak,17,17,0
+13,jsmodules,86582b0d9e94af43914ff6b02df02b1efe9fb570,Add Function.prototype.syncBind to allow binding of this to the sync. function.,Edward Lee,2009-06-02T06:08:21Z,Mardak,Mardak,14,14,0
+14,jsmodules,253c6e9e9f3f5d29b978678e3241674db263cf26,Test the bind form of Sync.sync.,Edward Lee,2009-06-02T06:02:50Z,Mardak,Mardak,15,15,0
+15,jsmodules,d5cd2b78d187ed49220e99607618560a2e467cf7,Add Sync.sync as another way to make sync. functions (in addition to Function.prototype).,Edward Lee,2009-06-02T05:53:45Z,Mardak,Mardak,41,30,11
+16,jsmodules,fca6621ed18d8159ba4dcd79dbebe615b577a859,Use a shared helper test function to time function execution.,Edward Lee,2009-06-02T05:07:03Z,Mardak,Mardak,23,15,8
+17,jsmodules,bf28edac1158c19d5f94758a37b874c968ee5e1f,Just implement Sync.sleep with sleep.sync instead wrapping it first.,Edward Lee,2009-06-02T02:13:12Z,Mardak,Mardak,4,1,3
+18,jsmodules,f1eb0b1fd1c86c89a30640f1190462847d3f6e08,Directly add additional properties to Sync instead of overwriting __proto__.,Edward Lee,2009-06-02T02:03:07Z,Mardak,Mardak,46,27,19
+19,jsmodules,d08df5167bc9f432c41427fabb400e4af33dbd45,"Change boilerplate of Function.prototype.sync = Sync.sync to just Sync(Function).
+Rewrite the core sync implementation to eventually allow binding of thisArgs, extracting of onComplete callback, and not always injecting the callback as the first arg of the async function.",Edward Lee,2009-06-02T01:41:21Z,Mardak,Mardak,88,61,27
+20,jsmodules,c99f974da2e1d10a33d44e8889872ab0927dbd14,"Convert sync to single line comments and lets
+
+--HG--
+extra : rebase_source : a1c8dab75a930abb3a4fbfd37e8ba69d64034fdc",Edward Lee,2009-06-01T18:22:23Z,Mardak,Mardak,18,9,9
+21,jsmodules,12b437c91dae97314612ca38cc45bb576d50bcc6,work around bug in Iceweasel 3.0 that causes it to report its platform version as 1.9 instead of 1.9.0.x,Myk Melez,2009-05-28T21:17:54Z,mykmelez,mykmelez,6,5,1
+22,jsmodules,2473a613d677b36dc3a68159948f7d2f57a21105,"test using the Sync.sync method added to the Function prototype to create our own 'synchronous asynchronous' function; simplify Sync.sleep implementation, removing unnecessary callback indirection",Myk Melez,2009-05-28T05:54:32Z,mykmelez,mykmelez,25,21,4
+23,jsmodules,20a51c6202f263969bd8a5ba17f526159c5cc776,initial implementation of Sync module for doing asynchronous operations in a synchronous fashion,Myk Melez,2009-05-28T05:24:15Z,mykmelez,mykmelez,133,133,0
+24,jsmodules,648ec6bbf943d243fe0d174f67b18ed14b004595,rename attr to attribute to make the code a bit clearer,Myk Melez,2009-05-12T21:43:26Z,mykmelez,mykmelez,14,7,7
+25,jsmodules,e0dfcf737e5ae4ca16d55bdd3feb93da76f597f9,explain mixing in better,Myk Melez,2009-05-12T21:42:03Z,mykmelez,mykmelez,2,2,0
+26,jsmodules,ad3ae802a2a34037b2477078ec89638fe97fdb43,first version of Mixins module for mixing attributes of one object into another,Myk Melez,2009-05-12T21:30:52Z,mykmelez,mykmelez,107,107,0
+27,jsmodules,fc176cbd70153e801d17ac26d26bed44eea94418,initial support for accessing site-specific preferences in the Preferences module,Myk Melez,2009-05-02T22:57:30Z,mykmelez,mykmelez,121,118,3
+28,jsmodules,c78440a4b1dee84cb432d6afb96a572c3075a0a1,minor documentation fix,Myk Melez,2009-04-01T20:19:10Z,mykmelez,mykmelez,4,2,2
+29,jsmodules,2c497b263b3ba6a61af705da8a8e685da169a3e8,improve documentation of JSON module now that it supports all Gecko 1.9.0 applications,Myk Melez,2009-04-01T20:12:14Z,mykmelez,mykmelez,18,10,8
+30,jsmodules,8117088915a5e092105e2c22a1b27f1487b0e67d,make JSON.js support all Gecko 1.9.0 applications (all of which shipped with JSON.jsm),Myk Melez,2009-04-01T19:59:42Z,mykmelez,mykmelez,4,1,3
+31,jsmodules,96d14992a9c39417d97410017a88165bdaaa1e33,typo fix,Myk Melez,2009-03-26T01:41:47Z,mykmelez,mykmelez,2,1,1
+32,jsmodules,b8490de5972f182313ffcf19e17d3a11ae719f12,JSON module that abstracts incompatible JSON APIs in Firefox 3.0 and 3.5 (for extensions that support both versions),Myk Melez,2009-03-26T01:16:37Z,mykmelez,mykmelez,91,91,0
+33,jsmodules,f6352a016ef040d05dc6bdc449057d22d4c0f58d,document |set| better,Myk Melez,2009-03-07T01:12:24Z,mykmelez,mykmelez,10,8,2
+34,jsmodules,5f59cfae189d0a568f119d72f0d7a926aa81eb58,make the defaultValue parameter apply to an array of prefs being retrieved with |get|,Myk Melez,2009-03-07T01:06:44Z,mykmelez,mykmelez,36,28,8
+35,jsmodules,c2b1718c7897bcd765bd712f849f815d6ad25c0f,make lock/unlock/locked support arrays of pref names,Myk Melez,2009-03-07T01:00:31Z,mykmelez,mykmelez,81,66,15
+36,jsmodules,039da31f4b10283fcaf18aa770c83ec3341a1f8f,change modified to isSet and make it support an array of pref names,Myk Melez,2009-03-07T00:47:11Z,mykmelez,mykmelez,59,54,5
+37,jsmodules,341b479cb8e8247a39e4bd2b91ff70d3bfe0ee1c,move resetBranch out of the group of preferences that need to be modified to support arrays of pref names,Myk Melez,2009-03-07T00:32:36Z,mykmelez,mykmelez,27,13,14
+38,jsmodules,036803340fb57e436e4f2add5d48a5b52f8e8198,make |has| support an array of pref names,Myk Melez,2009-03-07T00:31:31Z,mykmelez,mykmelez,29,25,4
+39,jsmodules,31c51ba094b8837d2b3647e00d63bf660c9139ae,hide and document private properties,Myk Melez,2009-03-07T00:21:45Z,mykmelez,mykmelez,33,19,14
+40,jsmodules,a0a3cbb194021a44db1182d771a49c8716bd45e6,differentiate between the PREF_INVALID pref type and some unknown pref type that we don't know how to handle,Myk Melez,2009-03-07T00:09:43Z,mykmelez,mykmelez,7,6,1
+41,jsmodules,46c57bd0558ad42743c7bb7f73c2f43c733019ab,"make the observers cache a global object to reduce the risk of reference cycles, and only cache an observer once we've successfully added it via the observer service",Myk Melez,2009-03-06T23:59:08Z,mykmelez,mykmelez,30,12,18
+42,jsmodules,cf11735f547d44cca1ca7e379bb820f2e54bba59,test that observers get passed the value of the pref that changed,Myk Melez,2009-03-06T23:52:37Z,mykmelez,mykmelez,23,23,0
+43,jsmodules,389deaa4ca2ed3772c0450d9699288cf0437d151,remove unused code for observing pref branches,Myk Melez,2009-03-06T23:43:52Z,mykmelez,mykmelez,88,0,88
+44,jsmodules,a525fb7d0741e2f1ce7c584527ffa4cc988db203,format comment in javadoc style,Myk Melez,2009-03-06T23:20:14Z,mykmelez,mykmelez,5,3,2
+45,jsmodules,d515da5b9a906c6b26d2a423f9c0f7ae0fe43f4d,switch from pref branch observers to pref-specific observers,Myk Melez,2009-03-06T23:19:43Z,mykmelez,mykmelez,182,145,37
+46,jsmodules,405496ea065b36488622ebeeea441232a01d1b98,format comment better,Myk Melez,2009-03-06T21:24:51Z,mykmelez,mykmelez,4,2,2
+47,jsmodules,56ba47bac38465221e818ea525c03ca6e2d7477d,throw if an integer pref is outside the PRInt32 range,Myk Melez,2009-03-06T21:16:10Z,mykmelez,mykmelez,23,15,8
+48,jsmodules,de3a5c1f6bf0262a53115e155caf7821819460b6,warn about numbers that overflow the PRInt32 range,Myk Melez,2009-03-06T21:09:13Z,mykmelez,mykmelez,45,45,0
+49,jsmodules,f874ce34a142b725a452ffe3c395ca2cd1e95cf0,store pref observers in a global object,Myk Melez,2009-03-06T20:12:01Z,mykmelez,mykmelez,42,18,24
+50,jsmodules,e6dee93aba91e069935e9bffd2456a2799b7385a,support observing pref branches,Myk Melez,2009-03-06T20:07:18Z,mykmelez,mykmelez,171,171,0
+51,jsmodules,fc38e96116519861dce4f300d2795482a5c88ea0,format code comments more consistently,Myk Melez,2009-03-06T20:02:55Z,mykmelez,mykmelez,12,6,6
+52,jsmodules,54f2c6d2c6971d904e624e0cc8db4fa51603742b,"remove the sdkdir variable, which is not needed by the Makefile",Myk Melez,2009-02-25T13:55:28Z,mykmelez,mykmelez,1,0,1
+53,jsmodules,fbf8066294f23f04676bcb6e9b93b36182353f14,"don't set pref values that aren't of type String, Number, or Boolean",Myk Melez,2009-02-20T22:45:41Z,mykmelez,mykmelez,81,61,20
+54,jsmodules,98eece9c0d47410616a214e3fef69e61b3e97efc,reverse the order in which tail files are evaluated for consistency with the way the xpcshell test harness works,Myk Melez,2009-02-20T21:09:05Z,mykmelez,mykmelez,10,5,5
+55,jsmodules,968bf04e5a5f82e812ed4ac9d50688797fac438e,warn when converting non-integer number to integer,Myk Melez,2009-02-19T15:16:08Z,mykmelez,mykmelez,4,4,0
+56,jsmodules,424f89baae2a3c01f52a83ad83d61ca17c8277f9,store non-ASCII stings correctly,Myk Melez,2009-02-19T15:15:46Z,mykmelez,mykmelez,32,29,3
+57,jsmodules,e7309cc0d42428c014ff0b704781df5d98c5f09f,"reset now accepts an array of pref names to reset, so it shouldn't be in the section of the code labeled 'make the methods below accept an array of pref names'",Myk Melez,2009-02-19T14:17:14Z,mykmelez,mykmelez,44,22,22
+58,jsmodules,05f8a353dd61bf113e3451b89b72e679c0c0d3d8,"undo recent change of running pref tests manually in a run_test function, as then the output doesn't list each individual test function being run; also, only two of the six tests actually need any cleanup, so now we just make those two tests clean themselves up",Myk Melez,2009-02-19T14:10:57Z,mykmelez,mykmelez,23,6,17
+59,jsmodules,9ea08e1e9b7723d96542532df42791fad8369130,"evaluate tail files in the reverse order from head files, and document that order",Myk Melez,2009-02-19T14:07:46Z,mykmelez,mykmelez,19,15,4
+60,jsmodules,6320802eb7f29494c86266befaf4fedaee1e51e0,reset prefs after testing the Preferences module,Myk Melez,2009-02-19T13:55:27Z,mykmelez,mykmelez,17,17,0
+61,jsmodules,46ae0b93fd990148ff66c7aaedd6f8aae9f78649,factor out code that checks to see if arguments are arrays or objects; add tests to make sure setting/getting single and multiple prefs works; make sure tests use unique pref names so they don't conflict with each other,Myk Melez,2009-02-19T13:37:52Z,mykmelez,mykmelez,109,72,37
+62,jsmodules,33d233336285667a9eefcb4fe94fca07253e05b1,"implement resetBranch ourselves, as the current implementation of nsIPrefBranch in Mozilla doesn't implement it for us",Myk Melez,2009-02-19T13:14:04Z,mykmelez,mykmelez,38,36,2
+63,jsmodules,ba87c11de9d670e365e7a44cece1751300cc188c,trap NS_ERROR_UNEXPECTED when calling reset() so callers can unconditionally reset a pref without having to check first that it exists and is in a non-default state (or trap an exception after the fact,Myk Melez,2009-02-19T00:01:57Z,mykmelez,mykmelez,22,21,1
+64,jsmodules,79d325d1d8031325c2aceb67698c41350625c347,ignore temporary files created by the test harness,Myk Melez,2009-02-18T23:58:00Z,mykmelez,mykmelez,2,2,0
+65,jsmodules,15d66d345d444d8348edd1332d2452c9613407e0,report an error and stop if the user hasn't specified the XULRunner executable,Myk Melez,2009-02-05T02:09:10Z,mykmelez,mykmelez,10,9,1
+66,jsmodules,2932a494f1407c3c3d0d58a82c1e37e879b5a864,make sure the testing profile directory gets created by the harness correctly,Myk Melez,2009-02-05T01:58:26Z,mykmelez,mykmelez,25,13,12
+67,jsmodules,5a058899840d1c77de7f1e0b0835756bb3f01caf,Added tag Observers-0.2 for changeset 73e238befb04,Myk Melez,2009-02-05T01:38:32Z,mykmelez,mykmelez,1,1,0
+68,jsmodules,3262f6dd0dd8e807fa2340b9445299db27b66060,basic functional tests for the Observers module,Myk Melez,2009-02-02T22:40:19Z,mykmelez,mykmelez,71,71,0
+69,jsmodules,422c6f96704003c915f5bf890d6b6ffa4595d900,XULRunner unit test harness for testing the modules,Myk Melez,2009-02-02T22:39:55Z,mykmelez,mykmelez,4514,4514,0
+70,jsmodules,ebd6c469fb93a2d2e98a3b6a1c4d051b635ce54e,version 0.2: make Observers.add/remove take optional thisObject parameter; don't pass topic to function/method observers; switch order of topic/subject parameters to Observers.notify; fix bug that sometimes causes an observer of a topic to unregister another observer of the same topic; fix bug that subjects that are JS XPCOM components and have wrappedJSObjects are unwrapped,Myk Melez,2009-02-02T22:36:26Z,mykmelez,mykmelez,127,102,25
+71,jsmodules,b24e1e9fc796efe0305579ea43720fbc04a438b3,a StringBundle module to make accessing string bundles from JS modules and components easier,Myk Melez,2008-12-01T06:14:36Z,mykmelez,mykmelez,238,238,0
+72,jsmodules,02e338f168568f6b6c51034a74e1623218272d67,simplify argument format,Myk Melez,2008-10-09T00:03:27Z,mykmelez,mykmelez,8,4,4
+73,jsmodules,c76968148d018ba73d7b84a98778a0dae9279f3f,a URI module for creating URIs (wraps nsIIOService::newURI),Myk Melez,2008-10-08T23:59:05Z,mykmelez,mykmelez,72,72,0
+74,jsmodules,8c96c2350556db25fc7a9600b53c660aee141f64,the Observers module for simpler registration of observers that observe notifications,Myk Melez,2008-09-23T23:16:40Z,mykmelez,mykmelez,106,106,0
+75,jsmodules,42e1ae57de5d04167198a6dcd1093fc4900de047,space out case chunks to make the code more readable,Myk Melez,2008-09-18T21:06:35Z,mykmelez,mykmelez,5,5,0
+76,jsmodules,17e819aeed3f49e24ee88897f49987e2e849b18d,access pref branch constants through the interface rather than an instance,Myk Melez,2008-09-18T21:05:09Z,mykmelez,mykmelez,2,1,1
+77,jsmodules,0e9a3d58bab5fd0af9877a65b08e30c5434cf93a,make it clearer under what circumstances we return the default value of a preference being retrieved,Myk Melez,2008-09-18T21:04:27Z,mykmelez,mykmelez,5,3,2
+78,jsmodules,94fb5b4e420c0d7866ad47bc74ca15f5f22654a7,"don't catch exceptions thrown by pref service getters, since we make sure the pref exists before getting it, thus we avoid the known exception on getting a nonexistent pref that the try/catch block was intended to handle; that makes the try/catch block unnecessary, and it's also harmful, since it may suppress other exceptions we want to know about",Myk Melez,2008-09-18T21:03:12Z,mykmelez,mykmelez,19,8,11
+79,jsmodules,5d2168ae3bdef732f579ce7b37646ab325b830cd,new implementation of Preferences module,Myk Melez,2008-09-18T20:40:20Z,mykmelez,mykmelez,150,150,0

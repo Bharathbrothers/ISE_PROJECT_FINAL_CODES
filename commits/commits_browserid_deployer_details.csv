@@ -1,0 +1,83 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,browserid_deployer,8a70f3b117ee2ac55f97146a7b14f7da1eb583fe,use hostname with https ver.txt check,Lloyd Hilaiel,2013-09-23T18:36:20Z,lloyd,lloyd,7,6,1
+1,browserid_deployer,33e6f0d4e3d4afad1b40f5799a7164b25bd9b9be,s/http/https/ for ver.txt check,Lloyd Hilaiel,2013-09-23T18:31:42Z,lloyd,lloyd,4,2,2
+2,browserid_deployer,41d82b7c787bce4f03c0d8d6e1737807246779a5,update to awsbox 0.5.3,Lloyd Hilaiel,2013-09-18T11:26:12Z,lloyd,lloyd,2,1,1
+3,browserid_deployer,70be57978b0c3a2f5604d3b5384bdd79846e243c,add step for generating a keypair,Lloyd Hilaiel,2013-09-18T11:15:10Z,lloyd,lloyd,5,3,2
+4,browserid_deployer,74e78d86b893cc5ff93ab054b0b069cc8359a8c4,add step for copying credentials,Lloyd Hilaiel,2013-09-18T11:07:53Z,lloyd,lloyd,3,2,1
+5,browserid_deployer,af614cfbd6d4ff3c00b73e9c9a7d2e953e7cd8f5,move to awsbox 0.5.2,Lloyd Hilaiel,2013-09-18T10:45:29Z,lloyd,lloyd,2,1,1
+6,browserid_deployer,adf743b3992a3b52ba023b055082f8310b309a9e,"- made the deploy hostname, repo, branch and some others configurable via
+  environment (so I could test changes without changing
+  deployer.personatest.org).
+- probably went too far on making this configurable ;-)
+- initialize aws.createClients so vm.{list,destroy} work correctly
+- improved some error messages to help log debugging
+- changed lib/latest_sha.js to lookup NS (instead of hard-coded zerigo NS)
+- upgraded native-dns to current to pick up a bug fix for running on osx
+- added missing dep `temp@0.6.0`, and new dep nice-route53@0.3.3
+- bumped the version to 0.0.2 fwiw",John Morrison,2013-09-17T04:20:01Z,jrgm,jrgm,128,85,43
+7,browserid_deployer,cf28008c2394ce077d1aab2f9af5b08cb5357097,basic instructions for deploying the deployer,Lloyd Hilaiel,2013-09-18T10:54:50Z,lloyd,lloyd,15,15,0
+8,browserid_deployer,a99e613c0cc8578656d5d40b20e98218d8104fe9,"Merge pull request #12 from 6a68/issue_11_dueling_deployers
+
+Issue 11 dueling deployers",Jared Hirsch,2013-08-06T22:46:40Z,jaredhirsch,jaredhirsch,10,8,2
+9,browserid_deployer,abe9fe3dcb46ee5ec1acc02e55842c58a872edd8,"Don't use both 'self' and 'this'. Fixes #11.
+
+    I think the cause of #11 is that checkForUpdates is running inside a
+    setInterval loop, where this._busy isn't getting set to the same thing
+    as self._busy, causing parallel threads of execution.
+
+    If we see more 'dueling deployers', this theory will be proven wrong :-P",Jared Hirsch,2013-08-06T19:00:22Z,jaredhirsch,jaredhirsch,4,2,2
+10,browserid_deployer,9967e1e801e4060374ed140e6fd97fd9275333fe,"Add detailed logging each time we checkForUpdates, to isolate race conditions.",Jared Hirsch,2013-08-06T18:33:35Z,jaredhirsch,jaredhirsch,6,6,0
+11,browserid_deployer,304cf222c746c386ca893064aef549e2111d4c4e,"Merge pull request #6 from 6a68/another_logger
+
+Prepend ISO date timestamp to deployer events. Fixes #2.",Sean McArthur,2013-07-02T00:19:39Z,seanmonstar,seanmonstar,16,8,8
+12,browserid_deployer,de5b58f9c153f759838289587bc13139f9931f74,Prepend ISO date timestamp to deployer events. Fixes #2.,Jared Hirsch,2013-07-01T23:52:26Z,jaredhirsch,jaredhirsch,16,8,8
+13,browserid_deployer,a4d838e68c956669245c04b444f83c5bac1cd5ec,"Revert ""Prepend ISO date to log lines. Fixes #2.""
+
+This reverts commit 039d2a1a713d5bcfd1548d45078e0053cd6c4472.",Jared Hirsch,2013-07-01T22:22:32Z,jaredhirsch,jaredhirsch,6,3,3
+14,browserid_deployer,039d2a1a713d5bcfd1548d45078e0053cd6c4472,Prepend ISO date to log lines. Fixes #2.,Jared Hirsch,2013-06-29T01:07:46Z,jaredhirsch,jaredhirsch,6,3,3
+15,browserid_deployer,fbd4efb3e24140d756060a55ef99c6044b4e2834,downgrade hard error to warning when we cannot locate the currently running server,Lloyd Hilaiel,2013-06-03T19:31:11Z,lloyd,lloyd,6,5,1
+16,browserid_deployer,07a2a2df968f6c830c95efdc93a8671de3920763,Add some debugging output,Ryan Kelly,2013-05-15T00:48:15Z,rfk,rfk,1,1,0
+17,browserid_deployer,8f1f67145271c7d7e4fd911fe2c373489bd5b10c,Make IRC error message more sensible if we failed while 'deploying null',Ryan Kelly,2013-05-15T00:10:25Z,rfk,rfk,6,5,1
+18,browserid_deployer,410dfd33c50816a86a66ce77878adbba21e276d9,Add missing error check,Ryan Kelly,2013-05-10T18:01:07Z,rfk,rfk,1,1,0
+19,browserid_deployer,8df916ddc400312737620d171099131000dcdd4f,fix broken reference to spawn,Lloyd Hilaiel,2013-01-07T19:54:02Z,lloyd,lloyd,3,2,1
+20,browserid_deployer,f852960eef64b29cbf0df0236923572bc74d35ee,use awsbox built-in facilities for populating pubkeys,Lloyd Hilaiel,2013-01-07T19:51:01Z,lloyd,lloyd,19,4,15
+21,browserid_deployer,c78ff89b6de554fafc8f34d2147353b85d67f6b0,upgrade to newest awsbox and node,Lloyd Hilaiel,2013-01-07T19:34:31Z,lloyd,lloyd,34,17,17
+22,browserid_deployer,4e1a7923b15f57c9532d5912766ad03ffcb960e7,copy up domain keys if they exist on the VM,Lloyd Hilaiel,2012-07-16T16:32:10Z,lloyd,lloyd,41,30,11
+23,browserid_deployer,82c633f6e74224eabc571fbad1c0f578350d9a29,bump to awsbox 0.2.12 which increases AWS timeouts for VM accessibility,Lloyd Hilaiel,2012-06-14T12:10:31Z,lloyd,lloyd,2,1,1
+24,browserid_deployer,af7bcfa61d9b5f9ba594ba169943e85471c96793,make instance type configuration via the environment,Lloyd Hilaiel,2012-06-14T10:36:46Z,lloyd,lloyd,4,3,1
+25,browserid_deployer,e377a35fb3440ff4c0f6a0284eb081e3ff4edb59,ditto,Lloyd Hilaiel,2012-06-14T10:33:03Z,lloyd,lloyd,2,1,1
+26,browserid_deployer,67398d63783917cdc35589e2b621024e73dcbf4e,change hostname to login.dev.anosrep.org,Lloyd Hilaiel,2012-06-14T10:30:10Z,lloyd,lloyd,2,1,1
+27,browserid_deployer,782db3b07b3d1f259bb2ed24778b9a4b8b558bd2,fix typo,Lloyd Hilaiel,2012-06-13T11:00:33Z,lloyd,lloyd,2,1,1
+28,browserid_deployer,6c3976b586c9b7afb1e3e688fa35b8ff2b5d9663,"delay test user creation until the processes are started (and hence, tables created)",Lloyd Hilaiel,2012-06-13T10:49:16Z,lloyd,lloyd,34,19,15
+29,browserid_deployer,52f36a0658a7a4f46a741a056821ac2e6bd6a917,bump to 0.2.11,Lloyd Hilaiel,2012-06-13T10:38:43Z,lloyd,lloyd,2,1,1
+30,browserid_deployer,1533e2ba487cf97180ea5d828c224b24c444908f,run script that creates test user after VM creation,Lloyd Hilaiel,2012-06-13T10:24:35Z,lloyd,lloyd,24,13,11
+31,browserid_deployer,374855798fdf7247006acf9b69e88db550c35458,a script to create selenium test user,Lloyd Hilaiel,2012-06-13T10:19:24Z,lloyd,lloyd,3,3,0
+32,browserid_deployer,a8dc1e61e633b2a722a706b991821cdffb0801bf,knock poll period down to 15 minutes now that github's webhooks are handled correctly,Lloyd Hilaiel,2012-06-11T12:50:52Z,lloyd,lloyd,5,3,2
+33,browserid_deployer,2ef8877cb0086824b377d1a0053508c3606d3342,more informational output,Lloyd Hilaiel,2012-06-11T12:19:15Z,lloyd,lloyd,9,8,1
+34,browserid_deployer,5af038fd1a610fb47d152fd1ca1d83472c230fed,"update to latest aws, and disable DNS check",Lloyd Hilaiel,2012-06-11T12:01:37Z,lloyd,lloyd,3,2,1
+35,browserid_deployer,e9e9db36201423e0f4034a21dd8b01f318010bd9,"let awsbox handle DNS updates for info in logs, better timing (happens during push), and simpler deployment server code",Lloyd Hilaiel,2012-06-11T11:35:32Z,lloyd,lloyd,21,5,16
+36,browserid_deployer,c8e0737eab00f99fc02a7a7096836de516cf0745,/check now supports POST as well as GET.  this means post-deploy hooks should actually work now.  duh.,Lloyd Hilaiel,2012-06-11T08:55:43Z,lloyd,lloyd,5,5,0
+37,browserid_deployer,b30068f9a7f89c6168896a6d12963d723730e7ee,getting latest running sha now queries zerigo DNS servers directly to prevent false positives due to DNS propogation delays,Lloyd Hilaiel,2012-06-11T08:34:41Z,lloyd,lloyd,97,68,29
+38,browserid_deployer,5afe9f0bc88135bf240de5360e8418a0692dfa72,force SSL,Lloyd Hilaiel,2012-06-11T08:05:56Z,lloyd,lloyd,3,2,1
+39,browserid_deployer,9bf5bebb4ebd4f90c2c9e1ae7b9e3aa3d5223492,move to dev branch,Lloyd Hilaiel,2012-06-11T06:54:45Z,lloyd,lloyd,2,1,1
+40,browserid_deployer,ac6dd4e4af8c400f0967e5c69f8cd87ca787b354,move deployment hostname out into variable and deploy to dev.diresworb.org for now,Lloyd Hilaiel,2012-06-11T06:52:03Z,lloyd,lloyd,21,13,8
+41,browserid_deployer,0651a1801cd44355dc2048acf8f7b588721c23f2,clean up output of events when no data is provided,Lloyd Hilaiel,2012-06-07T13:01:52Z,lloyd,lloyd,4,2,2
+42,browserid_deployer,7f63684a9e17c3d6cbc75a7dd62369925b602b8d,bump to awsbox 0.2.5 to fix vm cleanup,Lloyd Hilaiel,2012-06-07T12:56:31Z,lloyd,lloyd,2,1,1
+43,browserid_deployer,684ff48b16cc5d66993d79da9456ebeabcc843bd,more output hiding,Lloyd Hilaiel,2012-06-01T16:25:40Z,lloyd,lloyd,3,2,1
+44,browserid_deployer,a3a090dbf8c66987469298b587124bcd383d2082,report to identity channel,Lloyd Hilaiel,2012-06-01T16:06:43Z,lloyd,lloyd,2,1,1
+45,browserid_deployer,22c4aff200769ef8635002e45852ceb38d353a8c,use new dns.updateRecord() api properly,Lloyd Hilaiel,2012-06-01T15:55:21Z,lloyd,lloyd,2,1,1
+46,browserid_deployer,19c2de15e34774daa1113c6239696a6cbf919418,get DNS key from env,Lloyd Hilaiel,2012-06-01T15:44:50Z,lloyd,lloyd,4,2,2
+47,browserid_deployer,90cc740ea8ed165a718f9cd2994ef1a6379f2ca6,hide passwords in output,Lloyd Hilaiel,2012-06-01T15:39:35Z,lloyd,lloyd,1,1,0
+48,browserid_deployer,19b0ce48a788b9dc6d25cdc46a2323a0cc9521ff,s/browserid/persona/,Lloyd Hilaiel,2012-06-01T15:35:39Z,lloyd,lloyd,4,2,2
+49,browserid_deployer,2121c7acf4aceacd416283df2f1980e9ccacbb8c,fix dns update,Lloyd Hilaiel,2012-06-01T15:34:54Z,lloyd,lloyd,15,9,6
+50,browserid_deployer,b767d94b67e2ca78b29a611b3a5270ea3d34059b,bump to awsbox 0.2.4,Lloyd Hilaiel,2012-06-01T15:24:54Z,lloyd,lloyd,6,3,3
+51,browserid_deployer,7503ac199ddd96f02eec4c2f9ba70cb8a55f3b35,one more PWD -> cwd,Lloyd Hilaiel,2012-06-01T15:08:19Z,lloyd,lloyd,3,1,2
+52,browserid_deployer,a3fe15374f32965f5ea250eabf78a1e2697f563b,destroy old VMs by instanceID,Lloyd Hilaiel,2012-06-01T15:05:21Z,lloyd,lloyd,2,1,1
+53,browserid_deployer,3279393c1bbd854e324458961eb6ca1b8f5cb036,pathing,Lloyd Hilaiel,2012-06-01T14:58:25Z,lloyd,lloyd,3,2,1
+54,browserid_deployer,3391a482179c47ba93bb79fd4f785614e67bdb5f,fix path,Lloyd Hilaiel,2012-06-01T14:55:04Z,lloyd,lloyd,2,1,1
+55,browserid_deployer,5c2955b15f2e62c840f501bcabc81c6f0f0258eb,update URL,Lloyd Hilaiel,2012-06-01T14:39:16Z,lloyd,lloyd,2,1,1
+56,browserid_deployer,d3f18b0f4477039e990811b13ffe8bded7881b6a,track awsbox_port branch for now,Lloyd Hilaiel,2012-06-01T14:38:24Z,lloyd,lloyd,4,2,2
+57,browserid_deployer,24742898e33ed2053a165ec6d003f7869b7b7951,bump up to awsbox 0.2.2,Lloyd Hilaiel,2012-06-01T14:27:34Z,lloyd,lloyd,2,1,1
+58,browserid_deployer,a824492a13b64f18a9f1dd2020554a7e0ede1400,port to new awsbox based deployment,Lloyd Hilaiel,2012-06-01T14:27:05Z,lloyd,lloyd,118,51,67
+59,browserid_deployer,d2608fe9c1597ccfa1654967b079a2a3f320e42d,partial port to new deployment scripts,Lloyd Hilaiel,2012-06-01T14:20:36Z,lloyd,lloyd,1,1,0
+60,browserid_deployer,8c6917586c3c93bd385d6a6833e5938c1809229d,move code out of browserid/ and into here,Lloyd Hilaiel,2012-06-01T13:12:45Z,lloyd,lloyd,446,446,0

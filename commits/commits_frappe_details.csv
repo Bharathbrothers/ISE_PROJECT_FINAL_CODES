@@ -1,0 +1,336 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,frappe,0b9c4bd68c910e613123b99d5906134aee22f774,[IMPROVEMENT] Super Mega Improvement on template rendering. Lose 1 extra query per app installed and 2 extra queries per app recommended.,joaonrb,2014-01-09T16:43:34Z,joaonrb,joaonrb,39,24,15
+1,frappe,95d4206106f5b8b7851b2af6f4ed74eed6aa2452,"[IMPROVEMENT] Controller now sort app list before rerankers. So rerankers receive by parameter a list with app ids sorted by score instead of a list of scores sorted by app ids. This way the reranker just have to adjust the position instead of  an app id instead of recalculate scores.
+
+[IMPROVEMENT] User cache now fetch all related",joaonrb,2014-01-09T16:00:05Z,joaonrb,joaonrb,11663,56,11607
+2,frappe,4fbfa46290bd594914576a90659c569f6b663057,[IMPROVEMENT] Category Reranker version 1. Still need some testing.,joaonrb,2014-01-08T16:34:22Z,joaonrb,joaonrb,1256,1249,7
+3,frappe,12caea1bd8ae6e7eca91f7432f8e5b05f0463428,"[IMPROVEMENT] Cache part of the recommendation template. Reduce queries.
+
+[INFO] Beginning the implementation of category re-rankers.",joaonrb,2014-01-08T11:00:09Z,joaonrb,joaonrb,2182,2168,14
+4,frappe,87b0b4f4fc2ae1117da6a34ba07c7044dcaf79ba,[IMPROVEMENT] Change in GUI recommendation view. The View now receives 80 recommendations(hidden most of them) showing 4 each time.,joaonrb,2014-01-08T08:50:35Z,joaonrb,joaonrb,7551,7520,31
+5,frappe,68f825bfbc7d186015844cc8971fe5f929806d49,[FEATURE] Java Predictor - Interface with MySQL tables.,joaonrb,2014-01-03T15:15:00Z,joaonrb,joaonrb,298094,298094,0
+6,frappe,65fcb5ad7728901f0f6ee239a10edc5b16a48db1,[FEATURE] Documents updated,joaonrb,2014-01-03T15:04:41Z,joaonrb,joaonrb,920,19,901
+7,frappe,c188e87204791cdcde74cb69ee0e9b0e1814bb0a,[FEATURE] New controller that connect the data of the Java predictor.,joaonrb,2014-01-03T14:59:04Z,joaonrb,joaonrb,408,386,22
+8,frappe,c5f69c7bcc598bd7f968eeaa8a1c63987cc60faa,[FEATURE] Login and logout fully integrated,joaonrb,2013-12-31T11:47:44Z,joaonrb,joaonrb,523,497,26
+9,frappe,7ff2e9571ea628f18b2419b0cb46b1c5fc5c015e,"[FEATURE] Personalized login feature. Logout is already implemented but not included in gui. Have to use ""http://host:port/logout/"".",joaonrb,2013-12-31T11:08:04Z,joaonrb,joaonrb,33,30,3
+10,frappe,f95f545e61b6b0e72f76cf493bbe609372338061,[MINOR] Remove the .idea. This doesn't belong with the project,joaonrb,2013-12-30T09:56:32Z,joaonrb,joaonrb,50,0,50
+11,frappe,135e69004bb6021576aa9120208e45810081f321,"[FEATURE] Login feature. This use the admin login feature. Because is not made for it, after login the user always is redirected to the admin page.",joaonrb,2013-12-30T09:35:12Z,joaonrb,joaonrb,80,73,7
+12,frappe,f94ce6e337f8b2a341800b501b01e17325d497c7,[MINOR] Added the encoding line to utf-8 in the main python files,joaonrb,2013-12-17T16:47:46Z,joaonrb,joaonrb,4173,2791,1382
+13,frappe,5b4357c1b13f84fe0ab0d35ea51ed957cadd2d77,"[FEATURE] New region Filter.
+[MINOR] Templates in GUI were changed to show some of the recommended apps info.",joaonrb,2013-12-16T11:52:54Z,joaonrb,joaonrb,137,131,6
+14,frappe,f27b9584e20e819b7cf0209c142046d8bf428846,"[BUGFIX][IMPROVEMENT] Data loader was improved in the user part.
+
+[FEATURE] New filter for region.
+
+[FEATURE] Tests for the new data loader. Parse, load apps and load users are tested. The user data still have to be changed though.",joaonrb,2013-12-13T16:51:32Z,joaonrb,joaonrb,8463,3274,5189
+15,frappe,c9fcf2b1b1b6fa305c70c66ff5f1640d20b6a603,"[BUGFIX][IMPROVEMENT] The cache now is implemented with the django cache system. One of the greatest things is that now it's easy to deploy memory cache, database cache, local cache and even dummy cache. Also I made a nice decorator for objects only.
+
+[FEATURE] The GUI system is working fine. Well, it's not a design masterpiece but it makes the job done.",joaonrb,2013-12-12T11:40:00Z,joaonrb,joaonrb,669,232,437
+16,frappe,35c67fa93a2eddfa9513042c4530241ea66dfa0a,"[BUGFIX] Another big change in the data uploader. It now check if the entries are already in the db so the query don't crash.
+
+[FEATURE] View for landin is set up and ready to use.",joaonrb,2013-12-10T11:21:05Z,joaonrb,joaonrb,10212,10186,26
+17,frappe,66e3bc79e8238c848904c3106ee8f672e996d418,Some new things,joaonrb,2013-12-09T13:58:06Z,joaonrb,joaonrb,294,128,166
+18,frappe,b81557ba694b1fcdf685ddc54795eeec3f63f1e8,"[IMPROVEMENT] Massive change in the app loading to the database. Every piece of data was wrapped into few large queries. One for each table plus one query for every side table to catch the ids. In future this may be reduced to single raw query for performance upgrade.
+
+[FEATURE] First implementation of a cache for models objects. Next step is to wrap this cache into decorator objects so the manage of it become more simple.
+
+[IMPROVEMENT] The test module was created to substitute the nosetest modules. Now the data module still exist but is now replaced by model methods. For that it will be removed in the next commits. It still need the test modules to be completed. Now each django app will have a test module for their tests and when that happen the nosetest will be removed with the data module. Some scripts may change name to.
+
+The documentation is yet to be changed for this new features and changes.",joaonrb,2013-12-08T17:48:37Z,joaonrb,joaonrb,3878,3806,72
+19,frappe,662041ad2641b6b8f0cb0c23203e5e9160f7b330,"[FEATURE]  Recommender application created. Controller with random data provides the api recommendations.
+
+[FEATURE] JSONResponse class created at ffos.util to help with the api response
+
+[DOC] Some doc changes were made in files to allow sphinx parsing to the html files",joaonrb,2013-12-02T14:21:44Z,joaonrb,joaonrb,1474,716,758
+20,frappe,e7c129c34fe3676a161297feea354ca49e44397e,"[FEATURE]  Documentation generator. Its not a feature for the application it self but its a project feature. Now, to make changes in documentation, just edit the .rst files at the pydoc directory.
+
+[DOC] Some doc changes were made in files to allow sphinx parsing to the html files",joaonrb,2013-11-28T10:31:00Z,joaonrb,joaonrb,17180,16950,230
+21,frappe,9ea678b7bb1006db9a1394888c8458e057923ae8,"[FEATURE]  New module to fetch the data from mozilla API. It's not prepared to user data because of lak of mozilla API.
+
+[IMPROVEMENT] New app data from the production API. It also have errors but less, it seams.",joaonrb,2013-11-27T11:51:31Z,joaonrb,joaonrb,4787,2668,2119
+22,frappe,28c7d548d2f0433c9c7d3a18bbb64440486c814e,"[FEATURE] Nose tests and test data is added. The test data produces errors because of data type inquerences. So the success_data is not so successful at all. It's something to check and change for new production data. Or at least with dummy coherent data.
+
+[BUGFIX] Minor changes done in settings.py, data.py, scripts.loaddata.py and models.py. Most of them for bugs detected in tests.",joaonrb,2013-11-27T09:25:50Z,joaonrb,joaonrb,2484,2481,3
+23,frappe,4afe36db822cd67bac1f2bc13d9662478f38ac81,"[FEATURE] data.py Module for parse Python dictionary in special
+and load into database as apps or users. The format of the
+dictionary is described as pydoc format in the py files.
+
+[FEATURE] ffos.scripts package. A package that have scripts to
+work independently from django but are important to the
+application. It may use django recources.
+
+[FEATURE] ffos.scripts.loaddata. A script to load data to the
+database. It work for apps or users. The script documentation is
+in itself as pydoc.
+
+[BUGFIX] ffos.models. Some firefox data had some fields at null
+that the data base wouldn't allow null. This is a problem because
+the data files structure lack documentation. It's fix for now, at
+least for this data files.
+
+[MINOR] ffos.settings A middleware for transactions were added.",joaonrb,2013-11-25T09:23:48Z,joaonrb,joaonrb,600,575,25
+24,frappe,99ae26f1f8e10a1844f2413aa46dbed49a9ee265,"[FEATURE] models.py - user model, app model and all necessary support models were added.
+
+[MINOR] ffos app added to the installed app in django settings.py",joaonrb,2013-11-21T16:56:37Z,joaonrb,joaonrb,236,236,0
+25,frappe,90bb9aa10cbef2065a9f74308cfea381e944c4de,[FEATURE] Mockup for the recomendation app html page. It doesn't have real icons.,joaonrb,2013-11-21T10:44:11Z,joaonrb,joaonrb,122,122,0
+26,frappe,253193ae3048f0d89203c8b6cf5aae848bd5fdc1,"2dn Commit
+
+[FEATURE] The landing page mockup. All the data is static and fictionary.
+
+[FEATURE] Bootstrap framework. It presented to make the front-end pretier. The icons and javascript files may not be used.
+
+[FEATURE] Django configuration files  (settings.py, url.py, etc...). None change was made since the deploy.",joaonrb,2013-11-20T22:58:50Z,joaonrb,joaonrb,10037,10037,0
+27,frappe,2eb09b9d7bd64daa739dd19ac5a51a371403f91e,ignore,White Speaker,2013-11-20T12:24:29Z,whitespeaker,whitespeaker,1,1,0
+28,frappe,ff0788191378a6bb5a67f2142de7379b56a9e17d,First commit. Adding a README.,White Speaker,2013-11-20T12:20:48Z,whitespeaker,whitespeaker,1,1,0
+29,frappe,7a4b025ee7952502734490278687e53639f938c8,[FEATURE] implemented on-line user feature evaluation,Linas,2014-04-01T11:02:04Z,mumas,mumas,34,32,2
+30,frappe,7c8b75bd32ead3ab560df7a15f9bfe196c67ad7f,More or less new documentation 2,joaonrb,2014-03-31T14:24:54Z,joaonrb,joaonrb,434,350,84
+31,frappe,c3c63913c7615159caa0d1603b1f40ec47125153,More or less new documentation,joaonrb,2014-03-31T14:21:14Z,joaonrb,joaonrb,177,152,25
+32,frappe,5a9fd29e5f925c69f3e65bdd7f1f54961d61e5d4,[FIX] fix the gui,joaonrb,2014-03-31T13:30:00Z,joaonrb,joaonrb,45,28,17
+33,frappe,57006e2914bcac3db74fa2ff00bdc337beb9d86e,[small],joaonrb,2014-03-31T10:57:08Z,joaonrb,joaonrb,1,0,1
+34,frappe,c2e847db1c52c082b11b0db3eb6ec572242a2ad6,[FIX] Fixed the language filter to use only items with locale information,joaonrb,2014-03-31T10:40:42Z,joaonrb,joaonrb,8,4,4
+35,frappe,7653cd758a585b77b97438c8d5728af2d1cf4706,[FEATURE] Filter to the owned items,joaonrb,2014-03-31T10:32:42Z,joaonrb,joaonrb,35,30,5
+36,frappe,fa5e03a5243f67c49a1106e24d1235682582e360,added dummy data,joaonrb,2014-03-31T09:38:03Z,joaonrb,joaonrb,2595,2594,1
+37,frappe,d5af9ac2c5abf37f0ec57f3b4563a81afefd308f,[BUGFIX] Tests in records,joaonrb,2014-03-31T09:04:37Z,joaonrb,joaonrb,9,6,3
+38,frappe,fa20747fb84ea151a5c781fd1bbacdbfef4ce530,[BUGFIX] Tests in diversity,joaonrb,2014-03-30T00:00:27Z,joaonrb,joaonrb,121,59,62
+39,frappe,c823543331df7002dbb4901113f1ad28d6562a0e,[BUGFIX] Fixed diversity tests,joaonrb,2014-03-29T11:03:38Z,joaonrb,joaonrb,26,13,13
+40,frappe,c888286d7bfcc8d4da6cf010a705d4f5f157cbcb,[BUGFIX] Fixed diversity when item doesn't have a genre,joaonrb,2014-03-29T10:57:53Z,joaonrb,joaonrb,27,15,12
+41,frappe,7d5f6727f3f818b7d0e8d51c42aed726360c6ed0,[FEATURE] language functionality online with the fill,joaonrb,2014-03-28T16:40:27Z,joaonrb,joaonrb,143,124,19
+42,frappe,00d0cd6ad16aafdc3b4112904c39f89dbf0aee72,[FEATURE] Added language functionality,joaonrb,2014-03-28T14:30:16Z,joaonrb,joaonrb,89,78,11
+43,frappe,d77c433bc9e60a7fe147cc1dfac3b5c715101757,[FEATURE] User install and list in REST API,joaonrb,2014-03-24T16:36:22Z,joaonrb,joaonrb,99,74,25
+44,frappe,4ce0cc31a2228ab7648425e47198b89d94c2ac2b,[FIX] Fix the Post and Delete Methods with the CSRF token,joaonrb,2014-03-24T14:52:46Z,joaonrb,joaonrb,129,69,60
+45,frappe,dddca8e3ac242294eeedf50cf53bbf42943e16e0,[FEATURE] Created a way to register rerankers and filters in settings,joaonrb,2014-03-21T19:34:14Z,joaonrb,joaonrb,63,46,17
+46,frappe,abac8a66905143d6167255d2dd1441d559b2928f,[FEATURE] Popularity is done and working. Test are not done yet,joaonrb,2014-03-21T16:06:38Z,joaonrb,joaonrb,230,171,59
+47,frappe,28527298aad3bd4c62daf781767e0d74a08c1594,"[FEATURE] Script just for the firefox package created (fill_firefox)
+[CHANGE] firefox features was removed from original fill",joaonrb,2014-03-21T14:11:27Z,joaonrb,joaonrb,620,403,217
+48,frappe,b0573eac470d1cab3173fe8ec328e75ec7887aeb,Documentation being changed,joaonrb,2014-03-21T11:02:51Z,joaonrb,joaonrb,12523,423,12100
+49,frappe,e66a774bca10f768771a4e397f8cd80421212915,The script to build the Model is done but crontab for python doesn't work. Have to create a cron job by hand.,joaonrb,2014-03-12T08:39:13Z,joaonrb,joaonrb,144,141,3
+50,frappe,b33d6be7a2e0af2b12b01b8a44f0f32b6e6da0fd,"TensorCoFi by file fixed.
+TODO: cron task for TCF, best items and fix tests",joaonrb,2014-03-11T15:26:12Z,joaonrb,joaonrb,436,265,171
+51,frappe,f671761eb4f4d20fe0235c5dc081552661e64b35,"Everything is working.
+Tests yet to be fixed
+TensorCoFi Python implementation needs to be fix and tune (results are not okay)",joaonrb,2014-03-10T20:51:18Z,joaonrb,joaonrb,938,219,719
+52,frappe,5f969c0e2f383b7dff7890d2457c85421a887828,Threded Version,Alexandros,2014-03-07T10:51:11Z,alexkz,alexkz,57,34,23
+53,frappe,7198399ae3f1dcd05527f889bb1de0977414119c,Apparently all is working well but the Tensor Model builder.,joaonrb,2014-03-06T15:35:31Z,joaonrb,joaonrb,288,81,207
+54,frappe,24278c88a27cf17549818df9fd78b7eb307bb238,add threaded version,Alexandros,2014-03-06T11:44:58Z,alexkz,alexkz,301,301,0
+55,frappe,ff95b10f91b92ffb6d0ce345394a47f839fb9952,"[BIGCHANGE] Load data ready.
+
+Now: Fix the templates in GUI",joaonrb,2014-03-06T09:03:33Z,joaonrb,joaonrb,603,319,284
+56,frappe,c03a911c5e2903edbe3859823b3e48eeeb7e977f,"[MILESTONE] The new version compile.
+
+    - Now load data",joaonrb,2014-03-05T10:24:57Z,joaonrb,joaonrb,1227,72,1155
+57,frappe,6fd240a778e8e3e0d7f588a50933cfcd537d820a,[CHANGE] API migration,joaonrb,2014-03-05T09:51:42Z,joaonrb,joaonrb,2973,245,2728
+58,frappe,c102d4ecf11791f746655bee89ad21cabcebe0b8,"[CHANGE] Diversity imported to a Django app of it own.
+
+TODO: Load items, GUI Django app (with models and stuff), check API and tests",joaonrb,2014-03-04T22:17:13Z,joaonrb,joaonrb,375,74,301
+59,frappe,640afdb073826215a3b646308125cfcd31b1cb6a,[CHANGE] First stage of the change. Most of the recommender app features are migrated to the new module,joaonrb,2014-03-04T21:48:12Z,joaonrb,joaonrb,18044,1291,16753
+60,frappe,e1edef57ba4c060f6facf25a8e5c1a8ec75b8c11,[Feature] Model for the Popular items,joaonrb,2014-03-04T15:21:27Z,joaonrb,joaonrb,14,14,0
+61,frappe,2c0be866bb916bfb8b846447fdea8e9e758898d7,Created new branch version-12-development,joaonrb,2014-03-04T15:03:16Z,joaonrb,joaonrb,0,0,0
+62,frappe,ba1e4cd4a0beff772ad8f6eb576af17e40d58a3c,Documentation,joaonrb,2014-03-04T10:58:22Z,joaonrb,joaonrb,12958,12096,862
+63,frappe,599f8ee496f40fe63add264a1753881398a6e984,Minor changes,joaonrb,2014-03-04T10:54:22Z,joaonrb,joaonrb,1,0,1
+64,frappe,56ee23c5549fb340566fd69e164a83025f7fa803,Minor changes,joaonrb,2014-03-04T10:44:36Z,joaonrb,joaonrb,3,2,1
+65,frappe,3d497e182defbfbdfe3cd18b88b4448b563c83a8,[TESTS] Tests are done and is passing them,joaonrb,2014-03-03T12:37:44Z,joaonrb,joaonrb,37,30,7
+66,frappe,1f792ad4e7a5c59bfce9127e53ee703c364f3170,[FEATURE] Turbo diversity. Must fast. Have to make tests,joaonrb,2014-03-03T11:15:22Z,joaonrb,joaonrb,179,176,3
+67,frappe,a2b289c9747a21afd08a092dd5b2e1f0505e7406,[BUGFIX] Diversifier fixed and are passing the tests,joaonrb,2014-02-28T16:25:41Z,joaonrb,joaonrb,154,82,72
+68,frappe,225eb8ddc2381f8196c6bb20477f779f0ebee8e8,[DOCUMENTATION] Documentation updated,joaonrb,2014-02-27T15:25:43Z,joaonrb,joaonrb,443,111,332
+69,frappe,2cfbec1e940097566a21940dc256de836285fa8c,[TESTS] Tests on diversity. Results should be discuss with Linas.,joaonrb,2014-02-27T15:18:04Z,joaonrb,joaonrb,116,89,27
+70,frappe,e065a5a3da8cc1b21096b8257afb45c245b6405c,[IMPROVEMENT] Diversity plus. Improvement over performance.,joaonrb,2014-02-27T09:48:26Z,joaonrb,joaonrb,39,36,3
+71,frappe,bcb669d76ea4b972de7b8de72500b556200ee86e,[FEATURE] Diversification ready. Test yet to be done.,joaonrb,2014-02-26T20:29:59Z,joaonrb,joaonrb,209,204,5
+72,frappe,944a73b943465db2728646e94991b7a48b066b43,Nothing important,joaonrb,2014-02-25T09:42:10Z,joaonrb,joaonrb,9,8,1
+73,frappe,25fefbdf9710aa0d63802f45c9e680ab67c4a125,API and documentation done.,joaonrb,2014-02-24T12:12:09Z,joaonrb,joaonrb,547,405,142
+74,frappe,cfb17dc78327677692c48027fd78688bb9dd2960,"[IMPROVEMENT] The constant in the re-ranker is dynamic now (not so constant after all).
+
+Some documentation has been improved as well.",joaonrb,2014-02-24T09:40:40Z,joaonrb,joaonrb,681,518,163
+75,frappe,87e990264a51302a95fdbc0bb33fae0e96b014e2,Some fixes in the interface,joaonrb,2014-02-22T17:29:22Z,joaonrb,joaonrb,4,2,2
+76,frappe,959bed1e232b9e31fdad551b8c8ee2e780e72f68,"[BEAUTIFIEDANDSETTOGO] Just try and feel the magic.
+
+ - GUI work on REST API requests
+ - Apps can be installed
+ - Apps can be uninstalled
+ - Multiple kinds of clicks (normal, from recommendations and from anonymous users)
+ - Can go from 0 to 100 km/h in 6.3 seconds
+ - Can't do lemon pie #Bug to fix",joaonrb,2014-02-21T22:39:17Z,joaonrb,joaonrb,373,242,131
+77,frappe,2a80f9908d8633a856cab19682229071b92c4c47,[BEAUTIFIED] The API folder was re-arranged to PEP 8 convention. And has been all documented.,joaonrb,2014-02-21T12:13:06Z,joaonrb,joaonrb,144,92,52
+78,frappe,b7f59e4f386a63c20c423388775ce98d73bdef46,[FEATURE] Created an independent API method just to click on apps,joaonrb,2014-02-21T10:22:00Z,joaonrb,joaonrb,5805,5786,19
+79,frappe,a1551fb912220680298538fcf4be6559672d4a00,"New Version of api is transported to rest_framework. It supports:
+   - App Info(GET)
+   - App click to log(GET)
+   - User installed apps(GET)
+   - User install an app(POST)
+   - User remove an app(DELETE)
+   - User get recommendations (GET)
+Next step - Change on GUI",joaonrb,2014-02-20T16:58:30Z,joaonrb,joaonrb,54,35,19
+80,frappe,5625ad6dc3961c2afdce960f428bd72ad7303057,"[FEATURE] API for items owned, acquire an item and drop an item created",joaonrb,2014-02-20T11:18:28Z,joaonrb,joaonrb,218,203,15
+81,frappe,f59d5cdd092035b8744eaca2561433381b406331,[FEATURE] New API for recommendations using rest framework is on. Now I will do the Item API to get Item Details.,joaonrb,2014-02-19T14:17:04Z,joaonrb,joaonrb,65,50,15
+82,frappe,c9449fe24994ac36203faaed6ef2ad79c07fda1f,[NOTYETIMPLEMENTEDBUTCLOSE] Almost concluded the implementation of recommendation usin rest_framework.,joaonrb,2014-02-19T13:14:41Z,joaonrb,joaonrb,199,195,4
+83,frappe,0e774d706570fc8b0a87afdae7f9b53e2c4d0d03,[BIGCHANGE] Migrate from tastypie to rest-framework,joaonrb,2014-02-18T14:08:09Z,joaonrb,joaonrb,49,26,23
+84,frappe,22622675eb674bbc2d96097de2602075bcd72155,[MINOR] Change in API. Starting to make the post method to install apps,joaonrb,2014-02-18T11:13:52Z,joaonrb,joaonrb,138,99,39
+85,frappe,f25aeeff86a0878aedefcd34ee60ed1e4edeacc1,[FIX] Fix the java core dump error by jnius.,joaonrb,2014-02-17T15:22:11Z,joaonrb,joaonrb,340,159,181
+86,frappe,dd6fd8c9e5ded9dbe7fb049f7caa7be8b228f47e,"[TESTS] Tests ready. Now, it should give a coverage of 84%",joaonrb,2014-02-17T14:01:51Z,joaonrb,joaonrb,313,149,164
+87,frappe,846199ec7601b95d8ab791c46f633a0fe594d807,[TESTS] Test for installed apps being off ready.,joaonrb,2014-02-17T10:21:18Z,joaonrb,joaonrb,88,69,19
+88,frappe,a48c721a4fdc78107b98f65ff2f210f5c82c2e2e,[FEATURE] Re-Ranker now is aware of installed apps for giving new ranks. This is needed to be sure the installed apps don't be pushed up by the algorithm.,joaonrb,2014-02-16T15:05:11Z,joaonrb,joaonrb,27,17,10
+89,frappe,db406b883bc31837988be2bed81f91772fd409a5,[DOCUMENTATION] Documentation on re ranker,joaonrb,2014-02-15T15:19:20Z,joaonrb,joaonrb,5,3,2
+90,frappe,7104714df21b2f31099f2791dbfc7dde8261d61c,[IMPROVEMENT] Big change in the calculation. Makes the changes between recommendations more smooth,joaonrb,2014-02-15T15:16:04Z,joaonrb,joaonrb,75,5,70
+91,frappe,c2fd8781d009db33e008b245aa690fe04cf8dd94,[IMPROVEMENT] Change somethings in the algorithm,joaonrb,2014-02-15T14:58:29Z,joaonrb,joaonrb,4,2,2
+92,frappe,9d42569d61e7110c0c6f5bd61f8d4cbda15f3316,[FEATURE] Main version online. Tests still to go.,joaonrb,2014-02-15T14:27:33Z,joaonrb,joaonrb,22,12,10
+93,frappe,cddb36fca9e6762fa87fa4c1cdd5a1f2bed881ae,[FEATURE] The re ranker prototype works really well but the main still have some glishes to solve,joaonrb,2014-02-14T17:16:07Z,joaonrb,joaonrb,196,159,37
+94,frappe,6fc6a2cecbe6a660df4f51fe8a64ebdb332e1d27,[NOTHING] The Re Ranker log based still on construction and is not deployed. This commit should not mess up the code.,joaonrb,2014-02-13T16:55:06Z,joaonrb,joaonrb,364,204,160
+95,frappe,8831a8c0dbcac76182780c52b76b26368e9de73e,[FEATURE] The clicks don't are record with any value. The recommendations are returned with the value of their rank.,joaonrb,2014-02-13T14:29:12Z,joaonrb,joaonrb,491,251,240
+96,frappe,84953e4cc3bd688c715f48aaeda323bf57cf1671,[NOTHING] Pretty much the same. There are a bug using jnius but might be something of my pc. The configurations of Java may be wrong. I will move on and deal with this after.,joaonrb,2014-02-12T16:04:33Z,joaonrb,joaonrb,23,12,11
+97,frappe,cd32806742045141d35598fcd3fcc518d29f5554,[BUGFIX] Some bugs related with java MySQLWriter and th table name changes,joaonrb,2014-02-12T15:17:16Z,joaonrb,joaonrb,203,96,107
+98,frappe,bac014a0368461055bdfc509e5fa4419c1d18c3f,"[FEATURES]
+   > Recommendation clicks are logged into database.
+   > Logs get the rank (NOT SCORE) info of the app or 0.0 if click wasn't made by recommendation.
+   > GUI is supporting this.
+   > There are NO TESTS yet",joaonrb,2014-02-12T11:50:01Z,joaonrb,joaonrb,85,43,42
+99,frappe,8c7593eeff864e9491e3b236d67dcc0bf41fd388,[FEATURE] Logging system working. But it still needs the score.,joaonrb,2014-02-11T15:58:23Z,joaonrb,joaonrb,83,56,27
+100,frappe,777287c74977d8ee2d2c484375a9c78543b18cec,[FEATURE] Create the click decorator,joaonrb,2014-02-11T14:36:31Z,joaonrb,joaonrb,53,49,4
+101,frappe,19c0fbb45aad8519225a9ed4f03355d146204f4e,[FEATURE] Creation of logging app for recommendations. Creation of model Log.,joaonrb,2014-02-11T13:39:30Z,joaonrb,joaonrb,67,66,1
+102,frappe,8bc66cd076409e1e025d1805ad157e5d840677d2,[IMPROVEMENT] Improvement of the last commit,joaonrb,2014-02-11T13:02:00Z,joaonrb,joaonrb,8,6,2
+103,frappe,facfa473b46680d5ecb395f9773464dd01596519,[FEATURE] App icons transport them to the firefox store page in the app profile.,joaonrb,2014-02-11T12:57:20Z,joaonrb,joaonrb,21,3,18
+104,frappe,5dd474d73e359815f9f8e06ffb61dd87cc91fb93,"[IMPROVEMENT] When someone ask for recommendations and the model isnt build, the system call for a new model and store it in database.",joaonrb,2014-01-31T16:16:21Z,joaonrb,joaonrb,165,81,84
+105,frappe,c66f219d7cc285be5b37d1785eef651d8c170dd3,[BIGCHANGE] Now TensorCoFi s written by python side,joaonrb,2014-01-31T15:28:51Z,joaonrb,joaonrb,858,715,143
+106,frappe,3a3cdfde0cb3466a9fc0fb1f96f5d6d3df13671b,[MINOR] Start tensor matrix test suit,joaonrb,2014-01-29T15:17:49Z,joaonrb,joaonrb,77,72,5
+107,frappe,48afa26dde701925387ba65d96c30da57b7a7711,[MINOR] Erase the deprecated url,joaonrb,2014-01-29T11:54:17Z,joaonrb,joaonrb,3,2,1
+108,frappe,210421597de64f3c4f2ce63089f6d8e5ae884674,[DOCUMENTATION] Documentation updated,joaonrb,2014-01-29T11:22:39Z,joaonrb,joaonrb,10499,10355,144
+109,frappe,d57f5ac6815a531c384584679a513c8efee0bb4e,[MINOR] Change template to go to home when click on  FFOS,joaonrb,2014-01-29T09:58:43Z,joaonrb,joaonrb,2,1,1
+110,frappe,3353de6cc7f7f31237ec3472ab7352cd4a82362f,[MINOR] Rearrange the controller,joaonrb,2014-01-29T09:57:32Z,joaonrb,joaonrb,12,6,6
+111,frappe,6c8dbbef842d30a1e59916db5161461d8a5d77e2,Some changes on requirements,joaonrb,2014-01-20T14:20:52Z,joaonrb,joaonrb,2,1,1
+112,frappe,3d6fa03962741f8f4b5c0a59a3776849219a366d,[BUGFIX] The recommender was giving recommendation for the next user always. This problem was originated by the mapping for user.pk to recommendation indexes. The error was only manifesting at the last user.,joaonrb,2014-01-17T09:10:46Z,joaonrb,joaonrb,9,7,2
+113,frappe,f6b7a195156b2a9dc8230ae7e18254d264d85eed,Merge remote-tracking branch 'origin/master',joaonrb,2014-01-16T10:11:41Z,joaonrb,joaonrb,302565,2804,299761
+114,frappe,248e5f2b8ee0c736a9a7e44f7927d6691d95a19b,[DOC] Some changes in ReST API,joaonrb,2014-01-16T10:10:53Z,joaonrb,joaonrb,31,19,12
+115,frappe,67ee1d26c0884f4bb09a569620a0cac73a5c7a04,"Merge remote-tracking branch 'origin/master'
+
+Conflicts:
+	source/ffos/settings.py",joaonrb,2014-01-16T09:12:20Z,joaonrb,joaonrb,5363,2686,2677
+116,frappe,dbc41ed5de79f8ece5aacf24302cc17299c276b4,"[MINOR] Prepare the settings to work with the 3 different environments that we develop. My personal computer, Amaris computer and Mozilla server.",joaonrb,2014-01-16T09:11:04Z,joaonrb,joaonrb,16,14,2
+117,frappe,e525b534843237afe00aeaf29bb7115ee63e5c8f,changes to instert apps and users,Joao,2014-01-15T16:27:29Z,joaonrb,joaonrb,5352,2674,2678
+118,frappe,d032306e5d7e69bebe13cc9baf4d07415e90d64b,ignore jsons,Joao,2014-01-15T16:26:36Z,Joao,Joao,1,1,0
+119,frappe,de8dee84d64bfae7f6100060d50c466b1136292c,added deps,joaonrb,2014-01-15T12:09:41Z,joaonrb,joaonrb,11,11,0
+120,frappe,b4868aa8568cc26b783af6b64769ee9063936c3a,moved back to 1.6,Linas,2014-01-15T11:55:02Z,mumas,mumas,55,36,19
+121,frappe,17eec562e3006dc36f854db170ad0df8a2ccca48,Merge branch 'master' of https://bitbucket.org/mumas/ffos,Linas,2014-01-15T11:33:00Z,mumas,mumas,1029,1029,0
+122,frappe,37f252167610e437a322d063f8aeb0e555cade67,moved,Linas,2014-01-15T11:32:31Z,Linas,Linas,1029,1029,0
+123,frappe,6ef77b30e86e1de17fe287408e52fbddd854fb52,Merge branch 'master' of https://bitbucket.org/mumas/ffos,Linas,2014-01-15T11:31:56Z,mumas,mumas,298163,69,298094
+124,frappe,6158a02f9666c93946c0e678dd72c0c11d354f76,moved dirs,Linas,2014-01-15T11:30:38Z,Linas,Linas,298163,69,298094
+125,frappe,dc850f6bf9f32713586ab91ddeef223506f3bfa3,Merge branch 'master' of https://bitbucket.org/mumas/ffos,Linas,2014-01-15T11:20:55Z,mumas,mumas,341941,341941,0
+126,frappe,5a681a46f493e6c8aac200c101e87c6aede1e335,[DOC] Documentation created for the new API,joaonrb,2014-01-13T12:44:10Z,joaonrb,joaonrb,495,483,12
+127,frappe,864c2485e30e8adde310c31de44fe44cf1c19827,[FEATURE] New API created from TastyPie Framework.,joaonrb,2014-01-13T12:14:07Z,joaonrb,joaonrb,106,91,15
+128,frappe,2af43c3b4f34d40b80e4e8d76a7e40608d717aa0,"[BUGFIX] The app ids where wrongly mapped sinse the enumerate tarts from 0 and the mysql ids start in 1.
+
+Also the migration for tasty pie is taking place.",joaonrb,2014-01-10T15:14:23Z,joaonrb,joaonrb,115,78,37
+129,frappe,aadc3976d9de58e25b702ed956514ad2d07a83e3,[FIX] Fix and finished test for testfm with frappe,joaonrb,2014-08-26T15:27:20Z,joaonrb,joaonrb,81,68,13
+130,frappe,b93de353c5d628461516088ad080d343890711a3,[FIX] Activate memcached in travis file,joaonrb,2014-08-26T08:47:44Z,joaonrb,joaonrb,3,2,1
+131,frappe,97100ffddb6a1b8d4d26212a928fe6bcd83471fe,[FIX] Missing a d in travis file,joaonrb,2014-08-25T15:29:56Z,joaonrb,joaonrb,2,1,1
+132,frappe,d5064b9fd7d567ef9c324b5f90b17794b613b926,[FEATURE] First test on recommendation api,joaonrb,2014-08-25T15:24:52Z,joaonrb,joaonrb,5,4,1
+133,frappe,51f3009d7fa4271d7e96682f5bba73d303e501c7,[FIX] Fix decorator in recommendation view in api,joaonrb,2014-08-25T15:15:49Z,joaonrb,joaonrb,10,7,3
+134,frappe,5157dc2c3854f54329aa30468f0cea73e31f1757,[FIX] Models,joaonrb,2014-08-25T15:01:48Z,joaonrb,joaonrb,80,65,15
+135,frappe,116081b3f704eecd083ae6acb2c8a3438f68f4f7,[FIX] Fix cache stuff on core,joaonrb,2014-08-25T13:10:31Z,joaonrb,joaonrb,69,46,23
+136,frappe,28c6e1e25bec7b2a0bd728bb1d8a285b70d2a531,[MINOR] Add data,joaonrb,2014-08-25T11:48:08Z,joaonrb,joaonrb,435,435,0
+137,frappe,8125b19c8e9d6057c234b18b1b7a688533b2ffc2,[FEATURE] Recommendation api,joaonrb,2014-08-25T10:03:01Z,joaonrb,joaonrb,611,610,1
+138,frappe,59eaa9a5f998ce9b8261ed6d8d1c4ba3f862997f,[FEATURE] Set Travis file,joaonrb,2014-08-25T09:12:44Z,joaonrb,joaonrb,72,46,26
+139,frappe,10430853c2b1a58ee56e66095cc740f196b680ea,[FEATURE] Test suite on tensorCoFi controller,joaonrb,2014-08-22T14:04:58Z,joaonrb,joaonrb,17,16,1
+140,frappe,67dbab115a8eed1724636a6e2b3fe0cbd9fa4dc2,[FEATURE] Tests and fix on popularity,joaonrb,2014-08-22T13:42:21Z,joaonrb,joaonrb,159,139,20
+141,frappe,7e2e1d16e0000d9f7dd13313a00ee8c39096532d,[FEATURE] Core module done,joaonrb,2014-08-21T16:40:02Z,joaonrb,joaonrb,252,243,9
+142,frappe,8f015fba4769551e267abfcd1ca626a6ef8c9b9d,[FEATURE] Rearange decorators,joaonrb,2014-08-21T15:03:17Z,joaonrb,joaonrb,66,66,0
+143,frappe,bc3adc8bd08491dd8667562007697f4b82b8cd37,[FEATURE] Finish tensorcofi test suite,joaonrb,2014-08-21T14:23:57Z,joaonrb,joaonrb,74,66,8
+144,frappe,2f66a58559e87d6942b995979b119bf677b4a5e8,[FEATURE] Finish user test suit and fix some bugs,joaonrb,2014-08-21T09:16:08Z,joaonrb,joaonrb,55,32,23
+145,frappe,e2d9499379ee0ec924d7396ff09b100f3351dc1b,[FEATURE] Suit for items ready. Suit for user models half done.,joaonrb,2014-08-20T15:34:54Z,joaonrb,joaonrb,209,196,13
+146,frappe,37ed4ea7fb089383ace225a1d2d26a7266610038,[FEATURE] Test suit for the cache manager,joaonrb,2014-08-20T11:02:55Z,joaonrb,joaonrb,105,93,12
+147,frappe,49b71aba5bdf3c7ae26e4407ed5f876d35dc008f,[FEATURE] First test on models(array field),joaonrb,2014-08-19T15:54:28Z,joaonrb,joaonrb,289,284,5
+148,frappe,0645c85ce026795c90fc8923b08fbf59fd988aa5,[FEATURE] Popularity model in version 2.0,joaonrb,2014-08-19T09:36:08Z,joaonrb,joaonrb,107,99,8
+149,frappe,1d998d1939e1473c62d4479827a7c59a197dc558,[FEATURE] TensorCoFi  from db,joaonrb,2014-08-18T15:29:05Z,joaonrb,joaonrb,130,119,11
+150,frappe,8e676f91328e4c8a13dbe7609a5975a36cc70791,"[FEATURE] Finish item, user and inventory models",joaonrb,2014-08-18T14:12:48Z,joaonrb,joaonrb,183,182,1
+151,frappe,f3b7efd5b2bff39b61e807cac87900578d504d58,Reorganizing project structure. Start recommendation models. New cache paradigm.,joaonrb,2014-08-18T12:49:09Z,joaonrb,joaonrb,19051,315,18736
+152,frappe,c542b9929d09c50b023ada83066ee7a44dd4b614,Merged master fixed conflict.,mumas,2014-08-18T09:19:02Z,mumas,mumas,9,7,2
+153,frappe,8547937aac681efb58bee0dc7ee2fdfdd9603ed9,Initial commit,Linas,2014-08-18T09:14:20Z,mumas,mumas,4,4,0
+154,frappe,ac675ec06f7c8a9ec0283dda6784005a215596cb,[DOC] Update project download reference,joaonrb,2014-08-14T10:44:32Z,joaonrb,joaonrb,8,4,4
+155,frappe,d920fcf6b42adfe1dc5188d6b15e479cf2e84327,[DOC] Documentation for the deployment method,joaonrb,2014-08-14T10:37:22Z,joaonrb,joaonrb,384,330,54
+156,frappe,09a60f628a71c97d504da360651330991467d28a,"Merge remote-tracking branch 'origin/master'
+
+Conflicts:
+	doc/.doctrees/backend.doctree
+	doc/.doctrees/environment.pickle
+	doc/.doctrees/index.doctree
+	doc/.doctrees/mockups.doctree
+	doc/searchindex.js",joaonrb,2014-08-13T15:24:17Z,joaonrb,joaonrb,194,137,57
+157,frappe,f23fe3d1135eb8709811e7fd4d4ba570f5c2ea53,"[FEATURE] Setup created
+[CHANGE] Scripts incorporated as manage command
+[FEATURE] Added manager for firefox example",joaonrb,2014-08-13T15:20:17Z,joaonrb,joaonrb,684,680,4
+158,frappe,fea9a50d4f27e1dfd9b9c327b5632e0f5902e9ef,[FIX] The owned item cache when save item connection to user,joaonrb,2014-08-13T10:12:12Z,joaonrb,joaonrb,267,228,39
+159,frappe,573755318315a13ab64bcf611d61a803de1ead4c,Documentation on how to run the dummy example,mumas,2014-08-11T17:02:01Z,mumas,mumas,235,159,76
+160,frappe,c973bbceb1315c459b4c7b9035723280f3395404,Change the recommendation settings to the default and update the changes in the documentation.,joaonrb,2014-08-11T15:41:47Z,joaonrb,joaonrb,34,19,15
+161,frappe,a5355dcd8f8084d2befe352bbb154003694be762,Merge remote-tracking branch 'origin/plugin_testfm',mumas,2014-08-11T15:25:44Z,mumas,mumas,22896,22518,378
+162,frappe,f727fd41f640c571df5e2897a3929814a7b6717d,Merge branch 'master' of https://bitbucket.org/mumas/ffos,mumas,2014-08-11T15:15:18Z,mumas,mumas,2,1,1
+163,frappe,d5a94a4fa0a25ff6d74214ada6bbfc4237acdd4b,merged,mumas,2014-08-11T15:15:13Z,mumas,mumas,453,331,122
+164,frappe,5d7f01754f91ffdeb37aa956b940ca1c210ae566,README.md edited online with Bitbucket,mumas,2014-08-11T15:14:51Z,mumas,mumas,2,1,1
+165,frappe,6c1b465de65c6da2caf4a3099e9999b83833ab3d,List ab tests in dashboard,joaonrb,2014-07-25T14:59:13Z,joaonrb,joaonrb,2841,2823,18
+166,frappe,3d714b47ad5053e679cef460120b0966cfb1fc29,[FEATURE] Graph on dashboard for result frequencies.,joaonrb,2014-07-25T11:47:33Z,joaonrb,joaonrb,55,42,13
+167,frappe,3f5a0e9bbaf32316d0b6be4a5c37cfd453f3d2da,[FEATURE] Graph on dashboard for result frequencies.,joaonrb,2014-07-24T11:20:43Z,joaonrb,joaonrb,131,119,12
+168,frappe,fcd3f895ae0cede733fcab4bc9a3074afb977c52,Events are being written in log when retrieved from recommendation,joaonrb,2014-07-23T13:39:22Z,joaonrb,joaonrb,174,129,45
+169,frappe,6895e43fd6b491c947ab7a19c0d7a2683fc7e633,Front ends templates for AB test dashboard,joaonrb,2014-07-23T08:46:43Z,joaonrb,joaonrb,18431,18417,14
+170,frappe,b9ec3ca05142780644624dc716ec12a3d4edae1e,Finish ab decorators and recommender,joaonrb,2014-07-22T12:16:06Z,joaonrb,joaonrb,40,36,4
+171,frappe,2cc884549f324727243d003c3d942068bacb7846,[FIX] Simple reranker pushed owned items to top.,joaonrb,2014-07-22T09:37:51Z,joaonrb,joaonrb,140,82,58
+172,frappe,869846319a1b1b6fa0efc5421f61feca87e02e7b,[FEATURE] Decoractor to log other events,joaonrb,2014-07-21T14:50:10Z,joaonrb,joaonrb,96,85,11
+173,frappe,5b26190289fbf8ab9529327fafd0d611b036872a,[FEATURE] Decorator and controller for abb testing,joaonrb,2014-07-21T10:28:36Z,joaonrb,joaonrb,192,162,30
+174,frappe,aa5cca699ef9bc584311f801ced4f5752bfb7be7,[FEATURE] model to ab testing. Note that using ab testing will make the logging slower,joaonrb,2014-07-18T13:05:30Z,joaonrb,joaonrb,126,106,20
+175,frappe,385603922399ae57e351eef591fc708cfe506b57,Clean code,joaonrb,2014-07-18T08:52:04Z,joaonrb,joaonrb,25,17,8
+176,frappe,2d2918e556af3aa3b2a1633ef4e627d85b0b05b4,[TEST] Test get score against recommendation,joaonrb,2014-07-17T15:05:54Z,joaonrb,joaonrb,66,60,6
+177,frappe,0dff8e97c669e1ed4267c40a65d7cc826feb1644,[FIX]  Fix Testfm measure by api call,joaonrb,2014-07-17T12:56:51Z,joaonrb,joaonrb,39,29,10
+178,frappe,8024301b301bc02a1bd825556274d9ab44465f9f,[FIX]  Fix dynamic cache fill,joaonrb,2014-07-17T09:45:07Z,joaonrb,joaonrb,2,1,1
+179,frappe,b5a605ad8d54ff446e1a6d79bdc0a0dfd8d4229c,[FEATURE]  Cange popularity to testfm,joaonrb,2014-07-17T09:34:45Z,joaonrb,joaonrb,136,67,69
+180,frappe,a125045300e9bb21fad11668cf252febf72c789f,"[FEATURE]
+ - Simple diversifier cached
+ - Link to get rando user(test purposes)",joaonrb,2014-07-15T14:15:44Z,joaonrb,joaonrb,95,57,38
+181,frappe,14cd1bf0bb01b3572cb19d9bd6218a5384171906,[???] Optimization with cache for binomial diversity. Still to heavy. Maybe some Gauss approximation is in order.,joaonrb,2014-07-15T09:35:01Z,joaonrb,joaonrb,412,237,175
+182,frappe,ddd96f76e858f4cb2351594558a4d6653e801079,[FEATURE] Big change in recommendation system. Recommendation is given directly from test.fm model,joaonrb,2014-07-11T14:31:07Z,joaonrb,joaonrb,467,314,153
+183,frappe,e325666889846ef121b8abe41f51e7a46d7494cc,[FEATURE] All users to cache,joaonrb,2014-07-08T14:43:03Z,joaonrb,joaonrb,114,64,50
+184,frappe,14e7f985a006f601b6ed6968ad9bbea1b3f00ec8,[FEATURE] Small (yet not reliable) api to test TensorCoFi and Popularity using testfm,joaonrb,2014-07-07T14:50:58Z,joaonrb,joaonrb,175,142,33
+185,frappe,bfa3c7a18b04f44510c188f8fbcedc933847e5e9,[FEATURE] TestFM model building plugin,joaonrb,2014-07-07T09:10:53Z,joaonrb,joaonrb,219,69,150
+186,frappe,8a494ccd2ec151301dfc9dcad6f77cf38ba84ee9,"[DOC] Documentation for example
+
+Also returned the settings to example state.",joaonrb,2014-07-04T10:00:23Z,joaonrb,joaonrb,270,206,64
+187,frappe,2183c9821eb64c79e704eeb53c6e4ca1dff1ae69,"[IMPROVEMENT] Performance.
+ - Cache info for the 2 filters",joaonrb,2014-07-03T13:52:51Z,joaonrb,joaonrb,80,54,26
+188,frappe,fe1b5cc1906f45ed9b49bbb0f807853784f65633,"[IMPROVEMENT] Performance.
+ - lose middlewares
+ - lose auth
+ - lose admins",joaonrb,2014-07-03T10:25:07Z,joaonrb,joaonrb,132,83,49
+189,frappe,ad8cafea5d5cd6370f780628aa5904b9cea2955d,copyright for the moment,mumas,2014-07-02T14:36:32Z,mumas,mumas,6,5,1
+190,frappe,77b9d1a4f5f7a2e0eedfe2bef8e0c569a8d72949,readme points to docs,mumas,2014-07-02T10:49:19Z,mumas,mumas,3,2,1
+191,frappe,9afb53aee6a1bdf8760e277706a1107869ea12a8,[CHANGE] All database writings with decorator,joaonrb,2014-07-01T11:19:06Z,joaonrb,joaonrb,10,8,2
+192,frappe,d1924303b5af6e51cab72f538383ed0f59a52c8c,[FIX] Thread decorator,joaonrb,2014-07-01T11:06:31Z,joaonrb,joaonrb,57,5,52
+193,frappe,4839c8a26a54722ee41e470948fadb57f999c061,[FEATURE] Thread decorator,joaonrb,2014-07-01T11:00:07Z,joaonrb,joaonrb,88,66,22
+194,frappe,36fa74e8b4c592092ac890b3897a6a8572a9a4fe,[FEATURE] Models loaded to cache on server startup,joaonrb,2014-06-27T15:10:52Z,joaonrb,joaonrb,138,111,27
+195,frappe,b0cce64165888fc9d8e06700a5941b1aa42bf4a7,added how it works,linas,2014-06-27T13:31:08Z,linas,linas,56,55,1
+196,frappe,a75d6884bc70ec5b9843a7b327c25e124de46e47,small fix,linas,2014-06-27T10:44:29Z,linas,linas,38,24,14
+197,frappe,b3d00a930093530003bacd94a9e3d76853438842,Fixed a bit docs,linas,2014-06-27T10:37:51Z,linas,linas,396,99,297
+198,frappe,eafa18588d1f45a04d79fdbbf65a2ae5081343e8,[DOC] Add to doc,joaonrb,2014-06-27T09:39:04Z,joaonrb,joaonrb,46,44,2
+199,frappe,07b42028eeb3c6331ac6d756736816b77e6a9c49,[FIX] Fix fill script(language),joaonrb,2014-06-27T09:12:43Z,joaonrb,joaonrb,11,6,5
+200,frappe,cad0744ef7e830c263bcbed12e9809bbd7e9c952,Merge with Real Time Branch,joaonrb,2014-06-26T11:07:15Z,joaonrb,joaonrb,39002,6480,32522
+201,frappe,2329606dcdf5ad9b40a04e65d59e10eac3c87528,Update Documentation,joaonrb,2014-06-26T10:58:23Z,joaonrb,joaonrb,1215,1155,60
+202,frappe,8b9de636c70c54e862a7a110794abe20db057a2b,Change in java Tensor Cofi for python by file,joaonrb,2014-04-29T10:19:07Z,joaonrb,joaonrb,37,25,12
+203,frappe,8155cdabefa65f3902c2ffcf3dba1512d0fce200,[FIX] One query in language Re-Ranker,joaonrb,2014-04-14T13:01:02Z,joaonrb,joaonrb,17,10,7
+204,frappe,993fef3d60d975ce43dcac9ce29b2d1a19b53fa7,[FEATURE] DynamicDiversityReRanker. A re-ranker that uses the binomial diversity if the size is not that big and the simple otherwise,joaonrb,2014-04-14T08:22:56Z,joaonrb,joaonrb,50,44,6
+205,frappe,49e406d84930092446eee3467842ae275320b00e,Coverage at 70%,joaonrb,2014-04-09T11:30:06Z,joaonrb,joaonrb,20,8,12
+206,frappe,4f0232e5333c8683f065dc6c0e8fe41ebcdd4eea,[Fix] fix all tests. Tests are now independent like unity should be.,joaonrb,2014-04-09T10:37:04Z,joaonrb,joaonrb,250,171,79
+207,frappe,e02e8f6a254269ca57962bf0c314cbcf89ef4344,Tests for filter owned items,joaonrb,2014-04-08T09:30:26Z,joaonrb,joaonrb,30,30,0
+208,frappe,459f0c9e0fa32b745fc0896e5c3457470161ba6e,Rearrange the diversity package,joaonrb,2014-04-07T10:39:36Z,joaonrb,joaonrb,811,151,660
+209,frappe,95afc1e9d7d2c200903c3c8a30c003241a940d54,minor,joaonrb,2014-04-04T09:35:48Z,joaonrb,joaonrb,2,1,1
+210,frappe,d6c79a1e73a52b22162091402adf3c61b28b1ec4,improved testings on diversity,joaonrb,2014-04-04T09:30:35Z,joaonrb,joaonrb,15,13,2
+211,frappe,18887f6f6032f3e6a2201d9e90218d3c7c2fe582,auto created users will know english,joaonrb,2014-04-03T13:38:36Z,joaonrb,joaonrb,5,4,1
+212,frappe,a7d98d1836b6443341cfbc39e9d912c43b0b347c,Fix tests in diversity,joaonrb,2014-04-03T13:17:51Z,joaonrb,joaonrb,60,36,24
+213,frappe,f29a9db385578d7de50dba27fce82bc0920f5373,change settings,joaonrb,2014-04-03T12:50:32Z,joaonrb,joaonrb,2,1,1
+214,frappe,8abaf6239d1367c9916c81638610b7b7e1010d86,Fixed Diversity in reranker0 file,joaonrb,2014-04-03T12:49:54Z,joaonrb,joaonrb,433,433,0
+215,frappe,5c979972b6cbbdb80bbb39350aeb92ed337d0afd,Fix on diversifier for few item user,joaonrb,2014-04-02T16:03:19Z,joaonrb,joaonrb,3,2,1
+216,frappe,b10d09cfcfe06230736d0c3a260191ba560bc017,Dropped the print,joaonrb,2014-04-02T15:43:37Z,joaonrb,joaonrb,1,0,1
+217,frappe,731317b45e7535421fc337bb8eaa6ae155e6e675,Simple diversifier,joaonrb,2014-04-02T15:41:46Z,joaonrb,joaonrb,106,86,20
+218,frappe,f1ff88cf5dd953aef3c2c9ff4e2a6947e1671d51,minor,joaonrb,2014-04-01T22:29:13Z,joaonrb,joaonrb,1,0,1
+219,frappe,31f5bd83ce67bf8ae5d1d9a2c750684834ff7c25,[FIX] Fix to get the firefox requests (was missing the rank),joaonrb,2014-04-01T21:42:31Z,joaonrb,joaonrb,4,2,2
+220,frappe,a3057990bacb86565f42d39e9b34ac9c1e927096,[CHANGE] LAmbda lower in diversity for user preferences to be more important,joaonrb,2014-04-01T20:47:34Z,joaonrb,joaonrb,2,1,1
+221,frappe,ac711243f110763744e6f08d930c8d628eadd951,"[FIX] Dynamic recommendation generator. (Before the user acquire 3 items send popularity, after DynamicTensorCoFi)",joaonrb,2014-04-01T20:44:49Z,joaonrb,joaonrb,13,8,5
+222,frappe,1aa1260aa8df48e98ab4518e86b7b7ece45b687b,Merge branch 'version-12-development' into real-time,Linas,2014-04-01T16:59:09Z,mumas,mumas,418,381,37
+223,frappe,efab2c6cc19a54e51cad93531c316e4735e4a133,[FIX] check if apps exist in matrix,Linas,2014-04-01T16:58:25Z,mumas,mumas,2,1,1
+224,frappe,21db1a1f6a92cb06f3cbcd922ab5f7313e0aaaad,FIX User is created on if it doesn't exist,joaonrb,2014-04-01T16:33:22Z,joaonrb,joaonrb,13,9,4
+225,frappe,368468fa00ab5fffb1434673423afe108b51dcaa,FIX the post request to receive the json,joaonrb,2014-04-01T14:17:44Z,joaonrb,joaonrb,2,1,1
+226,frappe,55bb1309b427f4b88ffd3cefba2d0be1a8f46122,added deploy_settings to manager,joaonrb,2014-04-01T13:25:27Z,joaonrb,joaonrb,2,1,1
+227,frappe,e9bcb23ff197ea40dfa87e69a499a863e0cb6a71,ADD cors plugin,joaonrb,2014-04-01T13:23:49Z,joaonrb,joaonrb,177,175,2
+228,frappe,c39108a3fdb9f9da307242e8bfb8a3639e66a849,fixes for the deployment,Joao,2014-04-01T13:15:45Z,joaonrb,joaonrb,238,202,36

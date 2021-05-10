@@ -1,0 +1,1978 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,git-repo,7c6c64d463d3baa361ef7bef8ff3149134819c96,"Fix repo prune output to sort by branch name
+
+We didn't always sort the output.  Now we do.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-02T20:38:13Z,spearce,spearce,2,1,1
+1,git-repo,3778f9d47e876aa15d3fdcc84ef21ec07c63402e,"Fix repo prune to work on git 1.6.1-rc3~5 and later
+
+Prior to git 1.6.1-rc3~5 the output of 'git branch -d' matched:
+
+  Deleted branch (.*)\.
+
+where the subgroup grabbed the branch name. In v1.6.1-rc3~5 (aka
+a126ed0a01e265d7f3b2972a34e85636e12e6d34) Brandon Casey changed
+the output to include the SHA-1 of the branch name, now matching
+the pattern:
+
+  Deleted branch (.*) \([0-9a-f]*\)\.
+
+Instead of parsing the output of git branch we now re-obtain the
+list of branches after the deletion attempt and perform a set
+difference in memory to determine which branches we were able to
+successfully delete.
+
+Bug: REPO-9
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-02T20:30:50Z,spearce,spearce,19,8,11
+2,git-repo,993eedf9fabfad3e929a9161d00db4ae7d9c551c,Merge,Android Code Review,2009-02-10T19:53:40Z,Android Code Review,Android Code Review,19,0,19
+3,git-repo,02e0cdf359c11d9122471c6bde64db07abf19c39,Merge,Android Code Review,2009-02-10T19:53:30Z,Android Code Review,Android Code Review,6288,1,6287
+4,git-repo,a8e98a6962727969da9faa12658596c8b1a14baf,"Fix color parsing to not crash when user defined colors are set
+
+We didn't use the right Python string methods to parse colors.
+
+  $ git config --global color.status.added yellow
+
+managed to cause a stack trace due to undefined methods trim()
+and lowercase().  Instead use strip() and lower().
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-02-03T00:17:02Z,spearce,spearce,2,1,1
+5,git-repo,5ab508cbcc2baee6c6bbe4bb9470f60ab47c1758,"Remove the now unnecessary Makefile
+
+In a pure Python project run directly from source we really don't
+have a need for a Makefile.  Previously it held the rule to update
+the protobuf client from Gerrit1, but now that we have retired that
+logic we don't need it anymore.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-01-26T18:56:45Z,spearce,spearce,19,0,19
+6,git-repo,370e3fa6660fa2eb675199104cde9e9d02063cfd,"Remove the protobuf based HTTP upload code path
+
+Now that Gerrit2 has been released and the only supported upload
+protocol is direct git push over SSH we no longer need the large
+and complex protobuf client library, or the upload chunking logic
+in gerrit_upload.py.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-01-26T18:55:39Z,spearce,spearce,6288,1,6287
+7,git-repo,b54a392c9a267a06058b663377282c9dcec6878e,"Support Gerrit2's ssh:// based upload
+
+In Gerrit2 uploads are sent over ""git push ssh://..."", as this
+is a more efficient transport and is easier to code from external
+scripts and/or direct command line usage by an end-user.
+
+Gerrit1's HTTP POST based format is assumed if the review server
+does not have the /ssh_info URL available on it.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-01-06T00:18:58Z,spearce,spearce,115,91,24
+8,git-repo,21f73854006d5e989b5ba6b58e6da198212f2e4b,"Remove astray comma
+
+There's an extra "","" at the end of the line, which is causing
+trouble when the manifest file specifies a revision for a
+project.  Since the default manifest file doesn't specify
+revisions for the projects, the problem has gone unnoticed.
+
+Thanks to Barry Silverman <barry@disus.com> for spotting the
+issue and providing a patch.
+
+Signed-off-by: Marcelo E. Magallon <marcelo.magallon@gmail.com>",Marcelo E. Magallon,2008-12-31T04:44:37Z,mem,mem,2,1,1
+9,git-repo,24d8dfbc34164a502e6b48df0230526097543762,"Correct the REPO_URL in the wrapper script to android.git.kernel.org
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-12-18T15:21:32Z,spearce,spearce,4,2,2
+10,git-repo,a6df7d284cc008cc2f21092f5fdd4e32ed28500e,"Describe upload --replace in upload's help text
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-12-12T16:04:07Z,spearce,spearce,6,6,0
+11,git-repo,67092448c290ce6bd3f05abc17f4f4d53e4c91bb,"Don't accept multiple commits for the same change in upload --replace
+
+Gerrit won't permit more than one commit using the same change
+number during a replacement request, so we should error out if
+the user has asked for this in their upload edit script.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-12-12T16:01:12Z,spearce,spearce,7,6,1
+12,git-repo,e92ceebde0034ad045e12b8241045d701383e681,"Fix upload --replace after it was broken when --review,--cc was added
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-24T23:51:25Z,spearce,spearce,4,2,2
+13,git-repo,03eaf07ec6aa7e99a0444ac1ec708b2a5f7cbbf5,"Support <remove-project name=""X""> in manifest to remove/replace X
+
+The manifest files now permit removing a project so the user can
+either keep it out of their client, or replace it with a different
+project using an entirely different configuration.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-20T19:42:22Z,spearce,spearce,26,26,0
+14,git-repo,2896a79120fe1de65472736f756c47b558b44db1,"Add --review and --cc flags to repo upload, so you can
+assign reviewers when you upload changes.",Joe Onorato,2008-11-17T21:56:36Z,Joe Onorato,Joe Onorato,108,88,20
+15,git-repo,8c6eef4713db36a2063dd5a68b3d37a5e4276508,"Make repo's editor work when the editor is a commandline with
+multiple args.",Joe Onorato,2008-11-15T02:12:44Z,Joe Onorato,Joe Onorato,4,2,2
+16,git-repo,34d237fbfbd87e8bb81063c23737e9b1ee4d5679,"Paper bag fix repo 1.3's ""repo upload"" without --replace
+
+If we aren't doing a replacement we do not have any
+replace rules, so we cannot iterate over them.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-13T02:37:18Z,spearce,spearce,9,5,4
+17,git-repo,c99883fee990a1baa7e0bf5f854c7485b7d0f0d9,"Teach 'repo upload --replace' how to add replacement patch sets
+
+Users are prompted with the list of known changes we are about
+to upload, and they can fill out the current change numbers for
+any changes which already exist in the data store.  For each of
+those changes the change number and commit id is sent as part of
+the upload request, so Gerrit can insert the new commit as a new
+patch set of the existing change, rather than make a new change.
+
+This facility permits developers to replace a patch so they can
+address comments made on a prior version of the same change.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-12T01:12:43Z,spearce,spearce,87,83,4
+18,git-repo,ec18b4bac4f3c0760c26e83b8ade01ad1c815a9b,"Update proto client to support patch set replacments
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-12T02:45:55Z,spearce,spearce,61,55,6
+19,git-repo,35f2596c27ae041235b88076888870b8ba2e2c8c,"Refactor part of GetUploadableBranches to lookup one specific branch
+
+This way project.GetUploadableBranch(project.CurrentBranch) can tell
+us how (if at all) to upload the currently checked out branch.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-12T01:03:13Z,spearce,spearce,20,14,6
+20,git-repo,5d40e26201ed87ae8276a77e263b8cbe50598703,"Treat missing attributes as None when parsing the manifest
+
+Some of our code assumes that a property is None.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-06T19:07:42Z,spearce,spearce,2,2,0
+21,git-repo,70939e2f73bf118c89cf4af4988dba807c50a0ce,"Add <add-remote to-project=""...""> to inject additional remotes
+
+This way users can add forks they know about to an existing project
+that was already declared in the primary manifest.  This is mostly
+useful with the Linux kernel project, where multiple forks is quite
+common for the main upstream tree (e.g. Linus' tree), a platform
+architecture tree (e.g. ARM) and a device specific tree (e.g. the
+msm7k tree used by Android).
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-06T19:07:14Z,spearce,spearce,51,43,8
+22,git-repo,ae6e0949d187c35d79dbc0b21788fdbb2c65bf78,"Add <remote project-name=""...""> attribute within projects
+
+By setting a project-name on a remote nested within a project forks
+of a project like the Linux kernel can be easily handled by fetching
+all relevant forks into the same client side project under different
+remote names.  Developers can create branches off different remotes
+using `git checkout --track -b $myname $remote/$branch` and later
+`repo upload` automatically redirects to the proper fork project
+in the code review server.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-06T18:25:35Z,spearce,spearce,32,26,6
+23,git-repo,339ba9f6f70b1733f89a5ff89d5f155389a04094,"Use remote.*.projectname to indicate the target project for upload
+
+This way ""forks"" of a project, e.g. the linux kernel, can be setup to
+use different destination projects in the review server by creating
+different remotes in the client side Git repository.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-06T17:52:51Z,spearce,spearce,12,11,1
+24,git-repo,70cd4ab2708eaae7d96d7e8b0a3f88850c163543,"Add some short documentation about the local manifest
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-06T16:48:44Z,spearce,spearce,29,29,0
+25,git-repo,e284ad1d1a2c6fa0e0ac800e87b2607f9bda339e,"Add 'repo init --mirror' to download a complete forrest
+
+The mirror option downloads a complete forrest (as described by the
+manifest) and creates a replica of the remote repositories rather
+than a client working directory.  This permits other clients to
+sync off the mirror site.
+
+A mirror can be positioned in a ""DMZ"", where the mirror executes
+""repo sync"" to obtain changes from the external upstream and
+clients inside the protected zone operate off the mirror only,
+and therefore do not require direct git:// access to the external
+upstream repositories.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-04T15:37:10Z,spearce,spearce,129,109,20
+26,git-repo,3e5481999d5f853e19ee5caaaaa968fc4b5176ab,"Add a basic outline of the repo manifest file format
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-04T19:19:36Z,spearce,spearce,126,126,0
+27,git-repo,d3c388391e11aff0b26ecf19c8cb668a9629ef5a,"Update proto_client to notify the user when auth cookies are accessed
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-04T18:40:43Z,spearce,spearce,60,40,20
+28,git-repo,2450a2987afcf3d01a4d43fffe590b02880d9aa7,"Assume the manifest branch matches the branch name in Git
+
+Whatever branch name we checked the manifest out from is the name
+we want to reflect throughout the rest of the projects, e.g. within
+the special ""m/"" remote space.
+
+This reduces the difference between different branches within the
+manifest file.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-04T16:22:07Z,spearce,spearce,13,7,6
+29,git-repo,f5c25a68d832f7eed55f939f97098071b20f753a,"Cleanup stale manifest migration code from manifest.py
+
+Prior to open-sourcing repo we had manifests in two different
+layouts; one where the manifest was a straight-up git clone, and
+one where the manifest was our bare repository with symlink work
+tree format (identical to what our projects use).  Only the latter
+form is created or used by repo at this point, so the transition
+code to handle the straight-up git clone is not necessary.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-04T16:11:53Z,spearce,spearce,11,2,9
+30,git-repo,9fa44db94bfabcf43160316660801a2c1db2dbb9,"Introduce 'repo abandon <branchname>' as an alias for 'git branch -D'
+
+This destroys a local development branch, removing all history
+of that branch from ever existing.  If the branch is currently
+checked out we move back to the upstream revision.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-03T19:24:59Z,spearce,spearce,58,58,0
+31,git-repo,c9ef744c7b5f6bcab446cf0a0bc9cc1b016dd5f8,"Install a default pre-auto-gc hook in all repositories
+
+This hook is evaluated by `git gc --auto` to determine if it is a
+good idea to execute a GC at this time, or defer it to some later
+date.  When working on a laptop its a good idea to avoid GC if you
+are on battery power as the extra CPU and disk IO would consume a
+decent amount of the charge.
+
+The hook is the standard sample hook from git.git contrib/hooks,
+last modified in git.git by 84ed4c5d117d72f02cc918e413b9861a9d2846d7.
+I added the GPLv2 header to the script to ensure the license notice
+is clear, as it does not match repo's own APLv2 license.
+
+We only update hooks during initial repository creation or on
+a repo sync.  This way we don't incur huge overheads from the
+hook stat operations during ""repo status"" or even the normal
+""repo sync"" cases.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-03T18:32:09Z,spearce,spearce,132,110,22
+32,git-repo,438ee1cad98ac32509718976e63c36a449bfb679,"Catch symlink creation failures and report a better error
+
+Some users have noticed that repo doesn't work on VFAT, as we
+require a POSIX filesystem with POSIX symlink support.  Catching the
+OSError during our symlink creation and raising a GitError with a
+more descriptive message will help users to troubleshoot and fix
+their own installation problems.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-11-03T17:59:36Z,spearce,spearce,11,9,2
+33,git-repo,23d7781c0bac53b24f4598104e8ba38310e8d100,"Don't print ""Already up-to-date"" during repo sync
+
+If we are already up-to-date we just want to display no output.
+This means we have to avoid calling ""git merge"" if there aren't
+commits to be merged into the working directory.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-30T18:06:57Z,spearce,spearce,6,5,1
+34,git-repo,a54c527ae941a3bbf8b3ec54249ab12c3d6bf78b,"Fast-forward a fully merged topic branch during 'repo sync'
+
+Instead of trying to rebase the changes on a topic branch that
+has been fully merged into the upstream branch we track, we should
+just fast-forward the topic branch to the new upstream revision.
+This way the branch doesn't try to rewrite commits that are already
+merged in the upstream.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-30T18:03:00Z,spearce,spearce,9,9,0
+35,git-repo,df830f12389984adeeba04659615b9fc230f2db3,"Remove import_tar, import_zip and the <snapshot> elements
+
+Now that repo relies only on the git data stream (as it is much
+faster to download through) we don't really need to be parsing the
+<snapshot> elements within manifest.  Its a lot of complex code to
+convert the tar (or zip) through to a fast import stream, and we
+just aren't calling it anymore.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-30T16:21:43Z,spearce,spearce,1214,0,1214
+36,git-repo,90be5c0839762d14bdee75d121c3923ed91c8404,"Cache the per-user configuration to avoid duplicate instances
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-29T22:21:24Z,spearce,spearce,6,5,1
+37,git-repo,7965f9fed083f07255d62f2a4a49fb54424356e4,"Move the Editor configuration out of Manifest's constructor
+
+This way we can build more than one Manifest instance in memory
+and not muck around with the Editor configuration each time we
+build a new instance.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-29T22:20:02Z,spearce,spearce,5,2,3
+38,git-repo,de646819b8e43a906d86a579c68118cad31934cc,"Don't flip out if there are no template hooks
+
+Git may have been installed without its hooks directory, which
+means we won't have any hooks in a repo created git repository.
+Since we are just deleting the hooks it doesn't matter.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-29T21:38:12Z,spearce,spearce,6,5,1
+39,git-repo,bd4edc9a6996d666edfa77b6b80615ee7c8ea335,"Stop downloading snapshots as native git:// is faster
+
+Downloading and streaming a tar into Git is slower than just
+letting the native git:// protocol handle the data transfer,
+especially when there are multiple revisions available and
+Git can perform delta compression across revisions.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-28T23:14:05Z,spearce,spearce,29,0,29
+40,git-repo,ce03a401c6fb5a890a3fbf03ab51f70a80370ec1,"Stop hiding remote missing object errors
+
+Hiding error messages from the remote peer is not a good idea,
+as users should be made aware when the remote peer is not a
+complete Git repository so they can alert the administrators
+and have the repository corrected.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-28T23:12:03Z,spearce,spearce,36,2,34
+41,git-repo,45476c40c7300efe09ee376a8f1bf4488bd25afa,"wrapper 1.6
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-28T15:46:15Z,spearce,spearce,2,1,1
+42,git-repo,16191347205deab1bb255b8395cb72419793210d,"Added missing wait after git-version call in wrapper
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-28T15:33:34Z,spearce,spearce,1,1,0
+43,git-repo,7efd1a5b231d70fc8c1d0986e896e9accb7a22a0,"Remove unused import from gerrit_upload.py
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-28T15:31:03Z,spearce,spearce,1,0,1
+44,git-repo,329c31da7d03b5fd0d68f3ca39a7ff82c600d12b,"Repair any mis-directed android-1.0 annotated tags
+
+The initial open source release of the Android 1.0 platform had
+some problems with its Perforce->Git imports.  Google was forced
+to rewrite some history to redirect users onto more stable upstream
+sources and correct errors in the imports.
+
+Not everyone has the correct android-1.0 tags, as some users did
+manage to fetch the platform early, before the mirror sites crashed
+and the history was rewritten.
+
+This change is a band-aid to ensure any stale android-1.0 tags are
+get updated to the corrected version.  It should be backed out at
+some point in the near future, when we can be fairly certain that
+everyone has the correct android-1.0 tags.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-24T16:17:25Z,spearce,spearce,25,25,0
+45,git-repo,5cc6679fb84ec887a09895c53a279df821faad49,"Support user supplied custom .repo/local_manifest.xml files
+
+By creating a .repo/local_manifest.xml the user can add extra
+projects into their client space, without touching the main
+manifest script.
+
+For example:
+
+  $ cat .repo/local_manifest.xml
+  <?xml version=""1.0"" encoding=""UTF-8""?>
+  <manifest>
+   <project path=""android-build""
+            name=""platform/build""
+            remote=""korg""
+            revision=""android-1.0"" />
+  </manifest>
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-23T23:19:27Z,spearce,spearce,22,17,5
+46,git-repo,632768bc65ae0f1dc9eb9260c9146c42d9965a18,"Teach repo how to download changes to the local checkout
+
+Now `repo download . 1402` would download the change numbered 1402
+into the current project and check it out for the user, using a
+detached HEAD.  `repo sync .` would back out of the change and
+return to the upstream version.
+
+Multiple projects can be fetched at once by listing them out on
+the command line as different arguments.
+
+Individual patch sets can be selected by adding a '/n' to indicate
+the n-th patch set should be downloaded instead of the default of
+patch set 1.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-23T18:58:52Z,spearce,spearce,120,120,0
+47,git-repo,0758d2f1d61288c83282749d2b36958d2c289e7f,"Show which user account each change was uploaded under
+
+This way users are well aware of which account we used when the
+uploads are complete, so they can be certain to sign into the web
+application with that user identity.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-22T20:13:40Z,spearce,spearce,5,5,0
+48,git-repo,bb0ee8057165a9d54e1e1ab9addb15a2a57ccfc1,"Change RPC client to only use Google Accounts for authentication
+
+Hosted domain account (such as ""@google.com"" itself) don't work on the
+Google App Engine service unless the user specifically creates their
+own Google Account (https://www.google.com/accounts/NewAccount) with
+the same email address.
+
+When both such accounts exist we must *only* use the Google Account in
+our auth request, as that is all Google App Engine will honor when we
+send it the session cookie.
+
+However, Google has internal servers that may also be running Gerrit
+based applications.  In those case we must use the hosted auth login
+for @google.com user accounts, as the internal servers honor only the
+hosted account and not the public Google Account database.
+
+In the future we may need to add other domains to the ""HOSTED"" list
+if other Gerrit instances are setup on hosted domains and locked to
+only those domain's user accounts, similar to how a server that is
+internal to Google would be setup.  Since this is currently not a
+likely occurrence I'm not worrying about making it configurable at
+this juncture.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-22T20:02:56Z,spearce,spearce,23,17,6
+49,git-repo,02dbb6d120e44ec22cc7051251984cfd618e74ce,"Fix StopIteration exception during repo {sync,status}
+
+If we run out of entries next() will throw StopIteration.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-21T20:59:08Z,spearce,spearce,7,5,2
+50,git-repo,7542d664de7a9d42f64a81bc8c0b86bcbb384376,"Remove the Python 2.4 dependency and use just 'python'
+
+Many Linux distributions are including python2.5 by default, as
+it is the latest stable release of the language.  Using python2.4
+(and asking users to specifically install it) is just cruel and
+unusual punishment.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-21T14:11:36Z,spearce,spearce,6,3,3
+51,git-repo,0734600ce0f24016d190311621ea59649bc92bad,"Fix 'repo sync' when the remote reflog has only 1 entry
+
+If the reflog for the upstream branch has only 1 entry in it, as
+the branch has been updated only once, we can get back the 0{40}
+object id from `git rev-parse upstream@{1}`, in which case we should
+consider it to be the same as if upstream@{1} is not defined.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2008-10-21T14:09:27Z,spearce,spearce,3,3,0
+52,git-repo,cf31fe9b4fb650b27e19f5d7ee7297e383660caf,Initial Contribution,The Android Open Source Project,2008-10-21T14:00:00Z,The Android Open Source Project,The Android Open Source Project,11781,11781,0
+53,git-repo,fe200eeb520e1b50c00d359ca9e138f6149ce0f2,"Fix unnecessary self in project.py
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-01T22:28:21Z,spearce,spearce,2,1,1
+54,git-repo,078a8b270ff7b8b8c3da5029b1d3ff690fb94cc1,Add PyDev project files to repo,Kis Gergely,2009-06-01T21:35:56Z,kisg,kisg,27,27,0
+55,git-repo,3c8dea1f8d7c4257d080f9f34159cdb2fffb81e6,"Change project.revision to revisionExpr and revisionId
+
+The revisionExpr field now holds an expression from the manifest,
+such as ""refs/heads/master"", while revisionId holds the current
+commit-ish SHA-1 of the revisionExpr.  Currently that is only
+filled in if the manifest points directly to a SHA-1.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-05-30T01:38:17Z,spearce,spearce,231,113,118
+56,git-repo,8ad8a0e61d919e76f521f3124c91bd46fbaa84e2,"Change DWIMery hack for dealing with rewound remote branch
+
+The trick of looking at the reflog for the remote tracking branch
+and only going back one commit works some of the time, but not all of
+the time.  Its sort of relying on the fact that the user didn't use
+`repo sync -n` or `git fetch` to only update the tracking branches
+and skip the working directory update.
+
+Doing this right requires looking through the history of the SHA-1
+source (what the upstream used to be) and finding a spot where the
+DAG diveraged away suddenly, and consider that to be the rewind
+point.  That's really difficult to do, as we don't have a clear
+picture of what that old point was.
+
+A close approximation is to list all of the commits that are in
+HEAD, but not the new upstream, and rebase all of those where the
+committer email address is this user's email address.  In most cases,
+this will effectively rebase only the user's new original work.
+
+If the user is the project maintainer and rewound the branch
+themselves, and they don't want all of the commits they have created
+to be rebased onto the new upstream, they should handle the rebase
+on their own, after the sync is complete.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-05-30T01:28:25Z,spearce,spearce,74,39,35
+57,git-repo,d1f70d9929ddd2748ccc9c1dd2f9603068e1f3e6,"Refactor how projects parse remotes so it can be replaced
+
+We now feed Project a RemoteSpec, instead of the Remote directly
+from the XmlManifest.  This way the RemoteSpec already has the
+full project URL, rather than just the base, permitting other
+types of manifests to produce the URL in their own style.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-05-19T21:58:02Z,spearce,spearce,74,33,41
+58,git-repo,c8a300f6397dad7db00c3654ff6e50e9519ed7c9,"Refactor Manifest to be XmlManifest
+
+We'll soon be supporting two different manifest formats, but we
+can't immediately remove support for the current XML one that is
+in wide spread use within Android.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-05-18T20:19:57Z,spearce,spearce,8,4,4
+59,git-repo,1b34c9118ed86a15b0bc1094804c095dd7be33cb,"Allow callers of GitConfig to specify the pickle file path
+
+This way we can put it in another directory than the config file
+itself, e.g. hide it inside "".git"" when parsing a "".gitmodules""
+file from the working tree.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-05-22T01:52:49Z,spearce,spearce,12,8,4
+60,git-repo,366ad214b82cadc32920b371f7f99f3f6894ec6f,"Teach GitConfig how to yield subsection names
+
+This can be useful when pulling apart a configuration file, like
+finding all entries which match submodule.*.*.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-05-19T19:47:37Z,spearce,spearce,5,5,0
+61,git-repo,242b52690d327a77e47140509085f406155c5722,"Remove support for the extra <remote> definitions in manifests
+
+These aren't that widely used, and actually make it difficult for
+users to fully mirror a forest of repositories, and then permit
+someone else to clone off that forest, rather then the original
+upstream servers.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-05-19T20:00:29Z,spearce,spearce,96,5,91
+62,git-repo,4cc70ce501321733a1b389e685e964d34b3b4cf5,"Remove unused parsing support for <require commit=""""/>
+
+We haven't supported this in a while, but the parser was still here.
+Its all dead code, so strip it out.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-05-19T19:49:46Z,spearce,spearce,6,0,6
+63,git-repo,498a0e8a79ab76eeb6adc40f12b04d59820716f9,"Make 'repo branches -a' the default behavior
+
+Extensive discussion with users lead to the fact that needing to
+supply -a to view what they really wanted to see was just wrong.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-05-18T19:28:54Z,spearce,spearce,19,1,18
+64,git-repo,bc7ef67d9bfcebe17c89eb57cb465d0d6d1d999d,"Automatically guess Gerrit change number in ""repo upload --replace""
+
+This feature only works if you have one commit to replace right now
+(the common case).",Ficus Kirkpatrick,2009-05-04T19:45:11Z,Ficus Kirkpatrick,Ficus Kirkpatrick,35,33,2
+65,git-repo,2f968c943b1c6f61f867fa9b87105836e0e5f354,"Fix ssh://user@hostname/ style URLs parsing
+
+I only tested this with ssh://hostname/ style URLs, so I failed
+to test ssh://user@hostname/ format, which failed if the hostname
+portion was longer than 1 character.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-30T21:30:28Z,spearce,spearce,2,1,1
+66,git-repo,2b5b4ac29275ee49184a8aee98f60b744890f5bb,"Disable SSH ControlMaster option on Cygwin
+
+Bug: REPO-29
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-24T00:22:18Z,spearce,spearce,2,1,1
+67,git-repo,6f6cd77a50fd4ffff360d4aee1c6bc05bfb802c1,Require a project or '--all' to be specified when using 'repo start'.,Ficus Kirkpatrick,2009-04-23T00:27:12Z,Ficus Kirkpatrick,Ficus Kirkpatrick,16,14,2
+68,git-repo,896d5dffd313a2ad91fd8bee750241a6512b25dc,"Fix UnboundLocalError: local variable 'port' when using SSH
+
+If the SSH URL doesn't contain a port number, but uses the ssh://
+or git+ssh:// syntax we raised a Python runtime error due to the
+'port' local variable not being assigned a value.  Default it to
+the IANA assigned port for SSH, 22.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-21T21:51:04Z,spearce,spearce,9,4,5
+69,git-repo,9360966bd2ff68fd7257b50df1a7fcb5e62fe189,"Perform copy file activity when creating a new work directory
+
+Performance improvements in repo sync caused us to skip out of the
+initial Sync_LocalHalf without ever running CopyFiles, so we didn't
+create the top level Makefile in new clients whose manifest request
+one with a <copyfile> element.
+
+Now we run CopyFiles after the initial read-tree that populates
+the project working directory.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-21T17:50:33Z,spearce,spearce,1,1,0
+70,git-repo,ef9ce1d0a556211687cec6a782de366407255f41,Change -p command to use stdout instead of stderr.,Wink Saville,2009-04-21T17:00:16Z,Wink Saville,Wink Saville,2,1,1
+71,git-repo,05f66b6836ffa4a0a309a4909cb3f8c4a7351727,"Fix 'repo sync' rebase logic on a published branch
+
+If the current branch is published, but all published commits are
+merged into the manifest revision, but there is also at least one
+unpublished commit on the current branch, we should rebase the
+unpublished commit, rather than creating a merge commit.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-21T15:26:32Z,spearce,spearce,9,3,6
+72,git-repo,eb7af87bcfc67798b58a99422988b9c368d7d642,"Document the SSH ControlMaster behavior of repo sync
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-21T15:02:04Z,spearce,spearce,29,29,0
+73,git-repo,938d608c9c47401fbdb60f3188c718e2f2569bd0,"Support a level 2 heading in help description text
+
+The level 2 headings (denoted by ~) indent the heading two spaces,
+but continue to use the bold formatter to offset them from the
+other surrounding text.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-21T15:01:17Z,spearce,spearce,16,13,3
+74,git-repo,d63bbf44dc22994ad3cdd73cf852f3d91d87b3f8,"Work around 'ControlPath too long' on Mac OS X
+
+Mac OS X sets TMPDIR to a very long path within /var, so long
+that a socket created in that location is too big for a struct
+sockaddr_un on the platform, resulting in OpenSSH being unable
+to create or bind to a socket in that location.
+
+Instead we try to use the very short and very common /tmp, but
+fall back to the guessed default if /tmp does not exist.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-21T15:05:27Z,spearce,spearce,5,4,1
+75,git-repo,a8421a128a2f0a5e6dcca7e37e36ceb63c9291c4,"Fix launching of editor under 'repo upload --replace'
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T23:57:46Z,spearce,spearce,6,3,3
+76,git-repo,fb2316146f6e3036e0cc3e08653920964a428a15,"Automatically use SSH control master support during sync
+
+By creating a background ssh ""control master"" process which lives
+for the duration of our sync cycle we can easily cut the time for
+a no-op sync of 132 projects from 60s to 18s.
+
+Bug: REPO-11
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-11T01:53:46Z,spearce,spearce,125,122,3
+77,git-repo,8bd5e60b16080008771afcaa7de7084487b84780,"Make 'repo status' show the branch you are currently on
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T22:31:36Z,spearce,spearce,13,13,0
+78,git-repo,3d2cdd0ea533e885183ba2952b2bfa05eb1d05ab,"Highlight projects which still have sync failures during 'repo status'
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T22:26:10Z,spearce,spearce,18,15,3
+79,git-repo,4e3d6739a17dcc9efc5adb1d915be0a886db700e,"Print '(no branches)' if the output of `repo branches` is empty
+
+This way its clear the command did something, and reported
+that it had nothing to show you, because you have no active
+branches in this client.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T22:18:35Z,spearce,spearce,4,4,0
+80,git-repo,552ac89929db1794200290550dccdd7f3078d13f,"Modify 'repo abandon' to be more like 'repo checkout' and 'repo start'
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T22:15:24Z,spearce,spearce,63,51,12
+81,git-repo,89e717d9481c0c69292a39f85599f5df8277b004,"Improve checkout performance for the common unmodified case
+
+Most projects will have their branch heads matching in all branches,
+so switching between them should be just a matter of updating the
+work tree's HEAD symref.  This can be done in pure Python, saving
+quite a bit of time over forking 'git checkout'.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T22:04:41Z,spearce,spearce,79,56,23
+82,git-repo,0f0dfa3930bc16078ef0b1a00ff6849333038fc7,"Add progress meter to 'repo start'
+
+This is mostly useful if the number of projects to switch is many
+(e.g. all of Android) and a large number of them are behind the
+current manifest revision.  We wind up needing to run git just to
+make the working tree match, and that often makes the command take
+a couple of seconds longer than we'd like.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T21:53:39Z,spearce,spearce,14,11,3
+83,git-repo,76ca9f8145f367f83df19981da4dd934fdda471b,"Make usage of open safer by setting binary mode and closing fds
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T21:48:03Z,spearce,spearce,34,23,11
+84,git-repo,accc56d82b902e7c7a22401db710958fcb1c7b58,"Speed up 'repo start' by removing some forks
+
+Its quite common for most projects to be matching the current
+manifest revision, as most developers only modify one or two projects
+at any one time.  We can speed up `repo start foo` (that impacts
+the entire client) by performing most of the branch creation and
+switch operations in pure Python, and thus avoid 4 forks per project.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T21:45:51Z,spearce,spearce,130,104,26
+85,git-repo,db45da12089bf131579d100ff7990cbc18d07325,"Add -p to `repo forall` to improve output formatting
+
+When trying to read log output from many projects at once it can
+be difficult to make sense of which messages came from where.
+
+For many professional developers it is common to want to view the
+last week's worth of your work, so you can write a weekly summary
+of your activity for your status report.
+
+This is easier with the new -p option:
+
+  repo forall -pc git log --reverse --since=1.week.ago --author=sop
+
+produces a report of all commits written by me in the last week,
+formatted in a paged output display, with headers inserted in
+front of each project's output.
+
+Where this can be even more useful is with git log's pickaxe,
+e.g. now we can use:
+
+  repo forall -pc git log -Sbar v1.0..v1.1
+
+to locate all additions or removals of the symbol 'bar' since v1.0,
+up to and including v1.1.  Before displaying the matching commits in
+a project, a project header is shown, giving the user some context
+information for the matching results.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T20:49:13Z,spearce,spearce,156,151,5
+86,git-repo,50fa1ac6db388c0aa16751b5ad69d296e5eea047,"Clarify the option section header in 'repo help grep'
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T18:44:33Z,spearce,spearce,4,2,2
+87,git-repo,5da554f294a062c5c469d0a60b6f2ce6a0b3f669,"Show options help after the summary for a command
+
+It is a bit clearer to read this way.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T18:44:00Z,spearce,spearce,2,1,1
+88,git-repo,77bb4af241ddfeacfe463272d681f188f92f98b0,"Improve the help text for 'repo init'
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T18:33:32Z,spearce,spearce,17,14,3
+89,git-repo,fd89b67f5c3ad94f050509e1421c73aff380c0a7,"Clarify options that control the repo executable version
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T18:28:57Z,spearce,spearce,14,8,6
+90,git-repo,a490f03dc23792a86bbe5b2b8c89b32f39774c80,"Correct note about local_manifest.xml capabilities
+
+With the <remove-project> element we can remove projects, and
+fully replace them with a different definition.  So this note
+is out of date.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T18:25:58Z,spearce,spearce,5,0,5
+91,git-repo,deec0536d657be178e8eed2d597afb9fdc716e99,"Only display project path in 'repo stage -i'
+
+Generally we only show the project path, relative from the top of the
+client.  Showing the project name may be confusing for the end-user.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T18:22:13Z,spearce,spearce,4,2,2
+92,git-repo,06e556d202cc6944227667a0664ec7b8eca32076,"Improve the help text for 'repo start'
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T18:19:01Z,spearce,spearce,18,4,14
+93,git-repo,8225cdc56b9763ef4c000fe72db3e6ae68fc3736,"Display the URL we will upload changes to for review
+
+This gives the user the last chance to confirm where the change is
+going to be sent to.  Knowing the review server URL will help the
+user decide if continuing with the upload makes sense.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T18:00:35Z,spearce,spearce,2,1,1
+94,git-repo,337fb9c7e9e9806cef81918c1446c3cf4d4833d4,"Improve the help text for 'repo upload'
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T17:59:33Z,spearce,spearce,30,17,13
+95,git-repo,9bb961785832356ac7f3f2516d4627cc391a2997,"Remove unused methods from project.ReviewableBranch
+
+These used to be used back when we had Gerrit 1.x support and used
+HTTP based uploads to transmit changes for review.  Since we moved
+entirely to Gerrit 2.x, these are no longer called.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T17:53:27Z,spearce,spearce,10,0,10
+96,git-repo,f6906876719a665819c603604603570363389d0d,"Only fetch repo once-per-day under normal 'repo sync' usage
+
+Its unlikely that a new version of repo will be delivered in any
+given day, so we now check only once every 24 hours to see if repo
+has been updated.  This reduces the sync cost, as we no longer need
+to contact the repo distribution servers every time we do a sync.
+
+repo selfupdate can still be used to force a check.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T17:49:00Z,spearce,spearce,22,19,3
+97,git-repo,336f7bd0ed70f5ee2595463b6bd8dd277e90c833,"Avoid git fork on the common case of repo not changing
+
+Usually repo is upgraded only once a week, if that often.  Most of
+the time we invoke HasChanges on the repo project (or even on the
+manifest project) the current HEAD will resolve to the same SHA-1
+as the remote tracking ref, and there are therefore no changes.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T17:39:28Z,spearce,spearce,20,19,1
+98,git-repo,2810cbc7784e9a21e7001c31b65af94fd9ba7a5b,"Only display a progress meter once we spend 0.5 seconds on a task
+
+The point of the progress meter is to let the user know that the
+task is progressing, and give them a chance to estimate when it will
+be complete.  If the task completes in under 0.5 seconds then it
+is sufficiently fast enough that the user doesn't need to be kept
+up-to-date on its progress; in fact showing the meter may just slow
+the task down waiting on the tty to redraw.
+
+We now delay the progress meter 0.5 seconds (or 1 second if the
+Python time.time() function isn't accurate enough) to avoid any
+really fast tasks, like a no-op local sync.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T17:09:16Z,spearce,spearce,11,10,1
+99,git-repo,6ed4e2834639d0b08686882d2e39cd736d66c688,"Disable the progress meter when trace is enabled
+
+The trace output often interfers with the progress meter, so its
+easier to just disable the progress meter if trace is active.
+Its already verbose enough to let the user know we are working,
+which is all the progress meter is there for anyway.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T16:59:18Z,spearce,spearce,7,7,0
+100,git-repo,ad3193a0e587073dee0edef46bdf24f6c6e09779,"Fix `repo --trace` to show ref and config loads
+
+The value of the varible TRACE was copied during the import, which
+happens before the --trace option can be processed.  So instead we
+now use a function to determine if the value is set, as the function
+can be safely copied early during import.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T16:54:51Z,spearce,spearce,64,47,17
+101,git-repo,b81ac9e65444d0f54d2b6dd24d20b74945c9a36a,"Enable tracing of ref scans and config unpickling
+
+These are not as expensive as spawning a git command, but they are
+not free either.  We want to keep track of how many times we wind
+up calling them on any particular operation.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T03:44:26Z,spearce,spearce,10,9,1
+102,git-repo,0f3dd233ecaf8d145ddb33a5ef1b8d3d71ade476,"Avoid unnecessary git symbolic-ref calls during repo sync
+
+If the m/BRANCH ref is already pointing at the value set in the
+manifest there is no reason to set it again.  Leave it alone,
+thus saving a full fork+exec call.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T03:32:44Z,spearce,spearce,23,18,5
+103,git-repo,c12c360f89d4d1cc0a0ad80c4ea0785f84be1848,"Pickle parsed git config files
+
+We now cache the output of `git config --list` for each of our
+GitConfig instances in a Python pickle file.  These can be read
+back in using only the Python interpreter at a much faster rate
+than we can fork+exec the git config process.
+
+If the corresponding git config file has a newer modification
+timestamp than the pickle file, we delete the pickle file and
+regenerate it.  This ensures that any edits made by the user
+will be taken into account the next time we consult the file.
+
+This reduces the time for a no-op repo sync from 0.847s to 0.269s.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T04:03:32Z,spearce,spearce,38,38,0
+104,git-repo,fbcde472cadfc8319016faca90cb5b57f7a00ee4,"Improve repo sync performance by avoid git forks
+
+By resolving the current HEAD and the manifest revision using pure
+Python, we can in the common case of ""no changes"" avoid a lot of
+git operations and directly jump out of the local sync method.
+
+This reduces the no-op `repo sync -l` time for Android's 114 projects
+from more than 6s to under 0.8s.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T03:58:02Z,spearce,spearce,75,60,15
+105,git-repo,d237b698652120f4d859b6f9e12e3aa15aa7b2d5,"Implement git ref reading purely in Python
+
+Its much faster to read the refs from 114 projects when the reader
+is pure Python and just doing file IO than forking 114 git commands
+and parsing their output.
+
+The reader caches refs based upon file mtimes.  If any single ref
+file has been modified since the last read, we re-read the entire
+repository's ref namespace.  This simplifies the code as we don't
+need to worry about shooting down symbolic-refs, but it may cause
+more IO than is necessary if only one ref gets updated.
+
+This change drops `repo branches` in Android from 1.658s to 0.206s.
+Likewise, `repo sync` improves dramatically as well.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T01:49:50Z,spearce,spearce,163,137,26
+106,git-repo,5b23f24881505ae77bf7a43d66663a7f2968b3c1,"Implement 'git symbolic-ref HEAD' in Python
+
+This is invoked once per project in `repo sync`.  Taking it out
+saves about 1/114 of a second, so on a large set of projects like
+Android it can save up to a full second of sync time.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T01:43:33Z,spearce,spearce,19,11,8
+107,git-repo,66bdd468717a6f52056924837b766cf60889f2ed,"Only compute commits in repo upload if we need to show a prompt
+
+If the user has disabled a prompt, skip the two commands we use to
+obtain the list of commits and the date of the branch.  These will
+never be displayed and just waste the end-user's time.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-18T01:47:22Z,spearce,spearce,5,3,2
+108,git-repo,a608fb024ba0d6b1534e514e3ad2265a9f187182,"Allow review.URL.autoupload to skip prompting during `repo upload`
+
+If review.URL.autoupload is set to true in a project's .git/config
+or in ~/.gitconfig then `repo upload` will automatically upload,
+and skip prompting the end-user.
+
+Conversely, if review.URL.autoupload is set to false, then repo
+will refuse to upload to that project.
+
+Bug: REPO-25
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-17T19:11:24Z,spearce,spearce,56,44,12
+109,git-repo,f8e3273decd883f334939cb24e542d47aba21a43,"Supporrt mixed case subsection names in Git config files
+
+In the case of:
+
+  [url ""Foo""]
+    insteadOf = Bar
+
+We should return ""Bar"" for the key ""url.Foo.insteadof"", but not
+for the key ""url.foo.insteadof"".  This requires splitting the
+key into its components and only lower casing the section and
+value name, leaving the subsection portion alone.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-17T18:00:31Z,spearce,spearce,26,15,11
+110,git-repo,006734b7981289856f71501f3685fd0ee6d27a6d,"Remove confusing message from repo sync output
+
+Someone pointed out this message isn't always the truth; so we
+shouldn't print it.  The code path is executed when there are
+published commits, yet our output talks about unpublished ones.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-17T17:27:49Z,spearce,spearce,1,0,1
+111,git-repo,350cde4c4bec5e7b5776cf52d61da600af3efc31,"Change repo sync to be more friendly when updating the tree
+
+We now try to sync all projects that can be done safely first, before
+we start rebasing user commits over the upstream.  This has the nice
+effect of making the local tree as close to the upstream as possible
+before the user has to start resolving merge conflicts, as that extra
+information in other projects may aid in the conflict resolution.
+
+Informational output is buffered and delayed until calculation for
+all projects has been done, so that the user gets one concise list
+of notice messages, rather than it interrupting the progress meter.
+
+Fast-forward output is now prefixed with the project header, so the
+user can see which project that update is taking place in, and make
+some relation of the diffstat back to the project name.
+
+Rebase output is now prefixed with the project header, so that if
+the rebase fails, the user can see which project we were operating
+on and can try to address the failure themselves.
+
+Since rebase sits on a detached HEAD, we now look for an in-progress
+rebase during sync, so we can alert the user that the given project
+is in a state we cannot handle.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-16T18:21:18Z,spearce,spearce,237,175,62
+112,git-repo,48244781c2cad1565b4b32b4524ff9931a39f848,"Refactor error message display in project.py
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-16T15:25:57Z,spearce,spearce,8,5,3
+113,git-repo,19a83d80854d88f079f8d6530812b50948f0e28c,"Use default rebase during sync instead of rebase -i
+
+rebase interactive (aka rebase -i) has changed in newer versions
+of git, and doesn't always generate the sequence of commits the
+same way it used to.  It also doesn't handle having a previously
+applied commit try to be applied again.
+
+The default rebase algorithm is better suited to our needs.
+It uses --ignore-if-in-upstream when generating the patch series
+for git-am, and git-am with its 3-way fallback is able to handle
+a rename case just as well as the cherry-pick variant used by -m.
+Its also a generally faster implementation.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-16T15:14:26Z,spearce,spearce,4,2,2
+114,git-repo,b1168ffadaff387a8b7ab9a9c861073035c505a8,"Don't divide by zero in progress meter
+
+If there are no projects to fetch, the progress meter would
+have divided by zero during `repo sync`, and that throws a
+ZeroDivisionError.  Instead we report the progress with an
+unknown amount remaining.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-16T15:00:42Z,spearce,spearce,41,27,14
+115,git-repo,4c5c7aa74b2dec2cbfb6b6bd7e24d5922e92c112,"Document 'repo status' output
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-13T21:06:10Z,spearce,spearce,38,38,0
+116,git-repo,ff84fea0bb67e249888e826af88286b9ccc5fab3,"Fix formatting of 'repo help sync'
+
+The formatting for the enviroment variable section was incorrect.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-13T19:11:59Z,spearce,spearce,1,1,0
+117,git-repo,d33f43a75472cb5104e444c50b880ac3ab2de603,"Cleanup checkout help to match other commands
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-13T19:11:31Z,spearce,spearce,10,6,4
+118,git-repo,e756c412e35b9ac1a126985d4d047dbd52f29277,"Add 'repo selfupdate' to upgrade only repo
+
+Users may want to upgrade only repo to the latest release, but
+leave their working tree state alone and avoid 'repo sync'.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-13T18:51:15Z,spearce,spearce,98,83,15
+119,git-repo,b812a3623646adf38f30dd5cf7e92f1e704669a2,"Add 'repo grep' to support searching all projects
+
+Users can now use 'repo grep' to search all projects, rather than
+'repo forall -c git grep'.  Its not only shorter to type, but it
+also filters results better by highlighting which projects matched
+in the client workspace.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-11T03:37:47Z,spearce,spearce,243,243,0
+120,git-repo,161f445a4dc4518199b132ee4c380788aee2ac63,"status: tell the user the working tree is clean
+
+If there is nothing output at all, tell the user the working tree is
+completely clean.  It just gives them a bit more of a warm-fuzzy
+feeling knowing repo and until the end.  It also more closely
+matches with the output of git status.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-11T00:41:44Z,spearce,spearce,14,11,3
+121,git-repo,68194f42b0b0e59f206b8e997c26f6a16b74fd4f,"Add a project progress meter to 'repo sync'
+
+This way users can see how much is left during fetch.  Its
+especially useful when most syncs are no-ops but there are
+hundreds of repositories to poll.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-10T23:48:52Z,spearce,spearce,54,53,1
+122,git-repo,b1562faee09fe9eb84ea2d1eaf52bf841e2fe811,"Add 'repo sync -l' to only do local operations
+
+This permits usage of 'repo sync' while offline, as we bypass the
+network based portions of the code and do only the local sync.
+
+An example use case might be:
+
+  repo sync -n  ; # while we have network
+  ... some time later ...
+  repo sync -l  ; # while without network, come up to date
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-11T00:04:08Z,spearce,spearce,58,33,25
+123,git-repo,3e768c9dc7f77cb2960f990f6e2d15890e96abdb,"Add 'repo sync -d' to detach projects from their current topic
+
+The -d flag moves the project back to a detached HEAD state,
+matching what is listed in the manifest.  This can be useful to
+set a client to something stable (or at least well-known), such as
+before a sequence of 'repo download' commands are used to get some
+changes for testing.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-10T23:59:36Z,spearce,spearce,20,17,3
+124,git-repo,96fdcef9e3087d71266d5c78e4a9716e3afa6d41,"Add 'repo sync -n' to only do the network transfer
+
+This makes it easier to update all repositories, without actually
+impacting the working directory, or learning about how to use
+`repo forall -c 'git fetch $REPO_REMOTE' `.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-10T23:29:20Z,spearce,spearce,7,7,0
+125,git-repo,2a1ccb2b0ca6a975614b96271fccd82a58394157,"Hide the internal sync --repo-upgraded flag from users
+
+This is only meant to be passed through while repo upgrades itself
+during a sync.  It should never be something a user invokes on
+their own.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-10T23:51:53Z,spearce,spearce,3,2,1
+126,git-repo,0a389e94de32151189b7064d96eaaa0aa6cdb4a3,"Make 'repo start' restartable upon failures
+
+If `repo start foo` fails due to uncommitted and unmergeable changes
+in a single project, we have switched half of the projects over to
+the new target branches, but didn't on the one that failed to move.
+
+This change improves the situation by doing three things differently:
+
+- We keep going when we encounter an error, so other projects
+  that can successfully switch still switch.
+
+- We ignore projects whose current branch is already on the
+  requested name; they are logically already setup.
+
+- We checkout the branch if it already exists, rather than
+  trying to recreate the branch.
+
+Bug: REPO-22
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-10T23:21:18Z,spearce,spearce,45,35,10
+127,git-repo,2675c3f8b5865edff4fe6ec60187b32deef5041d,"Don't capture stdout during 'repo checkout'
+
+There isn't any great value in buffering stdout into memory
+coming from git checkout.  So don't bother doing it.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-10T23:20:25Z,spearce,spearce,2,1,1
+128,git-repo,27b07327bc9f4bcda2c29422e064bced092759e3,"Add a repo branches subcommand to describe current branches
+
+We now display a summary of the available topic branches in this
+client, based upon a sorted union of all existing projects.
+
+Bug: REPO-21
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-10T23:02:48Z,spearce,spearce,176,176,0
+129,git-repo,02d7945eb836f33f63b94fb2a556c844faf0ef8d,"Add checkout command.
+
+Teach repo how to checkout a branch in all projects or a list
+of specific projects.
+
+Bug: REPO-21",Wink Saville,2009-04-10T20:01:24Z,Wink Saville,Wink Saville,59,59,0
+130,git-repo,8f82a4f828c2765cc4585f9d749f5155f06fd9e9,"Don't start the pager if stdout is a pipe
+
+The repo script often uses a pager by default and will produce
+control characters (coloring) to standard output when using the
+pager, even if the output is redirected to another pipe or script.
+This is because the pager setup checked for the terminal presence
+on FD 0, and in case of redirection FD 0 is still attached to
+the terminal.
+
+Instead require that both FD 0 and FD 1 are connected to the terminal
+in order to start the pager.
+
+Bug: REPO-19, b.android.com/2004
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-04-01T14:24:22Z,spearce,spearce,2,1,1
+131,git-repo,146fe902b7dd4a7758a8748674aa1e5d3cac2592,"Only lookup review server '/ssh_info' once per repo process
+
+If the user has multiple projects to upload changes to, and they
+are all going to the same review server, we only need to query the
+'/ssh_info' data once.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-25T21:06:43Z,spearce,spearce,52,33,19
+132,git-repo,722acefdc45a9d335793a79179c56c67f1dfed24,"Produce a useful error if /ssh_info was HTML and not plain text
+
+If /ssh_info is protected by an HTML based login page, we may get
+back a ""200 OK"" response from the server with some HTML document
+asking us to authenticate.  This can't be parsed into a host name
+and port number, so we shouldn't even try.
+
+Valid host names and decimal port numbers cannot contain '<', but
+an unexpected HTML login page would.  So we test for '<' to give
+us a fair indicator that the content isn't what we think it is,
+and bail out.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-25T20:58:14Z,spearce,spearce,5,5,0
+133,git-repo,13cc3844d7426d547a718946ecf365330cc0784c,"Handle review URLs pointing directly at Gerrit
+
+If a review URL is set to 'http://host/Gerrit' because the user
+thinks that is the correct way to point repo at Gerrit, we should
+be a bit more flexible and fix the URL by dropping the '/Gerrit'
+suffix and replace it with '/ssh_info'.
+
+Likewise, if a review URL points already at '/ssh_info' for a Gerrit
+instance, we should leave it alone.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-25T20:54:54Z,spearce,spearce,9,6,3
+134,git-repo,feabbdb44064888a6f0f1bf8bd0049f7162206c9,"Don't bother listing branch URLs during upload
+
+Modern Gerrit2 automatically outputs the URL for each commit to
+stderr as it creates the records.  Dumping the URL ourselves is
+unnecessary additional output, and worse is just an approximate
+guess for the correct web URL.  Gerrit might not live at the top
+level directory for the server, or might even prefer a different
+hostname for web connections than what is listed in the manifest.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-19T17:20:27Z,spearce,spearce,3,0,3
+135,git-repo,8630f39dba4de00345c130e34e98859df169c97a,"Fix repo re-init in a mirror to not prompt
+
+On a mirror client we don't prompt for user.name,user.email as the
+data is only necessary if you will make new commits.  On a re-init
+we were testing the command line option, not the existing IsMirror
+property from the manifest configuration file.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-19T17:17:12Z,spearce,spearce,4,2,2
+136,git-repo,df01883f9b09adcd13f42971a102812f1148408e,"Allow repo init to restart if URL was initially invalid
+
+This allows the user to run ""repo init -u"" again after an
+initial attempt failed due to an invalid URL.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-17T15:15:27Z,spearce,spearce,2,1,1
+137,git-repo,1fc99f4e472c86915cb1affd5507140277711227,"Give a more friendly error in 'repo init' if manifest url is invalid
+
+Instead of a stack trace ending in origin/master not existing we
+now tell the user the manifest url is invalid if 'git fetch' has
+failed out early.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-17T15:06:18Z,spearce,spearce,6,5,1
+138,git-repo,1775dbe176fe284a9baa8697f600f03e9b8dabbc,"Set forall environment variables to empty string if None
+
+If the value obtained is None we now set the variable to
+'' instead, in an attempt to make execve() happier about
+our 3rd argument, the env dictionary.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-17T15:03:04Z,spearce,spearce,19,12,7
+139,git-repo,521cd3ce67a3621dbbad906f8402dbde8a1e9e63,"Support ""repo init -b foo && repo sync"" to switch baselines
+
+We now correctly support re-initializing an existing client to point
+to a different branch of the same manifest repository, effectively
+allowing the client to switch the baseline it is operating on.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-10T01:53:20Z,spearce,spearce,3,2,1
+140,git-repo,5470df6219fd3be675b8700c326713e700847a10,"Don't permit ""repo init --mirror"" in an existing client
+
+Simply setting repo.mirror true doesn't make a client into a mirror.
+The on-disk layout is completely wrong for a mirror repository,
+and until we fix our layout for a non-mirror client to more closely
+resemble the upstream we can't do anything to easily turn on or
+turn off the mirror status flag.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-10T01:51:58Z,spearce,spearce,9,7,2
+141,git-repo,0ed2bd1d95fb85dac1721f4c71abc8e07ec30e64,"Add global --trace command line option
+
+This has the same effect as saying ""export REPO_TRACE=1"" in
+your shell prior to starting repo, but is documented in the
+command usage and perhaps easier to use.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-10T01:26:31Z,spearce,spearce,6,6,0
+142,git-repo,c7a4eefa7e775b64916a66b52ca6c5f31e2cf5c8,"Add repo manifest -o to save a manifest
+
+This can be useful to create a new manifest from an existing client,
+especially if the client wants to use the ""-r"" option to set each
+project's revision to the current commit SHA-1, making a sort of a
+tag file that can be used to recreate this exact state elsewhere.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-05T18:32:38Z,spearce,spearce,131,118,13
+143,git-repo,43c3d9ea17f1436a6b3b2e7e7827da6f48a21da9,"Add a 'repo manifest' command whose help is the manifest file format
+
+This should make it easier for users to discover the file format
+on their own, and read about it.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-04T22:26:50Z,spearce,spearce,145,99,46
+144,git-repo,4259b8a2ac0dddb54e98e00afc454bf966d4f058,"Tell users how to see the complete list of commands
+
+Using ""repo help --all"" may not be obvious.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-04T22:03:16Z,spearce,spearce,1,1,0
+145,git-repo,2816d4f387042b5ee38b27f1c9ef0b3f313165ed,"Set core.bare to true on mirror repositories
+
+When creating a mirror repository we will always be using a bare
+repository.  Setting $GIT_DIR/config to have core.bare = true is
+reasonable and helps Git to recognize the environment it is in.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-04T01:53:18Z,spearce,spearce,6,5,1
+146,git-repo,44469464d2e4ddbb217f92e962ff85dfd736772e,"Allow repo forall -c on a mirror by using GIT_DIR as pwd
+
+We can permit a forall on a mirror, but only if we put
+the command into the git repository.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-04T01:51:01Z,spearce,spearce,16,12,4
+147,git-repo,c95583bf4f17b8467f815b6391ffc6c7add08804,"Don't permit users to run repo status in a mirror client
+
+If a client was created with ""repo init --mirror"" then there are
+no working directories present, and no files checked out.  Using
+a command like ""repo status"" in this context makes no sense, and
+actually throws back a Pytyon traceback at the console when the
+underlying commands fail out.
+
+We now tag commands with the MirrorSafeCommand type if they are
+able to be executed within a mirror directory safely.  Using a
+command in a mirror which lacks this base class results in a
+useful error letting you know the command isn't supported.
+
+Bug: REPO-14
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-04T01:47:06Z,spearce,spearce,31,22,9
+148,git-repo,6a5644d392069b67f17c8ce6cb10f07cce71cc1c,"Get rid of the horrible android import work around hack
+
+Months ago when the Android Open Source Project launched we had some
+import errors that had to be fixed and worked over.  These hacks
+were here to help users update their clients to newer versions of
+the imported code.
+
+Its very likely all clients have either been deleted, or have been
+updated and have the fixed imports.  So we don't need this hack in
+repo anymore.
+
+If a very ancient client still existed, it would need to be created
+from scratch anyway, due to the Android cupcake branch merging
+into master and the manifest changes not being able to be handled
+correctly by repo.  A new client wouldn't have the incorrectly
+imported code in it, and thus wouldn't need this hack.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-03T21:52:20Z,spearce,spearce,25,0,25
+149,git-repo,fe0867595635b0dc007088053c5901331ac92536,"Fix repo status when there are renamed/copied files
+
+I missed a parameter in the format string, but still provided the
+value in the parameter list, so the format failed to produce an
+output message.
+
+Bug: REPO-15
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-03T21:49:48Z,spearce,spearce,2,1,1
+150,git-repo,be0e8ac232de862d287927c4d735cf30f040cf42,"Export additional environment variables to repo forall:
+
+REPO_PATH is the path relative the the root of the client.
+
+REPO_REMOTE is the name of the remote system from the manifest.
+
+REPO_LREV is the name of the revision from the manifest, but
+translated to something the local repository knows.
+
+REPO_RREV is the name of the revision from the manifest.
+
+This allows us to do commands like:
+
+  repo forall -c 'echo ""(cd $REPO_PATH && git checkout `git rev-parse HEAD`)""'",Jeff Bailey,2009-01-22T00:05:15Z,kaladron,kaladron,17,17,0
+151,git-repo,47c1a63a07ebd67efac00ca9e0d877633aea5881,"Add 'repo version' to describe what code we are running
+
+I meant to have this in here, so clients can more easily report
+what version of repo they are running.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-03T02:24:23Z,spearce,spearce,45,45,0
+152,git-repo,559b846b17a5b720c1247d07e292150466f27f96,"Report better errors when a project revision is invalid
+
+If a manifest specifies an invalid revision property, give the
+user a better error message detaling the problem, instead of an
+ugly Python traceback with a strange Git error message.
+
+Bug: REPO-2
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-03-02T20:56:08Z,spearce,spearce,15,15,0
+153,git-repo,71cab95b4cc6758d5f18f19412188d46d0a29190,"Merge branch 'stable'
+
+* stable:
+  Encode the environment variables passed to git
+  Exit with statuscode 0 for repo help init",Shawn O. Pearce,2011-01-10T01:29:50Z,spearce,spearce,32,18,14
+154,git-repo,f18cb761731a791bf1b9ee8c6308bfce5c9d3e62,"Encode the environment variables passed to git
+
+Windows allows the environment to have unicode values.
+This will cause Python to fail to execute the command.
+
+Change-Id: I37d922c3d7ced0d5b4883f0220346ac42defc5e9
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2010-12-07T19:41:05Z,spearce,spearce,31,17,14
+155,git-repo,d3fd537ea59272e2141ccee839400a93c0196e36,"Exit with statuscode 0 for repo help init
+
+The complete help text is printed, so the program executed successfully.
+
+Some tools (like OpenGrok) detects the availibility of a program by
+running it with a known set of options and check the return code.
+It is an easy and portable way of checking for the existence of a program
+instead of searching the path (and handle extensions) ourselves.
+
+Change-Id: Ic13428c77be4a36d599ccb8c86d893308818eae3",Trond Norbye,2011-01-03T10:35:15Z,trondn,trondn,1,1,0
+156,git-repo,9275fd43294e760e47736857113f32a2f189c6c6,"Merge branch 'stable'
+
+* stable:
+  Fixed race condition in 'repo sync -jN' that would open multiple masters.",Shawn O. Pearce,2010-12-22T22:46:15Z,spearce,spearce,151,90,61
+157,git-repo,0048b69c038306fe74408a63cdd0773b0d86a8fe,"Fixed race condition in 'repo sync -jN' that would open multiple masters.
+
+This fixes the SSH Control Masters to be managed in a thread-safe
+fashion.  This is important because ""repo sync -jN"" uses threads to
+sync more than one repository at the same time.  The problem didn't
+show up earlier because it was masked if all of the threads tried to
+connect to the same host that was used on the ""repo init"" line.",Doug Anderson,2010-12-21T21:39:23Z,Doug Anderson,Doug Anderson,151,90,61
+158,git-repo,13f3da50d40b89ee5b05f5f3de9542c20edac6d1,"Merge branch 'stable'
+
+* stable: (33 commits)
+  Added feature to print a <notice> from manifest at the end of a sync.
+  sync: Use --force-broken to continue other projects
+  upload: Remove --replace option
+  sync --quiet: be more quiet
+  sync: Enable use of git clone --reference
+  Only delete corrupt pickle config files if they exist
+  Don't allow git fetch to start ControlMaster
+  Check for existing SSH ControlMaster
+  Fix for handling values of EDITOR which contain a space.
+  upload: Fix --replace flag
+  rebase: Pass through more options
+  upload: Allow review.HOST.username to override email
+  upload -t: Automatically include local branch name
+  Warn users before uploading if there are local changes
+  sync: Try fetching a tag as a last resort before giving up
+  rebase: Automatically rebase branch on upstrea
+  upload: Automatically --cc folks in review.URL.autocopy
+  Fix format string bugs in grep
+  Do not invoke ssh with -p argument when no port has been specified.
+  Allow files to be copied into new folders
+  ...
+
+Conflicts:
+	git_config.py
+	manifest_xml.py
+	subcmds/init.py
+	subcmds/sync.py
+	subcmds/upload.py
+
+Change-Id: I4756a6908277e91505c35287a122a775b68f4df5",Shawn O. Pearce,2010-12-07T18:31:19Z,spearce,spearce,985,806,179
+159,git-repo,3218c13205694434edb2375ab8a8515554eed366,"Use os.environ.copy() instead of dict()
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2010-12-07T16:46:14Z,spearce,spearce,2,1,1
+160,git-repo,b0f9a02394779c1c9422a9649412c9ac5fb0f12f,"Make path references OS independent
+
+Change-Id: I5573995adfd52fd54bddc62d1d1ea78fb1328130",Anthony Newnam,2010-11-29T19:15:24Z,Anthony Newnam,Anthony Newnam,18,12,6
+161,git-repo,2b8db3ce3e7344b9f3b5216637c5af0d54be5656,"Added feature to print a <notice> from manifest at the end of a sync.
+
+This feature is used to convey information on a when a branch has
+ceased development or if it is an experimental branch with a few
+gotchas, etc.
+
+You add it to your manifest XML by doing something like this:
+<manifest>
+  <notice>
+    NOTE TO DEVELOPERS:
+      If you checkin code, you have to pinky-swear that it contains no bugs.
+      Anyone who breaks their promise will have tomatoes thrown at them in the
+      team meeting.  Be sure to bring an extra set of clothes.
+  </notice>
+
+  <remote ... />
+  ...
+</manifest>
+
+Carriage returns and indentation are relevant for the text in this tag.
+
+This feature was requested by Anush Elangovan on the ChromiumOS team.",Doug Anderson,2010-11-01T22:08:06Z,Doug Anderson,Doug Anderson,72,71,1
+162,git-repo,5df6de075e5fb674368d38f858419425bc8d8d07,"sync: Use --force-broken to continue other projects
+
+This adds a new flag -f/--force-broken that will allow the rest of
+the sync process to continue instead of bailing when a particular
+project fails to sync.
+
+Change-Id: I23680f2ee7927410f7ed930b1d469424c9aa246e
+Signed-off-by: Andrei Warkentin <andreiw@motorola.com>
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Andrei Warkentin,2010-07-02T22:58:31Z,Andrei Warkentin,Andrei Warkentin,18,15,3
+163,git-repo,a0de6e8eab97f5dcdb2f51d4e09dd1568623ec58,"upload: Remove --replace option
+
+It hasn't been necessary for a long time, and its
+functionality can be accomplished with 'git push'.
+
+Change-Id: Ic00d3adbe4cee7be3955117489c69d6e90106559",Ficus Kirkpatrick,2010-10-22T20:06:47Z,Ficus Kirkpatrick,Ficus Kirkpatrick,84,1,83
+164,git-repo,16614f86b3cc8d61ccae7197624fa93fc752767b,"sync --quiet: be more quiet
+
+Change-Id: I5e8363c7b32e4546d1236cfc5a32e01c3e5ea8e6
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2010-10-29T19:05:43Z,spearce,spearce,41,27,14
+165,git-repo,88443387b1b0508f43b57e104821c6b375806fea,"sync: Enable use of git clone --reference
+
+Use git clone to initialize a new repository, and when possible
+allow callers to use --reference to reuse an existing checkout as
+the initial object storage area for the new checkout.
+
+Change-Id: Ie27f760247f311ce484c6d3e85a90d94da2febfc
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2010-10-08T08:02:09Z,spearce,spearce,120,111,9
+166,git-repo,99482ae58a74e236fb40b65c267163a5690f39e1,"Only delete corrupt pickle config files if they exist
+
+os.remove() raises OSError if the file being removed doesn't exist.
+Check before calling to ensure we don't raise a useless exception
+on an already deleted file.
+
+Change-Id: I44c1c7dd97a47fcab8afb6c18fdf179158b6dab7
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Ulrik Sjölin,2010-10-29T15:23:30Z,Ulrik Sjölin,Ulrik Sjölin,6,4,2
+167,git-repo,ec1df9b7f6310ce5dd9432b727eb9f7bde9f2796,"Don't allow git fetch to start ControlMaster
+
+To avoid connectivity problems, we don't want the ssh process
+that is started by git fetch to become a ControlMaster for the
+overall sync task.  If it did, we would lose connectivity when
+git fetch was finished with the current project, causing later
+projects to not fetch efficiently.
+
+Change-Id: I8d0dcf9b361276ff8c8b5a6324cbd4a501e9c4dd
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Doug Anderson,2010-10-28T00:13:07Z,Doug Anderson,Doug Anderson,2,1,1
+168,git-repo,06d029c1c8c06a6d446b7cc4d5e763ff0754b149,"Check for existing SSH ControlMaster
+
+Be more thorough about checking for an existing ssh master by
+running a test command first, and only opening up a new master
+if the test fails to connect.
+
+Change-Id: I56fe8e7b4dbc123675b7f259e81d359ed0cd55cf
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Doug Anderson,2010-10-28T00:06:01Z,Doug Anderson,Doug Anderson,53,41,12
+169,git-repo,b715b148076ef589e806a98a183c8f4468f75cf6,"Fix for handling values of EDITOR which contain a space.
+
+The shell swallows the 0th arg, which was the filename. Simple fix
+is to pass in an extra arg for the shell to swallow.
+
+Change-Id: Iad6304ba9ccea6e7262ee06ef87d3dac57dbde81",Patrick Dubroy,2010-07-30T00:10:47Z,pdubroy,pdubroy,2,1,1
+170,git-repo,60829ba72fe81b1de1c1e9c6e0de486e9e90bddd,"upload: Fix --replace flag
+
+--replace started to fail due to a Python error, I forgot to pass
+through the opt structure to the replace function.
+
+Change-Id: Ifcd7a0c715c3fd9070a4c58208612a626382de35
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2010-07-16T14:42:45Z,spearce,spearce,4,2,2
+171,git-repo,a22f99ae41a9cdda2129c89678a6f581b0445c85,"rebase: Pass through more options
+
+Passing through --whitespace=fix to rebase can be useful
+to clean up a branch prior to uploading it for review.
+
+Change-Id: Id85f1912e5e11ff9602e3b342c2fd7441abe67d7
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2010-07-16T00:40:41Z,spearce,spearce,46,39,7
+172,git-repo,3575b8f8bdc5f15de23db82499e0ce152f634a19,"upload: Allow review.HOST.username to override email
+
+Some users might need to use a different login name than the local
+part of their email address for their Gerrit Code Review user
+account.  Allow it to be overridden with the review.HOST.username
+configuration variable.
+
+Change-Id: I714469142ac7feadf09fee9c26680c0e09076b75
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2010-07-16T00:00:14Z,spearce,spearce,10,9,1
+173,git-repo,a5ece0e0505324218f38af02a1fe046ca2bcc278,"upload -t: Automatically include local branch name
+
+If the -t flag is given to upload, the local branch name is
+automatically sent to Gerrit Code Review as the topic branch name
+for the change(s).  This requires the server to be Gerrit Code
+Review v2.1.3-53-gd50c94e or later, which isn't widely deployed
+right now, so the default is opt-out.
+
+Change-Id: I034fcacb405b7cb909147152db427fe69dd7bcbf
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2010-07-15T23:52:42Z,spearce,spearce,38,25,13
+174,git-repo,cc50bac8c7706082596d70756249d4964a67f281,"Warn users before uploading if there are local changes
+
+Change-Id: I231d7b6a3211e9f5ec71a542a0109b0c195d5e40
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Anthony Newnam,2010-04-08T15:28:59Z,Anthony Newnam,Anthony Newnam,36,36,0
+175,git-repo,0cb1b3f687da4634e431953ef84fee59dd3f5d59,"sync: Try fetching a tag as a last resort before giving up
+
+If a tagged commit is not reachable by the fetch refspec configured
+for the git (usually refs/heads/*) it will not be downloaded by
+'git fetch'.  The tag can however be downloaded with 'git fetch
+--tags' or 'git fetch tag <tag>'.
+
+This patch fixes the situation when a tag is not found after a
+'git fetch'. Repo will issue 'git fetch tag <tag>' before giving
+up completely.
+
+Change-Id: I87796a5e1d51fcf398f346a274b7a069df37599a
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Julius Gustavsson,2010-06-17T15:55:02Z,jgust,jgust,21,18,3
+176,git-repo,9e426aa43231073c4a98dae3f6c16d67ab6f3b59,"rebase: Automatically rebase branch on upstrea
+
+  Usage: repo rebase [[-i] <project>...]
+
+Rebases the current topic branch of the specified (or all)
+projects against the appropriate upstream.
+
+Note: Interactive rebase is currently only supported when
+exactly one project is specified on the command line.
+
+Change-Id: I7376e35f27a6585149def82938c1ca99f36db2c4
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Daniel Sandler,2010-04-01T14:42:33Z,dsandler,dsandler,75,75,0
+177,git-repo,08a3f68d38eec81dfa66f9ea05080c37c863f322,"upload: Automatically --cc folks in review.URL.autocopy
+
+The upload command will read review.URL.autocopy from the project's
+configuration and append the list of e-mails specified to the
+--cc argument of the upload command if a non-empty --re argument
+was provided.
+
+Change-Id: I2424517d17dd3444b20f0e6a003be6e70b8904f6
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Ben Komalo,2010-07-15T23:03:02Z,Ben Komalo,Ben Komalo,28,27,1
+178,git-repo,feb39d61ef2de893b93153adc8f1f8140a54fc98,"Fix format string bugs in grep
+
+This fixes some format string bugs in grep which cause repo to with
+""TypeError: not enough arguments for format string"" when grepping and
+the output contains a valid Python format string.
+
+Change-Id: Ice8968ea106148d409490e4f71a2833b0cc80816",Sebastian Schmidt,2010-06-02T15:18:13Z,yath,yath,8,4,4
+179,git-repo,7198572dd7f5b9d95d83733a98691948a3eb9da3,"Do not invoke ssh with -p argument when no port has been specified.
+
+This change allows local SSH configuration to choose the port number
+to use when not explicitly set in the manifest.
+
+(cherry picked from commit 4c0f67046543c7c6ab24175e143001f14b76ea01)
+
+Change-Id: Ibea99cfe46b6a2cc27f754cc3944a2fe10f6fda4",Josh Guilfoyle,2009-08-16T16:44:40Z,jasta,jasta,17,12,5
+180,git-repo,2daf66740bba0b2726462a547910d16cf0822db2,"Allow files to be copied into new folders
+
+Change-Id: I7f169e32be5a4328bb87ce7c2ff4b6529e925126",Matthew Buckett,2009-07-11T13:43:47Z,buckett,buckett,4,4,0
+181,git-repo,f4f04d9fa8fda995974c9214eee42c3ea68b1125,"Do not emit progress if stderr is not a tty
+
+Avoids logging progress data into cron logs, etc.
+
+Suggested-by: Michael Richardson <mcr@sandelman.ottawa.on.ca>
+Change-Id: I4eefa2c282f0ca0a95a0185612b52e2146669e4c
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2010-05-27T23:48:36Z,spearce,spearce,7,5,2
+182,git-repo,18afd7f679ab6271a34f4ec01e7755dd85c5dcf4,"sync: support --jobs to fetch projects simultaneously
+
+This patch does two things for being compatibile with
+those Python which are built without threading support:
+
+1. As the Python document and Shawn suggested, import dummy_threading
+   when the threading is not available.
+
+2. Reserve the single threaded code and make it default.
+   In cases the --jobs does not work properly with dummy_threading,
+   we still have a safe fallback.
+
+Change-Id: I40909ef8e9b5c22f315c0a1da9be38eed8b0a2dc",Roy Lee,2010-05-08T20:32:08Z,roylee17,roylee17,53,46,7
+183,git-repo,6623b21e1073a70f7d5cc6eddd364bdab337b439,"Aliasing sync -s to 'smartsync'
+
+This alias will let people use this command without having to
+remember the option.
+
+Change-Id: I3256d9e8e884c5be9e77f70e9cfb73e0f0c544c6",Nico Sallembien,2010-05-11T19:57:01Z,Nico Sallembien,Nico Sallembien,42,38,4
+184,git-repo,ca8c32cd7ae7c3ae27bb6b649eafbfd54d77f916,"sync: kill git fetch process before SSH control master process
+
+If the SSH control master process is killed while an active git
+fetch is using its network socket, the underlying SSH client may
+not realize the connection was broken.  This can lead to both the
+client and the server waiting indefinitely for network messages
+which will never be sent.
+
+Work around the problem by keeping track of any processes that use
+the tunnels we establish.  If we are about to kill any of the SSH
+control masters that we started, ensure the clients using them are
+successfully killed first.
+
+Change-Id: Ida6c124dcb0c6a26bf7dd69cba2fbdc2ecd5b2fc
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2010-05-12T01:21:33Z,spearce,spearce,36,34,2
+185,git-repo,f0a9a1a30e60e92cec9bff4cae030478c276da4d,"upload: Move confirmation threshold from 3 to 5 commits
+
+Change-Id: I7275d195cf04f02694206b9f838540b0228ff5e1",Dan Morrill,2010-05-05T15:18:35Z,Dan Morrill,Dan Morrill,2,1,1
+186,git-repo,879a9a5cf0f4ed61df6544949068babbee4f60e2,"upload: Confirm unusually large number of uploaded commit
+
+Add a sentinel check to require a second explicit confirmation if the
+user is attempting to upload (or upload --replace) an unusually large
+number of commits.  This may help the user to catch an accidentally
+incorrect rebase they had done previously.
+
+Change-Id: I12c4d102f90a631d6ad193486a70ffd520ef6ae0",Dan Morrill,2010-05-04T23:56:07Z,Dan Morrill,Dan Morrill,29,29,0
+187,git-repo,ff6929dde8cae515f7221a60f21fff7c1297aade,"branches: Enable output of multiple projects
+
+Fixes a bug introduced by 498a0e8a79ab76eeb6adc40f12b04d59820716f9
+(""Make 'repo branches -a' the default behavior"").
+
+Change-Id: Ib739f82f4647890c46d7c9fb2f2e63a16a0481de",Pär Åsfält,2009-09-05T21:10:56Z,Pär Åsfält,Pär Åsfält,12,7,5
+188,git-repo,1c85f4e43ba2d337b1e8c49bb3c7814a5cb163ae,"Rename _ssh_sock() to fix code style issue.
+
+Since _ssh_sock is imported out of the git_command module, the leading
+underscore should be removed from the function name.",Nico Sallembien,2010-04-27T21:35:27Z,Nico Sallembien,Nico Sallembien,10,5,5
+189,git-repo,719965af35a2fab96cb578c8a19a48a2cf9fe8e8,"Override manifest file only after it is fully written to disk.
+
+We called ""Override()"" before closing the file passed in argument.
+
+Change-Id: I15adb99deb14297ef72fcb1b0945eb246f172fb0",Nico Sallembien,2010-04-20T22:28:19Z,Nico Sallembien,Nico Sallembien,2,1,1
+190,git-repo,5732e47ebb7a096e3afad49687098c4181c4b300,"Strip refs/heads in the branch sent to the manifest server.
+
+The manifest server doesn't want to have refs/heads passed to it, so
+we need to strip that when the branch contains it.
+
+Change-Id: I044f8a9629220e886fd5e02e3c1ac4b4bb6020ba",Nico Sallembien,2010-04-26T18:17:29Z,Nico Sallembien,Nico Sallembien,3,3,0
+191,git-repo,f3fdf823cf9785e4ceca3e8416b719282d84b6d0,"sync: Safely skip already deleted projects
+
+Do not error if a project is missing on the filesystem, is deleted
+from manifest.xml, but still exists in project.list.
+
+Change-Id: I1d13e435473c83091e27e4df571504ef493282dd",Anthony,2009-09-26T17:38:52Z,bnovc,bnovc,54,29,25
+192,git-repo,a1bfd2cd7253b1662e08f5ec5be3d863430c756c,"Add a 'smart sync' option to repo sync
+
+This option allows the user to specify a manifest server to use when
+syncing. This manifest server will provide a manifest pegging each
+project to a known green build. This allows developers to work on a
+known good tree that is known to build and pass tests, preventing
+failed builds to hamper productivity.
+
+The manifest used is not ""sticky"" so as to allow subsequent
+'repo sync' calls to sync to the tip of the tree.
+
+Change-Id: Id0a24ece20f5a88034ad364b416a1dd2e394226d",Nico Sallembien,2010-04-06T17:40:01Z,Nico Sallembien,Nico Sallembien,109,106,3
+193,git-repo,6d7508b3d52781a3f8170a4257c65e2de176cc68,"Allow 'y' as a valid response when confirming identity
+
+I prefer having to type only one character rather than all three,
+and it seems like other confirmation prompts use the same style.",Nico Sallembien,2010-04-01T18:03:53Z,Nico Sallembien,Nico Sallembien,5,3,2
+194,git-repo,69b1e8aa65ab933fa919166d88aec90c86852beb,"Merge branch 'stable'
+
+* stable:
+  Automatically install Gerrit Code Review's commit-msg hook
+  Fail sync when encountering ""N commits behind.""
+  Check that we are not overwriting a local repository when syncing.
+  Honor url.insteadOf when setting up SSH control master connection
+  sync: Fix split call on malformed email addresses
+  Fixing project renaming bug.
+
+Conflicts:
+	hooks/commit-msg
+	project.py
+	subcmds/sync.py
+
+Change-Id: I5eaf8fef8cbe4a95d124368112293a9ca64325bf",Shawn O. Pearce,2010-03-07T03:29:56Z,spearce,spearce,113,83,30
+195,git-repo,9452e4ec0941fbee163e35ebdcd6ca6ee7df55cb,"Automatically install Gerrit Code Review's commit-msg hook
+
+Most users of repo are also using Gerrit Code Review, and will want
+the commit-msg hook to be automatically installed into their local
+projects so that Change-Ids are assigned when commits are created,
+not when they are first uploaded.
+
+(cherry picked from commit a949fa5d202f0a1f812d7630f3e5bf0f02ca4e98
+ but squashed with latest hook script from version 2.1.2)
+
+Change-Id: Ie68b2d60ac85d8c2285d2e1e6a4536eb76695547
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-08-23T01:17:46Z,spearce,spearce,123,119,4
+196,git-repo,4c50deea28badb7007fa6b78c187de50eacdd07a,"Fail sync when encountering ""N commits behind.""
+
+This is almost always something the user needs to address
+before continuing work, so promoting it to a failure (rather
+than simply an informational message) seems the right way to
+go. As a side-effect, repo will now exit with a non-zero
+status code in this situation, so pipelines of the form
+`repo sync && make` will fail if there are branches that
+are stalled due to uploaded but unmerged patches.",Daniel Sandler,2010-03-02T20:38:03Z,Daniel Sandler,Daniel Sandler,7,3,4
+197,git-repo,d63060fc9546e2132d0ad7791beb795906372e86,"Check that we are not overwriting a local repository when syncing.
+
+If a local git repository exists within the same folder as a new project that
+is added, when the user syncs the repo, the sync will overwrite the local
+files under the project's .git repository with its own symlinks. Make sure
+that we do not overwrite 'normal' files in repo and throw an error when
+that happens.",Nico Sallembien,2010-01-20T18:27:50Z,Nico Sallembien,Nico Sallembien,5,4,1
+198,git-repo,b6ea3bfcc398417b91a4fa5a486324f4d904b022,"Honor url.insteadOf when setting up SSH control master connection
+
+Repo can now properly handle url.insteadOf sections in the
+user's ~/.gitconfig file.  This means that a user can now enjoy
+the master-ssh functionality even if he/she uses insteadOf's in
+~/.gitconfig to rewrite git:// URLs to ssh:// style URLs.
+
+Change-Id: Ic0f04a9c57206a7b89eb0f10bf188c4c483debe3
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Ulrik Sjolin,2010-01-03T17:20:17Z,ulrik-s,ulrik-s,24,23,1
+199,git-repo,aa4982e4c937d9be0f69c250692839eb98a184e8,"sync: Fix split call on malformed email addresses
+
+If an email address in a commit object contains a space, like a few
+malformed ones on the Linux kernel, we still want to split only on
+the first space.
+
+Unfortunately my brain was too damaged by Perl and originally wrote
+the split asking for 2 results; in Python split's argument is how
+many splits to perform.  Here we want only 1 split, to break apart
+the commit identity from the email address on the same line.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-12-31T02:38:27Z,spearce,spearce,2,1,1
+200,git-repo,9bb1816bdc2c21811ea6a87ba6eb745bdf3c041c,"Fixing project renaming bug.
+
+This bug happens when a project gets added to the manifest, and
+then is renamed. Users who happened to have run ""repo sync"" after
+the project was added but before the rename happened will try to
+read the data from the old project, as the manifest was only updated
+after all projects were updated successfully.",Nico Sallembien,2009-12-07T23:38:01Z,Nico Sallembien,Nico Sallembien,18,9,9
+201,git-repo,840ed0fab7cb4c2ab296c7d7d45f13e2523bae1c,"Fix to display the usage message of the command download when the user
+don't provide any arguments to 'repo download'.
+
+Signed-off-by: Thiago Farina <thiago.farina@gmail.com>",Thiago Farina,2009-09-09T04:41:34Z,thiagofarina,thiagofarina,3,3,0
+202,git-repo,c024912fb8227db2a1c9232add3b1e7256af170a,"commit-msg: Don't create message with only Change-Id
+
+If a user aborts a commit, the commit-msg hook is still called,
+but with an empty file.  We need to leave the empty file alone.
+
+Change-Id: I13766135dac267823cb08ab76f67d2000ba2d1ce
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-08-25T18:38:11Z,spearce,spearce,25,19,6
+203,git-repo,15f6579eb3a2f3cb0e432ed39ac39d8678786161,"commit-msg: Update the commit message hook
+
+This version fixes a bug where Change-Id lines become the subject
+line, if the subject used a pattern like the subject of this
+message does.
+
+Change-Id: I7f7e0363091d03eb05dead2992fc19763214de65
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-08-23T02:23:55Z,spearce,spearce,26,24,2
+204,git-repo,d4cd69bdef28c5a9287c85c48a18ce621eba689d,"forall: Silently skip missing projects
+
+If a project is missing locally, it might be OK to skip over it
+and continue running the same command in other projects.
+
+Bug: REPO-43
+Change-Id: I64f97eb315f379ab2c51fc53d24ed340b3d09250
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-08-23T01:50:45Z,spearce,spearce,6,6,0
+205,git-repo,d2dfac81ad6a060179b4b2289060af2dc7a5cdfd,"upload: Catch and cleanly report connectivity errors
+
+Instead of giving a Python backtrace when there is a connectivity
+problem during repo upload, report that we cannot access the host,
+and why, with a halfway decent error message.
+
+Bug: REPO-45
+Change-Id: I9a45b387e86e48073a2d99bd6d594c1a7d6d99d4
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-08-23T01:39:49Z,spearce,spearce,20,14,6
+206,git-repo,47199010671a6724e18f061f4da63dcd46e3f354,"upload: Document --replace is deprecated
+
+Change-Id: I52715bcfec9c038d0e02505aa7e4054ebc0434aa
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-08-23T01:24:13Z,spearce,spearce,12,6,6
+207,git-repo,a949fa5d202f0a1f812d7630f3e5bf0f02ca4e98,"Automatically install Gerrit Code Review's commit-msg hook
+
+Most users of repo are also using Gerrit Code Review, and will want
+the commit-msg hook to be automatically installed into their local
+projects so that Change-Ids are assigned when commits are created,
+not when they are first uploaded.
+
+Change-Id: Ide42e93b068832f099d68a79c2863d22145d05ad
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-08-23T01:17:46Z,spearce,spearce,66,62,4
+208,git-repo,0afac0856cee05929ec8aa952f6023985e5ad1e4,"Merge change 11206
+
+* change 11206:
+  Do not invoke ssh with -p argument when no port has been specified.",Shawn O. Pearce,2009-08-17T15:09:02Z,spearce,spearce,17,12,5
+209,git-repo,4c0f67046543c7c6ab24175e143001f14b76ea01,"Do not invoke ssh with -p argument when no port has been specified.
+
+This change allows local SSH configuration to choose the port number to
+use when not explicitly set in the manifest.",Josh Guilfoyle,2009-08-16T16:44:40Z,jasta,jasta,17,12,5
+210,git-repo,33f0e786bb35ea11da1e3d1746c431da5f1d93eb,"Add ""repo branch"" as an alias for ""repo branches""
+
+For those of us that are used to typing ""git branch"".
+
+Signed-off-by: Mike Lockwood <lockwood@android.com>",Mike Lockwood,2009-07-14T19:23:39Z,mikeandroid,mikeandroid,2,2,0
+211,git-repo,57272ba82e3e1baa2bd7743d799f7dbc2acd43f8,"manifest: Support --upgrade to submodule format, from XML
+
+By running `repo manifest --uprade` an administrator can update the
+current manifest format from the XML format to submodule format, but
+we need all projects to be checked out in a work tree for this to
+function correctly.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-04T01:06:22Z,spearce,spearce,37,35,2
+212,git-repo,0125ae2fda18deee89dc94b32a2daa1b37a8a361,"Introduce manifest format using git submodules
+
+If a manifest top level directory contains '.gitmodules' we now
+assume this is a git module format manifest and switch to using
+that code, rather than the legacy XML based manifest.
+
+At the same time, we move the bare repository for a project from
+$TOP/.repo/projects/$REPO_PATH.git to be $REPO_NAME.git instead.
+This makes it easier for us to later support a repo init from an
+existing work tree, as we can more accurately predict the path of
+the project's repository in the workspace.  It also means that the
+$TOP/.repo/projects/ directory is layed out like a mirror would be.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-04T01:05:23Z,spearce,spearce,620,619,1
+213,git-repo,a7ce096047a7707edc572de375b700d161b9520b,"Allow meta projects to be created not under .repo/
+
+Some types of manifests might prefer to put their meta project work
+tree under topdir, rather than inside of the .repo/ directory.  We
+can support that by allowing relpath to be optionally passed in.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-04T01:04:27Z,spearce,spearce,6,4,2
+214,git-repo,87bda12e85ffb98778d7ac881edb0210b74c0491,"sync: Support upgrading manifest formats
+
+If the manifest format changes during init or sync we need to do
+a full reparse of the manifest, and possibly allow the new object
+to reconfigure the local workspace to match its expectations.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-03T23:37:30Z,spearce,spearce,23,22,1
+215,git-repo,5f947bba69de81f58f1adef10225c04727fa0ed5,"init: add -o, --origin to name manifest remote
+
+The -o option permits the user to control the name of the manifest's
+remote, which normally is hardcoded to be 'origin', but can differ
+because we derive it at runtime from the configuration file.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-04T00:24:17Z,spearce,spearce,55,40,15
+216,git-repo,b3d2c9214be60f575d64b3af3b87a3632de04ba0,"init (wrapper): Note that -m is now deprecated
+
+If the manifest format isn't XML, this option isn't available.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-04T00:24:45Z,spearce,spearce,3,2,1
+217,git-repo,7354d8891480f5eaa535acc38a24f42ea63b18a6,"init: Ensure repo.mirror is noticed once set
+
+If we don't clear the cache, there can be a timestamp race between
+the pickle file and the raw text file, and we may not pick up the
+edit when we create a new config object around the same path name.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-04T03:06:13Z,spearce,spearce,1,1,0
+218,git-repo,ce86abbe8ab9389fbad9d375e3754ed054d8b744,"Allow the manifest to be accessed it if is in work tree
+
+If the manifest's work tree is actually inside of the rest of
+the client work tree then its only fair that we include it as
+a project that the user can access.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-03T23:52:28Z,spearce,spearce,15,9,6
+219,git-repo,75b87c8a5171b26947d0a13d970f09defac736e3,"Abstract manifest branch creation from init to the manifest object
+
+This permits the XML style manifest to use 'default', while other
+types can use their own creation strategy for the current branch.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-03T23:24:57Z,spearce,spearce,16,12,4
+220,git-repo,abb7a3dfecdfe98b30594219f24c5c3d5e11e990,"Allow callers to request a specific type of manifest
+
+If the caller knows exactly what the manifest type must be we
+can now ask the loader to directly construct that type, rather
+than guessing it from the working directory.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-03T23:16:18Z,spearce,spearce,18,12,6
+221,git-repo,cc6c79643e1cafad565424caabe581e7b548bf6f,"Make refs/remotes/m management the manifest object's responsibility
+
+I plan to have the new submodule manifest format use a different
+layout for the m refs than the XML manifest format has used in
+the past.  Thus we need to move the behavior management into the
+manifest object, and out of the project, so we can change it.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-03T22:29:02Z,spearce,spearce,21,14,7
+222,git-repo,2095179beec754d2d5bfe175215e736b7ff838e9,"Cleanup import formatting in manifest_xml.py
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-03T22:26:17Z,spearce,spearce,9,7,2
+223,git-repo,b0ca41e19ad0631d82194405d992a7a3b4a834fc,"Only remove a stale pickle file if it exists
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-04T03:01:47Z,spearce,spearce,6,4,2
+224,git-repo,1875ddd47c0bf38e5cc52e1e5875caabce2d8742,"sync: Run `git gc --auto` after fetch
+
+Users may wind up with a lot of loose object content in projects they
+don't frequently make changes in, but that are modified by others.
+
+Since we bypass many git code paths that would have otherwise called
+out to `git gc --auto`, its possible for these projects to have
+their loose object database grow out of control.  To help prevent
+that, we now invoke it ourselves during the network half of sync.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-03T22:22:49Z,spearce,spearce,3,3,0
+225,git-repo,446c4e5556a4c85621d61b3aba63d084300c6224,"init: Allow -m only on XML formatted manifest
+
+If the manifest is the newer SubmoduleManifest style, then the -m
+option makes no sense, as you cannot select a specific file within
+the current branch.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-05-20T01:14:04Z,spearce,spearce,16,8,8
+226,git-repo,67f4563acb58af9e64fbfe8a2c9794b389a3debc,"manifest: Only support -o option on XML formatted manifest
+
+If the manifest isn't a single file format manifest, the -o option
+makes no sense, as you cannot export multiple files to a single
+stream for display or redirection.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-05-20T01:17:51Z,spearce,spearce,25,14,11
+227,git-repo,050e4fd591537811e6e62b2e9ba1ce83e520e550,"manifest: Only display XML help on XML manifest
+
+Some of the help text is only related to the XML formatted manifest,
+so only display that text if that is the current format.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-03T21:16:14Z,spearce,spearce,21,13,8
+228,git-repo,60e679209a5495393ef584efaaad287fc8b77c51,"help: Don't show empty Summary or Description sections
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-04T00:43:16Z,spearce,spearce,2,2,0
+229,git-repo,f1a6b14fdc5402f9ed765a8a342d9c07c5b91e2d,"Create an abstract Manifest base class
+
+This will help as we add support for another manifest type.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-03T23:01:11Z,spearce,spearce,138,99,39
+230,git-repo,ca3d8ff4fc7bac11a747e4f32a81b42a01f4f297,"Teach Project how to relink a .git/ in the work tree
+
+The _LinkWorkTree method can now be used to relink the work tree,
+such as if the real repository was moved to a different location
+on disk.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-05T02:49:36Z,spearce,spearce,49,28,21
+231,git-repo,98ea26b8d842d11afe6326f026ba15644dc40770,"Allow callers to reset the git config cache
+
+If commands modify the git config too rapidly we might not notice
+the .git/config file has been modified, as they could run in the
+same filesystem timestamp window and thus not cause a change on
+the config's mtime.  This can cause repo to miss re-reading the
+config file after running a command.
+
+Allowing the cache to be flushed forces us to re-read the config.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-05T02:19:11Z,spearce,spearce,8,8,0
+232,git-repo,c24c720b6135a8f7975bf9af265124eee2d464cb,"Fix error parsing a non-existant configuration file
+
+If a file (e.g. ~/.gitconfig) does not exist, we get None
+here rather than a string.  NoneType lacks rstrip() so we
+cannot strip it.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-02T23:12:57Z,spearce,spearce,15,13,2
+233,git-repo,2d1a3968971366fab7000664959a2d5a39b48996,"Document how to contribute to the repo project
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-02T20:18:42Z,spearce,spearce,80,80,0
+234,git-repo,1dcb58a7d0f07bf358ba485733580413ebe2478b,"Support GIT_EDITOR='vim -c ""set textwidth=80""'
+
+If there are shell special characters in the editor string, we must
+use /bin/sh to parse and execute it, rather than trying to rely on
+a simple split(' ').  This avoids vim starting up with two empty
+buffers, due to a misparsed command line.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-02T19:45:47Z,spearce,spearce,27,20,7
+235,git-repo,37dbf2bf0fa799530052ffd010dadbd4c01b7746,"Try to prevent 'repo sync' as a user name
+
+When someone copies and pastes a setup line from a web page,
+they might actually copy 'repo sync' onto the clipboard and wind
+up pasting it into the ""Your Name"" prompt.  This means they will
+initialize their client with the user name of ""repo sync"", creating
+some rather funny looking commits later on.  For example:
+
+  To setup your source tree:
+
+    mkdir ~/code
+    cd ~/code
+    repo init -u git://....
+    repo sync
+
+If this entire block was just blindly copy and pasted into the
+terminal, the shell won't read ""repo sync"" but ""repo init"" will.
+
+By showing the user their full identity string, and asking them
+to confirm it before we continue, we can give the hapless user a
+chance to recover from this mistake, without unfairly harming those
+who were actually named 'repo' by their parents.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-07-02T17:53:04Z,spearce,spearce,25,19,6
+236,git-repo,438c54713a7ca56fba2a7985b6563aa076b17169,"git_config: handle configuration entries with no values
+
+A git-config entry with no value was preventing repo
+from initializing.  This modifies _ReadGit() to handle
+config entries with empty values.
+
+Signed-off-by: David Aguilar <davvid@gmail.com>
+Reported-by: Josh Guilfoyle <jasta00@gmail.com>",David Aguilar,2009-06-28T22:09:16Z,davvid,davvid,67,59,8
+237,git-repo,e020ebee4e3e4e2ddefd72d41ac0035e6d528725,".gitignore: add an entry for repopickles
+
+Signed-off-by: David Aguilar <davvid@gmail.com>",David Aguilar,2009-06-28T22:08:56Z,davvid,davvid,1,1,0
+238,git-repo,21c5c34ee28036e595aab3cfc72e58c6c8f526b3,"Support detached HEAD in manifest repository
+
+If the manifest repository is on a detached HEAD and we are parsing
+an XML formatted manifest we should simply set the branch property
+to None, rather than crash with an AttributeError.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-25T23:47:30Z,spearce,spearce,2,1,1
+239,git-repo,54fccd71fbdc60adf99b9a9bf4712c121d4312ba,"Document any crashes from the user's text editor
+
+Rather than failing with no information, display the child exit
+status and the command line we tried to use to edit a text file.
+There may be some useful information to help understand the crash.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-24T14:09:51Z,spearce,spearce,16,14,2
+240,git-repo,fb5c8fd948dea211cd8f43477855de44c273a1bf,"Fix invalid use of try-catch
+
+Its try-except in Python.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-16T21:57:46Z,spearce,spearce,2,1,1
+241,git-repo,26120ca18dd8c2567b0df5a533d52d53c4111bc2,"Don't crash if the ssh client is already dead
+
+If the SSH client terminated abnormally in the background (e.g. the
+server shutdown while we were doing a sync) then the pid won't exist.
+Instead of crashing, ignore it, the result we wanted (a non-orphaned
+ssh process) is already acheived.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-16T18:49:10Z,spearce,spearce,7,5,2
+242,git-repo,7da73d6f3ba579c67e58499b785dc4ac5beb9391,"branches: Describe output format in `repo help branches`
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-13T00:35:43Z,spearce,spearce,27,27,0
+243,git-repo,f0d4c36701613dc9c305208d81b139208e40414c,"grep: Only use --color on git 1.6.3 and later
+
+The --color flag wasn't introduced until git 1.6.3.  Prior to that
+version, `git grep --color` just produces a fatal error, as it is
+an unsupported option.  Since this is just pretty output and is not
+critical to execution, we can simply omit the option if the version
+of git we are running on doesn't support it.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-12T16:33:48Z,spearce,spearce,4,2,2
+244,git-repo,2ec00b92724982708071dc0eed707659468d2bcf,"Refactor git version detection for reuse
+
+This way we can use it to detect feature support in the underlying
+git, such as new options or commands that have been added in more
+recent versions.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-12T16:32:50Z,spearce,spearce,41,26,15
+245,git-repo,2a3a81b51f1aee5a2da789d07d14cde61c96e8b7,"Ignore EOFError when reading a truncated pickle file
+
+If the pickle config file is 0 bytes in length,  we may have
+crashed (or been aborted) while writing the file out to disk.
+Instead of crashing with a backtrace, just treat the file as
+though it wasn't present and load off a `git config` fork.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-12T16:10:07Z,spearce,spearce,3,3,0
+246,git-repo,7b4f43542a5dec931f73076d891f8509a69f98e8,"Add missing return False to preconnect
+
+Noticed by users on repo-discuss, we were missing a return False
+here to signal that SSH control master was not used to setup the
+network connection.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-12T16:06:35Z,spearce,spearce,1,1,0
+247,git-repo,9fb29ce123ad26bf1497144a40e337aff8c51ecb,"sync: Keep the project.list file sorted
+
+Its easier to locate an entry visually if the file is sorted.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-05T03:41:02Z,spearce,spearce,1,1,0
+248,git-repo,3a68bb4c7f50897c0dbca59ca47aef463a9ad8d0,"sync: Tolerate blank lines in project.list
+
+If a line is blank in project.list, its not a relevant project path,
+so skip over it.  Existing project.list files may have blank lines if
+sync was run with no projects at all, and the file was created empty.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-04T23:18:09Z,spearce,spearce,6,5,1
+249,git-repo,cd1d7ff81e0b4ab481f83ff883505dbf2442d5be,"sync: Don't process project.list in a mirror
+
+We have no working tree, so we cannot update the project.list
+state file, nor should we try to delete a directory if a project is
+removed from the manifest.  Clients would still need the repository
+for historical records.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-04T23:15:53Z,spearce,spearce,4,4,0
+250,git-repo,da88ff4411e02225a6d511666ed82f7f9711a752,"Silence 'Current branch %s is up to date' during sync
+
+We accidentally introduced this message during 1.6.8 by always
+invoking `git rebase` when there were no new commits from the
+upstream, but the user had local commits.
+
+Signed-off-by: Shawn O. Pearce <sop@google.com>",Shawn O. Pearce,2009-06-03T18:09:12Z,spearce,spearce,4,1,3
+251,git-repo,8135cdc53c8737c242a5ba122491c9308a3407d8,"Delete empty parent subdirs after deleting obsolete paths.
+
+After sync, we delete obsolete project paths.
+Iterate and delete parent subdirs which are empty.
+Tested on projects within subdirectories.",Jaikumar Ganesh,2009-06-02T22:07:44Z,Jaikumar Ganesh,Jaikumar Ganesh,8,8,0
+252,git-repo,4f2517ff1174cd485f0ac93705b0fa9348595f6f,"Update project paths after sync.
+
+After a repo sync, some of the project paths might need
+to be removed. This changes maintains a list of project
+paths from the previous sync operation and compares.",Jaikumar Ganesh,2009-06-02T04:10:33Z,Jaikumar Ganesh,Jaikumar Ganesh,48,48,0

@@ -1,0 +1,524 @@
+,reponame,commitid,commitmsg,commitauthor,commitauthordate,comauthorlogin,shaauthorlogin,stats_total,stats_addns,stats_delns
+0,miracle,05aece695083c4425d5dafb6fdcdac5fb59d4f4e,Update to Hydra 2.5.,Hanno Schlichting,2016-08-03T13:25:54Z,hannosch,hannosch,2,1,1
+1,miracle,c57e17186a1d50e07ff22f36711d0cd1b1a806bc,Try to deal with changed circle-ci environment.,Hanno Schlichting,2016-08-03T11:59:22Z,hannosch,hannosch,2,0,2
+2,miracle,a295a601d6ce7d2b198a199da77245c13d50ff55,"Add and use domain blocklist.
+
+This hooks up the machinery to create and use a blocklist based on
+data/domain_blocklist.txt. Currently we only filter `localhost`.",Hanno Schlichting,2016-08-03T11:48:13Z,hannosch,hannosch,233,210,23
+3,miracle,2e2a988a5399b6530d945872d6debbaf20dd301c,Add Hydra Bloom filter library.,Hanno Schlichting,2016-08-02T19:09:29Z,hannosch,hannosch,3,3,0
+4,miracle,d306f58a741182fab121c2047f54bf91908c2045,flake8,Hanno Schlichting,2016-08-01T16:59:30Z,hannosch,hannosch,3,1,2
+5,miracle,4d303fddc06187ade438e5884e92d0fdcc75e308,"Use bulk inserts and upserts in session upload task.
+
+Using upsert's via ""insert on conflict do nothing"" should remove all
+client side conflict errors. Bulk inserts avoid the ORM overhead and
+use only a single insert statement per uploaded session batch.",Hanno Schlichting,2016-08-01T16:55:57Z,hannosch,hannosch,141,94,47
+6,miracle,b9b52deeac6e25d328bac7df3d1c39ecefd00cbb,Fix rst style in deploy docs [ci skip].,Hanno Schlichting,2016-07-29T16:00:50Z,hannosch,hannosch,14,14,0
+7,miracle,19c14dde37852eef9a4713632f16455a9dc38315,Add a link to project description on the homepage.,Hanno Schlichting,2016-07-29T12:57:44Z,hannosch,hannosch,8,6,2
+8,miracle,b7610c2fa0a390c5093e06daa165abaac5e49797,vb [ci skip],Hanno Schlichting,2016-07-29T12:39:09Z,hannosch,hannosch,7,6,1
+9,miracle,d39aa2b80ee8eda6e5f80cc418b0dec628fa868c,prepare [ci skip],Hanno Schlichting,2016-07-29T12:38:16Z,hannosch,hannosch,4,2,2
+10,miracle,0ae56b8c10643ab17e7fcd3a4c70d268059984ff,"Add comments, avoid counting duplicate dropped URLs.",Hanno Schlichting,2016-07-29T11:06:46Z,hannosch,hannosch,65,38,27
+11,miracle,bfec1ac1bcb4b431ac66d00bb5e18583b8fc02e6,Filter out URLs containing private IP addresses.,Hanno Schlichting,2016-07-29T10:42:29Z,hannosch,hannosch,14,14,0
+12,miracle,6154613b802fea073d9e4de792a9f6d3f1c8fccb,Filter out non-HTTP/S URLs.,Hanno Schlichting,2016-07-29T10:31:09Z,hannosch,hannosch,7,7,0
+13,miracle,4081bcfcdc55691ee009de5eb48d3f55b314dbe0,Provide pre-compiled wheels for binary Python dependencies.,Hanno Schlichting,2016-07-29T09:36:16Z,hannosch,hannosch,15,12,3
+14,miracle,f891d0caa31fa480d552c70add9b4ea615f4c244,"Reformat requirements files, so hashes are actually used.",Hanno Schlichting,2016-07-29T09:34:58Z,hannosch,hannosch,196,54,142
+15,miracle,7d0e5ae5188906f601c063988a6e13c5fc6ee65e,vb [ci skip],Hanno Schlichting,2016-07-28T17:50:49Z,hannosch,hannosch,6,5,1
+16,miracle,7423a5357052ffb92704d6a2ccb482fda84ad758,prepare [ci skip],Hanno Schlichting,2016-07-28T17:50:04Z,hannosch,hannosch,4,2,2
+17,miracle,9b0d268da19568d0f60eacbd7d413012f3127035,"Pin Python requirements to specific hashes.
+
+In some cases two hashes are given for a project, one for a source
+distribution and one for a universal wheel. Platform specific binary
+wheels do not yet exist for Alpine Linux.",Hanno Schlichting,2016-07-28T17:19:12Z,hannosch,hannosch,96,93,3
+18,miracle,94ec880efa14673f08e30e5fb0f8a9a931ca93a7,"Split Python requirements into build, binary and pure-python files.",Hanno Schlichting,2016-07-28T15:59:30Z,hannosch,hannosch,34,21,13
+19,miracle,6847e9d7549a030e807d3a11d000a04cf680b548,Add quantitative metrics about the incoming data.,Hanno Schlichting,2016-07-28T12:02:54Z,hannosch,hannosch,248,194,54
+20,miracle,fbc2b6e9d72f0e723ab1b5e207fb330320df2d42,Don't emit statsd counters for zero-increments.,Hanno Schlichting,2016-07-28T11:14:40Z,hannosch,hannosch,8,8,0
+21,miracle,b97cd72753163866f22e7e7a9a8d7fa9d08e89c3,"Move delete/upload tasks onto their own celery queues.
+
+This allows delete tasks to be processed quickly, and avoids them being
+blocked by a backlog of upload tasks.",Hanno Schlichting,2016-07-28T10:31:45Z,hannosch,hannosch,6,4,2
+22,miracle,16abd1c973e0a1a56879e99f96b62a65176e8003,Update local dev docs [ci skip].,Hanno Schlichting,2016-07-27T18:27:39Z,hannosch,hannosch,21,15,6
+23,miracle,2848c23f22ff1cab39b89e18bc02da0635e05729,Update to latest dependencies.,Hanno Schlichting,2016-07-27T14:18:23Z,hannosch,hannosch,16,8,8
+24,miracle,70ce330076fefb2d241337345c661b62e5b2acf1,Add real readme content.,Hanno Schlichting,2016-07-27T14:06:44Z,hannosch,hannosch,33,29,4
+25,miracle,362092fead181868f398ceac9fa350d3e4b35d6e,Remove stackframe content and exception values from Sentry.,Hanno Schlichting,2016-07-27T13:51:49Z,hannosch,hannosch,43,37,6
+26,miracle,cc003f4b719c6452df84f064f13a7bc5ae6f220f,Retry database insertion on conflict errors.,Hanno Schlichting,2016-07-27T12:00:37Z,hannosch,hannosch,70,68,2
+27,miracle,2b41f91971cc29ef068f6e93e7e1f71ec3c32074,Store and delete session data into and from database.,Hanno Schlichting,2016-07-27T10:29:20Z,hannosch,hannosch,170,139,31
+28,miracle,29cff97dc96af20c043253f866320c20f6735121,Extend db model tests to test delete cascading.,Hanno Schlichting,2016-07-27T09:38:45Z,hannosch,hannosch,63,51,12
+29,miracle,ef0375c18acb09c4c5ffcbb81a6f6b46fd894053,Fix DB test isolation problem by fixing the scope of the db fixture.,Hanno Schlichting,2016-07-27T09:25:38Z,hannosch,hannosch,24,13,11
+30,miracle,bf0fec83498d7e83381cefb94165f33f00f7325a,"Add url, user and session database tables.",Hanno Schlichting,2016-07-26T19:08:35Z,hannosch,hannosch,257,253,4
+31,miracle,7e51663466fd63a1175260af4ed30a1a32d83f71,vb [ci skip],Hanno Schlichting,2016-07-26T18:24:10Z,hannosch,hannosch,6,5,1
+32,miracle,be37cb9b87f075d3e36779ea3cd509c406d3ad17,prepare,Hanno Schlichting,2016-07-26T18:15:16Z,hannosch,hannosch,4,2,2
+33,miracle,ec932f5789b4511202e9fb6b97ab21a38d184266,Remove Sphinx autodoc comments.,Hanno Schlichting,2016-07-26T18:04:01Z,hannosch,hannosch,13,7,6
+34,miracle,f5ec60a44c61f7be4cdb6530632894879b04c619,Make models into a sub-package.,Hanno Schlichting,2016-07-26T12:31:55Z,hannosch,hannosch,8,7,1
+35,miracle,9b24d08c3b34804926f703ba1c9cec9bde0745a0,"Require start_time for sessions, filter out URLs containing HTTP auth.",Hanno Schlichting,2016-07-26T12:28:48Z,hannosch,hannosch,42,21,21
+36,miracle,dfba5619352ef666d085d082b9281def71a3181b,Use the same code layout for delete and upload tasks.,Hanno Schlichting,2016-07-25T15:19:30Z,hannosch,hannosch,82,66,16
+37,miracle,edd29a61402424061498df4d2ceb6523f37aac53,Make upload logic testable on its own.,Hanno Schlichting,2016-07-25T14:52:14Z,hannosch,hannosch,72,56,16
+38,miracle,72cd05ea7e80ef3cc463b273d5de5cf7efc0d8d2,Add min/max range validation to fields.,Hanno Schlichting,2016-07-25T14:22:57Z,hannosch,hannosch,46,34,12
+39,miracle,205a7eb3fabd6e8be30e449f3dba1ff3162ffa5d,Fix uri/url in tests.,Hanno Schlichting,2016-07-25T13:57:10Z,hannosch,hannosch,4,2,2
+40,miracle,36c86cfce108ca5016eade4c0fb47b324777b4d1,Update to new combined session data format.,Hanno Schlichting,2016-07-25T13:57:10Z,hannosch,hannosch,88,46,42
+41,miracle,6e928213f7642b23605568624e95c3592a5d614c,Document expected upload payload format and validate it.,Hanno Schlichting,2016-07-25T11:31:24Z,hannosch,hannosch,181,148,33
+42,miracle,46dd88df03fbfd91c384a35638070a7403427cd8,Move JSON decoding from web app to backend celery tier.,Hanno Schlichting,2016-07-25T10:20:59Z,hannosch,hannosch,43,32,11
+43,miracle,c4ace19d432388b25e4c63b61f2254b5362e5528,Test alembic migration downgrades.,Hanno Schlichting,2016-07-15T10:15:52Z,hannosch,hannosch,32,22,10
+44,miracle,c6209440052e88e771605422d53d8dbe09b5090d,Document alembic and make it more easily accessible.,Hanno Schlichting,2016-07-15T10:07:57Z,hannosch,hannosch,77,65,12
+45,miracle,ff979f170ceeb0db3a561fd4344ff8baaeb1cffd,Use new mailing list as contact point.,Hanno Schlichting,2016-07-14T22:19:25Z,hannosch,hannosch,4,2,2
+46,miracle,34ccaaa41a99cc90c5a93656b18865561d8ba623,Add alembic migrations scaffold.,Hanno Schlichting,2016-07-14T17:15:00Z,hannosch,hannosch,180,178,2
+47,miracle,bcfedcedc78d8c1d5307c82407993109ded64986,Use different IP detection on circle.,Hanno Schlichting,2016-07-14T13:02:02Z,hannosch,hannosch,30,5,25
+48,miracle,9eadf13dfd7e4b308c48b1e476f2642fadc332dd,Try stopping default circle services.,Hanno Schlichting,2016-07-14T11:58:08Z,hannosch,hannosch,2,2,0
+49,miracle,765f232caa69b76d15119fd74ef9623dfbbcb409,Try waiting on Postgres in circle builds.,Hanno Schlichting,2016-07-14T11:13:56Z,hannosch,hannosch,21,20,1
+50,miracle,b3e501f105133d50280ac221ff64497a339047b4,Fix circle config.,Hanno Schlichting,2016-07-14T10:48:07Z,hannosch,hannosch,6,3,3
+51,miracle,711af216a600627c431a46cadfcbae9cd2f54268,"Stop building on travis.
+
+Maintaining a non-docker environment is too much hassle.",Hanno Schlichting,2016-07-14T10:44:01Z,hannosch,hannosch,18,0,18
+52,miracle,096b4d5f39574173ebaf7d625bf153542ad66121,Add Postgres database to the stack.,Hanno Schlichting,2016-07-14T09:45:13Z,hannosch,hannosch,229,202,27
+53,miracle,593304981934b417d60faef450f5eb3c83a41e3f,Update dependencies.,Hanno Schlichting,2016-07-13T21:44:50Z,hannosch,hannosch,20,10,10
+54,miracle,2d270704184db24c030d5a549923a90041c62d37,"Replace docker-machine instructions with direct docker.
+
+We require Docker for Mac on Mac OS now.",Hanno Schlichting,2016-07-13T19:00:38Z,hannosch,hannosch,178,72,106
+55,miracle,3d41614297a4d83e8284c64023cd8a5f81e27183,Fix code to take away package name prefix.,Hanno Schlichting,2016-07-13T15:31:48Z,hannosch,hannosch,2,1,1
+56,miracle,f2257e400be3c53610f68985b051b8418c755cac,Rename to miracle.,Hanno Schlichting,2016-07-13T15:09:50Z,hannosch,hannosch,157,79,78
+57,miracle,cbba9870cf7440affaef5d22a338b0787aa85d76,vb,Hanno Schlichting,2016-06-06T13:50:15Z,hannosch,hannosch,6,5,1
+58,miracle,f1c0968cd587fb113e8cfd71309c1d85baa38274,tag,Hanno Schlichting,2016-06-06T13:47:55Z,hannosch,hannosch,2,1,1
+59,miracle,62031bcfdb74028d8683240c950e76b23882320f,Update dependencies.,Hanno Schlichting,2016-06-06T13:47:30Z,hannosch,hannosch,10,6,4
+60,miracle,8d1d3c8332f0eac46d16d483de5da10957a8e125,Pass Bucket as a string to head_bucket (#1),Jason Thomas,2016-06-06T13:41:13Z,jasonthomas,jasonthomas,2,1,1
+61,miracle,ca65362f885125597ef2fd38e4f9b61cb46f2099,vb,Hanno Schlichting,2016-06-01T13:55:43Z,hannosch,hannosch,6,5,1
+62,miracle,b0acfe01833eab38fddeb3f1c26497018aa9674e,tag,Hanno Schlichting,2016-06-01T13:54:35Z,hannosch,hannosch,2,1,1
+63,miracle,45920a25922415ee78fec8ceacb2c3168fa144db,Enable docker builds on circle ci.,Hanno Schlichting,2016-06-01T13:53:35Z,hannosch,hannosch,36,18,18
+64,miracle,2375b178ef3153e5772701ad83349dd6322f0a69,Doc style fix [ci skip],Hanno Schlichting,2016-05-31T13:06:08Z,hannosch,hannosch,6,3,3
+65,miracle,8e62b272d02f217b114480b9b3d50215a1f721f6,"Document deployment requirements, test connections during app startup.",Hanno Schlichting,2016-05-31T10:47:51Z,hannosch,hannosch,115,112,3
+66,miracle,7a8336143a56b3b0bfcf87c096ffc7a20982f7af,Add Amazon S3 wrapper class and dummy test implementation.,Hanno Schlichting,2016-05-31T09:53:45Z,hannosch,hannosch,138,135,3
+67,miracle,c0dccef8e41c0256b941cabe343e2d9e1c99829c,Extend docs with GZIP option.,Hanno Schlichting,2016-05-30T16:12:26Z,hannosch,hannosch,5,5,0
+68,miracle,35d95ccb2cf36632e4547f06fa14b6c9e76ff768,Add some initial docs.,Hanno Schlichting,2016-05-30T16:06:30Z,hannosch,hannosch,108,108,0
+69,miracle,87416e90ffdf482b6c22516be3bc587170796437,Hook up dummy data tasks to store incoming data in Redis.,Hanno Schlichting,2016-05-30T14:54:31Z,hannosch,hannosch,125,94,31
+70,miracle,ab9d94b954aeff0d4de7ba78bacbb9ce30dc91ce,Handle GZIP encoded POST bodies to upload API.,Hanno Schlichting,2016-05-30T13:05:16Z,hannosch,hannosch,100,93,7
+71,miracle,21c7a4db62e291f7ae6914cb45cdddfbcb632e8b,Add CORS support and some basic request checks.,Hanno Schlichting,2016-05-30T12:27:58Z,hannosch,hannosch,176,131,45
+72,miracle,7d84b62f25ac3cab9c06c1058248429f0a13e97f,Add HTTP API skeleton.,Hanno Schlichting,2016-05-30T07:58:24Z,hannosch,hannosch,83,81,2
+73,miracle,ff5ae2cb8e06d1ab8d3ee53629d51dbea29f3eb1,Pin redis container to latest available version in AWS.,Hanno Schlichting,2016-05-29T11:10:49Z,hannosch,hannosch,2,1,1
+74,miracle,65c83cbeaae7f246a330232e476d9ea19c9bbdd3,Update dependencies.,Hanno Schlichting,2016-05-29T10:54:43Z,hannosch,hannosch,8,4,4
+75,miracle,52121ec6b9e522b7c164e4e8e65918ce0679e9b3,Automatically use all available CPU cores.,Hanno Schlichting,2016-05-29T10:45:00Z,hannosch,hannosch,15,13,2
+76,miracle,0fd2383502b81591c60c945b059e7e8ac449b6ed,Fix and test exception capturing.,Hanno Schlichting,2016-05-28T15:12:10Z,hannosch,hannosch,40,32,8
+77,miracle,3aa6fab49ea202704d00a11fdbc34eddbaeba437,Add sentry/statsd and automatic counters/timers per task and request.,Hanno Schlichting,2016-05-28T14:46:05Z,hannosch,hannosch,433,411,22
+78,miracle,5f365e28adfc6fb7c6c555d1e5594fb3a4b79fe4,Account for older docker-compose.,Hanno Schlichting,2016-05-28T13:12:05Z,hannosch,hannosch,4,2,2
+79,miracle,41faca34dc4fd8dbb8c6e8b7033c58dc1d96caef,Next attempt with Redis in a container.,Hanno Schlichting,2016-05-28T13:06:57Z,hannosch,hannosch,7,5,2
+80,miracle,183f6d13c2338c5ed64ce203f66c0f56e35b9557,Another try to get the container to talk to Redis on the host.,Hanno Schlichting,2016-05-28T12:27:54Z,hannosch,hannosch,2,1,1
+81,miracle,9d6403a034c87eed9a790a72fbfb0fec086e76ce,Try fixing circleci build again.,Hanno Schlichting,2016-05-27T18:17:10Z,hannosch,hannosch,1,1,0
+82,miracle,bc6d2dbea2135b16bba505cf024f7666def03b62,Make Redis cache available on celery/web workers and add heartbeat view.,Hanno Schlichting,2016-05-27T18:02:53Z,hannosch,hannosch,113,98,15
+83,miracle,6a2cb2073b83db4ac7c8af4b791c178d2812a9df,More CI setup fixes.,Hanno Schlichting,2016-05-27T17:27:26Z,hannosch,hannosch,7,5,2
+84,miracle,bfab48de7c3cc3cd0d94fd49c119c16cf5a32fb2,Fix tests on circle-ci.,Hanno Schlichting,2016-05-27T14:20:19Z,hannosch,hannosch,4,3,1
+85,miracle,6ff7c664259080ab828ec4af122e999a57c5f7d0,First prototype of a skeleton app that does nothing.,Hanno Schlichting,2016-05-27T14:11:39Z,hannosch,hannosch,864,863,1
+86,miracle,70cdf71e113133f40416cc6c64ac3374d0e90699,Initial commit,Hanno Schlichting,2016-05-26T09:50:27Z,hannosch,hannosch,436,436,0
+87,miracle,ff95529435ada3849efffa020241c31d677f2064,Filter out invalid domain names.,Hanno Schlichting,2016-09-19T19:30:26Z,hannosch,hannosch,18,13,5
+88,miracle,1372bbbd55286ae2b84ce57e9d4f236649be5aa3,"Filter out all `.local` domains, adjust end date.",Hanno Schlichting,2016-09-19T18:46:43Z,hannosch,hannosch,9,7,2
+89,miracle,d281099a930cec152519162570ab1678a29a8a30,"Update dependencies, add some comments.",Hanno Schlichting,2016-09-19T15:27:17Z,hannosch,hannosch,10,8,2
+90,miracle,de9c63620d31bdb58ca38586f507ca34f6c0366a,Update blocklist.,Hanno Schlichting,2016-09-19T14:34:32Z,hannosch,hannosch,37,35,2
+91,miracle,12733114edec9f241f56b33aaec8d41fb5f45623,Update blocklist.,Hanno Schlichting,2016-09-17T15:16:49Z,hannosch,hannosch,32,30,2
+92,miracle,694d2492a167995e658d91eb8a101b94387b6807,Use `time.monotonic` to capture timing information.,Hanno Schlichting,2016-09-17T15:14:52Z,hannosch,hannosch,5,3,2
+93,miracle,8ed69020126b0923b0cb30653a3beba51852e3b7,vb [ci skip],Hanno Schlichting,2016-09-16T09:41:45Z,hannosch,hannosch,7,6,1
+94,miracle,618f02ea51121a945faf36c27161e472c3e93ec6,prepare [ci skip],Hanno Schlichting,2016-09-16T09:40:53Z,hannosch,hannosch,4,2,2
+95,miracle,d9c1b7e99fa99d1975a4622a64ea5f7b32cbc019,Extend domain blocklist to block certain top-level domains.,Hanno Schlichting,2016-09-16T09:39:27Z,hannosch,hannosch,54,35,19
+96,miracle,e9fbe889796d6843be5658b45c8cafeec2ee277d,Update dependencies.,Hanno Schlichting,2016-09-16T08:11:33Z,hannosch,hannosch,6,3,3
+97,miracle,4afd5a687fe5b34f02ccf4f6b96946623d3fabe2,Add tab_id to upload schema and extend sessions table.,Hanno Schlichting,2016-09-16T08:04:52Z,hannosch,hannosch,99,80,19
+98,miracle,d02cbe76921facb76f903188af13b3985c44f22f,Update domain blocklist.,Hanno Schlichting,2016-09-15T11:57:06Z,hannosch,hannosch,39,38,1
+99,miracle,2c2ac91d3e34bf7910db54b1340f52ef318e06d2,Update domain blocklist once more.,Hanno Schlichting,2016-09-15T10:00:11Z,hannosch,hannosch,1424,1423,1
+100,miracle,921f8b15a40aca214fb8b86fb0b62c4d45577a5c,Change tld method contract to return None if no tld could be extracted.,Hanno Schlichting,2016-09-15T08:31:03Z,hannosch,hannosch,7,4,3
+101,miracle,642614bbca9a5e8aa6cffd1f91265293894184c4,Capture and retry SQLAlchemy internal TypeError during upload.,Hanno Schlichting,2016-09-15T08:14:14Z,hannosch,hannosch,68,56,12
+102,miracle,70e5f90b7d180f6b05d6c43fefa51ce9cb797e2f,"Integrate client side blocklist.
+
+The list is reduced to those domains which still respond to DNS lookups.",Hanno Schlichting,2016-09-14T19:22:41Z,hannosch,hannosch,2340,2339,1
+103,miracle,28b17ec537a47b113be8e03655364791c48795e9,More updates to blocklist.,Hanno Schlichting,2016-09-14T16:22:06Z,hannosch,hannosch,55,50,5
+104,miracle,19e56e6851e9c96242d270186798ceb13c63cfe3,"Adjust miracle_block script to take public suffixes into account.
+
+Instead of doing a full hostname match, it now does a preliminary
+endswith check and follows up with a check against the bloom filter.",Hanno Schlichting,2016-09-14T12:50:53Z,hannosch,hannosch,57,35,22
+105,miracle,bf52e93c57798ef8c1b4073618c652ebe7d57f49,Apply domain blocklist based on domain's public suffix.,Hanno Schlichting,2016-09-14T12:31:19Z,hannosch,hannosch,130,112,18
+106,miracle,67b2c8f9c5957ca9b3b3a26b936e4edf0685522d,Allow comments in domain_blocklist and centralize its parsing.,Hanno Schlichting,2016-09-14T09:10:19Z,hannosch,hannosch,78,50,28
+107,miracle,2525c0b98fbf3db1cc4cbfe3d4859f69fc194217,Add public_suffix list.,Hanno Schlichting,2016-09-14T08:54:11Z,hannosch,hannosch,11756,11756,0
+108,miracle,97fc22e0561c82d1370c7c323d04fa2baeefbecd,Extend domain blocklist.,Hanno Schlichting,2016-09-14T08:51:09Z,hannosch,hannosch,28,26,2
+109,miracle,f66f857b3a937a51ca430a5ea55448b457e86e4a,vb [ci skip],Hanno Schlichting,2016-09-13T20:09:54Z,hannosch,hannosch,6,5,1
+110,miracle,f18110f9a6c19c2321aabbd8f5114f94d2edd3a1,prepare [ci skip],Hanno Schlichting,2016-09-13T20:08:47Z,hannosch,hannosch,4,2,2
+111,miracle,3ddb6fa95682872b039e2c51b2313aefcfa14927,Fix user header parsing.,Hanno Schlichting,2016-09-13T20:07:18Z,hannosch,hannosch,21,15,6
+112,miracle,bacca056bc9d568519ed8086f3376721f6c42dda,Update dependencies.,Hanno Schlichting,2016-09-08T14:36:14Z,hannosch,hannosch,12,6,6
+113,miracle,a47c3bc8e3fabad6d641c0786beac94fe8316762,Update end date based on launch data.,Hanno Schlichting,2016-09-08T14:18:36Z,hannosch,hannosch,4,3,1
+114,miracle,676087bbab361a540abefc32cc3ac7bf5ec52741,vb [ci skip],Hanno Schlichting,2016-09-07T12:24:42Z,hannosch,hannosch,6,5,1
+115,miracle,abc799d6301c04b8c0b0ff927e01377a6664ec82,prepare [ci skip],Hanno Schlichting,2016-09-07T12:23:52Z,hannosch,hannosch,4,2,2
+116,miracle,cca395a0190da8342f4bcfe24a26f34a79c526a3,"Add analysis script to get recurring URL stats, refs #2.",Hanno Schlichting,2016-09-07T11:58:28Z,hannosch,hannosch,178,178,0
+117,miracle,a8dc3ac4f3d2fbacf7b5502e875121df8cba2b43,Update dependencies.,Hanno Schlichting,2016-09-01T12:44:02Z,hannosch,hannosch,16,8,8
+118,miracle,36fe7ce4e68218d3af59bf5dcb73a0d9d64473fa,Always pull docker hub for latest images while building.,Hanno Schlichting,2016-08-25T17:00:59Z,hannosch,hannosch,12,6,6
+119,miracle,40db04755fff4cbb09beb86da079b0c31038324f,"Enable SSL hostname checks in the database production environment.
+
+The SSL cert used in CI testing and local development does not provide
+a hostname match.",Hanno Schlichting,2016-08-25T16:48:16Z,hannosch,hannosch,10,6,4
+120,miracle,2bff76fd511d3a311aea3e7650dd89398294c21c,"Extend Redis ping by testing a write operation.
+
+During failover between a Redis primary and read-replica the application
+can temporarily be connected to a Redis instance in read-only mode.",Hanno Schlichting,2016-08-25T16:42:50Z,hannosch,hannosch,9,8,1
+121,miracle,5b467dff81dcd51d0ede89d0eee9f710bd2c2551,Remove unused AWS S3 bucket code.,Hanno Schlichting,2016-08-25T16:31:47Z,hannosch,hannosch,157,7,150
+122,miracle,801073e48850625d61cb8f144a5afbc40c22af2a,Check user header against allowed character list.,Hanno Schlichting,2016-08-25T16:23:18Z,hannosch,hannosch,48,40,8
+123,miracle,24b2bf0cf9ec10a068ff56a49869b79cd60653ed,Avoid constructing an SQL statement via string concatenation.,Hanno Schlichting,2016-08-25T15:50:33Z,hannosch,hannosch,5,3,2
+124,miracle,34db4bce12738763fe32cfc8213785af58541fb8,Spelling [ci skip],Hanno Schlichting,2016-08-24T12:15:09Z,hannosch,hannosch,2,1,1
+125,miracle,0c1917e5b1683fccda9bfbaa6b6bd7f6821040dd,Turn upload task into a class.,Hanno Schlichting,2016-08-24T12:11:00Z,hannosch,hannosch,118,56,62
+126,miracle,e9b79fd1f3044b1bb707cb2ec30a6eeb2bacf126,Group delete tasks into classes.,Hanno Schlichting,2016-08-24T12:02:29Z,hannosch,hannosch,322,153,169
+127,miracle,a628408920a300042c253f0b551aec88db341405,Speed up orphaned URL deletion.,Hanno Schlichting,2016-08-24T11:36:45Z,hannosch,hannosch,11,6,5
+128,miracle,bf83b419f061d78cae0263fbb2afbb43f8b8b975,vb [ci skip],Hanno Schlichting,2016-08-23T14:47:30Z,hannosch,hannosch,7,6,1
+129,miracle,7afb9dd0e36dce0768dc96427f5cb036c03bccf9,prepare [ci skip],Hanno Schlichting,2016-08-23T14:46:36Z,hannosch,hannosch,4,2,2
+130,miracle,063aa0578514a43dcf2f239bd289246d12d0cb11,"Optimize delete orphaned urls query.
+
+On a dummy data set with one million sessions, this now consistently
+uses an index-only scan on the ``sessions.url_id`` index.",Hanno Schlichting,2016-08-23T14:39:10Z,hannosch,hannosch,8,3,5
+131,miracle,45d252db666379d696fc6a08d74149478faf07c0,Validate JWE structure in HTTP upload API.,Hanno Schlichting,2016-08-23T13:38:37Z,hannosch,hannosch,91,71,20
+132,miracle,e80dc2485a21c2afa712b07dca72364659dbcff4,"Remove orphaned URLs after user deletion.
+
+When deleting a user, delete cascading inside the database only removes
+all associated sessions. We now manually collect all URLs associated
+with any of the user sessions and queue a second job. This job checks
+all the URLs and removes those which are no longer associated with any
+session, i.e. they were unique to the deleted user.",Hanno Schlichting,2016-08-23T10:17:58Z,hannosch,hannosch,192,156,36
+133,miracle,69c5d5687470df548b8fdd32a9b94f9675c1fdea,"Add a end date for the experiment, closes #4.",Hanno Schlichting,2016-08-22T15:50:01Z,hannosch,hannosch,37,35,2
+134,miracle,e82d3d333b876f3da09b4dd36f6213833f6df1d1,Add ``data.user.delete_hours`` metric to track user participation time.,Hanno Schlichting,2016-08-22T15:18:47Z,hannosch,hannosch,38,30,8
+135,miracle,026bae9f6fb731e82127f94cd75189d17b8e9c32,Add creation date to users table.,Hanno Schlichting,2016-08-22T15:04:28Z,hannosch,hannosch,58,47,11
+136,miracle,e0e0a36be555f6c51f31333ee23c654781e64d32,Emit HSTS headers and add CSP for the homepage.,Hanno Schlichting,2016-08-22T14:45:06Z,hannosch,hannosch,21,21,0
+137,miracle,f7d5bf0174c8a740735fbf09ec8b5eecc9e4e667,"Create a HTML-based front page.
+
+Also some minor style changes.",Hanno Schlichting,2016-08-22T14:42:31Z,hannosch,hannosch,46,27,19
+138,miracle,dd60d7f7281c80d71b5caf6faad84b467b9e4b32,Update docs [ci skip].,Hanno Schlichting,2016-08-22T12:53:32Z,hannosch,hannosch,71,39,32
+139,miracle,db9af648e0be6c8def79d940e9150517aff934a9,Update dependencies.,Hanno Schlichting,2016-08-20T10:48:31Z,hannosch,hannosch,52,26,26
+140,miracle,b644ac636e0fc62d798d352c358bd3f60b716966,Correct CORS headers for jwk and stats HTTP APIs.,Hanno Schlichting,2016-08-20T10:34:23Z,hannosch,hannosch,77,49,28
+141,miracle,de34e2ca73efee19b8782c576c8c12862b801085,Enforce SSL for database connections.,Hanno Schlichting,2016-08-20T09:52:48Z,hannosch,hannosch,389,384,5
+142,miracle,8b7a563bf20abb319a34cfbc3a65cbf4af3cfd4e,vb [ci skip],Hanno Schlichting,2016-08-19T15:42:18Z,hannosch,hannosch,6,5,1
+143,miracle,8a6a7eefa34c54c53ea603be911d3349c9c817fc,prepare [ci skip],Hanno Schlichting,2016-08-19T15:37:03Z,hannosch,hannosch,4,2,2
+144,miracle,a223b62fc9ff28edd9d5b84848009e15ebf6dc6f,"Remove support for GZIP encoded upload requests.
+
+Since the upload request is now encrypted, applying compression to it
+afterwards doesn't reduce the size. Similarily stop GZIP compressing
+Celery tasks.",Hanno Schlichting,2016-08-19T15:25:07Z,hannosch,hannosch,83,2,81
+145,miracle,39a4bffbd6de82470a038361a1e1e7c4fabf668a,Change the upload API to expect a JWE encrypted body.,Hanno Schlichting,2016-08-19T15:21:41Z,hannosch,hannosch,164,121,43
+146,miracle,898cc2e18b8a9aee294626d2c7a8c688b26eb1d1,Change crypto helper module to use JWE RSA-OAEP/A256GCM encryption.,Hanno Schlichting,2016-08-19T12:18:10Z,hannosch,hannosch,64,38,26
+147,miracle,6b414bd9a5c072b31f9f58959478bcfc3a32a647,"Use base64 encoding for keys.
+
+This avoids having to deal with the significant newlines in the PEM data.",Hanno Schlichting,2016-08-19T10:59:00Z,hannosch,hannosch,32,24,8
+148,miracle,17bf72dc16d444124d1771c0f81591dc4d72af59,Add crypto helper module for RSA-OAEP based encryption.,Hanno Schlichting,2016-08-18T12:08:09Z,hannosch,hannosch,181,174,7
+149,miracle,eb4ee3ff15f1f042ea7a7348b03558490d7fd6a3,Update Python dependencies and add new cryptography dependency.,Hanno Schlichting,2016-08-18T10:17:58Z,hannosch,hannosch,36,24,12
+150,miracle,091189fc319099c269c107a352bcdc25a9927f4d,vb [ci skip],Hanno Schlichting,2016-08-08T13:35:13Z,hannosch,hannosch,6,5,1
+151,miracle,0f222c6657ea38c8a630818c6ab978e0cfcba399,prepare [ci skip],Hanno Schlichting,2016-08-08T13:34:30Z,hannosch,hannosch,4,2,2
+152,miracle,a0118e078a6a5feaa6de62d222f649b3c1311f37,Add a `/v1/stats` API endpoint.,Hanno Schlichting,2016-08-08T13:33:53Z,hannosch,hannosch,38,38,0
+153,miracle,524d0cb5a02b9156319a2109aaa58371e9f382c4,Use uritools for URL splitting.,Hanno Schlichting,2016-08-05T14:14:19Z,hannosch,hannosch,33,19,14
+154,miracle,aa11a87df21b5ff9f6e43a301e25a70091a6624b,Add some docker tips [ci skip].,Hanno Schlichting,2016-08-05T13:43:51Z,hannosch,hannosch,15,15,0
+155,miracle,56718d6cb0f4638978aaed12a7ebb3394cf5faa8,vb [ci skip],Hanno Schlichting,2016-08-05T08:28:30Z,hannosch,hannosch,6,5,1
+156,miracle,eac8adbf01528b7e9db19b5c5fcbc399561d13bf,prepare [ci skip],Hanno Schlichting,2016-08-05T08:27:48Z,hannosch,hannosch,4,2,2
+157,miracle,625ae5497e73fac6721087c0a011f35fd0cc8ae6,Use tags for `data.upload.error` metrics.,Hanno Schlichting,2016-08-05T08:26:35Z,hannosch,hannosch,21,12,9
+158,miracle,20c77de8b30286768de3ca8ca6e4fab3b43ff66d,"Stop connecting to the S3 bucket on worker startup.
+
+The bucket isn't yet used.",Hanno Schlichting,2016-08-05T08:20:28Z,hannosch,hannosch,5,3,2
+159,miracle,8af2a13bb83f11ad1a8ddaf57683516b9a79f2cb,"No longer set up a DB connection from the web app.
+
+We can add this back later, once this is actually used.",Hanno Schlichting,2016-08-05T08:15:05Z,hannosch,hannosch,62,31,31
+160,miracle,100e46b9c1cec370050cdc9eac553b38d4769ca5,Capture exceptions in the startup process and send them to Sentry.,Hanno Schlichting,2016-08-05T08:02:44Z,hannosch,hannosch,88,57,31
+161,miracle,dc7e326952ef14566a01a6d4d65ea19464f367b7,vb [ci skip],Hanno Schlichting,2016-08-04T15:56:01Z,hannosch,hannosch,6,5,1
+162,miracle,4d03eff5d703d728b20f071577276e4bcd60776a,prepare [ci skip],Hanno Schlichting,2016-08-04T15:55:27Z,hannosch,hannosch,4,2,2
+163,miracle,5defc881b027ec5e6ce90511f1dff73f19b570eb,Add missing s3transfer dependency of newer boto3.,Hanno Schlichting,2016-08-04T15:54:30Z,hannosch,hannosch,1,1,0
+164,miracle,5db4b081b6da6f1641e63472437031faec7bd8d7,Add help messages and progress logging to command line scripts.,Hanno Schlichting,2016-08-04T14:34:10Z,hannosch,hannosch,57,53,4
+165,miracle,fb845577284de102aff0485c5f2be32410a5a126,Centralize logging configuration.,Hanno Schlichting,2016-08-04T14:32:59Z,hannosch,hannosch,94,50,44
+166,miracle,b5a5e022162718878e7f128c2ae68542187234db,"Database migration, renaming ""full"" column and optimizing indices.
+
+""full"" is another reserved word. Also adding indices on session foreign
+keys, so delete cascading on deleting a single user or url has a chance
+to finish in reasonable time.",Hanno Schlichting,2016-08-04T10:55:33Z,hannosch,hannosch,79,70,9
+167,miracle,5378631335a83613c3616c705df318a92f6ae7a9,Avoid sqlalchemy ORM in non-test code.,Hanno Schlichting,2016-08-04T10:18:08Z,hannosch,hannosch,67,40,27
+168,miracle,89a1479e4eaf98c1588779c65a4fd8576528f4ac,Set up logging for alembic migrations.,Hanno Schlichting,2016-08-03T21:32:49Z,hannosch,hannosch,44,43,1
+169,miracle,d0fde8a7d419bb6b939023e91ebddf0d546e788f,vb [ci skip],Hanno Schlichting,2016-08-03T20:56:09Z,hannosch,hannosch,6,5,1
+170,miracle,1f9e40cf44be2eb838b891650a71ffefdf005878,prepare [ci skip],Hanno Schlichting,2016-08-03T20:55:27Z,hannosch,hannosch,4,2,2
+171,miracle,7d4c81a0ead3a127773dbd219bddd0c765046f55,"Database migration, pluralizing all table names.
+
+This avoids conflicts between the Postgres built-in ""user"" table and
+ours and removes the need to quote ""user"" in all SQL statements.",Hanno Schlichting,2016-08-03T20:45:39Z,hannosch,hannosch,211,202,9
+172,miracle,b8e2ecc25e47865154fd01e24596e623a1b354a9,"More rst changes, used preview now [ci skip].",Hanno Schlichting,2016-08-03T20:29:51Z,hannosch,hannosch,28,14,14
+173,miracle,ad409e2e80adbc8eb4e5c5fd36d6260c13ab1e25,Even more rst styling [ci skip].,Hanno Schlichting,2016-08-03T20:26:13Z,hannosch,hannosch,4,2,2
+174,miracle,65510fe961cf0d4d03fb083b3937e39fabb4bdcd,Try quoting backslashes in rst [ci skip].,Hanno Schlichting,2016-08-03T20:25:12Z,hannosch,hannosch,4,2,2
+175,miracle,817c33f0e3b4e35a7144990b9197415da2f2c483,Make it easier and document production database access.,Hanno Schlichting,2016-08-03T20:22:25Z,hannosch,hannosch,38,38,0
+176,miracle,603ee830328f798a279d632c1a25319be5a64f1f,Update API docs [ci skip].,Hanno Schlichting,2016-08-03T18:20:57Z,hannosch,hannosch,35,22,13
+177,miracle,5072964422e7be452acecf66208b2c1097c67d50,Add a miracle_block script to remove blocklisted URLs from the database.,Hanno Schlichting,2016-08-03T18:15:19Z,hannosch,hannosch,108,96,12
+178,miracle,f537a183c166e729b4273e034aa5e99daf29dd72,foo,Hanno Schlichting,2016-08-03T17:18:52Z,hannosch,hannosch,66,53,13
+179,miracle,b0cf2e3d8961721ce8a869c79220e94e7bc80c04,"Don't actually tag the ""latest"" image, as it already has the correct name.
+
+Also the docker version in circle-ci is old and recommends `tag -f`,
+which is gone in newer versions.",Hanno Schlichting,2016-08-03T17:20:32Z,hannosch,hannosch,7,3,4
+180,miracle,30a85bc98a398ff82e7de471702ab49c5b63c4f4,And try circle-ci once more.,Hanno Schlichting,2016-08-03T16:53:02Z,hannosch,hannosch,24,12,12
+181,miracle,81f6a8d93f735c60e9fc12da0feee0a710651d2c,"Try to fix circle-ci again.
+
+Apparently it really doesn't like naming conflicts.",Hanno Schlichting,2016-08-03T16:35:56Z,hannosch,hannosch,8,4,4
+182,miracle,ddba1c732b010abc99faaaa17a42489bfc85f015,Avoid docker image name conflicts in circle-ci.,Hanno Schlichting,2016-08-03T15:19:43Z,hannosch,hannosch,8,4,4
+183,miracle,e0a604026283c1af8c8e28df575d64a9c1ac074c,Use full docker image name to match circle-ci.,Hanno Schlichting,2016-08-03T15:13:01Z,hannosch,hannosch,40,20,20
+184,miracle,1aa73d0deac167622d797768b5a0f14f06e8402a,vb [ci skip],Hanno Schlichting,2016-08-03T15:03:04Z,hannosch,hannosch,7,6,1
+185,miracle,764842c48607b73ade656bc86010745f0f030af1,prepare [ci skip],Hanno Schlichting,2016-08-03T15:02:19Z,hannosch,hannosch,4,2,2
+186,miracle,a0c550566e0aa3cdf6a3e9e0c6a988cef9efc326,"Update dependencies.
+
+Only provide hashes for wheel files of pure Python dependencies.",Hanno Schlichting,2016-08-03T13:47:28Z,hannosch,hannosch,70,35,35
+187,miracle,bd0d52f4a39807d5967b88660eb485c379246463,Update dependencies.,Hanno Schlichting,2017-04-22T12:33:44Z,hannosch,hannosch,10,5,5
+188,miracle,e83489768425db8290fd4d5de2e44a72079cd25f,Remove celery/redis dependencies.,Hanno Schlichting,2017-04-21T13:23:25Z,hannosch,hannosch,8,0,8
+189,miracle,fde25dea974e545deeb5adaa8308d3fdad035f0f,Remove Celery/Redis code.,Hanno Schlichting,2017-04-21T12:29:36Z,hannosch,hannosch,303,12,291
+190,miracle,d43ba805ce9a3c73d8012b1762bbfb7eccd1b913,Remove celery based upload task.,Hanno Schlichting,2017-04-21T12:16:59Z,hannosch,hannosch,362,29,333
+191,miracle,01abc3b05e1b712c8e7c8b15cf04122ac4b390dc,Implement and test the frontend_s3 Kinesis job.,Hanno Schlichting,2017-04-21T12:06:23Z,hannosch,hannosch,231,206,25
+192,miracle,ee8c20f9b17ae76304c1aae4b62f8183defc5097,Add stream metrics and test process_records.,Hanno Schlichting,2017-04-21T11:09:44Z,hannosch,hannosch,187,132,55
+193,miracle,18d2a64f781cc86f674a3e6d2a0ee4ecb080ef2b,Add tests for KCL process checkpointing and updating max_seq.,Hanno Schlichting,2017-04-20T11:33:18Z,hannosch,hannosch,122,86,36
+194,miracle,11312ba45abb0ddff5c3945d256e7aaf71d5ffb7,Define a custom KCLProcess class and let the tests use it.,Hanno Schlichting,2017-04-20T10:34:08Z,hannosch,hannosch,260,155,105
+195,miracle,527653fef7089e87fd0d39ca6a6b4d6b53ac1d64,Add tests for KCL processor init/shutdown.,Hanno Schlichting,2017-04-19T17:14:46Z,hannosch,hannosch,116,112,4
+196,miracle,2a63e64cd0fd278d80be27688e06172cc06d81e3,"Turn individual record processors into functions, add batching.",Hanno Schlichting,2017-04-19T14:46:27Z,hannosch,hannosch,89,45,44
+197,miracle,37ba6b3641be2de204588340e1476e6a77073175,Add KCL BaseRecordProcessor to handle common stream processing logic.,Hanno Schlichting,2017-04-19T13:22:38Z,hannosch,hannosch,140,118,22
+198,miracle,2ac7e6ff1bb0834c261832d008167f3039fa99c9,Possible fix for circle-ci failure.,Hanno Schlichting,2017-04-13T17:19:18Z,hannosch,hannosch,12,8,4
+199,miracle,6438dc90d38159df617c352bec160078ae9c15f4,Add skeleton MCL/MultiLangDaemon config and job.,Hanno Schlichting,2017-04-13T16:15:02Z,hannosch,hannosch,91,91,0
+200,miracle,9a2d6f7b0fe953d22fd489b993ebddfce86a40f2,Restrict outside network access off docker containers.,Hanno Schlichting,2017-04-13T16:11:58Z,hannosch,hannosch,12,9,3
+201,miracle,bd9fd5a3f206a4881ecf1d19e503671e7fb68340,Decrease Kinesalite delay to speed up tests.,Hanno Schlichting,2017-04-13T14:58:57Z,hannosch,hannosch,6,3,3
+202,miracle,261e85224367f16aaf21c997db21d0f564c8c5eb,"Make bucket/kinesis clear logic more robust.
+
+Also correctly pass in pre-created kinesis client into celery app.",Hanno Schlichting,2017-04-11T12:11:14Z,hannosch,hannosch,35,21,14
+203,miracle,4e3976f2c9b73ba7403337c5c01c94565fd522e8,"Refactor common delete_stream code into its own function.
+
+Also let _delete_frontend_stream use it, so it properly waits.",Hanno Schlichting,2017-04-10T20:34:32Z,hannosch,hannosch,20,11,9
+204,miracle,0f50290539b948432a4b5d9e9c9830dfe7547a77,Update deploy docs with AWS service permissions.,Hanno Schlichting,2017-04-10T20:02:04Z,hannosch,hannosch,38,33,5
+205,miracle,e4d2849479d44c1e73d29cdc4875796bef24d6da,"Add year/month to bucket path, use more compact JSON.",Hanno Schlichting,2017-04-10T19:07:15Z,hannosch,hannosch,22,14,8
+206,miracle,ef3a4ff8cf41ceb4e778300916079a2c1ec7f439,"Add back local DynamoDB, for Kinesis MultiLangDaemon.",Hanno Schlichting,2017-04-10T18:46:39Z,hannosch,hannosch,52,39,13
+207,miracle,a8974c6c21c6e5b5b3c413ed55eb2a8a26b19f87,"Add JRE and amazon_kclpy.
+
+Also add other missing Python dependencies.",Hanno Schlichting,2017-04-10T18:40:34Z,hannosch,hannosch,20,18,2
+208,miracle,d176e83b99c38c6f314edbb8878c498653d99602,"Next stepping stone, put payload into Kinesis instead of Redis.
+
+This still uses Celery to keep track of how far into each stream/queue
+data was written / read.",Hanno Schlichting,2017-04-10T16:13:06Z,hannosch,hannosch,285,169,116
+209,miracle,d4b37db971ef62ab890bae88755ab7470acaed5f,Add a direct Kinesis Python client and test support.,Hanno Schlichting,2017-04-10T11:52:33Z,hannosch,hannosch,97,97,0
+210,miracle,e1257b116bfbeb1911269366f5ad8ec875e8f1de,"Remove local DynamoDB, add local Kinesis (kinesalite).
+
+Also move back web server port to 8000.",Hanno Schlichting,2017-04-10T11:03:22Z,hannosch,hannosch,74,40,34
+211,miracle,951ce26ed9fc87ba49668c3c2ad603b08fd63f11,"Tweak bucket code, try to explicitly close open sockets.",Hanno Schlichting,2017-04-06T17:14:24Z,hannosch,hannosch,11,8,3
+212,miracle,6aa578c7102706137bc936ae8a3122bf26f6ea3a,Allow almost arbitary data schema in uploads.,Hanno Schlichting,2017-04-06T16:30:46Z,hannosch,hannosch,381,36,345
+213,miracle,566698713e6f033455a045c67b1970eeb4370d8c,"Target cryptography < 1.7, to be openssl 1.0 compatible.
+
+The Python 3.6 docker image is still based on Debian Jessie.",Hanno Schlichting,2017-04-05T15:48:41Z,hannosch,hannosch,2,1,1
+214,miracle,780a44c4cf3843dfba557fffec26a2ef4cf1f9fa,Update to Python 3.6.,Hanno Schlichting,2017-04-05T15:40:34Z,hannosch,hannosch,63,33,30
+215,miracle,beda065ad3062b6c0d729cde8076789fc92f2336,"Add local DynamoDB, change default web port to 80880.",Hanno Schlichting,2017-04-04T23:27:25Z,hannosch,hannosch,57,41,16
+216,miracle,d7942721299b7b0ab13d7c56745a47933fad722c,Remove Postgres and alembic db migration support.,Hanno Schlichting,2017-04-04T23:10:23Z,hannosch,hannosch,248,27,221
+217,miracle,6f835cfffb8cd47b882bacde9b3d52cf4cc79f8d,Upload data to S3 instead of Posstgres.,Hanno Schlichting,2017-04-04T22:38:44Z,hannosch,hannosch,13467,79,13388
+218,miracle,f7b81e88d29a77b5f4ae43a34d08c804cbb9d2a6,"Use minio to provide a AWS S3 compatible service for local testing.
+
+Also change bucket logic to use the minio instance in tests.",Hanno Schlichting,2017-04-04T21:24:36Z,hannosch,hannosch,122,59,63
+219,miracle,7b1e7cf7104f36d5552c88cb9fab29cc61784d50,"Bring back AWS S3 code.
+
+This reverts commit 5b467dff81dcd51d0ede89d0eee9f710bd2c2551.",Hanno Schlichting,2017-04-04T20:21:33Z,hannosch,hannosch,155,150,5
+220,miracle,f88ff9ebed428f6be6ebb7f6cbb30965d65b879c,Remove 1.x changelog entries.,Hanno Schlichting,2017-04-04T19:48:07Z,hannosch,hannosch,219,0,219
+221,miracle,1e19f7a0662f54638ada6f4fe0166c04760e0b0e,Remove analysis script.,Hanno Schlichting,2017-04-04T19:46:09Z,hannosch,hannosch,404,2,402
+222,miracle,eaeaeaa5664c1590d2f6771e60aea5f803d5b594,Remove domain blocklist,Hanno Schlichting,2017-04-04T19:44:27Z,hannosch,hannosch,24327,37,24290
+223,miracle,56937bf2ee320a8fbb71e655f968a8925610278b,Remove deprecated maintainer docker instruction.,Hanno Schlichting,2017-01-20T11:45:23Z,hannosch,hannosch,5,0,5
+224,miracle,d746052239ea031fe92478339874b68d48dbc442,"Update to v2 API, which moves the user id into the payload, closes #5.",Hanno Schlichting,2017-01-17T16:05:59Z,hannosch,hannosch,330,169,161
+225,miracle,c6e5f07325532bec551bd92302196fb62a6405a2,Remove delete and stats API endpoints.,Hanno Schlichting,2017-01-17T16:00:39Z,hannosch,hannosch,332,6,326
+226,miracle,6817cfd534e6d44c75713e12b301ee71fc2dc2a0,Update dependencies.,Hanno Schlichting,2017-01-17T14:56:12Z,hannosch,hannosch,14,7,7
+227,miracle,de424c8c1bb55352cc83b4a563ccf3398fdb7d91,Update to Celery 4.,Hanno Schlichting,2017-01-17T14:01:47Z,hannosch,hannosch,85,46,39
+228,miracle,fa362b605eee84acc745ab7b44e43bc34ab84931,Update blocklist.,Hanno Schlichting,2017-01-09T16:32:20Z,hannosch,hannosch,5775,5769,6
+229,miracle,1e946d401149532ff466c67a77c19ef9dfd470d1,Update requirements.,Hanno Schlichting,2017-01-04T08:59:21Z,hannosch,hannosch,50,25,25
+230,miracle,4b77af6232aa1b856d2192f967c87cd09d416a8a,Update blocklist.,Hanno Schlichting,2017-01-04T08:22:21Z,hannosch,hannosch,2221,2219,2
+231,miracle,3d419f90b90464fb498a17a9dc2c493a061535ab,Remove end date.,Hanno Schlichting,2017-01-03T09:19:06Z,hannosch,hannosch,35,3,32
+232,miracle,df52e1e8029ff7efbc652160a62dcb613a6d9728,vb [ci skip],Hanno Schlichting,2016-11-17T12:29:21Z,hannosch,hannosch,7,6,1
+233,miracle,f17afc6da86665c14b2086804baf581e7ffa3ee6,prepare [ci skip],Hanno Schlichting,2016-11-17T12:28:01Z,hannosch,hannosch,4,2,2
+234,miracle,6520c0495b05daa36836e28f7b6d0455f5d34ab3,Update coding-style checkers.,Hanno Schlichting,2016-11-17T12:21:06Z,hannosch,hannosch,7,5,2
+235,miracle,ff20f8d10ef4ed7cf08dc0c75c9c596508afad38,Update blocklist.,Hanno Schlichting,2016-11-17T12:13:04Z,hannosch,hannosch,1699,1698,1
+236,miracle,86f52ee301566bb4d6f178c5ab6b09ef59546bc4,Update dependencies.,Hanno Schlichting,2016-11-16T15:08:58Z,hannosch,hannosch,24,12,12
+237,miracle,dd058bf4d86f679ee5912d980f94466478cb8068,Update blocklist.,Hanno Schlichting,2016-11-07T12:06:01Z,hannosch,hannosch,799,798,1
+238,miracle,054883d6234e9f8ff598fc4681ee1baceb68c35a,Update blocklist.,Hanno Schlichting,2016-11-04T11:29:51Z,hannosch,hannosch,579,578,1
+239,miracle,f7065421d9e5a34ca70d30b69272a192cd140c76,Update dependencies.,Hanno Schlichting,2016-11-02T12:10:51Z,hannosch,hannosch,12,6,6
+240,miracle,1a369697d41738daa37710437e2c51ad4619d954,Update blocklist.,Hanno Schlichting,2016-11-02T11:58:06Z,hannosch,hannosch,2075,2074,1
+241,miracle,1928fbc4a6c6d188ee80ba3f4cd291064bb9760d,Update blocklist.,Hanno Schlichting,2016-10-24T13:12:32Z,hannosch,hannosch,1520,1517,3
+242,miracle,ca03ddff3afa8dde5d744e6aa91d0f223dba15b9,"Switch Docker image to be Debian based and install numpy.
+
+Numpy is currently not compatible with the previously used Alpine Linux.",Hanno Schlichting,2016-10-21T15:21:02Z,hannosch,hannosch,102,61,41
+243,miracle,aa737938df23a92dedd855ea38f4640b0beec30a,Update blocklist.,Hanno Schlichting,2016-10-20T11:09:48Z,hannosch,hannosch,340,338,2
+244,miracle,62da6bfa795a64b7a67fc4a6d049b9cfb805b9c4,Add a LRU cache to DNS validation.,Hanno Schlichting,2016-10-20T10:20:50Z,hannosch,hannosch,3,3,0
+245,miracle,dfb515b40d26b70f1f4676844f27ab78252c1a6a,Update blocklist.,Hanno Schlichting,2016-10-19T18:00:27Z,hannosch,hannosch,134,133,1
+246,miracle,7c2eb49772e450996abebd4f59b5cbbcb3ebe817,vb [ci skip],Hanno Schlichting,2016-10-19T11:01:27Z,hannosch,hannosch,7,6,1
+247,miracle,5253c209dd9da59236539cd574334775fcba89f7,prepare [ci skip],Hanno Schlichting,2016-10-19T11:00:41Z,hannosch,hannosch,4,2,2
+248,miracle,fb5edbbccd9982539a9472e6fe1f0b2d1f7fd281,Revert celery workers back to multiprocessing.,Hanno Schlichting,2016-10-19T10:58:32Z,hannosch,hannosch,21,8,13
+249,miracle,21515e2bfb03a95a9a80b2e419adbc94c6860729,Avoid applying gevent patches twice.,Hanno Schlichting,2016-10-19T10:19:56Z,hannosch,hannosch,20,12,8
+250,miracle,76c67f616324aa3149972d214ffc1af4cf5990d1,Update blocklist.,Hanno Schlichting,2016-10-19T10:01:26Z,hannosch,hannosch,317,316,1
+251,miracle,534b5a8a59696be06b56e4db3c8f2e5830413948,Update dependencies.,Hanno Schlichting,2016-10-19T09:27:53Z,hannosch,hannosch,14,7,7
+252,miracle,ff7756ab5c9efe11fcac827dc37b339e65219d2f,Add curl.,Hanno Schlichting,2016-10-18T22:26:00Z,hannosch,hannosch,1,1,0
+253,miracle,8c7dfa3f812192cab93f4da9aa4844d1eda8b9a7,Update blocklist.,Hanno Schlichting,2016-10-17T21:03:11Z,hannosch,hannosch,1586,1582,4
+254,miracle,e51cc057d509e2c6301036fb42a14ba39a4aa5d1,Validate DNS resolution for hostnames.,Hanno Schlichting,2016-10-14T15:37:04Z,hannosch,hannosch,34,29,5
+255,miracle,2a2ffa45cb1fa3047aade5d4863deb85719ae9fc,Switch celery worker to use gevent for concurrency.,Hanno Schlichting,2016-10-14T15:36:27Z,hannosch,hannosch,26,14,12
+256,miracle,22a4f5dec1fa7d9a46142a59915b59c807a8eda9,Update blocklist.,Hanno Schlichting,2016-10-14T15:16:43Z,hannosch,hannosch,412,411,1
+257,miracle,8af5bf44559494783b7ddb5cf0a4f72c5e6637ee,Drop sessions with a start_time in the future or more than 2 weeks old.,Hanno Schlichting,2016-10-14T12:34:37Z,hannosch,hannosch,52,37,15
+258,miracle,e7c6f41430a5124e58de8df885dff0a42b4a7f59,Use c-ares based DNS resolver in gevent by default.,Hanno Schlichting,2016-10-14T12:07:58Z,hannosch,hannosch,2,2,0
+259,miracle,4133f95e9011ab4736eabd3a292aab3233aca166,Update blocklist.,Hanno Schlichting,2016-10-11T10:15:28Z,hannosch,hannosch,753,752,1
+260,miracle,8065f5fa7e9815969e4dd38f570475357deb57a3,Update dependency.,Hanno Schlichting,2016-10-11T10:17:17Z,hannosch,hannosch,2,1,1
+261,miracle,2f3623e6b01cb032ac485d9ce88be3bc692a6ce2,Add script to calculate daily sessions per user.,Hanno Schlichting,2016-10-10T14:45:27Z,hannosch,hannosch,128,105,23
+262,miracle,209e2cf195e082814b3d8a932e41bc54883cab18,Summarize weekly_recurrence results as max/mean/medium/min results.,Hanno Schlichting,2016-10-10T13:21:19Z,hannosch,hannosch,26,22,4
+263,miracle,3ecbdb3201b386220447d01dd9bbb8a98b887150,Re-factor `scripts.analysis` into a new sub-package.,Hanno Schlichting,2016-10-10T12:18:52Z,hannosch,hannosch,468,279,189
+264,miracle,89902078b70406ff84cd73311f57c7451eb557f8,Update dependencies.,Hanno Schlichting,2016-10-10T09:40:00Z,hannosch,hannosch,8,4,4
+265,miracle,be74809a4a377dc26635284d66c4957bad37bd03,Update blocklist.,Hanno Schlichting,2016-10-10T09:34:04Z,hannosch,hannosch,542,541,1
+266,miracle,b2c973dd720b33a45fe74876b2c87b0a656df0d4,Update blocklist.,Hanno Schlichting,2016-10-07T11:46:30Z,hannosch,hannosch,122,121,1
+267,miracle,343862b833cb1ed3b94541c6ec9f92c4dbdf1812,"Update SQLAlchemy, remove workaround.",Hanno Schlichting,2016-10-06T15:22:13Z,hannosch,hannosch,4,2,2
+268,miracle,b7a6a1ee91345a0eebc71e2f8493412a0080d61d,"Test our bloom filter against the top 100 domains.
+
+It shouldn't filter out any of them, except three known adult domains.",Hanno Schlichting,2016-10-06T14:34:12Z,hannosch,hannosch,125,125,0
+269,miracle,db3477c9bd5de7fa1d6a7bb366c2da427930ad70,Update blocklist.,Hanno Schlichting,2016-10-06T09:53:52Z,hannosch,hannosch,71,70,1
+270,miracle,4268116e8ed3477d5ce48c3b372188785b9259c3,vb [ci skip],Hanno Schlichting,2016-10-05T16:29:08Z,hannosch,hannosch,7,6,1
+271,miracle,29e69e17700557320d3b24ece97cbfc1b6537095,prepare [ci skip],Hanno Schlichting,2016-10-05T16:28:14Z,hannosch,hannosch,4,2,2
+272,miracle,3882e4fb19b511688282c215336febeebd206971,"Update blocklist.
+
+This removes some domains which are purely ads/tracking domains,
+and not used exclusively for adult content.",Hanno Schlichting,2016-10-05T16:24:19Z,hannosch,hannosch,1201,959,242
+273,miracle,baa72dbcf92e237cf5032872c371d35cb4001400,added source dia file for db_schema & svg with background,K Lars Lohn,2016-10-04T17:34:27Z,twobraids,twobraids,151,77,74
+274,miracle,e59f9bf8351e2586df5ac75c7d27bc7dfb000937,"Don't rely on DOCKERHUB_REPO env variable in normal test runs.
+
+Cirlce-ci doesn't expose any environment variables to pull requests,
+as they might contain credentials, like our DOCKER_PASS variable
+used in the deployment section.",Hanno Schlichting,2016-10-05T14:44:16Z,hannosch,hannosch,4,2,2
+275,miracle,5ef036328f27a8e5194b79dccb0ff40a3a18784a,Update dependencies.,Hanno Schlichting,2016-10-04T16:52:29Z,hannosch,hannosch,16,8,8
+276,miracle,ab163499ec13b6799b108aba8badeff801f3cbe4,"Add SVG version of database schema, curtesy of lars.",Hanno Schlichting,2016-10-04T16:37:20Z,hannosch,hannosch,95,95,0
+277,miracle,51b22b30b4dd6d56cdd8fbdd4f62db5edb01058d,Update blocklist.,Hanno Schlichting,2016-09-23T12:58:32Z,hannosch,hannosch,33,32,1
+278,miracle,25ef96298de14c566513b0d99fc461a73e7b4a09,Update blocklist.,Hanno Schlichting,2016-09-22T11:46:20Z,hannosch,hannosch,25,24,1
+279,miracle,46e312625e983a65cc62c54839e9869999ea456b,"Weekly recurrence script requires at least one week participation time.
+
+So far the script counted all users, even those that where created
+recently, skewing the results.",Hanno Schlichting,2016-09-21T11:01:50Z,hannosch,hannosch,55,44,11
+280,miracle,1016afc18bf6869a1d3022db90cb7c1b9dfe07c6,Update blocklist.,Hanno Schlichting,2016-09-21T10:02:25Z,hannosch,hannosch,20,19,1
+281,miracle,37c17f33dadf6ec44dd760bdc5daf4e29e8b710b,vb [ci skip],Hanno Schlichting,2016-09-20T14:31:24Z,hannosch,hannosch,7,6,1
+282,miracle,156dfee8452a5c02e84c117e693a701f17edfb69,prepare [ci skip],Hanno Schlichting,2016-09-20T14:30:45Z,hannosch,hannosch,4,2,2
+283,miracle,1c047d50c29bfa04202746c3b750e20f2082f1d1,Filter out non-standard HTTP/S ports.,Hanno Schlichting,2016-09-20T14:12:57Z,hannosch,hannosch,12,12,0
+284,miracle,02354cd9cf3f6fb6e95e7b040155fc485170e078,"Update blocklist, decrease false positive rate.
+
+The blocklist file is still only 12kb.",Hanno Schlichting,2016-09-20T10:12:24Z,hannosch,hannosch,20,17,3
+285,miracle,24bbeb357c2bae06082dca32fd4bde399e45dcab,Filter out all IP addresses.,Hanno Schlichting,2016-09-20T09:50:36Z,hannosch,hannosch,12,6,6
+286,miracle,628691e2ac6ff6a10cef487686270b887452070a,"Increase maximum valid session duration to 21 days.
+
+Also substitute out-of-range values with a under/overflow value of the
+correct type to dinstinguish them from missing values.",Hanno Schlichting,2016-09-20T09:46:15Z,hannosch,hannosch,37,24,13
+287,miracle,bd0d52f4a39807d5967b88660eb485c379246463,Update dependencies.,Hanno Schlichting,2017-04-22T12:33:44Z,hannosch,hannosch,10,5,5
+288,miracle,e83489768425db8290fd4d5de2e44a72079cd25f,Remove celery/redis dependencies.,Hanno Schlichting,2017-04-21T13:23:25Z,hannosch,hannosch,8,0,8
+289,miracle,fde25dea974e545deeb5adaa8308d3fdad035f0f,Remove Celery/Redis code.,Hanno Schlichting,2017-04-21T12:29:36Z,hannosch,hannosch,303,12,291
+290,miracle,d43ba805ce9a3c73d8012b1762bbfb7eccd1b913,Remove celery based upload task.,Hanno Schlichting,2017-04-21T12:16:59Z,hannosch,hannosch,362,29,333
+291,miracle,01abc3b05e1b712c8e7c8b15cf04122ac4b390dc,Implement and test the frontend_s3 Kinesis job.,Hanno Schlichting,2017-04-21T12:06:23Z,hannosch,hannosch,231,206,25
+292,miracle,ee8c20f9b17ae76304c1aae4b62f8183defc5097,Add stream metrics and test process_records.,Hanno Schlichting,2017-04-21T11:09:44Z,hannosch,hannosch,187,132,55
+293,miracle,18d2a64f781cc86f674a3e6d2a0ee4ecb080ef2b,Add tests for KCL process checkpointing and updating max_seq.,Hanno Schlichting,2017-04-20T11:33:18Z,hannosch,hannosch,122,86,36
+294,miracle,11312ba45abb0ddff5c3945d256e7aaf71d5ffb7,Define a custom KCLProcess class and let the tests use it.,Hanno Schlichting,2017-04-20T10:34:08Z,hannosch,hannosch,260,155,105
+295,miracle,527653fef7089e87fd0d39ca6a6b4d6b53ac1d64,Add tests for KCL processor init/shutdown.,Hanno Schlichting,2017-04-19T17:14:46Z,hannosch,hannosch,116,112,4
+296,miracle,2a63e64cd0fd278d80be27688e06172cc06d81e3,"Turn individual record processors into functions, add batching.",Hanno Schlichting,2017-04-19T14:46:27Z,hannosch,hannosch,89,45,44
+297,miracle,37ba6b3641be2de204588340e1476e6a77073175,Add KCL BaseRecordProcessor to handle common stream processing logic.,Hanno Schlichting,2017-04-19T13:22:38Z,hannosch,hannosch,140,118,22
+298,miracle,2ac7e6ff1bb0834c261832d008167f3039fa99c9,Possible fix for circle-ci failure.,Hanno Schlichting,2017-04-13T17:19:18Z,hannosch,hannosch,12,8,4
+299,miracle,6438dc90d38159df617c352bec160078ae9c15f4,Add skeleton MCL/MultiLangDaemon config and job.,Hanno Schlichting,2017-04-13T16:15:02Z,hannosch,hannosch,91,91,0
+300,miracle,9a2d6f7b0fe953d22fd489b993ebddfce86a40f2,Restrict outside network access off docker containers.,Hanno Schlichting,2017-04-13T16:11:58Z,hannosch,hannosch,12,9,3
+301,miracle,bd9fd5a3f206a4881ecf1d19e503671e7fb68340,Decrease Kinesalite delay to speed up tests.,Hanno Schlichting,2017-04-13T14:58:57Z,hannosch,hannosch,6,3,3
+302,miracle,261e85224367f16aaf21c997db21d0f564c8c5eb,"Make bucket/kinesis clear logic more robust.
+
+Also correctly pass in pre-created kinesis client into celery app.",Hanno Schlichting,2017-04-11T12:11:14Z,hannosch,hannosch,35,21,14
+303,miracle,4e3976f2c9b73ba7403337c5c01c94565fd522e8,"Refactor common delete_stream code into its own function.
+
+Also let _delete_frontend_stream use it, so it properly waits.",Hanno Schlichting,2017-04-10T20:34:32Z,hannosch,hannosch,20,11,9
+304,miracle,0f50290539b948432a4b5d9e9c9830dfe7547a77,Update deploy docs with AWS service permissions.,Hanno Schlichting,2017-04-10T20:02:04Z,hannosch,hannosch,38,33,5
+305,miracle,e4d2849479d44c1e73d29cdc4875796bef24d6da,"Add year/month to bucket path, use more compact JSON.",Hanno Schlichting,2017-04-10T19:07:15Z,hannosch,hannosch,22,14,8
+306,miracle,ef3a4ff8cf41ceb4e778300916079a2c1ec7f439,"Add back local DynamoDB, for Kinesis MultiLangDaemon.",Hanno Schlichting,2017-04-10T18:46:39Z,hannosch,hannosch,52,39,13
+307,miracle,a8974c6c21c6e5b5b3c413ed55eb2a8a26b19f87,"Add JRE and amazon_kclpy.
+
+Also add other missing Python dependencies.",Hanno Schlichting,2017-04-10T18:40:34Z,hannosch,hannosch,20,18,2
+308,miracle,d176e83b99c38c6f314edbb8878c498653d99602,"Next stepping stone, put payload into Kinesis instead of Redis.
+
+This still uses Celery to keep track of how far into each stream/queue
+data was written / read.",Hanno Schlichting,2017-04-10T16:13:06Z,hannosch,hannosch,285,169,116
+309,miracle,d4b37db971ef62ab890bae88755ab7470acaed5f,Add a direct Kinesis Python client and test support.,Hanno Schlichting,2017-04-10T11:52:33Z,hannosch,hannosch,97,97,0
+310,miracle,e1257b116bfbeb1911269366f5ad8ec875e8f1de,"Remove local DynamoDB, add local Kinesis (kinesalite).
+
+Also move back web server port to 8000.",Hanno Schlichting,2017-04-10T11:03:22Z,hannosch,hannosch,74,40,34
+311,miracle,951ce26ed9fc87ba49668c3c2ad603b08fd63f11,"Tweak bucket code, try to explicitly close open sockets.",Hanno Schlichting,2017-04-06T17:14:24Z,hannosch,hannosch,11,8,3
+312,miracle,6aa578c7102706137bc936ae8a3122bf26f6ea3a,Allow almost arbitary data schema in uploads.,Hanno Schlichting,2017-04-06T16:30:46Z,hannosch,hannosch,381,36,345
+313,miracle,566698713e6f033455a045c67b1970eeb4370d8c,"Target cryptography < 1.7, to be openssl 1.0 compatible.
+
+The Python 3.6 docker image is still based on Debian Jessie.",Hanno Schlichting,2017-04-05T15:48:41Z,hannosch,hannosch,2,1,1
+314,miracle,780a44c4cf3843dfba557fffec26a2ef4cf1f9fa,Update to Python 3.6.,Hanno Schlichting,2017-04-05T15:40:34Z,hannosch,hannosch,63,33,30
+315,miracle,beda065ad3062b6c0d729cde8076789fc92f2336,"Add local DynamoDB, change default web port to 80880.",Hanno Schlichting,2017-04-04T23:27:25Z,hannosch,hannosch,57,41,16
+316,miracle,d7942721299b7b0ab13d7c56745a47933fad722c,Remove Postgres and alembic db migration support.,Hanno Schlichting,2017-04-04T23:10:23Z,hannosch,hannosch,248,27,221
+317,miracle,6f835cfffb8cd47b882bacde9b3d52cf4cc79f8d,Upload data to S3 instead of Posstgres.,Hanno Schlichting,2017-04-04T22:38:44Z,hannosch,hannosch,13467,79,13388
+318,miracle,f7b81e88d29a77b5f4ae43a34d08c804cbb9d2a6,"Use minio to provide a AWS S3 compatible service for local testing.
+
+Also change bucket logic to use the minio instance in tests.",Hanno Schlichting,2017-04-04T21:24:36Z,hannosch,hannosch,122,59,63
+319,miracle,7b1e7cf7104f36d5552c88cb9fab29cc61784d50,"Bring back AWS S3 code.
+
+This reverts commit 5b467dff81dcd51d0ede89d0eee9f710bd2c2551.",Hanno Schlichting,2017-04-04T20:21:33Z,hannosch,hannosch,155,150,5
+320,miracle,f88ff9ebed428f6be6ebb7f6cbb30965d65b879c,Remove 1.x changelog entries.,Hanno Schlichting,2017-04-04T19:48:07Z,hannosch,hannosch,219,0,219
+321,miracle,1e19f7a0662f54638ada6f4fe0166c04760e0b0e,Remove analysis script.,Hanno Schlichting,2017-04-04T19:46:09Z,hannosch,hannosch,404,2,402
+322,miracle,eaeaeaa5664c1590d2f6771e60aea5f803d5b594,Remove domain blocklist,Hanno Schlichting,2017-04-04T19:44:27Z,hannosch,hannosch,24327,37,24290
+323,miracle,56937bf2ee320a8fbb71e655f968a8925610278b,Remove deprecated maintainer docker instruction.,Hanno Schlichting,2017-01-20T11:45:23Z,hannosch,hannosch,5,0,5
+324,miracle,d746052239ea031fe92478339874b68d48dbc442,"Update to v2 API, which moves the user id into the payload, closes #5.",Hanno Schlichting,2017-01-17T16:05:59Z,hannosch,hannosch,330,169,161
+325,miracle,c6e5f07325532bec551bd92302196fb62a6405a2,Remove delete and stats API endpoints.,Hanno Schlichting,2017-01-17T16:00:39Z,hannosch,hannosch,332,6,326
+326,miracle,6817cfd534e6d44c75713e12b301ee71fc2dc2a0,Update dependencies.,Hanno Schlichting,2017-01-17T14:56:12Z,hannosch,hannosch,14,7,7
+327,miracle,de424c8c1bb55352cc83b4a563ccf3398fdb7d91,Update to Celery 4.,Hanno Schlichting,2017-01-17T14:01:47Z,hannosch,hannosch,85,46,39
+328,miracle,fa362b605eee84acc745ab7b44e43bc34ab84931,Update blocklist.,Hanno Schlichting,2017-01-09T16:32:20Z,hannosch,hannosch,5775,5769,6
+329,miracle,1e946d401149532ff466c67a77c19ef9dfd470d1,Update requirements.,Hanno Schlichting,2017-01-04T08:59:21Z,hannosch,hannosch,50,25,25
+330,miracle,4b77af6232aa1b856d2192f967c87cd09d416a8a,Update blocklist.,Hanno Schlichting,2017-01-04T08:22:21Z,hannosch,hannosch,2221,2219,2
+331,miracle,3d419f90b90464fb498a17a9dc2c493a061535ab,Remove end date.,Hanno Schlichting,2017-01-03T09:19:06Z,hannosch,hannosch,35,3,32
+332,miracle,df52e1e8029ff7efbc652160a62dcb613a6d9728,vb [ci skip],Hanno Schlichting,2016-11-17T12:29:21Z,hannosch,hannosch,7,6,1
+333,miracle,f17afc6da86665c14b2086804baf581e7ffa3ee6,prepare [ci skip],Hanno Schlichting,2016-11-17T12:28:01Z,hannosch,hannosch,4,2,2
+334,miracle,6520c0495b05daa36836e28f7b6d0455f5d34ab3,Update coding-style checkers.,Hanno Schlichting,2016-11-17T12:21:06Z,hannosch,hannosch,7,5,2
+335,miracle,ff20f8d10ef4ed7cf08dc0c75c9c596508afad38,Update blocklist.,Hanno Schlichting,2016-11-17T12:13:04Z,hannosch,hannosch,1699,1698,1
+336,miracle,86f52ee301566bb4d6f178c5ab6b09ef59546bc4,Update dependencies.,Hanno Schlichting,2016-11-16T15:08:58Z,hannosch,hannosch,24,12,12
+337,miracle,dd058bf4d86f679ee5912d980f94466478cb8068,Update blocklist.,Hanno Schlichting,2016-11-07T12:06:01Z,hannosch,hannosch,799,798,1
+338,miracle,054883d6234e9f8ff598fc4681ee1baceb68c35a,Update blocklist.,Hanno Schlichting,2016-11-04T11:29:51Z,hannosch,hannosch,579,578,1
+339,miracle,f7065421d9e5a34ca70d30b69272a192cd140c76,Update dependencies.,Hanno Schlichting,2016-11-02T12:10:51Z,hannosch,hannosch,12,6,6
+340,miracle,1a369697d41738daa37710437e2c51ad4619d954,Update blocklist.,Hanno Schlichting,2016-11-02T11:58:06Z,hannosch,hannosch,2075,2074,1
+341,miracle,1928fbc4a6c6d188ee80ba3f4cd291064bb9760d,Update blocklist.,Hanno Schlichting,2016-10-24T13:12:32Z,hannosch,hannosch,1520,1517,3
+342,miracle,ca03ddff3afa8dde5d744e6aa91d0f223dba15b9,"Switch Docker image to be Debian based and install numpy.
+
+Numpy is currently not compatible with the previously used Alpine Linux.",Hanno Schlichting,2016-10-21T15:21:02Z,hannosch,hannosch,102,61,41
+343,miracle,aa737938df23a92dedd855ea38f4640b0beec30a,Update blocklist.,Hanno Schlichting,2016-10-20T11:09:48Z,hannosch,hannosch,340,338,2
+344,miracle,62da6bfa795a64b7a67fc4a6d049b9cfb805b9c4,Add a LRU cache to DNS validation.,Hanno Schlichting,2016-10-20T10:20:50Z,hannosch,hannosch,3,3,0
+345,miracle,dfb515b40d26b70f1f4676844f27ab78252c1a6a,Update blocklist.,Hanno Schlichting,2016-10-19T18:00:27Z,hannosch,hannosch,134,133,1
+346,miracle,7c2eb49772e450996abebd4f59b5cbbcb3ebe817,vb [ci skip],Hanno Schlichting,2016-10-19T11:01:27Z,hannosch,hannosch,7,6,1
+347,miracle,5253c209dd9da59236539cd574334775fcba89f7,prepare [ci skip],Hanno Schlichting,2016-10-19T11:00:41Z,hannosch,hannosch,4,2,2
+348,miracle,fb5edbbccd9982539a9472e6fe1f0b2d1f7fd281,Revert celery workers back to multiprocessing.,Hanno Schlichting,2016-10-19T10:58:32Z,hannosch,hannosch,21,8,13
+349,miracle,21515e2bfb03a95a9a80b2e419adbc94c6860729,Avoid applying gevent patches twice.,Hanno Schlichting,2016-10-19T10:19:56Z,hannosch,hannosch,20,12,8
+350,miracle,76c67f616324aa3149972d214ffc1af4cf5990d1,Update blocklist.,Hanno Schlichting,2016-10-19T10:01:26Z,hannosch,hannosch,317,316,1
+351,miracle,534b5a8a59696be06b56e4db3c8f2e5830413948,Update dependencies.,Hanno Schlichting,2016-10-19T09:27:53Z,hannosch,hannosch,14,7,7
+352,miracle,ff7756ab5c9efe11fcac827dc37b339e65219d2f,Add curl.,Hanno Schlichting,2016-10-18T22:26:00Z,hannosch,hannosch,1,1,0
+353,miracle,8c7dfa3f812192cab93f4da9aa4844d1eda8b9a7,Update blocklist.,Hanno Schlichting,2016-10-17T21:03:11Z,hannosch,hannosch,1586,1582,4
+354,miracle,e51cc057d509e2c6301036fb42a14ba39a4aa5d1,Validate DNS resolution for hostnames.,Hanno Schlichting,2016-10-14T15:37:04Z,hannosch,hannosch,34,29,5
+355,miracle,2a2ffa45cb1fa3047aade5d4863deb85719ae9fc,Switch celery worker to use gevent for concurrency.,Hanno Schlichting,2016-10-14T15:36:27Z,hannosch,hannosch,26,14,12
+356,miracle,22a4f5dec1fa7d9a46142a59915b59c807a8eda9,Update blocklist.,Hanno Schlichting,2016-10-14T15:16:43Z,hannosch,hannosch,412,411,1
+357,miracle,8af5bf44559494783b7ddb5cf0a4f72c5e6637ee,Drop sessions with a start_time in the future or more than 2 weeks old.,Hanno Schlichting,2016-10-14T12:34:37Z,hannosch,hannosch,52,37,15
+358,miracle,e7c6f41430a5124e58de8df885dff0a42b4a7f59,Use c-ares based DNS resolver in gevent by default.,Hanno Schlichting,2016-10-14T12:07:58Z,hannosch,hannosch,2,2,0
+359,miracle,4133f95e9011ab4736eabd3a292aab3233aca166,Update blocklist.,Hanno Schlichting,2016-10-11T10:15:28Z,hannosch,hannosch,753,752,1
+360,miracle,8065f5fa7e9815969e4dd38f570475357deb57a3,Update dependency.,Hanno Schlichting,2016-10-11T10:17:17Z,hannosch,hannosch,2,1,1
+361,miracle,2f3623e6b01cb032ac485d9ce88be3bc692a6ce2,Add script to calculate daily sessions per user.,Hanno Schlichting,2016-10-10T14:45:27Z,hannosch,hannosch,128,105,23
+362,miracle,209e2cf195e082814b3d8a932e41bc54883cab18,Summarize weekly_recurrence results as max/mean/medium/min results.,Hanno Schlichting,2016-10-10T13:21:19Z,hannosch,hannosch,26,22,4
+363,miracle,3ecbdb3201b386220447d01dd9bbb8a98b887150,Re-factor `scripts.analysis` into a new sub-package.,Hanno Schlichting,2016-10-10T12:18:52Z,hannosch,hannosch,468,279,189
+364,miracle,89902078b70406ff84cd73311f57c7451eb557f8,Update dependencies.,Hanno Schlichting,2016-10-10T09:40:00Z,hannosch,hannosch,8,4,4
+365,miracle,be74809a4a377dc26635284d66c4957bad37bd03,Update blocklist.,Hanno Schlichting,2016-10-10T09:34:04Z,hannosch,hannosch,542,541,1
+366,miracle,b2c973dd720b33a45fe74876b2c87b0a656df0d4,Update blocklist.,Hanno Schlichting,2016-10-07T11:46:30Z,hannosch,hannosch,122,121,1
+367,miracle,343862b833cb1ed3b94541c6ec9f92c4dbdf1812,"Update SQLAlchemy, remove workaround.",Hanno Schlichting,2016-10-06T15:22:13Z,hannosch,hannosch,4,2,2
+368,miracle,b7a6a1ee91345a0eebc71e2f8493412a0080d61d,"Test our bloom filter against the top 100 domains.
+
+It shouldn't filter out any of them, except three known adult domains.",Hanno Schlichting,2016-10-06T14:34:12Z,hannosch,hannosch,125,125,0
+369,miracle,db3477c9bd5de7fa1d6a7bb366c2da427930ad70,Update blocklist.,Hanno Schlichting,2016-10-06T09:53:52Z,hannosch,hannosch,71,70,1
+370,miracle,4268116e8ed3477d5ce48c3b372188785b9259c3,vb [ci skip],Hanno Schlichting,2016-10-05T16:29:08Z,hannosch,hannosch,7,6,1
+371,miracle,29e69e17700557320d3b24ece97cbfc1b6537095,prepare [ci skip],Hanno Schlichting,2016-10-05T16:28:14Z,hannosch,hannosch,4,2,2
+372,miracle,3882e4fb19b511688282c215336febeebd206971,"Update blocklist.
+
+This removes some domains which are purely ads/tracking domains,
+and not used exclusively for adult content.",Hanno Schlichting,2016-10-05T16:24:19Z,hannosch,hannosch,1201,959,242
+373,miracle,baa72dbcf92e237cf5032872c371d35cb4001400,added source dia file for db_schema & svg with background,K Lars Lohn,2016-10-04T17:34:27Z,twobraids,twobraids,151,77,74
+374,miracle,e59f9bf8351e2586df5ac75c7d27bc7dfb000937,"Don't rely on DOCKERHUB_REPO env variable in normal test runs.
+
+Cirlce-ci doesn't expose any environment variables to pull requests,
+as they might contain credentials, like our DOCKER_PASS variable
+used in the deployment section.",Hanno Schlichting,2016-10-05T14:44:16Z,hannosch,hannosch,4,2,2
+375,miracle,5ef036328f27a8e5194b79dccb0ff40a3a18784a,Update dependencies.,Hanno Schlichting,2016-10-04T16:52:29Z,hannosch,hannosch,16,8,8
+376,miracle,ab163499ec13b6799b108aba8badeff801f3cbe4,"Add SVG version of database schema, curtesy of lars.",Hanno Schlichting,2016-10-04T16:37:20Z,hannosch,hannosch,95,95,0
+377,miracle,51b22b30b4dd6d56cdd8fbdd4f62db5edb01058d,Update blocklist.,Hanno Schlichting,2016-09-23T12:58:32Z,hannosch,hannosch,33,32,1
+378,miracle,25ef96298de14c566513b0d99fc461a73e7b4a09,Update blocklist.,Hanno Schlichting,2016-09-22T11:46:20Z,hannosch,hannosch,25,24,1
+379,miracle,46e312625e983a65cc62c54839e9869999ea456b,"Weekly recurrence script requires at least one week participation time.
+
+So far the script counted all users, even those that where created
+recently, skewing the results.",Hanno Schlichting,2016-09-21T11:01:50Z,hannosch,hannosch,55,44,11
+380,miracle,1016afc18bf6869a1d3022db90cb7c1b9dfe07c6,Update blocklist.,Hanno Schlichting,2016-09-21T10:02:25Z,hannosch,hannosch,20,19,1
+381,miracle,37c17f33dadf6ec44dd760bdc5daf4e29e8b710b,vb [ci skip],Hanno Schlichting,2016-09-20T14:31:24Z,hannosch,hannosch,7,6,1
+382,miracle,156dfee8452a5c02e84c117e693a701f17edfb69,prepare [ci skip],Hanno Schlichting,2016-09-20T14:30:45Z,hannosch,hannosch,4,2,2
+383,miracle,1c047d50c29bfa04202746c3b750e20f2082f1d1,Filter out non-standard HTTP/S ports.,Hanno Schlichting,2016-09-20T14:12:57Z,hannosch,hannosch,12,12,0
+384,miracle,02354cd9cf3f6fb6e95e7b040155fc485170e078,"Update blocklist, decrease false positive rate.
+
+The blocklist file is still only 12kb.",Hanno Schlichting,2016-09-20T10:12:24Z,hannosch,hannosch,20,17,3
+385,miracle,24bbeb357c2bae06082dca32fd4bde399e45dcab,Filter out all IP addresses.,Hanno Schlichting,2016-09-20T09:50:36Z,hannosch,hannosch,12,6,6
+386,miracle,628691e2ac6ff6a10cef487686270b887452070a,"Increase maximum valid session duration to 21 days.
+
+Also substitute out-of-range values with a under/overflow value of the
+correct type to dinstinguish them from missing values.",Hanno Schlichting,2016-09-20T09:46:15Z,hannosch,hannosch,37,24,13
